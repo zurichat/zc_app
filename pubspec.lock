@@ -224,7 +224,7 @@ packages:
       name: dart_style
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.0.3"
   dio:
     dependency: "direct main"
     description:
@@ -313,7 +313,7 @@ packages:
       name: flutter_native_splash
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.3"
+    version: "1.2.1"
   flutter_screenutil:
     dependency: "direct main"
     description:
@@ -797,7 +797,7 @@ packages:
       name: sqflite_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1+1"
+    version: "2.0.1"
   stack_trace:
     dependency: transitive
     description:
@@ -979,7 +979,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.9"
+    version: "2.0.5"
   xdg_directories:
     dependency: transitive
     description:
@@ -1002,5 +1002,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.13.0 <3.0.0"
+  dart: ">=2.12.0 <3.0.0"
   flutter: ">=2.0.1"
