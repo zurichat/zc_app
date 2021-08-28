@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hng/views/home/home_view.dart';
 
-import '../main.dart';
+// import '../main.dart';
 import 'route_names.dart';
 
 class AppRouter {
@@ -20,8 +21,10 @@ class AppRouter {
     switch (settings.name) {
 
       //*! Launch and Onboarding Routing _______________________________________
-      case splashViewRoute:
-        return _materialPageRoute(SplashView());
+      // case splashViewRoute:
+      //   return _materialPageRoute(SplashView());
+      case homeViewRoute:
+        return _materialPageRoute(HomeView());
       //*! Authentication Routing ______________________________________________
 
       //*! Dashboard Routing ______________________________________________
