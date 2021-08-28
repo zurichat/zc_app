@@ -1,10 +1,13 @@
 # Zuri Chat 
-  ### Overview 
-  This is the Zuri Chat Andriod project Repository.
+  ## Overview 
+  This is the **Zuri Chat** Andriod APP project Repository handle by **_TEAM SOCRATES_** witten with [Flutter](https://flutter.dev/).
   
-  NB: Always contact Team leads before 
-   All Team member must adhere to the follow procedure while working on this project.
-   i. Naming Convention
+  NB: Always contact Team leads before attempting any task **Except** assigned too.
+  
+  - _All Team member must adhere to the follow procedure while working on this project._
+  - _Make sure you understand the project Architecture before proceeding with any tasks_
+ 
+  **i. Naming Convention**
    * Variables => snake_case
    * File names => snake_case
    * Folder names => PascalCase
@@ -12,7 +15,7 @@
    * Method names => camelCase
 
    
-   ii. Style Rule
+   **ii. Style Rule**
    * Always declare return types in your methods.
    * Put required named parameters first.
    * Always require non-null named parameters (@required).
@@ -21,7 +24,7 @@
    
    
    
-   ### Contribution Guide
+   ## Contribution Guide
   **_Steps to collaborate on the Repository for Team Members._**
   ### Forking and Cloning Repo
   * Fork the project.  
