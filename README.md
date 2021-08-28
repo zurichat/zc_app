@@ -62,3 +62,24 @@ When your task is completed
   - How can the PR be manually tested?
   - Screenshots(of your implementation - A mobile screen or an APi payload). 
 
+
+### Folder Structure
+```
+  |-- lib
+        |-- approuting
+              |-- app_navigator.dart
+              |-- app_router.dart
+              |-- route_names.dart
+        |-- general_widgets
+              |-- constant
+              |-- extention
+              |-- mixins
+              |-- enum.dart
+              |-- utilities.dart
+              |-- validators.dart
+        |-- utilities
+        |-- view_models
+        |-- views
+        |-- main.dart
+  |-- packages
+```
