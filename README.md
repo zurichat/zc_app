@@ -8,11 +8,13 @@
   - _Make sure you understand the project Architecture before proceeding with any tasks_
  
   **i. Naming Convention**
-   * Variables => snake_case
-   * File names => snake_case
-   * Folder names => PascalCase
-   * Class names => PascalCase
-   * Method names => camelCase
+
+|Naming Convention|Effective Style|Example|   
+|-----------------|---------------|-------|
+|Classes, enum types,typedefs,and type parameters,etensions|PascalCase^1|An example is HomeScreen|
+|Libraries, packages, directories, and source files, import prefixes|snake_case|An example is home_screen|
+|Class members, top-level definitions, variables, parameters, and named parameters, constants|camelCase|An example is verifiedUser|
+
 
    
    **ii. Style Rule**
@@ -62,24 +64,3 @@ When your task is completed
   - How can the PR be manually tested?
   - Screenshots(of your implementation - A mobile screen or an APi payload). 
 
-
-### Folder Structure
-```
-  |-- lib
-        |-- approuting
-              |-- app_navigator.dart
-              |-- app_router.dart
-              |-- route_names.dart
-        |-- general_widgets
-              |-- constant
-              |-- extention
-              |-- mixins
-              |-- enum.dart
-              |-- utilities.dart
-              |-- validators.dart
-        |-- utilities
-        |-- view_models
-        |-- views
-        |-- main.dart
-  |-- packages
-```
