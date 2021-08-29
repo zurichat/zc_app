@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       navigatorKey: AppNavigator.key,
       onGenerateRoute: AppRouter.generateRoute,
       title: 'ZuriChat App',
