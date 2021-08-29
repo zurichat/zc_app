@@ -83,4 +83,4 @@ When your task is completed
 
 
 ### Directory stucture
-
+  You can check out this [document](https://docs.google.com/document/d/17uBPEtzHiTRo2lDhHdEHqlZzeCxYRwaqkvHIc9VluNE/edit?usp=sharing) for further information on the architecture.
