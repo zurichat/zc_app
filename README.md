@@ -81,3 +81,6 @@ When your task is completed
   - How can the PR be manually tested?
   - Screenshots(of your implementation - A mobile screen or an APi payload). 
 
+
+### Directory stucture
+
