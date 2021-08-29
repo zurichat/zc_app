@@ -7,7 +7,7 @@
   - _All Team member must adhere to the follow procedure while working on this project._
   - _Make sure you understand the project Architecture before proceeding with any tasks_
   
-  ##Project Description
+  ## Project Description
   ZuriChat is a mobile application clone of the already existing slack application with more features like music room, chess room, meeting room etc etc.
 
   - Music room: A room for shared playlist where users can add, play and share songs amongst themselves.
@@ -18,10 +18,10 @@
 
   - Avatar room: A room where you can design or choose an avatar that best describes your expression.
 
-   ##Design 
+   ## Design 
    The figma link to the design that will be implemented for this project will be dropped here 
 
-   ##Hosted App Link
+   ## Hosted App Link
    The link to the hosted app on appetize.io will be dropped here 
  
   **i. Naming Convention**
