@@ -23,7 +23,7 @@ class AppRouter {
       //*! Launch and Onboarding Routing _______________________________________
       // case splashViewRoute:
       //   return _materialPageRoute(SplashView());
-      case homeViewRoute:
+      case HomeView.id:
         return _materialPageRoute(const HomeView());
       //*! Authentication Routing ______________________________________________
 

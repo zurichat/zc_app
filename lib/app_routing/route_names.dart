@@ -1,4 +1,5 @@
 //ROUTE NAMES
+// TODO: Define IDs in relevant classes -- {@link ClassName.id}
 
 //* Launch and Onboarding
 const splashViewRoute = '/splash';
@@ -10,7 +11,7 @@ const registerViewRoute = '/register';
 const emailRegisterViewRoute = '/register/email';
 
 //* Home
-const homeViewRoute = '/home';
+/// check {@link HomeView.id}
 
 //* Notifications
 

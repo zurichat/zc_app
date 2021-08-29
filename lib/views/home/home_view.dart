@@ -13,6 +13,8 @@ import 'package:hng/views/home/widgets/custom_plugin_list_tile.dart';
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
 
+  static const String id = 'home';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
