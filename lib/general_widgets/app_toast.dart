@@ -5,6 +5,7 @@ class AppToast {
   AppToast._instance();
   static AppToast instance = AppToast._instance();
 // ignore: lines_longer_than_80_chars
+// ignore: todo
 //TODO change colors in this page to assigned theme colors to be defined in style.dart file
   void success(title, body) {
     Fluttertoast.showToast(
