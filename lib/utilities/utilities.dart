@@ -3,8 +3,8 @@ import 'package:flutter/widgets.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
-import 'constants/constants.dart';
-import 'extensions/string_extension.dart';
+import 'package:hng/utilities/constants/constants.dart';
+import 'package:hng/utilities/extensions/string_extension.dart';
 
 ImageProvider makeNetworkImage(String? link) {
   return link == null || !link.validateLink()

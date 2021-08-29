@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utilities/constants/styles.dart';
+import 'package:hng/utilities/constants/styles.dart';
 
 // ignore: use_key_in_widget_constructors
 class CustomBottomNavBar extends StatelessWidget {

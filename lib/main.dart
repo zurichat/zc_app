@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'app_routing/app_navigator.dart';
-import 'app_routing/app_router.dart';
-import 'views/home/home_view.dart';
+import 'package:hng/app_routing/app_navigator.dart';
+import 'package:hng/app_routing/app_router.dart';
+import 'package:hng/views/home/home_view.dart';
 
 void main() => runApp(MyApp());
 

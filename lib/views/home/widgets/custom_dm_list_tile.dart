@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utilities/constants/styles.dart';
+import 'package:hng/utilities/constants/styles.dart';
 
 class CustomDMListTile extends StatelessWidget {
   final imagelink;

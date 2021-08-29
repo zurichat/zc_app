@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../views/home/home_view.dart';
+import 'package:hng/views/home/home_view.dart';
 
 // import '../main.dart';
-import 'route_names.dart';
+import 'package:hng/app_routing/route_names.dart';
 
 class AppRouter {
   ///Build a MaterialPageRoute with the provided [page] widget and return it.

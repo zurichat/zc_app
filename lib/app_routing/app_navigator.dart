@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-export 'route_names.dart';
+export 'package:hng/app_routing/route_names.dart';
 
 class AppNavigator {
   AppNavigator._();

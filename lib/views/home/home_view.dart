@@ -2,13 +2,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../general_widgets/custom_bottom_nav.dart';
-import '../../utilities/constants/constants.dart';
-import '../../utilities/constants/styles.dart';
-import 'widgets/custom_channel_list_tile.dart';
-import 'widgets/custom_dm_list_tile.dart';
-import 'widgets/custom_homepage_section_title.dart';
-import 'widgets/custom_plugin_list_tile.dart';
+import 'package:hng/general_widgets/custom_bottom_nav.dart';
+import 'package:hng/utilities/constants/constants.dart';
+import 'package:hng/utilities/constants/styles.dart';
+import 'package:hng/views/home/widgets/custom_channel_list_tile.dart';
+import 'package:hng/views/home/widgets/custom_dm_list_tile.dart';
+import 'package:hng/views/home/widgets/custom_homepage_section_title.dart';
+import 'package:hng/views/home/widgets/custom_plugin_list_tile.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
