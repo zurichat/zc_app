@@ -27,7 +27,17 @@ jobs:
     
     - run: flutter test
 
-    - run: echo "This job's status is ${{ job.status }}."
+   
+
+    - uses: actions/github-script@v4
+      with:
+        script: |
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: 'This job's status is ${{ job.status }}.',
+          });   
     
     - run: flutter build apk
     
