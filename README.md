@@ -19,10 +19,10 @@
   - Avatar room: A room where you can design or choose an avatar that best describes your expression.
 
    ## Design 
-   The figma link to the design that will be implemented for this project will be dropped here 
+   The figma design that will be implemented for this project can be found [here](https://www.figma.com/file/a9aoc4xi2gjPupffXXRdXS/Team-Socrates?node-id=5461%3A22089) 
 
    ## Hosted App Link
-   The link to the hosted app on appetize.io will be dropped here 
+[Here](https://appetize.io/app/01maqa9k0b50p27nvh22dca3d0)  is the link to the app hosted on appetize
  
   **i. Naming Convention**
 
@@ -83,4 +83,4 @@ When your task is completed
 
 
 ### Directory stucture
-
+  You can check out this [document](https://docs.google.com/document/d/17uBPEtzHiTRo2lDhHdEHqlZzeCxYRwaqkvHIc9VluNE/edit?usp=sharing) for further information on the architecture.
