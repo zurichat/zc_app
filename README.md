@@ -6,6 +6,23 @@
   
   - _All Team member must adhere to the follow procedure while working on this project._
   - _Make sure you understand the project Architecture before proceeding with any tasks_
+  
+  ## Project Description
+  ZuriChat is a mobile application clone of the already existing slack application with more features like music room, chess room, meeting room etc etc.
+
+  - Music room: A room for shared playlist where users can add, play and share songs amongst themselves.
+
+  - Meeting rooms A room where meetings can take place amongst members. The meeting room also has a whiteboard where designs and texts to better visualize points of discussion and for better understanding.
+
+  - Documentation room: A room that has the company's documentation, files and folders and so on.
+
+  - Avatar room: A room where you can design or choose an avatar that best describes your expression.
+
+   ## Design 
+   The figma design that will be implemented for this project can be found [here](https://www.figma.com/file/a9aoc4xi2gjPupffXXRdXS/Team-Socrates?node-id=5461%3A22089) 
+
+   ## Hosted App Link
+[Here](https://appetize.io/app/01maqa9k0b50p27nvh22dca3d0)  is the link to the app hosted on appetize
  
   **i. Naming Convention**
 
@@ -64,3 +81,6 @@ When your task is completed
   - How can the PR be manually tested?
   - Screenshots(of your implementation - A mobile screen or an APi payload). 
 
+
+### Directory stucture
+  You can check out this [document](https://docs.google.com/document/d/17uBPEtzHiTRo2lDhHdEHqlZzeCxYRwaqkvHIc9VluNE/edit?usp=sharing) for further information on the architecture.
