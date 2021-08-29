@@ -60,7 +60,7 @@ When your task is completed
 ### Creating Pull Request
 **When making a PR, your PR is expected to have the following comments"**
   - What is the task/issue completed?
-  - What does the PR actually does?
+  - What does the PR actually do?
   - How can the PR be manually tested?
   - Screenshots(of your implementation - A mobile screen or an APi payload). 
 
