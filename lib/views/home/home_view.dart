@@ -1,8 +1,14 @@
 // import 'dart:ui';
 import 'package:flutter/cupertino.dart';
-import 'package:hng/views/shared/shared.dart';
-
 import 'package:flutter/material.dart';
+
+import '../../general_widgets/custom_bottom_nav.dart';
+import '../../utilities/constants/constants.dart';
+import '../../utilities/constants/styles.dart';
+import 'widgets/custom_channel_list_tile.dart';
+import 'widgets/custom_dm_list_tile.dart';
+import 'widgets/custom_homepage_section_title.dart';
+import 'widgets/custom_plugin_list_tile.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -15,264 +21,120 @@ class HomeView extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(
-              'assets/background/appBarLogo.png',
-              fit: BoxFit.cover,
-              height: 32,
+            const Padding(
+              padding: EdgeInsets.only(top: 8.0),
+              child: Image(
+                image: appBarLogo,
+                fit: BoxFit.cover,
+                height: 48,
+              ),
             ),
-            Container(
-                padding: const EdgeInsets.all(8.0), child: Text('YourAppTitle'))
           ],
-
         ),
-
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: whiteColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
               Container(
-                height: 40,
-                margin: EdgeInsets.only(top: 20),
+                height: 29,
+                margin: const EdgeInsets.only(top: 20),
                 child: TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(8),
                     hintText: 'Jump To...',
+                    hintStyle: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+                      borderSide: BorderSide(color: borderColor),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+                      borderSide: BorderSide(color: borderColor),
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              Row(
-                children: [
-                  Container(
-                    child: Icon(Icons.message_outlined, color: Colors.black),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                    child: Text('Threads',
-                        style: TextStyle(color: Colors.black, fontSize: 16)),
-                  )
-                ],
+              const SizedBox(height: 16),
+              const CustomPluginListTile(
+                icon: Icons.message_outlined,
+                pluginName: 'Threads',
               ),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  Container(
-                    child: Icon(Icons.document_scanner_outlined,
-                        color: Colors.black),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                    child: Text('Draft',
-                        style: TextStyle(color: Colors.black, fontSize: 16)),
-                  )
-                ],
+              const SizedBox(height: 16),
+              const CustomPluginListTile(
+                icon: Icons.document_scanner_outlined,
+                pluginName: 'Draft',
               ),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  Container(
-                    child: Icon(Icons.file_copy, color: Colors.black),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                    child: Text('Files',
-                        style: TextStyle(color: Colors.black, fontSize: 16)),
-                  )
-                ],
+              const SizedBox(height: 16),
+              const CustomPluginListTile(
+                icon: Icons.file_copy,
+                pluginName: 'Files',
               ),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  Container(
-                    child: Icon(Icons.add_chart, color: Colors.black),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                    child: Text('Integrate',
-                        style: TextStyle(color: Colors.black, fontSize: 16)),
-                  )
-                ],
+              const SizedBox(height: 16),
+              const CustomPluginListTile(
+                icon: Icons.add_chart,
+                pluginName: 'Integrate',
               ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Text('Channels',
-                        style: TextStyle(color: Colors.black, fontSize: 18)),
-                  ),
-                  SizedBox(width: 140),
-                  Container(
-                    child:
-                        Icon(Icons.add_circle_outline, color: Colors.black),
-                  ),
-                  Container(
-                    child: Icon(Icons.keyboard_arrow_down_outlined,
-                        color: Colors.black),
-                  )
-                ],
+              const SizedBox(height: 24),
+              const CustomHomePageSectionTitle(
+                title: 'Channels',
               ),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  Container(
-                    child: Text('#',
-                        style: TextStyle(color: Colors.black, fontSize: 18)),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                      child: Text('announcements',
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 16))),
-                ],
+              const SizedBox(height: 16),
+              const CustomChannelListTile(
+                channelName: 'announcements',
               ),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  Container(
-                    child: Text('#',
-                        style: TextStyle(color: Colors.black, fontSize: 18)),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                      child: Text('games',
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 16))),
-                ],
+              const SizedBox(height: 16),
+              const CustomChannelListTile(
+                channelName: 'games',
               ),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  Container(
-                    child: Text('#',
-                        style: TextStyle(color: Colors.black, fontSize: 18)),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                      child: Text('general',
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 16))),
-                ],
+              const SizedBox(height: 16),
+              const CustomChannelListTile(
+                channelName: 'general',
               ),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  Container(
-                    child: Text('#',
-                        style: TextStyle(color: Colors.black, fontSize: 18)),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                      child: Text('questions',
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 16))),
-                ],
+              const SizedBox(height: 16),
+              const CustomChannelListTile(
+                channelName: 'questions',
               ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Text('Direct Messages',
-                        style: TextStyle(color: Colors.black, fontSize: 18)),
-                  ),
-                  SizedBox(width: 80),
-                  Container(
-                    child:
-                        Icon(Icons.add_circle_outline, color: Colors.black),
-                  ),
-                  Container(
-                    child: Icon(Icons.keyboard_arrow_down_outlined,
-                        color: Colors.black),
-                  )
-                ],
+              const SizedBox(height: 20),
+              const CustomHomePageSectionTitle(
+                title: 'Direct Messages',
               ),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  Container(
-                    child: CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/background/bga.png'),
-                      radius: 17.0,
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                      child: Text('Princess',
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 16))),
-                ],
+              const SizedBox(height: 16),
+              const CustomDMListTile(
+                userName: 'Princess',
+                imagelink: dummyUserImage,
               ),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  Container(
-                    child: CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/background/bga.png'),
-                      radius: 17.0,
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                      child: Text('Tobi',
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 16))),
-                ],
+              const SizedBox(height: 16),
+              const CustomDMListTile(
+                userName: 'Tobi',
+                imagelink: dummyUserImage,
               ),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  Container(
-                    child: CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/background/bga.png'),
-                      radius: 17.0,
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                      child: Text('Victor',
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 16))),
-                ],
+              const SizedBox(height: 16),
+              const CustomDMListTile(
+                userName: 'Victor',
+                imagelink: dummyUserImage,
               ),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  Container(
-                    child: CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/background/bga.png'),
-                      radius: 17.0,
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                      child: Text('Fierce',
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 16))),
-                ],
+              const SizedBox(height: 16),
+              const CustomDMListTile(
+                userName: 'Fierce',
+                imagelink: dummyUserImage,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: CustomBottomNavBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(Icons.open_in_new_outlined, color: Colors.white),
-        backgroundColor: Colors.green,
+        child: const Icon(
+          Icons.open_in_new_outlined,
+          color: whiteColor,
+        ),
+        backgroundColor: greenColor,
       ),
     );
   }
