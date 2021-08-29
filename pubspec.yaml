@@ -23,8 +23,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/
-    - assets/logo/
+    - assets/background/bga.png
+    - assets/logo/zuri_chat_logo.png
+    - assets/background/appBarLogo.png
   # fonts:
   #   - family: Schyler
   #     fonts:

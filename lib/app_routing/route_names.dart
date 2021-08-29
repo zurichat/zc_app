@@ -10,6 +10,7 @@ const registerViewRoute = '/register';
 const emailRegisterViewRoute = '/register/email';
 
 //* Home
+const homeViewRoute = '/home';
 
 //* Notifications
 
