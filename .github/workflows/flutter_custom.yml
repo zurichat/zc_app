@@ -36,33 +36,24 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
     
+      # Run 'flutter test'
       # run static analysis code
 #       - run: flutter analyze
       # run flutter widget_test and unit tests
 #       - run: flutter test # TODO: Re-enable when test directory gets right files
-
-
-      # This action sets up a java environment
-      # https://github.com/actions/setup-java
-      - uses: actions/setup-java@v2.3.0
+      
+      # Comment on the repo
+      - name: Comment on the Repo
+        uses: actions/github-script@v4.1.0
         with:
-          distribution: 'temurin'
-          java-version: '11'
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚙ Automated Unit Test Result ⚙\n\n All Tests Passed: ${{ needs.checkout_flutter.outputs.output1 }}'})
         
-      # Build Android version
-      - run: flutter build apk --split-per-abi
-#         - run: flutter build appbundle
-
-      # This action will create a github release and optionally upload an artifact to it.
-      # https://github.com/ncipollo/release-action
-      - name: Create a Release APK
-        uses: ncipollo/release-action@v1.8.8
-        with:
-          # artifacts -- an optional set of paths representing artifacts to upload to the release.
-          artifacts: "build/app/outputs/flutter-apk/*.apk,build/macos/Build/Products/Release/*.app"
-          token: ${{ secrets.GITHUB_ZURI_TOKEN }}
-          commit: ${{ github.sha }}
-          prerelease: true
+      # Release Application
 
       # Build Flutter web version
       - run: flutter build web
@@ -75,20 +66,29 @@ jobs:
           BASE_BRANCH: master
           BRANCH: master
           FOLDER: build/web
+          
+      # Build Android version
+      - run: flutter build apk --split-per-abi
+#         - run: flutter build appbundle
+
+      # This action will create a github release and optionally upload an artifact to it.
+      # https://github.com/ncipollo/release-action
+      - name: Create a Release APK
+        uses: ncipollo/release-action@v1.8.8
+        with:
+          # artifacts -- an optional set of paths representing artifacts to upload to the release.
+          artifacts: "build/app/outputs/flutter-apk/*.apk,build/macos/Build/Products/Release/*.app"
+#           token: ${{ secrets.GITHUB_ZURI_TOKEN }}
+          token: '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'
+          commit: ${{ github.sha }}
+          prerelease: true
+
+
 
       # Uncomment this step to verify the use of 'dart format' on each commit.
       # - name: Verify formatting
-      #   run: dart format --output=none --set-exit-if-changed .
-
-      - name: Comment on the Repo
-        uses: actions/github-script@v4.1.0
-        with:
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '⚙ Automated Unit Test Result ⚙\n\n All Tests Passed: ${{ needs.checkout_flutter.outputs.output1 }}'})
+      #   run: dart format --output=none --set-exit-if-changed.
+      
 
   drive_ios:
     # creates a build matrix for your jobs
