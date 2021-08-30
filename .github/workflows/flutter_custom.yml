@@ -9,7 +9,7 @@ on:
   [push,pull_request]
 
 jobs:
-  test:
+  test_build_deploy:
   # Test, Build, Release and Deploy
     runs-on: ubuntu-latest
 
@@ -40,21 +40,70 @@ jobs:
 #       - run: flutter analyze
       # run flutter widget_test and unit tests
 #       - run: flutter test # TODO: Re-enable when test directory gets right files
-      
+
+
+      # This action sets up a java environment
+      # https://github.com/actions/setup-java
+      - uses: actions/setup-java@v2.3.0
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+        
+      # Build Android version
+      - run: flutter build apk --split-per-abi
+#         - run: flutter build appbundle
+
+      # This action will create a github release and optionally upload an artifact to it.
+      # https://github.com/ncipollo/release-action
+      - name: Create a Release APK
+        uses: ncipollo/release-action@v1.8.8
+        with:
+          # artifacts -- an optional set of paths representing artifacts to upload to the release.
+          artifacts: "build/app/outputs/flutter-apk/*.apk,build/macos/Build/Products/Release/*.app"
+          token: ${{ secrets.GITHUB_ZURI_TOKEN }}
+          commit: ${{ github.sha }}
+          prerelease: true
+
+      # Build Flutter web version
+      - run: flutter build web
+
+      # Handle the deploy process of ZuriChat app to GitHub Pages.
+      # https://github.com/JamesIves/github-pages-deploy-action
+      - uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_ZURI_TOKEN }}
+          BASE_BRANCH: master
+          BRANCH: master
+          FOLDER: build/web
+
+      # Uncomment this step to verify the use of 'dart format' on each commit.
+      # - name: Verify formatting
+      #   run: dart format --output=none --set-exit-if-changed .
+
+      - name: Comment on the Repo
+        uses: actions/github-script@v4.1.0
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚙ Automated Unit Test Result ⚙\n\n All Tests Passed: ${{ needs.checkout_flutter.outputs.output1 }}'})
+
   drive_ios:
-    #creates a build matrix for your jobs
+    # creates a build matrix for your jobs
     strategy:
-      #set of different configurations of the virtual environment.
+      # set of different configurations of the virtual environment.
       matrix:
         device:
           - "iPhone 8 (13.1)"
           - "iPhone 11 Pro Max (13.1)"
       fail-fast: false
-    #if conditional to prevent a job from running
+    # if conditional to prevent a job from running
     if: github.event_name == 'pull_request'
     runs-on: macos-latest
-    #Identifies any jobs that must complete successfully before this job will run.
-    needs: test
+    # Identifies any jobs that must complete successfully before this job will run.
+    needs: test_build_deploy
     steps:
       - name: List all simulators
         run: xcrun instruments -s
@@ -91,7 +140,7 @@ jobs:
       matrix:
         api-level: [21, 29]
         target: [default]
-    needs: test
+    needs: test_build_deploy
     steps:
       - uses: actions/checkout@v2.3.4
       - uses: subosito/flutter-action@v1.5.3
@@ -108,64 +157,3 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           script: flutter drive --target=test_driver/app.dart
-      
-  build_deploy:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2.3.4
-        
-        # Setup Flutter environemt
-        # https://github.com/marketplace/actions/flutter-action
-        - uses: subosito/flutter-action@v1.5.3
-          with:
-            flutter-version: '2.2.3'
-            channel: 'stable'
-          
-        # This action sets up a java environment
-        # https://github.com/actions/setup-java
-        - uses: actions/setup-java@v2.3.0
-          with:
-            distribution: 'temurin'
-            java-version: '11'
-        
-        # Build Android version
-        - run: flutter build apk --split-per-abi
-#         - run: flutter build appbundle
-
-        # This action will create a github release and optionally upload an artifact to it.
-        # https://github.com/ncipollo/release-action
-        - name: Create a Release APK
-          uses: ncipollo/release-action@v1.8.8
-          with:
-            # artifacts -- an optional set of paths representing artifacts to upload to the release.
-            artifacts: "build/app/outputs/flutter-apk/*.apk,build/macos/Build/Products/Release/*.app"
-            token: ${{ secrets.GITHUB_ZURI_TOKEN }}
-            commit: ${{ github.sha }}
-            prerelease: true
-
-
-        # Build Flutter web version
-        - run: flutter build web
-
-        # Handle the deploy process of ZuriChat app to GitHub Pages.
-        # https://github.com/JamesIves/github-pages-deploy-action
-        - uses: JamesIves/github-pages-deploy-action@releases/v3
-          with:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_ZURI_TOKEN }}
-            BASE_BRANCH: master
-            BRANCH: master
-            FOLDER: build/web
-
-        # Uncomment this step to verify the use of 'dart format' on each commit.
-        # - name: Verify formatting
-        #   run: dart format --output=none --set-exit-if-changed .
-
-        - name: Comment on the Repo
-          uses: actions/github-script@v4.1.0
-          with:
-            script: |
-              github.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: '⚙ Automated Unit Test Result ⚙\n\n All Tests Passed: ${{ needs.checkout_flutter.outputs.output1 }}'})
