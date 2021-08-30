@@ -1,3 +1,5 @@
+name: Team Socrates CI/CD Tags Build
+
 on:
   push:
     tags:
