@@ -28,7 +28,7 @@
 
 |Naming Convention|Effective Style|Example|   
 |-----------------|---------------|-------|
-|Classes, enum types,typedefs,and type parameters,etensions|PascalCase^1|An example is HomeScreen|
+|Classes, enum types,typedefs,and type parameters,etensions|PascalCase|An example is HomeScreen|
 |Libraries, packages, directories, and source files, import prefixes|snake_case|An example is home_screen|
 |Class members, top-level definitions, variables, parameters, and named parameters, constants|camelCase|An example is verifiedUser|
 
