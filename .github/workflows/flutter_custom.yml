@@ -43,15 +43,16 @@ jobs:
 #       - run: flutter test # TODO: Re-enable when test directory gets right files
       
       # Comment on the repo
-      - name: Comment on the Repo
-        uses: actions/github-script@v4.1.0
-        with:
-          script: |
-            github.issues.createComment({
-              issue_number: pr_number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '⚙ Automated Unit Test Result ⚙\n\n All Tests Passed: ${{ needs.checkout_flutter.outputs.output1 }}'})
+#       - name: Comment on the Repo
+#         uses: actions/github-script@v4.1.0
+#         with:
+#           script: |
+#             github.issues.createComment({
+#               issue_number: context.issue.number,
+#               owner: context.repo.owner,
+#               repo: context.repo.repo,
+#               body: '⚙ Automated Unit Test Result ⚙\n\n All Tests Passed: ${{ needs.checkout_flutter.outputs.output1 }}'
+#             })
         
       # Release Application
 
