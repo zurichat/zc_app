@@ -13,26 +13,21 @@ jobs:
     needs: [ version ]
   
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - uses: actions/setup-java@v1
         with:
-          java-version: '12.x'
-
-      - name: Install app Dependencies
+          java-version: 12.x
+      - uses: subosito/flutter-action@v1
+      - name: Install dependencies
         run: flutter pub get
-      
-      - name: Analyze project source
-        run: dart analyze
-      
-      - name: Run tests
-        run: flutter test
-      
-      - run: flutter build apk --release --split-per-abi
+      - run: flutter format --set-exit-if-changed .
+      - run: flutter analyze .
+      - run: flutter test
+      - run: flutter build apk --release
       - run: flutter build appbundle
-      - name: Create a release in Github
-        uses: ncipollo/release-action@v1
+      - uses: actions/upload-artifact@v1
         with:
-          artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/app-release.aab"
-          prerelease: true
+          name: release-apk
+          path: build/app/outputs/apk/release/app-release.apk
     
   
