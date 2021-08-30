@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../utilities/constants/styles.dart';
+import '../../styles.dart';
 
 class CustomHomePageSectionTitle extends StatelessWidget {
   final title;

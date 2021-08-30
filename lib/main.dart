@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'app_routing/app_navigator.dart';
-import 'app_routing/app_router.dart';
-import 'views/home/home_view.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'ui/views/home/home_view.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,8 +9,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: AppNavigator.key,
-      onGenerateRoute: AppRouter.generateRoute,
+      navigatorKey: StackedService.navigatorKey,
+      // onGenerateRoute: StackedRouter().onGenerateRoute,
       title: 'ZuriChat App',
       home: const HomeView(),
     );

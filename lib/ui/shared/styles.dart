@@ -14,7 +14,7 @@ const borderColor = Color(0xFF7B8794);
 const greyishColor = Color(0xFF999999);
 const deepBlackColor = Color(0xFF333333);
 const greenColor = Color(0xFF00B87C);
-const navBarItemColor = Color(0xFF7B8794);
+const navBarItemColor = Color(0xFF7B8794); 
 
 //* TEXTSTYLES
 

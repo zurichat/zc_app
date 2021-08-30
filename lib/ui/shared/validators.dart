@@ -1,4 +1,4 @@
-import 'extensions/string_extension.dart';
+import '/ui/shared/string_extension.dart';
 
 class Validator {
   Validator._();
