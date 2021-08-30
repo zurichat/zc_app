@@ -27,7 +27,8 @@ jobs:
       # https://github.com/actions/setup-java
       - uses: actions/setup-java@v2.3.0
         with:
-          java-version: '12.x'
+          distribution: 'temurin'
+          java-version: '11'
           
       # Enable web
       - run: flutter  config --enable-web
