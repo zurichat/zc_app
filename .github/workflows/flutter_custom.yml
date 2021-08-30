@@ -37,7 +37,7 @@ jobs:
         run: flutter pub get
     
       # run static analysis code
-      - run: flutter analyze
+#       - run: flutter analyze
       # run flutter widgets tests and unit tests
       - run: flutter test --coverage
       
