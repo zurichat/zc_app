@@ -25,13 +25,15 @@ jobs:
 
     - run: flutter pub get
     
-    - run: flutter format --set-exit-if-changed .
-    
-    - run: flutter analyze .
-    
     - run: flutter test
 
-    - run: echo "This job's status is ${{ job.status }}."
+   
+    - uses: actions/checkout@v2
+    - uses: actions-ecosystem/action-create-comment@v1
+      with:
+        github_token: ${{ secrets.github_token }}
+        body: |
+           This job's status is ${{ job.status }}.
     
     - run: flutter build apk
     
