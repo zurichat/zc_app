@@ -1,6 +1,6 @@
 # Zuri Chat 
   ## Overview 
-  This is the **Zuri Chat** Andriod APP project Repository handle by **_TEAM SOCRATES_** witten with [Flutter](https://flutter.dev/).
+  This is the **Zuri Chat** Andriod APP project Repository handled by **_TEAM SOCRATES_** witten with pure [Flutter](https://flutter.dev/).
   
   NB: Always contact Team leads before attempting any task **Except** assigned too.
   
@@ -28,7 +28,7 @@
 
 |Naming Convention|Effective Style|Example|   
 |-----------------|---------------|-------|
-|Classes, enum types,typedefs,and type parameters,etensions|PascalCase^1|An example is HomeScreen|
+|Classes, enum types,typedefs,and type parameters,etensions|PascalCase|An example is HomeScreen|
 |Libraries, packages, directories, and source files, import prefixes|snake_case|An example is home_screen|
 |Class members, top-level definitions, variables, parameters, and named parameters, constants|camelCase|An example is verifiedUser|
 
@@ -77,7 +77,7 @@ When your task is completed
 ### Creating Pull Request
 **When making a PR, your PR is expected to have the following comments"**
   - What is the task/issue completed?
-  - What does the PR actually does?
+  - What does the PR actually do?
   - How can the PR be manually tested?
   - Screenshots(of your implementation - A mobile screen or an APi payload). 
 
