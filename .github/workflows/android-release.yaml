@@ -1,7 +1,7 @@
 name: ZuriChat App
 
 on:
-  push: [ master ]
+  push:
   pull_request:
     branches:
       - master
