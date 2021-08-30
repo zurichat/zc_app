@@ -3,40 +3,154 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
+name: Dart|Flutter ZuriChat Application test, build and deploy.
 
 on:
   push:
-    branches: [ master ]
+    branches: [ $default-branch ]
   pull_request:
     branches: [ master ]
 
 jobs:
-  build:
+  test:
+  # Test, Build, Release and Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-
-      # Note: This workflow uses the latest stable version of the Dart SDK.
-      # You can specify other versions if desired, see documentation here:
-      # https://github.com/dart-lang/setup-dart/blob/main/README.md
-      # - uses: dart-lang/setup-dart@v1
-      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - uses: actions/checkout@v2.3.4
+      
+      # Setup Flutter environemt
+      # https://github.com/marketplace/actions/flutter-action
+      - uses: subosito/flutter-action@v1.5.3
+        with:
+          flutter-version: '2.2.3'
+          channel: 'stable'
+          
+      # This action sets up a java environment
+      # https://github.com/actions/setup-java
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+          
+      # Enable web
+      - run: flutter  config --enable-web
 
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
+    
+      # run static analysis code
+      - run: flutter analyze
+      # run flutter widgets tests and unit tests
+      - run: flutter test --coverage
+      
+  drive_ios:
+    # creates a build matrix (for the jobs)
+    strategy:
+      # Set of different configurations of the virtual environment.
+      matrix:
+        device:
+          - "iPhone 8 (13.1)"
+          - "iPhone 11 Pro Max (13.1)"
+      fail-fast: false
+    #if conditional to prevent a job from running
+    if: github.event_name = 'pull_request'
+    runs-on: macos-latest
+    #Identifies any jobs that must complete successfully before this job will run.
+    needs: test
+    steps:
+      - name: List all simulators
+        run: xcrun instruments -s
+      # get UUID  simulator and boot a simulator on mac from  command line
+      - name: Start Simulator
+        run: |
+          UDID=$(
+            xcrun instruments -s |
+            awk \
+              -F ' *[][]' \
+              -v 'device=${{ matrix.device }}' \
+              '$1 == device { print $2 }'
+          )
+          xcrun simctl boot "${UDID:?No Simulator with this name found}"
+      - uses: actions/checkout@v2.3.4
+      - uses: subosito/flutter-action@v1.5.3
+        with:
+          flutter-version: '2.2.3'
+          channel: 'stable'
+      # Run flutter integrate tests
+      - name: Run Flutter Driver tests
+        run: flutter drive --target=test_driver/app.dart
 
-      # Uncomment this step to verify the use of 'dart format' on each commit.
-      # - name: Verify formatting
-      #   run: dart format --output=none --set-exit-if-changed .
 
-      # Consider passing '--fatal-infos' for slightly stricter analysis.
-      - name: Analyze project source
-        run: dart analyze
+  drive_android:
+    #if conditional to prevent a job from running
+    if: github.event_name == 'pull_request'
+    runs-on: macos-latest
+    #creates a build matrix for your jobs
+    strategy:
+      #set of different configurations of the virtual environment.
+      matrix:
+        api-level: [21, 29]
+        target: [default]
+    needs: test
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: subosito/flutter-action@v1.5.3
+        with:
+          flutter-version: '2.2.3'
+          channel: 'stable'
+      - name: Run Flutter Driver tests
+        #GitHub Action for installing, configuring and running Android Emulators (work only Mac OS)
+        #https://github.com/ReactiveCircus/android-emulator-runner
+        uses: reactivecircus/android-emulator-runner@v2.20.0
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          arch: x86_64
+          profile: Nexus 6
+          script: flutter drive --target=test_driver/app.dart
+      
+  build_deploy:
+      runs-on: ubuntu-latest
+      steps:
+      
+        # Build Android version
+        - run: flutter build apk --release --split-per-abi
+        - run: flutter build appbundle
 
-      # Your project will need to have tests in test/ and a dependency on
-      # package:test for this step to succeed. Note that Flutter projects will
-      # want to change this to 'flutter test'.
-      - name: Run tests
-        run: dart test
+        # This action will create a github release and optionally upload an artifact to it.
+        # https://github.com/ncipollo/release-action
+        - name: Create a Release APK
+          uses: ncipollo/release-action@v1
+          with:
+            # artifacts -- an optional set of paths representing artifacts to upload to the release.
+            artifacts: "build/app/outputs/flutter-apk/app-release.apk,build/macos/Build/Products/Release/*.app"
+            token: ${{ secrets.GITHUB_ZURI_TOKEN }}
+            commit: ${{ github.sha }}
+            prerelease: true
+
+
+        # Build Flutter web version
+        - run: flutter build web
+
+        # Handle the deploy process of ZuriChat app to GitHub Pages.
+        # https://github.com/JamesIves/github-pages-deploy-action
+        - uses: JamesIves/github-pages-deploy-action@releases/v3
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_ZURI_TOKEN }}
+            BASE_BRANCH: master
+            BRANCH: master
+            FOLDER: build/web
+
+        # Uncomment this step to verify the use of 'dart format' on each commit.
+        # - name: Verify formatting
+        #   run: dart format --output=none --set-exit-if-changed .
+
+        - name: Comment on the Repo
+        - uses: actions/github-script@v4.1.0
+          with:
+            script: |
+              github.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: '⚙ Automated Unit Test Result ⚙\n\n All Tests Passed: ${{ needs.checkout_flutter.outputs.output1 }}'})
