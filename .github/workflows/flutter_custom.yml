@@ -72,8 +72,9 @@ jobs:
       - uses: actions/checkout@v2.3.4
       - uses: subosito/flutter-action@v1.5.3
         with:
-          flutter-version: '1.12.14'
-          channel: 'dev'
+          flutter-version: '2.2.3'
+          channel: 'stable'
+          
       # Run flutter integrate tests
       - name: Run Flutter Driver tests
         run: flutter drive --target=test_driver/app.dart
