@@ -3,13 +3,10 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart|Flutter ZuriChat Application test, build and deploy.
+name: ZuriChat Application test, build and deploy workflow.
 
 on:
-  push:
-    branches: [ $default-branch ]
-  pull_request:
-    branches: [ master ]
+  [push,pull_request]
 
 jobs:
   test:
@@ -28,7 +25,7 @@ jobs:
           
       # This action sets up a java environment
       # https://github.com/actions/setup-java
-      - uses: actions/setup-java@v1
+      - uses: actions/setup-java@v2.3.0
         with:
           java-version: '12.x'
           
@@ -45,7 +42,7 @@ jobs:
       
   drive_android:
     #if conditional to prevent a job from running
-    if: github.event_name == 'pull_request'
+#     if: github.event_name == 'pull_request'
     runs-on: macos-latest
     #creates a build matrix for your jobs
     strategy:
