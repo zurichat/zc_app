@@ -65,7 +65,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_ZURI_TOKEN }}
           BASE_BRANCH: master
-          BRANCH: master
+          BRANCH: gh-pages
           FOLDER: build/web
           
       # Build Android version
