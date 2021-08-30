@@ -1,4 +1,4 @@
-name: Team Socrates CI/CD
+name: Team Socrates CI/CD Workflow
 
 on:
   pull_request:
