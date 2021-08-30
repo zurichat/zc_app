@@ -1,6 +1,6 @@
 # Zuri Chat 
   ## Overview 
-  This is the **Zuri Chat** Andriod APP project Repository handle by **_TEAM SOCRATES_** witten with [Flutter](https://flutter.dev/).
+  This is the **Zuri Chat** Andriod APP project Repository handled by **_TEAM SOCRATES_** witten with pure [Flutter](https://flutter.dev/).
   
   NB: Always contact Team leads before attempting any task **Except** assigned too.
   
