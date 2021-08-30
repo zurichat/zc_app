@@ -108,7 +108,7 @@ jobs:
         #   run: dart format --output=none --set-exit-if-changed .
 
         - name: Comment on the Repo
-        - uses: actions/github-script@v4.1.0
+          uses: actions/github-script@v4.1.0
           with:
             script: |
               github.issues.createComment({
