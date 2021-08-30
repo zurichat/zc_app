@@ -114,8 +114,8 @@ jobs:
       steps:
       
         # Build Android version
-        - run: flutter build apk --release --split-per-abi
-        - run: flutter build appbundle
+        - run: flutter build apk --split-per-abi
+#         - run: flutter build appbundle
 
         # This action will create a github release and optionally upload an artifact to it.
         # https://github.com/ncipollo/release-action
@@ -123,7 +123,7 @@ jobs:
           uses: ncipollo/release-action@v1
           with:
             # artifacts -- an optional set of paths representing artifacts to upload to the release.
-            artifacts: "build/app/outputs/flutter-apk/app-release.apk,build/macos/Build/Products/Release/*.app"
+            artifacts: "build/app/outputs/flutter-apk/*.apk,build/macos/Build/Products/Release/*.app"
             token: ${{ secrets.GITHUB_ZURI_TOKEN }}
             commit: ${{ github.sha }}
             prerelease: true
