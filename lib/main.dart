@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import 'app/app.locator.dart';
 import 'app/app.router.dart';
+import 'locator.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppDependencies.locate.register();
   setupLocator();
   runApp(MyApp());
 }
