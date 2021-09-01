@@ -2,9 +2,8 @@ name: Label Test1
 
 on:
   pull_request:
-    types: [labeled]
-    branches:
-    - dev
+    types:
+    - labeled
     
 jobs:
   build:
