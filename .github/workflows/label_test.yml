@@ -1,4 +1,4 @@
-name: Label Test
+name: Label Test1
 
 on:
   pull_request:
