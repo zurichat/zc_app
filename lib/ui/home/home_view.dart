@@ -136,7 +136,6 @@ class HomeView extends StatelessWidget {
         bottomNavigationBar: CustomBottomNavBar(),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            storage.setString('name', 'David');
             navigation.navigateTo(Routes.loginView);
           },
           child: const Icon(

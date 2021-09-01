@@ -28,8 +28,6 @@ class LoginView extends StatelessWidget {
                   text: '''The previous value you entered is: '''
                       ''' ${text.getString('userInput') ?? 'No input yet'}''',
                 ),
-
-                // CustomText(text: text.getString('Kindly Type in a value')!),
                 const SizedBox(height: 8),
                 TextField(
                   controller: model.userText,
