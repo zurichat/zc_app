@@ -36,7 +36,7 @@ jobs:
            This job's status is ${{ job.status }}.
 
 
-
+on:
   label:
     types: [created]
     
