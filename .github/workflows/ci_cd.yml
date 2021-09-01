@@ -34,10 +34,28 @@ jobs:
         github_token: ${{ secrets.github_token }}
         body: |
            This job's status is ${{ job.status }}.
+
+
+
+  label:
+    types: [created]
     
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+   
+    - uses: actions/checkout@v2
     - run: flutter build apk
     
     - uses: actions/upload-artifact@v1
       with:
         name: release-apk
         path: build/app/outputs/apk/release/app-release.apk
+
+    - uses: actions-ecosystem/action-create-comment@v1
+      with:
+        github_token: ${{ secrets.github_token }}
+        body: |
+           This job's status is ${{ job.status }}.
+
