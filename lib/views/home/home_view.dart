@@ -65,8 +65,7 @@ class HomeView extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               const CustomPluginListTile(
-                /// find Icons.document_scanner_outlined to replace icon below
-                icon: Icons.scanner_outlined,
+                icon: Icons.document_scanner_outlined,
                 pluginName: 'Draft',
               ),
               const SizedBox(height: 16),
