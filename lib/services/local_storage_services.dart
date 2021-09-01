@@ -1,54 +1,55 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class LocalStorageService {
-  Future setBool(String key, bool value);
-  Future setString(String key, String value);
-  Future setDouble(String key, num value);
+// abstract class LocalStorageService {
+//   Future setBool(String key, bool value);
+//   Future setString(String key, String value);
+//   // Future setDouble(String key, num value);
 
-  Future<bool> getBool(String key);
-  Future<String> getString(String key);
-  Future<double> getDouble(String key);
+//   Future<bool> getBool(String key);
+//   Future<String> getString(String key);
+//   Future<double> getDouble(String key);
 
-  Future<bool> clearStorage();
-}
+//   Future<bool> clearStorage();
+// }
 
-class SharedPreferenceLocalStorage implements LocalStorageService {
-  final SharedPreferences sharedPreferences;
+class SharedPreferenceLocalStorage {
+  static SharedPreferenceLocalStorage? _instance;
+  static SharedPreferences? _preferences;
+  static Future<SharedPreferenceLocalStorage> getInstance() async {
+    if (_instance == null) {
+      _instance = SharedPreferenceLocalStorage();
+    }
+    if (_preferences == null) {
+      _preferences = await SharedPreferences.getInstance();
+    }
+    return _instance!;
+  }
 
-  SharedPreferenceLocalStorage({required this.sharedPreferences});
-
-  @override
   Future setBool(String key, bool value) async {
-    await sharedPreferences.setBool(key, value);
+    await _preferences?.setBool(key, value);
   }
 
-  @override
   Future setString(String key, String value) async {
-    await sharedPreferences.setString(key, value);
+    await _preferences?.setString(key, value);
   }
 
-  @override
   Future setDouble(String key, num value) {
-    return sharedPreferences.setDouble(key, value.toDouble());
+    return _preferences!.setDouble(key, value.toDouble());
   }
 
-  @override
-  Future<bool> getBool(String key) async {
-    return Future.value(sharedPreferences.getBool(key));
+  bool? getBool(String key) {
+    return _preferences?.getBool(key);
   }
 
-  @override
-  Future<String> getString(String key) async {
-    return Future.value(sharedPreferences.getString(key));
+  String? getString(String key) {
+    return _preferences?.getString(key);
   }
 
-  @override
-  Future<double> getDouble(String key) async {
-    return Future.value(sharedPreferences.getDouble(key));
+  double? getDouble(String key) {
+    return _preferences?.getDouble(key);
   }
 
-  @override
-  Future<bool> clearStorage() async {
-    return Future.value(sharedPreferences.clear());
+  Future<bool?> clearStorage() async {
+    return _preferences?.clear();
   }
 }

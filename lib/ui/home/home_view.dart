@@ -1,10 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
+import '../../app/app.locator.dart';
+import '../../app/app.router.dart';
 import '../../general_widgets/custom_bottom_nav.dart';
-import '../../locator.dart';
 import '../../services/local_storage_services.dart';
 import '../../utilities/constants/constants.dart';
 import '../../utilities/constants/styles.dart';
@@ -15,7 +15,8 @@ import 'widgets/custom_homepage_section_title.dart';
 import 'widgets/custom_plugin_list_tile.dart';
 
 class HomeView extends StatelessWidget {
-  final storage = locator<LocalStorageService>();
+  final storage = locator<SharedPreferenceLocalStorage>();
+  final navigation = locator<NavigationService>();
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +135,10 @@ class HomeView extends StatelessWidget {
         ),
         bottomNavigationBar: CustomBottomNavBar(),
         floatingActionButton: FloatingActionButton(
-          onPressed: () async {},
+          onPressed: () async {
+            storage.setString('name', 'David');
+            navigation.navigateTo(Routes.loginView);
+          },
           child: const Icon(
             Icons.open_in_new_outlined,
             color: whiteColor,
