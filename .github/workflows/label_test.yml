@@ -2,7 +2,7 @@ name: Label Test
 
 on:
   pull_request:
-    action: [labeled]
+    types: [labeled]
     
 jobs:
   build:
