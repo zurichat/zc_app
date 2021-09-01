@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
-      title: 'ZuriChat App',
+      title: 'ZuriChat App3',
       initialRoute: Routes.homeView,
     );
   }
