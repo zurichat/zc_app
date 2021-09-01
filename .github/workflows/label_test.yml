@@ -1,8 +1,8 @@
 name: Label Test
 
 on:
-  label:
-    types: [created]
+  pull_request:
+    action: [labeled]
     
 jobs:
   build:
