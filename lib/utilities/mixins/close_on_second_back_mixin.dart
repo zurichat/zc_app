@@ -1,6 +1,6 @@
 import '../../general_widgets/app_toast.dart';
 
-import '../constants/constants.dart';
+import '../../ui/shared/constants.dart';
 
 mixin CustomWillPopScopeMixin {
   static bool _secondBack = false;
