@@ -22,10 +22,10 @@ class CustomBottomNavBar extends StatelessWidget {
           icon: Icon(Icons.comment),
           label: 'DMs',
         ),
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.table_chart_outlined),
-          label: 'Lounge',
-        ),
+        // const BottomNavigationBarItem(
+        //   icon: Icon(Icons.table_chart_outlined),
+        //   label: 'Lounge',
+        // ),
         const BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'You',

@@ -30,6 +30,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/background/bga.png
+    - assets/background/status.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
   # fonts:

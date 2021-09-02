@@ -20,24 +20,10 @@ class CustomHomePageSectionTitle extends StatelessWidget {
           style: const TextStyle(
             fontWeight: FontWeight.w500,
             color: deepBlackColor,
-            fontSize: 15,
+            fontSize: 16,
           ),
         ),
-        Row(
-          children: [
-            const Icon(
-              Icons.add_circle_outline,
-              color: greyishColor,
-              size: 18,
-            ),
-            const SizedBox(width: 16),
-            const Icon(
-              Icons.keyboard_arrow_down_outlined,
-              color: greyishColor,
-              size: 18,
-            ),
-          ],
-        )
+        
       ],
     );
   }
