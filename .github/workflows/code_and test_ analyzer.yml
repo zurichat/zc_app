@@ -1,9 +1,8 @@
 name: Team Socrates Code Working Checker
 
 on:
-  pull_request:
-    branches:
-    - dev
+  pull_request_target:
+    branches: [dev, master]
     
 
     
