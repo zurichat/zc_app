@@ -63,10 +63,10 @@ class HomeView extends StatelessWidget {
                     pluginName: 'Threads',
                   ),
                   const SizedBox(height: 16),
-                  const CustomPluginListTile(
-                    icon: Icons.document_scanner_outlined,
-                    pluginName: 'Draft',
-                  ),
+                  // const CustomPluginListTile(
+                  //   icon: Icons.document_scanner_outlined,
+                  //   pluginName: 'Draft',
+                  // ),
                   const SizedBox(height: 16),
                   const CustomPluginListTile(
                     icon: Icons.file_copy,
