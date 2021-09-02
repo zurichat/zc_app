@@ -2,7 +2,7 @@ name: Label Test1
 
 on:
   pull_request:
-    types: [edited, labeled, unlabeled]
+    types: [labeled]
 
     
 jobs:
