@@ -18,4 +18,7 @@ const defaultNetworkImage = 'https://placeimg.com/300/550/nature';
 const appBarLogo = AssetImage(
   'assets/background/appBarLogo.png',
 );
+const zuriLogo = AssetImage(
+  'assets/logo/zuri_logo.png',
+);
 const dummyUserImage = 'assets/background/bga.png';
