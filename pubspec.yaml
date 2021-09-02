@@ -19,6 +19,7 @@ dependencies:
   # Stacked
   stacked: ^2.1.8
   stacked_services: ^0.8.6
+  connectivity: ^3.0.6
 
 dev_dependencies:
   flutter_test:
