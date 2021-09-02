@@ -1,8 +1,9 @@
 name: Label Test1
 
 on:
-  pull_request_target:
-    types: [assigned]
+  push:
+  pull_request:
+    types: [labeled]
 
     
 jobs:
