@@ -7,5 +7,5 @@ class AppColors {
   static const Color deepBlackColor = Color(0xFF333333);
   static const Color greenColor = Color(0xFF00B87C);
   static const Color navBarItemColor = Color(0xFF7B8794);
-
+  static const Color shadowColor = Color.fromRGBO(79, 79, 79, 0.15);
 }

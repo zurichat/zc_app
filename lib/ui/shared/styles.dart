@@ -43,8 +43,6 @@ class AppTextStyles {
   );
 }
 
-
-
 const logoAsset = AssetImage('assets/logo/hng_logo.png');
 const dummyNetworkImage =
     'https://loremflickr.com/320/240/paris,news,work?random=';
