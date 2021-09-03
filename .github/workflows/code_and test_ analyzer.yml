@@ -1,7 +1,7 @@
-name: Team Socrates Code Working Checker
+name: Team Socrates Receive PR
 
 on:
-  pull_request_target:
+  pull_request:
     branches: [dev, master]
     
 
@@ -26,9 +26,11 @@ jobs:
     - run: flutter analyze
     - run: flutter test
 
-    - uses: actions/checkout@v2
-    - uses: actions-ecosystem/action-create-comment@v1
+    - name: Save PR number
+      run: |
+        mkdir -p ./pr
+        echo ${{ github.event.number }} > ./pr/NR
+    - uses: actions/upload-artifact@v2
       with:
-        github_token: ${{ secrets.github_token }}
-        body: |
-           This job's status is comment2 ${{ job.status }}
+        name: pr
+        path: pr/
