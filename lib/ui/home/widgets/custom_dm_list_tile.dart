@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../utilities/constants/styles.dart';
 
+import '../../shared/colors.dart';
 class CustomDMListTile extends StatelessWidget {
   final imagelink;
   final userName;
@@ -24,7 +24,7 @@ class CustomDMListTile extends StatelessWidget {
           userName,
           style: const TextStyle(
             fontWeight: FontWeight.w700,
-            color: greyishColor,
+            color: AppColors.greyishColor,
             fontSize: 15,
           ),
         ),

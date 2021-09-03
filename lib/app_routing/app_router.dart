@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../views/home/home_view.dart';
+import '../../ui/home/home_view.dart';
 
 // import '../main.dart';
 import 'route_names.dart';
@@ -24,7 +24,7 @@ class AppRouter {
       // case splashViewRoute:
       //   return _materialPageRoute(SplashView());
       case homeViewRoute:
-        return _materialPageRoute(const HomeView());
+        return _materialPageRoute(HomeView());
       //*! Authentication Routing ______________________________________________
 
       //*! Dashboard Routing ______________________________________________

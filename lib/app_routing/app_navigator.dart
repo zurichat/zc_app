@@ -32,14 +32,14 @@ class AppNavigator {
   static Future pushAndClear(Widget page) {
     return key.currentState!.pushAndRemoveUntil(
       MaterialPageRoute(builder: (_) => page),
-      (route) => false,
+          (route) => false,
     );
   }
 
   static Future pushNamedAndClear(String route, {arguments}) {
     return key.currentState!.pushNamedAndRemoveUntil(
       route,
-      (route) => false,
+          (route) => false,
       arguments: arguments,
     );
   }
@@ -48,11 +48,11 @@ class AppNavigator {
     return key.currentState!.pop(result);
   }
 
-  // static Future showLoadingIndicator() {
-  //   return showDialog(
-  //     context: key.currentContext!,
-  //     barrierDismissible: false,
-  //     builder: (_) => const AppLoadingIndicator(),
-  //   );
-  // }
+// static Future showLoadingIndicator() {
+//   return showDialog(
+//     context: key.currentContext!,
+//     barrierDismissible: false,
+//     builder: (_) => const AppLoadingIndicator(),
+//   );
+// }
 }
