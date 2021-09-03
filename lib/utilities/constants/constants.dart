@@ -1,7 +1,8 @@
 //* Credentials
 import 'package:flutter/cupertino.dart';
 
-const apiBaseUrl = '';
+//TODO this is a fake api for testing
+const apiBaseUrl = 'https://jsonplaceholder.typicode.com';
 
 //* Client data
 const appName = 'ZuriChat App';

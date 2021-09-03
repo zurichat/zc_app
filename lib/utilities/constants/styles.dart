@@ -21,3 +21,7 @@ const navBarItemColor = Color(0xFF7B8794);
 //* DECORATION
 
 //* MARKDOWN STYLE DATA
+
+class AppColors {
+  static final greenColor = Color(0xFFFFFFFF);
+}
