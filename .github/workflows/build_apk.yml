@@ -29,8 +29,11 @@ jobs:
         name: release-apk
         path: build/app/outputs/apk/release/app-release.apk
 
-    - uses: actions-ecosystem/action-create-comment@v1
+    - name: Save PR number
+      run: |
+        mkdir -p ./pr
+        echo ${{ github.event.number }} > ./pr/NR
+    - uses: actions/upload-artifact@v2
       with:
-        github_token: ${{ secrets.github_token }}
-        body: |
-           This job's status is ${{ job.status }} and ${{ github.event.label.name }}.
+        name: pr
+        path: pr/
