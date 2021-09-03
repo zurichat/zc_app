@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// Contains useful consts to reduce boilerplate and duplicate code
 class UIHelper {
@@ -10,19 +11,14 @@ class UIHelper {
   static const double _HorizontalSpaceMedium = 16.0;
   static const double _HorizontalSpaceLarge = 32.0;
 
-  static const Widget verticalSpaceSmall =
-      SizedBox(height: _VerticalSpaceSmall);
-  static const Widget verticalSpaceMedium =
-      SizedBox(height: _VerticalSpaceMedium);
-  static const Widget verticalSpaceLarge =
-      SizedBox(height: _VerticalSpaceLarge);
+  static Widget verticalSpaceSmall = SizedBox(height: _VerticalSpaceSmall.h);
+  static Widget verticalSpaceMedium = SizedBox(height: _VerticalSpaceMedium.h);
+  static Widget verticalSpaceLarge = SizedBox(height: _VerticalSpaceLarge.h);
 
-  static const Widget horizontalSpaceSmall =
-      SizedBox(width: _HorizontalSpaceSmall);
-  static const Widget horizontalSpaceMedium =
-      SizedBox(width: _HorizontalSpaceMedium);
-  static const Widget horizontalSpaceLarge =
-      SizedBox(width: _HorizontalSpaceLarge);
+  static Widget horizontalSpaceSmall = SizedBox(width: _HorizontalSpaceSmall.w);
+  static Widget horizontalSpaceMedium =
+      SizedBox(width: _HorizontalSpaceMedium.w);
+  static Widget horizontalSpaceLarge = SizedBox(width: _HorizontalSpaceLarge.w);
 }
 
 double screenAwareSize(double value, BuildContext context,
