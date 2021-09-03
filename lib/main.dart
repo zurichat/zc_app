@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hng/services/theme_setup.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
+import 'services/theme_setup.dart';
 
 Future main() async {
-  await ThemeManager.initialise();
   WidgetsFlutterBinding.ensureInitialized();
+  await ThemeManager.initialise();
   setupLocator();
   runApp(MyApp());
 }
