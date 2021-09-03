@@ -32,6 +32,11 @@ flutter:
     - assets/background/bga.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
+
+fonts:
+  - family: lato
+    fonts:
+      - asset: fonts/Lato-Regular.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
