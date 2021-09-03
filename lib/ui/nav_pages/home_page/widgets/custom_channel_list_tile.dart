@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utilities/constants/styles.dart';
+import '../../../shared/colors.dart';
 
 class CustomChannelListTile extends StatelessWidget {
   final String channelName;
@@ -23,7 +23,7 @@ class CustomChannelListTile extends StatelessWidget {
         Text(
           ' # ' + '   '+channelName,
           style: TextStyle(
-            color: isActive ? Colors.black : greyishColor,
+            color: isActive ? Colors.black : AppColors.greyishColor,
             fontSize: 16,
             fontWeight: isActive ? FontWeight.w700 : FontWeight.w400,
           ),
@@ -33,7 +33,7 @@ class CustomChannelListTile extends StatelessWidget {
               width: 18,
               height: 18,
                 decoration: BoxDecoration(color: Color(0xFFB8003C),borderRadius: BorderRadius.circular(4)),
-                child: Center(child: Text(data, style: TextStyle(color: whiteColor),)),
+                child: Center(child: Text(data, style: TextStyle(color: AppColors.whiteColor),)),
               )
             : Container()
       ],

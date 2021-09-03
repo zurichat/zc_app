@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../utilities/constants/styles.dart';
+import 'package:hng/ui/shared/colors.dart';
 
 class CustomPluginListTile extends StatelessWidget {
   final IconData? icon;
@@ -28,14 +27,14 @@ class CustomPluginListTile extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color:isActive?Colors.black: greyishColor,
+                color:isActive?Colors.black: AppColors.greyishColor,
                 size: 16,
               ),
               const SizedBox(width: 8),
               Text(
                 pluginName,
                 style: TextStyle(
-                  color: isActive?Colors.black: greyishColor,
+                  color: isActive?Colors.black:AppColors.greyishColor,
                   fontWeight: isActive ? FontWeight.w700 : FontWeight.w400,
                   fontSize: 16,
                 ),
@@ -47,7 +46,7 @@ class CustomPluginListTile extends StatelessWidget {
               width: 18,
               height: 18,
                 decoration: BoxDecoration(color: Color(0xFFB8003C),borderRadius: BorderRadius.circular(4)),
-                child: Center(child: Text(data, style: TextStyle(color: whiteColor),)),
+                child: Center(child: Text(data, style: TextStyle(color: AppColors.whiteColor),)),
               )
             : Container()
         ],
