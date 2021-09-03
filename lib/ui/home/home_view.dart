@@ -3,11 +3,9 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../app/app.locator.dart';
-import '../../app/app.router.dart';
 import '../../general_widgets/custom_bottom_nav.dart';
 import '../../services/local_storage_services.dart';
-import '../../utilities/constants/constants.dart';
-import '../../utilities/constants/styles.dart';
+import '../shared/shared.dart';
 import 'home_viewmodel.dart';
 import 'widgets/custom_channel_list_tile.dart';
 import 'widgets/custom_dm_list_tile.dart';
@@ -38,7 +36,7 @@ class HomeView extends StatelessWidget {
             ],
           ),
         ),
-        backgroundColor: whiteColor,
+        backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -56,10 +54,10 @@ class HomeView extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: borderColor),
+                        borderSide: BorderSide(color: AppColors.borderColor),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: borderColor),
+                        borderSide: BorderSide(color: AppColors.borderColor),
                       ),
                     ),
                   ),
@@ -135,14 +133,12 @@ class HomeView extends StatelessWidget {
         ),
         bottomNavigationBar: CustomBottomNavBar(),
         floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            navigation.navigateTo(Routes.loginView);
-          },
+          onPressed: () {},
           child: const Icon(
             Icons.open_in_new_outlined,
-            color: whiteColor,
+            color: AppColors.whiteColor,
           ),
-          backgroundColor: greenColor,
+          backgroundColor: AppColors.greenColor,
         ),
       ),
       viewModelBuilder: () => HomeViewModel(),

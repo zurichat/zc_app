@@ -1,5 +1,3 @@
-import 'package:shared_preferences/shared_preferences.dart';
-
 // abstract class LocalStorageService {
 //   Future setBool(String key, bool value);
 //   Future setString(String key, String value);

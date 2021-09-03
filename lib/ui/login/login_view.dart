@@ -30,7 +30,7 @@ class LoginView extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 TextField(
-                  controller: model.userText,
+                  // controller: model.userText,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -50,7 +50,7 @@ class LoginView extends StatelessWidget {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      model.saveUserData();
+                      // model.saveUserData();
                       navigator.navigateTo(Routes.homeView);
                     },
                     child: const CustomText(text: 'Save'),

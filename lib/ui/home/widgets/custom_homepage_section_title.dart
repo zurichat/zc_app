@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../utilities/constants/styles.dart';
 
+import '../../shared/colors.dart';
 class CustomHomePageSectionTitle extends StatelessWidget {
   final title;
 
@@ -19,7 +19,7 @@ class CustomHomePageSectionTitle extends StatelessWidget {
           title,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
-            color: deepBlackColor,
+            color: AppColors.deepBlackColor,
             fontSize: 15,
           ),
         ),
@@ -27,13 +27,13 @@ class CustomHomePageSectionTitle extends StatelessWidget {
           children: [
             const Icon(
               Icons.add_circle_outline,
-              color: greyishColor,
+              color: AppColors.greyishColor,
               size: 18,
             ),
             const SizedBox(width: 16),
             const Icon(
               Icons.keyboard_arrow_down_outlined,
-              color: greyishColor,
+              color: AppColors.greyishColor,
               size: 18,
             ),
           ],
