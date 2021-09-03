@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/pinned_messages/pinned_message.dart';
 
 import 'app_routing/app_navigator.dart';
 import 'app_routing/app_router.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: AppNavigator.key,
       onGenerateRoute: AppRouter.generateRoute,
       title: 'ZuriChat App',
-      home: const HomeView(),
+      home: const PinnedMessages(),
     );
   }
 }
