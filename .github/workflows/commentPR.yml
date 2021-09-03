@@ -48,7 +48,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issue_number,
-              body: 'Thank you for the PR! The status is ${{ github.event.workflow_run.conclusion }}'
+              body: 'The status is ${{ github.event.workflow_run.conclusion }}'
             });
 
     
