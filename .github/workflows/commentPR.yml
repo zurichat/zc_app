@@ -48,12 +48,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issue_number,
-              body: 'Everything is OK. Thank you for the PR! c1 ${{ github.event.workflow_run.conclusion }}'
+              body: 'Thank you for the PR! The status is ${{ github.event.workflow_run.conclusion }}'
             });
 
-      - uses: actions/checkout@v2
-      - uses: actions-ecosystem/action-create-comment@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          body: |
-           This job's status is comment2 ${{ job.status }}
+    
