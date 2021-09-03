@@ -19,8 +19,8 @@ class HomePage extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 8.0),
                 child: Image(
                   image: appBarLogo,
                   fit: BoxFit.cover,
@@ -126,7 +126,9 @@ class HomePage extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            // navigation.navigateTo(Routes.loginView);
+          },
           child: const Icon(
             Icons.open_in_new_outlined,
             color: AppColors.whiteColor,
