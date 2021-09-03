@@ -2,26 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'channel_notification_viewmodel.dart';
 
 class ChannelNotificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(
-        BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width,
-            maxHeight: MediaQuery.of(context).size.height),
-        designSize: Size(411, 823),
-        orientation: Orientation.portrait);
     return ViewModelBuilder<ChannelNotificationViewModel>.reactive(
       viewModelBuilder: () => ChannelNotificationViewModel(),
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
             appBar: ZuriAppBar(
-              56.h,
+              60,
               'Notifications',
               subtitle: 'Settings for #teamsocrates',
               icon: Icons.chevron_left,
@@ -29,7 +22,7 @@ class ChannelNotificationView extends StatelessWidget {
             body: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.all(16.w),
+                  margin: EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: AppColors.whiteColor,
                     borderRadius: BorderRadius.circular(10),
@@ -66,7 +59,7 @@ class ChannelNotificationView extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 16.w),
+                  margin: EdgeInsets.only(left: 16),
                   width: double.infinity,
                   child: Text(
                     'This setting only applies to #teamsocrates channel.',
@@ -159,7 +152,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                     color: AppColors.deepBlackColor,
                   ),
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 4),
                 if (this.subtitle != null)
                   Text(
                     '$subtitle',
