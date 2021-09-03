@@ -4,8 +4,7 @@ import 'package:hng/ui/home/widgets/custom_channel_list_tile.dart';
 import 'package:hng/ui/home/widgets/custom_dm_list_tile.dart';
 import 'package:hng/ui/home/widgets/custom_homepage_section_title.dart';
 import 'package:hng/ui/home/widgets/custom_plugin_list_tile.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/constants.dart';
+import 'package:hng/ui/shared/shared.dart';
 
 import 'package:stacked/stacked.dart';
 import '../../general_widgets/custom_bottom_nav.dart';
@@ -133,9 +132,7 @@ class HomeView extends StatelessWidget {
         ),
         bottomNavigationBar: CustomBottomNavBar(),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            model.fetchData();
-          },
+          onPressed: () {},
           child: const Icon(
             Icons.open_in_new_outlined,
             color: AppColors.whiteColor,
