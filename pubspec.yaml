@@ -15,6 +15,7 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   fluttertoast: ^8.0.8
   intl: ^0.17.0
+  introduction_screen: ^2.1.0
   shared_preferences: ^2.0.7
   stacked: ^2.1.8
   stacked_services: ^0.8.6
