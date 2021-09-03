@@ -60,7 +60,7 @@ class HomeView extends StatelessWidget {
   Widget getViewForIndex(int index) {
     switch (index) {
       case 0:
-        return const HomePage();
+        return HomePage();
       case 1:
         return const DmPage();
       case 2:
