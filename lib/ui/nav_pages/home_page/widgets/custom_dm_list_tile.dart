@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 
+import '../../../shared/colors.dart';
 
-import '../../shared/colors.dart';
-class CustomPluginListTile extends StatelessWidget {
-  final IconData? icon;
-  final String pluginName;
-  const CustomPluginListTile({
+class CustomDMListTile extends StatelessWidget {
+  final imagelink;
+  final userName;
+  const CustomDMListTile({
     Key? key,
-    this.icon,
-    this.pluginName = '',
+    this.imagelink,
+    this.userName,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          icon,
-          color: AppColors.greyishColor,
-          size: 18,
+        CircleAvatar(
+          backgroundImage: AssetImage(imagelink),
+          radius: 20.0,
         ),
         const SizedBox(width: 8),
         Text(
-          pluginName,
+          userName,
           style: const TextStyle(
+            fontWeight: FontWeight.w700,
             color: AppColors.greyishColor,
-            fontWeight: FontWeight.w400,
             fontSize: 15,
           ),
         ),
