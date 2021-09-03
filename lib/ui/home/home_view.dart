@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -13,7 +14,6 @@ import 'widgets/custom_homepage_section_title.dart';
 import 'widgets/custom_plugin_list_tile.dart';
 
 class HomeView extends StatelessWidget {
-  final storage = locator<SharedPreferenceLocalStorage>();
   final navigation = locator<NavigationService>();
 
   @override
@@ -133,7 +133,9 @@ class HomeView extends StatelessWidget {
         ),
         bottomNavigationBar: CustomBottomNavBar(),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            navigation.navigateTo(Routes.loginView);
+          },
           child: const Icon(
             Icons.open_in_new_outlined,
             color: AppColors.whiteColor,

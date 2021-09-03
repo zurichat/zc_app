@@ -1,14 +1,4 @@
-// abstract class LocalStorageService {
-//   Future setBool(String key, bool value);
-//   Future setString(String key, String value);
-//   // Future setDouble(String key, num value);
-
-//   Future<bool> getBool(String key);
-//   Future<String> getString(String key);
-//   Future<double> getDouble(String key);
-
-//   Future<bool> clearStorage();
-// }
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceLocalStorage {
   static SharedPreferenceLocalStorage? _instance;
