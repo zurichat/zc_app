@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_bottom_nav.dart';
-import 'package:hng/ui/home/widgets/custom_channel_list_tile.dart';
-import 'package:hng/ui/home/widgets/custom_dm_list_tile.dart';
-import 'package:hng/ui/home/widgets/custom_homepage_section_title.dart';
-import 'package:hng/ui/home/widgets/custom_plugin_list_tile.dart';
-import 'package:hng/ui/shared/shared.dart';
-
 import 'package:stacked/stacked.dart';
-import '../../general_widgets/custom_bottom_nav.dart';
-import 'home_viewmodel.dart';
+
+import '../../shared/shared.dart';
+import 'home_page_viewmodel.dart';
 import 'widgets/custom_channel_list_tile.dart';
 import 'widgets/custom_dm_list_tile.dart';
 import 'widgets/custom_homepage_section_title.dart';
 import 'widgets/custom_plugin_list_tile.dart';
 
-class HomeView extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<HomeViewModel>.reactive(
+    return ViewModelBuilder<HomePageViewModel>.reactive(
+      viewModelBuilder: () => HomePageViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 8.0),
                 child: Image(
                   image: appBarLogo,
                   fit: BoxFit.cover,
@@ -34,14 +29,6 @@ class HomeView extends StatelessWidget {
               ),
             ],
           ),
-          actions: [
-            Text(
-              model.status ? "Online" : "Offline",
-              style: TextStyle(
-                color: Colors.black
-              ),
-            )
-          ],
         ),
         backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(
@@ -138,9 +125,10 @@ class HomeView extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: CustomBottomNavBar(),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            // navigation.navigateTo(Routes.loginView);
+          },
           child: const Icon(
             Icons.open_in_new_outlined,
             color: AppColors.whiteColor,
@@ -148,7 +136,6 @@ class HomeView extends StatelessWidget {
           backgroundColor: AppColors.greenColor,
         ),
       ),
-      viewModelBuilder: () => HomeViewModel(),
     );
   }
 }

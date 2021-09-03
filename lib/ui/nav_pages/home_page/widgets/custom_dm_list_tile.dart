@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+<<<<<<< HEAD:lib/ui/home/widgets/custom_dm_list_tile.dart
+=======
+import '../../../shared/colors.dart';
+>>>>>>> 8c2daffa075fb0a2e41e9392d30152adcb3f39c7:lib/ui/nav_pages/home_page/widgets/custom_dm_list_tile.dart
 
 import '../../shared/colors.dart';
 class CustomDMListTile extends StatelessWidget {
