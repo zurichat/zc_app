@@ -1,4 +1,3 @@
-//* Credentials
 import 'package:flutter/cupertino.dart';
 
 //TODO this is a fake api for testing

@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
-import '../utilities/constants/constants.dart';
+import '../ui/shared/constants.dart';
 import '../utilities/exceptions.dart';
 import '../utilities/failures.dart';
 
