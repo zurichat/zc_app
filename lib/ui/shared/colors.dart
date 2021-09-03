@@ -8,4 +8,8 @@ class AppColors {
   static const Color greenColor = Color(0xFF00B87C);
   static const Color navBarItemColor = Color(0xFF7B8794);
 
+//* TEXTSTYLES
+  static const Color textColor = Color(0xFF424141);
+  static const Color appBarTextColor = Color(0xFF242424);
+  static const Color textGrey = Color(0xFF727272);
 }
