@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 
+import '../../../shared/colors.dart';
 
-import '../../shared/colors.dart';
-class CustomDMListTile extends StatelessWidget {
-  final imagelink;
-  final userName;
-  const CustomDMListTile({
+class CustomChannelListTile extends StatelessWidget {
+  final String channelName;
+
+  const CustomChannelListTile({
     Key? key,
-    this.imagelink,
-    this.userName,
+    this.channelName = '',
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleAvatar(
-          backgroundImage: AssetImage(imagelink),
-          radius: 20.0,
+        Text(
+          '#',
+          style: TextStyle(
+            color: Colors.grey[600],
+            fontSize: 18,
+          ),
         ),
         const SizedBox(width: 8),
         Text(
-          userName,
+          channelName,
           style: const TextStyle(
             fontWeight: FontWeight.w700,
             color: AppColors.greyishColor,

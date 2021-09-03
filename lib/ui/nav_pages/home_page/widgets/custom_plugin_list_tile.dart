@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
 
-import '../../shared/colors.dart';
+import '../../../shared/colors.dart';
 
-class CustomChannelListTile extends StatelessWidget {
-  final String channelName;
-
-  const CustomChannelListTile({
+class CustomPluginListTile extends StatelessWidget {
+  final IconData? icon;
+  final String pluginName;
+  const CustomPluginListTile({
     Key? key,
-    this.channelName = '',
+    this.icon,
+    this.pluginName = '',
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          '#',
-          style: TextStyle(
-            color: Colors.grey[600],
-            fontSize: 18,
-          ),
+        Icon(
+          icon,
+          color: AppColors.greyishColor,
+          size: 18,
         ),
         const SizedBox(width: 8),
         Text(
-          channelName,
+          pluginName,
           style: const TextStyle(
-            fontWeight: FontWeight.w700,
             color: AppColors.greyishColor,
+            fontWeight: FontWeight.w400,
             fontSize: 15,
           ),
         ),
