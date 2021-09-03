@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../nav_pages/dm_page/dm_page.dart';
@@ -31,12 +30,7 @@ class HomeView extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             currentIndex: viewModel.currentIndex,
-            onTap: (val){
-              Navigator.pushNamed(context, Routes.channelNotificationView);
-            },
-            
-            // viewModel.setIndex,
-
+            onTap: viewModel.setIndex,
             items: const [
               BottomNavigationBarItem(
                 label: 'Home',
