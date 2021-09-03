@@ -19,6 +19,7 @@ dependencies:
   stacked: ^2.1.8
   stacked_services: ^0.8.6
   url_launcher: ^6.0.9
+  grouped_list: ^4.1.0
 
 dev_dependencies:
   build_runner: ^2.1.2
