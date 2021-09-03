@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_bottom_nav.dart';
-import 'package:hng/ui/home/widgets/custom_channel_list_tile.dart';
-import 'package:hng/ui/home/widgets/custom_dm_list_tile.dart';
-import 'package:hng/ui/home/widgets/custom_homepage_section_title.dart';
-import 'package:hng/ui/home/widgets/custom_plugin_list_tile.dart';
-import 'package:hng/ui/shared/shared.dart';
-
+import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import '../../app/app.locator.dart';
 import '../../general_widgets/custom_bottom_nav.dart';
+import '../../services/local_storage_services.dart';
+import '../shared/shared.dart';
 import 'home_viewmodel.dart';
 import 'widgets/custom_channel_list_tile.dart';
 import 'widgets/custom_dm_list_tile.dart';
@@ -15,6 +14,8 @@ import 'widgets/custom_homepage_section_title.dart';
 import 'widgets/custom_plugin_list_tile.dart';
 
 class HomeView extends StatelessWidget {
+  final navigation = locator<NavigationService>();
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
@@ -24,8 +25,8 @@ class HomeView extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 8.0),
                 child: Image(
                   image: appBarLogo,
                   fit: BoxFit.cover,
@@ -132,7 +133,9 @@ class HomeView extends StatelessWidget {
         ),
         bottomNavigationBar: CustomBottomNavBar(),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            navigation.navigateTo(Routes.loginView);
+          },
           child: const Icon(
             Icons.open_in_new_outlined,
             color: AppColors.whiteColor,
