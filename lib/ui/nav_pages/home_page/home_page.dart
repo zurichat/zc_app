@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../shared/shared.dart';
+import '../../shared/colors.dart';
+import '../../shared/constants.dart';
 import 'home_page_viewmodel.dart';
 import 'widgets/custom_channel_list_tile.dart';
 import 'widgets/custom_dm_list_tile.dart';
