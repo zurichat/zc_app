@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/channel_search/channel_search_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -139,7 +140,8 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            model.nToPref();
+           // model.nToPref();
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>ChannelSearchPageView()));
           },
           child: const Icon(
             Icons.open_in_new_outlined,

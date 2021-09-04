@@ -18,8 +18,6 @@ class ChannelSearchPageView extends StatefulWidget {
 class _ChannelSearchPageViewState extends State<ChannelSearchPageView> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: AppColors.whiteColor));
     return ViewModelBuilder<ChannelSearchViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: PreferredSize(
