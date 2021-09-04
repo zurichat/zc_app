@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         theme: regularTheme,
         darkTheme: darkTheme,
         themeMode: themeMode,
-        initialRoute: Routes.navBarView,
+        initialRoute: Routes.loginView,
       ),
     );
   }
