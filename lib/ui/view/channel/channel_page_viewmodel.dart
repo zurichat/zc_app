@@ -1,13 +1,4 @@
 import 'package:stacked/stacked.dart';
 
-class ChannelPageViewModel extends IndexTrackingViewModel {
-  static final ChannelPageViewModel instance = ChannelPageViewModel._internal();
+class ChannelPageViewModel extends BaseViewModel {}
 
-  factory ChannelPageViewModel() {
-    return instance;
-  }
-
-  ChannelPageViewModel._internal();
-
-  init() {}
-}
