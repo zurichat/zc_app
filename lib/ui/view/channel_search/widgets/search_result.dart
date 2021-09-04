@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
-import 'package:hng/ui/search_page_channel/widgets/textfield_style.dart';
-import 'package:hng/utilities/constants/styles.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/channel_search/widgets/textfield_style.dart';
 
 class SearchResults extends StatefulWidget {
   const SearchResults({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _SearchResultsState extends State<SearchResults> {
               child: Container(
                 height: 4,
                 width: 4,
-                color: greenColor,
+                color: AppColors.greenColor,
               ),
             ),
           ),
@@ -62,7 +62,7 @@ class _SearchResultsState extends State<SearchResults> {
                     onPressed: () {},
                     icon: const Icon(
                       Icons.close,
-                      color: redColor,
+                      color: AppColors.red,
                     )),
               )),
         ],

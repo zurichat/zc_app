@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/utilities/constants/styles.dart';
+import 'package:hng/ui/shared/colors.dart';
 
 InputDecoration textFormFields(String hintText) {
   return InputDecoration(
@@ -25,13 +25,13 @@ TextStyle headerStyle() {
 
 TextStyle nameStyle() {
   return GoogleFonts.lato(
-      fontSize: 16, fontWeight: FontWeight.w600, color: lightBlack);
+      fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.blackColor);
 }
 
 TextStyle greenTextStyle() {
   return GoogleFonts.lato(
     fontSize: 16,
     fontWeight: FontWeight.w800,
-    color: greenColor,
+    color: AppColors.greenColor,
   );
 }

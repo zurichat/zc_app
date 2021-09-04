@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utilities/constants/styles.dart';
+//import '../utilities/constants/styles.dart';
 
 // ignore: use_key_in_widget_constructors
 class CustomBottomNavBar extends StatelessWidget {
@@ -7,9 +7,9 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      backgroundColor: whiteColor,
-      selectedItemColor: greenColor,
-      unselectedItemColor: navBarItemColor,
+      // backgroundColor: whiteColor,
+      // selectedItemColor: greenColor,
+      // unselectedItemColor: navBarItemColor,
       selectedFontSize: 14,
       unselectedFontSize: 14,
       items: [

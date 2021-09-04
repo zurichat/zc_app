@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:hng/ui/search_page_channel/widgets/textfield_style.dart';
+
+import 'textfield_style.dart';
 
 Widget appBarMain() {
   return AppBar(

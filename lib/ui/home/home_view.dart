@@ -4,8 +4,8 @@ import 'package:hng/ui/nav_pages/home_page/widgets/custom_channel_list_tile.dart
 import 'package:hng/ui/nav_pages/home_page/widgets/custom_dm_list_tile.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/custom_homepage_section_title.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/custom_plugin_list_tile.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/constants.dart';
-import 'package:hng/utilities/constants/styles.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
@@ -31,7 +31,7 @@ class HomeView extends StatelessWidget {
                   ],
                 ),
               ),
-              backgroundColor: whiteColor,
+              backgroundColor: AppColors.whiteColor,
               body: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -49,10 +49,12 @@ class HomeView extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: borderColor),
+                              borderSide:
+                                  BorderSide(color: AppColors.borderColor),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: borderColor),
+                              borderSide:
+                                  BorderSide(color: AppColors.borderColor),
                             ),
                           ),
                         ),
@@ -131,9 +133,9 @@ class HomeView extends StatelessWidget {
                 onPressed: () {},
                 child: const Icon(
                   Icons.open_in_new_outlined,
-                  color: whiteColor,
+                  color: AppColors.whiteColor,
                 ),
-                backgroundColor: greenColor,
+                backgroundColor: AppColors.greenColor,
               ),
             ),
         viewModelBuilder: () => HomeViewModel());

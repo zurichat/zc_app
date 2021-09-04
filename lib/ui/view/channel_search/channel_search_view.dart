@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/search_page_channel/widgets/appBar.dart';
-import 'package:hng/ui/search_page_channel/widgets/textfield_style.dart';
-import 'package:hng/utilities/constants/styles.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/view/channel_search/widgets/textfield_style.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/services.dart';
 
 import 'channel_search_view_model.dart';
+import 'widgets/appBar.dart';
 import 'widgets/search_result.dart';
 
 class ChannelSearchPageView extends StatefulWidget {
@@ -19,7 +19,7 @@ class _ChannelSearchPageViewState extends State<ChannelSearchPageView> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: lightBlack));
+        const SystemUiOverlayStyle(statusBarColor: AppColors.whiteColor));
     return ViewModelBuilder<ChannelSearchViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: PreferredSize(
