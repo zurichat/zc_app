@@ -13,18 +13,30 @@ import 'package:stacked/stacked.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/preference/preference_view.dart';
+
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
+
+import '../ui/view/workspace/workspace_view.dart';
+
 
 class Routes {
   static const String navBarView = '/';
   static const String loginView = '/login-view';
   static const String preferenceView = '/preference-view';
+
   static const String useDifferentEmailView = '/use-different-email-view';
+
+  static const String workspaceView = '/workspace-view';
+
   static const all = <String>{
     navBarView,
     loginView,
     preferenceView,
+
     useDifferentEmailView,
+
+    workspaceView,
+
   };
 }
 
@@ -35,7 +47,11 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
+
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
+
+    RouteDef(Routes.workspaceView, page: WorkspaceView),
+
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -58,9 +74,17 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+
      UseDifferentEmailView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const UseDifferentEmailView(),
+settings: data,
+        );
+     },
+    
+    WorkspaceView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const WorkspaceView(),
         settings: data,
       );
     },
