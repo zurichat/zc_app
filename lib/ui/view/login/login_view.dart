@@ -93,9 +93,6 @@ class LoginView extends StatelessWidget {
               ),
 
 //Delete Later
-              SizedBox(
-                height: 40,
-              ),
 
               Center(
                 child: FractionallySizedBox(
@@ -108,7 +105,7 @@ class LoginView extends StatelessWidget {
                               builder: (context) => ChannelSearchPageView()));
                     },
                     child: Text(
-                      'Pls Click to view my task',
+                      'View my task No vex',
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
