@@ -7,7 +7,6 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/members_page/members_page_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/members_page/members_page_view.dart';
