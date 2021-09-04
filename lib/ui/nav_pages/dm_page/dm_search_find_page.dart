@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
+import 'package:hng/ui/nav_pages/dm_page/dm_page_viewmodel.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:stacked/stacked.dart';
 
 class DmScreen extends StatefulWidget {
   const DmScreen({Key? key}) : super(key: key);
@@ -31,68 +33,71 @@ class _DmScreenState extends State<DmScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 1,
+    return ViewModelBuilder<DmPageViewModel>.reactive(
+      viewModelBuilder: () => DmPageViewModel(),
+      builder: (context, model, child) => Scaffold(
         backgroundColor: Colors.white,
-        title: Text(
-          'Direct Message',
-          style: TextStyle(color: AppColors.deepBlackColor),
+        appBar: AppBar(
+          elevation: 1,
+          backgroundColor: Colors.white,
+          title: Text(
+            'Direct Message',
+            style: TextStyle(color: AppColors.deepBlackColor),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                'Done',
+                style: TextStyle(color: AppColors.borderColor),
+              ),
+            ),
+          ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              'Done',
-              style: TextStyle(color: AppColors.borderColor),
-            ),
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              border: Border.symmetric(
-                horizontal: BorderSide(
-                  width: 0.5,
-                  color: AppColors.greyishColor,
+        body: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                border: Border.symmetric(
+                  horizontal: BorderSide(
+                    width: 0.5,
+                    color: AppColors.greyishColor,
+                  ),
+                  vertical: BorderSide.none,
                 ),
-                vertical: BorderSide.none,
+              ),
+              child: ChipInputTextField(
+                  chipKey: _chipKey, mockResults: _userResults),
+            ),
+            Container(
+              child: Expanded(
+                child: ListView.builder(
+                  itemCount: _userResults.length,
+                  itemBuilder: (_, index) => CustomSearchTile(
+                    username: _userResults[index].username,
+                    userOnline: _userResults[index].isOnline,
+                    checkBoxValue: _userResults[index].checked,
+                    onChange: (bool? value) {
+                      setState(() {
+                        _userResults[index].checked = value;
+                        if (value == true) {
+                          _chipKey.currentState!.selectSuggestion(UserProfile(
+                            username: _userResults[index].username,
+                          ));
+                        } else if (value == false) {
+                          _chipKey.currentState!.deleteChip(UserProfile(
+                            username: _userResults[index].username,
+                          ));
+                        }
+                      });
+                    },
+                  ),
+                  shrinkWrap: true,
+                ),
               ),
             ),
-            child: ChipInputTextField(
-                chipKey: _chipKey, mockResults: _userResults),
-          ),
-          Container(
-            child: Expanded(
-              child: ListView.builder(
-                itemCount: _userResults.length,
-                itemBuilder: (_, index) => CustomSearchTile(
-                  username: _userResults[index].username,
-                  userOnline: _userResults[index].isOnline,
-                  checkBoxValue: _userResults[index].checked,
-                  onChange: (bool? value) {
-                    setState(() {
-                      _userResults[index].checked = value;
-                      if (value == true) {
-                        _chipKey.currentState!.selectSuggestion(UserProfile(
-                          username: _userResults[index].username,
-                        ));
-                      } else if (value == false) {
-                        _chipKey.currentState!.deleteChip(UserProfile(
-                          username: _userResults[index].username,
-                        ));
-                      }
-                    });
-                  },
-                ),
-                shrinkWrap: true,
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
