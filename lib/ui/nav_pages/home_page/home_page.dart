@@ -7,39 +7,52 @@ import 'package:hng/ui/nav_pages/home_page/widgets/custom_homepage_section_title
 import 'package:hng/ui/nav_pages/home_page/widgets/custom_plugin_list_tile.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/home/home_viewmodel.dart';
+//import 'package:hng/ui/view/home/home_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../shared/colors.dart';
+import '../../shared/constants.dart';
+import 'home_page_viewmodel.dart';
+import 'widgets/custom_channel_list_tile.dart';
+import 'widgets/custom_dm_list_tile.dart';
+import 'widgets/custom_homepage_section_title.dart';
+import 'widgets/custom_plugin_list_tile.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return ViewModelBuilder<HomePageViewModel>.reactive(
-        builder: (context, model, child) => Scaffold(
-              appBar: AppBar(
-                elevation: 0,
-                backgroundColor: AppColors.greenColor,
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 8.0),
-                      child: Image(
-                        image: appBarLogo,
-                        fit: BoxFit.cover,
-                        height: 48,
-                      ),
-                    ),
-                    Padding(
+      viewModelBuilder: () => HomePageViewModel(),
+      builder: (context, model, child) => Scaffold(
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 8.0),
+                child: InkWell(
+                  child: Image(
+                    image: appBarLogo,
+                    fit: BoxFit.cover,
+                    height: 48,
+                  ),
+                  onTap: (){
+                    model.nToWorkspace();
+                  },
+                ),
+              ),
+              Padding(
                       padding: EdgeInsets.only(top: 8.0),
                       child: GestureDetector(
                         child: Icon(Icons.search),
                         onTap: () {},
                       ),
                     )
-                  ],
-                ),
-              ),
+            ],
+          ),
+        ),
+       
               backgroundColor: AppColors.whiteColor,
               body: SafeArea(
                 child: SingleChildScrollView(
@@ -195,7 +208,7 @@ class HomePage extends StatelessWidget {
               ),
   
               floatingActionButton: FloatingActionButton(
-                onPressed: () {},
+                onPressed: () {model.nToPref();},
                 child: const Icon(
                   Icons.open_in_new_outlined,
                   color: AppColors.whiteColor,
@@ -203,6 +216,6 @@ class HomePage extends StatelessWidget {
                 backgroundColor: AppColors.greenColor,
               ),
             ),
-        viewModelBuilder: () => HomePageViewModel());
+      );
   }
 }

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_bottom_nav.dart';
+import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/custom_channel_list_tile.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/custom_dm_list_tile.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/custom_homepage_section_title.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/custom_plugin_list_tile.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/home/home_viewmodel.dart';
+//import 'package:hng/ui/view/home/home_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return ViewModelBuilder<HomeViewModel>.reactive(
+    return ViewModelBuilder<HomePageViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
               appBar: AppBar(
                 elevation: 0,
@@ -202,6 +203,6 @@ class HomeView extends StatelessWidget {
                 backgroundColor: AppColors.greenColor,
               ),
             ),
-        viewModelBuilder: () => HomeViewModel());
+        viewModelBuilder: () => HomePageViewModel());
   }
 }
