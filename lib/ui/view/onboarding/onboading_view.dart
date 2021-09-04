@@ -35,7 +35,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             PageViewModel(
                 title: 'Chess Room',
                 body:
-                    'Chat with other team members without any distractions from the world',
+                    'You can also play games with friends and do other amazing stuff',
                 image: Image.asset('assets/images/onboarding_screen_2.png')),
           ],
           done:
