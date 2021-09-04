@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
+import 'package:stacked/stacked.dart';
+import 'login_viewmodel.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ViewModelBuilder<LoginViewModel>.reactive(
+      viewModelBuilder: () => LoginViewModel(),
+    builder: (context, model, child) => Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xffF7F7F7),
       body: Padding(
@@ -95,6 +99,6 @@ class LoginView extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ), );
   }
 }
