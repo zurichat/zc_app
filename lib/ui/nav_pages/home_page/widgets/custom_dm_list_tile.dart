@@ -11,6 +11,41 @@ class CustomDMListTile extends StatelessWidget {
     this.userName,
   }) : super(key: key);
 
+  showProfileDialog(BuildContext context) {
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      elevation: 4.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+      content: Row(
+        children: [
+          CircleAvatar(
+            backgroundImage: AssetImage(imagelink),
+            radius: 20.0,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            userName,
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
+              color: AppColors.greyishColor,
+              fontSize: 15,
+            ),
+          ),
+        ],
+      ),
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,12 +55,17 @@ class CustomDMListTile extends StatelessWidget {
           radius: 20.0,
         ),
         const SizedBox(width: 8),
-        Text(
-          userName,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            color: AppColors.greyishColor,
-            fontSize: 15,
+        GestureDetector(
+          onLongPress: () {
+            showProfileDialog(context);
+          },
+          child: Text(
+            userName,
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
+              color: AppColors.greyishColor,
+              fontSize: 15,
+            ),
           ),
         ),
       ],
