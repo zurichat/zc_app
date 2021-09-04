@@ -29,6 +29,14 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
+          actions: [
+            Text(
+              model.status ? "Online" : "Offline",
+              style: TextStyle(
+                color: Colors.black
+              ),
+            )
+          ],
         ),
         backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(

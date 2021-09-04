@@ -3,15 +3,16 @@ import 'dart:io';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:stacked/stacked.dart';
 
 
-class ConnectivityService {
+class ConnectivityService with ReactiveServiceMixin {
   // Creates a single instance by calling the '_internal' constructor.
-  // static final NetworkConnectionStatus _connectionStatus = NetworkConnectionStatus._internal();
-  // NetworkConnectionStatus._internal();
+  static final ConnectivityService _connectionStatus = ConnectivityService._internal();
+  ConnectivityService._internal();
   
   // Retrieve the instance through the app.
-  // static NetworkConnectionStatus getInstance() => _connectionStatus;
+  static ConnectivityService getInstance() => _connectionStatus;
   
   // Flags to keep track of connection state.
   bool hasConnection = false;
@@ -61,7 +62,7 @@ class ConnectivityService {
     return hasConnection;
   }
   
-  // Helper method to listen to continuosly changes after initialization
+  // Helper method to listen to continuous changes after initialization
   void onChange() {
     _connectivity.onConnectivityChanged.listen(_connectionChange);
   }
