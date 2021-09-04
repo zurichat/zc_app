@@ -17,19 +17,29 @@ class EditChannelPageView extends StatelessWidget {
           title:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Row(children: [
-              Icon(Icons.arrow_back_ios, color: Colors.grey),
+              InkWell(
+                child: Icon(Icons.arrow_back_ios, color: Colors.grey),
+                onTap: () {},
+              ),
               SizedBox(
                 width: 10,
               ),
-              Text(
-                'Edit Channel',
-                style: TextStyle(color: AppColors.deepBlackColor, fontSize: 20),
+              InkWell(
+                child: Text(
+                  'Edit Channel',
+                  style:
+                      TextStyle(color: AppColors.deepBlackColor, fontSize: 20),
+                ),
+                onTap: () {},
               ),
             ]),
-            Text(
-              'Save',
-              style: TextStyle(color: AppColors.greenColor, fontSize: 16),
-            )
+            InkWell(
+              child: Text(
+                'Save',
+                style: TextStyle(color: AppColors.greenColor, fontSize: 16),
+              ),
+              onTap: () {},
+            ),
           ]),
         ),
         backgroundColor: AppColors.whiteColor,
@@ -65,7 +75,8 @@ class EditChannelPageView extends StatelessWidget {
                     children: [
                       Text(
                         '#teamsocrates',
-                        style: TextStyle(color: AppColors.deepBlackColor, fontSize: 18),
+                        style: TextStyle(
+                            color: AppColors.deepBlackColor, fontSize: 18),
                       ),
                     ],
                   ),
