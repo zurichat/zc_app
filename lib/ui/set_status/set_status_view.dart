@@ -9,6 +9,8 @@ import 'package:stacked/stacked.dart';
 class SetStatusView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    const subTitleStyle = TextStyle(color: Colors.black54, fontWeight: FontWeight.w400);
+    const titleStyle = TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 18);
     return ViewModelBuilder<SetStatusViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
       body: Container(
@@ -21,7 +23,7 @@ class SetStatusView extends StatelessWidget {
             children: <Widget>[
               CustomListTile(
                 leading: Icon(Icons.clear, color: Colors.black54, size: 35,),
-                title: Text('Set a status', style: SetStatusViewModel.titleStyle),
+                title: Text('Set a status', style: titleStyle),
                 trailing: Container(
                       height: MediaQuery.of(context).size.height * 0.04,
                       width: MediaQuery.of(context).size.width * 0.2,
@@ -35,7 +37,7 @@ class SetStatusView extends StatelessWidget {
               CustomDivider(),  
               CustomListTile(
                 leading: Image.asset('assets/four.png'),
-                title:  Text('Set a status', style: SetStatusViewModel.subTitleStyle),
+                title:  Text('Set a status', style: subTitleStyle),
                 trailing: Icon(Icons.cancel_rounded, size: 35),
                 ), 
                   CustomDivider(),
@@ -44,11 +46,11 @@ class SetStatusView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Clear after...', style: SetStatusViewModel.subTitleStyle),
+                    Text('Clear after...', style: subTitleStyle),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.01,
                     ),
-                    Text('Clear after', style: SetStatusViewModel.titleStyle)
+                    Text('Clear after', style: titleStyle)
                   ],
                 ),
               ),
@@ -60,7 +62,7 @@ class SetStatusView extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.03),
-                      child: Text('Recent', style: SetStatusViewModel.titleStyle),
+                      child: Text('Recent', style: titleStyle),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.01,
@@ -69,19 +71,19 @@ class SetStatusView extends StatelessWidget {
                       children: [
                          CustomListTile(
                           leading: Image.asset('assets/four.png'), 
-                          title:  Text('- Don\'t clear', style: SetStatusViewModel.titleStyle),
+                          title:  Text('- Don\'t clear', style: titleStyle),
                           ), 
                          CustomListTile(
                           leading: Image.asset('assets/three.png'), 
-                          title:  Text('- Don\'t clear', style: SetStatusViewModel.titleStyle),
+                          title:  Text('- Don\'t clear', style: titleStyle),
                           ), 
                          CustomListTile(
                           leading: Image.asset('assets/two.png'),
-                          title:  Text('- Don\'t clear', style: SetStatusViewModel.titleStyle),
+                          title:  Text('- Don\'t clear', style: titleStyle),
                           ), 
                          CustomListTile(
                           leading: Image.asset('assets/one.png'),
-                          title:  Text('- Custom', style: SetStatusViewModel.titleStyle),
+                          title:  Text('- Custom', style: titleStyle),
                           ), 
                       ],
                     )
@@ -96,7 +98,7 @@ class SetStatusView extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02),
-                      child: Text('For HNGi8 14G', style: SetStatusViewModel.titleStyle),
+                      child: Text('For HNGi8 14G', style: titleStyle),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.01,
@@ -105,19 +107,19 @@ class SetStatusView extends StatelessWidget {
                       children: [
                          CustomListTile(
                           leading: Image.asset('assets/calendar.png'), 
-                          title:  Text('In a meeting - 1 hour', style: SetStatusViewModel.titleStyle),
+                          title:  Text('In a meeting - 1 hour', style: titleStyle),
                           ), 
                          CustomListTile(
                           leading: Image.asset('assets/car.png'), 
-                          title:  Text('Commuting - 30 minutes', style: SetStatusViewModel.titleStyle),
+                          title:  Text('Commuting - 30 minutes', style: titleStyle),
                           ), 
                          CustomListTile(
                           leading: Image.asset('assets/sick.png'), 
-                          title:  Text('Out sick - Today', style: SetStatusViewModel.titleStyle),
+                          title:  Text('Out sick - Today', style: titleStyle),
                           ), 
                          CustomListTile(
                          leading: Image.asset('assets/vacation.png'), 
-                          title:  Text('Vacationing - Don\'t clear', style: SetStatusViewModel.titleStyle),
+                          title:  Text('Vacationing - Don\'t clear', style: titleStyle),
                           ), 
                       ],
                     )
