@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utilities/constants/styles.dart';
+import '../../../shared/colors.dart';
 
 class CustomPluginListTile extends StatelessWidget {
   final IconData? icon;
@@ -17,14 +17,14 @@ class CustomPluginListTile extends StatelessWidget {
       children: [
         Icon(
           icon,
-          color: greyishColor,
+          color: AppColors.greyishColor,
           size: 18,
         ),
         const SizedBox(width: 8),
         Text(
           pluginName,
           style: const TextStyle(
-            color: greyishColor,
+            color: AppColors.greyishColor,
             fontWeight: FontWeight.w400,
             fontSize: 15,
           ),
