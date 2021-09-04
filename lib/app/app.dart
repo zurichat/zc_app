@@ -3,11 +3,13 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../ui/home/home_view.dart';
 import '../ui/login/login_view.dart';
+import '../ui/add_people/add_people_view.dart';
 
 @StackedApp(
   routes: [
     MaterialRoute(page: LoginView),
     MaterialRoute(page: HomeView),
+    MaterialRoute(page: AddPeopleView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
