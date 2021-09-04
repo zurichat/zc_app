@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 
+
 import '../../shared/shared.dart';
+import '../../shared/colors.dart';
+import '../../shared/constants.dart';
 import 'home_page_viewmodel.dart';
 import 'widgets/custom_channel_list_tile.dart';
 import 'widgets/custom_dm_list_tile.dart';
@@ -16,22 +19,33 @@ class HomePage extends StatelessWidget {
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 8.0),
-                child: Image(
-                  image: appBarLogo,
-                  fit: BoxFit.cover,
-                  height: 48,
+                child: InkWell(
+                  child: Image(
+                    image: appBarLogo,
+                    fit: BoxFit.cover,
+                    height: 48,
+                  ),
+                  onTap: (){
+                    model.nToWorkspace();
+                  },
                 ),
               ),
             ],
           ),
+          actions: [
+            Text(
+              model.status ? "Online" : "Offline",
+              style: TextStyle(
+                color: Colors.black
+              ),
+            )
+          ],
         ),
-        backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -64,7 +78,7 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 const CustomPluginListTile(
-                  icon: Icons.document_scanner_outlined,
+                  // icon: Icons.document_scanner_outlined,
                   pluginName: 'Draft',
                 ),
                 const SizedBox(height: 16),
@@ -130,13 +144,13 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             // navigation.navigateTo(Routes.loginView);
             // navigation.navigateTo('/create-work-space');
-            
+
+            model.nToPref();
+
           },
           child: const Icon(
             Icons.open_in_new_outlined,
-            color: AppColors.whiteColor,
           ),
-          backgroundColor: AppColors.greenColor,
         ),
       ),
     );
