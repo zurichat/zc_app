@@ -1,3 +1,9 @@
+
+
+https://user-images.githubusercontent.com/31783214/132081729-357ca42a-5109-4373-9309-f83c26a783cb.mp4
+
+
+
 # Zuri Chat 
   ## Overview 
   This is the **Zuri Chat** Andriod APP project Repository handle by **_TEAM SOCRATES_** witten with [Flutter](https://flutter.dev/).
