@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+
 import '../../shared/shared.dart';
 import 'home_page_viewmodel.dart';
 import 'widgets/custom_channel_list_tile.dart';
@@ -128,6 +129,8 @@ class HomePage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // navigation.navigateTo(Routes.loginView);
+            // navigation.navigateTo('/create-work-space');
+            
           },
           child: const Icon(
             Icons.open_in_new_outlined,
