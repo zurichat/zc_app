@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   cached_network_image: ^3.1.0
+  connectivity: ^3.0.6
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
@@ -31,6 +32,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/logo/
     - assets/background/bga.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
