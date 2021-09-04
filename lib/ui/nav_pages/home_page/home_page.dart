@@ -25,6 +25,15 @@ class HomePage extends StatelessWidget {
                   image: appBarLogo,
                   fit: BoxFit.cover,
                   height: 48,
+                child: InkWell(
+                  child: Image(
+                    image: appBarLogo,
+                    fit: BoxFit.cover,
+                    height: 48,
+                  ),
+                  onTap: () {
+                    model.nToWorkspace();
+                  },
                 ),
               ),
             ],
@@ -32,9 +41,7 @@ class HomePage extends StatelessWidget {
           actions: [
             Text(
               model.status ? "Online" : "Offline",
-              style: TextStyle(
-                color: Colors.black
-              ),
+              style: TextStyle(color: Colors.black),
             )
           ],
         ),
