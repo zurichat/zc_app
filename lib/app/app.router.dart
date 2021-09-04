@@ -12,22 +12,27 @@ import 'package:stacked/stacked.dart';
 
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
+import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/workspace/workspace_view.dart';
 
 class Routes {
-  static const String navBarView = '/';
   static const String loginView = '/login-view';
 
   static const String channelView = '/channel-view';
+
+
+  static const String navBarView = '/nav-bar-view';
+  static const String onboardingView = '/';
 
   static const String preferenceView = '/preference-view';
 
   static const String workspaceView = '/workspace-view';
 
   static const all = <String>{
-    navBarView,
     loginView,
+    navBarView,
+    onboardingView,
     preferenceView,
     workspaceView,
     channelView
@@ -38,10 +43,13 @@ class StackedRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
-    RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.loginView, page: LoginView),
 
+
     RouteDef(Routes.channelView, page: ChannelPageView)
+
+    RouteDef(Routes.navBarView, page: NavBarView),
+    RouteDef(Routes.onboardingView, page: OnboardingView),
 
     RouteDef(Routes.preferenceView, page: PreferenceView),
 
@@ -51,15 +59,21 @@ class StackedRouter extends RouterBase {
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
+    LoginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const LoginView(),
+        settings: data,
+      );
+    },
     NavBarView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const NavBarView(),
         settings: data,
       );
     },
-    LoginView: (data) {
+    OnboardingView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const LoginView(),
+        builder: (context) => const OnboardingView(),
         settings: data,
       );
     },
