@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/channel/new_channel/new_channel.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/view/login/login_view.dart';
@@ -19,11 +20,13 @@ class Routes {
   static const String loginView = '/login-view';
   static const String preferenceView = '/preference-view';
   static const String workspaceView = '/workspace-view';
+  static const String newChannel = '/newChannel-view';
   static const all = <String>{
     navBarView,
     loginView,
     preferenceView,
     workspaceView,
+    newChannel,
   };
 }
 
@@ -35,6 +38,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.newChannel, page: NewChannel),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -60,6 +64,12 @@ class StackedRouter extends RouterBase {
     WorkspaceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceView(),
+        settings: data,
+      );
+    },
+    NewChannel: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const NewChannel(),
         settings: data,
       );
     },
