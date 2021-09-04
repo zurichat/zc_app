@@ -7,18 +7,20 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  
   cached_network_image: ^3.1.0
+  connectivity: ^3.0.6
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
   flutter_screenutil: ^5.0.0+2
   fluttertoast: ^8.0.8
+  google_fonts: ^2.1.0
   intl: ^0.17.0
   introduction_screen: ^2.1.0
   shared_preferences: ^2.0.7
   stacked: ^2.1.8
   stacked_services: ^0.8.6
+  stacked_themes: ^0.3.6
   url_launcher: ^6.0.9
 
 dev_dependencies:
@@ -30,6 +32,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/logo/
     - assets/background/bga.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
