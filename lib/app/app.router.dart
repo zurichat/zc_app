@@ -16,6 +16,7 @@ import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/preference/preference_view.dart';
 
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
+
 import '../ui/view/workspace/workspace_view.dart';
 
 
@@ -87,14 +88,13 @@ class StackedRouter extends RouterBase {
      UseDifferentEmailView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const UseDifferentEmailView(),
-        settings: data,
-      );
+settings: data,
+        );
      },
-
+    
     WorkspaceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceView(),
-
         settings: data,
       );
     },
