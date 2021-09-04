@@ -1,8 +1,7 @@
 //keep Hng Project
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/utilities/constants/constants.dart';
-import 'package:hng/utilities/constants/styles.dart';
+import 'package:hng/ui/shared/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 
@@ -32,7 +31,7 @@ class DirectMessage extends StatelessWidget {
                     children: [
                       CustomText('',
                           text: this.username.toString(),
-                          color: deepBlackColor),
+                          color: Colors.black),
                       SizedBox(width: 20),
                       Container(
                         width: 10,
@@ -44,7 +43,7 @@ class DirectMessage extends StatelessWidget {
                   ),
                   CustomText(
                     "",
-                    color: deepBlackColor,
+                    color: Colors.black,
                     text: 'View details',
                   ),
                 ],
@@ -92,20 +91,20 @@ class DirectMessage extends StatelessWidget {
                                     SizedBox(width: 20),
                                     CustomText('',
                                         text: this.username.toString(),
-                                        color: deepBlackColor),
+                                        color: Colors.black),
                                   ],
                                 ),
                                 CustomText(
                                   '',
                                   text: "Software Development",
-                                  color: deepBlackColor,
+                                  color: Colors.black,
                                 ),
                                 SizedBox(height: 10),
                                 CustomText(
                                   '',
                                   text:
                                       "This is the very beginning of your direct message history with @${this.username.toString()}. Only the two of you are in this conversation, and no one else can join it.",
-                                  color: deepBlackColor,
+                                  color: Colors.black,
                                   fontSize: 15,
                                 ),
                                 SizedBox(height: 10),
@@ -133,7 +132,7 @@ class DirectMessage extends StatelessWidget {
                                                       text: this
                                                           .username
                                                           .toString(),
-                                                      color: deepBlackColor),
+                                                      color: Colors.black),
                                                   SizedBox(width: 10),
                                                   CustomText('',
                                                       text: DateFormat('hh:mm')
