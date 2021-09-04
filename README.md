@@ -2,7 +2,7 @@
 
 https://user-images.githubusercontent.com/31783214/132081729-357ca42a-5109-4373-9309-f83c26a783cb.mp4
 
-
+Solves https://github.com/zurichat/zc_app/issues/50
 
 # Zuri Chat 
   ## Overview 
