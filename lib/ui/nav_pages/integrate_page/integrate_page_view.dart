@@ -15,7 +15,7 @@ class IntegratePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.nightlife),
         onPressed: () {
-          NavigationService().navigateTo(Routes.useDifferentEmailView);
+          model.nToDifferentEmail();
         },
       ),
     );
