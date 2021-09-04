@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 //TODO this is a fake api for testing
 const apiBaseUrl = 'https://jsonplaceholder.typicode.com';

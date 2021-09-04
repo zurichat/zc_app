@@ -19,17 +19,12 @@ class HomePage extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 8.0),
-                child: InkWell(
-                  child: Image(
-                    image: appBarLogo,
-                    fit: BoxFit.cover,
-                    height: 48,
-                  ),
-                  onTap: (){
-                    model.nToWorkspace();
-                  },
+                child: Image(
+                  image: appBarLogo,
+                  fit: BoxFit.cover,
+                  height: 48,
                 ),
               ),
             ],
@@ -75,7 +70,8 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 const CustomPluginListTile(
-                  icon: Icons.document_scanner_outlined,
+                  icon: Icons.vertical_align_bottom_sharp,
+                  //Icons.document_scanner_outlined,
                   pluginName: 'Draft',
                 ),
                 const SizedBox(height: 16),

@@ -7,13 +7,16 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/plugins/add_plugin_view.dart';
+import 'package:hng/ui/view/plugins/edit_plugin_view.dart';
+import 'package:hng/ui/view/plugins/plugins_view.dart';
+import 'package:hng/ui/view/workspace/workspace_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/preference/preference_view.dart';
-import '../ui/view/workspace/workspace_view.dart';
 
 class Routes {
   static const String loginView = '/login-view';
@@ -21,12 +24,18 @@ class Routes {
   static const String onboardingView = '/';
   static const String preferenceView = '/preference-view';
   static const String workspaceView = '/workspace-view';
+  static const String pluginView = '/plugin-view';
+  static const String addPluginView = '/add-plugin-view';
+  static const String editPluginView = '/edit-plugin-view';
   static const all = <String>{
     loginView,
     navBarView,
     onboardingView,
     preferenceView,
     workspaceView,
+    pluginView,
+    addPluginView,
+    editPluginView
   };
 }
 
@@ -39,6 +48,9 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.pluginView, page: PluginView),
+    RouteDef(Routes.addPluginView, page: AddPluginView),
+    RouteDef(Routes.editPluginView, page: EditPluginView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -70,6 +82,24 @@ class StackedRouter extends RouterBase {
     WorkspaceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceView(),
+        settings: data,
+      );
+    },
+    PluginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PluginView(),
+        settings: data,
+      );
+    },
+    AddPluginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const AddPluginView(),
+        settings: data,
+      );
+    },
+    EditPluginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const EditPluginView(),
         settings: data,
       );
     },

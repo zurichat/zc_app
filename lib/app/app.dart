@@ -1,6 +1,9 @@
+import 'package:hng/ui/view/onboarding/onboading_view.dart';
+import 'package:hng/ui/view/plugins/add_plugin_view.dart';
+import 'package:hng/ui/view/plugins/edit_plugin_view.dart';
+import 'package:hng/ui/view/plugins/plugins_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hng/ui/view/nav_bar/nav_bar_view.dart';
-import 'package:hng/ui/view/onboarding/onboading_view.dart';
 import 'package:hng/ui/view/preference/preference_view.dart';
 import 'package:hng/ui/view/workspace/workspace_view.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -18,6 +21,9 @@ import '../ui/view/login/login_view.dart';
     MaterialRoute(page: OnboardingView, initial: true),
     MaterialRoute(page: PreferenceView),
     MaterialRoute(page: WorkspaceView),
+    MaterialRoute(page: PluginView),
+    MaterialRoute(page: AddPluginView),
+    MaterialRoute(page: EditPluginView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
