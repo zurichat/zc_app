@@ -7,4 +7,8 @@ class HomePageViewModel extends BaseViewModel {
   nToPref() {
     NavigationService().navigateTo(Routes.preferenceView);
   }
+
+  nToInfo() {
+    NavigationService().navigateTo(Routes.channelInfoView);
+  }
 }

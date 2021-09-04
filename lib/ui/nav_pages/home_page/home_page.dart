@@ -126,7 +126,7 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            model.nToPref();
+            model.nToInfo();
           },
           child: const Icon(
             Icons.open_in_new_outlined,
