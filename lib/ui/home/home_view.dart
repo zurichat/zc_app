@@ -35,6 +35,7 @@ class HomeView extends StatelessWidget {
             ],
           ),
         ),
+        //con
         backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(
           child: Padding(
