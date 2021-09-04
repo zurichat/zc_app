@@ -1,7 +1,7 @@
 // import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:stacked_themes/stacked_themes.dart';
 import '../../general_widgets/custom_bottom_nav.dart';
 import '../../utilities/constants/constants.dart';
 import '../../utilities/constants/styles.dart';
@@ -17,7 +17,17 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+              icon: Icon(
+                Icons.lightbulb,
+                color: Theme.of(context).accentColor,
+              ),
+              onPressed: () {
+                getThemeManager(context).toggleDarkLightTheme();
+              })
+        ],
+        backgroundColor: Theme.of(context).backgroundColor,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -32,7 +42,7 @@ class HomeView extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: whiteColor,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -65,7 +75,7 @@ class HomeView extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               const CustomPluginListTile(
-                icon: Icons.document_scanner_outlined,
+                icon: Icons.scanner_outlined, //document_scanner_outlined,
                 pluginName: 'Draft',
               ),
               const SizedBox(height: 16),
