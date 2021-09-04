@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../utilities/constants/styles.dart';
 
 // ignore: use_key_in_widget_constructors
