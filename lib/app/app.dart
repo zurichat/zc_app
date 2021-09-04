@@ -14,7 +14,7 @@ import '../ui/view/login/login_view.dart';
 @StackedApp(
   routes: [
     MaterialRoute(page: LoginView),
-    MaterialRoute(page: NavBarView, initial: true),
+    MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView, initial: true),
     MaterialRoute(page: PreferenceView),
     MaterialRoute(page: WorkspaceView),
