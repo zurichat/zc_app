@@ -1,5 +1,6 @@
 import 'package:hng/ui/home/home_view.dart';
 import 'package:hng/ui/login/login_view.dart';
+import 'package:hng/ui/profile_page/profile_page_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -7,6 +8,7 @@ import 'package:stacked_services/stacked_services.dart';
   routes: [
     MaterialRoute(page: LoginView),
     MaterialRoute(page: HomeView),
+    MaterialRoute(page: ProfilePageView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
