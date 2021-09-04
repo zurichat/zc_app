@@ -6,7 +6,6 @@ import 'package:hng/ui/nav_pages/home_page/widgets/custom_homepage_section_title
 import 'package:hng/ui/nav_pages/home_page/widgets/custom_plugin_list_tile.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/constants.dart';
-import 'package:hng/ui/view/channel_search/channel_search_view.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
@@ -132,10 +131,10 @@ class HomeView extends StatelessWidget {
               bottomNavigationBar: CustomBottomNavBar(),
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ChannelSearchPageView()));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => ChannelSearchPageView()));
                 },
                 child: const Icon(
                   Icons.open_in_new_outlined,

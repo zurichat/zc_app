@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/view/channel_search/widgets/textfield_style.dart';
 import 'package:stacked/stacked.dart';
-import 'package:flutter/services.dart';
-
 import 'channel_search_view_model.dart';
 import 'widgets/appBar.dart';
 import 'widgets/search_result.dart';
