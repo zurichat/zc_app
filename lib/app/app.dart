@@ -4,10 +4,13 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../ui/view/home/home_view.dart';
 import '../ui/view/login/login_view.dart';
+import '../ui/view/otp/otp_view.dart';
 
 @StackedApp(routes: [
   MaterialRoute(page: HomeView, initial: true),
-  MaterialRoute(page: LoginView)
+  MaterialRoute(page: LoginView),
+  MaterialRoute(page: OtpView)
+
 ], dependencies: [
   LazySingleton(classType: NavigationService)
 ])

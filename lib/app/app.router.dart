@@ -11,13 +11,16 @@ import 'package:stacked/stacked.dart';
 
 import '../ui/view/home/home_view.dart';
 import '../ui/view/login/login_view.dart';
+import '../ui/view/otp/otp_view.dart';
 
 class Routes {
   static const String homeView = '/';
   static const String loginView = '/login-view';
+  static const String otpView = '/otp-view';
   static const all = <String>{
     homeView,
     loginView,
+    otpView,
   };
 }
 
@@ -27,6 +30,7 @@ class StackedRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.homeView, page: HomeView),
     RouteDef(Routes.loginView, page: LoginView),
+    RouteDef(Routes.otpView, page: OtpView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -40,6 +44,12 @@ class StackedRouter extends RouterBase {
     LoginView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const LoginView(),
+        settings: data,
+      );
+    },
+    OtpView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const OtpView(),
         settings: data,
       );
     },

@@ -9,6 +9,11 @@ class AppTextStyles {
     color: AppColors.greyishColor,
     fontSize: 24,
   );
+  static const TextStyle heading7 = TextStyle(
+    fontWeight: FontWeight.w700,
+    color: AppColors.blackColor,
+    fontSize: 24,
+  );
   static const TextStyle heading5 = TextStyle(
     fontWeight: FontWeight.w500,
     color: AppColors.greyishColor,
@@ -41,9 +46,13 @@ class AppTextStyles {
     color: AppColors.whiteColor,
     fontSize: 16,
   );
+  static const TextStyle textButtonText = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    color: AppColors.blueColor,
+    decoration: TextDecoration.underline,
+  );
 }
-
-
 
 const logoAsset = AssetImage('assets/logo/hng_logo.png');
 const dummyNetworkImage =
