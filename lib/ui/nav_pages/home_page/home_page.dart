@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
                     fit: BoxFit.cover,
                     height: 48,
                   ),
-                  onTap: (){
+                  onTap: () {
                     model.nToWorkspace();
                   },
                 ),
