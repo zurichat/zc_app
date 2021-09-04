@@ -8,6 +8,7 @@ class AppColors {
   static const Color greenColor = Color(0xFF00B87C);
   static const Color blueColor = Color(0xFF1554F6);
   static const Color navBarItemColor = Color(0xFF7B8794);
+  static const Color unreadMessageColor = Color(0xffB8003C);
 
   ///Kimbie Dark Theme
   static const kimbieAccent = Color(0xFF6E9B3B);
