@@ -30,6 +30,7 @@ class Routes {
     loginView,
     preferenceView,
     workspaceView,
+    channelView
   };
 }
 
