@@ -19,16 +19,29 @@ class HomePage extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 8.0),
-                child: Image(
-                  image: appBarLogo,
-                  fit: BoxFit.cover,
-                  height: 48,
+                child: InkWell(
+                  child: Image(
+                    image: appBarLogo,
+                    fit: BoxFit.cover,
+                    height: 48,
+                  ),
+                  onTap: (){
+                    model.nToWorkspace();
+                  },
                 ),
               ),
             ],
           ),
+          actions: [
+            Text(
+              model.status ? "Online" : "Offline",
+              style: TextStyle(
+                color: Colors.black
+              ),
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Padding(
