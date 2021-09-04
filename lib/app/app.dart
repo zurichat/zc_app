@@ -5,6 +5,8 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
+import 'package:hng/services/connectivity_service.dart';
+
 import '../ui/view/login/login_view.dart';
 
 @StackedApp(
@@ -17,6 +19,7 @@ import '../ui/view/login/login_view.dart';
   dependencies: [
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: ThemeService),
+    LazySingleton(classType: ConnectivityService)
   ],
 )
 class AppSetup {
