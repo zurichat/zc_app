@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../shared/shared.dart';
+import '../../shared/colors.dart';
+import '../../shared/constants.dart';
 import 'home_page_viewmodel.dart';
 import 'widgets/custom_channel_list_tile.dart';
 import 'widgets/custom_dm_list_tile.dart';
@@ -15,7 +17,6 @@ class HomePage extends StatelessWidget {
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -30,7 +31,6 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -97,9 +97,12 @@ class HomePage extends StatelessWidget {
                   channelName: 'questions',
                 ),
                 const SizedBox(height: 20),
-                const CustomHomePageSectionTitle(
-                  title: 'Direct Messages',
-                ),
+                CustomHomePageSectionTitle(
+                    title: 'Direct Messages',
+                    ontap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => DmScreen()));
+                    }),
                 const SizedBox(height: 16),
                 const CustomDMListTile(
                   userName: 'Princess',
@@ -127,13 +130,11 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // navigation.navigateTo(Routes.loginView);
+            model.nToPref();
           },
           child: const Icon(
             Icons.open_in_new_outlined,
-            color: AppColors.whiteColor,
           ),
-          backgroundColor: AppColors.greenColor,
         ),
       ),
     );
