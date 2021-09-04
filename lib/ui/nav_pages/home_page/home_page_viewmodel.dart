@@ -13,19 +13,20 @@ class HomePageViewModel extends StreamViewModel {
   nToPref() {
     NavigationService().navigateTo(Routes.preferenceView);
   }
-  nToWorkspace(){
+
+  nToWorkspace() {
     NavigationService().navigateTo(Routes.workspaceView);
   }
 
   final connectivityService = locator<ConnectivityService>();
 
   bool connectionStatus = false;
-  
+
   @override
   void onError(error) {
     log('Error: $error');
   }
-  
+
   @override
   void onSubscribed() {}
 
@@ -40,7 +41,11 @@ class HomePageViewModel extends StreamViewModel {
     this.stream.listen((event) {
       connectionStatus = event;
       notifyListeners();
-    }); 
+    });
     return connectionStatus;
+  }
+
+  nToInfo() {
+    NavigationService().navigateTo(Routes.channelInfoView);
   }
 }
