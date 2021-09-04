@@ -244,6 +244,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0+2"
+  flutter_statusbarcolor_ns:
+    dependency: transitive
+    description:
+      name: flutter_statusbarcolor_ns
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0-nullsafety"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -623,6 +630,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.8.13"
+  stacked_themes:
+    dependency: "direct main"
+    description:
+      name: stacked_themes
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.6"
   stream_channel:
     dependency: transitive
     description:

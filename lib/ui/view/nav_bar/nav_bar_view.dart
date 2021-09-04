@@ -6,22 +6,22 @@ import '../../nav_pages/dm_page/dm_page.dart';
 
 import '../../nav_pages/integrate_page/integrate_page_view.dart';
 import '../../nav_pages/you_page/you_page.dart';
-import 'home_viewmodel.dart';
+import 'nav_bar_viewmodel.dart';
 
 ///Home view is the holder for all the views
 ///!Do not edit this directly, edit pages instead
 ///
-class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+class NavBarView extends StatelessWidget {
+  const NavBarView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<HomeViewModel>.reactive(
+    return ViewModelBuilder<NavBarViewModel>.reactive(
       //this parameter allows us to reuse the view model to persist the state
       disposeViewModel: false,
       //initialise the view model only once
       initialiseSpecialViewModelsOnce: true,
-      viewModelBuilder: () => HomeViewModel(),
+      viewModelBuilder: () => NavBarViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
           //passing in the current index from the view model
