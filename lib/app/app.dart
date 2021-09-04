@@ -1,4 +1,4 @@
-import 'package:hng/ui/members_page/members_page_view.dart';
+import 'package:hng/ui/nav_pages/members_page/members_page_view.dart';
 import 'package:hng/ui/view/nav_bar/nav_bar_view.dart';
 import 'package:hng/ui/view/preference/preference_view.dart';
 import 'package:hng/ui/view/workspace/workspace_view.dart';
