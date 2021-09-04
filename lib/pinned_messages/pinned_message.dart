@@ -14,7 +14,7 @@ class SingleListItem {
 List<SingleListItem> dummyData = [
   SingleListItem(
       name: "Ali ",
-      time: "12:30pm, today",
+      time: "12:30pm, today\n",
       description: "Read the description"),
 ];
 
