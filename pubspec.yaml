@@ -19,6 +19,7 @@ dependencies:
   # Stacked
   stacked: ^2.1.8
   stacked_services: ^0.8.6
+  hexcolor: ^2.0.5
 
 dev_dependencies:
   flutter_test:
