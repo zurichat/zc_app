@@ -7,6 +7,9 @@
   - _All Team member must adhere to the follow procedure while working on this project._
   - _Make sure you understand the project Architecture before proceeding with any tasks_
   
+  App Record
+  ![App Record](screen-20210903-165149.gif)
+  
   ## Project Description
   ZuriChat is a mobile application clone of the already existing slack application with more features like music room, chess room, meeting room etc etc.
 
