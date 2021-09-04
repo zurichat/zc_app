@@ -28,7 +28,11 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "2.8.2"
+=======
+    version: "2.6.1"
+>>>>>>> 2ebaedcc3263ad6f1988d13a09146a5e9d25dbef
   boolean_selector:
     dependency: transitive
     description:
@@ -218,6 +222,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.3"
+  dots_indicator:
+    dependency: transitive
+    description:
+      name: dots_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -366,6 +377,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
+  introduction_screen:
+    dependency: "direct main"
+    description:
+      name: introduction_screen
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   io:
     dependency: transitive
     description:
