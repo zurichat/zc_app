@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../ui/view/channel/channels_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/preference/preference_view.dart';
@@ -19,12 +20,17 @@ class Routes {
   static const String loginView = '/login-view';
   static const String preferenceView = '/preference-view';
   static const String workspaceView = '/workspace-view';
+  static const String channelList = '/channel-list';
   static const all = <String>{
     navBarView,
     loginView,
     preferenceView,
-};
+    workspaceView,
+    channelList,
+  };
+}
 
+class StackedRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
@@ -32,6 +38,7 @@ class Routes {
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.channelList, page: ChannelList),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -57,6 +64,12 @@ class Routes {
     WorkspaceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceView(),
+        settings: data,
+      );
+    },
+    ChannelList: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ChannelList(),
         settings: data,
       );
     },
