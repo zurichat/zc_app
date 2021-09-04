@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/workspace/workspace_bottomsheet.dart';
 import 'package:stacked/stacked.dart';
 import 'workspace_viewmodel.dart';
 
@@ -75,7 +76,18 @@ class WorkspaceView extends StatelessWidget {
                                           fontSize: 15.0),
                                     ),
                                   ),
-                                  trailing: Icon(Icons.more_vert),
+                                  trailing: GestureDetector(
+                                    onTap: (){
+                                      showModalBottomSheet(context: context,
+                                          builder: (context){
+                                            return WorkSpaceBottomSheet(
+                                              name: dummyData[i].name,
+                                              avatarUrl: dummyData[i].avatarUrl,
+                                              message: dummyData[i].message,
+                                            );
+                                          });
+                                    },
+                                      child: Icon(Icons.more_vert)),
                                 ),
                               ],
                             ),
