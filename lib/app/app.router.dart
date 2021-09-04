@@ -10,16 +10,22 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/view/channel_notification/channel_notification_view.dart';
-import '../ui/view/home/home_view.dart';
 import '../ui/view/login/login_view.dart';
+import '../ui/view/nav_bar/nav_bar_view.dart';
+import '../ui/view/preference/preference_view.dart';
+import '../ui/view/workspace/workspace_view.dart';
 
 class Routes {
-  static const String homeView = '/';
+  static const String navBarView = '/';
   static const String loginView = '/login-view';
+  static const String preferenceView = '/preference-view';
+  static const String workspaceView = '/workspace-view';
   static const String channelNotificationView = '/channel-notification-view';
   static const all = <String>{
-    homeView,
+    navBarView,
     loginView,
+    preferenceView,
+    workspaceView,
     channelNotificationView,
   };
 }
@@ -28,22 +34,36 @@ class StackedRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
-    RouteDef(Routes.homeView, page: HomeView),
+    RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.loginView, page: LoginView),
+    RouteDef(Routes.preferenceView, page: PreferenceView),
+    RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
-    HomeView: (data) {
+    NavBarView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const HomeView(),
+        builder: (context) => const NavBarView(),
         settings: data,
       );
     },
     LoginView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const LoginView(),
+        settings: data,
+      );
+    },
+    PreferenceView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PreferenceView(),
+        settings: data,
+      );
+    },
+    WorkspaceView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const WorkspaceView(),
         settings: data,
       );
     },
