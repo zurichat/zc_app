@@ -19,6 +19,7 @@ dependencies:
   # Stacked
   stacked: ^2.1.8
   stacked_services: ^0.8.6
+  google_fonts: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -32,6 +33,7 @@ flutter:
     - assets/background/bga.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
+    - assets/images/user.png
   # fonts:
   #   - family: Schyler
   #     fonts:
