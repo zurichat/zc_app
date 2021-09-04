@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -127,7 +128,7 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // navigation.navigateTo(Routes.loginView);
+            Navigator.of(context).pushReplacementNamed(Routes.channelView);
           },
           child: const Icon(
             Icons.open_in_new_outlined,
