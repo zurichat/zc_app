@@ -109,6 +109,7 @@ class IntegratePage2 extends StatelessWidget {
             ),
           ),
         ],
+
       ),
     );
   }
