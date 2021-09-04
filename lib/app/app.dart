@@ -20,7 +20,7 @@ import '../ui/view/login/login_view.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: ThemeService),
   ],
->>>>>>> df4d1955f3466c2d4ec7ff4f61ac9cdb746454a0
+)
 class AppSetup {
   /* This class serves no other purpose other than having the
    StackedApp annotation attached to it*/
