@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
                     fit: BoxFit.cover,
                     height: 48,
                   ),
-                  onTap: (){
+                  onTap: () {
                     model.nToWorkspace();
                   },
                 ),
@@ -37,9 +37,7 @@ class HomePage extends StatelessWidget {
           actions: [
             Text(
               model.status ? "Online" : "Offline",
-              style: TextStyle(
-                color: Colors.black
-              ),
+              style: TextStyle(color: Colors.black),
             )
           ],
         ),
@@ -139,7 +137,7 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            model.nToPref();
+            model.nToInfo();
           },
           child: const Icon(
             Icons.open_in_new_outlined,

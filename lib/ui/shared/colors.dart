@@ -11,6 +11,8 @@ class AppColors {
   
 
   static const Color unreadMessageColor = Color(0xffB8003C);
+  static const Color redColor = Color(0xFFF40101);
+  static const Color faintTextColor = Color(0xFFC7C3C3);
 
 
   ///Kimbie Dark Theme
