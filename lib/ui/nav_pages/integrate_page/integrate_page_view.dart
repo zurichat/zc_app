@@ -5,9 +5,11 @@ class IntegratePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: const Text('Intergrate Page'),
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        child: const Text('Intergrate Page'),
+      ),
     );
   }
 }
