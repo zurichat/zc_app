@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9fc235962a1b86700f209caf0cc1f7253345bfae
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
 import 'services/theme_setup.dart';
+
+
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
