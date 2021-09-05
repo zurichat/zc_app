@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hng/general_widgets/custom_channel.dart';
 import 'package:hng/general_widgets/custom_channel_stage.dart';
+import 'package:hng/general_widgets/custom_user.dart';
 import 'package:hng/general_widgets/custom_user_channel.dart';
 import 'package:hng/ui/view/dm_chat_view/dm_jump_to_viewmodel.dart';
 import 'package:stacked/stacked.dart';
@@ -36,8 +37,15 @@ class DmJumpToView extends StatelessWidget {
                           controller: model.controller,
                           keyboardType: TextInputType.visiblePassword,
                           maxLines: 1,
-                          onChanged: (value) {},
+                          onChanged: (value){},
                           decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                              borderSide: BorderSide(
+                                  color: Color(0xFF7B8794),
+                                  width: 0.5,
+                                  style: BorderStyle.solid),
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(Radius.circular(5)),
                               borderSide: BorderSide(
@@ -116,8 +124,8 @@ class DmJumpToView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 32),
-                    Container(
-                      height: 515,
+                    Expanded(
+                      flex:1,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Column(
@@ -135,7 +143,9 @@ class DmJumpToView extends StatelessWidget {
                             CustomUserChannel(
                                 image: 'assets/images/Rectangle 138a.png',
                                 text: 'Abd_Salam',
-                                trailingIcon: Icons.circle_outlined),
+                                trailingIcon: Icons.circle,
+                              iconColor: Color(0xff007952),
+                            ),
                             CustomChannel(
                               text: 'announcement',
                             ),
@@ -144,7 +154,21 @@ class DmJumpToView extends StatelessWidget {
                             CustomUserChannel(
                                 image: 'assets/images/Rectangle 138a.png',
                                 text: 'Blaze',
-                                trailingIcon: Icons.circle_outlined),
+                                trailingIcon: Icons.circle,
+                              iconColor: Color(0xff007952),
+                            ),
+                            CustomChannel(text: 'announcement'),
+                            CustomChannelStage(
+                                leadingIcon: Icons.lock, text: 'stage4'),
+                            CustomChannel(text: 'announcement'),
+                            CustomChannelStage(
+                                leadingIcon: Icons.lock, text: 'stage4'),
+                            CustomUserChannel(
+                              image: 'assets/images/Rectangle 138a.png',
+                              text: 'Blaze',
+                              trailingIcon: Icons.circle,
+                              iconColor: Color(0xff007952),
+                            ),
                             CustomChannel(text: 'announcement'),
                             CustomChannelStage(
                                 leadingIcon: Icons.lock, text: 'stage4'),
@@ -162,38 +186,7 @@ class DmJumpToView extends StatelessWidget {
   }
 }
 
-class CustomUser extends StatelessWidget {
-  const CustomUser({Key? key, this.image, this.text}) : super(key: key);
-  final text;
-  final image;
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Column(
-        children: [
-          Container(
-            height: 60,
-            width: 60,
-            // color: Color(0xFFC4C4C4),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                      image,
-                    ))),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Container(height: 17, child: Text(text))
-        ],
-      ),
-    );
-  }
-}
 
 
 

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomUserChannel extends StatelessWidget {
-  const CustomUserChannel({Key? key, this.image, this.text, this.trailingIcon})
+  const CustomUserChannel({Key? key, this.image, this.text, this.trailingIcon, this.iconColor})
       : super(key: key);
   final image;
   final text;
   final trailingIcon;
+  final iconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,7 @@ class CustomUserChannel extends StatelessWidget {
               child: Icon(
                 trailingIcon,
                 size: 9,
+                color: iconColor,
               ),
             )
           ],
