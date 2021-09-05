@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/preference/preference_view.dart';
@@ -19,11 +20,13 @@ class Routes {
   static const String loginView = '/login-view';
   static const String preferenceView = '/preference-view';
   static const String workspaceView = '/workspace-view';
+  static const String dmJumpToView = '/dm-jump-to-view';
   static const all = <String>{
     navBarView,
     loginView,
     preferenceView,
     workspaceView,
+    dmJumpToView,
   };
 }
 
@@ -35,6 +38,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.dmJumpToView, page: DmJumpToView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -60,6 +64,12 @@ class StackedRouter extends RouterBase {
     WorkspaceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceView(),
+        settings: data,
+      );
+    },
+    DmJumpToView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const DmJumpToView(),
         settings: data,
       );
     },
