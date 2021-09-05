@@ -147,10 +147,8 @@ class PopUpNotificationsView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      //alignment: Alignment.,
                                       child: Text(model.notiText2, style: TextStyle(color: AppColors.deepBlackColor,)
                                         ,),
-
                                     ),
                                     Container(
                                       child: Text(model.notiText4, style: TextStyle(color: AppColors.deepBlackColor),),
