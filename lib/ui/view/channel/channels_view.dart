@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/view/channel/channels_viewmodel.dart';
@@ -75,12 +76,12 @@ class ChannelList extends StatelessWidget {
                   ) ,
                   itemBuilder: (context, element) {
                     return ChannelBrowserContainer(channelName:element);
-                  }),
+                  },),
             ),
           ],
-        )
-        )
-      )
+        ),
+        ),
+      ),
       );
   }
 }
