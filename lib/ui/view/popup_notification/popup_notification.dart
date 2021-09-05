@@ -104,26 +104,33 @@ class PopUpNotificationsView extends StatelessWidget {
                           child: Column(
 
                     children: [
-                         Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                           SizedBox(height:20),
-                                Container(
-                                  height:40,
-                                      width: 100,
-                                      child: Image.asset(model.profileImage),
-                                    ),
-                           SizedBox(width: 100,),
-                           Padding(
-                             padding: const EdgeInsets.all(8.0),
-                             child: Container(
-                               height:40,
-                               width: 100,
-                               child: Text(model.notiText,style: TextStyle(color: AppColors.deepBlackColor), ),
-                             ),
-                           )
-                                       ],
-                              ),
+                         Padding(
+                           padding: const EdgeInsets.all(8.0),
+                           child: Container(
+                             child: Row(
+                               mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                             children: [
+                               SizedBox(height:20),
+                                    Container(
+                                      height:40,
+                                      width: 60,
+                                          alignment: Alignment.centerLeft,
+                                          child: Image.asset(model.profileImage, fit: BoxFit.contain,),
+                                        ),
+
+                               Padding(
+                                 padding: const EdgeInsets.only(left:180, top: 8.0),
+                                 child: Container(
+                                   height:40,
+
+                                   child: Text(model.notiText,style: TextStyle(color: AppColors.deepBlackColor, fontSize: 12.0, ), ),
+                                 ),
+                               )
+                                           ],
+                                  ),
+                           ),
+                         ),
                             SizedBox(height:10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -147,11 +154,11 @@ class PopUpNotificationsView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      child: Text(model.notiText2, style: TextStyle(color: AppColors.deepBlackColor,)
+                                      child: Text(model.notiText2, style: TextStyle(color: AppColors.deepBlackColor, fontSize: 12.0, )
                                         ,),
                                     ),
                                     Container(
-                                      child: Text(model.notiText4, style: TextStyle(color: AppColors.deepBlackColor),),
+                                      child: Text(model.notiText4, style: TextStyle(color: AppColors.deepBlackColor, fontSize: 12.0, ),),
 
                                     ),
                                   ],
