@@ -23,11 +23,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return OverlaySupport(
+    return 
       ThemeBuilder(
       themes: getThemes(),
-      builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(
-        child: MaterialApp(
+      builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(MaterialApp(
+        
 
         debugShowCheckedModeBanner: false,
         navigatorKey: StackedService.navigatorKey,
