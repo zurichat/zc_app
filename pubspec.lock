@@ -35,6 +35,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
+    version: "2.5.0"
     version: "2.6.1"
       url: "https://pub.flutter-io.cn"
     source: hosted
@@ -681,7 +682,7 @@ packages:
       name: source_span
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.0"
   sqflite:
     dependency: transitive
     description:
@@ -772,7 +773,7 @@ packages:
       name: test_api
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.0"
+    version: "0.2.19"
   timing:
     dependency: transitive
     description:
@@ -870,11 +871,7 @@ packages:
       name: win32
       url: "https://pub.flutter-io.cn"
     source: hosted
-
-    version: "2.2.8"
-
     version: "2.0.5"
-
   xdg_directories:
     dependency: transitive
     description:
