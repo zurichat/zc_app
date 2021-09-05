@@ -9,7 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../ui/add_people/add_people_view.dart';
+import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
