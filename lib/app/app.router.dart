@@ -19,11 +19,13 @@ class Routes {
   static const String loginView = '/login-view';
   static const String preferenceView = '/preference-view';
   static const String workspaceView = '/workspace-view';
+  static const String forgotPasswordView = '/forgot-password-view';
   static const all = <String>{
     navBarView,
     loginView,
     preferenceView,
     workspaceView,
+    forgotPasswordView
   };
 }
 

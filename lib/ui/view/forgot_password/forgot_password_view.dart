@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/view/forgot_password/forgot_password_view.dart';
 import 'package:stacked/stacked.dart';
-import 'login_viewmodel.dart';
+import 'forgot_password_viewmodel.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({Key? key}) : super(key: key);
+class ForgotPasswordView extends StatelessWidget {
+  const ForgotPasswordView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<LoginViewModel>.reactive(
-      viewModelBuilder: () => LoginViewModel(),
+    return ViewModelBuilder<ForgotPasswordViewModel>.reactive(
+      viewModelBuilder: () => ForgotPasswordViewModel(),
       builder: (context, model, child) => Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Color(0xffF7F7F7),
@@ -31,14 +30,27 @@ class LoginView extends StatelessWidget {
                 height: 24.0,
               ),
               Center(
-                  child: Text(
-                'Sign In',
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0),
-              )),
+                child: Text(
+                  'Forgot Password',
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0),
+                ),
+              ),
+              SizedBox(
+                height: 6.0,
+              ),
+              Center(
+                child: Text(
+                  'Please enter the email used in registering',
+                ),
+              ),
               SizedBox(
                 height: 4.0,
               ),
-              Center(child: Text('Welcome! Sign in to continue')),
+              Center(
+                child: Text(
+                  'this account',
+                ),
+              ),
               SizedBox(
                 height: 49.0,
               ),
@@ -54,36 +66,13 @@ class LoginView extends StatelessWidget {
               SizedBox(
                 height: 30.0,
               ),
-              CustomTextField(
-                keyboardType: TextInputType.emailAddress,
-                inputAction: TextInputAction.next,
-                autoFocus: false,
-                autoCorrect: true,
-                obscureText: true,
-                labelText: 'Password',
-                hintText: 'Enter Password',
-              ),
-              Container(
-                  alignment: Alignment.topRight,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ForgotPasswordView()));
-                    },
-                    child: Text('Forget Password?'),
-                  )),
-              SizedBox(
-                height: 14.0,
-              ),
               Center(
                 child: FractionallySizedBox(
                   widthFactor: 1.0,
                   child: ElevatedButton(
                     onPressed: () {},
                     child: Text(
-                      'Sign In',
+                      'Continue',
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -91,17 +80,11 @@ class LoginView extends StatelessWidget {
                           color: Color(0xffFFFFFF)),
                     ),
                     style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        primary: Color(0xff00B87C)),
+                      padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                      primary: Color(0xff00B87C),
+                    ),
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Don\'t have an account?'),
-                  TextButton(onPressed: () {}, child: Text('Register'))
-                ],
               ),
             ],
           ),

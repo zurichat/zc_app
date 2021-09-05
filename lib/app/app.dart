@@ -1,3 +1,4 @@
+import 'package:hng/ui/view/forgot_password/forgot_password_view.dart';
 import 'package:hng/ui/view/nav_bar/nav_bar_view.dart';
 import 'package:hng/ui/view/preference/preference_view.dart';
 import 'package:hng/ui/view/workspace/workspace_view.dart';
@@ -15,6 +16,7 @@ import '../ui/view/login/login_view.dart';
     MaterialRoute(page: LoginView),
     MaterialRoute(page: PreferenceView),
     MaterialRoute(page: WorkspaceView),
+    MaterialRoute(page: ForgotPasswordView)
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
