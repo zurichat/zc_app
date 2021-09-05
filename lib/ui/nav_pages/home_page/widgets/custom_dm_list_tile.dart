@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/direct_message/direct_message.dart';
 
 import '../../../shared/colors.dart';
 
@@ -15,9 +16,14 @@ class CustomDMListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
+    return InkWell(
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => DirectMessage(username: userName))),
+      child: Row(
+        children: [
+          Container(
           height: 32,
           width: 32,
           decoration: BoxDecoration(
@@ -41,6 +47,7 @@ class CustomDMListTile extends StatelessWidget {
           child: Image.asset(name),
         )
       ],
+        ),
     );
   }
 }
