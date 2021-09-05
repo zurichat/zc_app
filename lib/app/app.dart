@@ -1,5 +1,4 @@
-
-
+import 'package:hng/ui/view/channel/new_channel/new_channel.dart';
 import 'package:hng/ui/view/nav_bar/nav_bar_view.dart';
 import 'package:hng/ui/view/onboarding/onboading_view.dart';
 import 'package:hng/ui/view/preference/preference_view.dart';
@@ -23,6 +22,8 @@ import '../ui/view/preference/preference_view.dart';
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView, initial: true),
     MaterialRoute(page: PreferenceView),
+    MaterialRoute(page: WorkspaceView),
+    MaterialRoute(page: NewChannel),
     MaterialRoute(page: ChannelInfoView),
   ],
   dependencies: [
