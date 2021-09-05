@@ -24,6 +24,14 @@ import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/otp/otp_view.dart';
+import 'package:hng/ui/view/plugins/add_plugin_view.dart';
+import 'package:hng/ui/view/plugins/edit_plugin_view.dart';
+import 'package:hng/ui/view/plugins/plugins_view.dart';
+
+  
+  
+  
+ 
 
 // @StackedApp(routes: [
 //   MaterialRoute(page: HomeView, initial: true),
@@ -34,6 +42,7 @@ import '../ui/view/otp/otp_view.dart';
 // ])
 @StackedApp(
   routes: [
+    
     MaterialRoute(page: LoginView),
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView, initial: true),
@@ -52,6 +61,9 @@ import '../ui/view/otp/otp_view.dart';
     MaterialRoute(page: DmJumpToView),
     MaterialRoute(page: OtpView),
     MaterialRoute(page: DmUserView),
+    MaterialRoute(page: PluginView),
+    MaterialRoute(page: AddPluginView),
+    MaterialRoute(page: EditPluginView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

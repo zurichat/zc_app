@@ -5,7 +5,7 @@
 // **************************************************************************
 
 // ignore_for_file: public_member_api_docs
-
+ 
 import 'package:flutter/material.dart';
 import 'package:hng/ui/view/password_recovery/recovery_view.dart';
 import '../ui/profile_page/profile_page_view.dart';
@@ -29,6 +29,9 @@ import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
 import '../ui/view/workspace/workspace_view.dart';
+import 'package:hng/ui/view/plugins/add_plugin_view.dart';
+import 'package:hng/ui/view/plugins/edit_plugin_view.dart';
+import 'package:hng/ui/view/plugins/plugins_view.dart';
 
 class Routes {
   static const String loginView = '/login-view';
@@ -55,6 +58,12 @@ class Routes {
   static const String channelNotificationView = '/channel-notification-view';
 
   static const String dmUserView = '/dm-user-view';
+  static const String pluginView = '/plugin-view';
+  static const String addPluginView = '/add-plugin-view';
+  static const String editPluginView = '/edit-plugin-view';
+  
+ 
+
   static const all = <String>{
     loginView,
     createWorkSpace,
@@ -74,6 +83,9 @@ class Routes {
     forgotPasswordView,
     channelNotificationView,
     dmUserView,
+    pluginView,
+    addPluginView,
+    editPluginView,
   };
 }
 
@@ -111,7 +123,11 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.preferenceView, page: PreferenceView),
     RouteDef(Routes.signUpView, page: SignUpView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
+
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.pluginView, page: PluginView),
+    RouteDef(Routes.addPluginView, page: AddPluginView),
+    RouteDef(Routes.editPluginView, page: EditPluginView),
     RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
@@ -171,6 +187,24 @@ class StackedRouter extends RouterBase {
     WorkspaceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceView(),
+        settings: data,
+      );
+    },
+    PluginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PluginView(),
+        settings: data,
+      );
+    },
+    AddPluginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const AddPluginView(),
+        settings: data,
+      );
+    },
+    EditPluginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const EditPluginView(),
         settings: data,
       );
     },

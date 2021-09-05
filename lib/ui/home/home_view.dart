@@ -59,10 +59,12 @@ class HomeView extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                               ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.borderColor),
+                                borderSide:
+                                    BorderSide(color: AppColors.borderColor),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.borderColor),
+                                borderSide:
+                                    BorderSide(color: AppColors.borderColor),
                               ),
                             ),
                           ),

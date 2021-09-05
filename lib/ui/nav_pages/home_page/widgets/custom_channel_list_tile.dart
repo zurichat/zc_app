@@ -30,10 +30,16 @@ class CustomChannelListTile extends StatelessWidget {
         ),
         isActive
             ? Container(
-              width: 18,
-              height: 18,
-                decoration: BoxDecoration(color: Color(0xFFB8003C),borderRadius: BorderRadius.circular(4)),
-                child: Center(child: Text(data, style: TextStyle(color: AppColors.whiteColor),)),
+                width: 18,
+                height: 18,
+                decoration: BoxDecoration(
+                    color: Color(0xFFB8003C),
+                    borderRadius: BorderRadius.circular(4)),
+                child: Center(
+                    child: Text(
+                  data,
+                  style: TextStyle(color: AppColors.whiteColor),
+                )),
               )
             : Container()
       ],
