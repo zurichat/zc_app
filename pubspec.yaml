@@ -14,8 +14,10 @@ dependencies:
     sdk: flutter
   flutter_screenutil: ^5.0.0+2
   fluttertoast: ^8.0.8
+  font_awesome_flutter: ^9.1.0
   google_fonts: ^2.1.0
   intl: ^0.17.0
+  introduction_screen: ^2.1.0
   shared_preferences: ^2.0.7
   stacked: ^2.1.8
   stacked_services: ^0.8.6
@@ -35,6 +37,9 @@ flutter:
     - assets/background/bga.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
+    - assets/channel_page/
+    - assets/images/
+
   # fonts:
   #   - family: Schyler
   #     fonts:
