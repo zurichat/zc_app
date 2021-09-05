@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
-import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 
-
-
-import '../../shared/shared.dart';
 import '../../shared/colors.dart';
 import '../../shared/constants.dart';
+import '../../shared/shared.dart';
 import 'home_page_viewmodel.dart';
 import 'widgets/custom_channel_list_tile.dart';
 import 'widgets/custom_dm_list_tile.dart';
@@ -26,19 +23,15 @@ class HomePage extends StatelessWidget {
             children: [
               const Padding(
                 padding: EdgeInsets.only(top: 8.0),
-                child: Image(
-                  image: appBarLogo,
-                  fit: BoxFit.cover,
-                  height: 48,
                 child: InkWell(
                   child: Image(
                     image: appBarLogo,
                     fit: BoxFit.cover,
                     height: 48,
                   ),
-                  onTap: () {
+                  /* onTap: () {
                     model.nToWorkspace();
-                  },
+                  },*/
                 ),
               ),
             ],

@@ -7,31 +7,25 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/channel/channel_page_view.dart';
 import 'package:hng/ui/view/plugins/add_plugin_view.dart';
 import 'package:hng/ui/view/plugins/edit_plugin_view.dart';
 import 'package:hng/ui/view/plugins/plugins_view.dart';
 import 'package:hng/ui/view/workspace/workspace_view.dart';
 import 'package:stacked/stacked.dart';
 
-import '../ui/view/channel/new_channel/new_channel.dart';
-
 import '../ui/view/channel/channels_view.dart';
-import '../ui/view/channel_notification/channel_notification_view.dart';
+import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/channel_notification/channel_notification_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
 import '../ui/view/login/login_view.dart';
-
-
-import '../ui/view/workspace/create_workspace/create_workspace.dart';
-import '../ui/view/otp/otp_view.dart';\
-  
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
+import '../ui/view/otp/otp_view.dart';
 import '../ui/view/preference/preference_view.dart';
-
 import '../ui/view/sign_up/sign_up_view.dart';
-
+import '../ui/view/workspace/create_workspace/create_workspace.dart';
 
 class Routes {
   static const String loginView = '/login-view';
@@ -69,7 +63,7 @@ class Routes {
     workspaceView,
     pluginView,
     addPluginView,
-    editPluginView
+    editPluginView,
     channelList,
     forgotPasswordView,
     channelNotificationView,
@@ -90,12 +84,12 @@ class StackedRouter extends RouterBase {
 
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.otpView, page: OtpView),
-    RouteDef(Routes.channelView, page: ChannelPageView)
+    RouteDef(Routes.channelView, page: ChannelPageView),
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
     RouteDef(Routes.signUpView, page: SignUpView),
-    RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
+    //RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.pluginView, page: PluginView),
     RouteDef(Routes.addPluginView, page: AddPluginView),
@@ -144,7 +138,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-
     PluginView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const PluginView(),
@@ -160,20 +153,27 @@ class StackedRouter extends RouterBase {
     EditPluginView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const EditPluginView(),
+        settings: data,
+      );
+    },
     ChannelList: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ChannelList(),
+        settings: data,
+      );
+    },
     CreateWorkSpace: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => CreateWorkSpace(),
-
+        settings: data,
+      );
+    },
     ChannelNotificationView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => ChannelNotificationView(),
         settings: data,
       );
     },
-
     NewChannel: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const NewChannel(),

@@ -45,7 +45,7 @@ class LoginView extends StatelessWidget {
               SizedBox(
                 height: 49.0,
               ),
-              CustomTextField(
+              //CustomTextField(
               const Center(
                 child: Text('Welcome! Sign in to continue'),
               ),
@@ -85,7 +85,7 @@ class LoginView extends StatelessWidget {
                     child: Text('Forget Password?'),
                   )),
               SizedBox(
-                alignment: Alignment.topRight,
+                //alignment: Alignment.topRight,
                 child: TextButton(
                   onPressed: () {},
                   child: const Text('Forget Password?'),
@@ -123,7 +123,7 @@ class LoginView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Don\'t have an account?'),
-                  TextButton(onPressed: () {}, child: Text('Register'))
+                  TextButton(onPressed: () {}, child: Text('Register')),
                   const Text('Don\'t have an account?'),
                   TextButton(
                     onPressed: () {},

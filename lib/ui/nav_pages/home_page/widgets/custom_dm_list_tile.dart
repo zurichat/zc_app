@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/direct_message/direct_message.dart';
 import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
-import 'package:hng/ui/direct_message/direct_message.dart';
 
 import '../../../shared/colors.dart';
 
@@ -38,9 +38,9 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
           ),
         ],
       ),
-      onTap: () {
+      /*onTap: () {
         model.navigateToDmUser();
-      },
+      },*/
     );
   }
 }
