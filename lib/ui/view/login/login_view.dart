@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/custom_textfield.dart';
@@ -80,7 +81,8 @@ class LoginView extends StatelessWidget {
                 child: FractionallySizedBox(
                   widthFactor: 1.0,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () =>
+                        model.navigator.navigateTo(Routes.navBarView),
                     child: const Text(
                       'Sign In',
                       style: TextStyle(

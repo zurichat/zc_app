@@ -7,7 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/channel/channel_page_view.dart';
+import '../ui/view/channel/channel_page_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/view/channel_info/channel_info_view.dart';
@@ -15,17 +15,13 @@ import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/preference/preference_view.dart';
-
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
-
 import '../ui/view/workspace/workspace_view.dart';
-
 
 class Routes {
   static const String loginView = '/login-view';
 
   static const String channelView = '/channel-view';
-
 
   static const String navBarView = '/nav-bar-view';
   static const String onboardingView = '/';
@@ -42,7 +38,7 @@ class Routes {
     preferenceView,
     useDifferentEmailView,
     workspaceView,
-    channelView
+    channelView,
     channelInfoView,
   };
 }
@@ -52,19 +48,13 @@ class StackedRouter extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(Routes.loginView, page: LoginView),
-
-
-    RouteDef(Routes.channelView, page: ChannelPageView)
-
+    RouteDef(Routes.channelView, page: ChannelPageView),
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
-
     RouteDef(Routes.preferenceView, page: PreferenceView),
-
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
-
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -90,21 +80,21 @@ class StackedRouter extends RouterBase {
     ChannelPageView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ChannelPageView(),
-
+        settings: data,
+      );
+    },
     PreferenceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const PreferenceView(),
         settings: data,
       );
     },
-
-     UseDifferentEmailView: (data) {
+    UseDifferentEmailView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const UseDifferentEmailView(),
-settings: data,
-        );
-     },
-    
+        settings: data,
+      );
+    },
     WorkspaceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceView(),

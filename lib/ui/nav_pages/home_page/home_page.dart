@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -21,9 +20,9 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 8.0),
+                padding: const EdgeInsets.only(top: 8.0),
                 child: InkWell(
-                  child: Image(
+                  child: const Image(
                     image: appBarLogo,
                     fit: BoxFit.cover,
                     height: 48,
@@ -37,8 +36,8 @@ class HomePage extends StatelessWidget {
           ),
           actions: [
             Text(
-              model.status ? "Online" : "Offline",
-              style: TextStyle(color: Colors.black),
+              model.status ? 'Online' : 'Offline',
+              style: const TextStyle(color: Colors.black),
             )
           ],
         ),

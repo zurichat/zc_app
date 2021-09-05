@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/you_page/widget_components/customtiles.dart';
-import 'package:hng/ui/nav_pages/you_page/you_page_viewmodel.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'widget_components/customtiles.dart';
+import 'you_page_viewmodel.dart';
+import '../../shared/colors.dart';
 import 'package:stacked/stacked.dart';
 
 class YouPage extends StatelessWidget {
@@ -10,9 +10,8 @@ class YouPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
-    viewModelBuilder: () => YouPageViewModel(),
-     builder: (context, model, child) =>
-      Scaffold(
+      viewModelBuilder: () => YouPageViewModel(),
+      builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.greenColor,
           // Here we take the value from the MyHomePage object that was created by
@@ -42,7 +41,8 @@ class YouPage extends StatelessWidget {
                     children: [
                       Text(
                         "Zuri",
-                        style: TextStyle(fontSize: 24,fontWeight: FontWeight.w800),
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.w800),
                       ),
                       Text(
                         "Active",
@@ -51,15 +51,17 @@ class YouPage extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               OutlinedButton.icon(
-                 icon: Icon(Icons.messenger_outline_sharp ,size: 18),
+                icon: Icon(Icons.messenger_outline_sharp, size: 18),
                 onPressed: () {},
                 style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(Size(500, 20)),
-    
-                    // padding: MaterialStateProperty.all(EdgeInsets.only(right: 250)),
-    
+                  fixedSize: MaterialStateProperty.all(Size(500, 20)),
+
+                  // padding: MaterialStateProperty.all(EdgeInsets.only(right: 250)),
+
                   // elevation: MaterialStateProperty.all(3) ,
                   // backgroundColor: MaterialStateProperty.all(Colors.white),
                 ),
@@ -67,26 +69,50 @@ class YouPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     // Icon(Icons.messenger_outline_sharp),
-                    SizedBox(width: 50,),
-                    Text("What\'s your status? " ,style: TextStyle(color: Colors.grey[700])),
-                    SizedBox(width: 110,),
-    
+                    SizedBox(
+                      width: 50,
+                    ),
+                    Text("What\'s your status? ",
+                        style: TextStyle(color: Colors.grey[700])),
+                    SizedBox(
+                      width: 110,
+                    ),
                   ],
                 ),
               ),
-    
-              ProfileButton(icon: Icons.notifications_off_outlined,label: "Notifications",onPressed: (){},),
-              ProfileButton(icon: Icons.circle,label: "Set yourself as ",onPressed: (){},),
+              ProfileButton(
+                icon: Icons.notifications_off_outlined,
+                label: "Notifications",
+                onPressed: () {},
+              ),
+              ProfileButton(
+                icon: Icons.circle,
+                label: "Set yourself as ",
+                onPressed: () {},
+              ),
               Divider(
                 color: Colors.grey,
               ),
-              ProfileButton(icon: Icons.bookmark_outline_outlined,label: "Saved Item",onPressed: (){},),
-              ProfileButton(icon: Icons.account_circle_outlined, label: "View Profile",onPressed: (){},),
-              ProfileButton(icon: Icons.trip_origin,label: "Notification",onPressed: (){},),
-              ProfileButton(icon: Icons.settings,label: "Preferences",onPressed: (){},),
-    
-              
-              
+              ProfileButton(
+                icon: Icons.bookmark_outline_outlined,
+                label: "Saved Item",
+                onPressed: () {},
+              ),
+              ProfileButton(
+                icon: Icons.account_circle_outlined,
+                label: "View Profile",
+                onPressed: () {},
+              ),
+              ProfileButton(
+                icon: Icons.trip_origin,
+                label: "Notification",
+                onPressed: () {},
+              ),
+              ProfileButton(
+                icon: Icons.settings,
+                label: "Preferences",
+                onPressed: () {},
+              ),
             ],
           ),
         ),
