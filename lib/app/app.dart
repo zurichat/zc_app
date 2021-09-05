@@ -1,10 +1,8 @@
-
 import 'package:hng/ui/view/create_channel_view/create_channel_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hng/ui/view/workspace/workspace_view.dart';
 import 'package:hng/ui/view/channel/new_channel/new_channel.dart';
-
 import 'package:hng/ui/view/nav_bar/nav_bar_view.dart';
 import 'package:hng/ui/view/onboarding/onboading_view.dart';
 import 'package:hng/ui/view/preference/preference_view.dart';
@@ -41,7 +39,6 @@ import '../ui/view/preference/preference_view.dart';
     MaterialRoute(page: PreferenceView),
     MaterialRoute(page: CreateChannelView),
     MaterialRoute(page: WorkspaceView),
-
     MaterialRoute(page:SignUpView),
 
     MaterialRoute(page: WorkspaceView),
