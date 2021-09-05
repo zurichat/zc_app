@@ -17,16 +17,17 @@ class CustomHomePageSectionTitle extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-      GestureDetector(
-              onTap: ontap,
-              child: const  Text(
-          title,
-          style: const TextStyle(
-            fontWeight: FontWeight.w500,
-            color: AppColors.deepBlackColor,
-            fontSize: 16,
+        GestureDetector(
+          onTap: ontap,
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+              color: AppColors.deepBlackColor,
+              fontSize: 16,
+            ),
           ),
-        ),),
+        ),
       ],
     );
   }
