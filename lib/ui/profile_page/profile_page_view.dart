@@ -1,15 +1,16 @@
 /*
   I am a implementing the ability to download profile page picture,
-  but as of the time of this writing, the profile page screen have not been built
+  but as of the time of this writing, 
+  the profile page screen have not been built
   so i created this to testing. the dev building the profile screen delete
   but make sure to add model.saveProfilePictureLocally() where he/she see fit
  */
 import 'package:flutter/material.dart';
-import 'package:hng/ui/profile_page/profile_page_viewmodel.dart';
+import 'profile_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class ProfilePageView extends StatefulWidget {
-  ProfilePageView({Key? key}) : super(key: key);
+  const ProfilePageView({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();

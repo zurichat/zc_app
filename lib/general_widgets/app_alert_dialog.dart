@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import '../ui/shared/shared.dart';
+import 'custom_text.dart';
 
 class AppAlertDialog {
   Dialog feedback = Dialog();
@@ -44,7 +45,7 @@ class AppAlertDialog {
               height: MediaQuery.of(context).size.width / 60,
             ),
             CustomText(
-              text: "we will respond via email to feedback questions.",
+              text: 'we will respond via email to feedback questions.',
               fontSize: MediaQuery.of(context).size.width / 32,
             ),
             SizedBox(
@@ -57,7 +58,7 @@ class AppAlertDialog {
                 children: [
                   GestureDetector(
                     child: CustomText(
-                      text: "CANCEL",
+                      text: 'CANCEL',
                       color: AppColors.greenColor,
                       fontSize: MediaQuery.of(context).size.width / 28,
                       fontWeight: FontWeight.bold,
@@ -70,7 +71,7 @@ class AppAlertDialog {
                   GestureDetector(
 //                  onTap: () => onPressed ,
                     child: CustomText(
-                      text: "SEND",
+                      text: 'SEND',
                       color: AppColors.greenColor,
                       fontSize: MediaQuery.of(context).size.width / 28,
                       fontWeight: FontWeight.bold,

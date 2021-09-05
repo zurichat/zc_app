@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hng/ui/nav_pages/integrate_page/integrate_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+
+import 'integrate_viewmodel.dart';
 
 class IntegratePage extends StatelessWidget {
   const IntegratePage({Key? key}) : super(key: key);
@@ -10,7 +11,9 @@ class IntegratePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<IntegrateViewModel>.reactive(
       viewModelBuilder: () => IntegrateViewModel(),
-      builder: (context, model, child) => MaterialApp(home: IntegratePage2()),
+      builder: (context, model, child) {
+        return const IntegratePage2();
+      },
     ); //
   }
 }
@@ -30,6 +33,7 @@ class IntegratePage2 extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.topLeft,
+            // ignore: deprecated_member_use
             child: FlatButton.icon(
               onPressed: () => {},
               icon: Icon(Icons.calendar_today),
@@ -109,7 +113,6 @@ class IntegratePage2 extends StatelessWidget {
             ),
           ),
         ],
-
       ),
     );
   }
