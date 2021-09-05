@@ -7,13 +7,14 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+
 import 'package:hng/ui/view/channel/channel_page_view.dart';
 import 'package:hng/ui/view/plugins/add_plugin_view.dart';
 import 'package:hng/ui/view/plugins/edit_plugin_view.dart';
 import 'package:hng/ui/view/plugins/plugins_view.dart';
 import 'package:hng/ui/view/workspace/workspace_view.dart';
+import 'package:hng/ui/view/popup_notification/popup_notification.dart';
 import 'package:stacked/stacked.dart';
-
 import '../ui/view/channel/channels_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
@@ -29,6 +30,11 @@ import '../ui/view/workspace/create_workspace/create_workspace.dart';
 
 class Routes {
   static const String loginView = '/login-view';
+
+
+
+
+  static const String popupView = '/popup-view';
 
   static const String createWorkSpace = '/create-work-space';
   static const String otpView = '/otp-view';
@@ -80,7 +86,12 @@ class StackedRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.loginView, page: LoginView),
 
+    RouteDef(Routes.dmUserView, page: DmUserView),
+    RouteDef(Routes.popupView, page: PopUpNotificationsView),
     RouteDef(Routes.channelList, page: ChannelList),
+
+
+    
 
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.otpView, page: OtpView),
@@ -88,8 +99,12 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
+    RouteDef(Routes.signUpView, page: SignUpView),    
+    RouteDef(Routes.preferenceView, page: PreferenceView),
     RouteDef(Routes.signUpView, page: SignUpView),
-    //RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
+
+    RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
+
     RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.pluginView, page: PluginView),
     RouteDef(Routes.addPluginView, page: AddPluginView),
@@ -97,7 +112,11 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+
+
+
     RouteDef(Routes.dmUserView, page: DmUserView),
+
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -195,12 +214,18 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+
+    PopUpNotificationsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PopUpNotificationsView(),
+
     ProfilePageView: (data) {
       var args = data.getArgs<ProfilePageViewArguments>(
         orElse: () => ProfilePageViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
         builder: (context) => ProfilePageView(key: args.key),
+
         settings: data,
       );
     },
