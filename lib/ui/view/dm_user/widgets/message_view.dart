@@ -18,33 +18,35 @@ class MessageView extends StatelessWidget {
           children: [
             Image.asset("assets/images/avatar.png",
                 width: 40.0, height: 40.0),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(_message.sender.username,
-                          style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight:
-                              FontWeight.w700)),
-                      SizedBox(width: 4.35),
-                      Text(_formatTime(_message.time),
-                          style: TextStyle(
-                              fontSize: 12.0,
-                              fontWeight:
-                              FontWeight.w400))
-                    ],
-                  ),
-                  SizedBox(height: 4.0),
-                  Text(_message.message,
-                      style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight:
-                          FontWeight.w400))
-                ],
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(_message.sender.username,
+                            style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight:
+                                FontWeight.w700)),
+                        SizedBox(width: 4.35),
+                        Text(_formatTime(_message.time),
+                            style: TextStyle(
+                                fontSize: 12.0,
+                                fontWeight:
+                                FontWeight.w400))
+                      ],
+                    ),
+                    SizedBox(height: 4.0),
+                    Text(_message.message,
+                        style: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight:
+                            FontWeight.w400))
+                  ],
+                ),
               ),
             )
           ]),
