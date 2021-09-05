@@ -54,6 +54,7 @@ flutter:
     - assets/background/status.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
+    - assets/images/
     - assets/logo/splash_image.png
     - assets/images/user.png
     # - assets/logo/zuri_logo.png

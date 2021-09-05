@@ -11,6 +11,7 @@ import 'package:hng/ui/view/password_recovery/recovery_view.dart';
 import '../ui/profile_page/profile_page_view.dart';
 import 'package:stacked/stacked.dart';
 
+import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
 import '../ui/view/channel/channel_page_view.dart';
 import '../ui/view/channel/channels_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
@@ -40,6 +41,7 @@ class Routes {
   static const String channelPageView = '/channel-page-view';
   static const String dmSearch = '/dm-search';
   static const String workspaceView = '/workspace-view';
+  static const String dmJumpToView = '/dm-jump-to-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String newChannel = '/newChannel-view';
   static const String signUpView = '/sign-up-view';
@@ -62,6 +64,7 @@ class Routes {
     preferenceView,
     signUpView,
     workspaceView,
+    dmJumpToView,
     newChannel,
     channelView,
     channelInfoView,
@@ -89,6 +92,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.dmSearch, page: DmSearch),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.dmJumpToView, page: DmJumpToView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.signUpView, page: SignUpView),
@@ -170,6 +174,9 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    DmJumpToView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const DmJumpToView(),
     ChannelList: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ChannelList(),
