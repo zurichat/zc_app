@@ -24,7 +24,8 @@ dependencies:
   stacked_themes: ^0.3.6
   url_launcher: ^6.0.9
   overlay_support: ^1.2.1
-
+  grouped_list: ^4.1.0
+  
 dev_dependencies:
   build_runner: ^2.1.2
   flutter_test:
