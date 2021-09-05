@@ -1,7 +1,8 @@
+
 import 'package:hng/ui/view/create_channel_view/create_channel_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_view.dart';
 import 'package:hng/ui/view/workspace/create_workspace/create_workspace.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hng/ui/view/workspace/workspace_view.dart';
 import 'package:hng/ui/view/channel/new_channel/new_channel.dart';
@@ -52,6 +53,9 @@ import '../ui/view/preference/preference_view.dart';
     MaterialRoute(page:SignUpView),
 
     MaterialRoute(page: WorkspaceView),
+    
+    MaterialRoute(page: ForgotPasswordView),
+
     MaterialRoute(page: ChannelNotificationView),
     MaterialRoute(page: NewChannel),
     MaterialRoute(page: ChannelInfoView),

@@ -13,6 +13,7 @@ import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/channel_notification/channel_notification_view.dart';
 import '../ui/view/create_channel_view/create_channel_view.dart';
+import '../ui/view/forgot_password/forgot_password_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
@@ -28,6 +29,8 @@ class Routes {
   static const String createChannelView = '/create-channel-view';
   static const String workspaceView = '/workspace-view';
   static const String signUpView = '/sign-up-view';
+  static const String workspaceView = '/workspace-view';
+  static const String forgotPasswordView = '/forgot-password-view';
   static const String channelNotificationView = '/channel-notification-view';
   static const String newChannel = '/new-channel';
   static const String channelInfoView = '/channel-info-view';
@@ -39,6 +42,7 @@ class Routes {
     createChannelView,
     workspaceView,
     signUpView,
+    forgotPasswordView,
     channelNotificationView,
     newChannel,
     channelInfoView,
@@ -57,6 +61,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.signUpView, page: SignUpView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.forgotPasswordView, page: ForgotPasswordView),
     RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
@@ -103,6 +108,12 @@ class StackedRouter extends RouterBase {
     SignUpView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const SignUpView(),
+        settings: data,
+      );
+    },
+    ForgotPasswordView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ForgotPasswordView(),
         settings: data,
       );
     },
