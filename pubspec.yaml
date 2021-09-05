@@ -26,6 +26,7 @@ dependencies:
   permission_handler: ^8.1.4+2
   shared_preferences: ^2.0.7
   stacked: ^2.1.8
+  stacked_hooks: ^0.2.1
   stacked_services: ^0.8.6
   stacked_themes: ^0.3.6
   url_launcher: ^6.0.9
@@ -55,6 +56,8 @@ flutter:
     - assets/background/status.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
+    - assets/images/
+    - assets/logo/splash_image.png
     - assets/images/user.png
     # - assets/logo/zuri_logo.png
     - assets/channel_page/
