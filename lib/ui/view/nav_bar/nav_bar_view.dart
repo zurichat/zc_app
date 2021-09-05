@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../nav_pages/home_page/home_page.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../nav_pages/dm_page/dm_page.dart';
-
+import '../../nav_pages/home_page/home_page.dart';
 import '../../nav_pages/integrate_page/integrate_page_view.dart';
 import '../../nav_pages/you_page/you_page.dart';
 import 'nav_bar_viewmodel.dart';

@@ -20,6 +20,7 @@ class AppAlertDialog {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomText(
+              '',
               text: title,
               fontSize: MediaQuery.of(context).size.width / 22,
               fontWeight: FontWeight.bold,
@@ -44,6 +45,7 @@ class AppAlertDialog {
               height: MediaQuery.of(context).size.width / 60,
             ),
             CustomText(
+              '',
               text: "we will respond via email to feedback questions.",
               fontSize: MediaQuery.of(context).size.width / 32,
             ),
@@ -57,6 +59,7 @@ class AppAlertDialog {
                 children: [
                   GestureDetector(
                     child: CustomText(
+                      '',
                       text: "CANCEL",
                       color: AppColors.greenColor,
                       fontSize: MediaQuery.of(context).size.width / 28,
@@ -70,6 +73,7 @@ class AppAlertDialog {
                   GestureDetector(
 //                  onTap: () => onPressed ,
                     child: CustomText(
+                      '',
                       text: "SEND",
                       color: AppColors.greenColor,
                       fontSize: MediaQuery.of(context).size.width / 28,
