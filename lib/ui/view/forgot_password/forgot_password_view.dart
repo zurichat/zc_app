@@ -40,7 +40,7 @@ class ForgotPasswordView extends StatelessWidget {
               ),
               Center(
                 child: Text(
-                  'Please enter the email used in registering user',
+                  'Please enter the email used in registering',
                 ),
               ),
               SizedBox(
