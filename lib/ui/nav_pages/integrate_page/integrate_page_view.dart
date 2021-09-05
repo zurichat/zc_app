@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hng/ui/nav_pages/integrate_page/integrate_viewmodel.dart';
+import 'package:stacked/stacked.dart';
 
 class IntegratePage extends StatelessWidget {
   const IntegratePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: IntegratePage2());
+    return ViewModelBuilder<IntegrateViewModel>.reactive(
+      viewModelBuilder: () => IntegrateViewModel(),
+      builder: (context, model, child) => MaterialApp(home: IntegratePage2()),
+    ); //
   }
 }
 
