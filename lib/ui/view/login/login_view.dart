@@ -107,7 +107,7 @@ class LoginView extends StatelessWidget {
                 children: [
                   const Text('Don\'t have an account?'),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => model.navigateToSignUpScreen(),
                     child: const Text('Register'),
                   )
                 ],
