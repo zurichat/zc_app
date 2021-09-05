@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 
@@ -111,9 +112,12 @@ class HomePage extends StatelessWidget {
                   channelName: 'questions',
                 ),
                 const SizedBox(height: 20),
-                const CustomHomePageSectionTitle(
-                  title: 'Direct Messages',
-                ),
+                CustomHomePageSectionTitle(
+                    title: 'Direct Messages',
+                    ontap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => DmScreen()));
+                    }),
                 const SizedBox(height: 16),
                 const CustomDMListTile(
                   userName: 'Princess',
