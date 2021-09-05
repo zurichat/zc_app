@@ -1,5 +1,7 @@
 import 'package:hng/ui/view/create_channel_view/create_channel_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hng/ui/view/workspace/create_workspace/create_workspace.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hng/ui/view/workspace/workspace_view.dart';
 import 'package:hng/ui/view/channel/new_channel/new_channel.dart';
@@ -31,6 +33,14 @@ import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/preference/preference_view.dart';
 
+// @StackedApp(routes: [
+//   MaterialRoute(page: HomeView, initial: true),
+//   MaterialRoute(page: LoginView),
+//   MaterialRoute(page: CreateWorkSpace)
+// ], dependencies: [
+//   LazySingleton(classType: NavigationService)
+// ])
+// =======
 @StackedApp(
   routes: [
     MaterialRoute(page: LoginView),
@@ -59,6 +69,7 @@ import '../ui/view/preference/preference_view.dart';
 
   ],
 )
+
 class AppSetup {
   /* This class serves no other purpose other than having the
    StackedApp annotation attached to it*/
