@@ -10,6 +10,9 @@ import 'package:hng/ui/view/nav_bar/nav_bar_view.dart';
 import 'package:hng/ui/view/onboarding/onboading_view.dart';
 import 'package:hng/ui/view/preference/preference_view.dart';
 import 'package:hng/ui/view/sign_up/sign_up_view.dart';
+import 'package:hng/ui/view/dm_chat_view/dm_jump_to_view.dart';
+import 'package:hng/ui/view/nav_bar/nav_bar_view.dart';
+import 'package:hng/ui/view/preference/preference_view.dart';
 import 'package:hng/ui/view/workspace/workspace_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -33,6 +36,14 @@ import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/otp/otp_view.dart';
+import 'package:hng/ui/view/plugins/add_plugin_view.dart';
+import 'package:hng/ui/view/plugins/edit_plugin_view.dart';
+import 'package:hng/ui/view/plugins/plugins_view.dart';
+
+  
+  
+  
+ 
 
 @StackedApp(routes: [
   MaterialRoute(page: NavBarView, initial: true),
@@ -52,6 +63,7 @@ import '../ui/view/otp/otp_view.dart';
 // ])
 @StackedApp(
   routes: [
+    
     MaterialRoute(page: LoginView),
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView, initial: true),
@@ -73,8 +85,12 @@ import '../ui/view/otp/otp_view.dart';
     MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: DmSearch),
     MaterialRoute(page: WorkspaceView),
+    MaterialRoute(page: DmJumpToView),
     MaterialRoute(page: OtpView),
     MaterialRoute(page: DmUserView),
+    MaterialRoute(page: PluginView),
+    MaterialRoute(page: AddPluginView),
+    MaterialRoute(page: EditPluginView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
