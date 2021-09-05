@@ -6,28 +6,23 @@
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:hng/services/connectivity_service.dart';
-import 'package:hng/services/local_storage_services.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
+import '../services/connectivity_service.dart';
+
 final locator = StackedLocator.instance;
 
-void setupLocator({String? environment, EnvironmentFilter? environmentFilter}) {
+Future setupLocator(
+    {String? environment, EnvironmentFilter? environmentFilter}) async {
 // Register environments
   locator.registerEnvironment(
       environment: environment, environmentFilter: environmentFilter);
 
 // Register dependencies
   locator.registerLazySingleton(() => NavigationService());
-
-  final connectivityService = ConnectivityService.getInstance();
-  final sharedPreferenceLocalStorage =
-      SharedPreferenceLocalStorage.getInstance();
-
-  locator.registerSingleton(sharedPreferenceLocalStorage);
-  locator.registerLazySingleton(() => connectivityService);
   locator.registerLazySingleton(() => ThemeService());
+  locator.registerLazySingleton(() => ConnectivityService);
 }
