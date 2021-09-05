@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
+import 'package:stacked/stacked.dart';
+import 'package:hng/ui/direct_message/direct_message.dart';
 
 import '../../../shared/colors.dart';
 
-class CustomDMListTile extends StatelessWidget {
+class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
   final imagelink;
   final userName;
+  final String name;
   const CustomDMListTile({
     Key? key,
     this.imagelink,
+    this.name = 'assets/background/status.png',
     this.userName,
   }) : super(key: key);
 
@@ -47,14 +52,23 @@ class CustomDMListTile extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        CircleAvatar(
-          backgroundImage: AssetImage(imagelink),
-          radius: 20.0,
+  Widget build(BuildContext context, HomePageViewModel model) {
+    return InkWell(
+      onTap: () {
+        model.navigateToDmUser();
+      },
+      child: Row(
+        children: [
+          Container(
+          height: 32,
+          width: 32,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              image: DecorationImage(
+                  image: AssetImage(imagelink), fit: BoxFit.cover)),
         ),
         const SizedBox(width: 8),
+//TODO master
         GestureDetector(
           onLongPress: () {
             showProfileDialog(context);
@@ -66,9 +80,24 @@ class CustomDMListTile extends StatelessWidget {
               color: AppColors.greyishColor,
               fontSize: 15,
             ),
+//TODO
+        Text(
+          userName,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+            color: AppColors.greyishColor,
+            fontSize: 16,
+//TODO dev incoming
           ),
         ),
+        const SizedBox(width: 8),
+        Container(
+          width: 14,
+          height: 14,
+          child: Image.asset(name),
+        )
       ],
+        ),
     );
   }
 }
