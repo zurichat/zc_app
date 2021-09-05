@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -19,16 +20,27 @@ class HomePage extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 8.0),
-                child: Image(
-                  image: appBarLogo,
-                  fit: BoxFit.cover,
-                  height: 48,
+                child: InkWell(
+                  child: Image(
+                    image: appBarLogo,
+                    fit: BoxFit.cover,
+                    height: 48,
+                  ),
+                  onTap: () {
+                    model.nToWorkspace();
+                  },
                 ),
               ),
             ],
           ),
+          actions: [
+            Text(
+              model.status ? "Online" : "Offline",
+              style: TextStyle(color: Colors.black),
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -126,7 +138,7 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            model.nToPref();
+            model.nToInfo();
           },
           child: const Icon(
             Icons.open_in_new_outlined,
