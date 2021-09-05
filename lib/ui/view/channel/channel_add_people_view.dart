@@ -1,9 +1,10 @@
-import "package:flutter/material.dart";
-import "package:google_fonts/google_fonts.dart";
-import "package:hng/ui/view/channel/channel_add_people_viewmodel.dart";
-import "package:hng/ui/view/channel/shared_widgets.dart";
-import "package:stacked/stacked.dart";
-import "package:velocity_x/velocity_x.dart";
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:stacked/stacked.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+import 'channel_add_people_viewmodel.dart';
+import 'shared_widgets.dart';
 
 class ChannelAddPeopleView extends StatelessWidget {
   const ChannelAddPeopleView({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class ChannelAddPeopleView extends StatelessWidget {
         viewModelBuilder: () => ChannelAddPeopleViewModel(),
         builder: (context, viewModel, child) => Scaffold(
           appBar: AppBar(
-            title: "Add People"
+            title: 'Add People'
                 .text
                 .textStyle(GoogleFonts.lato())
                 .color(Color(0xFF242424))
@@ -23,14 +24,14 @@ class ChannelAddPeopleView extends StatelessWidget {
                 .make(),
             backgroundColor: Colors.white,
             leading: IconButton(
-              icon: Icon(Icons.add, color: Color(0xFF333333)).rotate(45),
+              icon: const Icon(Icons.add, color: Color(0xFF333333)).rotate(45),
               padding: EdgeInsets.zero,
               onPressed: () {},
               iconSize: 32.0,
             ),
             actions: [
               InkWell(
-                child: "Add"
+                child: 'Add'
                     .text
                     .textStyle(GoogleFonts.lato())
                     .color(Color(0xFF00B87C))
@@ -47,7 +48,7 @@ class ChannelAddPeopleView extends StatelessWidget {
               24.heightBox,
               SearchField(
                 onChanged: viewModel.onSearchUser,
-                labelText: "Search people to add",
+                labelText: 'Search people to add',
                 // controller: viewModel.editor,
               ).pSymmetric(h: 20.0),
               16.heightBox,
@@ -59,14 +60,14 @@ class ChannelAddPeopleView extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      "Add Everyone"
+                      'Add Everyone'
                           .text
                           .bold
                           .textStyle(GoogleFonts.lato())
                           .color(Color(0xFF242424))
                           .make(),
                       4.heightBox,
-                      "Everyone will be added to this channel"
+                      'Everyone will be added to this channel'
                           .text
                           .textStyle(GoogleFonts.lato())
                           .color(Color(0xFF999999))
@@ -76,7 +77,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                   ),
                   Checkbox(
                     onChanged: viewModel.onMarkAll,
-                    //side: BorderSide(width: 0.96),
+                    side: BorderSide(width: 0.96),
                     value: viewModel.allMarked,
                   ).scale(scaleValue: 1.512),
                 ],
@@ -96,7 +97,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                           alignment: Alignment.topRight,
                           children: [
                             Image.asset(
-                                    "assets/images/${viewModel.matchingUsers[index].userimg}")
+                                    'assets/images/${viewModel.matchingUsers[index].userimg}')
                                 .p(4.0),
                             if (viewModel.matchingUsers[index].online)
                               CircleAvatar(
@@ -116,7 +117,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                       value: viewModel.markedUsers
                           .contains(viewModel.matchingUsers[index]),
                       onChanged: (marked) => viewModel.onMarkOne(marked, index),
-                      //side: BorderSide(width: 0.96),
+                      side: BorderSide(width: 0.96),
                     ).scale(scaleValue: 1.512),
                   ],
                 ),

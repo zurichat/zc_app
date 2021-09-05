@@ -19,7 +19,7 @@ class CustomHomePageSectionTitle extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: ontap,
-          child: const Text(
+          child: Text(
             title,
             style: const TextStyle(
               fontWeight: FontWeight.w500,

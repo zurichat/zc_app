@@ -1,35 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:hng/general_widgets/custom_bottom_nav.dart';
-
-import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
-
-import 'package:hng/ui/nav_pages/home_page/widgets/custom_channel_list_tile.dart';
-
-import 'package:hng/ui/nav_pages/home_page/widgets/custom_dm_list_tile.dart';
-
-import 'package:hng/ui/nav_pages/home_page/widgets/custom_homepage_section_title.dart';
-
-import 'package:hng/ui/nav_pages/home_page/widgets/custom_plugin_list_tile.dart';
-
-import 'package:hng/ui/shared/colors.dart';
-
-import 'package:hng/ui/shared/shared.dart';
-
-//import 'package:hng/ui/view/home/home_viewmodel.dart';
-
-import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
-
-import 'package:hng/app/app.router.dart';
-
-import 'package:stacked/stacked.dart';
-
-import '../../shared/shared.dart';
-
-import '../../shared/colors.dart';
-
-import '../../shared/constants.dart';
-
 import 'home_page_viewmodel.dart';
 
 import 'widgets/custom_channel_list_tile.dart';
@@ -40,50 +10,44 @@ import 'widgets/custom_homepage_section_title.dart';
 
 import 'widgets/custom_plugin_list_tile.dart';
 
+import '../../shared/colors.dart';
+
+import '../../shared/shared.dart';
+
+//import 'package:hng/ui/view/home/home_viewmodel.dart';
+
+import '../dm_page/dm_search_find_page.dart';
+
+import 'package:stacked/stacked.dart';
+
+import '../../shared/constants.dart';
+
 class HomePage extends StatelessWidget {
-
   @override
-
   Widget build(BuildContext context) {
-
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
 
     return ViewModelBuilder<HomePageViewModel>.reactive(
-
       viewModelBuilder: () => HomePageViewModel(),
-
       builder: (context, model, child) => Scaffold(
-
         appBar: AppBar(
-
           title: Row(
-
             mainAxisAlignment: MainAxisAlignment.start,
-
             children: [
-
               Padding(
-                padding: EdgeInsets.only(top: 8.0),
+                padding: const EdgeInsets.only(top: 8.0),
                 child: InkWell(
-                  child: Image(
+                  child: const Image(
                     image: appBarLogo,
                     fit: BoxFit.cover,
                     height: 48,
-
                   ),
-
                   onTap: () {
-
                     model.nToWorkspace();
-
                   },
-
                 ),
-
               ),
-
               Padding(
-
                 padding: EdgeInsets.only(top: 8.0),
                 child: GestureDetector(
                   child: Icon(Icons.search),
@@ -91,14 +55,10 @@ class HomePage extends StatelessWidget {
                 ),
               )
             ],
-
           ),
-
           actions: [
-
             Text(
-
-              model.status ? "Online" : "Offline",
+              model.status ? 'Online' : 'Offline',
               style: TextStyle(color: Colors.black),
             )
           ],
@@ -172,23 +132,19 @@ class HomePage extends StatelessWidget {
                     data: '1',
                   ),
 
-                  // const CustomPluginListTile(
+                  SizedBox(height: size.height * 0.02),
 
-                  //   icon: Icons.document_scanner_outlined,
+                  const CustomPluginListTile(
+                    icon: Icons.document_scanner_outlined,
+                    pluginName: 'Draft',
+                  ),
 
-                  //   pluginName: 'Draft',
+                  SizedBox(height: size.height * 0.02),
 
-                  // ),
-
-                  //  SizedBox(height: size.height*0.02),
-
-                  // const CustomPluginListTile(
-
-                  //   icon: Icons.file_copy,
-
-                  //   pluginName: 'Files',
-
-                  // ),
+                  const CustomPluginListTile(
+                    icon: Icons.file_copy,
+                    pluginName: 'Files',
+                  ),
 
                   SizedBox(height: size.height * 0.032),
 
@@ -236,11 +192,13 @@ class HomePage extends StatelessWidget {
 
                   SizedBox(height: size.height * 0.036),
 
-                  const CustomHomePageSectionTitle(
+                  CustomHomePageSectionTitle(
                       title: 'Direct Messages',
                       ontap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => DmScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const DmScreen()));
                       }),
 
                   SizedBox(height: size.height * 0.02),
@@ -318,5 +276,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
 }

@@ -7,12 +7,12 @@ import 'clear_notification_viewmodel.dart';
 class ClearNotificationView extends StatefulWidget {
   static const values = <String>[
     "Don\'t clear",
-    "30 minutes",
-    "1 hour",
-    "4 hour",
-    "Today",
-    "This week",
-    "Choose date and time"
+    '30 minutes',
+    '1 hour',
+    '4 hour',
+    'Today',
+    'This week',
+    'Choose date and time'
   ];
 
   @override
@@ -37,7 +37,7 @@ class _ClearNotificationViewState extends State<ClearNotificationView> {
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 title: Text(
-                  "Clear after...",
+                  'Clear after...',
                   style: TextStyle(color: Colors.black),
                 ),
                 centerTitle: false,
