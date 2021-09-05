@@ -20,6 +20,7 @@ import '../ui/view/preference/preference_view.dart';
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
 
 import '../ui/view/workspace/workspace_view.dart';
+import '../ui/view/sign_up/sign_up_view.dart';
 
 
 class Routes {
@@ -34,8 +35,12 @@ class Routes {
   static const String preferenceView = '/preference-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String workspaceView = '/workspace-view';
+
+  static const String signUpView = '/sign-up-view';
+
   static const String newChannel = '/newChannel-view';
   static const String channelInfoView = '/channel-info-view';
+
   static const all = <String>{
     loginView,
     navBarView,
@@ -43,6 +48,9 @@ class Routes {
     preferenceView,
     useDifferentEmailView,
     workspaceView,
+
+    signUpView,
+
     newChannel,
     channelView
     channelInfoView,
@@ -65,8 +73,14 @@ class StackedRouter extends RouterBase {
 
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+
+        RouteDef(Routes.signUpView, page: SignUpView),
+
+
+
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -113,6 +127,11 @@ settings: data,
         settings: data,
       );
     },
+
+     SignUpView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) =>  SignUpView(),
+
     NewChannel: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const NewChannel(),

@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         darkTheme: darkTheme,
         themeMode: themeMode,
         initialRoute: Routes.onboardingView,
+
       ),
     );
   }
