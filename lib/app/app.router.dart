@@ -24,12 +24,10 @@ import '../ui/view/workspace/workspace_view.dart';
 class Routes {
   static const String loginView = '/login-view';
   static const String createChannelView = '/create-channel-view';
-
   static const String channelView = '/channel-view';
 
   static const String navBarView = '/nav-bar-view';
   static const String onboardingView = '/';
-
   static const String preferenceView = '/preference-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String workspaceView = '/workspace-view';
