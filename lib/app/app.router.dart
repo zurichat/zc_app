@@ -8,6 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hng/ui/view/password_recovery/recovery_view.dart';
+import 'package:hng/ui/view/splashscreen/splashscreen.dart';
 import '../ui/profile_page/profile_page_view.dart';
 import 'package:stacked/stacked.dart';
 
@@ -43,7 +44,7 @@ class Routes {
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String newChannel = '/newChannel-view';
   static const String signUpView = '/sign-up-view';
-
+  static const String splashView = '/splash-view';
   static const String popupView = '/popup-view';
 
   static const String createWorkSpace = '/create-work-space';
@@ -71,6 +72,7 @@ class Routes {
     forgotPasswordView,
     channelNotificationView,
     dmUserView,
+    splashView,
   };
 }
 
@@ -92,6 +94,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.signUpView, page: SignUpView),
+    RouteDef(Routes.splashView, page: Splashview),
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.dmUserView, page: DmUserView),
@@ -125,6 +128,12 @@ class StackedRouter extends RouterBase {
     NavBarView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const NavBarView(),
+        settings: data,
+      );
+    },
+    Splashview: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const Splashview(),
         settings: data,
       );
     },
