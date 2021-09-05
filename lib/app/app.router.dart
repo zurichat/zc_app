@@ -76,14 +76,19 @@ class StackedRouter extends RouterBase {
 
 
     RouteDef(Routes.popupView, page: PopUpNotificationsView),
-
-
+RouteDef(Routes.channelList, page: ChannelList),
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.otpView, page: OtpView),
     RouteDef(Routes.channelView, page: ChannelPageView)
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
-
+     RouteDef(Routes.preferenceView, page: PreferenceView),
+    RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
+    RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
+        RouteDef(Routes.signUpView, page: SignUpView),
+    RouteDef(Routes.newChannel, page: NewChannel),
+    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
 
   ];
   @override
