@@ -1,11 +1,90 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/app_tile.dart';
 import 'package:hng/ui/view/preference/preference_viewmodel.dart';
 
 import 'package:stacked/stacked.dart';
 
-class PreferenceView extends StatelessWidget {
+enum Mode { Sytem_mode, off, on }
+
+class PreferenceView extends StatefulWidget {
   const PreferenceView({Key? key}) : super(key: key);
+
+  @override
+  _PreferenceViewState createState() => _PreferenceViewState();
+}
+
+class _PreferenceViewState extends State<PreferenceView> {
+  Mode _mode = Mode.Sytem_mode;
+
+  Future<void> showInformationDialog(BuildContext context) async {
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return ViewModelBuilder<PreferenceViewModel>.reactive(
+              viewModelBuilder: () => PreferenceViewModel(),
+              builder: (context, model, child) =>
+                  StatefulBuilder(builder: (context, setState) {
+                    return AlertDialog(
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0),
+                            child: Text("Dark mode"),
+                          ),
+                          ListTile(
+                            title: Text('System default'),
+                            leading: Radio(
+                              activeColor: Colors.blue,
+                              value: Mode.Sytem_mode,
+                              groupValue: _mode,
+                              onChanged:
+                                  // model.switchtoDefaultLight()
+                                  (Mode? value) {
+                                setState(() {
+                                  _mode = value!;
+                                  model.switchtoDefaultLight();
+                                });
+                              },
+                            ),
+                          ),
+                          ListTile(
+                            title: Text('Off'),
+                            leading: Radio(
+                              activeColor: Colors.blue,
+                              value: Mode.off,
+                              groupValue: _mode,
+                              onChanged: (Mode? value) {
+                                setState(() {
+                                  _mode = value!;
+                                  model.switchtoLight();
+                                });
+                              },
+                            ),
+                          ),
+                          ListTile(
+                            title: Text('On'),
+                            leading: Radio(
+                              activeColor: Colors.blue,
+                              value: Mode.on,
+                              groupValue: _mode,
+                              onChanged: (Mode? value) {
+                                setState(() {
+                                  _mode = value!;
+                                  model.switchtoDark();
+                                });
+                              },
+                              // model.switchtoDefaultLight()
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }));
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,42 +99,14 @@ class PreferenceView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              InkWell(
-                onTap: () {
-                  model.switchtoDefaultLight();
+              AppTile(
+                onPressed: () async {
+                  await showInformationDialog(context);
                 },
-                child: Text(
-                  'Default Light',
-                  textAlign: TextAlign.center,
-                ),
+                title: 'Dark Mode',
+                subtitle: '$Mode',
               ),
-              InkWell(
-                onTap: () {
-                  model.switchtoLight();
-                },
-                child: Text(
-                  'Light',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  model.switchtoDark();
-                },
-                child: Text(
-                  'Dark',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  model.switchtoKimbieDark();
-                },
-                child: Text(
-                  'Kimbie Dark',
-                  textAlign: TextAlign.center,
-                ),
-              ),
+             
             ],
           ),
         ),

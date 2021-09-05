@@ -13,6 +13,7 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
+
 final locator = StackedLocator.instance;
 
 Future setupLocator(
@@ -31,4 +32,11 @@ Future setupLocator(
   locator.registerSingleton(sharedPreferenceLocalStorage);
   locator.registerLazySingleton(() => connectivityService);
   locator.registerLazySingleton(() => ThemeService());
+
+//   final sharedPreferenceLocalStorage =
+//       await SharedPreferenceLocalStorage.getInstance();
+//   locator.registerSingleton(sharedPreferenceLocalStorage);
+
+//   locator.registerLazySingleton(() => ConnectivityService());
+
 }
