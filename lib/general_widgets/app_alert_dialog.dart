@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import '../ui/shared/shared.dart';
+import 'custom_text.dart';
 
 class AppAlertDialog {
   Dialog feedback = Dialog();

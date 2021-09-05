@@ -9,6 +9,11 @@ import 'package:hng/ui/view/channel/channel_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../models/user_model.dart';
+import '../../shared/colors.dart';
+import '../../shared/shared.dart';
+import 'channel_page_viewmodel.dart';
+
 class ChannelPageView extends StatelessWidget {
   const ChannelPageView({Key? key}) : super(key: key);
 
