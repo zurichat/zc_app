@@ -36,37 +36,29 @@ class _CustomPeopleListTileState extends State<CustomPeopleListTile> {
       return Colors.blue;
     }
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage("${widget.imagelink}"),
-              radius: 0.0,
-            ),
-            const SizedBox(width: 8),
-            Text(
-              '${widget.userName}',
-              style: const TextStyle(
-                fontWeight: FontWeight.w300,
-                //color: AppColors.greyishColor,
-                fontSize: 15,
-              ),
-            ),
-          ],
-        ),
-        Checkbox(
-            fillColor:
-                MaterialStateProperty.resolveWith((states) => getColor(states)),
-            checkColor: Colors.white,
-            value: isChecked,
-            onChanged: (value) {
-              setState(() {
-                isChecked = value;
-              });
-            }),
-      ],
+    return ListTile(
+      leading: Container(
+        child: Image.asset(widget.imagelink),
+        height: 30,
+        width: 30,
+      ),
+      title: Text('${widget.userName}',
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
+            color: Color(0xFF333333),
+            fontSize: 16,
+          )),
+      trailing: Checkbox(
+        fillColor:
+            MaterialStateProperty.resolveWith((states) => getColor(states)),
+        checkColor: Colors.white,
+        value: isChecked,
+        onChanged: (value) {
+          setState(() {
+            isChecked = value;
+          });
+        },
+      ),
     );
   }
 }
