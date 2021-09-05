@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
+import 'package:hng/ui/shared/colors.dart';
 import '../../nav_pages/home_page/home_page.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../nav_pages/dm_page/dm_page.dart';
-
 import '../../nav_pages/integrate_page/integrate_page_view.dart';
 import '../../nav_pages/you_page/you_page.dart';
 import 'nav_bar_viewmodel.dart';
@@ -30,6 +31,11 @@ class NavBarView extends StatelessWidget {
           body: getViewForIndex(viewModel.currentIndex),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
+            backgroundColor: AppColors.whiteColor,
+            selectedItemColor: AppColors.greenColor,
+            unselectedItemColor: AppColors.navBarItemColor,
+            selectedFontSize: 14,
+            unselectedFontSize: 14,
             currentIndex: viewModel.currentIndex,
             onTap: viewModel.setIndex,
             items: const [
