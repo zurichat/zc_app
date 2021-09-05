@@ -4,10 +4,12 @@ import '../../../shared/colors.dart';
 
 class CustomHomePageSectionTitle extends StatelessWidget {
   final title;
+  final void Function()? ontap;
 
   const CustomHomePageSectionTitle({
     Key? key,
     this.title,
+    this.ontap,
   }) : super(key: key);
 
   @override
@@ -25,10 +27,13 @@ class CustomHomePageSectionTitle extends StatelessWidget {
         ),
         Row(
           children: [
-            const Icon(
-              Icons.add_circle_outline,
-              color: AppColors.greyishColor,
-              size: 18,
+            GestureDetector(
+              onTap: ontap,
+              child: const Icon(
+                Icons.add_circle_outline,
+                color: AppColors.greyishColor,
+                size: 18,
+              ),
             ),
             const SizedBox(width: 16),
             const Icon(
