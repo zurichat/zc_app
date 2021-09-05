@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:hng/ui/view/channel_search/channel_search_view.dart';
+=======
+import 'package:hng/app/app.router.dart';
+>>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
 import 'package:stacked/stacked.dart';
 
+
+
+import '../../shared/shared.dart';
 import '../../shared/colors.dart';
 import '../../shared/constants.dart';
 import 'home_page_viewmodel.dart';
@@ -28,7 +35,7 @@ class HomePage extends StatelessWidget {
                     fit: BoxFit.cover,
                     height: 48,
                   ),
-                  onTap: (){
+                  onTap: () {
                     model.nToWorkspace();
                   },
                 ),
@@ -38,9 +45,7 @@ class HomePage extends StatelessWidget {
           actions: [
             Text(
               model.status ? "Online" : "Offline",
-              style: TextStyle(
-                color: Colors.black
-              ),
+              style: TextStyle(color: Colors.black),
             )
           ],
         ),
@@ -76,7 +81,7 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 const CustomPluginListTile(
-                  icon: Icons.document_scanner_outlined,
+                  // icon: Icons.document_scanner_outlined,
                   pluginName: 'Draft',
                 ),
                 const SizedBox(height: 16),
@@ -140,8 +145,16 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
+<<<<<<< HEAD
            // model.nToPref();
             Navigator.push(context, MaterialPageRoute(builder: (context)=>ChannelSearchPageView()));
+=======
+            // navigation.navigateTo(Routes.loginView);
+            // navigation.navigateTo('/create-work-space');
+            model.nToPref();
+            model.nToInfo();
+
+>>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
           },
           child: const Icon(
             Icons.open_in_new_outlined,

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_view.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../general_widgets/custom_textfield.dart';
+import '../../shared/shared.dart';
 import 'login_viewmodel.dart';
 
 class LoginView extends StatelessWidget {
@@ -42,6 +46,16 @@ class LoginView extends StatelessWidget {
                 height: 49.0,
               ),
               CustomTextField(
+<<<<<<< HEAD
+=======
+              const Center(
+                child: Text('Welcome! Sign in to continue'),
+              ),
+              const SizedBox(
+                height: 49.0,
+              ),
+              const CustomTextField(
+>>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
                 keyboardType: TextInputType.emailAddress,
                 inputAction: TextInputAction.next,
                 autoFocus: false,
@@ -65,10 +79,29 @@ class LoginView extends StatelessWidget {
               Container(
                   alignment: Alignment.topRight,
                   child: TextButton(
+<<<<<<< HEAD
                     onPressed: () {},
                     child: Text('Forget Password?'),
                   )),
               SizedBox(
+=======
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgotPasswordView()));
+                    },
+                    child: Text('Forget Password?'),
+                  )),
+              SizedBox(
+                alignment: Alignment.topRight,
+                child: TextButton(
+                  onPressed: () {},
+                  child: const Text('Forget Password?'),
+                ),
+              ),
+              const SizedBox(
+>>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
                 height: 14.0,
               ),
               Center(
@@ -87,6 +120,22 @@ class LoginView extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                         primary: Color(0xff00B87C)),
+<<<<<<< HEAD
+=======
+                    child: const Text(
+                      'Sign In',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        fontStyle: FontStyle.normal,
+                        color: AppColors.whiteColor,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                      primary: const Color(0xff00B87C),
+                    ),
+>>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
                   ),
                 ),
               ),
@@ -95,6 +144,14 @@ class LoginView extends StatelessWidget {
                 children: [
                   Text('Don\'t have an account?'),
                   TextButton(onPressed: () {}, child: Text('Register'))
+<<<<<<< HEAD
+=======
+                  const Text('Don\'t have an account?'),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text('Register'),
+                  )
+>>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
                 ],
               ),
             ],

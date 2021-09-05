@@ -2,9 +2,13 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:connectivity/connectivity.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 
+<<<<<<< HEAD
+=======
+import '../utilities/enums.dart';
+
+>>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
 class ConnectivityService with ReactiveServiceMixin {
   // Creates a single instance by calling the '_internal' constructor.
   static final ConnectivityService _connectionStatus =
