@@ -11,6 +11,7 @@ import 'package:hng/ui/view/channel/new_channel/new_channel.dart';
 import 'package:hng/ui/view/channel/channel_page_view.dart';
 import 'package:stacked/stacked.dart';
 
+import '../ui/view/channel/channels_view.dart';
 import '../ui/view/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/login/login_view.dart';
@@ -37,6 +38,7 @@ class Routes {
   static const String preferenceView = '/preference-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String workspaceView = '/workspace-view';
+  static const String channelList = '/channel-list';
   static const String forgotPasswordView = '/forgot-password-view';
   static const String channelNotificationView = '/channel-notification-view';
   static const String signUpView = '/sign-up-view';
@@ -51,6 +53,7 @@ class Routes {
     preferenceView,
     useDifferentEmailView,
     workspaceView,
+    channelList,
     forgotPasswordView,
     channelNotificationView,
 
@@ -67,14 +70,13 @@ class StackedRouter extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(Routes.loginView, page: LoginView),
+    RouteDef(Routes.channelList, page: ChannelList),
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.otpView, page: OtpView),
     RouteDef(Routes.channelView, page: ChannelPageView)
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
-
     RouteDef(Routes.preferenceView, page: PreferenceView),
-
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
@@ -127,11 +129,14 @@ settings: data,
         settings: data,
       );
     },
+    ChannelList: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ChannelList(),
         
     CreateWorkSpace: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => CreateWorkSpace(),
-        
+
     ChannelNotificationView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => ChannelNotificationView(),

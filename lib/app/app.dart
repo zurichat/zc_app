@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
+import 'package:hng/ui/view/channel/channels_view.dart';
 import 'package:hng/ui/view/channel_notification/channel_notification_view.dart';
 
 import '../services/connectivity_service.dart';
@@ -50,9 +51,9 @@ import '../ui/view/preference/preference_view.dart';
     MaterialRoute(page:SignUpView),
 
     MaterialRoute(page: WorkspaceView),
+    MaterialRoute(page: ChannelList)
     
     MaterialRoute(page: ForgotPasswordView),
-
     MaterialRoute(page: ChannelNotificationView),
     MaterialRoute(page: NewChannel),
     MaterialRoute(page: ChannelInfoView),
