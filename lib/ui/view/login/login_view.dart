@@ -44,6 +44,12 @@ class LoginView extends StatelessWidget {
               SizedBox(
                 height: 49.0,
               ),
+              const Center(
+                child: Text('Welcome! Sign in to continue'),
+              ),
+              const SizedBox(
+                height: 49.0,
+              ),
               const CustomTextField(
                 keyboardType: TextInputType.emailAddress,
                 inputAction: TextInputAction.next,
@@ -66,7 +72,18 @@ class LoginView extends StatelessWidget {
                 hintText: 'Enter Password',
               ),
               Container(
-                alignment: Alignment.topRight,
+                  alignment: Alignment.topRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgotPasswordView()));
+                    },
+                    child: Text('Forget Password?'),
+                  )),
+              SizedBox(
+//                alignment: Alignment.topRight,
                 child: TextButton(
                   onPressed: () => model.navigateToForgotPasswordScreen(),
                   child: const Text('Forget Password?'),
@@ -79,28 +96,28 @@ class LoginView extends StatelessWidget {
                 child: FractionallySizedBox(
                   widthFactor: 1.0,
                   child: ElevatedButton(
-                    onPressed: () {
-                      model.navigateToHomeScreen();
-                    },
                     child: const Text(
                       'Sign In',
                       style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        fontStyle: FontStyle.normal,
-                        color: AppColors.whiteColor,
-                      ),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          fontStyle: FontStyle.normal,
+                          color: Color(0xffFFFFFF)),
                     ),
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                      primary: const Color(0xff00B87C),
-                    ),
+                        padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                        primary: Color(0xff00B87C)),
+                    onPressed: () {
+                      model.navigateToHomeScreen();
+                    },
                   ),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Text('Don\'t have an account?'),
+                  TextButton(onPressed: () {}, child: Text('Register')),
                   const Text('Don\'t have an account?'),
                   TextButton(
                     onPressed: () => model.navigateToSignUpScreen(),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../general_widgets/custom_text.dart';
 import '../../shared/colors.dart';
 import '../../shared/shared.dart';

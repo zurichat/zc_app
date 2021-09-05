@@ -25,7 +25,6 @@ class AppTextStyles {
     color: AppColors.greyishColor,
     fontSize: 24,
   );
-
   static TextStyle heading5 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
     color: AppColors.greyishColor,
