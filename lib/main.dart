@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return 
       ThemeBuilder(
       themes: getThemes(),
-      builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(MaterialApp(
+      builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(child: MaterialApp(
         
 
         debugShowCheckedModeBanner: false,
