@@ -14,6 +14,7 @@ import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/channel_notification/channel_notification_view.dart';
 import '../ui/view/create_channel_view/create_channel_view.dart';
+import '../ui/view/dm_user/dm_user_view.dart';
 import '../ui/view/forgot_password/forgot_password_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
@@ -30,11 +31,13 @@ class Routes {
   static const String createChannelView = '/create-channel-view';
   static const String workspaceView = '/workspace-view';
   static const String signUpView = '/sign-up-view';
+  static const String workspaceView = '/workspace-view';
   static const String channelList = '/channel-list';
   static const String forgotPasswordView = '/forgot-password-view';
   static const String channelNotificationView = '/channel-notification-view';
   static const String newChannel = '/new-channel';
   static const String channelInfoView = '/channel-info-view';
+  static const String dmUserView = '/dm-user-view';
   static const all = <String>{
     loginView,
     navBarView,
@@ -48,6 +51,7 @@ class Routes {
     channelNotificationView,
     newChannel,
     channelInfoView,
+    dmUserView,
   };
 }
 
@@ -68,6 +72,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+    RouteDef(Routes.dmUserView, page: DmUserView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -144,5 +149,24 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    DmUserView: (data) {
+      var args = data.getArgs<DmUserViewArguments>(
+        orElse: () => DmUserViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => DmUserView(key: args.key),
+        settings: data,
+      );
+    },
   };
+}
+
+/// ************************************************************************
+/// Arguments holder classes
+/// *************************************************************************
+
+/// DmUserView arguments holder class
+class DmUserViewArguments {
+  final Key? key;
+  DmUserViewArguments({this.key});
 }

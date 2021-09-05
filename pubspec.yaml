@@ -50,6 +50,10 @@ flutter:
     - assets/images/
 
 
+  fonts:
+    - family: ZapIcon
+      fonts:
+          - asset: assets/fonts/zap_icon.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
