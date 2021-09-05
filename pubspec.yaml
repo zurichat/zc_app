@@ -28,6 +28,8 @@ dependencies:
   stacked: ^2.1.8
   stacked_hooks: ^0.2.1
   stacked_services: ^0.8.6
+  hexcolor: ^2.0.5
+  flutter_appavailability: ^0.0.21
   stacked_themes: ^0.3.6
   url_launcher: ^6.0.9
   grouped_list: ^4.1.0
