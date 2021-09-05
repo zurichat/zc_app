@@ -13,6 +13,7 @@ import 'package:stacked/stacked.dart';
 
 import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/login/login_view.dart';
+import '../ui/view/otp/otp_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/preference/preference_view.dart';
@@ -22,9 +23,9 @@ import '../ui/view/workspace/workspace_different_email/difference_email_workspac
 import '../ui/view/workspace/workspace_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 
-
 class Routes {
   static const String loginView = '/login-view';
+  static const String otpView = '/otp-view';
 
   static const String channelView = '/channel-view';
 
@@ -43,6 +44,7 @@ class Routes {
 
   static const all = <String>{
     loginView,
+    otpView,
     navBarView,
     onboardingView,
     preferenceView,
@@ -62,7 +64,7 @@ class StackedRouter extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(Routes.loginView, page: LoginView),
-
+    RouteDef(Routes.otpView, page: OtpView),
 
     RouteDef(Routes.channelView, page: ChannelPageView)
 
@@ -80,7 +82,6 @@ class StackedRouter extends RouterBase {
 
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
-
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -142,6 +143,12 @@ settings: data,
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ChannelInfoView(),
 
+        settings: data,
+      );
+    },
+    OtpView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const OtpView(),
         settings: data,
       );
     },
