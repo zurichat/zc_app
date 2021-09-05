@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/password_recovery/recovery_view.dart';
 import '../ui/profile_page/profile_page_view.dart';
 import 'package:stacked/stacked.dart';
 
@@ -79,6 +80,7 @@ class StackedRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.otpView, page: OtpView),
+    RouteDef(Routes.forgotPasswordView, page: ForgotPassView),
     RouteDef(Routes.channelView, page: ChannelPageView),
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
@@ -204,6 +206,12 @@ class StackedRouter extends RouterBase {
     PopUpNotificationsView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const PopUpNotificationsView(),
+        settings: data,
+      );
+    },
+    ForgotPassView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ForgotPassView(),
         settings: data,
       );
     },

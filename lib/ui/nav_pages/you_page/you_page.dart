@@ -63,46 +63,19 @@ class YouPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    decoration: BoxDecoration(
-                      border:
-                          Border.all(width: 0.5, color: AppColors.greyishColor),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: TextField(
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          prefixIcon: Icon(Icons.chat_bubble_outline_rounded),
-                          suffixIcon: Icon(Icons.close)),
-                    ),
-                  ),
-                  SizedBox(height: 32),
-                  Row(
-                    children: [
-                      Icon(Icons.notifications_off_outlined,
-                          size: 20, color: AppColors.greyishColor),
-                      SizedBox(width: 10),
-                      CustomText(
-                          text: "Pause Notifications", color: Colors.black87),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Icon(Icons.circle_outlined,
-                          size: 20, color: AppColors.greyishColor),
-                      SizedBox(width: 10),
-                      CustomText(text: "Go"),
-                      Text(
-                        "Zuri",
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.w800),
-                      ),
-                      Text(
-                        "Active",
-                      ),
-                    ],
-                  )
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //     border:
+                  //         Border.all(width: 0.5, color: AppColors.greyishColor),
+                  //     borderRadius: BorderRadius.circular(10),
+                  //   ),
+                  //   child: TextField(
+                  //     decoration: InputDecoration(
+                  //         border: InputBorder.none,
+                  //         prefixIcon: Icon(Icons.chat_bubble_outline_rounded),
+                  //         suffixIcon: Icon(Icons.close)),
+                  //   ),
+                  // ),
                 ],
               ),
               SizedBox(
@@ -136,7 +109,7 @@ class YouPage extends StatelessWidget {
               ),
               ProfileButton(
                 icon: Icons.notifications_off_outlined,
-                label: "Notifications",
+                label: "Pause Notifications",
                 onPressed: () {},
               ),
               ProfileButton(

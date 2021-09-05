@@ -25,7 +25,7 @@ import '../../shared/constants.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
 
     return ViewModelBuilder<HomePageViewModel>.reactive(
       viewModelBuilder: () => HomePageViewModel(),
@@ -132,23 +132,19 @@ class HomePage extends StatelessWidget {
                     data: '1',
                   ),
 
-                  // const CustomPluginListTile(
+                  SizedBox(height: size.height * 0.02),
 
-                  //   icon: Icons.document_scanner_outlined,
+                  const CustomPluginListTile(
+                    icon: Icons.document_scanner_outlined,
+                    pluginName: 'Draft',
+                  ),
 
-                  //   pluginName: 'Draft',
+                  SizedBox(height: size.height * 0.02),
 
-                  // ),
-
-                  //  SizedBox(height: size.height*0.02),
-
-                  // const CustomPluginListTile(
-
-                  //   icon: Icons.file_copy,
-
-                  //   pluginName: 'Files',
-
-                  // ),
+                  const CustomPluginListTile(
+                    icon: Icons.file_copy,
+                    pluginName: 'Files',
+                  ),
 
                   SizedBox(height: size.height * 0.032),
 

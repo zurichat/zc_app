@@ -56,7 +56,7 @@ class LoginView extends StatelessWidget {
               SizedBox(
                 height: 30.0,
               ),
-              CustomTextField(
+              const CustomTextField(
                 keyboardType: TextInputType.emailAddress,
                 inputAction: TextInputAction.next,
                 autoFocus: false,
@@ -66,16 +66,12 @@ class LoginView extends StatelessWidget {
                 hintText: 'Enter Password',
               ),
               Container(
-                  alignment: Alignment.topRight,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ForgotPasswordView()));
-                    },
-                    child: Text('Forget Password?'),
-                  )),
+                alignment: Alignment.topRight,
+                child: TextButton(
+                  onPressed: () => model.navigateToForgotPasswordScreen(),
+                  child: const Text('Forget Password?'),
+                ),
+              ),
               const SizedBox(
                 height: 14.0,
               ),
