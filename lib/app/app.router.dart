@@ -31,7 +31,6 @@ class Routes {
   static const String createChannelView = '/create-channel-view';
   static const String workspaceView = '/workspace-view';
   static const String signUpView = '/sign-up-view';
-  static const String workspaceView = '/workspace-view';
   static const String channelList = '/channel-list';
   static const String forgotPasswordView = '/forgot-password-view';
   static const String channelNotificationView = '/channel-notification-view';
