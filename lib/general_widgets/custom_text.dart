@@ -8,7 +8,7 @@ class CustomText extends StatelessWidget {
 
   const CustomText({
     Key? key,
-    this.text = '',
+    required this.text,
     this.fontSize = 16.0,
     this.fontWeight = FontWeight.normal,
     this.color = Colors.black,

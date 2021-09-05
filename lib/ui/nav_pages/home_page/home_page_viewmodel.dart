@@ -1,31 +1,34 @@
 import 'dart:developer';
 
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/services/connectivity_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
-
-//final _navigationService = locator<NavigationService>();
+import '../../../services/connectivity_service.dart';
 
 class HomePageViewModel extends StreamViewModel {
-  nToPref() {
+  void nToPref() {
     NavigationService().navigateTo(Routes.preferenceView);
   }
-  nToWorkspace(){
+
+  void nToWorkspace() {
     NavigationService().navigateTo(Routes.workspaceView);
+  }
+
+  navigateToDmUser() {
+    locator<NavigationService>().navigateTo(Routes.dmUserView);
   }
 
   final connectivityService = locator<ConnectivityService>();
 
   bool connectionStatus = false;
-  
+
   @override
   void onError(error) {
     log('Error: $error');
   }
-  
+
   @override
   void onSubscribed() {}
 
@@ -40,7 +43,11 @@ class HomePageViewModel extends StreamViewModel {
     this.stream.listen((event) {
       connectionStatus = event;
       notifyListeners();
-    }); 
+    });
     return connectionStatus;
+  }
+
+  void nToInfo() {
+    NavigationService().navigateTo(Routes.channelInfoView);
   }
 }
