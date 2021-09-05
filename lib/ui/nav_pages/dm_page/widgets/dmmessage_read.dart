@@ -37,7 +37,7 @@ class DMMessageRead extends StatelessWidget {
               SizedBox(height: 5),
               Text(
                 'Can i have your number?',
-                style: AppTextStyles.normalText,
+                // style: AppTextStyles.normalText,
               ),
             ],
           ),
@@ -48,7 +48,7 @@ class DMMessageRead extends StatelessWidget {
             children: [
               Text(
                 '1d',
-                style: AppTextStyles.timestamp,
+                // style: AppTextStyles.timestamp,
               ),
             ],
           ),
