@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/view/channel_search/channel_search_view.dart';
 import 'package:stacked/stacked.dart';
 import 'login_viewmodel.dart';
 
