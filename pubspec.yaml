@@ -33,6 +33,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo/
+    - assets/images/nate.png
     - assets/background/bga.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
