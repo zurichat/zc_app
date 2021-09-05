@@ -39,11 +39,11 @@ class Routes {
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String workspaceView = '/workspace-view';
   static const String channelList = '/channel-list';
+  static const String forgotPasswordView = '/forgot-password-view';
   static const String channelNotificationView = '/channel-notification-view';
   static const String signUpView = '/sign-up-view';
   static const String newChannel = '/newChannel-view';
   static const String channelInfoView = '/channel-info-view';
-
   static const all = <String>{
     loginView,
     createWorkSpace,
@@ -54,12 +54,13 @@ class Routes {
     useDifferentEmailView,
     workspaceView,
     channelList,
+    forgotPasswordView,
     channelNotificationView,
 
     signUpView,
 
     newChannel,
-    channelView
+    channelView,
     channelInfoView,
   };
 }
