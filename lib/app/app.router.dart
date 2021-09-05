@@ -19,6 +19,7 @@ import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/workspace/workspace_view.dart';
+import '../ui/view/sign_up/sign_up_view.dart';
 
 class Routes {
   static const String loginView = '/login-view';
@@ -31,6 +32,8 @@ class Routes {
   static const String workspaceView = '/workspace-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String newChannel = '/newChannel-view';
+  static const String signUpView = '/sign-up-view';
+
   static const all = <String>{
     loginView,
     navBarView,
@@ -38,6 +41,7 @@ class Routes {
     preferenceView,
     useDifferentEmailView,
     workspaceView,
+    signUpView,
     newChannel,
     // channelView,
     channelInfoView,
@@ -60,6 +64,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.signUpView, page: SignUpView),
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
   ];
@@ -111,6 +116,12 @@ class StackedRouter extends RouterBase {
     WorkspaceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceView(),
+        settings: data,
+      );
+    },
+    SignUpView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const SignUpView(),
         settings: data,
       );
     },
