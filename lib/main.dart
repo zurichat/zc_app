@@ -20,14 +20,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return OverlaySupport(
-      child: MaterialApp(
+      ThemeBuilder(
+      themes: getThemes(),
+      builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(
+        child: MaterialApp(
 
         debugShowCheckedModeBanner: false,
         navigatorKey: StackedService.navigatorKey,
         onGenerateRoute: StackedRouter().onGenerateRoute,
         title: 'ZuriChat App',
-        initialRoute: Routes.popupView,
-
+        theme: regularTheme,
+        darkTheme: darkTheme,
+        themeMode: themeMode,
+        initialRoute: Routes.onboardingView,
       ),
     );
   }
