@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 
+
+
+import '../../shared/shared.dart';
 import '../../shared/colors.dart';
 import '../../shared/constants.dart';
 import 'home_page_viewmodel.dart';
@@ -74,7 +78,7 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 const CustomPluginListTile(
-                  icon: Icons.document_scanner_outlined,
+                  // icon: Icons.document_scanner_outlined,
                   pluginName: 'Draft',
                 ),
                 const SizedBox(height: 16),
@@ -108,9 +112,12 @@ class HomePage extends StatelessWidget {
                   channelName: 'questions',
                 ),
                 const SizedBox(height: 20),
-                const CustomHomePageSectionTitle(
-                  title: 'Direct Messages',
-                ),
+                CustomHomePageSectionTitle(
+                    title: 'Direct Messages',
+                    ontap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => DmScreen()));
+                    }),
                 const SizedBox(height: 16),
                 const CustomDMListTile(
                   userName: 'Princess',
@@ -138,7 +145,11 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
+            // navigation.navigateTo(Routes.loginView);
+            // navigation.navigateTo('/create-work-space');
+            model.nToPref();
             model.nToInfo();
+
           },
           child: const Icon(
             Icons.open_in_new_outlined,
