@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:hng/ui/profile_page/profile_page_view.dart';
 
 import 'package:hng/ui/view/channel/channel_page_view.dart';
 import 'package:hng/ui/view/plugins/add_plugin_view.dart';
@@ -30,10 +31,6 @@ import '../ui/view/workspace/create_workspace/create_workspace.dart';
 
 class Routes {
   static const String loginView = '/login-view';
-
-
-
-
   static const String popupView = '/popup-view';
 
   static const String createWorkSpace = '/create-work-space';
@@ -214,18 +211,18 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-
     PopUpNotificationsView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const PopUpNotificationsView(),
-
+        settings: data,
+      );
+    },
     ProfilePageView: (data) {
       var args = data.getArgs<ProfilePageViewArguments>(
         orElse: () => ProfilePageViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
         builder: (context) => ProfilePageView(key: args.key),
-
         settings: data,
       );
     },

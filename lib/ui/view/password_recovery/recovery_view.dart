@@ -21,24 +21,31 @@ class ForgotPassView extends StatelessWidget {
               SizedBox(height: 20),
               Text(
                 'Forgot Password',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,
-                        color: Colors.black),),
-                  SizedBox(height: 10,),
-                  Text('Please enter the email used in registering\n'
-                      'this account',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14),),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CustomTextField(
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.black),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Please enter the email used in registering\n'
+                'this account',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14),
+              ),
+              SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomTextField(
                     keyboardType: TextInputType.emailAddress,
                     inputAction: TextInputAction.done,
                     autoCorrect: true,
                     autoFocus: true,
                     labelText: 'Email Address',
                     hintText: 'Name@gmail.com'),
-                  ),
+              ),
                   SizedBox(height: 35,),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
