@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:hng/general_widgets/custom_bottom_nav.dart';
 import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/custom_channel_list_tile.dart';
@@ -8,6 +9,8 @@ import 'package:hng/ui/nav_pages/home_page/widgets/custom_plugin_list_tile.dart'
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 //import 'package:hng/ui/view/home/home_viewmodel.dart';
+
+import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -37,7 +40,7 @@ class HomePage extends StatelessWidget {
                     fit: BoxFit.cover,
                     height: 48,
                   ),
-                  onTap: (){
+                  onTap: () {
                     model.nToWorkspace();
                   },
                 ),
@@ -51,6 +54,12 @@ class HomePage extends StatelessWidget {
                     )
             ],
           ),
+          actions: [
+            Text(
+              model.status ? "Online" : "Offline",
+              style: TextStyle(color: Colors.black),
+            )
+          ],
         ),
        
               backgroundColor: AppColors.whiteColor,
@@ -208,7 +217,7 @@ class HomePage extends StatelessWidget {
               ),
   
               floatingActionButton: FloatingActionButton(
-                onPressed: () {model.nToPref();},
+                onPressed: () {model.nToInfo();},
                 child: const Icon(
                   Icons.open_in_new_outlined,
                   color: AppColors.whiteColor,
@@ -216,6 +225,7 @@ class HomePage extends StatelessWidget {
                 backgroundColor: AppColors.greenColor,
               ),
             ),
+ 
       );
   }
 }
