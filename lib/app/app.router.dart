@@ -14,6 +14,8 @@ import 'package:stacked/stacked.dart';
 import '../ui/view/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/login/login_view.dart';
+
+import '../ui/view/workspace/create_workspace/create_workspace.dart';
 import '../ui/view/otp/otp_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
@@ -24,8 +26,10 @@ import '../ui/view/workspace/workspace_different_email/difference_email_workspac
 import '../ui/view/workspace/workspace_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 
+
 class Routes {
   static const String loginView = '/login-view';
+  static const String createWorkSpace = '/create-work-space';
   static const String otpView = '/otp-view';
   static const String channelView = '/channel-view';
   static const String navBarView = '/nav-bar-view';
@@ -40,6 +44,7 @@ class Routes {
   static const String channelInfoView = '/channel-info-view';
   static const all = <String>{
     loginView,
+    createWorkSpace,
     otpView,
     navBarView,
     onboardingView,
@@ -62,10 +67,9 @@ class StackedRouter extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(Routes.loginView, page: LoginView),
+    RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.otpView, page: OtpView),
-
     RouteDef(Routes.channelView, page: ChannelPageView)
-
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
 
@@ -123,9 +127,15 @@ settings: data,
         settings: data,
       );
     },
+        
+    CreateWorkSpace: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => CreateWorkSpace(),
+        
     ChannelNotificationView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => ChannelNotificationView(),
+
 
      SignUpView: (data) {
       return MaterialPageRoute<dynamic>(
