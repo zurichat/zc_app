@@ -91,33 +91,6 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
               ),
-
-//Delete Later
-
-              Center(
-                child: FractionallySizedBox(
-                  widthFactor: 1.0,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ChannelSearchPageView()));
-                    },
-                    child: Text(
-                      'View my task No vex',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          fontStyle: FontStyle.normal,
-                          color: Color(0xffFFFFFF)),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        primary: Color(0xff00B87C)),
-                  ),
-                ),
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
