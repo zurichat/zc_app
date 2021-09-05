@@ -1,3 +1,5 @@
+
+import 'package:hng/ui/view/dm_user/dm_user_view.dart';
 import 'package:hng/ui/view/forgot_password/forgot_password_view.dart';
 import 'package:hng/ui/view/workspace/create_workspace/create_workspace.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,6 +59,7 @@ import '../ui/view/preference/preference_view.dart';
     MaterialRoute(page: ChannelNotificationView),
     MaterialRoute(page: NewChannel),
     MaterialRoute(page: ChannelInfoView),
+    MaterialRoute(page: DmUserView),
 
   ],
   dependencies: [
