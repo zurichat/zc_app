@@ -15,11 +15,7 @@ dependencies:
 
   flutter_screenutil: ^5.0.0+2
   fluttertoast: ^8.0.8
-<<<<<<< HEAD
-  get: ^4.3.8
-=======
   font_awesome_flutter: ^9.1.0
->>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
   google_fonts: ^2.1.0
   intl: ^0.17.0
   introduction_screen: ^2.1.0
@@ -49,12 +45,8 @@ flutter:
     - assets/background/bga.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
-<<<<<<< HEAD
-    - assets/images/user.png
-=======
     - assets/logo/zuri_logo.png
     - assets/channel_page/
->>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
     - assets/images/
 
 

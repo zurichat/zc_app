@@ -46,8 +46,6 @@ class LoginView extends StatelessWidget {
                 height: 49.0,
               ),
               CustomTextField(
-<<<<<<< HEAD
-=======
               const Center(
                 child: Text('Welcome! Sign in to continue'),
               ),
@@ -55,7 +53,6 @@ class LoginView extends StatelessWidget {
                 height: 49.0,
               ),
               const CustomTextField(
->>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
                 keyboardType: TextInputType.emailAddress,
                 inputAction: TextInputAction.next,
                 autoFocus: false,
@@ -79,18 +76,6 @@ class LoginView extends StatelessWidget {
               Container(
                   alignment: Alignment.topRight,
                   child: TextButton(
-<<<<<<< HEAD
-                    onPressed: () {},
-                    child: Text('Forget Password?'),
-                  )),
-              SizedBox(
-=======
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ForgotPasswordView()));
-                    },
                     child: Text('Forget Password?'),
                   )),
               SizedBox(
@@ -101,14 +86,12 @@ class LoginView extends StatelessWidget {
                 ),
               ),
               const SizedBox(
->>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
                 height: 14.0,
               ),
               Center(
                 child: FractionallySizedBox(
                   widthFactor: 1.0,
                   child: ElevatedButton(
-                    onPressed: () {},
                     child: Text(
                       'Sign In',
                       style: TextStyle(
@@ -120,8 +103,6 @@ class LoginView extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                         primary: Color(0xff00B87C)),
-<<<<<<< HEAD
-=======
                     child: const Text(
                       'Sign In',
                       style: TextStyle(
@@ -135,7 +116,6 @@ class LoginView extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
                       primary: const Color(0xff00B87C),
                     ),
->>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
                   ),
                 ),
               ),
@@ -144,14 +124,11 @@ class LoginView extends StatelessWidget {
                 children: [
                   Text('Don\'t have an account?'),
                   TextButton(onPressed: () {}, child: Text('Register'))
-<<<<<<< HEAD
-=======
                   const Text('Don\'t have an account?'),
                   TextButton(
                     onPressed: () {},
                     child: Text('Register'),
                   )
->>>>>>> b3cb1ee710510d2ca32c913807591ceb25eb8f35
                 ],
               ),
             ],
