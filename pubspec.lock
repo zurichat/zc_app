@@ -229,13 +229,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.3"
-  dots_indicator:
-    dependency: transitive
+
+  dio:
+    dependency: "direct main"
     description:
-      name: dots_indicator
+      name: dio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "4.0.0"
+
   fake_async:
     dependency: transitive
     description:
@@ -405,13 +407,14 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
-  image:
-    dependency: transitive
+  image_gallery_saver:
+    dependency: "direct main"
     description:
-      name: image
+      name: image_gallery_saver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.2"
+    version: "1.6.9"
+
   intl:
     dependency: "direct main"
     description:
@@ -489,6 +492,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0+1"
+  overlay_support:
+    dependency: "direct main"
+    description:
+      name: overlay_support
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.1"
   package_config:
     dependency: transitive
     description:
@@ -545,13 +555,21 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.11.1"
-  petitparser:
-    dependency: transitive
+  permission_handler:
+    dependency: "direct main"
     description:
-      name: petitparser
+      name: permission_handler
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "8.1.4+2"
+  permission_handler_platform_interface:
+    dependency: transitive
+    description:
+      name: permission_handler_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.6.1"
+
   platform:
     dependency: transitive
     description:

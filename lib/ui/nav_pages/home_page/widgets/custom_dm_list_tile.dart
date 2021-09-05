@@ -12,9 +12,11 @@ import '../../../shared/colors.dart';
 class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
   final imagelink;
   final userName;
+  final String name;
   const CustomDMListTile({
     Key? key,
     this.imagelink,
+    this.name = 'assets/background/status.png',
     this.userName,
   }) : super(key: key);
 
@@ -42,6 +44,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
 =======
   Widget build(BuildContext context, HomePageViewModel model) {
     return InkWell(
+<<<<<<< HEAD
       onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
@@ -64,9 +67,38 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
           ),
         ],
       ),
+=======
+>>>>>>> ac0328ffbb9a2c62ca9472475977fa9ba309b80f
       onTap: () {
         model.navigateToDmUser();
       },
+      child: Row(
+        children: [
+          Container(
+          height: 32,
+          width: 32,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              image: DecorationImage(
+                  image: AssetImage(imagelink), fit: BoxFit.cover)),
+        ),
+        const SizedBox(width: 8),
+        Text(
+          userName,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+            color: AppColors.greyishColor,
+            fontSize: 16,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Container(
+          width: 14,
+          height: 14,
+          child: Image.asset(name),
+        )
+      ],
+        ),
     );
   }
 }
