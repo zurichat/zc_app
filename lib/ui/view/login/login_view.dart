@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:stacked/stacked.dart';
-
+import '../../shared/colors.dart';
+import '../../../app/app.router.dart';
 import '../../../general_widgets/custom_textfield.dart';
-import '../../shared/shared.dart';
+import '../forgot_password/forgot_password_view.dart';
+import 'package:stacked/stacked.dart';
 import 'login_viewmodel.dart';
 
 class LoginView extends StatelessWidget {
@@ -40,10 +40,8 @@ class LoginView extends StatelessWidget {
               SizedBox(
                 height: 4.0,
               ),
-              const Center(
-                child: Text('Welcome! Sign in to continue'),
-              ),
-              const SizedBox(
+              Center(child: Text('Welcome! Sign in to continue')),
+              SizedBox(
                 height: 49.0,
               ),
               const CustomTextField(
@@ -68,12 +66,16 @@ class LoginView extends StatelessWidget {
                 hintText: 'Enter Password',
               ),
               Container(
-                alignment: Alignment.topRight,
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text('Forget Password?'),
-                ),
-              ),
+                  alignment: Alignment.topRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgotPasswordView()));
+                    },
+                    child: Text('Forget Password?'),
+                  )),
               const SizedBox(
                 height: 14.0,
               ),
@@ -81,8 +83,9 @@ class LoginView extends StatelessWidget {
                 child: FractionallySizedBox(
                   widthFactor: 1.0,
                   child: ElevatedButton(
-                    onPressed: () =>
-                        model.navigator.navigateTo(Routes.navBarView),
+                    onPressed: () {
+                      model.navigateToHomeScreen();
+                    },
                     child: const Text(
                       'Sign In',
                       style: TextStyle(
@@ -105,7 +108,7 @@ class LoginView extends StatelessWidget {
                   const Text('Don\'t have an account?'),
                   TextButton(
                     onPressed: () {},
-                    child: Text('Register'),
+                    child: const Text('Register'),
                   )
                 ],
               ),

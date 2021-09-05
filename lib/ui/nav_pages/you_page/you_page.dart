@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
+import 'package:stacked/stacked.dart';
+
+import '../../../general_widgets/custom_text.dart';
+import '../../shared/colors.dart';
+import '../../shared/shared.dart';
 import 'widget_components/customtiles.dart';
 import 'you_page_viewmodel.dart';
-import '../../shared/colors.dart';
-import 'package:stacked/stacked.dart';
 
 class YouPage extends StatelessWidget {
   const YouPage({Key? key}) : super(key: key);
@@ -15,7 +17,8 @@ class YouPage extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.greenColor,
-          // Here we take the value from the MyHomePage object that was created by
+          // Here we take the value from the
+          // MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: Text("You"),
         ),

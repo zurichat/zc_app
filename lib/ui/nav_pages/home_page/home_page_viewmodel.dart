@@ -16,6 +16,10 @@ class HomePageViewModel extends StreamViewModel {
     NavigationService().navigateTo(Routes.workspaceView);
   }
 
+  navigateToDmUser() {
+    locator<NavigationService>().navigateTo(Routes.dmUserView);
+  }
+
   final connectivityService = locator<ConnectivityService>();
 
   bool connectionStatus = false;
