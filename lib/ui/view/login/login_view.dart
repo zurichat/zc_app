@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/custom_textfield.dart';
@@ -39,6 +41,11 @@ class LoginView extends StatelessWidget {
               SizedBox(
                 height: 4.0,
               ),
+              Center(child: Text('Welcome! Sign in to continue')),
+              SizedBox(
+                height: 49.0,
+              ),
+              CustomTextField(
               const Center(
                 child: Text('Welcome! Sign in to continue'),
               ),
@@ -67,6 +74,17 @@ class LoginView extends StatelessWidget {
                 hintText: 'Enter Password',
               ),
               Container(
+                  alignment: Alignment.topRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgotPasswordView()));
+                    },
+                    child: Text('Forget Password?'),
+                  )),
+              SizedBox(
                 alignment: Alignment.topRight,
                 child: TextButton(
                   onPressed: () {},
@@ -81,6 +99,17 @@ class LoginView extends StatelessWidget {
                   widthFactor: 1.0,
                   child: ElevatedButton(
                     onPressed: () {},
+                    child: Text(
+                      'Sign In',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          fontStyle: FontStyle.normal,
+                          color: Color(0xffFFFFFF)),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                        primary: Color(0xff00B87C)),
                     child: const Text(
                       'Sign In',
                       style: TextStyle(
@@ -100,6 +129,8 @@ class LoginView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Text('Don\'t have an account?'),
+                  TextButton(onPressed: () {}, child: Text('Register'))
                   const Text('Don\'t have an account?'),
                   TextButton(
                     onPressed: () {},
