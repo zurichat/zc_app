@@ -12,6 +12,7 @@ import 'package:hng/ui/view/popup_notification/popup_notification.dart';
 
 import 'package:stacked/stacked.dart';
 
+import '../ui/view/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/otp/otp_view.dart';
@@ -27,13 +28,13 @@ import '../ui/view/sign_up/sign_up_view.dart';
 class Routes {
   static const String loginView = '/login-view';
 
+
   static const String popupView = '/popup-view';
 
   static const all = <String>{
     loginView,
 
     popupView,
-
 
   };
 }
@@ -45,6 +46,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.loginView, page: LoginView),
 
     RouteDef(Routes.popupView, page: PopUpNotificationsView),
+
 
   ];
   @override
@@ -92,6 +94,9 @@ settings: data,
         settings: data,
       );
     },
+    ChannelNotificationView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ChannelNotificationView(),
 
      SignUpView: (data) {
       return MaterialPageRoute<dynamic>(
