@@ -14,26 +14,51 @@ dependencies:
     sdk: flutter
   flutter_screenutil: ^5.0.0+2
   fluttertoast: ^8.0.8
+  font_awesome_flutter: ^9.1.0
   google_fonts: ^2.1.0
   intl: ^0.17.0
+  introduction_screen: ^2.1.0
   shared_preferences: ^2.0.7
   stacked: ^2.1.8
   stacked_services: ^0.8.6
   stacked_themes: ^0.3.6
   url_launcher: ^6.0.9
-
+  flutter_chips_input: ^1.10.0
+  grouped_list: ^4.1.0
 dev_dependencies:
   build_runner: ^2.1.2
   flutter_test:
     sdk: flutter
   stacked_generator: ^0.4.6
+  flutter_native_splash: ^1.2.1
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/logo/zuri_logo.png
+  android: true
+  ios: true
 
 flutter:
   uses-material-design: true
   assets:
     - assets/logo/
+<<<<<<< HEAD
     - assets/background/
     - assets/images/profiler_picture.png
+=======
+    - assets/background/bga.png
+    - assets/logo/zuri_chat_logo.png
+    - assets/background/appBarLogo.png
+    - assets/logo/zuri_logo.png
+    - assets/channel_page/
+    - assets/images/
+
+
+  fonts:
+    - family: ZapIcon
+      fonts:
+          - asset: assets/fonts/zap_icon.ttf
+>>>>>>> 2738e2335b98f6a7c501a35afe04e3cf28f6a9d9
   # fonts:
   #   - family: Schyler
   #     fonts:
