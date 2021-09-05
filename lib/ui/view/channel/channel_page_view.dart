@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/models/user_model.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/channel/channel_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../models/user_model.dart';
+import '../../shared/colors.dart';
+import '../../shared/shared.dart';
+import 'channel_page_viewmodel.dart';
 
 class ChannelPageView extends StatelessWidget {
   const ChannelPageView({Key? key}) : super(key: key);
