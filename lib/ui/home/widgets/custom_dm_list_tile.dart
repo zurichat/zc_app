@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/direct_message/direct_message.dart';
 
-import '../../../shared/colors.dart';
 
 class CustomDMListTile extends StatelessWidget {
   final imagelink;
@@ -23,15 +22,16 @@ class CustomDMListTile extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundImage: AssetImage(imagelink),
-            radius: 20.0),
-        const SizedBox(width: 8),
-        Text(
-          userName,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            color: AppColors.greyishColor,
-            fontSize: 15,
+            radius: 20.0,
           ),
+          const SizedBox(width: 8),
+          Text(
+            userName,
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
+              color: Colors.black,
+              fontSize: 15,
+            ),
           ),
         ],
       ),
