@@ -1,4 +1,3 @@
-
 import 'package:hng/ui/view/dm_user/dm_user_view.dart';
 import 'package:hng/ui/view/forgot_password/forgot_password_view.dart';
 import 'package:hng/ui/view/workspace/create_workspace/create_workspace.dart';
@@ -42,10 +41,10 @@ import '../ui/view/preference/preference_view.dart';
 // ], dependencies: [
 //   LazySingleton(classType: NavigationService)
 // ])
-// =======
 @StackedApp(
   routes: [
     MaterialRoute(page: LoginView),
+
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView, initial: true),
     MaterialRoute(page: PreferenceView),
@@ -60,7 +59,6 @@ import '../ui/view/preference/preference_view.dart';
     MaterialRoute(page: NewChannel),
     MaterialRoute(page: ChannelInfoView),
     MaterialRoute(page: DmUserView),
-
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

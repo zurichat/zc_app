@@ -14,6 +14,7 @@ import 'package:hng/ui/view/popup_notification/popup_notification.dart';
 
 import 'package:stacked/stacked.dart';
 
+
 import '../ui/view/channel/new_channel/new_channel.dart';
 
 import '../ui/view/channel/channels_view.dart';
@@ -196,9 +197,18 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+
     PopUpNotificationsView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const PopUpNotificationsView(),
+
+    ProfilePageView: (data) {
+      var args = data.getArgs<ProfilePageViewArguments>(
+        orElse: () => ProfilePageViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ProfilePageView(key: args.key),
+
         settings: data,
       );
     },
@@ -208,6 +218,7 @@ class StackedRouter extends RouterBase {
 /// ************************************************************************
 /// Arguments holder classes
 /// *************************************************************************
+
 
 /// DmUserView arguments holder class
 class DmUserViewArguments {
