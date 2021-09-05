@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/users_profile/user_profile.dart';
 
 import '../../../shared/colors.dart';
 
@@ -20,12 +21,17 @@ class CustomDMListTile extends StatelessWidget {
           radius: 20.0,
         ),
         const SizedBox(width: 8),
-        Text(
-          userName,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            color: AppColors.greyishColor,
-            fontSize: 15,
+        TextButton(
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ViewProfilePage()));
+          },
+          child: Text(
+            userName,
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
+              color: AppColors.greyishColor,
+              fontSize: 15,
+            ),
           ),
         ),
       ],
