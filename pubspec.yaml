@@ -30,6 +30,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   stacked_generator: ^0.4.6
+  flutter_native_splash: ^1.2.1
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/logo/zuri_logo.png
+  android: true
+  ios: true
 
 flutter:
   uses-material-design: true
@@ -38,13 +45,16 @@ flutter:
     - assets/background/bga.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
+    - assets/logo/zuri_logo.png
     - assets/channel_page/
     - assets/images/
+
 
   fonts:
     - family: ZapIcon
       fonts:
           - asset: assets/fonts/zap_icon.ttf
+  # fonts:
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

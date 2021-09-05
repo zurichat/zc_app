@@ -10,12 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/nav_pages/home_page/home_page.dart';
+import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/preference/preference_view.dart';
+import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
 import '../ui/view/workspace/workspace_view.dart';
 
@@ -24,6 +26,8 @@ class Routes {
   static const String navBarView = '/nav-bar-view';
   static const String onboardingView = '/';
   static const String preferenceView = '/preference-view';
+  static const String signUpView = '/sign-up-view';
+  static const String newChannel = '/new-channel';
   static const String channelInfoView = '/channel-info-view';
   static const String dmUserView = '/dm-user-view';
   static const String useDifferentEmailView = '/use-different-email-view';
@@ -34,6 +38,8 @@ class Routes {
     navBarView,
     onboardingView,
     preferenceView,
+    signUpView,
+    newChannel,
     channelInfoView,
     dmUserView,
     useDifferentEmailView,
@@ -50,6 +56,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
+    RouteDef(Routes.signUpView, page: SignUpView),
+    RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.dmUserView, page: DmUserView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
@@ -80,6 +88,18 @@ class StackedRouter extends RouterBase {
     PreferenceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const PreferenceView(),
+        settings: data,
+      );
+    },
+    SignUpView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const SignUpView(),
+        settings: data,
+      );
+    },
+    NewChannel: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const NewChannel(),
         settings: data,
       );
     },
