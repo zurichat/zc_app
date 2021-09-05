@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:overlay_support/overlay_support.dart';
-
 import 'package:hng/ui/view/workspace/create_workspace/create_workspace.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
+
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
 import 'services/theme_setup.dart';
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
                 theme: regularTheme,
                 darkTheme: darkTheme,
                 themeMode: themeMode,
-                initialRoute: Routes.onboardingView,
+                initialRoute: Routes.loginView,
               ),
             ));
   }

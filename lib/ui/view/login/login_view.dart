@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/view/forgot_password/forgot_password_view.dart';
-import 'package:stacked/stacked.dart';
-
+import '../../shared/colors.dart';
+import '../../../app/app.router.dart';
 import '../../../general_widgets/custom_textfield.dart';
-import '../../shared/shared.dart';
+import '../forgot_password/forgot_password_view.dart';
+import 'package:stacked/stacked.dart';
 import 'login_viewmodel.dart';
 
 class LoginView extends StatelessWidget {
@@ -63,7 +62,7 @@ class LoginView extends StatelessWidget {
               SizedBox(
                 height: 30.0,
               ),
-              CustomTextField(
+              const CustomTextField(
                 keyboardType: TextInputType.emailAddress,
                 inputAction: TextInputAction.next,
                 autoFocus: false,
@@ -86,7 +85,7 @@ class LoginView extends StatelessWidget {
               SizedBox(
 //                alignment: Alignment.topRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => model.navigateToForgotPasswordScreen(),
                   child: const Text('Forget Password?'),
                 ),
               ),
@@ -97,7 +96,7 @@ class LoginView extends StatelessWidget {
                 child: FractionallySizedBox(
                   widthFactor: 1.0,
                   child: ElevatedButton(
-                    child: Text(
+                    child: const Text(
                       'Sign In',
                       style: TextStyle(
                           fontSize: 16,
@@ -121,8 +120,8 @@ class LoginView extends StatelessWidget {
                   TextButton(onPressed: () {}, child: Text('Register')),
                   const Text('Don\'t have an account?'),
                   TextButton(
-                    onPressed: () {},
-                    child: Text('Register'),
+                    onPressed: () => model.navigateToSignUpScreen(),
+                    child: const Text('Register'),
                   )
                 ],
               ),
