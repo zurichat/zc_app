@@ -11,6 +11,7 @@ import 'package:hng/ui/view/channel/new_channel/new_channel.dart';
 import 'package:hng/ui/view/channel/channel_page_view.dart';
 import 'package:stacked/stacked.dart';
 
+import '../ui/view/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/otp/otp_view.dart';
@@ -26,19 +27,14 @@ import '../ui/view/sign_up/sign_up_view.dart';
 class Routes {
   static const String loginView = '/login-view';
   static const String otpView = '/otp-view';
-
   static const String channelView = '/channel-view';
-
-
   static const String navBarView = '/nav-bar-view';
   static const String onboardingView = '/';
-
   static const String preferenceView = '/preference-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String workspaceView = '/workspace-view';
-
+  static const String channelNotificationView = '/channel-notification-view';
   static const String signUpView = '/sign-up-view';
-
   static const String newChannel = '/newChannel-view';
   static const String channelInfoView = '/channel-info-view';
 
@@ -50,6 +46,7 @@ class Routes {
     preferenceView,
     useDifferentEmailView,
     workspaceView,
+    channelNotificationView,
 
     signUpView,
 
@@ -75,11 +72,8 @@ class StackedRouter extends RouterBase {
 
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
-
+    RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
         RouteDef(Routes.signUpView, page: SignUpView),
-
-
-
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
   ];
@@ -128,6 +122,9 @@ settings: data,
         settings: data,
       );
     },
+    ChannelNotificationView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ChannelNotificationView(),
 
      SignUpView: (data) {
       return MaterialPageRoute<dynamic>(
