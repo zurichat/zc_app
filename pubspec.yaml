@@ -26,6 +26,7 @@ dependencies:
   permission_handler: ^8.1.4+2
   shared_preferences: ^2.0.7
   stacked: ^2.1.8
+  stacked_hooks: ^0.2.1
   stacked_services: ^0.8.6
   stacked_themes: ^0.3.6
   url_launcher: ^6.0.9
