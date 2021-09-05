@@ -33,17 +33,12 @@ packages:
     dependency: transitive
     description:
       name: async
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.6.1"
       url: "https://pub.flutter-io.cn"
     source: hosted
-
-
     version: "2.6.1"
-
-
-
-
-
-
   boolean_selector:
     dependency: transitive
     description:
