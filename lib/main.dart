@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hng/ui/view/splashscreen/splashscreen.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:overlay_support/overlay_support.dart';
-import 'package:hng/ui/view/workspace/create_workspace/create_workspace.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
@@ -22,19 +21,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThemeBuilder(
-        themes: getThemes(),
-        builder: (context, regularTheme, darkTheme, themeMode) =>
-            OverlaySupport(
-              child: MaterialApp(
-                debugShowCheckedModeBanner: false,
-                navigatorKey: StackedService.navigatorKey,
-                onGenerateRoute: StackedRouter().onGenerateRoute,
-                title: 'ZuriChat App',
-                theme: regularTheme,
-                darkTheme: darkTheme,
-                themeMode: themeMode,
-                initialRoute: Routes.loginView,
-              ),
-            ));
+      themes: getThemes(),
+      builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          navigatorKey: StackedService.navigatorKey,
+          onGenerateRoute: StackedRouter().onGenerateRoute,
+          title: 'ZuriChat App',
+          theme: regularTheme,
+          darkTheme: darkTheme,
+          themeMode: themeMode,
+          initialRoute: Routes.onboardingView,
+        ),
+      ),
+    );
   }
 }

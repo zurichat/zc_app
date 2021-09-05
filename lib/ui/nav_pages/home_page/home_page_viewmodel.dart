@@ -12,6 +12,8 @@ class HomePageViewModel extends StreamViewModel {
     NavigationService().navigateTo(Routes.preferenceView);
   }
 
+  nToWorkspace() {
+    // NavigationService().navigateTo(Routes.workspaceView);
   void nToWorkspace() {
     NavigationService().navigateTo(Routes.workspaceView);
   }
