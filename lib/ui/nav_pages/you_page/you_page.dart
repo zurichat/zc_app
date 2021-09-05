@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/custom_text.dart';
 import 'widget_components/customtiles.dart';
 import 'you_page_viewmodel.dart';
 import '../../shared/colors.dart';
@@ -26,19 +27,69 @@ class YouPage extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Row(
+                    children: [
+                      Container(
+                          width: 100,
+                          height: 100,
+                          child: CircleAvatar(
+                              radius: 10,
+                              backgroundColor: AppColors.whiteColor,
+                              child: Image(
+                                image: AssetImage(
+                                    'assets/background/appBarLogo.png'),
+                              ))),
+                      SizedBox(width: 10),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            CustomText(
+                                text: 'Oscar',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                            CustomText(
+                              text: "Active",
+                              color: AppColors.greyishColor,
+                              fontSize: 15,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
                   Container(
                     decoration: BoxDecoration(
-                        border: Border.all(width: 2, color: Colors.white),
-                        shape: BoxShape.rectangle),
-                    child: Image.asset(
-                      "assets/background/appBarLogo.png",
-                      height: 50,
-                      width: 50,
+                      border:
+                          Border.all(width: 0.5, color: AppColors.greyishColor),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          prefixIcon: Icon(Icons.chat_bubble_outline_rounded),
+                          suffixIcon: Icon(Icons.close)),
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  SizedBox(height: 32),
+                  Row(
                     children: [
+                      Icon(Icons.notifications_off_outlined,
+                          size: 20, color: AppColors.greyishColor),
+                      SizedBox(width: 10),
+                      CustomText(
+                          text: "Pause Notifications", color: Colors.black87),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Icon(Icons.circle_outlined,
+                          size: 20, color: AppColors.greyishColor),
+                      SizedBox(width: 10),
+                      CustomText(text: "Go"),
                       Text(
                         "Zuri",
                         style: TextStyle(
