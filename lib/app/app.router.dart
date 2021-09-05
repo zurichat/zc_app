@@ -195,12 +195,22 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    ProfilePageView: (data) {
+      var args = data.getArgs<ProfilePageViewArguments>(
+        orElse: () => ProfilePageViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ProfilePageView(key: args.key),
+        settings: data,
+      );
+    },
   };
 }
 
 /// ************************************************************************
 /// Arguments holder classes
 /// *************************************************************************
+
 
 /// DmUserView arguments holder class
 class DmUserViewArguments {

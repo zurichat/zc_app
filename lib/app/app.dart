@@ -1,6 +1,8 @@
+
 import 'package:hng/ui/view/channel/channels_view.dart';
 import 'package:hng/ui/view/channel/new_channel/new_channel.dart';
 import 'package:hng/ui/view/channel_notification/channel_notification_view.dart';
+
 import 'package:hng/ui/view/dm_user/dm_user_view.dart';
 import 'package:hng/ui/view/forgot_password/forgot_password_view.dart';
 import 'package:hng/ui/view/nav_bar/nav_bar_view.dart';
@@ -28,11 +30,11 @@ import '../ui/view/login/login_view.dart';
 // ], dependencies: [
 //   LazySingleton(classType: NavigationService)
 // ])
-// =======
 @StackedApp(
   routes: [
     //MaterialRoute(page: HomeView, initial: true),
     MaterialRoute(page: LoginView),
+
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView, initial: true),
     MaterialRoute(page: PreferenceView),
