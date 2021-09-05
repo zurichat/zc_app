@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/direct_message/direct_message.dart';
 
-import '../../../utilities/constants/styles.dart';
 
 class CustomDMListTile extends StatelessWidget {
   final imagelink;
@@ -13,22 +13,28 @@ class CustomDMListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        CircleAvatar(
-          backgroundImage: AssetImage(imagelink),
-          radius: 20.0,
-        ),
-        const SizedBox(width: 8),
-        Text(
-          userName,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            color: greyishColor,
-            fontSize: 15,
+    return InkWell(
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => DirectMessage(username: userName))),
+      child: Row(
+        children: [
+          CircleAvatar(
+            backgroundImage: AssetImage(imagelink),
+            radius: 20.0,
           ),
-        ),
-      ],
+          const SizedBox(width: 8),
+          Text(
+            userName,
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
+              color: Colors.black,
+              fontSize: 15,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
