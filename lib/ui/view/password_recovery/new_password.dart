@@ -34,7 +34,6 @@ class NewPassView extends StatelessWidget {
                     keyboardType: TextInputType.visiblePassword,
                     inputAction: TextInputAction.next,
                     autoCorrect: false,
-                    autoFocus: false,
                 obscureText: true,
                 labelText: 'Password',
                 hintText: 'Enter Password'),),
