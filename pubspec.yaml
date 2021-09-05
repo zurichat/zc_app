@@ -1,6 +1,6 @@
 name: hng
 description: A new Flutter project.
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
@@ -56,6 +56,7 @@ flutter:
     - assets/background/status.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
+    - assets/icons/attachment-outline.png
     - assets/images/
     - assets/logo/splash_image.png
     - assets/images/user.png
