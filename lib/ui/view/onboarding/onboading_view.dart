@@ -37,11 +37,10 @@ class _OnboardingViewState extends State<OnboardingView> {
                     ''' tracks right in the App''',
                 image: Image.asset('assets/images/onboarding_screen_1.png')),
             PageViewModel(
-              title: 'Chess Room',
-              body: '''Chat with other team members without'''
-                  ''' any distractions from the world''',
-              image: Image.asset('assets/images/onboarding_screen_2.png'),
-            ),
+                title: 'Chess Room',
+                body:
+                    'You can also play games with friends and do other amazing stuff',
+                image: Image.asset('assets/images/onboarding_screen_2.png')),
           ],
           done: const Text(
             'Done',
