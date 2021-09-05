@@ -5,11 +5,32 @@ import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
 class AppTextStyles {
+  static TextStyle heading9 = GoogleFonts.lato(
+    fontWeight: FontWeight.w500,
+    color: AppColors.blackColor,
+    fontSize: 16,
+  );
+  static TextStyle heading8 = GoogleFonts.lato(
+    fontWeight: FontWeight.w500,
+    color: AppColors.greenColor,
+    fontSize: 16,
+  );
+  static TextStyle heading7 = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.blackColor,
+    fontSize: 20,
+  );
   static TextStyle heading6 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
     color: AppColors.greyishColor,
     fontSize: 24,
   );
+  static const TextStyle heading7 = TextStyle(
+    fontWeight: FontWeight.w700,
+    color: AppColors.blackColor,
+    fontSize: 24,
+  );
+  static const TextStyle heading5 = TextStyle(
   static TextStyle heading5 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
     color: AppColors.greyishColor,
@@ -22,6 +43,11 @@ class AppTextStyles {
   );
   static TextStyle normalText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
+    fontSize: 14,
+  );
+  static TextStyle body3Medium = GoogleFonts.lato(
+    fontWeight: FontWeight.w500,
+    color: AppColors.greyishColor,
     fontSize: 14,
   );
   static TextStyle body2Medium = GoogleFonts.lato(
@@ -70,6 +96,12 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.whiteColor,
     fontSize: 16,
+  );
+  static const TextStyle textButtonText = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    color: AppColors.blueColor,
+    decoration: TextDecoration.underline,
   );
 }
 
