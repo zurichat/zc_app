@@ -27,6 +27,7 @@ flutter:
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
     - assets/images/vector.png
+
   # fonts:
   #   - family: Schyler
   #     fonts:
