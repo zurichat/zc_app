@@ -62,7 +62,7 @@ class _SearchResultsState extends State<SearchResults> {
                     onPressed: () {},
                     icon: const Icon(
                       Icons.close,
-                      color: AppColors.red,
+                      color: AppColors.redColor,
                     )),
               )),
         ],
