@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'colors.dart';
 
 class AppTextStyles {
-  static const TextStyle heading6 = TextStyle(
+  static TextStyle heading6 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
     color: AppColors.greyishColor,
     fontSize: 24,
@@ -15,33 +16,63 @@ class AppTextStyles {
     fontSize: 24,
   );
   static const TextStyle heading5 = TextStyle(
+  static TextStyle heading5 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
     color: AppColors.greyishColor,
     fontSize: 16,
   );
-  static const TextStyle body1Regular = TextStyle(
+  static TextStyle body1Regular = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     color: AppColors.greyishColor,
     fontSize: 16,
   );
-  static const TextStyle body2Medium = TextStyle(
+  static TextStyle normalText = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+  );
+  static TextStyle body2Medium = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
     color: AppColors.greyishColor,
     fontSize: 14,
   );
-  static const TextStyle body1Bold = TextStyle(
+  static TextStyle body1Bold = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
-    color: AppColors.greyishColor,
+    color: AppColors.deepBlackColor,
     fontSize: 16,
   );
-  static const TextStyle body2Bold = TextStyle(
+  static TextStyle body2Bold = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
     color: AppColors.greyishColor,
     fontSize: 14,
   );
+  static TextStyle timestamp = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.deepBlackColor,
+    fontSize: 12,
+  );
+  static TextStyle unreadText = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.whiteColor,
+    fontSize: 12,
+  );
+
+  // unread count
+  static Widget unreadCount(int count) {
+    return Container(
+      height: 24,
+      width: 24,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        color: AppColors.unreadMessageColor,
+      ),
+      child: Center(
+        child: Text(count.toString(), style: AppTextStyles.unreadText),
+      ),
+    );
+  }
 
   // button
-  static const TextStyle buttonText = TextStyle(
+  static TextStyle buttonText = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
     color: AppColors.whiteColor,
     fontSize: 16,
