@@ -1,8 +1,11 @@
 
 
+import 'package:hng/ui/nav_pages/home_page/home_page.dart';
+import 'package:hng/ui/view/dm_user/dm_user_view.dart';
 import 'package:hng/ui/view/nav_bar/nav_bar_view.dart';
 import 'package:hng/ui/view/onboarding/onboading_view.dart';
 import 'package:hng/ui/view/preference/preference_view.dart';
+import 'package:hng/ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
 import 'package:hng/ui/view/workspace/workspace_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -24,6 +27,10 @@ import '../ui/view/preference/preference_view.dart';
     MaterialRoute(page: OnboardingView, initial: true),
     MaterialRoute(page: PreferenceView),
     MaterialRoute(page: ChannelInfoView),
+    MaterialRoute(page: DmUserView),
+    MaterialRoute(page: UseDifferentEmailView),
+    MaterialRoute(page: HomePage),
+    MaterialRoute(page: WorkspaceView)
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
@@ -32,7 +39,8 @@ import '../ui/view/preference/preference_view.dart';
       classType: SharedPreferenceLocalStorage,
       presolveUsing: SharedPreferences.getInstance,
     ),
-    LazySingleton(classType: ConnectivityService)
+    LazySingleton(classType: ConnectivityService,
+    resolveUsing: ConnectivityService.getInstance)
   ],
 )
 class AppSetup {

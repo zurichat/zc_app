@@ -80,7 +80,9 @@ class LoginView extends StatelessWidget {
                 child: FractionallySizedBox(
                   widthFactor: 1.0,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      model.navigateToHomeScreen();
+                    },
                     child: const Text(
                       'Sign In',
                       style: TextStyle(
