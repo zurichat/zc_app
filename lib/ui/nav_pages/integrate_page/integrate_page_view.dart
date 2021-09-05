@@ -44,7 +44,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: FlatButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(Icons.today),
               label: Text(
@@ -54,7 +54,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: FlatButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(FontAwesomeIcons.chessKnight),
               label: Text(
@@ -64,7 +64,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: FlatButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(Icons.meeting_room),
               label: Text(
@@ -74,7 +74,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: FlatButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(Icons.notifications_none_sharp),
               label: Text(
@@ -84,7 +84,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: FlatButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(FontAwesomeIcons.music),
               label: Text(
@@ -94,7 +94,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: FlatButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(Icons.donut_small),
               label: Text(
@@ -104,7 +104,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: FlatButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(Icons.timer),
               label: Text(

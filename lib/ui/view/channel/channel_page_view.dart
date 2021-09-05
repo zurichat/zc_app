@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../models/user_model.dart';
+// import '../../../models/user_model.dart';
 import '../../shared/colors.dart';
 import '../../shared/shared.dart';
 import 'channel_page_viewmodel.dart';
@@ -12,20 +12,6 @@ class ChannelPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<UserModel> usermodel = [
-      UserModel(
-        userName: 'Clutch',
-        joinInfo: 'Joined #teamsocrates',
-        time: '12:30pm',
-        userimg: 'assets/channel_page/female.png',
-      ),
-      UserModel(
-        userName: 'Ali',
-        joinInfo: 'Joined #teamsocrates',
-        time: '12:30pm',
-        userimg: 'assets/channel_page/femaleuser.png',
-      )
-    ];
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       //this parameter allows us to reuse the view model to persist the state
       disposeViewModel: false,
