@@ -4,10 +4,12 @@ import '../../../shared/colors.dart';
 
 class CustomHomePageSectionTitle extends StatelessWidget {
   final title;
+  final void Function()? ontap;
 
   const CustomHomePageSectionTitle({
     Key? key,
     this.title,
+    this.ontap,
   }) : super(key: key);
 
   @override
@@ -15,15 +17,16 @@ class CustomHomePageSectionTitle extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+      GestureDetector(
+              onTap: ontap,
+              child: const  Text(
           title,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
             color: AppColors.deepBlackColor,
             fontSize: 16,
           ),
-        ),
-        
+        ),),
       ],
     );
   }

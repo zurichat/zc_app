@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
+import 'package:stacked/stacked.dart';
 import 'package:hng/ui/direct_message/direct_message.dart';
 
 import '../../../shared/colors.dart';
 
-class CustomDMListTile extends StatelessWidget {
+class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
   final imagelink;
   final userName;
   final String name;
@@ -15,12 +17,11 @@ class CustomDMListTile extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, HomePageViewModel model) {
     return InkWell(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => DirectMessage(username: userName))),
+      onTap: () {
+        model.navigateToDmUser();
+      },
       child: Row(
         children: [
           Container(

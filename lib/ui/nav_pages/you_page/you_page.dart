@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/ui/nav_pages/you_page/you_page_viewmodel.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:stacked/stacked.dart';
 
 
 class YouPage extends StatelessWidget {
