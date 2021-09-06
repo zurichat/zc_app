@@ -13,17 +13,20 @@ import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/workspace/workspace_view.dart';
+import '../ui/view/file_search/file_search_view.dart';
 
 class Routes {
   static const String navBarView = '/';
   static const String loginView = '/login-view';
   static const String preferenceView = '/preference-view';
   static const String workspaceView = '/workspace-view';
+  static const String fileSearchView = 'file-search-view';
   static const all = <String>{
     navBarView,
     loginView,
     preferenceView,
     workspaceView,
+    fileSearchView,
   };
 }
 
@@ -35,6 +38,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.fileSearchView, page: FileSearchView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -60,6 +64,12 @@ class StackedRouter extends RouterBase {
     WorkspaceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceView(),
+        settings: data,
+      );
+    },
+    FileSearchView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const FileSearchView(),
         settings: data,
       );
     },

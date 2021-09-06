@@ -7,7 +7,7 @@ import '../../../app/app.router.dart';
 
 class HomePageViewModel extends BaseViewModel {
   nToPref() {
-    NavigationService().navigateTo(Routes.preferenceView);
+    NavigationService().navigateTo(Routes.fileSearchView);
   }
   nToWorkspace(){
     NavigationService().navigateTo(Routes.workspaceView);
