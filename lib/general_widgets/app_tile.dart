@@ -14,7 +14,6 @@ class AppTile extends StatelessWidget {
     this.subtitle,
     this.trailing,
     required this.onPressed,
-    
   }) : super(key: key);
 
   @override
@@ -29,7 +28,7 @@ class AppTile extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         padding: const EdgeInsets.all(16.0),
         child: Row(
-          children: [ 
+          children: [
             Container(
               width: MediaQuery.of(context).size.width * 0.55,
               child: ListTile(

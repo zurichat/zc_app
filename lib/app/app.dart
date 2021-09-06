@@ -1,3 +1,6 @@
+import 'package:hng/ui/view/plugins/add_plugin_view.dart';
+import 'package:hng/ui/view/plugins/edit_plugin_view.dart';
+import 'package:hng/ui/view/plugins/plugins_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -10,6 +13,7 @@ import '../ui/view/channel/channels_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/channel_notification/channel_notification_view.dart';
+import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
 import '../ui/view/forgot_password/forgot_password_view.dart';
@@ -20,7 +24,6 @@ import '../ui/view/otp/otp_view.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
-// import '../ui/view/workspace/create_workspace/create_workspace.dart';
 import '../ui/view/workspace/workspace_view.dart';
 
 // @StackedApp(routes: [
@@ -47,9 +50,13 @@ import '../ui/view/workspace/workspace_view.dart';
     MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: DmSearch),
     MaterialRoute(page: WorkspaceView),
+    MaterialRoute(page: DmJumpToView),
     MaterialRoute(page: OtpView),
     MaterialRoute(page: DmUserView),
     MaterialRoute(page: Splashview),
+    MaterialRoute(page: PluginView),
+    MaterialRoute(page: AddPluginView),
+    MaterialRoute(page: EditPluginView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

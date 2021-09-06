@@ -7,16 +7,20 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/password_recovery/recovery_view.dart';
-import 'package:hng/ui/view/splashscreen/splashscreen.dart';
-import '../ui/profile_page/profile_page_view.dart';
+import '../ui/view/password_recovery/recovery_view.dart';
+import '../ui/view/plugins/add_plugin_view.dart';
+import '../ui/view/plugins/edit_plugin_view.dart';
+import '../ui/view/plugins/plugins_view.dart';
+import '../ui/view/splashscreen/splashscreen.dart';
 import 'package:stacked/stacked.dart';
 
+import '../ui/profile_page/profile_page_view.dart';
 import '../ui/view/channel/channel_page_view.dart';
 import '../ui/view/channel/channels_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
 import '../ui/view/channel_notification/channel_notification_view.dart';
+import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
 import '../ui/view/login/login_view.dart';
@@ -41,6 +45,7 @@ class Routes {
   static const String channelPageView = '/channel-page-view';
   static const String dmSearch = '/dm-search';
   static const String workspaceView = '/workspace-view';
+  static const String dmJumpToView = '/dm-jump-to-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String newChannel = '/newChannel-view';
   static const String signUpView = '/sign-up-view';
@@ -54,6 +59,10 @@ class Routes {
   static const String channelNotificationView = '/channel-notification-view';
 
   static const String dmUserView = '/dm-user-view';
+  static const String pluginView = '/plugin-view';
+  static const String addPluginView = '/add-plugin-view';
+  static const String editPluginView = '/edit-plugin-view';
+
   static const all = <String>{
     loginView,
     createWorkSpace,
@@ -63,6 +72,7 @@ class Routes {
     preferenceView,
     signUpView,
     workspaceView,
+    dmJumpToView,
     newChannel,
     channelView,
     channelInfoView,
@@ -73,6 +83,9 @@ class Routes {
     channelNotificationView,
     dmUserView,
     splashView,
+    pluginView,
+    addPluginView,
+    editPluginView,
   };
 }
 
@@ -91,6 +104,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.dmSearch, page: DmSearch),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.dmJumpToView, page: DmJumpToView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.signUpView, page: SignUpView),
@@ -111,6 +125,9 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.signUpView, page: SignUpView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.pluginView, page: PluginView),
+    RouteDef(Routes.addPluginView, page: AddPluginView),
+    RouteDef(Routes.editPluginView, page: EditPluginView),
     RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
@@ -176,6 +193,30 @@ class StackedRouter extends RouterBase {
     WorkspaceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceView(),
+        settings: data,
+      );
+    },
+    PluginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PluginView(),
+        settings: data,
+      );
+    },
+    AddPluginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const AddPluginView(),
+        settings: data,
+      );
+    },
+    EditPluginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const EditPluginView(),
+        settings: data,
+      );
+    },
+    DmJumpToView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const DmJumpToView(),
         settings: data,
       );
     },
