@@ -18,6 +18,7 @@ class CustomTextField extends StatelessWidget {
   final bool? obscureText;
   final String? labelText;
   final String? hintText;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -27,6 +28,7 @@ class CustomTextField extends StatelessWidget {
       autocorrect: autoCorrect!,
       obscureText: obscureText!,
       decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         labelText: labelText,
         hintText: hintText,
         border: OutlineInputBorder(

@@ -59,7 +59,7 @@ class AppAlertDialog {
                   GestureDetector(
                     child: CustomText(
                       text: 'CANCEL',
-                      color: AppColors.greenColor,
+                      color: AppColors.zuriPrimaryColor,
                       fontSize: MediaQuery.of(context).size.width / 28,
                       fontWeight: FontWeight.bold,
                     ),
@@ -72,7 +72,7 @@ class AppAlertDialog {
 //                  onTap: () => onPressed ,
                     child: CustomText(
                       text: 'SEND',
-                      color: AppColors.greenColor,
+                      color: AppColors.zuriPrimaryColor,
                       fontSize: MediaQuery.of(context).size.width / 28,
                       fontWeight: FontWeight.bold,
                     ),

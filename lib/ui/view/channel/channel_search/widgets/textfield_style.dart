@@ -32,6 +32,6 @@ TextStyle greenTextStyle() {
   return GoogleFonts.lato(
     fontSize: 16,
     fontWeight: FontWeight.w800,
-    color: AppColors.greenColor,
+    color: AppColors.zuriPrimaryColor,
   );
 }

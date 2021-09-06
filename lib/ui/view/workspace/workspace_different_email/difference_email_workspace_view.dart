@@ -17,7 +17,7 @@ class UseDifferentEmailView extends StatelessWidget {
       viewModelBuilder: () => UseDifferentEmailViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.greenColor,
+          backgroundColor: AppColors.zuriPrimaryColor,
           title: Text(
             'Use difference email',
           ),

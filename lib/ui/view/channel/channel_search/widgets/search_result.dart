@@ -30,7 +30,7 @@ class _SearchResultsState extends State<SearchResults> {
               child: Container(
                 height: 4,
                 width: 4,
-                color: AppColors.greenColor,
+                color: AppColors.zuriPrimaryColor,
               ),
             ),
           ),

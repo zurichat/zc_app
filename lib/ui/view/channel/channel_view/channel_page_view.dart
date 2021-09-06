@@ -15,7 +15,7 @@ class ChannelPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  final usermodel = [
+    final usermodel = [
       UserModel(
         userName: 'Clutch',
         joinInfo: 'Joined #teamsocrates',
@@ -227,7 +227,7 @@ Container channelInfo(String text, String nexttext) {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.greenColor,
+                  color: AppColors.zuriPrimaryColor,
                 ),
                 children: <TextSpan>[
                   TextSpan(

@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 
 // import 'package:url_launcher/url_launcher.dart';
 
-import '../ui/shared/constants.dart';
+import 'constants.dart';
 import 'extensions/string_extension.dart';
 
 ImageProvider makeNetworkImage(String? link) {

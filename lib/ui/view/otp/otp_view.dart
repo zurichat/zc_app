@@ -49,7 +49,7 @@ class _OtpViewState extends State<OtpView> {
     RoundedRectangleBorder roundedBorder() {
       return RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
-          side: BorderSide(color: AppColors.greenColor));
+          side: BorderSide(color: AppColors.zuriPrimaryColor));
     }
 
     OutlineInputBorder outlineInputBorder() {
@@ -58,7 +58,7 @@ class _OtpViewState extends State<OtpView> {
           borderSide: BorderSide(color: AppColors.blackColor));
     }
 
-    final  otpDecorator = InputDecoration(
+    final otpDecorator = InputDecoration(
         contentPadding: EdgeInsets.all(screenAwareSize(20, context)),
         focusedBorder: outlineInputBorder(),
         enabledBorder: outlineInputBorder(),
@@ -181,7 +181,7 @@ class _OtpViewState extends State<OtpView> {
                   width: double.infinity,
                   child: MaterialButton(
                       shape: roundedBorder(),
-                      color: AppColors.greenColor,
+                      color: AppColors.zuriPrimaryColor,
                       onPressed: () {
                         model.navigatorToHome();
                       },

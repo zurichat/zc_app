@@ -12,7 +12,7 @@ Widget customAppBar() {
             padding: EdgeInsets.symmetric(horizontal: 19.0, vertical: 19),
             child: Icon(
               Icons.star,
-              color: AppColors.greenColor,
+              color: AppColors.zuriPrimaryColor,
             )),
       )
     ],

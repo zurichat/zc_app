@@ -14,11 +14,16 @@ class SplashscreenViewModel extends BaseViewModel {
     Timer(
       const Duration(seconds: 3),
       () {
-        if (storage.getBool('onboarded') != true) {
-          storage.setBool('onboarded', true);
-          navigation.navigateTo(Routes.onboardingView);
-        }
-        navigation.navigateTo(Routes.loginView);
+        navigation.navigateTo(Routes.onboardingView);
+
+        //TODO comment it out to get access to once only view
+        // if (storage.getBool('onboarded') == null ||
+        //     storage.getBool('onboarded') == false) {
+        //   storage.setBool('onboarded', true);
+        //   navigation.navigateTo(Routes.onboardingView);
+        // } else {
+        //   navigation.navigateTo(Routes.loginView);
+        // }
       },
     );
   }
