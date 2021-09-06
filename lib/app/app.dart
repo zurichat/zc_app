@@ -4,6 +4,8 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 import '../services/connectivity_service.dart';
 import '../services/local_storage_services.dart';
+import '../ui/nav_pages/home_page/home_page.dart';
+import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/channel/channel_page_view.dart';
 import '../ui/view/channel/channels_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
@@ -29,8 +31,10 @@ import '../ui/view/workspace/workspace_view.dart';
   routes: [
     MaterialRoute(page: LoginView),
     MaterialRoute(page: NavBarView),
-    MaterialRoute(page: OnboardingView, initial: true),
+    MaterialRoute(page: OnboardingView),
     MaterialRoute(page: PreferenceView),
+    MaterialRoute(page: LoginView),
+    MaterialRoute(page: OtpView),
     MaterialRoute(page: SignUpView),
     MaterialRoute(page: SignUpView),
     MaterialRoute(page: WorkspaceView),
@@ -39,6 +43,8 @@ import '../ui/view/workspace/workspace_view.dart';
     MaterialRoute(page: ChannelNotificationView),
     MaterialRoute(page: NewChannel),
     MaterialRoute(page: ChannelInfoView),
+    MaterialRoute(page: HomePage),
+    MaterialRoute(page: AddPeopleView, initial: true),
     MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: DmSearch),
     MaterialRoute(page: WorkspaceView),

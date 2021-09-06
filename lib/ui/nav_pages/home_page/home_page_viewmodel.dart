@@ -16,7 +16,7 @@ class HomePageViewModel extends StreamViewModel {
     NavigationService().navigateTo(Routes.workspaceView);
   }
 
-  navigateToDmUser() {
+  void navigateToDmUser() {
     locator<NavigationService>().navigateTo(Routes.dmUserView);
   }
 
@@ -40,14 +40,10 @@ class HomePageViewModel extends StreamViewModel {
   Stream get stream => checkConnectivity();
 
   bool get status {
-    this.stream.listen((event) {
+    stream.listen((event) {
       connectionStatus = event;
       notifyListeners();
     });
     return connectionStatus;
-  }
-
-  void nToInfo() {
-    NavigationService().navigateTo(Routes.channelInfoView);
   }
 }

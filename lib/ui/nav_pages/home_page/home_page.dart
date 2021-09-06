@@ -207,9 +207,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            model.nToInfo();
-          },
+          onPressed: () {},
           child: const Icon(
             Icons.open_in_new_outlined,
             color: AppColors.whiteColor,
