@@ -31,6 +31,7 @@ import '../ui/view/otp/otp_view.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/workspace/workspace_view.dart';
+import '../ui/view/darft/darft_view.dart';
 
 class Routes {
   static const String loginView = '/login-view';
@@ -45,17 +46,18 @@ class Routes {
   static const String channelInfoView = '/channel-info-view';
   static const String homePage = '/home-page';
   static const String addPeopleView = '/';
-  static const String otpView = '/otp-view';
+  
   static const String channelView = '/channel-view';
-  static const String onboardingView = '/';
-  static const String channelInfoView = '/channel-info-view';
+  static const String draftView = '/draft-view';
+  
+  
   static const String channelPageView = '/channel-page-view';
   static const String dmSearch = '/dm-search';
-  static const String workspaceView = '/workspace-view';
+  
   static const String dmJumpToView = '/dm-jump-to-view';
   static const String useDifferentEmailView = '/use-different-email-view';
-  static const String newChannel = '/newChannel-view';
-  static const String signUpView = '/sign-up-view';
+  
+  
   static const String popupView = '/popup-view';
   static const String createWorkSpace = '/create-work-space';
   static const String channelList = '/channel-list';
@@ -93,6 +95,7 @@ class Routes {
     pluginView,
     addPluginView,
     editPluginView,
+    draftView,
   };
 }
 
@@ -151,6 +154,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.dmUserView, page: DmUserView),
+    RouteDef(Routes.darftView, page: DraftView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -301,6 +305,13 @@ class StackedRouter extends RouterBase {
     ForgotPassView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ForgotPassView(),
+        settings: data,
+      );
+    },
+    
+    DraftView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const DraftView(),
         settings: data,
       );
     },
