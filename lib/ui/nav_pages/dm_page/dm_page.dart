@@ -8,7 +8,6 @@ import 'dm_page_viewmodel.dart';
 import 'widgets/dmmessage_read.dart';
 import 'widgets/dmmessage_unread.dart';
 
-
 class DmPage extends StatelessWidget {
   const DmPage({Key? key}) : super(key: key);
 
@@ -34,7 +33,7 @@ class DmPage extends StatelessWidget {
               Icons.add,
               color: AppColors.whiteColor,
             ),
-            backgroundColor: AppColors.greenColor,
+            backgroundColor: AppColors.zuriPrimaryColor,
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -102,7 +101,3 @@ class DmPage extends StatelessWidget {
     );
   }
 }
-
-
-
-

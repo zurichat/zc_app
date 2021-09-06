@@ -33,7 +33,7 @@ class NavBarView extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             backgroundColor: AppColors.whiteColor,
-            selectedItemColor: AppColors.greenColor,
+            selectedItemColor: AppColors.zuriPrimaryColor,
             unselectedItemColor: AppColors.navBarItemColor,
             selectedFontSize: 14,
             unselectedFontSize: 14,

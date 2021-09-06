@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
-import '../../../app/app.locator.dart';
-import '../../../app/app.router.dart';
 import '../../../general_widgets/custom_text.dart';
 import 'onboarding_viewmodel.dart';
 
@@ -17,7 +14,6 @@ class OnboardingView extends StatefulWidget {
 
 class _OnboardingViewState extends State<OnboardingView> {
   final introKey = GlobalKey<IntroductionScreenState>();
-  final navigator = locator<NavigationService>();
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +49,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                 'Done',
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
-              onDone: () => navigator.navigateTo(Routes.loginView),
+              onDone: () => model.navigateToNext(),
               showDoneButton: true,
               showNextButton: true,
               next: TextButton(

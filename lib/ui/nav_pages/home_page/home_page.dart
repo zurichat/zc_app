@@ -8,7 +8,7 @@ import '../../shared/colors.dart';
 import '../../shared/shared.dart';
 import '../dm_page/dm_search_find_page.dart';
 import 'package:stacked/stacked.dart';
-import '../../shared/constants.dart';
+import '../../../utilities/constants.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -156,7 +156,7 @@ class HomePage extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.favorite,
-                              color: AppColors.greenColor,
+                              color: AppColors.zuriPrimaryColor,
                               size: 16,
                             ),
                             const SizedBox(width: 8),
@@ -205,7 +205,7 @@ class HomePage extends StatelessWidget {
             Icons.open_in_new_outlined,
             color: AppColors.whiteColor,
           ),
-          backgroundColor: AppColors.greenColor,
+          backgroundColor: AppColors.zuriPrimaryColor,
         ),
       ),
     );
