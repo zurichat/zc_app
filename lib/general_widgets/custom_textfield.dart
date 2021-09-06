@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../ui/shared/colors.dart';
-
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,
-    this.keyboardType,
-    this.inputAction,
-    this.autoFocus,
-    this.autoCorrect,
-    this.obscureText,
-    this.labelText,
+    required this.keyboardType,
+    required this.inputAction,
+    required this.autoFocus,
+    required this.autoCorrect,
+    required this.obscureText,
+    required this.labelText,
     this.hintText,
   }) : super(key: key);
   final keyboardType;
@@ -20,6 +18,7 @@ class CustomTextField extends StatelessWidget {
   final bool? obscureText;
   final String? labelText;
   final String? hintText;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -32,13 +31,12 @@ class CustomTextField extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         labelText: labelText,
         hintText: hintText,
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
         ),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-          borderSide: BorderSide(color: AppColors.zuriTextBodyColor),
-        ),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            borderSide: BorderSide(color: Color(0xff1A61DB))),
       ),
     );
   }
