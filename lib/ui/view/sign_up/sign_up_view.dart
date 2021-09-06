@@ -44,10 +44,12 @@ class SignUpView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 4),
-                    Center(
-                      child: Text(
-                        'Please sign up to create account',
-                        style: AppTextStyles.heading5,
+                    const Center(
+                      child: CustomText(
+                        text: 'Please sign up to create account',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                        color: AppColors.zuriDarkGrey,
                       ),
                     ),
                     const SizedBox(height: 48),

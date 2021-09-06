@@ -16,6 +16,7 @@ class AppColors {
   static const Color shadowColor = Color.fromRGBO(79, 79, 79, 0.15);
   static const Color redColor = Color(0xFFF40101);
   static const Color faintTextColor = Color(0xFFC7C3C3);
+  static const Color zuriDarkGrey = Color(0xFF727272);
 
   ///Kimbie Dark Theme
   static const kimbieAccent = Color(0xFF6E9B3B);
