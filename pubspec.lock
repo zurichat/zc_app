@@ -35,6 +35,9 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
+
+    version: "2.8.1"
+
     version: "2.6.1"
   auto_size_text_pk:
     dependency: transitive
@@ -140,6 +143,8 @@ packages:
       name: charcode
       url: "https://pub.dartlang.org"
     source: hosted
+    version: "1.3.1"
+
     version: "1.2.0"
   checked_yaml:
     dependency: transitive
@@ -155,6 +160,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.3"
+
   clock:
     dependency: transitive
     description:
@@ -512,6 +518,9 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
+
+    version: "1.7.0"
+
     version: "1.3.0"
   mime:
     dependency: transitive
@@ -527,6 +536,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+
   octo_image:
     dependency: transitive
     description:
@@ -867,6 +877,9 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
+
+    version: "0.4.2"
+
     version: "0.3.0"
   timing:
     dependency: transitive
@@ -875,6 +888,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+
   typed_data:
     dependency: transitive
     description:
