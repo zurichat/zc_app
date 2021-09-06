@@ -15,13 +15,12 @@ import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/channel/channels_view.dart';
 import '../ui/view/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel_info/channel_info_view.dart';
-import '../ui/view/channel_notification/channel_notification_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
 import '../ui/view/login/login_view.dart';
 
 
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
-import '../ui/view/otp/otp_view.dart';\
+import '../ui/view/otp/otp_view.dart';
   
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';

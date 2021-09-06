@@ -45,7 +45,6 @@ flutter:
     - assets/background/bga.png
     - assets/logo/zuri_chat_logo.png
     - assets/background/appBarLogo.png
-    - assets/logo/zuri_logo.png
     - assets/channel_page/
     - assets/images/
 
@@ -53,7 +52,7 @@ flutter:
   fonts:
     - family: ZapIcon
       fonts:
-          - asset: assets/fonts/zap_icon.ttf
+        - asset: assets/fonts/zap_icon.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
