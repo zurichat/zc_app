@@ -15,16 +15,30 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-      decoration: BoxDecoration(
-          color: AppColors.paleGreen, borderRadius: BorderRadius.circular(8)),
-      child: ListTile(
-          leading: Padding(padding: EdgeInsets.all(8), child: closeIcon),
-          title: Padding(padding: EdgeInsets.all(8), child: Text(searchFilter, style: AppTextStyles.unreadText)),
-          trailing: Padding(padding: EdgeInsets.all(8), child: voiceSearch)),
+    return Stack(
+      children: [
+        Container(
+          height: 40,
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+          decoration: BoxDecoration(
+              color: AppColors.paleGreen,
+              borderRadius: BorderRadius.circular(8)),
+          child: Positioned(
+            top: 0,
+            bottom: 0,
+            child: ListTile(
+                leading: closeIcon,
+                title: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'designers',
+                    hintStyle: AppTextStyles.unreadText,
+                  ),
+                ),
+                trailing: voiceSearch),
+          ),
+        ),
+      ],
     );
   }
 }

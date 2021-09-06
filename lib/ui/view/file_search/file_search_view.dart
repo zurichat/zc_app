@@ -29,7 +29,7 @@ class _FileSearchViewState extends State<FileSearchView> {
               child: Scaffold(
                 backgroundColor: AppColors.whiteColor,
                 appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(150),
+                  preferredSize: Size.fromHeight(100),
                   child: AppBar(
                     backgroundColor: AppColors.greenColor,
                     automaticallyImplyLeading: false,
