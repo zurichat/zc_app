@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
-
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
 import 'services/theme_setup.dart';
@@ -18,12 +17,6 @@ Future main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    return MaterialApp(
-      navigatorKey: AppNavigator.key,
-      onGenerateRoute: AppRouter.generateRoute,
-      title: 'ZuriChat App',
-      home: HomeView(),
     return ThemeBuilder(
       themes: getThemes(),
       builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(
@@ -38,7 +31,6 @@ class MyApp extends StatelessWidget {
           initialRoute: Routes.splashView,
         ),
       ),
-
     );
   }
 }
