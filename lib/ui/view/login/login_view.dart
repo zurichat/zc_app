@@ -16,13 +16,13 @@ class LoginView extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         backgroundColor: Color(0xffF7F7F7),
         body: Padding(
-          padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
+          padding: EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(
-                height: 50.0,
+                height: 57.0,
               ),
               Container(
                 alignment: Alignment.center,
@@ -73,20 +73,23 @@ class LoginView extends StatelessWidget {
                 labelText: 'Password',
                 hintText: 'Enter Password',
               ),
-              Container(
-                alignment: Alignment.topRight,
+              Align(
+                alignment: Alignment.centerRight,
                 child: TextButton(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(EdgeInsets.zero),
+                  ),
                   onPressed: () => model.navigateToForgotPasswordScreen(),
                   child: Text(
                     'Forgot Password?',
                     style: TextStyle(
-                      color: AppColors.greenColor,
+                      color: AppColors.zuriPrimaryColor,
                     ),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 14.0,
+              SizedBox(
+                height: 32.0,
               ),
               Center(
                 child: FractionallySizedBox(
@@ -106,7 +109,7 @@ class LoginView extends StatelessWidget {
                     ),
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                      primary: AppColors.greenColor,
+                      primary: AppColors.zuriPrimaryColor,
                     ),
                   ),
                 ),
@@ -117,7 +120,10 @@ class LoginView extends StatelessWidget {
                   Text('Don\'t have an account?'),
                   TextButton(
                     onPressed: () => model.navigateToSignUpScreen(),
-                    child: Text('Register'),
+                    child: Text(
+                      'Register',
+                      style: TextStyle(color: AppColors.zuriPrimaryColor),
+                    ),
                   )
                 ],
               ),
