@@ -7,17 +7,16 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
+import '../ui/view/channel/channel_info/channel_info_view.dart';
+import '../ui/view/channel/channel_notification/channel_notification_view.dart';
+import '../ui/view/profile_page/profile_page_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/nav_pages/home_page/home_page.dart';
-import '../ui/profile_page/profile_page_view.dart';
 import '../ui/view/add_people/add_people_view.dart';
-import '../ui/view/channel/channel_page_view.dart';
-import '../ui/view/channel/channels_view.dart';
+import '../ui/view/channel/channel_list/channels_view.dart';
+import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
-import '../ui/view/channel_info/channel_info_view.dart';
-import '../ui/view/channel_notification/channel_notification_view.dart';
 import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
@@ -33,9 +32,10 @@ import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
-import '../ui/view/workspace/add_workspace_view.dart';
+import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
-import '../ui/view/workspace/workspace_view.dart';
+import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
+import '../ui/view/workspace/workspace_view/workspace_view.dart';
 
 class Routes {
   static const String loginView = '/login-view';
