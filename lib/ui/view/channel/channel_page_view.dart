@@ -1,10 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../../app/app.router.dart';
+import '../../../app/app.locator.dart';
 import 'package:hng/models/user_model.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import '../../../models/user_model.dart';
+import '../../shared/colors.dart';
+import '../../shared/shared.dart';
+import 'channel_page_viewmodel.dart';
 
 class ChannelPageView extends StatelessWidget {
   const ChannelPageView({Key? key}) : super(key: key);
@@ -246,6 +254,7 @@ Container channelInfo(String text, String nexttext) {
 }
 
 Row row() {
+  final navigator = locator<NavigationService>();
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     // crossAxisAlignment: CrossAxisAlignment.center,
@@ -276,12 +285,15 @@ Row row() {
       ),
       Column(
         children: [
-          CircleAvatar(
-            radius: 30,
-            backgroundColor: AppColors.lightGreen,
-            child: Icon(
-              Icons.person_add_alt_1_sharp,
-              color: AppColors.greyishColor,
+          GestureDetector(
+            onTap: () => navigator.navigateTo(Routes.addPeopleView),
+            child: CircleAvatar(
+              radius: 30,
+              backgroundColor: AppColors.lightGreen,
+              child: Icon(
+                Icons.person_add_alt_1_sharp,
+                color: AppColors.greyishColor,
+              ),
             ),
           ),
           SizedBox(

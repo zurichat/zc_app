@@ -6,9 +6,9 @@ class CustomText extends StatelessWidget {
   final FontWeight fontWeight;
   final Color color;
 
-  const CustomText(String s, {
+  const CustomText({
     Key? key,
-    required this.text ,
+    required this.text,
     this.fontSize = 16.0,
     this.fontWeight = FontWeight.normal,
     this.color = Colors.black,

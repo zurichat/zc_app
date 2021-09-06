@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/splashscreen/splashscreen.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
+
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
 import 'services/theme_setup.dart';
@@ -16,25 +20,27 @@ Future main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      navigatorKey: StackedService.navigatorKey,
-      onGenerateRoute: StackedRouter().onGenerateRoute,
+      navigatorKey: AppNavigator.key,
+      onGenerateRoute: AppRouter.generateRoute,
       title: 'ZuriChat App',
-      initialRoute: Routes.otpView,
+      home: HomeView(),
     return ThemeBuilder(
       themes: getThemes(),
-      builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        navigatorKey: StackedService.navigatorKey,
-        onGenerateRoute: StackedRouter().onGenerateRoute,
-        title: 'ZuriChat App',
-        theme: regularTheme,
-        darkTheme: darkTheme,
-        themeMode: themeMode,
-        initialRoute: Routes.onboardingView,
-
+      builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          navigatorKey: StackedService.navigatorKey,
+          onGenerateRoute: StackedRouter().onGenerateRoute,
+          title: 'ZuriChat App',
+          theme: regularTheme,
+          darkTheme: darkTheme,
+          themeMode: themeMode,
+          initialRoute: Routes.onboardingView,
+        ),
       ),
+
     );
   }
 }

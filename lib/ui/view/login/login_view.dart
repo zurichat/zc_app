@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/view/forgot_password/forgot_password_view.dart';
-import 'package:stacked/stacked.dart';
-
+import '../../shared/colors.dart';
+import '../../../app/app.router.dart';
 import '../../../general_widgets/custom_textfield.dart';
-import '../../shared/shared.dart';
+import '../forgot_password/forgot_password_view.dart';
+import 'package:stacked/stacked.dart';
 import 'login_viewmodel.dart';
 
 class LoginView extends StatelessWidget {
@@ -45,7 +44,6 @@ class LoginView extends StatelessWidget {
               SizedBox(
                 height: 49.0,
               ),
-              CustomTextField(
               const Center(
                 child: Text('Welcome! Sign in to continue'),
               ),
@@ -64,7 +62,7 @@ class LoginView extends StatelessWidget {
               SizedBox(
                 height: 30.0,
               ),
-              CustomTextField(
+              const CustomTextField(
                 keyboardType: TextInputType.emailAddress,
                 inputAction: TextInputAction.next,
                 autoFocus: false,
@@ -85,9 +83,9 @@ class LoginView extends StatelessWidget {
                     child: Text('Forget Password?'),
                   )),
               SizedBox(
-                alignment: Alignment.topRight,
+//                alignment: Alignment.topRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => model.navigateToForgotPasswordScreen(),
                   child: const Text('Forget Password?'),
                 ),
               ),
@@ -98,24 +96,20 @@ class LoginView extends StatelessWidget {
                 child: FractionallySizedBox(
                   widthFactor: 1.0,
                   child: ElevatedButton(
-
-                    onPressed: () {
-                      model.navigateToHomeScreen();
-                    },
-
                     child: const Text(
                       'Sign In',
                       style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        fontStyle: FontStyle.normal,
-                        color: AppColors.whiteColor,
-                      ),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          fontStyle: FontStyle.normal,
+                          color: Color(0xffFFFFFF)),
                     ),
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                      primary: const Color(0xff00B87C),
-                    ),
+                        padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                        primary: Color(0xff00B87C)),
+                    onPressed: () {
+                      model.navigateToHomeScreen();
+                    },
                   ),
                 ),
               ),
@@ -123,11 +117,11 @@ class LoginView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Don\'t have an account?'),
-                  TextButton(onPressed: () {}, child: Text('Register'))
+                  TextButton(onPressed: () {}, child: Text('Register')),
                   const Text('Don\'t have an account?'),
                   TextButton(
-                    onPressed: () {},
-                    child: Text('Register'),
+                    onPressed: () => model.navigateToSignUpScreen(),
+                    child: const Text('Register'),
                   )
                 ],
               ),

@@ -11,9 +11,9 @@ class UIHelper {
   static const double _HorizontalSpaceMedium = 16.0;
   static const double _HorizontalSpaceLarge = 32.0;
 
-  static Widget verticalSpaceSmall = SizedBox(height: _VerticalSpaceSmall.h);
-  static Widget verticalSpaceMedium = SizedBox(height: _VerticalSpaceMedium.h);
-  static Widget verticalSpaceLarge = SizedBox(height: _VerticalSpaceLarge.h);
+  static Widget verticalSpaceSmall = SizedBox(height: _VerticalSpaceSmall);
+  static Widget verticalSpaceMedium = SizedBox(height: _VerticalSpaceMedium);
+  static Widget verticalSpaceLarge = SizedBox(height: _VerticalSpaceLarge);
 
   static Widget horizontalSpaceSmall = SizedBox(width: _HorizontalSpaceSmall.w);
   static Widget horizontalSpaceMedium =
