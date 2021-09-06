@@ -45,7 +45,7 @@ class AppAlertDialog {
               height: MediaQuery.of(context).size.width / 60,
             ),
             CustomText(
-              text: "we will respond via email to feedback questions.",
+              text: 'we will respond via email to feedback questions.',
               fontSize: MediaQuery.of(context).size.width / 32,
             ),
             SizedBox(
@@ -58,8 +58,8 @@ class AppAlertDialog {
                 children: [
                   GestureDetector(
                     child: CustomText(
-                      text: "CANCEL",
-                      color: AppColors.greenColor,
+                      text: 'CANCEL',
+                      color: AppColors.zuriPrimaryColor,
                       fontSize: MediaQuery.of(context).size.width / 28,
                       fontWeight: FontWeight.bold,
                     ),
@@ -71,8 +71,8 @@ class AppAlertDialog {
                   GestureDetector(
 //                  onTap: () => onPressed ,
                     child: CustomText(
-                      text: "SEND",
-                      color: AppColors.greenColor,
+                      text: 'SEND',
+                      color: AppColors.zuriPrimaryColor,
                       fontSize: MediaQuery.of(context).size.width / 28,
                       fontWeight: FontWeight.bold,
                     ),

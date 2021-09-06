@@ -239,7 +239,7 @@ Container onlineStatusDot({bool isOnline = false}) {
     height: 8,
     width: 8,
     decoration: BoxDecoration(
-        color: isOnline ? AppColors.greenColor : Colors.transparent,
+        color: isOnline ? AppColors.zuriPrimaryColor : Colors.transparent,
         shape: BoxShape.circle,
         border: isOnline
             ? Border.all(color: Colors.transparent)

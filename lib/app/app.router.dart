@@ -5,32 +5,37 @@
 // **************************************************************************
 
 // ignore_for_file: public_member_api_docs
- 
+
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/workspace/add_workspace_view.dart';
+import '../ui/view/channel/channel_info/channel_info_view.dart';
+import '../ui/view/channel/channel_notification/channel_notification_view.dart';
+import '../ui/view/profile_page/profile_page_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
-import 'package:hng/ui/view/password_recovery/recovery_view.dart';
-import '../ui/profile_page/profile_page_view.dart';
-import 'package:stacked/stacked.dart';
-
-import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
-import '../ui/view/channel/channel_page_view.dart';
-import '../ui/view/channel/channels_view.dart';
+import '../ui/view/channel/channel_list/channels_view.dart';
+import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
-import '../ui/view/channel_info/channel_info_view.dart';
-import '../ui/view/channel_notification/channel_notification_view.dart';
+import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/otp/otp_view.dart';
+import '../ui/view/password_recovery/recovery_view.dart';
+import '../ui/view/plugins/add_plugin_view.dart';
+import '../ui/view/plugins/edit_plugin_view.dart';
+import '../ui/view/plugins/plugins_view.dart';
+import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
-import '../ui/view/workspace/workspace_view.dart';
+import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
+import '../ui/view/workspace/create_workspace/create_workspace.dart';
+import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
+import '../ui/view/workspace/workspace_view/workspace_view.dart';
 
 class Routes {
   static const String loginView = '/login-view';
@@ -45,17 +50,13 @@ class Routes {
   static const String channelInfoView = '/channel-info-view';
   static const String homePage = '/home-page';
   static const String addPeopleView = '/';
-  static const String otpView = '/otp-view';
+
   static const String channelView = '/channel-view';
-  static const String onboardingView = '/';
-  static const String channelInfoView = '/channel-info-view';
   static const String channelPageView = '/channel-page-view';
   static const String dmSearch = '/dm-search';
-  static const String workspaceView = '/workspace-view';
   static const String dmJumpToView = '/dm-jump-to-view';
   static const String useDifferentEmailView = '/use-different-email-view';
-  static const String newChannel = '/newChannel-view';
-  static const String signUpView = '/sign-up-view';
+  static const String splashView = '/splash-view';
   static const String popupView = '/popup-view';
   static const String createWorkSpace = '/create-work-space';
   static const String channelList = '/channel-list';
@@ -66,11 +67,9 @@ class Routes {
   static const String addPluginView = '/add-plugin-view';
   static const String editPluginView = '/edit-plugin-view';
 
- 
-
   static const all = <String>{
     homePage,
-    addPeopleView,  
+    addPeopleView,
     loginView,
     addWorkspaceView,
     createWorkSpace,
@@ -90,6 +89,7 @@ class Routes {
     forgotPasswordView,
     channelNotificationView,
     dmUserView,
+    splashView,
     pluginView,
     addPluginView,
     editPluginView,
@@ -127,6 +127,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.signUpView, page: SignUpView),
+    RouteDef(Routes.splashView, page: Splashview),
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.dmUserView, page: DmUserView),
@@ -142,7 +143,6 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.preferenceView, page: PreferenceView),
     RouteDef(Routes.signUpView, page: SignUpView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
-
     RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.pluginView, page: PluginView),
     RouteDef(Routes.addPluginView, page: AddPluginView),
@@ -167,6 +167,12 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    Splashview: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const Splashview(),
+        settings: data,
+      );
+    },
     OnboardingView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const OnboardingView(),
@@ -178,7 +184,7 @@ class StackedRouter extends RouterBase {
         builder: (context) => const AddWorkspaceView(),
         settings: data,
       );
-    }
+    },
     PreferenceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const PreferenceView(),
@@ -209,8 +215,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    SignUpView: (data) {
-      return MaterialPageRoute<dynamic>(
     SignUpView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const SignUpView(),
@@ -244,6 +248,9 @@ class StackedRouter extends RouterBase {
     DmJumpToView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const DmJumpToView(),
+        settings: data,
+      );
+    },
     ChannelList: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ChannelList(),
@@ -268,12 +275,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    ChannelInfoView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const ChannelInfoView(),
-        settings: data,
-      );
-    },
     HomePage: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => HomePage(),
@@ -283,6 +284,9 @@ class StackedRouter extends RouterBase {
     AddPeopleView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => AddPeopleView(),
+        settings: data,
+      );
+    },
     DmUserView: (data) {
       final args = data.getArgs<DmUserViewArguments>(
         orElse: () => DmUserViewArguments(),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../ui/shared/colors.dart';
+
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,
@@ -8,7 +10,8 @@ class CustomTextField extends StatelessWidget {
     this.autoFocus,
     this.autoCorrect,
     this.obscureText,
-    this.labelText, this.hintText,
+    this.labelText,
+    this.hintText,
   }) : super(key: key);
   final keyboardType;
   final inputAction;
@@ -26,11 +29,16 @@ class CustomTextField extends StatelessWidget {
       autocorrect: autoCorrect!,
       obscureText: obscureText!,
       decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         labelText: labelText,
         hintText: hintText,
-        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5.0)),),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5.0)),borderSide: BorderSide(color: Color(0xff1A61DB
-        ))),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          borderSide: BorderSide(color: AppColors.zuriTextBodyColor),
+        ),
       ),
     );
   }

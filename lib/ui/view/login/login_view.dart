@@ -38,17 +38,13 @@ class LoginView extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0),
               )),
               SizedBox(
-                height: 4.0,
-              ),
-              Center(child: Text('Welcome! Sign in to continue')),
-              SizedBox(
-                height: 49.0,
+                height: 48.0,
               ),
               const Center(
                 child: Text('Welcome! Sign in to continue'),
               ),
               const SizedBox(
-                height: 49.0,
+                height: 48.0,
               ),
               const CustomTextField(
                 keyboardType: TextInputType.emailAddress,
@@ -60,7 +56,7 @@ class LoginView extends StatelessWidget {
                 hintText: 'Name@gmail.com',
               ),
               SizedBox(
-                height: 30.0,
+                height: 32.0,
               ),
               const CustomTextField(
                 keyboardType: TextInputType.emailAddress,
@@ -82,13 +78,6 @@ class LoginView extends StatelessWidget {
                     },
                     child: Text('Forget Password?'),
                   )),
-              SizedBox(
-//                alignment: Alignment.topRight,
-                child: TextButton(
-                  onPressed: () => model.navigateToForgotPasswordScreen(),
-                  child: const Text('Forget Password?'),
-                ),
-              ),
               const SizedBox(
                 height: 14.0,
               ),
@@ -118,11 +107,6 @@ class LoginView extends StatelessWidget {
                 children: [
                   Text('Don\'t have an account?'),
                   TextButton(onPressed: () {}, child: Text('Register')),
-                  const Text('Don\'t have an account?'),
-                  TextButton(
-                    onPressed: () => model.navigateToSignUpScreen(),
-                    child: const Text('Register'),
-                  )
                 ],
               ),
             ],
