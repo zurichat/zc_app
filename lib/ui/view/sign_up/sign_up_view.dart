@@ -38,11 +38,10 @@ class SignUpView extends StatelessWidget {
         viewModelBuilder: () => SignUpViewModel(),
         builder: (context, viewModel, child) {
           return Scaffold(
+            backgroundColor: AppColors.whiteColor,
             body: Container(
               margin: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: AppColors.whiteColor,
-              ),
+              decoration: BoxDecoration(),
               child: ListView(
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
@@ -56,20 +55,12 @@ class SignUpView extends StatelessWidget {
                   ),
                   _mediumSizedBox(),
                   Center(
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        fontSize: 32.0,
-                        color: AppColors.deepBlackColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: Text('Sign Up', style: AppTextStyles.heading7),
                   ),
                   _smallSizedBox(),
                   Center(
                     child: Text(
                       'Please sign up to create account',
-                      style: AppTextStyles.heading5,
                     ),
                   ),
                   _largeSizedBox(),
@@ -79,8 +70,8 @@ class SignUpView extends StatelessWidget {
                     autoFocus: true,
                     autoCorrect: false,
                     obscureText: false,
-                    labelText: 'Phone or Email',
-                    hintText: 'Phone or Email',
+                    labelText: 'Email address',
+                    hintText: 'Email address',
                   ),
                   _smallSizedBox(),
                   CustomTextField(
@@ -89,7 +80,7 @@ class SignUpView extends StatelessWidget {
                     autoFocus: true,
                     autoCorrect: false,
                     obscureText: true,
-                    labelText: 'Phone or Email',
+                    labelText: 'Password',
                     hintText: 'Password',
                   ),
                   _smallSizedBox(),
@@ -99,8 +90,8 @@ class SignUpView extends StatelessWidget {
                     autoFocus: true,
                     autoCorrect: false,
                     obscureText: true,
-                    labelText: 'Phone or Email',
-                    hintText: 'Password',
+                    labelText: 'Confirm Password',
+                    hintText: 'Confirm Password',
                   ),
                   _smallSizedBox(),
                   CheckboxListTile(
