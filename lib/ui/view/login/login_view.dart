@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../shared/colors.dart';
-import '../../../app/app.router.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/styles.dart';
 import '../../../general_widgets/custom_textfield.dart';
 import '../forgot_password/forgot_password_view.dart';
 import 'package:stacked/stacked.dart';
@@ -15,7 +15,7 @@ class LoginView extends StatelessWidget {
       viewModelBuilder: () => LoginViewModel(),
       builder: (context, model, child) => Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xffF7F7F7),
+        backgroundColor: AppColors.whiteColor,
         body: Padding(
           padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
           child: Column(
@@ -35,19 +35,13 @@ class LoginView extends StatelessWidget {
               Center(
                   child: Text(
                 'Sign In',
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0),
+                style: AppTextStyles.heading7,
               )),
               SizedBox(
                 height: 4.0,
               ),
               Center(child: Text('Welcome! Sign in to continue')),
               SizedBox(
-                height: 49.0,
-              ),
-              const Center(
-                child: Text('Welcome! Sign in to continue'),
-              ),
-              const SizedBox(
                 height: 49.0,
               ),
               const CustomTextField(
@@ -72,18 +66,7 @@ class LoginView extends StatelessWidget {
                 hintText: 'Enter Password',
               ),
               Container(
-                  alignment: Alignment.topRight,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ForgotPasswordView()));
-                    },
-                    child: Text('Forget Password?'),
-                  )),
-              SizedBox(
-//                alignment: Alignment.topRight,
+                alignment: Alignment.topRight,
                 child: TextButton(
                   onPressed: () => model.navigateToForgotPasswordScreen(),
                   child: const Text('Forget Password?'),
@@ -96,14 +79,7 @@ class LoginView extends StatelessWidget {
                 child: FractionallySizedBox(
                   widthFactor: 1.0,
                   child: ElevatedButton(
-                    child: const Text(
-                      'Sign In',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          fontStyle: FontStyle.normal,
-                          color: Color(0xffFFFFFF)),
-                    ),
+                    child: Text('Sign In', style: AppTextStyles.buttonText),
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                         primary: Color(0xff00B87C)),
@@ -116,8 +92,6 @@ class LoginView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Don\'t have an account?'),
-                  TextButton(onPressed: () {}, child: Text('Register')),
                   const Text('Don\'t have an account?'),
                   TextButton(
                     onPressed: () => model.navigateToSignUpScreen(),

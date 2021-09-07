@@ -12,8 +12,11 @@ class HomePageViewModel extends StreamViewModel {
     NavigationService().navigateTo(Routes.preferenceView);
   }
 
-  nToWorkspace() {
-    // NavigationService().navigateTo(Routes.workspaceView);
+    void nToInfo() {
+    NavigationService().navigateTo(Routes.channelInfoView);
+  }
+
+
   void nToWorkspace() {
     NavigationService().navigateTo(Routes.workspaceView);
   }
@@ -21,6 +24,7 @@ class HomePageViewModel extends StreamViewModel {
   navigateToDmUser() {
     locator<NavigationService>().navigateTo(Routes.dmUserView);
   }
+  
 
   final connectivityService = locator<ConnectivityService>();
 
@@ -48,8 +52,5 @@ class HomePageViewModel extends StreamViewModel {
     });
     return connectionStatus;
   }
-
-  void nToInfo() {
-    NavigationService().navigateTo(Routes.channelInfoView);
-  }
 }
+

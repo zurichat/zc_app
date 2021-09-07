@@ -20,12 +20,6 @@ Future main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    return MaterialApp(
-      navigatorKey: AppNavigator.key,
-      onGenerateRoute: AppRouter.generateRoute,
-      title: 'ZuriChat App',
-      home: HomeView(),
     return ThemeBuilder(
       themes: getThemes(),
       builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(
