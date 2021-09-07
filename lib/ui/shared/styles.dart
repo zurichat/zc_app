@@ -69,6 +69,31 @@ class AppTextStyles {
     color: AppColors.whiteColor,
     fontSize: 12,
   );
+  static TextStyle subtitle = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.greyColor,
+    fontSize: 12,
+  );
+  static TextStyle normalGrey = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.greyColor,
+    fontSize: 14,
+  );
+  static TextStyle fileName = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.blackColor,
+    fontSize: 14,
+  );
+  static TextStyle unselectedLabelText = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.greyColor,
+    fontSize: 16,
+  );
+  static TextStyle labelText = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.darkGreyColor,
+    fontSize: 16,
+  );
 
   // unread count
   static Widget unreadCount(int count) {

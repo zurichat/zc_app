@@ -30,12 +30,20 @@ import '../ui/view/plugins/plugins_view.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/workspace/workspace_view.dart';
+
+import '../ui/view/file_search/file_search_view.dart';
+
 import '../ui/view/darft/darft_view.dart';
+
 
 class Routes {
   static const String navBarView = '/nav-bar-view';
   static const String onboardingView = '/';
   static const String preferenceView = '/preference-view';
+
+  static const String workspaceView = '/workspace-view';
+  static const String fileSearchView = 'file-search-view';
+
   static const String loginView = '/login-view';
   static const String otpView = '/otp-view';
   static const String signUpView = '/sign-up-view';
@@ -66,6 +74,7 @@ class Routes {
   static const String pluginView = '/plugin-view';
   static const String addPluginView = '/add-plugin-view';
   static const String editPluginView = '/edit-plugin-view';
+
   static const all = <String>{
     navBarView,
     onboardingView,
@@ -83,12 +92,16 @@ class Routes {
     channelPageView,
     dmSearch,
     workspaceView,
+
+    fileSearchView,
+
     dmJumpToView,
     dmUserView,
     pluginView,
     addPluginView,
     editPluginView,
     draftView,
+
   };
 }
 
@@ -112,6 +125,9 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.dmSearch, page: DmSearch),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
+
+    RouteDef(Routes.fileSearchView, page: FileSearchView),
+
     RouteDef(Routes.dmJumpToView, page: DmJumpToView),
     RouteDef(Routes.dmUserView, page: DmUserView),
     RouteDef(Routes.pluginView, page: PluginView),
@@ -122,6 +138,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.dmUserView, page: DmUserView),
     RouteDef(Routes.darftView, page: DraftView),
+
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -222,6 +239,11 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+
+    FileSearchView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const FileSearchView(),
+
     DmJumpToView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const DmJumpToView(),
