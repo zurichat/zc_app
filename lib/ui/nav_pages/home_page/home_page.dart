@@ -1,26 +1,15 @@
 import 'package:flutter/material.dart';
-
 import 'home_page_viewmodel.dart';
-
 import 'widgets/custom_channel_list_tile.dart';
-
 import 'widgets/custom_dm_list_tile.dart';
-
 import 'widgets/custom_homepage_section_title.dart';
-
 import 'widgets/custom_plugin_list_tile.dart';
-
 import '../../shared/colors.dart';
-
 import '../../shared/shared.dart';
-
-//import 'package:hng/ui/view/home/home_viewmodel.dart';
-
 import '../dm_page/dm_search_find_page.dart';
-
 import 'package:stacked/stacked.dart';
-
 import '../../shared/constants.dart';
+import 'widgets/zuri_logo.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -31,39 +20,33 @@ class HomePage extends StatelessWidget {
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
+          backgroundColor:
+              model.status ? AppColors.greenColor : AppColors.greyishColor,
+          automaticallyImplyLeading: false,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: InkWell(
-                  child: const Image(
-                    image: appBarLogo,
-                    fit: BoxFit.cover,
-                    height: 48,
-                  ),
+                  child: ZuriLogo(),
                   onTap: () {
                     model.nToWorkspace();
                   },
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 8.0),
-                child: GestureDetector(
-                  child: Icon(Icons.search),
-                  onTap: () {},
-                ),
-              )
             ],
           ),
           actions: [
-            Text(
-              model.status ? 'Online' : 'Offline',
-              style: TextStyle(color: Colors.black),
-            )
+            Padding(
+              padding: EdgeInsets.all(5.0),
+              child: GestureDetector(
+                child: Icon(Icons.search, color: AppColors.whiteColor),
+                onTap: () {},
+              ),
+            ),
           ],
         ),
-        backgroundColor: AppColors.whiteColor,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
