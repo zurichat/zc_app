@@ -65,36 +65,19 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
                 borderRadius: BorderRadius.circular(4),
                 image: DecorationImage(
                     image: AssetImage(imagelink), fit: BoxFit.cover)),
-        ),
-        const SizedBox(width: 8),
-//TODO master
-        GestureDetector(
-          onLongPress: () {
-            showProfileDialog(context);
-          },
-          child: Text(
-            userName,
-            style: const TextStyle(
-              fontWeight: FontWeight.w700,
-              color: AppColors.greyishColor,
-              fontSize: 15,
-            ),
-//TODO
-        Text(
-          userName,
-          style: const TextStyle(
-            fontWeight: FontWeight.w500,
-            color: AppColors.greyishColor,
-            fontSize: 16,
-//TODO dev incoming
           ),
           const SizedBox(width: 8),
-          Text(
-            userName,
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              color: AppColors.greyishColor,
-              fontSize: 16,
+          GestureDetector(
+            onLongPress: () {
+              showProfileDialog(context);
+            },
+            child: Text(
+              userName,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                color: AppColors.greyishColor,
+                fontSize: 15,
+              ),
             ),
           ),
           const SizedBox(width: 8),

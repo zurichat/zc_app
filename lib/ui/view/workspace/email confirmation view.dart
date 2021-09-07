@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-// ignore: unused_import
-import 'email confirmation model.dart';
+
+import 'email confirmation viewmodel.dart';
+
 
 void main() => runApp(MyApp());
 final EmailViewModel emailViewModel = new EmailViewModel();
