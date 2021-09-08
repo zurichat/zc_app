@@ -31,7 +31,7 @@ class _FileSearchViewState extends State<FileSearchView> {
                 appBar: PreferredSize(
                   preferredSize: Size.fromHeight(100),
                   child: AppBar(
-                    backgroundColor: AppColors.greenColor,
+                    backgroundColor: AppColors.zuriPrimaryColor,
                     automaticallyImplyLeading: false,
                     title: const CustomSearchBar(
                       searchFilter: 'designers',
@@ -89,7 +89,3 @@ class _FileSearchViewState extends State<FileSearchView> {
 }
 
 //* Custom Widgets
-
-
-
-

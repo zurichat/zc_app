@@ -12,7 +12,7 @@ class AppTextStyles {
   );
   static TextStyle heading8 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
-    color: AppColors.greenColor,
+    color: AppColors.zuriPrimaryColor,
     fontSize: 16,
   );
   static TextStyle heading7 = GoogleFonts.lato(

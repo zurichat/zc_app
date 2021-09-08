@@ -20,10 +20,10 @@ class CustomTabBar extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: TabBar(
-          indicatorColor: AppColors.greenColor,
+          indicatorColor: AppColors.zuriPrimaryColor,
           tabs: [
-            Tab(child: Text(tab1, style:AppTextStyles.unselectedLabelText)),
-            Tab(child: Text(tab2, style:AppTextStyles.unselectedLabelText)),
+            Tab(child: Text(tab1, style: AppTextStyles.unselectedLabelText)),
+            Tab(child: Text(tab2, style: AppTextStyles.unselectedLabelText)),
           ],
         ),
       ),

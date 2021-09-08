@@ -7,11 +7,11 @@ import '../services/connectivity_service.dart';
 import '../services/local_storage_services.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
-import '../ui/view/channel/channel_page_view.dart';
-import '../ui/view/channel/channels_view.dart';
+import '../ui/view/channel/channel_info/channel_info_view.dart';
+import '../ui/view/channel/channel_list/channels_view.dart';
+import '../ui/view/channel/channel_notification/channel_notification_view.dart';
+import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
-import '../ui/view/channel_info/channel_info_view.dart';
-import '../ui/view/channel_notification/channel_notification_view.dart';
 import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
@@ -25,10 +25,12 @@ import '../ui/view/plugins/edit_plugin_view.dart';
 import '../ui/view/plugins/plugins_view.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
-import '../ui/view/workspace/workspace_view.dart';
+import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/workspace/workspace_view/workspace_view.dart';
 
 @StackedApp(
   routes: [
+    MaterialRoute(page: LoginView),
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView, initial: true),
     MaterialRoute(page: PreferenceView),
@@ -47,6 +49,7 @@ import '../ui/view/workspace/workspace_view.dart';
     MaterialRoute(page: WorkspaceView),
     MaterialRoute(page: DmJumpToView),
     MaterialRoute(page: DmUserView),
+    MaterialRoute(page: Splashview),
     MaterialRoute(page: PluginView),
     MaterialRoute(page: AddPluginView),
     MaterialRoute(page: EditPluginView),
@@ -58,7 +61,9 @@ import '../ui/view/workspace/workspace_view.dart';
       classType: SharedPreferenceLocalStorage,
       presolveUsing: SharedPreferences.getInstance,
     ),
-    LazySingleton(classType: ConnectivityService,),
+    LazySingleton(
+      classType: ConnectivityService,
+    ),
   ],
 )
 class AppSetup {

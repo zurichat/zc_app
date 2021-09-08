@@ -23,7 +23,7 @@ class CreateChannelView extends StatelessWidget {
                       padding: 17,
                       fontWeight: FontWeight.bold,
                       text: 'Cancel',
-                      color: AppColors.greenColor,
+                      color: AppColors.zuriPrimaryColor,
                       decoration: TextDecoration.underline),
                 ),
                 title: Text(
@@ -39,7 +39,7 @@ class CreateChannelView extends StatelessWidget {
                         padding: 17,
                         fontWeight: FontWeight.bold,
                         text: 'Create',
-                        color: AppColors.greenColor,
+                        color: AppColors.zuriPrimaryColor,
                         decoration: TextDecoration.underline),
                   ),
                 ],

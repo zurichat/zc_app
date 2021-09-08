@@ -42,10 +42,10 @@ class PluginView extends StatelessWidget {
                   child: CustomPluginPageListTile(
                     leadingIcon: Icon(
                       Icons.add,
-                      color: AppColors.greenColor,
+                      color: AppColors.zuriPrimaryColor,
                     ),
                     text: 'Add plugin',
-                    textColor: AppColors.greenColor,
+                    textColor: AppColors.zuriPrimaryColor,
                   ),
                 ),
                 SizedBox(

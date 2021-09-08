@@ -66,7 +66,7 @@ class YouPage extends StatelessWidget {
         builder: (context, model, child) => Scaffold(
               appBar: AppBar(
                 automaticallyImplyLeading: false,
-                backgroundColor: AppColors.greenColor,
+                backgroundColor: AppColors.zuriPrimaryColor,
                 // Here we take the value from the
                 // MyHomePage object that was created by
                 // the App.build method, and use it to set our appbar title.

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import 'email confirmation viewmodel.dart';
-
+import 'email_confirmation/email confirmation viewmodel.dart';
 
 void main() => runApp(MyApp());
-final EmailViewModel emailViewModel = new EmailViewModel();
+final EmailViewModel emailViewModel = EmailViewModel();
 
 class MyApp extends StatelessWidget {
   @override
@@ -47,7 +46,7 @@ class MyApp extends StatelessWidget {
                             fontSize: 20)),
                     style: TextButton.styleFrom(
                       primary: Colors.white,
-                      backgroundColor:HexColor('#00B87C'),
+                      backgroundColor: HexColor('#00B87C'),
                       onSurface: HexColor('#00B87C'),
                     ),
                     onPressed: () {

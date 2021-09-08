@@ -9,7 +9,7 @@ class Dialogs {
   static Future<DialogAction> showArchiveChannelAlertDialog(
       BuildContext context, String channelName) async {
     final actionsTextStyle = GoogleFonts.roboto(
-      color: AppColors.greenColor,
+      color: AppColors.zuriPrimaryColor,
       fontSize: 16.0,
       fontWeight: FontWeight.w500,
     );

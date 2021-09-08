@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../shared/colors.dart';
+import '../home_page_viewmodel.dart';
 
 class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
   final imagelink;
@@ -17,7 +16,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
 
   showProfileDialog(BuildContext context) {
     // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
+    final alert = AlertDialog(
       elevation: 4.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
