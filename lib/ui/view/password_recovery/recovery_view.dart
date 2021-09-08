@@ -22,9 +22,10 @@ class ForgotPassView extends StatelessWidget {
               Text(
                 'Forgot Password',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.black),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -57,11 +58,13 @@ class ForgotPassView extends StatelessWidget {
                   onPressed: () {},
                   child: Text('Continue'),
                   style: ElevatedButton.styleFrom(
-                      primary: Color(0xff00B87C),
-                      onPrimary: Colors.white,
-                      minimumSize: Size(340.0, 48.0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4))),
+                    primary: Color(0xff00B87C),
+                    onPrimary: Colors.white,
+                    minimumSize: Size(340.0, 48.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
                 ),
               ),
             ],
