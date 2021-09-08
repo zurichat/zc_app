@@ -11,8 +11,8 @@ class ViewProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
+    return Scaffold(
+      body: Container(
         child: Column(
           children: [
             Stack(
@@ -24,7 +24,7 @@ class ViewProfilePage extends StatelessWidget {
                   child: Stack(fit: StackFit.expand, children: [
                     const Image(
                       fit: BoxFit.cover,
-                      image: AssetImage('assets/profile.jpeg'),
+                      image: AssetImage('assets/images/user.png'),
                     ),
                   ]),
                 ),

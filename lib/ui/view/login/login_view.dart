@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
-import '../../../general_widgets/custom_textfield.dart';
-import '../forgot_password/forgot_password_view.dart';
+// import '../forgot_password/forgot_password_view.dart';
 import 'package:stacked/stacked.dart';
 
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/view/login/login_viewmodel.dart';
+import '../../../general_widgets/custom_textfield.dart';
+import '../../shared/colors.dart';
+import '../../shared/styles.dart';
+import 'login_viewmodel.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
