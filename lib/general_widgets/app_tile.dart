@@ -8,7 +8,7 @@ class AppTile extends StatelessWidget {
   final Function()? onPressed;
 
   const AppTile({
-    Key ?key,
+    Key? key,
     this.leading,
     this.title,
     this.subtitle,
@@ -22,7 +22,7 @@ class AppTile extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: Color(0xFFE0E0E0)),
+          border: Border.all(color: const Color(0xFFE0E0E0)),
           borderRadius: BorderRadius.circular(10),
         ),
         margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
@@ -34,7 +34,7 @@ class AppTile extends StatelessWidget {
               child: ListTile(
                 title: Text(
                   '$title',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                   ),
@@ -42,7 +42,7 @@ class AppTile extends StatelessWidget {
                 subtitle: Text('$subtitle'),
               ),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       ),
