@@ -20,7 +20,7 @@ class DmPage extends StatelessWidget {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             elevation: 0,
-            backgroundColor: AppColors.greenColor,
+            backgroundColor: AppColors.zuriPrimaryColor,
             title: Text(
               "Direct Messages",
               style: GoogleFonts.lato(
@@ -36,7 +36,7 @@ class DmPage extends StatelessWidget {
               Icons.add,
               color: AppColors.whiteColor,
             ),
-            backgroundColor: AppColors.greenColor,
+            backgroundColor: AppColors.zuriPrimaryColor,
           ),
           body: SingleChildScrollView(
             child: Padding(

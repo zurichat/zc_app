@@ -5,14 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
 class AppTextStyles {
-    static TextStyle heading9 = GoogleFonts.lato(
+  static TextStyle heading9 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
     color: AppColors.blackColor,
     fontSize: 16,
   );
   static TextStyle heading8 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
-    color: AppColors.greenColor,
+    color: AppColors.zuriPrimaryColor,
     fontSize: 16,
   );
   static TextStyle heading7 = GoogleFonts.lato(

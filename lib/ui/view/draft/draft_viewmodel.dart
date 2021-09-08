@@ -1,13 +1,14 @@
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+
+import '../../shared/shared.dart';
+import '../../shared/styles.dart';
 
 class DraftViewModel extends BaseViewModel {
-  String _title = 'Draft';
+  final _title = 'Draft';
   String get title => _title;
 
-  List _drafts = [
+  final _drafts = [
     ListTile(
       title: Text(
         'OyinkanUA',
@@ -19,7 +20,7 @@ class DraftViewModel extends BaseViewModel {
       ),
       trailing: Text(
         'August 31 at 9:09 PM',
-        style: AppTextStyles.body2,
+        style: AppTextStyles.body2Bold,
       ),
     ),
     ListTile(
@@ -33,7 +34,7 @@ class DraftViewModel extends BaseViewModel {
       ),
       trailing: Text(
         'August 31 at 9:09 PM',
-        style: AppTextStyles.body2,
+        style: AppTextStyles.body2Bold,
       ),
     ),
     ListTile(
@@ -47,7 +48,7 @@ class DraftViewModel extends BaseViewModel {
       ),
       trailing: Text(
         'August 31 at 9:09 PM',
-        style: AppTextStyles.body2,
+        style: AppTextStyles.body2Bold,
       ),
     ),
   ];

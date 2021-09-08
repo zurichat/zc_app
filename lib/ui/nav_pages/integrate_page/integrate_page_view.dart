@@ -28,7 +28,7 @@ class IntegratePage2 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: AppColors.greenColor,
+        backgroundColor: AppColors.zuriPrimaryColor,
         title: Text(
           'Integrate',
           style: GoogleFonts.lato(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomUserChannel extends StatelessWidget {
-  const CustomUserChannel({Key? key, this.image, this.text, this.trailingIcon, this.iconColor})
+  const CustomUserChannel(
+      {Key? key, this.image, this.text, this.trailingIcon, this.iconColor})
       : super(key: key);
   final image;
   final text;
@@ -39,7 +40,6 @@ class CustomUserChannel extends StatelessWidget {
               ),
             )
           ],
-        )
-    );
+        ));
   }
 }

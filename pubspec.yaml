@@ -51,22 +51,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo/
-    - assets/images/nate.png
-    - assets/background/bga.png
-    - assets/background/status.png
-    - assets/logo/zuri_chat_logo.png
-    - assets/background/appBarLogo.png
-
     - assets/images/
-    - assets/images/vector.png
-
-    - assets/icons/attachment-outline.png
-    - assets/images/
-    - assets/logo/splash_image.png
-    - assets/images/user.png
-    # - assets/logo/zuri_logo.png
+    - assets/background/
+    - assets/icons/
     - assets/channel_page/
-    - assets/images/
     - assets/plugin_icons/
 
   fonts:

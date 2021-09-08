@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/ui_helpers.dart';
+
+import '../../../shared/colors.dart';
+import '../../../shared/styles.dart';
+import '../../../shared/ui_helpers.dart';
+import 'new_channel_viewmodel.dart';
 
 class NewChannel extends StatefulWidget {
   const NewChannel({Key? key}) : super(key: key);
@@ -15,8 +16,8 @@ class _NewChannelState extends State<NewChannel> {
   bool _value = false;
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<HomePageViewModel>.reactive(
-        viewModelBuilder: () => HomePageViewModel(),
+    return ViewModelBuilder<NewChannelViewModel>.reactive(
+        viewModelBuilder: () => NewChannelViewModel(),
         builder: (context, model, child) => Scaffold(
               backgroundColor: AppColors.whiteColor,
               appBar: AppBar(
