@@ -1,18 +1,19 @@
-import '../../../app/app.locator.dart';
-import '../../../app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:hng/app/app.router.dart';
 
 class LoginViewModel extends BaseViewModel {
+  NavigationService _navigationService = NavigationService();
+
   void navigateToHomeScreen() {
-    locator<NavigationService>().navigateTo(Routes.navBarView);
+    _navigationService.navigateTo(Routes.navBarView);
   }
 
   void navigateToSignUpScreen() {
-    locator<NavigationService>().navigateTo(Routes.signUpView);
+    _navigationService.navigateTo(Routes.signUpView);
   }
 
   void navigateToForgotPasswordScreen() {
-    locator<NavigationService>().navigateTo(Routes.forgotPasswordView);
+    _navigationService.navigateTo(Routes.forgotPasswordView);
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
-import 'package:hng/ui/view_profile_page/view_profile_page.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../shared/colors.dart';
+import '../home_page_viewmodel.dart';
+
 // import 'package:hng/ui/direct_message/direct_message.dart';
 
 // import '../../../shared/colors.dart';
@@ -16,6 +18,41 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
     this.name = 'assets/background/status.png',
     this.userName,
   }) : super(key: key);
+
+  showProfileDialog(BuildContext context) {
+    // set up the AlertDialog
+    final alert = AlertDialog(
+      elevation: 4.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+      content: Row(
+        children: [
+          CircleAvatar(
+            backgroundImage: AssetImage(imagelink),
+            radius: 20.0,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            userName,
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
+              color: AppColors.greyishColor,
+              fontSize: 15,
+            ),
+          ),
+        ],
+      ),
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context, HomePageViewModel model) {
@@ -34,16 +71,15 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
                     image: AssetImage(imagelink), fit: BoxFit.cover)),
           ),
           const SizedBox(width: 8),
-          TextButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ViewProfilePage()));
+          GestureDetector(
+            onLongPress: () {
+              showProfileDialog(context);
             },
             child: Text(
               userName,
               style: const TextStyle(
                 fontWeight: FontWeight.w700,
-                color: Colors.black,
+                color: AppColors.greyishColor,
                 fontSize: 15,
               ),
             ),

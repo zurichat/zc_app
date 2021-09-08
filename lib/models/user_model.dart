@@ -12,6 +12,6 @@ class UserModel {
     required this.userimg,
     required this.joinInfo,
     required this.time,
-	this.online = false,
+    this.online = false,
   });
 }

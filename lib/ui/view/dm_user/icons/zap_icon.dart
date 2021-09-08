@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/MyFlutterApp.ttf
 ///
-/// 
+///
 ///
 import 'package:flutter/widgets.dart';
 
@@ -21,5 +21,6 @@ class AppIcons {
   static const _kFontFam = 'ZapIcon';
   static const String? _kFontPkg = null;
 
-  static const IconData shapezap = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData shapezap =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

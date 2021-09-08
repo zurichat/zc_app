@@ -12,7 +12,7 @@ class AppTextStyles {
   );
   static TextStyle heading8 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
-    color: AppColors.greenColor,
+    color: AppColors.zuriPrimaryColor,
     fontSize: 16,
   );
   static TextStyle heading7 = GoogleFonts.lato(
@@ -25,7 +25,6 @@ class AppTextStyles {
     color: AppColors.greyishColor,
     fontSize: 24,
   );
-
   static TextStyle heading5 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
     color: AppColors.greyishColor,
@@ -69,6 +68,31 @@ class AppTextStyles {
     fontWeight: FontWeight.w700,
     color: AppColors.whiteColor,
     fontSize: 12,
+  );
+  static TextStyle subtitle = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.greyColor,
+    fontSize: 12,
+  );
+  static TextStyle normalGrey = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.greyColor,
+    fontSize: 14,
+  );
+  static TextStyle fileName = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.blackColor,
+    fontSize: 14,
+  );
+  static TextStyle unselectedLabelText = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.greyColor,
+    fontSize: 16,
+  );
+  static TextStyle labelText = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.darkGreyColor,
+    fontSize: 16,
   );
 
   // unread count

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/direct_message/direct_message.dart';
-import 'package:hng/ui/view_profile_page/view_profile_page.dart';
+
+import '../../view/direct_message/direct_message.dart';
+import '../../view/view_profile_page/view_profile_page.dart';
 
 class CustomDMListTile extends StatelessWidget {
   final imagelink;

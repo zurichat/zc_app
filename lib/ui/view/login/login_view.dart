@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../shared/colors.dart';
-// import '../../../app/app.router.dart';
-import '../../../general_widgets/custom_textfield.dart';
 // import '../forgot_password/forgot_password_view.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../general_widgets/custom_textfield.dart';
+import '../../shared/colors.dart';
+import '../../shared/styles.dart';
 import 'login_viewmodel.dart';
 
 class LoginView extends StatelessWidget {
@@ -15,34 +16,33 @@ class LoginView extends StatelessWidget {
       viewModelBuilder: () => LoginViewModel(),
       builder: (context, model, child) => Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xffF7F7F7),
+        backgroundColor: AppColors.whiteColor,
         body: Padding(
-          padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
+          padding: EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(
-                height: 50.0,
+                height: 57.0,
               ),
               Container(
                 alignment: Alignment.center,
                 child: Image.asset('assets/logo/zuri_chat_logo.png'),
               ),
               SizedBox(
-                height: 24.0,
+                height: 24.23,
               ),
               Center(
                   child: Text(
                 'Sign In',
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0),
+                style: AppTextStyles.heading7,
               )),
               SizedBox(
                 height: 4.0,
               ),
-              Center(child: Text('Welcome! Sign in to continue')),
               SizedBox(
-                height: 49.0,
+                height: 4.0,
               ),
               const CustomTextField(
                 keyboardType: TextInputType.emailAddress,
@@ -54,9 +54,9 @@ class LoginView extends StatelessWidget {
                 hintText: 'Name@gmail.com',
               ),
               SizedBox(
-                height: 30.0,
+                height: 33.0,
               ),
-              const CustomTextField(
+              CustomTextField(
                 keyboardType: TextInputType.emailAddress,
                 inputAction: TextInputAction.next,
                 autoFocus: false,
@@ -65,15 +65,23 @@ class LoginView extends StatelessWidget {
                 labelText: 'Password',
                 hintText: 'Enter Password',
               ),
-              Container(
-                alignment: Alignment.topRight,
+              Align(
+                alignment: Alignment.centerRight,
                 child: TextButton(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(EdgeInsets.zero),
+                  ),
                   onPressed: () => model.navigateToForgotPasswordScreen(),
-                  child: const Text('Forget Password?'),
+                  child: Text(
+                    'Forgot Password?',
+                    style: TextStyle(
+                      color: AppColors.zuriPrimaryColor,
+                    ),
+                  ),
                 ),
               ),
-              const SizedBox(
-                height: 14.0,
+              SizedBox(
+                height: 32.0,
               ),
               Center(
                 child: FractionallySizedBox(
@@ -92,8 +100,8 @@ class LoginView extends StatelessWidget {
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                      primary: const Color(0xff00B87C),
+                      padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                      primary: AppColors.zuriPrimaryColor,
                     ),
                   ),
                 ),
@@ -101,10 +109,13 @@ class LoginView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Don\'t have an account?'),
+                  Text('Don\'t have an account?'),
                   TextButton(
                     onPressed: () => model.navigateToSignUpScreen(),
-                    child: const Text('Register'),
+                    child: Text(
+                      'Register',
+                      style: TextStyle(color: AppColors.zuriPrimaryColor),
+                    ),
                   )
                 ],
               ),

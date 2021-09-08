@@ -32,7 +32,7 @@ class NavBarView extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             backgroundColor: AppColors.whiteColor,
-            selectedItemColor: AppColors.greenColor,
+            selectedItemColor: AppColors.zuriPrimaryColor,
             unselectedItemColor: AppColors.navBarItemColor,
             selectedFontSize: 14,
             unselectedFontSize: 14,
@@ -44,7 +44,7 @@ class NavBarView extends StatelessWidget {
                 icon: Icon(Icons.home),
               ),
               BottomNavigationBarItem(
-                label: 'Dm',
+                label: 'DMs',
                 icon: Icon(Icons.message),
               ),
               BottomNavigationBarItem(
