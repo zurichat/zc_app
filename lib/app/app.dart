@@ -1,3 +1,10 @@
+import 'package:hng/ui/view/draft/draft_view.dart';
+import 'package:hng/ui/view/file_search/file_search_view.dart';
+import 'package:hng/ui/view/popup_notification/popup_notification.dart';
+import 'package:hng/ui/view/workspace/add_workspace/add_workspace_view.dart';
+import 'package:hng/ui/view/workspace/create_workspace/create_workspace.dart';
+
+import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -27,10 +34,10 @@ import '../ui/view/preference/preference_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
 import '../ui/view/workspace/workspace_view/workspace_view.dart';
+import '../ui/view/pinned_messages/pinned_message.dart';
 
 @StackedApp(
   routes: [
-    MaterialRoute(page: LoginView),
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView, initial: true),
     MaterialRoute(page: PreferenceView),
@@ -52,7 +59,14 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: Splashview),
     MaterialRoute(page: PluginView),
     MaterialRoute(page: AddPluginView),
+    MaterialRoute(page: UseDifferentEmailView),
     MaterialRoute(page: EditPluginView),
+    MaterialRoute(page: PopUpNotificationsView),
+    MaterialRoute(page: PinnedMessages),
+    MaterialRoute(page: AddWorkspaceView),
+    MaterialRoute(page: CreateWorkSpace),
+    MaterialRoute(page: FileSearchView),
+    MaterialRoute(page: DraftView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
@@ -61,8 +75,9 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
       classType: SharedPreferenceLocalStorage,
       presolveUsing: SharedPreferences.getInstance,
     ),
-    LazySingleton(
+    Presolve(
       classType: ConnectivityService,
+      presolveUsing: ConnectivityService.getInstance,
     ),
   ],
 )
