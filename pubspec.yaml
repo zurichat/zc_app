@@ -51,26 +51,22 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo/
-    - assets/images/nate.png
-    - assets/background/bga.png
-    - assets/background/status.png
-    - assets/logo/zuri_chat_logo.png
-    - assets/background/appBarLogo.png
-    - assets/images/vector.png
-
-    - assets/icons/attachment-outline.png
+    - assets/icons/
     - assets/images/
-    - assets/logo/splash_image.png
-    - assets/images/user.png
-    # - assets/logo/zuri_logo.png
+    - assets/background/
     - assets/channel_page/
-    - assets/images/
     - assets/plugin_icons/
 
   fonts:
     - family: ZapIcon
       fonts:
         - asset: assets/fonts/zap_icon.ttf
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
+        - asset: assets/fonts/Lato-Bold.ttf
+        - asset: assets/fonts/Lato-Light.ttf
+        - asset: assets/fonts/Lato-Black.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

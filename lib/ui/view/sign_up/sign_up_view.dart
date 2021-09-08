@@ -56,7 +56,7 @@ class SignUpView extends StatelessWidget {
                     const CustomTextField(
                       keyboardType: TextInputType.emailAddress,
                       inputAction: TextInputAction.next,
-                      autoFocus: true,
+                      autoFocus: false,
                       autoCorrect: false,
                       obscureText: false,
                       labelText: 'Email Address',
@@ -66,7 +66,7 @@ class SignUpView extends StatelessWidget {
                     const CustomTextField(
                       keyboardType: TextInputType.visiblePassword,
                       inputAction: TextInputAction.next,
-                      autoFocus: true,
+                      autoFocus: false,
                       autoCorrect: false,
                       obscureText: true,
                       labelText: 'Password',
@@ -76,7 +76,7 @@ class SignUpView extends StatelessWidget {
                     const CustomTextField(
                       keyboardType: TextInputType.emailAddress,
                       inputAction: TextInputAction.next,
-                      autoFocus: true,
+                      autoFocus: false,
                       autoCorrect: false,
                       obscureText: true,
                       labelText: 'Confirm Password',
@@ -114,7 +114,7 @@ class SignUpView extends StatelessWidget {
                     ]),
                     const SizedBox(height: 32),
                     LongButton(
-                      onPressed: () {},
+                      onPressed: () => model.navigateToHome(),
                       label: 'Create Account',
                     ),
                     Row(

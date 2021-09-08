@@ -37,7 +37,7 @@ class AppTextStyles {
   );
   static TextStyle normalText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
-    fontSize: 14,
+    fontSize: 12,
   );
   static TextStyle body3Medium = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
@@ -66,8 +66,23 @@ class AppTextStyles {
   );
   static TextStyle unreadText = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
+    color: AppColors.blackColor,
+    fontSize: 12,
+  );
+
+  static TextStyle unreadTextCount = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
     color: AppColors.whiteColor,
     fontSize: 12,
+  );
+
+  static TextStyle zuriAppBarWordLogo = TextStyle(
+    fontSize: 18.08,
+    fontFamily: 'Lato',
+    fontWeight: FontWeight.w700,
+    color: AppColors.whiteColor,
+    height: 1.5,
+    letterSpacing: 1.5
   );
 
   // unread count
@@ -80,7 +95,7 @@ class AppTextStyles {
         color: AppColors.unreadMessageColor,
       ),
       child: Center(
-        child: Text(count.toString(), style: AppTextStyles.unreadText),
+        child: Text(count.toString(), style: AppTextStyles.unreadTextCount),
       ),
     );
   }
