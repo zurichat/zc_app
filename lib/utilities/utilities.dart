@@ -18,3 +18,9 @@ Future<void> openUrl(String? url) async {
     // if (canOpen) await launch(url);
   }
 }
+
+void showProgress(received, total) {
+  if (total != -1) {
+    print((received / total * 100).toStringAsFixed(0) + '%');
+  }
+}

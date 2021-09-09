@@ -43,7 +43,6 @@ class ForgotPassView extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   inputAction: TextInputAction.done,
                   autoCorrect: true,
-                  autoFocus: true,
                   labelText: 'Email Address',
                   hintText: 'Name@gmail.com',
                   obscureText: false,

@@ -47,7 +47,6 @@ class LoginView extends StatelessWidget {
               const CustomTextField(
                 keyboardType: TextInputType.emailAddress,
                 inputAction: TextInputAction.next,
-                autoFocus: false,
                 autoCorrect: true,
                 obscureText: false,
                 labelText: 'Email',
@@ -59,7 +58,6 @@ class LoginView extends StatelessWidget {
               CustomTextField(
                 keyboardType: TextInputType.emailAddress,
                 inputAction: TextInputAction.next,
-                autoFocus: false,
                 autoCorrect: true,
                 obscureText: true,
                 labelText: 'Password',

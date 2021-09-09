@@ -43,7 +43,6 @@ class NewPassView extends StatelessWidget {
                     obscureText: true,
                     labelText: 'Password',
                     hintText: 'Enter Password',
-                    autoFocus: false,
                   ),
                 ),
                 Padding(
@@ -53,7 +52,6 @@ class NewPassView extends StatelessWidget {
                       inputAction: TextInputAction.done,
                       obscureText: true,
                       autoCorrect: false,
-                      autoFocus: true,
                       labelText: 'Confirm Password',
                       hintText: 'Re-enter Password'),
                 ),

@@ -57,7 +57,6 @@ class ForgotPasswordView extends StatelessWidget {
               CustomTextField(
                 keyboardType: TextInputType.emailAddress,
                 inputAction: TextInputAction.next,
-                autoFocus: false,
                 autoCorrect: true,
                 obscureText: false,
                 labelText: 'Email',

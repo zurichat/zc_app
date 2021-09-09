@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-// ignore: todo
-//TODO this is a fake api for testing
-const apiBaseUrl = 'https://jsonplaceholder.typicode.com';
+const apiBaseUrl = 'https://api.zuri.chat';
 //* Client data
 const appName = 'ZuriChat App';
 //* Messages
