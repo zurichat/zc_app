@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:hng/app/app.locator.dart';
-import '../../../general_widgets/custom_textfield.dart';
-import 'recovery_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
+import 'package:hng/ui/view/password_recovery/recovery_viewmodel.dart';
 
 class ForgotPassView extends StatelessWidget {
   const ForgotPassView({Key? key}) : super(key: key);
