@@ -25,8 +25,11 @@ Future setupLocator(
 // Register dependencies
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => ThemeService.getInstance());
-  locator.registerLazySingleton(() => ConnectivityService.getInstance());
   final sharedPreferenceLocalStorage =
       await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);
+
+  locator.registerLazySingleton(() => ConnectivityService.getInstance());
+  locator.registerLazySingleton(() => DialogService());
+  locator.registerLazySingleton(() => BottomSheetService());
 }

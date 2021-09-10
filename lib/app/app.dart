@@ -1,3 +1,13 @@
+import 'package:hng/ui/view/advanced/advanced_view.dart';
+import 'package:hng/ui/view/clear_after/clear_after_view.dart';
+import 'package:hng/ui/view/do_not_disturb/do_not_disturb_view.dart';
+import 'package:hng/ui/view/edit_profile/edit_profile_view.dart';
+import 'package:hng/ui/view/language_and_region/language_and_region_view.dart';
+import 'package:hng/ui/view/notifications/notifications_view.dart';
+import 'package:hng/ui/view/profile_page/profile_page_view.dart';
+import 'package:hng/ui/view/saved_items/saved_items_view.dart';
+import 'package:hng/ui/view/set_status/set_status_view.dart';
+import 'package:hng/ui/view/view_profile_page/view_profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -33,10 +43,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: LoginView),
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView),
-    MaterialRoute(page: PreferenceView),
-    MaterialRoute(page: LoginView),
     MaterialRoute(page: OtpView),
-    MaterialRoute(page: SignUpView),
     MaterialRoute(page: SignUpView),
     MaterialRoute(page: WorkspaceView),
     MaterialRoute(page: ChannelList),
@@ -48,14 +55,23 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: AddPeopleView, initial: true),
     MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: DmSearch),
-    MaterialRoute(page: WorkspaceView),
     MaterialRoute(page: DmJumpToView),
-    MaterialRoute(page: OtpView),
     MaterialRoute(page: DmUserView),
     MaterialRoute(page: Splashview),
     MaterialRoute(page: PluginView),
     MaterialRoute(page: AddPluginView),
     MaterialRoute(page: EditPluginView),
+    MaterialRoute(page: ViewProfilePage),
+    MaterialRoute(page: SetStatusView),
+    MaterialRoute(page: ProfilePageView),
+    MaterialRoute(page: PreferenceView),
+    MaterialRoute(page: LanguageAndRegionModelView),
+    MaterialRoute(page: SavedItemsView),
+    MaterialRoute(page: NotificationsView),
+    MaterialRoute(page: AdvancedView),
+    MaterialRoute(page: ClearAfterView),
+    MaterialRoute(page: DoNotDisturbView),
+    MaterialRoute(page: EditProfileView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
@@ -64,7 +80,9 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
       classType: SharedPreferenceLocalStorage,
       presolveUsing: SharedPreferences.getInstance,
     ),
-    LazySingleton(classType: ConnectivityService)
+    LazySingleton(classType: ConnectivityService),
+    LazySingleton(classType: DialogService),
+    LazySingleton(classType: BottomSheetService),
   ],
 )
 class AppSetup {

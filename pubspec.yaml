@@ -66,6 +66,7 @@ flutter:
     - assets/channel_page/
     - assets/images/
     - assets/plugin_icons/
+    - assets/icons/emojiHands/
 
   fonts:
     - family: ZapIcon
