@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import '../../../general_widgets/custom_textfield.dart';
-import '../forgot_password/forgot_password_view.dart';
 import 'package:stacked/stacked.dart';
 
-import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/view/login/login_viewmodel.dart';
 
@@ -19,109 +18,117 @@ class LoginView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.whiteColor,
-        body: Padding(
-          padding: EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(
-                height: 57.0,
-              ),
-              Container(
-                alignment: Alignment.center,
-                child: Image.asset('assets/logo/zuri_chat_logo.png'),
-              ),
-              SizedBox(
-                height: 24.23,
-              ),
-              Center(
-                  child: Text(
-                'Sign In',
-                style: AppTextStyles.heading7,
-              )),
-              SizedBox(
-                height: 4.0,
-              ),
-              SizedBox(
-                height: 4.0,
-              ),
-              const CustomTextField(
-                keyboardType: TextInputType.emailAddress,
-                inputAction: TextInputAction.next,
-                autoFocus: false,
-                autoCorrect: true,
-                obscureText: false,
-                labelText: 'Email',
-                hintText: 'Name@gmail.com',
-              ),
-              SizedBox(
-                height: 33.0,
-              ),
-              CustomTextField(
-                keyboardType: TextInputType.emailAddress,
-                inputAction: TextInputAction.next,
-                autoFocus: false,
-                autoCorrect: true,
-                obscureText: true,
-                labelText: 'Password',
-                hintText: 'Enter Password',
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  style: ButtonStyle(
-                    padding: MaterialStateProperty.all(EdgeInsets.zero),
-                  ),
-                  onPressed: () => model.navigateToForgotPasswordScreen(),
-                  child: Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                      color: AppColors.zuriPrimaryColor,
-                    ),
-                  ),
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch, 
+              children: [
+                SizedBox(
+                  height: 10.0,
                 ),
-              ),
-              SizedBox(
-                height: 32.0,
-              ),
-              Center(
-                child: FractionallySizedBox(
-                  widthFactor: 1.0,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      model.navigateToHomeScreen();
-                    },
-                    child: const Text(
-                      'Sign In',
+                Container(
+                  alignment: Alignment.center,
+                  child: Image.asset('assets/logo/zuri_chat_logo.png'),
+                ),
+                SizedBox(
+                  height: 24,
+                ),
+                Center(
+                    child: Text(
+                  'Sign In',
+                  style: AppTextStyles.heading7,
+                ),),
+                const SizedBox(height: 4),
+                      const Center(
+                        child: CustomText(
+                          text: 'Welcome! Sign in to continue',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          color: AppColors.zuriDarkGrey,
+                        ),
+                      ),
+                SizedBox(
+                  height: 48.0,
+                ),
+                const CustomTextField(
+                  keyboardType: TextInputType.emailAddress,
+                  inputAction: TextInputAction.next,
+                  autoFocus: false,
+                  autoCorrect: true,
+                  obscureText: false,
+                  labelText: 'Email',
+                  hintText: 'Name@gmail.com',
+                ),
+                SizedBox(
+                  height: 33.0,
+                ),
+                CustomTextField(
+                  keyboardType: TextInputType.emailAddress,
+                  inputAction: TextInputAction.next,
+                  autoFocus: false,
+                  autoCorrect: true,
+                  obscureText: true,
+                  labelText: 'Password',
+                  hintText: 'Enter Password',
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all(EdgeInsets.zero),
+                    ),
+                    onPressed: () => model.navigateToForgotPasswordScreen(),
+                    child: Text(
+                      'Forgot Password?',
                       style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        fontStyle: FontStyle.normal,
-                        color: AppColors.whiteColor,
+                        color: AppColors.zuriPrimaryColor,
                       ),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                      primary: AppColors.zuriPrimaryColor,
+                  ),
+                ),
+                SizedBox(
+                  height: 32.0,
+                ),
+                Center(
+                  child: FractionallySizedBox(
+                    widthFactor: 1.0,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        model.navigateToHomeScreen();
+                      },
+                      child: const Text(
+                        'Sign In',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          fontStyle: FontStyle.normal,
+                          color: AppColors.whiteColor,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                        primary: AppColors.zuriPrimaryColor,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Don\'t have an account?'),
-                  TextButton(
-                    onPressed: () => model.navigateToSignUpScreen(),
-                    child: Text(
-                      'Register',
-                      style: TextStyle(color: AppColors.zuriPrimaryColor),
-                    ),
-                  )
-                ],
-              ),
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Don\'t have an account?'),
+                    TextButton(
+                      onPressed: () => model.navigateToSignUpScreen(),
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(color: AppColors.zuriPrimaryColor),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

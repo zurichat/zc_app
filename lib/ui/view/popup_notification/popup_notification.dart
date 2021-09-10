@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/view/popup_notification/popup_notification_viewmodel.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/view/plugins/plugin_viewmodel.dart';
 import 'package:hng/ui/view/plugins/widgets/custom_appbar.dart';
 import 'package:hng/ui/view/plugins/widgets/custom_plugin_list_tile.dart';
