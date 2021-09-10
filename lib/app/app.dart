@@ -1,3 +1,4 @@
+import 'package:hng/services/api_service.dart';
 import 'package:hng/ui/view/draft/draft_view.dart';
 import 'package:hng/ui/view/file_search/file_search_view.dart';
 import 'package:hng/ui/view/popup_notification/popup_notification.dart';
@@ -39,7 +40,7 @@ import '../ui/view/pinned_messages/pinned_message.dart';
 @StackedApp(
   routes: [
     MaterialRoute(page: NavBarView),
-    MaterialRoute(page: OnboardingView, initial: true),
+    MaterialRoute(page: OnboardingView),
     MaterialRoute(page: PreferenceView),
     MaterialRoute(page: LoginView),
     MaterialRoute(page: OtpView),
@@ -56,7 +57,7 @@ import '../ui/view/pinned_messages/pinned_message.dart';
     MaterialRoute(page: WorkspaceView),
     MaterialRoute(page: DmJumpToView),
     MaterialRoute(page: DmUserView),
-    MaterialRoute(page: Splashview),
+    MaterialRoute(page: Splashview, initial: true),
     MaterialRoute(page: PluginView),
     MaterialRoute(page: AddPluginView),
     MaterialRoute(page: UseDifferentEmailView),
@@ -71,6 +72,7 @@ import '../ui/view/pinned_messages/pinned_message.dart';
   dependencies: [
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: ThemeService),
+    LazySingleton(classType: ApiService),
     Presolve(
       classType: SharedPreferenceLocalStorage,
       presolveUsing: SharedPreferences.getInstance,

@@ -42,7 +42,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
 
 class Routes {
   static const String navBarView = '/nav-bar-view';
-  static const String onboardingView = '/';
+  static const String onboardingView = '/onboarding-view';
   static const String preferenceView = '/preference-view';
   static const String loginView = '/login-view';
   static const String otpView = '/otp-view';
@@ -59,7 +59,7 @@ class Routes {
   static const String workspaceView = '/workspace-view';
   static const String dmJumpToView = '/dm-jump-to-view';
   static const String dmUserView = '/dm-user-view';
-  static const String splashview = '/Splashview';
+  static const String splashview = '/';
   static const String pluginView = '/plugin-view';
   static const String addPluginView = '/add-plugin-view';
   static const String useDifferentEmailView = '/use-different-email-view';
