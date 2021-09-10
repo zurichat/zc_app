@@ -12,7 +12,7 @@ const networkErrorMessage = 'Please check your internet'
 //* Defaults
 const defaultAvatarAsset = 'assets/images/fire_cracker.png';
 const defaultNetworkImage = 'https://placeimg.com/300/550/nature';
-const appBarLogo = AssetImage(
+const mainAppBarLogo = AssetImage(
   'assets/background/appBarLogo.png',
 );
 const threadIcon = 'assets/icons/thread_icon.png';
@@ -24,6 +24,6 @@ const youIcon = 'assets/icons/user.png';
 const lockIconShaded = 'assets/icons/lock_icon_shaded.png';
 const lockIcon = 'assets/icons/lock_icon.png';
 
+const appBarLogo = AssetImage('assets/logo/zuri_chat_logo.png');
 const zuriWordLogo = AssetImage('assets/logo/Zuri_word_logo.png');
-const mainAppBarLogo = AssetImage('assets/logo/zuri_chat_logo.png');
 const dummyUserImage = 'assets/background/bga.png';

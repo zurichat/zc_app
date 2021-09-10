@@ -8,6 +8,7 @@ import '../../shared/colors.dart';
 import '../../shared/shared.dart';
 import '../dm_page/dm_search_find_page.dart';
 import 'package:stacked/stacked.dart';
+import 'widgets/zuri_logo.dart';
 import '../../../utilities/constants.dart';
 
 class HomePage extends StatelessWidget {
@@ -28,46 +29,26 @@ class HomePage extends StatelessWidget {
                   right: 5.0
                 ),
                 child: InkWell(
-                  child: const Image(
-                    image: mainAppBarLogo,
-                    fit: BoxFit.cover,
-                    height: 35,
-                  ),
+                  child: ZuriLogo(),
                   onTap: () {
                     model.nToWorkspace();
                   },
                 ),
               ),
-              Text(
-                'ZURI',
-                style: AppTextStyles.zuriAppBarWordLogo
-              )
             ],
           ),
           actions: [
             Padding(
               padding: EdgeInsets.only(
-                right: 12,
-                top: 4
+                top: 4, right: 12
               ),
               child: GestureDetector(
+                child: Icon(Icons.search, color: AppColors.whiteColor),
                 onTap: () {},
-                child: Icon(
-                  Icons.search,
-                  color: AppColors.whiteColor,
-                  size: 20,
-                )
               ),
-            )  
-          ]
-          /*actions: [
-            Text(
-              model.status ? 'Online' : 'Offline',
-              style: const TextStyle(color: Colors.black),
-            )
-          ],*/
+            ),
+          ],
         ),
-        backgroundColor: AppColors.whiteColor,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -108,27 +89,27 @@ class HomePage extends StatelessWidget {
                   const CustomChannelListTile(
                     channelName: 'chat-random',
                     isActive: true,
-                    data: 22,
+                    data: '22',
                   ),
                   const SizedBox(height: 16),
                   const CustomPluginListTile(
                     assetName: lockIconShaded,
                     pluginName: 'stage4',
                     isActive: true,
-                    data: 3,
+                    data: '3',
                   ),
                   const SizedBox(height: 16),
                   const CustomChannelListTile(
                     channelName: 'games',
                     isActive: true,
-                    data: 1,
+                    data: '1',
                   ),
                   const SizedBox(height: 16),
                   const CustomPluginListTile(
                     assetName: lockIconShaded,
                     pluginName: 'dm_plus_entrepreneurs',
                     isActive: true,
-                    data: 1,
+                    data: '1',
                   ),
                   const SizedBox(height: 16),
                   const CustomPluginListTile(

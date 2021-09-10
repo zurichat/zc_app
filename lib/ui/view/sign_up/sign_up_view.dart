@@ -94,13 +94,12 @@ class SignUpView extends StatelessWidget {
                         children: [
                           const CustomText(
                             text: 'By selecting this box, you agreed to our',
-                            fontSize: 12,
+                            fontSize: 14,
                           ),
-                          const SizedBox(height: 4),
                           const Text(
                             'terms and conditions',
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 14,
                               color: AppColors.zuriPrimaryColor,
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline,
@@ -131,7 +130,7 @@ class SignUpView extends StatelessWidget {
                             color: AppColors.zuriPrimaryColor,
                             fontWeight: FontWeight.bold,
                           ),
-                          onPressed: () {},
+                          onPressed: () => model.navigateToSignIn(),
                         )
                       ],
                     ),

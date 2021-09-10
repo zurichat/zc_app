@@ -7,7 +7,7 @@ class CustomPluginListTile extends StatelessWidget {
   final String pluginName;
   final Function()? pressed;
   final bool isActive;
-  final int? data;
+  final String? data;
   final IconData? icon;
 
   const CustomPluginListTile({
@@ -47,7 +47,9 @@ class CustomPluginListTile extends StatelessWidget {
             ]
           ),
           isActive
-              ? AppTextStyles.unreadCount(data!)
+              ? AppTextStyles.unreadCount(
+                  int.parse(data!),
+                )
               : Container()
         ],
       ),

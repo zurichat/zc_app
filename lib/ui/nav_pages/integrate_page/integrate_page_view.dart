@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
 
 import 'integrate_viewmodel.dart';
@@ -25,16 +27,26 @@ class IntegratePage2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Integrate'),
-        backgroundColor: Color(0xFF00B87C),
+        automaticallyImplyLeading: false,
+        backgroundColor: AppColors.zuriPrimaryColor,
+        title: Text(
+          'Integrate',
+          style: GoogleFonts.lato(
+              fontWeight: FontWeight.w700,
+              fontSize: 20,
+              color: AppColors.whiteColor),
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          SizedBox(
+            height: 10,
+          ),
           Align(
             alignment: Alignment.topLeft,
             // ignore: deprecated_member_use
-            child: FlatButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(Icons.calendar_today),
               label: Text(
@@ -44,7 +56,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: ElevatedButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(Icons.today),
               label: Text(
@@ -54,7 +66,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: ElevatedButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(FontAwesomeIcons.chessKnight),
               label: Text(
@@ -64,7 +76,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: ElevatedButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(Icons.meeting_room),
               label: Text(
@@ -74,7 +86,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: ElevatedButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(Icons.notifications_none_sharp),
               label: Text(
@@ -84,7 +96,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: ElevatedButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(FontAwesomeIcons.music),
               label: Text(
@@ -94,7 +106,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: ElevatedButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(Icons.donut_small),
               label: Text(
@@ -104,7 +116,7 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: ElevatedButton.icon(
+            child: TextButton.icon(
               onPressed: () => {},
               icon: Icon(Icons.timer),
               label: Text(

@@ -13,7 +13,8 @@ class ConnectivityService with ReactiveServiceMixin {
   ConnectivityService._internal();
 
   // Retrieve the instance through the app.
-  static ConnectivityService getInstance() => _connectionStatus;
+  static Future<ConnectivityService> getInstance() =>
+      Future.value(_connectionStatus);
 
   // Flags to keep track of connection state.
   bool hasConnection = false;

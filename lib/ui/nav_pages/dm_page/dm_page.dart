@@ -17,13 +17,15 @@ class DmPage extends StatelessWidget {
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             elevation: 0,
-            backgroundColor: Color(0xff00B87C),
+            backgroundColor: AppColors.zuriPrimaryColor,
             title: Text(
               "Direct Messages",
               style: GoogleFonts.lato(
-                fontWeight: FontWeight.w700,
-              ),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                  color: AppColors.whiteColor),
             ),
             centerTitle: false,
           ),

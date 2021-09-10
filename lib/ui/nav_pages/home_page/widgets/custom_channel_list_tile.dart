@@ -5,7 +5,7 @@ class CustomChannelListTile extends StatelessWidget {
   final String channelName;
   final Function()? pressed;
   final bool isActive;
-  final int? data;
+  final String? data;
 
   const CustomChannelListTile({
     Key? key,
@@ -25,7 +25,7 @@ class CustomChannelListTile extends StatelessWidget {
           style: isActive ? AppTextStyles.unreadText : AppTextStyles.normalText
         ),
         isActive
-            ? AppTextStyles.unreadCount(data!)
+            ? AppTextStyles.unreadCount(int.parse(data!))
             : Container()
       ],
     );

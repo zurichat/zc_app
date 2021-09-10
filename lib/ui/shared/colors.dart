@@ -11,6 +11,10 @@ class AppColors {
   static const Color blackColor = Color(0xFF000000);
   static const Color lightGreen = Color.fromRGBO(0, 184, 124, 0.3);
   static const Color unreadMessageColor = Color(0xffB8003C);
+  static const Color darkGreyColor = Color(0xFF424141);
+  static const Color greyColor = Color(0xFF727272);
+  static const Color paleGreen = Color(0xFF89D3BB);
+
   static const Color zuriTextBodyColor = Color(0xFF424141);
   static const Color zuriTextColorHeader = Color(0xFF242424);
   static const Color shadowColor = Color.fromRGBO(79, 79, 79, 0.15);

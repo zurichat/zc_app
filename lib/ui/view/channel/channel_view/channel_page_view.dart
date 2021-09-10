@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.router.dart';
 import '../../../../models/user_model.dart';
@@ -44,27 +43,27 @@ class ChannelPageView extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    channelName("#teamsocrates"),
+                    channelName('#teamsocrates'),
                   ],
                 ),
                 Row(
                   children: [
                     Expanded(
-                      child: channelInfo('@mark',
-                          ' created this channel on August 12, 2021. This is the very beginning of the #teamsocrates channel.'),
+                      child: channelInfo('@mark', '''
+ created this channel on August 12, 2021. This is the very beginning of the #teamsocrates channel.'''),
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 row(),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 dateBuilder(context),
-                SizedBox(height: 7),
+                const SizedBox(height: 7),
                 ListTile(
                   leading: Image.asset('assets/channel_page/female.png'),
                   title: Row(
                     children: [
-                      Text(
+                      const Text(
                         'Clutch',
                         style: TextStyle(
                           fontSize: 14,
@@ -72,8 +71,8 @@ class ChannelPageView extends StatelessWidget {
                           color: AppColors.deepBlackColor,
                         ),
                       ),
-                      SizedBox(width: 10),
-                      Text(
+                      const SizedBox(width: 10),
+                      const Text(
                         '12:30pm',
                         style: TextStyle(
                           fontSize: 10,
@@ -83,13 +82,13 @@ class ChannelPageView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  subtitle: Text('Joined #teamsocrates'),
+                  subtitle: const Text('Joined #teamsocrates'),
                 ),
                 ListTile(
                   leading: Image.asset('assets/channel_page/femaleuser.png'),
                   title: Row(
                     children: [
-                      Text(
+                      const Text(
                         'Ali',
                         style: TextStyle(
                           fontSize: 14,
@@ -97,8 +96,8 @@ class ChannelPageView extends StatelessWidget {
                           color: AppColors.deepBlackColor,
                         ),
                       ),
-                      SizedBox(width: 10),
-                      Text(
+                      const SizedBox(width: 10),
+                      const Text(
                         '12:30pm',
                         style: TextStyle(
                           fontSize: 10,
@@ -108,7 +107,7 @@ class ChannelPageView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  subtitle: Text('Joined #teamsocrates'),
+                  subtitle: const Text('Joined #teamsocrates'),
                 ),
               ],
             ),
@@ -126,7 +125,7 @@ AppBar appBar(String text, String nexttext, BuildContext context) {
     backgroundColor: AppColors.whiteColor,
     leading: GestureDetector(
       onTap: () {},
-      child: Icon(
+      child: const Icon(
         CupertinoIcons.back,
         color: AppColors.deepBlackColor,
       ),
@@ -137,7 +136,7 @@ AppBar appBar(String text, String nexttext, BuildContext context) {
           children: [
             Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 fontStyle: FontStyle.normal,
@@ -146,14 +145,12 @@ AppBar appBar(String text, String nexttext, BuildContext context) {
             ),
           ],
         ),
-        SizedBox(
-          height: 10,
-        ),
+        const SizedBox(height: 10),
         Row(
           children: [
             Text(
               nexttext,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
                 fontStyle: FontStyle.normal,
@@ -166,20 +163,20 @@ AppBar appBar(String text, String nexttext, BuildContext context) {
     ),
     actions: [
       Padding(
-          padding: EdgeInsets.only(right: 20.0),
+          padding: const EdgeInsets.only(right: 20.0),
           child: GestureDetector(
             onTap: () {},
-            child: Icon(
+            child: const Icon(
               CupertinoIcons.search,
               color: AppColors.deepBlackColor,
               size: 22.0,
             ),
           )),
       Padding(
-        padding: EdgeInsets.only(right: 20.0),
+        padding: const EdgeInsets.only(right: 20.0),
         child: GestureDetector(
           onTap: () {},
-          child: Icon(
+          child: const Icon(
             CupertinoIcons.info,
             color: AppColors.deepBlackColor,
             size: 29.0,
@@ -190,23 +187,21 @@ AppBar appBar(String text, String nexttext, BuildContext context) {
   );
 }
 
-Container channelName(String text) {
-  return Container(
-    child: Padding(
-      padding: const EdgeInsets.only(left: 10, top: 200),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            text,
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.w700,
-              fontStyle: FontStyle.normal,
-            ),
-          )
-        ],
-      ),
+Padding channelName(String text) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 10, top: 200),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          text,
+          style: const TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.w700,
+            fontStyle: FontStyle.normal,
+          ),
+        )
+      ],
     ),
   );
 }
@@ -259,15 +254,13 @@ Row row() {
         children: [
           GestureDetector(
             onTap: () {},
-            child: CircleAvatar(
+            child: const CircleAvatar(
                 radius: 30,
                 backgroundColor: AppColors.lightGreen,
                 child: ImageIcon(AssetImage('assets/channel_page/edit.png'))),
           ),
-          SizedBox(
-            height: 5,
-          ),
-          Text(
+          const SizedBox(height: 5),
+          const Text(
             'Add Description',
             style: TextStyle(
               color: AppColors.greyishColor,
@@ -276,14 +269,12 @@ Row row() {
           )
         ],
       ),
-      SizedBox(
-        width: 30,
-      ),
+      const SizedBox(width: 30),
       Column(
         children: [
           GestureDetector(
             onTap: () => navigator.navigateTo(Routes.addPeopleView),
-            child: CircleAvatar(
+            child: const CircleAvatar(
               radius: 30,
               backgroundColor: AppColors.lightGreen,
               child: Icon(
@@ -292,10 +283,8 @@ Row row() {
               ),
             ),
           ),
-          SizedBox(
-            height: 5,
-          ),
-          Text(
+          const SizedBox(height: 5),
+          const Text(
             'Add People',
             style: TextStyle(
               color: AppColors.greyishColor,
@@ -310,12 +299,12 @@ Row row() {
 
 sendMessageArea() {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 8),
+    padding: const EdgeInsets.symmetric(horizontal: 8),
     height: 70,
     color: Colors.white,
     child: Row(
       children: <Widget>[
-        Expanded(
+        const Expanded(
           child: TextField(
             decoration: InputDecoration.collapsed(
               hintText: 'Message #teamsocrates',
@@ -328,11 +317,11 @@ sendMessageArea() {
             textCapitalization: TextCapitalization.sentences,
           ),
         ),
-        ImageIcon(AssetImage('assets/channel_page/light.png')),
-        SizedBox(width: 22),
-        Icon(CupertinoIcons.camera),
-        SizedBox(width: 22),
-        ImageIcon(AssetImage('assets/channel_page/attach.png')),
+        const ImageIcon(AssetImage('assets/channel_page/light.png')),
+        const SizedBox(width: 22),
+        const Icon(CupertinoIcons.camera),
+        const SizedBox(width: 22),
+        const ImageIcon(AssetImage('assets/channel_page/attach.png')),
       ],
     ),
   );
@@ -340,7 +329,7 @@ sendMessageArea() {
 
 dateBuilder(BuildContext context) {
   return Row(children: <Widget>[
-    Expanded(
+    const Expanded(
         child: Divider(
       endIndent: 1,
       color: AppColors.greyishColor,
@@ -354,7 +343,7 @@ dateBuilder(BuildContext context) {
           border: Border.all(width: 1),
           borderRadius: BorderRadius.circular(40),
         ),
-        child: Text(
+        child: const Text(
           'today',
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -364,7 +353,7 @@ dateBuilder(BuildContext context) {
         ),
       ),
     ),
-    Expanded(
+    const Expanded(
         child: Divider(
       indent: 1,
       color: Colors.black,

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/styles.dart';
+import '../../../general_widgets/custom_textfield.dart';
+import '../forgot_password/forgot_password_view.dart';
 import 'package:stacked/stacked.dart';
 
 import 'package:hng/ui/shared/colors.dart';
@@ -14,7 +18,7 @@ class LoginView extends StatelessWidget {
       viewModelBuilder: () => LoginViewModel(),
       builder: (context, model, child) => Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xffF7F7F7),
+        backgroundColor: AppColors.whiteColor,
         body: Padding(
           padding: EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 0),
           child: Column(
@@ -32,27 +36,17 @@ class LoginView extends StatelessWidget {
                 height: 24.23,
               ),
               Center(
-                child: Text(
-                  'Sign In',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 20.0,
-                  ),
-                ),
+                  child: Text(
+                'Sign In',
+                style: AppTextStyles.heading7,
+              )),
+              SizedBox(
+                height: 4.0,
               ),
               SizedBox(
                 height: 4.0,
               ),
-              Center(
-                child: Text(
-                  'Welcome! Sign in to continue',
-                  style: TextStyle(fontSize: 14.0),
-                ),
-              ),
-              SizedBox(
-                height: 49.0,
-              ),
-              CustomTextField(
+              const CustomTextField(
                 keyboardType: TextInputType.emailAddress,
                 inputAction: TextInputAction.next,
                 autoFocus: false,
