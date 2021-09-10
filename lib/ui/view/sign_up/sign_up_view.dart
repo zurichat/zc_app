@@ -56,7 +56,7 @@ class SignUpView extends StatelessWidget {
                     const CustomTextField(
                       keyboardType: TextInputType.emailAddress,
                       inputAction: TextInputAction.next,
-                      autoFocus: true,
+                      autoFocus: !true,
                       autoCorrect: false,
                       obscureText: false,
                       labelText: 'Email Address',
@@ -66,7 +66,7 @@ class SignUpView extends StatelessWidget {
                     const CustomTextField(
                       keyboardType: TextInputType.visiblePassword,
                       inputAction: TextInputAction.next,
-                      autoFocus: true,
+                      autoFocus: !true,
                       autoCorrect: false,
                       obscureText: true,
                       labelText: 'Password',
@@ -76,7 +76,7 @@ class SignUpView extends StatelessWidget {
                     const CustomTextField(
                       keyboardType: TextInputType.emailAddress,
                       inputAction: TextInputAction.next,
-                      autoFocus: true,
+                      autoFocus: !true,
                       autoCorrect: false,
                       obscureText: true,
                       labelText: 'Confirm Password',
