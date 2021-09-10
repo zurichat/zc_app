@@ -29,11 +29,11 @@ class CustomUserBottomSheetView extends StatelessWidget {
         initialChildSize: 0.8,
         minChildSize: 0.8,
         builder: (BuildContext context, ScrollController scrollController) {
-          return SingleChildScrollView(
-            controller: scrollController,
-            child: Container(
-              height: height * .97,
-              color: Colors.white,
+          return Container(
+            height: height * .97,
+            color: Colors.white,
+            child: SingleChildScrollView(
+              controller: scrollController,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -47,23 +47,25 @@ class CustomUserBottomSheetView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         CustomButton(text: "Message", onPressed: () {}),
-                        CustomButton(text: "Edit Profile", onPressed: () {}),
+                        CustomButton(
+                            text: "Edit Profile", onPressed: model.editProfile),
                         CustomButton.icon(
                             icon: Icons.more_horiz_rounded, onPressed: () {}),
                       ],
                     ),
                   ),
                   Divider(),
-                  CustomProfileTile(title: "Message", subtitle: "UI/UX"),
+                  CustomProfileTile(title: "What I do", subtitle: "Mobile Dev"),
                   Divider(),
-                  CustomProfileTile(title: "Display Name", subtitle: "Laytex"),
+                  CustomProfileTile(
+                      title: "Display Name", subtitle: "pauleke65"),
                   Divider(),
                   ListTile(
                     title:
                         CustomText(text: "Status", fontWeight: FontWeight.w300),
                     subtitle: Align(
                         alignment: Alignment.centerLeft,
-                        child: Icon(Icons.looks_4, color: Colors.blue)),
+                        child: Icon(Icons.looks_5, color: Colors.blue)),
                     shape: Border(
                       top: BorderSide(width: .5, color: AppColors.greyishColor),
                     ),

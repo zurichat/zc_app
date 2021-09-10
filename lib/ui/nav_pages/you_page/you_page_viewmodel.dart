@@ -8,7 +8,7 @@ class YouPageViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
 
-  String username = "Oscar";
+  String username = "pauleke65";
   String profileImage = "assets/background/appBarLogo.png";
   String currentStatus = "Active";
   String otherStatus = "away";

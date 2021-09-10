@@ -45,7 +45,12 @@ class SetStatusView extends StatelessWidget {
                           ),
                           fit: FlexFit.loose,
                         ),
-                        IconButton(onPressed: () {}, icon: Icon(Icons.cancel)),
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.cancel,
+                              color: AppColors.greyishColor,
+                            )),
                       ],
                     ),
                     Divider(),

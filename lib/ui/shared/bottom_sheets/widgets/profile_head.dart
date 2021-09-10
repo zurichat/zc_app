@@ -7,6 +7,7 @@ class ProfileHead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
@@ -14,7 +15,7 @@ class ProfileHead extends StatelessWidget {
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-              height: MediaQuery.of(context).size.height * .15,
+              height: height * 0.15,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
@@ -30,11 +31,15 @@ class ProfileHead extends StatelessWidget {
                 alignment: Alignment.bottomLeft,
                 child: Row(
                   children: [
-                    CustomText(
-                      text: "Ademuyiwa Sunkanmi Lateef",
-                      color: AppColors.whiteColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
+                    Flexible(
+                      fit: FlexFit.loose,
+                      child: CustomText(
+                        text: "Paul Imoke Eke",
+                        color: AppColors.whiteColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: height * 0.025,
+                        maxLines: 3,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(5),

@@ -9,4 +9,8 @@ class CustomUserBottomSheetViewModel extends BaseViewModel {
   Future setStatus() async {
     await _navigationService.navigateTo(Routes.setStatusView);
   }
+
+  Future editProfile() async {
+    await _navigationService.navigateTo(Routes.editProfileView);
+  }
 }

@@ -20,34 +20,36 @@ class PreferenceView extends StatelessWidget {
           ),
           elevation: 0,
         ),
-        body: Column(
-          children: [
-            MenuItemTile(
-              text: Text("Language & Region"),
-              onPressed: model.navigateLanguageAndRegion,
-            ),
-            MenuItemTile(
-              text: Text("Dark mode"),
-              subtitle: model.currentTheme,
-              onPressed: model.changeTheme,
-            ),
-            MenuItemTile(
-              text: Text("Advanced"),
-              onPressed: model.navigateToAdvanced,
-            ),
-            MenuItemTile(
-              text: Text("Send Feedback"),
-              onPressed: model.sendFeedback,
-            ),
-            MenuItemTile(
-              text: Text("Help Center"),
-              onPressed: model.helpCentre,
-            ),
-            MenuItemTile(
-              text: Text("Privacy & licences"),
-              onPressed: model.privacyAndLicences,
-            ),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              MenuItemTile(
+                text: Text("Language & Region"),
+                onPressed: model.navigateLanguageAndRegion,
+              ),
+              MenuItemTile(
+                text: Text("Dark mode"),
+                subtitle: model.currentTheme,
+                onPressed: model.changeTheme,
+              ),
+              MenuItemTile(
+                text: Text("Advanced"),
+                onPressed: model.navigateToAdvanced,
+              ),
+              MenuItemTile(
+                text: Text("Send Feedback"),
+                onPressed: model.sendFeedback,
+              ),
+              MenuItemTile(
+                text: Text("Help Center"),
+                onPressed: model.helpCentre,
+              ),
+              MenuItemTile(
+                text: Text("Privacy & licences"),
+                onPressed: model.privacyAndLicences,
+              ),
+            ],
+          ),
         ),
       ),
       viewModelBuilder: () => PreferenceViewModel(),
