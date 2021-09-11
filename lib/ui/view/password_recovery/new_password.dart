@@ -33,9 +33,9 @@ class NewPassView extends StatelessWidget {
                     'previously used password',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14)),
-                SizedBox(height: 30),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
+                const SizedBox(height: 30),
+                const Padding(
+                  padding: EdgeInsets.all(15.0),
                   child: CustomTextField(
                     keyboardType: TextInputType.visiblePassword,
                     inputAction: TextInputAction.next,
@@ -43,19 +43,18 @@ class NewPassView extends StatelessWidget {
                     obscureText: true,
                     labelText: 'Password',
                     hintText: 'Enter Password',
-                    autoFocus: false,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: CustomTextField(
-                      keyboardType: TextInputType.visiblePassword,
-                      inputAction: TextInputAction.done,
-                      obscureText: true,
-                      autoCorrect: false,
-                      autoFocus: true,
-                      labelText: 'Confirm Password',
-                      hintText: 'Re-enter Password'),
+                    keyboardType: TextInputType.visiblePassword,
+                    inputAction: TextInputAction.done,
+                    obscureText: true,
+                    autoCorrect: false,
+                    labelText: 'Confirm Password',
+                    hintText: 'Re-enter Password',
+                  ),
                 ),
                 SizedBox(
                   height: 40,

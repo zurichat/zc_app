@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/colors.dart';
-
 import 'package:stacked/stacked.dart';
 
+import '../../shared/colors.dart';
 import 'dm_page_viewmodel.dart';
 import 'widgets/dmmessage_read.dart';
 import 'widgets/dmmessage_unread.dart';

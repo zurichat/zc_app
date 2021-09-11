@@ -7,6 +7,7 @@ import '../../../../app/app.router.dart';
 import '../../../../models/user_model.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/shared.dart';
+
 import 'channel_page_viewmodel.dart';
 
 class ChannelPageView extends StatelessWidget {

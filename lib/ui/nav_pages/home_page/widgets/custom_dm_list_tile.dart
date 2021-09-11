@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../shared/shared.dart';
 import '../home_page_viewmodel.dart';
+
+// import 'package:hng/ui/direct_message/direct_message.dart';
+
+// import '../../../shared/colors.dart';
 
 class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
   final imagelink;

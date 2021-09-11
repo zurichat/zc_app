@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../general_widgets/custom_text.dart';
 import 'onboarding_viewmodel.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -27,11 +26,11 @@ class _OnboardingViewState extends State<OnboardingView> {
               key: introKey,
               pages: [
                 PageViewModel(
-                    title: 'Perfect Collaboration App For Teams',
-                    body: '''Chat with other team members'''
-                        ''' without any distractions from the world''',
-                    image:
-                        Image.asset('assets/images/onboarding_screen_0.png')),
+                  title: 'Perfect Collaboration App For Teams',
+                  body: '''Chat with other team members'''
+                      ''' without any distractions from the world''',
+                  image: Image.asset('assets/images/onboarding_screen_0.png'),
+                ),
                 PageViewModel(
                   title: 'Music Room',
                   body: '''Now you can listen to your favourite'''
@@ -51,11 +50,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               ),
               onDone: () => model.navigateToNext(),
               showDoneButton: true,
-              showNextButton: true,
-              next: TextButton(
-                onPressed: () {},
-                child: const CustomText(text: 'Next'),
-              ),
+              showNextButton: false,
             ),
           ),
         );
