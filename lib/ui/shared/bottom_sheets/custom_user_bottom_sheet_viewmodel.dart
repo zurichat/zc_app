@@ -3,14 +3,14 @@ import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class SetStatusViewModel extends BaseViewModel {
+class CustomUserBottomSheetViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
-  void exitPage() {
-    _navigationService.back();
+  Future setStatus() async {
+    await _navigationService.navigateTo(Routes.setStatusView);
   }
 
-  Future clearAfter() async {
-    await _navigationService.navigateTo(Routes.clearAfterView);
+  Future editProfile() async {
+    await _navigationService.navigateTo(Routes.editProfileView);
   }
 }

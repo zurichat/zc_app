@@ -1,3 +1,13 @@
+import 'package:hng/ui/view/advanced/advanced_view.dart';
+import 'package:hng/ui/view/clear_after/clear_after_view.dart';
+import 'package:hng/ui/view/do_not_disturb/do_not_disturb_view.dart';
+import 'package:hng/ui/view/edit_profile/edit_profile_view.dart';
+import 'package:hng/ui/view/language_and_region/language_and_region_view.dart';
+import 'package:hng/ui/view/notifications/notifications_view.dart';
+import 'package:hng/ui/view/profile_page/profile_page_view.dart';
+import 'package:hng/ui/view/saved_items/saved_items_view.dart';
+import 'package:hng/ui/view/set_status/set_status_view.dart';
+import 'package:hng/ui/view/view_profile_page/view_profile_page.dart';
 import 'package:hng/services/api_service.dart';
 import 'package:hng/ui/view/draft/draft_view.dart';
 import 'package:hng/ui/view/file_search/file_search_view.dart';
@@ -41,10 +51,10 @@ import '../ui/view/pinned_messages/pinned_message.dart';
   routes: [
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView),
-    MaterialRoute(page: PreferenceView),
     MaterialRoute(page: LoginView),
     MaterialRoute(page: OtpView),
     MaterialRoute(page: SignUpView),
+    MaterialRoute(page: WorkspaceView),
     MaterialRoute(page: ChannelList),
     MaterialRoute(page: ForgotPasswordView),
     MaterialRoute(page: ChannelNotificationView),
@@ -54,7 +64,6 @@ import '../ui/view/pinned_messages/pinned_message.dart';
     MaterialRoute(page: AddPeopleView),
     MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: DmSearch),
-    MaterialRoute(page: WorkspaceView),
     MaterialRoute(page: DmJumpToView),
     MaterialRoute(page: DmUserView),
     MaterialRoute(page: Splashview, initial: true),
@@ -62,6 +71,17 @@ import '../ui/view/pinned_messages/pinned_message.dart';
     MaterialRoute(page: AddPluginView),
     MaterialRoute(page: UseDifferentEmailView),
     MaterialRoute(page: EditPluginView),
+    MaterialRoute(page: ViewProfilePage),
+    MaterialRoute(page: SetStatusView),
+    MaterialRoute(page: ProfilePageView),
+    MaterialRoute(page: PreferenceView),
+    MaterialRoute(page: LanguageAndRegionModelView),
+    MaterialRoute(page: SavedItemsView),
+    MaterialRoute(page: NotificationsView),
+    MaterialRoute(page: AdvancedView),
+    MaterialRoute(page: ClearAfterView),
+    MaterialRoute(page: DoNotDisturbView),
+    MaterialRoute(page: EditProfileView),
     MaterialRoute(page: PopUpNotificationsView),
     MaterialRoute(page: PinnedMessages),
     MaterialRoute(page: AddWorkspaceView),
@@ -77,6 +97,8 @@ import '../ui/view/pinned_messages/pinned_message.dart';
       classType: SharedPreferenceLocalStorage,
       presolveUsing: SharedPreferences.getInstance,
     ),
+    LazySingleton(classType: DialogService),
+    LazySingleton(classType: BottomSheetService),
     Presolve(
       classType: ConnectivityService,
       presolveUsing: ConnectivityService.getInstance,

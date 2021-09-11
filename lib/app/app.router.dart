@@ -12,19 +12,25 @@ import 'package:stacked/stacked.dart';
 
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
+import '../ui/view/advanced/advanced_view.dart';
 import '../ui/view/channel/channel_info/channel_info_view.dart';
 import '../ui/view/channel/channel_list/channels_view.dart';
 import '../ui/view/channel/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
+import '../ui/view/clear_after/clear_after_view.dart';
 import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
+import '../ui/view/do_not_disturb/do_not_disturb_view.dart';
 import '../ui/view/draft/draft_view.dart';
+import '../ui/view/edit_profile/edit_profile_view.dart';
 import '../ui/view/file_search/file_search_view.dart';
 import '../ui/view/forgot_password/forgot_password_view.dart';
+import '../ui/view/language_and_region/language_and_region_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
+import '../ui/view/notifications/notifications_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/otp/otp_view.dart';
 import '../ui/view/pinned_messages/pinned_message.dart';
@@ -33,8 +39,12 @@ import '../ui/view/plugins/edit_plugin_view.dart';
 import '../ui/view/plugins/plugins_view.dart';
 import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
+import '../ui/view/profile_page/profile_page_view.dart';
+import '../ui/view/saved_items/saved_items_view.dart';
+import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/view_profile_page/view_profile_page.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
@@ -43,10 +53,10 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
 class Routes {
   static const String navBarView = '/nav-bar-view';
   static const String onboardingView = '/onboarding-view';
-  static const String preferenceView = '/preference-view';
   static const String loginView = '/login-view';
   static const String otpView = '/otp-view';
   static const String signUpView = '/sign-up-view';
+  static const String workspaceView = '/workspace-view';
   static const String channelList = '/channel-list';
   static const String forgotPasswordView = '/forgot-password-view';
   static const String channelNotificationView = '/channel-notification-view';
@@ -56,7 +66,6 @@ class Routes {
   static const String addPeopleView = '/add-people-view';
   static const String channelPageView = '/channel-page-view';
   static const String dmSearch = '/dm-search';
-  static const String workspaceView = '/workspace-view';
   static const String dmJumpToView = '/dm-jump-to-view';
   static const String dmUserView = '/dm-user-view';
   static const String splashview = '/';
@@ -64,6 +73,18 @@ class Routes {
   static const String addPluginView = '/add-plugin-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String editPluginView = '/edit-plugin-view';
+  static const String viewProfilePage = '/view-profile-page';
+  static const String setStatusView = '/set-status-view';
+  static const String profilePageView = '/profile-page-view';
+  static const String preferenceView = '/preference-view';
+  static const String languageAndRegionModelView =
+      '/language-and-region-model-view';
+  static const String savedItemsView = '/saved-items-view';
+  static const String notificationsView = '/notifications-view';
+  static const String advancedView = '/advanced-view';
+  static const String clearAfterView = '/clear-after-view';
+  static const String doNotDisturbView = '/do-not-disturb-view';
+  static const String editProfileView = '/edit-profile-view';
   static const String popUpNotificationsView = '/pop-up-notifications-view';
   static const String pinnedMessages = '/pinned-messages';
   static const String addWorkspaceView = '/add-workspace-view';
@@ -73,10 +94,10 @@ class Routes {
   static const all = <String>{
     navBarView,
     onboardingView,
-    preferenceView,
     loginView,
     otpView,
     signUpView,
+    workspaceView,
     channelList,
     forgotPasswordView,
     channelNotificationView,
@@ -86,7 +107,6 @@ class Routes {
     addPeopleView,
     channelPageView,
     dmSearch,
-    workspaceView,
     dmJumpToView,
     dmUserView,
     splashview,
@@ -94,6 +114,17 @@ class Routes {
     addPluginView,
     useDifferentEmailView,
     editPluginView,
+    viewProfilePage,
+    setStatusView,
+    profilePageView,
+    preferenceView,
+    languageAndRegionModelView,
+    savedItemsView,
+    notificationsView,
+    advancedView,
+    clearAfterView,
+    doNotDisturbView,
+    editProfileView,
     popUpNotificationsView,
     pinnedMessages,
     addWorkspaceView,
@@ -109,10 +140,10 @@ class StackedRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
-    RouteDef(Routes.preferenceView, page: PreferenceView),
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.otpView, page: OtpView),
     RouteDef(Routes.signUpView, page: SignUpView),
+    RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.channelList, page: ChannelList),
     RouteDef(Routes.forgotPasswordView, page: ForgotPasswordView),
     RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
@@ -122,7 +153,6 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.addPeopleView, page: AddPeopleView),
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.dmSearch, page: DmSearch),
-    RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.dmJumpToView, page: DmJumpToView),
     RouteDef(Routes.dmUserView, page: DmUserView),
     RouteDef(Routes.splashview, page: Splashview),
@@ -130,6 +160,18 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.addPluginView, page: AddPluginView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.editPluginView, page: EditPluginView),
+    RouteDef(Routes.viewProfilePage, page: ViewProfilePage),
+    RouteDef(Routes.setStatusView, page: SetStatusView),
+    RouteDef(Routes.profilePageView, page: ProfilePageView),
+    RouteDef(Routes.preferenceView, page: PreferenceView),
+    RouteDef(Routes.languageAndRegionModelView,
+        page: LanguageAndRegionModelView),
+    RouteDef(Routes.savedItemsView, page: SavedItemsView),
+    RouteDef(Routes.notificationsView, page: NotificationsView),
+    RouteDef(Routes.advancedView, page: AdvancedView),
+    RouteDef(Routes.clearAfterView, page: ClearAfterView),
+    RouteDef(Routes.doNotDisturbView, page: DoNotDisturbView),
+    RouteDef(Routes.editProfileView, page: EditProfileView),
     RouteDef(Routes.popUpNotificationsView, page: PopUpNotificationsView),
     RouteDef(Routes.pinnedMessages, page: PinnedMessages),
     RouteDef(Routes.addWorkspaceView, page: AddWorkspaceView),
@@ -152,12 +194,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    PreferenceView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const PreferenceView(),
-        settings: data,
-      );
-    },
     LoginView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const LoginView(),
@@ -173,6 +209,12 @@ class StackedRouter extends RouterBase {
     SignUpView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const SignUpView(),
+        settings: data,
+      );
+    },
+    WorkspaceView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const WorkspaceView(),
         settings: data,
       );
     },
@@ -230,12 +272,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    WorkspaceView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const WorkspaceView(),
-        settings: data,
-      );
-    },
     DmJumpToView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const DmJumpToView(),
@@ -278,6 +314,78 @@ class StackedRouter extends RouterBase {
     EditPluginView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const EditPluginView(),
+        settings: data,
+      );
+    },
+    ViewProfilePage: (data) {
+      var args = data.getArgs<ViewProfilePageArguments>(
+        orElse: () => ViewProfilePageArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ViewProfilePage(
+          key: args.key,
+          isActive: args.isActive,
+        ),
+        settings: data,
+      );
+    },
+    SetStatusView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SetStatusView(),
+        settings: data,
+      );
+    },
+    ProfilePageView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ProfilePageView(),
+        settings: data,
+      );
+    },
+    PreferenceView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PreferenceView(),
+        settings: data,
+      );
+    },
+    LanguageAndRegionModelView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const LanguageAndRegionModelView(),
+        settings: data,
+      );
+    },
+    SavedItemsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const SavedItemsView(),
+        settings: data,
+      );
+    },
+    NotificationsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const NotificationsView(),
+        settings: data,
+      );
+    },
+    AdvancedView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const AdvancedView(),
+        settings: data,
+      );
+    },
+    ClearAfterView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ClearAfterView(),
+        settings: data,
+      );
+    },
+    DoNotDisturbView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const DoNotDisturbView(),
+        settings: data,
+      );
+    },
+    EditProfileView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const EditProfileView(),
         settings: data,
       );
     },
@@ -328,4 +436,11 @@ class StackedRouter extends RouterBase {
 class DmUserViewArguments {
   final Key? key;
   DmUserViewArguments({this.key});
+}
+
+/// ViewProfilePage arguments holder class
+class ViewProfilePageArguments {
+  final Key? key;
+  final bool isActive;
+  ViewProfilePageArguments({this.key, this.isActive = true});
 }
