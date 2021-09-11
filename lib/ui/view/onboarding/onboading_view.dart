@@ -26,11 +26,11 @@ class _OnboardingViewState extends State<OnboardingView> {
               key: introKey,
               pages: [
                 PageViewModel(
-                    title: 'Perfect Collaboration App For Teams',
-                    body: '''Chat with other team members'''
-                        ''' without any distractions from the world''',
-                    image:
-                        Image.asset('assets/images/onboarding_screen_0.png')),
+                  title: 'Perfect Collaboration App For Teams',
+                  body: '''Chat with other team members'''
+                      ''' without any distractions from the world''',
+                  image: Image.asset('assets/images/onboarding_screen_0.png'),
+                ),
                 PageViewModel(
                   title: 'Music Room',
                   body: '''Now you can listen to your favourite'''
