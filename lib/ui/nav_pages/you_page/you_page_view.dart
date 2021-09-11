@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/menu_item_tile.dart';
-import 'package:hng/ui/nav_pages/you_page/widgets/status_form.dart';
-import 'package:hng/ui/nav_pages/you_page/widgets/profile_page_head.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../general_widgets/menu_item_tile.dart';
 import '../../shared/colors.dart';
 import '../../shared/shared.dart';
-
+import 'widgets/profile_page_head.dart';
+import 'widgets/status_form.dart';
 import 'you_page_viewmodel.dart';
 
 class YouPage extends StatelessWidget {
