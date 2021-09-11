@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:stacked/stacked.dart';
 
-import 'email confirmation viewmodel.dart';
+import 'email_confirmation_viewmodel.dart';
 
-class MyApp extends StatelessWidget {
+
+class EmailConfirmationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<EmailViewModel>.reactive(
-        viewModelBuilder: () => EmailViewModel(),
+    return ViewModelBuilder<EmailConfirmationViewModel>.reactive(
+        viewModelBuilder: () => EmailConfirmationViewModel(),
         builder: (context, viewModel, child) {
           return Center(
             child: Container(

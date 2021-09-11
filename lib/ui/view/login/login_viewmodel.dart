@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/services/api_service.dart';
-import 'package:hng/services/local_storage_services.dart';
+import '../../../app/app.locator.dart';
+import '../../../app/app.router.dart';
+import '../../../services/api_service.dart';
+import '../../../services/local_storage_services.dart';
 
 class LoginViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
@@ -25,7 +25,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   void navigateToForgotPasswordScreen() {
-    navigationService.navigateTo(Routes.forgotPasswordView);
+    navigationService.navigateTo(Routes.forgotPasswordEmailView);
   }
 
   // ignore: always_declare_return_types
@@ -37,7 +37,7 @@ class LoginViewModel extends BaseViewModel {
       isLoading = false;
       notifyListeners();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           duration: Duration(seconds: 3),
           content: Text('Please fill all fields.'),
         ),

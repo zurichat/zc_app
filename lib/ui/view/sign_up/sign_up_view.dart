@@ -65,7 +65,7 @@ class SignUpView extends StatelessWidget {
                         labelText: 'Email Address',
                         hintText: 'Name@gmail.com',
                       ),
-                      const SizedBox(height: 32),
+                      const SizedBox(height: 24),
                       CustomTextField(
                         controller: model.password,
                         keyboardType: TextInputType.visiblePassword,
@@ -75,34 +75,17 @@ class SignUpView extends StatelessWidget {
                         labelText: 'Password',
                         hintText: 'Enter Password',
                       ),
-                      const SizedBox(height: 48),
-                      const CustomTextField(
+                      const SizedBox(height: 24),
+                      CustomTextField(
                         keyboardType: TextInputType.emailAddress,
-                        inputAction: TextInputAction.next,
-                        autoCorrect: false,
-                        obscureText: false,
-                        labelText: 'Email Address',
-                        hintText: 'Name@gmail.com',
-                      ),
-                      const SizedBox(height: 32),
-                      const CustomTextField(
-                        keyboardType: TextInputType.visiblePassword,
-                        inputAction: TextInputAction.next,
-                        autoCorrect: false,
-                        obscureText: true,
-                        labelText: 'Password',
-                        hintText: 'Enter Password',
-                      ),
-                      const SizedBox(height: 32),
-                      const CustomTextField(
-                        keyboardType: TextInputType.emailAddress,
+                        controller: model.confirmPassword,
                         inputAction: TextInputAction.next,
                         autoCorrect: false,
                         obscureText: true,
                         labelText: 'Confirm Password',
                         hintText: 'Re-enter password',
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 24),
                       Row(children: [
                         Checkbox(
                           value: model.checkBoxValue,
@@ -129,7 +112,7 @@ class SignUpView extends StatelessWidget {
                       ]),
                       const SizedBox(height: 32),
                       LongButton(
-                        onPressed: () => model.navigateToHome(),
+                        onPressed: () => model.createUser(context),
                         label: 'Create Account',
                       ),
                       Row(
