@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../general_widgets/custom_text.dart';
 import 'onboarding_viewmodel.dart';
 
 class OnboardingView extends StatefulWidget {

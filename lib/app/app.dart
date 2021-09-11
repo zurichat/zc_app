@@ -51,6 +51,7 @@ import '../ui/view/pinned_messages/pinned_message.dart';
   routes: [
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView),
+    MaterialRoute(page: LoginView),
     MaterialRoute(page: OtpView),
     MaterialRoute(page: SignUpView),
     MaterialRoute(page: WorkspaceView),
@@ -96,7 +97,6 @@ import '../ui/view/pinned_messages/pinned_message.dart';
       classType: SharedPreferenceLocalStorage,
       presolveUsing: SharedPreferences.getInstance,
     ),
-    
     LazySingleton(classType: DialogService),
     LazySingleton(classType: BottomSheetService),
     Presolve(
