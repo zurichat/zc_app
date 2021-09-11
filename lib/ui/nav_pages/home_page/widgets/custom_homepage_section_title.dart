@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 
 class CustomHomePageSectionTitle extends StatelessWidget {
   final title;
@@ -21,11 +20,7 @@ class CustomHomePageSectionTitle extends StatelessWidget {
           onTap: ontap,
           child: Text(
             title,
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              color: AppColors.deepBlackColor,
-              fontSize: 16,
-            ),
+            style: AppTextStyles.normalText
           ),
         ),
       ],

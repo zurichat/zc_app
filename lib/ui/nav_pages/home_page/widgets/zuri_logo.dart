@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/ui/shared/shared.dart';
 
 import '../../../../utilities/constants.dart';
-import '../../../shared/colors.dart';
 
 class ZuriLogo extends StatelessWidget {
   const ZuriLogo({
@@ -23,11 +22,7 @@ class ZuriLogo extends StatelessWidget {
         ),
         Text(
           'ZURI',
-          style: GoogleFonts.lato(
-              fontWeight: FontWeight.w700,
-              fontSize: 20,
-              letterSpacing: 2.5,
-              color: AppColors.whiteColor),
+          style: AppTextStyles.zuriAppBarWordLogo
         ),
       ],
     );

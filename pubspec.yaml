@@ -61,7 +61,12 @@ flutter:
     - family: ZapIcon
       fonts:
         - asset: assets/fonts/zap_icon.ttf
-
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
+        - asset: assets/fonts/Lato-Bold.ttf
+        - asset: assets/fonts/Lato-Light.ttf
+        - asset: assets/fonts/Lato-Black.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

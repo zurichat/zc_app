@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hng/ui/shared/colors.dart';
 
 class CustomPluginPageListTile extends StatelessWidget {
   final leadingIcon;
