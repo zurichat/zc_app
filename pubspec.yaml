@@ -13,13 +13,16 @@ dependencies:
   dio: ^4.0.0
   flutter:
     sdk: flutter
+  flutter_appavailability: ^0.0.21
   flutter_chips_input: ^1.10.0
+  modal_progress_hud_nsn: ^0.1.0-nullsafety-0
   flutter_screenutil: ^5.0.0+2
   flutter_svg: ^0.22.0
   fluttertoast: ^8.0.8
   font_awesome_flutter: ^9.1.0
   google_fonts: ^2.1.0
   grouped_list: ^4.1.0
+  hexcolor: ^2.0.5
   image_gallery_saver: ^1.6.9
   intl: ^0.17.0
   introduction_screen: ^2.1.0
@@ -29,8 +32,6 @@ dependencies:
   stacked: ^2.1.8
   stacked_hooks: ^0.2.1
   stacked_services: ^0.8.6
-  hexcolor: ^2.0.5
-  flutter_appavailability: ^0.0.21
   stacked_themes: ^0.3.6
   url_launcher: ^6.0.9
   velocity_x: ^3.3.0
@@ -51,20 +52,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo/
-    - assets/images/nate.png
-    - assets/background/bga.png
-    - assets/background/status.png
-    - assets/logo/zuri_chat_logo.png
-    - assets/background/appBarLogo.png
-    - assets/images/vector.png
-
-    - assets/icons/attachment-outline.png
     - assets/images/
-    - assets/logo/splash_image.png
-    - assets/images/user.png
-    # - assets/logo/zuri_logo.png
+    - assets/background/
+    - assets/icons/
     - assets/channel_page/
-    - assets/images/
     - assets/plugin_icons/
     - assets/icons/emojiHands/
 
@@ -72,7 +63,6 @@ flutter:
     - family: ZapIcon
       fonts:
         - asset: assets/fonts/zap_icon.ttf
-
   # fonts:
   #   - family: Schyler
   #     fonts:

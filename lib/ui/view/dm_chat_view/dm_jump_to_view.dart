@@ -32,13 +32,14 @@ class DmJumpToView extends StatelessWidget {
                   child: Container(
                     height: 40,
                     width: 379,
-                    // child: BorderTextField(onChanged: (value) {  }, hint: 'Jump to...', controller: controller,),
+                    // child: BorderTextField(onChanged: (value)
+                    //{  }, hint: 'Jump to...', controller: controller,),
                     child: TextField(
                       controller: model.controller,
                       keyboardType: TextInputType.visiblePassword,
                       maxLines: 1,
                       onChanged: (value) {},
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           borderSide: BorderSide(
@@ -65,57 +66,49 @@ class DmJumpToView extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Container(
                   height: 88,
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(children: [
-                      CustomUser(
+                      const CustomUser(
                         image: 'assets/images/Rectangle 1931.png',
                         text: 'Fierce',
                       ),
-                      SizedBox(width: 20.5),
-                      CustomUser(
+                      const SizedBox(width: 20.5),
+                      const CustomUser(
                         image: 'assets/images/Rectangle 1931 (1).png',
                         text: 'Abd_Salam',
                       ),
-                      SizedBox(
-                        width: 20.5,
-                      ),
-                      CustomUser(
+                      const SizedBox(width: 20.5),
+                      const CustomUser(
                         image: 'assets/images/Rectangle 1931 (2).png',
                         text: 'Souljaunt',
                       ),
-                      SizedBox(
-                        width: 20.5,
-                      ),
-                      CustomUser(
+                      const SizedBox(width: 20.5),
+                      const CustomUser(
                         image: 'assets/images/Rectangle 1931 (3).png',
                         text: 'Princess',
                       ),
-                      SizedBox(
-                        width: 20.5,
-                      ),
-                      CustomUser(
+                      const SizedBox(width: 20.5),
+                      const CustomUser(
                         image: 'assets/images/Rectangle 1931 (4).png',
                         text: 'Nudis',
                       ),
-                      SizedBox(
-                        width: 20.5,
-                      ),
-                      CustomUser(
+                      const SizedBox(width: 20.5),
+                      const CustomUser(
                         image: 'assets/images/Rectangle 1931 (5).png',
                         text: 'Unknown',
                       ),
                     ]),
                   ),
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 Container(
                   height: 24,
                   width: 379,
-                  child: Text(
+                  child: const Text(
                     'Recent',
                     style: TextStyle(
                       fontSize: 16,
@@ -123,56 +116,56 @@ class DmJumpToView extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 Expanded(
                   flex: 1,
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Column(
                       children: [
-                        CustomChannel(text: 'announcement'),
-                        CustomChannelStage(
+                        const CustomChannel(text: 'announcement'),
+                        const CustomChannelStage(
                             leadingIcon: Icons.lock, text: 'stage4'),
-                        CustomUserChannel(
+                        const CustomUserChannel(
                             image: 'assets/images/Rectangle 138a.png',
                             text: 'OyinkanUA',
                             trailingIcon: Icons.circle_outlined),
-                        CustomChannel(text: 'general'),
-                        CustomChannelStage(
-                            leadingIcon: Icons.lock, text: 'design_stage10'),
-                        CustomUserChannel(
+                        const CustomChannel(text: 'general'),
+                        const CustomChannelStage(
+                          leadingIcon: Icons.lock,
+                          text: 'design_stage10',
+                        ),
+                        const CustomUserChannel(
                           image: 'assets/images/Rectangle 138a.png',
                           text: 'Abd_Salam',
                           trailingIcon: Icons.circle,
                           iconColor: Color(0xff007952),
                         ),
-                        CustomChannel(
-                          text: 'announcement',
-                        ),
-                        CustomChannelStage(
+                        const CustomChannel(text: 'announcement'),
+                        const CustomChannelStage(
                             leadingIcon: Icons.lock, text: 'stage4'),
-                        CustomUserChannel(
+                        const CustomUserChannel(
                           image: 'assets/images/Rectangle 138a.png',
                           text: 'Blaze',
                           trailingIcon: Icons.circle,
                           iconColor: Color(0xff007952),
                         ),
-                        CustomChannel(text: 'announcement'),
-                        CustomChannelStage(
+                        const CustomChannel(text: 'announcement'),
+                        const CustomChannelStage(
                             leadingIcon: Icons.lock, text: 'stage4'),
-                        CustomChannel(text: 'announcement'),
-                        CustomChannelStage(
+                        const CustomChannel(text: 'announcement'),
+                        const CustomChannelStage(
                             leadingIcon: Icons.lock, text: 'stage4'),
-                        CustomUserChannel(
+                        const CustomUserChannel(
                           image: 'assets/images/Rectangle 138a.png',
                           text: 'Blaze',
                           trailingIcon: Icons.circle,
                           iconColor: Color(0xff007952),
                         ),
-                        CustomChannel(text: 'announcement'),
-                        CustomChannelStage(
+                        const CustomChannel(text: 'announcement'),
+                        const CustomChannelStage(
                             leadingIcon: Icons.lock, text: 'stage4'),
-                        CustomChannel(text: 'announcement')
+                        const CustomChannel(text: 'announcement')
                       ],
                     ),
                   ),

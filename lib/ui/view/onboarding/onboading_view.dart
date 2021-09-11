@@ -51,11 +51,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               ),
               onDone: () => model.navigateToNext(),
               showDoneButton: true,
-              showNextButton: true,
-              next: TextButton(
-                onPressed: () {},
-                child: const CustomText(text: 'Next'),
-              ),
+              showNextButton: false,
             ),
           ),
         );

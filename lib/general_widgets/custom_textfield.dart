@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,
+    this.controller,
     required this.keyboardType,
     required this.inputAction,
-    required this.autoFocus,
     required this.autoCorrect,
     required this.obscureText,
     required this.labelText,
@@ -13,7 +13,8 @@ class CustomTextField extends StatelessWidget {
   }) : super(key: key);
   final keyboardType;
   final inputAction;
-  final bool? autoFocus;
+  final controller;
+
   final bool? autoCorrect;
   final bool? obscureText;
   final String? labelText;
@@ -22,21 +23,25 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       keyboardType: keyboardType,
       textInputAction: inputAction,
-      autofocus: autoFocus!,
+      // autofocus: ,
       autocorrect: autoCorrect!,
       obscureText: obscureText!,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         labelText: labelText,
         hintText: hintText,
-        border: OutlineInputBorder(
+        border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
         ),
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(5.0)),
-            borderSide: BorderSide(color: Color(0xff1A61DB))),
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          borderSide: BorderSide(
+            color: Color(0xff1A61DB),
+          ),
+        ),
       ),
     );
   }

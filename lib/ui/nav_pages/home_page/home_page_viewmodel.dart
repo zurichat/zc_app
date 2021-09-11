@@ -7,9 +7,15 @@ import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
 import '../../../services/connectivity_service.dart';
 
+//final _navigationService = locator<NavigationService>();
+
 class HomePageViewModel extends StreamViewModel {
   void nToPref() {
-    NavigationService().navigateTo(Routes.preferenceView);
+    NavigationService().navigateTo(Routes.fileSearchView);
+  }
+
+  void nToInfo() {
+    NavigationService().navigateTo(Routes.channelInfoView);
   }
 
   void nToWorkspace() {

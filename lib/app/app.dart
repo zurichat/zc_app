@@ -8,6 +8,14 @@ import 'package:hng/ui/view/profile_page/profile_page_view.dart';
 import 'package:hng/ui/view/saved_items/saved_items_view.dart';
 import 'package:hng/ui/view/set_status/set_status_view.dart';
 import 'package:hng/ui/view/view_profile_page/view_profile_page.dart';
+import 'package:hng/services/api_service.dart';
+import 'package:hng/ui/view/draft/draft_view.dart';
+import 'package:hng/ui/view/file_search/file_search_view.dart';
+import 'package:hng/ui/view/popup_notification/popup_notification.dart';
+import 'package:hng/ui/view/workspace/add_workspace/add_workspace_view.dart';
+import 'package:hng/ui/view/workspace/create_workspace/create_workspace.dart';
+
+import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -37,10 +45,10 @@ import '../ui/view/preference/preference_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
 import '../ui/view/workspace/workspace_view/workspace_view.dart';
+import '../ui/view/pinned_messages/pinned_message.dart';
 
 @StackedApp(
   routes: [
-    MaterialRoute(page: LoginView),
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView),
     MaterialRoute(page: OtpView),
@@ -52,14 +60,15 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: NewChannel),
     MaterialRoute(page: ChannelInfoView),
     MaterialRoute(page: HomePage),
-    MaterialRoute(page: AddPeopleView, initial: true),
+    MaterialRoute(page: AddPeopleView),
     MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: DmSearch),
     MaterialRoute(page: DmJumpToView),
     MaterialRoute(page: DmUserView),
-    MaterialRoute(page: Splashview),
+    MaterialRoute(page: Splashview, initial: true),
     MaterialRoute(page: PluginView),
     MaterialRoute(page: AddPluginView),
+    MaterialRoute(page: UseDifferentEmailView),
     MaterialRoute(page: EditPluginView),
     MaterialRoute(page: ViewProfilePage),
     MaterialRoute(page: SetStatusView),
@@ -72,17 +81,28 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: ClearAfterView),
     MaterialRoute(page: DoNotDisturbView),
     MaterialRoute(page: EditProfileView),
+    MaterialRoute(page: PopUpNotificationsView),
+    MaterialRoute(page: PinnedMessages),
+    MaterialRoute(page: AddWorkspaceView),
+    MaterialRoute(page: CreateWorkSpace),
+    MaterialRoute(page: FileSearchView),
+    MaterialRoute(page: DraftView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: ThemeService),
+    LazySingleton(classType: ApiService),
     Presolve(
       classType: SharedPreferenceLocalStorage,
       presolveUsing: SharedPreferences.getInstance,
     ),
-    LazySingleton(classType: ConnectivityService),
+    
     LazySingleton(classType: DialogService),
     LazySingleton(classType: BottomSheetService),
+    Presolve(
+      classType: ConnectivityService,
+      presolveUsing: ConnectivityService.getInstance,
+    ),
   ],
 )
 class AppSetup {
