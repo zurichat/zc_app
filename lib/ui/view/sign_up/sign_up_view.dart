@@ -75,6 +75,24 @@ class SignUpView extends StatelessWidget {
                         labelText: 'Password',
                         hintText: 'Enter Password',
                       ),
+                      const SizedBox(height: 48),
+                      const CustomTextField(
+                        keyboardType: TextInputType.emailAddress,
+                        inputAction: TextInputAction.next,
+                        autoCorrect: false,
+                        obscureText: false,
+                        labelText: 'Email Address',
+                        hintText: 'Name@gmail.com',
+                      ),
+                      const SizedBox(height: 32),
+                      const CustomTextField(
+                        keyboardType: TextInputType.visiblePassword,
+                        inputAction: TextInputAction.next,
+                        autoCorrect: false,
+                        obscureText: true,
+                        labelText: 'Password',
+                        hintText: 'Enter Password',
+                      ),
                       const SizedBox(height: 32),
                       const CustomTextField(
                         keyboardType: TextInputType.emailAddress,
@@ -90,32 +108,28 @@ class SignUpView extends StatelessWidget {
                           value: model.checkBoxValue,
                           onChanged: (newValue) => model.updateValue(newValue),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const CustomText(
-                              text: 'By selecting this box, you agreed to our',
+                              text: 'Already  have an Account ?',
                               fontSize: 14,
                             ),
-                            const Text(
-                              'terms and conditions',
-                              style: TextStyle(
+                            TextButton(
+                              child: const CustomText(
+                                text: 'Sign In',
                                 fontSize: 14,
                                 color: AppColors.zuriPrimaryColor,
                                 fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                                decorationColor: AppColors.zuriPrimaryColor,
-                                decorationStyle: TextDecorationStyle.solid,
-                                decorationThickness: 2,
                               ),
-                            ),
+                              onPressed: () => model.navigateToSignIn(),
+                            )
                           ],
                         )
                       ]),
                       const SizedBox(height: 32),
                       LongButton(
-                        onPressed: () async => await model.createUser(context),
+                        onPressed: () => model.navigateToHome(),
                         label: 'Create Account',
                       ),
                       Row(

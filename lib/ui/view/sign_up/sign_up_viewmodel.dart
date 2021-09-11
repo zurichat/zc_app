@@ -20,10 +20,14 @@ class SignUpViewModel extends BaseViewModel {
   final apiService = locator<ApiService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   bool checkBoxValue = false;
+  final navigator = locator<NavigationService>();
+
   void updateValue(newValue) {
     checkBoxValue = newValue;
     notifyListeners();
   }
+
+  void navigateToHome() => navigator.navigateTo(Routes.navBarView);
 
   void navigateToSignIn() {
     navigation.navigateTo(Routes.loginView);
