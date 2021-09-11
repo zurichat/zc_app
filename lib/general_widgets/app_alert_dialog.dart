@@ -4,7 +4,7 @@ import '../ui/shared/shared.dart';
 import 'custom_text.dart';
 
 class AppAlertDialog {
-  Dialog feedback = Dialog();
+  Dialog feedback = const Dialog();
 
   void appDialog(
     BuildContext context,
@@ -14,7 +14,7 @@ class AppAlertDialog {
   ) {
     feedback = Dialog(
       child: Container(
-        padding: EdgeInsets.only(left: 18, right: 18, top: 24),
+        padding: const EdgeInsets.only(left: 18, right: 18, top: 24),
         height: MediaQuery.of(context).size.height / 3.5,
 //      width: MediaQuery.of(context).size.width / 0.005,
         child: Column(
@@ -27,16 +27,16 @@ class AppAlertDialog {
             ),
             TextFormField(
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(8),
+                contentPadding: const EdgeInsets.all(8),
                 hintText: hintText,
                 hintStyle: TextStyle(
                   fontSize: MediaQuery.of(context).size.width / 26,
                   fontWeight: FontWeight.w400,
                 ),
-                enabledBorder: UnderlineInputBorder(
+                enabledBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: AppColors.borderColor),
                 ),
-                focusedBorder: UnderlineInputBorder(
+                focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: AppColors.borderColor),
                 ),
               ),

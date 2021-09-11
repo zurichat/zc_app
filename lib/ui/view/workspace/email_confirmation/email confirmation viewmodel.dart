@@ -4,8 +4,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_appavailability/flutter_appavailability.dart';
+import 'package:stacked/stacked.dart';
 
-class EmailViewModel {
+class EmailViewModel extends BaseViewModel {
   // ignore: unused_element
   void openEmailApp(BuildContext context) {
     try {

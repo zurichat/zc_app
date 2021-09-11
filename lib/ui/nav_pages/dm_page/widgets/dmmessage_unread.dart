@@ -52,7 +52,7 @@ class DMMessageUnread extends StatelessWidget {
                 //     AppTextStyles.timestamp,
               ),
               SizedBox(height: 5),
-              //  AppTextStyles.unreadCount(3)
+              AppTextStyles.unreadCount(3)
             ],
           ),
         ],

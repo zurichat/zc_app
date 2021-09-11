@@ -8,6 +8,7 @@ import '../../shared/colors.dart';
 import '../../shared/shared.dart';
 import '../dm_page/dm_search_find_page.dart';
 import 'package:stacked/stacked.dart';
+import 'widgets/zuri_logo.dart';
 import '../../../utilities/constants.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,17 +18,17 @@ class HomePage extends StatelessWidget {
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
+          backgroundColor: model.status
+              ? AppColors.zuriPrimaryColor
+              : AppColors.greyishColor,
+          automaticallyImplyLeading: false,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: InkWell(
-                  child: const Image(
-                    image: appBarLogo,
-                    fit: BoxFit.cover,
-                    height: 48,
-                  ),
+                  child: ZuriLogo(),
                   onTap: () {
                     model.nToWorkspace();
                   },
@@ -36,13 +37,15 @@ class HomePage extends StatelessWidget {
             ],
           ),
           actions: [
-            Text(
-              model.status ? 'Online' : 'Offline',
-              style: const TextStyle(color: Colors.black),
-            )
+            Padding(
+              padding: EdgeInsets.all(5.0),
+              child: GestureDetector(
+                child: Icon(Icons.search, color: AppColors.whiteColor),
+                onTap: () {},
+              ),
+            ),
           ],
         ),
-        backgroundColor: AppColors.whiteColor,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
