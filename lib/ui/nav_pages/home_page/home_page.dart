@@ -18,16 +18,13 @@ class HomePage extends StatelessWidget {
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.appBarGreen,
+          backgroundColor: AppColors.zuriPrimaryColor,
           automaticallyImplyLeading: false,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 8.0,
-                  right: 5.0
-                ),
+                padding: const EdgeInsets.only(top: 8.0, right: 5.0),
                 child: InkWell(
                   child: ZuriLogo(),
                   onTap: () {
@@ -39,9 +36,7 @@ class HomePage extends StatelessWidget {
           ),
           actions: [
             Padding(
-              padding: EdgeInsets.only(
-                top: 4, right: 12
-              ),
+              padding: EdgeInsets.only(top: 4, right: 12),
               child: GestureDetector(
                 child: Icon(Icons.search, color: AppColors.whiteColor),
                 onTap: () {},
@@ -52,10 +47,7 @@ class HomePage extends StatelessWidget {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 6
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
               child: Column(
                 children: [
                   Container(
@@ -162,10 +154,7 @@ class HomePage extends StatelessWidget {
                               size: 16,
                             ),
                             const SizedBox(width: 8),
-                            Text(
-                              'Zuri-chat',
-                              style: AppTextStyles.timestamp
-                            ),
+                            Text('Zuri-chat', style: AppTextStyles.timestamp),
                           ],
                         ),
                       ],
