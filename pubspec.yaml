@@ -13,6 +13,7 @@ dependencies:
   dio: ^4.0.0
   flutter:
     sdk: flutter
+#    TODO Android V2 embedding issues
   flutter_appavailability: ^0.0.21
   flutter_chips_input: ^1.10.0
   modal_progress_hud_nsn: ^0.1.0-nullsafety-0
@@ -23,6 +24,7 @@ dependencies:
   google_fonts: ^2.1.0
   grouped_list: ^4.1.0
   hexcolor: ^2.0.5
+#  TODO Android V2 embedding issues
   image_gallery_saver: ^1.6.9
   intl: ^0.17.0
   introduction_screen: ^2.1.0
@@ -31,6 +33,7 @@ dependencies:
   shared_preferences: ^2.0.7
   stacked: ^2.1.8
   stacked_hooks: ^0.2.1
+#  TODO Android V2 embedding issues from flutter_statusbarcolor_ns package used in stacked_themes
   stacked_services: ^0.8.6
   stacked_themes: ^0.3.6
   url_launcher: ^6.0.9
