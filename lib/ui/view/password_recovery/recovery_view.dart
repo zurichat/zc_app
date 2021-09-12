@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/view/password_recovery/recovery_viewmodel.dart';
-import 'package:stacked/stacked.dart';
 
 class ForgotPassView extends StatelessWidget {
   const ForgotPassView({Key? key}) : super(key: key);
@@ -21,9 +21,10 @@ class ForgotPassView extends StatelessWidget {
               Text(
                 'Forgot Password',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.black),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -41,7 +42,6 @@ class ForgotPassView extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   inputAction: TextInputAction.done,
                   autoCorrect: true,
-                  autoFocus: true,
                   labelText: 'Email Address',
                   hintText: 'Name@gmail.com',
                   obscureText: false,
@@ -56,13 +56,15 @@ class ForgotPassView extends StatelessWidget {
                   onPressed: () {},
                   child: Text('Continue'),
                   style: ElevatedButton.styleFrom(
-                      primary: Color(0xff00B87C),
-                      onPrimary: Colors.white,
-                      minimumSize: Size(340.0, 48.0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4))),
+                    primary: Color(0xff00B87C),
+                    onPrimary: Colors.white,
+                    minimumSize: Size(340.0, 48.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),
