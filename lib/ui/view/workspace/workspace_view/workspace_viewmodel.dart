@@ -1,52 +1,58 @@
-
-// import 'package:flutter/material.dart';
-
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/general_widgets/app_toast.dart';
+import 'package:hng/package/base/server-request/workspace_request/workspace_api.dart';
+import 'package:hng/models/workspace_model.dart';
+import 'package:hng/services/connectivity_service.dart';
+import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
+class WorkspaceViewModel extends BaseViewModel {
+  final navigation = locator<NavigationService>();
+  final connectivityService = locator<ConnectivityService>();
+  final storageService = locator<SharedPreferenceLocalStorage>();
+  final api = WorkSpaceApi();
+  List<WorkspaceModel> workspaces = [];
 
-class WorkspaceViewModel extends BaseViewModel {}
+  Future fetchOrganizations() async {
+    try {
+      if (!await connectivityService.checkConnection()) {
+        AppToast.instance.message(null, 'Check your internet connection');
+        return;
+      }
+      setBusy(true);
+      workspaces = await api.fetchListOfOrganizations();
+      setBusy(false);
+    } catch (e) {
+      print(e.toString());
+      AppToast.instance.error(null, 'Error Occured');
+    }
+  }
 
-class WorkspaceModel {
-  final String name;
-  final String message;
-  final String time;
-  final String avatarUrl;
+  Future<void> onTap(String id) async {
+    try {
+      if (id == currentOrgId) {
+        navigation.navigateTo(Routes.homePage);
+        return;
+      }
+      if (!await connectivityService.checkConnection()) {
+        AppToast.instance.message(null, 'Check your internet connection');
+        return;
+      }
+      final workspaces = await api.fetchOrganizationInfo(id);
+      await storageService.setString(
+          StorageKeys.currentOrgId, workspaces.first.id);
+      AppToast.instance
+          .success('Success!', 'You have entered ${workspaces.first.name}');
+      navigation.navigateTo(Routes.homePage);
+    } catch (e) {
+      print(e.toString());
+      AppToast.instance.error(null, 'Error Occured');
+    }
+  }
 
-  WorkspaceModel(
-      {required this.name,
-        required this.message,
-        required this.time,
-        required this.avatarUrl});
+  String? get currentOrgId =>
+      storageService.getString(StorageKeys.currentOrgId);
 }
-
-List<WorkspaceModel>  dummyData = [
-  WorkspaceModel(
-      name: "ABTesters",
-      message: "abtesters.zuri.com",
-      time: "",
-      avatarUrl: "assets/Rectangle 138.png"),
-  WorkspaceModel(
-      name: "HNGi9 ",
-      message: "hngi9.zuri.com ",
-      time: "",
-      avatarUrl: "assets/Rectangle 1922.png"),
-  WorkspaceModel(
-      name: "DriveINC",
-      message: "driveinc.zuri.com",
-      time: "",
-      avatarUrl: "assets/Rectangle 1923.png"),
-  WorkspaceModel(
-      name: "Remote",
-      message: "remote.zuri.com",
-      time: "RE",
-      avatarUrl: "assets/Rectangle 1924.png"),
-  WorkspaceModel(
-      name: "MyTeam",
-      message: "myteam.zuri.com",
-      time: "MY",
-      avatarUrl: "assets/Rectangle 1925.png"),
-];
-
-
-
-

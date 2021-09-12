@@ -93,6 +93,44 @@ class SignUpView extends StatelessWidget {
                         labelText: 'Password',
                         hintText: 'Enter Password',
                       ),
+//TODO <<<<<<< dev
+                    ),
+                    const SizedBox(height: 48),
+                    const CustomTextField(
+                      keyboardType: TextInputType.emailAddress,
+                      inputAction: TextInputAction.next,
+                      autoFocus: !true,
+                      autoCorrect: false,
+                      obscureText: false,
+                      labelText: 'Email Address',
+                      hintText: 'Name@gmail.com',
+                    ),
+                    const SizedBox(height: 32),
+                    const CustomTextField(
+                      keyboardType: TextInputType.visiblePassword,
+                      inputAction: TextInputAction.next,
+                      autoFocus: !true,
+                      autoCorrect: false,
+                      obscureText: true,
+                      labelText: 'Password',
+                      hintText: 'Enter Password',
+                    ),
+                    const SizedBox(height: 32),
+                    const CustomTextField(
+                      keyboardType: TextInputType.emailAddress,
+                      inputAction: TextInputAction.next,
+                      autoFocus: !true,
+                      autoCorrect: false,
+                      obscureText: true,
+                      labelText: 'Confirm Password',
+                      hintText: 'Re-enter password',
+                    ),
+                    const SizedBox(height: 16),
+                    Row(children: [
+                      Checkbox(
+                        value: model.checkBoxValue,
+                        onChanged: (newValue) => model.updateValue(newValue),
+//TODO =======
                       const SizedBox(height: 32),
                       const CustomTextField(
                         keyboardType: TextInputType.emailAddress,
@@ -131,6 +169,7 @@ class SignUpView extends StatelessWidget {
                       LongButton(
                         onPressed: () => model.navigateToHome(),
                         label: 'Create Account',
+//TODO - >>>>>>> dev
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
