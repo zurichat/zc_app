@@ -16,7 +16,6 @@ dependencies:
 #    TODO Android V2 embedding issues
   flutter_appavailability: ^0.0.21
   flutter_chips_input: ^1.10.0
-  modal_progress_hud_nsn: ^0.1.0-nullsafety-0
   flutter_screenutil: ^5.0.0+2
   flutter_svg: ^0.22.0
   fluttertoast: ^8.0.8
@@ -28,8 +27,11 @@ dependencies:
   image_gallery_saver: ^1.6.9
   intl: ^0.17.0
   introduction_screen: ^2.1.0
+  modal_progress_hud_nsn: ^0.1.0-nullsafety-0
   overlay_support: ^1.2.1
+  page_view_dot_indicator: ^1.0.0
   permission_handler: ^8.1.4+2
+  pin_code_fields: ^7.3.0
   shared_preferences: ^2.0.7
   stacked: ^2.1.8
   stacked_hooks: ^0.2.1
