@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/long_button.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 
-import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/view/login/login_viewmodel.dart';
+import '../../../general_widgets/custom_textfield.dart';
+import '../../shared/colors.dart';
+import '../../shared/long_button.dart';
+import '../../shared/styles.dart';
+import 'login_viewmodel.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
