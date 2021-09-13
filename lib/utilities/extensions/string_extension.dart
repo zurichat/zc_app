@@ -26,4 +26,8 @@ extension StringExtension on String {
 
     return regExp.hasMatch(this);
   }
+
+  String get initials {
+    return this.split(' ').map((e) => e.split('').first.toUpperCase()).join();
+  }
 }
