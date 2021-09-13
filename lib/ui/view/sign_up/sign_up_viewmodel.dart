@@ -13,6 +13,7 @@ class SignUpViewModel extends BaseViewModel {
   TextEditingController displayName = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  TextEditingController confirmPassword = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
 
   final navigation = locator<NavigationService>();

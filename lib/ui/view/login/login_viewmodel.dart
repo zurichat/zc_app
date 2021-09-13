@@ -33,7 +33,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   void navigateToForgotPasswordScreen() {
-    navigationService.navigateTo(Routes.forgotPasswordView);
+    navigationService.navigateTo(Routes.forgotPasswordEmailView);
   }
 
   // ignore: always_declare_return_types

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_appavailability/flutter_appavailability.dart';
 import 'package:stacked/stacked.dart';
 
-class EmailViewModel extends BaseViewModel {
+class EmailConfirmationViewModel extends BaseViewModel {
   // ignore: unused_element
   void openEmailApp(BuildContext context) {
     try {
