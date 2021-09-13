@@ -5,7 +5,7 @@ import '../ui/shared/colors.dart';
 List<ThemeData> getThemes() {
   return [
     ThemeData.light().copyWith(
-      accentColor: AppColors.greenColor,
+      accentColor: AppColors.zuriPrimaryColor,
       appBarTheme: const AppBarTheme(
         color: AppColors.whiteColor,
         iconTheme: IconThemeData(color: AppColors.blackColor),
@@ -15,10 +15,10 @@ List<ThemeData> getThemes() {
         actionsIconTheme: IconThemeData(color: AppColors.blackColor),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData().copyWith(
-        backgroundColor: AppColors.greenColor,
+        backgroundColor: AppColors.zuriPrimaryColor,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: AppColors.greenColor,
+        selectedItemColor: AppColors.zuriPrimaryColor,
       ),
     ),
     ThemeData.light(),

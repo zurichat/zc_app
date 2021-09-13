@@ -1,86 +1,63 @@
 import 'package:flutter/material.dart';
-
 import 'home_page_viewmodel.dart';
-
 import 'widgets/custom_channel_list_tile.dart';
-
 import 'widgets/custom_dm_list_tile.dart';
-
 import 'widgets/custom_homepage_section_title.dart';
-
 import 'widgets/custom_plugin_list_tile.dart';
-
 import '../../shared/colors.dart';
-
 import '../../shared/shared.dart';
-
-//import 'package:hng/ui/view/home/home_viewmodel.dart';
-
 import '../dm_page/dm_search_find_page.dart';
-
 import 'package:stacked/stacked.dart';
-
-import '../../shared/constants.dart';
+import 'widgets/zuri_logo.dart';
+import '../../../utilities/constants.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return ViewModelBuilder<HomePageViewModel>.reactive(
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
+          backgroundColor: AppColors.zuriPrimaryColor,
+          automaticallyImplyLeading: false,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+                padding: const EdgeInsets.only(top: 8.0, right: 5.0),
                 child: InkWell(
-                  child: const Image(
-                    image: appBarLogo,
-                    fit: BoxFit.cover,
-                    height: 48,
-                  ),
+                  child: ZuriLogo(),
                   onTap: () {
                     model.nToWorkspace();
                   },
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 8.0),
-                child: GestureDetector(
-                  child: Icon(Icons.search),
-                  onTap: () {},
-                ),
-              )
             ],
           ),
           actions: [
-            Text(
-              model.status ? 'Online' : 'Offline',
-              style: TextStyle(color: Colors.black),
-            )
+            Padding(
+              padding: EdgeInsets.only(top: 4, right: 12),
+              child: GestureDetector(
+                child: Icon(Icons.search, color: AppColors.whiteColor),
+                onTap: () {},
+              ),
+            ),
           ],
         ),
-        backgroundColor: AppColors.whiteColor,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
               child: Column(
                 children: [
                   Container(
-                    height: size.height * 0.05,
-                    margin: const EdgeInsets.only(top: 20),
+                    height: 40,
+                    margin: const EdgeInsets.only(top: 10),
                     child: TextFormField(
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.all(10),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(7),
                         hintText: 'Jump to...',
-                        hintStyle: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        hintStyle: AppTextStyles.normalText,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: AppColors.borderColor),
                         ),
@@ -90,119 +67,81 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  SizedBox(height: size.height * 0.024),
-
+                  const SizedBox(height: 16),
                   const CustomPluginListTile(
-                    icon: Icons.chat_outlined,
+                    assetName: threadIcon,
                     pluginName: 'Threads',
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
+                  const CustomPluginListTile(
+                    assetName: draftIcon,
+                    pluginName: 'Drafts',
+                  ),
+                  const SizedBox(height: 16),
                   const CustomChannelListTile(
                     channelName: 'chat-random',
                     isActive: true,
                     data: '22',
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
                   const CustomPluginListTile(
-                    icon: Icons.lock_rounded,
+                    assetName: lockIconShaded,
                     pluginName: 'stage4',
                     isActive: true,
                     data: '3',
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
                   const CustomChannelListTile(
                     channelName: 'games',
                     isActive: true,
                     data: '1',
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
                   const CustomPluginListTile(
-                    icon: Icons.lock_rounded,
+                    assetName: lockIconShaded,
                     pluginName: 'dm_plus_entrepreneurs',
                     isActive: true,
                     data: '1',
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
-                  const CustomPluginListTile(
-                    icon: Icons.document_scanner_outlined,
-                    pluginName: 'Draft',
-                  ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
                   const CustomPluginListTile(
                     icon: Icons.file_copy,
                     pluginName: 'Files',
                   ),
-
-                  SizedBox(height: size.height * 0.032),
-
-                  // const CustomPluginListTile(
-
-                  //   icon: Icons.add_chart,
-
-                  //   pluginName: 'Integrate',
-
-                  // ),
-
-                  // const SizedBox(height: 24),
-
+                  const SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   const CustomHomePageSectionTitle(
                     title: 'Channels',
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
                   const CustomChannelListTile(
                     channelName: 'announcement',
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
                   const CustomPluginListTile(
-                    icon: Icons.lock_outline_rounded,
+                    assetName: lockIcon,
                     pluginName: 'team-socrates',
                     isActive: false,
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
                   const CustomChannelListTile(
                     channelName: 'questions',
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
                   const CustomPluginListTile(
                     icon: Icons.add_box_rounded,
                     pluginName: 'Add channel',
                     isActive: false,
                   ),
-
-                  SizedBox(height: size.height * 0.036),
-
+                  const SizedBox(height: 16),
                   CustomHomePageSectionTitle(
-                      title: 'Direct Messages',
-                      ontap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const DmScreen()));
-                      }),
-
-                  SizedBox(height: size.height * 0.02),
-
+                    title: 'Direct Messages',
+                    ontap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => const DmScreen()));
+                    },
+                  ),
+                  const SizedBox(height: 16),
                   InkWell(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -211,52 +150,36 @@ class HomePage extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.favorite,
-                              color: AppColors.greenColor,
+                              color: AppColors.zuriPrimaryColor,
                               size: 16,
                             ),
                             const SizedBox(width: 8),
-                            Text(
-                              'Zuri chat',
-                              style: TextStyle(
-                                color: AppColors.deepBlackColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                              ),
-                            ),
+                            Text('Zuri-chat', style: AppTextStyles.timestamp),
                           ],
                         ),
                       ],
                     ),
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
                   const CustomDMListTile(
-                    userName: 'Princess(you)',
+                    userName: 'Princess (You)',
                     imagelink: dummyUserImage,
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
                   const CustomDMListTile(
                     userName: 'Tobi',
                     imagelink: dummyUserImage,
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
                   const CustomDMListTile(
                     userName: 'Victor',
                     imagelink: dummyUserImage,
                   ),
-
-                  SizedBox(height: size.height * 0.02),
-
+                  const SizedBox(height: 16),
                   const CustomDMListTile(
                     userName: 'Fierce',
                     imagelink: dummyUserImage,
                   ),
-
                   const SizedBox(height: 20),
                 ],
               ),
@@ -264,14 +187,12 @@ class HomePage extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            model.nToInfo();
-          },
+          onPressed: () {},
           child: const Icon(
             Icons.open_in_new_outlined,
             color: AppColors.whiteColor,
           ),
-          backgroundColor: AppColors.greenColor,
+          backgroundColor: AppColors.zuriPrimaryColor,
         ),
       ),
     );

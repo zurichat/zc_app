@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/utilities/constants.dart';
 import '../../nav_pages/home_page/home_page.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../nav_pages/dm_page/dm_page.dart';
-import '../../nav_pages/home_page/home_page.dart';
 import '../../nav_pages/integrate_page/integrate_page_view.dart';
-import '../../nav_pages/you_page/you_page.dart';
+import '../../nav_pages/you_page/you_page_view.dart';
 import 'nav_bar_viewmodel.dart';
 
 ///Home view is the holder for all the views
@@ -33,28 +34,42 @@ class NavBarView extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             backgroundColor: AppColors.whiteColor,
-            selectedItemColor: AppColors.greenColor,
+            selectedItemColor: AppColors.zuriPrimaryColor,
             unselectedItemColor: AppColors.navBarItemColor,
             selectedFontSize: 14,
             unselectedFontSize: 14,
+            selectedLabelStyle: AppTextStyles.normalText,
+            unselectedLabelStyle: AppTextStyles.normalText,
             currentIndex: viewModel.currentIndex,
             onTap: viewModel.setIndex,
-            items: const [
+            items: [
               BottomNavigationBarItem(
                 label: 'Home',
-                icon: Icon(Icons.home),
+                icon: Image.asset(
+                  homeIcon,
+                  height: 20,
+                ),
               ),
               BottomNavigationBarItem(
                 label: 'Dm',
-                icon: Icon(Icons.message),
+                icon: Image.asset(
+                  dmIcon,
+                  height: 20,
+                ),
               ),
               BottomNavigationBarItem(
                 label: 'Integrate',
-                icon: Icon(Icons.integration_instructions),
+                icon: Image.asset(
+                  integrateIcon,
+                  height: 20,
+                ),
               ),
               BottomNavigationBarItem(
                 label: 'You',
-                icon: Icon(Icons.person),
+                icon: Image.asset(
+                  youIcon,
+                  height: 20
+                ),
               ),
             ],
           ),

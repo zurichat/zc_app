@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 
 class UserModel {
   String userName;
@@ -12,6 +12,6 @@ class UserModel {
     required this.userimg,
     required this.joinInfo,
     required this.time,
-	this.online = false,
+    this.online = false,
   });
 }

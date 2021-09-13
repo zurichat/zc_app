@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/direct_message/direct_message.dart';
 
+import '../../view/direct_message/direct_message.dart';
+import '../../view/view_profile_page/view_profile_page.dart';
 
 class CustomDMListTile extends StatelessWidget {
   final imagelink;
@@ -25,14 +26,20 @@ class CustomDMListTile extends StatelessWidget {
             radius: 20.0,
           ),
           const SizedBox(width: 8),
-          Text(
-            userName,
-            style: const TextStyle(
-              fontWeight: FontWeight.w700,
-              color: Colors.black,
-              fontSize: 15,
+          TextButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ViewProfilePage()));
+            },
+            child: Text(
+              userName,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Colors.black,
+                fontSize: 15,
+              ),
             ),
-          ),
+          )
         ],
       ),
     );

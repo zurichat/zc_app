@@ -6,6 +6,7 @@
 
 // ignore_for_file: public_member_api_docs
 
+import '../package/base/server-request/api/http_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -24,11 +25,14 @@ Future setupLocator(
 
 // Register dependencies
   locator.registerLazySingleton(() => NavigationService());
-  locator.registerLazySingleton(() => ThemeService());
+  locator.registerLazySingleton(() => ThemeService.getInstance());
+  locator.registerLazySingleton(() => HttpApiService());
   final sharedPreferenceLocalStorage =
       await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);
-  locator.registerLazySingleton(
-    () => ConnectivityService.getInstance(),
-  );
+
+  locator.registerLazySingleton(() => DialogService());
+  locator.registerLazySingleton(() => BottomSheetService());
+  final connectivityService = await ConnectivityService.getInstance();
+  locator.registerSingleton(connectivityService);
 }

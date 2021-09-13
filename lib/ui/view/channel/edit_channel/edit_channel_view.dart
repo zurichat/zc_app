@@ -36,7 +36,8 @@ class EditChannelPageView extends StatelessWidget {
             InkWell(
               child: Text(
                 'Save',
-                style: TextStyle(color: AppColors.greenColor, fontSize: 16),
+                style:
+                    TextStyle(color: AppColors.zuriPrimaryColor, fontSize: 16),
               ),
               onTap: () {},
             ),

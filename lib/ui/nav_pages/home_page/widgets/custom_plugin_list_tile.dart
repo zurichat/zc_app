@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 
 class CustomPluginListTile extends StatelessWidget {
-  final IconData? icon;
+  final String? assetName;
   final String pluginName;
   final Function()? pressed;
   final bool isActive;
-  final String data;
+  final String? data;
+  final IconData? icon;
+
   const CustomPluginListTile({
     Key? key,
+    this.assetName,
     this.icon,
-    this.data = '',
+    this.data,
     this.pressed,
     this.isActive = false,
     this.pluginName = '',
@@ -25,30 +29,28 @@ class CustomPluginListTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(
-                icon,
-                color:isActive?Colors.black: AppColors.greyishColor,
-                size: 16,
-              ),
+              this.icon != null ? 
+                Icon(
+                  icon,
+                  color: isActive ? Colors.black : AppColors.greyishColor,
+                  size: 16,
+                ) : 
+                 Image.asset(
+                  assetName!,
+                  width: 18,
+                ),
               const SizedBox(width: 8),
               Text(
                 pluginName,
-                style: TextStyle(
-                  color: isActive?Colors.black:AppColors.greyishColor,
-                  fontWeight: isActive ? FontWeight.w700 : FontWeight.w400,
-                  fontSize: 16,
-                ),
+                style: isActive ? AppTextStyles.unreadText : AppTextStyles.normalText
               ),
-            ],
+            ]
           ),
           isActive
-            ? Container(
-              width: 18,
-              height: 18,
-                decoration: BoxDecoration(color: Color(0xFFB8003C),borderRadius: BorderRadius.circular(4)),
-                child: Center(child: Text(data, style: TextStyle(color: AppColors.whiteColor),)),
-              )
-            : Container()
+              ? AppTextStyles.unreadCount(
+                  int.parse(data!),
+                )
+              : Container()
         ],
       ),
     );
