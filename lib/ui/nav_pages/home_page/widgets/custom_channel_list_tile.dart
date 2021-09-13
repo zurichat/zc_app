@@ -1,35 +1,32 @@
 import 'package:flutter/material.dart';
-
-import '../../../shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 
 class CustomChannelListTile extends StatelessWidget {
   final String channelName;
+  final Function()? pressed;
+  final bool isActive;
+  final String? data;
 
   const CustomChannelListTile({
     Key? key,
     this.channelName = '',
+    this.pressed,
+    this.data,
+    this.isActive = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '#',
-          style: TextStyle(
-            color: Colors.grey[600],
-            fontSize: 18,
-          ),
+          ' # ' + '   '+channelName,
+          style: isActive ? AppTextStyles.unreadText : AppTextStyles.normalText
         ),
-        const SizedBox(width: 8),
-        Text(
-          channelName,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            color: AppColors.greyishColor,
-            fontSize: 15,
-          ),
-        ),
+        isActive
+            ? AppTextStyles.unreadCount(int.parse(data!))
+            : Container()
       ],
     );
   }
