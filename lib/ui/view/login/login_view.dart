@@ -60,7 +60,7 @@ class LoginView extends StatelessWidget {
                     controller: model.email,
                   ),
                   SizedBox(
-                    height: 33.0,
+                    height: 24.0,
                   ),
                   CustomTextField(
                     keyboardType: TextInputType.emailAddress,
