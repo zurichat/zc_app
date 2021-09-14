@@ -61,29 +61,32 @@ class SignUpView extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 48),
-                        const CustomTextField(
+                        CustomTextField(
                           keyboardType: TextInputType.emailAddress,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: false,
+                          controller: model.email,
                           labelText: 'Email Address',
                           hintText: 'Name@gmail.com',
                         ),
                         const SizedBox(height: 32),
-                        const CustomTextField(
+                        CustomTextField(
                           keyboardType: TextInputType.visiblePassword,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: true,
+                          controller: model.password,
                           labelText: 'Password',
                           hintText: 'Enter Password',
                         ),
                         const SizedBox(height: 32),
-                        const CustomTextField(
+                        CustomTextField(
                           keyboardType: TextInputType.emailAddress,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: true,
+                          controller: model.confirmPassword,
                           labelText: 'Confirm Password',
                           hintText: 'Re-enter password',
                         ),
