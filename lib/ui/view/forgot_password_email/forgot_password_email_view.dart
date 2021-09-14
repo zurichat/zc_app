@@ -14,11 +14,6 @@ class ForgotPasswordEmailView extends StatefulWidget {
 
 class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
   final validateKey = GlobalKey<FormState>();
-
-  validateDetails() {
-    if (validateKey.currentState!.validate()) {}
-  }
-
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ForgotPasswordEmailViewModel>.reactive(
@@ -99,8 +94,9 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                     widthFactor: 1.0,
                     child: ElevatedButton(
                       onPressed: () {
-                        validateDetails();
-                        model.navigateToOtp();
+                        if (validateKey.currentState!.validate()) {
+                          return model.navigateToOtp();
+                        }
                       },
                       child: Text(
                         'Continue',
