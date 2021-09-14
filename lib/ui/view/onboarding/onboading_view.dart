@@ -1,12 +1,13 @@
+import 'dart:core';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../shared/shared.dart';
+import '../../shared/styles.dart';
 import 'onboarding_viewmodel.dart';
-import 'dart:core';
 
 class OnboardingView extends StatelessWidget {
   const OnboardingView({Key? key}) : super(key: key);

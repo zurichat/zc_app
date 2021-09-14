@@ -51,7 +51,9 @@ class LoginViewModel extends BaseViewModel {
       return;
     }
     final loginData = {'email': email.text, 'password': password.text};
+    print(loginData);
     final response = await _apiService.post(endpoint, data: loginData);
+    print(response);
     loading(false);
     if (response?.statusCode == 200) {
       storage.setString(
