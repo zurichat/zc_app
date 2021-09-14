@@ -14,6 +14,7 @@ class ForgotPasswordEmailView extends StatefulWidget {
 
 class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
   final validateKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ForgotPasswordEmailViewModel>.reactive(
@@ -65,12 +66,15 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                   height: 49.0,
                 ),
                 Form(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  // autovalidateMode: AutovalidateMode.onUserInteraction,
                   key: validateKey,
                   child: CustomTextField(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    controller: emailController,
+                    // autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (val) {
-                      if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_"
+                      if (emailController.text.isEmpty) {
+                        return 'Field cannot be empty';
+                      } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_"
                               r"`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                           .hasMatch(val!)) {
                         return null;
@@ -94,6 +98,7 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                     widthFactor: 1.0,
                     child: ElevatedButton(
                       onPressed: () {
+                        setState(() {});
                         if (validateKey.currentState!.validate()) {
                           return model.navigateToOtp();
                         }
