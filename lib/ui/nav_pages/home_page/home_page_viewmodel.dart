@@ -10,25 +10,9 @@ import '../../../services/connectivity_service.dart';
 //final _navigationService = locator<NavigationService>();
 
 class HomePageViewModel extends StreamViewModel {
-  void nToPref() {
-    NavigationService().navigateTo(Routes.fileSearchView);
-  }
-
-  void nToInfo() {
-    NavigationService().navigateTo(Routes.channelInfoView);
-  }
-
-  void nToWorkspace() {
-    NavigationService().navigateTo(Routes.workspaceView);
-  }
-
-  void navigateToDmUser() {
-    locator<NavigationService>().navigateTo(Routes.dmUserView);
-  }
-
   final connectivityService = locator<ConnectivityService>();
-
   bool connectionStatus = false;
+  List<String> sideBarList = [];
 
   @override
   void onError(error) {
@@ -51,5 +35,29 @@ class HomePageViewModel extends StreamViewModel {
       notifyListeners();
     });
     return connectionStatus;
+  }
+
+  //This method is just to demo the side bar data that would
+  //be received by the database
+  setSideBarData() {
+    sideBarList = [];
+  }
+
+  //
+  //*Navigate to other routes
+  void nToPref() {
+    NavigationService().navigateTo(Routes.fileSearchView);
+  }
+
+  void nToInfo() {
+    NavigationService().navigateTo(Routes.channelInfoView);
+  }
+
+  void nToWorkspace() {
+    NavigationService().navigateTo(Routes.workspaceView);
+  }
+
+  void navigateToDmUser() {
+    locator<NavigationService>().navigateTo(Routes.dmUserView);
   }
 }

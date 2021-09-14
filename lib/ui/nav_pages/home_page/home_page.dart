@@ -11,7 +11,21 @@ import 'package:stacked/stacked.dart';
 import 'widgets/zuri_logo.dart';
 import '../../../utilities/constants.dart';
 
+
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ViewModelBuilder<HomePageViewModel>.reactive(
+      viewModelBuilder: () => HomePageViewModel(),
+      builder: (context, model, child) => Container(),
+    );
+  }
+
+}
+
+/*class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomePageViewModel>.reactive(
@@ -197,4 +211,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}
+}*/

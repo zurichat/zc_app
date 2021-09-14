@@ -41,9 +41,9 @@ class SignUpView extends StatelessWidget {
                       const Center(
                         child: CustomText(
                           text: 'Sign Up',
-                          fontSize: 20.0,
+                          fontSize: 23.0,
                           color: AppColors.zuriTextBodyColor,
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w900,
                         ),
                       ),
                       const SizedBox(height: 4),
