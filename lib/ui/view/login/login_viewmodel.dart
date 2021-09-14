@@ -4,6 +4,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
+import '../../../general_widgets/app_snackbar.dart';
 import '../../../package/base/server-request/api/http_api.dart';
 import '../../../services/local_storage_services.dart';
 import '../../../utilities/storage_keys.dart';
@@ -42,41 +43,31 @@ class LoginViewModel extends BaseViewModel {
     const endpoint = '/auth/login';
     if (email.text == '' || password.text == '') {
       loading(false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          duration: Duration(seconds: 3),
-          content: Text('Please fill all fields.'),
-        ),
-      );
+      AppSnackBar.failure(context, 'Please fill all fields.');
       return;
     }
     final loginData = {'email': email.text, 'password': password.text};
-    print(loginData);
     final response = await _apiService.post(endpoint, data: loginData);
-    print(response);
     loading(false);
     if (response?.statusCode == 200) {
       storage.setString(
         StorageKeys.currentSessionToken,
         response?.data['data']['session_id'],
       );
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          duration: const Duration(seconds: 3),
-          content: Text('''
-${response?.data['message']} for ${response?.data['data']['user']['email']}'''),
-        ),
+      storage.setString(
+        StorageKeys.currentUserId,
+        response?.data['data']['user']['id'],
       );
-
+      // final userModel = UserModel.fromJson(response?.data['data']['user']);
+      AppSnackBar.success(
+        context,
+        ''' ${response?.data['message']} for '''
+        '''${response?.data['data']['user']['email']}''',
+      );
       navigationService.navigateTo(Routes.navBarView);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          duration: const Duration(seconds: 3),
-          content: Text(
-              response?.data['message'] ?? 'Error encountered during login.'),
-        ),
-      );
+      AppSnackBar.failure(context,
+          response?.data['message'] ?? 'Error encountered during login.');
     }
   }
 }
