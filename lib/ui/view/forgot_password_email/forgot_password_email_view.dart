@@ -4,8 +4,20 @@ import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
 import 'forgot_password_email_viewmodel.dart';
 
-class ForgotPasswordEmailView extends StatelessWidget {
+class ForgotPasswordEmailView extends StatefulWidget {
   const ForgotPasswordEmailView({Key? key}) : super(key: key);
+
+  @override
+  State<ForgotPasswordEmailView> createState() =>
+      _ForgotPasswordEmailViewState();
+}
+
+class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
+  final validateKey = GlobalKey<FormState>();
+
+  validateDetails() {
+    if (validateKey.currentState!.validate()) {}
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,13 +69,27 @@ class ForgotPasswordEmailView extends StatelessWidget {
                 SizedBox(
                   height: 49.0,
                 ),
-                CustomTextField(
-                  keyboardType: TextInputType.emailAddress,
-                  inputAction: TextInputAction.done,
-                  autoCorrect: true,
-                  obscureText: false,
-                  labelText: 'Email',
-                  hintText: 'Name@gmail.com',
+                Form(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  key: validateKey,
+                  child: CustomTextField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (val) {
+                      if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_"
+                              r"`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(val!)) {
+                        return null;
+                      } else {
+                        return 'Invalid Email Address';
+                      }
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                    inputAction: TextInputAction.done,
+                    autoCorrect: true,
+                    obscureText: false,
+                    labelText: 'Email',
+                    hintText: 'Name@gmail.com',
+                  ),
                 ),
                 SizedBox(
                   height: 30.0,
@@ -72,7 +98,10 @@ class ForgotPasswordEmailView extends StatelessWidget {
                   child: FractionallySizedBox(
                     widthFactor: 1.0,
                     child: ElevatedButton(
-                      onPressed: () => model.navigateToOtp(),
+                      onPressed: () {
+                        validateDetails();
+                        model.navigateToOtp();
+                      },
                       child: Text(
                         'Continue',
                         style: TextStyle(

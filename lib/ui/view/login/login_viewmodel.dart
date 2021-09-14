@@ -32,7 +32,7 @@ class LoginViewModel extends BaseViewModel {
     navigationService.navigateTo(Routes.signUpView);
   }
 
-  void navigateToForgotPasswordScreen() {
+  void navigateToForgotPasswordScreen(BuildContext context) {
     navigationService.navigateTo(Routes.forgotPasswordEmailView);
   }
 

@@ -59,7 +59,7 @@ class ForgotPasswordNewView extends StatelessWidget {
                   hintText: 'Enter Password',
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 30.0,
                 ),
                 CustomTextField(
                   keyboardType: TextInputType.visiblePassword,
