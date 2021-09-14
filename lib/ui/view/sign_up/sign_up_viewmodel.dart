@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/app_snackbar.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -53,32 +55,20 @@ class SignUpViewModel extends BaseViewModel {
       final response = await apiService.post(endpoint, data: signUpData);
       loading(false);
       if (response?.statusCode == 200) {
-        storage.setString('userID', response?.data['data']['InsertedID']);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            duration: const Duration(seconds: 4),
-            content: Text('''
-${response?.data['message']} for ${response?.data['data']['user']['email']}'''),
-          ),
+        AppSnackBar.success(
+          context,
+          '''  ${response?.data['message']} for '''
+          '''${response?.data['data']['user']['email']}''',
         );
         navigation.navigateTo(Routes.loginView);
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            duration: const Duration(seconds: 3),
-            content: Text(
-              response?.data['message'] ?? 'Error encountered during signup.',
-            ),
-          ),
+        AppSnackBar.failure(
+          context,
+          response?.data['message'] ?? 'Error encountered during signup.',
         );
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          duration: Duration(seconds: 3),
-          content: Text('You must accept T & C to signup'),
-        ),
-      );
+      AppSnackBar.failure(context, 'You must accept T & C to signup');
     }
   }
 }
