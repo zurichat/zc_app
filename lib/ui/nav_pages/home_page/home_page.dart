@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+
+import '../../../models/user_model.dart';
+import '../../../utilities/constants.dart';
+import '../../shared/colors.dart';
+import '../../shared/shared.dart';
+import '../dm_page/dm_search_find_page.dart';
 import 'home_page_viewmodel.dart';
 import 'widgets/custom_channel_list_tile.dart';
 import 'widgets/custom_dm_list_tile.dart';
 import 'widgets/custom_homepage_section_title.dart';
 import 'widgets/custom_plugin_list_tile.dart';
-import '../../shared/colors.dart';
-import '../../shared/shared.dart';
-import '../dm_page/dm_search_find_page.dart';
-import 'package:stacked/stacked.dart';
 import 'widgets/zuri_logo.dart';
-import '../../../utilities/constants.dart';
 
 class HomePage extends StatelessWidget {
+  // final UserModel? userModel;
+
+  // const HomePage({Key? key, this.userModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomePageViewModel>.reactive(
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          backgroundColor: model.status
-              ? AppColors.zuriPrimaryColor
-              : AppColors.greyishColor,
+          backgroundColor: AppColors.zuriPrimaryColor,
           automaticallyImplyLeading: false,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+                padding: const EdgeInsets.only(top: 8.0, right: 5.0),
                 child: InkWell(
                   child: ZuriLogo(),
                   onTap: () {
@@ -38,7 +42,7 @@ class HomePage extends StatelessWidget {
           ),
           actions: [
             Padding(
-              padding: EdgeInsets.all(5.0),
+              padding: EdgeInsets.only(top: 4, right: 12),
               child: GestureDetector(
                 child: Icon(Icons.search, color: AppColors.whiteColor),
                 onTap: () {},
@@ -49,20 +53,17 @@ class HomePage extends StatelessWidget {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
               child: Column(
                 children: [
                   Container(
                     height: 40,
-                    margin: const EdgeInsets.only(top: 20),
+                    margin: const EdgeInsets.only(top: 10),
                     child: TextFormField(
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.all(10),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(7),
                         hintText: 'Jump to...',
-                        hintStyle: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        hintStyle: AppTextStyles.normalText,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: AppColors.borderColor),
                         ),
@@ -74,8 +75,13 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   const CustomPluginListTile(
-                    icon: Icons.chat_outlined,
+                    assetName: threadIcon,
                     pluginName: 'Threads',
+                  ),
+                  const SizedBox(height: 16),
+                  const CustomPluginListTile(
+                    assetName: draftIcon,
+                    pluginName: 'Drafts',
                   ),
                   const SizedBox(height: 16),
                   const CustomChannelListTile(
@@ -85,7 +91,7 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   const CustomPluginListTile(
-                    icon: Icons.lock_rounded,
+                    assetName: lockIconShaded,
                     pluginName: 'stage4',
                     isActive: true,
                     data: '3',
@@ -98,15 +104,10 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   const CustomPluginListTile(
-                    icon: Icons.lock_rounded,
+                    assetName: lockIconShaded,
                     pluginName: 'dm_plus_entrepreneurs',
                     isActive: true,
                     data: '1',
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomPluginListTile(
-                    icon: Icons.document_scanner_outlined,
-                    pluginName: 'Draft',
                   ),
                   const SizedBox(height: 16),
                   const CustomPluginListTile(
@@ -114,10 +115,6 @@ class HomePage extends StatelessWidget {
                     pluginName: 'Files',
                   ),
                   const SizedBox(height: 16),
-                  const CustomPluginListTile(
-                    icon: Icons.add_chart,
-                    pluginName: 'Integrate',
-                  ),
                   const SizedBox(height: 16),
                   const CustomHomePageSectionTitle(
                     title: 'Channels',
@@ -128,7 +125,7 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   const CustomPluginListTile(
-                    icon: Icons.lock_outline_rounded,
+                    assetName: lockIcon,
                     pluginName: 'team-socrates',
                     isActive: false,
                   ),
@@ -163,14 +160,7 @@ class HomePage extends StatelessWidget {
                               size: 16,
                             ),
                             const SizedBox(width: 8),
-                            Text(
-                              'Zuri chat',
-                              style: TextStyle(
-                                color: AppColors.deepBlackColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                              ),
-                            ),
+                            Text('Zuri-chat', style: AppTextStyles.timestamp),
                           ],
                         ),
                       ],
@@ -178,7 +168,7 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   const CustomDMListTile(
-                    userName: 'Princess(you)',
+                    userName: 'Princess (You)',
                     imagelink: dummyUserImage,
                   ),
                   const SizedBox(height: 16),

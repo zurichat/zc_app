@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/long_button.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 
-import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/view/login/login_viewmodel.dart';
+import '../../../general_widgets/custom_textfield.dart';
+import '../../shared/colors.dart';
+import '../../shared/long_button.dart';
+import '../../shared/styles.dart';
+import 'login_viewmodel.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -47,11 +47,8 @@ class LoginView extends StatelessWidget {
                       style: AppTextStyles.heading7,
                     ),
                   ),
-                  SizedBox(
-                    height: 4.0,
-                  ),
-                  SizedBox(
-                    height: 4.0,
+                  const SizedBox(
+                    height: 32.0,
                   ),
                   CustomTextField(
                     keyboardType: TextInputType.emailAddress,
@@ -63,7 +60,7 @@ class LoginView extends StatelessWidget {
                     controller: model.email,
                   ),
                   SizedBox(
-                    height: 33.0,
+                    height: 24.0,
                   ),
                   CustomTextField(
                     keyboardType: TextInputType.emailAddress,
@@ -80,7 +77,7 @@ class LoginView extends StatelessWidget {
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all(EdgeInsets.zero),
                       ),
-                      onPressed: () => model.navigateToForgotPasswordScreen(),
+                      onPressed: () => model.logInUser(context),
                       child: Text(
                         'Forgot Password?',
                         style: TextStyle(
@@ -90,7 +87,7 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 32.0,
+                    height: 16.0,
                   ),
                   Center(
                     child: FractionallySizedBox(

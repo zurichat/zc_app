@@ -48,8 +48,9 @@ class DirectMessage extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                    icon: Icon(Icons.info, color: Colors.black),
-                    onPressed: () {})
+                  icon: Icon(Icons.info, color: Colors.black),
+                  onPressed: () {},
+                )
               ],
               elevation: 0,
             ),

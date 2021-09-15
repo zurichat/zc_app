@@ -4,8 +4,8 @@ import 'package:hng/ui/view/workspace/new_email/new_email_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
-class NewEmail extends StatelessWidget {
-  const NewEmail({Key? key}) : super(key: key);
+class NewEmailView extends StatelessWidget {
+  const NewEmailView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

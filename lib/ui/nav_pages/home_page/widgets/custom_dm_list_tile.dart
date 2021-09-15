@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../shared/colors.dart';
+import '../../../shared/shared.dart';
 import '../home_page_viewmodel.dart';
 
 // import 'package:hng/ui/direct_message/direct_message.dart';
@@ -12,6 +12,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
   final imagelink;
   final userName;
   final String name;
+
   const CustomDMListTile({
     Key? key,
     this.imagelink,
@@ -35,11 +36,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
           const SizedBox(width: 8),
           Text(
             userName,
-            style: const TextStyle(
-              fontWeight: FontWeight.w700,
-              color: AppColors.greyishColor,
-              fontSize: 15,
-            ),
+            style: AppTextStyles.normalText,
           ),
         ],
       ),
@@ -77,11 +74,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
             },
             child: Text(
               userName,
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                color: AppColors.greyishColor,
-                fontSize: 15,
-              ),
+              style: AppTextStyles.normalText,
             ),
           ),
           const SizedBox(width: 8),

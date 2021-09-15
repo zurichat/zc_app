@@ -21,6 +21,8 @@ class AppColors {
   static const Color redColor = Color(0xFFF40101);
   static const Color faintTextColor = Color(0xFFC7C3C3);
   static const Color zuriDarkGrey = Color(0xFF727272);
+  static const Color numberContainerColor = Color(0xFFB8003C);
+  static const Color appBarGreen = Color(0xFF43A047);
 
   ///Kimbie Dark Theme
   static const kimbieAccent = Color(0xFF6E9B3B);
