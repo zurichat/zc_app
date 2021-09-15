@@ -9,7 +9,7 @@ class OnboardingViewModel extends BaseViewModel {
   final navigator = locator<NavigationService>();
 
   navigateToNext() {
-    navigator.navigateTo(Routes.navBarView);
+    navigator.navigateTo(Routes.signUpView);
   }
 
   final PageController? controller = PageController();
