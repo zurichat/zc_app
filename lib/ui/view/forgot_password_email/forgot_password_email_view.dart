@@ -66,11 +66,11 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                   height: 49.0,
                 ),
                 Form(
-                  // autovalidateMode: AutovalidateMode.onUserInteraction,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   key: validateKey,
                   child: CustomTextField(
                     controller: emailController,
-                    // autovalidateMode: AutovalidateMode.onUserInteraction,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (val) {
                       if (emailController.text.isEmpty) {
                         return 'Field cannot be empty';

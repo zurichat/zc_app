@@ -5,9 +5,17 @@ import 'package:stacked/stacked.dart';
 
 import 'forgot_password_newviewmodel.dart';
 
-class ForgotPasswordNewView extends StatelessWidget {
+class ForgotPasswordNewView extends StatefulWidget {
   const ForgotPasswordNewView({Key? key}) : super(key: key);
 
+  @override
+  State<ForgotPasswordNewView> createState() => _ForgotPasswordNewViewState();
+}
+
+class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
+  TextEditingController newPasswordController = TextEditingController();
+  TextEditingController reTypePassController = TextEditingController();
+  final validateKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ForgotPasswordNewViewModel>.reactive(
@@ -50,24 +58,54 @@ class ForgotPasswordNewView extends StatelessWidget {
                 SizedBox(
                   height: 49.0,
                 ),
-                CustomTextField(
-                  keyboardType: TextInputType.emailAddress,
-                  inputAction: TextInputAction.next,
-                  autoCorrect: true,
-                  obscureText: false,
-                  labelText: 'Password',
-                  hintText: 'Enter Password',
-                ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                CustomTextField(
-                  keyboardType: TextInputType.visiblePassword,
-                  inputAction: TextInputAction.done,
-                  autoCorrect: true,
-                  obscureText: false,
-                  labelText: 'Confirm Password',
-                  hintText: 'Re-enter Password',
+                Form(
+                  key: validateKey,
+                  child: Column(
+                    children: [
+                      CustomTextField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return 'Field cannot be empty';
+                          } else if (val.length < 6) {
+                            return 'Password must be atleast 6 characters';
+                          } else {
+                            return null;
+                          }
+                        },
+                        controller: newPasswordController,
+                        keyboardType: TextInputType.emailAddress,
+                        inputAction: TextInputAction.next,
+                        autoCorrect: true,
+                        obscureText: true,
+                        labelText: 'Password',
+                        hintText: 'Enter Password',
+                      ),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      CustomTextField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return 'Field cannot be empty';
+                          } else if (newPasswordController.text !=
+                              reTypePassController.text) {
+                            return 'Passwords do not match';
+                          } else {
+                            return null;
+                          }
+                        },
+                        controller: reTypePassController,
+                        keyboardType: TextInputType.visiblePassword,
+                        inputAction: TextInputAction.done,
+                        autoCorrect: true,
+                        obscureText: true,
+                        labelText: 'Confirm Password',
+                        hintText: 'Re-enter Password',
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 30.0,
@@ -76,7 +114,12 @@ class ForgotPasswordNewView extends StatelessWidget {
                   child: FractionallySizedBox(
                     widthFactor: 1.0,
                     child: ElevatedButton(
-                      onPressed: () => model.navigateToLogin(),
+                      onPressed: () {
+                        setState(() {});
+                        if (validateKey.currentState!.validate()) {
+                          return model.navigateToLogin();
+                        }
+                      },
                       child: Text(
                         'Continue',
                         style: TextStyle(
