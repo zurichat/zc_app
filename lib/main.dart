@@ -13,7 +13,7 @@ Future main() async {
   await ThemeManager.initialise();
   await setupLocator();
   setupBottomSheetUi();
-  setupDialogUi();
+  setupDialogUi(); 
   runApp(MyApp());
 }
 
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           theme: regularTheme,
           darkTheme: darkTheme,
           themeMode: themeMode,
-          initialRoute: Routes.channelPageView,
+          initialRoute: Routes.splashview,
         ),
       ),
     );

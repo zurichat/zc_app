@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+
+import '../../../models/user_model.dart';
+import '../../../utilities/constants.dart';
+import '../../shared/colors.dart';
+import '../../shared/shared.dart';
+import '../dm_page/dm_search_find_page.dart';
 import 'home_page_viewmodel.dart';
 import 'widgets/custom_channel_list_tile.dart';
 import 'widgets/custom_dm_list_tile.dart';
 import 'widgets/custom_homepage_section_title.dart';
 import 'widgets/custom_plugin_list_tile.dart';
-import '../../shared/colors.dart';
-import '../../shared/shared.dart';
-import '../dm_page/dm_search_find_page.dart';
-import 'package:stacked/stacked.dart';
 import 'widgets/zuri_logo.dart';
-import '../../../utilities/constants.dart';
 
 class HomePage extends StatelessWidget {
+  // final UserModel? userModel;
+
+  // const HomePage({Key? key, this.userModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomePageViewModel>.reactive(
