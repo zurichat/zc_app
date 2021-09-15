@@ -4,7 +4,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.router.dart';
-import '../../../../models/user_model.dart';
+import '../../../../models/static_user_model.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/shared.dart';
 
@@ -16,13 +16,13 @@ class ChannelPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final usermodel = [
-      UserModel(
+      StaticUserModel(
         userName: 'Clutch',
         joinInfo: 'Joined #teamsocrates',
         time: '12:30pm',
         userimg: 'assets/channel_page/female.png',
       ),
-      UserModel(
+      StaticUserModel(
         userName: 'Ali',
         joinInfo: 'Joined #teamsocrates',
         time: '12:30pm',
