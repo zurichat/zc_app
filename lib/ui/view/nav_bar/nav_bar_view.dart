@@ -62,7 +62,6 @@ class NavBarView extends StatelessWidget {
         label: name[i],
         icon: SvgIcon(
           svgIcon: icons[i],
-          color: Colors.grey[300],
         ),
         activeIcon: SvgIcon(
           svgIcon: icons[i],

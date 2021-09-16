@@ -8,8 +8,9 @@ enum HomeItemType {
 class HomeItemModel {
   int? unreadCount = 0;
   String? name;
+  bool public;
 
-  HomeItemModel({type, this.unreadCount, this.name}) {
+  HomeItemModel({type, this.unreadCount, this.name, this.public = true}) {
     _type = type;
     print('i');
   }

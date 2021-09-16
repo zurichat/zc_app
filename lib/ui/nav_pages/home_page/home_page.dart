@@ -28,7 +28,9 @@ class HomePage extends StatelessWidget {
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, vmodel, child) => Column(
         children: [
-          HomePageTopBar(organizationName: 'Zuri Workspace'),
+          HomePageTopBar(
+            organizationName: 'Zuri Workspace',
+          ),
           Expanded(
             child: body(vmodel),
           )
@@ -44,7 +46,7 @@ class HomePage extends StatelessWidget {
           SizedBox(height: 15),
           searchBar(),
           Padding(
-            padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 7),
+            padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
           ),
           Divider(),

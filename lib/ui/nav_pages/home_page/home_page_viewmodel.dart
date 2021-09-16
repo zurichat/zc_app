@@ -67,15 +67,22 @@ class HomePageViewModel extends StreamViewModel {
       HomeItemModel(
           type: HomeItemType.channels, unreadCount: 0, name: 'team-app'),
       HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 5, name: 'backend'),
+          type: HomeItemType.channels,
+          unreadCount: 5,
+          name: 'backend',
+          public: false),
       HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 0, name: 'frontend'),
+          type: HomeItemType.channels,
+          unreadCount: 0,
+          name: 'frontend',
+          public: false),
       HomeItemModel(
           type: HomeItemType.channels, unreadCount: 4, name: 'work-flow'),
       HomeItemModel(
-          type: HomeItemType.channels, name: 'fast-lane', unreadCount: 0),
-      HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 1, name: 'stage7'),
+          type: HomeItemType.channels,
+          unreadCount: 1,
+          name: 'stage7',
+          public: false),
       HomeItemModel(
           type: HomeItemType.channels, unreadCount: 3, name: 'random'),
       HomeItemModel(

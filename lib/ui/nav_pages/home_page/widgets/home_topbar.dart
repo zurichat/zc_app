@@ -3,8 +3,11 @@ import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:stacked/stacked.dart';
 
-class HomePageTopBar extends StatelessWidget {
+import '../home_page_viewmodel.dart';
+
+class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
   final Widget? organizationLogo;
   final String organizationName;
 
@@ -15,26 +18,44 @@ class HomePageTopBar extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, vmodel) {
     //Todo:get the standard app bar height
-    return Container(
+    return EasyContainer(
       color: AppColors.zuriPrimaryColor,
       height: kToolbarHeight + 30,
       padding: EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
+      boxShadow: [
+        BoxShadow(
+          offset: Offset(0, 3),
+          blurRadius: 6,
+          color: Colors.black.withOpacity(0.1),
+        )
+      ],
       child: SafeArea(
         child: Row(
           children: [
-            organizationLogo ??
-                EasyContainer(
-                  height: 35,
-                  width: 35,
-                  color: AppColors.whiteColor,
-                  radius: 6,
-                ),
+            GestureDetector(
+              onTap: () {
+                vmodel.nToWorkspace();
+              },
+              child: organizationLogo ??
+                  EasyContainer(
+                    height: 35,
+                    width: 35,
+                    color: AppColors.whiteColor,
+                    alignment: Alignment.center,
+                    radius: 6,
+                    child: Image(
+                      image: appBarLogo,
+                      fit: BoxFit.cover,
+                      height: 25,
+                    ),
+                  ),
+            ),
             SizedBox(width: 12),
             Text(
               organizationName,
-              style: ZuriTextStyle.largeBold(),
+              style: ZuriTextStyle.organisationNameText(),
             )
           ],
         ),

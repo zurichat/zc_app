@@ -3,7 +3,9 @@ import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/constants.dart';
+import 'package:stacked/stacked.dart';
 
+import '../home_page_viewmodel.dart';
 import '../home_item_model.dart';
 
 enum HomeListType {
@@ -17,7 +19,7 @@ enum HomeListType {
 ///would be fixed with all the children displayed
 ///
 ///For example unread has fixed expanded items
-class HomeExpandedList extends StatefulWidget {
+class HomeExpandedList extends StatelessWidget {
   final bool canExpand;
   final String title;
   final List<HomeItemModel> data;
@@ -30,31 +32,39 @@ class HomeExpandedList extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _HomeExpandedListState createState() => _HomeExpandedListState();
-}
-
-class _HomeExpandedListState extends State<HomeExpandedList> {
-  @override
   Widget build(BuildContext context) {
-    List<HomeItemModel> data = widget.data;
     return Padding(
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
       child: expansionTile(
-        children: List.generate(data.length, (i) {
-          HomeItemModel item = data[i];
-          if (item.type == HomeItemType.channels) {
-            return ChannelTextAndIcon(text: item.name ?? '');
-          } else {
-            return DMTextAndIcon(text: item.name ?? '');
-          }
-        }),
+        context: context,
+        children: getExpansionList(),
       ),
     );
   }
 
-  Widget expansionTile({required List<Widget> children}) {
+  List<Widget> getExpansionList() {
+    List<Widget> expansionList = List.generate(data.length, (i) {
+      HomeItemModel item = data[i];
+      if (item.type == HomeItemType.channels) {
+        return ChannelTextAndIcon(data: data[i]);
+      } else {
+        return DMTextAndIcon(data: data[i]);
+      }
+    });
+
+    if (title == 'Channels') {
+      expansionList.add(AddChannelsTextAndIcon());
+    }
+
+    return expansionList;
+  }
+
+  Widget expansionTile({
+    required List<Widget> children,
+    required BuildContext context,
+  }) {
     //Unread messages do cannot expand so no expanded list tile is returned
-    if (widget.canExpand) {
+    if (canExpand) {
       return Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
@@ -62,13 +72,8 @@ class _HomeExpandedListState extends State<HomeExpandedList> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                widget.title,
+                title,
                 style: ZuriTextStyle.mediumBold(),
-              ),
-              Icon(
-                Icons.add,
-                size: 19,
-                color: AppColors.greyishColor,
               ),
             ],
           ),
@@ -87,7 +92,7 @@ class _HomeExpandedListState extends State<HomeExpandedList> {
           height: 50,
           alignment: Alignment.centerLeft,
           child: Text(
-            widget.title,
+            title,
             style: ZuriTextStyle.mediumBold(),
           ),
         ),

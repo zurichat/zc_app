@@ -11,7 +11,7 @@ class SvgAssets {
   static final SvgData lockedOutline =
       SvgData('assets/icons/svg_icons/lock_outline.svg');
   static final SvgData addChannels =
-      SvgData('assets/icons/svg_icons/add_channels.svg');
+      SvgData('assets/icons/svg_icons/add_channel.svg');
 }
 
 class SvgData {
