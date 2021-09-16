@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/easy_container.dart';
+import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
+import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
+import 'package:hng/ui/shared/text_field.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'home_page_viewmodel.dart';
 import 'widgets/custom_channel_list_tile.dart';
 import 'widgets/custom_dm_list_tile.dart';
@@ -11,18 +17,75 @@ import 'package:stacked/stacked.dart';
 import 'widgets/zuri_logo.dart';
 import '../../../utilities/constants.dart';
 
-
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomePageViewModel>.reactive(
+      onModelReady: (model) {
+        model.getHomePageData();
+      },
       viewModelBuilder: () => HomePageViewModel(),
-      builder: (context, model, child) => Container(),
+      builder: (context, vmodel, child) => Column(
+        children: [
+          HomePageTopBar(organizationName: 'Zuri Workspace'),
+          Expanded(
+            child: body(vmodel),
+          )
+        ],
+      ),
     );
   }
 
+  Widget body(HomePageViewModel vmodel) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(height: 15),
+          searchBar(),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 7),
+            child: ThreadTextAndIcon(),
+          ),
+          Divider(),
+          HomeExpandedList(
+            title: 'Unreads',
+            canExpand: false,
+            data: vmodel.unreads,
+          ),
+          Divider(),
+          HomeExpandedList(
+            title: 'Channels',
+            data: vmodel.joinedChannels,
+          ),
+          Divider(),
+          HomeExpandedList(
+            title: 'Direct Messages',
+            data: vmodel.directMessages,
+          ),
+          Divider(),
+        ],
+      ),
+    );
+  }
+
+  Widget searchBar() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
+      child: EasyContainer(
+        height: 50,
+        radius: 7,
+        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+        alignment: Alignment.centerLeft,
+        borderWidth: 1.5,
+        borderColor: Colors.grey[300],
+        child: Text(
+          'Jump to...',
+          style: ZuriTextStyle.mediumNormal(),
+        ),
+      ),
+    );
+  }
 }
 
 /*class HomePage extends StatelessWidget {
