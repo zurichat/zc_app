@@ -52,7 +52,7 @@ class LoginViewModel extends BaseViewModel {
     if (response?.statusCode == 200) {
       storage.setString(
         StorageKeys.currentSessionToken,
-        response?.data['data']['session_id'],
+        response?.data['data']['user']['token'],
       );
       storage.setString(
         StorageKeys.currentUserId,

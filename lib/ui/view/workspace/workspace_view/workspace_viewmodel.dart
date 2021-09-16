@@ -16,6 +16,9 @@ class WorkspaceViewModel extends BaseViewModel {
   final storageService = locator<SharedPreferenceLocalStorage>();
   final api = WorkSpaceApi();
   List<WorkspaceModel> workspaces = [];
+  void navigateToNewWorkspace() {
+    navigation.navigateTo(Routes.addWorkspaceView);
+  }
 
   Future fetchOrganizations() async {
     try {
