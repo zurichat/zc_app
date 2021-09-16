@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/channel/channel_members/channel_members_list.dart';
 
 import '../../../../shared/colors.dart';
 import 'textstyles.dart';
@@ -36,9 +37,17 @@ class ThirdSection extends StatelessWidget {
                   left: 11,
                   top: 19,
                 ),
-                child: Text(
-                  'Members (5)',
-                  style: descriptionStyle(),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ChannelMembersList()));
+                  },
+                  child: Text(
+                    'Members (5)',
+                    style: descriptionStyle(),
+                  ),
                 ),
               ),
             ],
