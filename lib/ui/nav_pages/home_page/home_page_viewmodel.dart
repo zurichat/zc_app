@@ -107,15 +107,15 @@ class HomePageViewModel extends StreamViewModel {
 
   //
   //*Navigate to other routes
-  void nToPref() {
+  void navigateToPref() {
     NavigationService().navigateTo(Routes.fileSearchView);
   }
 
-  void nToInfo() {
+  void navigateToInfo() {
     NavigationService().navigateTo(Routes.channelInfoView);
   }
 
-  void nToWorkspace() {
+  void navigateToWorkspace() {
     NavigationService().navigateTo(Routes.workspaceView);
   }
 
