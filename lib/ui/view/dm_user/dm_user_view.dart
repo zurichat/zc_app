@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:stacked/stacked.dart';
 
@@ -77,7 +78,7 @@ class DmUserView extends StatelessWidget {
                           children: [
                             Padding(
                               padding:
-                                  const EdgeInsets.only(left: 16.0, top: 24.0),
+                              const EdgeInsets.only(left: 16.0, top: 555),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -169,10 +170,10 @@ class DmUserView extends StatelessWidget {
                                       expands: true,
                                       maxLines: null,
                                       textAlignVertical:
-                                          TextAlignVertical.center,
+                                      TextAlignVertical.center,
                                       decoration: InputDecoration.collapsed(
                                           hintText:
-                                              'Message ${model.receiver.username}',
+                                          'Message ${model.receiver.username}',
                                           hintStyle: TextStyle(
                                               color: Color(0xFFBEBEBE),
                                               fontSize: 14.0,
@@ -187,19 +188,27 @@ class DmUserView extends StatelessWidget {
                               child: Row(
                                 children: [
                                   IconButton(
-                                    icon: Icon(
-                                      Icons.camera_alt_outlined,
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        AppIcons.shapezap,
+                                        color: Color(0xFF424141),
+                                      )),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: SvgPicture.asset(
+                                      "assets/icons/fluent_camera-16-regular.svg",
                                       color: Color(0xFF424141),
                                     ),
-                                    onPressed: () {},
+                                    //onPressed: () {},
                                   ),
                                   IconButton(
-                                    icon: Icon(
-                                      Icons.attach_file_outlined,
+                                    onPressed: () {},
+                                    icon: SvgPicture.asset(
+                                      "assets/icons/Vector.svg",
                                       color: Color(0xFF424141),
                                     ),
-                                    onPressed: () {},
-                                  )
+                                    //onPressed: () {},
+                                  ),
                                 ],
                               ),
                             )
@@ -285,8 +294,8 @@ class DmUserView extends StatelessWidget {
         children: [
           Expanded(
               child: Divider(
-            color: Color(0xFF7B8794),
-          )),
+                color: Color(0xFF7B8794),
+              )),
           Container(
             child: Text(value,
                 style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
@@ -297,8 +306,8 @@ class DmUserView extends StatelessWidget {
           ),
           Expanded(
               child: Divider(
-            color: Color(0xFF7B8794),
-          )),
+                color: Color(0xFF7B8794),
+              )),
         ],
       ),
     );
