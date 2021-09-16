@@ -13,9 +13,9 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
   final _apiService = locator<HttpApiService>();
   UserModel? _userModel;
 
-  void setStatus() => _navigationService.navigateTo(Routes.setStatusView);
+  void navigateToSetStatus() => _navigationService.navigateTo(Routes.setStatusView);
 
-  void editProfile() => _navigationService.navigateTo(Routes.editProfileView);
+  void navigateToEditProfile() => _navigationService.navigateTo(Routes.editProfileView);
 
   @override
   Future<void> futureToRun() async {
