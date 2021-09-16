@@ -38,35 +38,35 @@ class WorkspaceModel {
   }
 }
 
-List<WorkspaceModel> dummyData = [
-  WorkspaceModel(
-      name: 'ABTesters',
-      workSpaceUrl: 'abtesters.zuri.com',
-      time: '',
-      imageUrl: 'assets/images/Rectangle 138.png',
-      id: ''),
-  WorkspaceModel(
-      name: 'HNGi9 ',
-      workSpaceUrl: 'hngi9.zuri.com ',
-      time: '',
-      imageUrl: 'assets/images/Rectangle 1922.png',
-      id: ''),
-  WorkspaceModel(
-      name: 'DriveINC',
-      workSpaceUrl: 'driveinc.zuri.com',
-      time: '',
-      imageUrl: 'assets/images/Rectangle 1923.png',
-      id: ''),
-  WorkspaceModel(
-      name: 'Remote',
-      workSpaceUrl: 'remote.zuri.com',
-      time: 'RE',
-      imageUrl: 'assets/images/Rectangle 1924.png',
-      id: ''),
-  WorkspaceModel(
-      name: 'MyTeam',
-      workSpaceUrl: 'myteam.zuri.com',
-      time: 'MY',
-      imageUrl: 'assets/images/Rectangle 1925.png',
-      id: ''),
-];
+// List<WorkspaceModel> dummyData = [
+//   WorkspaceModel(
+//       name: 'ABTesters',
+//       workSpaceUrl: 'abtesters.zuri.com',
+//       time: '',
+//       imageUrl: 'assets/images/Rectangle 138.png',
+//       id: ''),
+//   WorkspaceModel(
+//       name: 'HNGi9 ',
+//       workSpaceUrl: 'hngi9.zuri.com ',
+//       time: '',
+//       imageUrl: 'assets/images/Rectangle 1922.png',
+//       id: ''),
+//   WorkspaceModel(
+//       name: 'DriveINC',
+//       workSpaceUrl: 'driveinc.zuri.com',
+//       time: '',
+//       imageUrl: 'assets/images/Rectangle 1923.png',
+//       id: ''),
+//   WorkspaceModel(
+//       name: 'Remote',
+//       workSpaceUrl: 'remote.zuri.com',
+//       time: 'RE',
+//       imageUrl: 'assets/images/Rectangle 1924.png',
+//       id: ''),
+//   WorkspaceModel(
+//       name: 'MyTeam',
+//       workSpaceUrl: 'myteam.zuri.com',
+//       time: 'MY',
+//       imageUrl: 'assets/images/Rectangle 1925.png',
+//       id: ''),
+// ];

@@ -25,3 +25,5 @@ const lockIcon = 'assets/icons/lock_icon.png';
 const appBarLogo = AssetImage('assets/logo/zuri_chat_logo.png');
 const zuriWordLogo = AssetImage('assets/logo/Zuri_word_logo.png');
 const dummyUserImage = 'assets/background/bga.png';
+
+const double zSideMargin = 16;

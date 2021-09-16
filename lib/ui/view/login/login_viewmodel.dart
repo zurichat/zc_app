@@ -58,6 +58,10 @@ class LoginViewModel extends BaseViewModel {
         StorageKeys.currentUserId,
         response?.data['data']['user']['id'],
       );
+      storage.setString(
+        StorageKeys.currentUserEmail,
+        response?.data['data']['user']['email'],
+      );
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
       AppSnackBar.success(
         context,
