@@ -10,7 +10,7 @@ class WorkspaceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<WorkspaceViewModel>.reactive(
-      onModelReady: (model) => model.fetchOrganizations(),
+      onModelReady: (model) => model.fetchOrganizations(context),
       disposeViewModel: false,
       builder: (context, model, child) {
         return SafeArea(
@@ -47,7 +47,7 @@ class WorkspaceView extends StatelessWidget {
                               itemBuilder: (context, i) {
                                 WorkspaceModel data = model.workspaces[i];
                                 return ListTile(
-                                  onTap: () => model.onTap(data.id),
+                                  onTap: () => model.onTap(context, data.id),
                                   leading: Container(
                                     height: 50,
                                     width: 50,
@@ -56,8 +56,7 @@ class WorkspaceView extends StatelessWidget {
                                       color: model.currentOrgId == data.id
                                           ? AppColors.blackColor
                                           : AppColors.whiteColor,
-                                      borderRadius:
-                                          BorderRadius.circular(5),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: Container(
                                       height: 45,
@@ -66,15 +65,13 @@ class WorkspaceView extends StatelessWidget {
                                         border: Border.all(
                                           color: AppColors.whiteColor,
                                           width: 2,
-                                          style:  BorderStyle.solid,
+                                          style: BorderStyle.solid,
                                         ),
                                         color: AppColors.greyishColor,
-                                        borderRadius:
-                                            BorderRadius.circular(5),
+                                        borderRadius: BorderRadius.circular(5),
                                       ),
                                       clipBehavior: Clip.antiAlias,
-                                      child: data.imageUrl
-                                                  ?.validateLink() ??
+                                      child: data.imageUrl?.validateLink() ??
                                               false
                                           ? Image.network(
                                               data.imageUrl!,
@@ -82,15 +79,13 @@ class WorkspaceView extends StatelessWidget {
                                                   Center(
                                                 child: Text(
                                                   '${data.name.initials}',
-                                                  textAlign:
-                                                      TextAlign.center,
+                                                  textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 21,
                                                     fontFamily:
                                                         'OverpassRegular',
-                                                    fontWeight:
-                                                        FontWeight.bold,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                               ),
@@ -103,10 +98,8 @@ class WorkspaceView extends StatelessWidget {
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 21,
-                                                  fontFamily:
-                                                      'OverpassRegular',
-                                                  fontWeight:
-                                                      FontWeight.bold,
+                                                  fontFamily: 'OverpassRegular',
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                               ),
                                             ),
@@ -114,17 +107,15 @@ class WorkspaceView extends StatelessWidget {
                                   ),
                                   title: Text(
                                     data.name,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                   subtitle: Container(
-                                    padding:
-                                        const EdgeInsets.only(top: 5.0),
+                                    padding: const EdgeInsets.only(top: 5.0),
                                     child: Text(
                                       '${data.workSpaceUrl}',
                                       style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 15.0),
+                                          color: Colors.grey, fontSize: 15.0),
                                     ),
                                   ),
                                   trailing: Icon(Icons.more_vert),

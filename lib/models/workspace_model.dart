@@ -4,7 +4,7 @@ class WorkspaceModel {
   final String? workSpaceUrl;
   final String? time;
   final String? imageUrl;
-  final String? plugins;
+  final List? plugins;
   final String? settings;
 
   WorkspaceModel({

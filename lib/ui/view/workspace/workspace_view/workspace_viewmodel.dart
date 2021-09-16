@@ -1,3 +1,4 @@
+import 'package:hng/general_widgets/app_snackbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -17,7 +18,7 @@ class WorkspaceViewModel extends BaseViewModel {
   final api = WorkSpaceApi();
   List<WorkspaceModel> workspaces = [];
 
-  Future fetchOrganizations() async {
+  Future fetchOrganizations(context) async {
     try {
       if (!await connectivityService.checkConnection()) {
         AppToast.instance.message(null, 'Check your internet connection');
@@ -28,11 +29,11 @@ class WorkspaceViewModel extends BaseViewModel {
       setBusy(false);
     } catch (e) {
       print(e.toString());
-      AppToast.instance.error(null, 'Error Occured');
+      AppSnackBar.failure(context, 'Error Occured');
     }
   }
 
-  Future<void> onTap(String id) async {
+  Future<void> onTap(ctx, String id) async {
     try {
       if (id == currentOrgId) {
         navigation.navigateTo(Routes.homePage);
@@ -44,13 +45,13 @@ class WorkspaceViewModel extends BaseViewModel {
       }
       final workspaces = await api.fetchOrganizationInfo(id);
       await storageService.setString(
-          StorageKeys.currentOrgId, workspaces.first.id);
-      AppToast.instance
-          .success('Success!', 'You have entered ${workspaces.first.name}');
+          StorageKeys.currentOrgId, id);
+      AppSnackBar
+          .success(ctx, 'You have entered ${workspaces.name}');
       navigation.navigateTo(Routes.homePage);
     } catch (e) {
       print(e.toString());
-      AppToast.instance.error(null, 'Error Occured');
+      AppSnackBar.failure(ctx, 'Error Occured');
     }
   }
 
