@@ -197,6 +197,18 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    ViewProfilePage: (data) {
+      var args = data.getArgs<ViewProfilePageArguments>(
+        orElse: () => ViewProfilePageArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ViewProfilePage(
+          key: args.key,
+          isActive: args.isActive,
+        ),
+        settings: data,
+      );
+    },
     OnboardingView: (data) {
       return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const OnboardingView(),
