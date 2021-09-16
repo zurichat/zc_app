@@ -27,7 +27,7 @@ class NavBarView extends StatelessWidget {
       initialiseSpecialViewModelsOnce: true,
       viewModelBuilder: () => NavBarViewModel(),
       onModelReady: (vModel) {
-        vModel.bottomNavList = getBottomIcons();
+        // vModel.bottomNavList = getBottomIcons();
       },
       builder: (context, vModel, child) {
         return Scaffold(
@@ -46,7 +46,7 @@ class NavBarView extends StatelessWidget {
             unselectedLabelStyle: AppTextStyles.normalText,
             currentIndex: vModel.currentIndex,
             onTap: vModel.setIndex,
-            items: vModel.bottomNavList,
+            items: getBottomIcons(),
           ),
         );
       },
