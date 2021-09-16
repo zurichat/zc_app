@@ -8,12 +8,6 @@ import 'package:stacked/stacked.dart';
 import '../home_page_viewmodel.dart';
 import '../home_item_model.dart';
 
-enum HomeListType {
-  unreads,
-  channels,
-  messages,
-}
-
 ///Expanded List allows list to be expanded and contracted
 ///if expand is specified as false then the expanded list
 ///would be fixed with all the children displayed
@@ -35,8 +29,9 @@ class HomeExpandedList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
-      child: expansionTile(
-        context: context,
+      child: HomeExpansionTile(
+        title: title,
+        canExpand: canExpand,
         children: getExpansionList(),
       ),
     );
@@ -58,11 +53,22 @@ class HomeExpandedList extends StatelessWidget {
 
     return expansionList;
   }
+}
 
-  Widget expansionTile({
-    required List<Widget> children,
-    required BuildContext context,
-  }) {
+class HomeExpansionTile extends StatelessWidget {
+  const HomeExpansionTile({
+    Key? key,
+    required this.canExpand,
+    required this.children,
+    required this.title,
+  }) : super(key: key);
+
+  final bool canExpand;
+  final List<Widget> children;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
     //Unread messages do cannot expand so no expanded list tile is returned
     if (canExpand) {
       return Theme(
