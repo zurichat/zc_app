@@ -4,17 +4,26 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
-import '../../../services/api_service.dart';
+import '../../../general_widgets/app_snackbar.dart';
+import '../../../package/base/server-request/api/http_api.dart';
 import '../../../services/local_storage_services.dart';
+import '../../../utilities/storage_keys.dart';
 
 class LoginViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
-  final apiService = locator<ApiService>();
   final storage = locator<SharedPreferenceLocalStorage>();
+  final _apiService = locator<HttpApiService>();
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+
+  double height = 0;
+  double width = 0;
   bool isLoading = false;
+  loading(status) {
+    isLoading = status;
+    notifyListeners();
+  }
 
   void navigateToHomeScreen() {
     navigationService.navigateTo(Routes.navBarView);
@@ -30,46 +39,39 @@ class LoginViewModel extends BaseViewModel {
 
   // ignore: always_declare_return_types
   Future logInUser(context) async {
-    isLoading = true;
-    notifyListeners();
+    loading(true);
     const endpoint = '/auth/login';
     if (email.text == '' || password.text == '') {
-      isLoading = false;
-      notifyListeners();
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          duration: Duration(seconds: 3),
-          content: Text('Please fill all fields.'),
-        ),
-      );
+      loading(false);
+      AppSnackBar.failure(context, 'Please fill all fields.');
       return;
     }
-    final signUpData = {
-      'email': email.text,
-      'password': password.text,
-    };
-
-    final response = await apiService.sendPostRequest(signUpData, endpoint);
-    print('called $response');
-    isLoading = false;
-    notifyListeners();
-    if (response != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          duration: Duration(seconds: 3),
-          content: Text(
-              '${response['message']} for ${response['data']['user']['email']}'),
-        ),
+    final loginData = {'email': email.text, 'password': password.text};
+    final response = await _apiService.post(endpoint, data: loginData);
+    loading(false);
+    if (response?.statusCode == 200) {
+      storage.setString(
+        StorageKeys.currentSessionToken,
+        response?.data['data']['user']['token'],
       );
-
+      storage.setString(
+        StorageKeys.currentUserId,
+        response?.data['data']['user']['id'],
+      );
+      storage.setString(
+        StorageKeys.currentUserEmail,
+        response?.data['data']['user']['email'],
+      );
+      // final userModel = UserModel.fromJson(response?.data['data']['user']);
+      AppSnackBar.success(
+        context,
+        ''' ${response?.data['message']} for '''
+        '''${response?.data['data']['user']['email']}''',
+      );
       navigationService.navigateTo(Routes.navBarView);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          duration: Duration(seconds: 3),
-          content: Text('Error encountered during login.'),
-        ),
-      );
+      AppSnackBar.failure(context,
+          response?.data['message'] ?? 'Error encountered during login.');
     }
   }
 }

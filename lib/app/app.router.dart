@@ -197,6 +197,18 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    ViewProfilePage: (data) {
+      var args = data.getArgs<ViewProfilePageArguments>(
+        orElse: () => ViewProfilePageArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ViewProfilePage(
+          key: args.key,
+          isActive: args.isActive,
+        ),
+        settings: data,
+      );
+    },
     OnboardingView: (data) {
       return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const OnboardingView(),
@@ -299,12 +311,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    WorkspaceView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const WorkspaceView(),
-        settings: data,
-      );
-    },
     DmJumpToView: (data) {
       return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const DmJumpToView(),
@@ -312,7 +318,7 @@ class StackedRouter extends RouterBase {
       );
     },
     DmUserView: (data) {
-      var args = data.getArgs<DmUserViewArguments>(
+      final args = data.getArgs<DmUserViewArguments>(
         orElse: () => DmUserViewArguments(),
       );
       return MaterialPageRoute<MaterialRoute<dynamic>>(
@@ -371,12 +377,6 @@ class StackedRouter extends RouterBase {
     ProfilePageView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ProfilePageView(),
-        settings: data,
-      );
-    },
-    PreferenceView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const PreferenceView(),
         settings: data,
       );
     },

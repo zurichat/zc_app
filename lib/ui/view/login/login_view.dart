@@ -47,11 +47,8 @@ class LoginView extends StatelessWidget {
                       style: AppTextStyles.heading7,
                     ),
                   ),
-                  SizedBox(
-                    height: 4.0,
-                  ),
-                  SizedBox(
-                    height: 4.0,
+                  const SizedBox(
+                    height: 32.0,
                   ),
                   CustomTextField(
                     keyboardType: TextInputType.emailAddress,
@@ -63,7 +60,7 @@ class LoginView extends StatelessWidget {
                     controller: model.email,
                   ),
                   SizedBox(
-                    height: 33.0,
+                    height: 24.0,
                   ),
                   CustomTextField(
                     keyboardType: TextInputType.emailAddress,
@@ -90,7 +87,7 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 32.0,
+                    height: 16.0,
                   ),
                   Center(
                     child: FractionallySizedBox(

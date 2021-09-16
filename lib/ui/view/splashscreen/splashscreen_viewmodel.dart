@@ -11,6 +11,7 @@ class SplashscreenViewModel extends BaseViewModel {
   final navigation = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   init() {
+    storage.clearStorage();
     Timer(
       const Duration(seconds: 3),
       () {

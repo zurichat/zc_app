@@ -7,6 +7,7 @@ import '../../../app/app.router.dart';
 
 class OnboardingViewModel extends BaseViewModel {
   final navigator = locator<NavigationService>();
+
   navigateToNext() {
     navigator.navigateTo(Routes.signUpView);
   }
