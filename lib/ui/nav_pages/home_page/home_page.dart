@@ -60,6 +60,9 @@ class HomePage extends StatelessWidget {
                     height: 40,
                     margin: const EdgeInsets.only(top: 10),
                     child: TextFormField(
+                      onTap:(){
+                        model.navigateToDmJumpToView();
+                      },
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(7),
                         hintText: 'Jump to...',

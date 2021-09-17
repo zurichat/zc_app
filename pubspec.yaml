@@ -30,6 +30,7 @@ dependencies:
   page_view_dot_indicator: ^1.0.0
   permission_handler: ^8.1.4+2
   pin_code_fields: ^7.3.0
+  pixel_perfect: ^1.1.0
   shared_preferences: ^2.0.7
   stacked: ^2.1.8
   stacked_hooks: ^0.2.1

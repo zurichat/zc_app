@@ -25,6 +25,9 @@ class HomePageViewModel extends StreamViewModel {
   void navigateToDmUser() {
     locator<NavigationService>().navigateTo(Routes.dmUserView);
   }
+  void navigateToDmJumpToView() {
+    locator<NavigationService>().navigateTo(Routes.dmJumpToView);
+  }
 
   final connectivityService = locator<ConnectivityService>();
 
