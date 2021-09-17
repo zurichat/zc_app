@@ -54,151 +54,193 @@ class _NewChannelState extends State<NewChannel> {
           ],
         ),
         body: SafeArea(
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 19, bottom: 10, top: 24),
-                  child: Row(
-                    children: [
-                      Text(
-                        ' Channel Name',
-                        style: AppTextStyles.heading9,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 40,
-                  width: double.infinity,
-                  margin: EdgeInsets.symmetric(horizontal: 16),
-                  padding: EdgeInsets.only(left: 12, right: 8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                    border: Border.all(
-                      color: _borderColor,
-                      width: 0.5,
-                    ),
-                  ),
-                  child: Row(
-                    children: [
-                      Text(
-                        '# ',
-                        style: AppTextStyles.body2Medium.copyWith(
-                          color: AppColors.darkGreyColor,
-                        ),
-                      ),
-                      Expanded(
-                        child: TextField(
-                          //controller: _channelName,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(80)
-                          ],
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'e.g team-uchiha',
-                            hintStyle: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xFFA1A9B2),
-                            ),
-                          ),
-
-                          onChanged: (val) {
-                            setState(() {
-                              validateInput(val);
-                              _maxLength = 80 - val.length;
-                            });
-                          },
-                        ),
-                      ),
-                      Text(
-                        '${_maxLength}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xFFA1A9B2),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Visibility(
-                    visible: _hasError,
-                    child: Column(
+          child: SingleChildScrollView(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 19, bottom: 10, top: 24),
+                    child: Row(
                       children: [
-                        UIHelper.verticalSpaceSmall,
                         Text(
-                          'Error message',
-                          style: AppTextStyles.body2Medium.copyWith(
-                            color: AppColors.redColor,
-                          ),
+                          ' Channel Name',
+                          style: AppTextStyles.heading9,
                         ),
                       ],
                     ),
                   ),
-                ),
-                UIHelper.verticalSpaceSmall,
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Text(
-                    'Channel names must be lowercase, without spaces or\nperiods, and can\'nt be longer than 80 characters',
-                    style: AppTextStyles.body2Medium,
-                  ),
-                ),
-                UIHelper.verticalSpaceMedium,
-                const Divider(
-                  thickness: 0.5,
-                  color: Color(0xFF7B8794),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 16.0, bottom: 14.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Make channel private',
-                        style: AppTextStyles.heading9.copyWith(
-                          letterSpacing: 0.5,
-                          fontWeight: FontWeight.w400,
-                          height: 2.0,
-                        ),
+                  Container(
+                    height: 40,
+                    width: double.infinity,
+                    margin: EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.only(left: 12, right: 8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      border: Border.all(
+                        color: _borderColor,
+                        width: 0.5,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'A private channel can only be viewed or joined',
-                            style: AppTextStyles.body2Medium,
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          '# ',
+                          style: AppTextStyles.body2Medium.copyWith(
+                            color: AppColors.darkGreyColor,
                           ),
-                          SizedBox(
-                            height: 20,
-                            child: Switch(
-                              inactiveTrackColor: Color(0XFFEBEBEB),
-                              activeColor: AppColors.zuriPrimaryColor,
-                              value: _value,
-                              onChanged: (val) {
-                                setState(() {
-                                  _value = val;
-                                });
-                              },
+                        ),
+                        Expanded(
+                          child: TextField(
+                            //controller: _channelName,
+                            style: AppTextStyles.body2Medium.copyWith(
+                              color: AppColors.blackColor,
                             ),
-                          )
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(80)
+                            ],
+                            cursorColor: AppColors.zuriPrimaryColor,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'e.g team-uchiha',
+                              hintStyle: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFFA1A9B2),
+                              ),
+                            ),
+
+                            onChanged: (val) {
+                              setState(() {
+                                validateInput(val);
+                                _maxLength = 80 - val.length;
+                              });
+                            },
+                          ),
+                        ),
+                        Text(
+                          '${_maxLength}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xFFA1A9B2),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Visibility(
+                      visible: _hasError,
+                      child: Column(
+                        children: [
+                          UIHelper.verticalSpaceSmall,
+                          Text(
+                            'Error message',
+                            style: AppTextStyles.body2Medium.copyWith(
+                              color: AppColors.redColor,
+                            ),
+                          ),
                         ],
                       ),
-                      //add this part here because the Row widget won't align with just the upper part of the text when there's a new line
-                      Text(
-                        'by invitation.',
-                        style: AppTextStyles.body2Medium,
-                      )
-                    ],
+                    ),
                   ),
-                ),
-                const Divider(
-                  thickness: 0.5,
-                  color: Color(0xFF7B8794),
-                ),
-              ]),
+                  UIHelper.verticalSpaceSmall,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Text(
+                      'Channel names must be lowercase, without spaces or\nperiods, and can\'t be longer than 80 characters',
+                      style: AppTextStyles.body2Medium,
+                    ),
+                  ),
+                  UIHelper.verticalSpaceMedium,
+                  const Divider(
+                    thickness: 0.5,
+                    color: AppColors.greyColor,
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 16, top: 13, bottom: 10),
+                    child: Text(
+                      'Channel Description',
+                      style: AppTextStyles.heading9,
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 16, top: 8, right: 16),
+                    height: 180,
+                    child: TextField(
+                      maxLines: null,
+                      style: AppTextStyles.body2Medium.copyWith(
+                        color: AppColors.blackColor,
+                      ),
+                      cursorColor: AppColors.zuriPrimaryColor,
+                      keyboardType: TextInputType.multiline,
+                      decoration: InputDecoration.collapsed(
+                        hintText: 'Add a Desription',
+                        hintStyle: AppTextStyles.body2Medium.copyWith(
+                          color: AppColors.zuriDarkGrey,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Divider(
+                    thickness: 0.5,
+                    color: AppColors.greyColor,
+                  ),
+                  UIHelper.verticalSpaceMedium,
+                  const Divider(
+                    thickness: 0.5,
+                    color: AppColors.navBarItemColor,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 16.0, bottom: 14.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Make channel private',
+                          style: AppTextStyles.heading9.copyWith(
+                            letterSpacing: 0.5,
+                            fontWeight: FontWeight.w400,
+                            height: 2.0,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'A private channel can only be viewed or joined',
+                              style: AppTextStyles.body2Medium,
+                            ),
+                            SizedBox(
+                              height: 20,
+                              child: Switch(
+                                inactiveTrackColor: Color(0XFFEBEBEB),
+                                activeColor: AppColors.zuriPrimaryColor,
+                                value: _value,
+                                onChanged: (val) {
+                                  setState(() {
+                                    _value = val;
+                                  });
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                        //add this part here because the Row widget won't align with just the upper part of the text when there's a new line
+                        Text(
+                          'by invitation.',
+                          style: AppTextStyles.body2Medium,
+                        )
+                      ],
+                    ),
+                  ),
+                  const Divider(
+                    thickness: 0.5,
+                    color: AppColors.navBarItemColor,
+                  ),
+                ]),
+          ),
         ),
       ),
     );
