@@ -17,6 +17,10 @@ class WorkspaceViewModel extends BaseViewModel {
   final api = WorkSpaceApi();
   List<WorkspaceModel> workspaces = [];
 
+  void navigateToNewWorkspace() {
+    navigation.navigateTo(Routes.addWorkspaceView);
+  }
+
   Future fetchOrganizations() async {
     try {
       if (!await connectivityService.checkConnection()) {
@@ -43,6 +47,7 @@ class WorkspaceViewModel extends BaseViewModel {
         return;
       }
       final workspaces = await api.fetchOrganizationInfo(id);
+      print(workspaces);
       await storageService.setString(
           StorageKeys.currentOrgId, workspaces.first.id);
       AppToast.instance

@@ -13,7 +13,7 @@ class WorkSpaceApi {
   Future<List<WorkspaceModel>> fetchListOfOrganizations() async {
     print(storageService.getString(StorageKeys.currentSessionToken));
     print('donee');
-    final res = await _api.get('/organizations', headers: {
+    final res = await _api.get('organizations/', headers: {
       'Authorization':
           'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
     });
@@ -25,8 +25,14 @@ class WorkSpaceApi {
 
   /// Fetches information on a particular Organization. It takes a parameter
   /// `id` which is the id of the organization
-  Future<List<WorkspaceModel>> fetchOrganizationInfo(String id) async {
-    final res = await _api.get('/organizations', data: {'organization_id': id});
+  // Future<List<WorkspaceModel>>
+  fetchOrganizationInfo(String id) async {
+    final res = await _api.get('/organizations/', data: {
+      'organization_id': id
+    }, headers: {
+      'Authorization':
+          'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
+    });
     return (res?.data?['data'] as List)
         .map((e) => WorkspaceModel.fromJson(e))
         .toList();
