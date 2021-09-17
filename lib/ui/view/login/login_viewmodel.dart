@@ -52,11 +52,15 @@ class LoginViewModel extends BaseViewModel {
     if (response?.statusCode == 200) {
       storage.setString(
         StorageKeys.currentSessionToken,
-        response?.data['data']['session_id'],
+        response?.data['data']['user']['token'],
       );
       storage.setString(
         StorageKeys.currentUserId,
         response?.data['data']['user']['id'],
+      );
+      storage.setString(
+        StorageKeys.currentUserEmail,
+        response?.data['data']['user']['email'],
       );
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
       AppSnackBar.success(
