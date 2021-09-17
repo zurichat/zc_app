@@ -135,10 +135,11 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   const CustomPluginListTile(
-                    icon: Icons.add_box_rounded,
-                    pluginName: 'Add channel',
-                    isActive: false,
-                  ),
+                      icon: Icons.add_box_rounded,
+                      pluginName: 'Add channel',
+                      isActive: false,
+                    ),
+                
                   const SizedBox(height: 16),
                   CustomHomePageSectionTitle(
                     title: 'Direct Messages',
