@@ -43,7 +43,7 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
-import '../ui/view/view_profile_page/view_profile_page.dart';
+import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
@@ -76,7 +76,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: AddPluginView),
     MaterialRoute(page: UseDifferentEmailView),
     MaterialRoute(page: EditPluginView),
-    MaterialRoute(page: ViewProfilePage),
+    MaterialRoute(page: ViewProfile),
     MaterialRoute(page: SetStatusView),
     MaterialRoute(page: ProfilePageView),
     MaterialRoute(page: PreferenceView),
