@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/channel/edit_channel/edit_channel_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/nav_pages/home_page/home_page.dart';
@@ -94,6 +95,7 @@ class Routes {
   static const String createWorkSpace = '/create-work-space';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
+  static const String channelInfoEdit = '/channel-info-edit';
   static const all = <String>{
     navBarView,
     onboardingView,
@@ -136,6 +138,7 @@ class Routes {
     createWorkSpace,
     fileSearchView,
     draftView,
+    channelInfoEdit,
   };
 }
 
@@ -185,6 +188,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.channelInfoEdit, page: EditChannelPageView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -198,6 +202,12 @@ class StackedRouter extends RouterBase {
     OnboardingView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const OnboardingView(),
+        settings: data,
+      );
+    },
+    EditChannelPageView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const EditChannelPageView(),
         settings: data,
       );
     },

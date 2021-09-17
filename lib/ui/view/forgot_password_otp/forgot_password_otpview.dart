@@ -4,7 +4,6 @@ import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
-
 import 'forgot_password_otpviewmodel.dart';
 
 class ForgotPasswordOtpView extends StatelessWidget {

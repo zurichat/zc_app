@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/channel/channel_info/channel_info_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../../app/app.locator.dart';
@@ -125,7 +126,9 @@ AppBar appBar(String text, String nexttext, BuildContext context) {
     elevation: 1,
     backgroundColor: AppColors.whiteColor,
     leading: GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pop(context);
+      },
       child: const Icon(
         CupertinoIcons.back,
         color: AppColors.deepBlackColor,
@@ -176,7 +179,10 @@ AppBar appBar(String text, String nexttext, BuildContext context) {
       Padding(
         padding: const EdgeInsets.only(right: 20.0),
         child: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ChannelInfoView()));
+          },
           child: const Icon(
             CupertinoIcons.info,
             color: AppColors.deepBlackColor,

@@ -58,7 +58,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: WorkspaceView),
     MaterialRoute(page: ChannelList),
     MaterialRoute(page: ForgotPasswordEmailView),
-    MaterialRoute(page: ForgotPasswordOtpView),
+    // MaterialRoute(page: ForgotPasswordOtpView),
     MaterialRoute(page: ForgotPasswordNewView),
     MaterialRoute(page: ChannelNotificationView),
     MaterialRoute(page: NewChannel),

@@ -111,6 +111,10 @@ class HomePageViewModel extends StreamViewModel {
     NavigationService().navigateTo(Routes.fileSearchView);
   }
 
+  void navigateToChannelPage() {
+    NavigationService().navigateTo(Routes.channelPageView);
+  }
+
   void navigateToInfo() {
     NavigationService().navigateTo(Routes.channelInfoView);
   }
