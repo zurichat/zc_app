@@ -7,7 +7,6 @@ import 'create_workspace_viewmodel.dart';
 class CreateWorkSpace extends StatelessWidget {
   final WorkspaceSwitchMethod method;
   //The users email address can be passed in here from the api or database
-  final String email = 'Johndoe@gmail.com';
 
   const CreateWorkSpace({Key? key, required this.method}) : super(key: key);
 
@@ -72,7 +71,7 @@ class CreateWorkSpace extends StatelessWidget {
                               model.onEmailTap(method);
                             },
                             child: Text(
-                              model.userEmail,
+                              model.userEmail ?? '',
                               style: TextStyle(
                                   color: AppColors.deepBlackColor,
                                   fontSize: 14),

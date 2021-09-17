@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:hng/general_widgets/app_snackbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -16,13 +17,26 @@ class WorkspaceViewModel extends BaseViewModel {
   final connectivityService = locator<ConnectivityService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
   final api = WorkSpaceApi();
+  late BuildContext context;
   List<WorkspaceModel> workspaces = [];
 
-  void navigateToNewWorkspace() {
-    navigation.navigateTo(Routes.addWorkspaceView);
+  void initViewModel(BuildContext ctx) {
+    context = ctx;
+    fetchOrganizations();
   }
 
-  Future fetchOrganizations(context) async {
+  Future<void> navigateToNewWorkspace() async {
+    try {
+      await navigation.navigateTo(Routes.addWorkspaceView);
+      workspaces = await api.fetchListOfOrganizations();
+      filterWorkspace();
+      notifyListeners();
+    } catch (e) {
+      AppSnackBar.failure(context, 'Error Updating Organizations');
+    }
+  }
+
+  Future fetchOrganizations() async {
     try {
       if (!await connectivityService.checkConnection()) {
         AppToast.instance.message(null, 'Check your internet connection');
@@ -30,6 +44,7 @@ class WorkspaceViewModel extends BaseViewModel {
       }
       setBusy(true);
       workspaces = await api.fetchListOfOrganizations();
+      filterWorkspace();
       setBusy(false);
     } catch (e) {
       print(e.toString());
@@ -37,10 +52,15 @@ class WorkspaceViewModel extends BaseViewModel {
     }
   }
 
-  Future<void> onTap(ctx, String id) async {
+  void filterWorkspace() {
+    final ids = storageService.getStringList(StorageKeys.workspaceIds) ?? [];
+    workspaces.retainWhere((e) => ids.any((id) => id == e.id));
+  }
+
+  Future<void> onTap(String id) async {
     try {
       if (id == currentOrgId) {
-        navigation.navigateTo(Routes.homePage);
+        navigation.popRepeated(1);
         return;
       }
       if (!await connectivityService.checkConnection()) {
@@ -49,14 +69,12 @@ class WorkspaceViewModel extends BaseViewModel {
       }
       final workspaces = await api.fetchOrganizationInfo(id);
       print(workspaces);
-      await storageService.setString(
-          StorageKeys.currentOrgId, id);
-      AppSnackBar
-          .success(ctx, 'You have entered ${workspaces.name}');
-      navigation.navigateTo(Routes.homePage);
+      await storageService.setString(StorageKeys.currentOrgId, id);
+      AppSnackBar.success(context, 'You have entered ${workspaces.name}');
+      navigation.popRepeated(1);
     } catch (e) {
       print(e.toString());
-      AppSnackBar.failure(ctx, 'Error Occured');
+      AppSnackBar.failure(context, 'Error fetching Organization Info');
     }
   }
 

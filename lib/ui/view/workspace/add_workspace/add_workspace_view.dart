@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'add_workspace_viewmodel.dart';
 
@@ -55,9 +56,7 @@ class AddWorkspaceView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            //TODO: Navigate to create Workspace
-                          },
+                          onTap: () => model.navigateToJoinWorkspace(WorkspaceSwitchMethod.Create),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
@@ -90,9 +89,7 @@ class AddWorkspaceView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () {
-                            //TODO: Navigate to Sigin to another Workspace
-                          },
+                          onTap: () => model.navigateToJoinWorkspace(WorkspaceSwitchMethod.SignIn),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
@@ -125,7 +122,7 @@ class AddWorkspaceView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(),
+                          onTap: () => model.navigateToJoinWorkspace(WorkspaceSwitchMethod.Join),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(

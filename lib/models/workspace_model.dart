@@ -3,7 +3,7 @@ class WorkspaceModel {
   final String name;
   final String? workSpaceUrl;
   final String? time;
-  final String? imageUrl;
+  final String? logoUrl;
   final List? plugins;
   final String? settings;
 
@@ -12,7 +12,7 @@ class WorkspaceModel {
     required this.name,
     required this.workSpaceUrl,
     required this.time,
-    required this.imageUrl,
+    required this.logoUrl,
     this.plugins,
     this.settings,
   });
@@ -21,9 +21,9 @@ class WorkspaceModel {
     return WorkspaceModel(
       id: json['_id'],
       name: json['name'],
-      imageUrl: json['image_url'],
+      logoUrl: json['logo_url'],
       time: json['created_at'],
-      workSpaceUrl: json['url'],
+      workSpaceUrl: json['workspace_url'],
       plugins: json['plugins'],
       settings: json['settings'],
     );

@@ -10,7 +10,7 @@ class WorkspaceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<WorkspaceViewModel>.reactive(
-      onModelReady: (model) => model.fetchOrganizations(context),
+      onModelReady: (model) => model.initViewModel(context),
       disposeViewModel: false,
       builder: (context, model, child) {
         return SafeArea(
@@ -43,7 +43,7 @@ class WorkspaceView extends StatelessWidget {
                                   ),
                                   ListView.builder(
                                     physics: NeverScrollableScrollPhysics(),
-                                    itemCount: 20,
+                                    itemCount:  model.workspaces.length,
                                     shrinkWrap: true,
                                     itemBuilder: (context, i) {
                                       final org = model.workspaces[i];
@@ -210,7 +210,7 @@ class OrganizationTile extends ViewModelWidget<WorkspaceViewModel> {
   @override
   Widget build(BuildContext context, WorkspaceViewModel model) {
     return ListTile(
-      onTap: () => model.onTap(context, org.id),
+      onTap: () => model.onTap(org.id),
       leading: Container(
         height: MediaQuery.of(context).size.height * 0.06,
         width: MediaQuery.of(context).size.height * 0.06,
