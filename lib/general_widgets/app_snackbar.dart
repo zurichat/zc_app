@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/colors.dart';
 
 class AppSnackBar {
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> success(
@@ -7,6 +8,7 @@ class AppSnackBar {
       SnackBar(
         duration: const Duration(seconds: 3),
         content: Text(text),
+        backgroundColor: AppColors.zuriPrimaryColor,
       ),
     );
   }
@@ -17,6 +19,7 @@ class AppSnackBar {
       SnackBar(
         duration: const Duration(seconds: 3),
         content: Text(text),
+        backgroundColor: AppColors.redColor,
       ),
     );
   }

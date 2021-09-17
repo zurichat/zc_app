@@ -17,8 +17,6 @@ class LoginViewModel extends BaseViewModel {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
-  double height = 0;
-  double width = 0;
   bool isLoading = false;
   loading(status) {
     isLoading = status;
@@ -43,12 +41,16 @@ class LoginViewModel extends BaseViewModel {
     const endpoint = '/auth/login';
     if (email.text == '' || password.text == '') {
       loading(false);
+      //Hides the keyboard for the failure snackbar to be visible
+      FocusScope.of(context).unfocus();
       AppSnackBar.failure(context, 'Please fill all fields.');
       return;
     }
     final loginData = {'email': email.text, 'password': password.text};
     final response = await _apiService.post(endpoint, data: loginData);
     loading(false);
+
+    //saving user details to storage on request success
     if (response?.statusCode == 200) {
       storage.setString(
         StorageKeys.currentSessionToken,
@@ -65,8 +67,7 @@ class LoginViewModel extends BaseViewModel {
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
       AppSnackBar.success(
         context,
-        ''' ${response?.data['message']} for '''
-        '''${response?.data['data']['user']['email']}''',
+        ' ${response?.data['message']} for ${response?.data['data']['user']['email']}',
       );
       navigationService.navigateTo(Routes.navBarView);
     } else {

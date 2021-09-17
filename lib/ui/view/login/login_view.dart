@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../../../general_widgets/custom_textfield.dart';
-import '../../shared/colors.dart';
-import '../../shared/long_button.dart';
-import '../../shared/styles.dart';
-import 'login_viewmodel.dart';
+import 'package:hng/ui/view/login/login_viewmodel.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/long_button.dart';
+import 'package:hng/ui/shared/styles.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -31,43 +31,49 @@ class LoginView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(
-                    height: 57.0,
-                  ),
+                  SizedBox(height: 57.0),
                   Container(
                     alignment: Alignment.center,
                     child: Image.asset('assets/logo/zuri_chat_logo.png'),
                   ),
-                  SizedBox(
-                    height: 24.23,
-                  ),
+                  SizedBox(height: 24.23),
                   Center(
                     child: Text(
                       'Sign In',
                       style: AppTextStyles.heading7,
                     ),
                   ),
-                  const SizedBox(
-                    height: 32.0,
+                  SizedBox(height: 8.0),
+                  Text(
+                    'Welcome! Sign in to continue',
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.faintBodyText,
                   ),
+                  SizedBox(height: 38.0),
+                  Text(
+                    'Email Address',
+                    style: AppTextStyles.body1Bold,
+                  ),
+                  SizedBox(height: 10.0),
                   CustomTextField(
                     keyboardType: TextInputType.emailAddress,
                     inputAction: TextInputAction.next,
-                    autoCorrect: true,
+                    autoCorrect: false,
                     obscureText: false,
-                    labelText: 'Email',
                     hintText: 'Name@gmail.com',
                     controller: model.email,
                   ),
-                  SizedBox(
-                    height: 24.0,
+                  SizedBox(height: 16.0),
+                  Text(
+                    'Password',
+                    style: AppTextStyles.body1Bold,
                   ),
+                  SizedBox(height: 10.0),
                   CustomTextField(
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.visiblePassword,
                     inputAction: TextInputAction.next,
-                    autoCorrect: true,
+                    autoCorrect: false,
                     obscureText: true,
-                    labelText: 'Password',
                     hintText: 'Enter Password',
                     controller: model.password,
                   ),
@@ -86,9 +92,7 @@ class LoginView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
+                  SizedBox(height: 32.0),
                   Center(
                     child: FractionallySizedBox(
                       widthFactor: 1.0,
@@ -107,7 +111,7 @@ class LoginView extends StatelessWidget {
                       TextButton(
                         onPressed: () => model.navigateToSignUpScreen(),
                         child: Text(
-                          'Register',
+                          'Sign Up',
                           style: TextStyle(color: AppColors.zuriPrimaryColor),
                         ),
                       )
