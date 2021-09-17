@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ViewProfilePage extends StatelessWidget {
-  final bool isActive;
+  final bool? isActive;
 
   const ViewProfilePage({
     Key? key,
@@ -46,7 +46,9 @@ class ViewProfilePage extends StatelessWidget {
                         child: Icon(
                           Icons.circle,
                           size: 12.0,
-                          color: isActive ? Colors.green : Colors.transparent,
+                          color: isActive == true
+                              ? Colors.green
+                              : Colors.transparent,
                         ),
                       ),
                     ],

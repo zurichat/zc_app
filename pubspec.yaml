@@ -34,6 +34,7 @@ dependencies:
   pin_code_fields: ^7.3.0
   shared_preferences: ^2.0.7
   stacked: ^2.1.8
+  
   stacked_hooks: ^0.2.1
 # TODO Android V2 embedding issues from flutter_statusbarcolor_ns package used in stacked_themes
   stacked_services: ^0.8.6
@@ -50,6 +51,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   stacked_generator: ^0.4.6
+  analyzer: ^1.7.0
 
 flutter_native_splash:
   color: "#ffffff"
@@ -67,6 +69,7 @@ flutter:
     - assets/channel_page/
     - assets/plugin_icons/
     - assets/icons/emojiHands/
+    - assets/icons/svg_icons/
 
   fonts:
     - family: ZapIcon
