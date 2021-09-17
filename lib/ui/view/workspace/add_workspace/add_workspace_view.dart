@@ -16,7 +16,7 @@ class AddWorkspaceView extends StatelessWidget {
       //initialise the view model only once
       initialiseSpecialViewModelsOnce: true,
       viewModelBuilder: () => AddWorkSpaceViewModel(),
-      builder: (context, viewModel, child) {
+      builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
@@ -125,9 +125,7 @@ class AddWorkspaceView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () {
-                            //TODO: Navigate to join another Workspace
-                          },
+                          onTap: () => model.navigateToJoinWorkspace(),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(

@@ -10,8 +10,6 @@ class WorkSpaceApi {
 
   /// Fetches a list of organizations that the user is part of
   Future<List<WorkspaceModel>> fetchListOfOrganizations() async {
-    // print(token);
-    print('donee');
     final res = await _api.get(
       '/organizations',
       headers: {'Authorization': 'Bearer $token'},
@@ -27,6 +25,14 @@ class WorkSpaceApi {
   Future<WorkspaceModel> fetchOrganizationInfo(String id) async {
     final res = await _api.get(
       '/organizations/$id',
+      headers: {'Authorization': 'Bearer $token'},
+    );
+    return WorkspaceModel.fromJson(res?.data?['data']);
+  }
+
+  Future<WorkspaceModel> fetchWorkspaceByUrl(String url) async {
+    final res = await _api.get(
+      '/organizations/url/$url',
       headers: {'Authorization': 'Bearer $token'},
     );
     return WorkspaceModel.fromJson(res?.data?['data']);

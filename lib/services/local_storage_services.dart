@@ -21,8 +21,12 @@ class SharedPreferenceLocalStorage {
     await _preferences?.setString(key, value);
   }
 
-  Future setDouble(String key, num value) {
+  Future setDouble(String key, num value)async {
     return _preferences!.setDouble(key, value.toDouble());
+  }
+
+  Future setStringList(String key, List<String> value) async{
+    await _preferences!.setStringList(key, value);
   }
 
   bool? getBool(String key) {
@@ -35,6 +39,10 @@ class SharedPreferenceLocalStorage {
 
   double? getDouble(String key) {
     return _preferences?.getDouble(key);
+  }
+
+  List<String>? getStringList(String key) {
+    return _preferences?.getStringList(key);
   }
 
   Future<bool?> clearStorage() async {
