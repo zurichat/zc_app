@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/view/view_profile_page/view_profile_viewmodel.dart';
 import 'package:hng/ui/view/view_profile_page/widgets/profile_action.dart';
 import 'package:hng/ui/view/view_profile_page/widgets/profile_list.dart';
@@ -52,7 +53,7 @@ class ViewProfile extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                'Amanda Josiana Kee',
+                                model.name,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.normal,
@@ -66,7 +67,7 @@ class ViewProfile extends StatelessWidget {
                                   Icons.circle,
                                   size: 12.0,
                                   color: isActive
-                                      ? Colors.green
+                                      ? AppColors.zuriPrimaryColor
                                       : Colors.transparent,
                                 ),
                               ),
