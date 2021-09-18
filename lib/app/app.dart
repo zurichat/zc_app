@@ -1,4 +1,7 @@
 import 'package:hng/ui/view/channel/add_people/channel_add_people_view.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -23,9 +26,6 @@ import '../ui/view/do_not_disturb/do_not_disturb_view.dart';
 import '../ui/view/draft/draft_view.dart';
 import '../ui/view/edit_profile/edit_profile_view.dart';
 import '../ui/view/file_search/file_search_view.dart';
-import '../ui/view/forgot_password_email/forgot_password_email_view.dart';
-import '../ui/view/forgot_password_new_password/forgot_password_newview.dart';
-import '../ui/view/forgot_password_otp/forgot_password_otpview.dart';
 import '../ui/view/language_and_region/language_and_region_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
@@ -55,7 +55,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView),
     MaterialRoute(page: LoginView),
-    MaterialRoute(page: OtpView),
+    MaterialRoute(page: OTPView),
     MaterialRoute(page: SignUpView),
     MaterialRoute(page: WorkspaceView),
     MaterialRoute(page: ChannelList),

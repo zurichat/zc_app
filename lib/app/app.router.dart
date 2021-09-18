@@ -27,9 +27,9 @@ import '../ui/view/do_not_disturb/do_not_disturb_view.dart';
 import '../ui/view/draft/draft_view.dart';
 import '../ui/view/edit_profile/edit_profile_view.dart';
 import '../ui/view/file_search/file_search_view.dart';
-import '../ui/view/forgot_password_email/forgot_password_email_view.dart';
-import '../ui/view/forgot_password_new_password/forgot_password_newview.dart';
-import '../ui/view/forgot_password_otp/forgot_password_otpview.dart';
+import '../ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
+import '../ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
+import '../ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
 import '../ui/view/language_and_region/language_and_region_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
@@ -58,7 +58,7 @@ class Routes {
   static const String navBarView = '/nav-bar-view';
   static const String onboardingView = '/onboarding-view';
   static const String loginView = '/login-view';
-  static const String otpView = '/otp-view';
+  static const String oTPView = '/o-tp-view';
   static const String signUpView = '/sign-up-view';
   static const String workspaceView = '/workspace-view';
   static const String channelList = '/channel-list';
@@ -102,7 +102,7 @@ class Routes {
     navBarView,
     onboardingView,
     loginView,
-    otpView,
+    oTPView,
     signUpView,
     workspaceView,
     channelList,
@@ -151,7 +151,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.loginView, page: LoginView),
-    RouteDef(Routes.otpView, page: OtpView),
+    RouteDef(Routes.oTPView, page: OTPView),
     RouteDef(Routes.signUpView, page: SignUpView),
     RouteDef(Routes.workspaceView, page: WorkspaceView),
     RouteDef(Routes.channelList, page: ChannelList),
@@ -218,9 +218,9 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    OtpView: (data) {
+    OTPView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const OtpView(),
+        builder: (context) => const OTPView(),
         settings: data,
       );
     },
