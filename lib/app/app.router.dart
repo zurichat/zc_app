@@ -193,12 +193,14 @@ class StackedRouter extends RouterBase {
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
+
     ChannelAddPeopleView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ChannelAddPeopleView(),
         settings: data,
       );
     },
+
     NavBarView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const NavBarView(),
@@ -278,8 +280,11 @@ class StackedRouter extends RouterBase {
       );
     },
     HomePage: (data) {
+
+      
       return MaterialPageRoute<dynamic>(
-        builder: (context) => HomePage(),
+        builder: (context) => HomePage(key: args.key),
+
         settings: data,
       );
     },
@@ -461,6 +466,12 @@ class StackedRouter extends RouterBase {
 /// Arguments holder classes
 /// *************************************************************************
 
+/// HomePage arguments holder class
+class HomePageArguments {
+  final Key? key;
+  HomePageArguments({this.key});
+}
+
 /// DmUserView arguments holder class
 class DmUserViewArguments {
   final Key? key;
@@ -470,6 +481,6 @@ class DmUserViewArguments {
 /// ViewProfilePage arguments holder class
 class ViewProfilePageArguments {
   final Key? key;
-  final bool isActive;
-  ViewProfilePageArguments({this.key, this.isActive = true});
+  final bool? isActive;
+  ViewProfilePageArguments({this.key, this.isActive});
 }
