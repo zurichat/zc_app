@@ -25,9 +25,9 @@ class DmUserView extends StatelessWidget {
         builder: (context, model, child) {
           debugPrint(model.hasClickedMessageField.toString());
           return Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: AppColors.whiteColor,
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: AppColors.whiteColor,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back_ios_sharp),
                 iconSize: 18.0,
@@ -53,14 +53,14 @@ class DmUserView extends StatelessWidget {
                   ),
                   const Text(
                     'View Details',
-                    style: TextStyle(color: Color(0xFF999999), fontSize: 12.0),
+                    style: TextStyle(color: AppColors.greyishColor, fontSize: 12.0),
                   )
                 ],
               ),
               actions: [
                 IconButton(
                   icon: const Icon(Icons.info_outline),
-                  color: const Color(0xFF4D4D4D),
+                  color: AppColors.greyColor,
                   onPressed: () {},
                 )
               ],
@@ -161,11 +161,11 @@ class DmUserView extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Material(
-                    color: Colors.white,
+                    color: AppColors.whiteColor,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Divider(height: 0, color: Color(0xFF999999)),
+                        Divider(height: 0, color: AppColors.greyishColor),
                         Row(
                           children: [
                             Expanded(
@@ -197,7 +197,7 @@ class DmUserView extends StatelessWidget {
                                             //   data: '5'),
 
                                             hintStyle: TextStyle(
-                                                color: Color(0xFFBEBEBE),
+                                                color: AppColors.faintTextColor,
                                                 fontSize: 14.0,
                                                 fontWeight: FontWeight.w400)),
                                       ),
@@ -214,19 +214,19 @@ class DmUserView extends StatelessWidget {
                                       onPressed: () {},
                                       icon: Icon(
                                         AppIcons.shapezap,
-                                        color: Color(0xFF424141),
+                                        color: AppColors.zuriTextBodyColor,
                                       )),
                                   IconButton(
                                     icon: Icon(
                                       Icons.camera_alt_outlined,
-                                      color: Color(0xFF424141),
+                                      color: AppColors.zuriTextBodyColor,
                                     ),
                                     onPressed: () {},
                                   ),
                                   IconButton(
                                     icon: Icon(
                                       Icons.attach_file_sharp,
-                                      color: Color(0xFF424141),
+                                      color: AppColors.zuriTextBodyColor,
                                     ),
                                     onPressed: () {},
                                   )
@@ -246,31 +246,31 @@ class DmUserView extends StatelessWidget {
                                         onPressed: () {},
                                         icon: Icon(
                                           AppIcons.shapezap,
-                                          color: Color(0xFF424141),
+                                          color: AppColors.zuriTextBodyColor,
                                         )),
                                     IconButton(
                                         onPressed: () {},
                                         icon: Icon(
                                           Icons.alternate_email_outlined,
-                                          color: Color(0xFF424141),
+                                          color: AppColors.zuriTextBodyColor,
                                         )),
                                     IconButton(
                                         onPressed: () {},
                                         icon: Icon(
                                           Icons.tag_faces_sharp,
-                                          color: Color(0xFF424141),
+                                          color: AppColors.zuriTextBodyColor,
                                         )),
                                     IconButton(
                                         onPressed: () {},
                                         icon: Icon(
                                           Icons.camera_alt_outlined,
-                                          color: Color(0xFF424141),
+                                          color: AppColors.zuriTextBodyColor,
                                         )),
                                     IconButton(
                                         onPressed: () {},
                                         icon: Icon(
                                           Icons.attach_file_outlined,
-                                          color: Color(0xFF424141),
+                                          color: AppColors.zuriTextBodyColor,
                                         )),
                                   ],
                                 ),
@@ -286,7 +286,7 @@ class DmUserView extends StatelessWidget {
                                     },
                                     icon: Icon(
                                       Icons.send,
-                                      color: Color(0xFFBEBEBE),
+                                      color: AppColors.faintTextColor,
                                     ))
                               ],
                             )),
