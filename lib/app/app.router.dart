@@ -12,6 +12,7 @@ import 'package:stacked/stacked.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
+import '../ui/view/channel/add_people/channel_add_people_view.dart';
 import '../ui/view/channel/channel_info/channel_info_view.dart';
 import '../ui/view/channel/channel_list/channels_view.dart';
 import '../ui/view/channel/channel_notification/channel_notification_view.dart';
@@ -54,6 +55,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
 import '../utilities/enums.dart';
 
 class Routes {
+  static const String channelAddPeopleView = '/channel-add-people-view';
   static const String navBarView = '/nav-bar-view';
   static const String onboardingView = '/onboarding-view';
   static const String loginView = '/login-view';
@@ -98,6 +100,7 @@ class Routes {
   static const String draftView = '/draft-view';
   static const String workspaceUrlView = '/workspace-url-view';
   static const all = <String>{
+    channelAddPeopleView,
     navBarView,
     onboardingView,
     loginView,
@@ -147,6 +150,7 @@ class StackedRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
+    RouteDef(Routes.channelAddPeopleView, page: ChannelAddPeopleView),
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.loginView, page: LoginView),
@@ -194,6 +198,12 @@ class StackedRouter extends RouterBase {
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
+    ChannelAddPeopleView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ChannelAddPeopleView(),
+        settings: data,
+      );
+    },
     NavBarView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const NavBarView(),

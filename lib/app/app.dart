@@ -1,4 +1,5 @@
 import 'package:hng/ui/view/workspace/workspace_url/workspace_url_view.dart';
+import 'package:hng/ui/view/channel/add_people/channel_add_people_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -51,6 +52,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
 
 @StackedApp(
   routes: [
+    MaterialRoute(page: ChannelAddPeopleView),
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView),
     MaterialRoute(page: LoginView),
