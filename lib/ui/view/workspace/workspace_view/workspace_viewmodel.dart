@@ -12,10 +12,26 @@ import '../../../../utilities/storage_keys.dart';
 
 class WorkspaceViewModel extends BaseViewModel {
   final navigation = locator<NavigationService>();
+  final snackbar = locator<SnackbarService>();
   final connectivityService = locator<ConnectivityService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
   final api = WorkSpaceApi();
   List<WorkspaceModel> workspaces = [];
+
+  void initViewModel() {
+    fetchOrganizations();
+  }
+
+  Future<void> navigateToNewWorkspace() async {
+    try {
+      await navigation.navigateTo(Routes.addWorkspaceView);
+      workspaces = await api.fetchListOfOrganizations();
+      filterWorkspace();
+      notifyListeners();
+    } catch (e) {
+      snackbar.showSnackbar(message: 'Error Updating Organizations');
+    }
+  }
 
   Future fetchOrganizations() async {
     try {
@@ -25,17 +41,23 @@ class WorkspaceViewModel extends BaseViewModel {
       }
       setBusy(true);
       workspaces = await api.fetchListOfOrganizations();
+      filterWorkspace();
       setBusy(false);
     } catch (e) {
       print(e.toString());
-      AppToast.instance.error(null, 'Error Occured');
+      snackbar.showSnackbar(message: 'Error Occured');
     }
+  }
+
+  void filterWorkspace() {
+    final ids = storageService.getStringList(StorageKeys.workspaceIds) ?? [];
+    workspaces.retainWhere((e) => ids.any((id) => id == e.id));
   }
 
   Future<void> onTap(String id) async {
     try {
       if (id == currentOrgId) {
-        navigation.navigateTo(Routes.homePage);
+        navigation.popRepeated(1);
         return;
       }
       if (!await connectivityService.checkConnection()) {
@@ -43,14 +65,14 @@ class WorkspaceViewModel extends BaseViewModel {
         return;
       }
       final workspaces = await api.fetchOrganizationInfo(id);
-      await storageService.setString(
-          StorageKeys.currentOrgId, workspaces.first.id);
-      AppToast.instance
-          .success('Success!', 'You have entered ${workspaces.first.name}');
-      navigation.navigateTo(Routes.homePage);
+      print(workspaces);
+      await storageService.setString(StorageKeys.currentOrgId, id);
+      snackbar.showSnackbar(
+          message: 'You have entered ${workspaces.name}');
+      navigation.popRepeated(1);
     } catch (e) {
       print(e.toString());
-      AppToast.instance.error(null, 'Error Occured');
+      snackbar.showSnackbar(message: 'Error fetching Organization Info');
     }
   }
 

@@ -3,8 +3,8 @@ class WorkspaceModel {
   final String name;
   final String? workSpaceUrl;
   final String? time;
-  final String? imageUrl;
-  final String? plugins;
+  final String? logoUrl;
+  final List? plugins;
   final String? settings;
 
   WorkspaceModel({
@@ -12,7 +12,7 @@ class WorkspaceModel {
     required this.name,
     required this.workSpaceUrl,
     required this.time,
-    required this.imageUrl,
+    required this.logoUrl,
     this.plugins,
     this.settings,
   });
@@ -21,9 +21,9 @@ class WorkspaceModel {
     return WorkspaceModel(
       id: json['_id'],
       name: json['name'],
-      imageUrl: json['image_url'],
+      logoUrl: json['logo_url'],
       time: json['created_at'],
-      workSpaceUrl: json['url'],
+      workSpaceUrl: json['workspace_url'],
       plugins: json['plugins'],
       settings: json['settings'],
     );
@@ -38,35 +38,35 @@ class WorkspaceModel {
   }
 }
 
-List<WorkspaceModel> dummyData = [
-  WorkspaceModel(
-      name: 'ABTesters',
-      workSpaceUrl: 'abtesters.zuri.com',
-      time: '',
-      imageUrl: 'assets/images/Rectangle 138.png',
-      id: ''),
-  WorkspaceModel(
-      name: 'HNGi9 ',
-      workSpaceUrl: 'hngi9.zuri.com ',
-      time: '',
-      imageUrl: 'assets/images/Rectangle 1922.png',
-      id: ''),
-  WorkspaceModel(
-      name: 'DriveINC',
-      workSpaceUrl: 'driveinc.zuri.com',
-      time: '',
-      imageUrl: 'assets/images/Rectangle 1923.png',
-      id: ''),
-  WorkspaceModel(
-      name: 'Remote',
-      workSpaceUrl: 'remote.zuri.com',
-      time: 'RE',
-      imageUrl: 'assets/images/Rectangle 1924.png',
-      id: ''),
-  WorkspaceModel(
-      name: 'MyTeam',
-      workSpaceUrl: 'myteam.zuri.com',
-      time: 'MY',
-      imageUrl: 'assets/images/Rectangle 1925.png',
-      id: ''),
-];
+// List<WorkspaceModel> dummyData = [
+//   WorkspaceModel(
+//       name: 'ABTesters',
+//       workSpaceUrl: 'abtesters.zuri.com',
+//       time: '',
+//       imageUrl: 'assets/images/Rectangle 138.png',
+//       id: ''),
+//   WorkspaceModel(
+//       name: 'HNGi9 ',
+//       workSpaceUrl: 'hngi9.zuri.com ',
+//       time: '',
+//       imageUrl: 'assets/images/Rectangle 1922.png',
+//       id: ''),
+//   WorkspaceModel(
+//       name: 'DriveINC',
+//       workSpaceUrl: 'driveinc.zuri.com',
+//       time: '',
+//       imageUrl: 'assets/images/Rectangle 1923.png',
+//       id: ''),
+//   WorkspaceModel(
+//       name: 'Remote',
+//       workSpaceUrl: 'remote.zuri.com',
+//       time: 'RE',
+//       imageUrl: 'assets/images/Rectangle 1924.png',
+//       id: ''),
+//   WorkspaceModel(
+//       name: 'MyTeam',
+//       workSpaceUrl: 'myteam.zuri.com',
+//       time: 'MY',
+//       imageUrl: 'assets/images/Rectangle 1925.png',
+//       id: ''),
+// ];
