@@ -228,13 +228,16 @@ class StackedRouter extends RouterBase {
     },
     OTPView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const OTPView(),
+        builder: (context) => OTPView(),
         settings: data,
       );
     },
     SignUpView: (data) {
+      var args = data.getArgs<SignUpViewArguments>(
+        orElse: () => SignUpViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => SignUpView(),
+        builder: (context) => SignUpView(key: args.key),
         settings: data,
       );
     },
@@ -487,6 +490,12 @@ class StackedRouter extends RouterBase {
 class LoginViewArguments {
   final Key? key;
   LoginViewArguments({this.key});
+}
+
+/// SignUpView arguments holder class
+class SignUpViewArguments {
+  final Key? key;
+  SignUpViewArguments({this.key});
 }
 
 /// HomePage arguments holder class

@@ -68,7 +68,6 @@ mixin $SignUpView on StatelessWidget {
     firstNameController.dispose();
     lastNameController.dispose();
     displayNameController.dispose();
-    emailController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
     phoneNumberController.dispose();

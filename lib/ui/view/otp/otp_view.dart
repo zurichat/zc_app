@@ -6,13 +6,24 @@ import 'package:hng/ui/view/otp/otp_viewmodel.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
-class OTPView extends StatelessWidget {
-  const OTPView({Key? key}) : super(key: key);
+import 'otp_view.form.dart';
+
+//stacked forms handling
+@FormView(
+  fields: [
+    FormTextField(name: 'otp'),
+  ],
+)
+class OTPView extends StatelessWidget with $OTPView {
+  OTPView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<OTPViewModel>.reactive(
+      //listenToFormUpdated automatically syncs text from TextFields to the viewmodel
+      onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => OTPViewModel(),
       staticChild: OTPViewModel.init(),
       builder: (context, model, child) => ModalProgressHUD(
@@ -61,7 +72,6 @@ class OTPView extends StatelessWidget {
                       height: 49.0,
                     ),
                     Form(
-                      key: model.formKey,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 30),
@@ -91,8 +101,7 @@ class OTPView extends StatelessWidget {
                           cursorColor: AppColors.zuriPrimaryColor,
                           animationDuration: Duration(milliseconds: 300),
                           enableActiveFill: true,
-                          errorAnimationController: model.errorController,
-                          controller: model.otpController,
+                          controller: otpController,
                           keyboardType: TextInputType.number,
                           boxShadows: [
                             BoxShadow(
