@@ -138,7 +138,7 @@ class DmUserView extends StatelessWidget {
                                       return message.getRelativeTime();
                                     },
                                     groupSeparatorBuilder: (value) {
-                                      return groupSeparator(value);
+                                      return GroupSeparator(value);
                                     },
                                     itemBuilder: (context, message) {
                                       return MessageView(message);
