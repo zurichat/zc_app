@@ -36,15 +36,16 @@ class DmJumpToView extends StatelessWidget {
                     //{  }, hint: 'Jump to...', controller: controller,),
                     child: TextField(
                       controller: model.controller,
-                      keyboardType: TextInputType.visiblePassword,
+                      keyboardType: TextInputType.text,
+                      autofocus: true,
                       maxLines: 1,
                       onChanged: (value) {},
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           borderSide: BorderSide(
                               color: Color(0xFF7B8794),
-                              width: 0.5,
+                              width: 1.5,
                               style: BorderStyle.solid),
                         ),
                         border: OutlineInputBorder(
@@ -54,7 +55,10 @@ class DmJumpToView extends StatelessWidget {
                               width: 0.5,
                               style: BorderStyle.solid),
                         ),
-                        prefixIcon: Icon(Icons.arrow_back_ios_outlined),
+                        prefixIcon: IconButton(
+                          onPressed: () => model.navigateBack(),
+                          icon: Icon(Icons.arrow_back_ios_outlined),
+                        ),
                         hintText: 'Jump to...',
                         hintStyle: TextStyle(
                           color: Color(0xffA1A9B3),

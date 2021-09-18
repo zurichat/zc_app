@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/ui/shared/search_bar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
+import '../home_page/home_page.dart';
 import 'dm_page_viewmodel.dart';
 import 'widgets/dmmessage_read.dart';
 import 'widgets/dmmessage_unread.dart';
@@ -44,15 +46,9 @@ class DmPage extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Jump to...',
-                      hintStyle: GoogleFonts.lato(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
+                  InkWell(
+                      onTap: () => model.navigateToJumpToScreen(),
+                      child: searchBar()),
                   SizedBox(
                     height: 30,
                   ),
