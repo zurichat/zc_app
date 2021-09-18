@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/channel/channel_info/channel_info_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../../app/app.locator.dart';
@@ -38,7 +37,8 @@ class ChannelPageView extends StatelessWidget {
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: appBar('#teamsocrates', '128 members', context),
+          appBar: appBar('#teamsocrates', viewModel.navigateToChannelInfo(),
+              '128 members', context),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -57,7 +57,7 @@ class ChannelPageView extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-                row(),
+                row(viewModel.navigateToAddPeople()),
                 const SizedBox(height: 20),
                 dateBuilder(context),
                 const SizedBox(height: 7),
@@ -121,7 +121,8 @@ class ChannelPageView extends StatelessWidget {
   }
 }
 
-AppBar appBar(String text, String nexttext, BuildContext context) {
+AppBar appBar(
+    String text, Function()? pressed, String nexttext, BuildContext context) {
   return AppBar(
     elevation: 1,
     backgroundColor: AppColors.whiteColor,
@@ -179,10 +180,7 @@ AppBar appBar(String text, String nexttext, BuildContext context) {
       Padding(
         padding: const EdgeInsets.only(right: 20.0),
         child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ChannelInfoView()));
-          },
+          onTap: pressed,
           child: const Icon(
             CupertinoIcons.info,
             color: AppColors.deepBlackColor,
@@ -251,7 +249,7 @@ Container channelInfo(String text, String nexttext) {
   );
 }
 
-Row row() {
+Row row(Function()? pressed) {
   final navigator = locator<NavigationService>();
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -280,7 +278,7 @@ Row row() {
       Column(
         children: [
           GestureDetector(
-            onTap: () => navigator.navigateTo(Routes.addPeopleView),
+            onTap: pressed,
             child: const CircleAvatar(
               radius: 30,
               backgroundColor: AppColors.lightGreen,
