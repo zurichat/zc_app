@@ -1,6 +1,6 @@
 class WorkspaceModel {
   final String id;
-  final String name;
+  final String? name;
   final String? workSpaceUrl;
   final String? time;
   final String? logoUrl;
@@ -31,7 +31,7 @@ class WorkspaceModel {
 
   String get initials {
     return this
-        .name
+        .name!
         .split(' ')
         .map((e) => e.split('').first.toUpperCase())
         .join();

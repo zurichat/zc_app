@@ -4,8 +4,8 @@ import '../../../../services/local_storage_services.dart';
 import '../../../../utilities/storage_keys.dart';
 import '../api/http_api.dart';
 
-class WorkSpaceApi {
-  final _api = HttpApiService();
+class WorkSpaceApiService {
+  final _api = HttpApiService('https://api.zuri.chat/');
   final storageService = locator<SharedPreferenceLocalStorage>();
 
   /// Fetches a list of organizations that the user is part of
