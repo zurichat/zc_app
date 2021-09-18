@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:hng/ui/shared/styles.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class DMMessageRead extends StatelessWidget {
   const DMMessageRead({
@@ -9,7 +12,9 @@ class DMMessageRead extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        locator<NavigationService>().navigateTo(Routes.dmUserView);
+      },
       child: Row(
         children: [
           Container(

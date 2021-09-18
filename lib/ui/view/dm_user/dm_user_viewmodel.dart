@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/dm_user/widgets/custom_status.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -9,7 +10,7 @@ import 'dummy_data/models/message.dart';
 import 'dummy_data/models/user.dart';
 
 class DmUserViewModel extends BaseViewModel {
-  final _username = 'OyinkanUa';
+  final _username = '';
   String get username => _username;
 
   TextEditingController messageController = TextEditingController();
@@ -23,9 +24,8 @@ class DmUserViewModel extends BaseViewModel {
   bool _hasClickedMessageField = false;
   bool get hasClickedMessageField => _hasClickedMessageField;
 
-  User receiver = User('John Doe', 'JohnDoe');
-  User sender = User('Jane Doe', 'JaneDoe');
-
+  User receiver = User('OyinkanUA', 'OyinkanUA');
+  User sender = User('Jaytek', 'Jaytek');
   bool isSendButtonEnabled = false;
 
   List<Message> chatMessages = List.empty(growable: true);
@@ -63,7 +63,7 @@ class DmUserViewModel extends BaseViewModel {
   }
 
   void sendResponse() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 0));
     final randomNum = Random().nextInt(Message.responses().length);
     chatMessages.add(
       Message(
@@ -76,3 +76,4 @@ class DmUserViewModel extends BaseViewModel {
     notifyListeners();
   }
 }
+

@@ -125,6 +125,22 @@ class AppTextStyles {
     );
   }
 
+  //status icon
+  static Widget statusIcon(int count) {
+    return Container(
+      height: 16,
+      width: 16,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(3),
+        color: AppColors.iconBlueColor,
+      ),
+      child: Center(
+        child: Text(count.toString(), style: AppTextStyles.unreadTextCount),
+      ),
+    );
+  }
+
+
   // button
   static TextStyle buttonText = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
