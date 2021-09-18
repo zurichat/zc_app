@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -20,6 +22,7 @@ setUpSnackBarUi() {
   ));
 }
 
+
 class AppSnackBar {
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> success(
       context, String text) {
@@ -27,6 +30,7 @@ class AppSnackBar {
       SnackBar(
         duration: const Duration(seconds: 3),
         content: Text(text),
+        backgroundColor: AppColors.zuriPrimaryColor,
       ),
     );
   }
@@ -37,6 +41,7 @@ class AppSnackBar {
       SnackBar(
         duration: const Duration(seconds: 3),
         content: Text(text),
+        backgroundColor: AppColors.redColor,
       ),
     );
   }
