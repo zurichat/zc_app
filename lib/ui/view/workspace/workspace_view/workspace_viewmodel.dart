@@ -1,4 +1,3 @@
-import 'package:hng/general_widgets/app_snackbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
