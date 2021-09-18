@@ -14,6 +14,7 @@ class AppColors {
   static const Color darkGreyColor = Color(0xFF424141);
   static const Color greyColor = Color(0xFF727272);
   static const Color paleGreen = Color(0xFF89D3BB);
+  static const Color lightBlackColor = Color(0xFF756767);
 
   static const Color zuriTextBodyColor = Color(0xFF424141);
   static const Color zuriTextColorHeader = Color(0xFF242424);

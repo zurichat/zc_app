@@ -64,23 +64,23 @@ class ForgotPasswordOtpView extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                         validator: (value) {},
-                        length: 4,
+                        length: 6,
                         blinkWhenObscuring: true,
                         animationType: AnimationType.fade,
                         pinTheme: PinTheme(
                           selectedColor: AppColors.zuriPrimaryColor,
-                          selectedFillColor: AppColors.zuriPrimaryColor,
+                          selectedFillColor: AppColors.whiteColor,
                           shape: PinCodeFieldShape.box,
                           activeColor: AppColors.zuriPrimaryColor,
                           disabledColor: Colors.grey,
-                          inactiveColor: Colors.white,
+                          inactiveColor: AppColors.lightBlackColor,
                           inactiveFillColor: AppColors.whiteColor,
                           borderRadius: BorderRadius.circular(5),
                           fieldHeight: 50,
                           fieldWidth: 50,
-                          activeFillColor: Colors.white,
+                          activeFillColor: AppColors.whiteColor,
                         ),
-                        cursorColor: AppColors.zuriPrimaryColor,
+                        cursorColor: AppColors.blackColor,
                         animationDuration: Duration(milliseconds: 300),
                         enableActiveFill: true,
                         errorAnimationController: model.errorController,
@@ -88,9 +88,9 @@ class ForgotPasswordOtpView extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         boxShadows: [
                           BoxShadow(
-                            offset: Offset(0, 1),
+                            offset: Offset(0, 3),
                             color: Colors.black12,
-                            blurRadius: 10,
+                            blurRadius: 3,
                           )
                         ],
                         onCompleted: (v) {},
@@ -137,7 +137,6 @@ class ForgotPasswordOtpView extends StatelessWidget {
                     child: FractionallySizedBox(
                       widthFactor: 1.0,
                       child: ElevatedButton(
-                        onPressed: () => model.navigateToNewPassword(),
                         child: Text(
                           'Continue',
                           style: TextStyle(
@@ -150,6 +149,9 @@ class ForgotPasswordOtpView extends StatelessWidget {
                           padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: Color(0xff00B87C),
                         ),
+                        onPressed: () {
+                          model.navigateToNewPassword();
+                        },
                       ),
                     ),
                   ),

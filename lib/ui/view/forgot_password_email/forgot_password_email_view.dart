@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
@@ -66,11 +67,11 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                   height: 49.0,
                 ),
                 Form(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  // autovalidateMode: AutovalidateMode.onUserInteraction,
                   key: validateKey,
                   child: CustomTextField(
                     controller: emailController,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    //autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (val) {
                       if (emailController.text.isEmpty) {
                         return 'Field cannot be empty';
@@ -118,6 +119,23 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                     ),
                   ),
                 ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Back to',
+                      ),
+                      TextButton(
+                        child: const CustomText(
+                          text: 'Sign In',
+                          fontSize: 14,
+                          color: AppColors.zuriPrimaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        onPressed: () => model.navigateToSignIn(),
+                      )
+                    ]),
               ],
             ),
           ),

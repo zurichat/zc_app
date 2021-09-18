@@ -8,4 +8,8 @@ class ForgotPasswordEmailViewModel extends BaseViewModel {
   void navigateToOtp() {
     _navigationService.navigateTo(Routes.forgotPasswordOtpView);
   }
+
+  void navigateToSignIn() {
+    _navigationService.navigateTo(Routes.loginView);
+  }
 }

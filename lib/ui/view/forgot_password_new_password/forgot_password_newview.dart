@@ -62,11 +62,9 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                   ),
                   Form(
                     key: validateKey,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: Column(
                       children: [
                         CustomTextField(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (val) {
                             if (newPasswordController.text.isEmpty) {
                               return 'Field cannot be empty';
