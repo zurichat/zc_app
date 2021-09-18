@@ -218,8 +218,11 @@ class StackedRouter extends RouterBase {
       );
     },
     LoginView: (data) {
+      var args = data.getArgs<LoginViewArguments>(
+        orElse: () => LoginViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const LoginView(),
+        builder: (context) => LoginView(key: args.key),
         settings: data,
       );
     },
@@ -479,6 +482,12 @@ class StackedRouter extends RouterBase {
 /// ************************************************************************
 /// Arguments holder classes
 /// *************************************************************************
+
+/// LoginView arguments holder class
+class LoginViewArguments {
+  final Key? key;
+  LoginViewArguments({this.key});
+}
 
 /// HomePage arguments holder class
 class HomePageArguments {

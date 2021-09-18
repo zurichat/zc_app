@@ -1,21 +1,17 @@
-import 'package:flutter/material.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/general_widgets/app_snackbar.dart';
+import 'package:hng/package/base/server-request/api/http_api.dart';
+import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/ui/view/login/login_view.form.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../app/app.locator.dart';
-import '../../../app/app.router.dart';
-import '../../../general_widgets/app_snackbar.dart';
-import '../../../package/base/server-request/api/http_api.dart';
-import '../../../services/local_storage_services.dart';
-import '../../../utilities/storage_keys.dart';
-
-class LoginViewModel extends BaseViewModel {
+class LoginViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _apiService = locator<HttpApiService>();
-
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
 
   bool isLoading = false;
   loading(status) {
@@ -39,14 +35,14 @@ class LoginViewModel extends BaseViewModel {
   Future logInUser(context) async {
     loading(true);
     const endpoint = '/auth/login';
-    if (email.text == '' || password.text == '') {
+    if (emailValue == '' || passwordValue == '') {
       loading(false);
       //Hides the keyboard for the failure snackbar to be visible
-      FocusScope.of(context).unfocus();
+      // FocusScope.of(context).unfocus();
       AppSnackBar.failure(context, 'Please fill all fields.');
       return;
     }
-    final loginData = {'email': email.text, 'password': password.text};
+    final loginData = {'email': emailValue, 'password': passwordValue};
     final response = await _apiService.post(endpoint, data: loginData);
     loading(false);
 
@@ -76,4 +72,7 @@ class LoginViewModel extends BaseViewModel {
           response?.data['message'] ?? 'Error encountered during login.');
     }
   }
+
+  @override
+  void setFormStatus() {}
 }

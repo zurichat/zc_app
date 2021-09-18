@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
-import 'package:hng/ui/view/login/login_viewmodel.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/long_button.dart';
 import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/view/login/login_view.form.dart';
+import 'package:hng/ui/view/login/login_viewmodel.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({Key? key}) : super(key: key);
+//stacked forms handling
+@FormView(
+  fields: [
+    FormTextField(name: 'email'),
+    FormTextField(name: 'password'),
+  ],
+)
+class LoginView extends StatelessWidget with $LoginView {
+  LoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginViewModel>.reactive(
+      ///listenToFormUpdated automatically syncs text from TextFields to the viewmodel
+      onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => LoginViewModel(),
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
@@ -61,7 +71,7 @@ class LoginView extends StatelessWidget {
                     autoCorrect: false,
                     obscureText: false,
                     hintText: 'Name@gmail.com',
-                    controller: model.email,
+                    controller: emailController,
                   ),
                   SizedBox(height: 16.0),
                   Text(
@@ -75,7 +85,7 @@ class LoginView extends StatelessWidget {
                     autoCorrect: false,
                     obscureText: true,
                     hintText: 'Enter Password',
-                    controller: model.password,
+                    controller: passwordController,
                   ),
                   Align(
                     alignment: Alignment.centerRight,
