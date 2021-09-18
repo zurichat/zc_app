@@ -1,23 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:hng/general_widgets/app_snackbar.dart';
+import 'package:hng/package/base/server-request/api/http_api.dart';
+import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/ui/view/sign_up/sign_up_view.form.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../app/app.locator.dart';
-import '../../../app/app.router.dart';
-import '../../../package/base/server-request/api/http_api.dart';
-import '../../../services/local_storage_services.dart';
-
-class SignUpViewModel extends BaseViewModel {
-  TextEditingController firstName = TextEditingController();
-  TextEditingController lastName = TextEditingController();
-  TextEditingController displayName = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-  TextEditingController confirmPassword = TextEditingController();
-  TextEditingController phoneNumber = TextEditingController();
-
+class SignUpViewModel extends FormViewModel {
   final navigation = locator<NavigationService>();
   final apiService = locator<HttpApiService>();
   final storage = locator<SharedPreferenceLocalStorage>();
@@ -25,6 +16,9 @@ class SignUpViewModel extends BaseViewModel {
 
   bool isLoading = false;
   bool checkBoxValue = false;
+
+  @override
+  void setFormStatus() {}
 
   void updateValue(newValue) {
     checkBoxValue = newValue;
@@ -46,12 +40,12 @@ class SignUpViewModel extends BaseViewModel {
       loading(true);
       const endpoint = '/users';
       final signUpData = {
-        'first_name': firstName.text,
-        'last_name': lastName.text,
-        'display_name': displayName.text,
-        'email': email.text,
-        'password': password.text,
-        'phone': phoneNumber.text,
+        'first_name': firstNameValue,
+        'last_name': lastNameValue,
+        'display_name': displayNameValue,
+        'email': emailValue,
+        'password': passwordValue,
+        'phone': phoneNumberValue,
       };
       final response = await apiService.post(endpoint, data: signUpData);
       loading(false);
@@ -62,7 +56,7 @@ class SignUpViewModel extends BaseViewModel {
         );
         storage.setString(
             StorageKeys.otp, response?.data['data']['verification_code']);
-        storage.setString(StorageKeys.currentUserEmail, email.text);
+        storage.setString(StorageKeys.currentUserEmail, emailValue!);
         storage.setBool(StorageKeys.registeredNotverifiedOTP, true);
         navigateToOTPView();
       } else {

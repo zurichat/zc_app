@@ -234,7 +234,7 @@ class StackedRouter extends RouterBase {
     },
     SignUpView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const SignUpView(),
+        builder: (context) => SignUpView(),
         settings: data,
       );
     },

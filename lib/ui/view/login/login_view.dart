@@ -22,7 +22,7 @@ class LoginView extends StatelessWidget with $LoginView {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginViewModel>.reactive(
-      ///listenToFormUpdated automatically syncs text from TextFields to the viewmodel
+      //listenToFormUpdated automatically syncs text from TextFields to the viewmodel
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => LoginViewModel(),
       builder: (context, model, child) => ModalProgressHUD(
