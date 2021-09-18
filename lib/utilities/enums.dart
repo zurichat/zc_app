@@ -9,3 +9,9 @@ enum HomeListType {
   channels,
   messages,
 }
+
+enum WorkspaceSwitchMethod {
+  Create,
+  SignIn,
+  Join,
+}

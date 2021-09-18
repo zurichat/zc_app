@@ -7,6 +7,7 @@ import 'package:stacked_themes/stacked_themes.dart';
 
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
+import 'general_widgets/app_snackbar.dart';
 import 'services/theme_setup.dart';
 
 Future main() async {
@@ -15,6 +16,7 @@ Future main() async {
   await setupLocator();
   setupBottomSheetUi();
   setupDialogUi();
+  setUpSnackBarUi();
   runApp(MyApp());
 }
 
