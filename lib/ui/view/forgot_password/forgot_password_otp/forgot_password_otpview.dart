@@ -92,7 +92,7 @@ class ForgotPasswordOtpView extends StatelessWidget {
                             blurRadius: 10,
                           )
                         ],
-                        onCompleted: (v) {},
+                        onCompleted: (value) {},
                         onTap: () {},
                         onChanged: (value) {},
                         beforeTextPaste: (text) {
