@@ -1,6 +1,6 @@
 import 'package:stacked/stacked.dart';
 
-import '../../../../models/static_user_model.dart';
+import 'package:hng/models/static_user_model.dart';
 
 class ChannelAddPeopleViewModel extends BaseViewModel {
   bool get allMarked =>

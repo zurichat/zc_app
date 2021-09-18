@@ -56,39 +56,57 @@ class DmPage extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  DMMessageUnread(),
+                  DMMessageUnread(
+                    onTap: () => model.navigateToDmUserView(),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  DMMessageRead(),
+                  DMMessageRead(
+                    onTap: () => model.navigateToDmUserView(),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  DMMessageUnread(),
+                  DMMessageUnread(
+                    onTap: () => model.navigateToDmUserView(),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  DMMessageRead(),
+                  DMMessageRead(
+                    onTap: () => model.navigateToDmUserView(),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  DMMessageUnread(),
+                  DMMessageUnread(
+                    onTap: () => model.navigateToDmUserView(),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  DMMessageRead(),
+                  DMMessageRead(
+                    onTap: () => model.navigateToDmUserView(),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  DMMessageRead(),
+                  DMMessageRead(
+                    onTap: () => model.navigateToDmUserView(),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  DMMessageRead(),
+                  DMMessageRead(
+                    onTap: () => model.navigateToDmUserView(),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  DMMessageUnread(),
+                  DMMessageUnread(
+                    onTap: () => model.navigateToDmUserView(),
+                  ),
                   SizedBox(
                     height: 30,
                   ),

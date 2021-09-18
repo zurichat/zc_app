@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/styles.dart';
 
@@ -14,7 +13,6 @@ class CustomStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isActive ? AppTextStyles.statusIcon(int.parse(data!)) : Container();
+    return isActive ? StatusIcon(int.parse(data!)) : Container();
   }
 }
-

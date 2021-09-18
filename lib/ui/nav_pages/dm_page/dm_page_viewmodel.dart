@@ -4,8 +4,9 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class DmPageViewModel extends BaseViewModel {
+  final navigationService = locator<NavigationService>();
 
-  void navigateToDmUser() {
-    locator<NavigationService>().navigateTo(Routes.dmUserView);
+  void navigateToDmUserView() {
+    navigationService.navigateTo(Routes.dmUserView);
   }
 }

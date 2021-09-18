@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/dm_user/widgets/custom_status.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -76,4 +75,3 @@ class DmUserViewModel extends BaseViewModel {
     notifyListeners();
   }
 }
-

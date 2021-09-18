@@ -102,13 +102,12 @@ class AppTextStyles {
   );
 
   static TextStyle zuriAppBarWordLogo = TextStyle(
-    fontSize: 18.08,
-    fontFamily: 'Lato',
-    fontWeight: FontWeight.w700,
-    color: AppColors.whiteColor,
-    height: 1,
-    letterSpacing: 2.5
-  );
+      fontSize: 18.08,
+      fontFamily: 'Lato',
+      fontWeight: FontWeight.w700,
+      color: AppColors.whiteColor,
+      height: 1,
+      letterSpacing: 2.5);
 
   // unread count
   static Widget unreadCount(int count) {
@@ -125,22 +124,6 @@ class AppTextStyles {
     );
   }
 
-  //status icon
-  static Widget statusIcon(int count) {
-    return Container(
-      height: 16,
-      width: 16,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(3),
-        color: AppColors.iconBlueColor,
-      ),
-      child: Center(
-        child: Text(count.toString(), style: AppTextStyles.unreadTextCount),
-      ),
-    );
-  }
-
-
   // button
   static TextStyle buttonText = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
@@ -153,6 +136,26 @@ class AppTextStyles {
     color: AppColors.blueColor,
     decoration: TextDecoration.underline,
   );
+}
+
+class StatusIcon extends StatelessWidget {
+  late int count;
+
+  StatusIcon(int parse);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 16,
+      width: 16,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(3),
+        color: AppColors.iconBlueColor,
+      ),
+      child: Center(
+        child: Text(count.toString(), style: AppTextStyles.unreadTextCount),
+      ),
+    );
+  }
 }
 
 const logoAsset = AssetImage('assets/logo/hng_logo.png');
