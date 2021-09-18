@@ -26,7 +26,6 @@ class OTPViewModel extends BaseViewModel {
 
   static init() {
     _storedOTP = _storage.getString(StorageKeys.otp);
-    print('Retrieved OTP is $_storedOTP');
   }
 
   void _loading(status) {
@@ -48,7 +47,6 @@ class OTPViewModel extends BaseViewModel {
       if (_storedOTP == otpController.text) {
         final response =
             await _apiService.post(endpoint, data: verificationData);
-        print(response?.data['status']);
         _loading(false);
         if (response?.statusCode == 200) {
           AppSnackBar.success(context, response?.data['message']);
