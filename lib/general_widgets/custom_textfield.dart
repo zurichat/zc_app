@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
     required this.inputAction,
     required this.autoCorrect,
     required this.obscureText,
-    required this.labelText,
+    this.labelText,
     this.hintText,
     this.validator,
     this.autovalidateMode,

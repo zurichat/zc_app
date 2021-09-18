@@ -66,6 +66,14 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                 SizedBox(
                   height: 49.0,
                 ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    'Email Address',
+                    style:
+                        TextStyle(fontWeight: FontWeight.w700, fontSize: 16.0),
+                  ),
+                ),
                 Form(
                   // autovalidateMode: AutovalidateMode.onUserInteraction,
                   key: validateKey,
@@ -73,7 +81,7 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                     controller: emailController,
                     //autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (val) {
-                      if (emailController.text.isEmpty) {
+                      if (val!.isEmpty) {
                         return 'Field cannot be empty';
                       } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_"
                               r"`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -87,7 +95,7 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                     inputAction: TextInputAction.done,
                     autoCorrect: true,
                     obscureText: false,
-                    labelText: 'Email',
+
                     hintText: 'Name@gmail.com',
                   ),
                 ),

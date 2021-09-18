@@ -46,7 +46,7 @@ class ForgotPasswordOtpView extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      'Enter the 4-digit OTP sent to your email',
+                      'Enter the 6-digit OTP sent to your email',
                     ),
                   ),
                   SizedBox(
@@ -122,7 +122,7 @@ class ForgotPasswordOtpView extends StatelessWidget {
                           TextSpan(
                             text: 'Resend',
                             style: AppTextStyles.body2Bold.copyWith(
-                              color: Colors.blue,
+                              color: AppColors.zuriPrimaryColor,
                               decoration: TextDecoration.underline,
                             ),
                           ),

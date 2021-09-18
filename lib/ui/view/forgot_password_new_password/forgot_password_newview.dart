@@ -60,6 +60,13 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                   SizedBox(
                     height: 49.0,
                   ),
+                  Container(
+                      margin: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        'New Password',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 16.0),
+                      )),
                   Form(
                     key: validateKey,
                     child: Column(
@@ -79,11 +86,18 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                           inputAction: TextInputAction.next,
                           autoCorrect: true,
                           obscureText: true,
-                          labelText: 'Password',
                           hintText: 'Enter Password',
                         ),
                         SizedBox(
                           height: 30.0,
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text(
+                            'Confirm Password',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 16.0),
+                          ),
                         ),
                         CustomTextField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -100,7 +114,6 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                           inputAction: TextInputAction.done,
                           autoCorrect: true,
                           obscureText: true,
-                          labelText: 'Confirm Password',
                           hintText: 'Re-enter Password',
                         ),
                       ],
