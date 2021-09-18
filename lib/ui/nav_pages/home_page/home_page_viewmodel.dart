@@ -95,6 +95,7 @@ class HomePageViewModel extends StreamViewModel {
       HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Folks'),
       HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'DeveloperB'),
       HomeItemModel(type: HomeItemType.dm, unreadCount: 1, name: 'edward'),
+      // HomeItemModel(type: HomeItemType.dm, unreadCount: 1, name: 'eddy'),
     ];
 
     unreads.clear();

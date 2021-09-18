@@ -6,6 +6,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
+import 'general_widgets/app_snackbar.dart';
 import 'services/theme_setup.dart';
 
 Future main() async {
@@ -13,7 +14,8 @@ Future main() async {
   await ThemeManager.initialise();
   await setupLocator();
   setupBottomSheetUi();
-  setupDialogUi(); 
+  setupDialogUi();
+  setUpSnackBarUi();
   runApp(MyApp());
 }
 
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
           theme: regularTheme,
           darkTheme: darkTheme,
           themeMode: themeMode,
-          initialRoute: Routes.splashview,
+          initialRoute: Routes.homePage,
         ),
       ),
     );
