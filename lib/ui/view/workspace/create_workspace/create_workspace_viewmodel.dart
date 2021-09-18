@@ -1,6 +1,5 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
-import 'package:hng/general_widgets/app_snackbar.dart';
 import 'package:hng/models/workspace_model.dart';
 import 'package:hng/package/base/server-request/workspace_request/workspace_api.dart';
 import 'package:hng/services/local_storage_services.dart';
@@ -11,6 +10,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class CreateWorkSpaceViewModel extends BaseViewModel {
   final _navigation = locator<NavigationService>();
+  final snackbar = locator<SnackbarService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
   final _api = WorkSpaceApi();
   String _anotherEmail = 'Use another email address';
@@ -36,8 +36,7 @@ class CreateWorkSpaceViewModel extends BaseViewModel {
     _navigation.navigateTo(Routes.workspaceUrlView);
   }
 
-  Future<WorkspaceModel?> createOrganization(
-      _, String email, WorkspaceModel org) async {
+  Future<WorkspaceModel?> createOrganization(String email, WorkspaceModel org) async {
     try {
       final id = await _api.createOrganization(email);
       await _api.updateOrgName(id, org.name);
@@ -51,7 +50,7 @@ class CreateWorkSpaceViewModel extends BaseViewModel {
         time: null,
       );
     } catch (e) {
-      AppSnackBar.success(_, e.toString());
+      snackbar.showSnackbar(message: e.toString());
     }
   }
 }
