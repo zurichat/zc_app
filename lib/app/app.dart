@@ -96,6 +96,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
+    LazySingleton(classType: SnackbarService),
     LazySingleton(classType: ThemeService),
     LazySingleton(classType: HttpApiService),
     Presolve(

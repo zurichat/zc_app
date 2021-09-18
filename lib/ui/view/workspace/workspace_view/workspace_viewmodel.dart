@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:hng/general_widgets/app_snackbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -14,14 +13,13 @@ import '../../../../utilities/storage_keys.dart';
 
 class WorkspaceViewModel extends BaseViewModel {
   final navigation = locator<NavigationService>();
+  final snackbar = locator<SnackbarService>();
   final connectivityService = locator<ConnectivityService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
   final api = WorkSpaceApi();
-  late BuildContext context;
   List<WorkspaceModel> workspaces = [];
 
-  void initViewModel(BuildContext ctx) {
-    context = ctx;
+  void initViewModel() {
     fetchOrganizations();
   }
 
@@ -32,7 +30,7 @@ class WorkspaceViewModel extends BaseViewModel {
       filterWorkspace();
       notifyListeners();
     } catch (e) {
-      AppSnackBar.failure(context, 'Error Updating Organizations');
+      snackbar.showCustomSnackBar(message: 'Error Updating Organizations');
     }
   }
 
@@ -48,7 +46,7 @@ class WorkspaceViewModel extends BaseViewModel {
       setBusy(false);
     } catch (e) {
       print(e.toString());
-      AppSnackBar.failure(context, 'Error Occured');
+      snackbar.showCustomSnackBar(message: 'Error Occured');
     }
   }
 
@@ -70,11 +68,12 @@ class WorkspaceViewModel extends BaseViewModel {
       final workspaces = await api.fetchOrganizationInfo(id);
       print(workspaces);
       await storageService.setString(StorageKeys.currentOrgId, id);
-      AppSnackBar.success(context, 'You have entered ${workspaces.name}');
+      snackbar.showCustomSnackBar(
+          message: 'You have entered ${workspaces.name}');
       navigation.popRepeated(1);
     } catch (e) {
       print(e.toString());
-      AppSnackBar.failure(context, 'Error fetching Organization Info');
+      snackbar.showCustomSnackBar(message: 'Error fetching Organization Info');
     }
   }
 

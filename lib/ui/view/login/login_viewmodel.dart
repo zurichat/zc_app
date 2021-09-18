@@ -62,6 +62,7 @@ class LoginViewModel extends BaseViewModel {
         StorageKeys.currentUserEmail,
         response?.data['data']['user']['email'],
       );
+      storage.clearData(StorageKeys.workspaceIds);
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
       AppSnackBar.success(
         context,

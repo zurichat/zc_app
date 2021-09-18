@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/package/base/server-request/workspace_request/workspace_api.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -14,15 +14,15 @@ class WorkspaceUrlViewModel extends BaseViewModel {
   bool isEmpty = true;
   String _email = 'johndoe@gmail.com';
   String? url;
-  Color buttonColor = Color(0xffBEBEBE);
+  var buttonColor = AppColors.greyishColor;
 
   void updateString(String value) {
     if (value.trim().isEmpty) {
       isEmpty = true;
-      buttonColor = Color(0xffBEBEBE);
+      buttonColor = AppColors.greyishColor;
     } else {
       isEmpty = false;
-      buttonColor = Colors.green;
+      buttonColor = AppColors.appBarGreen;
     }
     url = value.trim();
     notifyListeners();
@@ -32,7 +32,9 @@ class WorkspaceUrlViewModel extends BaseViewModel {
     if (url != null && url!.isNotEmpty) {
       final workspace = await api.fetchWorkspaceByUrl(url!);
       await storeWorkspaceId(workspace.id);
-      navigation.popUntil(ModalRoute.withName(Routes.workspaceView));
+      navigation
+          .popUntil((route) => route.settings.name == Routes.workspaceView);
+      // popUntil(ModalRoute.withName(Routes.workspaceView));
     }
     //TODO: put the error text
   }
@@ -43,7 +45,7 @@ class WorkspaceUrlViewModel extends BaseViewModel {
     await storage.setStringList(StorageKeys.workspaceIds, ids);
   }
 
-  Color get buttonColors => buttonColor;
+  get buttonColors => buttonColor;
   bool get title => isEmpty;
   String get email => _email;
 }

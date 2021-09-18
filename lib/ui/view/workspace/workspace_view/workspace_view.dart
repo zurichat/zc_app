@@ -10,7 +10,7 @@ class WorkspaceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<WorkspaceViewModel>.reactive(
-      onModelReady: (model) => model.initViewModel(context),
+      onModelReady: (model) => model.initViewModel(),
       disposeViewModel: false,
       builder: (context, model, child) {
         return SafeArea(

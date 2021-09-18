@@ -45,7 +45,11 @@ class SharedPreferenceLocalStorage {
     return _preferences?.getStringList(key);
   }
 
+  Future<bool?> clearData(String key) async {
+    return await _preferences?.remove(key);
+  }
+
   Future<bool?> clearStorage() async {
-    return _preferences?.clear();
+    return await _preferences?.clear();
   }
 }
