@@ -30,7 +30,7 @@ class WorkspaceViewModel extends BaseViewModel {
       filterWorkspace();
       notifyListeners();
     } catch (e) {
-      snackbar.showCustomSnackBar(message: 'Error Updating Organizations');
+      snackbar.showSnackbar(message: 'Error Updating Organizations');
     }
   }
 
@@ -46,7 +46,7 @@ class WorkspaceViewModel extends BaseViewModel {
       setBusy(false);
     } catch (e) {
       print(e.toString());
-      snackbar.showCustomSnackBar(message: 'Error Occured');
+      snackbar.showSnackbar(message: 'Error Occured');
     }
   }
 
@@ -68,12 +68,12 @@ class WorkspaceViewModel extends BaseViewModel {
       final workspaces = await api.fetchOrganizationInfo(id);
       print(workspaces);
       await storageService.setString(StorageKeys.currentOrgId, id);
-      snackbar.showCustomSnackBar(
+      snackbar.showSnackbar(
           message: 'You have entered ${workspaces.name}');
       navigation.popRepeated(1);
     } catch (e) {
       print(e.toString());
-      snackbar.showCustomSnackBar(message: 'Error fetching Organization Info');
+      snackbar.showSnackbar(message: 'Error fetching Organization Info');
     }
   }
 
