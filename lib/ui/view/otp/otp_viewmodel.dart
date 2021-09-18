@@ -52,6 +52,7 @@ class OTPViewModel extends BaseViewModel {
         _loading(false);
         if (response?.statusCode == 200) {
           AppSnackBar.success(context, response?.data['message']);
+          _storage.setBool(StorageKeys.registeredNotverifiedOTP, false);
           navigateLogin();
         } else {
           AppSnackBar.failure(

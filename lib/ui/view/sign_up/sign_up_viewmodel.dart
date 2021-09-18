@@ -37,7 +37,7 @@ class SignUpViewModel extends BaseViewModel {
   }
 
   void navigateToHome() => navigator.navigateTo(Routes.navBarView);
-  void navigateToSignIn() => navigation.navigateTo(Routes.oTPView);
+  void navigateToSignIn() => navigation.navigateTo(Routes.loginView);
   void navigateToOTPView() => navigation.navigateTo(Routes.oTPView);
 
   // ignore: always_declare_return_types
@@ -63,6 +63,7 @@ class SignUpViewModel extends BaseViewModel {
         storage.setString(
             StorageKeys.otp, response?.data['data']['verification_code']);
         storage.setString(StorageKeys.currentUserEmail, email.text);
+        storage.setBool(StorageKeys.registeredNotverifiedOTP, true);
         navigateToOTPView();
       } else {
         AppSnackBar.failure(

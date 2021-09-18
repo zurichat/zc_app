@@ -5,4 +5,6 @@ class StorageKeys {
   static const currentUserModel = 'current_user_model';
   static const currentUserEmail = 'current_user_email';
   static const otp = 'current_user_otp';
+  static const workspaceIds = 'workspace_ids';
+  static const registeredNotverifiedOTP = 'user_otp_verified';
 }

@@ -160,6 +160,19 @@ class OTPView extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 16),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          model.navigateLogin();
+                        },
+                        child: Text(
+                          'Back to login',
+                          style: TextStyle(color: AppColors.zuriPrimaryColor),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
