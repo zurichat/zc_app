@@ -250,7 +250,6 @@ Container channelInfo(String text, String nexttext) {
 }
 
 Row row(Function()? pressed) {
-  final navigator = locator<NavigationService>();
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     // crossAxisAlignment: CrossAxisAlignment.center,
