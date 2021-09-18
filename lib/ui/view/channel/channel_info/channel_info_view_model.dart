@@ -4,7 +4,9 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ChannelInfoViewModel extends BaseViewModel {
+  final _navigationService = locator<NavigationService>();
+
   void navigateToEditChannel() {
-    locator<NavigationService>().navigateTo(Routes.channelInfoEdit);
+    _navigationService.navigateTo(Routes.channelInfoEdit);
   }
 }
