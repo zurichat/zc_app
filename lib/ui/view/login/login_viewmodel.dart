@@ -1,3 +1,4 @@
+import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app.locator.dart';
@@ -12,7 +13,7 @@ class LoginViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
-  final _apiService = HttpApiService('https://api.zuri.chat');
+  final _apiService = HttpApiService(coreBaseUrl);
   bool isLoading = false;
   loading(status) {
     isLoading = status;

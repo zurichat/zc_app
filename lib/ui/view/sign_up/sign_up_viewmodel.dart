@@ -1,3 +1,4 @@
+import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -11,10 +12,10 @@ import 'sign_up_view.form.dart';
 
 class SignUpViewModel extends FormViewModel {
   final navigation = locator<NavigationService>();
-  final apiService = locator<HttpApiService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final navigator = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
+  final apiService = HttpApiService(coreBaseUrl);
 
   bool isLoading = false;
   bool checkBoxValue = false;

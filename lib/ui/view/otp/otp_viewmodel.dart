@@ -1,4 +1,3 @@
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -6,12 +5,14 @@ import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
 import '../../../package/base/server-request/api/http_api.dart';
 import '../../../services/local_storage_services.dart';
+import '../../../utilities/constants.dart';
+import '../../../utilities/enums.dart';
 import '../../../utilities/storage_keys.dart';
 import 'otp_view.form.dart';
 
 class OTPViewModel extends FormViewModel {
   final _navigationService = NavigationService();
-  final _apiService = locator<HttpApiService>();
+  final _apiService = HttpApiService(coreBaseUrl);
   static final _storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
   static String? _storedOTP;
