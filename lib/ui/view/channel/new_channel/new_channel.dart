@@ -14,10 +14,6 @@ class NewChannel extends StatefulWidget {
 }
 
 class _NewChannelState extends State<NewChannel> {
-  bool _value = false;
-  int _maxLength = 80;
-  bool _hasError = false;
-  var _borderColor = AppColors.borderColor;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<NewChannelViewModel>.reactive(
@@ -78,7 +74,7 @@ class _NewChannelState extends State<NewChannel> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5.0),
                       border: Border.all(
-                        color: _borderColor,
+                        color: model.borderColor,
                         width: 0.5,
                       ),
                     ),
@@ -92,7 +88,7 @@ class _NewChannelState extends State<NewChannel> {
                         ),
                         Expanded(
                           child: TextField(
-                            //controller: _channelName,
+                            controller: model.channelNameController,
                             style: AppTextStyles.body2Medium.copyWith(
                               color: AppColors.blackColor,
                             ),
@@ -108,17 +104,11 @@ class _NewChannelState extends State<NewChannel> {
                                 color: Color(0xFFA1A9B2),
                               ),
                             ),
-
-                            onChanged: (val) {
-                              setState(() {
-                                validateInput(val);
-                                _maxLength = 80 - val.length;
-                              });
-                            },
+                            onChanged: model.onChangeChannelNameField,
                           ),
                         ),
                         Text(
-                          '${_maxLength}',
+                          '${model.inputLength}',
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             color: Color(0xFFA1A9B2),
@@ -130,7 +120,7 @@ class _NewChannelState extends State<NewChannel> {
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Visibility(
-                      visible: _hasError,
+                      visible: model.inputError,
                       child: Column(
                         children: [
                           UIHelper.verticalSpaceSmall,
@@ -170,6 +160,7 @@ class _NewChannelState extends State<NewChannel> {
                     height: 180,
                     child: TextField(
                       maxLines: null,
+                      controller: model.descriptionController,
                       style: AppTextStyles.body2Medium.copyWith(
                         color: AppColors.blackColor,
                       ),
@@ -217,12 +208,8 @@ class _NewChannelState extends State<NewChannel> {
                               child: Switch(
                                 inactiveTrackColor: Color(0XFFEBEBEB),
                                 activeColor: AppColors.zuriPrimaryColor,
-                                value: _value,
-                                onChanged: (val) {
-                                  setState(() {
-                                    _value = val;
-                                  });
-                                },
+                                value: model.isChannelPrivate,
+                                onChanged: model.toggleSwitch,
                               ),
                             )
                           ],
@@ -244,28 +231,5 @@ class _NewChannelState extends State<NewChannel> {
         ),
       ),
     );
-  }
-
-  void validateInput(String input) {
-    final reg = RegExp(".*?[A-Z\\s\.].*");
-    if (reg.hasMatch(input)) {
-      updateView(true);
-    } else {
-      updateView(false);
-    }
-  }
-
-  void updateView(bool validate) {
-    if (validate) {
-      setState(() {
-        _hasError = validate;
-        _borderColor = AppColors.redColor;
-      });
-    } else {
-      setState(() {
-        _hasError = validate;
-        _borderColor = AppColors.borderColor;
-      });
-    }
   }
 }
