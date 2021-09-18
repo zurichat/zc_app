@@ -13,6 +13,7 @@ import 'package:stacked/stacked.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
+import '../ui/view/channel/add_people/channel_add_people_view.dart';
 import '../ui/view/channel/channel_info/channel_info_view.dart';
 import '../ui/view/channel/channel_list/channels_view.dart';
 import '../ui/view/channel/channel_notification/channel_notification_view.dart';
@@ -50,9 +51,12 @@ import '../ui/view/view_profile_page/view_profile_page.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
+import '../ui/view/workspace/workspace_url/workspace_url_view.dart';
 import '../ui/view/workspace/workspace_view/workspace_view.dart';
+import '../utilities/enums.dart';
 
 class Routes {
+  static const String channelAddPeopleView = '/channel-add-people-view';
   static const String navBarView = '/nav-bar-view';
   static const String onboardingView = '/onboarding-view';
   static const String loginView = '/login-view';
@@ -96,7 +100,9 @@ class Routes {
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
   static const String channelInfoEdit = '/channel-info-edit';
+  static const String workspaceUrlView = '/workspace-url-view';
   static const all = <String>{
+    channelAddPeopleView,
     navBarView,
     onboardingView,
     loginView,
@@ -139,6 +145,7 @@ class Routes {
     fileSearchView,
     draftView,
     channelInfoEdit,
+    workspaceUrlView,
   };
 }
 
@@ -146,6 +153,7 @@ class StackedRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
+    RouteDef(Routes.channelAddPeopleView, page: ChannelAddPeopleView),
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.loginView, page: LoginView),
@@ -189,10 +197,17 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
     RouteDef(Routes.channelInfoEdit, page: EditChannelPageView),
+    RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
+    ChannelAddPeopleView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ChannelAddPeopleView(),
+        settings: data,
+      );
+    },
     NavBarView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const NavBarView(),
@@ -440,8 +455,12 @@ class StackedRouter extends RouterBase {
       );
     },
     CreateWorkSpace: (data) {
+      var args = data.getArgs<CreateWorkSpaceArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => CreateWorkSpace(),
+        builder: (context) => CreateWorkSpace(
+          key: args.key,
+          method: args.method,
+        ),
         settings: data,
       );
     },
@@ -454,6 +473,12 @@ class StackedRouter extends RouterBase {
     DraftView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const DraftView(),
+        settings: data,
+      );
+    },
+    WorkspaceUrlView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const WorkspaceUrlView(),
         settings: data,
       );
     },
@@ -481,4 +506,11 @@ class ViewProfilePageArguments {
   final Key? key;
   final bool? isActive;
   ViewProfilePageArguments({this.key, this.isActive});
+}
+
+/// CreateWorkSpace arguments holder class
+class CreateWorkSpaceArguments {
+  final Key? key;
+  final WorkspaceSwitchMethod method;
+  CreateWorkSpaceArguments({this.key, required this.method});
 }
