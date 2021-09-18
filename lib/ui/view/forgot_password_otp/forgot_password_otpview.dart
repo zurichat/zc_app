@@ -56,7 +56,7 @@ class ForgotPasswordOtpView extends StatelessWidget {
                     key: model.formKey,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 8.0, horizontal: 30),
+                          vertical: 5.0, horizontal: 30),
                       child: PinCodeTextField(
                         appContext: context,
                         pastedTextStyle: TextStyle(
@@ -73,11 +73,11 @@ class ForgotPasswordOtpView extends StatelessWidget {
                           shape: PinCodeFieldShape.box,
                           activeColor: AppColors.zuriPrimaryColor,
                           disabledColor: Colors.grey,
-                          inactiveColor: AppColors.lightBlackColor,
+                          inactiveColor: AppColors.greyColor,
                           inactiveFillColor: AppColors.whiteColor,
-                          borderRadius: BorderRadius.circular(5),
-                          fieldHeight: 50,
-                          fieldWidth: 50,
+                          borderRadius: BorderRadius.circular(3),
+                          fieldHeight: 45,
+                          fieldWidth: 45,
                           activeFillColor: AppColors.whiteColor,
                         ),
                         cursorColor: AppColors.blackColor,
@@ -86,13 +86,6 @@ class ForgotPasswordOtpView extends StatelessWidget {
                         errorAnimationController: model.errorController,
                         controller: model.otpController,
                         keyboardType: TextInputType.number,
-                        boxShadows: [
-                          BoxShadow(
-                            offset: Offset(0, 3),
-                            color: Colors.black12,
-                            blurRadius: 3,
-                          )
-                        ],
                         onCompleted: (v) {},
                         onTap: () {},
                         onChanged: (value) {},
@@ -107,7 +100,7 @@ class ForgotPasswordOtpView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: 4.0,
                   ),
                   Center(
                     child: RichText(

@@ -53,7 +53,13 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                   ),
                   Center(
                     child: Text(
-                      'Your new password must be different from previously used password',
+                      'Your new password must be different from ',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      'previously used password',
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -70,6 +76,7 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                   Form(
                     key: validateKey,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomTextField(
                           validator: (val) {
@@ -89,7 +96,7 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                           hintText: 'Enter Password',
                         ),
                         SizedBox(
-                          height: 30.0,
+                          height: 15.0,
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 8.0),

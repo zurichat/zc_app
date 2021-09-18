@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
 import 'forgot_password_email_viewmodel.dart';
 
@@ -127,23 +128,32 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                     ),
                   ),
                 ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Back to',
+                SizedBox(height: 10),
+                Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      model.navigateToSignIn();
+                    },
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Back to ',
+                            style: AppTextStyles.normalText.copyWith(
+                              color: Colors.black,
+                            ),
+                          ),
+                          TextSpan(
+                            text: 'Sign In.',
+                            style: AppTextStyles.body2Bold.copyWith(
+                              color: AppColors.zuriPrimaryColor,
+                            ),
+                          ),
+                        ],
                       ),
-                      TextButton(
-                        child: const CustomText(
-                          text: 'Sign In',
-                          fontSize: 14,
-                          color: AppColors.zuriPrimaryColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        onPressed: () => model.navigateToSignIn(),
-                      )
-                    ]),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

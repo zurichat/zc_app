@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/validators.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -46,10 +47,10 @@ class CustomTextField extends StatelessWidget {
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
         ),
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
           borderSide: BorderSide(
-            color: Color(0xff1A61DB),
+            color: AppColors.zuriPrimaryColor,
           ),
         ),
       ),
