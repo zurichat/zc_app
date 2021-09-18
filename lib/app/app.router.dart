@@ -227,8 +227,11 @@ class StackedRouter extends RouterBase {
       );
     },
     OTPView: (data) {
+      var args = data.getArgs<OTPViewArguments>(
+        orElse: () => OTPViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => OTPView(),
+        builder: (context) => OTPView(key: args.key),
         settings: data,
       );
     },
@@ -492,6 +495,12 @@ class LoginViewArguments {
   LoginViewArguments({this.key});
 }
 
+/// OTPView arguments holder class
+class OTPViewArguments {
+  final Key? key;
+  OTPViewArguments({this.key});
+}
+
 /// SignUpView arguments holder class
 class SignUpViewArguments {
   final Key? key;
@@ -514,7 +523,7 @@ class DmUserViewArguments {
 class ViewProfileArguments {
   final Key? key;
   final bool isActive;
-  ViewProfileArguments({this.key, this.isActive = true});
+  ViewProfileArguments({this.key, this.isActive});
 }
 
 /// CreateWorkSpace arguments holder class
