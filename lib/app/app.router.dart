@@ -6,6 +6,7 @@
 
 // ignore_for_file: public_member_api_docs
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -78,7 +79,7 @@ class Routes {
   static const String addPluginView = '/add-plugin-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String editPluginView = '/edit-plugin-view';
-  static const String viewProfilePage = '/view-profile-page';
+  static const String viewProfile = '/view-profile';
   static const String setStatusView = '/set-status-view';
   static const String profilePageView = '/profile-page-view';
   static const String preferenceView = '/preference-view';
@@ -122,7 +123,7 @@ class Routes {
     addPluginView,
     useDifferentEmailView,
     editPluginView,
-    viewProfilePage,
+    viewProfile,
     setStatusView,
     profilePageView,
     preferenceView,
@@ -171,7 +172,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.addPluginView, page: AddPluginView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.editPluginView, page: EditPluginView),
-    RouteDef(Routes.viewProfilePage, page: ViewProfile),
+    RouteDef(Routes.viewProfile, page: ViewProfile),
     RouteDef(Routes.setStatusView, page: SetStatusView),
     RouteDef(Routes.profilePageView, page: ProfilePageView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
@@ -193,14 +194,12 @@ class StackedRouter extends RouterBase {
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
-
     ChannelAddPeopleView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ChannelAddPeopleView(),
         settings: data,
       );
     },
-
     NavBarView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const NavBarView(),
@@ -280,11 +279,11 @@ class StackedRouter extends RouterBase {
       );
     },
     HomePage: (data) {
-
-      
+      var args = data.getArgs<HomePageArguments>(
+        orElse: () => HomePageArguments(),
+      );
       return MaterialPageRoute<dynamic>(
         builder: (context) => HomePage(key: args.key),
-
         settings: data,
       );
     },
@@ -352,8 +351,8 @@ class StackedRouter extends RouterBase {
       );
     },
     ViewProfile: (data) {
-      var args = data.getArgs<ViewProfilePageArguments>(
-        orElse: () => ViewProfilePageArguments(),
+      var args = data.getArgs<ViewProfileArguments>(
+        orElse: () => ViewProfileArguments(),
       );
       return MaterialPageRoute<dynamic>(
         builder: (context) => ViewProfile(
@@ -478,9 +477,9 @@ class DmUserViewArguments {
   DmUserViewArguments({this.key});
 }
 
-/// ViewProfilePage arguments holder class
-class ViewProfilePageArguments {
+/// ViewProfile arguments holder class
+class ViewProfileArguments {
   final Key? key;
-  final bool? isActive;
-  ViewProfilePageArguments({this.key, this.isActive});
+  final bool isActive;
+  ViewProfileArguments({this.key, this.isActive = true});
 }
