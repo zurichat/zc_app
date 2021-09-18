@@ -139,7 +139,7 @@ class AppTextStyles {
 }
 
 class StatusIcon extends StatelessWidget {
-  late int count;
+  int count = 5;
 
   StatusIcon(int parse);
   @override

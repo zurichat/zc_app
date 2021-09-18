@@ -4,7 +4,6 @@ import 'package:hng/ui/shared/styles.dart';
 class DMMessageRead extends StatelessWidget {
   const DMMessageRead({
     Key? key,
-    required void Function() onTap,
   }) : super(key: key);
 
   @override

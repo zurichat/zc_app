@@ -5,7 +5,6 @@ import '../../../shared/shared.dart';
 class DMMessageUnread extends StatelessWidget {
   const DMMessageUnread({
     Key? key,
-    required void Function() onTap,
   }) : super(key: key);
 
   @override
