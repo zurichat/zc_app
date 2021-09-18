@@ -51,7 +51,9 @@ import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
+import '../ui/view/workspace/workspace_url/workspace_url_view.dart';
 import '../ui/view/workspace/workspace_view/workspace_view.dart';
+import '../utilities/enums.dart';
 
 class Routes {
   static const String channelAddPeopleView = '/channel-add-people-view';
@@ -97,6 +99,7 @@ class Routes {
   static const String createWorkSpace = '/create-work-space';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
+  static const String workspaceUrlView = '/workspace-url-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -140,6 +143,7 @@ class Routes {
     createWorkSpace,
     fileSearchView,
     draftView,
+    workspaceUrlView,
   };
 }
 
@@ -190,6 +194,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -441,8 +446,12 @@ class StackedRouter extends RouterBase {
       );
     },
     CreateWorkSpace: (data) {
+      var args = data.getArgs<CreateWorkSpaceArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => CreateWorkSpace(),
+        builder: (context) => CreateWorkSpace(
+          key: args.key,
+          method: args.method,
+        ),
         settings: data,
       );
     },
@@ -455,6 +464,12 @@ class StackedRouter extends RouterBase {
     DraftView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const DraftView(),
+        settings: data,
+      );
+    },
+    WorkspaceUrlView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const WorkspaceUrlView(),
         settings: data,
       );
     },
@@ -482,4 +497,11 @@ class ViewProfileArguments {
   final Key? key;
   final bool isActive;
   ViewProfileArguments({this.key, this.isActive = true});
+}
+
+/// CreateWorkSpace arguments holder class
+class CreateWorkSpaceArguments {
+  final Key? key;
+  final WorkspaceSwitchMethod method;
+  CreateWorkSpaceArguments({this.key, required this.method});
 }
