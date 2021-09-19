@@ -1,3 +1,4 @@
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/shared/shared.dart';
 
@@ -8,6 +9,7 @@ import '../../../../utilities/storage_keys.dart';
 import '../api/http_api.dart';
 
 class WorkSpaceApiService {
+  final log = getLogger('WorkSpaceApiService');
   final _api = HttpApiService(coreBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
@@ -20,7 +22,7 @@ class WorkSpaceApiService {
       '/organizations',
       headers: {'Authorization': 'Bearer $token'},
     );
-    print(res?.data?['data'].length);
+    log.i(res?.data?['data'].length);
     return (res?.data?['data'] as List)
         .map((e) => WorkspaceModel.fromJson(e))
         .toList();
@@ -34,7 +36,7 @@ class WorkSpaceApiService {
       '/users/$email/organizations',
       headers: {'Authorization': 'Bearer $token'},
     );
-    print(res?.data?['data'].length);
+    log.i(res?.data?['data'].length);
     return (res?.data?['data'] as List)
         .map((e) => WorkspaceModel.fromJson(e))
         .toList();
@@ -57,7 +59,7 @@ class WorkSpaceApiService {
       '/organizations/url/$url',
       headers: {'Authorization': 'Bearer $token'},
     );
-    print(res?.data);
+    log.i(res?.data);
 
     return WorkspaceModel.fromJson(res?.data?['data']);
   }
