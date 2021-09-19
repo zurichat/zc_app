@@ -55,7 +55,12 @@ class WorkspaceViewModel extends BaseViewModel {
 
     try {
       setBusy(true);
-      workspaces = await api.getJoinedOrganizations();
+      final resFromApi = await api.getJoinedOrganizations();
+      if (resFromApi.isEmpty) {
+        workspaces = [];
+      } else {
+        workspaces = resFromApi;
+      }
       // filterWorkspace();
 
       setBusy(false);
@@ -75,7 +80,7 @@ class WorkspaceViewModel extends BaseViewModel {
     workspaces.retainWhere((e) => ids.any((id) => id == e.id));
   }
 
-  Future<void> onTap(String id, String? name, String? url) async {
+  Future<void> onTap(String? id, String? name, String? url) async {
     try {
       if (id == currentOrgId) {
         navigation.replaceWith(Routes.navBarView);
@@ -83,7 +88,7 @@ class WorkspaceViewModel extends BaseViewModel {
       }
       await checkSnackBarConnectivity();
 
-      await storageService.setString(StorageKeys.currentOrgId, id);
+      await storageService.setString(StorageKeys.currentOrgId, id!);
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,

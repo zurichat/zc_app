@@ -1,5 +1,5 @@
 class WorkspaceModel {
-  final String id;
+  final String? id;
   final String? name;
   final String? workSpaceUrl;
   final String? time;
