@@ -522,8 +522,8 @@ class DmUserViewArguments {
 /// ViewProfile arguments holder class
 class ViewProfileArguments {
   final Key? key;
-  final bool isActive;
-  ViewProfileArguments({this.key, this.isActive = true});
+  final bool? isActive;
+  ViewProfileArguments({this.key, this.isActive});
 }
 
 /// CreateWorkSpace arguments holder class
