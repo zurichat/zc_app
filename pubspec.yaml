@@ -32,7 +32,6 @@ dependencies:
   page_view_dot_indicator: ^1.0.0
   permission_handler: ^8.1.4+2
   pin_code_fields: ^7.3.0
-  pixel_perfect: ^1.1.0
   shared_preferences: ^2.0.7
   stacked: ^2.1.8
   
@@ -52,7 +51,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   stacked_generator: ^0.4.6
-  analyzer: ^1.7.0
+  # analyzer: ^1.7.0
 
 flutter_native_splash:
   color: "#ffffff"

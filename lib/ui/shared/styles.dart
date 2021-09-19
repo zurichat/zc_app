@@ -143,6 +143,26 @@ class AppTextStyles {
   );
 }
 
+class StatusIcon extends StatelessWidget {
+  int count = 5;
+
+  StatusIcon(int parse);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 16,
+      width: 16,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(3),
+        color: AppColors.iconBlueColor,
+      ),
+      child: Center(
+        child: Text(count.toString(), style: AppTextStyles.unreadTextCount),
+      ),
+    );
+  }
+}
+
 const logoAsset = AssetImage('assets/logo/hng_logo.png');
 const dummyNetworkImage =
     'https://loremflickr.com/320/240/paris,news,work?random=';

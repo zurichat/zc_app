@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pixel_perfect/pixel_perfect.dart';
 import '../../../general_widgets/custom_channel.dart';
 import '../../../general_widgets/custom_channel_stage.dart';
-import '../../../general_widgets/custom_user.dart';
 import '../../../general_widgets/custom_user_channel.dart';
 import 'dm_jump_to_viewmodel.dart';
 import 'package:stacked/stacked.dart';
@@ -18,15 +16,12 @@ class DmJumpToView extends StatelessWidget {
         viewModelBuilder: () => DmJumpToViewModel(),
         builder:
             (BuildContext context, DmJumpToViewModel model, Widget? child) {
-              final width = MediaQuery.of(context).size.width;
-              final scale = model.mockUpWidth/width;
           return Scaffold(
             backgroundColor: Colors.white,
             resizeToAvoidBottomInset: true,
-            body: PixelPerfect(
-              assetPath:'assets/images/Jump to 1.jpg',
+            body: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(25, 40, 0, 0),
+                padding: const EdgeInsets.fromLTRB(25, 20, 0, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
