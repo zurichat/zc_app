@@ -100,8 +100,6 @@ class Routes {
   static const String createWorkSpace = '/create-work-space';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
-  static const String channelPageView = '/channel-page-view';
-  static const String channelInfoView = '/channel-info-view';
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
   static const all = <String>{
@@ -361,8 +359,11 @@ class StackedRouter extends RouterBase {
       );
     },
     AddPluginView: (data) {
+      var args = data.getArgs<AddPluginViewArguments>(
+        orElse: () => AddPluginViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const AddPluginView(),
+        builder: (context) => AddPluginView(key: args.key),
         settings: data,
       );
     },
@@ -379,14 +380,8 @@ class StackedRouter extends RouterBase {
       );
     },
     ViewProfile: (data) {
-      var args = data.getArgs<ViewProfileArguments>(
-        orElse: () => ViewProfileArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ViewProfile(
-          key: args.key,
-          isActive: args.isActive,
-        ),
+        builder: (context) => ViewProfile(),
         settings: data,
       );
     },
@@ -527,12 +522,15 @@ class SignUpViewArguments {
   SignUpViewArguments({this.key});
 }
 
+<<<<<<< HEAD
 /// ForgotPasswordEmailView arguments holder class
 class ForgotPasswordEmailViewArguments {
   final Key? key;
   ForgotPasswordEmailViewArguments({this.key});
 }
 
+=======
+>>>>>>> 0661646394066db8599ccbac1e29d6bf2534cf52
 /// ForgotPasswordOtpView arguments holder class
 class ForgotPasswordOtpViewArguments {
   final Key? key;
@@ -551,11 +549,15 @@ class DmUserViewArguments {
   DmUserViewArguments({this.key});
 }
 
-/// ViewProfile arguments holder class
-class ViewProfileArguments {
+/// AddPluginView arguments holder class
+class AddPluginViewArguments {
   final Key? key;
+<<<<<<< HEAD
   final bool isActive;
   ViewProfileArguments({this.key, this.isActive});
+=======
+  AddPluginViewArguments({this.key});
+>>>>>>> 0661646394066db8599ccbac1e29d6bf2534cf52
 }
 
 /// CreateWorkSpace arguments holder class

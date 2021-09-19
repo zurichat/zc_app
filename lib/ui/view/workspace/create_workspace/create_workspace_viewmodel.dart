@@ -44,13 +44,13 @@ class CreateWorkSpaceViewModel extends BaseViewModel {
       await _api.updateOrgName(id, org.name!);
       await _api.updateOrgUrl(id, org.workSpaceUrl!);
       await _api.updateOrgLogo(id, org.logoUrl!);
-      return WorkspaceModel(
-        id: id,
-        name: org.name,
-        workSpaceUrl: org.workSpaceUrl,
-        logoUrl: org.logoUrl,
-        time: null,
-      );
+      // return WorkspaceModel(
+      //   id: id,
+      //   name: org.name,
+      //   workSpaceUrl: org.workSpaceUrl,
+      //   logoUrl: org.logoUrl,
+      //   time: null,
+      // );
     } catch (e) {
       snackbar.showSnackbar(message: e.toString());
     }

@@ -21,3 +21,8 @@ enum SnackbarType {
   success,
   failure,
 }
+
+enum HomeItemType {
+  channels,
+  dm,
+}

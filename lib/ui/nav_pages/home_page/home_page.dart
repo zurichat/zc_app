@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomePageViewModel>.reactive(
       onModelReady: (model) {
-        model.getHomePageData();
+        model.getDmAndChannelsList();
       },
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, vmodel, child) => Column(

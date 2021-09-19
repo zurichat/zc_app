@@ -77,6 +77,7 @@ class LoginViewModel extends FormViewModel {
             ''' ${response?.data['data']['user']['email']}''',
       );
 
+      //Todo check if user has currently joined an organisation
       navigationService.navigateTo(Routes.workspaceView);
     } else {
       snackbar.showCustomSnackBar(

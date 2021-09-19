@@ -1,3 +1,5 @@
+import 'package:hng/app/app.logger.dart';
+import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/shared/shared.dart';
 
 import '../../../../app/app.locator.dart';
@@ -7,16 +9,34 @@ import '../../../../utilities/storage_keys.dart';
 import '../api/http_api.dart';
 
 class WorkSpaceApiService {
+  final log = getLogger('WorkSpaceApiService');
   final _api = HttpApiService(coreBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
+  final _userService = locator<UserService>();
 
-  /// Fetches a list of organizations that the user is part of
+  /// Fetches a list of organizations that exist in the zuri database
+  /// This does not fetch the organisation the user belongs to
+  /// To implement that use `getJoinedOrganizations()`
   Future<List<WorkspaceModel>> fetchListOfOrganizations() async {
     final res = await _api.get(
       '/organizations',
       headers: {'Authorization': 'Bearer $token'},
     );
-    print(res?.data?['data'].length);
+    log.i(res?.data?['data'].length);
+    return (res?.data?['data'] as List)
+        .map((e) => WorkspaceModel.fromJson(e))
+        .toList();
+  }
+
+  ///Get the list of organisation the user has joined
+  Future<List<WorkspaceModel>> getJoinedOrganizations() async {
+    String email = _userService.userEmail;
+
+    final res = await _api.get(
+      '/users/$email/organizations',
+      headers: {'Authorization': 'Bearer $token'},
+    );
+    log.i(res?.data?['data'].length);
     return (res?.data?['data'] as List)
         .map((e) => WorkspaceModel.fromJson(e))
         .toList();
@@ -33,12 +53,32 @@ class WorkSpaceApiService {
   }
 
   /// takes in a `url` and returns a workspace that matches the url
+  /// use this url for testing `zurichat-fsp1856.zurichat.com`
   Future<WorkspaceModel> fetchWorkspaceByUrl(String url) async {
     final res = await _api.get(
       '/organizations/url/$url',
       headers: {'Authorization': 'Bearer $token'},
     );
+    log.i(res?.data);
+
     return WorkspaceModel.fromJson(res?.data?['data']);
+  }
+
+  /// takes in a `organisation id` and joins the organisation
+  Future<bool> joinWorkspace(String orgId) async {
+    String email = _userService.userEmail;
+
+    final res = await _api.post(
+      '/organizations/$orgId/members',
+      data: {"user_email": email},
+      headers: {'Authorization': 'Bearer $token'},
+    );
+
+    if (res?.statusCode == 200) {
+      return true;
+    }
+
+    return false;
   }
 
   /// This method creates an organization. Creator email `email` must be present
