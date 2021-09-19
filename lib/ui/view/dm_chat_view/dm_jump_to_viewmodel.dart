@@ -4,15 +4,8 @@ import 'package:stacked/stacked.dart';
 
 class DmJumpToViewModel extends BaseViewModel {
 
-  static const _mockUpHeight = 823;
-  get mockUpHeight => _mockUpHeight;
-  static const _mockUpWidth = 411;
-  get mockUpWidth => _mockUpWidth;
-
   var index;
-
   var ListofChannels;
-
   var ListofDms = [
     CustomUser(
       image: 'assets/images/Rectangle 1931.png',
@@ -136,8 +129,6 @@ class DmJumpToViewModel extends BaseViewModel {
     ),
   ];
 
-
-
   var recentDmsFromApi=[
     CustomUser(
       image: 'assets/images/Rectangle 1931 (4).png',
@@ -148,6 +139,7 @@ class DmJumpToViewModel extends BaseViewModel {
       text: 'youUnknown',
     ),
   ];
+
    var list=[
      CustomUser(
        image: 'assets/images/Rectangle 1931 (4).png',
@@ -161,15 +153,11 @@ class DmJumpToViewModel extends BaseViewModel {
 
   TextEditingController _controller = TextEditingController();
 
-  TextEditingController get controller => _controller;
-
   void _onChanged() => (value){
 
     if(value.isEmpty){
-      print('yesssss');
       list.clear();
       list.addAll(recentDmsFromApi);
-      print('${recentDmsFromApi.length}');
     }else {
       list.clear();
       for (index in ListofDms) {
@@ -181,7 +169,8 @@ class DmJumpToViewModel extends BaseViewModel {
     }
     notifyListeners();
   };
-  get onChanged => _onChanged();
 
+  TextEditingController get controller => _controller;
+  get onChanged => _onChanged();
 
 }
