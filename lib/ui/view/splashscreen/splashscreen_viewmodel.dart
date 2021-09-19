@@ -16,6 +16,7 @@ class SplashscreenViewModel extends BaseViewModel {
     Timer(
       const Duration(seconds: 1),
       () {
+        navigation.navigateTo(Routes.signUpView);
         //TODO comment it out to get access to once only view
         if (storage.getBool('onboarded') == null ||
             storage.getBool('onboarded') == false) {

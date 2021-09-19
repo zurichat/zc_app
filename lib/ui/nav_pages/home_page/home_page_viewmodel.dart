@@ -15,9 +15,13 @@ import '../../../services/connectivity_service.dart';
 
 class HomePageViewModel extends StreamViewModel {
   final connectivityService = locator<ConnectivityService>();
+<<<<<<< HEAD
   final dmApiService = locator<DMApiService>();
   final channelsApiService = locator<ChannelsApiService>();
 
+=======
+  final _navigationService = locator<NavigationService>();
+>>>>>>> 15ccbb9e3562e9d48f0a05afca86369ee9558cc5
   bool connectionStatus = false;
 
   ///This contains the list of data for both the channels and dms
@@ -151,18 +155,22 @@ class HomePageViewModel extends StreamViewModel {
   //
   //*Navigate to other routes
   void navigateToPref() {
-    NavigationService().navigateTo(Routes.fileSearchView);
+    _navigationService.navigateTo(Routes.fileSearchView);
+  }
+
+  void navigateToChannelPage() {
+    _navigationService.navigateTo(Routes.channelPageView);
   }
 
   void navigateToInfo() {
-    NavigationService().navigateTo(Routes.channelInfoView);
+    _navigationService.navigateTo(Routes.channelInfoView);
   }
 
   void navigateToWorkspace() {
-    NavigationService().navigateTo(Routes.workspaceView);
+    _navigationService.navigateTo(Routes.workspaceView);
   }
 
   void navigateToDmUser() {
-    locator<NavigationService>().navigateTo(Routes.dmUserView);
+    _navigationService.navigateTo(Routes.dmUserView);
   }
 }
