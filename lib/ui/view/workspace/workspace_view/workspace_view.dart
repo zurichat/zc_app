@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../models/workspace_model.dart';
-import '../../../shared/shared.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../models/workspace_model.dart';
+import '../../../shared/shared.dart';
 import 'workspace_viewmodel.dart';
 
 class WorkspaceView extends StatelessWidget {
@@ -34,7 +34,11 @@ class WorkspaceView extends StatelessWidget {
                       child: SingleChildScrollView(
                         physics: ScrollPhysics(),
                         child: model.workspaces.isEmpty
-                            ? Text("No Organization Available!")
+                            ? Padding(
+                                padding: const EdgeInsets.only(top: 16.0),
+                                child: Text(
+                                    "You have not joined any organisation yet!"),
+                              )
                             : Column(
                                 children: [
                                   SizedBox(
@@ -210,7 +214,7 @@ class OrganizationTile extends ViewModelWidget<WorkspaceViewModel> {
   @override
   Widget build(BuildContext context, WorkspaceViewModel model) {
     return ListTile(
-      onTap: () => model.onTap(org.id),
+      onTap: () => model.onTap(org.id, org.name, org.workSpaceUrl),
       leading: Container(
         height: MediaQuery.of(context).size.height * 0.06,
         width: MediaQuery.of(context).size.height * 0.06,

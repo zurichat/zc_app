@@ -12,7 +12,6 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
-import '../package/base/server-request/api/http_api.dart';
 import '../services/connectivity_service.dart';
 import '../services/local_storage_services.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
@@ -119,6 +118,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     LazySingleton(classType: DMApiService),
     LazySingleton(classType: ChannelsApiService),
   ],
+  logger: StackedLogger(),
 )
 class AppSetup {
   /* This class serves no other purpose other than having the

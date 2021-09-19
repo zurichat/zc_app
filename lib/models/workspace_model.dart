@@ -1,5 +1,5 @@
 class WorkspaceModel {
-  final String id;
+  final String? id;
   final String? name;
   final String? workSpaceUrl;
   final String? time;
@@ -19,7 +19,7 @@ class WorkspaceModel {
 
   factory WorkspaceModel.fromJson(Map<String, dynamic> json) {
     return WorkspaceModel(
-        id: json['id'],
+        id: json['_id'],
         name: json['name'],
         logoUrl: json['logo_url'],
         time: json['created_at'],

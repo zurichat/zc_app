@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -25,6 +26,7 @@ import 'sign_up_viewmodel.dart';
   ],
 )
 class SignUpView extends StatelessWidget with $SignUpView {
+  final log = getLogger('SignUpView');
   SignUpView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -178,7 +180,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           ),
                           child: InkWell(
                             onTap: () {
-                              print(' chiboy clicked');
+                              log.i(' chiboy clicked');
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

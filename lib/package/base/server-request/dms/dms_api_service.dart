@@ -1,3 +1,4 @@
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/shared/shared.dart';
 
@@ -8,6 +9,7 @@ import '../api/http_api.dart';
 
 class DMApiService {
   final _api = HttpApiService(dmsBaseUrl);
+  final log = getLogger('DMApiService');
   //Todo: implement this in another service
   final _userApi = HttpApiService('https://api.zuri.chat/');
 
@@ -27,9 +29,9 @@ class DMApiService {
         headers: {'Authorization': 'Bearer $token'},
       );
       joinedRooms = res?.data?['joined_rooms'];
-      print(joinedRooms);
+      log.i(joinedRooms);
     } on Exception catch (e) {
-      print(e.toString());
+      log.e(e.toString());
       return [];
     }
 
@@ -44,9 +46,9 @@ class DMApiService {
         id = id[1];
       }
       final res = _userApi.get('users/$id');
-      print(res);
+      log.i(res);
     } on Exception catch (e) {
-      print(e.toString());
+      log.e(e.toString());
       return null;
     }
   }
