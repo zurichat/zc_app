@@ -95,8 +95,6 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: CreateWorkSpace),
     MaterialRoute(page: FileSearchView),
     MaterialRoute(page: DraftView),
-    MaterialRoute(page: ChannelPageView),
-    MaterialRoute(page: ChannelInfoView),
     MaterialRoute(page: EditChannelPageView),
     MaterialRoute(page: WorkspaceUrlView),
   ],
