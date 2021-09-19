@@ -1,12 +1,17 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/dm_user/widgets/setupBottomSheetUi.dart';
+// import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import 'dummy_data/models/message.dart';
 import 'dummy_data/models/user.dart';
+
+enum BottomSheetType {
+  FloatingBox,
+}
 
 class DmUserViewModel extends BaseViewModel {
   final _username = '';
@@ -56,6 +61,17 @@ class DmUserViewModel extends BaseViewModel {
     }
   }
 
+  void setupBottomSheetUi() {
+    final bottomSheetService = locator<BottomSheetService>();
+
+    final builders = {
+      BottomSheetType.FloatingBox: (context, sheetRequest, completer) =>
+          FloatingBoxBottomSheet(request: sheetRequest, completer: completer)
+    };
+
+    bottomSheetService.setCustomSheetBuilders(builders);
+  }
+
   void popScreen() {
     final navigationService = locator<NavigationService>();
     navigationService.back();
@@ -73,94 +89,5 @@ class DmUserViewModel extends BaseViewModel {
       ),
     );
     notifyListeners();
-  }
-
-  Future<dynamic> showButtomSheet(BuildContext context) {
-    return showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Wrap(
-                direction: Axis.horizontal,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.face_outlined),
-                      Icon(Icons.face),
-                      Icon(Icons.face),
-                      Icon(Icons.face),
-                    ],
-                  )
-                ],
-              ),
-              Divider(
-                thickness: 10,
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  ListTile(
-                    leading: new Icon(Icons.message_rounded),
-                    title: new Text('Follow Thread'),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    leading: new Icon(Icons.mark_as_unread),
-                    title: new Text('Mark Unread'),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    leading: new Icon(Icons.delete),
-                    title: new Text('Delete Message'),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    leading: new Icon(Icons.copy),
-                    title: new Text('Copy Text'),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    leading: new Icon(Icons.message_sharp),
-                    title: new Text('Reply In Thread'),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    leading: new Icon(Icons.directions),
-                    title: new Text('Share Message'),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    leading: new Icon(Icons.bookmark),
-                    title: new Text('Save'),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    leading: new Icon(Icons.link),
-                    title: new Text('Copy Link to Message'),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ],
-              ),
-            ],
-          );
-        });
   }
 }
