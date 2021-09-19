@@ -7,7 +7,7 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class CustomUserBottomSheetViewModel extends FutureViewModel {
+class CustomUserBottomSheetViewModel extends FutureViewModel{
   final _navigationService = locator<NavigationService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
   final _apiService = locator<HttpApiService>();
@@ -25,6 +25,7 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
     final response = await _apiService.get('users/$userID',
         headers: {'Authorization': 'Bearer $currentSessionToken'});
     _userModel = UserModel.fromJson(response!.data['data']);
+    print(response);
   }
 
   UserModel? get userModel => _userModel;

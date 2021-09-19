@@ -76,7 +76,9 @@ class LoginViewModel extends FormViewModel {
             ''' ${response?.data['data']['user']['email']}''',
       );
 
-      navigationService.navigateTo(Routes.workspaceView);
+      // navigationService.navigateTo(Routes.workspaceView);
+
+      navigationService.navigateTo(Routes.navBarView);
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),

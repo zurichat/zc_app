@@ -54,10 +54,10 @@ class NavBarView extends StatelessWidget {
   }
 
   List<BottomNavigationBarItem> getBottomIcons() {
-    List<String> name = ['Home', 'Dm', 'You'];
-    List<SvgData> icons = [SvgAssets.home, SvgAssets.dm, SvgAssets.you];
+    List<String> name = ['Home', 'Dm', 'Integrate', 'You'];
+    List<SvgData> icons = [SvgAssets.home, SvgAssets.dm, SvgAssets.integrate, SvgAssets.you];
 
-    List<BottomNavigationBarItem> bottomNavList = List.generate(3, (i) {
+    List<BottomNavigationBarItem> bottomNavList = List.generate(4, (i) {
       var item = BottomNavigationBarItem(
         label: name[i],
         icon: SvgIcon(
