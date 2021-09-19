@@ -104,7 +104,6 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: SnackbarService),
     LazySingleton(classType: ThemeService),
-    LazySingleton(classType: HttpApiService),
     Presolve(
       classType: SharedPreferenceLocalStorage,
       presolveUsing: SharedPreferences.getInstance,

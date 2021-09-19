@@ -7,4 +7,6 @@ class StorageKeys {
   static const otp = 'current_user_otp';
   static const workspaceIds = 'workspace_ids';
   static const registeredNotverifiedOTP = 'user_otp_verified';
+  static const currentOrgName = 'current_org_name';
+  static const currentOrgUrl = 'current_org_url';
 }

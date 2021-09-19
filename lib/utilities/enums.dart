@@ -15,3 +15,9 @@ enum WorkspaceSwitchMethod {
   SignIn,
   Join,
 }
+
+/// The type of snackbar to show
+enum SnackbarType {
+  success,
+  failure,
+}
