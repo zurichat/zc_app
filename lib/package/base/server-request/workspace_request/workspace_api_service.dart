@@ -66,6 +66,7 @@ class WorkSpaceApiService {
     log.i(res?.data);
     print(res?.data);
 
+    res?.data?['data']['id'] = res.data['data']['_id'];
     return WorkspaceModel.fromJson(res?.data?['data']);
   }
 
