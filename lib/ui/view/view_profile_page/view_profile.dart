@@ -67,6 +67,7 @@ class ViewProfile extends StatelessWidget {
                                 child: Icon(
                                   Icons.circle,
                                   size: 12.0,
+                                  // color: isActive!
                                   color: isActive == true
                                       ? AppColors.zuriPrimaryColor
                                       : Colors.transparent,
