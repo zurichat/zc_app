@@ -8,6 +8,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/all_threads_view/thread_detail/model/hook_thread_detail.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -57,6 +58,7 @@ class Routes {
   static const String navBarView = '/nav-bar-view';
   static const String onboardingView = '/onboarding-view';
   static const String loginView = '/login-view';
+  static const String threadDetailsView = '/thread-details-view';
   static const String otpView = '/otp-view';
   static const String signUpView = '/sign-up-view';
   static const String workspaceView = '/workspace-view';
@@ -138,6 +140,7 @@ class Routes {
     createWorkSpace,
     fileSearchView,
     draftView,
+    threadDetailsView,
   };
 }
 
@@ -187,6 +190,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.threadDetailsView, page: ThreadDetailHook)
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -458,6 +462,13 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    ThreadDetailHook:(data){
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
+        builder: (context) => ThreadDetailHook(),
+        settings: data,
+      );
+    }
+
   };
 }
 
