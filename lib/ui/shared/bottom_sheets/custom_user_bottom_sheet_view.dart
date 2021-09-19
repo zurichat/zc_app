@@ -49,10 +49,11 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              CustomButton(text: "Message", onPressed: () {}),
+                              CustomButton(text: 'Message', onPressed: () {}),
                               CustomButton(
-                                  text: "Edit Profile",
-                                  onPressed: model.editProfile),
+                                text: 'Edit Profile',
+                                onPressed: () => model.navigateToEditProfile(),
+                              ),
                               CustomButton.icon(
                                   icon: Icons.more_horiz_rounded,
                                   onPressed: () {}),
@@ -61,14 +62,14 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         ),
                         Divider(),
                         CustomProfileTile(
-                            title: "What I do", subtitle: "Mobile Dev"),
+                            title: 'What I do', subtitle: 'Mobile Dev'),
                         Divider(),
                         CustomProfileTile(
-                            title: "Display Name", subtitle: "pauleke65"),
+                            title: 'Display Name', subtitle: 'pauleke65'),
                         Divider(),
                         ListTile(
                           title: CustomText(
-                              text: "Status", fontWeight: FontWeight.w300),
+                              text: 'Status', fontWeight: FontWeight.w300),
                           subtitle: Align(
                               alignment: Alignment.centerLeft,
                               child: Icon(Icons.looks_5, color: Colors.blue)),
@@ -76,17 +77,17 @@ class CustomUserBottomSheetView extends StatelessWidget {
                             top: BorderSide(
                                 width: .5, color: AppColors.greyishColor),
                           ),
-                          onTap: model.setStatus,
+                          onTap: () => model.navigateToSetStatus(),
                           trailing: IconButton(
                               onPressed: () {}, icon: Icon(Icons.cancel)),
                         ),
                         Divider(),
                         CustomProfileTile(
-                            title: "Mobile Number", subtitle: "+2347023456789"),
+                            title: 'Mobile Number', subtitle: '+2347023456789'),
                         Divider(),
                         CustomProfileTile(
-                            title: "Email Address",
-                            subtitle: "myemail@mail.com"),
+                            title: 'Email Address',
+                            subtitle: 'myemail@mail.com'),
                       ],
                     ),
                   ),
