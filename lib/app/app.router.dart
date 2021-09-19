@@ -522,15 +522,6 @@ class SignUpViewArguments {
   SignUpViewArguments({this.key});
 }
 
-<<<<<<< HEAD
-/// ForgotPasswordEmailView arguments holder class
-class ForgotPasswordEmailViewArguments {
-  final Key? key;
-  ForgotPasswordEmailViewArguments({this.key});
-}
-
-=======
->>>>>>> 0661646394066db8599ccbac1e29d6bf2534cf52
 /// ForgotPasswordOtpView arguments holder class
 class ForgotPasswordOtpViewArguments {
   final Key? key;
@@ -552,12 +543,7 @@ class DmUserViewArguments {
 /// AddPluginView arguments holder class
 class AddPluginViewArguments {
   final Key? key;
-<<<<<<< HEAD
-  final bool isActive;
-  ViewProfileArguments({this.key, this.isActive});
-=======
   AddPluginViewArguments({this.key});
->>>>>>> 0661646394066db8599ccbac1e29d6bf2534cf52
 }
 
 /// CreateWorkSpace arguments holder class
