@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/otp/otp_viewmodel.dart';
@@ -17,6 +18,7 @@ import 'otp_view.form.dart';
   ],
 )
 class OTPView extends StatelessWidget with $OTPView {
+  final log = getLogger('OTPView');
   OTPView({Key? key}) : super(key: key);
 
   @override
@@ -114,7 +116,7 @@ class OTPView extends StatelessWidget with $OTPView {
                           onTap: () {},
                           onChanged: (value) {},
                           beforeTextPaste: (text) {
-                            print("Allowing to paste $text");
+                            log.i("Allowing to paste $text");
                             //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
                             //but you can show anything you want here, like your pop up saying wrong paste format or etc
                             return true;

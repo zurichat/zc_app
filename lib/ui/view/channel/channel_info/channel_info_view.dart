@@ -38,7 +38,10 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
               children: [
                 const FirstSection(),
 
-                const EditButton(),
+                GestureDetector(
+                  onTap: model.navigateToEditChannel,
+                  child: const EditButton(),
+                ),
 
                 const SecondSection(),
 

@@ -1,17 +1,20 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/general_widgets/app_snackbar.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/ui/view/otp/otp_view.form.dart';
-import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../app/app.locator.dart';
+import '../../../app/app.router.dart';
+import '../../../package/base/server-request/api/http_api.dart';
+import '../../../services/local_storage_services.dart';
+import '../../../utilities/constants.dart';
+import '../../../utilities/enums.dart';
+import '../../../utilities/storage_keys.dart';
+import 'otp_view.form.dart';
+
 class OTPViewModel extends FormViewModel {
-  NavigationService _navigationService = NavigationService();
-  final _apiService = locator<HttpApiService>();
+  final _navigationService = NavigationService();
+  final _apiService = HttpApiService(coreBaseUrl);
   static final _storage = locator<SharedPreferenceLocalStorage>();
+  final snackbar = locator<SnackbarService>();
   static String? _storedOTP;
 
   bool _isLoading = false;
@@ -33,9 +36,9 @@ class OTPViewModel extends FormViewModel {
     _navigationService.navigateTo(Routes.loginView);
   }
 
-  verifyOTP(context) async {
+  void verifyOTP(context) async {
     _loading(true);
-    final endpoint = '/verify-account';
+    const endpoint = 'account/verify-account';
     if ((otpValue!.length) > 5) {
       final verificationData = {
         'code': otpValue,
@@ -45,16 +48,27 @@ class OTPViewModel extends FormViewModel {
             await _apiService.post(endpoint, data: verificationData);
         _loading(false);
         if (response?.statusCode == 200) {
-          AppSnackBar.success(context, response?.data['message']);
+          snackbar.showCustomSnackBar(
+            duration: const Duration(seconds: 3),
+            variant: SnackbarType.success,
+            message: response?.data['message'],
+          );
           _storage.setBool(StorageKeys.registeredNotverifiedOTP, false);
           navigateLogin();
         } else {
-          AppSnackBar.failure(
-              context, response?.data['message'] ?? 'Something went wrong');
+          snackbar.showCustomSnackBar(
+            duration: const Duration(seconds: 3),
+            variant: SnackbarType.failure,
+            message: response?.data['message'] ?? 'Something went wrong',
+          );
         }
       } else {
         _loading(false);
-        AppSnackBar.failure(context, "Wrong OTP, please check again.");
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: 'Wrong OTP, please check again.',
+        );
       }
     }
   }

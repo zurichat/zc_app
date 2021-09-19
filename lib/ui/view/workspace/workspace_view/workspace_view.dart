@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/models/workspace_model.dart';
-import 'package:hng/ui/shared/shared.dart';
+import '../../../../models/workspace_model.dart';
+import '../../../shared/shared.dart';
 import 'package:stacked/stacked.dart';
 
 import 'workspace_viewmodel.dart';
@@ -13,9 +13,9 @@ class WorkspaceView extends StatelessWidget {
       onModelReady: (model) => model.initViewModel(),
       disposeViewModel: false,
       builder: (context, model, child) {
-        return SafeArea(
-          child: Scaffold(
-            body: Padding(
+        return Scaffold(
+          body: SafeArea(
+            child: Padding(
               padding: const EdgeInsets.all(14.0),
               child: Column(
                 children: [
@@ -43,7 +43,7 @@ class WorkspaceView extends StatelessWidget {
                                   ),
                                   ListView.builder(
                                     physics: NeverScrollableScrollPhysics(),
-                                    itemCount:  model.workspaces.length,
+                                    itemCount: model.workspaces.length,
                                     shrinkWrap: true,
                                     itemBuilder: (context, i) {
                                       final org = model.workspaces[i];
@@ -238,13 +238,13 @@ class OrganizationTile extends ViewModelWidget<WorkspaceViewModel> {
           child: Container(
             height: MediaQuery.of(context).size.height * 0.05,
             width: MediaQuery.of(context).size.width * 0.5,
-            color: Colors.red,
+            color: Colors.grey,
           ),
         ),
       ),
       //TODO : Add the org name here
       title: Text(
-        org.name,
+        org.name ?? '',
         overflow: TextOverflow.ellipsis,
         softWrap: false,
         maxLines: 2,
