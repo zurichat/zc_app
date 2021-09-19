@@ -11,7 +11,7 @@ import 'package:stacked/stacked.dart';
 
 const String OtpValueKey = 'otp';
 
-mixin $OTPView on StatelessWidget {
+mixin $ForgotPasswordOtpView on StatelessWidget {
   final TextEditingController otpController = TextEditingController();
 
   /// Registers a listener on every generated controller that calls [model.setData()]

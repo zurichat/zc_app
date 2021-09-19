@@ -1,3 +1,4 @@
+import 'package:hng/ui/view/channel/edit_channel/edit_channel_view.dart';
 import 'package:hng/ui/view/workspace/workspace_url/workspace_url_view.dart';
 import 'package:hng/ui/view/channel/add_people/channel_add_people_view.dart';
 import 'package:hng/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
@@ -94,6 +95,9 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: CreateWorkSpace),
     MaterialRoute(page: FileSearchView),
     MaterialRoute(page: DraftView),
+    MaterialRoute(page: ChannelPageView),
+    MaterialRoute(page: ChannelInfoView),
+    MaterialRoute(page: EditChannelPageView),
     MaterialRoute(page: WorkspaceUrlView),
   ],
   dependencies: [

@@ -70,7 +70,6 @@ class Routes {
   static const String forgotPasswordNewView = '/forgot-password-new-view';
   static const String channelNotificationView = '/channel-notification-view';
   static const String newChannel = '/new-channel';
-  static const String channelInfoView = '/channel-info-view';
   static const String homePage = '/home-page';
   static const String addPeopleView = '/add-people-view';
   static const String channelPageView = '/channel-page-view';
@@ -100,7 +99,8 @@ class Routes {
   static const String createWorkSpace = '/create-work-space';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
-  static const String channelInfoEdit = '/channel-info-edit';
+  static const String channelInfoView = '/channel-info-view';
+  static const String editChannelPage = '/edit-channel-view';
   static const String workspaceUrlView = '/workspace-url-view';
   static const all = <String>{
     channelAddPeopleView,
@@ -145,7 +145,7 @@ class Routes {
     createWorkSpace,
     fileSearchView,
     draftView,
-    channelInfoEdit,
+    editChannelPage,
     workspaceUrlView,
   };
 }
@@ -197,8 +197,9 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
-    RouteDef(Routes.channelInfoEdit, page: EditChannelPageView),
+    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
+    RouteDef(Routes.editChannelPage, page: EditChannelPageView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -221,12 +222,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    EditChannelPageView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const EditChannelPageView(),
-        settings: data,
-      );
-    },
     LoginView: (data) {
       var args = data.getArgs<LoginViewArguments>(
         orElse: () => LoginViewArguments(),
@@ -237,8 +232,11 @@ class StackedRouter extends RouterBase {
       );
     },
     OTPView: (data) {
+      var args = data.getArgs<OTPViewArguments>(
+        orElse: () => OTPViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => OTPView(),
+        builder: (context) => OTPView(key: args.key),
         settings: data,
       );
     },
@@ -263,6 +261,12 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    EditChannelPageView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => EditChannelPageView(),
+        settings: data,
+      );
+    },
     ForgotPasswordEmailView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ForgotPasswordEmailView(),
@@ -271,7 +275,7 @@ class StackedRouter extends RouterBase {
     },
     ForgotPasswordOtpView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ForgotPasswordOtpView(),
+        builder: (context) => ForgotPasswordOtpView(),
         settings: data,
       );
     },
@@ -373,7 +377,7 @@ class StackedRouter extends RouterBase {
     },
     ViewProfile: (data) {
       var args = data.getArgs<ViewProfileArguments>(
-        orElse: () => ViewProfileArguments(),
+        orElse: () => ViewProfileArguments(isActive: null),
       );
       return MaterialPageRoute<dynamic>(
         builder: (context) => ViewProfile(
@@ -502,6 +506,12 @@ class LoginViewArguments {
   LoginViewArguments({this.key});
 }
 
+/// OTPView arguments holder class
+class OTPViewArguments {
+  final Key? key;
+  OTPViewArguments({this.key});
+}
+
 /// SignUpView arguments holder class
 class SignUpViewArguments {
   final Key? key;
@@ -524,7 +534,7 @@ class DmUserViewArguments {
 class ViewProfileArguments {
   final Key? key;
   final bool isActive;
-  ViewProfileArguments({this.key, this.isActive = true});
+  ViewProfileArguments({this.key, required this.isActive});
 }
 
 /// CreateWorkSpace arguments holder class
