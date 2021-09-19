@@ -3,7 +3,6 @@ import 'package:hng/general_widgets/svg_icon.dart';
 
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/constants.dart';
 import '../../nav_pages/home_page/home_page.dart';
 import 'package:stacked/stacked.dart';
 

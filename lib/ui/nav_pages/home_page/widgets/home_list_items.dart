@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/general_widgets/ripple.dart';

@@ -34,3 +34,19 @@ class Validator {
       return null;
   }
 }
+
+class Validators {
+  emailValidation(String input) {
+    if (input.isEmpty) {
+      return 'Field cannot be empty';
+    } else if (input.isNotEmpty) {
+      return null;
+    } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_"
+            r"`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(input)) {
+      return null;
+    } else {
+      return 'Invalid Email Address';
+    }
+  }
+}

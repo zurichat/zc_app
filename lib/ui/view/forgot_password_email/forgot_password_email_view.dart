@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
@@ -15,8 +14,6 @@ class ForgotPasswordEmailView extends StatefulWidget {
 }
 
 class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
-  final validateKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ForgotPasswordEmailViewModel>.reactive(
@@ -77,26 +74,17 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                 ),
                 Form(
                   // autovalidateMode: AutovalidateMode.onUserInteraction,
-                  key: validateKey,
+                  key: model.validateKey,
                   child: CustomTextField(
-                    controller: emailController,
+                    controller: model.emailController,
                     //autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (val) {
-                      if (val!.isEmpty) {
-                        return 'Field cannot be empty';
-                      } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_"
-                              r"`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                          .hasMatch(val!)) {
-                        return null;
-                      } else {
-                        return 'Invalid Email Address';
-                      }
+                      model.emailValidation(model.emailController.text);
                     },
                     keyboardType: TextInputType.emailAddress,
                     inputAction: TextInputAction.done,
                     autoCorrect: true,
                     obscureText: false,
-
                     hintText: 'Name@gmail.com',
                   ),
                 ),
@@ -108,10 +96,7 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                     widthFactor: 1.0,
                     child: ElevatedButton(
                       onPressed: () {
-                        setState(() {});
-                        if (validateKey.currentState!.validate()) {
-                          return model.navigateToOtp();
-                        }
+                        model.emailValidation(model.emailController.text);
                       },
                       child: Text(
                         'Continue',

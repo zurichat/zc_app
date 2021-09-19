@@ -13,9 +13,6 @@ class ForgotPasswordNewView extends StatefulWidget {
 }
 
 class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
-  TextEditingController newPasswordController = TextEditingController();
-  TextEditingController reTypePassController = TextEditingController();
-  final validateKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ForgotPasswordNewViewModel>.reactive(
@@ -74,21 +71,25 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                             fontWeight: FontWeight.w700, fontSize: 16.0),
                       )),
                   Form(
-                    key: validateKey,
+                    key: model.validateKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomTextField(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (val) {
-                            if (newPasswordController.text.isEmpty) {
+                            if (model.newPasswordController.text.isEmpty) {
                               return 'Field cannot be empty';
+                            } else if (model
+                                .newPasswordController.text.isNotEmpty) {
+                              return null;
                             } else if (val.length < 6) {
                               return 'Password must be atleast 6 characters';
                             } else {
                               return null;
                             }
                           },
-                          controller: newPasswordController,
+                          controller: model.newPasswordController,
                           keyboardType: TextInputType.emailAddress,
                           inputAction: TextInputAction.next,
                           autoCorrect: true,
@@ -109,14 +110,14 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                         CustomTextField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (val) {
-                            if (newPasswordController.text !=
-                                reTypePassController.text) {
+                            if (model.newPasswordController.text !=
+                                model.reTypePassController.text) {
                               return 'Passwords do not match';
                             } else {
                               return null;
                             }
                           },
-                          controller: reTypePassController,
+                          controller: model.reTypePassController,
                           keyboardType: TextInputType.visiblePassword,
                           inputAction: TextInputAction.done,
                           autoCorrect: true,
@@ -135,7 +136,7 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                       child: ElevatedButton(
                         onPressed: () {
                           setState(() {});
-                          if (validateKey.currentState!.validate()) {
+                          if (model.validateKey.currentState!.validate()) {
                             return model.navigateToLogin();
                           }
                         },

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/validators.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
