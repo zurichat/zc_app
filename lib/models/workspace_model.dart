@@ -4,8 +4,8 @@ class WorkspaceModel {
   final String? workSpaceUrl;
   final String? time;
   final String? logoUrl;
-  final List? plugins;
-  final String? settings;
+  final bool? isOwner;
+  final int? noOfMembers;
 
   WorkspaceModel({
     required this.id,
@@ -13,20 +13,19 @@ class WorkspaceModel {
     required this.workSpaceUrl,
     required this.time,
     required this.logoUrl,
-    this.plugins,
-    this.settings,
+    required this.isOwner,
+    required this.noOfMembers,
   });
 
   factory WorkspaceModel.fromJson(Map<String, dynamic> json) {
     return WorkspaceModel(
-      id: json['_id'],
-      name: json['name'],
-      logoUrl: json['logo_url'],
-      time: json['created_at'],
-      workSpaceUrl: json['workspace_url'],
-      plugins: json['plugins'],
-      settings: json['settings'],
-    );
+        id: json['id'],
+        name: json['name'],
+        logoUrl: json['logo_url'],
+        time: json['created_at'],
+        workSpaceUrl: json['workspace_url'],
+        noOfMembers: json['no_of_members'],
+        isOwner: json['isOwner']);
   }
 
   String get initials {

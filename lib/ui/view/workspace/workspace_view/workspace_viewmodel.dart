@@ -38,22 +38,23 @@ class WorkspaceViewModel extends BaseViewModel {
     }
   }
 
-//TODO change this to fetch the list of organizations the user is part of alone
-//SHould not return all organizations but the ones the user has joined
+  //Returns the list of organisation the user is part of
   Future fetchOrganizations() async {
-    try {
-      if (!await connectivityService.checkConnection()) {
-        snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.failure,
-          message: 'Check your internet connection',
-        );
+    if (!await connectivityService.checkConnection()) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: 'Check your internet connection',
+      );
 
-        return;
-      }
+      return;
+    }
+
+    try {
       setBusy(true);
-      workspaces = await api.fetchListOfOrganizations();
-      filterWorkspace();
+      workspaces = await api.getJoinedOrganizations();
+      // filterWorkspace();
+
       setBusy(false);
     } catch (e) {
       print(e.toString());
@@ -74,7 +75,7 @@ class WorkspaceViewModel extends BaseViewModel {
   Future<void> onTap(String id) async {
     try {
       if (id == currentOrgId) {
-        navigation.popRepeated(1);
+        navigation.replaceWith(Routes.navBarView);
         return;
       }
       if (!await connectivityService.checkConnection()) {
@@ -96,8 +97,8 @@ class WorkspaceViewModel extends BaseViewModel {
       storageService.setString(StorageKeys.currentOrgName, workspaces.name!);
       storageService.setString(
           StorageKeys.currentOrgUrl, workspaces.workSpaceUrl!);
-      navigation.navigateTo(Routes.navBarView);
-      navigation.popRepeated(1);
+      navigation.replaceWith(Routes.navBarView);
+      // navigation.popRepeated(1);
     } catch (e) {
       print(e.toString());
       snackbar.showCustomSnackBar(
