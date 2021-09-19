@@ -1,21 +1,25 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/user_model.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class CustomUserBottomSheetViewModel extends FutureViewModel{
+import '../../../app/app.locator.dart';
+import '../../../app/app.router.dart';
+import '../../../models/user_model.dart';
+import '../../../package/base/server-request/api/http_api.dart';
+import '../../../services/local_storage_services.dart';
+import '../../../utilities/constants.dart';
+import '../../../utilities/storage_keys.dart';
+
+class CustomUserBottomSheetViewModel extends FutureViewModel {
   final _navigationService = locator<NavigationService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
-  final _apiService = locator<HttpApiService>();
+  final _apiService = HttpApiService(coreBaseUrl);
   UserModel? _userModel;
 
-  void navigateToSetStatus() => _navigationService.navigateTo(Routes.setStatusView);
+  void navigateToSetStatus() =>
+      _navigationService.navigateTo(Routes.setStatusView);
 
-  void navigateToEditProfile() => _navigationService.navigateTo(Routes.editProfileView);
+  void navigateToEditProfile() =>
+      _navigationService.navigateTo(Routes.editProfileView);
 
   @override
   Future<void> futureToRun() async {
