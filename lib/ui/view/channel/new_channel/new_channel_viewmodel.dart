@@ -1,11 +1,20 @@
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../utilities/mixins/validators_mixin.dart';
 
 class NewChannelViewModel extends FormViewModel with ValidatorMixin {
+  final _navigationService = locator<NavigationService>();
+
   int inputLength = 80;
   bool inputError = false;
   bool isChannelPrivate = false;
+
+  void navigateToChannelPageView() {
+    _navigationService.navigateTo(Routes.channelPageView);
+  }
 
   void toggleSwitch(bool value) {
     isChannelPrivate = value;

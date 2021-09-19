@@ -50,7 +50,7 @@ class HomePageViewModel extends StreamViewModel {
     return connectionStatus;
   }
 
-    void navigateToJumpToScreen() {
+  void navigateToJumpToScreen() {
     _navigationService.navigateTo(Routes.dmJumpToView);
   }
 
@@ -157,6 +157,10 @@ class HomePageViewModel extends StreamViewModel {
   //*Navigate to other routes
   void navigateToPref() {
     _navigationService.navigateTo(Routes.fileSearchView);
+  }
+
+  void navigateToNewChannel() {
+    _navigationService.navigateTo(Routes.newChannel);
   }
 
   void navigateToChannelPage() {
