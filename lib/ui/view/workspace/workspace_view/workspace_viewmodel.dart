@@ -1,10 +1,10 @@
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.router.dart';
-import '../../../../general_widgets/app_toast.dart';
 import '../../../../models/workspace_model.dart';
 import '../../../../package/base/server-request/workspace_request/workspace_api_service.dart';
 import '../../../../services/connectivity_service.dart';
@@ -12,6 +12,7 @@ import '../../../../services/local_storage_services.dart';
 import '../../../../utilities/storage_keys.dart';
 
 class WorkspaceViewModel extends BaseViewModel {
+  final log = getLogger('WorkspaceViewModel');
   final navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
   final connectivityService = locator<ConnectivityService>();
@@ -57,7 +58,7 @@ class WorkspaceViewModel extends BaseViewModel {
 
       setBusy(false);
     } catch (e) {
-      print(e.toString());
+      log.i(e.toString());
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
@@ -87,7 +88,7 @@ class WorkspaceViewModel extends BaseViewModel {
         return;
       }
       final workspaces = await api.fetchOrganizationInfo(id);
-      print(workspaces);
+      log.i(workspaces);
       await storageService.setString(StorageKeys.currentOrgId, id);
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -100,7 +101,7 @@ class WorkspaceViewModel extends BaseViewModel {
       navigation.replaceWith(Routes.navBarView);
       // navigation.popRepeated(1);
     } catch (e) {
-      print(e.toString());
+      log.i(e.toString());
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
