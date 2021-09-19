@@ -197,8 +197,6 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
-    RouteDef(Routes.channelPageView, page: ChannelPageView),
-    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
   ];
@@ -520,6 +518,12 @@ class OTPViewArguments {
 class SignUpViewArguments {
   final Key? key;
   SignUpViewArguments({this.key});
+}
+
+/// ForgotPasswordEmailView arguments holder class
+class ForgotPasswordEmailViewArguments {
+  final Key? key;
+  ForgotPasswordEmailViewArguments({this.key});
 }
 
 /// ForgotPasswordOtpView arguments holder class

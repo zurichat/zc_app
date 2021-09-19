@@ -72,13 +72,9 @@ class ForgotPasswordEmailView extends StatelessWidget
                   ),
                 ),
                 Form(
-                  // autovalidateMode: AutovalidateMode.onUserInteraction,
-
                   child: TextField(
                     controller: forgotEmailController,
-                    //autovalidateMode: AutovalidateMode.onUserInteraction,
                     keyboardType: TextInputType.emailAddress,
-
                     obscureText: false,
                     textInputAction: TextInputAction.done,
                     autocorrect: true,
