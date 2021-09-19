@@ -25,7 +25,7 @@ class ChannelsApiService {
         'v1/$orgId/channels/',
         headers: {'Authorization': 'Bearer $token'},
       );
-      joinedChannels = res?.data;
+      joinedChannels = res?.data ?? [];
       print(joinedChannels);
     } on Exception catch (e) {
       print(e.toString());

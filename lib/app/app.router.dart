@@ -197,6 +197,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.channelPageView, page: ChannelPageView),
+    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
   ];
