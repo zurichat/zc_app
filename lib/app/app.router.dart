@@ -8,7 +8,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/channel/edit_channel/edit_channel_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/nav_pages/home_page/home_page.dart';
@@ -19,6 +18,7 @@ import '../ui/view/channel/channel_info/channel_info_view.dart';
 import '../ui/view/channel/channel_list/channels_view.dart';
 import '../ui/view/channel/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel/channel_view/channel_page_view.dart';
+import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/clear_after/clear_after_view.dart';
 import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
@@ -70,6 +70,7 @@ class Routes {
   static const String forgotPasswordNewView = '/forgot-password-new-view';
   static const String channelNotificationView = '/channel-notification-view';
   static const String newChannel = '/new-channel';
+  static const String channelInfoView = '/channel-info-view';
   static const String homePage = '/home-page';
   static const String addPeopleView = '/add-people-view';
   static const String channelPageView = '/channel-page-view';
@@ -99,8 +100,7 @@ class Routes {
   static const String createWorkSpace = '/create-work-space';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
-  static const String channelInfoView = '/channel-info-view';
-  static const String editChannelPage = '/edit-channel-view';
+  static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
   static const all = <String>{
     channelAddPeopleView,
@@ -145,7 +145,7 @@ class Routes {
     createWorkSpace,
     fileSearchView,
     draftView,
-    editChannelPage,
+    editChannelPageView,
     workspaceUrlView,
   };
 }
@@ -197,9 +197,10 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+    RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
-    RouteDef(Routes.editChannelPage, page: EditChannelPageView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -261,12 +262,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    EditChannelPageView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => EditChannelPageView(),
-        settings: data,
-      );
-    },
     ForgotPasswordEmailView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ForgotPasswordEmailView(),
@@ -274,8 +269,11 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordOtpView: (data) {
+      var args = data.getArgs<ForgotPasswordOtpViewArguments>(
+        orElse: () => ForgotPasswordOtpViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ForgotPasswordOtpView(),
+        builder: (context) => ForgotPasswordOtpView(key: args.key),
         settings: data,
       );
     },
@@ -487,6 +485,12 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    EditChannelPageView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const EditChannelPageView(),
+        settings: data,
+      );
+    },
     WorkspaceUrlView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceUrlView(),
@@ -518,6 +522,12 @@ class SignUpViewArguments {
   SignUpViewArguments({this.key});
 }
 
+/// ForgotPasswordOtpView arguments holder class
+class ForgotPasswordOtpViewArguments {
+  final Key? key;
+  ForgotPasswordOtpViewArguments({this.key});
+}
+
 /// HomePage arguments holder class
 class HomePageArguments {
   final Key? key;
@@ -533,8 +543,8 @@ class DmUserViewArguments {
 /// ViewProfile arguments holder class
 class ViewProfileArguments {
   final Key? key;
-  final bool isActive;
-  ViewProfileArguments({this.key, required this.isActive});
+  final bool? isActive;
+  ViewProfileArguments({this.key, this.isActive});
 }
 
 /// CreateWorkSpace arguments holder class
