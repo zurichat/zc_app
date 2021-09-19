@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import '../../../shared/colors.dart';
 import '../../../shared/styles.dart';
 import '../../../shared/ui_helpers.dart';
+import 'new_channel.form.dart';
 import 'new_channel_viewmodel.dart';
 
-class NewChannel extends StatefulWidget {
-  const NewChannel({Key? key}) : super(key: key);
-  @override
-  State<NewChannel> createState() => _NewChannelState();
-}
-
-class _NewChannelState extends State<NewChannel> {
+@FormView(fields: [
+  FormTextField(name: 'channelName'),
+  FormTextField(name: 'channelDescription')
+])
+class NewChannel extends StatelessWidget with $NewChannel {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<NewChannelViewModel>.reactive(
+      onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => NewChannelViewModel(),
       builder: (context, model, child) => Scaffold(
         backgroundColor: AppColors.whiteColor,
@@ -74,7 +75,9 @@ class _NewChannelState extends State<NewChannel> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5.0),
                       border: Border.all(
-                        color: model.borderColor,
+                        color: model.inputError
+                            ? AppColors.redColor
+                            : AppColors.borderColor,
                         width: 0.5,
                       ),
                     ),
@@ -88,7 +91,7 @@ class _NewChannelState extends State<NewChannel> {
                         ),
                         Expanded(
                           child: TextField(
-                            controller: model.channelNameController,
+                            controller: channelNameController,
                             style: AppTextStyles.body2Medium.copyWith(
                               color: AppColors.blackColor,
                             ),
@@ -160,7 +163,7 @@ class _NewChannelState extends State<NewChannel> {
                     height: 180,
                     child: TextField(
                       maxLines: null,
-                      controller: model.descriptionController,
+                      controller: channelDescriptionController,
                       style: AppTextStyles.body2Medium.copyWith(
                         color: AppColors.blackColor,
                       ),

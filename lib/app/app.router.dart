@@ -257,7 +257,7 @@ class StackedRouter extends RouterBase {
     },
     NewChannel: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const NewChannel(),
+        builder: (context) => NewChannel(),
         settings: data,
       );
     },
