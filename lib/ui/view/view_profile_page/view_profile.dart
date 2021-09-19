@@ -1,18 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/view/view_profile_page/view_profile_viewmodel.dart';
-import 'package:hng/ui/view/view_profile_page/widgets/profile_action.dart';
-import 'package:hng/ui/view/view_profile_page/widgets/profile_list.dart';
 import 'package:stacked/stacked.dart';
 
-class ViewProfile extends StatelessWidget {
-  final bool isActive;
+import '../../shared/colors.dart';
+import 'view_profile_viewmodel.dart';
+import 'widgets/profile_action.dart';
+import 'widgets/profile_list.dart';
 
-  const ViewProfile({
-    Key? key,
-    this.isActive = true,
-  }) : super(key: key);
+class ViewProfile extends StatelessWidget {
+ final bool isActive = true;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +62,8 @@ class ViewProfile extends StatelessWidget {
                                 child: Icon(
                                   Icons.circle,
                                   size: 12.0,
-                                  color: isActive
+                                  // color: isActive!
+                                  color: isActive == true
                                       ? AppColors.zuriPrimaryColor
                                       : Colors.transparent,
                                 ),
