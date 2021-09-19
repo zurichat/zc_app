@@ -11,9 +11,11 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
-import '../package/base/server-request/api/http_api.dart';
+import '../package/base/server-request/channels/channels_api_service.dart';
+import '../package/base/server-request/dms/dms_api_service.dart';
 import '../services/connectivity_service.dart';
 import '../services/local_storage_services.dart';
+import '../services/user_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -27,7 +29,6 @@ Future setupLocator(
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => ThemeService());
-  locator.registerLazySingleton(() => HttpApiService());
   final sharedPreferenceLocalStorage =
       await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);
@@ -36,4 +37,8 @@ Future setupLocator(
   locator.registerLazySingleton(() => BottomSheetService());
   final connectivityService = await ConnectivityService.getInstance();
   locator.registerSingleton(connectivityService);
+
+  locator.registerLazySingleton(() => UserService());
+  locator.registerLazySingleton(() => DMApiService());
+  locator.registerLazySingleton(() => ChannelsApiService());
 }

@@ -37,7 +37,8 @@ class ChannelPageView extends StatelessWidget {
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: appBar('#teamsocrates', '128 members', context),
+          appBar: appBar('#teamsocrates', viewModel.navigateToChannelInfo(),
+              '128 members', context),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -56,7 +57,7 @@ class ChannelPageView extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-                row(),
+                row(viewModel.navigateToAddPeople()),
                 const SizedBox(height: 20),
                 dateBuilder(context),
                 const SizedBox(height: 7),
@@ -120,12 +121,15 @@ class ChannelPageView extends StatelessWidget {
   }
 }
 
-AppBar appBar(String text, String nexttext, BuildContext context) {
+AppBar appBar(
+    String text, Function()? pressed, String nexttext, BuildContext context) {
   return AppBar(
     elevation: 1,
     backgroundColor: AppColors.whiteColor,
     leading: GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pop(context);
+      },
       child: const Icon(
         CupertinoIcons.back,
         color: AppColors.deepBlackColor,
@@ -176,7 +180,7 @@ AppBar appBar(String text, String nexttext, BuildContext context) {
       Padding(
         padding: const EdgeInsets.only(right: 20.0),
         child: GestureDetector(
-          onTap: () {},
+          onTap: pressed,
           child: const Icon(
             CupertinoIcons.info,
             color: AppColors.deepBlackColor,
@@ -245,8 +249,7 @@ Container channelInfo(String text, String nexttext) {
   );
 }
 
-Row row() {
-  final navigator = locator<NavigationService>();
+Row row(Function()? pressed) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     // crossAxisAlignment: CrossAxisAlignment.center,
@@ -274,7 +277,7 @@ Row row() {
       Column(
         children: [
           GestureDetector(
-            onTap: () => navigator.navigateTo(Routes.addPeopleView),
+            onTap: pressed,
             child: const CircleAvatar(
               radius: 30,
               backgroundColor: AppColors.lightGreen,

@@ -1,6 +1,9 @@
 import 'dart:developer';
 
+import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
+import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -12,6 +15,10 @@ import '../../../services/connectivity_service.dart';
 
 class HomePageViewModel extends StreamViewModel {
   final connectivityService = locator<ConnectivityService>();
+  final dmApiService = locator<DMApiService>();
+  final channelsApiService = locator<ChannelsApiService>();
+
+  final _navigationService = locator<NavigationService>();
   bool connectionStatus = false;
 
   ///This contains the list of data for both the channels and dms
@@ -105,21 +112,62 @@ class HomePageViewModel extends StreamViewModel {
     notifyListeners();
   }
 
+  getDmAndChannelsList() async {
+    homePageList = [];
+    setBusy(true);
+
+    List? channelsList = await channelsApiService.getActiveDms();
+    channelsList.forEach((data) {
+      homePageList.add(HomeItemModel(
+        type: HomeItemType.channels,
+        unreadCount: 0,
+        name: data['name'],
+        id: data['id'],
+        public: data['private'] != "True",
+        membersCount: data['members'],
+      ));
+    });
+
+    //Todo: add channels implementation
+
+    unreads.clear();
+    directMessages.clear();
+    joinedChannels.clear();
+
+    setAllList();
+    notifyListeners();
+
+    // //get dms data
+    // List? dmList = await dmApiService.getActiveDms();
+    // dmList.forEach((data) {
+    //   dmApiService.getUser(data);
+    //   // HomeItemModel(
+    //   //   type: HomeItemType.dm,
+    //   //   unreadCount: 0,
+    //   //   name: 'alfred',
+    //   // );
+    // });
+  }
+
   //
   //*Navigate to other routes
   void navigateToPref() {
-    NavigationService().navigateTo(Routes.fileSearchView);
+    _navigationService.navigateTo(Routes.fileSearchView);
+  }
+
+  void navigateToChannelPage() {
+    _navigationService.navigateTo(Routes.channelPageView);
   }
 
   void navigateToInfo() {
-    NavigationService().navigateTo(Routes.channelInfoView);
+    _navigationService.navigateTo(Routes.channelInfoView);
   }
 
   void navigateToWorkspace() {
-    NavigationService().navigateTo(Routes.workspaceView);
+    _navigationService.navigateTo(Routes.workspaceView);
   }
 
   void navigateToDmUser() {
-    locator<NavigationService>().navigateTo(Routes.dmUserView);
+    _navigationService.navigateTo(Routes.dmUserView);
   }
 }

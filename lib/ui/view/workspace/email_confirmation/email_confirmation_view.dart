@@ -4,7 +4,6 @@ import 'package:stacked/stacked.dart';
 
 import 'email_confirmation_viewmodel.dart';
 
-
 class EmailConfirmationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,7 @@ To confirm your email address, tap the button in the email we sent to lukeskylwa
                       ),
                       onPressed: () {
                         print('Pressed');
-                        viewModel.openEmailApp(context);
+                        viewModel.openEmailApp();
                         // openEmailApp(context);
                       },
                     )

@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/view/sign_up/sign_up_view.form.dart';
-import 'package:hng/ui/view/sign_up/sign_up_viewmodel.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
+
+import '../../../general_widgets/custom_text.dart';
+import '../../../general_widgets/custom_textfield.dart';
+import '../../shared/colors.dart';
+import '../../shared/long_button.dart';
+import '../../shared/styles.dart';
+import 'sign_up_view.form.dart';
+import 'sign_up_viewmodel.dart';
 
 //stacked forms handling
 @FormView(

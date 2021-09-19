@@ -16,7 +16,7 @@ Future main() async {
   await setupLocator();
   setupBottomSheetUi();
   setupDialogUi();
-  setUpSnackBarUi();
+  AppSnackBar.setupSnackbarUi();
   runApp(MyApp());
 }
 
