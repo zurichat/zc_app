@@ -22,9 +22,9 @@ class HttpApiService implements Api {
     Map<String, dynamic>? headers,
   }) async {
     try {
+      // print(headers);
       final res = await _dio.get(path,
           queryParameters: data, options: Options(headers: headers));
-      print(headers);
       return ApiUtils.toApiResponse(res);
     } on DioError catch (e) {
       print(e);
