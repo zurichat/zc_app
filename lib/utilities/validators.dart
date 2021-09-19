@@ -33,4 +33,13 @@ class Validator {
     else
       return null;
   }
+
+  bool validateNewChannelName(String input) {
+    final reg = RegExp(".*?[A-Z\\s\.].*");
+    if (reg.hasMatch(input)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
