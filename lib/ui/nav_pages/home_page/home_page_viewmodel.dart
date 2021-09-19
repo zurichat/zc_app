@@ -15,13 +15,10 @@ import '../../../services/connectivity_service.dart';
 
 class HomePageViewModel extends StreamViewModel {
   final connectivityService = locator<ConnectivityService>();
-<<<<<<< HEAD
   final dmApiService = locator<DMApiService>();
   final channelsApiService = locator<ChannelsApiService>();
 
-=======
   final _navigationService = locator<NavigationService>();
->>>>>>> 15ccbb9e3562e9d48f0a05afca86369ee9558cc5
   bool connectionStatus = false;
 
   ///This contains the list of data for both the channels and dms

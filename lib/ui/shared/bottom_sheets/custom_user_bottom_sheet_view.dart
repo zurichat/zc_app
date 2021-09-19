@@ -49,18 +49,11 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-<<<<<<< HEAD
-                              CustomButton(text: "Message", onPressed: () {}),
-                              // CustomButton(
-                              //     text: "Edit Profile",
-                              //     onPressed: model.editProfile),
-=======
                               CustomButton(text: 'Message', onPressed: () {}),
                               CustomButton(
                                 text: 'Edit Profile',
                                 onPressed: () => model.navigateToEditProfile(),
                               ),
->>>>>>> 15ccbb9e3562e9d48f0a05afca86369ee9558cc5
                               CustomButton.icon(
                                   icon: Icons.more_horiz_rounded,
                                   onPressed: () {}),
@@ -84,11 +77,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
                             top: BorderSide(
                                 width: .5, color: AppColors.greyishColor),
                           ),
-<<<<<<< HEAD
-                          // onTap: model.setStatus,
-=======
                           onTap: () => model.navigateToSetStatus(),
->>>>>>> 15ccbb9e3562e9d48f0a05afca86369ee9558cc5
                           trailing: IconButton(
                               onPressed: () {}, icon: Icon(Icons.cancel)),
                         ),
