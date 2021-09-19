@@ -10,6 +10,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class DmJumpToViewModel extends BaseViewModel {
+  String currentOrgId = '6145ad38285e4a18402073ad';
   final log = getLogger('DmJumpToViewModel');
   TextEditingController _controller = TextEditingController();
   TextEditingController get controller => _controller;
@@ -38,5 +39,4 @@ class DmJumpToViewModel extends BaseViewModel {
     }
   }
 
-  final String currentOrgId = '6145ad38285e4a18402073ad';
 }
