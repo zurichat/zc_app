@@ -6,11 +6,11 @@ import 'api.dart';
 import 'dio_interceptors.dart';
 
 class HttpApiService implements Api {
-  HttpApiService() {
+  HttpApiService(baseUrl) {
     _dio.interceptors.add(DioInterceptor());
     _dio.options.sendTimeout = 60000;
     _dio.options.receiveTimeout = 60000;
-    _dio.options.baseUrl = 'https://api.zuri.chat/';
+    _dio.options.baseUrl = baseUrl;
   }
 
   final Dio _dio = Dio();

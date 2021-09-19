@@ -1,11 +1,13 @@
+import 'package:hng/ui/shared/shared.dart';
+
 import '../../../../app/app.locator.dart';
 import '../../../../models/workspace_model.dart';
 import '../../../../services/local_storage_services.dart';
 import '../../../../utilities/storage_keys.dart';
 import '../api/http_api.dart';
 
-class WorkSpaceApi {
-  final _api = HttpApiService();
+class WorkSpaceApiService {
+  final _api = HttpApiService(coreBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
 
   /// Fetches a list of organizations that the user is part of

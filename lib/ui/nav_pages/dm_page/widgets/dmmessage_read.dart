@@ -16,15 +16,15 @@ class DMMessageRead extends StatelessWidget {
             width: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3),
-              color: Color(0xff1A61DB),
-              image: DecorationImage(
+              color: const Color(0xff1A61DB),
+              image: const DecorationImage(
                 image: NetworkImage(
                     'https://th.bing.com/th/id/OIP.Obw6BUTUPdQGToOSCz5t8QHaHC?pid=ImgDet&w=549&h=522&rs=1'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,14 +33,14 @@ class DMMessageRead extends StatelessWidget {
                 'Pappin 4️⃣',
                 style: AppTextStyles.body1Bold,
               ),
-              SizedBox(height: 5),
-              Text(
+              const SizedBox(height: 5),
+              const Text(
                 'Can i have your number?',
                 // style: AppTextStyles.normalText,
               ),
             ],
           ),
-          Spacer(),
+          const Spacer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

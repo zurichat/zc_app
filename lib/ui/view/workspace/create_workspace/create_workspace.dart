@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../../utilities/enums.dart';
+import '../../../shared/shared.dart';
 import 'create_workspace_viewmodel.dart';
 
 class CreateWorkSpace extends StatelessWidget {
@@ -16,17 +17,12 @@ class CreateWorkSpace extends StatelessWidget {
         viewModelBuilder: () => CreateWorkSpaceViewModel(),
         builder: (context, model, child) => Scaffold(
               appBar: AppBar(
-                title: Text(
+                title: const Text(
                   'Create a workspace',
                   style: TextStyle(
                     fontSize: 16,
                     color: AppColors.deepBlackColor,
                   ),
-                  // style: TextStyle(
-                  //   fontSize: 16,
-                  //   fontWeight: FontWeight.w700,
-                  //   color: Colors.black
-                  // ),
                 ),
                 backgroundColor: Colors.white,
                 leading: IconButton(

@@ -44,6 +44,11 @@ class AppTextStyles {
     color: AppColors.greyishColor,
     fontSize: 14,
   );
+  static TextStyle faintBodyText = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.greyColor,
+    fontSize: 14,
+  );
   static TextStyle body2Medium = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
     color: AppColors.greyishColor,

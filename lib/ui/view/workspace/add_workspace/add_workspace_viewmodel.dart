@@ -8,9 +8,11 @@ class AddWorkSpaceViewModel extends BaseViewModel {
   final navigation = locator<NavigationService>();
 
   void navigateToJoinWorkspace(WorkspaceSwitchMethod method) {
-    navigation.navigateTo(Routes.createWorkSpace,
-        arguments: CreateWorkSpaceArguments(
-          method: method,
-        ));
+    navigation.navigateTo(
+      Routes.createWorkSpace,
+      arguments: CreateWorkSpaceArguments(
+        method: method,
+      ),
+    );
   }
 }
