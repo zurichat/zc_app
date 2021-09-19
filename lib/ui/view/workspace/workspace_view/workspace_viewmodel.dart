@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -72,33 +74,25 @@ class WorkspaceViewModel extends BaseViewModel {
     workspaces.retainWhere((e) => ids.any((id) => id == e.id));
   }
 
-  Future<void> onTap(String id) async {
+  Future<void> onTap(String id, String? name, String? url) async {
     try {
       if (id == currentOrgId) {
         navigation.replaceWith(Routes.navBarView);
         return;
       }
-      if (!await connectivityService.checkConnection()) {
-        snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.failure,
-          message: 'Check your internet connection',
-        );
-        return;
-      }
-      final workspaces = await api.fetchOrganizationInfo(id);
-      print(workspaces);
+      await checkSnackBarConnectivity();
+      log(workspaces.toString());
+
       await storageService.setString(StorageKeys.currentOrgId, id);
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
-        message: 'You have entered ${workspaces.name}',
+        message: 'You have entered $name',
       );
-      storageService.setString(StorageKeys.currentOrgName, workspaces.name!);
-      storageService.setString(
-          StorageKeys.currentOrgUrl, workspaces.workSpaceUrl!);
+      storageService.setString(StorageKeys.currentOrgName, name!);
+      storageService.setString(StorageKeys.currentOrgUrl, url!);
+
       navigation.replaceWith(Routes.navBarView);
-      // navigation.popRepeated(1);
     } catch (e) {
       print(e.toString());
       snackbar.showCustomSnackBar(
@@ -106,6 +100,17 @@ class WorkspaceViewModel extends BaseViewModel {
         variant: SnackbarType.failure,
         message: 'Error fetching Organization Info',
       );
+    }
+  }
+
+  checkSnackBarConnectivity() async {
+    if (!await connectivityService.checkConnection()) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: 'Check your internet connection',
+      );
+      return;
     }
   }
 
