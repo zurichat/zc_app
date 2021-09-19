@@ -1,3 +1,4 @@
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/utilities/constants.dart';
 
@@ -7,6 +8,7 @@ import '../../../../utilities/storage_keys.dart';
 import '../api/http_api.dart';
 
 class ChannelsApiService {
+  final log = getLogger('ChannelsApiService');
   final _api = HttpApiService(channelsBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
@@ -26,9 +28,9 @@ class ChannelsApiService {
         headers: {'Authorization': 'Bearer $token'},
       );
       joinedChannels = res?.data ?? [];
-      print(joinedChannels);
+      log.i(joinedChannels);
     } on Exception catch (e) {
-      print(e.toString());
+      log.e(e.toString());
       return [];
     }
 
