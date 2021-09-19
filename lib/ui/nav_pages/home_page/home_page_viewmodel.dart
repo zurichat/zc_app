@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
+import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
@@ -13,6 +15,9 @@ import '../../../services/connectivity_service.dart';
 
 class HomePageViewModel extends StreamViewModel {
   final connectivityService = locator<ConnectivityService>();
+  final dmApiService = locator<DMApiService>();
+  final channelsApiService = locator<ChannelsApiService>();
+
   bool connectionStatus = false;
 
   ///This contains the list of data for both the channels and dms
@@ -104,6 +109,43 @@ class HomePageViewModel extends StreamViewModel {
 
     setAllList();
     notifyListeners();
+  }
+
+  getDmAndChannelsList() async {
+    homePageList = [];
+    setBusy(true);
+
+    List? channelsList = await channelsApiService.getActiveDms();
+    channelsList.forEach((data) {
+      homePageList.add(HomeItemModel(
+        type: HomeItemType.channels,
+        unreadCount: 0,
+        name: data['name'],
+        id: data['id'],
+        public: data['private'] != "True",
+        membersCount: data['members'],
+      ));
+    });
+
+    //Todo: add channels implementation
+
+    unreads.clear();
+    directMessages.clear();
+    joinedChannels.clear();
+
+    setAllList();
+    notifyListeners();
+
+    // //get dms data
+    // List? dmList = await dmApiService.getActiveDms();
+    // dmList.forEach((data) {
+    //   dmApiService.getUser(data);
+    //   // HomeItemModel(
+    //   //   type: HomeItemType.dm,
+    //   //   unreadCount: 0,
+    //   //   name: 'alfred',
+    //   // );
+    // });
   }
 
   //
