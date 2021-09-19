@@ -43,7 +43,7 @@ class ThirdSection extends StatelessWidget {
                   ),
                   child: GestureDetector(
                     onTap: () {
-                      model.navigatoToMembersList();
+                      // model.navigatoToMembersList();
                     },
                     child: Text(
                       'Members (5)',

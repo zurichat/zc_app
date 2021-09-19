@@ -1,10 +1,12 @@
+import 'dart:developer';
+
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.router.dart';
-import '../../../../general_widgets/app_toast.dart';
 import '../../../../models/workspace_model.dart';
 import '../../../../package/base/server-request/workspace_request/workspace_api_service.dart';
 import '../../../../services/connectivity_service.dart';
@@ -12,6 +14,7 @@ import '../../../../services/local_storage_services.dart';
 import '../../../../utilities/storage_keys.dart';
 
 class WorkspaceViewModel extends BaseViewModel {
+  final log = getLogger('WorkspaceViewModel');
   final navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
   final connectivityService = locator<ConnectivityService>();
@@ -38,25 +41,31 @@ class WorkspaceViewModel extends BaseViewModel {
     }
   }
 
-//TODO change this to fetch the list of organizations the user is part of alone
-//SHould not return all organizations but the ones the user has joined
+  //Returns the list of organisation the user is part of
   Future fetchOrganizations() async {
-    try {
-      if (!await connectivityService.checkConnection()) {
-        snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.failure,
-          message: 'Check your internet connection',
-        );
+    if (!await connectivityService.checkConnection()) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: 'Check your internet connection',
+      );
 
-        return;
-      }
+      return;
+    }
+
+    try {
       setBusy(true);
-      workspaces = await api.fetchListOfOrganizations();
-      filterWorkspace();
+      final resFromApi = await api.getJoinedOrganizations();
+      if (resFromApi.isEmpty) {
+        workspaces = [];
+      } else {
+        workspaces = resFromApi;
+      }
+      // filterWorkspace();
+
       setBusy(false);
     } catch (e) {
-      print(e.toString());
+      log.i(e.toString());
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
@@ -71,40 +80,42 @@ class WorkspaceViewModel extends BaseViewModel {
     workspaces.retainWhere((e) => ids.any((id) => id == e.id));
   }
 
-  Future<void> onTap(String id) async {
+  Future<void> onTap(String? id, String? name, String? url) async {
     try {
       if (id == currentOrgId) {
-        navigation.popRepeated(1);
+        navigation.replaceWith(Routes.navBarView);
         return;
       }
-      if (!await connectivityService.checkConnection()) {
-        snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.failure,
-          message: 'Check your internet connection',
-        );
-        return;
-      }
-      final workspaces = await api.fetchOrganizationInfo(id);
-      print(workspaces);
-      await storageService.setString(StorageKeys.currentOrgId, id);
+      await checkSnackBarConnectivity();
+
+      await storageService.setString(StorageKeys.currentOrgId, id!);
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
-        message: 'You have entered ${workspaces.name}',
+        message: 'You have entered $name',
       );
-      storageService.setString(StorageKeys.currentOrgName, workspaces.name!);
-      storageService.setString(
-          StorageKeys.currentOrgUrl, workspaces.workSpaceUrl!);
-      navigation.navigateTo(Routes.navBarView);
-      navigation.popRepeated(1);
+      storageService.setString(StorageKeys.currentOrgName, name!);
+      storageService.setString(StorageKeys.currentOrgUrl, url!);
+
+      navigation.replaceWith(Routes.navBarView);
     } catch (e) {
-      print(e.toString());
+      log.i(e.toString());
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
         message: 'Error fetching Organization Info',
       );
+    }
+  }
+
+  checkSnackBarConnectivity() async {
+    if (!await connectivityService.checkConnection()) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: 'Check your internet connection',
+      );
+      return;
     }
   }
 
