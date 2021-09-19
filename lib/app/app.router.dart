@@ -8,7 +8,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/all_threads_view/thread_detail/model/hook_thread_detail.dart';
+import 'package:hng/ui/view/all_threads_view/thread_detail/hook_thread_detail.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
