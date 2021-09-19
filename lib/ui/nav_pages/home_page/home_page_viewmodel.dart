@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -59,6 +60,7 @@ class HomePageViewModel extends StreamViewModel {
 
   //This method is just to demo the side bar data that would
   //be received by the database
+  
   getHomePageData() {
     homePageList = [
       HomeItemModel(type: HomeItemType.channels, name: 'annoucement'),
@@ -95,7 +97,6 @@ class HomePageViewModel extends StreamViewModel {
       HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Folks'),
       HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'DeveloperB'),
       HomeItemModel(type: HomeItemType.dm, unreadCount: 1, name: 'edward'),
-      // HomeItemModel(type: HomeItemType.dm, unreadCount: 1, name: 'eddy'),
     ];
 
     unreads.clear();
@@ -118,6 +119,10 @@ class HomePageViewModel extends StreamViewModel {
 
   void navigateToWorkspace() {
     NavigationService().navigateTo(Routes.workspaceView);
+  }
+
+    void navigateToChannelScreen() {
+    NavigationService().navigateTo(Routes.channelPageView);
   }
 
   void navigateToDmUser() {

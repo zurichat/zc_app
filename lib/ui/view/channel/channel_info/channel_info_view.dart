@@ -51,7 +51,7 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                     )),
 //Third Section
 
-                const ThirdSection(),
+                ThirdSection(goToMembersListScreen: model.navigateToMembersListScreen),
 
                 Container(
                   margin:

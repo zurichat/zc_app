@@ -5,7 +5,8 @@ import '../../../../shared/colors.dart';
 import 'textstyles.dart';
 
 class ThirdSection extends StatelessWidget {
-  const ThirdSection({Key? key}) : super(key: key);
+   Function goToMembersListScreen;
+   ThirdSection({required this.goToMembersListScreen});
 
   @override
   Widget build(BuildContext context) {
@@ -18,30 +19,41 @@ class ThirdSection extends StatelessWidget {
           border: Border.all(width: 1.0, color: AppColors.borderColor)),
       child: Column(
         children: [
-          Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 9,
-                  top: 19,
+          InkWell(
+            onTap:(){
+                    goToMembersListScreen();
+                  },
+            child: Row(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(
+                    left: 9,
+                    top: 19,
+                  ),
+                  child: const Icon(
+                    Icons.group_outlined,
+                    color: AppColors.deepBlackColor,
+                    size: 28,
+                  ),
                 ),
-                child: const Icon(
-                  Icons.group_outlined,
-                  color: AppColors.deepBlackColor,
-                  size: 28,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 11,
-                  top: 19,
-                ),
-                child: Text(
-                  'Members (5)',
-                  style: descriptionStyle(),
-                ),
-              ),
-            ],
+                
+          
+                   Container(
+                    margin: const EdgeInsets.only(
+                      left: 11,
+                      top: 19,
+                    ),
+                  
+                     
+                      child: Text(
+                        'Members (5)',
+                        style: descriptionStyle(),
+                      ),
+                    
+                  ),
+                
+              ],
+            ),
           ),
           Divider(
             thickness: 0.5,
