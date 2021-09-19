@@ -371,7 +371,7 @@ class StackedRouter extends RouterBase {
       return MaterialPageRoute<dynamic>(
         builder: (context) => ViewProfile(
           key: args.key,
-          isActive: args.isActive,
+          isActive: true,
         ),
         settings: data,
       );
@@ -522,8 +522,8 @@ class DmUserViewArguments {
 /// ViewProfile arguments holder class
 class ViewProfileArguments {
   final Key? key;
-  final bool isActive;
-  ViewProfileArguments({this.key, this.isActive = true});
+  final bool? isActive;
+  ViewProfileArguments({this.key, this.isActive});
 }
 
 /// CreateWorkSpace arguments holder class
