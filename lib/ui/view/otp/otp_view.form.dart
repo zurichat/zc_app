@@ -13,7 +13,7 @@ const String OtpValueKey = 'otp';
 
 mixin $OTPView on StatelessWidget {
   final TextEditingController otpController = TextEditingController();
-
+  final FocusNode otpFocusNode = FocusNode();
   /// Registers a listener on every generated controller that calls [model.setData()]
   /// with the latest textController values
   void listenToFormUpdated(FormViewModel model) {
