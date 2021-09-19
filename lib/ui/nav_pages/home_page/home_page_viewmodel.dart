@@ -7,28 +7,31 @@ import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
 import '../../../services/connectivity_service.dart';
 
-//final _navigationService = locator<NavigationService>();
+final _navigationService = locator<NavigationService>();
+final connectivityService = locator<ConnectivityService>();
+
+bool connectionStatus = false;
 
 class HomePageViewModel extends StreamViewModel {
   void nToPref() {
-    NavigationService().navigateTo(Routes.fileSearchView);
+    _navigationService.navigateTo(Routes.fileSearchView);
   }
 
   void nToInfo() {
-    NavigationService().navigateTo(Routes.channelInfoView);
+    _navigationService.navigateTo(Routes.channelInfoView);
   }
 
   void nToWorkspace() {
-    NavigationService().navigateTo(Routes.workspaceView);
+    _navigationService.navigateTo(Routes.workspaceView);
   }
 
   void navigateToDmUser() {
-    locator<NavigationService>().navigateTo(Routes.dmUserView);
+    _navigationService.navigateTo(Routes.dmUserView);
   }
 
-  final connectivityService = locator<ConnectivityService>();
-
-  bool connectionStatus = false;
+  void navigateToThreads() async {
+    await _navigationService.navigateTo(Routes.threadsView);
+  }
 
   @override
   void onError(error) {

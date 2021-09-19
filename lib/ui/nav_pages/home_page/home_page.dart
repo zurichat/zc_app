@@ -100,9 +100,10 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const CustomPluginListTile(
+                    CustomPluginListTile(
                       assetName: threadIcon,
                       pluginName: 'Threads',
+                      pressed: model.navigateToThreads,
                     ),
                     const SizedBox(height: 16),
                     const CustomPluginListTile(

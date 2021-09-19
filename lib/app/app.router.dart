@@ -52,6 +52,7 @@ import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
 import '../ui/view/workspace/workspace_view/workspace_view.dart';
+import '../ui/view/threads/threads_view.dart';
 
 class Routes {
   static const String navBarView = '/nav-bar-view';
@@ -73,7 +74,7 @@ class Routes {
   static const String dmSearch = '/dm-search';
   static const String dmJumpToView = '/dm-jump-to-view';
   static const String dmUserView = '/dm-user-view';
-  static const String splashview = '/';
+  static const String splashview = '/s';
   static const String pluginView = '/plugin-view';
   static const String addPluginView = '/add-plugin-view';
   static const String useDifferentEmailView = '/use-different-email-view';
@@ -96,6 +97,7 @@ class Routes {
   static const String createWorkSpace = '/create-work-space';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
+  static const String threadsView = '/';
   static const all = <String>{
     navBarView,
     onboardingView,
@@ -138,6 +140,7 @@ class Routes {
     createWorkSpace,
     fileSearchView,
     draftView,
+    threadsView,
   };
 }
 
@@ -187,6 +190,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.threadsView, page: ThreadsView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -455,6 +459,12 @@ class StackedRouter extends RouterBase {
     DraftView: (data) {
       return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const DraftView(),
+        settings: data,
+      );
+    },
+    ThreadsView: (data) {
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
+        builder: (context) => const ThreadsView(),
         settings: data,
       );
     },
