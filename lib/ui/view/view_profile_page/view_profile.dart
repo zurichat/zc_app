@@ -1,7 +1,11 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+
+import '../../shared/colors.dart';
+import 'view_profile_viewmodel.dart';
+import 'widgets/profile_action.dart';
+import 'widgets/profile_list.dart';
 
 class ViewProfile extends StatelessWidget {
   final bool isActive;
@@ -13,13 +17,17 @@ class ViewProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: DraggableScrollableSheet(
-          initialChildSize: 0.9,
-          minChildSize: 0.8,
-          maxChildSize: 1.0,
-          builder: (BuildContext context, ScrollController scrollController) {
-            return SingleChildScrollView(
+    return ViewModelBuilder<ViewProfileViewModel>.reactive(
+      viewModelBuilder: () => ViewProfileViewModel(),
+      builder: (context, model, child) => Scaffold(
+        body: SafeArea(
+          child: DraggableScrollableSheet(
+            initialChildSize: 0.9,
+            minChildSize: 0.8,
+            maxChildSize: 1.0,
+            builder:
+                (BuildContext context, ScrollController scrollController) =>
+                    SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               controller: scrollController,
               child: Container(
@@ -30,12 +38,15 @@ class ViewProfile extends StatelessWidget {
                         Container(
                           height: MediaQuery.of(context).size.height * 0.3,
                           width: MediaQuery.of(context).size.width,
-                          child: Stack(fit: StackFit.expand, children: [
-                            Image(
-                              fit: BoxFit.cover,
-                              image: AssetImage('assets/profile.jpeg'),
-                            ),
-                          ]),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image(
+                                fit: BoxFit.cover,
+                                image: AssetImage('assets/images/user.png'),
+                              ),
+                            ],
+                          ),
                         ),
                         Positioned(
                           bottom: 20.0,
@@ -43,11 +54,12 @@ class ViewProfile extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                'Amanda Josiana Kee',
+                                model.name,
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 18.0),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 18.0,
+                                ),
                               ),
                               Container(
                                 //Icon wrapped in container with margin, so long names with stack over/below it
@@ -55,7 +67,9 @@ class ViewProfile extends StatelessWidget {
                                 child: Icon(
                                   Icons.circle,
                                   size: 12.0,
-                                  color: isActive ? Colors.green : Colors.transparent,
+                                  color: isActive
+                                      ? AppColors.zuriPrimaryColor
+                                      : Colors.transparent,
                                 ),
                               ),
                             ],
@@ -64,7 +78,8 @@ class ViewProfile extends StatelessWidget {
                       ],
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 16.0, left: 20.0, right: 16.0),
+                      margin:
+                          EdgeInsets.only(top: 16.0, left: 20.0, right: 16.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,19 +87,30 @@ class ViewProfile extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              ProfileAction(title: Text('Message'), onTap: () {}),
                               ProfileAction(
-                                  title: Text('Edit Profile'), onTap: () {}),
+                                title: Text('Message'),
+                                onTap: () {},
+                              ),
                               ProfileAction(
-                                  title: Icon(Icons.more_horiz), onTap: () {}),
+                                title: Text('Edit Profile'),
+                                onTap: () {},
+                              ),
+                              ProfileAction(
+                                title: Icon(Icons.more_horiz),
+                                onTap: () {},
+                              ),
                             ],
                           ),
                           Divider(),
                           ProfileList(
-                              title: 'What I do', description: 'Mobile Development'),
+                            title: 'What I do',
+                            description: 'Mobile Development',
+                          ),
                           Divider(),
                           ProfileList(
-                              title: 'Display Name', description: 'Amanda Josiana'),
+                            title: 'Display Name',
+                            description: 'Amanda Josiana',
+                          ),
                           Divider(),
                           ProfileList(
                             title: 'Status',
@@ -102,75 +128,13 @@ class ViewProfile extends StatelessWidget {
                           )
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
-            );
-          }),
-    );
-  }
-}
-
-class ProfileAction extends StatelessWidget {
-  final Function onTap;
-  final Widget title;
-
-  const ProfileAction({
-    Key? key,
-    required this.onTap,
-    required this.title,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap(),
-      child: Container(
-          height: 45.0,
-          alignment: Alignment.center,
-          margin: EdgeInsets.only(top: 4.0, bottom: 12.0),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6.0),
-              border: Border.all(color: Colors.black54)),
-          child: Padding(
-            padding:
-            const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-            child: title,
-          )),
-    );
-  }
-}
-
-class ProfileList extends StatelessWidget {
-  final String title;
-  final String description;
-
-  const ProfileList({
-    Key? key,
-    required this.title,
-    required this.description,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 14.0,
             ),
           ),
-          SizedBox(height: 5.0),
-          Text(
-            description,
-            style: TextStyle(fontWeight: FontWeight.w500),
-          ),
-        ],
+        ),
       ),
     );
   }

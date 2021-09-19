@@ -1,37 +1,37 @@
 import 'package:stacked/stacked.dart';
 
-import '../../../../models/user_model.dart';
+import 'package:hng/models/static_user_model.dart';
 
 class ChannelAddPeopleViewModel extends BaseViewModel {
   bool get allMarked =>
       markedUsers.length == matchingUsers.length && matchingUsers.isNotEmpty;
 
-  late List<UserModel> matchingUsers = users;
-  late List<UserModel> markedUsers = [];
+  late List<StaticUserModel> matchingUsers = users;
+  late List<StaticUserModel> markedUsers = [];
 
   final users = [
-    UserModel(
+    StaticUserModel(
       online: true,
       userName: 'Chimamanda',
       userimg: 'chimamanda.png',
       joinInfo: '',
       time: '',
     ),
-    UserModel(
+    StaticUserModel(
       online: false,
       userName: 'Naisu',
       userimg: 'naisu.png',
       joinInfo: '',
       time: '',
     ),
-    UserModel(
+    StaticUserModel(
       online: false,
       userName: 'Baptist',
       userimg: 'baptist.png',
       joinInfo: '',
       time: '',
     ),
-    UserModel(
+    StaticUserModel(
       online: true,
       userName: 'Gringo',
       userimg: 'gringo.png',

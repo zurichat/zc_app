@@ -6,7 +6,6 @@
 
 // ignore_for_file: public_member_api_docs
 
-import '../package/base/server-request/api/http_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -25,8 +24,8 @@ Future setupLocator(
 
 // Register dependencies
   locator.registerLazySingleton(() => NavigationService());
-  locator.registerLazySingleton(() => ThemeService.getInstance());
-  locator.registerLazySingleton(() => HttpApiService());
+  locator.registerLazySingleton(() => SnackbarService());
+  locator.registerLazySingleton(() => ThemeService());
   final sharedPreferenceLocalStorage =
       await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);

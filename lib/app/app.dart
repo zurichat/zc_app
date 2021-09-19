@@ -1,4 +1,11 @@
+
 import 'package:hng/ui/view/user_search/user_search_view.dart';
+import 'package:hng/ui/view/channel/edit_channel/edit_channel_view.dart';
+import 'package:hng/ui/view/workspace/workspace_url/workspace_url_view.dart';
+import 'package:hng/ui/view/channel/add_people/channel_add_people_view.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -23,9 +30,6 @@ import '../ui/view/do_not_disturb/do_not_disturb_view.dart';
 import '../ui/view/draft/draft_view.dart';
 import '../ui/view/edit_profile/edit_profile_view.dart';
 import '../ui/view/file_search/file_search_view.dart';
-import '../ui/view/forgot_password_email/forgot_password_email_view.dart';
-import '../ui/view/forgot_password_new_password/forgot_password_newview.dart';
-import '../ui/view/forgot_password_otp/forgot_password_otpview.dart';
 import '../ui/view/language_and_region/language_and_region_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
@@ -43,7 +47,7 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
-import '../ui/view/view_profile_page/view_profile_page.dart';
+import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
@@ -51,10 +55,11 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
 
 @StackedApp(
   routes: [
+    MaterialRoute(page: ChannelAddPeopleView),
     MaterialRoute(page: NavBarView),
     MaterialRoute(page: OnboardingView),
     MaterialRoute(page: LoginView),
-    MaterialRoute(page: OtpView),
+    MaterialRoute(page: OTPView),
     MaterialRoute(page: SignUpView),
     MaterialRoute(page: WorkspaceView),
     MaterialRoute(page: ChannelList),
@@ -75,7 +80,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: AddPluginView),
     MaterialRoute(page: UseDifferentEmailView),
     MaterialRoute(page: EditPluginView),
-    MaterialRoute(page: ViewProfilePage),
+    MaterialRoute(page: ViewProfile),
     MaterialRoute(page: SetStatusView),
     MaterialRoute(page: ProfilePageView),
     MaterialRoute(page: PreferenceView),
@@ -93,11 +98,15 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: FileSearchView),
     MaterialRoute(page: DraftView),
     MaterialRoute(page: UserSearchView),
+    MaterialRoute(page: ChannelPageView),
+    MaterialRoute(page: ChannelInfoView),
+    MaterialRoute(page: EditChannelPageView),
+    MaterialRoute(page: WorkspaceUrlView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
+    LazySingleton(classType: SnackbarService),
     LazySingleton(classType: ThemeService),
-    LazySingleton(classType: HttpApiService),
     Presolve(
       classType: SharedPreferenceLocalStorage,
       presolveUsing: SharedPreferences.getInstance,
