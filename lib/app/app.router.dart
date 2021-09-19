@@ -8,6 +8,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/user_search/user_search_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -96,6 +97,8 @@ class Routes {
   static const String createWorkSpace = '/create-work-space';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
+  static const String userSearchView = '/user-search-view';
+
   static const all = <String>{
     navBarView,
     onboardingView,
@@ -138,6 +141,7 @@ class Routes {
     createWorkSpace,
     fileSearchView,
     draftView,
+    userSearchView,
   };
 }
 
@@ -187,6 +191,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.userSearchView, page: UserSearchView),
+
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -443,6 +449,12 @@ class StackedRouter extends RouterBase {
     DraftView: (data) {
       return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const DraftView(),
+        settings: data,
+      );
+    },
+    UserSearchView: (data) {
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
+        builder: (context) => const UserSearchView(),
         settings: data,
       );
     },

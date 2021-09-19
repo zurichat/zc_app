@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -25,6 +24,11 @@ class HomePageViewModel extends StreamViewModel {
   void navigateToDmUser() {
     locator<NavigationService>().navigateTo(Routes.dmUserView);
   }
+
+  void navigateToUserSearchView() {
+    locator<NavigationService>().navigateTo(Routes.userSearchView);
+  }
+
 
   final connectivityService = locator<ConnectivityService>();
 

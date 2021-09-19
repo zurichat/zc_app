@@ -1,3 +1,4 @@
+import 'package:hng/ui/view/user_search/user_search_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -91,6 +92,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: CreateWorkSpace),
     MaterialRoute(page: FileSearchView),
     MaterialRoute(page: DraftView),
+    MaterialRoute(page: UserSearchView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
