@@ -1,3 +1,6 @@
+import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
+import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/view/channel/edit_channel/edit_channel_view.dart';
 import 'package:hng/ui/view/workspace/workspace_url/workspace_url_view.dart';
 import 'package:hng/ui/view/channel/add_people/channel_add_people_view.dart';
@@ -95,8 +98,6 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: CreateWorkSpace),
     MaterialRoute(page: FileSearchView),
     MaterialRoute(page: DraftView),
-    MaterialRoute(page: ChannelPageView),
-    MaterialRoute(page: ChannelInfoView),
     MaterialRoute(page: EditChannelPageView),
     MaterialRoute(page: WorkspaceUrlView),
   ],
@@ -114,6 +115,9 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
       classType: ConnectivityService,
       presolveUsing: ConnectivityService.getInstance,
     ),
+    LazySingleton(classType: UserService),
+    LazySingleton(classType: DMApiService),
+    LazySingleton(classType: ChannelsApiService),
   ],
 )
 class AppSetup {

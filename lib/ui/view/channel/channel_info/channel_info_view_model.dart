@@ -12,4 +12,5 @@ class ChannelInfoViewModel extends BaseViewModel {
   }
 
   void navigateToMembersList() {}
+  // _navigationService.navigateTo(Routes.editChannelPage);
 }

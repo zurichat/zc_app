@@ -13,9 +13,9 @@ class WorkspaceView extends StatelessWidget {
       onModelReady: (model) => model.initViewModel(),
       disposeViewModel: false,
       builder: (context, model, child) {
-        return SafeArea(
-          child: Scaffold(
-            body: Padding(
+        return Scaffold(
+          body: SafeArea(
+            child: Padding(
               padding: const EdgeInsets.all(14.0),
               child: Column(
                 children: [
@@ -238,7 +238,7 @@ class OrganizationTile extends ViewModelWidget<WorkspaceViewModel> {
           child: Container(
             height: MediaQuery.of(context).size.height * 0.05,
             width: MediaQuery.of(context).size.width * 0.5,
-            color: Colors.red,
+            color: Colors.grey,
           ),
         ),
       ),
