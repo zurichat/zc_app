@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
-
-enum HomeItemType {
-  channels,
-  dm,
-}
+import 'package:hng/utilities/enums.dart';
 
 class HomeItemModel {
   int? unreadCount = 0;
   String? name;
+  int? id;
+  int? membersCount;
   bool public;
 
-  HomeItemModel({type, this.unreadCount, this.name, this.public = true}) {
+  HomeItemModel({
+    required HomeItemType type,
+    this.id,
+    this.name,
+    this.unreadCount,
+    this.membersCount,
+    this.public = true,
+  }) {
     _type = type;
     print('i');
   }
 
-  static HomeItemModel fromMap(map) {
-    return HomeItemModel();
-  }
+  // static HomeItemModel fromMap(map) {
+  //   // return HomeItemModel();
+  // }
 
   HomeItemType _type = HomeItemType.channels;
   HomeItemType get type {

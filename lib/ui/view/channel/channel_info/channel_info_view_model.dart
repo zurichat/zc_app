@@ -12,4 +12,8 @@ class ChannelInfoViewModel extends BaseViewModel {
   void navigatoToMembersList() {
    
   }
+
+//   void navigateToEditChannel() {
+
+//   }
 }
