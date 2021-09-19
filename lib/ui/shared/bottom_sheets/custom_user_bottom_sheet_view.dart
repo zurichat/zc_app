@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
+import 'package:hng/models/user_model.dart';
 import 'package:hng/ui/shared/bottom_sheets/widgets/custom_button.dart';
 import 'package:hng/ui/shared/bottom_sheets/widgets/custom_profile_tile.dart';
 import 'package:hng/ui/shared/bottom_sheets/widgets/profile_head.dart';
@@ -32,6 +33,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
               minChildSize: 0.5,
               builder:
                   (BuildContext context, ScrollController scrollController) {
+                    UserModel? user = model.userModel;
                 return Container(
                   height: height * .97,
                   color: Colors.white,
@@ -65,7 +67,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
                             title: 'What I do', subtitle: 'Mobile Dev'),
                         Divider(),
                         CustomProfileTile(
-                            title: 'Display Name', subtitle: 'pauleke65'),
+                            title: 'Display Name', subtitle: user?.displayName ?? ''),
                         Divider(),
                         ListTile(
                           title: CustomText(
@@ -83,11 +85,11 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         ),
                         Divider(),
                         CustomProfileTile(
-                            title: 'Mobile Number', subtitle: '+2347023456789'),
+                            title: 'Mobile Number', subtitle: user?.phoneNumber ?? ''),
                         Divider(),
                         CustomProfileTile(
                             title: 'Email Address',
-                            subtitle: 'myemail@mail.com'),
+                            subtitle: '${user?.email}'),
                       ],
                     ),
                   ),
