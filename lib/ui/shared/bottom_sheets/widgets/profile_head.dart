@@ -17,7 +17,7 @@ class ProfileHead extends StatelessWidget {
         UserModel? user = model.userModel;
         String? firstname = user?.firstName ?? '';
         String? lastname = user?.lastName ?? '';
-        String? name = firstname + lastname;
+        String? name = firstname +' '+ lastname;
         
         return Stack(
           alignment: AlignmentDirectional.center,
