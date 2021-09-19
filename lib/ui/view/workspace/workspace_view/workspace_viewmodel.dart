@@ -53,7 +53,12 @@ class WorkspaceViewModel extends BaseViewModel {
 
     try {
       setBusy(true);
-      workspaces = await api.getJoinedOrganizations();
+      final resFromApi = await api.getJoinedOrganizations();
+      if (resFromApi.isEmpty) {
+        workspaces = [];
+      } else {
+        workspaces = resFromApi;
+      }
       // filterWorkspace();
 
       setBusy(false);
