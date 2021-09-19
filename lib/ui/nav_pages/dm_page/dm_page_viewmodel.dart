@@ -9,4 +9,8 @@ class DmPageViewModel extends BaseViewModel {
   void navigateToDmUserView() {
     navigationService.navigateTo(Routes.dmUserView);
   }
+
+    void navigateToJumpToScreen() {
+    navigationService.navigateTo(Routes.dmJumpToView);
+  }
 }
