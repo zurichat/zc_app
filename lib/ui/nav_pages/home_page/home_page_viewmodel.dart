@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

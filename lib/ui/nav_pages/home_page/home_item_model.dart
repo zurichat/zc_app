@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-
-enum HomeItemType {
-  channels,
-  dm,
-}
+import 'package:hng/utilities/enums.dart';
 
 class HomeItemModel {
   int? unreadCount = 0;
