@@ -141,6 +141,7 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       icon: prefixIcon(),
       onTap: () {
         //Navigate to channels and pass the channels id
+        vmodel.navigateToChannelPage();
       },
     );
   }

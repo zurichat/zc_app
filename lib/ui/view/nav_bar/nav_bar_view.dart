@@ -110,9 +110,9 @@ class NavBarView extends StatelessWidget {
         return HomePage();
       case 1:
         return const DmPage();
+      // case 2:
+      //   return const IntegratePage();
       case 2:
-        return const IntegratePage();
-      case 3:
         return const YouPage();
       default:
         return Container();

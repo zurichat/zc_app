@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:hng/ui/shared/shared.dart';
+=======
+import 'package:hng/ui/shared/colors.dart';
+>>>>>>> 15ccbb9e3562e9d48f0a05afca86369ee9558cc5
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -36,15 +40,15 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       textInputAction: inputAction,
-      // autofocus: ,
       autocorrect: autoCorrect!,
       obscureText: obscureText!,
+      cursorColor: AppColors.zuriPrimaryColor,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         labelText: labelText,
         hintText: hintText,
         border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          borderRadius: BorderRadius.all(Radius.circular(3.0)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(5.0)),

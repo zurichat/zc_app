@@ -4,15 +4,24 @@ import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
-
+import 'package:stacked/stacked_annotations.dart';
+import 'forgot_password_otp.form.dart';
 import 'forgot_password_otpviewmodel.dart';
 
-class ForgotPasswordOtpView extends StatelessWidget {
-  const ForgotPasswordOtpView({Key? key}) : super(key: key);
+class ForgotPasswordOtpView extends StatelessWidget
+    with $ForgotPasswordOtpView {
+  ForgotPasswordOtpView({Key? key}) : super(key: key);
 
+  //stacked forms handling
+  @FormView(
+    fields: [
+      FormTextField(name: 'otp'),
+    ],
+  )
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ForgotPasswordOtpViewModel>.reactive(
+      onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.whiteColor,
@@ -53,7 +62,6 @@ class ForgotPasswordOtpView extends StatelessWidget {
                     height: 49.0,
                   ),
                   Form(
-                    key: model.formKey,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 5.0, horizontal: 30),
@@ -83,10 +91,20 @@ class ForgotPasswordOtpView extends StatelessWidget {
                         cursorColor: AppColors.blackColor,
                         animationDuration: Duration(milliseconds: 300),
                         enableActiveFill: true,
-                        errorAnimationController: model.errorController,
-                        controller: model.otpController,
+                        controller: otpController,
                         keyboardType: TextInputType.number,
+<<<<<<< HEAD:lib/ui/view/forgot_password_otp/forgot_password_otpview.dart
                         onCompleted: (v) {},
+=======
+                        boxShadows: [
+                          BoxShadow(
+                            offset: Offset(0, 1),
+                            color: Colors.black12,
+                            blurRadius: 10,
+                          )
+                        ],
+                        onCompleted: (value) {},
+>>>>>>> 15ccbb9e3562e9d48f0a05afca86369ee9558cc5:lib/ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart
                         onTap: () {},
                         onChanged: (value) {},
                         beforeTextPaste: (text) {
