@@ -8,7 +8,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/channel/edit_channel/edit_channel_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/nav_pages/home_page/home_page.dart';
@@ -19,6 +18,7 @@ import '../ui/view/channel/channel_info/channel_info_view.dart';
 import '../ui/view/channel/channel_list/channels_view.dart';
 import '../ui/view/channel/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel/channel_view/channel_page_view.dart';
+import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/clear_after/clear_after_view.dart';
 import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
@@ -48,13 +48,13 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/threads/threads_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
 import '../ui/view/workspace/workspace_url/workspace_url_view.dart';
 import '../ui/view/workspace/workspace_view/workspace_view.dart';
-import '../ui/view/threads/threads_view.dart';
 import '../utilities/enums.dart';
 
 class Routes {
@@ -71,13 +71,14 @@ class Routes {
   static const String forgotPasswordNewView = '/forgot-password-new-view';
   static const String channelNotificationView = '/channel-notification-view';
   static const String newChannel = '/new-channel';
+  static const String channelInfoView = '/channel-info-view';
   static const String homePage = '/home-page';
   static const String addPeopleView = '/add-people-view';
   static const String channelPageView = '/channel-page-view';
   static const String dmSearch = '/dm-search';
   static const String dmJumpToView = '/dm-jump-to-view';
   static const String dmUserView = '/dm-user-view';
-  static const String splashview = '/s';
+  static const String splashview = '/';
   static const String pluginView = '/plugin-view';
   static const String addPluginView = '/add-plugin-view';
   static const String useDifferentEmailView = '/use-different-email-view';
@@ -101,8 +102,7 @@ class Routes {
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
   static const String threadsView = '/threads-view';
-  static const String channelInfoView = '/channel-info-view';
-  static const String editChannelPage = '/edit-channel-view';
+  static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
   static const all = <String>{
     channelAddPeopleView,
@@ -148,7 +148,7 @@ class Routes {
     fileSearchView,
     draftView,
     threadsView,
-    editChannelPage,
+    editChannelPageView,
     workspaceUrlView,
   };
 }
@@ -201,9 +201,10 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
     RouteDef(Routes.threadsView, page: ThreadsView),
+    RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+    RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
-    RouteDef(Routes.editChannelPage, page: EditChannelPageView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -265,12 +266,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    EditChannelPageView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => EditChannelPageView(),
-        settings: data,
-      );
-    },
     ForgotPasswordEmailView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ForgotPasswordEmailView(),
@@ -278,8 +273,11 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordOtpView: (data) {
+      var args = data.getArgs<ForgotPasswordOtpViewArguments>(
+        orElse: () => ForgotPasswordOtpViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ForgotPasswordOtpView(),
+        builder: (context) => ForgotPasswordOtpView(key: args.key),
         settings: data,
       );
     },
@@ -492,8 +490,17 @@ class StackedRouter extends RouterBase {
       );
     },
     ThreadsView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const ThreadsView(),
+        settings: data,
+      );
+    },
+    EditChannelPageView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const EditChannelPageView(),
+        settings: data,
+      );
+    },
     WorkspaceUrlView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceUrlView(),
@@ -525,6 +532,12 @@ class SignUpViewArguments {
   SignUpViewArguments({this.key});
 }
 
+/// ForgotPasswordOtpView arguments holder class
+class ForgotPasswordOtpViewArguments {
+  final Key? key;
+  ForgotPasswordOtpViewArguments({this.key});
+}
+
 /// HomePage arguments holder class
 class HomePageArguments {
   final Key? key;
@@ -541,7 +554,7 @@ class DmUserViewArguments {
 class ViewProfileArguments {
   final Key? key;
   final bool isActive;
-  ViewProfileArguments({this.key, required this.isActive});
+  ViewProfileArguments({this.key, this.isActive=false});
 }
 
 /// CreateWorkSpace arguments holder class

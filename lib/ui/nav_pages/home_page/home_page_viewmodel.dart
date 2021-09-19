@@ -33,6 +33,7 @@ class HomePageViewModel extends StreamViewModel {
   void navigateToThreads() async {
     await _navigationService.navigateTo(Routes.threadsView);
   }
+
   final connectivityService = locator<ConnectivityService>();
   final _navigationService = locator<NavigationService>();
   bool connectionStatus = false;
@@ -144,9 +145,5 @@ class HomePageViewModel extends StreamViewModel {
 
   void navigateToWorkspace() {
     _navigationService.navigateTo(Routes.workspaceView);
-  }
-
-  void navigateToDmUser() {
-    _navigationService.navigateTo(Routes.dmUserView);
   }
 }

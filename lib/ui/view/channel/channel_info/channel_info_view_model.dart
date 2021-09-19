@@ -7,6 +7,6 @@ class ChannelInfoViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   void navigateToEditChannel() {
-    _navigationService.navigateTo(Routes.editChannelPage);
+    //_navigationService.navigateTo(Routes.editChannelPage);
   }
 }
