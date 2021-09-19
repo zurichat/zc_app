@@ -143,9 +143,7 @@ class DmUserView extends StatelessWidget {
                                     },
                                     itemBuilder: (context, message) {
                                       return InkWell(
-                                          onLongPress: () {
-                                            model.setupBottomSheetUi;
-                                          },
+                                          onLongPress: ()=> model.showButtonSheet(),
                                           child: MessageView(message));
                                     },
                                     groupComparator: (groupOne, groupTwo) =>

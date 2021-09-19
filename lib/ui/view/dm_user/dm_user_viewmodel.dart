@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/dm_user/widgets/setupBottomSheetUi.dart';
+import 'package:hng/ui/shared/bottom_sheets/edit_message_bottom_sheet/setupBottomSheetUi.dart';
+import 'package:hng/utilities/enums.dart';
 // import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -9,14 +10,11 @@ import '../../../app/app.locator.dart';
 import 'dummy_data/models/message.dart';
 import 'dummy_data/models/user.dart';
 
-enum BottomSheetType {
-  FloatingBox,
-}
-
 class DmUserViewModel extends BaseViewModel {
   final _username = '';
   String get username => _username;
 
+  final bottomSheet = locator<BottomSheetService>();
   TextEditingController messageController = TextEditingController();
 
   final _isOnline = true;
@@ -33,6 +31,9 @@ class DmUserViewModel extends BaseViewModel {
   bool isSendButtonEnabled = false;
 
   List<Message> chatMessages = List.empty(growable: true);
+  showButtonSheet() {
+    bottomSheet.showCustomSheet(variant: BottomSheetType.FloatingBox);
+  }
 
   void onTapMessageField() {
     _hasClickedMessageField = true;
@@ -59,17 +60,6 @@ class DmUserViewModel extends BaseViewModel {
       notifyListeners();
       sendResponse();
     }
-  }
-
-  void setupBottomSheetUi() {
-    final bottomSheetService = locator<BottomSheetService>();
-
-    final builders = {
-      BottomSheetType.FloatingBox: (context, sheetRequest, completer) =>
-          FloatingBoxBottomSheet(request: sheetRequest, completer: completer)
-    };
-
-    bottomSheetService.setCustomSheetBuilders(builders);
   }
 
   void popScreen() {

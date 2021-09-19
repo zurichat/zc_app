@@ -1,16 +1,25 @@
 //On login or signup the user service is used to save all the user details
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/models/workspace_model.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/storage_keys.dart';
 
+///This class dont do anything special than calling the local storage
+///And returning the data that is saved, you can choose to use it or
+///get the data to local storage yourself
 class UserService {
   final _sharedPrefs = locator<SharedPreferenceLocalStorage>();
 
   //All this are the current user details to be used
   String _currentOrgId = '';
+  String _currentOrgUrl = '';
+  String _currentOrgName = '';
   String _authToken = '';
   String _userId = '';
   String _userEmail = '';
+
+  ///This will give you null because workspace data has not been added
+  WorkspaceModel? workspaceModel;
 
   ///From the organisation side bar set the current organissation Id
   ///and get it anywhere in the app using these getter
@@ -18,6 +27,22 @@ class UserService {
     _currentOrgId = _sharedPrefs.getString(StorageKeys.currentOrgId) ?? '';
     //You can perform other function before returning
     return _currentOrgId;
+  }
+
+  String get currentOrgName {
+    _currentOrgName = _sharedPrefs.getString(StorageKeys.currentOrgName) ?? '';
+    //You can perform other function before returning
+    return _currentOrgName;
+  }
+
+  String get currentOrgUrl {
+    _currentOrgUrl = _sharedPrefs.getString(StorageKeys.currentOrgUrl) ?? '';
+    //You can perform other function before returning
+    return _currentOrgUrl;
+  }
+
+  setOrganisation() {
+    // Todo implement organisation setter
   }
 
   ///From the organisation side bar set the current organissation Id
