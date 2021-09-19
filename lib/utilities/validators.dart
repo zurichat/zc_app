@@ -42,20 +42,18 @@ class Validator {
       return false;
     }
   }
-}
 
-class Validators {
-  emailValidation(String input) {
+  bool emailValidation(String input) {
     if (input.isEmpty) {
-      return 'Field cannot be empty';
+      return false;
     } else if (input.isNotEmpty) {
-      return null;
+      return true;
     } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_"
             r"`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(input)) {
-      return null;
+      return true;
     } else {
-      return 'Invalid Email Address';
+      return false;
     }
   }
 }

@@ -1,21 +1,25 @@
-import 'package:hng/app/app.router.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hng/utilities/validators.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
-class ForgotPasswordEmailViewModel extends BaseViewModel with Validators {
-  TextEditingController emailController = TextEditingController();
-  final validateKey = GlobalKey<FormState>();
-  NavigationService _navigationService = NavigationService();
-  void navigateToOtp() {
-    _navigationService.navigateTo(Routes.forgotPasswordOtpView);
+class ForgotPasswordEmailViewModel extends FormViewModel {
+  bool inputError = false;
+
+  void submitEmail(String val) {
+    _emailValidation(val);
+    notifyListeners();
   }
 
-  void navigateToSignIn() {
-    _navigationService.navigateTo(Routes.loginView);
+  void _emailValidation(String val) {
+    bool validateEmail = Validator.validate.emailValidation(val);
+    if (validateEmail) {
+      inputError = validateEmail;
+    } else {
+      inputError = validateEmail;
+    }
   }
 
-  // ignore: non_constant_identifier_names
-
+  @override
+  void setFormStatus() {
+    // TODO: implement setFormStatus
+  }
 }

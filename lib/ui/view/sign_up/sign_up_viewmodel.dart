@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/app_snackbar.dart';
-=======
 import 'package:hng/ui/shared/shared.dart';
->>>>>>> 15ccbb9e3562e9d48f0a05afca86369ee9558cc5
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

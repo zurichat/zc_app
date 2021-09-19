@@ -9,23 +9,23 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-const String OtpValueKey = 'otp';
+const String ForgotEmailValueKey = 'forgotEmail';
 
-mixin $OTPView on StatelessWidget {
-  final TextEditingController otpController = TextEditingController();
-  final FocusNode otpFocusNode = FocusNode();
+mixin $ForgotPasswordEmailView on StatelessWidget {
+  final TextEditingController forgotEmailController = TextEditingController();
+  final FocusNode forgotEmailFocusNode = FocusNode();
 
   /// Registers a listener on every generated controller that calls [model.setData()]
   /// with the latest textController values
   void listenToFormUpdated(FormViewModel model) {
-    otpController.addListener(() => _updateFormData(model));
+    forgotEmailController.addListener(() => _updateFormData(model));
   }
 
   /// Updates the formData on the FormViewModel
   void _updateFormData(FormViewModel model) => model.setData(
         model.formValueMap
           ..addAll({
-            OtpValueKey: otpController.text,
+            ForgotEmailValueKey: forgotEmailController.text,
           }),
       );
 
@@ -33,14 +33,14 @@ mixin $OTPView on StatelessWidget {
   void disposeForm() {
     // The dispose function for a TextEditingController sets all listeners to null
 
-    otpController.dispose();
+    forgotEmailController.dispose();
   }
 }
 
 extension ValueProperties on FormViewModel {
-  String? get otpValue => this.formValueMap[OtpValueKey];
+  String? get forgotEmailValue => this.formValueMap[ForgotEmailValueKey];
 
-  bool get hasOtp => this.formValueMap.containsKey(OtpValueKey);
+  bool get hasForgotEmail => this.formValueMap.containsKey(ForgotEmailValueKey);
 }
 
 extension Methods on FormViewModel {}

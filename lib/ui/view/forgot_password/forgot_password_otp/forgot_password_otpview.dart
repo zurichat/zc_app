@@ -93,9 +93,6 @@ class ForgotPasswordOtpView extends StatelessWidget
                         enableActiveFill: true,
                         controller: otpController,
                         keyboardType: TextInputType.number,
-<<<<<<< HEAD:lib/ui/view/forgot_password_otp/forgot_password_otpview.dart
-                        onCompleted: (v) {},
-=======
                         boxShadows: [
                           BoxShadow(
                             offset: Offset(0, 1),
@@ -104,7 +101,6 @@ class ForgotPasswordOtpView extends StatelessWidget
                           )
                         ],
                         onCompleted: (value) {},
->>>>>>> 15ccbb9e3562e9d48f0a05afca86369ee9558cc5:lib/ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart
                         onTap: () {},
                         onChanged: (value) {},
                         beforeTextPaste: (text) {

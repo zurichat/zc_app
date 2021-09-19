@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:hng/ui/shared/shared.dart';
-=======
 import 'package:hng/ui/shared/colors.dart';
->>>>>>> 15ccbb9e3562e9d48f0a05afca86369ee9558cc5
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({

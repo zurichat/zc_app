@@ -93,14 +93,8 @@ class LoginView extends StatelessWidget with $LoginView {
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all(EdgeInsets.zero),
                       ),
-<<<<<<< HEAD
-                      onPressed: () =>
-                          model.navigateToForgotPasswordScreen(context),
-                      child: Text(
-=======
                       onPressed: () => model.logInUser(context),
                       child: const Text(
->>>>>>> 15ccbb9e3562e9d48f0a05afca86369ee9558cc5
                         'Forgot Password?',
                         style: TextStyle(
                           color: AppColors.zuriPrimaryColor,

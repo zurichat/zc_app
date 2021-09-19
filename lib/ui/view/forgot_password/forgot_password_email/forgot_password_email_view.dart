@@ -3,20 +3,19 @@ import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
+import 'forgot_password_email_view.form.dart';
 import 'forgot_password_email_viewmodel.dart';
 
-class ForgotPasswordEmailView extends StatefulWidget {
-  const ForgotPasswordEmailView({Key? key}) : super(key: key);
+@FormView(fields: [FormTextField(name: 'forgotEmail')])
+class ForgotPasswordEmailView extends StatelessWidget
+    with $ForgotPasswordEmailView {
+  ForgotPasswordEmailView({Key? key}) : super(key: key);
 
-  @override
-  State<ForgotPasswordEmailView> createState() =>
-      _ForgotPasswordEmailViewState();
-}
-
-class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ForgotPasswordEmailViewModel>.reactive(
+      onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => ForgotPasswordEmailViewModel(),
       builder: (context, model, child) => Scaffold(
         resizeToAvoidBottomInset: false,
@@ -74,20 +73,42 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                 ),
                 Form(
                   // autovalidateMode: AutovalidateMode.onUserInteraction,
-                  key: model.validateKey,
-                  child: CustomTextField(
-                    controller: model.emailController,
+
+                  child: TextField(
+                    controller: forgotEmailController,
                     //autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (val) {
-                      model.emailValidation(model.emailController.text);
-                    },
                     keyboardType: TextInputType.emailAddress,
-                    inputAction: TextInputAction.done,
-                    autoCorrect: true,
+
                     obscureText: false,
-                    hintText: 'Name@gmail.com',
+                    textInputAction: TextInputAction.done,
+                    autocorrect: true,
+                    decoration: InputDecoration(
+                      hintText: 'Name@gmail.com',
+                    ),
+                    onChanged: model.submitEmail,
                   ),
                 ),
+
+                ////Changes
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Visibility(
+                    visible: model.inputError,
+                    child: Column(
+                      children: [
+                        UIHelper.verticalSpaceSmall,
+                        Text(
+                          'Error message',
+                          style: AppTextStyles.body2Medium.copyWith(
+                            color: AppColors.redColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                //Changes  ss
                 SizedBox(
                   height: 30.0,
                 ),
@@ -95,9 +116,7 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                   child: FractionallySizedBox(
                     widthFactor: 1.0,
                     child: ElevatedButton(
-                      onPressed: () {
-                        model.emailValidation(model.emailController.text);
-                      },
+                      onPressed: () {},
                       child: Text(
                         'Continue',
                         style: TextStyle(
@@ -116,9 +135,9 @@ class _ForgotPasswordEmailViewState extends State<ForgotPasswordEmailView> {
                 SizedBox(height: 10),
                 Center(
                   child: GestureDetector(
-                    onTap: () {
-                      model.navigateToSignIn();
-                    },
+                    // onTap: () {
+                    //   model.navigateToSignIn();
+                    // },
                     child: RichText(
                       text: TextSpan(
                         children: [
