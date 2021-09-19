@@ -354,8 +354,11 @@ class StackedRouter extends RouterBase {
       );
     },
     AddPluginView: (data) {
+      var args = data.getArgs<AddPluginViewArguments>(
+        orElse: () => AddPluginViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const AddPluginView(),
+        builder: (context) => AddPluginView(key: args.key),
         settings: data,
       );
     },
@@ -530,6 +533,12 @@ class HomePageArguments {
 class DmUserViewArguments {
   final Key? key;
   DmUserViewArguments({this.key});
+}
+
+/// AddPluginView arguments holder class
+class AddPluginViewArguments {
+  final Key? key;
+  AddPluginViewArguments({this.key});
 }
 
 /// CreateWorkSpace arguments holder class
