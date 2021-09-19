@@ -36,7 +36,11 @@ class WorkSpaceApiService {
       '/users/$email/organizations',
       headers: {'Authorization': 'Bearer $token'},
     );
-    log.i(res?.data?['data'].length);
+    log.i(res?.data?['data']);
+    print(res?.data);
+    if (res?.data['data'] == null) {
+      return [];
+    }
     return (res?.data?['data'] as List)
         .map((e) => WorkspaceModel.fromJson(e))
         .toList();
@@ -60,6 +64,7 @@ class WorkSpaceApiService {
       headers: {'Authorization': 'Bearer $token'},
     );
     log.i(res?.data);
+    print(res?.data);
 
     return WorkspaceModel.fromJson(res?.data?['data']);
   }
