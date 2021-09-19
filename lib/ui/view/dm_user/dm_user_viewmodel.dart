@@ -109,7 +109,7 @@ class DmUserViewModel extends BaseViewModel {
                     },
                   ),
                   ListTile(
-                    leading: new Icon(Icons.airplane_ticket),
+                    leading: new Icon(Icons.mark_as_unread),
                     title: new Text('Mark Unread'),
                     onTap: () {
                       Navigator.pop(context);
