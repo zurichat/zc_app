@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
 
 import 'workspace_viewmodel.dart';
+import '../../sign_out/sign_out_view.dart';
+
 
 class WorkspaceView extends StatelessWidget {
   const WorkspaceView({Key? key}) : super(key: key);
+  
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<WorkspaceViewModel>.reactive(
@@ -33,7 +38,28 @@ class WorkspaceView extends StatelessWidget {
                       child: SingleChildScrollView(
                         physics: ScrollPhysics(),
                         child: model.workspaces.isEmpty
-                            ? Text("No Organization Available!")
+                            ? //Text("No Organization Available!")
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  WorkSpaceDisplayInfo(
+                                      'assets/logo/zuri_chat_logo.png',
+                                      'Hngi8 x i4G',
+                                      'hngi8.slack.com'),
+                                  IconButton(
+                                      onPressed: () {
+                                        showModalBottomSheet(
+                                            context: context,
+                                            builder: (context) {
+                                              return Container(
+                                                child: BottomsheetContent(),
+                                              );
+                                            });
+                                      },
+                                      icon: Icon(Icons.more_vert_sharp))
+                                ],
+                              )
                             : Column(
                                 children: [
                                   SizedBox(

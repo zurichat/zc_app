@@ -8,6 +8,7 @@ import 'integrate_viewmodel.dart';
 
 class IntegratePage extends StatelessWidget {
   const IntegratePage({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
