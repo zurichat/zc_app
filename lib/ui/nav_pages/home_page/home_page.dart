@@ -19,7 +19,6 @@ import 'widgets/home_expanded.dart';
 import 'widgets/home_list_items.dart';
 import 'widgets/home_topbar.dart';
 
-
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -57,6 +56,7 @@ class HomePage extends StatelessWidget {
           searchBar(),
           const Padding(
             padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
+          ),
           SizedBox(height: 15),
           JumpToSearchBar(onTap: () => vmodel.navigateToJumpToScreen()),
           Padding(
@@ -85,7 +85,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-
   Widget searchBar() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
@@ -103,5 +102,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
 }
