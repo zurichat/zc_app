@@ -174,4 +174,13 @@ class HomePageViewModel extends StreamViewModel {
   void navigateToDmUser() {
     _navigationService.navigateTo(Routes.dmUserView);
   }
+
+
+   void navigateToStartToDm() {
+    _navigationService.navigateTo(Routes.startDmView);
+  }
+
+
+
+ 
 }

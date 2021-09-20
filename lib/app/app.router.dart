@@ -497,8 +497,11 @@ class StackedRouter extends RouterBase {
       );
     },
     StartDmView: (data) {
+      var args = data.getArgs<StartDmViewArguments>(
+        orElse: () => StartDmViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const StartDmView(),
+        builder: (context) => StartDmView(key: args.key),
         settings: data,
       );
     },
@@ -556,4 +559,10 @@ class CreateWorkSpaceArguments {
   final Key? key;
   final WorkspaceSwitchMethod method;
   CreateWorkSpaceArguments({this.key, required this.method});
+}
+
+/// StartDmView arguments holder class
+class StartDmViewArguments {
+  final Key? key;
+  StartDmViewArguments({this.key});
 }

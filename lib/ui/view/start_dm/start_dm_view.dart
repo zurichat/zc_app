@@ -1,24 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:stacked/stacked.dart';
 
+import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
+
+
+import 'start_dm_view.form.dart';
 import 'start_dm_viewmodel.dart';
 import 'widgets/custom_chip_input.dart';
 
-class StartDmView extends StatefulWidget {
-  const StartDmView({Key? key}) : super(key: key);
+//stacked forms handling
+@FormView(
+  fields: [
+    FormTextField(name: 'message'),
+  ],
+)
 
-  @override
-  _StartDmViewState createState() => _StartDmViewState();
-}
+// class StartDmView extends StatefulWidget with $StartDmView {
+//    StartDmView({Key? key}) : super(key: key);
 
-class _StartDmViewState extends State<StartDmView> {
+//   @override
+//   _StartDmViewState createState() => _StartDmViewState();
+// }
+
+class StartDmView extends StatelessWidget with $StartDmView {
+  StartDmView({Key? key}) : super(key: key);
+
   final _chipKey = GlobalKey<ChipsInputState>();
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<StartDmViewModel>.reactive(
+      onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => StartDmViewModel(),
       builder: (ctx, model, child) => Scaffold(
         resizeToAvoidBottomInset: true,
@@ -68,7 +82,7 @@ class _StartDmViewState extends State<StartDmView> {
                                   model.focusScope(focus);
                                 },
                                 child: TextField(
-                                  controller: model.messageController,
+                                  controller: messageController,
                                   expands: true,
                                   maxLines: null,
                                   textAlignVertical: TextAlignVertical.center,

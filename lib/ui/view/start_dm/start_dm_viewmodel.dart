@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
@@ -10,15 +9,13 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class StartDmViewModel extends BaseViewModel {
+class StartDmViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();
   final _apiService = locator<HttpApiService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
 
   bool _hasClickedMessageField = false;
   bool get hasClickedMessageField => _hasClickedMessageField;
-
-  TextEditingController messageController = TextEditingController();
 
   Future<List<UserModel>> allUsers() async {
     String _currentOrgId = storageService.getString(StorageKeys.currentOrgId) ??
@@ -59,8 +56,10 @@ class StartDmViewModel extends BaseViewModel {
     navigationService.navigateTo(Routes.dmUserView);
   }
 
-  void sendMessage() {
-    String message = messageController.text;
+
+
+  void sendMessage( messageValue) {
+    String message = messageValue;
     if (message.trim().isNotEmpty) {
       Fluttertoast.showToast(
         msg: message.trim().toString(),
@@ -69,7 +68,7 @@ class StartDmViewModel extends BaseViewModel {
       );
       navigateToHomeScreen();
 
-      messageController.clear();
+      messageValue.clear();
       notifyListeners();
     }
   }
@@ -82,4 +81,7 @@ class StartDmViewModel extends BaseViewModel {
     }
     notifyListeners();
   }
+
+  @override
+  void setFormStatus() {}
 }

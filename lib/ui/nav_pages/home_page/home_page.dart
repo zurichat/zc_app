@@ -62,6 +62,7 @@ class HomePage extends StatelessWidget {
             data: vmodel.directMessages,
           ),
           Divider(),
+          FloatingActionButton(backgroundColor: Colors.red, onPressed: ()=> vmodel.navigateToStartToDm)
         ],
       ),
     );
