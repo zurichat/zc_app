@@ -360,8 +360,11 @@ class StackedRouter extends RouterBase {
       );
     },
     AddPluginView: (data) {
+      var args = data.getArgs<AddPluginViewArguments>(
+        orElse: () => AddPluginViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const AddPluginView(),
+        builder: (context) => AddPluginView(key: args.key),
         settings: data,
       );
     },
@@ -378,14 +381,8 @@ class StackedRouter extends RouterBase {
       );
     },
     ViewProfile: (data) {
-      var args = data.getArgs<ViewProfileArguments>(
-        orElse: () => ViewProfileArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ViewProfile(
-          key: args.key,
-          isActive: args.isActive,
-        ),
+        builder: (context) => ViewProfile(),
         settings: data,
       );
     },
@@ -550,11 +547,10 @@ class DmUserViewArguments {
   DmUserViewArguments({this.key});
 }
 
-/// ViewProfile arguments holder class
-class ViewProfileArguments {
+/// AddPluginView arguments holder class
+class AddPluginViewArguments {
   final Key? key;
-  final bool isActive;
-  ViewProfileArguments({this.key, this.isActive=false});
+  AddPluginViewArguments({this.key});
 }
 
 /// CreateWorkSpace arguments holder class

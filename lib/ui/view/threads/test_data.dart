@@ -66,9 +66,6 @@ List<UserThreadPost> thread2 = [
 
 List<PostEmojis> postEmoji1 = [
   PostEmojis(id: 1, postEmoji: "😀", postEmojiCount: 3, hasReacted: false),
-  PostEmojis(id: 2, postEmoji: "😀", postEmojiCount: 3, hasReacted: false),
-  PostEmojis(id: 3, postEmoji: "😀", postEmojiCount: 3, hasReacted: false),
-  PostEmojis(id: 4, postEmoji: "😀", postEmojiCount: 1, hasReacted: true),
 ];
 List<PostEmojis> postEmoji2 = [
   PostEmojis(id: 5, postEmoji: "😀", postEmojiCount: 2),

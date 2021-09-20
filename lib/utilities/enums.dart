@@ -2,7 +2,11 @@ enum ConnectivityStatus { Wifi, Mobile, Online, Offline }
 
 enum DialogType { skinTone, selectLanguage, feedback, themeMode }
 
-enum BottomSheetType { user, emojiPicker }
+enum BottomSheetType {
+  user,
+  emojiPicker,
+  FloatingBox,
+}
 
 enum HomeListType {
   unreads,
@@ -20,4 +24,9 @@ enum WorkspaceSwitchMethod {
 enum SnackbarType {
   success,
   failure,
+}
+
+enum HomeItemType {
+  channels,
+  dm,
 }

@@ -1,4 +1,7 @@
 import 'package:hng/ui/view/threads/threads_view.dart';
+import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
+import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/view/channel/edit_channel/edit_channel_view.dart';
 import 'package:hng/ui/view/workspace/workspace_url/workspace_url_view.dart';
 import 'package:hng/ui/view/channel/add_people/channel_add_people_view.dart';
@@ -10,7 +13,6 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
-import '../package/base/server-request/api/http_api.dart';
 import '../services/connectivity_service.dart';
 import '../services/local_storage_services.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
@@ -116,7 +118,11 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
       classType: ConnectivityService,
       presolveUsing: ConnectivityService.getInstance,
     ),
+    LazySingleton(classType: UserService),
+    LazySingleton(classType: DMApiService),
+    LazySingleton(classType: ChannelsApiService),
   ],
+  logger: StackedLogger(),
 )
 class AppSetup {
   /* This class serves no other purpose other than having the
