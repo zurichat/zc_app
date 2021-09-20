@@ -26,16 +26,16 @@ class ThreadTextAndIcon extends StatelessWidget {
   }
 }
 
-class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+class AddChannelsTextAndIcon extends StatelessWidget {
   const AddChannelsTextAndIcon({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, vmodel) {
+  Widget build(BuildContext context) {
     return _TextAndIcon(
       text: 'Add channels',
       unread: false,
       onTap: () {
-        vmodel.navigateToNewChannel();
+        // Navigate to add channels screens
       },
       icon: SvgIcon(
         svgIcon: SvgAssets.addChannels,
