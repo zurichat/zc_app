@@ -1,6 +1,8 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/bottom_sheets/edit_message_bottom_sheet/setupBottomSheetUi.dart';
+import 'package:hng/utilities/enums.dart';
+// import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -12,6 +14,7 @@ class DmUserViewModel extends BaseViewModel {
   final _username = '';
   String get username => _username;
 
+  final bottomSheet = locator<BottomSheetService>();
   TextEditingController messageController = TextEditingController();
 
   final _isOnline = true;
@@ -28,6 +31,9 @@ class DmUserViewModel extends BaseViewModel {
   bool isSendButtonEnabled = false;
 
   List<Message> chatMessages = List.empty(growable: true);
+  showButtonSheet() {
+    bottomSheet.showCustomSheet(variant: BottomSheetType.FloatingBox);
+  }
 
   void onTapMessageField() {
     _hasClickedMessageField = true;
