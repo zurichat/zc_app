@@ -158,7 +158,8 @@ class ForgotPasswordOtpView extends StatelessWidget
                           primary: Color(0xff00B87C),
                         ),
                         onPressed: () {
-                          model.navigateToNewPassword();
+                          // model.navigateToNewPassword();
+                          model.verifyOtpCode();
                         },
                       ),
                     ),

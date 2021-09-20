@@ -43,14 +43,34 @@ mixin ValidatorMixin {
   bool emailValidation(String input) {
     if (input.isEmpty) {
       return false;
-    } else if (input.isNotEmpty) {
-      return true;
     } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_"
-            r"`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(input)) {
+                r"`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(input) &&
+        input.isNotEmpty) {
       return true;
     } else {
       return false;
     }
   }
+
+  bool passValidation(String input,) {
+    if (input.length < 6 || input.isEmpty) {
+      return false;
+    } 
+     else {
+      return true;
+    }
+  }
+
+  // bool confirmPasswrod(String input2) {
+  //   if (input1.isEmpty && input2.isEmpty) {
+  //     return false;
+  //   } else if (input1.isNotEmpty && input2.isNotEmpty) {
+  //     return true;
+  //   } else if (input1 != input2) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 }

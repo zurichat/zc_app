@@ -279,8 +279,11 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordNewView: (data) {
+      var args = data.getArgs<ForgotPasswordNewViewArguments>(
+        orElse: () => ForgotPasswordNewViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ForgotPasswordNewView(),
+        builder: (context) => ForgotPasswordNewView(key: args.key),
         settings: data,
       );
     },
@@ -530,6 +533,12 @@ class ForgotPasswordEmailViewArguments {
 class ForgotPasswordOtpViewArguments {
   final Key? key;
   ForgotPasswordOtpViewArguments({this.key});
+}
+
+/// ForgotPasswordNewView arguments holder class
+class ForgotPasswordNewViewArguments {
+  final Key? key;
+  ForgotPasswordNewViewArguments({this.key});
 }
 
 /// HomePage arguments holder class

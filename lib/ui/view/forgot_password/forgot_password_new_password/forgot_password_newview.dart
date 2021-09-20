@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
+import 'forgot_password_newview.form.dart';
 import 'forgot_password_newviewmodel.dart';
 
-class ForgotPasswordNewView extends StatefulWidget {
-  const ForgotPasswordNewView({Key? key}) : super(key: key);
+@FormView(fields: [
+  FormTextField(name: 'newPassword'),
+  FormTextField(name: 'confirmPassword')
+])
+class ForgotPasswordNewView extends StatelessWidget
+    with $ForgotPasswordNewView {
+  ForgotPasswordNewView({Key? key}) : super(key: key);
 
-  @override
-  State<ForgotPasswordNewView> createState() => _ForgotPasswordNewViewState();
-}
-
-class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ForgotPasswordNewViewModel>.reactive(
+      onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.whiteColor,
@@ -71,31 +75,51 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                             fontWeight: FontWeight.w700, fontSize: 16.0),
                       )),
                   Form(
-                    key: model.validateKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomTextField(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (val) {
-                            if (model.newPasswordController.text.isEmpty) {
-                              return 'Field cannot be empty';
-                            } else if (model
-                                .newPasswordController.text.isNotEmpty) {
-                              return null;
-                            } else if (val.length < 6) {
-                              return 'Password must be atleast 6 characters';
-                            } else {
-                              return null;
-                            }
-                          },
-                          controller: model.newPasswordController,
+                        TextField(
+                          controller: newPasswordController,
                           keyboardType: TextInputType.emailAddress,
-                          inputAction: TextInputAction.next,
-                          autoCorrect: true,
                           obscureText: true,
-                          hintText: 'Enter Password',
+                          textInputAction: TextInputAction.done,
+                          autocorrect: true,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(3.0))),
+                            hintText: 'Enter Password',
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5.0)),
+                              borderSide: BorderSide(
+                                color: AppColors.zuriPrimaryColor,
+                              ),
+                            ),
+                          ),
+                          // onChanged: model.submitEmail,
                         ),
+
+                        ////Changes
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: Visibility(
+                            visible: model.inputError,
+                            child: Column(
+                              children: [
+                                UIHelper.verticalSpaceSmall,
+                                Text(
+                                  'Password Must be aleast 6 characters',
+                                  style: AppTextStyles.body2Medium.copyWith(
+                                    color: AppColors.redColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+
+                        //Changes  ss
                         SizedBox(
                           height: 15.0,
                         ),
@@ -107,23 +131,48 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                                 fontWeight: FontWeight.w700, fontSize: 16.0),
                           ),
                         ),
-                        CustomTextField(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (val) {
-                            if (model.newPasswordController.text !=
-                                model.reTypePassController.text) {
-                              return 'Passwords do not match';
-                            } else {
-                              return null;
-                            }
-                          },
-                          controller: model.reTypePassController,
-                          keyboardType: TextInputType.visiblePassword,
-                          inputAction: TextInputAction.done,
-                          autoCorrect: true,
+                        TextField(
+                          controller: confirmPasswordController,
+                          keyboardType: TextInputType.emailAddress,
                           obscureText: true,
-                          hintText: 'Re-enter Password',
+                          textInputAction: TextInputAction.done,
+                          autocorrect: true,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(3.0))),
+                            hintText: 'Confirm Password',
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5.0)),
+                              borderSide: BorderSide(
+                                color: AppColors.zuriPrimaryColor,
+                              ),
+                            ),
+                          ),
+                          //  onChanged: model.submitEmail,
                         ),
+
+                        ////Changes
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: Visibility(
+                            visible: model.inputError,
+                            child: Column(
+                              children: [
+                                UIHelper.verticalSpaceSmall,
+                                Text(
+                                  'Passwords do not match',
+                                  style: AppTextStyles.body2Medium.copyWith(
+                                    color: AppColors.redColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+
+                        //Changes  ss
                       ],
                     ),
                   ),
@@ -135,10 +184,8 @@ class _ForgotPasswordNewViewState extends State<ForgotPasswordNewView> {
                       widthFactor: 1.0,
                       child: ElevatedButton(
                         onPressed: () {
-                          setState(() {});
-                          if (model.validateKey.currentState!.validate()) {
-                            return model.navigateToLogin();
-                          }
+                          // model.passwordVerification();
+                          model.resetPassword();
                         },
                         child: Text(
                           'Continue',

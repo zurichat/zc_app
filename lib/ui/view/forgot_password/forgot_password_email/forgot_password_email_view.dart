@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
@@ -10,6 +9,7 @@ import 'forgot_password_email_viewmodel.dart';
 @FormView(fields: [FormTextField(name: 'forgotEmail')])
 class ForgotPasswordEmailView extends StatelessWidget
     with $ForgotPasswordEmailView {
+  //bool isWrong = false;
   ForgotPasswordEmailView({Key? key}) : super(key: key);
 
   @override
@@ -71,39 +71,53 @@ class ForgotPasswordEmailView extends StatelessWidget
                         TextStyle(fontWeight: FontWeight.w700, fontSize: 16.0),
                   ),
                 ),
-                Form(
-                  child: TextField(
-                    controller: forgotEmailController,
-                    keyboardType: TextInputType.emailAddress,
-                    obscureText: false,
-                    textInputAction: TextInputAction.done,
-                    autocorrect: true,
-                    decoration: InputDecoration(
-                      hintText: 'Name@gmail.com',
-                    ),
-                    onChanged: model.submitEmail,
-                  ),
-                ),
-
-                ////Changes
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Visibility(
-                    visible: model.inputError,
-                    child: Column(
-                      children: [
-                        UIHelper.verticalSpaceSmall,
-                        Text(
-                          'Error message',
-                          style: AppTextStyles.body2Medium.copyWith(
-                            color: AppColors.redColor,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Form(
+                      child: TextField(
+                        controller: forgotEmailController,
+                        keyboardType: TextInputType.emailAddress,
+                        obscureText: false,
+                        textInputAction: TextInputAction.done,
+                        autocorrect: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(3.0))),
+                          hintText: 'Name@gmail.com',
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                            borderSide: BorderSide(
+                              color: AppColors.zuriPrimaryColor,
+                            ),
                           ),
                         ),
-                      ],
+                        // onChanged: model.submitEmail,
+                      ),
                     ),
-                  ),
-                ),
 
+                    ////Changes
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Visibility(
+                        visible: model.inputError,
+                        child: Column(
+                          children: [
+                            UIHelper.verticalSpaceSmall,
+                            Text(
+                              'invalid email address',
+                              style: AppTextStyles.body2Medium.copyWith(
+                                color: AppColors.redColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 //Changes  ss
                 SizedBox(
                   height: 30.0,
@@ -112,7 +126,11 @@ class ForgotPasswordEmailView extends StatelessWidget
                   child: FractionallySizedBox(
                     widthFactor: 1.0,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // ignore: unnecessary_statements
+                        // model.submitEmail();
+                        model.validateEmailIsRegistered();
+                      },
                       child: Text(
                         'Continue',
                         style: TextStyle(
@@ -131,9 +149,9 @@ class ForgotPasswordEmailView extends StatelessWidget
                 SizedBox(height: 10),
                 Center(
                   child: GestureDetector(
-                    // onTap: () {
-                    //   model.navigateToSignIn();
-                    // },
+                    onTap: () {
+                      model.navigateToSignIn();
+                    },
                     child: RichText(
                       text: TextSpan(
                         children: [
