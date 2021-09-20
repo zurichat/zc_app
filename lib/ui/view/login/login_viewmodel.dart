@@ -36,7 +36,7 @@ class LoginViewModel extends FormViewModel {
   Future logInUser(context) async {
     loading(true);
     const endpoint = '/auth/login';
-    if (emailValue == '' || passwordValue == '') {
+    if (emailValue == null || passwordValue == null) {
       loading(false);
       //Hides the keyboard for the failure snackbar to be visible
       // FocusScope.of(context).unfocus();
