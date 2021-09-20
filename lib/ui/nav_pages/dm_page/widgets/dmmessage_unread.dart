@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import '../../../shared/shared.dart';
 
 class DMMessageUnread extends StatelessWidget {
   const DMMessageUnread({
@@ -9,7 +10,6 @@ class DMMessageUnread extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
       child: Row(
         children: [
           Container(
@@ -32,12 +32,12 @@ class DMMessageUnread extends StatelessWidget {
             children: [
               Text(
                 'OyinkaUA 4️⃣',
-                style:
-                    AppTextStyles.body1Bold,),
+                style: AppTextStyles.body1Bold,
+              ),
               SizedBox(height: 5),
               Text(
                 'You: Have you been promoted?',
-                style: AppTextStyles.normalText
+                // style: AppTextStyles.normalText
               ),
             ],
           ),
@@ -48,11 +48,11 @@ class DMMessageUnread extends StatelessWidget {
             children: [
               Text(
                 '1m',
-                style:
-                    AppTextStyles.timestamp,
+                // style:
+                //     AppTextStyles.timestamp,
               ),
               SizedBox(height: 5),
-             AppTextStyles.unreadCount(3)
+              AppTextStyles.unreadCount(3)
             ],
           ),
         ],

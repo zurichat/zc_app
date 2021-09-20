@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/colors.dart';
-
 import 'package:stacked/stacked.dart';
 
+import '../../shared/colors.dart';
 import 'dm_page_viewmodel.dart';
 import 'widgets/dmmessage_read.dart';
 import 'widgets/dmmessage_unread.dart';
-
 
 class DmPage extends StatelessWidget {
   const DmPage({Key? key}) : super(key: key);
@@ -18,13 +16,15 @@ class DmPage extends StatelessWidget {
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             elevation: 0,
-            backgroundColor: Color(0xff00B87C),
+            backgroundColor: AppColors.zuriPrimaryColor,
             title: Text(
               "Direct Messages",
               style: GoogleFonts.lato(
-                fontWeight: FontWeight.w700,
-              ),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                  color: AppColors.whiteColor),
             ),
             centerTitle: false,
           ),
@@ -34,7 +34,7 @@ class DmPage extends StatelessWidget {
               Icons.add,
               color: AppColors.whiteColor,
             ),
-            backgroundColor: AppColors.greenColor,
+            backgroundColor: AppColors.zuriPrimaryColor,
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -56,39 +56,63 @@ class DmPage extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  DMMessageUnread(),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: DMMessageUnread(),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: DMMessageRead(),
                   ),
-                  DMMessageUnread(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageUnread(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageRead(),
                   SizedBox(
                     height: 20,
                   ),
                   DMMessageUnread(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: DMMessageRead(),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: DMMessageRead(),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: DMMessageRead(),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: DMMessageRead(),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: DMMessageRead(),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: DMMessageRead(),
+                  ),
                   SizedBox(
                     height: 30,
                   ),
@@ -102,7 +126,3 @@ class DmPage extends StatelessWidget {
     );
   }
 }
-
-
-
-

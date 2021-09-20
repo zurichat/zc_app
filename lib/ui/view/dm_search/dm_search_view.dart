@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/widgets/dm_search_widgets.dart';
+import 'package:hng/ui/view/dm_search/dm_search_widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'dm_search_viewmodel.dart';
 

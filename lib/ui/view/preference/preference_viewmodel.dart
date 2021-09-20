@@ -1,27 +1,69 @@
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.logger.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 class PreferenceViewModel extends BaseViewModel {
+  final log = getLogger('PreferenceViewModel');
   ThemeService _themeService = locator<ThemeService>();
+  final _dialogService = locator<DialogService>();
+  final _navigationService = locator<NavigationService>();
 
-  switchtoDefaultLight() {
-    _themeService.selectThemeAtIndex(0);
-    print('Default Light Activated');
+  String currentTheme = "System Default";
+  int currentThemeValue = 1;
+
+  List themes = [
+    "System Default",
+    "Off",
+    "On",
+    "Kimbie Dark",
+  ];
+
+  Future changeTheme() async {
+    final dialogResult = await _dialogService.showCustomDialog(
+      variant: DialogType.themeMode,
+      data: {"themes": themes, "currentThemeValue": currentThemeValue},
+    );
+
+    if (dialogResult != null && dialogResult.confirmed == true) {
+      log.i(dialogResult.data);
+      currentThemeValue = dialogResult.data;
+      _themeService.selectThemeAtIndex(currentThemeValue);
+      currentTheme = themes[dialogResult.data];
+
+      notifyListeners();
+    }
   }
 
-  switchtoLight() {
-    _themeService.selectThemeAtIndex(1);
-    print('Light Activated');
+  void exitPage() {
+    _navigationService.back();
   }
 
-  switchtoDark() {
-    _themeService.selectThemeAtIndex(2);
-    print('Dark Activated');
+  Future navigateLanguageAndRegion() async {
+    await _navigationService.navigateTo(Routes.languageAndRegionModelView);
   }
 
-  switchtoKimbieDark() {
-    _themeService.selectThemeAtIndex(3);
-    print('Kimbie Dark Activated');
+  void setTheme() {}
+
+  Future navigateToAdvanced() async {
+    await _navigationService.navigateTo(Routes.advancedView);
   }
+
+  Future sendFeedback() async {
+    final dialogResult = await _dialogService.showCustomDialog(
+      variant: DialogType.feedback,
+    );
+
+    if (dialogResult != null && dialogResult.confirmed == true) {
+      log.i(dialogResult.data);
+      notifyListeners();
+    }
+  }
+
+  void helpCentre() {}
+
+  void privacyAndLicences() {}
 }

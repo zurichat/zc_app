@@ -6,92 +6,169 @@
 
 // ignore_for_file: public_member_api_docs
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/all_threads_view/threadDetail/hook_thread_detail.dart';
-import 'package:hng/ui/view/channel/new_channel/new_channel.dart';
-import 'package:hng/ui/view/channel/channel_page_view.dart';
 import 'package:stacked/stacked.dart';
 
-import '../ui/view/channel_info/channel_info_view.dart';
+import '../ui/nav_pages/home_page/home_page.dart';
+import '../ui/view/add_people/add_people_view.dart';
+import '../ui/view/advanced/advanced_view.dart';
+import '../ui/view/channel/add_people/channel_add_people_view.dart';
+import '../ui/view/channel/channel_info/channel_info_view.dart';
+import '../ui/view/channel/channel_list/channels_view.dart';
+import '../ui/view/channel/channel_notification/channel_notification_view.dart';
+import '../ui/view/channel/channel_view/channel_page_view.dart';
+import '../ui/view/channel/edit_channel/edit_channel_view.dart';
+import '../ui/view/channel/new_channel/new_channel.dart';
+import '../ui/view/clear_after/clear_after_view.dart';
+import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
+import '../ui/view/dm_search/dm_search_view.dart';
+import '../ui/view/dm_user/dm_user_view.dart';
+import '../ui/view/do_not_disturb/do_not_disturb_view.dart';
+import '../ui/view/draft/draft_view.dart';
+import '../ui/view/edit_profile/edit_profile_view.dart';
+import '../ui/view/file_search/file_search_view.dart';
+import '../ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
+import '../ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
+import '../ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
+import '../ui/view/language_and_region/language_and_region_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
+import '../ui/view/notifications/notifications_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
+import '../ui/view/otp/otp_view.dart';
+import '../ui/view/pinned_messages/pinned_message.dart';
+import '../ui/view/plugins/add_plugin_view.dart';
+import '../ui/view/plugins/edit_plugin_view.dart';
+import '../ui/view/plugins/plugins_view.dart';
+import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
-
-import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
-
-import '../ui/view/workspace/workspace_view.dart';
+import '../ui/view/profile_page/profile_page_view.dart';
+import '../ui/view/saved_items/saved_items_view.dart';
+import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
-
+import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/view_profile_page/view_profile.dart';
+import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
+import '../ui/view/workspace/create_workspace/create_workspace.dart';
+import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
+import '../ui/view/workspace/workspace_url/workspace_url_view.dart';
+import '../ui/view/workspace/workspace_view/workspace_view.dart';
+import '../utilities/enums.dart';
 
 class Routes {
-  static const String loginView = '/login-view';
-
-  static const String channelView = '/channel-view';
-
-
+  static const String channelAddPeopleView = '/channel-add-people-view';
   static const String navBarView = '/nav-bar-view';
-  static const String onboardingView = '/';
-
-  static const String preferenceView = '/preference-view';
-  static const String useDifferentEmailView = '/use-different-email-view';
-  static const String workspaceView = '/workspace-view';
-
+  static const String onboardingView = '/onboarding-view';
+  static const String loginView = '/login-view';
+  static const String oTPView = '/o-tp-view';
   static const String signUpView = '/sign-up-view';
-
-  static const String newChannel = '/newChannel-view';
+  static const String workspaceView = '/workspace-view';
+  static const String channelList = '/channel-list';
+  static const String forgotPasswordEmailView = '/forgot-password-email-view';
+  static const String forgotPasswordOtpView = '/forgot-password-otp-view';
+  static const String forgotPasswordNewView = '/forgot-password-new-view';
+  static const String channelNotificationView = '/channel-notification-view';
+  static const String newChannel = '/new-channel';
   static const String channelInfoView = '/channel-info-view';
-  static const String threadDetailView = '/thread-detail-view';
-
+  static const String clearAfterView = '/clear-after-view';
+  static const String doNotDisturbView = '/do-not-disturb-view';
+  static const String editProfileView = '/edit-profile-view';
+  static const String popUpNotificationsView = '/pop-up-notifications-view';
+  static const String pinnedMessages = '/pinned-messages';
+  static const String addWorkspaceView = '/add-workspace-view';
+  static const String createWorkSpace = '/create-work-space';
+  static const String fileSearchView = '/file-search-view';
+  static const String draftView = '/draft-view';
+  static const String editChannelPageView = '/edit-channel-page-view';
+  static const String workspaceUrlView = '/workspace-url-view';
   static const all = <String>{
-    loginView,
+    channelAddPeopleView,
     navBarView,
     onboardingView,
-    preferenceView,
-    useDifferentEmailView,
-    workspaceView,
-
+    oTPView,
     signUpView,
-
+    workspaceView,
+    channelList,
+    forgotPasswordOtpView,
+    forgotPasswordNewView,
+    channelNotificationView,
     newChannel,
-    channelView,
-    channelInfoView,
-    threadDetailView,
-
+    setStatusView,
+    profilePageView,
+    preferenceView,
+    languageAndRegionModelView,
+    notificationsView,
+    advancedView,
+    clearAfterView,
+    doNotDisturbView,
+    popUpNotificationsView,
+    pinnedMessages,
+    addWorkspaceView,
+    createWorkSpace,
+    fileSearchView,
+    draftView,
+    editChannelPageView,
+    workspaceUrlView,
   };
 }
 
 class StackedRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
-  final _routes = <RouteDef>[
-    RouteDef(Routes.loginView, page: LoginView),
-
-
-    RouteDef(Routes.channelView, page: ChannelPageView)
-
+    RouteDef(Routes.channelAddPeopleView, page: ChannelAddPeopleView),
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
-
-    RouteDef(Routes.preferenceView, page: PreferenceView),
-
-    RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
-    RouteDef(Routes.workspaceView, page: WorkspaceView),
-
-        RouteDef(Routes.signUpView, page: SignUpView),
-
-
-
+    RouteDef(Routes.loginView, page: LoginView),
+    RouteDef(Routes.oTPView, page: OTPView),
+    RouteDef(Routes.signUpView, page: SignUpView),
+    RouteDef(Routes.channelList, page: ChannelList),
+    RouteDef(Routes.forgotPasswordEmailView, page: ForgotPasswordEmailView),
+    RouteDef(Routes.forgotPasswordOtpView, page: ForgotPasswordOtpView),
+    RouteDef(Routes.forgotPasswordNewView, page: ForgotPasswordNewView),
+    RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
     RouteDef(Routes.newChannel, page: NewChannel),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
-
+    RouteDef(Routes.homePage, page: HomePage),
+    RouteDef(Routes.addPeopleView, page: AddPeopleView),
+    RouteDef(Routes.channelPageView, page: ChannelPageView),
+    RouteDef(Routes.dmSearch, page: DmSearch),
+    RouteDef(Routes.dmJumpToView, page: DmJumpToView),
+    RouteDef(Routes.dmUserView, page: DmUserView),
+    RouteDef(Routes.splashview, page: Splashview),
+    RouteDef(Routes.pluginView, page: PluginView),
+    RouteDef(Routes.addPluginView, page: AddPluginView),
+    RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
+    RouteDef(Routes.editPluginView, page: EditPluginView),
+    RouteDef(Routes.viewProfile, page: ViewProfile),
+    RouteDef(Routes.setStatusView, page: SetStatusView),
+    RouteDef(Routes.profilePageView, page: ProfilePageView),
+    RouteDef(Routes.preferenceView, page: PreferenceView),
+    RouteDef(Routes.languageAndRegionModelView,
+        page: LanguageAndRegionModelView),
+    RouteDef(Routes.savedItemsView, page: SavedItemsView),
+    RouteDef(Routes.notificationsView, page: NotificationsView),
+    RouteDef(Routes.advancedView, page: AdvancedView),
+    RouteDef(Routes.clearAfterView, page: ClearAfterView),
+    RouteDef(Routes.doNotDisturbView, page: DoNotDisturbView),
+    RouteDef(Routes.editProfileView, page: EditProfileView),
+    RouteDef(Routes.popUpNotificationsView, page: PopUpNotificationsView),
+    RouteDef(Routes.pinnedMessages, page: PinnedMessages),
+    RouteDef(Routes.addWorkspaceView, page: AddWorkspaceView),
+    RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
+    RouteDef(Routes.fileSearchView, page: FileSearchView),
+    RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.channelPageView, page: ChannelPageView),
+    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+    RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
+    RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
-    LoginView: (data) {
+    ChannelAddPeopleView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const LoginView(),
+        builder: (context) => const ChannelAddPeopleView(),
         settings: data,
       );
     },
@@ -107,46 +184,232 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    ChannelPageView: (data) {
+    LoginView: (data) {
+      var args = data.getArgs<LoginViewArguments>(
+        orElse: () => LoginViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ChannelPageView(),
-
-    PreferenceView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const PreferenceView(),
+        builder: (context) => LoginView(key: args.key),
         settings: data,
       );
     },
-
-     UseDifferentEmailView: (data) {
+    OTPView: (data) {
+      var args = data.getArgs<OTPViewArguments>(
+        orElse: () => OTPViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const UseDifferentEmailView(),
-settings: data,
-        );
-     },
-    
+        builder: (context) => OTPView(key: args.key),
+        settings: data,
+      );
+    },
+    SignUpView: (data) {
+      var args = data.getArgs<SignUpViewArguments>(
+        orElse: () => SignUpViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SignUpView(key: args.key),
+        settings: data,
+      );
+    },
     WorkspaceView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceView(),
         settings: data,
       );
     },
-
-     SignUpView: (data) {
+    ChannelList: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) =>  SignUpView(),
-        
-
-    NewChannel: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const NewChannel(),
-        settings: data,
-    );
-  },
+      );
     ChannelInfoView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ChannelInfoView(),
-
+        settings: data,
+      );
+    HomePage: (data) {
+      var args = data.getArgs<HomePageArguments>(
+        orElse: () => HomePageArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        settings: data,
+      );
+    },
+    AddPeopleView: (data) {
+      return MaterialPageRoute<dynamic>(
+        settings: data,
+      );
+    },
+    ChannelPageView: (data) {
+      return MaterialPageRoute<dynamic>(
+        settings: data,
+      );
+    },
+    DmSearch: (data) {
+      return MaterialPageRoute<dynamic>(
+        settings: data,
+      );
+    },
+    DmJumpToView: (data) {
+      return MaterialPageRoute<dynamic>(
+        settings: data,
+      );
+    },
+    DmUserView: (data) {
+      var args = data.getArgs<DmUserViewArguments>(
+        orElse: () => DmUserViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => DmUserView(key: args.key),
+        settings: data,
+      );
+    },
+    Splashview: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const Splashview(),
+        settings: data,
+      );
+    },
+    PluginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PluginView(),
+        settings: data,
+      );
+    },
+    AddPluginView: (data) {
+      var args = data.getArgs<AddPluginViewArguments>(
+        orElse: () => AddPluginViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => AddPluginView(key: args.key),
+        settings: data,
+      );
+    },
+    UseDifferentEmailView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const UseDifferentEmailView(),
+        settings: data,
+      );
+    },
+    EditPluginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const EditPluginView(),
+        settings: data,
+      );
+    },
+    ViewProfile: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ViewProfile(),
+        settings: data,
+      );
+    },
+    SetStatusView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SetStatusView(),
+        settings: data,
+      );
+    },
+    ProfilePageView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ProfilePageView(),
+        settings: data,
+      );
+    },
+    PreferenceView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PreferenceView(),
+        settings: data,
+      );
+    },
+    LanguageAndRegionModelView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const LanguageAndRegionModelView(),
+        settings: data,
+      );
+    },
+    SavedItemsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const SavedItemsView(),
+        settings: data,
+      );
+    },
+    NotificationsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const NotificationsView(),
+        settings: data,
+      );
+    },
+    AdvancedView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const AdvancedView(),
+        settings: data,
+      );
+    },
+    ClearAfterView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ClearAfterView(),
+        settings: data,
+      );
+    },
+    DoNotDisturbView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const DoNotDisturbView(),
+        settings: data,
+      );
+    },
+    EditProfileView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const EditProfileView(),
+        settings: data,
+      );
+    },
+    PopUpNotificationsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PopUpNotificationsView(),
+        settings: data,
+      );
+    },
+    PinnedMessages: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PinnedMessages(),
+        settings: data,
+      );
+    },
+    AddWorkspaceView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const AddWorkspaceView(),
+        settings: data,
+      );
+    },
+    CreateWorkSpace: (data) {
+      var args = data.getArgs<CreateWorkSpaceArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => CreateWorkSpace(
+          key: args.key,
+          method: args.method,
+        ),
+        settings: data,
+      );
+    },
+    FileSearchView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const FileSearchView(),
+        settings: data,
+      );
+    },
+    DraftView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const DraftView(),
+        settings: data,
+      );
+    },
+    EditChannelPageView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const EditChannelPageView(),
+        settings: data,
+      );
+    },
+    WorkspaceUrlView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const WorkspaceUrlView(),
         settings: data,
       );
     },
@@ -157,4 +420,57 @@ settings: data,
       settings: data,
     );
   },
+}
+
+/// ************************************************************************
+/// Arguments holder classes
+/// *************************************************************************
+
+/// LoginView arguments holder class
+class LoginViewArguments {
+  final Key? key;
+  LoginViewArguments({this.key});
+}
+
+/// OTPView arguments holder class
+class OTPViewArguments {
+  final Key? key;
+  OTPViewArguments({this.key});
+}
+
+/// SignUpView arguments holder class
+class SignUpViewArguments {
+  final Key? key;
+  SignUpViewArguments({this.key});
+}
+
+/// ForgotPasswordOtpView arguments holder class
+class ForgotPasswordOtpViewArguments {
+  final Key? key;
+  ForgotPasswordOtpViewArguments({this.key});
+}
+
+/// HomePage arguments holder class
+class HomePageArguments {
+  final Key? key;
+  HomePageArguments({this.key});
+}
+
+/// DmUserView arguments holder class
+class DmUserViewArguments {
+  final Key? key;
+  DmUserViewArguments({this.key});
+}
+
+/// AddPluginView arguments holder class
+class AddPluginViewArguments {
+  final Key? key;
+  AddPluginViewArguments({this.key});
+}
+
+/// CreateWorkSpace arguments holder class
+class CreateWorkSpaceArguments {
+  final Key? key;
+  final WorkspaceSwitchMethod method;
+  CreateWorkSpaceArguments({this.key, required this.method});
 }
