@@ -3,7 +3,6 @@ import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_field.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/constants.dart';
@@ -21,7 +20,6 @@ class HomePage extends StatelessWidget {
     return ViewModelBuilder<HomePageViewModel>.reactive(
       onModelReady: (model) {
         model.getDmAndChannelsList();
-        model.listenToChannelsChange();
       },
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, vmodel, child) => Column(
@@ -29,13 +27,6 @@ class HomePage extends StatelessWidget {
           HomePageTopBar(
             organizationName: 'Zuri Workspace',
           ),
-          vmodel.isBusy
-              ? LinearProgressIndicator(
-                  backgroundColor: Colors.grey[400],
-                  valueColor:
-                      AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
-                )
-              : Container(),
           Expanded(
             child: body(vmodel),
           )
