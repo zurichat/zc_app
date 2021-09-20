@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hng/models/user_search_model.dart';
+import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../../general_widgets/custom_channel.dart';
 import '../../../general_widgets/custom_channel_stage.dart';
@@ -17,9 +19,10 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmJumpToViewModel>.reactive(
+      fireOnModelReadyOnce: true,
       onModelReady: (model) {
-        listenToFormUpdated(model);
-        // model.fetchUsers();
+        // listenToFormUpdated(model);
+        model.fetchUsers();
       },
       disposeViewModel: false,
       viewModelBuilder: () => DmJumpToViewModel(),
@@ -30,23 +33,28 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
         body: Stack(
           children: [
             Positioned(
-              bottom: 0,
-              top: 0,
-              right: 0,
-              left: 0,
-              child: FutureBuilder(
-                future: model.fetchUsers(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    return Text("Completed");
-                  }
-                },
-              ),
-            ),
+                bottom: 0,
+                top: 0,
+                right: 0,
+                left: 0,
+                child: FutureBuilder<List<UserSearch>?>(
+                    future: model.fetchUsers(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else {
+                        return ListView.builder(
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(snapshot.data![index].role!),
+                            );
+                          },
+                        );
+                      }
+                    })),
             GestureDetector(
               onTap: () {
                 FocusScope.of(context).requestFocus(FocusNode());

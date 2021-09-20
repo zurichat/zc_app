@@ -66,4 +66,19 @@ class JumpToApi {
     //     .map((e) => UserSearch.fromJson(e))
     //     .toList();
   }
+
+  /// Fetches a list of members in that organization
+  Future<List<UserSearch>?> fetchList() async {
+    try {
+      final response =
+          await _dmApi.get('organizations/$currentOrgId/members/', headers: {
+        'Authorization':
+            'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
+      });
+      MainMembers mainMembers = MainMembers.fromJson(response!.data);
+      return mainMembers.data;
+    } on DioError catch (e) {
+      print("Error error $e");
+    }
+  }
 }

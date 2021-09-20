@@ -1,10 +1,3 @@
-// To parse this JSON data, do
-//
-//     final userSearch = userSearchFromJson(jsonString);
-
-import 'dart:convert';
-
-UserSearch userSearchFromJson(String str) => UserSearch.fromJson(json.decode(str));
 
 class UserSearch {  
     String? id;
@@ -79,3 +72,22 @@ class UserSearch {
     );
 
 }
+
+class MainMembers {
+  String? id;
+  String? name;
+  List<UserSearch>? data;
+
+  MainMembers({
+    this.id,
+    this.name,
+    this.data,
+  });
+
+  factory MainMembers.fromJson(Map<String, dynamic> json) => MainMembers(
+        id: json["_id"],
+        name: json["name"],
+        data: json["data"].map((x) => UserSearch.fromJson(x)),
+      );
+}
+

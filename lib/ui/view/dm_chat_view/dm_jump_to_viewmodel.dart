@@ -9,14 +9,15 @@ import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'dm_jump_to_view.form.dart';
 
-class DmJumpToViewModel extends FormViewModel {
+class DmJumpToViewModel extends StreamViewModel {
   @override
   // Future futureToRun() => fetchUsers();
 
   @override
-  void setFormStatus() {}
+  Stream get stream => checkConnectivity();
+
+  // @override void setFormStatus() {}
 
   final log = getLogger('DmJumpToViewModel');
   TextEditingController _controller = TextEditingController();
@@ -30,14 +31,14 @@ class DmJumpToViewModel extends FormViewModel {
   List<ChannelsSearch> joinedChannelsSearch = [];
   List<ChannelsSearch> allChannelsSearch = [];
 
-  Future fetchUsers() async {
+  Stream<bool> checkConnectivity() async* {
+    yield await connectivityService.checkConnection();
+  }
+
+  Future<List<UserSearch>?>? fetchUsers() async {
     try {
-      if (!await connectivityService.checkConnection()) {
-        AppToast.instance.message(null, 'Check your internet connection');
-        return;
-      }
       setBusy(true);
-      userSearch = await api.fetchListOfMembers();
+      userSearch = (await api.fetchList())!;
       // joinedChannelsSearch = await api.joinedChannelsList();
       // allChannelsSearch = await api.allChannelsList();
       setBusy(false);
@@ -46,5 +47,6 @@ class DmJumpToViewModel extends FormViewModel {
       log.e("Model Error - ${e.toString()}");
       AppToast.instance.error(null, 'Error Occured');
     }
+    notifyListeners();
   }
 }
