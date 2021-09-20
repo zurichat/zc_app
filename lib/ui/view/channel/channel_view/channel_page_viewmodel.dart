@@ -13,4 +13,8 @@ class ChannelPageViewModel extends BaseViewModel {
   navigateToAddPeople() {
     _navigationService.navigateTo(Routes.addPeopleView);
   }
+
+  navigateToChannelEdit() {
+    _navigationService.navigateTo(Routes.editChannelPageView);
+  }
 }

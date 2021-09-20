@@ -59,6 +59,11 @@ class AppTextStyles {
     color: AppColors.deepBlackColor,
     fontSize: 16,
   );
+  static TextStyle body1Green = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.zuriPrimaryColor,
+    fontSize: 16,
+  );
   static TextStyle body2Bold = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
     color: AppColors.greyishColor,
@@ -140,6 +145,11 @@ class AppTextStyles {
     fontSize: 16,
     color: AppColors.blueColor,
     decoration: TextDecoration.underline,
+  );
+  static TextStyle header6 = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.zuriTextColorHeader,
+    fontSize: 20,
   );
 }
 
