@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 
 import '../start_dm_models.dart';
@@ -24,10 +25,7 @@ class CustomChipInput extends StatelessWidget {
     return ChipsInput(
       key: _chipKey,
       textCapitalization: TextCapitalization.words,
-      textStyle: const TextStyle(
-        height: 1.5,
-        fontSize: 16,
-      ),
+    
       
       decoration: InputDecoration(
         
@@ -114,4 +112,6 @@ class CustomChipInput extends StatelessWidget {
       },
     );
   }
+
+  
 }

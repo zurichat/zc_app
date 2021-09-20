@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/view/start_dm/start_dm_models.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
-
+import 'package:stacked_services/stacked_services.dart';
 
 class StartDmViewModel extends BaseViewModel {
+  final navigationService = locator<NavigationService>();
   final _apiService = locator<HttpApiService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
 
@@ -20,8 +23,8 @@ class StartDmViewModel extends BaseViewModel {
   Future<List<UserModel>> allUsers() async {
     String _currentOrgId = storageService.getString(StorageKeys.currentOrgId) ??
         '61459d8e62688da5302acdb1';
-    String token = storageService.getString(StorageKeys.currentSessionToken) ??
-        '';
+    String token =
+        storageService.getString(StorageKeys.currentSessionToken) ?? '';
     String endpoint = '/organizations/$_currentOrgId/members/';
     final response = await _apiService.get(
       endpoint,
@@ -49,6 +52,34 @@ class StartDmViewModel extends BaseViewModel {
 
   onUnfocusMessageField() {
     _hasClickedMessageField = false;
+    notifyListeners();
+  }
+
+  void navigateToHomeScreen() {
+    navigationService.navigateTo(Routes.dmUserView);
+  }
+
+  void sendMessage() {
+    String message = messageController.text;
+    if (message.trim().isNotEmpty) {
+      Fluttertoast.showToast(
+        msg: message.trim().toString(),
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+      navigateToHomeScreen();
+
+      messageController.clear();
+      notifyListeners();
+    }
+  }
+
+  void focusScope(focus) {
+    if (focus) {
+      onTapMessageField();
+    } else {
+      onUnfocusMessageField();
+    }
     notifyListeners();
   }
 }
