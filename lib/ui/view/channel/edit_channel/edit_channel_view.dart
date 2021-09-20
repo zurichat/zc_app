@@ -18,13 +18,6 @@ class EditChannelPageView extends StatelessWidget {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Row(children: [
               InkWell(
-                child: Icon(Icons.arrow_back_ios, color: Colors.grey),
-                onTap: () {},
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              InkWell(
                 child: Text(
                   'Edit Channel',
                   style:

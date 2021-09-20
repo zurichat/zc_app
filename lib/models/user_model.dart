@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class UserModel {
   String? userId;
   String? firstName;
@@ -11,6 +9,7 @@ class UserModel {
   String? timezone;
   String? createdAt;
   String? updatedAt;
+
   UserModel({
     this.userId,
     this.firstName,
@@ -41,7 +40,7 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      userId: map['id'],
+      userId: map['_id'],
       firstName: map['first_name'],
       lastName: map['last_name'],
       displayName: map['display_name'],
