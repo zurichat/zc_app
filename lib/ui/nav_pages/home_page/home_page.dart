@@ -123,7 +123,9 @@ class HomePage extends StatelessWidget {
               padding: EdgeInsets.only(top: 4, right: 12),
               child: GestureDetector(
                 child: Icon(Icons.search, color: AppColors.whiteColor),
-                onTap: () {},
+                onTap: () {
+                  model.navigateToUserSearchView();
+                },
               ),
             ),
           ],
