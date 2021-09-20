@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 class CustomChannel extends StatelessWidget {
   final text;
@@ -13,15 +15,12 @@ class CustomChannel extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(5,0,0,0),
         child: Row(
           children: [
-            const Text('#',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                )),
+            Text('#',
+                style: AppTextStyles.heading7),
             const SizedBox(width: 21.33),
             Text(
               text,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: ZuriTextStyle.mediumBold(),
             ),
           ],
         ),

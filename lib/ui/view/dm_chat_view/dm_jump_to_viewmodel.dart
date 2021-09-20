@@ -14,8 +14,6 @@ class DmJumpToViewModel extends BaseViewModel {
   // TODO: Remove currentOrgId when organization setup is complete on the backend.
   String currentOrgId = '6145ad38285e4a18402073ad';
   final log = getLogger('DmJumpToViewModel');
-  TextEditingController _controller = TextEditingController();
-
 
 
   final navigation = locator<NavigationService>();
@@ -210,6 +208,5 @@ class DmJumpToViewModel extends BaseViewModel {
   };
 
   //getters for the view
-  TextEditingController get controller => _controller;
   get onChanged => _onChanged();
 }
