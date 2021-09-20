@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
 import 'channel_info_view_model.dart';
@@ -14,7 +16,10 @@ import 'widgets/textstyles.dart';
 import 'widgets/third_section.dart';
 
 class ChannelInfoView extends StatefulWidget {
-  const ChannelInfoView({Key? key}) : super(key: key);
+  final int numberOfMembers;
+  List <ChannelMembermodel>channelMembers;
+  ChannelModel channelDetail;
+  ChannelInfoView({required this.numberOfMembers,required this.channelMembers,required this.channelDetail});
 
   @override
   _ChannelInfoViewState createState() => _ChannelInfoViewState();
@@ -36,7 +41,7 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const FirstSection(),
+                 FirstSection(channelName: widget.channelDetail.name),
 
                 const EditButton(),
 
@@ -51,7 +56,11 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                     )),
 //Third Section
 
-                ThirdSection(goToMembersListScreen: model.navigateToMembersListScreen),
+                ThirdSection(goToMembersListScreen:(){
+model.navigateToMembersList(widget.channelMembers,widget.channelDetail);
+                }  ,
+                membersNumber: widget.numberOfMembers
+                ),
 
                 Container(
                   margin:

@@ -11,7 +11,6 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
-import '../package/base/server-request/api/http_api.dart';
 import '../services/connectivity_service.dart';
 import '../services/local_storage_services.dart';
 
@@ -27,7 +26,6 @@ Future setupLocator(
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => ThemeService());
-  locator.registerLazySingleton(() => HttpApiService());
   final sharedPreferenceLocalStorage =
       await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);

@@ -1,15 +1,17 @@
 // ignore: file_names
 import 'dart:io';
-// ignore: import_of_legacy_library_into_null_safe
-// import 'package:flutter/material.dart';
+
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_appavailability/flutter_appavailability.dart';
-import 'package:hng/general_widgets/app_snackbar.dart';
+import '../../../../app/app.locator.dart';
+import '../../../../utilities/enums.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class EmailConfirmationViewModel extends BaseViewModel {
-  // ignore: unused_element
-  void openEmailApp(context) {
+  final snackbar = locator<SnackbarService>();
+
+  void openEmailApp() {
     try {
       AppAvailability.launchApp(
               Platform.isIOS ? 'message://' : 'com.google.android.gm')
@@ -17,12 +19,20 @@ class EmailConfirmationViewModel extends BaseViewModel {
         print('App Email launched!');
       }).catchError((err) {
         // ignore: deprecated_member_use
-        AppSnackBar.success(context,'App Email not found!');
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: 'App Email not found!',
+        );
         print(err);
       });
     } catch (e) {
       // ignore: deprecated_member_use
-      AppSnackBar.success(context,'Email App not found');
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: 'Email App not found',
+      );
     }
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../../app/app.locator.dart';
@@ -11,8 +13,9 @@ import '../../../shared/shared.dart';
 import 'channel_page_viewmodel.dart';
 
 class ChannelPageView extends StatelessWidget {
-  const ChannelPageView({Key? key}) : super(key: key);
-
+  ChannelModel channelDetail;
+  List <ChannelMembermodel>channelMembers;
+ChannelPageView({required this.channelDetail,required this.channelMembers});
   @override
   Widget build(BuildContext context) {
     final usermodel = [
@@ -37,15 +40,18 @@ class ChannelPageView extends StatelessWidget {
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: appBar('#teamsocrates', '128 members', 
-          context,viewModel.goBack, viewModel.navigateToChannelInfoScreen),
+          appBar: appBar('${channelDetail.name}', "${channelMembers.length.toString()} members", 
+          context,viewModel.goBack, (){
+viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,channelDetail);
+          } 
+            ),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
                 Column(
                   children: [
-                    channelName('#teamsocrates'),
+                    channelName('${channelDetail.name}'),
                   ],
                 ),
                 Row(
@@ -183,9 +189,9 @@ Function backNavigation,Function infoNavigation, ) {
       Padding(
         padding: const EdgeInsets.only(right: 20.0),
         child: GestureDetector(
-          onTap: () {
+          onTap:(){
             infoNavigation();
-          },
+          } ,
           child: const Icon(
             CupertinoIcons.info,
             color: AppColors.deepBlackColor,
