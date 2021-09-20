@@ -1,8 +1,8 @@
-import 'package:hng/ui/view/channel/new_channel/new_channel.form.dart';
-import 'package:hng/utilities/validators.dart';
 import 'package:stacked/stacked.dart';
 
-class NewChannelViewModel extends FormViewModel {
+import '../../../../utilities/mixins/validators_mixin.dart';
+
+class NewChannelViewModel extends FormViewModel with ValidatorMixin {
   int inputLength = 80;
   bool inputError = false;
   bool isChannelPrivate = false;
@@ -23,7 +23,7 @@ class NewChannelViewModel extends FormViewModel {
   }
 
   void _validateChannelName(String val) {
-    bool validateChannel = Validator.validate.validateNewChannelName(val);
+    final validateChannel = validateNewChannelName(val);
     if (validateChannel) {
       inputError = validateChannel;
     } else {

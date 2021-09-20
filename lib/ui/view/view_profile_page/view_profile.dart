@@ -8,12 +8,7 @@ import 'widgets/profile_action.dart';
 import 'widgets/profile_list.dart';
 
 class ViewProfile extends StatelessWidget {
-  final bool? isActive;
-
-  const ViewProfile({
-    Key? key,
-    this.isActive = true,
-  }) : super(key: key);
+ final bool isActive = true;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +62,7 @@ class ViewProfile extends StatelessWidget {
                                 child: Icon(
                                   Icons.circle,
                                   size: 12.0,
+                                  // color: isActive!
                                   color: isActive == true
                                       ? AppColors.zuriPrimaryColor
                                       : Colors.transparent,
