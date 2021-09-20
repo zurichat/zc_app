@@ -265,7 +265,7 @@ class ThreadDetailHook extends HookWidget {
                                             icon: Icon(
                                               Icons.flash_on),
                                               color: Color(0xFF424141),
-                                            )),
+                                            ),
                                         IconButton(
                                             onPressed: () {},
                                             icon: Icon(
@@ -438,3 +438,5 @@ class ThreadDetailHook extends HookWidget {
         });
   }
 }
+
+

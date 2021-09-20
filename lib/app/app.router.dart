@@ -82,6 +82,14 @@ class Routes {
   static const String draftView = '/draft-view';
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
+  static const String setStatusView = '/set-status-view';
+  static const String profilePageView = '/profile-page-view';
+  static const String preferenceView = '/preference-view';
+  static const String languageAndRegionModelView = '/language-and-region-model-view';
+  static const String notificationsView = '/notifications-view';
+  static const String advancedView = '/advanced-view';
+  static const String threadDetailView = '/thread-detail-view';
+
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -162,6 +170,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
+    RouteDef(Routes.threadDetailView, page: ThreadDetailView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
