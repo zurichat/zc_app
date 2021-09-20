@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/view/threads/threads_viewmodel.dart';
+import 'package:hng/ui/view/all_threads_view/thread_detail/thread_detail_viewmodel.dart';
+import 'package:hng/ui/view/threads/widgets/emojis.dart';
 import 'package:stacked/stacked.dart';
 
-import 'emojis.dart';
-
-class EmojisList extends ViewModelWidget<ThreadsViewModel> {
-  const EmojisList({
+class EmojiDetailList extends ViewModelWidget<ThreadDetailViewmodel> {
+  const EmojiDetailList({
     Key? key,
     required this.userPost,
   }) : super(key: key);
@@ -14,7 +13,7 @@ class EmojisList extends ViewModelWidget<ThreadsViewModel> {
   final UserPost? userPost;
 
   @override
-  Widget build(BuildContext context, ThreadsViewModel model) {
+  Widget build(BuildContext context, ThreadDetailViewmodel model) {
     return Wrap(
       spacing: 5,
       runSpacing: 5,

@@ -90,30 +90,38 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Flexible(
-                            fit: FlexFit.loose,
-                            child: CustomText(
-                              text: '${userPost!.displayName}',
-                              fontWeight: FontWeight.bold,
+                      GestureDetector(
+                        onTap: model.navigateToThread,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Flexible(
+                                  fit: FlexFit.loose,
+                                  child: CustomText(
+                                    text: '${userPost!.displayName}',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Icon(
+                                  userPost!.statusIcon,
+                                  color: Colors.blue,
+                                  size: 18,
+                                ),
+                                SizedBox(width: 2),
+                                CustomText(
+                                  text: '${userPost!.lastSeen}',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ],
                             ),
-                          ),
-                          Icon(
-                            userPost!.statusIcon,
-                            color: Colors.blue,
-                            size: 18,
-                          ),
-                          SizedBox(width: 2),
-                          CustomText(
-                            text: '${userPost!.lastSeen}',
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ],
+                            SizedBox(height: 10),
+                            RichText(text: userPost!.message),
+                          ],
+                        ),
                       ),
-                      SizedBox(height: 10),
-                      RichText(text: userPost!.message),
                       SizedBox(height: 10),
                       EmojisList(userPost: userPost),
                       SizedBox(height: 15),
@@ -139,7 +147,9 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
                   shrinkWrap: true,
                   itemCount: userPost!.userThreadPosts!.length,
                   itemBuilder: (ctx, index) {
-                    return ThreadPost(userPost!.userThreadPosts![index]);
+                    return GestureDetector(
+                        onTap: model.navigateToThread,
+                        child: ThreadPost(userPost!.userThreadPosts![index]));
                   })
               : Container(),
           Padding(

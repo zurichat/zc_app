@@ -7,7 +7,10 @@ import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/view/all_threads_view/thread_detail/model/thread_replies.dart';
 import 'package:hng/ui/view/all_threads_view/thread_detail/thread_detail_viewmodel.dart';
 import 'package:hng/ui/view/dm_user/icons/zap_icon.dart';
+import 'package:hng/ui/view/threads/widgets/emojis_list.dart';
 import 'package:stacked/stacked.dart';
+
+import 'emoji_detail.dart';
 
 class ThreadDetailHook extends HookWidget {
   @override
@@ -85,13 +88,13 @@ class ThreadDetailHook extends HookWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 5),
                       child: Text(viewmodel.data.message,
-                          style:AppTextStyles.normal),
+                          style: AppTextStyles.normal),
                     ),
                     SizedBox(height: 10),
-                    IconButton(
-                      icon: Icon(Icons.add_reaction_outlined),
-                      onPressed: () {},
-                    ),
+                    Padding(
+                        padding: EdgeInsets.all(5),
+                        child:
+                            EmojiDetailList(userPost: viewmodel.userPosts[2])),
                     Divider(
                       color: AppColors.borderColor,
                     ),
@@ -165,20 +168,15 @@ class ThreadDetailHook extends HookWidget {
                                                 child: Image.asset(
                                                     "assets/background/status.png")),
                                             SizedBox(width: 10),
-                                            Text(
-                                              
-                                                  viewmodel.replies[index].time,
-                                                  style:AppTextStyles.normalText
-                                              
-                                            ),
+                                            Text(viewmodel.replies[index].time,
+                                                style:
+                                                    AppTextStyles.normalText),
                                           ],
                                         ),
                                         SizedBox(height: 8),
                                         Text(
-                                          
-                                              viewmodel.replies[index].message,
-                                              style: AppTextStyles.normal,
-                                          
+                                          viewmodel.replies[index].message,
+                                          style: AppTextStyles.normal,
                                         )
                                       ],
                                     )
@@ -221,7 +219,8 @@ class ThreadDetailHook extends HookWidget {
                                               TextAlignVertical.center,
                                           decoration: InputDecoration.collapsed(
                                               hintText: 'Add a Reply',
-                                              hintStyle:AppTextStyles.faintBodyText),
+                                              hintStyle:
+                                                  AppTextStyles.faintBodyText),
                                         ),
                                       ),
                                     ),
@@ -311,8 +310,6 @@ class ThreadDetailHook extends HookWidget {
                                                 _scrollController
                                                     .position.maxScrollExtent);
                                           }
-
-                                         
                                         },
                                         icon: Icon(
                                           Icons.send,

@@ -1,4 +1,5 @@
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/utilities/enums.dart';
 
@@ -89,5 +90,9 @@ class ThreadsViewModel extends BaseViewModel {
 
   void exitPage() {
     _navigationService.back();
+  }
+
+  Future navigateToThread() async {
+    _navigationService.navigateTo(Routes.threadDetailView);
   }
 }
