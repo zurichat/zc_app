@@ -53,7 +53,8 @@ class DmUserView extends StatelessWidget {
                   ),
                   const Text(
                     'View Details',
-                    style: TextStyle(color: AppColors.greyishColor, fontSize: 12.0),
+                    style: TextStyle(
+                        color: AppColors.greyishColor, fontSize: 12.0),
                   )
                 ],
               ),
@@ -88,11 +89,11 @@ class DmUserView extends StatelessWidget {
                                         left: 20.0, top: 24.0),
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         ClipRRect(
                                           borderRadius:
-                                          BorderRadius.circular(3),
+                                              BorderRadius.circular(3),
                                           child: Container(
                                             width: 50,
                                             height: 50,
@@ -110,7 +111,7 @@ class DmUserView extends StatelessWidget {
                                                 style: const TextStyle(
                                                     fontSize: 16.0,
                                                     fontWeight:
-                                                    FontWeight.w700)),
+                                                        FontWeight.w700)),
                                             const SizedBox(width: 7.0),
                                             const CustomStatus(
                                               isActive: true,
@@ -125,7 +126,7 @@ class DmUserView extends StatelessWidget {
                                                 fontWeight: FontWeight.w400,
                                                 color: AppColors.greyColor)),
                                         const SizedBox(height: 10),
-                                        const startMessage(),
+                                        const StartMessage(),
                                         const SizedBox(height: 20)
                                       ],
                                     ),
@@ -189,10 +190,10 @@ class DmUserView extends StatelessWidget {
                                         expands: true,
                                         maxLines: null,
                                         textAlignVertical:
-                                        TextAlignVertical.center,
+                                            TextAlignVertical.center,
                                         decoration: InputDecoration(
                                             hintText:
-                                            'Message ${model.receiver.username}',
+                                                'Message ${model.receiver.username}',
                                             // suffixIcon: CustomStatus(isActive: true,
                                             //   data: '5'),
 
@@ -300,4 +301,3 @@ class DmUserView extends StatelessWidget {
         });
   }
 }
-
