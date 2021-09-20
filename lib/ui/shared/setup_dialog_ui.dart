@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'dialogs/delete_channel_dialog.dart';
 import 'dialogs/select_language_dialog.dart';
 import 'dialogs/skin_tone_dialog.dart';
 import 'dialogs/select_theme_dialog.dart';
@@ -23,6 +24,9 @@ void setupDialogUi() {
     DialogType.themeMode: (BuildContext context, DialogRequest request,
             Function(DialogResponse) completer) =>
         SelectThemeDialog(request: request, completer: completer),
+    DialogType.deleteChannel: (BuildContext context, DialogRequest request,
+        Function(DialogResponse) completer) =>
+        DeleteChannelDialog(request: request, completer: completer),
   };
 
   dialogService.registerCustomDialogBuilders(builders);

@@ -31,13 +31,13 @@ class ChannelPageView extends StatelessWidget {
     ];
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       //this parameter allows us to reuse the view model to persist the state
-      disposeViewModel: false,
+      //disposeViewModel: false,
       //initialise the view model only once
-      initialiseSpecialViewModelsOnce: true,
+//      initialiseSpecialViewModelsOnce: true,
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: appBar('#teamsocrates', viewModel.navigateToChannelInfo(),
+          appBar: appBar('#teamsocrates', viewModel.navigateToChannelInfo,
               '128 members', context),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -57,7 +57,7 @@ class ChannelPageView extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-                row(viewModel.navigateToAddPeople()),
+                row(viewModel.navigateToAddPeople),
                 const SizedBox(height: 20),
                 dateBuilder(context),
                 const SizedBox(height: 7),

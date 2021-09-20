@@ -197,8 +197,6 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
-    RouteDef(Routes.channelPageView, page: ChannelPageView),
-    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
   ];
@@ -378,7 +376,62 @@ class StackedRouter extends RouterBase {
     },
     ViewProfile: (data) {
       return MaterialPageRoute<dynamic>(
+        builder: (context) => ViewProfile(),
+        settings: data,
+      );
+    },
+    SetStatusView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SetStatusView(),
+        settings: data,
+      );
+    },
+    ProfilePageView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ProfilePageView(),
+        settings: data,
+      );
+    },
+    PreferenceView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PreferenceView(),
+        settings: data,
+      );
+    },
+    LanguageAndRegionModelView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const LanguageAndRegionModelView(),
+        settings: data,
+      );
+    },
+    SavedItemsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const SavedItemsView(),
+        settings: data,
+      );
+    },
+    NotificationsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const NotificationsView(),
+        settings: data,
+      );
+    },
+    AdvancedView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const AdvancedView(),
+        settings: data,
+      );
+    },
+    ClearAfterView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ClearAfterView(),
+        settings: data,
+      );
+    },
+    DoNotDisturbView: (data) {
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const DoNotDisturbView(),
+        settings: data,
       );
     },
     EditProfileView: (data) {
