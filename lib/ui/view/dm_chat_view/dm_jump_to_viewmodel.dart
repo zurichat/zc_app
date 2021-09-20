@@ -27,7 +27,7 @@ class DmJumpToViewModel extends StreamViewModel {
   final navigation = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
   final api = locator<JumpToApi>();
-  List<UserSearch> userSearch = [];
+  List<NewUser> userSearch = [];
   List<ChannelsSearch> joinedChannelsSearch = [];
   List<ChannelsSearch> allChannelsSearch = [];
 
@@ -35,18 +35,18 @@ class DmJumpToViewModel extends StreamViewModel {
     yield await connectivityService.checkConnection();
   }
 
-  Future<List<UserSearch>?>? fetchUsers() async {
+  Future<List<NewUser>?>? fetchUsers() async {
     try {
       setBusy(true);
-      userSearch = (await api.fetchList())!;
+      userSearch = (await api.fetchList());
       // joinedChannelsSearch = await api.joinedChannelsList();
       // allChannelsSearch = await api.allChannelsList();
       setBusy(false);
+    notifyListeners();
       return userSearch;
     } catch (e) {
       log.e("Model Error - ${e.toString()}");
       AppToast.instance.error(null, 'Error Occured');
     }
-    notifyListeners();
   }
 }

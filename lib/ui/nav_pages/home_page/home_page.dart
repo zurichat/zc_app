@@ -53,12 +53,11 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 15),
-          searchBar(),
+          JumpToSearchBar(onTap: () => vmodel.navigateToJumpToScreen()),
           const Padding(
             padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
           ),
           SizedBox(height: 15),
-          JumpToSearchBar(onTap: () => vmodel.navigateToJumpToScreen()),
           Padding(
             padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
