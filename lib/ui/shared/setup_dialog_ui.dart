@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/ui/shared/dialogs/delete_message.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'dialogs/select_language_dialog.dart';
@@ -23,6 +24,9 @@ void setupDialogUi() {
     DialogType.themeMode: (BuildContext context, DialogRequest request,
             Function(DialogResponse) completer) =>
         SelectThemeDialog(request: request, completer: completer),
+        DialogType.deleteMessage: (BuildContext context, DialogRequest request,
+            Function(DialogResponse) completer) =>
+        DeleteMessageDialog(request: request, completer: completer),
   };
 
   dialogService.registerCustomDialogBuilders(builders);

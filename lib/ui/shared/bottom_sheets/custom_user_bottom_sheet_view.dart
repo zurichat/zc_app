@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/bottom_sheets/widgets/custom_button.dart';
-import 'package:hng/ui/shared/bottom_sheets/widgets/custom_profile_tile.dart';
-import 'package:hng/ui/shared/bottom_sheets/widgets/profile_head.dart';
+import 'package:hng/ui/shared/bottom_sheets/profile_botton_sheet/widgets/profile_head.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'package:stacked/stacked.dart';
 
 import 'custom_user_bottom_sheet_viewmodel.dart';
+import 'profile_botton_sheet/widgets/custom_button.dart';
+import 'profile_botton_sheet/widgets/custom_profile_tile.dart';
 
 class CustomUserBottomSheetView extends StatelessWidget {
   final SheetRequest request;

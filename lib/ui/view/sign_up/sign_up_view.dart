@@ -1,21 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import '../../../general_widgets/custom_text.dart';
 import '../../../general_widgets/custom_textfield.dart';
 import '../../shared/colors.dart';
 import '../../shared/long_button.dart';
 import '../../shared/styles.dart';
+import 'sign_up_view.form.dart';
 import 'sign_up_viewmodel.dart';
 
-// ignore: must_be_immutable
-class SignUpView extends StatelessWidget {
-  const SignUpView({Key? key}) : super(key: key);
+//stacked forms handling
+@FormView(
+  fields: [
+    FormTextField(name: 'email'),
+    FormTextField(name: 'firstName'),
+    FormTextField(name: 'lastName'),
+    FormTextField(name: 'displayName'),
+    FormTextField(name: 'password'),
+    FormTextField(name: 'confirmPassword'),
+    FormTextField(name: 'phoneNumber'),
+  ],
+)
+class SignUpView extends StatelessWidget with $SignUpView {
+  final log = getLogger('SignUpView');
+  SignUpView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(
+        //listenToFormUpdated automatically syncs text from TextFields to the viewmodel
+        onModelReady: (model) => listenToFormUpdated(model),
         disposeViewModel: false,
         initialiseSpecialViewModelsOnce: true,
         viewModelBuilder: () => SignUpViewModel(),
@@ -66,7 +83,7 @@ class SignUpView extends StatelessWidget {
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: false,
-                          controller: model.email,
+                          controller: emailController,
                           labelText: 'Email Address',
                           hintText: 'Name@gmail.com',
                         ),
@@ -76,7 +93,7 @@ class SignUpView extends StatelessWidget {
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: true,
-                          controller: model.password,
+                          controller: passwordController,
                           labelText: 'Password',
                           hintText: 'Enter Password',
                         ),
@@ -86,7 +103,7 @@ class SignUpView extends StatelessWidget {
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: true,
-                          controller: model.confirmPassword,
+                          controller: confirmPasswordController,
                           labelText: 'Confirm Password',
                           hintText: 'Re-enter password',
                         ),
@@ -163,7 +180,7 @@ class SignUpView extends StatelessWidget {
                           ),
                           child: InkWell(
                             onTap: () {
-                              print(' chiboy clicked');
+                              log.i(' chiboy clicked');
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
