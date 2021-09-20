@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/channel/channel_view/widgets/custom_appbar.dart';
+import 'package:hng/ui/view/channel/channel_view/widgets/custom_row.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import '../../../../app/app.locator.dart';
 import '../../../../app/app.router.dart';
 import '../../../../models/static_user_model.dart';
 import '../../../shared/colors.dart';
@@ -31,33 +32,28 @@ class ChannelPageView extends StatelessWidget {
     ];
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       //this parameter allows us to reuse the view model to persist the state
-      disposeViewModel: false,
+      //disposeViewModel: false,
       //initialise the view model only once
-      initialiseSpecialViewModelsOnce: true,
+      //initialiseSpecialViewModelsOnce: true,
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: appBar('#teamsocrates', viewModel.navigateToChannelInfo(),
-              '128 members', context),
+          appBar: CustomAppBars(
+            channelName: '#teamsocrates',
+            numberOfMembers: '128',
+            model: viewModel,
+          ),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                Column(
-                  children: [
-                    channelName('#teamsocrates'),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: channelInfo('@mark', '''
- created this channel on August 12, 2021. This is the very beginning of the #teamsocrates channel.'''),
-                    ),
-                  ],
+                channelName('#teamsocrates'),
+                Container(
+                  child: channelInfo('@mark', '''
+                  created this channel on August 12, 2021. This is the very beginning of the #teamsocrates channel.'''),
                 ),
                 const SizedBox(height: 20),
-                row(viewModel.navigateToAddPeople()),
+                CustomRow(model: viewModel),
                 const SizedBox(height: 20),
                 dateBuilder(context),
                 const SizedBox(height: 7),
@@ -121,8 +117,8 @@ class ChannelPageView extends StatelessWidget {
   }
 }
 
-AppBar appBar(
-    String text, Function()? pressed, String nexttext, BuildContext context) {
+AppBar appBar(String text, /*Function()? pressed,*/ String nexttext,
+    BuildContext context) {
   return AppBar(
     elevation: 1,
     backgroundColor: AppColors.whiteColor,
@@ -180,7 +176,7 @@ AppBar appBar(
       Padding(
         padding: const EdgeInsets.only(right: 20.0),
         child: GestureDetector(
-          onTap: pressed,
+          onTap: () {}, //pressed,
           child: const Icon(
             CupertinoIcons.info,
             color: AppColors.deepBlackColor,
@@ -249,7 +245,7 @@ Container channelInfo(String text, String nexttext) {
   );
 }
 
-Row row(Function()? pressed) {
+Row row(/*Function()? pressed*/) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     // crossAxisAlignment: CrossAxisAlignment.center,
@@ -277,7 +273,7 @@ Row row(Function()? pressed) {
       Column(
         children: [
           GestureDetector(
-            onTap: pressed,
+            onTap: () {}, //pressed,
             child: const CircleAvatar(
               radius: 30,
               backgroundColor: AppColors.lightGreen,

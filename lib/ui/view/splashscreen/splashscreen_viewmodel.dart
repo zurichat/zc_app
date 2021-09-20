@@ -22,11 +22,12 @@ class SplashscreenViewModel extends BaseViewModel {
             storage.getBool('onboarded') == false) {
           storage.setBool('onboarded', true);
           navigation.navigateTo(Routes.onboardingView);
-        } else if (
-        storage.getBool(StorageKeys.registeredNotverifiedOTP) == true) {
+        } else if (storage.getBool(StorageKeys.registeredNotverifiedOTP) ==
+            true) {
           navigation.navigateTo(Routes.oTPView);
         } else {
-          navigation.navigateTo(Routes.loginView);
+          //navigation.navigateTo(Routes.loginView);
+          navigation.navigateTo(Routes.channelPageView);
         }
         // navigation.navigateTo(Routes.onboardingView);
       },
