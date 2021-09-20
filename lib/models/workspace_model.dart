@@ -19,7 +19,7 @@ class WorkspaceModel {
 
   factory WorkspaceModel.fromJson(Map<String, dynamic> json) {
     return WorkspaceModel(
-        id: json['_id'],
+        id: json['id'],
         name: json['name'],
         logoUrl: json['logo_url'],
         time: json['created_at'],
