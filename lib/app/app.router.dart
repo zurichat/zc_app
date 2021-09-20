@@ -8,8 +8,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/user_search/user_search_view.dart';
+import 'package:hng/ui/view/channel/edit_channel/edit_channel_view.dart';
 import 'package:stacked/stacked.dart';
-
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
@@ -100,6 +101,9 @@ class Routes {
   static const String createWorkSpace = '/create-work-space';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
+  static const String userSearchView = '/user-search-view';
+  static const String channelInfoView = '/channel-info-view';
+  static const String editChannelPage = '/edit-channel-view';
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
   static const all = <String>{
@@ -145,6 +149,8 @@ class Routes {
     createWorkSpace,
     fileSearchView,
     draftView,
+    userSearchView,
+    editChannelPage,
     editChannelPageView,
     workspaceUrlView,
   };
@@ -197,6 +203,9 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.userSearchView, page: UserSearchView),
+    RouteDef(Routes.channelPageView, page: ChannelPageView),
+    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
   ];
@@ -480,6 +489,9 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    UserSearchView: (data) {
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
+        builder: (context) => const UserSearchView(),
     EditChannelPageView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const EditChannelPageView(),
