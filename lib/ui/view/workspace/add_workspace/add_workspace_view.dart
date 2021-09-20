@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'add_workspace_viewmodel.dart';
 
@@ -17,7 +16,7 @@ class AddWorkspaceView extends StatelessWidget {
       //initialise the view model only once
       initialiseSpecialViewModelsOnce: true,
       viewModelBuilder: () => AddWorkSpaceViewModel(),
-      builder: (context, model, child) {
+      builder: (context, viewModel, child) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
@@ -56,8 +55,9 @@ class AddWorkspaceView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(
-                              WorkspaceSwitchMethod.Create),
+                          onTap: () {
+                            //TODO: Navigate to create Workspace
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
@@ -90,8 +90,9 @@ class AddWorkspaceView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(
-                              WorkspaceSwitchMethod.SignIn),
+                          onTap: () {
+                            //TODO: Navigate to Sigin to another Workspace
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
@@ -124,8 +125,9 @@ class AddWorkspaceView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(
-                              WorkspaceSwitchMethod.Join),
+                          onTap: () {
+                            //TODO: Navigate to join another Workspace
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(

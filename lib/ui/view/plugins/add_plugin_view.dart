@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/app/app.logger.dart';
 import 'package:stacked/stacked.dart';
 
 import 'plugin_viewmodel.dart';
@@ -10,8 +9,7 @@ import 'widgets/custom_plugin_list_tile.dart';
 import 'widgets/custom_search_field.dart';
 
 class AddPluginView extends StatelessWidget {
-  final log = getLogger('AddPluginView');
- AddPluginView({Key? key}) : super(key: key);
+  const AddPluginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +55,7 @@ class AddPluginView extends StatelessWidget {
                         value: model.checked,
                         onChanged: (bool? value) {
                           model.setChecked(value!);
-                          log.i(value);
+                          print(value);
                         },
                       ),
                     )

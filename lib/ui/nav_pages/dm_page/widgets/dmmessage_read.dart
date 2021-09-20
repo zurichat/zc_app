@@ -9,6 +9,7 @@ class DMMessageRead extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () {},
       child: Row(
         children: [
           Container(
@@ -16,15 +17,15 @@ class DMMessageRead extends StatelessWidget {
             width: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3),
-              color: const Color(0xff1A61DB),
-              image: const DecorationImage(
+              color: Color(0xff1A61DB),
+              image: DecorationImage(
                 image: NetworkImage(
                     'https://th.bing.com/th/id/OIP.Obw6BUTUPdQGToOSCz5t8QHaHC?pid=ImgDet&w=549&h=522&rs=1'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          const SizedBox(width: 20),
+          SizedBox(width: 20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,14 +34,14 @@ class DMMessageRead extends StatelessWidget {
                 'Pappin 4️⃣',
                 style: AppTextStyles.body1Bold,
               ),
-              const SizedBox(height: 5),
-              const Text(
+              SizedBox(height: 5),
+              Text(
                 'Can i have your number?',
                 // style: AppTextStyles.normalText,
               ),
             ],
           ),
-          const Spacer(),
+          Spacer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

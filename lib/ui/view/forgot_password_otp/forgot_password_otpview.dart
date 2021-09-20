@@ -1,29 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hng/app/app.logger.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
-import 'forgot_password_otp.form.dart';
+
 import 'forgot_password_otpviewmodel.dart';
 
-class ForgotPasswordOtpView extends StatelessWidget
-    with $ForgotPasswordOtpView {
-      final log = getLogger('ForgotPasswordOtpView');
-  ForgotPasswordOtpView({Key? key}) : super(key: key);
+class ForgotPasswordOtpView extends StatelessWidget {
+  const ForgotPasswordOtpView({Key? key}) : super(key: key);
 
-  //stacked forms handling
-  @FormView(
-    fields: [
-      FormTextField(name: 'otp'),
-    ],
-  )
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ForgotPasswordOtpViewModel>.reactive(
-      onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.whiteColor,
@@ -64,6 +53,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                     height: 49.0,
                   ),
                   Form(
+                    key: model.formKey,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 8.0, horizontal: 30),
@@ -93,7 +83,8 @@ class ForgotPasswordOtpView extends StatelessWidget
                         cursorColor: AppColors.zuriPrimaryColor,
                         animationDuration: Duration(milliseconds: 300),
                         enableActiveFill: true,
-                        controller: otpController,
+                        errorAnimationController: model.errorController,
+                        controller: model.otpController,
                         keyboardType: TextInputType.number,
                         boxShadows: [
                           BoxShadow(
@@ -102,11 +93,11 @@ class ForgotPasswordOtpView extends StatelessWidget
                             blurRadius: 10,
                           )
                         ],
-                        onCompleted: (value) {},
+                        onCompleted: (v) {},
                         onTap: () {},
                         onChanged: (value) {},
                         beforeTextPaste: (text) {
-                          log.i("Allowing to paste $text");
+                          print("Allowing to paste $text");
                           //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
                           //but you can show anything you want here, like your pop up saying wrong paste format or etc
                           return true;

@@ -41,81 +41,81 @@ class ChannelAddPeopleView extends StatelessWidget {
           ],
           ),
           body: Column(
-                children: [
-                  24.heightBox,
-                  SearchField(
-                    onChanged: viewModel.onSearchUser,
-                    labelText: 'Search people to add',
-                    // controller: viewModel.editor,
-                  ).pSymmetric(h: 20.0),
-                  16.heightBox,
-                  Divider(thickness: 2.0),
-                  16.heightBox,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Add Everyone',
-                          style: addStyle()),
-                          SizedBox(height: 5),
-
-                          Text('Everyone will be added to this channel',
-                              style: descriptionStyle()),
-                        ],
-                      ),
-                      Checkbox(
-                        activeColor: Color(0xFF00B87C),
-                        onChanged: viewModel.onMarkAll,
-                        side: BorderSide(width: 0.96),
-                        value: viewModel.allMarked,
-                      ).scale(scaleValue: 1.512),
-                    ],
-                  ).pLTRB(20.0, 0.0, 12.0, 0.0),
-                  16.heightBox,
-                  Divider(thickness: 2.0),
-                  ListView.separated(
-                    physics: BouncingScrollPhysics(),
-                    padding: EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
-                    itemCount: viewModel.matchingUsers.length,
-                    separatorBuilder: (context, index) => 24.heightBox,
-                    itemBuilder: (context, index) => Row(
+              children: [
+                24.heightBox,
+                SearchField(
+                  onChanged: viewModel.onSearchUser,
+                  labelText: 'Search people to add',
+                  // controller: viewModel.editor,
+                ).pSymmetric(h: 20.0),
+                16.heightBox,
+                Divider(thickness: 2.0),
+                16.heightBox,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Stack(
-                              alignment: Alignment.topRight,
-                              children: [
-                                Image.asset(
-                                        'assets/images/${viewModel.matchingUsers[index].userimg}')
-                                    .p(4.0),
-                                if (viewModel.matchingUsers[index].online)
-                                  CircleAvatar(
-                                    backgroundColor: Color(0xFF00B87C),
-                                    radius: 4.0,
-                                  ),
-                              ],
-                            ),
-                            20.widthBox,
-                            viewModel.matchingUsers[index].userName.text
-                                .textStyle(GoogleFonts.lato())
-                                .color(Color(0xFF424141))
-                                .make(),
-                          ],
-                        ).expand(),
-                        Checkbox(
-                          value: viewModel.markedUsers
-                              .contains(viewModel.matchingUsers[index]),
-                          onChanged: (marked) => viewModel.onMarkOne(marked, index),
-                          side: BorderSide(width: 0.96),
-                          activeColor: Color(0xFF00B87C)
-                        ).scale(scaleValue: 1.512),
+                        Text('Add Everyone',
+                        style: addStyle()),
+                        SizedBox(height: 5),
+
+                        Text('Everyone will be added to this channel',
+                            style: descriptionStyle()),
                       ],
                     ),
-                  ).expand(),
-                ],
-              ),
+                    Checkbox(
+                      activeColor: Color(0xFF00B87C),
+                      onChanged: viewModel.onMarkAll,
+                      side: BorderSide(width: 0.96),
+                      value: viewModel.allMarked,
+                    ).scale(scaleValue: 1.512),
+                  ],
+                ).pLTRB(20.0, 0.0, 12.0, 0.0),
+                16.heightBox,
+                Divider(thickness: 2.0),
+                ListView.separated(
+                  physics: BouncingScrollPhysics(),
+                  padding: EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
+                  itemCount: viewModel.matchingUsers.length,
+                  separatorBuilder: (context, index) => 24.heightBox,
+                  itemBuilder: (context, index) => Row(
+                    children: [
+                      Row(
+                        children: [
+                          Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              Image.asset(
+                                      'assets/images/${viewModel.matchingUsers[index].userimg}')
+                                  .p(4.0),
+                              if (viewModel.matchingUsers[index].online)
+                                CircleAvatar(
+                                  backgroundColor: Color(0xFF00B87C),
+                                  radius: 4.0,
+                                ),
+                            ],
+                          ),
+                          20.widthBox,
+                          viewModel.matchingUsers[index].userName.text
+                              .textStyle(GoogleFonts.lato())
+                              .color(Color(0xFF424141))
+                              .make(),
+                        ],
+                      ).expand(),
+                      Checkbox(
+                        value: viewModel.markedUsers
+                            .contains(viewModel.matchingUsers[index]),
+                        onChanged: (marked) => viewModel.onMarkOne(marked, index),
+                        side: BorderSide(width: 0.96),
+                        activeColor: Color(0xFF00B87C)
+                      ).scale(scaleValue: 1.512),
+                    ],
+                  ),
+                ).expand(),
+              ],
+            ),
           ),
           initialiseSpecialViewModelsOnce: true,
           disposeViewModel: false,

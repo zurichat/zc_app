@@ -1,14 +1,17 @@
-import '../extensions/string_extension.dart';
+import 'extensions/string_extension.dart';
 
-mixin ValidatorMixin {
-  String? validateNotEmptyField(String input, [String? label]) {
+class Validator {
+  Validator._();
+  static Validator validate = Validator._();
+
+  String? notEmptyField(String input, [String? label]) {
     if (input.isEmpty)
       return label == null ? 'This field cannot be empty' : 'Enter a $label';
     else
       return null;
   }
 
-  String? validateEmail(String input) {
+  String? emailField(String input) {
     if (input.validateEmail())
       return null;
     else if (input.isEmpty)
@@ -17,26 +20,17 @@ mixin ValidatorMixin {
       return 'Enter a valid email address';
   }
 
-  String? validatePassword(input) {
+  String? passwordField(input) {
     if (input.isNotEmpty)
       return null;
     else
       return 'Enter your password';
   }
 
-  String? validateConfirmPasswordField(String input, String password) {
+  String? confirmPasswordField(String input, String password) {
     if (input != password)
       return 'Passwords do not match';
     else
       return null;
-  }
-
-  bool validateNewChannelName(String input) {
-    final reg = RegExp(".*?[A-Z\\s\.].*");
-    if (reg.hasMatch(input)) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }

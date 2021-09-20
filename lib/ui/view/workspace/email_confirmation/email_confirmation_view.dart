@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:hng/app/app.logger.dart';
 import 'package:stacked/stacked.dart';
 
 import 'email_confirmation_viewmodel.dart';
 
+
 class EmailConfirmationView extends StatelessWidget {
-  final log = getLogger('EmailConfirmationView');
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<EmailConfirmationViewModel>.reactive(
@@ -49,8 +48,8 @@ To confirm your email address, tap the button in the email we sent to lukeskylwa
                         onSurface: HexColor('#00B87C'),
                       ),
                       onPressed: () {
-                        log.i('Pressed');
-                        viewModel.openEmailApp();
+                        print('Pressed');
+                        viewModel.openEmailApp(context);
                         // openEmailApp(context);
                       },
                     )

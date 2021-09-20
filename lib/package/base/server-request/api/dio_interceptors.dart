@@ -15,7 +15,6 @@ class DioInterceptor implements Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     log('METHOD: ' + options.method);
     log('ENDPOINT: ' + options.uri.toString());
-    // log('HEADERS: ' + options.headers.toString());
     log('DATA: ' + (options.data ?? options.queryParameters).toString());
     handler.next(options);
   }

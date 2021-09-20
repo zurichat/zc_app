@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/svg_icon.dart';
 
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
@@ -26,15 +25,12 @@ class NavBarView extends StatelessWidget {
       //initialise the view model only once
       initialiseSpecialViewModelsOnce: true,
       viewModelBuilder: () => NavBarViewModel(),
-      onModelReady: (vModel) {
-        // vModel.bottomNavList = getBottomIcons();
-      },
-      builder: (context, vModel, child) {
+      builder: (context, viewModel, child) {
         return Scaffold(
           //passing in the current index from the view model
           // so it can return the right screen
 
-          body: getViewForIndex(vModel.currentIndex),
+          body: getViewForIndex(viewModel.currentIndex),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             backgroundColor: AppColors.whiteColor,
@@ -44,64 +40,43 @@ class NavBarView extends StatelessWidget {
             unselectedFontSize: 14,
             selectedLabelStyle: AppTextStyles.normalText,
             unselectedLabelStyle: AppTextStyles.normalText,
-            currentIndex: vModel.currentIndex,
-            onTap: vModel.setIndex,
-            items: getBottomIcons(),
+            currentIndex: viewModel.currentIndex,
+            onTap: viewModel.setIndex,
+            items: [
+              BottomNavigationBarItem(
+                label: 'Home',
+                icon: Image.asset(
+                  homeIcon,
+                  height: 20,
+                ),
+              ),
+              BottomNavigationBarItem(
+                label: 'Dm',
+                icon: Image.asset(
+                  dmIcon,
+                  height: 20,
+                ),
+              ),
+              BottomNavigationBarItem(
+                label: 'Integrate',
+                icon: Image.asset(
+                  integrateIcon,
+                  height: 20,
+                ),
+              ),
+              BottomNavigationBarItem(
+                label: 'You',
+                icon: Image.asset(
+                  youIcon,
+                  height: 20
+                ),
+              ),
+            ],
           ),
         );
       },
     );
   }
-
-  List<BottomNavigationBarItem> getBottomIcons() {
-    List<String> name = ['Home', 'Dm', 'You'];
-    List<SvgData> icons = [SvgAssets.home, SvgAssets.dm, SvgAssets.you];
-
-    List<BottomNavigationBarItem> bottomNavList = List.generate(3, (i) {
-      var item = BottomNavigationBarItem(
-        label: name[i],
-        icon: SvgIcon(
-          svgIcon: icons[i],
-        ),
-        activeIcon: SvgIcon(
-          svgIcon: icons[i],
-          color: AppColors.zuriPrimaryColor,
-        ),
-      );
-
-      return item;
-    });
-
-    return bottomNavList;
-  }
-
-  // [
-  //             BottomNavigationBarItem(
-  //               label: 'Home',
-  //               icon: Image.asset(
-  //                 homeIcon,
-  //                 height: 20,
-  //               ),
-  //             ),
-  //             BottomNavigationBarItem(
-  //               label: 'Dm',
-  //               icon: Image.asset(
-  //                 dmIcon,
-  //                 height: 20,
-  //               ),
-  //             ),
-  //             BottomNavigationBarItem(
-  //               label: 'Integrate',
-  //               icon: Image.asset(
-  //                 integrateIcon,
-  //                 height: 20,
-  //               ),
-  //             ),
-  //             BottomNavigationBarItem(
-  //               label: 'You',
-  //               icon: Image.asset(youIcon, height: 20),
-  //             ),
-  //           ],
 
   ///Get all the pages and match them to the bottom nav icon
   ///that is clicked this would change the view to the current
@@ -111,9 +86,9 @@ class NavBarView extends StatelessWidget {
         return HomePage();
       case 1:
         return const DmPage();
-      // case 2:
-      //   return const IntegratePage();
       case 2:
+        return const IntegratePage();
+      case 3:
         return const YouPage();
       default:
         return Container();

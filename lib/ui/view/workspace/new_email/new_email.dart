@@ -87,7 +87,7 @@ class NextButton extends ViewModelWidget<NewEmailViewModel> {
     return TextButton(
         style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all<Color>(model.text.isEmpty ? Color(0xffBEBEBE) : AppColors.appBarGreen)),
+                MaterialStateProperty.all<Color>(model.buttonColors)),
         onPressed: () {},
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),

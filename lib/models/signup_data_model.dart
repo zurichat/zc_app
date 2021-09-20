@@ -8,7 +8,6 @@ class SignUpDataModel {
   String confirmPassword;
   String displayName;
   String phoneNumber;
-
   SignUpDataModel({
     required this.firstName,
     required this.lastName,

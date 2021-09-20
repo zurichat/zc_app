@@ -14,7 +14,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-# echo "{name}={value}" >> $GITHUB_ENV
+
    
     steps:
       - uses: actions/checkout@v2

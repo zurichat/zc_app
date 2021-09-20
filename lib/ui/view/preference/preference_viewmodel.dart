@@ -1,5 +1,4 @@
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.logger.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
@@ -7,7 +6,6 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 class PreferenceViewModel extends BaseViewModel {
-  final log = getLogger('PreferenceViewModel');
   ThemeService _themeService = locator<ThemeService>();
   final _dialogService = locator<DialogService>();
   final _navigationService = locator<NavigationService>();
@@ -29,7 +27,7 @@ class PreferenceViewModel extends BaseViewModel {
     );
 
     if (dialogResult != null && dialogResult.confirmed == true) {
-      log.i(dialogResult.data);
+      print(dialogResult.data);
       currentThemeValue = dialogResult.data;
       _themeService.selectThemeAtIndex(currentThemeValue);
       currentTheme = themes[dialogResult.data];
@@ -58,7 +56,7 @@ class PreferenceViewModel extends BaseViewModel {
     );
 
     if (dialogResult != null && dialogResult.confirmed == true) {
-      log.i(dialogResult.data);
+      print(dialogResult.data);
       notifyListeners();
     }
   }

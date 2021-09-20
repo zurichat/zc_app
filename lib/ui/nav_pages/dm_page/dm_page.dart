@@ -56,17 +56,11 @@ class DmPage extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  GestureDetector(
-                    onTap: () => model.navigateToDmUserView(),
-                    child: DMMessageUnread(),
-                  ),
+                  DMMessageUnread(),
                   SizedBox(
                     height: 20,
                   ),
-                  GestureDetector(
-                    onTap: () => model.navigateToDmUserView(),
-                    child: DMMessageRead(),
-                  ),
+                  DMMessageRead(),
                   SizedBox(
                     height: 20,
                   ),
@@ -74,45 +68,27 @@ class DmPage extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  GestureDetector(
-                    onTap: () => model.navigateToDmUserView(),
-                    child: DMMessageRead(),
-                  ),
+                  DMMessageRead(),
                   SizedBox(
                     height: 20,
                   ),
-                  GestureDetector(
-                    onTap: () => model.navigateToDmUserView(),
-                    child: DMMessageRead(),
-                  ),
+                  DMMessageUnread(),
                   SizedBox(
                     height: 20,
                   ),
-                  GestureDetector(
-                    onTap: () => model.navigateToDmUserView(),
-                    child: DMMessageRead(),
-                  ),
+                  DMMessageRead(),
                   SizedBox(
                     height: 20,
                   ),
-                  GestureDetector(
-                    onTap: () => model.navigateToDmUserView(),
-                    child: DMMessageRead(),
-                  ),
+                  DMMessageRead(),
                   SizedBox(
                     height: 20,
                   ),
-                  GestureDetector(
-                    onTap: () => model.navigateToDmUserView(),
-                    child: DMMessageRead(),
-                  ),
+                  DMMessageRead(),
                   SizedBox(
                     height: 20,
                   ),
-                  GestureDetector(
-                    onTap: () => model.navigateToDmUserView(),
-                    child: DMMessageRead(),
-                  ),
+                  DMMessageUnread(),
                   SizedBox(
                     height: 30,
                   ),
