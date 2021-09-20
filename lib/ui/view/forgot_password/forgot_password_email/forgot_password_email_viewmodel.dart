@@ -21,22 +21,22 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
     notifyListeners();
   }
 
-  submitEmail() {
-    loading(true);
-    _emailValidation();
-    notifyListeners();
-  }
+  // submitEmail() {
+  //   loading(true);
+  //   _emailValidation();
+  //   notifyListeners();
+  // }
 
-  void _emailValidation() {
-    bool validateEmail = emailValidation(forgotEmailValue!);
-    if (validateEmail) {
-      inputError = !validateEmail;
-      navigateToforgotPasswordOtpView();
-    } else {
-      inputError = !validateEmail;
-      print('$inputError');
-    }
-  }
+  // void _emailValidation() {
+  //   bool validateEmail = emailValidation(forgotEmailValue!);
+  //   if (validateEmail) {
+  //     inputError = !validateEmail;
+  //     navigateToforgotPasswordOtpView();
+  //   } else {
+  //     inputError = !validateEmail;
+  //     print('$inputError');
+  //   }
+  // }
 
   Future validateEmailIsRegistered() async {
     loading(true);
@@ -52,7 +52,7 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
     } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_"
             r"`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(forgotEmailValue!)) {
-      return;
+      loading(true);
     } else {
       loading(false);
       snackbar.showCustomSnackBar(
@@ -60,6 +60,7 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
         variant: SnackbarType.failure,
         message: 'Invalid email format',
       );
+      return;
     }
 
     final validationData = {'email': forgotEmailValue};
@@ -67,7 +68,7 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
     loading(false);
 
     _requestOtp();
-    navigateToforgotPasswordOtpView();
+
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
