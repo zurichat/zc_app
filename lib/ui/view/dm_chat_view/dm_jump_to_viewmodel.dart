@@ -10,8 +10,10 @@ import 'package:hng/services/local_storage_services.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class DmJumpToViewModel extends BaseViewModel {
-  // TODO: Remove currentOrgId when organization setup is complete on the backend.
+class DmJumpToViewModel extends FutureViewModel {
+  @override
+  Future futureToRun() => fetchUsers();
+
   final log = getLogger('DmJumpToViewModel');
   TextEditingController _controller = TextEditingController();
   static final storageService = locator<SharedPreferenceLocalStorage>();
