@@ -125,8 +125,7 @@ class ForgotPasswordNewView extends StatelessWidget
                           margin: EdgeInsets.symmetric(vertical: 8.0),
                           child: Text(
                             'Confirm Password',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 16.0),
+                            style: AppTextStyles.body1Bold,
                           ),
                         ),
                         TextField(
@@ -187,15 +186,11 @@ class ForgotPasswordNewView extends StatelessWidget
                         },
                         child: Text(
                           'Continue',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              fontStyle: FontStyle.normal,
-                              color: Color(0xffFFFFFF)),
+                          style: AppTextStyles.buttonText,
                         ),
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                          primary: Color(0xff00B87C),
+                          primary: AppColors.zuriPrimaryColor,
                         ),
                       ),
                     ),

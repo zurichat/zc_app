@@ -40,8 +40,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                 Center(
                   child: Text(
                     'Forgot Password',
-                    style:
-                        TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0),
+                    style: AppTextStyles.heading9,
                   ),
                 ),
                 SizedBox(
@@ -130,17 +129,10 @@ class ForgotPasswordEmailView extends StatelessWidget
                         // model.submitEmail();
                         model.validateEmailIsRegistered();
                       },
-                      child: Text(
-                        'Continue',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            fontStyle: FontStyle.normal,
-                            color: Color(0xffFFFFFF)),
-                      ),
+                      child: Text('Continue', style: AppTextStyles.buttonText),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        primary: Color(0xff00B87C),
+                        primary: AppColors.zuriPrimaryColor,
                       ),
                     ),
                   ),
@@ -157,7 +149,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                           TextSpan(
                             text: 'Back to ',
                             style: AppTextStyles.normalText.copyWith(
-                              color: Colors.black,
+                              color: AppColors.blackColor,
                             ),
                           ),
                           TextSpan(
