@@ -11,7 +11,7 @@ import 'new_channel_viewmodel.dart';
 
 @FormView(fields: [
   FormTextField(name: 'channelName'),
-  FormTextField(name: 'channelDescription')
+  FormTextField(name: 'channelDescription'),
 ])
 class NewChannel extends StatelessWidget with $NewChannel {
   @override
@@ -39,7 +39,9 @@ class NewChannel extends StatelessWidget with $NewChannel {
             TextButton(
               style:
                   TextButton.styleFrom(padding: EdgeInsets.only(right: 16.0)),
-              onPressed: () {},
+              onPressed: () {
+                model.createChannel();
+              },
               child: Text(
                 'Create',
                 style: AppTextStyles.heading8.copyWith(
