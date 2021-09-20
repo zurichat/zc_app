@@ -4,8 +4,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 
-Widget customAppBar() {
+Widget customAppBar(context) {
   return AppBar(
+    elevation: 1,
+    leading: IconButton(
+      icon: Icon(Icons.close),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    ),
     actions: [
       GestureDetector(
           onTap: () {},

@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/ui/shared/colors.dart';
-
+import 'package:hng/ui/shared/styles.dart';
 import '../channel_page_viewmodel.dart';
 
 class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
@@ -31,24 +32,14 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
           Container(
             child: Text(
               channelName,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                fontStyle: FontStyle.normal,
-                color: AppColors.deepBlackColor,
-              ),
+              style: AppTextStyles.header6,
             ),
           ),
           const SizedBox(height: 10),
           Container(
             child: Text(
               '$numberOfMembers members',
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.normal,
-                color: AppColors.deepBlackColor,
-              ),
+              style: AppTextStyles.body2_400,
             ),
           ),
         ],
@@ -88,85 +79,13 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
             onTap: () {
               model.navigateToChannelInfo();
             },
-            child: const Icon(
-              CupertinoIcons.info,
-              color: AppColors.deepBlackColor,
-              size: 29.0,
+            child: SvgPicture.asset(
+              'assets/channel_page/info.svg',
+              width: 24,
             ),
           ),
         ),
       ],
     );
   }
-}
-
-AppBar appBar(String text, /*Function()? pressed,*/ String nexttext,
-    BuildContext context) {
-  return AppBar(
-    elevation: 1,
-    backgroundColor: AppColors.whiteColor,
-    leading: GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: const Icon(
-        CupertinoIcons.back,
-        color: AppColors.deepBlackColor,
-      ),
-    ),
-    title: Column(
-      children: [
-        Row(
-          children: [
-            Text(
-              text,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                fontStyle: FontStyle.normal,
-                color: AppColors.deepBlackColor,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Text(
-              nexttext,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.normal,
-                color: AppColors.deepBlackColor,
-              ),
-            ),
-          ],
-        ),
-      ],
-    ),
-    actions: [
-      Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: GestureDetector(
-            onTap: () {},
-            child: const Icon(
-              CupertinoIcons.search,
-              color: AppColors.deepBlackColor,
-              size: 22.0,
-            ),
-          )),
-      Padding(
-        padding: const EdgeInsets.only(right: 20.0),
-        child: GestureDetector(
-          onTap: () {}, //pressed,
-          child: const Icon(
-            CupertinoIcons.info,
-            color: AppColors.deepBlackColor,
-            size: 29.0,
-          ),
-        ),
-      ),
-    ],
-  );
 }

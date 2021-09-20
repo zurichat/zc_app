@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/styles.dart';
 
 import '../channel_page_viewmodel.dart';
 
@@ -20,18 +22,25 @@ class CustomRow extends StatelessWidget {
               onTap: () {
                 model.navigateToChannelEdit();
               },
-              child: const CircleAvatar(
-                  radius: 30,
-                  backgroundColor: AppColors.lightGreen,
-                  child: ImageIcon(AssetImage('assets/channel_page/edit.png'))),
+              child: Container(
+                height: 56,
+                width: 56,
+                decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.zuriPrimaryColor),
+                    shape: BoxShape.circle),
+                child: Center(
+                  child: SvgPicture.asset(
+                    'assets/channel_page/edit_svg.svg',
+                    width: 24,
+                    color: AppColors.zuriPrimaryColor,
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 5),
-            const Text(
+            Text(
               'Add Description',
-              style: TextStyle(
-                color: AppColors.greyishColor,
-                fontSize: 14,
-              ),
+              style: AppTextStyles.body1Grey,
             )
           ],
         ),
@@ -39,23 +48,25 @@ class CustomRow extends StatelessWidget {
         Column(
           children: [
             GestureDetector(
-              onTap: () {}, //pressed,
-              child: const CircleAvatar(
-                radius: 30,
-                backgroundColor: AppColors.lightGreen,
-                child: Icon(
-                  Icons.person_add_alt_1_sharp,
-                  color: AppColors.greyishColor,
-                ),
-              ),
-            ),
+                onTap: () {}, //pressed,
+                child: Container(
+                  height: 56,
+                  width: 56,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.zuriPrimaryColor),
+                      shape: BoxShape.circle),
+                  child: Center(
+                    child: SvgPicture.asset(
+                      'assets/channel_page/add_people.svg',
+                      width: 24,
+                      color: AppColors.zuriPrimaryColor,
+                    ),
+                  ),
+                )),
             const SizedBox(height: 5),
-            const Text(
+            Text(
               'Add People',
-              style: TextStyle(
-                color: AppColors.greyishColor,
-                fontSize: 14,
-              ),
+              style: AppTextStyles.body1Grey,
             )
           ],
         ),

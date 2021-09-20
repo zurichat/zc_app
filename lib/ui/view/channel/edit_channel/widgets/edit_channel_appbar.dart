@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 import '../editChannelViewModel.dart';
 
 class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
@@ -29,10 +29,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Text(
             appbarTitle,
-            style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.w700,
-                color: AppColors.deepBlackColor),
+            style: AppTextStyles.header6,
           ),
           GestureDetector(
             onTap: () {
@@ -54,10 +51,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
                 child: Text(
                   appbarAction,
                   textAlign: TextAlign.end,
-                  style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.zuriPrimaryColor),
+                  style: AppTextStyles.body1Green,
                 ),
               ),
             ),

@@ -94,8 +94,7 @@ class FirstSection extends StatelessWidget {
                 color: AppColors.borderColor,
               ),
               GestureDetector(
-                onTap: () =>
-                    model.navigateToEditChannel, //model.navigateToEditChannel,
+                onTap: () => model.navigateToEditChannel(),
                 child: EditButton(model: model),
               ),
             ],

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 
 class TextHeader extends StatelessWidget {
-  final Color headingColor = const Color(0xFFF7F7F7);
   final String headerText;
   TextHeader({
     Key? key,
@@ -12,7 +12,7 @@ class TextHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: headingColor,
+      color: AppColors.ZuriBGLightgrey,
       height: 48,
       child: Padding(
         padding: const EdgeInsets.only(left: 25.0),
@@ -20,7 +20,7 @@ class TextHeader extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             headerText,
-            style: TextStyle(color: AppColors.zuriDarkGrey, fontSize: 14),
+            style: AppTextStyles.body2_400,
           ),
         ),
       ),
