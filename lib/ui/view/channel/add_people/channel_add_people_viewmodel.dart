@@ -1,13 +1,19 @@
+import 'package:hng/app/app.locator.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../models/static_user_model.dart';
 
 class ChannelAddPeopleViewModel extends BaseViewModel {
   bool get allMarked =>
       markedUsers.length == matchingUsers.length && matchingUsers.isNotEmpty;
-
   late List<StaticUserModel> matchingUsers = users;
   late List<StaticUserModel> markedUsers = [];
+  final _navigationService = locator<NavigationService>();
+
+  void closePage(){
+    _navigationService.back();
+  }
 
   final users = [
     StaticUserModel(
@@ -60,4 +66,5 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
     markedUsers = marked! ? matchingUsers : [];
     notifyListeners();
   }
+
 }

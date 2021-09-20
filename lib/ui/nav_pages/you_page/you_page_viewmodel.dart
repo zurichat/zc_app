@@ -1,10 +1,12 @@
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class YouPageViewModel extends BaseViewModel {
+  final log = getLogger('YouPageViewModel');
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
 
@@ -49,7 +51,7 @@ class YouPageViewModel extends BaseViewModel {
       secondaryButtonTitle: 'This is cool',
     );
 
-    print('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
+    log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
   }
 
   Future viewNotifications() async {

@@ -12,16 +12,16 @@ class ThirdSection extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.center,
-      margin: const EdgeInsets.only(right: 5, left: 5, bottom: 15),
+      margin: const EdgeInsets.only(right: 8, left: 8, top: 10,bottom: 16),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2),
+          borderRadius: BorderRadius.circular(6),
           border: Border.all(width: 1.0, color: AppColors.borderColor)),
       child: Column(
         children: [
           Row(
             children: [
-              Container(
-                margin: const EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                   left: 9,
                   top: 19,
                 ),
@@ -31,14 +31,14 @@ class ThirdSection extends StatelessWidget {
                   size: 28,
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                   left: 11,
                   top: 19,
                 ),
                 child: Text(
                   'Members (5)',
-                  style: descriptionStyle(),
+                  style: nameStyle(),
                 ),
               ),
             ],
@@ -51,8 +51,8 @@ class ThirdSection extends StatelessWidget {
           ),
           Row(
             children: [
-              Container(
-                margin: const EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                   left: 9,
                   top: 13,
                 ),
@@ -62,14 +62,14 @@ class ThirdSection extends StatelessWidget {
                   size: 28,
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                   left: 11,
                   top: 13,
                 ),
                 child: Text(
                   'Add People',
-                  style: descriptionStyle(),
+                  style: nameStyle(),
                 ),
               ),
             ],
@@ -82,8 +82,8 @@ class ThirdSection extends StatelessWidget {
           ),
           Row(
             children: [
-              Container(
-                margin: const EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                   left: 9,
                   top: 13,
                 ),
@@ -93,14 +93,14 @@ class ThirdSection extends StatelessWidget {
                   size: 28,
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                   left: 11,
                   top: 13,
                 ),
                 child: Text(
                   'Plugins (1)',
-                  style: descriptionStyle(),
+                  style: nameStyle(),
                 ),
               ),
             ],
@@ -113,8 +113,8 @@ class ThirdSection extends StatelessWidget {
           ),
           Row(
             children: [
-              Container(
-                margin: const EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                   left: 9,
                   top: 13,
                   bottom: 10,
@@ -125,15 +125,15 @@ class ThirdSection extends StatelessWidget {
                   size: 28,
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                   left: 11,
-                  top: 19,
+                  top: 13,
                   bottom: 10,
                 ),
                 child: Text(
                   'Start a call',
-                  style: descriptionStyle(),
+                  style: nameStyle(),
                 ),
               ),
             ],

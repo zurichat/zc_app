@@ -124,12 +124,9 @@ AppBar appBar(String text, String nexttext, BuildContext context) {
   return AppBar(
     elevation: 1,
     backgroundColor: AppColors.whiteColor,
-    leading: GestureDetector(
-      onTap: () {},
-      child: const Icon(
-        CupertinoIcons.back,
-        color: AppColors.deepBlackColor,
-      ),
+    leading: IconButton(
+      icon: Icon(Icons.arrow_back_ios),
+      onPressed: (){},
     ),
     title: Column(
       children: [
@@ -176,9 +173,11 @@ AppBar appBar(String text, String nexttext, BuildContext context) {
       Padding(
         padding: const EdgeInsets.only(right: 20.0),
         child: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            NavigationService().navigateTo(Routes.channelInfoView);
+          },
           child: const Icon(
-            CupertinoIcons.info,
+            Icons.info_outlined,
             color: AppColors.deepBlackColor,
             size: 29.0,
           ),

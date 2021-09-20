@@ -37,43 +37,38 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const FirstSection(),
-
-                const EditButton(),
-
+                SizedBox(height: 16),
                 const SecondSection(),
-
-                Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 19),
-                    child: Text(
-                      'You wont\'t  recieve any messages from a muted channel',
+            SizedBox(height: 8),
+            Padding(
+              padding:
+              const EdgeInsets.symmetric(horizontal: 19),
+              child: Text(
+                'You won\'t receive any messages from a muted channel',
                       style: faintTextStyle(),
-                    )),
-//Third Section
-
+                    ),
+            ),
                 const ThirdSection(),
 
-                Container(
-                  margin:
+                Padding(
+                  padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
                   child: Text(
                     'Bookmarks',
-                    style: faintTextStyle(),
+                    style: lightStyle(),
                   ),
                 ),
 
                 const FourthSection(),
                 const FifthSection(),
-
-                Container(
-                  margin:
+                Padding(
+                  padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
                   child: Text(
                     'Advanced',
-                    style: faintTextStyle(),
+                    style: lightStyle(),
                   ),
                 ),
-
                 const SixthSection(),
               ],
             ),
