@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hng/app/app.logger.dart';
 
 import '../../../../models/api_response.dart';
 import '../../../../utilities/api_utils.dart';
@@ -6,6 +7,7 @@ import 'api.dart';
 import 'dio_interceptors.dart';
 
 class HttpApiService implements Api {
+  final log = getLogger('HttpApiService');
   HttpApiService(baseUrl) {
     _dio.interceptors.add(DioInterceptor());
     _dio.options.sendTimeout = 60000;
@@ -22,12 +24,12 @@ class HttpApiService implements Api {
     Map<String, dynamic>? headers,
   }) async {
     try {
-      // print(headers);
+      // log.i(headers);
       final res = await _dio.get(path,
           queryParameters: data, options: Options(headers: headers));
       return ApiUtils.toApiResponse(res);
     } on DioError catch (e) {
-      print(e);
+      log.i(e);
     }
   }
 
@@ -40,7 +42,7 @@ class HttpApiService implements Api {
 
       return ApiUtils.toApiResponse(res);
     } on DioError catch (e) {
-      print(e);
+      log.i(e);
       return ApiUtils.toApiResponse(e.response!);
     }
   }
@@ -53,7 +55,7 @@ class HttpApiService implements Api {
           await _dio.put(path, data: data, options: Options(headers: headers));
       return ApiUtils.toApiResponse(res);
     } on DioError catch (e) {
-      print(e);
+      log.i(e);
     }
   }
 
@@ -65,7 +67,7 @@ class HttpApiService implements Api {
           data: data, options: Options(headers: headers));
       return ApiUtils.toApiResponse(res);
     } on DioError catch (e) {
-      print(e);
+      log.i(e);
     }
   }
 
@@ -77,7 +79,7 @@ class HttpApiService implements Api {
           data: data, options: Options(headers: headers));
       return ApiUtils.toApiResponse(res);
     } on DioError catch (e) {
-      print(e);
+      log.i(e);
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -10,6 +11,7 @@ import 'forgot_password_otpviewmodel.dart';
 
 class ForgotPasswordOtpView extends StatelessWidget
     with $ForgotPasswordOtpView {
+  final log = getLogger('ForgotPasswordOtpView');
   ForgotPasswordOtpView({Key? key}) : super(key: key);
 
   //stacked forms handling
@@ -104,7 +106,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                         onTap: () {},
                         onChanged: (value) {},
                         beforeTextPaste: (text) {
-                          print("Allowing to paste $text");
+                          log.i("Allowing to paste $text");
                           //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
                           //but you can show anything you want here, like your pop up saying wrong paste format or etc
                           return true;

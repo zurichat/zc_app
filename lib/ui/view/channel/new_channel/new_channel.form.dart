@@ -37,7 +37,8 @@ mixin $NewChannel on StatelessWidget {
 
   /// Calls dispose on all the generated controllers and focus nodes
   void disposeForm() {
-    // The dispose function for a TextEditingController sets all listeners to null
+    // The dispose function for a TextEditingController
+    // sets all listeners to null
 
     channelNameController.dispose();
     channelDescriptionController.dispose();
