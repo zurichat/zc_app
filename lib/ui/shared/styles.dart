@@ -97,6 +97,11 @@ class AppTextStyles {
     color: AppColors.greyColor,
     fontSize: 14,
   );
+  static TextStyle normal = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.blackColor,
+    fontSize: 16,
+  );
   static TextStyle fileName = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
     color: AppColors.blackColor,
