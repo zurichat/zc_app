@@ -34,10 +34,9 @@ class WorkSpaceApiService {
       '/users/$email/organizations',
       headers: {'Authorization': 'Bearer $token'},
     );
-    print(res?.data?['data'].length);
-    return (res?.data?['data'] as List)
-        .map((e) => WorkspaceModel.fromJson(e))
-        .toList();
+    final list = res?.data?['data'] ?? [];
+    // print(res?.data?['data'].length);
+    return (list as List).map((e) => WorkspaceModel.fromJson(e)).toList();
   }
 
   /// Fetches information on a particular Organization. It takes a parameter
