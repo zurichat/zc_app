@@ -1,20 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:stacked/stacked_annotations.dart';
 import '../../../general_widgets/custom_channel.dart';
 import '../../../general_widgets/custom_channel_stage.dart';
 import '../../../general_widgets/custom_user.dart';
 import '../../../general_widgets/custom_user_channel.dart';
+import 'dm_jump_to_view.form.dart';
 import 'dm_jump_to_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
-class DmJumpToView extends StatelessWidget {
-  const DmJumpToView({Key? key}) : super(key: key);
+@FormView(fields: [FormTextField(name: 'search')])
+class DmJumpToView extends StatelessWidget with $DmJumpToView {
+  DmJumpToView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmJumpToViewModel>.reactive(
-      onModelReady: (model) => model.fetchUsers(),
+      onModelReady: (model) {
+        listenToFormUpdated(model);
+        // model.fetchUsers();
+      },
       disposeViewModel: false,
       viewModelBuilder: () => DmJumpToViewModel(),
       builder: (BuildContext context, DmJumpToViewModel model, Widget? child) =>
@@ -23,7 +29,24 @@ class DmJumpToView extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
-            model.userSearch.isEmpty ? SizedBox() : Center(child: CircularProgressIndicator(),),
+            Positioned(
+              bottom: 0,
+              top: 0,
+              right: 0,
+              left: 0,
+              child: FutureBuilder(
+                future: model.fetchUsers(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Text("Completed");
+                  }
+                },
+              ),
+            ),
             GestureDetector(
               onTap: () {
                 FocusScope.of(context).requestFocus(FocusNode());
@@ -40,20 +63,22 @@ class DmJumpToView extends StatelessWidget {
                         // child: BorderTextField(onChanged: (value)
                         //{  }, hint: 'Jump to...', controller: controller,),
                         child: TextField(
-                          controller: model.controller,
+                          controller: searchController,
                           keyboardType: TextInputType.visiblePassword,
                           maxLines: 1,
                           onChanged: (value) {},
                           decoration: const InputDecoration(
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
                               borderSide: BorderSide(
                                   color: Color(0xFF7B8794),
                                   width: 0.5,
                                   style: BorderStyle.solid),
                             ),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
                               borderSide: BorderSide(
                                   color: Color(0xFF7B8794),
                                   width: 0.5,
