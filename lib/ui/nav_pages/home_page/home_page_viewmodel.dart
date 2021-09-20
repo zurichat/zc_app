@@ -138,4 +138,5 @@ class HomePageViewModel extends StreamViewModel {
   void navigateToUserSearchView() {
     _navigationService.navigateTo(Routes.userSearchView);
   }
+
 }

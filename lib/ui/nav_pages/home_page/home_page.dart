@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+
+import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
+import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
+import 'package:hng/ui/shared/search_bar.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/utilities/constants.dart';
+
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/easy_container.dart';
@@ -6,9 +14,11 @@ import '../../../utilities/constants.dart';
 import '../../shared/colors.dart';
 import '../../shared/text_styles.dart';
 import 'home_page_viewmodel.dart';
+
 import 'widgets/home_expanded.dart';
 import 'widgets/home_list_items.dart';
 import 'widgets/home_topbar.dart';
+
 
 class HomePage extends StatelessWidget {
   @override
@@ -47,6 +57,10 @@ class HomePage extends StatelessWidget {
           searchBar(),
           const Padding(
             padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
+          SizedBox(height: 15),
+          JumpToSearchBar(onTap: () => vmodel.navigateToJumpToScreen()),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
           ),
           const Divider(),
@@ -71,6 +85,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
+
   Widget searchBar() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
@@ -88,4 +103,5 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
 }
