@@ -21,7 +21,7 @@ class StartDmViewModel extends BaseViewModel {
     String _currentOrgId = storageService.getString(StorageKeys.currentOrgId) ??
         '61459d8e62688da5302acdb1';
     String token = storageService.getString(StorageKeys.currentSessionToken) ??
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb29raWUiOiJNVFl6TWpFek1USTJOM3hIZDNkQlIwUlplRTVFWXpKT2FrVjZXa2RaZDFwRVFUUmFSMWt5V2xkU2JFMXFUbXBhUVQwOWZPakdYemZ3UlZHMEUycmU1N01aLWVkQmZlaHRKbV90OWJNSWZFSlNSMUlGIiwiZW1haWwiOiJtYW5pZ2FhY2FAZ21haWwuY29tIiwiaWQiOiI2MTQ3NjYxM2RmMGQwOGRmNmVkZTIzY2QiLCJvcHRpb25zIjp7IlBhdGgiOiIvIiwiRG9tYWluIjoiIiwiTWF4QWdlIjo2MzA3MjAwMDAwLCJTZWN1cmUiOmZhbHNlLCJIdHRwT25seSI6ZmFsc2UsIlNhbWVTaXRlIjowfSwic2Vzc2lvbl9uYW1lIjoiZjY4MjJhZjk0ZTI5YmExMTJiZTMxMGQzYWY0NWQ1YzcifQ.wKOd4nrjM8I7WA4pk9sf0DuKEM5aPjyzoN1YDG0z8jo';
+        '';
     String endpoint = '/organizations/$_currentOrgId/members/';
     final response = await _apiService.get(
       endpoint,
