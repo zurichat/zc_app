@@ -9,24 +9,27 @@ class CustomChannelStage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
-      width: 379,
-      child: Row(
-        children: [
-          Container(
-            height: 16,
-            width: 16,
-            child: Icon(
-              leadingIcon,
-              size: 16,
+      height: 24,
+      width: 211,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(3,0,0,0),
+        child: Row(
+          children: [
+            Container(
+              height: 16,
+              width: 16,
+              child: Icon(
+                leadingIcon,
+                size: 16,
+              ),
             ),
-          ),
-          const SizedBox(width: 20),
-          Text(
-            text,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-        ],
+            const SizedBox(width: 18),
+            Text(
+              text,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     );
   }

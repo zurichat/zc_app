@@ -7,21 +7,24 @@ class CustomChannel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
-      width: 379,
-      child: Row(
-        children: [
-          const Text('#',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              )),
-          const SizedBox(width: 20),
-          Text(
-            text,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-        ],
+      height: 24,
+      width: 211,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(5,0,0,0),
+        child: Row(
+          children: [
+            const Text('#',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                )),
+            const SizedBox(width: 21.33),
+            Text(
+              text,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -9,25 +9,35 @@ class CustomUser extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      child: Column(
-        children: [
-          Container(
-            height: 60,
-            width: 60,
-            // color: Color(0xFFC4C4C4),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                      image,
-                    ))),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Container(height: 17, child: Text(text))
-        ],
+      child: Container(
+        width: 48,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              height: 48,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                        image,
+                      ))),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Container(
+                height: 32,
+                child: Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                )
+            )
+          ],
+        ),
       ),
     );
   }
