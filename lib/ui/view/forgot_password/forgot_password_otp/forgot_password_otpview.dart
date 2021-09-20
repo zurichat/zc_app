@@ -11,7 +11,7 @@ import 'forgot_password_otpviewmodel.dart';
 
 class ForgotPasswordOtpView extends StatelessWidget
     with $ForgotPasswordOtpView {
-      final log = getLogger('ForgotPasswordOtpView');
+  final log = getLogger('ForgotPasswordOtpView');
   ForgotPasswordOtpView({Key? key}) : super(key: key);
 
   //stacked forms handling
