@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 
@@ -8,21 +9,33 @@ class CustomChannel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 24,
-      width: 211,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(5,0,0,0),
-        child: Row(
-          children: [
-            Text('#',
-                style: AppTextStyles.heading7),
-            const SizedBox(width: 21.33),
-            Text(
-              text,
-              style: ZuriTextStyle.mediumBold(),
+    return ScreenUtilInit(
+      designSize: const Size(411, 823),
+      builder: ()=> InkWell(
+        onTap: () {},
+        child: Container(
+          height: 24.h,
+          width: 211.w,
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(5.w,0,0,0),
+            child: Row(
+              children: [
+                Text('#',
+                    // style: AppTextStyles.heading7,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.sp,
+                    )
+                ),
+                SizedBox(width: 21.33.w),
+                Text(
+                  text,
+                  // style: ZuriTextStyle.mediumBold(),
+                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
