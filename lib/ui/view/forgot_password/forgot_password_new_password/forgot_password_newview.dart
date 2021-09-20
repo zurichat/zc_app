@@ -45,8 +45,7 @@ class ForgotPasswordNewView extends StatelessWidget
                   Center(
                     child: Text(
                       'Forgot Password',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 20.0),
+                      style: AppTextStyles.body1Bold,
                     ),
                   ),
                   SizedBox(
@@ -71,8 +70,7 @@ class ForgotPasswordNewView extends StatelessWidget
                       margin: EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'New Password',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 16.0),
+                        style: AppTextStyles.body1Bold,
                       )),
                   Form(
                     child: Column(

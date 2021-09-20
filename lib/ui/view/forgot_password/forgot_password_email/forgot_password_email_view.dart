@@ -67,8 +67,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                   margin: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
                     'Email Address',
-                    style:
-                        TextStyle(fontWeight: FontWeight.w700, fontSize: 16.0),
+                    style: AppTextStyles.body1Bold,
                   ),
                 ),
                 Column(
