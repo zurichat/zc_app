@@ -13,22 +13,24 @@ import 'channel_page_viewmodel.dart';
 class ChannelPageView extends StatelessWidget {
   const ChannelPageView({Key? key}) : super(key: key);
 
+  static String name = "general";
+
   @override
   Widget build(BuildContext context) {
-    final usermodel = [
+    /* final usermodel = [
       StaticUserModel(
         userName: 'Clutch',
-        joinInfo: 'Joined #teamsocrates',
+        joinInfo: 'Joined #$name',
         time: '12:30pm',
         userimg: 'assets/channel_page/female.png',
       ),
       StaticUserModel(
         userName: 'Ali',
-        joinInfo: 'Joined #teamsocrates',
+        joinInfo: 'Joined #$name',
         time: '12:30pm',
         userimg: 'assets/channel_page/femaleuser.png',
       )
-    ];
+    ]; */
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       //this parameter allows us to reuse the view model to persist the state
       disposeViewModel: false,
@@ -37,27 +39,25 @@ class ChannelPageView extends StatelessWidget {
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: appBar('#teamsocrates', viewModel.navigateToChannelInfo(),
-              '128 members', context),
+          appBar: appBar("#$name", viewModel.navigateToChannelInfo, '128 members', context),
           body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
+            physics: BouncingScrollPhysics(),
             child: Column(
               children: [
                 Column(
                   children: [
-                    channelName('#teamsocrates'),
+                    channelName("#$name"),
                   ],
                 ),
                 Row(
                   children: [
                     Expanded(
-                      child: channelInfo('@mark', '''
- created this channel on August 12, 2021. This is the very beginning of the #teamsocrates channel.'''),
+                      child: channelInfo('@mark', ' created this channel on August 12, 2021. This is the very beginning of the #$name channel.'),
                     ),
                   ],
                 ),
                 const SizedBox(height: 20),
-                row(viewModel.navigateToAddPeople()),
+                row(viewModel.navigateToAddPeople),
                 const SizedBox(height: 20),
                 dateBuilder(context),
                 const SizedBox(height: 7),
@@ -66,7 +66,7 @@ class ChannelPageView extends StatelessWidget {
                   title: Row(
                     children: [
                       const Text(
-                        'Clutch',
+                        'Naza',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
@@ -84,9 +84,9 @@ class ChannelPageView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  subtitle: const Text('Joined #teamsocrates'),
+                  subtitle: Text('joined #$name'),
                 ),
-                ListTile(
+                /* ListTile(
                   leading: Image.asset('assets/channel_page/femaleuser.png'),
                   title: Row(
                     children: [
@@ -109,12 +109,46 @@ class ChannelPageView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  subtitle: const Text('Joined #teamsocrates'),
+                  subtitle: Text('Joined #$name'),
+                ), */
+              ],
+            ),
+          ),
+          bottomSheet: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            height: 70,
+            color: Colors.white,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    controller: viewModel.editor,
+                    decoration: InputDecoration.collapsed(
+                      hintText: 'Message #$name',
+                      hintStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.greyishColor,
+                      ),
+                    ),
+                    // textCapitalization: TextCapitalization.sentences,
+                  ),
+                ),
+                /* const ImageIcon(AssetImage('assets/channel_page/light.png')),
+                const SizedBox(width: 22),
+                const Icon(CupertinoIcons.camera),
+                const SizedBox(width: 22),
+                const ImageIcon(AssetImage('assets/channel_page/attach.png')), */
+                IconButton(
+                  icon: Icon(Icons.send),
+                  color: AppColors.greyishColor,
+                  onPressed: () {
+                    
+                  },
                 ),
               ],
             ),
           ),
-          bottomSheet: sendMessageArea(),
         );
       },
     );
@@ -150,7 +184,7 @@ AppBar appBar(
             ),
           ],
         ),
-        const SizedBox(height: 10),
+        // const SizedBox(height: 10),
         Row(
           children: [
             Text(
@@ -194,7 +228,7 @@ AppBar appBar(
 
 Padding channelName(String text) {
   return Padding(
-    padding: const EdgeInsets.only(left: 10, top: 200),
+    padding: const EdgeInsets.only(left: 10, top: 80),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -256,12 +290,22 @@ Row row(Function()? pressed) {
     children: [
       Column(
         children: [
-          GestureDetector(
+          InkWell(
             onTap: () {},
-            child: const CircleAvatar(
-                radius: 30,
-                backgroundColor: AppColors.lightGreen,
-                child: ImageIcon(AssetImage('assets/channel_page/edit.png'))),
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: AppColors.zuriPrimaryColor,
+                  width: 1.28,
+                )
+              ),
+              child: ImageIcon(AssetImage('assets/channel_page/edit.png'), color: AppColors.zuriPrimaryColor),
+              height: 60.0,
+              width: 60.0,
+            ),
           ),
           const SizedBox(height: 5),
           const Text(
@@ -276,15 +320,24 @@ Row row(Function()? pressed) {
       const SizedBox(width: 30),
       Column(
         children: [
-          GestureDetector(
+          InkWell(
             onTap: pressed,
-            child: const CircleAvatar(
-              radius: 30,
-              backgroundColor: AppColors.lightGreen,
-              child: Icon(
-                Icons.person_add_alt_1_sharp,
-                color: AppColors.greyishColor,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: AppColors.zuriPrimaryColor,
+                  width: 1.28,
+                )
               ),
+              child: Icon(
+                Icons.person_add_alt_1_outlined,
+                color: AppColors.zuriPrimaryColor,
+              ),
+              height: 60.0,
+              width: 60.0,
             ),
           ),
           const SizedBox(height: 5),
@@ -301,17 +354,17 @@ Row row(Function()? pressed) {
   );
 }
 
-sendMessageArea() {
+/* sendMessageArea() {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 8),
     height: 70,
     color: Colors.white,
     child: Row(
       children: <Widget>[
-        const Expanded(
+        Expanded(
           child: TextField(
             decoration: InputDecoration.collapsed(
-              hintText: 'Message #teamsocrates',
+              hintText: 'Message #${ChannelPageView.name}',
               hintStyle: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -329,7 +382,7 @@ sendMessageArea() {
       ],
     ),
   );
-}
+} */
 
 dateBuilder(BuildContext context) {
   return Row(children: <Widget>[

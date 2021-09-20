@@ -51,8 +51,9 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                     child: Text(
                       'You wont\'t  recieve any messages from a muted channel',
                       style: faintTextStyle(),
-                    )),
-//Third Section
+                    )
+                ),
+                //Third Section
 
                 const ThirdSection(),
 
