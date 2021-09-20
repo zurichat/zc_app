@@ -49,7 +49,7 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
     }
   }
 
-  void createChannel() {
+  void createChannel() async {
     if (channelNameValue == null ||
         channelDescriptionValue == null ||
         channelNameValue == '' ||
@@ -63,11 +63,26 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
       return;
     }
 
-    _channelApiService.createChannels(
+    final res = await _channelApiService.createChannels(
       name: channelNameValue!,
       description: channelDescriptionValue!,
       private: false,
     );
+
+    if (res) {
+      snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.success,
+          message: 'Channels $channelNameValue created succesful');
+    } else {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: 'An error occured while creating channel $channelNameValue',
+      );
+    }
+
+    _navigationService.popRepeated(1);
   }
 
   @override

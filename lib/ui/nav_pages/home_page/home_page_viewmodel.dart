@@ -15,8 +15,8 @@ import '../../../services/connectivity_service.dart';
 
 class HomePageViewModel extends StreamViewModel {
   final connectivityService = locator<ConnectivityService>();
-  final dmApiService = locator<DMApiService>();
-  final channelsApiService = locator<ChannelsApiService>();
+  final _dmApiService = locator<DMApiService>();
+  final _channelsApiService = locator<ChannelsApiService>();
 
   final _navigationService = locator<NavigationService>();
   bool connectionStatus = false;
@@ -116,11 +116,17 @@ class HomePageViewModel extends StreamViewModel {
     notifyListeners();
   }
 
+  listenToChannelsChange() {
+    _channelsApiService.onChange.stream.listen((event) {
+      getDmAndChannelsList();
+    });
+  }
+
   getDmAndChannelsList() async {
     homePageList = [];
     setBusy(true);
 
-    List? channelsList = await channelsApiService.getActiveDms();
+    List? channelsList = await _channelsApiService.getActiveDms();
     channelsList.forEach((data) {
       homePageList.add(HomeItemModel(
         type: HomeItemType.channels,
@@ -137,6 +143,7 @@ class HomePageViewModel extends StreamViewModel {
     unreads.clear();
     directMessages.clear();
     joinedChannels.clear();
+    setBusy(false);
 
     setAllList();
     notifyListeners();

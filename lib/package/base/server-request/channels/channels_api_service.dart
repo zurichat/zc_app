@@ -51,8 +51,6 @@ class ChannelsApiService {
     String owner = _userService.userEmail;
     String orgId = _userService.currentOrgId;
 
-    List joinedChannels = [];
-
     try {
       final res = await _api.post(
         'v1/$orgId/channels/',
@@ -65,12 +63,12 @@ class ChannelsApiService {
         headers: {'Authorization': 'Bearer $token'},
       );
 
-      if (res?.statusCode == 200) {
+      log.i(res?.data.toString());
+
+      if (res?.statusCode == 201 || res?.statusCode == 200) {
         onChange.sink.add('created channel');
         return true;
       }
-
-      log.i(joinedChannels);
     } on Exception catch (e) {
       log.e(e.toString());
     }
