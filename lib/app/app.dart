@@ -77,7 +77,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: AddPluginView),
     MaterialRoute(page: UseDifferentEmailView),
     MaterialRoute(page: EditPluginView),
-   // MaterialRoute(page: ViewProfile),
+    MaterialRoute(page: ViewProfile),
     MaterialRoute(page: SetStatusView),
     MaterialRoute(page: ProfilePageView),
     MaterialRoute(page: PreferenceView),

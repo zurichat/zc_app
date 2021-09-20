@@ -49,6 +49,7 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
 import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
@@ -82,6 +83,7 @@ class Routes {
   static const String addPluginView = '/add-plugin-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String editPluginView = '/edit-plugin-view';
+  static const String viewProfile = '/view-profile';
   static const String setStatusView = '/set-status-view';
   static const String profilePageView = '/profile-page-view';
   static const String preferenceView = '/preference-view';
@@ -126,6 +128,7 @@ class Routes {
     addPluginView,
     useDifferentEmailView,
     editPluginView,
+    viewProfile,
     setStatusView,
     profilePageView,
     preferenceView,
@@ -175,6 +178,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.addPluginView, page: AddPluginView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.editPluginView, page: EditPluginView),
+    RouteDef(Routes.viewProfile, page: ViewProfile),
     RouteDef(Routes.setStatusView, page: SetStatusView),
     RouteDef(Routes.profilePageView, page: ProfilePageView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
@@ -371,6 +375,18 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    ViewProfile: (data) {
+      var args = data.getArgs<ViewProfileArguments>(
+        orElse: () => ViewProfileArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ViewProfile(
+          key: args.key,
+          isActive: args.isActive,
+        ),
+        settings: data,
+      );
+    },
     SetStatusView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => SetStatusView(),
@@ -531,6 +547,13 @@ class ChannelPageViewArguments {
 class DmUserViewArguments {
   final Key? key;
   DmUserViewArguments({this.key});
+}
+
+/// ViewProfile arguments holder class
+class ViewProfileArguments {
+  final Key? key;
+  final bool isActive;
+  ViewProfileArguments({this.key, this.isActive});
 }
 
 /// CreateWorkSpace arguments holder class
