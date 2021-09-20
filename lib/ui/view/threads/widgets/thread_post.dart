@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 
 class ThreadPost extends StatelessWidget {
   const ThreadPost(this.userThreadPost, {Key? key})
@@ -49,14 +50,13 @@ class ThreadPost extends StatelessWidget {
                           ),
                           Icon(
                             Icons.looks_6,
-                            color: Colors.blue,
+                            color: AppColors.iconBlueColor,
                             size: 18,
                           ),
                           SizedBox(width: 2),
-                          CustomText(
-                            text: "${userThreadPost.lastSeen}",
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
+                          Text(
+                            "${userThreadPost.lastSeen}",
+                            style: AppTextStyles.lastSeen,
                           ),
                         ],
                       ),

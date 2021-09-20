@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-enum ChannelType { private, public, personal }
+import 'package:hng/utilities/enums.dart';
 
 class UserThreadPost {
   int? id;

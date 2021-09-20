@@ -72,7 +72,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
                               text: 'Status', fontWeight: FontWeight.w300),
                           subtitle: Align(
                               alignment: Alignment.centerLeft,
-                              child: Icon(Icons.looks_5, color: Colors.blue)),
+                              child: Icon(Icons.looks_5, color: AppColors.blueTextColor)),
                           shape: Border(
                             top: BorderSide(
                                 width: .5, color: AppColors.greyishColor),

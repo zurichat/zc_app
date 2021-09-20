@@ -2,6 +2,10 @@ enum ConnectivityStatus { Wifi, Mobile, Online, Offline }
 
 enum DialogType { skinTone, selectLanguage, feedback, themeMode }
 
+enum ChannelType { private, public, personal }
+
+enum CustomUserProfileButtonType { normal, icon }
+
 enum BottomSheetType {
   user,
   emojiPicker,

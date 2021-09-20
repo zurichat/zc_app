@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
-
-enum _CustomButtonType { normal, icon }
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/utilities/enums.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(
       {Key? key, required this.text, required this.onPressed, this.icon})
-      : _customButtonType = _CustomButtonType.normal,
+      : _customButtonType = CustomUserProfileButtonType.normal,
         super(key: key);
 
   const CustomButton.icon(
       {Key? key, this.text, required this.onPressed, required this.icon})
-      : _customButtonType = _CustomButtonType.icon,
+      : _customButtonType = CustomUserProfileButtonType.icon,
         super(key: key);
 
   final String? text;
   final IconData? icon;
   final void Function() onPressed;
-  final _CustomButtonType _customButtonType;
+  final CustomUserProfileButtonType _customButtonType;
 
   @override
   Widget build(BuildContext context) {
-    return _customButtonType == _CustomButtonType.normal
+    return _customButtonType == CustomUserProfileButtonType.normal
         ? MaterialButton(
             onPressed: onPressed,
             padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.02),
             shape: Border.all(color: AppColors.greyishColor),
             child: Text(
               " $text",
-              style: TextStyle(color: AppColors.greyishColor),
+              style: AppTextStyles.body3Medium,
             ))
         : MaterialButton(
             onPressed: onPressed,

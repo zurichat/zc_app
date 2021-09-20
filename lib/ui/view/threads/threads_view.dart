@@ -35,10 +35,9 @@ class ThreadsView extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  child: CustomText(
-                    text: 'No new replies',
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                  child: Text(
+                    'No new replies',
+                    style: AppTextStyles.body2Bold,
                   ),
                 ),
                 ListView.builder(

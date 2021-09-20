@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 
 import '../threads_viewmodel.dart';
@@ -64,10 +65,9 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
                 ),
               ],
             ),
-            subtitle: CustomText(
-              text: 'You, Jane and 2 others',
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
+            subtitle: Text(
+              'You, Jane and 2 others',
+              style: AppTextStyles.subtitle,
             ),
           ),
           Container(
