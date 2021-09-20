@@ -79,7 +79,8 @@ class LoginViewModel extends FormViewModel {
       );
 
       //Todo check if user has currently joined an organisation
-      navigationService.navigateTo(Routes.startDmView);
+      // navigationService.navigateTo(Routes.startDmView);
+      navigateToHomeScreen();
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
