@@ -12,64 +12,77 @@ class FirstSection extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2),
+          borderRadius: BorderRadius.circular(6),
           border: Border.all(width: 1.0, color: AppColors.borderColor)),
-      margin: const EdgeInsets.only(right: 5, left: 5, top: 15),
+      margin: const EdgeInsets.only(right: 8, left: 8, top: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 19, vertical: 30),
+         Padding (
+            padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 24),
             child: Text(
               '#teamsocrates',
               style: headerStyle(),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 19,
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 17,
             ),
             child: Text(
               'Description',
               style: nameStyle(),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 19,
-              vertical: 15,
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 17,
+              vertical: 10,
             ),
             child: Text(
               'No description set',
               style: descriptionStyle(),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 19,
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 17,
+              vertical: 6,
             ),
             child: Text(
               'Mark created this channel on August 13.',
               style: faintTextStyle(),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 19,
-              vertical: 15,
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 17,
+              vertical: 18,
             ),
             child: Text(
               'Topic',
-              style: descriptionStyle(),
+              style: nameStyle(),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(left: 19, right: 19, bottom: 19),
+          Padding(
+            padding: const EdgeInsets.only(left: 17, right: 19, bottom: 19, top: 10),
             child: Text(
               'Creating the zuri main app',
               style: descriptionStyle(),
             ),
           ),
+        Divider(
+          thickness: 1,
+        ),
+          SizedBox(height: 10),
+          Center(
+            child: TextButton(
+              onPressed: (){},
+              child: Text('Edit',
+              style: greenTextStyle())
+            ),
+          ),
+          SizedBox(height: 10)
         ],
       ),
     );

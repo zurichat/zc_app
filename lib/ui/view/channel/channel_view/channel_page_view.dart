@@ -126,6 +126,7 @@ AppBar appBar(
   return AppBar(
     elevation: 1,
     backgroundColor: AppColors.whiteColor,
+<<<<<<< Updated upstream
     leading: GestureDetector(
       onTap: () {
         Navigator.pop(context);
@@ -134,6 +135,11 @@ AppBar appBar(
         CupertinoIcons.back,
         color: AppColors.deepBlackColor,
       ),
+=======
+    leading: IconButton(
+      icon: Icon(Icons.arrow_back_ios),
+      onPressed: (){},
+>>>>>>> Stashed changes
     ),
     title: Column(
       children: [
@@ -180,9 +186,15 @@ AppBar appBar(
       Padding(
         padding: const EdgeInsets.only(right: 20.0),
         child: GestureDetector(
+<<<<<<< Updated upstream
           onTap: pressed,
+=======
+          onTap: () {
+            NavigationService().navigateTo(Routes.channelInfoView);
+          },
+>>>>>>> Stashed changes
           child: const Icon(
-            CupertinoIcons.info,
+            Icons.info_outlined,
             color: AppColors.deepBlackColor,
             size: 29.0,
           ),

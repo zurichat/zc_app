@@ -4,17 +4,24 @@ import 'package:flutter/material.dart';
 import '../../../../shared/colors.dart';
 import 'textstyles.dart';
 
-class SecondSection extends StatelessWidget {
+class SecondSection extends StatefulWidget {
   const SecondSection({Key? key}) : super(key: key);
+
+  @override
+  State<SecondSection> createState() => _SecondSectionState();
+}
+
+class _SecondSectionState extends State<SecondSection> {
+  bool _toggled = false;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.center,
-      margin: const EdgeInsets.only(right: 5, left: 5, bottom: 10),
+      margin: const EdgeInsets.only(right: 8, left: 8, bottom: 8),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2),
+          borderRadius: BorderRadius.circular(6),
           border: Border.all(width: 1.0, color: AppColors.borderColor)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,10 +29,10 @@ class SecondSection extends StatelessWidget {
           Row(
             children: [
               // ignore: avoid_unnecessary_containers
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 9,
-                  top: 19,
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 18,
+                  top: 26,
                 ),
                 child: const Icon(
                   Icons.notifications_none_outlined,
@@ -34,50 +41,37 @@ class SecondSection extends StatelessWidget {
                 ),
               ),
 
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 11,
-                  top: 19,
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 26,
+                  vertical: 6,
                 ),
                 child: Text(
                   'Notification',
-                  style: descriptionStyle(),
+                  style: nameStyle(),
                 ),
               )
             ],
           ),
-          Container(
-            margin: const EdgeInsets.only(
-              left: 48,
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 26,
             ),
             child: Text(
               'Every New Message',
               style: faintTextStyle(),
             ),
           ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(left: 48, top: 19, bottom: 19),
-                  child: Text(
-                    'Mute Channel',
-                    style: descriptionStyle(),
-                  ),
-                ),
-                Container(
-                  child: const Icon(
-                    Icons.toggle_off_sharp,
-                    color: AppColors.faintTextColor,
-                    size: 40,
-                  ),
-                )
+          SizedBox(height: 18),
+           SwitchListTile(
+                title: Text('Mute',
+                style: descriptionStyle(),),
+                value: _toggled,
+                activeColor: Color(0xff00b87c),
+                onChanged: (value) =>
+                    setState(() => this._toggled)),
               ],
             ),
-          )
-        ],
-      ),
     );
   }
 }
