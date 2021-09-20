@@ -1,12 +1,10 @@
 import 'dart:developer';
-
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
 import '../../../services/connectivity_service.dart';
@@ -14,9 +12,30 @@ import '../../../services/connectivity_service.dart';
 //final _navigationService = locator<NavigationService>();
 
 class HomePageViewModel extends StreamViewModel {
+  void nToPref() {
+    NavigationService().navigateTo(Routes.fileSearchView);
+  }
+
+  void nToInfo() {
+    NavigationService().navigateTo(Routes.channelInfoView);
+  }
+
+  void nToWorkspace() {
+    NavigationService().navigateTo(Routes.workspaceView);
+  }
+
+  void navigateToDmUser() {
+    locator<NavigationService>().navigateTo(Routes.dmUserView);
+  }
+
+  void navigateToUserSearchView() {
+    locator<NavigationService>().navigateTo(Routes.userSearchView);
+  }
+
+
   final connectivityService = locator<ConnectivityService>();
-  final dmApiService = locator<DMApiService>();
-  final channelsApiService = locator<ChannelsApiService>();
+  final _dmApiService = locator<DMApiService>();
+  final _channelsApiService = locator<ChannelsApiService>();
 
   final _navigationService = locator<NavigationService>();
   bool connectionStatus = false;
@@ -50,7 +69,7 @@ class HomePageViewModel extends StreamViewModel {
     return connectionStatus;
   }
 
-    void navigateToJumpToScreen() {
+  void navigateToJumpToScreen() {
     _navigationService.navigateTo(Routes.dmJumpToView);
   }
 
@@ -116,11 +135,17 @@ class HomePageViewModel extends StreamViewModel {
     notifyListeners();
   }
 
+  listenToChannelsChange() {
+    _channelsApiService.onChange.stream.listen((event) {
+      getDmAndChannelsList();
+    });
+  }
+
   getDmAndChannelsList() async {
     homePageList = [];
     setBusy(true);
 
-    List? channelsList = await channelsApiService.getActiveDms();
+    List? channelsList = await _channelsApiService.getActiveDms();
     channelsList.forEach((data) {
       homePageList.add(HomeItemModel(
         type: HomeItemType.channels,
@@ -137,6 +162,7 @@ class HomePageViewModel extends StreamViewModel {
     unreads.clear();
     directMessages.clear();
     joinedChannels.clear();
+    setBusy(false);
 
     setAllList();
     notifyListeners();
@@ -157,6 +183,10 @@ class HomePageViewModel extends StreamViewModel {
   //*Navigate to other routes
   void navigateToPref() {
     _navigationService.navigateTo(Routes.fileSearchView);
+  }
+
+  void navigateToNewChannel() {
+    _navigationService.navigateTo(Routes.newChannel);
   }
 
   void navigateToChannelPage() {
