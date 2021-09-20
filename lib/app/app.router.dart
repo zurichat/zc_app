@@ -102,6 +102,7 @@ class Routes {
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
   static const String userSearchView = '/user-search-view';
+  static const String editChannelPage = '/edit-channel-view';
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
   static const all = <String>{
@@ -226,29 +227,20 @@ class StackedRouter extends RouterBase {
       );
     },
     LoginView: (data) {
-      var args = data.getArgs<LoginViewArguments>(
-        orElse: () => LoginViewArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => LoginView(key: args.key),
+        builder: (context) => LoginView(),
         settings: data,
       );
     },
     OTPView: (data) {
-      var args = data.getArgs<OTPViewArguments>(
-        orElse: () => OTPViewArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => OTPView(key: args.key),
+        builder: (context) => OTPView(),
         settings: data,
       );
     },
     SignUpView: (data) {
-      var args = data.getArgs<SignUpViewArguments>(
-        orElse: () => SignUpViewArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => SignUpView(key: args.key),
+        builder: (context) => SignUpView(),
         settings: data,
       );
     },
@@ -271,11 +263,8 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordOtpView: (data) {
-      var args = data.getArgs<ForgotPasswordOtpViewArguments>(
-        orElse: () => ForgotPasswordOtpViewArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ForgotPasswordOtpView(key: args.key),
+        builder: (context) => ForgotPasswordOtpView(),
         settings: data,
       );
     },
@@ -304,11 +293,8 @@ class StackedRouter extends RouterBase {
       );
     },
     HomePage: (data) {
-      var args = data.getArgs<HomePageArguments>(
-        orElse: () => HomePageArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => HomePage(key: args.key),
+        builder: (context) => HomePage(),
         settings: data,
       );
     },
@@ -340,11 +326,8 @@ class StackedRouter extends RouterBase {
       );
     },
     DmUserView: (data) {
-      var args = data.getArgs<DmUserViewArguments>(
-        orElse: () => DmUserViewArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => DmUserView(key: args.key),
+        builder: (context) => DmUserView(),
         settings: data,
       );
     },
@@ -361,11 +344,8 @@ class StackedRouter extends RouterBase {
       );
     },
     AddPluginView: (data) {
-      var args = data.getArgs<AddPluginViewArguments>(
-        orElse: () => AddPluginViewArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => AddPluginView(key: args.key),
+        builder: (context) => AddPluginView(),
         settings: data,
       );
     },

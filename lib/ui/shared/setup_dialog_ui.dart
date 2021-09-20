@@ -1,11 +1,12 @@
 import 'package:flutter/widgets.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../app/app.locator.dart';
+import '../../utilities/enums.dart';
 import 'dialogs/select_language_dialog.dart';
-import 'dialogs/skin_tone_dialog.dart';
 import 'dialogs/select_theme_dialog.dart';
 import 'dialogs/send_feedback_dialog.dart';
+import 'dialogs/skin_tone_dialog.dart';
 
 void setupDialogUi() {
   final dialogService = locator<DialogService>();
