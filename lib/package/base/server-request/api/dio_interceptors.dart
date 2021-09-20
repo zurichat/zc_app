@@ -7,7 +7,7 @@ class DioInterceptor implements Interceptor {
   void onError(DioError err, ErrorInterceptorHandler handler) {
     log('ENDPOINT: ' + err.requestOptions.uri.toString());
     log('STATUSCODE: ' + err.error.toString());
-    log('STATUSCODE: ' + (err.response?.data ?? err.message).toString());
+    log('MESSAGE: ' + (err.response?.data ?? err.message).toString());
     handler.next(err);
   }
 
