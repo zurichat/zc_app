@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/threads/widgets/emojis.dart';
 
 enum ChannelType { private, public, personal }
 
@@ -11,7 +10,7 @@ class UserThreadPost {
   IconData? statusIcon;
   String? lastSeen;
   TextSpan message;
-  List<Widget>? postEmojis;
+  List<PostEmojis>? postEmojis;
 
   UserThreadPost({
     required this.id,
@@ -23,20 +22,22 @@ class UserThreadPost {
     this.postEmojis,
   });
 
-  void addReaction() {
-    postEmojis!.add(Emojis(
-      emoji: Icons.emoji_emotions,
-      number: 2,
-    ));
+  void addReaction(PostEmojis postEmoji) {
+    postEmojis!.add(postEmoji);
   }
 }
 
 class PostEmojis {
-  IconData? postEmoji;
-  int? postEmojiCount;
-  bool? selected;
+  int? id;
+  String? postEmoji;
+  int postEmojiCount;
+  bool hasReacted;
 
-  PostEmojis(postEmoji, postEmojiCount, selected);
+  PostEmojis(
+      {required this.id,
+      this.postEmoji,
+      this.postEmojiCount = 1,
+      this.hasReacted = true});
 }
 
 class UserPost extends UserThreadPost {
@@ -46,7 +47,7 @@ class UserPost extends UserThreadPost {
   IconData? statusIcon;
   String? lastSeen;
   TextSpan message;
-  List<Widget>? postEmojis;
+  List<PostEmojis>? postEmojis;
   String? channelName;
   ChannelType? channelType;
 

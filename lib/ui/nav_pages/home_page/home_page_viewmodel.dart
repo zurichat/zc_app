@@ -30,7 +30,7 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.dmUserView);
   }
 
-  void navigateToThreads() async {
+  Future navigateToThreads() async {
     await _navigationService.navigateTo(Routes.threadsView);
   }
 

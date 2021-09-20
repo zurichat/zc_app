@@ -12,16 +12,15 @@ import 'package:stacked/stacked.dart';
 import '../home_page_viewmodel.dart';
 
 class ThreadTextAndIcon extends StatelessWidget {
-  const ThreadTextAndIcon({Key? key}) : super(key: key);
+  const ThreadTextAndIcon({Key? key, required this.onTap}) : super(key: key);
 
+  final Function() onTap;
   @override
   Widget build(BuildContext context) {
     return _TextAndIcon(
       text: 'Threads',
       unread: true,
-      onTap: () {
-        // Navigate to threads screen
-      },
+      onTap: onTap,
       icon: SvgIcon(svgIcon: SvgAssets.threads),
     );
   }

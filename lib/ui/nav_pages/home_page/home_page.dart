@@ -43,7 +43,9 @@ class HomePage extends StatelessWidget {
           searchBar(),
           Padding(
             padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
-            child: ThreadTextAndIcon(),
+            child: ThreadTextAndIcon(
+              onTap: vmodel.navigateToThreads,
+            ),
           ),
           Divider(),
           HomeExpandedList(

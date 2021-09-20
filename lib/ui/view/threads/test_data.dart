@@ -1,8 +1,20 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.locator.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/view/threads/widgets/emojis.dart';
+import 'package:hng/utilities/enums.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+final _bottomSheetService = locator<BottomSheetService>();
+
+Future viewProfile() async {
+  var sheetResponse = await _bottomSheetService.showCustomSheet(
+    variant: BottomSheetType.user,
+    isScrollControlled: true,
+  );
+}
 
 List<UserThreadPost> thread1 = [
   UserThreadPost(
@@ -22,12 +34,13 @@ List<UserThreadPost> thread1 = [
       userImage: "assets/images/chimamanda.png",
       lastSeen: "4 hours ago",
       message: TextSpan(
-          text: "@Blazebrain",
-          style: TextStyle(color: Colors.blueAccent),
-          recognizer: TapGestureRecognizer()
-            ..onTap = () {
-              print('Terms of Service"');
-            })),
+        text: "@Blazebrain",
+        style: TextStyle(color: Colors.blueAccent),
+        recognizer: TapGestureRecognizer()
+          ..onTap = () {
+            viewProfile();
+          },
+      )),
 ];
 
 List<UserThreadPost> thread2 = [
@@ -51,14 +64,17 @@ List<UserThreadPost> thread2 = [
           style: TextStyle(color: AppColors.deepBlackColor))),
 ];
 
-List<Widget> postEmoji1 = [
-  Emojis(emoji: Icons.emoji_emotions_rounded, number: 3),
+List<PostEmojis> postEmoji1 = [
+  PostEmojis(id: 1, postEmoji: "😀", postEmojiCount: 3, hasReacted: false),
+  PostEmojis(id: 2, postEmoji: "😀", postEmojiCount: 3, hasReacted: false),
+  PostEmojis(id: 3, postEmoji: "😀", postEmojiCount: 3, hasReacted: false),
+  PostEmojis(id: 4, postEmoji: "😀", postEmojiCount: 1, hasReacted: true),
 ];
-List<Widget> postEmoji2 = [
-  Emojis(emoji: Icons.emoji_emotions_rounded, number: 2),
+List<PostEmojis> postEmoji2 = [
+  PostEmojis(id: 5, postEmoji: "😀", postEmojiCount: 2),
 ];
 
-List<UserPost> userPost1 = [
+List<UserPost> userPost = [
   UserPost(
     id: 5,
     displayName: "Nonso",
@@ -97,6 +113,6 @@ List<UserPost> userPost1 = [
         style: TextStyle(color: AppColors.deepBlackColor)),
     channelType: ChannelType.public,
     channelName: "Announcement",
-    postEmojis: <Widget>[],
+    postEmojis: <PostEmojis>[],
   ),
 ];
