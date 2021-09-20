@@ -1,9 +1,11 @@
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class LanguageAndRegionModelViewModel extends BaseViewModel {
+  final log = getLogger('LanguageAndRegionModelViewModel');
   final _dialogService = locator<DialogService>();
   String? currentLanguage = "English (UK)";
   String? currentTimeZone = "(UTC+01:00) West Central Africa";
@@ -32,7 +34,7 @@ class LanguageAndRegionModelViewModel extends BaseViewModel {
       currentValue = dialogResult.data;
       currentLanguage = languages[currentValue];
 
-      print(dialogResult.data);
+      log.i(dialogResult.data);
       notifyListeners();
     }
   }

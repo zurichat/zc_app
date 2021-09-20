@@ -38,7 +38,7 @@ class OTPViewModel extends FormViewModel {
 
   void verifyOTP(context) async {
     _loading(true);
-    const endpoint = '/verify-account';
+    const endpoint = 'account/verify-account';
     if ((otpValue!.length) > 5) {
       final verificationData = {
         'code': otpValue,

@@ -1,8 +1,12 @@
 //On login or signup the user service is used to save all the user details
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/models/workspace_model.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/storage_keys.dart';
 
+///This class dont do anything special than calling the local storage
+///And returning the data that is saved, you can choose to use it or
+///get the data to local storage yourself
 class UserService {
   final _sharedPrefs = locator<SharedPreferenceLocalStorage>();
 
@@ -11,6 +15,9 @@ class UserService {
   String _authToken = '';
   String _userId = '';
   String _userEmail = '';
+
+  ///This will give you null because workspace data has not been added
+  WorkspaceModel? workspaceModel;
 
   ///From the organisation side bar set the current organissation Id
   ///and get it anywhere in the app using these getter
