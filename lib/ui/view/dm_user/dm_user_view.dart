@@ -1,19 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/view/dm_user/dm_user_viewmodel.dart';
+import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
+import 'package:hng/ui/view/dm_user/icons/zap_icon.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_status.dart';
 import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
+import 'package:hng/ui/view/dm_user/widgets/message_view.dart';
 import 'package:hng/ui/view/dm_user/widgets/online_indicator.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
-import '../../shared/colors.dart';
-import 'dm_user_viewmodel.dart';
-import 'dummy_data/models/message.dart';
-import 'icons/zap_icon.dart';
-import 'widgets/message_view.dart';
+import 'dm_user_view.form.dart';
 
-class DmUserView extends StatelessWidget {
+@FormView(
+  fields: [
+    FormTextField(name: 'message'),
+  ],
+)
+class DmUserView extends StatelessWidget with $DmUserView {
   DmUserView({Key? key}) : super(key: key);
 
   final scrollController = ScrollController();
@@ -21,6 +28,7 @@ class DmUserView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmUserViewModel>.reactive(
+        onModelReady: (model) => listenToFormUpdated(model),
         viewModelBuilder: () => DmUserViewModel(),
         builder: (context, model, child) {
           debugPrint(model.hasClickedMessageField.toString());
@@ -143,7 +151,8 @@ class DmUserView extends StatelessWidget {
                                     },
                                     itemBuilder: (context, message) {
                                       return InkWell(
-                                          onLongPress: ()=> model.showButtonSheet(),
+                                          onLongPress: () =>
+                                              model.showButtonSheet(),
                                           child: MessageView(message));
                                     },
                                     groupComparator: (groupOne, groupTwo) =>
@@ -188,7 +197,7 @@ class DmUserView extends StatelessWidget {
                                     child: Flexible(
                                       fit: FlexFit.loose,
                                       child: TextField(
-                                        controller: model.messageController,
+                                        controller: messageController,
                                         expands: true,
                                         maxLines: null,
                                         textAlignVertical:
