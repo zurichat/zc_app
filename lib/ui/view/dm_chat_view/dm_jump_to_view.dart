@@ -18,8 +18,8 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmJumpToViewModel>.reactive(
       onModelReady: (model) {
-        // listenToFormUpdated(model);
-        return model.fetchUsers();
+        listenToFormUpdated(model);
+        // model.fetchUsers();
       },
       disposeViewModel: false,
       viewModelBuilder: () => DmJumpToViewModel(),
@@ -29,11 +29,24 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
-            model.userSearch.isEmpty
-                ? SizedBox()
-                : Center(
-                    child: CircularProgressIndicator(),
-                  ),
+            Positioned(
+              bottom: 0,
+              top: 0,
+              right: 0,
+              left: 0,
+              child: FutureBuilder(
+                future: model.fetchUsers(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Text("Completed");
+                  }
+                },
+              ),
+            ),
             GestureDetector(
               onTap: () {
                 FocusScope.of(context).requestFocus(FocusNode());

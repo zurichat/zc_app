@@ -102,8 +102,6 @@ class Routes {
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
   static const String userSearchView = '/user-search-view';
-  static const String channelPageView = '/channel-page-view';
-  static const String channelInfoView = '/channel-info-view';
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
   static const all = <String>{
@@ -203,8 +201,6 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
     RouteDef(Routes.userSearchView, page: UserSearchView),
-    RouteDef(Routes.channelPageView, page: ChannelPageView),
-    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
   ];

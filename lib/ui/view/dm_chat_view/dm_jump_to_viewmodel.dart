@@ -11,14 +11,12 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'dm_jump_to_view.form.dart';
 
-class DmJumpToViewModel extends FutureViewModel {
+class DmJumpToViewModel extends FormViewModel {
   @override
-  Future futureToRun() => fetchUsers();
+  // Future futureToRun() => fetchUsers();
 
-    @override
-  void setFormStatus() {
-
-  }
+  @override
+  void setFormStatus() {}
 
   final log = getLogger('DmJumpToViewModel');
   TextEditingController _controller = TextEditingController();
@@ -40,11 +38,10 @@ class DmJumpToViewModel extends FutureViewModel {
       }
       setBusy(true);
       userSearch = await api.fetchListOfMembers();
-      log.i(userSearch.first.role.toString());
-      log.i(userSearch.first.email.toString());
       // joinedChannelsSearch = await api.joinedChannelsList();
       // allChannelsSearch = await api.allChannelsList();
       setBusy(false);
+      return userSearch;
     } catch (e) {
       log.e("Model Error - ${e.toString()}");
       AppToast.instance.error(null, 'Error Occured');

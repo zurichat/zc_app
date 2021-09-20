@@ -201,7 +201,4 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.workspaceView);
   }
 
-  void navigateToDmUser() {
-    _navigationService.navigateTo(Routes.dmUserView);
-  }
 }
