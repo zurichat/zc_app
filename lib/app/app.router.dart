@@ -6,8 +6,8 @@
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/nav_pages/home_page/home_page.dart';
@@ -327,8 +327,11 @@ class StackedRouter extends RouterBase {
       );
     },
     DmJumpToView: (data) {
+      var args = data.getArgs<DmJumpToViewArguments>(
+        orElse: () => DmJumpToViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const DmJumpToView(),
+        builder: (context) => DmJumpToView(key: args.key),
         settings: data,
       );
     },
@@ -527,6 +530,12 @@ class ForgotPasswordOtpViewArguments {
 class HomePageArguments {
   final Key? key;
   HomePageArguments({this.key});
+}
+
+/// DmJumpToView arguments holder class
+class DmJumpToViewArguments {
+  final Key? key;
+  DmJumpToViewArguments({this.key});
 }
 
 /// DmUserView arguments holder class

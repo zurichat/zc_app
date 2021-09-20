@@ -9,10 +9,16 @@ import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'dm_jump_to_view.form.dart';
 
 class DmJumpToViewModel extends FutureViewModel {
   @override
   Future futureToRun() => fetchUsers();
+
+    @override
+  void setFormStatus() {
+
+  }
 
   final log = getLogger('DmJumpToViewModel');
   TextEditingController _controller = TextEditingController();
