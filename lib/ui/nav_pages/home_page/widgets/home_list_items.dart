@@ -7,6 +7,7 @@ import 'package:hng/general_widgets/svg_icon.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/view/channel/channel_view/channel_page_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../home_page_viewmodel.dart';
@@ -142,6 +143,7 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       icon: prefixIcon(),
       onTap: () {
         //Navigate to channels and pass the channels id
+        ChannelPageView.name = data.name ?? '';
         vmodel.navigateToChannelPage();
       },
     );

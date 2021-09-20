@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
+import 'package:hng/ui/shared/search_bar.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/text_field.dart';
-import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'home_page_viewmodel.dart';
-import 'widgets/custom_channel_list_tile.dart';
-import 'widgets/custom_dm_list_tile.dart';
-import 'widgets/custom_homepage_section_title.dart';
-import 'widgets/custom_plugin_list_tile.dart';
+
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -49,7 +44,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 15),
-          searchBar(),
+          JumpToSearchBar(onTap: () => vmodel.navigateToJumpToScreen()),
           Padding(
             padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
@@ -76,23 +71,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget searchBar() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
-      child: EasyContainer(
-        height: 50,
-        radius: 7,
-        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-        alignment: Alignment.centerLeft,
-        borderWidth: 1.5,
-        borderColor: Colors.grey[300],
-        child: Text(
-          'Jump to...',
-          style: ZuriTextStyle.mediumNormal(),
-        ),
-      ),
-    );
-  }
 }
 
 /*class HomePage extends StatelessWidget {
@@ -123,7 +101,9 @@ class HomePage extends StatelessWidget {
               padding: EdgeInsets.only(top: 4, right: 12),
               child: GestureDetector(
                 child: Icon(Icons.search, color: AppColors.whiteColor),
-                onTap: () {},
+                onTap: () {
+                  model.navigateToUserSearchView();
+                },
               ),
             ),
           ],
