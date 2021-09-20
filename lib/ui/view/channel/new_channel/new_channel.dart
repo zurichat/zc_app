@@ -40,7 +40,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
               style:
                   TextButton.styleFrom(padding: EdgeInsets.only(right: 16.0)),
               onPressed: () {
-                model.navigateToChannelPageView();
+                model.createChannel();
               },
               child: Text(
                 'Create',
