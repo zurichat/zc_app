@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/bottom_sheets/edit_message_bottom_sheet/setupBottomSheetUi.dart';
 import 'package:hng/ui/shared/setup_bottom_sheet_ui.dart';
 import 'package:hng/ui/shared/setup_dialog_ui.dart';
-import 'package:hng/ui/view/dm_user/dm_user_view.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
@@ -17,7 +15,6 @@ Future main() async {
   await ThemeManager.initialise();
   await setupLocator();
 
-  setupBottomSheetUi2();
   setupDialogUi();
   setupBottomSheetUi();
   AppSnackBar.setupSnackbarUi();
