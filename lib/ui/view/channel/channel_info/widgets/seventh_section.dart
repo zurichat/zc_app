@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/view/channel/channel_info/widgets/textstyles.dart';
 import 'package:stacked/stacked.dart';
 
@@ -45,7 +46,7 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
                     onPressed: model.showDialog,
                     child: Text(
                       'Delete Channel',
-                      style: archiveTextStyle(),
+                      style: AppTextStyles.heading7,
                     ),
                   ),
                 ),

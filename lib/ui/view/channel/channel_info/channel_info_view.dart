@@ -79,9 +79,7 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                 ),
 
                 const SixthSection(),
-                const SeventhSection(
-
-                )
+                const SeventhSection()
 
               ],
             ),
