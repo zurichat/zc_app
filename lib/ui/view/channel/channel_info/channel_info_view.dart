@@ -36,7 +36,7 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
           return Scaffold(
             appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(60),
-                child: customAppBar()),
+                child: customAppBar(context)),
             // ignore: avoid_unnecessary_containers
             body: SafeArea(
               child: SingleChildScrollView(

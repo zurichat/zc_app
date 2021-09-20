@@ -10,22 +10,19 @@ class EditButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => model.navigateToEditChannel,
-      child: Container(
-        //height: 48,
-        width: MediaQuery.of(context).size.width,
-        alignment: Alignment.center,
-        //margin: const EdgeInsets.only(right: 5, left: 5, bottom: 15),
-        /*decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(2),
-            border: Border.all(width: 1.0, color: AppColors.borderColor)),*/
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            'Edit',
-            style: greenTextStyle(),
-          ),
+    return Container(
+      //height: 48,
+      width: MediaQuery.of(context).size.width,
+      alignment: Alignment.center,
+      //margin: const EdgeInsets.only(right: 5, left: 5, bottom: 15),
+      /*decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(2),
+          border: Border.all(width: 1.0, color: AppColors.borderColor)),*/
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(
+          'Edit',
+          style: greenTextStyle(),
         ),
       ),
     );

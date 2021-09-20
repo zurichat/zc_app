@@ -64,6 +64,11 @@ class AppTextStyles {
     color: AppColors.greyishColor,
     fontSize: 14,
   );
+  static TextStyle body2_400 = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.zuriDarkGrey,
+    fontSize: 14,
+  );
   static TextStyle timestamp = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     color: AppColors.deepBlackColor,
@@ -140,6 +145,46 @@ class AppTextStyles {
     fontSize: 16,
     color: AppColors.blueColor,
     decoration: TextDecoration.underline,
+  );
+  static TextStyle header6 = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.zuriTextColorHeader,
+    fontSize: 20,
+  );
+  static TextStyle body1Light = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.zuriTextColorHeader,
+    fontSize: 16,
+  );
+  static TextStyle body1Grey = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.greyishColor,
+    fontSize: 14,
+  );
+  static TextStyle nameStyle = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.darkGreyColor,
+    fontSize: 14,
+  );
+  static TextStyle smallText = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.ZuriGrey,
+    fontSize: 12,
+  );
+  static TextStyle smallTextGrey = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.zuriDarkGrey,
+    fontSize: 12,
+  );
+  static TextStyle mediumText = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.ZuriGrey,
+    fontSize: 16,
+  );
+  static TextStyle bodySmall = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.zuriPrimaryColor,
+    fontSize: 14,
   );
 }
 

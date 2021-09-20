@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/view/channel/edit_channel/widgets/edit_channel_appbar.dart';
 import 'package:hng/ui/view/channel/edit_channel/widgets/edit_channel_headers.dart';
 import 'package:hng/ui/view/channel/edit_channel/widgets/edit_channel_text_field.dart';
@@ -58,10 +59,7 @@ class EditChannelPageView extends StatelessWidget {
               margin: _padding,
               child: Text(
                 '#teamsocrates',
-                style: TextStyle(
-                    color: AppColors.zuriTextColorHeader,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400),
+                style: AppTextStyles.body1Light,
               ),
             ),
             SizedBox(
@@ -71,10 +69,7 @@ class EditChannelPageView extends StatelessWidget {
               margin: _padding,
               child: Text(
                 "Channel names must be lowercase, without spaces or periods, and can't be longer than 80 characters",
-                style: TextStyle(
-                    color: AppColors.zuriDarkGrey,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400),
+                style: AppTextStyles.body2_400,
               ),
             ),
             SizedBox(
