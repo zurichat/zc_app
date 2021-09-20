@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-
-
-import '../start_dm_models.dart';
+import 'package:hng/models/start_dm_models.dart';
 import 'custom_input_chip.dart';
 
 class CustomChipInput extends StatelessWidget {
@@ -18,19 +15,14 @@ class CustomChipInput extends StatelessWidget {
   final GlobalKey<ChipsInputState> _chipKey;
   final Future<List<UserModel>> mockResults;
   final horizontalSpace = SizedBox(width: 12);
- 
 
   @override
   Widget build(BuildContext context) {
     return ChipsInput(
       key: _chipKey,
       textCapitalization: TextCapitalization.words,
-    
-      
       decoration: InputDecoration(
-        
         contentPadding: EdgeInsets.only(left: 10),
-        
         border: InputBorder.none,
         prefixText: 'To:',
         hintText: '    Type the name of a channel or person',
@@ -112,6 +104,4 @@ class CustomChipInput extends StatelessWidget {
       },
     );
   }
-
-  
 }
