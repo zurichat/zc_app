@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/all_threads_view/threadDetail/hook_thread_detail.dart';
 import 'package:hng/ui/view/channel/new_channel/new_channel.dart';
 import 'package:hng/ui/view/channel/channel_page_view.dart';
 import 'package:stacked/stacked.dart';
@@ -40,6 +41,7 @@ class Routes {
 
   static const String newChannel = '/newChannel-view';
   static const String channelInfoView = '/channel-info-view';
+  static const String threadDetailView = '/thread-detail-view';
 
   static const all = <String>{
     loginView,
@@ -52,8 +54,10 @@ class Routes {
     signUpView,
 
     newChannel,
-    channelView
+    channelView,
     channelInfoView,
+    threadDetailView,
+
   };
 }
 
@@ -131,6 +135,7 @@ settings: data,
      SignUpView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) =>  SignUpView(),
+        
 
     NewChannel: (data) {
       return MaterialPageRoute<dynamic>(
@@ -145,5 +150,11 @@ settings: data,
         settings: data,
       );
     },
-  };
+  
+  ThreadDetailView:(data){
+    return MaterialPageRoute<dynamic>(
+      builder:(context)=> ThreadDetailHook(),
+      settings: data,
+    );
+  },
 }
