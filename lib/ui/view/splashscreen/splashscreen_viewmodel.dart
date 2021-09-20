@@ -26,8 +26,7 @@ class SplashscreenViewModel extends BaseViewModel {
             true) {
           navigation.navigateTo(Routes.oTPView);
         } else {
-          //navigation.navigateTo(Routes.loginView);
-          navigation.navigateTo(Routes.channelPageView);
+          navigation.navigateTo(Routes.loginView);
         }
         // navigation.navigateTo(Routes.onboardingView);
       },
