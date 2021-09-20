@@ -126,7 +126,11 @@ class DmUserView extends StatelessWidget {
                                 return _groupSeparator(value);
                               },
                               itemBuilder: (context, message) {
-                                return MessageView(message);
+                                return InkWell(
+                                    onLongPress: () {
+                                      model.showButtomSheet(context);
+                                    },
+                                    child: MessageView(message));
                               },
                               groupComparator: (groupOne, groupTwo) =>
                                   groupOne.compareTo(groupTwo),

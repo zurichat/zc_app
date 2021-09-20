@@ -166,6 +166,7 @@ class DirectMessage extends StatelessWidget {
                         children: <Widget>[
                           Expanded(
                             child: TextField(
+                              
                               controller: model.controller,
                               decoration: InputDecoration(
                                 hintText: "Write message...",
