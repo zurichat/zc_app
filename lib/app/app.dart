@@ -1,3 +1,4 @@
+import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/services/user_service.dart';
@@ -117,6 +118,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     LazySingleton(classType: UserService),
     LazySingleton(classType: DMApiService),
     LazySingleton(classType: ChannelsApiService),
+    LazySingleton(classType: JumpToApi),
   ],
   logger: StackedLogger(),
 )

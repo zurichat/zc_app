@@ -23,7 +23,11 @@ class DmJumpToView extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
-            model.userSearch.isEmpty ? SizedBox() : Center(child: CircularProgressIndicator(),),
+            model.userSearch.isEmpty
+                ? SizedBox()
+                : Center(
+                    child: CircularProgressIndicator(),
+                  ),
             GestureDetector(
               onTap: () {
                 FocusScope.of(context).requestFocus(FocusNode());
@@ -46,14 +50,16 @@ class DmJumpToView extends StatelessWidget {
                           onChanged: (value) {},
                           decoration: const InputDecoration(
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
                               borderSide: BorderSide(
                                   color: Color(0xFF7B8794),
                                   width: 0.5,
                                   style: BorderStyle.solid),
                             ),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
                               borderSide: BorderSide(
                                   color: Color(0xFF7B8794),
                                   width: 0.5,

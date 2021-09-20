@@ -3,6 +3,7 @@ import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
+import 'package:hng/ui/shared/search_bar.dart';
 import 'package:hng/ui/shared/text_field.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/constants.dart';
@@ -40,7 +41,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 15),
-          searchBar(),
+          JumpToSearchBar(onTap: () => vmodel.navigateToJumpToScreen()),
           Padding(
             padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
@@ -67,23 +68,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget searchBar() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
-      child: EasyContainer(
-        height: 50,
-        radius: 7,
-        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-        alignment: Alignment.centerLeft,
-        borderWidth: 1.5,
-        borderColor: Colors.grey[300],
-        child: Text(
-          'Jump to...',
-          style: ZuriTextStyle.mediumNormal(),
-        ),
-      ),
-    );
-  }
 }
 
 /*class HomePage extends StatelessWidget {
