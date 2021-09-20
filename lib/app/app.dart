@@ -2,6 +2,7 @@ import 'package:hng/package/base/server-request/channels/channels_api_service.da
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/view/channel/edit_channel/edit_channel_view.dart';
+import 'package:hng/ui/view/start_dm/start_dm_view.dart';
 import 'package:hng/ui/view/workspace/workspace_url/workspace_url_view.dart';
 import 'package:hng/ui/view/channel/add_people/channel_add_people_view.dart';
 import 'package:hng/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
@@ -99,6 +100,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: DraftView),
     MaterialRoute(page: EditChannelPageView),
     MaterialRoute(page: WorkspaceUrlView),
+     MaterialRoute(page: StartDmView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

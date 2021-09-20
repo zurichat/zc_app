@@ -48,6 +48,7 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/start_dm/start_dm_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
@@ -102,6 +103,7 @@ class Routes {
   static const String draftView = '/draft-view';
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
+  static const String startDmView = '/start-dm-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -147,6 +149,7 @@ class Routes {
     draftView,
     editChannelPageView,
     workspaceUrlView,
+    startDmView,
   };
 }
 
@@ -199,6 +202,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.draftView, page: DraftView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
+    RouteDef(Routes.startDmView, page: StartDmView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -489,6 +493,12 @@ class StackedRouter extends RouterBase {
     WorkspaceUrlView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceUrlView(),
+        settings: data,
+      );
+    },
+    StartDmView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const StartDmView(),
         settings: data,
       );
     },

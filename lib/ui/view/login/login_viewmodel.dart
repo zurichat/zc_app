@@ -21,7 +21,7 @@ class LoginViewModel extends FormViewModel {
   }
 
   void navigateToHomeScreen() {
-    navigationService.navigateTo(Routes.navBarView);
+    navigationService.navigateTo(Routes.workspaceView);
   }
 
   void navigateToSignUpScreen() {
@@ -31,6 +31,8 @@ class LoginViewModel extends FormViewModel {
   void navigateToForgotPasswordScreen() {
     navigationService.navigateTo(Routes.forgotPasswordEmailView);
   }
+
+  
 
   // ignore: always_declare_return_types
   Future logInUser(context) async {
