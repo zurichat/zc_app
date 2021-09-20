@@ -6,6 +6,7 @@ import '../../../../general_widgets/ripple.dart';
 import '../../../../general_widgets/svg_icon.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/text_styles.dart';
+import '../../../view/channel/channel_view/channel_page_view.dart';
 import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
 
@@ -141,6 +142,7 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       icon: prefixIcon(),
       onTap: () {
         //Navigate to channels and pass the channels id
+        ChannelPageView.name = data.name ?? '';
         vmodel.navigateToChannelPage();
       },
     );
