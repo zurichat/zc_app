@@ -3,6 +3,7 @@ import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/models/start_dm_models.dart';
 import 'custom_input_chip.dart';
+import 'package:hng/utilities/utilities.dart';
 
 class CustomChipInput extends StatelessWidget {
   CustomChipInput({
@@ -13,7 +14,7 @@ class CustomChipInput extends StatelessWidget {
         super(key: key);
 
   final GlobalKey<ChipsInputState> _chipKey;
-  final Future<List<UserModel>> mockResults;
+  final List<UserModel> mockResults;
   final horizontalSpace = SizedBox(width: 12);
 
   @override
@@ -32,12 +33,12 @@ class CustomChipInput extends StatelessWidget {
           color: Color(0xFFF999999),
         ),
       ),
-      findSuggestions: (String query) async {
-        List<UserModel> result = await mockResults;
+      findSuggestions: (String query) {
+        
         if (query.length != 0) {
           var lowercaseQuery = query.toLowerCase();
 
-          return result.where((profile) {
+          return mockResults.where((profile) {
             return profile.fullName!
                     .toLowerCase()
                     .contains(query.toLowerCase()) ||
@@ -50,7 +51,7 @@ class CustomChipInput extends StatelessWidget {
                 .indexOf(lowercaseQuery)
                 .compareTo(b.fullName!.toLowerCase().indexOf(lowercaseQuery)));
         }
-        return result;
+        return mockResults;
       },
       onChanged: (data) {},
       chipBuilder: (context, state, UserModel profile) {
@@ -74,10 +75,11 @@ class CustomChipInput extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
                   image: DecorationImage(
-                      image: NetworkImage(profile.imageUrl!),
+                      image: makeNetworkImage(profile.imageUrl!),
                       fit: BoxFit.cover)),
             ),
-            title: Row(children: [
+            title: Flexible(
+        child:  Row(children: [
               Text(profile.displayName!,
                   style: GoogleFonts.lato(
                     fontWeight: FontWeight.w700,
@@ -100,7 +102,7 @@ class CustomChipInput extends StatelessWidget {
                     fontSize: 16,
                     color: Colors.black,
                   ))
-            ]));
+            ])));
       },
     );
   }
