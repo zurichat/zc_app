@@ -20,9 +20,7 @@ class DmJumpToViewModel extends FormViewModel {
 
   final log = getLogger('DmJumpToViewModel');
 
-  TextEditingController _controller = TextEditingController();
   static final storageService = locator<SharedPreferenceLocalStorage>();
-  TextEditingController get controller => _controller;
 
   final navigation = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
