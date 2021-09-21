@@ -69,17 +69,20 @@ class EditProfileViewModel extends BaseViewModel {
         _nameD = '';
       }
       if (userData.displayName!.trim().isNotEmpty) {
-        _displayD = userData.displayName!;
+        _displayD = 'The Back End for this does not exist';
+        //_displayD = userData.displayName!;
       } else {
         _displayD = 'The Back End for this does not exist';
       }
       if (userData.status!.trim().isNotEmpty) {
-        _statusD = userData.status!;
+        _statusD = 'The Back End for this does not exist';
+        //_statusD = userData.status!;
       } else {
-        _statusD = '';
+        _statusD = 'The Back End for this does not exist';
       }
       if (userData.phoneNumber!.trim().isNotEmpty) {
-        _phoneD = userData.phoneNumber!;
+        _phoneD = 'The Back End for this does not exist';
+        //_phoneD = userData.phoneNumber!;
       } else {
         _phoneD = 'The Back End for this does not exist';
       }
