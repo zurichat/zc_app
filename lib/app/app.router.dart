@@ -8,8 +8,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
-import 'package:hng/ui/view/threads/thread_detail/thread_detail_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/nav_pages/home_page/home_page.dart';
@@ -50,6 +48,8 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/threads/all_threads/threads_view.dart';
+import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
@@ -103,9 +103,9 @@ class Routes {
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
   static const String threadsView = '/threads-view';
+  static const String threadDetailView = '/thread-detail-view';
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
-  static const String threadDetailView = '/thread-detail-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -150,9 +150,9 @@ class Routes {
     fileSearchView,
     draftView,
     threadsView,
+    threadDetailView,
     editChannelPageView,
     workspaceUrlView,
-    threadDetailView,
   };
 }
 
@@ -204,11 +204,11 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
     RouteDef(Routes.threadsView, page: ThreadsView),
+    RouteDef(Routes.threadDetailView, page: ThreadDetailView),
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
-    RouteDef(Routes.threadDetailView, page: ThreadDetailView)
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -496,6 +496,12 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    ThreadDetailView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ThreadDetailView(),
+        settings: data,
+      );
+    },
     EditChannelPageView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const EditChannelPageView(),
@@ -505,12 +511,6 @@ class StackedRouter extends RouterBase {
     WorkspaceUrlView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceUrlView(),
-        settings: data,
-      );
-    },
-    ThreadDetailView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => ThreadDetailView(),
         settings: data,
       );
     },
