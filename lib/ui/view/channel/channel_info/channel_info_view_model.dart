@@ -14,7 +14,6 @@ class ChannelInfoViewModel extends BaseViewModel {
 
 
   Future showDialog() async{
-    print("Testing call");
 
     await _dialogService.showCustomDialog(
       variant: DialogType.deleteChannel, // Which builder you'd like to call that was assigned in the builders function above.

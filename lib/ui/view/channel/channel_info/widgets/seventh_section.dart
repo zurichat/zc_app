@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/textstyles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../channel_info_view_model.dart';
@@ -55,10 +55,10 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
             Container(
                 alignment: Alignment.center,
                 margin: const EdgeInsets.only(left: 45, bottom: 10),
-                child: const Text(
+                child: Text(
                   'All messages from this channel will be removed from Zuri Chat. Any files uploaded to this channel'
                       'would not be removed.',
-                  style: TextStyle(),
+                  style: AppTextStyles.normalGrey,
                 )),
           ],
         ),
