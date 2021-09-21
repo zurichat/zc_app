@@ -1,7 +1,9 @@
+import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/services/local_storage_services.dart';
+
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/login/login_view.form.dart';
 import 'package:hng/utilities/enums.dart';
@@ -28,7 +30,7 @@ class LoginViewModel extends FormViewModel {
     navigationService.navigateTo(Routes.signUpView);
   }
 
-  void navigateToForgotPasswordScreen() {
+  void navigateToForgotPasswordScreen(BuildContext context) {
     navigationService.navigateTo(Routes.forgotPasswordEmailView);
   }
 

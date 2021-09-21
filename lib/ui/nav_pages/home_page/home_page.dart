@@ -10,6 +10,16 @@ import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../general_widgets/easy_container.dart';
+import '../../../utilities/constants.dart';
+import '../../shared/colors.dart';
+import '../../shared/text_styles.dart';
+import 'home_page_viewmodel.dart';
+import 'widgets/home_expanded.dart';
+import 'widgets/home_list_items.dart';
+import 'widgets/home_topbar.dart';
+
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

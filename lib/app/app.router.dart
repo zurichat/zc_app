@@ -272,8 +272,11 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordEmailView: (data) {
+      var args = data.getArgs<ForgotPasswordEmailViewArguments>(
+        orElse: () => ForgotPasswordEmailViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ForgotPasswordEmailView(),
+        builder: (context) => ForgotPasswordEmailView(key: args.key),
         settings: data,
       );
     },
@@ -287,8 +290,11 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordNewView: (data) {
+      var args = data.getArgs<ForgotPasswordNewViewArguments>(
+        orElse: () => ForgotPasswordNewViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ForgotPasswordNewView(),
+        builder: (context) => ForgotPasswordNewView(key: args.key),
         settings: data,
       );
     },
@@ -540,10 +546,29 @@ class SignUpViewArguments {
   SignUpViewArguments({this.key});
 }
 
+/// ForgotPasswordEmailView arguments holder class
+class ForgotPasswordEmailViewArguments {
+  final Key? key;
+  ForgotPasswordEmailViewArguments({this.key});
+}
+
 /// ForgotPasswordOtpView arguments holder class
 class ForgotPasswordOtpViewArguments {
   final Key? key;
   ForgotPasswordOtpViewArguments({this.key});
+}
+
+
+/// ForgotPasswordNewView arguments holder class
+class ForgotPasswordNewViewArguments {
+  final Key? key;
+  ForgotPasswordNewViewArguments({this.key});
+}
+
+/// HomePage arguments holder class
+class HomePageArguments {
+  final Key? key;
+  HomePageArguments({this.key});
 }
 
 /// DmJumpToView arguments holder class
