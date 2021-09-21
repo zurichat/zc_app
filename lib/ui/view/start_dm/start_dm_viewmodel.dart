@@ -1,6 +1,6 @@
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
+
 import 'package:hng/models/start_dm_models.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 
@@ -68,26 +68,26 @@ class StartDmViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  void navigateToHomeScreen() {
-    navigationService.navigateTo(Routes.dmUserView);
-  }
+  // void navigateToHomeScreen() {
+  //   navigationService.navigateTo(Routes.dmUserView);
+  // }
 
 
 
-  void sendMessage( messageValue) {
-    String message = messageValue;
-    if (message.trim().isNotEmpty) {
-      Fluttertoast.showToast(
-        msg: message.trim().toString(),
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-      );
-      navigateToHomeScreen();
+  // void sendMessage( messageValue) {
+  //   String message = messageValue;
+  //   if (message.trim().isNotEmpty) {
+  //     Fluttertoast.showToast(
+  //       msg: message.trim().toString(),
+  //       toastLength: Toast.LENGTH_SHORT,
+  //       gravity: ToastGravity.BOTTOM,
+  //     );
+  //     navigateToHomeScreen();
 
-      messageValue.clear();
-      notifyListeners();
-    }
-  }
+  //     messageValue.clear();
+  //     notifyListeners();
+  //   }
+  // }
 
   void focusScope(focus) {
     if (focus) {
