@@ -134,7 +134,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                                 fontWeight: FontWeight.w400,
                                                 color: AppColors.greyColor)),
                                         const SizedBox(height: 10),
-                                        const startMessage(),
+                                        const StartMessage(),
                                         const SizedBox(height: 20)
                                       ],
                                     ),
