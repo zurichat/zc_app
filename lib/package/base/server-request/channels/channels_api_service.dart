@@ -23,8 +23,8 @@ class ChannelsApiService {
   // Your functions for api calls can go in here
   // https://channels.zuri.chat/api/v1/61459d8e62688da5302acdb1/channels/
   Future<List> getActiveDms() async {
-    String userId = _userService.userId;
-    String orgId = _userService.currentOrgId;
+    final userId = _userService.userId;
+    final orgId = _userService.currentOrgId;
 
     List joinedChannels = [];
 
@@ -48,17 +48,17 @@ class ChannelsApiService {
     required String description,
     required bool private,
   }) async {
-    String owner = _userService.userEmail;
-    String orgId = _userService.currentOrgId;
+    final owner = _userService.userEmail;
+    final orgId = _userService.currentOrgId;
 
     try {
       final res = await _api.post(
         'v1/$orgId/channels/',
         data: {
-          "name": name,
-          "owner": owner,
-          "description": description,
-          "private": private,
+          'name': name,
+          'owner': owner,
+          'description': description,
+          'private': private,
         },
         headers: {'Authorization': 'Bearer $token'},
       );

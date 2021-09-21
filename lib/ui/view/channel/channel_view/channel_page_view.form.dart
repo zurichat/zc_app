@@ -9,23 +9,23 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-const String MessageValueKey = 'message';
+const String EditorValueKey = 'editor';
 
-mixin $DmUserView on StatelessWidget {
-  final TextEditingController messageController = TextEditingController();
-  final FocusNode messageFocusNode = FocusNode();
+mixin $ChannelPageView on StatelessWidget {
+  final TextEditingController editorController = TextEditingController();
+  final FocusNode editorFocusNode = FocusNode();
 
   /// Registers a listener on every generated controller that calls [model.setData()]
   /// with the latest textController values
   void listenToFormUpdated(FormViewModel model) {
-    messageController.addListener(() => _updateFormData(model));
+    editorController.addListener(() => _updateFormData(model));
   }
 
   /// Updates the formData on the FormViewModel
   void _updateFormData(FormViewModel model) => model.setData(
         model.formValueMap
           ..addAll({
-            MessageValueKey: messageController.text,
+            EditorValueKey: editorController.text,
           }),
       );
 
@@ -33,14 +33,14 @@ mixin $DmUserView on StatelessWidget {
   void disposeForm() {
     // The dispose function for a TextEditingController sets all listeners to null
 
-    messageController.dispose();
+    editorController.dispose();
   }
 }
 
 extension ValueProperties on FormViewModel {
-  String? get messageValue => this.formValueMap[MessageValueKey];
+  String? get editorValue => this.formValueMap[EditorValueKey];
 
-  bool get hasMessage => this.formValueMap.containsKey(MessageValueKey);
+  bool get hasEditor => this.formValueMap.containsKey(EditorValueKey);
 }
 
 extension Methods on FormViewModel {}

@@ -6,8 +6,10 @@
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+
+
 import 'package:stacked/stacked.dart';
 
 import '../ui/nav_pages/home_page/home_page.dart';
@@ -48,6 +50,7 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/user_search/user_search_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
@@ -55,6 +58,8 @@ import '../ui/view/workspace/workspace_different_email/difference_email_workspac
 import '../ui/view/workspace/workspace_url/workspace_url_view.dart';
 import '../ui/view/workspace/workspace_view/workspace_view.dart';
 import '../utilities/enums.dart';
+import 'package:hng/ui/view/all_threads_view/thread_detail/hook_thread_detail.dart';
+
 
 class Routes {
   static const String channelAddPeopleView = '/channel-add-people-view';
@@ -100,8 +105,10 @@ class Routes {
   static const String createWorkSpace = '/create-work-space';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
+  static const String userSearchView = '/user-search-view';
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
+  static const String threadDetailView = '/thread-detail-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -145,8 +152,10 @@ class Routes {
     createWorkSpace,
     fileSearchView,
     draftView,
+    userSearchView,
     editChannelPageView,
     workspaceUrlView,
+    threadDetailView,
   };
 }
 
@@ -197,8 +206,10 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.userSearchView, page: UserSearchView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
+    RouteDef(Routes.threadDetailView, page:ThreadDetailHook)
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -261,8 +272,11 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordEmailView: (data) {
+      var args = data.getArgs<ForgotPasswordEmailViewArguments>(
+        orElse: () => ForgotPasswordEmailViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ForgotPasswordEmailView(),
+        builder: (context) => ForgotPasswordEmailView(key: args.key),
         settings: data,
       );
     },
@@ -276,8 +290,11 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordNewView: (data) {
+      var args = data.getArgs<ForgotPasswordNewViewArguments>(
+        orElse: () => ForgotPasswordNewViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ForgotPasswordNewView(),
+        builder: (context) => ForgotPasswordNewView(key: args.key),
         settings: data,
       );
     },
@@ -300,11 +317,8 @@ class StackedRouter extends RouterBase {
       );
     },
     HomePage: (data) {
-      var args = data.getArgs<HomePageArguments>(
-        orElse: () => HomePageArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => HomePage(key: args.key),
+        builder: (context) => HomePage(),
         settings: data,
       );
     },
@@ -316,7 +330,7 @@ class StackedRouter extends RouterBase {
     },
     ChannelPageView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ChannelPageView(),
+        builder: (context) => ChannelPageView(),
         settings: data,
       );
     },
@@ -327,8 +341,11 @@ class StackedRouter extends RouterBase {
       );
     },
     DmJumpToView: (data) {
+      var args = data.getArgs<DmJumpToViewArguments>(
+        orElse: () => DmJumpToViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const DmJumpToView(),
+        builder: (context) => DmJumpToView(key: args.key),
         settings: data,
       );
     },
@@ -480,6 +497,12 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    UserSearchView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const UserSearchView(),
+        settings: data,
+      );
+    },
     EditChannelPageView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const EditChannelPageView(),
@@ -489,6 +512,12 @@ class StackedRouter extends RouterBase {
     WorkspaceUrlView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const WorkspaceUrlView(),
+        settings: data,
+      );
+    },
+     ThreadDetailHook: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ThreadDetailHook(),
         settings: data,
       );
     },
@@ -517,16 +546,35 @@ class SignUpViewArguments {
   SignUpViewArguments({this.key});
 }
 
+/// ForgotPasswordEmailView arguments holder class
+class ForgotPasswordEmailViewArguments {
+  final Key? key;
+  ForgotPasswordEmailViewArguments({this.key});
+}
+
 /// ForgotPasswordOtpView arguments holder class
 class ForgotPasswordOtpViewArguments {
   final Key? key;
   ForgotPasswordOtpViewArguments({this.key});
 }
 
+
+/// ForgotPasswordNewView arguments holder class
+class ForgotPasswordNewViewArguments {
+  final Key? key;
+  ForgotPasswordNewViewArguments({this.key});
+}
+
 /// HomePage arguments holder class
 class HomePageArguments {
   final Key? key;
   HomePageArguments({this.key});
+}
+
+/// DmJumpToView arguments holder class
+class DmJumpToViewArguments {
+  final Key? key;
+  DmJumpToViewArguments({this.key});
 }
 
 /// DmUserView arguments holder class
