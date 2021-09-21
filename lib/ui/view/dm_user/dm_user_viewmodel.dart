@@ -60,11 +60,6 @@ class DmUserViewModel extends FormViewModel {
     }
   }
 
-  void deleteMessage(Message message) {
-    chatMessages.remove(message);
-    notifyListeners();
-  }
-
   void popScreen() {
     final navigationService = locator<NavigationService>();
     navigationService.back();

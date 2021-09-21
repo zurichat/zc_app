@@ -11,7 +11,6 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
-import '../package/base/jump_to_request/jump_to_api.dart';
 import '../package/base/server-request/channels/channels_api_service.dart';
 import '../package/base/server-request/dms/dms_api_service.dart';
 import '../services/connectivity_service.dart';
@@ -42,5 +41,4 @@ Future setupLocator(
   locator.registerLazySingleton(() => UserService());
   locator.registerLazySingleton(() => DMApiService());
   locator.registerLazySingleton(() => ChannelsApiService());
-  locator.registerLazySingleton(() => JumpToApi());
 }
