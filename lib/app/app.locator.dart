@@ -6,7 +6,6 @@
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -38,7 +37,7 @@ Future setupLocator(
   locator.registerLazySingleton(() => BottomSheetService());
   final connectivityService = await ConnectivityService.getInstance();
   locator.registerSingleton(connectivityService);
-locator.registerLazySingleton(() => HttpApiService('HttpApiService'));
+
   locator.registerLazySingleton(() => UserService());
   locator.registerLazySingleton(() => DMApiService());
   locator.registerLazySingleton(() => ChannelsApiService());
