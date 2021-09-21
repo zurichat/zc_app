@@ -7,13 +7,18 @@ class AppColors {
   static const Color deepBlackColor = Color(0xFF333333);
   static const Color zuriPrimaryColor = Color(0xFF00B87C);
   static const Color blueColor = Color(0xFF1554F6);
+  static const Color iconBlueColor = Color(0xFF0091EA);
   static const Color navBarItemColor = Color(0xFF7B8794);
   static const Color blackColor = Color(0xFF000000);
   static const Color lightGreen = Color.fromRGBO(0, 184, 124, 0.3);
   static const Color unreadMessageColor = Color(0xffB8003C);
   static const Color darkGreyColor = Color(0xFF424141);
-  static const Color greyColor = Color(0xFF727272);
   static const Color paleGreen = Color(0xFF89D3BB);
+  static const Color lightBlackColor = Color(0xFF756767);
+
+  //New colors from the updated designs
+  static const Color greyColor = Color(0xFF616061);
+  static const Color deepGreyColor = Color(0xFF1D1C1D);
 
   static const Color zuriTextBodyColor = Color(0xFF424141);
   static const Color zuriTextColorHeader = Color(0xFF242424);

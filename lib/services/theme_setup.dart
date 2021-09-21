@@ -5,6 +5,7 @@ import '../ui/shared/colors.dart';
 List<ThemeData> getThemes() {
   return [
     ThemeData.light().copyWith(
+      primaryColor: AppColors.zuriPrimaryColor,
       accentColor: AppColors.zuriPrimaryColor,
       appBarTheme: const AppBarTheme(
         color: AppColors.whiteColor,

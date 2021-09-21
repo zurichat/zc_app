@@ -1,21 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.logger.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import '../../../general_widgets/custom_text.dart';
 import '../../../general_widgets/custom_textfield.dart';
 import '../../shared/colors.dart';
 import '../../shared/long_button.dart';
 import '../../shared/styles.dart';
+import 'sign_up_view.form.dart';
 import 'sign_up_viewmodel.dart';
 
-// ignore: must_be_immutable
-class SignUpView extends StatelessWidget {
-  const SignUpView({Key? key}) : super(key: key);
+//stacked forms handling
+@FormView(
+  fields: [
+    FormTextField(name: 'email'),
+    FormTextField(name: 'firstName'),
+    FormTextField(name: 'lastName'),
+    FormTextField(name: 'displayName'),
+    FormTextField(name: 'password'),
+    FormTextField(name: 'confirmPassword'),
+    FormTextField(name: 'phoneNumber'),
+  ],
+)
+class SignUpView extends StatelessWidget with $SignUpView {
+  final log = getLogger('SignUpView');
+  SignUpView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(
+        //listenToFormUpdated automatically syncs text from TextFields to the viewmodel
+        onModelReady: (model) => listenToFormUpdated(model),
         disposeViewModel: false,
         initialiseSpecialViewModelsOnce: true,
         viewModelBuilder: () => SignUpViewModel(),
@@ -34,7 +52,7 @@ class SignUpView extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        const SizedBox(height: 32),
+                        UIHelper.verticalSpaceLarge,
                         Center(
                           child: Image.asset(
                             'assets/logo/zuri_chat_logo.png',
@@ -42,7 +60,7 @@ class SignUpView extends StatelessWidget {
                             width: 32,
                           ),
                         ),
-                        const SizedBox(height: 24),
+                        UIHelper.customVerticalSpace(24),
                         const Center(
                           child: CustomText(
                             text: 'Sign Up',
@@ -51,7 +69,7 @@ class SignUpView extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        UIHelper.verticalSpaceExtraSmall,
                         const Center(
                           child: CustomText(
                             text: 'Please sign up to create account',
@@ -60,68 +78,70 @@ class SignUpView extends StatelessWidget {
                             color: AppColors.zuriDarkGrey,
                           ),
                         ),
-                        const SizedBox(height: 48),
+                        UIHelper.customVerticalSpace(48),
                         CustomTextField(
                           keyboardType: TextInputType.emailAddress,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: false,
-                          controller: model.email,
+                          controller: emailController,
                           labelText: 'Email Address',
                           hintText: 'Name@gmail.com',
                         ),
-                        const SizedBox(height: 32),
+                        UIHelper.verticalSpaceLarge,
                         CustomTextField(
                           keyboardType: TextInputType.visiblePassword,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: true,
-                          controller: model.password,
+                          controller: passwordController,
                           labelText: 'Password',
                           hintText: 'Enter Password',
                         ),
-                        const SizedBox(height: 32),
+                        UIHelper.verticalSpaceLarge,
                         CustomTextField(
                           keyboardType: TextInputType.emailAddress,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: true,
-                          controller: model.confirmPassword,
+                          controller: confirmPasswordController,
                           labelText: 'Confirm Password',
                           hintText: 'Re-enter password',
                         ),
-                        const SizedBox(height: 16),
-                        Row(children: [
-                          Checkbox(
-                            value: model.checkBoxValue,
-                            onChanged: (newValue) =>
-                                model.updateValue(newValue),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const CustomText(
-                                text:
-                                    'By selecting this box, you agreed to our',
-                                fontSize: 14,
-                              ),
-                              const Text(
-                                'terms and conditions',
-                                style: TextStyle(
+                        UIHelper.verticalSpaceMedium,
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: model.checkBoxValue,
+                              onChanged: (newValue) =>
+                                  model.updateValue(newValue),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const CustomText(
+                                  text:
+                                      'By selecting this box, you agreed to our',
                                   fontSize: 14,
-                                  color: AppColors.zuriPrimaryColor,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: AppColors.zuriPrimaryColor,
-                                  decorationStyle: TextDecorationStyle.solid,
-                                  decorationThickness: 2,
                                 ),
-                              ),
-                            ],
-                          )
-                        ]),
-                        const SizedBox(height: 32),
+                                const Text(
+                                  'terms and conditions',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: AppColors.zuriPrimaryColor,
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: AppColors.zuriPrimaryColor,
+                                    decorationStyle: TextDecorationStyle.solid,
+                                    decorationThickness: 2,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        UIHelper.verticalSpaceLarge,
                         LongButton(
                           onPressed: () => model.createUser(context),
                           label: 'Create Account',
@@ -151,7 +171,7 @@ class SignUpView extends StatelessWidget {
                             color: AppColors.zuriTextColorHeader,
                           ),
                         ),
-                        const SizedBox(height: 16),
+                        UIHelper.verticalSpaceMedium,
                         Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
@@ -163,7 +183,7 @@ class SignUpView extends StatelessWidget {
                           ),
                           child: InkWell(
                             onTap: () {
-                              print(' chiboy clicked');
+                              log.i(' chiboy clicked');
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -182,7 +202,7 @@ class SignUpView extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 32),
+                        UIHelper.verticalSpaceLarge,
                       ],
                     ),
                   ),
