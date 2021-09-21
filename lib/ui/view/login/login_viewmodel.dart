@@ -79,7 +79,7 @@ class LoginViewModel extends FormViewModel {
       );
 
       //Todo check if user has currently joined an organisation
-      navigationService.navigateTo(Routes.homePage);
+      navigationService.navigateTo(Routes.workspaceView);
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
