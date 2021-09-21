@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/custom_channel_list_tile.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/custom_plugin_list_tile.dart';
-import 'package:hng/ui/nav_pages/you_page/widgets/status_form.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/user_search/user_search_viewmodel.dart';
 import 'package:stacked/stacked.dart';
-import '../../shared/colors.dart';
-import '../../shared/shared.dart';
 
 class UserSearchView extends StatelessWidget {
   const UserSearchView({Key? key}) : super(key: key);
