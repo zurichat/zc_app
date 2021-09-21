@@ -1,13 +1,15 @@
+import 'package:flutter/widgets.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/package/base/server-request/api/http_api.dart';
+import 'package:hng/services/local_storage_services.dart';
+
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/login/login_view.form.dart';
+import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import '../../../app/app.locator.dart';
-import '../../../app/app.router.dart';
-import '../../../package/base/server-request/api/http_api.dart';
-import '../../../services/local_storage_services.dart';
-import '../../../utilities/enums.dart';
-import '../../../utilities/storage_keys.dart';
-import 'login_view.form.dart';
 
 class LoginViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();
@@ -28,7 +30,7 @@ class LoginViewModel extends FormViewModel {
     navigationService.navigateTo(Routes.signUpView);
   }
 
-  void navigateToForgotPasswordScreen() {
+  void navigateToForgotPasswordScreen(BuildContext context) {
     navigationService.navigateTo(Routes.forgotPasswordEmailView);
   }
 
@@ -36,7 +38,7 @@ class LoginViewModel extends FormViewModel {
   Future logInUser(context) async {
     loading(true);
     const endpoint = '/auth/login';
-    if (emailValue == '' || passwordValue == '') {
+    if (emailValue == null || passwordValue == null) {
       loading(false);
       //Hides the keyboard for the failure snackbar to be visible
       // FocusScope.of(context).unfocus();
