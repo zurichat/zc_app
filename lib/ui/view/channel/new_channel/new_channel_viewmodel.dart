@@ -66,7 +66,7 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
     final res = await _channelApiService.createChannels(
       name: channelNameValue!,
       description: channelDescriptionValue!,
-      private: false,
+      private: isChannelPrivate,
     );
 
     if (res) {
