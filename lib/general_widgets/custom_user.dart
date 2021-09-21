@@ -26,7 +26,7 @@ class CustomUser extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          Container(height: 17, child: Text(text))
+          Container(height: 17, child: Text(text, overflow: TextOverflow.clip, maxLines: 1,))
         ],
       ),
     );

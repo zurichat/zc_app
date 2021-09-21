@@ -37,65 +37,64 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                     body: Padding(
                       padding: EdgeInsets.fromLTRB(25.w, 20.h, 0, 0),
                       child: ListView(
+                        shrinkWrap: true,
                         children: [
-                          TextField(
-                            // controller: model.controller,
-                            keyboardType: TextInputType.visiblePassword,
-                            maxLines: 1,
-                            onChanged: model.onChanged,
-                            decoration: InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5.r)),
-                                borderSide: BorderSide(
-                                    color: AppColors.borderColor,
-                                    width: 0.5.w,
-                                    style: BorderStyle.solid),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5.r)),
-                                borderSide: BorderSide(
-                                    color: AppColors.borderColor,
-                                    width: 0.5.w,
-                                    style: BorderStyle.solid),
-                              ),
-                              prefixIcon: IconButton(
-                                icon: Icon(Icons.arrow_back_ios_outlined),
-                                iconSize: 18,
-                                onPressed: () => model.navigateBack(),
-                              ),
-                              hintText: 'Jump to...',
-                              hintStyle: TextStyle(
-                                color: Color(0xffA1A9B3),
-                                fontSize: 14.4.sp,
-                                height: 3.2.sp,
-                                fontWeight: FontWeight.w400,
+                          SizedBox(
+                            height: 40.h,
+                            width: 361.w,
+                            child: TextField(
+                              // controller: model.controller,
+                              keyboardType: TextInputType.text,
+                              maxLines: 1,
+                              onChanged: model.onChanged,
+                              decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5.r)),
+                                  borderSide: BorderSide(
+                                      color: AppColors.borderColor,
+                                      width: 0.5.w,
+                                      style: BorderStyle.solid),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5.r)),
+                                  borderSide: BorderSide(
+                                      color: AppColors.borderColor,
+                                      width: 0.5.w,
+                                      style: BorderStyle.solid),
+                                ),
+                                prefixIcon: IconButton(
+                                  icon: Icon(Icons.arrow_back_ios_outlined),
+                                  iconSize: 18,
+                                  onPressed: () => model.navigateBack(),
+                                ),
+                                hintText: 'Jump to...',
+                                hintStyle: TextStyle(
+                                  color: Color(0xffA1A9B3),
+                                  fontSize: 14.4.sp,
+                                  height: 3.2.sp,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 30,
+                           SizedBox(
+                            height: 24.h,
                           ),
                           SizedBox(
-                            height: 88.h,
+                            height: 95.h,
                             child: ListView.separated(
                               shrinkWrap: true,
                               physics: const BouncingScrollPhysics(),
                               separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return const SizedBox(
-                                  width: 16,
-                                );
-                              },
+                                  (BuildContext context, int index) => SizedBox(
+                                width: 16.h,
+                              ),
                               itemBuilder: (context, i) {
-                                return ListTile(
-                                  title: CustomUserChannel(
+                                return CustomUser(
                                     image: 'assets/images/Rectangle 138a.png',
                                     text: model.userSearch[i].username,
-                                    trailingIcon: Icons.circle,
-                                    iconColor: Color(0xff007952),
-                                  ),
                                 );
                               },
                               scrollDirection: Axis.horizontal,
@@ -103,7 +102,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                             ),
                           ),
                           SizedBox(height: 16.h),
-                          Container(
+                          SizedBox(
                             height: 16.h,
                             width: 37.w,
                             child: Text(
@@ -115,25 +114,19 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                             ),
                           ),
                           SizedBox(height: 24.h),
-                          Flexible(
-                            child: ListView.separated(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return SizedBox(height: 24.h);
-                              },
-                              itemBuilder: (context, index) {
-                                return CustomUserChannel(
-                                  image: 'assets/images/Rectangle 138a.png',
-                                  text: model.userSearch[index].username,
-                                  trailingIcon: Icons.circle,
-                                  iconColor: Color(0xff007952),
-                                );
-                              },
-                              scrollDirection: Axis.vertical,
-                              itemCount: model.userSearch.length,
-                            ),
+                          ListView.separated(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            separatorBuilder:
+                                (BuildContext context, int index) =>
+                                    SizedBox(height: 22.h),
+                            itemBuilder: (context, index) {
+                              return CustomChannel(
+                                text: model.userSearch[index].username,
+                              );
+                            },
+                            scrollDirection: Axis.vertical,
+                            itemCount: model.userSearch.length,
                           ),
                         ],
                       ),
