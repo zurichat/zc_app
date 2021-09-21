@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/ui/shared/styles.dart';
 
 class CustomChannelStage extends StatelessWidget {
   const CustomChannelStage({Key? key, this.leadingIcon, this.text})
@@ -31,7 +32,7 @@ class CustomChannelStage extends StatelessWidget {
                 SizedBox(width: 18.w),
                 Text(
                   text,
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  style: AppTextStyles.fileName, // textfont in here won't scale to different screens
                 ),
               ],
             ),

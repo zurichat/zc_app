@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/ui/shared/styles.dart';
 
 class CustomUserChannel extends StatelessWidget {
   const CustomUserChannel(
@@ -33,12 +34,12 @@ class CustomUserChannel extends StatelessWidget {
                 SizedBox(width: 12.w),
                 Text(
                   text,
-                  style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
+                  style: AppTextStyles.fileName, // textfont in here won't scale to different screens
                 ),
                 SizedBox(width: 10.w),
                 Text(
                   text2,
-                  style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.normal),
+                  style: AppTextStyles.faintBodyText, // textfont in here won't scale to different screens
                 ),
                 SizedBox(width: 10.w),
                 Container(

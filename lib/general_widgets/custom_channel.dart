@@ -21,17 +21,13 @@ class CustomChannel extends StatelessWidget {
             child: Row(
               children: [
                 Text('#',
-                    // style: AppTextStyles.heading7,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20.sp,
-                    )
+                    style: AppTextStyles.heading7,// textfont in here won't scale to different screens
                 ),
                 SizedBox(width: 21.33.w),
                 Text(
                   text,
                   // style: ZuriTextStyle.mediumBold(),
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  style: AppTextStyles.fileName, // textfont in here won't scale to different screens
                 ),
               ],
             ),
