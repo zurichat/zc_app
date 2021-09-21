@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:hng/general_widgets/easy_container.dart';
+import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
-import 'package:hng/ui/shared/search_bar.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/search_bar.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/constants.dart';
-
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/easy_container.dart';
@@ -14,7 +15,6 @@ import '../../../utilities/constants.dart';
 import '../../shared/colors.dart';
 import '../../shared/text_styles.dart';
 import 'home_page_viewmodel.dart';
-
 import 'widgets/home_expanded.dart';
 import 'widgets/home_list_items.dart';
 import 'widgets/home_topbar.dart';
@@ -28,12 +28,12 @@ class HomePage extends StatelessWidget {
         model.listenToChannelsChange();
       },
       viewModelBuilder: () => HomePageViewModel(),
-      builder: (context, vmodel, child) => Column(
+      builder: (context, model, child) => Column(
         children: [
           const HomePageTopBar(
             organizationName: 'Zuri Workspace',
           ),
-          vmodel.isBusy
+          model.isBusy
               ? LinearProgressIndicator(
                   backgroundColor: Colors.grey[400],
                   valueColor:
@@ -41,14 +41,14 @@ class HomePage extends StatelessWidget {
                 )
               : Container(),
           Expanded(
-            child: body(vmodel),
+            child: body(model),
           )
         ],
       ),
     );
   }
 
-  Widget body(HomePageViewModel vmodel) {
+  Widget body(HomePageViewModel model) {
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -66,17 +66,17 @@ class HomePage extends StatelessWidget {
           HomeExpandedList(
             title: 'Unreads',
             canExpand: false,
-            data: vmodel.unreads,
+            data: model.unreads,
           ),
           const Divider(),
           HomeExpandedList(
             title: 'Channels',
-            data: vmodel.joinedChannels,
+            data: model.joinedChannels,
           ),
           const Divider(),
           HomeExpandedList(
             title: 'Direct Messages',
-            data: vmodel.directMessages,
+            data: model.directMessages,
           ),
           const Divider(),
         ],

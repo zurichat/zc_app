@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/models/channels_search_model.dart';
