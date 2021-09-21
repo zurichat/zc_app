@@ -1,18 +1,5 @@
 //User model
 class UserModel {
-  //  String? fullName;
-  //  String? imageUrl;
-  // bool? isOnline;
-  // bool? isChecked;
-
-  // UserModel({
-  //   this.fullName,
-  //   this.displayName,
-  //   this.imageUrl,
-  //   this.isOnline,
-  //   this.isChecked= false,
-  // });
-
   String? id;
   String? orgId;
 
@@ -69,7 +56,7 @@ class UserModel {
       "presence": isOnline,
       "files": files,
       "image_url": imageUrl,
-      "name": fullName,
+      "user_name": fullName,
       "status": status,
       "email": email,
       "display_name": displayName,

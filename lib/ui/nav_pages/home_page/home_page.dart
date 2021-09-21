@@ -3,6 +3,7 @@ import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_field.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/constants.dart';
@@ -22,15 +23,25 @@ class HomePage extends StatelessWidget {
         model.getDmAndChannelsList();
       },
       viewModelBuilder: () => HomePageViewModel(),
-      builder: (context, vmodel, child) => Column(
-        children: [
-          HomePageTopBar(
-            organizationName: 'Zuri Workspace',
+      builder: (context, vmodel, child) => Scaffold(
+        body: Column(
+          children: [
+            HomePageTopBar(
+              organizationName: 'Zuri Workspace',
+            ),
+            Expanded(
+              child: body(vmodel),
+            )
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: vmodel.navigateToStartDMScreen,
+          child: const Icon(
+            Icons.open_in_new_outlined,
+            color: AppColors.whiteColor,
           ),
-          Expanded(
-            child: body(vmodel),
-          )
-        ],
+          backgroundColor: AppColors.zuriPrimaryColor,
+        ),
       ),
     );
   }

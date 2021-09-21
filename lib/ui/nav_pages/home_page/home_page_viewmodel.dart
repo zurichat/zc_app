@@ -50,8 +50,12 @@ class HomePageViewModel extends StreamViewModel {
     return connectionStatus;
   }
 
-    void navigateToJumpToScreen() {
+  void navigateToJumpToScreen() {
     _navigationService.navigateTo(Routes.dmJumpToView);
+  }
+
+  void navigateToStartDMScreen() {
+    _navigationService.navigateTo(Routes.startDmView);
   }
 
   ///This sets all the expanded list items

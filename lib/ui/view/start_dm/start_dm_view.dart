@@ -54,8 +54,19 @@ class StartDmView extends StatelessWidget with $StartDmView {
             Positioned(
               child: Column(
                 children: <Widget>[
-                  CustomChipInput(
-                      chipKey: _chipKey, mockResults: model.userResults),
+                  FutureBuilder(
+                    future: model.userResults,
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                      return CustomChipInput(
+                      chipKey: _chipKey, mockResults: snapshot.data);
+                      }else{
+                        return Container();
+                      }
+                    }
+                  ),
+                  
+                  
                   Divider(color: Colors.black, thickness: 0.1),
                 ],
               ),
