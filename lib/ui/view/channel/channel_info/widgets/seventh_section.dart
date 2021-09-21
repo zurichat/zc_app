@@ -23,34 +23,37 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
             border: Border.all(width: 1.0, color: AppColors.borderColor)),
         child: Column(
           children: [
-            Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 9,
-                    top: 19,
-                  ),
-                  child: const Icon(
-                    Icons.lock_outline,
-                    color: AppColors.deepBlackColor,
-                    size: 28,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 11,
-                    top: 19,
-                    bottom: 10,
-                  ),
-                  child: TextButton(
-                    onPressed: model.showDialog,
-                    child: Text(
-                      'Delete Channel',
-                      style: AppTextStyles.heading7,
+            InkWell(
+              onTap: model.showDialog,
+              child: Row(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(
+                      left: 9,
+                      top: 19,
+                    ),
+                    child: const Icon(
+                      Icons.lock_outline,
+                      color: AppColors.deepBlackColor,
+                      size: 28,
                     ),
                   ),
-                ),
-              ],
+                  Container(
+                    margin: const EdgeInsets.only(
+                      left: 11,
+                      top: 19,
+                      bottom: 10,
+                    ),
+                    child: TextButton(
+                      onPressed: model.showDialog,
+                      child: Text(
+                        'Delete Channel',
+                        style: AppTextStyles.heading7,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Container(
                 alignment: Alignment.center,

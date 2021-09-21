@@ -22,11 +22,11 @@ class ChannelsApiService {
 
   // Your functions for api calls can go in here
   // https://channels.zuri.chat/api/v1/61459d8e62688da5302acdb1/channels/
+
+  List joinedChannels = [];
   Future<List> getActiveDms() async {
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
-
-    List joinedChannels = [];
 
     try {
       final res = await _api.get(
@@ -82,4 +82,28 @@ class ChannelsApiService {
 
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
+
+//Delete Channels
+  Future<void> deleteChannels({
+    required String name,
+  }) async {
+    final orgId = _userService.currentOrgId;
+    try {
+      final res = await _api.delete(
+        'v1/$orgId/channels/',
+        data: {
+          'name': name,
+        },
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      log.i(res?.data.toString());
+
+      if (res?.statusCode == 204) {
+      // joinedChannels.removeAt(token);
+      }
+    } on Exception catch (e) {
+      log.e(e.toString());
+    }
+  }
 }
