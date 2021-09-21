@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/services/local_storage_services.dart';
+
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/storage_keys.dart';
+
 import 'package:stacked/stacked.dart';
 
 import 'edit_profile_viewmodel.dart';
@@ -12,8 +11,6 @@ class EditProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storageService = locator<SharedPreferenceLocalStorage>();
-
     Size _size = MediaQuery.of(context).size;
     return ViewModelBuilder<EditProfileViewModel>.reactive(
       onModelReady: (model) => model.fetchUser(),
@@ -25,9 +22,8 @@ class EditProfileView extends StatelessWidget {
           title: Text("Edit Profile"),
           actions: [
             TextButton(
-              onPressed: () {
-                model.updateProfile();
-                model.test();
+              onPressed: () async {
+                await model.updateProfile();
               },
               child: Text(
                 "Save",
@@ -42,20 +38,7 @@ class EditProfileView extends StatelessWidget {
     );
   }
 }
-//C:\Users\USER\AppData\Local\Android
-// class Body extends StatelessWidget {
-//   const Body({
-//     Key? key,
-//     required Size size,
-//   }) : _size = size, super(key: key);
 
-//   final Size _size;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return
-//   }
-// }
 class Body extends ViewModelWidget<EditProfileViewModel> {
   final Size _size;
   Body({
@@ -103,7 +86,10 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   Container(
                     width: _size.width * 0.55,
                     child: TextFormField(
-                      controller: model.fullNameEd,
+                      initialValue: model.name,
+                      onChanged: (value) {
+                        model.updateString(value, '', '', '');
+                      },
                       decoration: InputDecoration(
                         labelText: "Full Name",
                       ),
@@ -113,7 +99,10 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              controller: model.displayNameEd,
+              initialValue: model.displayName,
+              onChanged: (value) {
+                model.updateString('', value, '', '');
+              },
               decoration: InputDecoration(
                 labelText: "Display Name",
                 helperText:
@@ -122,12 +111,18 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              controller: model.statusEd,
+              initialValue: model.status,
+              onChanged: (value) {
+                model.updateString('', '', value, '');
+              },
               decoration: InputDecoration(
                   labelText: "What I do", helperText: "HNGi9 X I4G"),
             ),
             TextFormField(
-              controller: model.phoneNumEd,
+              initialValue: model.phoneNum,
+              onChanged: (value) {
+                model.updateString('', '', '', value);
+              },
               decoration: InputDecoration(
                   labelText: "Phone", helperText: "Enter your phone number"),
             ),
@@ -135,14 +130,5 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
         ),
       ),
     );
-  }
-}
-
-class NextButton extends ViewModelWidget<EditProfileViewModel> {
-  NextButton({Key? key}) : super(key: key, reactive: true);
-
-  @override
-  Widget build(BuildContext context, EditProfileViewModel model) {
-    return Container();
   }
 }

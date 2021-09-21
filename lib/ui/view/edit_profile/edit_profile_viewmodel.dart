@@ -1,11 +1,6 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
 import 'package:hng/general_widgets/app_toast.dart';
+import 'package:hng/models/profile_model.dart';
 
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/services/connectivity_service.dart';
@@ -15,58 +10,79 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-ProfileModel stuff = new ProfileModel();
-
-String? cool;
-bool empty = true;
+ProfileModel userData = new ProfileModel();
+String _nameD = '', _displayD = '', _statusD = '', _phoneD = '';
+String _name = '', _display = '', _status = '', _phone = '';
 
 class EditProfileViewModel extends BaseViewModel {
   final snackbar = locator<SnackbarService>();
   final navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
   final _api = HttpApiService('https://api.zuri.chat/');
-  TextEditingController fullNameEd =
-      TextEditingController(text: stuff.firstName);
-  TextEditingController displayNameEd =
-      TextEditingController(text: "Backend for this doesn't exist");
-  TextEditingController statusEd = TextEditingController(text: stuff.status);
-  TextEditingController phoneNumEd =
-      TextEditingController(text: "Backend for this doesn't exist");
-  void test() async {
-    notifyListeners();
+
+  void updateString(String name, String display, String status, String phone) {
+    if (name.trim().isNotEmpty) {
+      _name = name;
+    }
+    if (display.trim().isNotEmpty) {
+      _display = display;
+    }
+    if (status.trim().isNotEmpty) {
+      _status = status;
+    }
+    if (phone.trim().isNotEmpty) {
+      _phone = phone;
+    }
   }
 
-  String? photoUrl = stuff.bio;
+  String? photoUrl = _nameD;
   String? get url => photoUrl;
 
-  String? name = stuff.firstName;
+  String? name = _nameD;
   String? get userName => name;
 
-  String? displayName = stuff.displayName;
+  String? displayName = _displayD;
   String? get dispName => dispName;
 
-  String? phoneNum = stuff.phoneNumber;
+  String? phoneNum = _phoneD;
   String? get phoneNo => phoneNum;
 
-  String? profileText =
-      stuff.status ?? "I'm involved in an illegeal ammount of cruise";
+  String? profileText = _statusD;
   String? get status => profileText;
   final _navigationService = locator<NavigationService>();
-
-  void getUserData(String userId) {}
 
   void exitPage() {
     _navigationService.back();
   }
 
-  Future fetchUser() async {
+  Future<void> fetchUser() async {
     try {
       if (!await connectivityService.checkConnection()) {
         AppToast.instance.message(null, 'Check your internet connection');
         return;
       }
       setBusy(true);
-      stuff = await UserProfileApi().currentUser();
+      userData = await GetUserProfile().currentUser();
+      if (userData.firstName!.trim().isNotEmpty) {
+        _nameD = userData.firstName!;
+      } else {
+        _nameD = '';
+      }
+      if (userData.displayName!.trim().isNotEmpty) {
+        _displayD = userData.displayName!;
+      } else {
+        _displayD = 'The Back End for this does not exist';
+      }
+      if (userData.status!.trim().isNotEmpty) {
+        _statusD = userData.status!;
+      } else {
+        _statusD = '';
+      }
+      if (userData.phoneNumber!.trim().isNotEmpty) {
+        _phoneD = userData.phoneNumber!;
+      } else {
+        _phoneD = 'The Back End for this does not exist';
+      }
       setBusy(false);
     } catch (e) {
       AppToast.instance.error(null, 'Error Occured');
@@ -83,12 +99,21 @@ class EditProfileViewModel extends BaseViewModel {
         'organizations/61459d8e62688da5302acdb1/members/614729a2f41cb684cc531ac7/photo';
 
     final editData = {
-      'image_url': fullNameEd.text,
+      'image_url': _name,
     };
     final res = await _api.patch(link, data: editData, headers: {
       'Authorization':
           'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
     });
+    String link3 =
+        'organizations/61459d8e62688da5302acdb1/members/614729a2f41cb684cc531ac7/status';
+
+    final editData3 = {'status': _status};
+    final res3 = await _api.patch(link3, data: editData3, headers: {
+      'Authorization':
+          'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
+    });
+
     final snackbar = locator<SnackbarService>();
     if (res!.statusCode == 200) {
       snackbar.showCustomSnackBar(
@@ -97,6 +122,7 @@ class EditProfileViewModel extends BaseViewModel {
         message: ''' Profile Update Was Successful'''
             ''' Please Close and Open The Edit Profile Page twice to see changes ''',
       );
+      exitPage();
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -109,7 +135,7 @@ class EditProfileViewModel extends BaseViewModel {
         'organizations/61459d8e62688da5302acdb1/members/614729a2f41cb684cc531ac7/profile';
 
     final editData1 = {
-      'data': displayNameEd.text,
+      'data': _display,
     };
     final res1 = await _api.patch(link1, data: editData1, headers: {
       'Authorization':
@@ -120,71 +146,22 @@ class EditProfileViewModel extends BaseViewModel {
         'organizations/61459d8e62688da5302acdb1/members/614729a2f41cb684cc531ac7/phone';
 
     final editData2 = {
-      'phone': phoneNumEd.text,
+      'phone': _phone,
     };
     final res2 = await _api.patch(link2, data: editData2, headers: {
       'Authorization':
           'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
     });
-
-    String link3 =
-        'organizations/61459d8e62688da5302acdb1/members/614729a2f41cb684cc531ac7/status';
-
-    final editData3 = {
-      'status': statusEd.text,
-    };
-    final res3 = await _api.patch(link3, data: editData3, headers: {
-      'Authorization':
-          'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
-    });
   }
 }
 
-class ProfileModel {
-  String? userId;
-  String? firstName;
-  String? lastName;
-  String? displayName;
-  String? email;
-  String? phoneNumber;
-  String? status;
-  String? bio;
-  ProfileModel({
-    this.userId,
-    this.firstName,
-    this.lastName,
-    this.displayName,
-    this.email,
-    this.phoneNumber,
-    this.status,
-    this.bio,
-  });
-
-  factory ProfileModel.fromJson(Map<String, dynamic> json) {
-    String object = json['userId'].toString();
-
-    return ProfileModel(
-        displayName: json['display_name'].toString(),
-        userId: json['_id'].toString(),
-        status: json['status'].toString(),
-        phoneNumber: json['phone'].toString(),
-        email: json['email'].toString(),
-        bio: json['bio'],
-        firstName: json['name'].toString());
-  }
-}
-
-// User _currentUserFromSnapshot(DocumentSnapshot snapshot) {
-//     return User(
-//         name: snapshot.data()['name'] ?? 'No Name',
-//         uid: snapshot.data()['uid'] ?? null,
-//         imageUrl: snapshot.data()['imageUrl'] ?? null);
-class UserProfileApi {
+//I didn't put this in a service because the backend doesn't have calls for many of the elements here
+class GetUserProfile {
   final _api = HttpApiService('https://api.zuri.chat/');
 
   final storageService = locator<SharedPreferenceLocalStorage>();
 
-  /// Fetches info the
+  /// Fetches info of the current user
   Future<ProfileModel> currentUser() async {
     String? orgId = storageService.getString(StorageKeys.currentOrgId);
     String? userId = storageService.getString(StorageKeys.currentUserId);
