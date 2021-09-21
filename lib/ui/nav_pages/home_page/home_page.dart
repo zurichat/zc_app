@@ -35,10 +35,10 @@ class HomePage extends StatelessWidget {
           ),
           model.isBusy
               ? LinearProgressIndicator(
-                  backgroundColor: Colors.grey[400],
-                  valueColor:
-                      const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
-                )
+            backgroundColor: Colors.grey[400],
+            valueColor:
+            const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
+          )
               : Container(),
           Expanded(
             child: body(model),
