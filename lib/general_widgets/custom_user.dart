@@ -20,7 +20,7 @@ class CustomUser extends StatelessWidget {
               Container(
                 height: 48.h,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8.r),
                     image: DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage(

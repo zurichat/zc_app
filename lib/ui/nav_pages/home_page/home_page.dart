@@ -36,10 +36,10 @@ class HomePage extends StatelessWidget {
           ),
           vmodel.isBusy
               ? LinearProgressIndicator(
-                  backgroundColor: Colors.grey[400],
-                  valueColor:
-                      const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
-                )
+            backgroundColor: Colors.grey[400],
+            valueColor:
+            const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
+          )
               : Container(),
           Expanded(
             child: body(vmodel),
@@ -52,53 +52,52 @@ class HomePage extends StatelessWidget {
   Widget body(HomePageViewModel vmodel) {
     return SingleChildScrollView(
       child: Column(
-        children: [
+          children: [
           const SizedBox(height: 15),
-          searchBar(),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
-          SizedBox(height: 15),
-          JumpToSearchBar(onTap: () => vmodel.navigateToJumpToScreen()),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
-            child: ThreadTextAndIcon(),
-          ),
-          const Divider(),
-          HomeExpandedList(
-            title: 'Unreads',
-            canExpand: false,
-            data: vmodel.unreads,
-          ),
-          const Divider(),
-          HomeExpandedList(
-            title: 'Channels',
-            data: vmodel.joinedChannels,
-          ),
-          const Divider(),
-          HomeExpandedList(
-            title: 'Direct Messages',
-            data: vmodel.directMessages,
-          ),
-          const Divider(),
+      searchBar(vmodel),
+      const Padding(
+          padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
+          child: ThreadTextAndIcon(),
+        ),
+        const Divider(),
+        HomeExpandedList(
+          title: 'Unreads',
+          canExpand: false,
+          data: vmodel.unreads,
+        ),
+        const Divider(),
+        HomeExpandedList(
+          title: 'Channels',
+          data: vmodel.joinedChannels,
+        ),
+        const Divider(),
+        HomeExpandedList(
+          title: 'Direct Messages',
+          data: vmodel.directMessages,
+        ),
+        const Divider(),
         ],
       ),
     );
   }
 
 
-  Widget searchBar() {
+  Widget searchBar(vmodel) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
-      child: EasyContainer(
-        height: 50,
-        radius: 7,
-        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-        alignment: Alignment.centerLeft,
-        borderWidth: 1.5,
-        borderColor: Colors.grey[300],
-        child: Text(
-          'Jump to...',
-          style: ZuriTextStyle.mediumNormal(),
+      child: InkWell(
+        onTap: () => vmodel.navigateToJumpToScreen(),
+        child: EasyContainer(
+          height: 50,
+          radius: 7,
+          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+          borderWidth: 1.5,
+          borderColor: Colors.grey[300],
+          child: Text(
+            'Jump to...',
+            style: ZuriTextStyle.mediumNormal(),
+          ),
         ),
       ),
     );
