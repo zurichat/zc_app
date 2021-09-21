@@ -4,8 +4,11 @@ import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 
 class CustomChannel extends StatelessWidget {
-  final text;
-  const CustomChannel({Key? key, this.text}) : super(key: key);
+  final String? text;
+  const CustomChannel({
+    Key? key,
+    this.text
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class CustomChannel extends StatelessWidget {
                 ),
                 SizedBox(width: 21.33.w),
                 Text(
-                  text,
+                  '$text',
                   // style: ZuriTextStyle.mediumBold(),
                   style: AppTextStyles.fileName, // textfont in here won't scale to different screens
                 ),

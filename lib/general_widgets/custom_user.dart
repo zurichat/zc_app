@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomUser extends StatelessWidget {
-  const CustomUser({Key? key, this.image, this.text}) : super(key: key);
-  final text;
-  final image;
+  final String? text;
+  final String? image;
+
+  const CustomUser({
+    Key? key,
+    this.image,
+    this.text
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,7 @@ class CustomUser extends StatelessWidget {
                     image: DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage(
-                          image,
+                          '$image',
                         ))),
               ),
               SizedBox(
@@ -33,7 +38,7 @@ class CustomUser extends StatelessWidget {
               Container(
                   height: 32.h,
                   child: Text(
-                    text,
+                    '$text',
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

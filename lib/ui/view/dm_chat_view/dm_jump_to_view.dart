@@ -191,7 +191,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                 text: 'stage4'),
                             SizedBox(height: 24.h),
                             CustomUserChannel(
-                              image: 'assets/images/Rectangle 138a.png',
+                              image: ('assets/images/Rectangle 138a.png'),
                               text: 'Blaze',
                               text2: 'rrr',
                               trailingIcon: Icons.circle,
