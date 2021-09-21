@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/view/all_threads_view/thread_detail/thread_detail_viewmodel.dart';
-import 'package:hng/ui/view/threads/widgets/emojis.dart';
 import 'package:stacked/stacked.dart';
 
-class EmojiDetailList extends ViewModelWidget<ThreadDetailViewmodel> {
-  const EmojiDetailList({
+import '../thread_card_viewmodel.dart';
+import 'emojis.dart';
+
+class EmojisList extends ViewModelWidget<ThreadCardViewModel> {
+  const EmojisList({
     Key? key,
     required this.userPost,
   }) : super(key: key);
@@ -13,7 +14,7 @@ class EmojiDetailList extends ViewModelWidget<ThreadDetailViewmodel> {
   final UserPost? userPost;
 
   @override
-  Widget build(BuildContext context, ThreadDetailViewmodel model) {
+  Widget build(BuildContext context, ThreadCardViewModel model) {
     return Wrap(
       spacing: 5,
       runSpacing: 5,
@@ -21,7 +22,7 @@ class EmojiDetailList extends ViewModelWidget<ThreadDetailViewmodel> {
         for (PostEmojis postEmoji in userPost!.postEmojis!)
           Emojis(
             postEmoji,
-            checkReact: () => model.checkReact(postEmoji.id),
+            checkReact: () => model.checkReact(userPost, postEmoji.id),
           ),
         Container(
             height: 30,
@@ -29,7 +30,7 @@ class EmojiDetailList extends ViewModelWidget<ThreadDetailViewmodel> {
                 color: Colors.black12,
                 borderRadius: BorderRadius.all(Radius.circular(30))),
             child: IconButton(
-              onPressed: () => model.addEmojis(userPost!.id),
+              onPressed: () => model.addEmojis(userPost!),
               icon: Icon(
                 Icons.add_reaction_outlined,
                 size: 14,

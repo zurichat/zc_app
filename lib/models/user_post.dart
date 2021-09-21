@@ -9,6 +9,7 @@ class UserThreadPost {
   String? lastSeen;
   TextSpan message;
   List<PostEmojis>? postEmojis;
+  String? postDate;
 
   UserThreadPost({
     required this.id,
@@ -18,11 +19,14 @@ class UserThreadPost {
     this.lastSeen,
     required this.message,
     this.postEmojis,
+    this.postDate,
   });
 
   void addReaction(PostEmojis postEmoji) {
     postEmojis!.add(postEmoji);
   }
+
+  
 }
 
 class PostEmojis {
@@ -48,6 +52,7 @@ class UserPost extends UserThreadPost {
   List<PostEmojis>? postEmojis;
   String? channelName;
   ChannelType? channelType;
+  String? postDate;
 
   List<UserThreadPost>? userThreadPosts;
 
@@ -62,6 +67,7 @@ class UserPost extends UserThreadPost {
     this.userThreadPosts,
     this.channelName,
     this.channelType,
+    this.postDate,
   }) : super(
           id: id,
           displayName: displayName,
@@ -70,4 +76,8 @@ class UserPost extends UserThreadPost {
           lastSeen: lastSeen,
           postEmojis: postEmojis,
         );
+
+         void addReply(UserThreadPost userThreadPost){
+    userThreadPosts!.add(userThreadPost);
+  }
 }

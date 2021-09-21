@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/view/threads/widgets/emojis.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -64,6 +63,77 @@ List<UserThreadPost> thread2 = [
           style: TextStyle(color: AppColors.deepBlackColor))),
 ];
 
+List<UserThreadPost> thread3 = [
+  UserThreadPost(
+      id: 12,
+      displayName: "mark",
+      statusIcon: Icons.looks_6,
+      userImage: "assets/images/user.png",
+      lastSeen: "4 hours ago",
+      postDate: "20:23",
+      message: TextSpan(
+          text: "I think you cans ask on help channel",
+          style: TextStyle(color: AppColors.deepBlackColor))),
+  UserThreadPost(
+      id: 13,
+      displayName: "princess",
+      statusIcon: Icons.looks_6,
+      userImage: "assets/images/user.png",
+      lastSeen: "4 hours ago",
+      postDate: "20:23",
+      message: TextSpan(
+          text: "Co ask", style: TextStyle(color: AppColors.deepBlackColor))),
+  UserThreadPost(
+      id: 14,
+      displayName: "pauleke65",
+      statusIcon: Icons.looks_6,
+      userImage: "assets/images/user.png",
+      lastSeen: "4 hours ago",
+      postDate: "20:23",
+      message: TextSpan(
+          text: "I'm also interested",
+          style: TextStyle(color: AppColors.deepBlackColor))),
+  UserThreadPost(
+      id: 15,
+      displayName: "FreshFish",
+      statusIcon: Icons.looks_6,
+      userImage: "assets/images/user.png",
+      lastSeen: "4 hours ago",
+      postDate: "20:23",
+      message: TextSpan(
+          text: "What track are you?",
+          style: TextStyle(color: AppColors.deepBlackColor))),
+  UserThreadPost(
+      id: 16,
+      displayName: "Sticklo",
+      statusIcon: Icons.looks_6,
+      userImage: "assets/images/user.png",
+      lastSeen: "4 hours ago",
+      postDate: "20:23",
+      message: TextSpan(
+          text: "Team", style: TextStyle(color: AppColors.deepBlackColor))),
+  UserThreadPost(
+    id: 17,
+    displayName: "EunicePops",
+    statusIcon: Icons.looks_6,
+    userImage: "assets/images/user.png",
+    lastSeen: "4 hours ago",
+    postDate: "20:23",
+    message: TextSpan(
+        text: "@Abdul",
+        style: TextStyle(color: Colors.blueAccent),
+        recognizer: TapGestureRecognizer()
+          ..onTap = () {
+            viewProfile();
+          },
+        children: [
+          TextSpan(
+              text: " is his Slack name",
+              style: TextStyle(color: AppColors.deepBlackColor))
+        ]),
+  ),
+];
+
 List<PostEmojis> postEmoji1 = [
   PostEmojis(id: 1, postEmoji: "😀", postEmojiCount: 3, hasReacted: false),
 ];
@@ -72,6 +142,22 @@ List<PostEmojis> postEmoji2 = [
 ];
 
 List<UserPost> userPost = [
+  UserPost(
+    id: 11,
+    displayName: "richieoscar",
+    postDate: "Sept 19 at 9:56am",
+    message: TextSpan(
+        text:
+            "Please who is the team lead for mobile track? I have some questions please",
+        style: TextStyle(color: AppColors.deepBlackColor)),
+    userImage: "assets/images/1.png",
+    statusIcon: Icons.looks_4,
+    lastSeen: "4 hours ago",
+    postEmojis: <PostEmojis>[],
+    userThreadPosts: thread3,
+    channelType: ChannelType.private,
+    channelName: "team-app",
+  ),
   UserPost(
     id: 5,
     displayName: "Nonso",

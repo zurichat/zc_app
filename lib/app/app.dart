@@ -1,4 +1,4 @@
-import 'package:hng/ui/view/threads/threads_view.dart';
+import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/services/user_service.dart';

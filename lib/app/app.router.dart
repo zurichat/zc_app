@@ -8,7 +8,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/all_threads_view/thread_detail/hook_thread_detail.dart';
+import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
+import 'package:hng/ui/view/threads/thread_detail/thread_detail_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/nav_pages/home_page/home_page.dart';
@@ -49,7 +50,6 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
-import '../ui/view/threads/threads_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
@@ -57,7 +57,6 @@ import '../ui/view/workspace/workspace_different_email/difference_email_workspac
 import '../ui/view/workspace/workspace_url/workspace_url_view.dart';
 import '../ui/view/workspace/workspace_view/workspace_view.dart';
 import '../utilities/enums.dart';
-
 
 class Routes {
   static const String channelAddPeopleView = '/channel-add-people-view';
@@ -209,7 +208,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
-    RouteDef(Routes.threadDetailView, page:ThreadDetailHook)
+    RouteDef(Routes.threadDetailView, page: ThreadDetailView)
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -509,9 +508,9 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-     ThreadDetailHook: (data) {
+    ThreadDetailView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ThreadDetailHook(),
+        builder: (context) => ThreadDetailView(),
         settings: data,
       );
     },

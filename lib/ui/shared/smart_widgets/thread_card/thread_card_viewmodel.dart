@@ -2,29 +2,29 @@ import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/utilities/enums.dart';
-
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import 'test_data.dart';
-
-class ThreadsViewModel extends BaseViewModel {
+class ThreadCardViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
-
-  List<UserPost> userPosts = userPost;
   final _bottomSheetService = locator<BottomSheetService>();
 
   //Delete this random number stuff
   //this was created to give the emojis unique ids which  would be handled by the backend
   int randomVarBank = 1000;
 
-  void initialise() {
-    //refresh page
-
-    notifyListeners();
+  Future navigateToThread() async {
+    _navigationService.navigateTo(Routes.threadDetailView);
   }
 
-  Future addEmojis(int? postId) async {
+  Future viewProfile() async {
+    var sheetResponse = await _bottomSheetService.showCustomSheet(
+      variant: BottomSheetType.user,
+      isScrollControlled: true,
+    );
+  }
+
+  Future addEmojis(UserPost? userPost) async {
     var emoji;
     var sheetResponse = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.emojiPicker,
@@ -34,31 +34,21 @@ class ThreadsViewModel extends BaseViewModel {
     if (sheetResponse!.confirmed == true) {
       emoji = sheetResponse.data.emoji;
       print(emoji);
-      var testvar = userPosts.where((e) {
-        if (e.id == postId) {
-          e.addReaction(PostEmojis(
-              id: randomVarBank, postEmoji: emoji, postEmojiCount: 1));
-          //TODO remove this
-          randomVarBank += 1;
-          notifyListeners();
-        }
 
-        return false;
-      });
-      print(testvar);
+      userPost!.addReaction(
+          PostEmojis(id: randomVarBank, postEmoji: emoji, postEmojiCount: 1));
+      //TODO remove this
+      randomVarBank += 1;
+      notifyListeners();
     }
   }
 
-  void checkReact(int? emojiId) {
-    var testvar = userPosts.where((p) {
-      var testvar1 = p.postEmojis!.where((e) {
-        if (e.id == emojiId) {
-          e.hasReacted ? unReact(p, e) : react(e);
-        }
+  void checkReact(UserPost? userPost, int? emojiId) {
+    var testvar = userPost!.postEmojis!.where((e) {
+      if (e.id == emojiId) {
+        e.hasReacted ? unReact(userPost, e) : react(e);
+      }
 
-        return false;
-      });
-      print(testvar1);
       return false;
     });
     print(testvar);
@@ -80,19 +70,5 @@ class ThreadsViewModel extends BaseViewModel {
     }
 
     notifyListeners();
-  }
-
-  Future refreshThreadsPage() async {
-    await Future.delayed(
-      Duration(seconds: 5),
-    );
-  }
-
-  void exitPage() {
-    _navigationService.back();
-  }
-
-  Future navigateToThread() async {
-    _navigationService.navigateTo(Routes.threadDetailView);
   }
 }

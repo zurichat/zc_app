@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/threads/widgets/thread_card.dart';
 import 'package:stacked/stacked.dart';
 import 'threads_viewmodel.dart';
+import 'widgets/thread_card.dart';
 
 class ThreadsView extends StatelessWidget {
   const ThreadsView({Key? key}) : super(key: key);
