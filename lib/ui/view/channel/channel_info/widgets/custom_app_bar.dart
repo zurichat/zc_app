@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 
 Widget customAppBar(context) {

@@ -191,6 +191,30 @@ class AppTextStyles {
     color: AppColors.zuriPrimaryColor,
     fontSize: 14,
   );
+  static TextStyle bodyBig = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.zuriPrimaryColor,
+    fontSize: 16,
+  );
+  static TextStyle headerStyle = GoogleFonts.lato(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: AppColors.zuriTextColorHeader);
+
+  static TextStyle namesStyle = GoogleFonts.lato(
+      fontSize: 14,
+      fontWeight: FontWeight.w700,
+      color: AppColors.zuriTextColorHeader);
+
+  static TextStyle descriptionStyle = GoogleFonts.lato(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: AppColors.zuriTextColorHeader);
+
+  static TextStyle archiveTextStyle = GoogleFonts.lato(
+      fontSize: 15,
+      fontWeight: FontWeight.w600,
+      color: AppColors.unreadMessageColor);
 }
 
 class StatusIcon extends StatelessWidget {

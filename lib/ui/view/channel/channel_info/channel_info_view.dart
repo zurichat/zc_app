@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/channel/channel_info/widgets/seventh_section.dart';
 import 'package:stacked/stacked.dart';
 import 'channel_info_view_model.dart';
 import 'widgets/custom_app_bar.dart';
@@ -59,7 +61,7 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                         margin: _margin,
                         child: Text(
                           'You wont\'t  recieve any messages from a muted channel',
-                          style: faintTextStyle(),
+                          style: AppTextStyles.body1Grey,
                         )),
                     SizedBox(
                       height: 18.0,
@@ -72,7 +74,7 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                       margin: _margin,
                       child: Text(
                         'Bookmarks',
-                        style: faintTextStyle(),
+                        style: AppTextStyles.body1Grey,
                       ),
                     ),
                     SizedBox(
@@ -90,13 +92,14 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                       margin: _margin,
                       child: Text(
                         'Advanced',
-                        style: faintTextStyle(),
+                        style: AppTextStyles.body1Grey,
                       ),
                     ),
                     SizedBox(
                       height: 8.0,
                     ),
                     const SixthSection(),
+                    const SeventhSection()
                   ],
                 ),
               ),

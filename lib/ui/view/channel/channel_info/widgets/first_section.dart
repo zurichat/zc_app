@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
+import 'package:hng/ui/view/channel/channel_view/channel_page_view.dart';
 
 import '../../../../shared/colors.dart';
 import 'edit_button.dart';
-import 'textstyles.dart';
 
 class FirstSection extends StatelessWidget {
   final ChannelInfoViewModel model;
@@ -35,8 +36,8 @@ class FirstSection extends StatelessWidget {
                     ),
                     Container(
                       child: Text(
-                        '#teamsocrates',
-                        style: headerStyle(),
+                        "#${ChannelPageView.name}",
+                        style: AppTextStyles.headerStyle,
                       ),
                     ),
                     SizedBox(
@@ -45,7 +46,7 @@ class FirstSection extends StatelessWidget {
                     Container(
                       child: Text(
                         'Description',
-                        style: nameStyle(),
+                        style: AppTextStyles.namesStyle,
                       ),
                     ),
                     SizedBox(
@@ -54,7 +55,7 @@ class FirstSection extends StatelessWidget {
                     Container(
                       child: Text(
                         model.channelDescription,
-                        style: descriptionStyle(),
+                        style: AppTextStyles.descriptionStyle,
                       ),
                     ),
                     SizedBox(
@@ -63,7 +64,7 @@ class FirstSection extends StatelessWidget {
                     Container(
                       child: Text(
                         'Mark created this channel on August 13.',
-                        style: faintTextStyle(),
+                        style: AppTextStyles.body1Grey,
                       ),
                     ),
                     SizedBox(
@@ -72,7 +73,7 @@ class FirstSection extends StatelessWidget {
                     Container(
                       child: Text(
                         'Topic',
-                        style: nameStyle(),
+                        style: AppTextStyles.namesStyle,
                       ),
                     ),
                     SizedBox(
@@ -81,7 +82,7 @@ class FirstSection extends StatelessWidget {
                     Container(
                       child: Text(
                         'Creating the zuri main app',
-                        style: descriptionStyle(),
+                        style: AppTextStyles.descriptionStyle,
                       ),
                     ),
                     SizedBox(

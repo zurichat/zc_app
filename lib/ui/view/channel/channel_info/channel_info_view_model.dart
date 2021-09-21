@@ -2,7 +2,6 @@ import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -14,6 +13,7 @@ class ChannelInfoViewModel extends BaseViewModel {
   final _apiService = HttpApiService(channelsBaseUrl);
   final _navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
+  final _dialogService = locator<DialogService>();
 
   String? _channelDescription;
 
@@ -33,6 +33,16 @@ class ChannelInfoViewModel extends BaseViewModel {
 
   void navigateToMembersList() {}
   // _navigationService.navigateTo(Routes.editChannelPage);
+
+  Future showDialog() async {
+    await _dialogService.showCustomDialog(
+      variant: DialogType
+          .deleteChannel, // Which builder you'd like to call that was assigned in the builders function above.
+      // title: 'This is a custom UI with Text as main button',
+      // description: 'Sheck out the builder in the dialog_ui_register.dart file',
+      // mainButtonTitle: 'Ok',
+    );
+  }
 
   getChannelInfo() async {
     const channel_id = '613f70bd6173056af01b4aba';

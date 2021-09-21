@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
-import 'package:hng/ui/view/channel/channel_members/channel_members_list.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../shared/colors.dart';
-import 'textstyles.dart';
 
 class ThirdSection extends StatelessWidget {
   const ThirdSection({Key? key}) : super(key: key);
@@ -50,7 +49,7 @@ class ThirdSection extends StatelessWidget {
                       },
                       child: Text(
                         'Members (5)',
-                        style: nameStyle(),
+                        style: AppTextStyles.namesStyle,
                       ),
                     ),
                   ),
@@ -81,7 +80,7 @@ class ThirdSection extends StatelessWidget {
                   Container(
                     child: Text(
                       'Add People',
-                      style: nameStyle(),
+                      style: AppTextStyles.namesStyle,
                     ),
                   ),
                 ],
@@ -111,7 +110,7 @@ class ThirdSection extends StatelessWidget {
                   Container(
                     child: Text(
                       'Plugins (1)',
-                      style: nameStyle(),
+                      style: AppTextStyles.namesStyle,
                     ),
                   ),
                 ],
@@ -132,7 +131,7 @@ class ThirdSection extends StatelessWidget {
                   Container(
                     child: SvgPicture.asset(
                       'assets/channel_page/phone.svg',
-                      width: 20,
+                      width: 24,
                     ),
                   ),
                   SizedBox(
@@ -141,7 +140,7 @@ class ThirdSection extends StatelessWidget {
                   Container(
                     child: Text(
                       'Start a call',
-                      style: nameStyle(),
+                      style: AppTextStyles.namesStyle,
                     ),
                   ),
                 ],

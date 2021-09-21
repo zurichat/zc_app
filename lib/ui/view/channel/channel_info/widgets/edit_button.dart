@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
-import '../../../../shared/colors.dart';
-import 'textstyles.dart';
 
 class EditButton extends StatelessWidget {
-  ChannelInfoViewModel model;
+  final ChannelInfoViewModel model;
   EditButton({Key? key, required this.model}) : super(key: key);
 
   @override
@@ -22,7 +21,7 @@ class EditButton extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Text(
           'Edit',
-          style: greenTextStyle(),
+          style: AppTextStyles.bodyBig,
         ),
       ),
     );

@@ -3,32 +3,40 @@ import 'package:flutter/material.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/custom_appbar.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/custom_row.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 import '../../../../models/static_user_model.dart';
 import '../../../shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 
+import 'channel_page_view.form.dart';
 import 'channel_page_viewmodel.dart';
 
-class ChannelPageView extends StatelessWidget {
-  const ChannelPageView({Key? key}) : super(key: key);
-
+@FormView(
+  fields: [
+    FormTextField(name: 'editor'),
+  ],
+)
+class ChannelPageView extends StatelessWidget with $ChannelPageView {
+  ChannelPageView({Key? key}) : super(key: key);
+  static String name = "general";
   @override
   Widget build(BuildContext context) {
     final usermodel = [
       StaticUserModel(
         userName: 'Clutch',
-        joinInfo: 'Joined #teamsocrates',
+        joinInfo: 'Joined #$name',
         time: '12:30pm',
         userimg: 'assets/channel_page/female.png',
       ),
       StaticUserModel(
         userName: 'Ali',
-        joinInfo: 'Joined #teamsocrates',
+        joinInfo: 'Joined #$name',
         time: '12:30pm',
         userimg: 'assets/channel_page/femaleuser.png',
       )
     ];
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
+      onModelReady: (model) => listenToFormUpdated(model),
       //this parameter allows us to reuse the view model to persist the state
       //disposeViewModel: false,
       //initialise the view model only once
@@ -37,21 +45,22 @@ class ChannelPageView extends StatelessWidget {
       builder: (context, viewModel, child) {
         return Scaffold(
           appBar: CustomAppBars(
-            channelName: '#teamsocrates',
+            channelName: "#$name",
             numberOfMembers: '128',
             model: viewModel,
           ),
           body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
+            physics: BouncingScrollPhysics(),
+            //scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                channelName('#teamsocrates'),
+                channelName("#$name"),
                 SizedBox(
                   height: 10.0,
                 ),
                 Container(
                   child: channelInfo('@mark',
-                      ' created this channel on August 12, 2021. This is the very beginning of the #teamsocrates channel.'),
+                      ' created this channel on August 12, 2021. This is the very beginning of the #$name channel.'),
                 ),
                 const SizedBox(height: 20),
                 CustomRow(model: viewModel),
@@ -73,7 +82,7 @@ class ChannelPageView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  subtitle: const Text('Joined #teamsocrates'),
+                  subtitle: Text('Joined #$name'),
                 ),
                 ListTile(
                   leading: Image.asset('assets/channel_page/femaleuser.png'),
@@ -90,12 +99,12 @@ class ChannelPageView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  subtitle: const Text('Joined #teamsocrates'),
+                  subtitle: Text('Joined #$name'),
                 ),
               ],
             ),
           ),
-          bottomSheet: sendMessageArea(),
+          bottomSheet: sendMessageArea(name, editorController),
         );
       },
     );
@@ -146,18 +155,19 @@ Container channelInfo(String text, String nexttext) {
   );
 }
 
-sendMessageArea() {
+sendMessageArea(name, editorController) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 8),
     height: 70,
     color: Colors.white,
     child: Row(
       children: <Widget>[
-        const Expanded(
+        Expanded(
           child: TextField(
+            controller: editorController,
             decoration: InputDecoration.collapsed(
               //border: InputBorder.,
-              hintText: 'Message #teamsocrates',
+              hintText: 'Message #$name',
               hintStyle: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,

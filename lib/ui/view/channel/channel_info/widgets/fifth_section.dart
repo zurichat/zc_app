@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/textstyles.dart';
+import 'package:hng/ui/shared/styles.dart';
 
 class FifthSection extends StatelessWidget {
   const FifthSection({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class FifthSection extends StatelessWidget {
             Container(
               child: Text(
                 'Leave',
-                style: nameStyle(),
+                style: AppTextStyles.namesStyle,
               ),
             ),
           ],

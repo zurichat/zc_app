@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hng/ui/shared/styles.dart';
 import '../../../../shared/colors.dart';
-import 'textstyles.dart';
 
 class SecondSection extends StatelessWidget {
   const SecondSection({Key? key}) : super(key: key);
@@ -42,7 +42,7 @@ class SecondSection extends StatelessWidget {
                   Container(
                     child: Text(
                       'Notification',
-                      style: nameStyle(),
+                      style: AppTextStyles.namesStyle,
                     ),
                   ),
                   SizedBox(
@@ -51,7 +51,7 @@ class SecondSection extends StatelessWidget {
                   Container(
                     child: Text(
                       'Every New Message',
-                      style: faintTextStyle(),
+                      style: AppTextStyles.body1Grey,
                     ),
                   ),
                   SizedBox(
@@ -64,7 +64,7 @@ class SecondSection extends StatelessWidget {
                         Container(
                           child: Text(
                             'Mute Channel',
-                            style: descriptionStyle(),
+                            style: AppTextStyles.descriptionStyle,
                           ),
                         ),
                         Container(
