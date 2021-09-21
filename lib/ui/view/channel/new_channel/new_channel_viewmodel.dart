@@ -1,15 +1,12 @@
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
-import 'package:hng/ui/view/channel/channel_view/channel_page_view.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
-import 'new_channel.form.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../utilities/mixins/validators_mixin.dart';
+import 'new_channel.form.dart';
 
 class NewChannelViewModel extends FormViewModel with ValidatorMixin {
   final _navigationService = locator<NavigationService>();
