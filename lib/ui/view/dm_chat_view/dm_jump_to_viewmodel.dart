@@ -11,6 +11,20 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class DmJumpToViewModel extends StreamViewModel {
+  final navigation = locator<NavigationService>();
+   final log = getLogger('DmJumpToViewModel');
+  TextEditingController _controller = TextEditingController();
+  static final storageService = locator<SharedPreferenceLocalStorage>();
+  TextEditingController get controller => _controller;
+
+  final connectivityService = locator<ConnectivityService>();
+  final api = locator<JumpToApi>();
+  List<NewUser> userSearch = [];
+  List<ChannelsSearch> joinedChannelsSearch = [];
+  List<ChannelsSearch> allChannelsSearch = [];
+
+
+
   @override
   // Future futureToRun() => fetchUsers();
 
@@ -19,17 +33,29 @@ class DmJumpToViewModel extends StreamViewModel {
 
   // @override void setFormStatus() {}
 
-  final log = getLogger('DmJumpToViewModel');
-  TextEditingController _controller = TextEditingController();
-  static final storageService = locator<SharedPreferenceLocalStorage>();
-  TextEditingController get controller => _controller;
+  
+  navigateBack() {
+    navigation.back();
+  }
 
-  final navigation = locator<NavigationService>();
-  final connectivityService = locator<ConnectivityService>();
-  final api = locator<JumpToApi>();
-  List<NewUser> userSearch = [];
-  List<ChannelsSearch> joinedChannelsSearch = [];
-  List<ChannelsSearch> allChannelsSearch = [];
+  void _onChanged() => (value){
+
+    if(value.isEmpty){
+    //   list.clear();
+    //   list.addAll(recentDmsFromApi);
+    // }else {
+    //   list.clear();
+    //   for (index in ListofDms) {
+    //     if (index.text.toLowerCase().contains(value.toLowerCase())) {
+    //       list.add(index);
+    //     }
+    //   }
+    }
+    notifyListeners();
+  };
+
+  //getters for the view
+  get onChanged => _onChanged();
 
   Stream<bool> checkConnectivity() async* {
     yield await connectivityService.checkConnection();
