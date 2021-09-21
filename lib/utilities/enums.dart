@@ -1,6 +1,6 @@
 enum ConnectivityStatus { Wifi, Mobile, Online, Offline }
 
-enum DialogType { skinTone, selectLanguage, feedback, themeMode, deleteChannel }
+enum DialogType { skinTone, selectLanguage, feedback, themeMode, deleteChannel, deleteMessage }
 
 enum BottomSheetType { user,
 FloatingBox,
