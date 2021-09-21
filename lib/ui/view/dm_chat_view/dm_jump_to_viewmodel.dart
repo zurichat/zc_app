@@ -11,8 +11,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:hng/general_widgets/custom_user.dart';
 
-import 'dm_jump_to_view.form.dart';
-
 class DmJumpToViewModel extends FormViewModel {
   @override
   // Future futureToRun() => fetchUsers();

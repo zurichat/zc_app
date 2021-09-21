@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/easy_container.dart';
+import 'package:hng/general_widgets/ripple.dart';
+import 'package:hng/general_widgets/svg_icon.dart';
+import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../general_widgets/easy_container.dart';

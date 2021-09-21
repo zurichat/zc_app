@@ -9,6 +9,7 @@ import 'widgets/fifth_section.dart';
 import 'widgets/first_section.dart';
 import 'widgets/fourth_section.dart';
 import 'widgets/second_section.dart';
+import 'widgets/seventh_section.dart';
 import 'widgets/sixth_section.dart';
 import 'widgets/textstyles.dart';
 import 'widgets/third_section.dart';
@@ -39,7 +40,7 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                 const FirstSection(),
 
                 GestureDetector(
-                  onTap: model.navigateToEditChannel,
+                  //onTap: model.navigateToEditChannel,
                   child: const EditButton(),
                 ),
 
@@ -79,6 +80,8 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                 ),
 
                 const SixthSection(),
+                const SeventhSection()
+
               ],
             ),
           ),
