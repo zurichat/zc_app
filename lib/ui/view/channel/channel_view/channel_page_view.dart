@@ -4,7 +4,6 @@ import 'package:hng/ui/view/channel/channel_view/widgets/custom_appbar.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/custom_row.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
-import '../../../../models/static_user_model.dart';
 import '../../../shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 
@@ -21,20 +20,6 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
   static String name = "general";
   @override
   Widget build(BuildContext context) {
-    final usermodel = [
-      StaticUserModel(
-        userName: 'Clutch',
-        joinInfo: 'Joined #$name',
-        time: '12:30pm',
-        userimg: 'assets/channel_page/female.png',
-      ),
-      StaticUserModel(
-        userName: 'Ali',
-        joinInfo: 'Joined #$name',
-        time: '12:30pm',
-        userimg: 'assets/channel_page/femaleuser.png',
-      )
-    ];
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       //this parameter allows us to reuse the view model to persist the state
@@ -113,7 +98,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
 
 Padding channelName(String text) {
   return Padding(
-    padding: const EdgeInsets.only(left: 10, top: 200),
+    padding: const EdgeInsets.only(left: 10, top: 80),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -166,8 +151,7 @@ sendMessageArea(name, editorController) {
           child: TextField(
             controller: editorController,
             decoration: InputDecoration.collapsed(
-              //border: InputBorder.,
-              hintText: 'Message #$name',
+              hintText: 'Message #${ChannelPageView.name}',
               hintStyle: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,

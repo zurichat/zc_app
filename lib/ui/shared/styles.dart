@@ -90,6 +90,13 @@ class AppTextStyles {
     color: AppColors.whiteColor,
     fontSize: 12,
   );
+
+  static TextStyle lastSeen = GoogleFonts.lato(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.greyColor,
+  );
+
   static TextStyle subtitle = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     color: AppColors.greyColor,
@@ -99,6 +106,11 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.greyColor,
     fontSize: 14,
+  );
+  static TextStyle normal = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.blackColor,
+    fontSize: 16,
   );
   static TextStyle fileName = GoogleFonts.lato(
     fontWeight: FontWeight.w700,

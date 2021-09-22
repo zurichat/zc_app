@@ -9,9 +9,17 @@ enum DialogType {
   deleteMessage
 }
 
+enum ChannelType { private, public, personal }
+
+enum CustomUserProfileButtonType { normal, icon }
+
+enum ThreadCardType { threadMain, threadDetail, threadPost }
+
 enum BottomSheetType {
   user,
+  emojiPicker,
   FloatingBox,
+  threadOptions,
 }
 
 enum HomeListType {
