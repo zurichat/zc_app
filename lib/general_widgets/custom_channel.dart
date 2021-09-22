@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/text_styles.dart';
 
 class CustomChannel extends StatelessWidget {
   final String? text;
@@ -24,13 +22,17 @@ class CustomChannel extends StatelessWidget {
             child: Row(
               children: [
                 Text('#',
-                    style: AppTextStyles.heading7,// textfont in here won't scale to different screens
+                    // style: AppTextStyles.heading7,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.sp,
+                    )
                 ),
                 SizedBox(width: 21.33.w),
                 Text(
-                  '$text',
+                  text!,
                   // style: ZuriTextStyle.mediumBold(),
-                  style: AppTextStyles.fileName, // textfont in here won't scale to different screens
+                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
               ],
             ),

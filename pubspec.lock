@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "22.0.0"
+    version: "26.0.0"
   analyzer:
     dependency: "direct main"
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.2"
+    version: "2.3.0"
   archive:
     dependency: transitive
     description:
@@ -239,6 +239,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  emoji_picker_flutter:
+    dependency: "direct main"
+    description:
+      name: emoji_picker_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.7"
   fake_async:
     dependency: transitive
     description:
@@ -301,7 +308,7 @@ packages:
     source: hosted
     version: "1.10.0"
   flutter_hooks:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_hooks
       url: "https://pub.dartlang.org"
@@ -825,7 +832,7 @@ packages:
       name: stacked_generator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.8"
+    version: "0.5.2"
   stacked_hooks:
     dependency: "direct main"
     description:
