@@ -11,6 +11,7 @@ import 'package:stacked_services/stacked_services.dart';
 class EditChannelViewModel extends BaseViewModel {
   //final _apiService = locator<ChannelApiService>();
   //final storage = locator<SharedPreferenceLocalStorage>();
+  // final
   final navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
