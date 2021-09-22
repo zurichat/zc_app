@@ -9,17 +9,6 @@ import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-void setupBottomSheetUi2() {
-  final bottomSheetService = locator<BottomSheetService>();
-
-  final builders = {
-    BottomSheetType.FloatingBox: (context, sheetRequest, completer) =>
-        FloatingBoxBottomSheet(request: sheetRequest, completer: completer)
-  };
-
-  bottomSheetService.setCustomSheetBuilders(builders);
-}
-
 class FloatingBoxBottomSheet extends StatelessWidget {
   final SheetRequest? request;
   final Function(SheetResponse)? completer;

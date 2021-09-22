@@ -17,32 +17,37 @@ import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
 
 class ThreadTextAndIcon extends StatelessWidget {
-  const ThreadTextAndIcon({Key? key}) : super(key: key);
+  const ThreadTextAndIcon({Key? key, required this.onTap}) : super(key: key);
 
+  final Function() onTap;
   @override
   Widget build(BuildContext context) {
     return _TextAndIcon(
       text: 'Threads',
       unread: true,
+
+      onTap: onTap,
+
       onTap: () {
         //TODO threads screen
         // Navigate to threads screen
       },
+
       icon: SvgIcon(svgIcon: SvgAssets.threads),
     );
   }
 }
 
-class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+class AddChannelsTextAndIcon extends StatelessWidget {
   const AddChannelsTextAndIcon({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, vmodel) {
+  Widget build(BuildContext context) {
     return _TextAndIcon(
       text: 'Add channels',
       unread: false,
       onTap: () {
-        vmodel.navigateToNewChannel();
+        // Navigate to add channels screens
       },
       icon: SvgIcon(
         svgIcon: SvgAssets.addChannels,
