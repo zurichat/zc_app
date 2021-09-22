@@ -48,6 +48,7 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/start_dm/start_dm_view.dart';
 import '../ui/view/user_search/user_search_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
@@ -104,6 +105,7 @@ class Routes {
   static const String userSearchView = '/user-search-view';
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
+  static const String startDmView = '/start-dm-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -150,6 +152,7 @@ class Routes {
     userSearchView,
     editChannelPageView,
     workspaceUrlView,
+    startDmView,
   };
 }
 
@@ -203,6 +206,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.userSearchView, page: UserSearchView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
+    RouteDef(Routes.startDmView, page: StartDmView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -511,6 +515,15 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    StartDmView: (data) {
+      var args = data.getArgs<StartDmViewArguments>(
+        orElse: () => StartDmViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => StartDmView(key: args.key),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -583,4 +596,10 @@ class CreateWorkSpaceArguments {
   final Key? key;
   final WorkspaceSwitchMethod method;
   CreateWorkSpaceArguments({this.key, required this.method});
+}
+
+/// StartDmView arguments holder class
+class StartDmViewArguments {
+  final Key? key;
+  StartDmViewArguments({this.key});
 }

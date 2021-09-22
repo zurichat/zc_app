@@ -1,4 +1,5 @@
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
+import 'package:hng/ui/view/start_dm/start_dm_view.dart';
 import 'package:hng/ui/view/user_search/user_search_view.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
@@ -102,6 +103,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: UserSearchView),
     MaterialRoute(page: EditChannelPageView),
     MaterialRoute(page: WorkspaceUrlView),
+    MaterialRoute(page: StartDmView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

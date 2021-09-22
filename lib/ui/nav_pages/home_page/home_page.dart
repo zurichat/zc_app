@@ -19,7 +19,6 @@ import 'widgets/home_expanded.dart';
 import 'widgets/home_list_items.dart';
 import 'widgets/home_topbar.dart';
 
-
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -36,30 +35,29 @@ class HomePage extends StatelessWidget {
           ),
           model.isBusy
               ? LinearProgressIndicator(
-            backgroundColor: Colors.grey[400],
-            valueColor:
-            const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
-          )
+                  backgroundColor: Colors.grey[400],
+                  valueColor:
+                      const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
+                )
               : Container(),
           Expanded(
             child: body(model),
+          ),
+          
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.bottomRight ,
+              child: FloatingActionButton(
+                  onPressed: model.navigateToStartDMScreen,
+                  child: const Icon(
+                    Icons.open_in_new_outlined,
+                    color: AppColors.whiteColor,
+                  )),
+            ),
           )
         ],
       ),
-
-      floatingActionButton: FloatingActionButton(
-          onPressed: vmodel.navigateToStartDMScreen,
-          child: const Icon(
-            Icons.open_in_new_outlined,
-            color: AppColors.whiteColor,
-          ),
-          Expanded(
-            child: body(vmodel),
-          )
-        ],
-          backgroundColor: AppColors.zuriPrimaryColor,
-        ),
-
     );
   }
 
