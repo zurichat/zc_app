@@ -35,11 +35,11 @@ class WorkspaceUrlViewModel extends BaseViewModel {
   Future<void> signInToWorkspace() async {
     if (url != null && url!.isNotEmpty) {
       final workspace = await api.fetchWorkspaceByUrl(url!);
-      await api.joinWorkspace(workspace.id);
+      // await api.joinWorkspace(workspace.id!);
 
       //Set the organisation id to the currently signed in
       //This is the same has saving to the local storage
-      _userService.setCurrentOrganisationId(workspace.id);
+      _userService.setCurrentOrganisationId(workspace.id!);
 
       //Todo: storing should be implemented after stage 7
       // await storeWorkspaceId(workspace.id);

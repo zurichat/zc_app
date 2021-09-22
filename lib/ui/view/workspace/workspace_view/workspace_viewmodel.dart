@@ -1,15 +1,14 @@
+import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.logger.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/models/workspace_model.dart';
+import 'package:hng/package/base/server-request/workspace_request/workspace_api_service.dart';
+import 'package:hng/services/connectivity_service.dart';
+import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-import '../../../../app/app.locator.dart';
-import '../../../../app/app.router.dart';
-import '../../../../models/workspace_model.dart';
-import '../../../../package/base/server-request/workspace_request/workspace_api_service.dart';
-import '../../../../services/connectivity_service.dart';
-import '../../../../services/local_storage_services.dart';
-import '../../../../utilities/storage_keys.dart';
 
 class WorkspaceViewModel extends BaseViewModel {
   final log = getLogger('WorkspaceViewModel');
@@ -53,7 +52,12 @@ class WorkspaceViewModel extends BaseViewModel {
 
     try {
       setBusy(true);
-      workspaces = await api.getJoinedOrganizations();
+      final resFromApi = await api.getJoinedOrganizations();
+      if (resFromApi.isEmpty) {
+        workspaces = [];
+      } else {
+        workspaces = resFromApi;
+      }
       // filterWorkspace();
 
       setBusy(false);
@@ -73,33 +77,24 @@ class WorkspaceViewModel extends BaseViewModel {
     workspaces.retainWhere((e) => ids.any((id) => id == e.id));
   }
 
-  Future<void> onTap(String id) async {
+  Future<void> onTap(String? id, String? name, String? url) async {
     try {
       if (id == currentOrgId) {
         navigation.replaceWith(Routes.navBarView);
         return;
       }
-      if (!await connectivityService.checkConnection()) {
-        snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.failure,
-          message: 'Check your internet connection',
-        );
-        return;
-      }
-      final workspaces = await api.fetchOrganizationInfo(id);
-      log.i(workspaces);
-      await storageService.setString(StorageKeys.currentOrgId, id);
+      await checkSnackBarConnectivity();
+
+      await storageService.setString(StorageKeys.currentOrgId, id!);
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
-        message: 'You have entered ${workspaces.name}',
+        message: 'You have entered $name',
       );
-      storageService.setString(StorageKeys.currentOrgName, workspaces.name!);
-      storageService.setString(
-          StorageKeys.currentOrgUrl, workspaces.workSpaceUrl!);
+      storageService.setString(StorageKeys.currentOrgName, name!);
+      storageService.setString(StorageKeys.currentOrgUrl, url!);
+
       navigation.replaceWith(Routes.navBarView);
-      // navigation.popRepeated(1);
     } catch (e) {
       log.i(e.toString());
       snackbar.showCustomSnackBar(
@@ -107,6 +102,17 @@ class WorkspaceViewModel extends BaseViewModel {
         variant: SnackbarType.failure,
         message: 'Error fetching Organization Info',
       );
+    }
+  }
+
+  checkSnackBarConnectivity() async {
+    if (!await connectivityService.checkConnection()) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: 'Check your internet connection',
+      );
+      return;
     }
   }
 

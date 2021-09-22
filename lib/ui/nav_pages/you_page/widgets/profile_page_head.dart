@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hng/models/user_model.dart';
+import 'package:hng/ui/shared/bottom_sheets/profile_botton_sheet/custom_user_bottom_sheet_viewmodel.dart';
 import 'package:hng/ui/shared/shared.dart';
 import '../../../../general_widgets/custom_text.dart';
 import '../../../shared/colors.dart';
-import 'package:hng/ui/shared/bottom_sheets/custom_user_bottom_sheet_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class ProfilePageHead extends StatelessWidget {

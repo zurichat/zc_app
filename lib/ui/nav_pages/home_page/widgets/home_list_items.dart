@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
 import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/general_widgets/ripple.dart';
 import 'package:hng/general_widgets/svg_icon.dart';
@@ -9,6 +7,13 @@ import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../general_widgets/easy_container.dart';
+import '../../../../general_widgets/ripple.dart';
+import '../../../../general_widgets/svg_icon.dart';
+import '../../../shared/colors.dart';
+import '../../../shared/text_styles.dart';
+import '../../../view/channel/channel_view/channel_page_view.dart';
+import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
 
 class ThreadTextAndIcon extends StatelessWidget {
@@ -20,6 +25,7 @@ class ThreadTextAndIcon extends StatelessWidget {
       text: 'Threads',
       unread: true,
       onTap: () {
+        //TODO threads screen
         // Navigate to threads screen
       },
       icon: SvgIcon(svgIcon: SvgAssets.threads),
@@ -27,16 +33,16 @@ class ThreadTextAndIcon extends StatelessWidget {
   }
 }
 
-class AddChannelsTextAndIcon extends StatelessWidget {
+class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   const AddChannelsTextAndIcon({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, vmodel) {
     return _TextAndIcon(
       text: 'Add channels',
       unread: false,
       onTap: () {
-        // Navigate to add channels screens
+        vmodel.navigateToNewChannel();
       },
       icon: SvgIcon(
         svgIcon: SvgAssets.addChannels,
@@ -53,7 +59,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   final HomeItemModel data;
   final bool? noTopPad;
 
-  DMTextAndIcon({
+  const DMTextAndIcon({
     Key? key,
     required this.data,
     this.noTopPad,
@@ -142,6 +148,7 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       icon: prefixIcon(),
       onTap: () {
         //Navigate to channels and pass the channels id
+        ChannelPageView.name = data.name ?? '';
         vmodel.navigateToChannelPage();
       },
     );
@@ -182,7 +189,7 @@ class _TextAndIcon extends StatelessWidget {
     return Ripple(
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
+        padding: const EdgeInsets.fromLTRB(0, 14, 0, 14),
         child: Row(
           children: [
             Container(
@@ -190,9 +197,7 @@ class _TextAndIcon extends StatelessWidget {
               alignment: Alignment.center,
               child: icon,
             ),
-            SizedBox(
-              width: 12,
-            ),
+            const SizedBox(width: 12),
             Text(
               text,
               style: unread

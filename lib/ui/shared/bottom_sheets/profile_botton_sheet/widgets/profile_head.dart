@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/models/user_model.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/bottom_sheets/custom_user_bottom_sheet_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+
+import '../custom_user_bottom_sheet_viewmodel.dart';
 
 class ProfileHead extends StatelessWidget {
   const ProfileHead({Key? key}) : super(key: key);

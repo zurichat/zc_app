@@ -1,8 +1,10 @@
 enum ConnectivityStatus { Wifi, Mobile, Online, Offline }
 
-enum DialogType { skinTone, selectLanguage, feedback, themeMode }
+enum DialogType { skinTone, selectLanguage, feedback, themeMode, deleteChannel, deleteMessage }
 
-enum BottomSheetType { user }
+enum BottomSheetType { user,
+FloatingBox,
+}
 
 enum HomeListType {
   unreads,
@@ -15,6 +17,7 @@ enum WorkspaceSwitchMethod {
   SignIn,
   Join,
 }
+
 
 /// The type of snackbar to show
 enum SnackbarType {

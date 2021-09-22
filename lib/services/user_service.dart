@@ -12,6 +12,8 @@ class UserService {
 
   //All this are the current user details to be used
   String _currentOrgId = '';
+  String _currentOrgUrl = '';
+  String _currentOrgName = '';
   String _authToken = '';
   String _userId = '';
   String _userEmail = '';
@@ -25,6 +27,22 @@ class UserService {
     _currentOrgId = _sharedPrefs.getString(StorageKeys.currentOrgId) ?? '';
     //You can perform other function before returning
     return _currentOrgId;
+  }
+
+  String get currentOrgName {
+    _currentOrgName = _sharedPrefs.getString(StorageKeys.currentOrgName) ?? '';
+    //You can perform other function before returning
+    return _currentOrgName;
+  }
+
+  String get currentOrgUrl {
+    _currentOrgUrl = _sharedPrefs.getString(StorageKeys.currentOrgUrl) ?? '';
+    //You can perform other function before returning
+    return _currentOrgUrl;
+  }
+
+  setOrganisation() {
+    // Todo implement organisation setter
   }
 
   ///From the organisation side bar set the current organissation Id
