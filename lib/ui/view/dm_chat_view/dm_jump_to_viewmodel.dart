@@ -6,12 +6,10 @@ import 'package:hng/models/user_search_model.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:hng/general_widgets/custom_user.dart';
 
-class DmJumpToViewModel extends StreamViewModel {
+class DmJumpToViewModel extends FormViewModel {
   final navigation = locator<NavigationService>();
   final log = getLogger('DmJumpToViewModel');
   static final storageService = locator<SharedPreferenceLocalStorage>();
@@ -21,13 +19,13 @@ class DmJumpToViewModel extends StreamViewModel {
   List<ChannelsSearch> joinedChannelsSearch = [];
   List<ChannelsSearch> allChannelsSearch = [];
 
-  @override
-  // Future futureToRun() => fetchUsers();
+  // @override
+  // // Future futureToRun() => fetchUsers();
 
-  @override
-  Stream get stream => checkConnectivity();
+  // @override
+  // Stream get stream => checkConnectivity();
 
-  // @override void setFormStatus() {}
+  @override void setFormStatus() {}
 
   navigateBack() {
     navigation.back();
