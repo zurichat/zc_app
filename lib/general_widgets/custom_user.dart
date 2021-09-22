@@ -13,14 +13,13 @@ class CustomUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(411, 823),
-      builder: () => InkWell(
+    return InkWell(
         onTap: () {},
         child: Container(
           width: 48.w,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 height: 48.h,
@@ -29,7 +28,7 @@ class CustomUser extends StatelessWidget {
                     image: DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage(
-                          '$image',
+                          image!,
                         ))),
               ),
               SizedBox(
@@ -38,7 +37,7 @@ class CustomUser extends StatelessWidget {
               Container(
                   height: 32.h,
                   child: Text(
-                    '$text',
+                    text!,
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -46,7 +45,7 @@ class CustomUser extends StatelessWidget {
               )
             ],
           ),
-        ),
+    
       ),
     );
   }
