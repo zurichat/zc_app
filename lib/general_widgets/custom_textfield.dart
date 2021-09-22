@@ -11,10 +11,16 @@ class CustomTextField extends StatelessWidget {
     required this.obscureText,
     this.labelText,
     this.hintText,
+    this.validator,
+    this.autovalidateMode,
+    this.onchanged,
   }) : super(key: key);
   final keyboardType;
   final inputAction;
   final controller;
+  final validator;
+  final autovalidateMode;
+  final onchanged;
 
   final bool? autoCorrect;
   final bool? obscureText;
@@ -23,7 +29,10 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      onChanged: onchanged,
+      autovalidateMode: autovalidateMode,
+      validator: validator,
       controller: controller,
       keyboardType: keyboardType,
       textInputAction: inputAction,
@@ -37,7 +46,7 @@ class CustomTextField extends StatelessWidget {
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(3.0)),
         ),
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
           borderSide: BorderSide(
             color: AppColors.zuriPrimaryColor,
