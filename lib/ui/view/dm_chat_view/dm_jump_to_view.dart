@@ -21,6 +21,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
       onModelReady: (model) {
         // listenToFormUpdated(model);
         model.fetchUsers();
+        model.fetchChannels();
       },
       disposeViewModel: false,
       viewModelBuilder: () => DmJumpToViewModel(),
@@ -116,8 +117,8 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                           child: Text(
                                             model.userSearch[i].username!,
                                             textAlign: TextAlign.center,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.fade,
                                           )),
                                     ],
                                   ),
@@ -146,18 +147,18 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                             separatorBuilder:
                                 (BuildContext context, int index) =>
                                     SizedBox(height: 22.h),
-                            itemBuilder: (context, index) {
+                            itemBuilder: (context, i) {
                               return Row(
                                 children: [
                                   Text('#',
-                                      // style: AppTextStyles.heading7,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20.sp,
                                       )),
                                   SizedBox(width: 21.33.w),
                                   Text(
-                                    model.userSearch[index].username!,
+                                    model.allChannelsSearch[i].name ??
+                                        'Channel name',
                                     // style: ZuriTextStyle.mediumBold(),
                                     style: TextStyle(
                                         fontSize: 14.sp,
@@ -167,7 +168,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                               );
                             },
                             scrollDirection: Axis.vertical,
-                            itemCount: model.userSearch.length,
+                            itemCount: model.allChannelsSearch.length,
                           ),
                         ],
                       ),

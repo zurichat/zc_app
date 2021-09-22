@@ -55,22 +55,28 @@ class DmJumpToViewModel extends StreamViewModel {
     yield await connectivityService.checkConnection();
   }
 
+  Future<List<ChannelsSearch>?>? fetchChannels() async {
+    try {
+      setBusy(true);
+      allChannelsSearch = (await api.allChannelsList());
+      setBusy(false);
+      notifyListeners();
+      return allChannelsSearch;
+    } catch (e) {
+      log.e("Model channels error - $e");
+    }
+  }
+
   Future<List<NewUser>?>? fetchUsers() async {
     try {
       setBusy(true);
       userSearch = (await api.fetchList());
-      // joinedChannelsSearch = await api.joinedChannelsList();
-      // allChannelsSearch = await api.allChannelsList();
       setBusy(false);
       notifyListeners();
       return userSearch;
     } catch (e) {
-      log.e("Model Error - ${e.toString()}");
+      log.e("Model users Error - ${e.toString()}");
       AppToast.instance.error(null, 'Error Occured');
     }
   }
-
- 
 }
-
-
