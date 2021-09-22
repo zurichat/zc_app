@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/view/channel/edit_channel/editChannelViewModel.dart';
 
 class TextBox extends StatelessWidget {
   final String hint;
-  final EditChannelViewModel model;
+  final TextEditingController controller;
+
   TextBox({
     Key? key,
     required this.hint,
-    required this.model,
+    required this.controller,
   });
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class TextBox extends StatelessWidget {
       height: 192,
       child: TextField(
         //maxLines: 9,
-        controller: hint == 'Add a topic' ? model.topic : model.description,
+        controller: controller,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: hint,
