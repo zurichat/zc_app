@@ -15,6 +15,7 @@ class ChannelsApiService {
 
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
+  int currentChannelId = 0;
 
   ///Call `onChange.sink.add` whenever you delete or create a channel to
   ///Add or Remove the channels from the home page
@@ -83,27 +84,26 @@ class ChannelsApiService {
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
 
-//Delete Channels
-  Future<void> deleteChannels({
-    required String name,
-  }) async {
+  //Delete Channels
+  // https://channels.zuri.chat/api/v1/{org_id}/channels/{channel_id}/
+  Future<bool> deleteChannels() async {
     final orgId = _userService.currentOrgId;
     try {
       final res = await _api.delete(
-        'v1/$orgId/channels/',
-        data: {
-          'name': name,
-        },
+        'v1/$orgId/channels/$currentChannelId',
         headers: {'Authorization': 'Bearer $token'},
       );
 
       log.i(res?.data.toString());
 
       if (res?.statusCode == 204) {
-      // joinedChannels.removeAt(token);
+        onChange.add('channel deleted');
+        return true;
       }
     } on Exception catch (e) {
       log.e(e.toString());
     }
+
+    return false;
   }
 }

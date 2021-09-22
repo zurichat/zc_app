@@ -148,6 +148,9 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       icon: prefixIcon(),
       onTap: () {
         //Navigate to channels and pass the channels id
+
+        //for deleting the current channel
+        vmodel.channelsApiService.currentChannelId = data.id ?? 0;
         ChannelPageView.name = data.name ?? '';
         vmodel.navigateToChannelPage();
       },
