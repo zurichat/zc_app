@@ -36,7 +36,7 @@ class HomePageViewModel extends StreamViewModel {
     yield await connectivityService.checkConnection();
   }
 
-  ChannelsApiService get channelsApiService => channelsApiService;
+  ChannelsApiService get channelsApiService => _channelsApiService;
 
   @override
   Stream get stream => checkConnectivity();
@@ -83,7 +83,7 @@ class HomePageViewModel extends StreamViewModel {
         type: HomeItemType.channels,
         unreadCount: 0,
         name: data['name'],
-        id: data['id'],
+        id: data['_id'],
         public: data['private'] != "True",
         membersCount: data['members'],
       ));

@@ -5,7 +5,7 @@ class HomeItemModel {
   final log = getLogger('HomeItemModel');
   int? unreadCount = 0;
   String? name;
-  int? id;
+  String? id;
   int? membersCount;
   bool public;
 

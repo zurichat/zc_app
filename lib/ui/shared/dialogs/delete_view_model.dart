@@ -26,7 +26,7 @@ class DeleteChannelDialogViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.success,
-          message: 'Channels deleted succesful');
+          message: 'Channel deleted succesfully');
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),

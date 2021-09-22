@@ -15,7 +15,7 @@ class ChannelsApiService {
 
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
-  int currentChannelId = 0;
+  String currentChannelId = '';
 
   ///Call `onChange.sink.add` whenever you delete or create a channel to
   ///Add or Remove the channels from the home page
@@ -90,7 +90,7 @@ class ChannelsApiService {
     final orgId = _userService.currentOrgId;
     try {
       final res = await _api.delete(
-        'v1/$orgId/channels/$currentChannelId',
+        'v1/$orgId/channels/$currentChannelId/',
         headers: {'Authorization': 'Bearer $token'},
       );
 
