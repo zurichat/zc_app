@@ -34,6 +34,7 @@ mixin $ChannelPageView on StatelessWidget {
     // The dispose function for a TextEditingController sets all listeners to null
 
     editorController.dispose();
+    editorFocusNode.dispose();
   }
 }
 
