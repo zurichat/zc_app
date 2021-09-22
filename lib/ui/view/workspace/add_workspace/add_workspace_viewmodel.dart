@@ -10,9 +10,6 @@ class AddWorkSpaceViewModel extends BaseViewModel {
   void navigateToJoinWorkspace(WorkspaceSwitchMethod method) {
     navigation.navigateTo(
       Routes.createWorkSpace,
-      arguments: CreateWorkSpaceArguments(
-        method: method,
-      ),
     );
   }
 }

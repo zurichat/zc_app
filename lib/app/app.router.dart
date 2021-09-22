@@ -209,8 +209,6 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.draftView, page: DraftView),
     RouteDef(Routes.threadsView, page: ThreadsView),
     RouteDef(Routes.threadDetailView, page: ThreadDetailView),
-    RouteDef(Routes.channelPageView, page: ChannelPageView),
-    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.userSearchView, page: UserSearchView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
@@ -505,25 +503,17 @@ class StackedRouter extends RouterBase {
       );
     },
     ThreadsView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const ThreadsView(),
         settings: data,
       );
     },
     ThreadDetailView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const ThreadDetailView(),
         settings: data,
       );
     },
-    EditChannelPageView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const EditChannelPageView(),
-        settings: data,
-      );
-    },
-    WorkspaceUrlView: (data) {
-      return MaterialPageRoute<dynamic>(
     UserSearchView: (data) {
       return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const UserSearchView(),

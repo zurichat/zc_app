@@ -58,7 +58,7 @@ class DmJumpToViewModel extends StreamViewModel {
   Future<List<ChannelsSearch>?>? fetchChannels() async {
     try {
       setBusy(true);
-      allChannelsSearch = (await api.allChannelsList());
+      allChannelsSearch = await api.allChannelsList();
       setBusy(false);
       notifyListeners();
       return allChannelsSearch;

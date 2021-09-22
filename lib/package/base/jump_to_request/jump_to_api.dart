@@ -29,9 +29,9 @@ class JumpToApi {
   Future<List<ChannelsSearch>> allChannelsList() async {
     try {
       final res = await _channelsApi.get(allChannelsPath, headers: headers);
-      final channels = res?.data['data'];
+      final channels = res?.data;
       return (channels)
-          .map((e) => ChannelsSearch.fromJson(e))
+          .map<ChannelsSearch>((e) => ChannelsSearch.fromJson(e))
           .toList();
     } on DioError catch (e) {
       log.e("API All channels error $e");
