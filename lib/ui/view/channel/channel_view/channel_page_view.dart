@@ -22,13 +22,14 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       //this parameter allows us to reuse the view model to persist the state
-      disposeViewModel: false,
+      //disposeViewModel: false,
       //initialise the view model only once
-      initialiseSpecialViewModelsOnce: true,
+//      initialiseSpecialViewModelsOnce: true,
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: appBar("#$name", viewModel.navigateToChannelInfo,
+          appBar: appBar('#teamsocrates', viewModel.navigateToChannelInfo,
+//           appBar: appBar("#$name", viewModel.navigateToChannelInfo,
               '128 members', context),
           body: SingleChildScrollView(
             physics: BouncingScrollPhysics(),

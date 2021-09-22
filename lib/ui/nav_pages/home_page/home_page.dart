@@ -4,11 +4,21 @@ import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
+import 'package:hng/ui/shared/text_field.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/search_bar.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../general_widgets/easy_container.dart';
+import '../../../utilities/constants.dart';
+import '../../shared/colors.dart';
+import '../../shared/text_styles.dart';
+import 'home_page_viewmodel.dart';
+import 'widgets/home_expanded.dart';
+import 'widgets/home_list_items.dart';
+import 'widgets/home_topbar.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -16,7 +26,6 @@ class HomePage extends StatelessWidget {
     return ViewModelBuilder<HomePageViewModel>.reactive(
       onModelReady: (model) {
         model.getDmAndChannelsList();
-        model.listenToChannelsChange();
       },
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, model, child) => Column(
@@ -24,13 +33,15 @@ class HomePage extends StatelessWidget {
           const HomePageTopBar(
             organizationName: 'Zuri Workspace',
           ),
+
           model.isBusy
               ? LinearProgressIndicator(
-                  backgroundColor: Colors.grey[400],
-                  valueColor:
-                      const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
-                )
+            backgroundColor: Colors.grey[400],
+            valueColor:
+            const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
+          )
               : Container(),
+
           Expanded(
             child: body(model),
           )
@@ -44,17 +55,16 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 15),
-          searchBar(),
+          JumpToSearchBar(onTap: () => model.navigateToJumpToScreen()),
           const Padding(
             padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
           ),
           SizedBox(height: 15),
-          JumpToSearchBar(
-            onTap: () => model.navigateToJumpToScreen(),
-          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
-            child: ThreadTextAndIcon(),
+            child: ThreadTextAndIcon(
+              onTap: vmodel.navigateToThreads,
+            ),
           ),
           const Divider(),
           HomeExpandedList(

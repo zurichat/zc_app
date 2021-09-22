@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/bottom_sheets/edit_message_bottom_sheet/setupBottomSheetUi.dart';
 import 'package:hng/ui/shared/setup_bottom_sheet_ui.dart';
 import 'package:hng/ui/shared/setup_dialog_ui.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -15,9 +14,9 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ThemeManager.initialise();
   await setupLocator();
-  setupBottomSheetUi();
-  setupBottomSheetUi2();
+
   setupDialogUi();
+  setupBottomSheetUi();
   AppSnackBar.setupSnackbarUi();
   runApp(MyApp());
 }
