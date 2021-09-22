@@ -7,9 +7,12 @@ import 'package:stacked_services/stacked_services.dart';
 
 class ChannelPageViewModel extends BaseViewModel {
 
-    final navigator = locator<NavigationService>();
+    //final navigator = locator<NavigationService>();
+    final _navigationService = locator<NavigationService>();
 
-   navigateToChannelInfoScreen(int numberOfMembers, List<ChannelMembermodel> channelMembers,ChannelModel channelDetail) {
+   navigateToChannelInfoScreen(int numberOfMembers, List<ChannelMembermodel> channelMembers,
+   
+   ChannelModel channelDetail) {
     
     NavigationService().navigateTo(Routes.channelInfoView,arguments: ChannelInfoViewArguments(
       numberOfMembers: numberOfMembers, channelMembers: channelMembers,channelDetail: channelDetail));
@@ -19,5 +22,14 @@ class ChannelPageViewModel extends BaseViewModel {
 
   void goBack() {
     NavigationService().back();
+  
+}
+  // navigateToChannelInfo() {
+  //   _navigationService.navigateTo(Routes.channelInfoView);
+  // }
+
+  navigateToAddPeople() {
+    _navigationService.navigateTo(Routes.addPeopleView);
   }
+
 }

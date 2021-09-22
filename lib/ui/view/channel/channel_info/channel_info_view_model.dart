@@ -12,14 +12,24 @@ import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../../app/app.locator.dart';
+import '../../../../app/app.router.dart';
+
 class ChannelInfoViewModel extends BaseViewModel {
-  final navigator = locator<NavigationService>();
+  final _navigationService = locator<NavigationService>();
 
 
 
-  void navigateToMembersList(List<ChannelMembermodel> members, ChannelModel channelDetail) {
+  navigateToMembersList(List<ChannelMembermodel> members, 
+  
+  ChannelModel channelDetail
+  ) {
     //NavigationService.navigateTo(Routes.cha)
-    navigator.navigateToView(ChannelMembersList(channelMembers: members,channelDetail:channelDetail,));
+    _navigationService.navigateToView(ChannelMembersList(channelMembers: members,channelDetail:channelDetail,));
   }
+  void navigateToEditChannel() {
+    _navigationService.navigateTo(Routes.editChannelPageView);
+  }
+
 }
 

@@ -42,6 +42,7 @@ ChannelModel get channel=>_channel!;
       }
       setBusy(true);
       _channelsList= await api.fetchChannel();   
+      print("chan $_channelsList");
       setBusy(false);
       
     } catch (e) {
@@ -71,7 +72,10 @@ ChannelModel get channel=>_channel!;
       setBusy(false);
 NavigationService().navigateTo(Routes.channelPageView,arguments: ChannelPageViewArguments(
   channelDetail: _channel!,channelMembers: _membersList));
-    }catch (e) {
+    }on  Exception catch(e){
+     print("C $e");
+   }
+    catch (e) {
       print(e.toString());
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),

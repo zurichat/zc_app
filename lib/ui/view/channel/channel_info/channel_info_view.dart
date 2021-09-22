@@ -43,7 +43,10 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
               children: [
                  FirstSection(channelName: widget.channelDetail.name),
 
-                const EditButton(),
+                GestureDetector(
+                  onTap: model.navigateToEditChannel,
+                  child: const EditButton(),
+                ),
 
                 const SecondSection(),
 
@@ -56,7 +59,8 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                     )),
 //Third Section
 
-                ThirdSection(goToMembersListScreen:(){
+                ThirdSection(
+                  goToMembersListScreen:(){
 model.navigateToMembersList(widget.channelMembers,widget.channelDetail);
                 }  ,
                 membersNumber: widget.numberOfMembers

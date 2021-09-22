@@ -28,6 +28,6 @@ const dummyUserImage = 'assets/background/bga.png';
 
 const double zSideMargin = 16;
 
-const channelsBaseUrl = 'https://channels.zuri.chat/';
+const channelsBaseUrl = 'https://channels.zuri.chat/api/';
 const dmsBaseUrl = 'https://dm.zuri.chat/';
 const coreBaseUrl = 'https://api.zuri.chat/';

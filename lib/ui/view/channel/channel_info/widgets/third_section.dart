@@ -10,7 +10,8 @@ import 'textstyles.dart';
 class ThirdSection extends StatelessWidget {
    Function goToMembersListScreen;
     final int  membersNumber;
-   ThirdSection({required this.goToMembersListScreen,
+   ThirdSection({
+     required this.goToMembersListScreen,
    required this.membersNumber
    });
 
@@ -47,7 +48,9 @@ class ThirdSection extends StatelessWidget {
                   ),
                   child: GestureDetector(
                     onTap: () {
+                      
                       goToMembersListScreen();
+                      // model.navigatoToMembersList();
                     },
                     child: Text(
                       "$membersNumber members",
