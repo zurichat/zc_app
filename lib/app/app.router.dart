@@ -548,7 +548,6 @@ class StackedRouter extends RouterBase {
 /// ************************************************************************
 /// Arguments holder classes
 /// *************************************************************************
-
 /// LoginView arguments holder class
 class LoginViewArguments {
   final Key? key;
