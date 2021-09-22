@@ -55,7 +55,8 @@ class YouPageViewModel extends BaseViewModel {
     log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
   }
 
-  void showProfileSheet() => Get.bottomSheet(CustomUserBottomSheetView());
+  void showProfileSheet() =>
+      Get.bottomSheet(CustomUserBottomSheetView(), isScrollControlled: true);
 
   Future viewNotifications() async {
     await _navigationService.navigateTo(Routes.notificationsView);
