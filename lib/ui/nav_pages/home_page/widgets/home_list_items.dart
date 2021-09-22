@@ -25,14 +25,7 @@ class ThreadTextAndIcon extends StatelessWidget {
     return _TextAndIcon(
       text: 'Threads',
       unread: true,
-
       onTap: onTap,
-
-      onTap: () {
-        //TODO threads screen
-        // Navigate to threads screen
-      },
-
       icon: SvgIcon(svgIcon: SvgAssets.threads),
     );
   }

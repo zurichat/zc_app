@@ -33,15 +33,13 @@ class HomePage extends StatelessWidget {
           const HomePageTopBar(
             organizationName: 'Zuri Workspace',
           ),
-
           model.isBusy
               ? LinearProgressIndicator(
-            backgroundColor: Colors.grey[400],
-            valueColor:
-            const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
-          )
+                  backgroundColor: Colors.grey[400],
+                  valueColor:
+                      const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
+                )
               : Container(),
-
           Expanded(
             child: body(model),
           )
@@ -63,7 +61,7 @@ class HomePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(
-              onTap: vmodel.navigateToThreads,
+              onTap: model.navigateToThreads,
             ),
           ),
           const Divider(),
