@@ -35,7 +35,7 @@ class DmJumpToViewModel extends FormViewModel {
   void _onChanged() => (value) {
         if (value.isNotEmpty) {
           allChannelsSearch = allChannelsSearch
-              .where((u) => (u.name.toString().contains(
+              .where((channels) => (channels.name.toString().contains(
                     value.toLowerCase(),
                   )))
               .toList();
