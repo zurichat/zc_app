@@ -14,8 +14,9 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ThemeManager.initialise();
   await setupLocator();
-  setupBottomSheetUi();
+
   setupDialogUi();
+  setupBottomSheetUi();
   AppSnackBar.setupSnackbarUi();
   runApp(MyApp());
 }

@@ -2,27 +2,35 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
+//import 'package:hng/ui/view/channel/channel_view/channel_page_view.form.dart';
+import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
-import '../../../../app/app.locator.dart';
-import '../../../../app/app.router.dart';
-import '../../../../models/static_user_model.dart';
-import '../../../shared/colors.dart';
-import '../../../shared/shared.dart';
+import 'package:stacked/stacked_annotations.dart';
 
-import 'channel_page_viewmodel.dart';
+@FormView(
+  fields: [
+    FormTextField(name: 'editor'),
+  ],
+)
+// class ChannelPageView extends StatelessWidget with $ChannelPageView {
+//   ChannelPageView({Key? key}) : super(key: key);
 
 class ChannelPageView extends StatelessWidget {
   ChannelModel channelDetail;
   List <ChannelMembermodel>channelMembers;
 ChannelPageView({required this.channelDetail,required this.channelMembers});
+  static String name = "general";
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
+      onModelReady: (model) => listenToFormUpdated(model),
       //this parameter allows us to reuse the view model to persist the state
-      disposeViewModel: false,
+      //disposeViewModel: false,
       //initialise the view model only once
-      initialiseSpecialViewModelsOnce: true,
+//      initialiseSpecialViewModelsOnce: true,
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
@@ -32,7 +40,7 @@ viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,chann
           } 
             ),
           body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
+            physics: BouncingScrollPhysics(),
             child: Column(
               children: [
                 Column(
@@ -43,13 +51,13 @@ viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,chann
                 Row(
                   children: [
                     Expanded(
-                      child: channelInfo('@mark', '''
- created this channel on August 12, 2021. This is the very beginning of the #teamsocrates channel.'''),
+                      child: channelInfo('@mark',
+                          ' created this channel on August 12, 2021. This is the very beginning of the #$name channel.'),
                     ),
                   ],
                 ),
                 const SizedBox(height: 20),
-                row(),
+                row(viewModel.navigateToAddPeople),
                 const SizedBox(height: 20),
                 dateBuilder(context),
                 const SizedBox(height: 7),
@@ -58,7 +66,7 @@ viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,chann
                   title: Row(
                     children: [
                       const Text(
-                        'Clutch',
+                        'Naza',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
@@ -76,9 +84,9 @@ viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,chann
                       ),
                     ],
                   ),
-                  subtitle: const Text('Joined #teamsocrates'),
+                  subtitle: Text('joined #$name'),
                 ),
-                ListTile(
+                /* ListTile(
                   leading: Image.asset('assets/channel_page/femaleuser.png'),
                   title: Row(
                     children: [
@@ -101,12 +109,44 @@ viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,chann
                       ),
                     ],
                   ),
-                  subtitle: const Text('Joined #teamsocrates'),
+                  subtitle: Text('Joined #$name'),
+                ), */
+              ],
+            ),
+          ),
+          bottomSheet: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            height: 70,
+            color: Colors.white,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    controller: editorController,
+                    decoration: InputDecoration.collapsed(
+                      hintText: 'Message #$name',
+                      hintStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.greyishColor,
+                      ),
+                    ),
+                    // textCapitalization: TextCapitalization.sentences,
+                  ),
+                ),
+                /* const ImageIcon(AssetImage('assets/channel_page/light.png')),
+                const SizedBox(width: 22),
+                const Icon(CupertinoIcons.camera),
+                const SizedBox(width: 22),
+                const ImageIcon(AssetImage('assets/channel_page/attach.png')), */
+                IconButton(
+                  icon: Icon(Icons.send),
+                  color: AppColors.greyishColor,
+                  onPressed: () {},
                 ),
               ],
             ),
           ),
-          bottomSheet: sendMessageArea(),
         );
       },
     );
@@ -143,7 +183,7 @@ Function backNavigation,Function infoNavigation, ) {
             ),
           ],
         ),
-        const SizedBox(height: 10),
+        // const SizedBox(height: 10),
         Row(
           children: [
             Text(
@@ -191,7 +231,7 @@ Function backNavigation,Function infoNavigation, ) {
 
 Padding channelName(String text) {
   return Padding(
-    padding: const EdgeInsets.only(left: 10, top: 200),
+    padding: const EdgeInsets.only(left: 10, top: 80),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -254,12 +294,22 @@ Row row() {
     children: [
       Column(
         children: [
-          GestureDetector(
+          InkWell(
             onTap: () {},
-            child: const CircleAvatar(
-                radius: 30,
-                backgroundColor: AppColors.lightGreen,
-                child: ImageIcon(AssetImage('assets/channel_page/edit.png'))),
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: AppColors.zuriPrimaryColor,
+                    width: 1.28,
+                  )),
+              child: ImageIcon(AssetImage('assets/channel_page/edit.png'),
+                  color: AppColors.zuriPrimaryColor),
+              height: 60.0,
+              width: 60.0,
+            ),
           ),
           const SizedBox(height: 5),
           const Text(
@@ -274,15 +324,23 @@ Row row() {
       const SizedBox(width: 30),
       Column(
         children: [
-          GestureDetector(
-            onTap: () => navigator.navigateTo(Routes.addPeopleView),
-            child: const CircleAvatar(
-              radius: 30,
-              backgroundColor: AppColors.lightGreen,
+          InkWell(
+            onTap: pressed,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: AppColors.zuriPrimaryColor,
+                    width: 1.28,
+                  )),
               child: Icon(
-                Icons.person_add_alt_1_sharp,
-                color: AppColors.greyishColor,
+                Icons.person_add_alt_1_outlined,
+                color: AppColors.zuriPrimaryColor,
               ),
+              height: 60.0,
+              width: 60.0,
             ),
           ),
           const SizedBox(height: 5),
@@ -299,17 +357,17 @@ Row row() {
   );
 }
 
-sendMessageArea() {
+/* sendMessageArea() {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 8),
     height: 70,
     color: Colors.white,
     child: Row(
       children: <Widget>[
-        const Expanded(
+        Expanded(
           child: TextField(
             decoration: InputDecoration.collapsed(
-              hintText: 'Message #teamsocrates',
+              hintText: 'Message #${ChannelPageView.name}',
               hintStyle: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -327,7 +385,7 @@ sendMessageArea() {
       ],
     ),
   );
-}
+} */
 
 dateBuilder(BuildContext context) {
   return Row(children: <Widget>[
