@@ -14,12 +14,20 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
   final _storage = locator<SharedPreferenceLocalStorage>();
   final _apiService = HttpApiService(coreBaseUrl);
   UserModel? _userModel;
+  bool cleared = false;
 
   void navigateToSetStatus() =>
       _navigationService.navigateTo(Routes.setStatusView);
 
   void navigateToEditProfile() =>
       _navigationService.navigateTo(Routes.editProfileView);
+
+  void navigateToDm() => _navigationService.navigateTo(Routes.dmUserView);
+
+  void clear() {
+    cleared = true;
+    notifyListeners();
+  }
 
   @override
   Future<void> futureToRun() async {

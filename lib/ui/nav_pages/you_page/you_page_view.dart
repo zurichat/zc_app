@@ -69,7 +69,7 @@ class YouPage extends StatelessWidget {
                 MenuItemTile(
                   icon: Icons.account_circle_outlined,
                   text: Text("View Profile"),
-                  onPressed: model.viewProfile,
+                  onPressed: model.showProfileSheet,
                   topBorder: false,
                 ),
                 MenuItemTile(

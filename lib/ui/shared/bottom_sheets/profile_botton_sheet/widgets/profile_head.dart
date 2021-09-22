@@ -3,7 +3,8 @@ import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/ui/shared/colors.dart';
 
 class ProfileHead extends StatelessWidget {
-  const ProfileHead({Key? key}) : super(key: key);
+  final name;
+  const ProfileHead({Key? key, this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class ProfileHead extends StatelessWidget {
                     Flexible(
                       fit: FlexFit.loose,
                       child: CustomText(
-                        text: "Paul Imoke Eke",
+                        text: name,
                         color: AppColors.whiteColor,
                         fontWeight: FontWeight.bold,
                         fontSize: height * 0.025,

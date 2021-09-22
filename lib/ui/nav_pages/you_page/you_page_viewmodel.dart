@@ -1,6 +1,7 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/ui/shared/bottom_sheets/profile_botton_sheet/custom_user_bottom_sheet_view.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -53,6 +54,8 @@ class YouPageViewModel extends BaseViewModel {
 
     log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
   }
+
+  void showProfileSheet() => Get.bottomSheet(CustomUserBottomSheetView());
 
   Future viewNotifications() async {
     await _navigationService.navigateTo(Routes.notificationsView);

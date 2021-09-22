@@ -11,13 +11,13 @@ import 'package:stacked/stacked.dart';
 import 'custom_user_bottom_sheet_viewmodel.dart';
 
 class CustomUserBottomSheetView extends StatelessWidget {
-  final SheetRequest request;
-  final Function(SheetResponse) completer;
+  final SheetRequest? request;
+  final Function(SheetResponse?)? completer;
 
   const CustomUserBottomSheetView({
     Key? key,
-    required this.request,
-    required this.completer,
+    this.request,
+    this.completer,
   }) : super(key: key);
 
   @override
@@ -42,21 +42,37 @@ class CustomUserBottomSheetView extends StatelessWidget {
                       children: [
                         Container(
                           height: height * .3,
-                          child: ProfileHead(),
+                          child: ProfileHead(
+                            name:
+                                '${model.userModel!.firstName} ${model.userModel!.lastName}',
+                          ),
                         ),
                         Container(
                           height: height * .1,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              CustomButton(text: 'Message', onPressed: () {}),
+                              CustomButton(
+                                  text: 'Message',
+                                  onPressed: () => model.navigateToDm()),
                               CustomButton(
                                 text: 'Edit Profile',
                                 onPressed: () => model.navigateToEditProfile(),
                               ),
-                              CustomButton.icon(
-                                  icon: Icons.more_horiz_rounded,
-                                  onPressed: () {}),
+                              MaterialButton(
+                                onPressed: () {},
+                                shape:
+                                    Border.all(color: AppColors.greyishColor),
+                                child: PopupMenuButton(
+                                  padding: EdgeInsets.zero,
+                                  itemBuilder: (BuildContext context) => [
+                                    PopupMenuItem(
+                                        child: Text('View files',
+                                            style: TextStyle(
+                                                color: AppColors.greyishColor)))
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -70,24 +86,29 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         ListTile(
                           title: CustomText(
                               text: 'Status', fontWeight: FontWeight.w300),
-                          subtitle: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Icon(Icons.looks_5, color: Colors.blue)),
+                          subtitle: Visibility(
+                            visible: !model.cleared,
+                            child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Icon(Icons.looks_5, color: Colors.blue)),
+                          ),
                           shape: Border(
                             top: BorderSide(
                                 width: .5, color: AppColors.greyishColor),
                           ),
                           onTap: () => model.navigateToSetStatus(),
                           trailing: IconButton(
-                              onPressed: () {}, icon: Icon(Icons.cancel)),
+                              onPressed: () => model.clear(),
+                              icon: Icon(Icons.cancel)),
                         ),
                         Divider(),
                         CustomProfileTile(
-                            title: 'Mobile Number', subtitle: '+2347023456789'),
+                            title: 'Mobile Number',
+                            subtitle: model.userModel!.phoneNumber!),
                         Divider(),
                         CustomProfileTile(
                             title: 'Email Address',
-                            subtitle: 'myemail@mail.com'),
+                            subtitle: model.userModel!.email!),
                       ],
                     ),
                   ),
