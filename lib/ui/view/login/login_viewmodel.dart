@@ -1,22 +1,19 @@
-import 'package:flutter/material.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/package/base/server-request/api/http_api.dart';
+import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/login/login_view.form.dart';
+import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../app/app.locator.dart';
-import '../../../app/app.router.dart';
-import '../../../general_widgets/app_snackbar.dart';
-import '../../../package/base/server-request/api/http_api.dart';
-import '../../../services/local_storage_services.dart';
-import '../../../utilities/storage_keys.dart';
-
-class LoginViewModel extends BaseViewModel {
+class LoginViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
-  final _apiService = locator<HttpApiService>();
-
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-
+  final snackbar = locator<SnackbarService>();
+  final _apiService = HttpApiService(coreBaseUrl);
   bool isLoading = false;
   loading(status) {
     isLoading = status;
@@ -39,14 +36,19 @@ class LoginViewModel extends BaseViewModel {
   Future logInUser(context) async {
     loading(true);
     const endpoint = '/auth/login';
-    if (email.text == '' || password.text == '') {
+    if (emailValue == null || passwordValue == null) {
       loading(false);
       //Hides the keyboard for the failure snackbar to be visible
-      FocusScope.of(context).unfocus();
-      AppSnackBar.failure(context, 'Please fill all fields.');
+      // FocusScope.of(context).unfocus();
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: 'Please fill all fields.',
+      );
+
       return;
     }
-    final loginData = {'email': email.text, 'password': password.text};
+    final loginData = {'email': emailValue, 'password': passwordValue};
     final response = await _apiService.post(endpoint, data: loginData);
     loading(false);
 
@@ -64,15 +66,27 @@ class LoginViewModel extends BaseViewModel {
         StorageKeys.currentUserEmail,
         response?.data['data']['user']['email'],
       );
+      storage.clearData(StorageKeys.workspaceIds);
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
-      AppSnackBar.success(
-        context,
-        ' ${response?.data['message']} for ${response?.data['data']['user']['email']}',
+
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.success,
+        message: ''' ${response?.data['message']} for'''
+            ''' ${response?.data['data']['user']['email']}''',
       );
-      navigationService.navigateTo(Routes.navBarView);
+
+      //Todo check if user has currently joined an organisation
+      navigationService.navigateTo(Routes.workspaceView);
     } else {
-      AppSnackBar.failure(context,
-          response?.data['message'] ?? 'Error encountered during login.');
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: response?.data['message'] ?? 'Error encountered during login.',
+      );
     }
   }
+
+  @override
+  void setFormStatus() {}
 }

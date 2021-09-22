@@ -7,6 +7,7 @@ class AppColors {
   static const Color deepBlackColor = Color(0xFF333333);
   static const Color zuriPrimaryColor = Color(0xFF00B87C);
   static const Color blueColor = Color(0xFF1554F6);
+  static const Color iconBlueColor = Color(0xFF0091EA);
   static const Color navBarItemColor = Color(0xFF7B8794);
   static const Color blackColor = Color(0xFF000000);
   static const Color lightGreen = Color.fromRGBO(0, 184, 124, 0.3);

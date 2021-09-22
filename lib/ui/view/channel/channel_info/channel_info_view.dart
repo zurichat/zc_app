@@ -38,7 +38,10 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
               children: [
                 const FirstSection(),
 
-                const EditButton(),
+                GestureDetector(
+                  onTap: model.navigateToEditChannel,
+                  child: const EditButton(),
+                ),
 
                 const SecondSection(),
 
@@ -48,8 +51,9 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                     child: Text(
                       'You wont\'t  recieve any messages from a muted channel',
                       style: faintTextStyle(),
-                    )),
-//Third Section
+                    )
+                ),
+                //Third Section
 
                 const ThirdSection(),
 
