@@ -36,6 +36,8 @@ class HomePageViewModel extends StreamViewModel {
     yield await connectivityService.checkConnection();
   }
 
+  ChannelsApiService get channelsApiService => channelsApiService;
+
   @override
   Stream get stream => checkConnectivity();
 
@@ -138,5 +140,4 @@ class HomePageViewModel extends StreamViewModel {
   void navigateToUserSearchView() {
     _navigationService.navigateTo(Routes.userSearchView);
   }
-
 }
