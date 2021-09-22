@@ -4,17 +4,26 @@ import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/view/channel/edit_channel/widgets/edit_channel_appbar.dart';
 import 'package:hng/ui/view/channel/edit_channel/widgets/edit_channel_headers.dart';
 import 'package:hng/ui/view/channel/edit_channel/widgets/edit_channel_text_field.dart';
+import 'package:stacked/stacked_annotations.dart';
 import '../../../shared/colors.dart';
 import 'package:stacked/stacked.dart';
 import './editChannelViewModel.dart';
+import 'edit_channel_view.form.dart';
 
-class EditChannelPageView extends StatelessWidget {
+@FormView(
+  fields: [
+    FormTextField(name: 'description'),
+    FormTextField(name: 'topic'),
+  ],
+)
+class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
   final _padding = const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0);
-  const EditChannelPageView({Key? key}) : super(key: key);
+  EditChannelPageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<EditChannelViewModel>.reactive(
+      onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => EditChannelViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: CustomAppBars(
@@ -54,10 +63,11 @@ class EditChannelPageView extends StatelessWidget {
             TextHeader(headerText: 'Channel Topic'),
             TextBox(
               hint: 'Add a topic',
-              model: model,
+              controller: topicController,
             ),
             TextHeader(headerText: 'Channel Description'),
-            TextBox(hint: 'Set a description', model: model),
+            TextBox(
+                hint: 'Set a description', controller: descriptionController),
             SizedBox(
               height: 30,
             ),

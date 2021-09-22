@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
@@ -7,11 +6,11 @@ import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'edit_channel_view.form.dart';
 
-class EditChannelViewModel extends BaseViewModel {
+class EditChannelViewModel extends FormViewModel {
   //final _apiService = locator<ChannelApiService>();
   //final storage = locator<SharedPreferenceLocalStorage>();
-  // final
   final navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
@@ -22,12 +21,9 @@ class EditChannelViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  TextEditingController topic = TextEditingController();
-  TextEditingController description = TextEditingController();
-
   editChannel(context) async {
     loading(true);
-    if (topic.text == '' || description.text == '') {
+    if (topicValue == '' || descriptionValue == '') {
       loading(false);
       //Hides the keyboard for the failure snackbar to be visible
       // FocusScope.of(context).unfocus();
@@ -41,7 +37,7 @@ class EditChannelViewModel extends BaseViewModel {
     }
     const channel_id = '613f70bd6173056af01b4aba';
     const endpoint = '/v1/1/channels/$channel_id/';
-    final des = {/*'topic': topic.text, */ 'description': description.text};
+    final des = {/*'topic': topic.text, */ 'description': descriptionValue};
     final response = await _apiService.put(endpoint, data: des);
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
@@ -87,6 +83,11 @@ class EditChannelViewModel extends BaseViewModel {
   // Navigate to channel info view
   nToChannelInfo() {
     NavigationService().navigateTo(Routes.channelInfoView);
+  }
+
+  @override
+  void setFormStatus() {
+    // TODO: implement setFormStatus
   }
   // ignore: always_declare_return_types
   /*Future logInUser(context) async {
