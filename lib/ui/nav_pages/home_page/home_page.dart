@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(
-              onTap: vmodel.navigateToThreads,
+              onTap: model.navigateToThreads,
             ),
           ),
           const Divider(),
