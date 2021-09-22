@@ -20,9 +20,7 @@ class CustomUserChannel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(411, 823),
-      builder: () => InkWell(
+    return InkWell(
         onTap: () {},
         child: Container(
             height: 24.h,
@@ -40,7 +38,7 @@ class CustomUserChannel extends StatelessWidget {
                 SizedBox(width: 12.w),
                 Text(
                   '$text',
-                  style: AppTextStyles.fileName, // textfont in here won't scale to different screens
+                  style: AppTextStyles.fileName.copyWith(fontSize: 14.sp), // textfont in here won't scale to different screens
                 ),
                 SizedBox(width: 10.w),
                 Text(
@@ -59,7 +57,6 @@ class CustomUserChannel extends StatelessWidget {
                 )
               ],
             )),
-      ),
     );
   }
 }

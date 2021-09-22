@@ -13,9 +13,7 @@ class CustomUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(411, 823),
-      builder: () => InkWell(
+    return InkWell(
         onTap: () {},
         child: Container(
           width: 48.w,
@@ -47,7 +45,6 @@ class CustomUser extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }
