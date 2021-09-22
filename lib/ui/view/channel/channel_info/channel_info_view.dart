@@ -6,13 +6,12 @@ import 'package:hng/ui/view/channel/channel_info/widgets/seventh_section.dart';
 import 'package:stacked/stacked.dart';
 import 'channel_info_view_model.dart';
 import 'widgets/custom_app_bar.dart';
-import 'widgets/edit_button.dart';
 import 'widgets/fifth_section.dart';
 import 'widgets/first_section.dart';
 import 'widgets/fourth_section.dart';
 import 'widgets/second_section.dart';
+import 'widgets/seventh_section.dart';
 import 'widgets/sixth_section.dart';
-import 'widgets/textstyles.dart';
 import 'widgets/third_section.dart';
 
 const _margin = EdgeInsets.only(left: 16.0);

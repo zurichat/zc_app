@@ -48,6 +48,7 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/user_search/user_search_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
 import '../ui/view/workspace/create_workspace/create_workspace.dart';
@@ -199,6 +200,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.userSearchView, page: UserSearchView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
   ];
@@ -488,6 +490,12 @@ class StackedRouter extends RouterBase {
     DraftView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const DraftView(),
+        settings: data,
+      );
+    },
+    UserSearchView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const UserSearchView(),
         settings: data,
       );
     },

@@ -9,23 +9,23 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-const String MessageValueKey = 'message';
+const String ForgotEmailValueKey = 'forgotEmail';
 
-mixin $DmUserView on StatelessWidget {
-  final TextEditingController messageController = TextEditingController();
-  final FocusNode messageFocusNode = FocusNode();
+mixin $ForgotPasswordEmailView on StatelessWidget {
+  final TextEditingController forgotEmailController = TextEditingController();
+  final FocusNode forgotEmailFocusNode = FocusNode();
 
   /// Registers a listener on every generated controller that calls [model.setData()]
   /// with the latest textController values
   void listenToFormUpdated(FormViewModel model) {
-    messageController.addListener(() => _updateFormData(model));
+    forgotEmailController.addListener(() => _updateFormData(model));
   }
 
   /// Updates the formData on the FormViewModel
   void _updateFormData(FormViewModel model) => model.setData(
         model.formValueMap
           ..addAll({
-            MessageValueKey: messageController.text,
+            ForgotEmailValueKey: forgotEmailController.text,
           }),
       );
 
@@ -33,14 +33,14 @@ mixin $DmUserView on StatelessWidget {
   void disposeForm() {
     // The dispose function for a TextEditingController sets all listeners to null
 
-    messageController.dispose();
+    forgotEmailController.dispose();
   }
 }
 
 extension ValueProperties on FormViewModel {
-  String? get messageValue => this.formValueMap[MessageValueKey];
+  String? get forgotEmailValue => this.formValueMap[ForgotEmailValueKey];
 
-  bool get hasMessage => this.formValueMap.containsKey(MessageValueKey);
+  bool get hasForgotEmail => this.formValueMap.containsKey(ForgotEmailValueKey);
 }
 
 extension Methods on FormViewModel {}
