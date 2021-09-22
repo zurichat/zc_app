@@ -48,6 +48,8 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/threads/all_threads/threads_view.dart';
+import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 import '../ui/view/user_search/user_search_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
@@ -101,6 +103,8 @@ class Routes {
   static const String createWorkSpace = '/create-work-space';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
+  static const String threadsView = '/threads-view';
+  static const String threadDetailView = '/thread-detail-view';
   static const String userSearchView = '/user-search-view';
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
@@ -147,6 +151,8 @@ class Routes {
     createWorkSpace,
     fileSearchView,
     draftView,
+    threadsView,
+    threadDetailView,
     userSearchView,
     editChannelPageView,
     workspaceUrlView,
@@ -200,6 +206,10 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.threadsView, page: ThreadsView),
+    RouteDef(Routes.threadDetailView, page: ThreadDetailView),
+    RouteDef(Routes.channelPageView, page: ChannelPageView),
+    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.userSearchView, page: UserSearchView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
@@ -493,6 +503,26 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    ThreadsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ThreadsView(),
+        settings: data,
+      );
+    },
+    ThreadDetailView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ThreadDetailView(),
+        settings: data,
+      );
+    },
+    EditChannelPageView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const EditChannelPageView(),
+        settings: data,
+      );
+    },
+    WorkspaceUrlView: (data) {
+      return MaterialPageRoute<dynamic>(
     UserSearchView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const UserSearchView(),
