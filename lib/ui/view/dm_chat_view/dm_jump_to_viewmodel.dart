@@ -25,23 +25,24 @@ class DmJumpToViewModel extends FormViewModel {
   // @override
   // Stream get stream => checkConnectivity();
 
-  @override void setFormStatus() {}
+  @override
+  void setFormStatus() {}
 
   navigateBack() {
     navigation.back();
   }
 
   void _onChanged() => (value) {
-        if (value.isEmpty) {
-          //   list.clear();
-          //   list.addAll(recentDmsFromApi);
-          // }else {
-          //   list.clear();
-          //   for (index in ListofDms) {
-          //     if (index.text.toLowerCase().contains(value.toLowerCase())) {
-          //       list.add(index);
-          //     }
-          //   }
+        if (value.isNotEmpty) {
+          allChannelsSearch = allChannelsSearch
+              .where((u) => (u.name.toString().contains(
+                    value.toLowerCase(),
+                  )))
+              .toList();
+          notifyListeners();
+        } else {
+          allChannelsSearch = allChannelsSearch;
+          notifyListeners();
         }
         notifyListeners();
       };

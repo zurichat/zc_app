@@ -521,8 +521,11 @@ class StackedRouter extends RouterBase {
       );
     },
     EditChannelPageView: (data) {
+      var args = data.getArgs<EditChannelPageViewArguments>(
+        orElse: () => EditChannelPageViewArguments(),
+      );
       return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const EditChannelPageView(),
+        builder: (context) => EditChannelPageView(key: args.key),
         settings: data,
       );
     },
@@ -538,6 +541,7 @@ class StackedRouter extends RouterBase {
 /// ************************************************************************
 /// Arguments holder classes
 /// *************************************************************************
+
 /// LoginView arguments holder class
 class LoginViewArguments {
   final Key? key;
@@ -603,4 +607,10 @@ class CreateWorkSpaceArguments {
   final Key? key;
   final WorkspaceSwitchMethod method;
   CreateWorkSpaceArguments({this.key, required this.method});
+}
+
+/// EditChannelPageView arguments holder class
+class EditChannelPageViewArguments {
+  final Key? key;
+  EditChannelPageViewArguments({this.key});
 }
