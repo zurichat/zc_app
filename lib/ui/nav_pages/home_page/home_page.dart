@@ -46,6 +46,20 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
+
+      floatingActionButton: FloatingActionButton(
+          onPressed: vmodel.navigateToStartDMScreen,
+          child: const Icon(
+            Icons.open_in_new_outlined,
+            color: AppColors.whiteColor,
+          ),
+          Expanded(
+            child: body(vmodel),
+          )
+        ],
+          backgroundColor: AppColors.zuriPrimaryColor,
+        ),
+
     );
   }
 
