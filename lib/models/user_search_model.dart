@@ -1,22 +1,11 @@
 class NewUser {
   String? id;
   String? username;
-  String? name;
-  String? imageUrl;
-  bool presence;
-  NewUser(
-      {this.id,
-      this.username,
-      this.name,
-      this.imageUrl,
-      this.presence = false});
+  NewUser({this.id, this.username});
 
   factory NewUser.fromJson(Map<String, dynamic> json) => NewUser(
         id: json["_id"],
         username: json["user_name"],
-        name: json["name"],
-        imageUrl: json["image_url"],
-        presence: json["presence"],
       );
 }
 

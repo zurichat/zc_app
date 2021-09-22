@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/general_widgets/custom_user.dart';
-import 'package:hng/models/user_search_model.dart';
-import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../../general_widgets/custom_channel.dart';
-import '../../../general_widgets/custom_channel_stage.dart';
-import '../../../general_widgets/custom_user_channel.dart';
 import 'dm_jump_to_view.form.dart';
 import 'dm_jump_to_viewmodel.dart';
 import 'package:stacked/stacked.dart';
@@ -35,7 +31,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                     backgroundColor: Colors.white,
                     resizeToAvoidBottomInset: false,
                     body: Padding(
-                      padding: EdgeInsets.fromLTRB(25.w, 20.h, 0, 0),
+                      padding: EdgeInsets.fromLTRB(25.w, 20.h, 15.w, 0),
                       child: ListView(
                         shrinkWrap: true,
                         children: [
@@ -79,7 +75,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                               ),
                             ),
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: 24.h,
                           ),
                           SizedBox(
@@ -92,9 +88,39 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                 width: 16.h,
                               ),
                               itemBuilder: (context, i) {
-                                return CustomUser(
-                                    image: 'assets/images/Rectangle 138a.png',
-                                    text: model.userSearch[i].username,
+                                return SizedBox(
+                                  width: 48.w,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        height: 48.h,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8.r),
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: AssetImage(
+                                              'assets/images/Rectangle 138a.png',
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                      Container(
+                                          height: 32.h,
+                                          child: Text(
+                                            model.userSearch[i].username!,
+                                            textAlign: TextAlign.center,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                          )),
+                                    ],
+                                  ),
                                 );
                               },
                               scrollDirection: Axis.horizontal,
@@ -121,8 +147,23 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                 (BuildContext context, int index) =>
                                     SizedBox(height: 22.h),
                             itemBuilder: (context, index) {
-                              return CustomChannel(
-                                text: model.userSearch[index].username,
+                              return Row(
+                                children: [
+                                  Text('#',
+                                      // style: AppTextStyles.heading7,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.sp,
+                                      )),
+                                  SizedBox(width: 21.33.w),
+                                  Text(
+                                    model.userSearch[index].username!,
+                                    // style: ZuriTextStyle.mediumBold(),
+                                    style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               );
                             },
                             scrollDirection: Axis.vertical,

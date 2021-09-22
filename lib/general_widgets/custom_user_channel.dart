@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/ui/shared/styles.dart';
 
 class CustomUserChannel extends StatelessWidget {
-  const CustomUserChannel(
-      {Key? key, this.image, this.text, this.text2, this.trailingIcon, this.iconColor})
-      : super(key: key);
-  final image;
-  final text;
-  final text2;
-  final trailingIcon;
-  final iconColor;
+  final String? image;
+  final String? text;
+  final String? text2;
+  final IconData? trailingIcon;
+  final Color? iconColor;
+
+  const CustomUserChannel({
+    Key? key,
+    this.image,
+    this.text,
+    this.text2,
+    this.trailingIcon,
+    this.iconColor
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,25 +34,25 @@ class CustomUserChannel extends StatelessWidget {
                     height: 24.h,
                     width: 24.w,
                     fit: BoxFit.cover,
-                    image: AssetImage(image),
+                    image: AssetImage('$image'),
                   ),
                 ),
                 SizedBox(width: 12.w),
                 Text(
-                  text,
-                  style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
+                  text!,
+                  style: AppTextStyles.fileName, // textfont in here won't scale to different screens
                 ),
                 SizedBox(width: 10.w),
                 Text(
-                  text2,
-                  style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.normal),
+                  text2!,
+                  style: AppTextStyles.faintBodyText, // textfont in here won't scale to different screens
                 ),
                 SizedBox(width: 10.w),
                 Container(
                   height: 8.h,
                   width: 8.w,
                   child: Icon(
-                    trailingIcon,
+                    trailingIcon!,
                     size: 9.sp,
                     color: iconColor,
                   ),

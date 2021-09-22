@@ -47,15 +47,15 @@ class JumpToApi {
   /// Fetches a list of members in that organization
   Future<List<UserSearch>> fetchListOfMembers() async {
     try {
-      final res =
+      final response =
           await _dmApi.get('organizations/$currentOrgId/members/', headers: {
         'Authorization':
             'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
       });
-      log.i("Org members length - ${res?.data?['data'].length}");
-      log.i("Org members List ${res?.data?['data'].toString()}");
+      log.i("Org members length - ${response?.data?['data'].length}");
+      log.i("Org members List ${response?.data?['data'].toString()}");
       //  var meSearch = UserSearch.fromJson(response!.data['data']);
-      return res!.data['data'].map((e) => UserSearch.fromJson(e)).toList();
+      return response!.data['data'].map((e) => UserSearch.fromJson(e)).toList();
     } on DioError catch (e) {
       log.e("Error Watch - $e");
       return [];
