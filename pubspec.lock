@@ -224,7 +224,7 @@ packages:
       name: dart_style
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.0"
   dio:
     dependency: "direct main"
     description:
@@ -442,14 +442,14 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.5"
+    version: "3.0.4"
   image_gallery_saver:
     dependency: "direct main"
     description:
       name: image_gallery_saver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.0"
+    version: "1.6.9"
   intl:
     dependency: "direct main"
     description:
