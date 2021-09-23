@@ -18,8 +18,7 @@ import 'package:stacked/stacked_annotations.dart';
   ],
 )
 class LoginView extends StatelessWidget with $LoginView {
-  LoginView({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginViewModel>.reactive(
