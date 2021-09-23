@@ -78,7 +78,7 @@ class ForgotPasswordNewView extends StatelessWidget
                       children: [
                         TextField(
                           controller: newPasswordController,
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.visiblePassword,
                           obscureText: true,
                           textInputAction: TextInputAction.done,
                           autocorrect: true,
@@ -107,7 +107,7 @@ class ForgotPasswordNewView extends StatelessWidget
                               children: [
                                 UIHelper.verticalSpaceSmall,
                                 Text(
-                                  'Password Must be aleast 6 characters',
+                                  'Password Must be at least 6 characters',
                                   style: AppTextStyles.body2Medium.copyWith(
                                     color: AppColors.redColor,
                                   ),
@@ -130,7 +130,7 @@ class ForgotPasswordNewView extends StatelessWidget
                         ),
                         TextField(
                           controller: confirmPasswordController,
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.visiblePassword,
                           obscureText: true,
                           textInputAction: TextInputAction.done,
                           autocorrect: true,
