@@ -6,11 +6,10 @@
 
 // ignore_for_file: public_member_api_docs
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-
-
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
@@ -50,6 +49,8 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
+import '../ui/view/threads/all_threads/threads_view.dart';
+import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 import '../ui/view/user_search/user_search_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
 import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
@@ -58,8 +59,6 @@ import '../ui/view/workspace/workspace_different_email/difference_email_workspac
 import '../ui/view/workspace/workspace_url/workspace_url_view.dart';
 import '../ui/view/workspace/workspace_view/workspace_view.dart';
 import '../utilities/enums.dart';
-import 'package:hng/ui/view/all_threads_view/thread_detail/hook_thread_detail.dart';
-
 
 class Routes {
   static const String channelAddPeopleView = '/channel-add-people-view';
@@ -105,10 +104,11 @@ class Routes {
   static const String createWorkSpace = '/create-work-space';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
+  static const String threadsView = '/threads-view';
+  static const String threadDetailView = '/thread-detail-view';
   static const String userSearchView = '/user-search-view';
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
-  static const String threadDetailView = '/thread-detail-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -152,10 +152,11 @@ class Routes {
     createWorkSpace,
     fileSearchView,
     draftView,
+    threadsView,
+    threadDetailView,
     userSearchView,
     editChannelPageView,
     workspaceUrlView,
-    threadDetailView,
   };
 }
 
@@ -206,28 +207,29 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.threadsView, page: ThreadsView),
+    RouteDef(Routes.threadDetailView, page: ThreadDetailView),
     RouteDef(Routes.userSearchView, page: UserSearchView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
-    RouteDef(Routes.threadDetailView, page:ThreadDetailHook)
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
     ChannelAddPeopleView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const ChannelAddPeopleView(),
         settings: data,
       );
     },
     NavBarView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const NavBarView(),
         settings: data,
       );
     },
     OnboardingView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const OnboardingView(),
         settings: data,
       );
@@ -236,7 +238,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<LoginViewArguments>(
         orElse: () => LoginViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => LoginView(key: args.key),
         settings: data,
       );
@@ -245,7 +247,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<OTPViewArguments>(
         orElse: () => OTPViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => OTPView(key: args.key),
         settings: data,
       );
@@ -254,19 +256,19 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<SignUpViewArguments>(
         orElse: () => SignUpViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => SignUpView(key: args.key),
         settings: data,
       );
     },
     WorkspaceView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const WorkspaceView(),
         settings: data,
       );
     },
     ChannelList: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const ChannelList(),
         settings: data,
       );
@@ -275,7 +277,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<ForgotPasswordEmailViewArguments>(
         orElse: () => ForgotPasswordEmailViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => ForgotPasswordEmailView(key: args.key),
         settings: data,
       );
@@ -284,7 +286,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<ForgotPasswordOtpViewArguments>(
         orElse: () => ForgotPasswordOtpViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => ForgotPasswordOtpView(key: args.key),
         settings: data,
       );
@@ -293,49 +295,52 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<ForgotPasswordNewViewArguments>(
         orElse: () => ForgotPasswordNewViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => ForgotPasswordNewView(key: args.key),
         settings: data,
       );
     },
     ChannelNotificationView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => ChannelNotificationView(),
         settings: data,
       );
     },
     NewChannel: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => NewChannel(),
         settings: data,
       );
     },
     ChannelInfoView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const ChannelInfoView(),
         settings: data,
       );
     },
     HomePage: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => HomePage(),
         settings: data,
       );
     },
     AddPeopleView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => AddPeopleView(),
         settings: data,
       );
     },
     ChannelPageView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => ChannelPageView(),
+      var args = data.getArgs<ChannelPageViewArguments>(
+        orElse: () => ChannelPageViewArguments(),
+      );
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
+        builder: (context) => ChannelPageView(key: args.key),
         settings: data,
       );
     },
     DmSearch: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const DmSearch(),
         settings: data,
       );
@@ -344,7 +349,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<DmJumpToViewArguments>(
         orElse: () => DmJumpToViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => DmJumpToView(key: args.key),
         settings: data,
       );
@@ -353,19 +358,19 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<DmUserViewArguments>(
         orElse: () => DmUserViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => DmUserView(key: args.key),
         settings: data,
       );
     },
     Splashview: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const Splashview(),
         settings: data,
       );
     },
     PluginView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const PluginView(),
         settings: data,
       );
@@ -374,110 +379,110 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<AddPluginViewArguments>(
         orElse: () => AddPluginViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => AddPluginView(key: args.key),
         settings: data,
       );
     },
     UseDifferentEmailView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const UseDifferentEmailView(),
         settings: data,
       );
     },
     EditPluginView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const EditPluginView(),
         settings: data,
       );
     },
     ViewProfile: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => ViewProfile(),
         settings: data,
       );
     },
     SetStatusView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => SetStatusView(),
         settings: data,
       );
     },
     ProfilePageView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const ProfilePageView(),
         settings: data,
       );
     },
     PreferenceView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const PreferenceView(),
         settings: data,
       );
     },
     LanguageAndRegionModelView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const LanguageAndRegionModelView(),
         settings: data,
       );
     },
     SavedItemsView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const SavedItemsView(),
         settings: data,
       );
     },
     NotificationsView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const NotificationsView(),
         settings: data,
       );
     },
     AdvancedView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const AdvancedView(),
         settings: data,
       );
     },
     ClearAfterView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const ClearAfterView(),
         settings: data,
       );
     },
     DoNotDisturbView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const DoNotDisturbView(),
         settings: data,
       );
     },
     EditProfileView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const EditProfileView(),
         settings: data,
       );
     },
     PopUpNotificationsView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const PopUpNotificationsView(),
         settings: data,
       );
     },
     PinnedMessages: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const PinnedMessages(),
         settings: data,
       );
     },
     AddWorkspaceView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const AddWorkspaceView(),
         settings: data,
       );
     },
     CreateWorkSpace: (data) {
       var args = data.getArgs<CreateWorkSpaceArguments>(nullOk: false);
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => CreateWorkSpace(
           key: args.key,
           method: args.method,
@@ -486,38 +491,47 @@ class StackedRouter extends RouterBase {
       );
     },
     FileSearchView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const FileSearchView(),
         settings: data,
       );
     },
     DraftView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const DraftView(),
         settings: data,
       );
     },
+    ThreadsView: (data) {
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
+        builder: (context) => const ThreadsView(),
+        settings: data,
+      );
+    },
+    ThreadDetailView: (data) {
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
+        builder: (context) => const ThreadDetailView(),
+        settings: data,
+      );
+    },
     UserSearchView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const UserSearchView(),
         settings: data,
       );
     },
     EditChannelPageView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const EditChannelPageView(),
+      var args = data.getArgs<EditChannelPageViewArguments>(
+        orElse: () => EditChannelPageViewArguments(),
+      );
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
+        builder: (context) => EditChannelPageView(key: args.key),
         settings: data,
       );
     },
     WorkspaceUrlView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const WorkspaceUrlView(),
-        settings: data,
-      );
-    },
-     ThreadDetailHook: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => ThreadDetailHook(),
         settings: data,
       );
     },
@@ -558,17 +572,16 @@ class ForgotPasswordOtpViewArguments {
   ForgotPasswordOtpViewArguments({this.key});
 }
 
-
 /// ForgotPasswordNewView arguments holder class
 class ForgotPasswordNewViewArguments {
   final Key? key;
   ForgotPasswordNewViewArguments({this.key});
 }
 
-/// HomePage arguments holder class
-class HomePageArguments {
+/// ChannelPageView arguments holder class
+class ChannelPageViewArguments {
   final Key? key;
-  HomePageArguments({this.key});
+  ChannelPageViewArguments({this.key});
 }
 
 /// DmJumpToView arguments holder class
@@ -594,4 +607,10 @@ class CreateWorkSpaceArguments {
   final Key? key;
   final WorkspaceSwitchMethod method;
   CreateWorkSpaceArguments({this.key, required this.method});
+}
+
+/// EditChannelPageView arguments holder class
+class EditChannelPageViewArguments {
+  final Key? key;
+  EditChannelPageViewArguments({this.key});
 }

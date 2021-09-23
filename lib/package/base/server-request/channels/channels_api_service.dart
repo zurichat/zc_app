@@ -1,4 +1,4 @@
-import 'dart:async';
+   import 'dart:async';
 
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/services/user_service.dart';
@@ -97,7 +97,7 @@ class ChannelsApiService {
       log.i(res?.data.toString());
 
       if (res?.statusCode == 204) {
-        onChange.add('channel deleted');
+        onChange.sink.add('channel deleted');
         return true;
       }
     } on Exception catch (e) {

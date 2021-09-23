@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -10,10 +11,38 @@ import '../../../services/connectivity_service.dart';
 import '../../../utilities/enums.dart';
 import 'home_item_model.dart';
 
+
+final _navigationService = locator<NavigationService>();
+final connectivityService = locator<ConnectivityService>();
+
+bool connectionStatus = false;
+
+
 class HomePageViewModel extends StreamViewModel {
+  void nToPref() {
+    _navigationService.navigateTo(Routes.fileSearchView);
+  }
+
+  void nToInfo() {
+    _navigationService.navigateTo(Routes.channelInfoView);
+  }
+
+  void nToWorkspace() {
+    _navigationService.navigateTo(Routes.workspaceView);
+  }
+
+  void navigateToDmUser() {
+    _navigationService.navigateTo(Routes.dmUserView);
+  }
+
+  Future navigateToThreads() async {
+    await _navigationService.navigateTo(Routes.threadsView);
+  }
+
   final connectivityService = locator<ConnectivityService>();
-  // final _dmApiService = locator<DMApiService>();
+  final dmApiService = locator<DMApiService>();
   final _channelsApiService = locator<ChannelsApiService>();
+
 
   final _navigationService = locator<NavigationService>();
   bool connectionStatus = false;
@@ -49,7 +78,7 @@ class HomePageViewModel extends StreamViewModel {
     return connectionStatus;
   }
 
-  void navigateToJumpToScreen() {
+    void navigateToJumpToScreen() {
     _navigationService.navigateTo(Routes.dmJumpToView);
   }
 
@@ -67,17 +96,82 @@ class HomePageViewModel extends StreamViewModel {
     });
   }
 
-  listenToChannelsChange() {
-    _channelsApiService.onChange.stream.listen((event) {
-      getDmAndChannelsList();
-    });
+
+  //This method is just to demo the side bar data that would
+  //be received by the database
+  getHomePageData() {
+    homePageList = [
+      HomeItemModel(type: HomeItemType.channels, name: 'annoucement'),
+      HomeItemModel(
+          type: HomeItemType.channels, unreadCount: 1, name: 'random'),
+      HomeItemModel(
+          type: HomeItemType.channels, unreadCount: 0, name: 'team-app'),
+      HomeItemModel(
+          type: HomeItemType.channels,
+          unreadCount: 5,
+          name: 'backend',
+          public: false),
+      HomeItemModel(
+          type: HomeItemType.channels,
+          unreadCount: 0,
+          name: 'frontend',
+          public: false),
+      HomeItemModel(
+          type: HomeItemType.channels, unreadCount: 4, name: 'work-flow'),
+      HomeItemModel(
+          type: HomeItemType.channels,
+          unreadCount: 1,
+          name: 'stage7',
+          public: false),
+      HomeItemModel(
+          type: HomeItemType.channels, unreadCount: 3, name: 'random'),
+      HomeItemModel(
+          type: HomeItemType.channels, unreadCount: 0, name: 'general'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Paul'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Timi'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Mayowa'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 1, name: 'Colins'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Brain'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Folks'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'DeveloperB'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 1, name: 'edward'),
+    ];
+
+    unreads.clear();
+    directMessages.clear();
+    joinedChannels.clear();
+
+    setAllList();
+    notifyListeners();
+
+}
+  //
+  //*Navigate to other routes
+  void navigateToPref() {
+    _navigationService.navigateTo(Routes.fileSearchView);
+  }
+
+  void navigateToChannelPage() {
+    _navigationService.navigateTo(Routes.channelPageView);
+  }
+
+  void navigateToInfo() {
+    _navigationService.navigateTo(Routes.channelInfoView);
+  }
+
+  void navigateToWorkspace() {
+    _navigationService.navigateTo(Routes.workspaceView);
+  }
+
+  void navigateToUserSearchView() {
+    _navigationService.navigateTo(Routes.userSearchView);
   }
 
   getDmAndChannelsList() async {
     homePageList = [];
     setBusy(true);
 
-    List? channelsList = await _channelsApiService.getActiveDms();
+    List? channelsList = await channelsApiService.getActiveDms();
     channelsList.forEach((data) {
       homePageList.add(HomeItemModel(
         type: HomeItemType.channels,
@@ -94,7 +188,6 @@ class HomePageViewModel extends StreamViewModel {
     unreads.clear();
     directMessages.clear();
     joinedChannels.clear();
-    setBusy(false);
 
     setAllList();
     notifyListeners();
@@ -111,33 +204,12 @@ class HomePageViewModel extends StreamViewModel {
     // });
   }
 
-  //
-  //*Navigate to other routes
-  void navigateToPref() {
-    _navigationService.navigateTo(Routes.fileSearchView);
-  }
+    // listenToChannelsChange() {
+    // _channelsApiService.onChange.stream.listen((event) {
+    //   getDmAndChannelsList();
+    // });
 
-  void navigateToNewChannel() {
-    _navigationService.navigateTo(Routes.newChannel);
-  }
+  // }
 
-  void navigateToChannelPage() {
-    _navigationService.navigateTo(Routes.channelPageView);
-  }
-
-  void navigateToInfo() {
-    _navigationService.navigateTo(Routes.channelInfoView);
-  }
-
-  void navigateToWorkspace() {
-    _navigationService.navigateTo(Routes.workspaceView);
-  }
-
-  void navigateToDmUser() {
-    _navigationService.navigateTo(Routes.dmUserView);
-  }
-
-  void navigateToUserSearchView() {
-    _navigationService.navigateTo(Routes.userSearchView);
-  }
 }
+
