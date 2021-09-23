@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/channel/channel_view/channel_page_view.dart';
 
 import '../../../../shared/colors.dart';
 import 'textstyles.dart';

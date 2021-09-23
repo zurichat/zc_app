@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/models/user_model.dart';
-import 'package:hng/ui/shared/bottom_sheets/profile_botton_sheet/widgets/custom_button.dart';
-import 'package:hng/ui/shared/bottom_sheets/profile_botton_sheet/widgets/custom_profile_tile.dart';
-import 'package:hng/ui/shared/bottom_sheets/profile_botton_sheet/widgets/profile_head.dart';
+import 'package:hng/ui/shared/bottom_sheets/widgets/custom_button.dart';
+import 'package:hng/ui/shared/bottom_sheets/widgets/custom_profile_tile.dart';
+import 'package:hng/ui/shared/bottom_sheets/widgets/profile_head.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -33,7 +32,6 @@ class CustomUserBottomSheetView extends StatelessWidget {
               minChildSize: 0.5,
               builder:
                   (BuildContext context, ScrollController scrollController) {
-                    UserModel? user = model.userModel;
                 return Container(
                   height: height * .97,
                   color: Colors.white,
@@ -67,7 +65,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
                             title: 'What I do', subtitle: 'Mobile Dev'),
                         Divider(),
                         CustomProfileTile(
-                            title: 'Display Name', subtitle: user?.displayName ?? ''),
+                            title: 'Display Name', subtitle: 'pauleke65'),
                         Divider(),
                         ListTile(
                           title: CustomText(
@@ -85,11 +83,11 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         ),
                         Divider(),
                         CustomProfileTile(
-                            title: 'Mobile Number', subtitle: user?.phoneNumber ?? ''),
+                            title: 'Mobile Number', subtitle: '+2347023456789'),
                         Divider(),
                         CustomProfileTile(
                             title: 'Email Address',
-                            subtitle: '${user?.email}'),
+                            subtitle: 'myemail@mail.com'),
                       ],
                     ),
                   ),

@@ -1,26 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/view/dm_user/dm_user_viewmodel.dart';
-import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
-import 'package:hng/ui/view/dm_user/icons/zap_icon.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_status.dart';
 import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
-import 'package:hng/ui/view/dm_user/widgets/message_view.dart';
 import 'package:hng/ui/view/dm_user/widgets/online_indicator.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
 
-import 'dm_user_view.form.dart';
+import '../../shared/colors.dart';
+import 'dm_user_viewmodel.dart';
+import 'dummy_data/models/message.dart';
+import 'icons/zap_icon.dart';
+import 'widgets/message_view.dart';
 
-@FormView(
-  fields: [
-    FormTextField(name: 'message'),
-  ],
-)
-class DmUserView extends StatelessWidget with $DmUserView {
+class DmUserView extends StatelessWidget {
   DmUserView({Key? key}) : super(key: key);
 
   final scrollController = ScrollController();
@@ -28,7 +21,6 @@ class DmUserView extends StatelessWidget with $DmUserView {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmUserViewModel>.reactive(
-        onModelReady: (model) => listenToFormUpdated(model),
         viewModelBuilder: () => DmUserViewModel(),
         builder: (context, model, child) {
           debugPrint(model.hasClickedMessageField.toString());
@@ -61,8 +53,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                   ),
                   const Text(
                     'View Details',
-                    style: TextStyle(
-                        color: AppColors.greyishColor, fontSize: 12.0),
+                    style: TextStyle(color: AppColors.greyishColor, fontSize: 12.0),
                   )
                 ],
               ),
@@ -97,11 +88,11 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                         left: 20.0, top: 24.0),
                                     child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         ClipRRect(
                                           borderRadius:
-                                              BorderRadius.circular(3),
+                                          BorderRadius.circular(3),
                                           child: Container(
                                             width: 50,
                                             height: 50,
@@ -119,7 +110,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                                 style: const TextStyle(
                                                     fontSize: 16.0,
                                                     fontWeight:
-                                                        FontWeight.w700)),
+                                                    FontWeight.w700)),
                                             const SizedBox(width: 7.0),
                                             const CustomStatus(
                                               isActive: true,
@@ -134,7 +125,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                                 fontWeight: FontWeight.w400,
                                                 color: AppColors.greyColor)),
                                         const SizedBox(height: 10),
-                                        const StartMessage(),
+                                        const startMessage(),
                                         const SizedBox(height: 20)
                                       ],
                                     ),
@@ -150,10 +141,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                       return GroupSeparator(value);
                                     },
                                     itemBuilder: (context, message) {
-                                      return InkWell(
-                                          onLongPress: () =>
-                                              model.showButtonSheet(),
-                                          child: MessageView(message));
+                                      return MessageView(message);
                                     },
                                     groupComparator: (groupOne, groupTwo) =>
                                         groupOne.compareTo(groupTwo),
@@ -197,14 +185,14 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                     child: Flexible(
                                       fit: FlexFit.loose,
                                       child: TextField(
-                                        controller: messageController,
+                                        controller: model.messageController,
                                         expands: true,
                                         maxLines: null,
                                         textAlignVertical:
-                                            TextAlignVertical.center,
+                                        TextAlignVertical.center,
                                         decoration: InputDecoration(
                                             hintText:
-                                                'Message ${model.receiver.username}',
+                                            'Message ${model.receiver.username}',
                                             // suffixIcon: CustomStatus(isActive: true,
                                             //   data: '5'),
 
@@ -312,3 +300,4 @@ class DmUserView extends StatelessWidget with $DmUserView {
         });
   }
 }
+

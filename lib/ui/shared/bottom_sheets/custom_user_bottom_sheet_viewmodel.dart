@@ -1,13 +1,13 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../../app/app.locator.dart';
-import '../../../../app/app.router.dart';
-import '../../../../models/user_model.dart';
-import '../../../../package/base/server-request/api/http_api.dart';
-import '../../../../services/local_storage_services.dart';
-import '../../../../utilities/constants.dart';
-import '../../../../utilities/storage_keys.dart';
+import '../../../app/app.locator.dart';
+import '../../../app/app.router.dart';
+import '../../../models/user_model.dart';
+import '../../../package/base/server-request/api/http_api.dart';
+import '../../../services/local_storage_services.dart';
+import '../../../utilities/constants.dart';
+import '../../../utilities/storage_keys.dart';
 
 class CustomUserBottomSheetViewModel extends FutureViewModel {
   final _navigationService = locator<NavigationService>();
@@ -29,7 +29,6 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
     final response = await _apiService.get('users/$userID',
         headers: {'Authorization': 'Bearer $currentSessionToken'});
     _userModel = UserModel.fromJson(response!.data['data']);
-    print(response);
   }
 
   UserModel? get userModel => _userModel;

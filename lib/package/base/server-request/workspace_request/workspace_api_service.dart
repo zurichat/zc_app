@@ -70,9 +70,6 @@ class WorkSpaceApiService {
     return WorkspaceModel.fromJson(res?.data?['data']);
   }
 
-  ///Limited to the admin who created the org
-  ///
-  ///This should be used to add users to an organization by the admin user alone
   /// takes in a `organisation id` and joins the organisation
   Future<bool> joinWorkspace(String orgId) async {
     String email = _userService.userEmail;

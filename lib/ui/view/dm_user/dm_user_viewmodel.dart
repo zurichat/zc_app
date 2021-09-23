@@ -1,18 +1,18 @@
 import 'dart:math';
 
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/ui/view/dm_user/dm_user_view.form.dart';
-import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
-import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
-import 'package:hng/utilities/enums.dart';
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class DmUserViewModel extends FormViewModel {
+import '../../../app/app.locator.dart';
+import 'dummy_data/models/message.dart';
+import 'dummy_data/models/user.dart';
+
+class DmUserViewModel extends BaseViewModel {
   final _username = '';
   String get username => _username;
 
-  final bottomSheet = locator<BottomSheetService>();
+  TextEditingController messageController = TextEditingController();
 
   final _isOnline = true;
   bool get isOnline => _isOnline;
@@ -28,9 +28,6 @@ class DmUserViewModel extends FormViewModel {
   bool isSendButtonEnabled = false;
 
   List<Message> chatMessages = List.empty(growable: true);
-  showButtonSheet() {
-    bottomSheet.showCustomSheet(variant: BottomSheetType.FloatingBox);
-  }
 
   void onTapMessageField() {
     _hasClickedMessageField = true;
@@ -43,8 +40,8 @@ class DmUserViewModel extends FormViewModel {
   }
 
   void sendMessage() {
-    final message = messageValue;
-    if (message!.trim().isNotEmpty) {
+    final message = messageController.text;
+    if (message.trim().isNotEmpty) {
       chatMessages.add(
         Message(
           id: chatMessages.length,
@@ -53,16 +50,10 @@ class DmUserViewModel extends FormViewModel {
           time: DateTime.now(),
         ),
       );
-      //TODO - fix autoclear
-      // clearText();
+      messageController.clear();
       notifyListeners();
       sendResponse();
     }
-  }
-
-  void deleteMessage(Message message) {
-    chatMessages.remove(message);
-    notifyListeners();
   }
 
   void popScreen() {
@@ -82,10 +73,5 @@ class DmUserViewModel extends FormViewModel {
       ),
     );
     notifyListeners();
-  }
-
-  @override
-  void setFormStatus() {
-    // TODO: implement setFormStatus
   }
 }

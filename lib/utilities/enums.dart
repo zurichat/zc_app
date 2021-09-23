@@ -1,19 +1,8 @@
 enum ConnectivityStatus { Wifi, Mobile, Online, Offline }
 
-enum DialogType { skinTone, selectLanguage, feedback, themeMode, deleteChannel, deleteMessage }
+enum DialogType { skinTone, selectLanguage, feedback, themeMode }
 
-enum ChannelType { private, public, personal }
-
-enum CustomUserProfileButtonType { normal, icon }
-
-enum ThreadCardType { threadMain, threadDetail, threadPost }
-
-enum BottomSheetType {
-  user,
-  emojiPicker,
-  FloatingBox,
-  threadOptions,
-}
+enum BottomSheetType { user }
 
 enum HomeListType {
   unreads,
