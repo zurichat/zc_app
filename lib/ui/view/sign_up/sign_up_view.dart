@@ -27,7 +27,7 @@ import 'sign_up_viewmodel.dart';
 )
 class SignUpView extends StatelessWidget with $SignUpView {
   final log = getLogger('SignUpView');
-  SignUpView({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(

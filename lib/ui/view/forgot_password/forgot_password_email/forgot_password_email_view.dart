@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.form.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 import 'forgot_password_email_viewmodel.dart';
 
-class ForgotPasswordEmailView extends StatelessWidget {
-  const ForgotPasswordEmailView({Key? key}) : super(key: key);
+@FormView(fields: [FormTextField(name: 'forgotEmail')])
+class ForgotPasswordEmailView extends StatelessWidget
+    with $ForgotPasswordEmailView {
+  //bool isWrong = false;
+  
 
   @override
   Widget build(BuildContext context) {
