@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/utilities/constants.dart';
-import 'package:stacked/stacked.dart';
 
-import '../home_page_viewmodel.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/enums.dart';
+import '../../../shared/colors.dart';
+import '../../../shared/text_styles.dart';
 import '../home_item_model.dart';
+import 'home_list_items.dart';
 
 ///Expanded List allows list to be expanded and contracted
 ///if expand is specified as false then the expanded list
@@ -38,17 +37,20 @@ class HomeExpandedList extends StatelessWidget {
   }
 
   List<Widget> getExpansionList() {
-    List<Widget> expansionList = List.generate(data.length, (i) {
-      HomeItemModel item = data[i];
-      if (item.type == HomeItemType.channels) {
-        return ChannelTextAndIcon(data: data[i]);
-      } else {
-        return DMTextAndIcon(data: data[i]);
-      }
-    });
+    List<Widget> expansionList = List.generate(
+      data.length,
+      (i) {
+        HomeItemModel item = data[i];
+        if (item.type == HomeItemType.channels) {
+          return ChannelTextAndIcon(data: data[i]);
+        } else {
+          return DMTextAndIcon(data: data[i]);
+        }
+      },
+    );
 
     if (title == 'Channels') {
-      expansionList.add(AddChannelsTextAndIcon());
+      expansionList.add(const AddChannelsTextAndIcon());
     }
 
     return expansionList;

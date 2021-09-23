@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'add_workspace_viewmodel.dart';
 
 //The Add workspace page, where user can add a new workspace
 //The route to this page is '/add-workspace-view'
 class AddWorkspaceView extends StatelessWidget {
-  const AddWorkspaceView({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class AddWorkspaceView extends StatelessWidget {
       //initialise the view model only once
       initialiseSpecialViewModelsOnce: true,
       viewModelBuilder: () => AddWorkSpaceViewModel(),
-      builder: (context, viewModel, child) {
+      builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
@@ -55,9 +56,8 @@ class AddWorkspaceView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            //TODO: Navigate to create Workspace
-                          },
+                          onTap: () => model.navigateToJoinWorkspace(
+                              WorkspaceSwitchMethod.Create),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
@@ -90,9 +90,8 @@ class AddWorkspaceView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () {
-                            //TODO: Navigate to Sigin to another Workspace
-                          },
+                          onTap: () => model.navigateToJoinWorkspace(
+                              WorkspaceSwitchMethod.SignIn),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
@@ -125,9 +124,8 @@ class AddWorkspaceView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () {
-                            //TODO: Navigate to join another Workspace
-                          },
+                          onTap: () => model.navigateToJoinWorkspace(
+                              WorkspaceSwitchMethod.Join),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(

@@ -1,10 +1,12 @@
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class YouPageViewModel extends BaseViewModel {
+  final log = getLogger('YouPageViewModel');
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
 
@@ -42,14 +44,9 @@ class YouPageViewModel extends BaseViewModel {
     var sheetResponse = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.user,
       isScrollControlled: true,
-      title: 'This is a floating bottom sheet',
-      description:
-          'This sheet is a custom built bottom sheet UI that allows you to show it from any service or viewmodel.',
-      mainButtonTitle: 'Awesome!',
-      secondaryButtonTitle: 'This is cool',
     );
 
-    print('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
+    log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
   }
 
   Future viewNotifications() async {
