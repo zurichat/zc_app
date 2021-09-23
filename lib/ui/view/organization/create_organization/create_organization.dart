@@ -3,22 +3,22 @@ import 'package:stacked/stacked.dart';
 
 import '../../../../utilities/enums.dart';
 import '../../../shared/shared.dart';
-import 'create_workspace_viewmodel.dart';
+import 'create_organization_viewmodel.dart';
 
-class CreateWorkSpace extends StatelessWidget {
-  final WorkspaceSwitchMethod method;
+class CreateOrganization extends StatelessWidget {
+  final OrganizationSwitchMethod method;
   //The users email address can be passed in here from the api or database
 
-  const CreateWorkSpace({Key? key, required this.method}) : super(key: key);
+  const CreateOrganization({Key? key, required this.method}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<CreateWorkSpaceViewModel>.nonReactive(
-        viewModelBuilder: () => CreateWorkSpaceViewModel(),
+    return ViewModelBuilder<CreateOrganizationViewModel>.nonReactive(
+        viewModelBuilder: () => CreateOrganizationViewModel(),
         builder: (context, model, child) => Scaffold(
               appBar: AppBar(
                 title: const Text(
-                  'Create a workspace',
+                  'Create an Organization',
                   style: TextStyle(
                     fontSize: 16,
                     color: AppColors.deepBlackColor,

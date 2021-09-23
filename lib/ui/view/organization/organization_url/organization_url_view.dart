@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/workspace/new_email/new_email_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
-class NewEmailView extends StatelessWidget {
-  const NewEmailView({Key? key}) : super(key: key);
+import 'organization_url_viewmodel.dart';
+
+class OrganizationUrlView extends StatelessWidget {
+  const OrganizationUrlView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<NewEmailViewModel>.nonReactive(
+    return ViewModelBuilder<OrganizationUrlViewModel>.nonReactive(
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
@@ -27,10 +28,32 @@ class NewEmailView extends StatelessWidget {
                           height: 12,
                         ),
                         Container(
-                          child: Text(
-                            'We’ll send you an email that will instantly sign you in',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400, fontSize: 16),
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text:
+                                      'If you don\'t know your Organization URL, we have sent an email to ',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 16),
+                                ),
+                                TextSpan(
+                                  text: '${model.email}',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
+                                    color: AppColors.appBarGreen,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: ' to help you sign in easily.',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 16),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -46,20 +69,21 @@ class NewEmailView extends StatelessWidget {
           ),
         ),
       ),
-      viewModelBuilder: () => NewEmailViewModel(),
+      viewModelBuilder: () => OrganizationUrlViewModel(),
     );
   }
 }
 
-class TextForm extends HookViewModelWidget<NewEmailViewModel> {
+class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
   TextForm({Key? key}) : super(key: key, reactive: false);
   @override
-  Widget buildViewModelWidget(BuildContext context, NewEmailViewModel model) {
+  Widget buildViewModelWidget(
+      BuildContext context, OrganizationUrlViewModel model) {
     return Center(
       child: TextField(
         decoration: InputDecoration(
-          labelText: 'Your email address',
-          hintText: 'Your email address',
+          labelText: 'Enter Organization URL',
+          hintText: 'https://organization.zuri.com',
           hintStyle: TextStyle(
             color: Color(0xffBEBEBE),
             fontSize: 16,
@@ -79,16 +103,16 @@ class TextForm extends HookViewModelWidget<NewEmailViewModel> {
   }
 }
 
-class NextButton extends ViewModelWidget<NewEmailViewModel> {
+class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
   NextButton({Key? key}) : super(key: key, reactive: true);
 
   @override
-  Widget build(BuildContext context, NewEmailViewModel model) {
+  Widget build(BuildContext context, OrganizationUrlViewModel model) {
     return TextButton(
         style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all<Color>(model.text.isEmpty ? Color(0xffBEBEBE) : AppColors.appBarGreen)),
-        onPressed: () {},
+                MaterialStateProperty.all<Color>(model.buttonColors)),
+        onPressed: () => model.signInToOrganization(),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
           child: Container(

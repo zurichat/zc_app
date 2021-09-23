@@ -1,8 +1,8 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/app/app.router.dart';
-import 'package:hng/models/workspace_model.dart';
-import 'package:hng/package/base/server-request/workspace_request/workspace_api_service.dart';
+import 'package:hng/models/organization_model.dart';
+import 'package:hng/package/base/server-request/Organization_request/Organization_api_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/enums.dart';
@@ -10,24 +10,24 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class WorkspaceViewModel extends BaseViewModel {
-  final log = getLogger('WorkspaceViewModel');
+class OrganizationViewModel extends BaseViewModel {
+  final log = getLogger('OrganizationViewModel');
   final navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
   final connectivityService = locator<ConnectivityService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
-  final api = WorkSpaceApiService();
-  List<WorkspaceModel> workspaces = [];
+  final api = OrganizationApiService();
+  List<OrganizationModel> organizations = [];
 
   void initViewModel() {
     fetchOrganizations();
   }
 
-  Future<void> navigateToNewWorkspace() async {
+  Future<void> navigateToNewOrganization() async {
     try {
-      await navigation.navigateTo(Routes.addWorkspaceView);
-      workspaces = await api.fetchListOfOrganizations();
-      filterWorkspace();
+      await navigation.navigateTo(Routes.addOrganizationView);
+      organizations = await api.fetchListOfOrganizations();
+      filterOrganization();
       notifyListeners();
     } catch (e) {
       snackbar.showCustomSnackBar(
@@ -38,7 +38,7 @@ class WorkspaceViewModel extends BaseViewModel {
     }
   }
 
-  //Returns the list of organisation the user is part of
+  //Returns the list of Organization the user is part of
   Future fetchOrganizations() async {
     if (!await connectivityService.checkConnection()) {
       snackbar.showCustomSnackBar(
@@ -54,11 +54,11 @@ class WorkspaceViewModel extends BaseViewModel {
       setBusy(true);
       final resFromApi = await api.getJoinedOrganizations();
       if (resFromApi.isEmpty) {
-        workspaces = [];
+        organizations = [];
       } else {
-        workspaces = resFromApi;
+        organizations = resFromApi;
       }
-      // filterWorkspace();
+      // filterOrganization();
 
       setBusy(false);
     } catch (e) {
@@ -72,9 +72,9 @@ class WorkspaceViewModel extends BaseViewModel {
   }
 
 //TODO change this to fetch the list of organizations the user is part of alone
-  void filterWorkspace() {
-    final ids = storageService.getStringList(StorageKeys.workspaceIds) ?? [];
-    workspaces.retainWhere((e) => ids.any((id) => id == e.id));
+  void filterOrganization() {
+    final ids = storageService.getStringList(StorageKeys.organizationIds) ?? [];
+    organizations.retainWhere((e) => ids.any((id) => id == e.id));
   }
 
   Future<void> onTap(String? id, String? name, String? url) async {

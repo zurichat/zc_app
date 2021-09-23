@@ -2,21 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
-import 'add_workspace_viewmodel.dart';
+import 'add_organization_viewmodel.dart';
 
-//The Add workspace page, where user can add a new workspace
-//The route to this page is '/add-workspace-view'
-class AddWorkspaceView extends StatelessWidget {
+//The Add Organization page, where user can add a new Organization
+//The route to this page is '/add-Organization-view'
+class AddOrganizationView extends StatelessWidget {
   
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<AddWorkSpaceViewModel>.reactive(
+    return ViewModelBuilder<AddOrganizationViewModel>.reactive(
       //this parameter allows us to reuse the view model to persist the state
       disposeViewModel: false,
       //initialise the view model only once
       initialiseSpecialViewModelsOnce: true,
-      viewModelBuilder: () => AddWorkSpaceViewModel(),
+      viewModelBuilder: () => AddOrganizationViewModel(),
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
@@ -24,7 +24,7 @@ class AddWorkspaceView extends StatelessWidget {
             elevation: 8,
             shadowColor: Colors.black38,
             title: Text(
-              "Add Workspaces",
+              "Add Organizations",
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
@@ -56,8 +56,8 @@ class AddWorkspaceView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(
-                              WorkspaceSwitchMethod.Create),
+                          onTap: () => model.navigateToJoinOrganization(
+                              OrganizationSwitchMethod.Create),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
@@ -68,7 +68,7 @@ class AddWorkspaceView extends StatelessWidget {
                                 ),
                                 SizedBox(width: 16),
                                 Text(
-                                  "Create a new workspace",
+                                  "Create a new Organization",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 18,
@@ -90,8 +90,8 @@ class AddWorkspaceView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(
-                              WorkspaceSwitchMethod.SignIn),
+                          onTap: () => model.navigateToJoinOrganization(
+                              OrganizationSwitchMethod.SignIn),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
@@ -102,7 +102,7 @@ class AddWorkspaceView extends StatelessWidget {
                                 ),
                                 SizedBox(width: 16),
                                 Text(
-                                  "Sign in to another workspace",
+                                  "Sign in to another Organization",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 18,
@@ -124,8 +124,8 @@ class AddWorkspaceView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(
-                              WorkspaceSwitchMethod.Join),
+                          onTap: () => model.navigateToJoinOrganization(
+                              OrganizationSwitchMethod.Join),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
@@ -136,7 +136,7 @@ class AddWorkspaceView extends StatelessWidget {
                                 ),
                                 SizedBox(width: 16),
                                 Text(
-                                  "Join another workspace",
+                                  "Join another Organization",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 18,

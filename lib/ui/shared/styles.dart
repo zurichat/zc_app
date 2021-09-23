@@ -35,6 +35,11 @@ class AppTextStyles {
     color: AppColors.greyishColor,
     fontSize: 16,
   );
+  static TextStyle bodyRegular = GoogleFonts.lato(
+    fontWeight: FontWeight.w500,
+    color: AppColors.blackColor,
+    fontSize: 20,
+  );
   static TextStyle normalText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     fontSize: 12,

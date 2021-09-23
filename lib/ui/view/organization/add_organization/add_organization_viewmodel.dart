@@ -4,13 +4,13 @@ import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class AddWorkSpaceViewModel extends BaseViewModel {
+class AddOrganizationViewModel extends BaseViewModel {
   final navigation = locator<NavigationService>();
 
-  void navigateToJoinWorkspace(WorkspaceSwitchMethod method) {
+  void navigateToJoinOrganization(OrganizationSwitchMethod method) {
     navigation.navigateTo(
-      Routes.createWorkSpace,
-      arguments: CreateWorkSpaceArguments(
+      Routes.createOrganization,
+      arguments: CreateOrganizationArguments(
        method: method,
       ),
     );

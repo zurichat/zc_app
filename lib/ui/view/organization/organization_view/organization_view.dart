@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../models/workspace_model.dart';
+import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
-import 'workspace_viewmodel.dart';
+import 'organization_viewmodel.dart';
 
-class WorkspaceView extends StatelessWidget {
-  const WorkspaceView({Key? key}) : super(key: key);
+class OrganizationView extends StatelessWidget {
+  const OrganizationView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<WorkspaceViewModel>.reactive(
+    return ViewModelBuilder<OrganizationViewModel>.reactive(
       onModelReady: (model) => model.initViewModel(),
       disposeViewModel: false,
       builder: (context, model, child) {
@@ -21,23 +21,25 @@ class WorkspaceView extends StatelessWidget {
                 children: [
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text('Workspaces',
+                    child: Text('Organizations',
                         style: AppTextStyles.heading6
                             .copyWith(color: AppColors.blackColor)),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.005,
+                    height: MediaQuery.of(context).size.height * 0.35,
                   ),
                   Expanded(
                     child: Visibility(
                       visible: !model.isBusy,
                       child: SingleChildScrollView(
                         physics: ScrollPhysics(),
-                        child: model.workspaces.isEmpty
+                        child: model.organizations.isEmpty
                             ? Padding(
                                 padding: const EdgeInsets.only(top: 16.0),
                                 child: Text(
-                                    "You have not joined any organisation yet!"),
+                                    "You have not joined any organization yet!",
+                                    style: AppTextStyles.bodyRegular,
+                                    ),
                               )
                             : Column(
                                 children: [
@@ -47,10 +49,10 @@ class WorkspaceView extends StatelessWidget {
                                   ),
                                   ListView.builder(
                                     physics: NeverScrollableScrollPhysics(),
-                                    itemCount: model.workspaces.length,
+                                    itemCount: model.organizations.length,
                                     shrinkWrap: true,
                                     itemBuilder: (context, i) {
-                                      final org = model.workspaces[i];
+                                      final org = model.organizations[i];
                                       return OrganizationTile(org: org);
                                     },
                                   ),
@@ -61,11 +63,11 @@ class WorkspaceView extends StatelessWidget {
 //                                      SizedBox(height: 10.0),
 //                                      ListView.builder(
 //                                        physics: NeverScrollableScrollPhysics(),
-//                                        itemCount: model.workspaces.length,
+//                                        itemCount: model.Organizations.length,
 //                                        shrinkWrap: true,
 //                                        itemBuilder: (context, i) {
-//                                          WorkspaceModel data =
-//                                              model.workspaces[i];
+//                                          OrganizationModel data =
+//                                              model.Organizations[i];
 //                                          return ListTile(
 //                                            onTap: () => model.onTap(data.id),
 //                                            leading: Container(
@@ -146,7 +148,7 @@ class WorkspaceView extends StatelessWidget {
 //                                              padding: const EdgeInsets.only(
 //                                                  top: 5.0),
 //                                              child: Text(
-//                                                '${data.workSpaceUrl}',
+//                                                '${data.OrganizationUrl}',
 //                                                style: TextStyle(
 //                                                    color: Colors.grey,
 //                                                    fontSize: 15.0),
@@ -171,11 +173,11 @@ class WorkspaceView extends StatelessWidget {
                     child: Column(
                       children: [
                         ListTile(
-                          onTap: () => model.navigateToNewWorkspace(),
+                          onTap: () => model.navigateToNewOrganization(),
                           leading: Container(
                             child: Icon(Icons.add_box_outlined),
                           ),
-                          title: Text("Add a workspace"),
+                          title: Text("Add an organization"),
                         ),
                         ListTile(
                           leading: Container(
@@ -198,23 +200,23 @@ class WorkspaceView extends StatelessWidget {
           ),
         );
       },
-      viewModelBuilder: () => WorkspaceViewModel(),
+      viewModelBuilder: () => OrganizationViewModel(),
     );
   }
 }
 
-class OrganizationTile extends ViewModelWidget<WorkspaceViewModel> {
+class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
   const OrganizationTile({
     Key? key,
     required this.org,
   }) : super(key: key);
 
-  final WorkspaceModel org;
+  final OrganizationModel org;
 
   @override
-  Widget build(BuildContext context, WorkspaceViewModel model) {
+  Widget build(BuildContext context, OrganizationViewModel model) {
     return ListTile(
-      onTap: () => model.onTap(org.id, org.name, org.workSpaceUrl),
+      onTap: () => model.onTap(org.id, org.name, org.organizationUrl),
       leading: Container(
         height: MediaQuery.of(context).size.height * 0.06,
         width: MediaQuery.of(context).size.height * 0.06,
@@ -259,7 +261,7 @@ class OrganizationTile extends ViewModelWidget<WorkspaceViewModel> {
       subtitle: Container(
         padding: const EdgeInsets.only(top: 5.0),
         child: Text(
-          org.workSpaceUrl ?? '',
+          org.organizationUrl ?? '',
           style: AppTextStyles.body3Medium,
         ),
       ),
