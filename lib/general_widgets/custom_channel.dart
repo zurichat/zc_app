@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/view/dm_chat_view/dm_jump_to_view.dart';
+import 'package:hng/ui/view/dm_chat_view/dm_jump_to_viewmodel.dart';
 
 class CustomChannel extends StatelessWidget {
   final String? text;
-  const CustomChannel({Key? key, this.text}) : super(key: key);
+  DmJumpToView? model;
+  CustomChannel({
+    Key? key,
+    this.text,
+    this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +30,8 @@ class CustomChannel extends StatelessWidget {
               ),
               SizedBox(width: 21.33.w),
               Text(
-                '$text',
-                // style: ZuriTextStyle.mediumBold(),
+               text ??
+                    '...',
                 style: AppTextStyles
                     .fileName, // textfont in here won't scale to different screens
               ),

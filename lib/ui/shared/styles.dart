@@ -20,6 +20,11 @@ class AppTextStyles {
     color: AppColors.blackColor,
     fontSize: 20,
   );
+  static TextStyle hashtag = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.greyColor,
+    fontSize: 20,
+  );
   static TextStyle heading6 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
     color: AppColors.greyishColor,
@@ -102,6 +107,11 @@ class AppTextStyles {
     color: AppColors.greyColor,
     fontSize: 12,
   );
+  static TextStyle subtitle1 = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.deepGreyColor,
+    fontSize: 12,
+  );
   static TextStyle normalGrey = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     color: AppColors.greyColor,
@@ -181,6 +191,16 @@ class AppTextStyles {
   static TextStyle nameStyle = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
     color: AppColors.darkGreyColor,
+    fontSize: 14,
+  );
+  static TextStyle nameStyle1 = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.deepGreyColor,
+    fontSize: 14,
+  );
+  static TextStyle hintStyle = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.SearchHintColor,
     fontSize: 14,
   );
   static TextStyle smallText = GoogleFonts.lato(
