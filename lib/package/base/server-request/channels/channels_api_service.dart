@@ -61,7 +61,7 @@ class ChannelsApiService {
       log.i(res?.data.toString());
 
       if (res?.statusCode == 201 || res?.statusCode == 200) {
-        onChange.sink.add('created channel');
+        // onChange.sink.add('created channel');
         return true;
       }
     } on Exception catch (e) {
@@ -72,7 +72,7 @@ class ChannelsApiService {
   }
 
   dispose() {
-    onChange.close();
+    // onChange.close();
   }
 
 
