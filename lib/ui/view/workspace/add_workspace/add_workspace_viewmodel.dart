@@ -11,7 +11,7 @@ class AddWorkSpaceViewModel extends BaseViewModel {
     navigation.navigateTo(
       Routes.createWorkSpace,
       arguments: CreateWorkSpaceArguments(
-        method: method,
+       method: method,
       ),
     );
   }
