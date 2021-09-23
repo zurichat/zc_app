@@ -238,29 +238,20 @@ class StackedRouter extends RouterBase {
       );
     },
     LoginView: (data) {
-      var args = data.getArgs<LoginViewArguments>(
-        orElse: () => LoginViewArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => LoginView(key: args.key),
+        builder: (context) => LoginView(),
         settings: data,
       );
     },
     OTPView: (data) {
-      var args = data.getArgs<OTPViewArguments>(
-        orElse: () => OTPViewArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => OTPView(key: args.key),
+        builder: (context) => OTPView(),
         settings: data,
       );
     },
     SignUpView: (data) {
-      var args = data.getArgs<SignUpViewArguments>(
-        orElse: () => SignUpViewArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => SignUpView(key: args.key),
+        builder: (context) => SignUpView(),
         settings: data,
       );
     },
@@ -277,11 +268,8 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordEmailView: (data) {
-      var args = data.getArgs<ForgotPasswordEmailViewArguments>(
-        orElse: () => ForgotPasswordEmailViewArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ForgotPasswordEmailView(key: args.key),
+        builder: (context) => ForgotPasswordEmailView(),
         settings: data,
       );
     },
@@ -479,7 +467,7 @@ class StackedRouter extends RouterBase {
     },
     AddWorkspaceView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const AddWorkspaceView(),
+        builder: (context) => AddWorkspaceView(),
         settings: data,
       );
     },
@@ -550,30 +538,6 @@ class StackedRouter extends RouterBase {
 /// ************************************************************************
 /// Arguments holder classes
 /// *************************************************************************
-
-/// LoginView arguments holder class
-class LoginViewArguments {
-  final Key? key;
-  LoginViewArguments({this.key});
-}
-
-/// OTPView arguments holder class
-class OTPViewArguments {
-  final Key? key;
-  OTPViewArguments({this.key});
-}
-
-/// SignUpView arguments holder class
-class SignUpViewArguments {
-  final Key? key;
-  SignUpViewArguments({this.key});
-}
-
-/// ForgotPasswordEmailView arguments holder class
-class ForgotPasswordEmailViewArguments {
-  final Key? key;
-  ForgotPasswordEmailViewArguments({this.key});
-}
 
 /// ForgotPasswordOtpView arguments holder class
 class ForgotPasswordOtpViewArguments {

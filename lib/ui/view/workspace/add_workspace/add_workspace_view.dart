@@ -7,7 +7,7 @@ import 'add_workspace_viewmodel.dart';
 //The Add workspace page, where user can add a new workspace
 //The route to this page is '/add-workspace-view'
 class AddWorkspaceView extends StatelessWidget {
-  const AddWorkspaceView({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
