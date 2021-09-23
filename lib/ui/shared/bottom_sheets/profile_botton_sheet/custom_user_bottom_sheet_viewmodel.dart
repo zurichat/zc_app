@@ -29,6 +29,7 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
     final response = await _apiService.get('users/$userID',
         headers: {'Authorization': 'Bearer $currentSessionToken'});
     _userModel = UserModel.fromJson(response!.data['data']);
+    print(response);
   }
 
   UserModel? get userModel => _userModel;

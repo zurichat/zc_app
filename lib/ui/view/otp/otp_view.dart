@@ -19,7 +19,7 @@ import 'otp_view.form.dart';
 )
 class OTPView extends StatelessWidget with $OTPView {
   final log = getLogger('OTPView');
-  OTPView({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
