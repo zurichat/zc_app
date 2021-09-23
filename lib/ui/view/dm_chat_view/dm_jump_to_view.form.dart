@@ -34,6 +34,7 @@ mixin $DmJumpToView on StatelessWidget {
     // The dispose function for a TextEditingController sets all listeners to null
 
     searchController.dispose();
+    searchFocusNode.dispose();
   }
 }
 

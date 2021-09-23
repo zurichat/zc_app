@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/text_styles.dart';
 
 class CustomChannel extends StatelessWidget {
   final String? text;
