@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class startMessage extends StatelessWidget {
+class StartMessage extends StatelessWidget {
   final userName;
 
-  const startMessage({
+  const StartMessage({
     Key? key,
     this.userName: 'OyinkanUA',
   }) : super(key: key);
@@ -29,4 +29,3 @@ class startMessage extends StatelessWidget {
     );
   }
 }
-

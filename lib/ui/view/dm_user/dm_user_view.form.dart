@@ -35,10 +35,6 @@ mixin $DmUserView on StatelessWidget {
 
     messageController.dispose();
   }
-
-  void clearText() {
-    messageController.clear();
-  }
 }
 
 extension ValueProperties on FormViewModel {
