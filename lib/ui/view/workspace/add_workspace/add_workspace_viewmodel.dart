@@ -7,10 +7,10 @@ import 'package:stacked_services/stacked_services.dart';
 class AddWorkSpaceViewModel extends BaseViewModel {
   final navigation = locator<NavigationService>();
 
-  void navigateToJoinWorkspace(WorkspaceSwitchMethod method) {
+  void navigateToSelectEmail(WorkspaceSwitchMethod method) {
     navigation.navigateTo(
-      Routes.createWorkSpace,
-      arguments: CreateWorkSpaceArguments(
+      Routes.selectEmail,
+      arguments: SelectEmailArguments(
         method: method,
       ),
     );

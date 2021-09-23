@@ -16,18 +16,18 @@ class SplashscreenViewModel extends BaseViewModel {
     Timer(
       const Duration(seconds: 1),
       () {
-        navigation.navigateTo(Routes.signUpView);
+        navigation.navigateTo(Routes.createWorkSpace);
         //TODO comment it out to get access to once only view
-        if (storage.getBool('onboarded') == null ||
-            storage.getBool('onboarded') == false) {
-          storage.setBool('onboarded', true);
-          navigation.navigateTo(Routes.onboardingView);
-        } else if (storage.getBool(StorageKeys.registeredNotverifiedOTP) ==
-            true) {
-          navigation.navigateTo(Routes.oTPView);
-        } else {
-          navigation.navigateTo(Routes.loginView);
-        }
+        // if (storage.getBool('onboarded') == null ||
+        //     storage.getBool('onboarded') == false) {
+        //   storage.setBool('onboarded', true);
+        //   navigation.navigateTo(Routes.onboardingView);
+        // } else if (storage.getBool(StorageKeys.registeredNotverifiedOTP) ==
+        //     true) {
+        //   navigation.navigateTo(Routes.oTPView);
+        // } else {
+        //   navigation.navigateTo(Routes.loginView);
+        // }
         // navigation.navigateTo(Routes.onboardingView);
       },
     );

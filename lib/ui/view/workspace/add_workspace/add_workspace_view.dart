@@ -56,7 +56,7 @@ class AddWorkspaceView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(
+                          onTap: () => model.navigateToSelectEmail(
                               WorkspaceSwitchMethod.Create),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -90,7 +90,7 @@ class AddWorkspaceView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(
+                          onTap: () => model.navigateToSelectEmail(
                               WorkspaceSwitchMethod.SignIn),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -124,7 +124,7 @@ class AddWorkspaceView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(
+                          onTap: () => model.navigateToSelectEmail(
                               WorkspaceSwitchMethod.Join),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
