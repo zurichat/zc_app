@@ -3,26 +3,28 @@ import 'package:hng/ui/shared/colors.dart';
 
 TextStyle headerStyle() {
   return TextStyle(
-      fontSize: 20, fontWeight: FontWeight.w800, color: Colors.black);
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: AppColors.zuriTextColorHeader);
 }
 
 TextStyle nameStyle() {
   return TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.w600,
-      color: AppColors.deepBlackColor);
+      fontSize: 14,
+      fontWeight: FontWeight.w700,
+      color: AppColors.zuriTextColorHeader);
 }
 
 TextStyle descriptionStyle() {
   return TextStyle(
-      fontSize: 15,
-      fontWeight: FontWeight.w600,
-      color: AppColors.deepBlackColor);
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: AppColors.zuriTextColorHeader);
 }
 
 TextStyle faintTextStyle() {
   return TextStyle(
-      fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.borderColor);
+      fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.greyishColor);
 }
 
 TextStyle archiveTextStyle() {
@@ -33,7 +35,7 @@ TextStyle archiveTextStyle() {
 TextStyle greenTextStyle() {
   return TextStyle(
     fontSize: 16,
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w700,
     color: AppColors.zuriPrimaryColor,
   );
 }

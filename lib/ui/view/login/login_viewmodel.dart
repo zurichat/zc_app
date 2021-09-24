@@ -1,7 +1,9 @@
+import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/services/local_storage_services.dart';
+
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/login/login_view.form.dart';
 import 'package:hng/utilities/enums.dart';
@@ -28,7 +30,7 @@ class LoginViewModel extends FormViewModel {
     navigationService.navigateTo(Routes.signUpView);
   }
 
-  void navigateToForgotPasswordScreen() {
+  void navigateToForgotPasswordScreen(BuildContext context) {
     navigationService.navigateTo(Routes.forgotPasswordEmailView);
   }
 
@@ -66,7 +68,7 @@ class LoginViewModel extends FormViewModel {
         StorageKeys.currentUserEmail,
         response?.data['data']['user']['email'],
       );
-      storage.clearData(StorageKeys.workspaceIds);
+      storage.clearData(StorageKeys.organizationIds);
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
 
       snackbar.showCustomSnackBar(
@@ -76,8 +78,8 @@ class LoginViewModel extends FormViewModel {
             ''' ${response?.data['data']['user']['email']}''',
       );
 
-      //Todo check if user has currently joined an organisation
-      navigationService.navigateTo(Routes.workspaceView);
+      //Todo check if user has currently joined an Organization
+      navigationService.navigateTo(Routes.organizationView);
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),

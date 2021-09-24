@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/channel/channel_info/widgets/seventh_section.dart';
 import 'package:stacked/stacked.dart';
 import 'channel_info_view_model.dart';
 import 'widgets/custom_app_bar.dart';
-import 'widgets/edit_button.dart';
 import 'widgets/fifth_section.dart';
 import 'widgets/first_section.dart';
 import 'widgets/fourth_section.dart';
 import 'widgets/second_section.dart';
+import 'widgets/seventh_section.dart';
 import 'widgets/sixth_section.dart';
-import 'widgets/textstyles.dart';
 import 'widgets/third_section.dart';
+
+const _margin = EdgeInsets.only(left: 16.0);
 
 class ChannelInfoView extends StatefulWidget {
   const ChannelInfoView({Key? key}) : super(key: key);
@@ -26,65 +29,81 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
     return ViewModelBuilder<ChannelInfoViewModel>.reactive(
-      builder: (context, model, child) => Scaffold(
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(60), child: customAppBar()),
-        // ignore: avoid_unnecessary_containers
-        body: SafeArea(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const FirstSection(),
-
-                GestureDetector(
+        onModelReady: (model) {
+          model.getChannelInfo();
+        },
+        viewModelBuilder: () => ChannelInfoViewModel(),
+        builder: (context, model, child) {
+          return Scaffold(
+            appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(60),
+                child: customAppBar(context)),
+            // ignore: avoid_unnecessary_containers
+            body: SafeArea(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FirstSection(
+                      model: model,
+                    ),
+                    /*GestureDetector(
                   onTap: model.navigateToEditChannel,
                   child: const EditButton(),
+                ),*/
+                    const SecondSection(),
+                    SizedBox(
+                      height: 8.0,
+                    ),
+                    Container(
+                        margin: _margin,
+                        child: Text(
+                          'You wont\'t  recieve any messages from a muted channel',
+                          style: AppTextStyles.body1Grey,
+                        )),
+                    SizedBox(
+                      height: 18.0,
+                    ),
+                    const ThirdSection(),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    Container(
+                      margin: _margin,
+                      child: Text(
+                        'Bookmarks',
+                        style: AppTextStyles.body1Grey,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8.0,
+                    ),
+                    const FourthSection(),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    const FifthSection(),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    Container(
+                      margin: _margin,
+                      child: Text(
+                        'Advanced',
+                        style: AppTextStyles.body1Grey,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8.0,
+                    ),
+                    const SixthSection(),
+                    const SeventhSection()
+                  ],
                 ),
-
-                const SecondSection(),
-
-                Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 19),
-                    child: Text(
-                      'You wont\'t  recieve any messages from a muted channel',
-                      style: faintTextStyle(),
-                    )
-                ),
-                //Third Section
-
-                const ThirdSection(),
-
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
-                  child: Text(
-                    'Bookmarks',
-                    style: faintTextStyle(),
-                  ),
-                ),
-
-                const FourthSection(),
-                const FifthSection(),
-
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
-                  child: Text(
-                    'Advanced',
-                    style: faintTextStyle(),
-                  ),
-                ),
-
-                const SixthSection(),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
-      viewModelBuilder: () => ChannelInfoViewModel(),
-    );
+          );
+        });
   }
 }

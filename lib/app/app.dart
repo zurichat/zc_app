@@ -1,10 +1,12 @@
+import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/ui/view/user_search/user_search_view.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/view/channel/edit_channel/edit_channel_view.dart';
-import 'package:hng/ui/view/workspace/workspace_url/workspace_url_view.dart';
+import 'package:hng/ui/view/threads/thread_detail/thread_detail_view.dart';
+import 'package:hng/ui/view/organization/organization_url/organization_url_view.dart';
 import 'package:hng/ui/view/channel/add_people/channel_add_people_view.dart';
 import 'package:hng/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
 import 'package:hng/ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
@@ -50,10 +52,10 @@ import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
-import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
-import '../ui/view/workspace/create_workspace/create_workspace.dart';
-import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
-import '../ui/view/workspace/workspace_view/workspace_view.dart';
+import '../ui/view/organization/add_organization/add_organization_view.dart';
+import '../ui/view/organization/create_organization/create_organization.dart';
+import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
+import '../ui/view/organization/organization_view/organization_view.dart';
 
 @StackedApp(
   routes: [
@@ -63,7 +65,7 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: LoginView),
     MaterialRoute(page: OTPView),
     MaterialRoute(page: SignUpView),
-    MaterialRoute(page: WorkspaceView),
+    MaterialRoute(page: OrganizationView),
     MaterialRoute(page: ChannelList),
     MaterialRoute(page: ForgotPasswordEmailView),
     MaterialRoute(page: ForgotPasswordOtpView),
@@ -95,13 +97,15 @@ import '../ui/view/workspace/workspace_view/workspace_view.dart';
     MaterialRoute(page: EditProfileView),
     MaterialRoute(page: PopUpNotificationsView),
     MaterialRoute(page: PinnedMessages),
-    MaterialRoute(page: AddWorkspaceView),
-    MaterialRoute(page: CreateWorkSpace),
+    MaterialRoute(page: AddOrganizationView),
+    MaterialRoute(page: CreateOrganization),
     MaterialRoute(page: FileSearchView),
     MaterialRoute(page: DraftView),
+    MaterialRoute(page: ThreadsView),
+    MaterialRoute(page: ThreadDetailView),
     MaterialRoute(page: UserSearchView),
     MaterialRoute(page: EditChannelPageView),
-    MaterialRoute(page: WorkspaceUrlView),
+    MaterialRoute(page: OrganizationUrlView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

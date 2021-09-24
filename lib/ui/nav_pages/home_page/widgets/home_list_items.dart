@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/easy_container.dart';
+import 'package:hng/general_widgets/ripple.dart';
+import 'package:hng/general_widgets/svg_icon.dart';
+import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../general_widgets/easy_container.dart';
@@ -11,32 +17,37 @@ import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
 
 class ThreadTextAndIcon extends StatelessWidget {
-  const ThreadTextAndIcon({Key? key}) : super(key: key);
+  const ThreadTextAndIcon({Key? key, required this.onTap}) : super(key: key);
 
+  final Function() onTap;
   @override
   Widget build(BuildContext context) {
     return _TextAndIcon(
       text: 'Threads',
       unread: true,
-      onTap: () {
-        //TODO threads screen
-        // Navigate to threads screen
-      },
+
+      onTap: onTap,
+
+      // onTap: () {
+      //   //TODO threads screen
+      //   // Navigate to threads screen
+      // },
+
       icon: SvgIcon(svgIcon: SvgAssets.threads),
     );
   }
 }
 
-class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+class AddChannelsTextAndIcon extends StatelessWidget {
   const AddChannelsTextAndIcon({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, vmodel) {
+  Widget build(BuildContext context) {
     return _TextAndIcon(
       text: 'Add channels',
       unread: false,
       onTap: () {
-        vmodel.navigateToNewChannel();
+        // Navigate to add channels screens
       },
       icon: SvgIcon(
         svgIcon: SvgAssets.addChannels,

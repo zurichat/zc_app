@@ -9,12 +9,16 @@ class ChannelPageViewModel extends FormViewModel {
 
   final _navigationService = locator<NavigationService>();
 
-  navigateToChannelInfo() {
-    _navigationService.navigateTo(Routes.channelInfoView);
+  Future navigateToChannelInfo() async {
+    await _navigationService.navigateTo(Routes.channelInfoView);
   }
 
-  navigateToAddPeople() {
-    _navigationService.navigateTo(Routes.addPeopleView);
+  Future navigateToAddPeople() async {
+    await _navigationService.navigateTo(Routes.addPeopleView);
+  }
+
+  navigateToChannelEdit() {
+    _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
   @override

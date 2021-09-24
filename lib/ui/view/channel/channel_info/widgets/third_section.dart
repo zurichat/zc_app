@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/textstyles.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../../shared/colors.dart';
 
 class ThirdSection extends StatelessWidget {
   const ThirdSection({Key? key}) : super(key: key);
@@ -14,139 +16,140 @@ class ThirdSection extends StatelessWidget {
       viewModelBuilder: () => ChannelInfoViewModel(),
       builder: (context, model, child) => Container(
         width: MediaQuery.of(context).size.width,
-        alignment: Alignment.center,
-        margin: const EdgeInsets.only(right: 5, left: 5, bottom: 15),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(2),
-            border: Border.all(width: 1.0, color: AppColors.borderColor)),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 9,
-                    top: 19,
+        margin: EdgeInsets.only(left: 5, right: 5),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6.0),
+          ),
+          color: AppColors.whiteColor,
+          elevation: 1.0,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 18.0,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 16.0,
                   ),
-                  child: const Icon(
-                    Icons.group_outlined,
-                    color: AppColors.deepBlackColor,
-                    size: 28,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 11,
-                    top: 19,
-                  ),
-                  child: GestureDetector(
-                    onTap: () {
-                      // model.navigatoToMembersList();
-                    },
-                    child: Text(
-                      'Members (5)',
-                      style: descriptionStyle(),
+                  Container(
+                    child: SvgPicture.asset(
+                      'assets/channel_page/members.svg',
+                      width: 24,
                     ),
                   ),
-                ),
-              ],
-            ),
-            Divider(
-              thickness: 0.5,
-              color: AppColors.deepBlackColor.withOpacity(0.5),
-              indent: 53,
-              endIndent: 33,
-            ),
-            Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 9,
-                    top: 13,
+                  SizedBox(
+                    width: 25.0,
                   ),
-                  child: const Icon(
-                    Icons.person_add_alt_1_outlined,
-                    color: AppColors.deepBlackColor,
-                    size: 28,
+                  Container(
+                    child: GestureDetector(
+                      onTap: () {
+                        // model.navigatoToMembersList();
+                      },
+                      child: Text(
+                        'Members (5)',
+                        style: AppTextStyles.namesStyle,
+                      ),
+                    ),
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 11,
-                    top: 13,
+                ],
+              ),
+              Divider(
+                thickness: 0.5,
+                color: AppColors.deepBlackColor.withOpacity(0.5),
+                indent: 65,
+              ),
+              SizedBox(
+                height: 18.0,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 16.0,
                   ),
-                  child: Text(
-                    'Add People',
-                    style: descriptionStyle(),
+                  Container(
+                    child: SvgPicture.asset(
+                      'assets/channel_page/add_people.svg',
+                      width: 24,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Divider(
-              thickness: 0.5,
-              color: AppColors.deepBlackColor.withOpacity(0.5),
-              indent: 53,
-              endIndent: 33,
-            ),
-            Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 9,
-                    top: 13,
+                  SizedBox(
+                    width: 25.0,
                   ),
-                  child: const Icon(
-                    Icons.dashboard_outlined,
-                    color: AppColors.deepBlackColor,
-                    size: 28,
+                  Container(
+                    child: Text(
+                      'Add People',
+                      style: AppTextStyles.namesStyle,
+                    ),
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 11,
-                    top: 13,
+                ],
+              ),
+              Divider(
+                thickness: 0.5,
+                color: AppColors.deepBlackColor.withOpacity(0.5),
+                indent: 65,
+              ),
+              SizedBox(
+                height: 18.0,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 16.0,
                   ),
-                  child: Text(
-                    'Plugins (1)',
-                    style: descriptionStyle(),
+                  Container(
+                    child: SvgPicture.asset(
+                      'assets/channel_page/plugins.svg',
+                      width: 24,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Divider(
-              thickness: 0.5,
-              color: AppColors.deepBlackColor.withOpacity(0.5),
-              indent: 53,
-              endIndent: 33,
-            ),
-            Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 9,
-                    top: 13,
-                    bottom: 10,
+                  SizedBox(
+                    width: 25.0,
                   ),
-                  child: const Icon(
-                    Icons.phone_outlined,
-                    color: AppColors.deepBlackColor,
-                    size: 28,
+                  Container(
+                    child: Text(
+                      'Plugins (1)',
+                      style: AppTextStyles.namesStyle,
+                    ),
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 11,
-                    top: 19,
-                    bottom: 10,
+                ],
+              ),
+              Divider(
+                thickness: 0.5,
+                color: AppColors.deepBlackColor.withOpacity(0.5),
+                indent: 65,
+              ),
+              SizedBox(
+                height: 18.0,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 16.0,
                   ),
-                  child: Text(
-                    'Start a call',
-                    style: descriptionStyle(),
+                  Container(
+                    child: SvgPicture.asset(
+                      'assets/channel_page/phone.svg',
+                      width: 24,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  SizedBox(
+                    width: 25.0,
+                  ),
+                  Container(
+                    child: Text(
+                      'Start a call',
+                      style: AppTextStyles.namesStyle,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+            ],
+          ),
         ),
       ),
     );
