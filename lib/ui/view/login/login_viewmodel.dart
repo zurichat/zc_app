@@ -49,7 +49,10 @@ class LoginViewModel extends FormViewModel {
     }
     loading(true);
     const endpoint = '/auth/login';
-    if (emailValue == null || passwordValue == null) {
+    if (emailValue == null ||
+        passwordValue == null ||
+        emailValue == '' ||
+        passwordValue == '') {
       loading(false);
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
