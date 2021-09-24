@@ -1,5 +1,6 @@
 import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
+import 'package:hng/ui/view/start_dm/start_dm_view.dart';
 import 'package:hng/ui/view/user_search/user_search_view.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
@@ -105,7 +106,10 @@ import '../ui/view/organization/organization_view/organization_view.dart';
     MaterialRoute(page: ThreadDetailView),
     MaterialRoute(page: UserSearchView),
     MaterialRoute(page: EditChannelPageView),
+    MaterialRoute(page: StartDmView),
+
     MaterialRoute(page: OrganizationUrlView),
+
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

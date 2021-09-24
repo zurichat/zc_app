@@ -83,6 +83,10 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.dmJumpToView);
   }
 
+ void navigateToStartDMScreen() {
+    _navigationService.navigateTo(Routes.startDmView);
+  }
+
   ///This sets all the expanded list items
   ///into unreads, channels and dms
   setAllList() {

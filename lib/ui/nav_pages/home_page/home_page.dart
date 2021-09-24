@@ -36,14 +36,27 @@ class HomePage extends StatelessWidget {
 
           model.isBusy
               ? LinearProgressIndicator(
-            backgroundColor: Colors.grey[400],
-            valueColor:
-            const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
-          )
+                  backgroundColor: Colors.grey[400],
+                  valueColor:
+                      const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
+                )
               : Container(),
 
           Expanded(
             child: body(model),
+          ),
+          
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.bottomRight ,
+              child: FloatingActionButton(
+                  onPressed: model.navigateToStartDMScreen,
+                  child: const Icon(
+                    Icons.open_in_new_outlined,
+                    color: AppColors.whiteColor,
+                  )),
+            ),
           )
         ],
       ),
