@@ -3,14 +3,13 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.locator.dart';
-import '../../../../package/base/server-request/workspace_request/workspace_api_service.dart';
-import '../../../../services/local_storage_services.dart';
+// import '../../../../services/local_storage_services.dart';
 
-class CreateWorkSpaceViewModel extends BaseViewModel {
-  final _navigation = locator<NavigationService>();
+class CreateOrganizationViewModel extends BaseViewModel {
+  // final _navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
-  final _storage = locator<SharedPreferenceLocalStorage>();
-  final _api = WorkSpaceApiService();
+  // final _storage = locator<SharedPreferenceLocalStorage>();
+  // final _api = OrganizationApiService();
   final textController = TextEditingController();
   bool? _checkBoxVal = false;
 

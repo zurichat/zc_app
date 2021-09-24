@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
 class AppTextStyles {
+  
   static TextStyle heading9 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
     color: AppColors.blackColor,
@@ -30,10 +31,20 @@ class AppTextStyles {
     color: AppColors.greyishColor,
     fontSize: 16,
   );
+  static TextStyle heading4 = GoogleFonts.lato(
+    fontWeight: FontWeight.w600,
+    color: AppColors.blackColor,
+    fontSize: 18,
+  );            
   static TextStyle body1Regular = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     color: AppColors.greyishColor,
     fontSize: 16,
+  );
+  static TextStyle bodyRegular = GoogleFonts.lato(
+    fontWeight: FontWeight.w500,
+    color: AppColors.blackColor,
+    fontSize: 20,
   );
   static TextStyle normalText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
@@ -58,6 +69,11 @@ class AppTextStyles {
     fontWeight: FontWeight.w700,
     color: AppColors.deepBlackColor,
     fontSize: 16,
+  );
+   static TextStyle regular = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.darkGreyColor,
+    fontSize: 18,
   );
   static TextStyle body1Green = GoogleFonts.lato(
     fontWeight: FontWeight.w400,

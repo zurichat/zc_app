@@ -5,15 +5,15 @@ import 'package:hng/ui/shared/text_field.dart';
 import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
-import 'create_workspace_viewmodel.dart';
+import 'create_organization_viewmodel.dart';
 
-class CompanyPage extends ViewModelWidget<CreateWorkSpaceViewModel> {
+class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
   const CompanyPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, CreateWorkSpaceViewModel model) {
+  Widget build(BuildContext context, CreateOrganizationViewModel model) {
     return LayoutBuilder(
       builder: (context, constraint) {
         return SingleChildScrollView(

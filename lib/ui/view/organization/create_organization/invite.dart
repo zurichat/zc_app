@@ -8,15 +8,15 @@ import 'package:hng/ui/shared/text_field.dart';
 import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
-import 'create_workspace_viewmodel.dart';
+import 'create_organization_viewmodel.dart';
 
-class InvitePage extends ViewModelWidget<CreateWorkSpaceViewModel> {
+class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
   const InvitePage({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, CreateWorkSpaceViewModel model) {
+  Widget build(BuildContext context, CreateOrganizationViewModel model) {
     return LayoutBuilder(
       builder: (context, constraint) {
         return SingleChildScrollView(
@@ -90,11 +90,11 @@ class InvitePage extends ViewModelWidget<CreateWorkSpaceViewModel> {
   }
 }
 
-class InviteButton extends ViewModelWidget<CreateWorkSpaceViewModel> {
+class InviteButton extends ViewModelWidget<CreateOrganizationViewModel> {
   InviteButton({Key? key}) : super(key: key, reactive: true);
 
   @override
-  Widget build(BuildContext context, CreateWorkSpaceViewModel model) {
+  Widget build(BuildContext context, CreateOrganizationViewModel model) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 15.0),
       child: TextButton(

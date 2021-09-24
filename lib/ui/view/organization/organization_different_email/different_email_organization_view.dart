@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/text_field.dart';
-import 'package:hng/ui/view/workspace/workspace_different_email/difference_email_workspace_viewmodel.dart';
+import 'package:hng/ui/view/organization/organization_different_email/different_email_organization_viewmodel.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -19,7 +19,7 @@ class UseDifferentEmailView extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: AppColors.zuriPrimaryColor,
           title: Text(
-            'Use difference email',
+            'Use a different email',
           ),
         ),
         body: SafeArea(

@@ -5,15 +5,15 @@ import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
-import 'create_workspace_viewmodel.dart';
+import 'create_organization_viewmodel.dart';
 
-class ProjectPage extends ViewModelWidget<CreateWorkSpaceViewModel> {
+class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
   const ProjectPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, CreateWorkSpaceViewModel model) {
+  Widget build(BuildContext context, CreateOrganizationViewModel model) {
     return LayoutBuilder(
       builder: (context, constraint) {
         return SingleChildScrollView(
@@ -61,14 +61,14 @@ class ProjectPage extends ViewModelWidget<CreateWorkSpaceViewModel> {
   }
 }
 
-class TextForm extends HookViewModelWidget<CreateWorkSpaceViewModel> {
+class TextForm extends HookViewModelWidget<CreateOrganizationViewModel> {
   final int? wordCount;
   final String hintText;
   TextForm({Key? key, this.wordCount, required this.hintText})
       : super(key: key, reactive: false);
   @override
   Widget buildViewModelWidget(
-      BuildContext context, CreateWorkSpaceViewModel model) {
+      BuildContext context, CreateOrganizationViewModel model) {
     return Center(
       child: TextField(
         maxLength: this.wordCount,
@@ -101,7 +101,6 @@ class TextForm extends HookViewModelWidget<CreateWorkSpaceViewModel> {
             ),
           ),
           errorBorder: InputBorder.none,
-          // disabledBorder: InputBorder.none,
         ),
         onChanged: (value) {},
       ),

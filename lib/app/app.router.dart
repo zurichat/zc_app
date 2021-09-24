@@ -36,6 +36,12 @@ import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/notifications/notifications_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
+import '../ui/view/organization/add_organization/add_organization_view.dart';
+import '../ui/view/organization/create_organization/create_organization.dart';
+import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
+import '../ui/view/organization/organization_url/organization_url_view.dart';
+import '../ui/view/organization/organization_view/organization_view.dart';
+import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
 import '../ui/view/pinned_messages/pinned_message.dart';
 import '../ui/view/plugins/add_plugin_view.dart';
@@ -52,12 +58,6 @@ import '../ui/view/threads/all_threads/threads_view.dart';
 import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 import '../ui/view/user_search/user_search_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
-import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
-import '../ui/view/workspace/create_workspace/create_workspace.dart';
-import '../ui/view/workspace/select_email/select_email_view.dart';
-import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
-import '../ui/view/workspace/workspace_url/workspace_url_view.dart';
-import '../ui/view/workspace/workspace_view/workspace_view.dart';
 import '../utilities/enums.dart';
 
 class Routes {
@@ -67,7 +67,7 @@ class Routes {
   static const String loginView = '/login-view';
   static const String oTPView = '/o-tp-view';
   static const String signUpView = '/sign-up-view';
-  static const String workspaceView = '/workspace-view';
+  static const String organizationView = '/organization-view';
   static const String channelList = '/channel-list';
   static const String forgotPasswordEmailView = '/forgot-password-email-view';
   static const String forgotPasswordOtpView = '/forgot-password-otp-view';
@@ -100,16 +100,16 @@ class Routes {
   static const String editProfileView = '/edit-profile-view';
   static const String popUpNotificationsView = '/pop-up-notifications-view';
   static const String pinnedMessages = '/pinned-messages';
-  static const String addWorkspaceView = '/add-workspace-view';
   static const String selectEmail = '/select-email';
-  static const String createWorkSpace = '/create-work-space';
+  static const String addOrganizationView = '/add-organization-view';
+  static const String createOrganization = '/create-organization';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
   static const String threadsView = '/threads-view';
   static const String threadDetailView = '/thread-detail-view';
   static const String userSearchView = '/user-search-view';
   static const String editChannelPageView = '/edit-channel-page-view';
-  static const String workspaceUrlView = '/workspace-url-view';
+  static const String organizationUrlView = '/organization-url-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -117,7 +117,7 @@ class Routes {
     loginView,
     oTPView,
     signUpView,
-    workspaceView,
+    organizationView,
     channelList,
     forgotPasswordEmailView,
     forgotPasswordOtpView,
@@ -149,16 +149,16 @@ class Routes {
     editProfileView,
     popUpNotificationsView,
     pinnedMessages,
-    addWorkspaceView,
     selectEmail,
-    createWorkSpace,
+    addOrganizationView,
+    createOrganization,
     fileSearchView,
     draftView,
     threadsView,
     threadDetailView,
     userSearchView,
     editChannelPageView,
-    workspaceUrlView,
+    organizationUrlView,
   };
 }
 
@@ -172,7 +172,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.oTPView, page: OTPView),
     RouteDef(Routes.signUpView, page: SignUpView),
-    RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.organizationView, page: OrganizationView),
     RouteDef(Routes.channelList, page: ChannelList),
     RouteDef(Routes.forgotPasswordEmailView, page: ForgotPasswordEmailView),
     RouteDef(Routes.forgotPasswordOtpView, page: ForgotPasswordOtpView),
@@ -205,16 +205,16 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.editProfileView, page: EditProfileView),
     RouteDef(Routes.popUpNotificationsView, page: PopUpNotificationsView),
     RouteDef(Routes.pinnedMessages, page: PinnedMessages),
-    RouteDef(Routes.addWorkspaceView, page: AddWorkspaceView),
     RouteDef(Routes.selectEmail, page: SelectEmail),
-    RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
+    RouteDef(Routes.addOrganizationView, page: AddOrganizationView),
+    RouteDef(Routes.createOrganization, page: CreateOrganization),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
     RouteDef(Routes.threadsView, page: ThreadsView),
     RouteDef(Routes.threadDetailView, page: ThreadDetailView),
     RouteDef(Routes.userSearchView, page: UserSearchView),
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
-    RouteDef(Routes.workspaceUrlView, page: WorkspaceUrlView),
+    RouteDef(Routes.organizationUrlView, page: OrganizationUrlView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -255,9 +255,9 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    WorkspaceView: (data) {
+    OrganizationView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const WorkspaceView(),
+        builder: (context) => const OrganizationView(),
         settings: data,
       );
     },
@@ -465,12 +465,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    AddWorkspaceView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => AddWorkspaceView(),
-        settings: data,
-      );
-    },
     SelectEmail: (data) {
       var args = data.getArgs<SelectEmailArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
@@ -481,9 +475,15 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    CreateWorkSpace: (data) {
+    AddOrganizationView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const CreateWorkSpace(),
+        builder: (context) => AddOrganizationView(),
+        settings: data,
+      );
+    },
+    CreateOrganization: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const CreateOrganization(),
         settings: data,
       );
     },
@@ -526,9 +526,9 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    WorkspaceUrlView: (data) {
+    OrganizationUrlView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const WorkspaceUrlView(),
+        builder: (context) => const OrganizationUrlView(),
         settings: data,
       );
     },
@@ -578,7 +578,7 @@ class AddPluginViewArguments {
 /// SelectEmail arguments holder class
 class SelectEmailArguments {
   final Key? key;
-  final WorkspaceSwitchMethod method;
+  final OrganizationSwitchMethod method;
   SelectEmailArguments({this.key, required this.method});
 }
 
