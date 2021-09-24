@@ -3,33 +3,33 @@ import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/shared/shared.dart';
 
 import '../../../../app/app.locator.dart';
-import '../../../../models/workspace_model.dart';
+import '../../../../models/organization_model.dart';
 import '../../../../services/local_storage_services.dart';
 import '../../../../utilities/storage_keys.dart';
 import '../api/http_api.dart';
 
-class WorkSpaceApiService {
-  final log = getLogger('WorkSpaceApiService');
+class OrganizationApiService {
+  final log = getLogger('OrganizationApiService');
   final _api = HttpApiService(coreBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
 
   /// Fetches a list of organizations that exist in the zuri database
-  /// This does not fetch the organisation the user belongs to
+  /// This does not fetch the Organization the user belongs to
   /// To implement that use `getJoinedOrganizations()`
-  Future<List<WorkspaceModel>> fetchListOfOrganizations() async {
+  Future<List<OrganizationModel>> fetchListOfOrganizations() async {
     final res = await _api.get(
       '/organizations',
       headers: {'Authorization': 'Bearer $token'},
     );
     log.i(res?.data?['data'].length);
     return (res?.data?['data'] as List)
-        .map((e) => WorkspaceModel.fromJson(e))
+        .map((e) => OrganizationModel.fromJson(e))
         .toList();
   }
 
-  ///Get the list of organisation the user has joined
-  Future<List<WorkspaceModel>> getJoinedOrganizations() async {
+  ///Get the list of Organization the user has joined
+  Future<List<OrganizationModel>> getJoinedOrganizations() async {
     String email = _userService.userEmail;
 
     final res = await _api.get(
@@ -42,23 +42,23 @@ class WorkSpaceApiService {
       return [];
     }
     return (res?.data?['data'] as List)
-        .map((e) => WorkspaceModel.fromJson(e))
+        .map((e) => OrganizationModel.fromJson(e))
         .toList();
   }
 
   /// Fetches information on a particular Organization. It takes a parameter
   /// `id` which is the id of the organization
-  Future<WorkspaceModel> fetchOrganizationInfo(String id) async {
+  Future<OrganizationModel> fetchOrganizationInfo(String id) async {
     final res = await _api.get(
       '/organizations/$id',
       headers: {'Authorization': 'Bearer $token'},
     );
-    return WorkspaceModel.fromJson(res?.data?['data']);
+    return OrganizationModel.fromJson(res?.data?['data']);
   }
 
-  /// takes in a `url` and returns a workspace that matches the url
+  /// takes in a `url` and returns a Organization that matches the url
   /// use this url for testing `zurichat-fsp1856.zurichat.com`
-  Future<WorkspaceModel> fetchWorkspaceByUrl(String url) async {
+  Future<OrganizationModel> fetchOrganizationByUrl(String url) async {
     final res = await _api.get(
       '/organizations/url/$url',
       headers: {'Authorization': 'Bearer $token'},
@@ -67,14 +67,14 @@ class WorkSpaceApiService {
     print(res?.data);
 
     res?.data?['data']['id'] = res.data['data']['_id'];
-    return WorkspaceModel.fromJson(res?.data?['data']);
+    return OrganizationModel.fromJson(res?.data?['data']);
   }
 
   ///Limited to the admin who created the org
   ///
   ///This should be used to add users to an organization by the admin user alone
-  /// takes in a `organisation id` and joins the organisation
-  Future<bool> joinWorkspace(String orgId) async {
+  /// takes in a `Organization id` and joins the Organization
+  Future<bool> joinOrganization(String orgId) async {
     String email = _userService.userEmail;
 
     final res = await _api.post(
