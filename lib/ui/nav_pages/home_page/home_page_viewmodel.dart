@@ -27,8 +27,8 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.channelInfoView);
   }
 
-  void nToWorkspace() {
-    _navigationService.navigateTo(Routes.workspaceView);
+  void nToOrganization() {
+    _navigationService.navigateTo(Routes.organizationView);
   }
 
   void navigateToDmUser() {
@@ -160,8 +160,8 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.channelInfoView);
   }
 
-  void navigateToWorkspace() {
-    _navigationService.navigateTo(Routes.workspaceView);
+  void navigateToOrganization() {
+    _navigationService.navigateTo(Routes.organizationView);
   }
 
   void navigateToUserSearchView() {
