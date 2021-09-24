@@ -25,9 +25,6 @@ class OrganizationView extends StatelessWidget {
                         style: AppTextStyles.heading6
                             .copyWith(color: AppColors.blackColor)),
                   ),
-                  // SizedBox(
-                  //   height: MediaQuery.of(context).size.height * 0.35,
-                  // ),
                   Expanded(
                     child: Visibility(
                       visible: !model.isBusy,
