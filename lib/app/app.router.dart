@@ -36,6 +36,12 @@ import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/notifications/notifications_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
+import '../ui/view/organization/add_organization/add_organization_view.dart';
+import '../ui/view/organization/create_organization/create_organization.dart';
+import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
+import '../ui/view/organization/organization_url/organization_url_view.dart';
+import '../ui/view/organization/organization_view/organization_view.dart';
+import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
 import '../ui/view/pinned_messages/pinned_message.dart';
 import '../ui/view/plugins/add_plugin_view.dart';
@@ -56,11 +62,6 @@ import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 
 import '../ui/view/user_search/user_search_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
-import '../ui/view/organization/add_organization/add_organization_view.dart';
-import '../ui/view/organization/create_organization/create_organization.dart';
-import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
-import '../ui/view/organization/organization_url/organization_url_view.dart';
-import '../ui/view/organization/organization_view/organization_view.dart';
 import '../utilities/enums.dart';
 
 class Routes {
@@ -103,6 +104,7 @@ class Routes {
   static const String editProfileView = '/edit-profile-view';
   static const String popUpNotificationsView = '/pop-up-notifications-view';
   static const String pinnedMessages = '/pinned-messages';
+  static const String selectEmail = '/select-email';
   static const String addOrganizationView = '/add-organization-view';
   static const String createOrganization = '/create-organization';
   static const String fileSearchView = '/file-search-view';
@@ -153,6 +155,7 @@ class Routes {
     editProfileView,
     popUpNotificationsView,
     pinnedMessages,
+    selectEmail,
     addOrganizationView,
     createOrganization,
     fileSearchView,
@@ -209,6 +212,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.editProfileView, page: EditProfileView),
     RouteDef(Routes.popUpNotificationsView, page: PopUpNotificationsView),
     RouteDef(Routes.pinnedMessages, page: PinnedMessages),
+    RouteDef(Routes.selectEmail, page: SelectEmail),
     RouteDef(Routes.addOrganizationView, page: AddOrganizationView),
     RouteDef(Routes.createOrganization, page: CreateOrganization),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
@@ -469,6 +473,16 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    SelectEmail: (data) {
+      var args = data.getArgs<SelectEmailArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SelectEmail(
+          key: args.key,
+          method: args.method,
+        ),
+        settings: data,
+      );
+    },
     AddOrganizationView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => AddOrganizationView(),
@@ -480,7 +494,7 @@ class StackedRouter extends RouterBase {
       return MaterialPageRoute<dynamic>(
         builder: (context) => CreateOrganization(
           key: args.key,
-          method: args.method,
+          email: args.email,
         ),
         settings: data,
       );
@@ -582,11 +596,18 @@ class AddPluginViewArguments {
   AddPluginViewArguments({this.key});
 }
 
+/// SelectEmail arguments holder class
+class SelectEmailArguments {
+  final Key? key;
+  final OrganizationSwitchMethod method;
+  SelectEmailArguments({this.key, required this.method});
+}
+
 /// CreateOrganization arguments holder class
 class CreateOrganizationArguments {
   final Key? key;
-  final OrganizationSwitchMethod method;
-  CreateOrganizationArguments({this.key, required this.method});
+  final String email;
+  CreateOrganizationArguments({this.key, required this.email});
 }
 
 /// EditChannelPageView arguments holder class

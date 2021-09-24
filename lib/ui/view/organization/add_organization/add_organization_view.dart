@@ -54,7 +54,7 @@ class AddOrganizationView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GestureDetector(
-                          onTap: () => model.navigateToJoinOrganization(
+                          onTap: () => model.navigateToSelectEmail(
                               OrganizationSwitchMethod.Create),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -66,7 +66,7 @@ class AddOrganizationView extends StatelessWidget {
                                 ),
                                 SizedBox(width: 16),
                                 Text(
-                                  "Create a new Organization",
+                                  "Create a new organization",
                                   style: AppTextStyles.regular,
                                 ),
                               ],
@@ -84,7 +84,7 @@ class AddOrganizationView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinOrganization(
+                          onTap: () => model.navigateToSelectEmail(
                               OrganizationSwitchMethod.SignIn),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -96,7 +96,7 @@ class AddOrganizationView extends StatelessWidget {
                                 ),
                                 SizedBox(width: 16),
                                 Text(
-                                  "Sign in to another Organization",
+                                  "Sign in to another organization",
                                   style: AppTextStyles.regular,
                                 ),
                               ],
@@ -114,7 +114,7 @@ class AddOrganizationView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinOrganization(
+                          onTap: () => model.navigateToSelectEmail(
                               OrganizationSwitchMethod.Join),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -126,7 +126,7 @@ class AddOrganizationView extends StatelessWidget {
                                 ),
                                 SizedBox(width: 16),
                                 Text(
-                                  "Join another Organization",
+                                  "Join another organization",
                                   style: AppTextStyles.regular,
                                 ),
                               ],
