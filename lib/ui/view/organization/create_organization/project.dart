@@ -71,6 +71,7 @@ class TextForm extends HookViewModelWidget<CreateOrganizationViewModel> {
       BuildContext context, CreateOrganizationViewModel model) {
     return Center(
       child: TextField(
+        controller: model.projectController,
         maxLength: this.wordCount,
         decoration: InputDecoration(
           hintText: hintText,

@@ -482,8 +482,12 @@ class StackedRouter extends RouterBase {
       );
     },
     CreateOrganization: (data) {
+      var args = data.getArgs<CreateOrganizationArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const CreateOrganization(),
+        builder: (context) => CreateOrganization(
+          key: args.key,
+          email: args.email,
+        ),
         settings: data,
       );
     },
@@ -580,6 +584,13 @@ class SelectEmailArguments {
   final Key? key;
   final OrganizationSwitchMethod method;
   SelectEmailArguments({this.key, required this.method});
+}
+
+/// CreateOrganization arguments holder class
+class CreateOrganizationArguments {
+  final Key? key;
+  final String email;
+  CreateOrganizationArguments({this.key, required this.email});
 }
 
 /// EditChannelPageView arguments holder class

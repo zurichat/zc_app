@@ -26,8 +26,8 @@ class OrganizationViewModel extends BaseViewModel {
   Future<void> navigateToNewOrganization() async {
     try {
       await navigation.navigateTo(Routes.addOrganizationView);
-      organizations = await api.fetchListOfOrganizations();
-      filterOrganization();
+      organizations = await api.getJoinedOrganizations();
+      // filterOrganization();
       notifyListeners();
     } catch (e) {
       snackbar.showCustomSnackBar(
@@ -58,7 +58,7 @@ class OrganizationViewModel extends BaseViewModel {
       } else {
         organizations = resFromApi;
       }
-      // filterOrganization();
+      filterOrganization();
 
       setBusy(false);
     } catch (e) {

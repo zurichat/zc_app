@@ -25,22 +25,23 @@ class OrganizationView extends StatelessWidget {
                         style: AppTextStyles.heading6
                             .copyWith(color: AppColors.blackColor)),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.35,
-                  ),
+                  // SizedBox(
+                  //   height: MediaQuery.of(context).size.height * 0.35,
+                  // ),
                   Expanded(
                     child: Visibility(
                       visible: !model.isBusy,
                       child: SingleChildScrollView(
                         physics: ScrollPhysics(),
                         child: model.organizations.isEmpty
-                            ? Padding(
-                                padding: const EdgeInsets.only(top: 16.0),
-                                child: Text(
-                                    "You have not joined any organization yet!",
-                                    style: AppTextStyles.bodyRegular,
-                                    ),
-                              )
+                            ? Container(
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.only(top: 50.0),
+                              child: Text(
+                                "You have not joined any organization yet!",
+                                style: AppTextStyles.bodyRegular,
+                              ),
+                            )
                             : Column(
                                 children: [
                                   SizedBox(

@@ -8,8 +8,9 @@ import 'package:stacked/stacked.dart';
 import 'create_organization_viewmodel.dart';
 
 class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
+  final String email;
   const CompanyPage({
-    Key? key,
+    Key? key, required this.email,
   }) : super(key: key);
 
   @override
@@ -44,10 +45,13 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                       ),
                     ),
                     BorderTextField(
+                      controller: model.companyController,
                       hint: 'Eg.  HNG I8 / Team Socrates',
                     ),
                     UIHelper.verticalSpaceMedium,
-                    LongButton(onPressed: () => model.next(), label: 'Next'),
+                    LongButton(
+                        onPressed: () => model.onCompanyNext(email),
+                        label: 'Next'),
                     SizedBox(height: 15),
                     Text.rich(
                       TextSpan(

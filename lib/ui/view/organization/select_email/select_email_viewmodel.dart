@@ -36,7 +36,10 @@ class SelectEmailViewModel extends BaseViewModel {
   }
 
   void navigateToCreateOrganization() {
-    _navigation.navigateTo(Routes.createOrganization);
+    _navigation.navigateTo(
+      Routes.createOrganization,
+      arguments: CreateOrganizationArguments(email: userEmail!),
+    );
   }
 
   // Future<OrganizationModel?> createOrganization(
