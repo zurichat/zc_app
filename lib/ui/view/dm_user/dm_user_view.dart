@@ -149,11 +149,11 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                     groupSeparatorBuilder: (value) {
                                       return GroupSeparator(value);
                                     },
-                                    itemBuilder: (context, message) {
+                                    itemBuilder: (context, msg) {
                                       return InkWell(
                                           onLongPress: () =>
-                                              model.showButtonSheet(),
-                                          child: MessageView(message));
+                                              model.showButtonSheet(msg),
+                                          child: MessageView(msg));
                                     },
                                     groupComparator: (groupOne, groupTwo) =>
                                         groupOne.compareTo(groupTwo),

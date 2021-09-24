@@ -3,7 +3,6 @@ import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/services/local_storage_services.dart';
-
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/login/login_view.form.dart';
 import 'package:hng/utilities/enums.dart';
@@ -31,7 +30,7 @@ class LoginViewModel extends FormViewModel {
   }
 
   void navigateToForgotPasswordScreen(BuildContext context) {
-    navigationService.navigateTo(Routes.forgotPasswordEmailView);
+    navigationService.navigateTo(Routes.dmUserView);
   }
 
   // ignore: always_declare_return_types
@@ -79,7 +78,7 @@ class LoginViewModel extends FormViewModel {
       );
 
       //Todo check if user has currently joined an organisation
-      navigationService.navigateTo(Routes.dmUserView);
+      navigationService.navigateTo(Routes.workspaceView);
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
