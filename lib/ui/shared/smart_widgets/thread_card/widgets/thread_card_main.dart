@@ -4,6 +4,7 @@ import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_viewmodel.dart';
+import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
 
 import 'emojis_list.dart';
@@ -66,15 +67,13 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
                         ],
                       ),
                       SizedBox(height: 10),
-                      // TextParser(
-                      //     "[@michael:51515151] Hello this is an example of the ParsedText, links like http://www.google.com or http://www.facebook.com are clickable and phone number 444-555-6666 can call too. But you can also do more with this package, for example Bob will change style and David too. foo@gmail.com And the magic number is 42! #react #react-native"),
-                      TextParser(userPost!.message),
+                     TextParser(userPost!.message),
                     ],
                   ),
                   SizedBox(height: 10),
                   EmojisList(userPost: userPost),
                   SizedBox(height: 15),
-                  userPost!.userThreadPosts != null
+                  !nullListChecker(userPost!.userThreadPosts)
                       ? Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Text(

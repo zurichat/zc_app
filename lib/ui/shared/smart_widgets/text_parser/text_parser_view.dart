@@ -12,8 +12,6 @@ class TextParser extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<TextParserViewModel>.reactive(
       builder: (context, model, child) => ParsedText(
-        // maxLines: 2,
-        // overflow: TextOverflow.ellipsis,
         text: "$text",
         style: AppTextStyles.messageText,
         parse: model.parse,
