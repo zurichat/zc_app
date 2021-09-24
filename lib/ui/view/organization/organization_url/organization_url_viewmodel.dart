@@ -12,6 +12,12 @@ class OrganizationUrlViewModel extends BaseViewModel {
   final navigation = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
+  bool isBusy = false;
+
+  loading(status) {
+    isBusy = status;
+    notifyListeners();
+  }
 
   final api = OrganizationApiService();
 
@@ -34,6 +40,7 @@ class OrganizationUrlViewModel extends BaseViewModel {
 
   Future<void> signInToOrganization() async {
     if (url != null && url!.isNotEmpty) {
+      loading(true);
       final organization = await api.fetchOrganizationByUrl(url!);
       // await api.joinOrganization(Organization.id!);
 
@@ -43,7 +50,7 @@ class OrganizationUrlViewModel extends BaseViewModel {
 
       //Todo: storing should be implemented after stage 7
       // await storeOrganizationId(Organization.id);
-
+      loading(false);
       navigation.navigateTo(Routes.navBarView);
 
       // popUntil((route) => route.settings.name == Routes.navBarView);
