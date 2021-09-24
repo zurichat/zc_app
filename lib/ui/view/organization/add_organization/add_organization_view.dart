@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'add_organization_viewmodel.dart';
 
-//The Add Organization page, where user can add a new Organization
-//The route to this page is '/add-Organization-view'
+//The Add Organization page, where user can add a new organization
+//The route to this page is '/add-organization-view'
 class AddOrganizationView extends StatelessWidget {
   
 
@@ -25,11 +27,7 @@ class AddOrganizationView extends StatelessWidget {
             shadowColor: Colors.black38,
             title: Text(
               "Add Organizations",
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-                color: Color(0xFF242424),
-              ),
+              style: AppTextStyles.heading4,
             ),
           ),
           body: GestureDetector(
@@ -64,16 +62,12 @@ class AddOrganizationView extends StatelessWidget {
                               children: [
                                 Icon(
                                   Icons.edit_outlined,
-                                  color: Color(0xFF242424),
+                                  color: AppColors.blackColor,
                                 ),
                                 SizedBox(width: 16),
                                 Text(
                                   "Create a new Organization",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 18,
-                                    color: Color(0xFF424141),
-                                  ),
+                                  style: AppTextStyles.regular,
                                 ),
                               ],
                             ),
@@ -84,7 +78,7 @@ class AddOrganizationView extends StatelessWidget {
                             SizedBox(width: 32),
                             Expanded(
                               child: Divider(
-                                color: Color(0xFFD1D0D0),
+                                color: AppColors.dividerColor,
                               ),
                             ),
                           ],
@@ -98,16 +92,12 @@ class AddOrganizationView extends StatelessWidget {
                               children: [
                                 Icon(
                                   Icons.grid_view,
-                                  color: Color(0xFF242424),
+                                  color: AppColors.blackColor,
                                 ),
                                 SizedBox(width: 16),
                                 Text(
                                   "Sign in to another Organization",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 18,
-                                    color: Color(0xFF424141),
-                                  ),
+                                  style: AppTextStyles.regular,
                                 ),
                               ],
                             ),
@@ -118,7 +108,7 @@ class AddOrganizationView extends StatelessWidget {
                             SizedBox(width: 48),
                             Expanded(
                               child: Divider(
-                                color: Color(0xFFD1D0D0),
+                                color: AppColors.dividerColor,
                               ),
                             ),
                           ],
@@ -132,16 +122,12 @@ class AddOrganizationView extends StatelessWidget {
                               children: [
                                 Icon(
                                   Icons.add_box_outlined,
-                                  color: Color(0xFF242424),
+                                  color: AppColors.blackColor,
                                 ),
                                 SizedBox(width: 16),
                                 Text(
                                   "Join another Organization",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 18,
-                                    color: Color(0xFF424141),
-                                  ),
+                                  style: AppTextStyles.regular,
                                 ),
                               ],
                             ),
@@ -162,49 +148,6 @@ class AddOrganizationView extends StatelessWidget {
                       blurRadius: 5,
                       offset: Offset(0, 2),
                     )
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(width: 16),
-                    Expanded(
-                      child: TextField(
-                        textCapitalization: TextCapitalization.sentences,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Add a reply",
-                          hintStyle: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF727272),
-                          ),
-                        ),
-                        cursorColor: Color(0xFF424141),
-                        cursorHeight: 18,
-                        cursorWidth: 2,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                        icon: Icon(
-                          Icons.camera_alt_outlined,
-                          color: Color(0xFF424141),
-                        ),
-                        onPressed: () {}),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        child: ImageIcon(
-                          AssetImage("assets/icons/attachment-outline.png"),
-                        ),
-                        highlightColor: Colors.black.withOpacity(0.2),
-                        overlayColor: MaterialStateProperty.all(
-                            Colors.black.withOpacity(0.2)),
-                        onTap: () {},
-                      ),
-                    ),
                   ],
                 ),
               )

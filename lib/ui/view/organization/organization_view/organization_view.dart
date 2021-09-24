@@ -16,7 +16,7 @@ class OrganizationView extends StatelessWidget {
         return Scaffold(
           body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.all(14.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
                   Align(
