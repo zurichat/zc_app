@@ -28,7 +28,7 @@ import 'sign_up_viewmodel.dart';
 )
 class SignUpView extends StatelessWidget with $SignUpView {
   final log = getLogger('SignUpView');
-  
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(
@@ -51,6 +51,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         UIHelper.verticalSpaceLarge,
                         Center(

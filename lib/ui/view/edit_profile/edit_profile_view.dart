@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:hng/ui/shared/shared.dart';
+import '../../shared/shared.dart';
 
 import 'package:stacked/stacked.dart';
 

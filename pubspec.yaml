@@ -8,11 +8,11 @@ environment:
 
 dependencies:
   analyzer: ^1.7.1
-  emoji_picker_flutter: ^1.0.7
   cached_network_image: ^3.1.0
   connectivity: ^3.0.6
   cupertino_icons: ^1.0.2
   dio: ^4.0.0
+  emoji_picker_flutter: ^1.0.7
   flutter:
     sdk: flutter
   flutter_appavailability: ^0.0.21
