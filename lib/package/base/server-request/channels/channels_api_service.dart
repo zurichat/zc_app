@@ -17,8 +17,8 @@ class ChannelsApiService {
 // https://channels.zuri.chat/api/v1/61459d8e62688da5302acdb1/channels/
 
   Future<List> getActiveDms() async {
-    String userId = _userService.userId;
-    String orgId = _userService.currentOrgId;
+    final userId = _userService.userId;
+    final orgId = _userService.currentOrgId;
 
     List joinedChannels = [];
 
@@ -36,6 +36,45 @@ class ChannelsApiService {
 
     return joinedChannels;
   }
+
+
+  Future<bool> createChannels({
+    required String name,
+    required String description,
+    required bool private,
+  }) async {
+    final owner = _userService.userEmail;
+    final orgId = _userService.currentOrgId;
+
+    try {
+      final res = await _api.post(
+        'v1/$orgId/channels/',
+        data: {
+          'name': name,
+          'owner': owner,
+          'description': description,
+          'private': private,
+        },
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      log.i(res?.data.toString());
+
+      if (res?.statusCode == 201 || res?.statusCode == 200) {
+        // onChange.sink.add('created channel');
+        return true;
+      }
+    } on Exception catch (e) {
+      log.e(e.toString());
+    }
+
+    return false;
+  }
+
+  dispose() {
+    // onChange.close();
+  }
+
 
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);

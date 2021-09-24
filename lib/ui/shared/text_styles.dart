@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import 'colors.dart';
 
 class ZuriTextStyle {
-  static double _smallSize = 13;
-  static double _mediumSize = 15;
-  static double _largeSize = 17;
+  static const double _smallSize = 13;
+  static const double _mediumSize = 15;
+  static const double _largeSize = 17;
   // static double _extraLargeSize = 20;
 
-  static FontWeight _light = FontWeight.w300;
-  static FontWeight _normal = FontWeight.w400;
-  static FontWeight _bold = FontWeight.w600;
+  static final _light = FontWeight.w300;
+  static final _normal = FontWeight.w400;
+  static final _bold = FontWeight.w600;
   // static FontWeight _extraBold = FontWeight.w800;
 
   //For smaller sized text
@@ -63,7 +64,7 @@ class ZuriTextStyle {
     );
   }
 
-  static TextStyle organisationNameText() {
+  static TextStyle organizationNameText() {
     return _base(
       19,
       FontWeight.w800,
@@ -78,16 +79,8 @@ class ZuriTextStyle {
     FontWeight? fontWeight,
     Color? color,
   ) {
-    return baseStyle(fontSize: size, fontWeight: fontWeight, color: color);
-  }
-
-  static TextStyle baseStyle({
-    double fontSize = 13,
-    FontWeight? fontWeight,
-    Color? color,
-  }) {
     return TextStyle(
-      fontSize: fontSize,
+      fontSize: size,
       fontWeight: fontWeight ?? FontWeight.w500,
       color: color ?? Colors.grey[600],
     );
