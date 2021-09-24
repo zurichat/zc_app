@@ -28,7 +28,7 @@ import 'sign_up_viewmodel.dart';
 )
 class SignUpView extends StatelessWidget with $SignUpView {
   final log = getLogger('SignUpView');
-  SignUpView({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(
@@ -79,33 +79,45 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           ),
                         ),
                         UIHelper.customVerticalSpace(48),
+                        Text(
+                          'Email Address',
+                          style: AppTextStyles.body1Bold,
+                        ),
+                        UIHelper.customVerticalSpace(10),
                         CustomTextField(
                           keyboardType: TextInputType.emailAddress,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: false,
                           controller: emailController,
-                          labelText: 'Email Address',
                           hintText: 'Name@gmail.com',
                         ),
                         UIHelper.verticalSpaceLarge,
+                        Text(
+                          'Password',
+                          style: AppTextStyles.body1Bold,
+                        ),
+                        UIHelper.customVerticalSpace(10),
                         CustomTextField(
                           keyboardType: TextInputType.visiblePassword,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: true,
                           controller: passwordController,
-                          labelText: 'Password',
                           hintText: 'Enter Password',
                         ),
                         UIHelper.verticalSpaceLarge,
+                        Text(
+                          'Confirm Password',
+                          style: AppTextStyles.body1Bold,
+                        ),
+                        UIHelper.customVerticalSpace(10),
                         CustomTextField(
                           keyboardType: TextInputType.emailAddress,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: true,
                           controller: confirmPasswordController,
-                          labelText: 'Confirm Password',
                           hintText: 'Re-enter password',
                         ),
                         UIHelper.verticalSpaceMedium,

@@ -121,7 +121,7 @@ class CreateChannelView extends StatelessWidget {
                           UIHelper.verticalSpaceMedium,
                           CustomTextWidget(
                             text:
-                                'When channel is set to private, members of your workspace can only view or join by invitation',
+                                'When channel is set to private, members of your organization can only view or join by invitation',
                             color: AppColors.greyishColor,
                             fontSize: 14,
                           )

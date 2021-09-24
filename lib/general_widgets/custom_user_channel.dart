@@ -39,12 +39,12 @@ class CustomUserChannel extends StatelessWidget {
                 ),
                 SizedBox(width: 12.w),
                 Text(
-                  '$text',
+                  text!,
                   style: AppTextStyles.fileName, // textfont in here won't scale to different screens
                 ),
                 SizedBox(width: 10.w),
                 Text(
-                  '$text2',
+                  text2!,
                   style: AppTextStyles.faintBodyText, // textfont in here won't scale to different screens
                 ),
                 SizedBox(width: 10.w),
@@ -52,7 +52,7 @@ class CustomUserChannel extends StatelessWidget {
                   height: 8.h,
                   width: 8.w,
                   child: Icon(
-                    trailingIcon,
+                    trailingIcon!,
                     size: 9.sp,
                     color: iconColor,
                   ),

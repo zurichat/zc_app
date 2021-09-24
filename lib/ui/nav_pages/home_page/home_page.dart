@@ -20,7 +20,6 @@ import 'widgets/home_expanded.dart';
 import 'widgets/home_list_items.dart';
 import 'widgets/home_topbar.dart';
 
-
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class HomePage extends StatelessWidget {
       builder: (context, model, child) => Column(
         children: [
           const HomePageTopBar(
-            organizationName: 'Zuri Workspace',
+            organizationName: 'Zuri Organization',
           ),
 
           model.isBusy
@@ -56,18 +55,15 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 15),
-          searchBar(),
+          JumpToSearchBar(onTap: () => model.navigateToJumpToScreen()),
           const Padding(
             padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
           ),
           SizedBox(height: 15),
-          JumpToSearchBar(
-            onTap: () => model.navigateToJumpToScreen(),
-          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(
-              onTap: vmodel.navigateToThreads,
+              onTap: model.navigateToThreads,
             ),
           ),
           const Divider(),

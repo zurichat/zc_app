@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -7,6 +8,8 @@ import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
 import '../../../package/base/server-request/channels/channels_api_service.dart';
 import '../../../services/connectivity_service.dart';
+import '../../../utilities/enums.dart';
+import 'home_item_model.dart';
 
 
 final _navigationService = locator<NavigationService>();
@@ -14,8 +17,6 @@ final connectivityService = locator<ConnectivityService>();
 
 bool connectionStatus = false;
 
-import '../../../utilities/enums.dart';
-import 'home_item_model.dart';
 
 class HomePageViewModel extends StreamViewModel {
   void nToPref() {
@@ -26,8 +27,8 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.channelInfoView);
   }
 
-  void nToWorkspace() {
-    _navigationService.navigateTo(Routes.workspaceView);
+  void nToOrganization() {
+    _navigationService.navigateTo(Routes.organizationView);
   }
 
   void navigateToDmUser() {
@@ -143,11 +144,28 @@ class HomePageViewModel extends StreamViewModel {
 
     setAllList();
     notifyListeners();
-  listenToChannelsChange() {
-    _channelsApiService.onChange.stream.listen((event) {
-      getDmAndChannelsList();
-    });
 
+}
+  //
+  //*Navigate to other routes
+  void navigateToPref() {
+    _navigationService.navigateTo(Routes.fileSearchView);
+  }
+
+  void navigateToChannelPage() {
+    _navigationService.navigateTo(Routes.channelPageView);
+  }
+
+  void navigateToInfo() {
+    _navigationService.navigateTo(Routes.channelInfoView);
+  }
+
+  void navigateToOrganization() {
+    _navigationService.navigateTo(Routes.organizationView);
+  }
+
+  void navigateToUserSearchView() {
+    _navigationService.navigateTo(Routes.userSearchView);
   }
 
   getDmAndChannelsList() async {
@@ -187,33 +205,12 @@ class HomePageViewModel extends StreamViewModel {
     // });
   }
 
-  //
-  //*Navigate to other routes
-  void navigateToPref() {
-    _navigationService.navigateTo(Routes.fileSearchView);
-  }
+    // listenToChannelsChange() {
+    // _channelsApiService.onChange.stream.listen((event) {
+    //   getDmAndChannelsList();
+    // });
 
-  void navigateToChannelPage() {
-    _navigationService.navigateTo(Routes.channelPageView);
-  }
-
-  void navigateToInfo() {
-    _navigationService.navigateTo(Routes.channelInfoView);
-  }
-
-  void navigateToWorkspace() {
-    _navigationService.navigateTo(Routes.workspaceView);
-  }
-
-}
-
-  void navigateToDmUser() {
-    _navigationService.navigateTo(Routes.dmUserView);
-  }
-
-  void navigateToUserSearchView() {
-    _navigationService.navigateTo(Routes.userSearchView);
-  }
+  // }
 
 }
 

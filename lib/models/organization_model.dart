@@ -1,29 +1,29 @@
-class WorkspaceModel {
+class OrganizationModel {
   final String? id;
   final String? name;
-  final String? workSpaceUrl;
+  final String? organizationUrl;
   final String? time;
   final String? logoUrl;
   final bool? isOwner;
   final int? noOfMembers;
 
-  WorkspaceModel({
+  OrganizationModel({
     required this.id,
     required this.name,
-    required this.workSpaceUrl,
+    required this.organizationUrl,
     required this.time,
     required this.logoUrl,
     required this.isOwner,
     required this.noOfMembers,
   });
 
-  factory WorkspaceModel.fromJson(Map<String, dynamic> json) {
-    return WorkspaceModel(
+  factory OrganizationModel.fromJson(Map<String, dynamic> json) {
+    return OrganizationModel(
         id: json['_id'] ?? json['id'],
         name: json['name'],
         logoUrl: json['logo_url'],
         time: json['created_at'],
-        workSpaceUrl: json['workspace_url'],
+        organizationUrl: json['organization_url'],
         noOfMembers: json['no_of_members'],
         isOwner: json['isOwner']);
   }
@@ -37,34 +37,34 @@ class WorkspaceModel {
   }
 }
 
-// List<WorkspaceModel> dummyData = [
-//   WorkspaceModel(
+// List<OrganizationModel> dummyData = [
+//   OrganizationModel(
 //       name: 'ABTesters',
-//       workSpaceUrl: 'abtesters.zuri.com',
+//       OrganizationUrl: 'abtesters.zuri.com',
 //       time: '',
 //       imageUrl: 'assets/images/Rectangle 138.png',
 //       id: ''),
-//   WorkspaceModel(
+//   OrganizationModel(
 //       name: 'HNGi9 ',
-//       workSpaceUrl: 'hngi9.zuri.com ',
+//       OrganizationUrl: 'hngi9.zuri.com ',
 //       time: '',
 //       imageUrl: 'assets/images/Rectangle 1922.png',
 //       id: ''),
-//   WorkspaceModel(
+//   OrganizationModel(
 //       name: 'DriveINC',
-//       workSpaceUrl: 'driveinc.zuri.com',
+//       OrganizationUrl: 'driveinc.zuri.com',
 //       time: '',
 //       imageUrl: 'assets/images/Rectangle 1923.png',
 //       id: ''),
-//   WorkspaceModel(
+//   OrganizationModel(
 //       name: 'Remote',
-//       workSpaceUrl: 'remote.zuri.com',
+//       OrganizationUrl: 'remote.zuri.com',
 //       time: 'RE',
 //       imageUrl: 'assets/images/Rectangle 1924.png',
 //       id: ''),
-//   WorkspaceModel(
+//   OrganizationModel(
 //       name: 'MyTeam',
-//       workSpaceUrl: 'myteam.zuri.com',
+//       OrganizationUrl: 'myteam.zuri.com',
 //       time: 'MY',
 //       imageUrl: 'assets/images/Rectangle 1925.png',
 //       id: ''),
