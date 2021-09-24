@@ -7,11 +7,11 @@ import 'package:stacked_services/stacked_services.dart';
 class AddOrganizationViewModel extends BaseViewModel {
   final navigation = locator<NavigationService>();
 
-  void navigateToJoinOrganization(OrganizationSwitchMethod method) {
+  void navigateToSelectEmail(OrganizationSwitchMethod method) {
     navigation.navigateTo(
-      Routes.createOrganization,
-      arguments: CreateOrganizationArguments(
-       method: method,
+      Routes.selectEmail,
+      arguments: SelectEmailArguments(
+        method: method,
       ),
     );
   }

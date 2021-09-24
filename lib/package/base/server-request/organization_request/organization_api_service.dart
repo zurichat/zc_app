@@ -104,7 +104,7 @@ class OrganizationApiService {
   /// Updates an organization's URL. The organization's id `orgId` must not be
   /// null or empty. Url must not begin with `https` or `http`
   Future<void> updateOrgUrl(String orgId, String url) async {
-    final res = await _api.post(
+    final res = await _api.patch(
       '/organizations/$orgId/url',
       headers: {'Authorization': 'Bearer $token'},
       data: {"url": url},
@@ -115,7 +115,7 @@ class OrganizationApiService {
   /// Updates an organization's name. The organization's id `orgId` must not be
   /// null or empty
   Future<void> updateOrgName(String orgId, String name) async {
-    final res = await _api.post(
+    final res = await _api.patch(
       '/organizations/$orgId/name',
       headers: {'Authorization': 'Bearer $token'},
       data: {"organization_name": name},
@@ -126,10 +126,19 @@ class OrganizationApiService {
   /// Updates an organization's logo. The organization's id `orgId` must not be
   /// null or empty
   Future<void> updateOrgLogo(String orgId, String url) async {
-    final res = await _api.post(
+    final res = await _api.patch(
       '/organizations/$orgId/logo',
       headers: {'Authorization': 'Bearer $token'},
       data: {"url": url},
+    );
+    return res?.data?['message'];
+  }
+
+  Future<void> addMemberToOrganization(String orgId, String email) async {
+    final res = await _api.post(
+      '/organizations/$orgId/members',
+      headers: {'Authorization': 'Bearer $token'},
+      data: {"user_email": email},
     );
     return res?.data?['message'];
   }
