@@ -7,7 +7,7 @@ class UserThreadPost {
   String? userImage;
   IconData? statusIcon;
   String? lastSeen;
-  TextSpan message;
+  String? message;
   List<PostEmojis>? postEmojis;
   String? postDate;
 
@@ -48,7 +48,7 @@ class UserPost extends UserThreadPost {
   String? displayName;
   IconData? statusIcon;
   String? lastSeen;
-  TextSpan message;
+   String?  message;
   List<PostEmojis>? postEmojis;
   String? channelName;
   ChannelType? channelType;

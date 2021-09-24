@@ -16,12 +16,7 @@ class ThreadDetailViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void pop() {
-    _navigationService.back();
-  }
-
   void showThreadOptions() async {
-  
     var sheetResponse = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.threadOptions,
       isScrollControlled: true,
@@ -33,7 +28,7 @@ class ThreadDetailViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void addReply(UserPost userPost, var reply) {
+  void addReply(UserPost userPost, String? reply) {
     userPost.addReply(
       UserThreadPost(
         id: 25,
@@ -47,7 +42,6 @@ class ThreadDetailViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  
   void exitPage() {
     _navigationService.back();
   }

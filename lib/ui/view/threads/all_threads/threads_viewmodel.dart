@@ -12,18 +12,15 @@ class ThreadsViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   List<UserPost> userPosts = userPost;
-  
 
   void initialise() {
-    //refresh page
+    refreshThreadsPage();
 
     notifyListeners();
   }
 
- 
-
-
-  Future refreshThreadsPage() async {
+  Future<void> refreshThreadsPage() async {
+    notifyListeners();
     await Future.delayed(
       Duration(seconds: 5),
     );
@@ -33,7 +30,8 @@ class ThreadsViewModel extends BaseViewModel {
     _navigationService.back();
   }
 
-  Future navigateToThread() async {
-    _navigationService.navigateTo(Routes.threadDetailView);
+  Future<void> navigateToThread(UserPost? userPost) async {
+    _navigationService.navigateTo(Routes.threadDetailView,
+        arguments: ThreadDetailViewArguments(userPost: userPost));
   }
 }

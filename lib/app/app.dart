@@ -74,10 +74,8 @@ import '../ui/view/organization/organization_view/organization_view.dart';
     MaterialRoute(page: ForgotPasswordNewView),
     MaterialRoute(page: ChannelNotificationView),
     MaterialRoute(page: NewChannel),
-    MaterialRoute(page: ChannelInfoView),
     MaterialRoute(page: HomePage),
     MaterialRoute(page: AddPeopleView),
-    MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: DmSearch),
     MaterialRoute(page: DmJumpToView),
     MaterialRoute(page: DmUserView),
@@ -109,9 +107,9 @@ import '../ui/view/organization/organization_view/organization_view.dart';
     MaterialRoute(page: UserSearchView),
     MaterialRoute(page: EditChannelPageView),
     MaterialRoute(page: StartDmView),
-
     MaterialRoute(page: OrganizationUrlView),
-
+    MaterialRoute(page: ChannelPageView),
+    MaterialRoute(page: ChannelInfoView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
