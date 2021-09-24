@@ -68,7 +68,7 @@ class LoginViewModel extends FormViewModel {
         StorageKeys.currentUserEmail,
         response?.data['data']['user']['email'],
       );
-      storage.clearData(StorageKeys.workspaceIds);
+      storage.clearData(StorageKeys.organizationIds);
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
 
       snackbar.showCustomSnackBar(
@@ -78,8 +78,8 @@ class LoginViewModel extends FormViewModel {
             ''' ${response?.data['data']['user']['email']}''',
       );
 
-      //Todo check if user has currently joined an organisation
-      navigationService.navigateTo(Routes.workspaceView);
+      //Todo check if user has currently joined an Organization
+      navigationService.navigateTo(Routes.organizationView);
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),

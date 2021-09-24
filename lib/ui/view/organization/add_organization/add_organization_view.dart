@@ -1,22 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
-import 'add_workspace_viewmodel.dart';
+import 'add_organization_viewmodel.dart';
 
-//The Add workspace page, where user can add a new workspace
-//The route to this page is '/add-workspace-view'
-class AddWorkspaceView extends StatelessWidget {
+//The Add Organization page, where user can add a new organization
+//The route to this page is '/add-organization-view'
+class AddOrganizationView extends StatelessWidget {
   
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<AddWorkSpaceViewModel>.reactive(
+    return ViewModelBuilder<AddOrganizationViewModel>.reactive(
       //this parameter allows us to reuse the view model to persist the state
       disposeViewModel: false,
       //initialise the view model only once
       initialiseSpecialViewModelsOnce: true,
-      viewModelBuilder: () => AddWorkSpaceViewModel(),
+      viewModelBuilder: () => AddOrganizationViewModel(),
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
@@ -24,12 +26,8 @@ class AddWorkspaceView extends StatelessWidget {
             elevation: 8,
             shadowColor: Colors.black38,
             title: Text(
-              "Add Workspaces",
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-                color: Color(0xFF242424),
-              ),
+              "Add Organizations",
+              style: AppTextStyles.heading4,
             ),
           ),
           body: GestureDetector(
@@ -56,24 +54,20 @@ class AddWorkspaceView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(
-                              WorkspaceSwitchMethod.Create),
+                          onTap: () => model.navigateToJoinOrganization(
+                              OrganizationSwitchMethod.Create),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
                               children: [
                                 Icon(
                                   Icons.edit_outlined,
-                                  color: Color(0xFF242424),
+                                  color: AppColors.blackColor,
                                 ),
                                 SizedBox(width: 16),
                                 Text(
-                                  "Create a new workspace",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 18,
-                                    color: Color(0xFF424141),
-                                  ),
+                                  "Create a new Organization",
+                                  style: AppTextStyles.regular,
                                 ),
                               ],
                             ),
@@ -84,30 +78,26 @@ class AddWorkspaceView extends StatelessWidget {
                             SizedBox(width: 32),
                             Expanded(
                               child: Divider(
-                                color: Color(0xFFD1D0D0),
+                                color: AppColors.dividerColor,
                               ),
                             ),
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(
-                              WorkspaceSwitchMethod.SignIn),
+                          onTap: () => model.navigateToJoinOrganization(
+                              OrganizationSwitchMethod.SignIn),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
                               children: [
                                 Icon(
                                   Icons.grid_view,
-                                  color: Color(0xFF242424),
+                                  color: AppColors.blackColor,
                                 ),
                                 SizedBox(width: 16),
                                 Text(
-                                  "Sign in to another workspace",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 18,
-                                    color: Color(0xFF424141),
-                                  ),
+                                  "Sign in to another Organization",
+                                  style: AppTextStyles.regular,
                                 ),
                               ],
                             ),
@@ -118,30 +108,26 @@ class AddWorkspaceView extends StatelessWidget {
                             SizedBox(width: 48),
                             Expanded(
                               child: Divider(
-                                color: Color(0xFFD1D0D0),
+                                color: AppColors.dividerColor,
                               ),
                             ),
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinWorkspace(
-                              WorkspaceSwitchMethod.Join),
+                          onTap: () => model.navigateToJoinOrganization(
+                              OrganizationSwitchMethod.Join),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
                               children: [
                                 Icon(
                                   Icons.add_box_outlined,
-                                  color: Color(0xFF242424),
+                                  color: AppColors.blackColor,
                                 ),
                                 SizedBox(width: 16),
                                 Text(
-                                  "Join another workspace",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 18,
-                                    color: Color(0xFF424141),
-                                  ),
+                                  "Join another Organization",
+                                  style: AppTextStyles.regular,
                                 ),
                               ],
                             ),
@@ -162,49 +148,6 @@ class AddWorkspaceView extends StatelessWidget {
                       blurRadius: 5,
                       offset: Offset(0, 2),
                     )
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(width: 16),
-                    Expanded(
-                      child: TextField(
-                        textCapitalization: TextCapitalization.sentences,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Add a reply",
-                          hintStyle: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF727272),
-                          ),
-                        ),
-                        cursorColor: Color(0xFF424141),
-                        cursorHeight: 18,
-                        cursorWidth: 2,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                        icon: Icon(
-                          Icons.camera_alt_outlined,
-                          color: Color(0xFF424141),
-                        ),
-                        onPressed: () {}),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        child: ImageIcon(
-                          AssetImage("assets/icons/attachment-outline.png"),
-                        ),
-                        highlightColor: Colors.black.withOpacity(0.2),
-                        overlayColor: MaterialStateProperty.all(
-                            Colors.black.withOpacity(0.2)),
-                        onTap: () {},
-                      ),
-                    ),
                   ],
                 ),
               )
