@@ -39,6 +39,25 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
     fontSize: 12,
   );
+  static TextStyle messageText = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: AppColors.blackColor,
+  );
+
+  static TextStyle textButton1 = GoogleFonts.lato(
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    color: AppColors.blueTextColor,
+
+    // backgroundColor: AppColors.blueColor,
+  );
+  static TextStyle messageTextButton = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: AppColors.blueTextColor,
+    // backgroundColor: AppColors.blueColor,
+  );
   static TextStyle body3Medium = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
     color: AppColors.greyishColor,

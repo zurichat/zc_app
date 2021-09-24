@@ -1,136 +1,109 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
 import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/utilities/enums.dart';
-import 'package:stacked_services/stacked_services.dart';
-
-final _bottomSheetService = locator<BottomSheetService>();
-
-Future viewProfile() async {
-  var sheetResponse = await _bottomSheetService.showCustomSheet(
-    variant: BottomSheetType.user,
-    isScrollControlled: true,
-  );
-}
 
 List<UserThreadPost> thread1 = [
   UserThreadPost(
+    postEmojis: <PostEmojis>[],
     id: 1,
     displayName: "PrincessLiz",
     statusIcon: Icons.looks_6,
     lastSeen: "4 hours ago",
     userImage: "assets/images/chimamanda.png",
-    message: TextSpan(
-        text: "Are you in team Socrates?",
-        style: TextStyle(color: AppColors.deepBlackColor)),
+    message: "Are you in team Socrates?",
   ),
   UserThreadPost(
-      id: 2,
-      displayName: "PrincessLiz",
-      statusIcon: Icons.looks_6,
-      userImage: "assets/images/chimamanda.png",
-      lastSeen: "4 hours ago",
-      message: TextSpan(
-        text: "@Blazebrain",
-        style: TextStyle(color: Colors.blueAccent),
-        recognizer: TapGestureRecognizer()
-          ..onTap = () {
-            viewProfile();
-          },
-      )),
+    postEmojis: <PostEmojis>[],
+    id: 2,
+    displayName: "PrincessLiz",
+    statusIcon: Icons.looks_6,
+    userImage: "assets/images/chimamanda.png",
+    lastSeen: "4 hours ago",
+    message: "[@Blazebrain:51515151]",
+  ),
 ];
 
 List<UserThreadPost> thread2 = [
   UserThreadPost(
-      id: 3,
-      displayName: "PrincessLiz",
-      statusIcon: Icons.looks_6,
-      lastSeen: "4 hours ago",
-      userImage: "assets/images/chimamanda.png",
-      message: TextSpan(
-          text: "I am fine. You?",
-          style: TextStyle(color: AppColors.deepBlackColor))),
+    postEmojis: <PostEmojis>[],
+    id: 3,
+    displayName: "PrincessLiz",
+    statusIcon: Icons.looks_6,
+    lastSeen: "4 hours ago",
+    userImage: "assets/images/chimamanda.png",
+    message: "I am fine. You?",
+  ),
   UserThreadPost(
-      id: 4,
-      displayName: "Dee",
-      statusIcon: Icons.looks_6,
-      userImage: "assets/images/chimamanda.png",
-      lastSeen: "4 hours ago",
-      message: TextSpan(
-          text: "How are You",
-          style: TextStyle(color: AppColors.deepBlackColor))),
+    postEmojis: <PostEmojis>[],
+    id: 4,
+    displayName: "Dee",
+    statusIcon: Icons.looks_6,
+    userImage: "assets/images/chimamanda.png",
+    lastSeen: "4 hours ago",
+    message: "How are You",
+  ),
 ];
 
 List<UserThreadPost> thread3 = [
   UserThreadPost(
-      id: 12,
-      displayName: "mark",
-      statusIcon: Icons.looks_6,
-      userImage: "assets/images/user.png",
-      lastSeen: "4 hours ago",
-      postDate: "20:23",
-      message: TextSpan(
-          text: "I think you cans ask on help channel",
-          style: TextStyle(color: AppColors.deepBlackColor))),
+    postEmojis: <PostEmojis>[],
+    id: 12,
+    displayName: "mark",
+    statusIcon: Icons.looks_6,
+    userImage: "assets/images/user.png",
+    lastSeen: "4 hours ago",
+    postDate: "20:23",
+    message: "I think you cans ask on help channel",
+  ),
   UserThreadPost(
-      id: 13,
-      displayName: "princess",
-      statusIcon: Icons.looks_6,
-      userImage: "assets/images/user.png",
-      lastSeen: "4 hours ago",
-      postDate: "20:23",
-      message: TextSpan(
-          text: "Co ask", style: TextStyle(color: AppColors.deepBlackColor))),
+    postEmojis: <PostEmojis>[],
+    id: 13,
+    displayName: "princess",
+    statusIcon: Icons.looks_6,
+    userImage: "assets/images/user.png",
+    lastSeen: "4 hours ago",
+    postDate: "20:23",
+    message: "Co ask",
+  ),
   UserThreadPost(
-      id: 14,
-      displayName: "pauleke65",
-      statusIcon: Icons.looks_6,
-      userImage: "assets/images/user.png",
-      lastSeen: "4 hours ago",
-      postDate: "20:23",
-      message: TextSpan(
-          text: "I'm also interested",
-          style: TextStyle(color: AppColors.deepBlackColor))),
+    postEmojis: <PostEmojis>[],
+    id: 14,
+    displayName: "pauleke65",
+    statusIcon: Icons.looks_6,
+    userImage: "assets/images/user.png",
+    lastSeen: "4 hours ago",
+    postDate: "20:23",
+    message: "I'm also interested",
+  ),
   UserThreadPost(
-      id: 15,
-      displayName: "FreshFish",
-      statusIcon: Icons.looks_6,
-      userImage: "assets/images/user.png",
-      lastSeen: "4 hours ago",
-      postDate: "20:23",
-      message: TextSpan(
-          text: "What track are you?",
-          style: TextStyle(color: AppColors.deepBlackColor))),
+    postEmojis: <PostEmojis>[],
+    id: 15,
+    displayName: "FreshFish",
+    statusIcon: Icons.looks_6,
+    userImage: "assets/images/user.png",
+    lastSeen: "4 hours ago",
+    postDate: "20:23",
+    message: "What track are you?",
+  ),
   UserThreadPost(
-      id: 16,
-      displayName: "Sticklo",
-      statusIcon: Icons.looks_6,
-      userImage: "assets/images/user.png",
-      lastSeen: "4 hours ago",
-      postDate: "20:23",
-      message: TextSpan(
-          text: "Team", style: TextStyle(color: AppColors.deepBlackColor))),
+    postEmojis: <PostEmojis>[],
+    id: 16,
+    displayName: "Sticklo",
+    statusIcon: Icons.looks_6,
+    userImage: "assets/images/user.png",
+    lastSeen: "4 hours ago",
+    postDate: "20:23",
+    message: "Team",
+  ),
   UserThreadPost(
+    postEmojis: <PostEmojis>[],
     id: 17,
     displayName: "EunicePops",
     statusIcon: Icons.looks_6,
     userImage: "assets/images/user.png",
     lastSeen: "4 hours ago",
     postDate: "20:23",
-    message: TextSpan(
-        text: "@Abdul",
-        style: TextStyle(color: Colors.blueAccent),
-        recognizer: TapGestureRecognizer()
-          ..onTap = () {
-            viewProfile();
-          },
-        children: [
-          TextSpan(
-              text: " is his Slack name",
-              style: TextStyle(color: AppColors.deepBlackColor))
-        ]),
+    message: "[@Abdul:51515151] is his Slack name",
   ),
 ];
 
@@ -146,10 +119,8 @@ List<UserPost> userPost = [
     id: 11,
     displayName: "richieoscar",
     postDate: "Sept 19 at 9:56am",
-    message: TextSpan(
-        text:
-            "Please who is the team lead for mobile track? I have some questions please",
-        style: TextStyle(color: AppColors.deepBlackColor)),
+    message:
+        "Please who is the team lead for mobile track? I have some questions please",
     userImage: "assets/images/1.png",
     statusIcon: Icons.looks_4,
     lastSeen: "4 hours ago",
@@ -164,9 +135,7 @@ List<UserPost> userPost = [
     userImage: "assets/images/chimamanda.png",
     statusIcon: Icons.looks_6,
     lastSeen: "4 hours ago",
-    message: TextSpan(
-        text: "Designers and Developers in Mega...",
-        style: TextStyle(color: AppColors.deepBlackColor)),
+    message: "Designers and Developers in Mega...",
     postEmojis: postEmoji1,
     userThreadPosts: thread1,
     channelType: ChannelType.private,
@@ -178,8 +147,7 @@ List<UserPost> userPost = [
     userImage: "assets/images/chimamanda.png",
     statusIcon: Icons.looks_6,
     lastSeen: "4 hours ago",
-    message: TextSpan(
-        text: "How are you", style: TextStyle(color: AppColors.deepBlackColor)),
+    message: "How are you",
     postEmojis: postEmoji2,
     userThreadPosts: thread2,
     channelType: ChannelType.personal,
@@ -191,11 +159,10 @@ List<UserPost> userPost = [
     userImage: "assets/images/chimamanda.png",
     statusIcon: Icons.looks_6,
     lastSeen: "4 hours ago",
-    message: TextSpan(
-        text: "Fire on the MOUNTAINNNNN!!!!!, Run, Run Run, Runnnnnn",
-        style: TextStyle(color: AppColors.deepBlackColor)),
+    message: "Fire on the MOUNTAINNNNN!!!!!, Run, Run Run, Runnnnnn",
     channelType: ChannelType.public,
     channelName: "Announcement",
     postEmojis: <PostEmojis>[],
+    userThreadPosts: <UserThreadPost>[],
   ),
 ];

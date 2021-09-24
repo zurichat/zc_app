@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../models/user_post.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
@@ -72,10 +73,8 @@ class Routes {
   static const String forgotPasswordNewView = '/forgot-password-new-view';
   static const String channelNotificationView = '/channel-notification-view';
   static const String newChannel = '/new-channel';
-  static const String channelInfoView = '/channel-info-view';
   static const String homePage = '/home-page';
   static const String addPeopleView = '/add-people-view';
-  static const String channelPageView = '/channel-page-view';
   static const String dmSearch = '/dm-search';
   static const String dmJumpToView = '/dm-jump-to-view';
   static const String dmUserView = '/dm-user-view';
@@ -104,6 +103,8 @@ class Routes {
   static const String draftView = '/draft-view';
   static const String threadsView = '/threads-view';
   static const String threadDetailView = '/thread-detail-view';
+  static const String channelPageView = '/channel-page-view';
+  static const String channelInfoView = '/channel-info-view';
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String workspaceUrlView = '/workspace-url-view';
   static const all = <String>{
@@ -120,10 +121,8 @@ class Routes {
     forgotPasswordNewView,
     channelNotificationView,
     newChannel,
-    channelInfoView,
     homePage,
     addPeopleView,
-    channelPageView,
     dmSearch,
     dmJumpToView,
     dmUserView,
@@ -151,6 +150,8 @@ class Routes {
     draftView,
     threadsView,
     threadDetailView,
+    channelPageView,
+    channelInfoView,
     editChannelPageView,
     workspaceUrlView,
   };
@@ -173,10 +174,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.forgotPasswordNewView, page: ForgotPasswordNewView),
     RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
     RouteDef(Routes.newChannel, page: NewChannel),
-    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.homePage, page: HomePage),
     RouteDef(Routes.addPeopleView, page: AddPeopleView),
-    RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.dmSearch, page: DmSearch),
     RouteDef(Routes.dmJumpToView, page: DmJumpToView),
     RouteDef(Routes.dmUserView, page: DmUserView),
@@ -303,12 +302,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    ChannelInfoView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const ChannelInfoView(),
-        settings: data,
-      );
-    },
     HomePage: (data) {
       var args = data.getArgs<HomePageArguments>(
         orElse: () => HomePageArguments(),
@@ -321,12 +314,6 @@ class StackedRouter extends RouterBase {
     AddPeopleView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => AddPeopleView(),
-        settings: data,
-      );
-    },
-    ChannelPageView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const ChannelPageView(),
         settings: data,
       );
     },
@@ -497,8 +484,24 @@ class StackedRouter extends RouterBase {
       );
     },
     ThreadDetailView: (data) {
+      var args = data.getArgs<ThreadDetailViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ThreadDetailView(),
+        builder: (context) => ThreadDetailView(
+          args.userPost,
+          key: args.key,
+        ),
+        settings: data,
+      );
+    },
+    ChannelPageView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ChannelPageView(),
+        settings: data,
+      );
+    },
+    ChannelInfoView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ChannelInfoView(),
         settings: data,
       );
     },
@@ -568,4 +571,11 @@ class CreateWorkSpaceArguments {
   final Key? key;
   final WorkspaceSwitchMethod method;
   CreateWorkSpaceArguments({this.key, required this.method});
+}
+
+/// ThreadDetailView arguments holder class
+class ThreadDetailViewArguments {
+  final UserPost? userPost;
+  final Key? key;
+  ThreadDetailViewArguments({required this.userPost, this.key});
 }
