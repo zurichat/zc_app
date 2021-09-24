@@ -1,6 +1,6 @@
 //On login or signup the user service is used to save all the user details
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/models/workspace_model.dart';
+import 'package:hng/models/organization_model.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/storage_keys.dart';
 
@@ -18,10 +18,10 @@ class UserService {
   String _userId = '';
   String _userEmail = '';
 
-  ///This will give you null because workspace data has not been added
-  WorkspaceModel? workspaceModel;
+  ///This will give you null because organization data has not been added
+  OrganizationModel? organizationModel;
 
-  ///From the organisation side bar set the current organissation Id
+  ///From the organization side bar set the current organissation Id
   ///and get it anywhere in the app using these getter
   String get currentOrgId {
     _currentOrgId = _sharedPrefs.getString(StorageKeys.currentOrgId) ?? '';
@@ -41,12 +41,12 @@ class UserService {
     return _currentOrgUrl;
   }
 
-  setOrganisation() {
-    // Todo implement organisation setter
+  setOrganization() {
+    // Todo implement Organization setter
   }
 
-  ///From the organisation side bar set the current organissation Id
-  setCurrentOrganisationId(String currentOrgId) {
+  ///From the organization side bar set the current organissation Id
+  setCurrentOrganizationId(String currentOrgId) {
     _currentOrgId = currentOrgId;
     _sharedPrefs.setString(StorageKeys.currentOrgId, _currentOrgId);
   }
