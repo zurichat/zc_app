@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/organization/new_email/new_email_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
-import 'workspace_url_viewmodel.dart';
-
-class WorkspaceUrlView extends StatelessWidget {
-  const WorkspaceUrlView({Key? key}) : super(key: key);
+class NewEmailView extends StatelessWidget {
+  const NewEmailView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<WorkspaceUrlViewModel>.nonReactive(
+    return ViewModelBuilder<NewEmailViewModel>.nonReactive(
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
@@ -28,32 +27,10 @@ class WorkspaceUrlView extends StatelessWidget {
                           height: 12,
                         ),
                         Container(
-                          child: Text.rich(
-                            TextSpan(
-                              children: [
-                                TextSpan(
-                                  text:
-                                      'If you don\'t know your workspace URL, we have sent an email to ',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16),
-                                ),
-                                TextSpan(
-                                  text: '${model.email}',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 16,
-                                    color: AppColors.appBarGreen,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: ' to help you sign in easily.',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16),
-                                ),
-                              ],
-                            ),
+                          child: Text(
+                            'We’ll send you an email that will instantly sign you in',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400, fontSize: 16),
                           ),
                         ),
                       ],
@@ -69,21 +46,20 @@ class WorkspaceUrlView extends StatelessWidget {
           ),
         ),
       ),
-      viewModelBuilder: () => WorkspaceUrlViewModel(),
+      viewModelBuilder: () => NewEmailViewModel(),
     );
   }
 }
 
-class TextForm extends HookViewModelWidget<WorkspaceUrlViewModel> {
+class TextForm extends HookViewModelWidget<NewEmailViewModel> {
   TextForm({Key? key}) : super(key: key, reactive: false);
   @override
-  Widget buildViewModelWidget(
-      BuildContext context, WorkspaceUrlViewModel model) {
+  Widget buildViewModelWidget(BuildContext context, NewEmailViewModel model) {
     return Center(
       child: TextField(
         decoration: InputDecoration(
-          labelText: 'Enter workspace URL',
-          hintText: 'https://workspace.zuri.com',
+          labelText: 'Your email address',
+          hintText: 'Your email address',
           hintStyle: TextStyle(
             color: Color(0xffBEBEBE),
             fontSize: 16,
@@ -103,16 +79,16 @@ class TextForm extends HookViewModelWidget<WorkspaceUrlViewModel> {
   }
 }
 
-class NextButton extends ViewModelWidget<WorkspaceUrlViewModel> {
+class NextButton extends ViewModelWidget<NewEmailViewModel> {
   NextButton({Key? key}) : super(key: key, reactive: true);
 
   @override
-  Widget build(BuildContext context, WorkspaceUrlViewModel model) {
+  Widget build(BuildContext context, NewEmailViewModel model) {
     return TextButton(
         style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all<Color>(model.buttonColors)),
-        onPressed: () => model.signInToWorkspace(),
+                MaterialStateProperty.all<Color>(model.text.isEmpty ? Color(0xffBEBEBE) : AppColors.appBarGreen)),
+        onPressed: () {},
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
           child: Container(

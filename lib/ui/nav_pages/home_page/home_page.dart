@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
       builder: (context, model, child) => Column(
         children: [
           const HomePageTopBar(
-            organizationName: 'Zuri Workspace',
+            organizationName: 'Zuri Organization',
           ),
           model.isBusy
               ? LinearProgressIndicator(

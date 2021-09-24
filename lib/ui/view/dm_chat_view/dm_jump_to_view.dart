@@ -40,7 +40,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                             height: 40.h,
                             width: 361.w,
                             child: TextField(
-                              // controller: model.controller,
+                              controller: searchController,
                               keyboardType: TextInputType.text,
                               maxLines: 1,
                               onChanged: model.onChanged,
