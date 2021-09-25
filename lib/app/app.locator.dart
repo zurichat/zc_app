@@ -6,6 +6,7 @@
 
 // ignore_for_file: public_member_api_docs
 
+import 'package:hng/services/otp_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -42,5 +43,6 @@ Future setupLocator(
   locator.registerLazySingleton(() => UserService());
   locator.registerLazySingleton(() => DMApiService());
   locator.registerLazySingleton(() => ChannelsApiService());
+  locator.registerLazySingleton(() => OtpService());
   locator.registerLazySingleton(() => JumpToApi());
 }
