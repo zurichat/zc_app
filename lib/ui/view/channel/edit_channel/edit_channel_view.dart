@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/view/channel/edit_channel/widgets/edit_channel_appbar.dart';
-import 'package:hng/ui/view/channel/edit_channel/widgets/edit_channel_headers.dart';
-import 'package:hng/ui/view/channel/edit_channel/widgets/edit_channel_text_field.dart';
-import 'package:stacked/stacked_annotations.dart';
-import '../../../shared/colors.dart';
 import 'package:stacked/stacked.dart';
-import './editChannelViewModel.dart';
+import 'package:stacked/stacked_annotations.dart';
+
+import '../../../shared/colors.dart';
+import '../../../shared/styles.dart';
+import 'editChannelViewModel.dart';
 import 'edit_channel_view.form.dart';
+import 'widgets/edit_channel_appbar.dart';
+import 'widgets/edit_channel_headers.dart';
+import 'widgets/edit_channel_text_field.dart';
 
 @FormView(
   fields: [

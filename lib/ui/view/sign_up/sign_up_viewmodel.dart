@@ -1,4 +1,3 @@
-import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -8,6 +7,7 @@ import '../../../package/base/server-request/api/http_api.dart';
 import '../../../services/local_storage_services.dart';
 import '../../../utilities/enums.dart';
 import '../../../utilities/storage_keys.dart';
+import '../../shared/shared.dart';
 import 'sign_up_view.form.dart';
 
 class SignUpViewModel extends FormViewModel {

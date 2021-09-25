@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_viewmodel.dart';
-import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../../general_widgets/custom_text.dart';
+import '../../../../../models/user_post.dart';
+import '../../../../../utilities/utilities.dart';
+import '../../../shared.dart';
+import '../../text_parser/text_parser_view.dart';
+import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
 
 class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
@@ -67,7 +67,7 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
                         ],
                       ),
                       SizedBox(height: 10),
-                     TextParser(userPost!.message),
+                      TextParser(userPost!.message),
                     ],
                   ),
                   SizedBox(height: 10),

@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/view/plugins/plugin_viewmodel.dart';
-import 'package:hng/ui/view/plugins/widgets/custom_appbar.dart';
-import 'package:hng/ui/view/plugins/widgets/custom_plugin_list_tile.dart';
-import 'package:hng/ui/view/plugins/widgets/custom_search_field.dart';
 import 'package:stacked/stacked.dart';
+
+import 'plugin_viewmodel.dart';
+import 'widgets/custom_appbar.dart';
+import 'widgets/custom_plugin_list_tile.dart';
+import 'widgets/custom_search_field.dart';
 
 class EditPluginView extends StatelessWidget {
   const EditPluginView({Key? key}) : super(key: key);

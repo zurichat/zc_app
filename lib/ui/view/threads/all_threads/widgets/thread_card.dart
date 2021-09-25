@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/channel_icon.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../../general_widgets/channel_icon.dart';
+import '../../../../../general_widgets/custom_text.dart';
+import '../../../../../models/user_post.dart';
+import '../../../../shared/shared.dart';
+import '../../../../shared/smart_widgets/thread_card/thread_card_view.dart';
 import '../threads_viewmodel.dart';
 
 class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
