@@ -77,20 +77,10 @@ class EditProfileViewModel extends BaseViewModel {
   final storageService = locator<SharedPreferenceLocalStorage>();
   Future updateProfile() async {
     String? orgId = storageService.getString(StorageKeys.currentOrgId);
-    String? mem_id = storageService.getString(StorageKeys.currentMemberID);
+    String? memId = storageService.getString(StorageKeys.currentMemberID);
     //TODO CHange these links to there rightful values once they can be updated
-    //I interchanged most calls because at the point of writing they did not have their patch call
-    // String endPoint = '/organizations/$orgId/members/$mem_id/photo';
 
-    // final editData = {
-    //   'image_url': _name,
-    // };
-    // final res = await _api.patch(endPoint, data: editData, headers: {
-    //   'Authorization':
-    //       'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
-    // });
-    String profileEndPoint =
-        'organizations/$orgId/members/614729a2f41cb684cc531ac7/profile';
+    String profileEndPoint = 'organizations/$orgId/members/$memId/profile';
 
     final profileData = {
       'bio': _status,

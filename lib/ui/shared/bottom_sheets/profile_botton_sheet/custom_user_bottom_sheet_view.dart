@@ -65,14 +65,14 @@ class CustomUserBottomSheetView extends StatelessWidget {
                             title: 'What I do', subtitle: 'Mobile Dev'),
                         Divider(),
                         CustomProfileTile(
-                            title: 'Display Name', subtitle: model.dispName),
+                            title: 'Display Name', subtitle: model.displayName),
                         Divider(),
                         ListTile(
                           title: CustomText(
                               text: 'Status', fontWeight: FontWeight.w300),
                           subtitle: Align(
                               alignment: Alignment.centerLeft,
-                              child: Text(model.status)),
+                              child: Text(model.profileText)),
                           shape: Border(
                             top: BorderSide(
                                 width: .5, color: AppColors.greyishColor),

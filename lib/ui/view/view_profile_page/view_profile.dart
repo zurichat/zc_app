@@ -59,7 +59,7 @@ class ViewProfile extends StatelessWidget {
                                       .getString(StorageKeys.displayName)
                                       .toString(),
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.grey,
                                     fontWeight: FontWeight.normal,
                                     fontSize: 18.0,
                                   ),
@@ -98,7 +98,7 @@ class ViewProfile extends StatelessWidget {
                                 ProfileAction(
                                   title: Text('Edit Profile'),
                                   onTap: () {
-                                    model.editProfile;
+                                    // model.editProfile;
                                   },
                                 ),
                                 ProfileAction(
