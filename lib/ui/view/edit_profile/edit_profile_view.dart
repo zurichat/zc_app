@@ -99,8 +99,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue:
-                  ' Please open and close this page twice to see changes after saving',
+              initialValue: model.displayName,
               onChanged: (value) {
                 model.updateString('', value, '', '');
               },
@@ -112,7 +111,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue: 'The Back End for this does not exist',
+              initialValue: model.profileText,
               onChanged: (value) {
                 model.updateString('', '', value, '');
               },
@@ -120,7 +119,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   labelText: "What I do", helperText: "HNGi9 X I4G"),
             ),
             TextFormField(
-              initialValue: 'The Back End for this does not exist',
+              initialValue: model.phoneNum,
               onChanged: (value) {
                 model.updateString('', '', '', value);
               },

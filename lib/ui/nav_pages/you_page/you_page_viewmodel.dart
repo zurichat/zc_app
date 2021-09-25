@@ -36,28 +36,23 @@ class YouPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  Future viewSavedItem() async {
-    await _navigationService.navigateTo(Routes.savedItemsView);
+  void viewSavedItem() {
+    _navigationService.navigateTo(Routes.savedItemsView);
   }
 
-  Future viewProfile() async {
-    var sheetResponse = await _bottomSheetService.showCustomSheet(
-      variant: BottomSheetType.user,
-      isScrollControlled: true,
-    );
-
-    log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
+  void viewProfile() {
+    _navigationService.navigateTo(Routes.viewProfile);
   }
 
-  Future viewNotifications() async {
-    await _navigationService.navigateTo(Routes.notificationsView);
+  viewNotifications() {
+    _navigationService.navigateTo(Routes.notificationsView);
   }
 
-  Future viewPreferences() async {
-    await _navigationService.navigateTo(Routes.preferenceView);
+  void viewPreferences() {
+    _navigationService.navigateTo(Routes.preferenceView);
   }
 
-  Future setStatus() async {
-    await _navigationService.navigateTo(Routes.setStatusView);
+  void setStatus() {
+    _navigationService.navigateTo(Routes.setStatusView);
   }
 }

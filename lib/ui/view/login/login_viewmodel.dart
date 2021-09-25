@@ -2,6 +2,7 @@ import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/services/connectivity_service.dart';
+import 'package:hng/services/current_user_profile.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/login/login_view.form.dart';
@@ -82,7 +83,7 @@ class LoginViewModel extends FormViewModel {
       );
       _storageService.clearData(StorageKeys.organizationIds);
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
-
+      await GetUserProfile().currentUser();
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.success,
