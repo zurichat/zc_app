@@ -3,7 +3,8 @@
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/utilities/constants.dart';
-
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
 import '../../../../services/local_storage_services.dart';
@@ -47,6 +48,27 @@ class ChannelsApiService {
     return joinedChannels;
   }
 
+Future<List<ChannelModel>> fetchChannel() async{
+
+   String orgId = _userService.currentOrgId;
+   List<ChannelModel> channels=[];
+   try{
+final res= await _api.get('/v1/61459d8e62688da5302acdb1/channels/',
+  //headers: {'Authorization': 'Bearer $token'},
+  );
+  channels= (res?.data as List).map((e)=>ChannelModel.fromJson(e)).toList();
+   
+   }on  Exception catch(e){
+     print("Channels EXception $e");
+   }
+   catch(e){
+     print(e);
+   }
+   
+  return channels;
+}
+
+
   Future<bool> createChannels({
     required String name,
     required String description,
@@ -79,6 +101,39 @@ class ChannelsApiService {
 
     return false;
   }
+
+
+getChannelPage(id) async{
+  String orgId = _userService.currentOrgId;
+
+  try{
+  final res= await _api.get('/v1/61459d8e62688da5302acdb1/channels/$id/',
+  //headers: {'Authorization': 'Bearer $token'},
+  );
+  return ChannelModel.fromJson(res?.data);
+  }on  Exception catch(e){
+     print("Channels page EXception $e");
+   }
+  catch(e){
+    print(e);
+}
+}
+
+getChannelMembers(id) async{
+  String orgId = _userService.currentOrgId;
+  try{
+ final res= await _api.get('/v1/61459d8e62688da5302acdb1/channels/$id/members/',
+  //headers: {'Authorization': 'Bearer $token'},
+  );
+  return (res?.data as List).map((e)=>ChannelMembermodel.fromJson(e)).toList();
+  }on  Exception catch(e){
+     print("Channels member EXception $e");
+   }
+  catch(e){
+    print(e);
+  }
+ 
+}
 
   dispose() {
     onChange.close();

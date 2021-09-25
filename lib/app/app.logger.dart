@@ -27,15 +27,15 @@ class SimpleLogPrinter extends LogPrinter {
 
   @override
   List<String> log(LogEvent event) {
-    final color = PrettyPrinter.levelColors[event.level];
-    final emoji = PrettyPrinter.levelEmojis[event.level];
-    final methodName = _getMethodName();
+    var color = PrettyPrinter.levelColors[event.level];
+    var emoji = PrettyPrinter.levelEmojis[event.level];
+    var methodName = _getMethodName();
 
-    final methodNameSection =
+    var methodNameSection =
         printCallingFunctionName && methodName != null ? ' | $methodName ' : '';
-    final stackLog = event.stackTrace.toString();
-    final output = '''
-$emoji $className$methodNameSection - ${event.message}${printCallStack ? '\nSTACKTRACE:\n$stackLog' : ''}''';
+    var stackLog = event.stackTrace.toString();
+    var output =
+        '$emoji $className$methodNameSection - ${event.message}${printCallStack ? '\nSTACKTRACE:\n$stackLog' : ''}';
 
     if (exludeLogsFromClasses
             .any((excludeClass) => className == excludeClass) ||
@@ -44,7 +44,7 @@ $emoji $className$methodNameSection - ${event.message}${printCallStack ? '\nSTAC
     final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
     List<String> result = [];
 
-    for (final line in output.split('\n')) {
+    for (var line in output.split('\n')) {
       result.addAll(pattern.allMatches(line).map((match) {
         if (kReleaseMode) {
           return match.group(0)!;
@@ -59,13 +59,13 @@ $emoji $className$methodNameSection - ${event.message}${printCallStack ? '\nSTAC
 
   String? _getMethodName() {
     try {
-      final currentStack = StackTrace.current;
-      final formattedStacktrace = _formatStackTrace(currentStack, 3);
+      var currentStack = StackTrace.current;
+      var formattedStacktrace = _formatStackTrace(currentStack, 3);
 
-      final realFirstLine =
+      var realFirstLine =
           formattedStacktrace?.firstWhere((line) => line.contains(className));
 
-      final methodName = realFirstLine?.replaceAll('$className.', '');
+      var methodName = realFirstLine?.replaceAll('$className.', '');
       return methodName;
     } catch (e) {
       // There's no deliberate function call from our code so we return null;
@@ -77,17 +77,17 @@ $emoji $className$methodNameSection - ${event.message}${printCallStack ? '\nSTAC
 final stackTraceRegex = RegExp(r'#[0-9]+[\s]+(.+) \(([^\s]+)\)');
 
 List<String>? _formatStackTrace(StackTrace stackTrace, int methodCount) {
-  final lines = stackTrace.toString().split('\n');
+  var lines = stackTrace.toString().split('\n');
 
-  final formatted = <String>[];
+  var formatted = <String>[];
   var count = 0;
-  for (final line in lines) {
-    final match = stackTraceRegex.matchAsPrefix(line);
+  for (var line in lines) {
+    var match = stackTraceRegex.matchAsPrefix(line);
     if (match != null) {
       if (match.group(2)!.startsWith('package:logger')) {
         continue;
       }
-      final newLine = ('${match.group(1)}');
+      var newLine = ("${match.group(1)}");
       formatted.add(newLine.replaceAll('<anonymous closure>', '()'));
       if (++count == methodCount) {
         break;
@@ -110,7 +110,7 @@ class MultipleLoggerOutput extends LogOutput {
 
   @override
   void output(OutputEvent event) {
-    for (final logOutput in logOutputs) {
+    for (var logOutput in logOutputs) {
       try {
         logOutput.output(event);
       } catch (e) {

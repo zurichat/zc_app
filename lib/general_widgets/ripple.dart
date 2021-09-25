@@ -22,8 +22,8 @@ class Ripple extends StatelessWidget {
       type: MaterialType.transparency,
       child: InkWell(
         onTap: () async {
-          await Future.delayed(const Duration(milliseconds: 200));
-          final func = onTap ?? () {};
+          await Future.delayed(Duration(milliseconds: 200));
+          var func = onTap ?? () {};
           func();
         },
         borderRadius: BorderRadius.circular(radius),
