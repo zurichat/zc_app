@@ -1,27 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomChannel extends StatelessWidget {
-  final text;
+  final String? text;
   const CustomChannel({Key? key, this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      width: 379,
-      child: Row(
-        children: [
-          const Text('#',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              )),
-          const SizedBox(width: 20),
-          Text(
-            text,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    return ScreenUtilInit(
+      designSize: const Size(411, 823),
+      builder: () => InkWell(
+        onTap: () {},
+        child: SizedBox(
+          height: 24.h,
+          width: 211.w,
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(5.w, 0, 0, 0),
+            child: Row(
+              children: [
+                Text('#',
+                    // style: AppTextStyles.heading7,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.sp,
+                    )),
+                SizedBox(width: 21.33.w),
+                Text(
+                  text!,
+                  // style: ZuriTextStyle.mediumBold(),
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
           ),
-        ],
+        ),
       ),
     );
   }

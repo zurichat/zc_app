@@ -1,4 +1,3 @@
-import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -8,6 +7,7 @@ import '../../../package/base/server-request/api/http_api.dart';
 import '../../../services/local_storage_services.dart';
 import '../../../utilities/enums.dart';
 import '../../../utilities/storage_keys.dart';
+import '../../shared/shared.dart';
 import 'sign_up_view.form.dart';
 
 class SignUpViewModel extends FormViewModel {
@@ -39,44 +39,54 @@ class SignUpViewModel extends FormViewModel {
 
   // ignore: always_declare_return_types
   createUser(context) async {
-    if (checkBoxValue == true) {
-      loading(true);
-      const endpoint = '/users';
-      final signUpData = {
-        'first_name': firstNameValue,
-        'last_name': lastNameValue,
-        'display_name': displayNameValue,
-        'email': emailValue,
-        'password': passwordValue,
-        'phone': phoneNumberValue,
-      };
-      final response = await apiService.post(endpoint, data: signUpData);
-      loading(false);
-      if (response?.statusCode == 200) {
-        snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.success,
-          message: 'Please check your email for your one-time-password',
-        );
+    if (emailValue!.isNotEmpty &&
+        passwordValue!.isNotEmpty &&
+        confirmPasswordValue!.isNotEmpty) {
+      if (checkBoxValue == true) {
+        loading(true);
+        const endpoint = '/users';
+        final signUpData = {
+          'first_name': firstNameValue,
+          'last_name': lastNameValue,
+          'display_name': displayNameValue,
+          'email': emailValue,
+          'password': passwordValue,
+          'phone': phoneNumberValue,
+        };
+        final response = await apiService.post(endpoint, data: signUpData);
+        loading(false);
+        if (response?.statusCode == 200) {
+          snackbar.showCustomSnackBar(
+            duration: const Duration(seconds: 3),
+            variant: SnackbarType.success,
+            message: 'Please check your email for your one-time-password',
+          );
 
-        storage.setString(
-            StorageKeys.otp, response?.data['data']['verification_code']);
-        storage.setString(StorageKeys.currentUserEmail, emailValue!);
-        storage.setBool(StorageKeys.registeredNotverifiedOTP, true);
-        navigateToOTPView();
+          storage.setString(
+              StorageKeys.otp, response?.data['data']['verification_code']);
+          storage.setString(StorageKeys.currentUserEmail, emailValue!);
+          storage.setBool(StorageKeys.registeredNotverifiedOTP, true);
+          navigateToOTPView();
+        } else {
+          snackbar.showCustomSnackBar(
+            duration: const Duration(seconds: 3),
+            variant: SnackbarType.failure,
+            message:
+                response?.data['message'] ?? 'Error encountered during signup.',
+          );
+        }
       } else {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message:
-              response?.data['message'] ?? 'Error encountered during signup.',
+          message: 'You must accept T & C to signup',
         );
       }
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'You must accept T & C to signup',
+        message: 'Please fill all fields.',
       );
     }
   }
