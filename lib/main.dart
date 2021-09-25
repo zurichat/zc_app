@@ -14,9 +14,8 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ThemeManager.initialise();
   await setupLocator();
-
-  setupDialogUi();
   setupBottomSheetUi();
+  setupDialogUi();
   AppSnackBar.setupSnackbarUi();
   runApp(MyApp());
 }
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
           theme: regularTheme,
           darkTheme: darkTheme,
           themeMode: themeMode,
-          initialRoute: Routes.splashview,
+          initialRoute: Routes.splashview
         ),
       ),
     );

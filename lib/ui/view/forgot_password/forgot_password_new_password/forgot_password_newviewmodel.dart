@@ -92,7 +92,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   void setFormStatus() {
     // TODO: implement setFormStatus
   }
-
+  
   // method to get the OTP into this ViewModel from {@link ForgotPasswordOtpViewModel}
   String get otp => _otpService.otp;
 }

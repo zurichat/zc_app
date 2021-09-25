@@ -10,6 +10,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../models/channel_members.dart';
+import '../models/channel_model.dart';
 import '../models/user_post.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
@@ -312,8 +314,11 @@ class StackedRouter extends RouterBase {
       );
     },
     HomePage: (data) {
+      var args = data.getArgs<HomePageArguments>(
+        orElse: () => HomePageArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => HomePage(),
+        builder: (context) => HomePage(key: args.key),
         settings: data,
       );
     },
@@ -543,17 +548,23 @@ class StackedRouter extends RouterBase {
       );
     },
     ChannelPageView: (data) {
-      var args = data.getArgs<ChannelPageViewArguments>(
-        orElse: () => ChannelPageViewArguments(),
-      );
+      var args = data.getArgs<ChannelPageViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ChannelPageView(key: args.key),
+        builder: (context) => ChannelPageView(
+          channelDetail: args.channelDetail,
+          channelMembers: args.channelMembers,
+        ),
         settings: data,
       );
     },
     ChannelInfoView: (data) {
+      var args = data.getArgs<ChannelInfoViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ChannelInfoView(),
+        builder: (context) => ChannelInfoView(
+          numberOfMembers: args.numberOfMembers,
+          channelMembers: args.channelMembers,
+          channelDetail: args.channelDetail,
+        ),
         settings: data,
       );
     },
@@ -580,6 +591,12 @@ class ForgotPasswordOtpViewArguments {
 class ForgotPasswordNewViewArguments {
   final Key? key;
   ForgotPasswordNewViewArguments({this.key});
+}
+
+/// HomePage arguments holder class
+class HomePageArguments {
+  final Key? key;
+  HomePageArguments({this.key});
 }
 
 /// DmJumpToView arguments holder class
@@ -637,4 +654,20 @@ class StartDmViewArguments {
 class ChannelPageViewArguments {
   final Key? key;
   ChannelPageViewArguments({this.key});
+  final ChannelModel channelDetail;
+  final List<ChannelMembermodel> channelMembers;
+  ChannelPageViewArguments(
+      {required this.channelDetail, required this.channelMembers});
+}
+
+/// ChannelInfoView arguments holder class
+class ChannelInfoViewArguments {
+  final int numberOfMembers;
+  final List<ChannelMembermodel> channelMembers;
+  final ChannelModel channelDetail;
+  ChannelInfoViewArguments(
+      {required this.numberOfMembers,
+      required this.channelMembers,
+      required this.channelDetail}
+  );
 }
