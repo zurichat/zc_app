@@ -11,16 +11,10 @@ class CustomTextField extends StatelessWidget {
     required this.obscureText,
     this.labelText,
     this.hintText,
-    this.validator,
-    this.autovalidateMode,
-    this.onchanged,
   }) : super(key: key);
   final keyboardType;
   final inputAction;
   final controller;
-  final validator;
-  final autovalidateMode;
-  final onchanged;
 
   final bool? autoCorrect;
   final bool? obscureText;
@@ -29,10 +23,7 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      onChanged: onchanged,
-      autovalidateMode: autovalidateMode,
-      validator: validator,
+    return TextField(
       controller: controller,
       keyboardType: keyboardType,
       textInputAction: inputAction,

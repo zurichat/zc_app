@@ -1,4 +1,3 @@
-//User model
 class UserModel {
   //  String? fullName;
   //  String? imageUrl;
