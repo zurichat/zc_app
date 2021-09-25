@@ -154,7 +154,9 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       onTap: () {
         //Navigate to channels and pass the channels id
         ChannelPageView.name = data.name ?? '';
-        vmodel.navigateToChannelPage();
+        print("Data id is ${data.id}");
+        vmodel.navigateToChannelPage(
+            data.name, data.id, data.membersCount, data.public);
       },
     );
   }

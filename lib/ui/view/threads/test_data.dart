@@ -5,7 +5,7 @@ import 'package:hng/utilities/enums.dart';
 List<UserThreadPost> thread1 = [
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 1,
+    id: "1",
     displayName: "PrincessLiz",
     statusIcon: Icons.looks_6,
     lastSeen: "4 hours ago",
@@ -14,7 +14,7 @@ List<UserThreadPost> thread1 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 2,
+    id: "2",
     displayName: "PrincessLiz",
     statusIcon: Icons.looks_6,
     userImage: "assets/images/chimamanda.png",
@@ -26,7 +26,7 @@ List<UserThreadPost> thread1 = [
 List<UserThreadPost> thread2 = [
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 3,
+    id: "3",
     displayName: "PrincessLiz",
     statusIcon: Icons.looks_6,
     lastSeen: "4 hours ago",
@@ -35,7 +35,7 @@ List<UserThreadPost> thread2 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 4,
+    id: "4",
     displayName: "Dee",
     statusIcon: Icons.looks_6,
     userImage: "assets/images/chimamanda.png",
@@ -47,7 +47,7 @@ List<UserThreadPost> thread2 = [
 List<UserThreadPost> thread3 = [
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 12,
+    id: "12",
     displayName: "mark",
     statusIcon: Icons.looks_6,
     userImage: "assets/images/user.png",
@@ -57,7 +57,7 @@ List<UserThreadPost> thread3 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 13,
+    id: "13",
     displayName: "princess",
     statusIcon: Icons.looks_6,
     userImage: "assets/images/user.png",
@@ -67,7 +67,7 @@ List<UserThreadPost> thread3 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 14,
+    id: "14",
     displayName: "pauleke65",
     statusIcon: Icons.looks_6,
     userImage: "assets/images/user.png",
@@ -77,7 +77,7 @@ List<UserThreadPost> thread3 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 15,
+    id: "15",
     displayName: "FreshFish",
     statusIcon: Icons.looks_6,
     userImage: "assets/images/user.png",
@@ -87,7 +87,7 @@ List<UserThreadPost> thread3 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 16,
+    id: "16",
     displayName: "Sticklo",
     statusIcon: Icons.looks_6,
     userImage: "assets/images/user.png",
@@ -97,7 +97,7 @@ List<UserThreadPost> thread3 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 17,
+    id: "17",
     displayName: "EunicePops",
     statusIcon: Icons.looks_6,
     userImage: "assets/images/user.png",
@@ -116,7 +116,7 @@ List<PostEmojis> postEmoji2 = [
 
 List<UserPost> userPost = [
   UserPost(
-    id: 11,
+    id: "11",
     displayName: "richieoscar",
     postDate: "Sept 19 at 9:56am",
     message:
@@ -130,7 +130,7 @@ List<UserPost> userPost = [
     channelName: "team-app",
   ),
   UserPost(
-    id: 5,
+    id: "5",
     displayName: "Nonso",
     userImage: "assets/images/chimamanda.png",
     statusIcon: Icons.looks_6,
@@ -142,7 +142,7 @@ List<UserPost> userPost = [
     channelName: "team-app",
   ),
   UserPost(
-    id: 6,
+    id: "6",
     displayName: "Dee",
     userImage: "assets/images/chimamanda.png",
     statusIcon: Icons.looks_6,
@@ -154,7 +154,7 @@ List<UserPost> userPost = [
     channelName: "Dee",
   ),
   UserPost(
-    id: 7,
+    id: "7",
     displayName: "Mark",
     userImage: "assets/images/chimamanda.png",
     statusIcon: Icons.looks_6,

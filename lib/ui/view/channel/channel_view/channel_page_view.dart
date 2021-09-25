@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/custom_appbar.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/custom_row.dart';
+import 'package:hng/ui/view/dm_user/icons/zap_icon.dart';
+import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../../shared/colors.dart';
@@ -16,12 +19,28 @@ import 'channel_page_viewmodel.dart';
   ],
 )
 class ChannelPageView extends StatelessWidget with $ChannelPageView {
-  ChannelPageView({Key? key}) : super(key: key);
+  ChannelPageView({
+    Key? key,
+    required this.channelname,
+    required this.channelId,
+    required this.membersCount,
+    required this.public,
+  }) : super(key: key);
   static String name = "general";
+  final String? channelname;
+  final String? channelId;
+  final int? membersCount;
+  final bool? public;
+
   @override
   Widget build(BuildContext context) {
+    ScrollController _scrollController = ScrollController();
+    TextEditingController _messageController = TextEditingController();
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
-      onModelReady: (model) => listenToFormUpdated(model),
+      onModelReady: (model) {
+        model.initialise("$channelId");
+        listenToFormUpdated(model);
+      },
       //this parameter allows us to reuse the view model to persist the state
       //disposeViewModel: false,
       //initialise the view model only once
@@ -30,66 +49,199 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
       builder: (context, viewModel, child) {
         return Scaffold(
           appBar: CustomAppBars(
-            channelName: "#$name",
-            numberOfMembers: '128',
+            channelName: "#$channelname",
+            numberOfMembers: '$membersCount',
             model: viewModel,
           ),
-          body: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            //scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                channelName("#$name"),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Container(
-                  child: channelInfo('@mark',
-                      ' created this channel on August 12, 2021. This is the very beginning of the #$name channel.'),
-                ),
-                const SizedBox(height: 20),
-                CustomRow(model: viewModel),
-                const SizedBox(height: 20),
-                dateBuilder(context),
-                const SizedBox(height: 7),
-                ListTile(
-                  leading: Image.asset('assets/channel_page/female.png'),
-                  title: Row(
+          body: Column(
+            children: [
+              channelName("#$channelname"),
+              SizedBox(
+                height: 10.0,
+              ),
+              Container(
+                child: channelInfo('@mark',
+                    ' created this channel on August 12, 2021. This is the very beginning of the #$name channel.'),
+              ),
+              const SizedBox(height: 20),
+              CustomRow(model: viewModel),
+              const SizedBox(height: 20),
+              dateBuilder(context),
+              const SizedBox(height: 7),
+              Expanded(
+                child: !nullListChecker(viewModel.channelUserMessages)
+                    ? ListView.builder(
+                        controller: _scrollController,
+                        itemCount: viewModel.channelUserMessages!.length,
+                        itemBuilder: (context, index) =>
+                            ThreadCardView.threadChannelMain(
+                                viewModel.channelUserMessages![index]),
+                      )
+                    : Container(),
+              ),
+              //message starts here
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Material(
+                  color: Colors.white,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        'Clutch',
-                        style: AppTextStyles.nameStyle,
+                      Divider(height: 0, color: Color(0xFF999999)),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              height: 56,
+                              margin: EdgeInsets.only(left: 13.0),
+                              alignment: Alignment.centerLeft,
+                              child: FocusScope(
+                                child: Focus(
+                                  onFocusChange: (focus) {
+                                    if (focus) {
+                                      viewModel.onMessageFieldTap();
+                                    } else {
+                                      viewModel.onMessageFocusChanged();
+                                    }
+                                  },
+                                  child: TextField(
+                                    controller: _messageController,
+                                    expands: true,
+                                    maxLines: null,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    decoration: InputDecoration.collapsed(
+                                        hintText: 'Add a Reply',
+                                        hintStyle: AppTextStyles.faintBodyText),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: !viewModel.isVisible,
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.camera_alt_outlined,
+                                    color: AppColors.darkGreyColor,
+                                  ),
+                                  onPressed: () {},
+                                ),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.attach_file_outlined,
+                                    color: AppColors.darkGreyColor,
+                                  ),
+                                  onPressed: () {},
+                                )
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                      const SizedBox(width: 10),
-                      Text(
-                        '12:30pm',
-                        style: AppTextStyles.smallText,
-                      ),
+                      Visibility(
+                          visible: viewModel.isVisible,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        AppIcons.shapezap,
+                                        color: AppColors.darkGreyColor,
+                                      )),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.alternate_email_outlined,
+                                        color: AppColors.darkGreyColor,
+                                      )),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.tag_faces_sharp,
+                                        color: AppColors.darkGreyColor,
+                                      )),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.camera_alt_outlined,
+                                        color: AppColors.darkGreyColor,
+                                      )),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.attach_file_outlined,
+                                        color: AppColors.darkGreyColor,
+                                      )),
+                                ],
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    if (_messageController.text
+                                        .toString()
+                                        .isNotEmpty) {
+                                      viewModel.sendMessage(
+                                          _messageController.text,
+                                          "$channelId");
+
+                                      _messageController.text = "";
+                                      FocusScope.of(context)
+                                          .requestFocus(FocusNode());
+                                      _scrollController.jumpTo(_scrollController
+                                          .position.maxScrollExtent);
+                                    }
+                                  },
+                                  icon: Icon(
+                                    Icons.send,
+                                    color: AppColors.darkGreyColor,
+                                  ))
+                            ],
+                          ))
                     ],
                   ),
-                  subtitle: Text('Joined #$name'),
                 ),
-                ListTile(
-                  leading: Image.asset('assets/channel_page/femaleuser.png'),
-                  title: Row(
-                    children: [
-                      Text(
-                        'Ali',
-                        style: AppTextStyles.nameStyle,
-                      ),
-                      const SizedBox(width: 10),
-                      Text(
-                        '12:30pm',
-                        style: AppTextStyles.smallText,
-                      ),
-                    ],
-                  ),
-                  subtitle: Text('Joined #$name'),
-                ),
-              ],
-            ),
+              )
+              // ListTile(
+              //   leading: Image.asset('assets/channel_page/female.png'),
+              //   title: Row(
+              //     children: [
+              //       Text(
+              //         'Clutch',
+              //         style: AppTextStyles.nameStyle,
+              //       ),
+              //       const SizedBox(width: 10),
+              //       Text(
+              //         '12:30pm',
+              //         style: AppTextStyles.smallText,
+              //       ),
+              //     ],
+              //   ),
+              //   subtitle: Text('Joined #$name'),
+              // ),
+              // ListTile(
+              //   leading: Image.asset('assets/channel_page/femaleuser.png'),
+              //   title: Row(
+              //     children: [
+              //       Text(
+              //         'Ali',
+              //         style: AppTextStyles.nameStyle,
+              //       ),
+              //       const SizedBox(width: 10),
+              //       Text(
+              //         '12:30pm',
+              //         style: AppTextStyles.smallText,
+              //       ),
+              //     ],
+              //   ),
+              //   subtitle: Text('Joined #$name'),
+              // ),
+            ],
           ),
-          bottomSheet: sendMessageArea(name, editorController),
+          //  bottomSheet: sendMessageArea(name, editorController),
         );
       },
     );

@@ -513,11 +513,15 @@ class StackedRouter extends RouterBase {
       );
     },
     ChannelPageView: (data) {
-      var args = data.getArgs<ChannelPageViewArguments>(
-        orElse: () => ChannelPageViewArguments(),
-      );
+      var args = data.getArgs<ChannelPageViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ChannelPageView(key: args.key),
+        builder: (context) => ChannelPageView(
+          key: args.key,
+          channelname: args.channelname,
+          channelId: args.channelId,
+          membersCount: args.membersCount,
+          public: args.public,
+        ),
         settings: data,
       );
     },
@@ -587,5 +591,14 @@ class EditChannelPageViewArguments {
 /// ChannelPageView arguments holder class
 class ChannelPageViewArguments {
   final Key? key;
-  ChannelPageViewArguments({this.key});
+  final String? channelname;
+  final String? channelId;
+  final int? membersCount;
+  final bool? public;
+  ChannelPageViewArguments(
+      {this.key,
+      required this.channelname,
+      required this.channelId,
+      required this.membersCount,
+      required this.public});
 }

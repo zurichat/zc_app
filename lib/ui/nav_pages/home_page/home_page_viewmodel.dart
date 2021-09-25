@@ -11,12 +11,10 @@ import '../../../services/connectivity_service.dart';
 import '../../../utilities/enums.dart';
 import 'home_item_model.dart';
 
-
 final _navigationService = locator<NavigationService>();
 final connectivityService = locator<ConnectivityService>();
 
 bool connectionStatus = false;
-
 
 class HomePageViewModel extends StreamViewModel {
   void nToPref() {
@@ -45,7 +43,6 @@ class HomePageViewModel extends StreamViewModel {
 
   // final _dmApiService = locator<DMApiService>();
   final _channelsApiService = locator<ChannelsApiService>();
-
 
   final _navigationService = locator<NavigationService>();
   bool connectionStatus = false;
@@ -79,7 +76,7 @@ class HomePageViewModel extends StreamViewModel {
     return connectionStatus;
   }
 
-    void navigateToJumpToScreen() {
+  void navigateToJumpToScreen() {
     _navigationService.navigateTo(Routes.dmJumpToView);
   }
 
@@ -96,7 +93,6 @@ class HomePageViewModel extends StreamViewModel {
       }
     });
   }
-
 
   //This method is just to demo the side bar data that would
   //be received by the database
@@ -144,16 +140,22 @@ class HomePageViewModel extends StreamViewModel {
 
     setAllList();
     notifyListeners();
+  }
 
-}
   //
   //*Navigate to other routes
   void navigateToPref() {
     _navigationService.navigateTo(Routes.fileSearchView);
   }
 
-  void navigateToChannelPage() {
-    _navigationService.navigateTo(Routes.channelPageView);
+  void navigateToChannelPage(
+      String? channelname, String? channelId, int? membersCount, bool? public) {
+    _navigationService.navigateTo(Routes.channelPageView,
+        arguments: ChannelPageViewArguments(
+            channelname: channelname,
+            channelId: channelId,
+            membersCount: membersCount,
+            public: public));
   }
 
   void navigateToInfo() {
@@ -178,7 +180,7 @@ class HomePageViewModel extends StreamViewModel {
         type: HomeItemType.channels,
         unreadCount: 0,
         name: data['name'],
-        id: data['id'],
+        id: data['_id'],
         public: data['private'] != "True",
         membersCount: data['members'],
       ));
@@ -205,12 +207,11 @@ class HomePageViewModel extends StreamViewModel {
     // });
   }
 
-    // listenToChannelsChange() {
-    // _channelsApiService.onChange.stream.listen((event) {
-    //   getDmAndChannelsList();
-    // });
+  // listenToChannelsChange() {
+  // _channelsApiService.onChange.stream.listen((event) {
+  //   getDmAndChannelsList();
+  // });
 
   // }
 
 }
-

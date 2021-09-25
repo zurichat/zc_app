@@ -37,6 +37,50 @@ class ChannelsApiService {
     return joinedChannels;
   }
 
+  Future<List> getChannelMessages(String channelId) async {
+    final userId = _userService.userId;
+    final orgId = _userService.currentOrgId;
+
+    List channelMessages;
+
+    try {
+      final res = await _api.get(
+        'v1/$orgId/channels/$channelId/messages/',
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      channelMessages = res?.data["data"] ?? [];
+
+      log.i(channelMessages);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return [];
+    }
+
+    return channelMessages;
+  }
+
+  Future sendChannelMessages(
+      String channelId, String userId, String message) async {
+    final userId = _userService.userId;
+    final orgId = _userService.currentOrgId;
+
+    var channelMessage;
+
+    try {
+      final res = await _api.post('v1/$orgId/channels/$channelId/messages/',
+          headers: {'Authorization': 'Bearer $token'},
+          data: {'user_id': userId, 'content': message});
+
+      channelMessage = res?.data["data"] ?? {};
+
+      log.i(channelMessage);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return [];
+    }
+
+    return channelMessage;
+  }
 
   Future<bool> createChannels({
     required String name,
@@ -74,7 +118,6 @@ class ChannelsApiService {
   dispose() {
     // onChange.close();
   }
-
 
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);

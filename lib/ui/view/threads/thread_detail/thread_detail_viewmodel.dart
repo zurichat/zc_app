@@ -31,7 +31,7 @@ class ThreadDetailViewModel extends BaseViewModel {
   void addReply(UserPost userPost, String? reply) {
     userPost.addReply(
       UserThreadPost(
-        id: 25,
+        id: "25",
         displayName: "richieoscar",
         userImage: "assets/images/1.png",
         lastSeen: "4 hours ago",
