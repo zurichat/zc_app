@@ -56,8 +56,14 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
     await api.post(
       "/$orgId/channels/$channelId/members/",
     //  "/614679ee1a5607b13c00bcb7/channels/$channelId/members/",
-      headers: {'Authorization': 'Bearer ${organizationApi.token}'},
-      data: {"_id":userId},
+      headers: {'Authorization': 'Bearer ${organizationApi.token}',"Content-Type": "application/json",},
+      data: {"_id":userId, "role_id": "",
+        "is_admin": false,
+        "notifications": {
+          "additionalProp1": "",
+          "additionalProp2": "",
+          "additionalProp3": ""
+        }},
     );
   }
 
