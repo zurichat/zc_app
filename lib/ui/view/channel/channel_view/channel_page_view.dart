@@ -26,9 +26,9 @@ import 'widgets/custom_row.dart';
   ],
 )
 class ChannelPageView extends StatelessWidget with $ChannelPageView {
-   ChannelModel channelDetail;
-  List <ChannelMembermodel>channelMembers;
-ChannelPageView({required this.channelDetail,required this.channelMembers});
+  ChannelModel channelDetail;
+  List<ChannelMembermodel> channelMembers;
+  ChannelPageView({required this.channelDetail, required this.channelMembers});
   static String name = 'general';
   @override
   Widget build(BuildContext context) {
@@ -40,11 +40,14 @@ ChannelPageView({required this.channelDetail,required this.channelMembers});
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: appBar('${channelDetail.name}', "${channelMembers.length.toString()} members", 
-          context,viewModel.goBack, (){
-viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,channelDetail);
-          } 
-            ),
+          appBar: appBar(
+              '${channelDetail.name}',
+              "${channelMembers.length.toString()} members",
+              context,
+              viewModel.goBack, () {
+            viewModel.navigateToChannelInfoScreen(
+                channelMembers.length, channelMembers, channelDetail);
+          }),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -127,9 +130,13 @@ viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,chann
   }
 }
 
-AppBar appBar(String text, String nexttext, BuildContext context,
-Function backNavigation,Function infoNavigation, ) {
-
+AppBar appBar(
+  String text,
+  String nexttext,
+  BuildContext context,
+  Function backNavigation,
+  Function infoNavigation,
+) {
   return AppBar(
     elevation: 1,
     backgroundColor: AppColors.whiteColor,
@@ -177,9 +184,7 @@ Function backNavigation,Function infoNavigation, ) {
       Padding(
           padding: const EdgeInsets.only(right: 20.0),
           child: GestureDetector(
-            onTap: () {
-
-            },
+            onTap: () {},
             child: const Icon(
               CupertinoIcons.search,
               color: AppColors.deepBlackColor,
@@ -189,9 +194,9 @@ Function backNavigation,Function infoNavigation, ) {
       Padding(
         padding: const EdgeInsets.only(right: 20.0),
         child: GestureDetector(
-          onTap:(){
+          onTap: () {
             infoNavigation();
-          } ,
+          },
           child: const Icon(
             CupertinoIcons.info,
             color: AppColors.deepBlackColor,
@@ -289,7 +294,7 @@ Row row() {
       Column(
         children: [
           GestureDetector(
-            onTap: () => navigator.navigateTo(Routes.addPeopleView),
+            onTap: () => navigator.navigateTo(Routes.channelAddPeopleView),
             child: const CircleAvatar(
               radius: 30,
               backgroundColor: AppColors.lightGreen,
@@ -377,8 +382,6 @@ dateBuilder(BuildContext context) {
   ]);
 }
 
-
-
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 // import 'package:hng/models/channel_members.dart';
@@ -421,13 +424,13 @@ dateBuilder(BuildContext context) {
 //       viewModelBuilder: () => ChannelPageViewModel(),
 //       builder: (context, viewModel, child) {
 //         return Scaffold(
-//           appBar: appBar('${channelDetail.name}', "${channelMembers.length.toString()} members", 
-//           context,viewModel.goBack, 
+//           appBar: appBar('${channelDetail.name}', "${channelMembers.length.toString()} members",
+//           context,viewModel.goBack,
 //           //(){
 // //viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,channelDetail)
-//           //} 
+//           //}
 //             ),
-         
+
 //           body: SingleChildScrollView(
 //             scrollDirection: Axis.vertical,
 //             child: Column(
@@ -512,7 +515,7 @@ dateBuilder(BuildContext context) {
 
 // AppBar appBar(String text, String nexttext, BuildContext context,
 // Function backNavigation,
-// //Function infoNavigation, 
+// //Function infoNavigation,
 // ) {
 
 //   return AppBar(

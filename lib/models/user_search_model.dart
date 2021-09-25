@@ -22,7 +22,7 @@ class UserSearch {
   DateTime? joinedAt;
   String? lastName;
   String? orgId;
-  int? phone;
+  String? phone;
   bool presence;
   String? pronouns;
   String? role;
@@ -70,7 +70,7 @@ class UserSearch {
         lastName: json['last_name'],
         orgId: json['org_id'],
         phone: json['phone'],
-        presence: json['presence'],
+        presence: json['presence'] == "true",
         pronouns: json['pronouns'],
         role: json['role'],
         settings: json['settings'],
