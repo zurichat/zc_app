@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/view/dm_chat_view/dm_jump_to_view.dart';
-import 'package:hng/ui/view/dm_chat_view/dm_jump_to_viewmodel.dart';
 
 class CustomChannel extends StatelessWidget {
   final String? text;
-  DmJumpToView? model;
-  CustomChannel({
-    Key? key,
-    this.text,
-    this.model}) : super(key: key);
+  final bool lock;
+  const CustomChannel({Key? key, this.text, this.lock = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +19,25 @@ class CustomChannel extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(5.w, 0, 0, 0),
           child: Row(
             children: [
-              Text(
-                '#',
-                style: AppTextStyles
-                    .heading7, // textfont in here won't scale to different screens
+              SizedBox(
+                height: 16.r,
+                width: 16.r,
+                child: lock == true ?
+                SvgPicture.asset(
+                    'assets/icons/svg_icons/lock_outline.svg',
+                ) :
+                SvgPicture.asset(
+                  'assets/icons/svg_icons/hash_tag.svg',
+                )
               ),
+              // Text(
+              //   '#',
+              //   style: AppTextStyles.hashtag.copyWith(fontSize: 20.sp)
+              // ),
               SizedBox(width: 21.33.w),
               Text(
-               text ??
-                    '...',
-                style: AppTextStyles
-                    .fileName, // textfont in here won't scale to different screens
+                '$text',
+                style: AppTextStyles.nameStyle1.copyWith(fontSize: 14.sp)
               ),
             ],
           ),

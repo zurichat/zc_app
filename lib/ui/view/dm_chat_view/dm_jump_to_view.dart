@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/general_widgets/custom_channel.dart';
+import 'package:hng/general_widgets/custom_user.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -59,11 +61,12 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                     borderSide: BorderSide(
                                         color: AppColors.borderColor,
                                         width: 0.5.w,
-                                        style: BorderStyle.solid),
+                                        style: BorderStyle.solid
+                                    ),
                                   ),
                                   prefixIcon: IconButton(
                                     icon: Icon(Icons.arrow_back_ios_outlined),
-                                    iconSize: 18,
+                                    iconSize: 18.sp,
                                     onPressed: () => model.navigateBack(),
                                   ),
                                   hintText: 'Jump to...',
@@ -89,42 +92,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                         width: 16.h,
                                       ),
                                       itemBuilder: (context, i) {
-                                        return SizedBox(
-                                          width: 48.w,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            // mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                height: 48.h,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius.circular(8.r),
-                                                  image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: AssetImage(
-                                                      dummyUserImage,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 8.h,
-                                              ),
-                                              Container(
-                                                  height: 32.h,
-                                                  child: Text(
-                                                      model.userSearch[i].username!,
-                                                      textAlign: TextAlign.center,
-                                                      maxLines: 2,
-                                                      overflow: TextOverflow.ellipsis,
-                                                      style: AppTextStyles.subtitle1
-                                                    // overflow: TextOverflow.fade,
-                                                  )),
-                                            ],
-                                          ),
+                                        return CustomUser(text: model.userSearch[i].username!,
                                         );
                                       },
                                       scrollDirection: Axis.horizontal,
@@ -137,7 +105,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                     width: 37.w,
                                     child: Text(
                                         'Recent',
-                                        style: AppTextStyles.lastSeen
+                                        style: AppTextStyles.lastSeen.copyWith(fontSize:12.sp)
                                     ),
                                   ),
                                   SizedBox(height: 24.h),
@@ -150,18 +118,10 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                           (BuildContext context, int index) =>
                                           SizedBox(height: 24.h),
                                       itemBuilder: (context, i) {
-                                        return Row(
-                                          children: [
-                                            Text('#',
-                                                style: AppTextStyles.hashtag),
-                                            SizedBox(width: 21.33.w),
-                                            Text(
-                                                model.allChannelsSearch[i].name ??
-                                                    '...',
-                                                // style: ZuriTextStyle.mediumBold(),
-                                                style: AppTextStyles.nameStyle1
-                                            ),
-                                          ],
+                                        return CustomChannel(
+                                          text: model.allChannelsSearch[i].name ??
+                                            'Channel name',
+                                          lock: model.allChannelsSearch[i].private == 'True',
                                         );
                                       },
                                       scrollDirection: Axis.vertical,

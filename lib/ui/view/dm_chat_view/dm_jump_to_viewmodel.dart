@@ -20,7 +20,7 @@ class DmJumpToViewModel extends FormViewModel {
   List<NewUser> userSearch = [];
   List<ChannelsSearch> joinedChannelsSearch = [];
   List<ChannelsSearch> allChannelsSearch = [];
-
+  final listOf =[];
   // @override
   // // Future futureToRun() => fetchUsers();
 
@@ -35,18 +35,18 @@ class DmJumpToViewModel extends FormViewModel {
   }
 
   void _onChanged() => (value) {
-        if (value.isNotEmpty) {
+        // if (value.isNotEmpty) {
           allChannelsSearch = allChannelsSearch
-              .where((channels) => (channels.name.toString().contains(
+              .where((channels) => (channels.name.toString().toLowerCase().contains(
                     value.toLowerCase(),
                   )))
               .toList();
           notifyListeners();
-        } else {
-          allChannelsSearch = allChannelsSearch;
-          notifyListeners();
-        }
-        notifyListeners();
+        // } else {
+        //   allChannelsSearch = allChannelsSearch;
+        //   notifyListeners();
+        // }
+        // notifyListeners();
       };
 
   get onChanged => _onChanged();
@@ -55,139 +55,6 @@ class DmJumpToViewModel extends FormViewModel {
     yield await connectivityService.checkConnection();
   }
 
-  List<CustomUser> ListofDms = [
-    CustomUser(
-      image: 'assets/images/Rectangle 1931.png',
-      text: 'Fierce',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (1).png',
-      text: 'Abd_Salam',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (2).png',
-      text: 'Souljaunt',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (3).png',
-      text: 'Princess',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (4).png',
-      text: 'Nudis',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (5).png',
-      text: 'Unknown',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931.png',
-      text: 'abcFierce',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (1).png',
-      text: 'deAbd_Salam',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (2).png',
-      text: 'fjSouljaunt',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (3).png',
-      text: 'hiPrincess',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (4).png',
-      text: 'jkNudis',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (5).png',
-      text: 'lmUnknown',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931.png',
-      text: 'noFierce',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (1).png',
-      text: 'noAbd_Salam',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (2).png',
-      text: 'Souljaunt',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (3).png',
-      text: 'noPrincess',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (4).png',
-      text: 'Nudis',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (5).png',
-      text: 'yesUnknown',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931.png',
-      text: 'itFierce',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (1).png',
-      text: 'yesAbd_Salam',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (2).png',
-      text: 'itSouljaunt',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (3).png',
-      text: 'carsPrincess',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (4).png',
-      text: 'carsNudis',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (5).png',
-      text: 'traUnknown',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931.png',
-      text: 'traFierce',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (1).png',
-      text: 'Abd_Salam',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (2).png',
-      text: 'traSouljaunt',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (3).png',
-      text: 'sowPrincesssssssssssssssssss',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (4).png',
-      text: 'cutNudis',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (5).png',
-      text: 'youUnknown',
-    ),
-  ];
-
-  var recentDmsFromApi=[
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (4).png',
-      text: 'cutNudis',
-    ),
-    CustomUser(
-      image: 'assets/images/Rectangle 1931 (5).png',
-      text: 'youUnknown',
-    ),
-  ];
 
   Future<List<ChannelsSearch>?>? fetchChannels() async {
     try {
