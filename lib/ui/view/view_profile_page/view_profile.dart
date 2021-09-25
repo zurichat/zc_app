@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
@@ -11,7 +12,6 @@ import 'widgets/profile_action.dart';
 import 'widgets/profile_list.dart';
 
 class ViewProfile extends StatelessWidget {
-  final bool isActive = true;
   final storageService = locator<SharedPreferenceLocalStorage>();
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,17 @@ class ViewProfile extends StatelessWidget {
               controller: scrollController,
               child: Visibility(
                 visible: !model.isBusy,
-                replacement: Text('Getting Profile Data'),
+                replacement: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Getting Your data...'),
+                      CircularProgressIndicator(
+                        color: AppColors.zuriPrimaryColor,
+                      ),
+                    ],
+                  ),
+                ),
                 child: Container(
                   child: Column(
                     children: [
@@ -55,9 +65,7 @@ class ViewProfile extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  storageService
-                                      .getString(StorageKeys.displayName)
-                                      .toString(),
+                                  model.userData.firstName.toString(),
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontWeight: FontWeight.normal,
@@ -71,7 +79,7 @@ class ViewProfile extends StatelessWidget {
                                     Icons.circle,
                                     size: 12.0,
                                     // color: isActive!
-                                    color: isActive == true
+                                    color: model.isActive == true
                                         ? AppColors.zuriPrimaryColor
                                         : Colors.transparent,
                                   ),
@@ -109,18 +117,13 @@ class ViewProfile extends StatelessWidget {
                             ),
                             Divider(),
                             ProfileList(
-                              title: 'What I do',
-                              description: storageService
-                                  .getString(StorageKeys.status)
-                                  .toString(),
-                            ),
+                                title: 'What I do',
+                                description: model.userData.status.toString()),
                             Divider(),
                             ProfileList(
-                              title: 'Display Name',
-                              description: storageService
-                                  .getString(StorageKeys.displayName)
-                                  .toString(),
-                            ),
+                                title: 'Display Name',
+                                description:
+                                    model.userData.displayName.toString()),
                             Divider(),
                             ProfileList(
                               title: 'Status',
@@ -130,18 +133,15 @@ class ViewProfile extends StatelessWidget {
                             ),
                             Divider(),
                             ProfileList(
-                              title: 'Mobile Number',
-                              description: storageService
-                                  .getString(StorageKeys.phone_num)
-                                  .toString(),
-                            ),
+                                title: 'Mobile Number',
+                                description:
+                                    model.userData.phoneNum.toString()),
                             Divider(),
                             ProfileList(
-                              title: 'Email Address',
-                              description: storageService
-                                  .getString(StorageKeys.currentUserEmail)
-                                  .toString(),
-                            )
+                                title: 'Email Address',
+                                description: storageService
+                                    .getString(StorageKeys.currentUserEmail)
+                                    .toString())
                           ],
                         ),
                       ),
