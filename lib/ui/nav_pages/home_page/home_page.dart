@@ -1,19 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/easy_container.dart';
-import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
-import 'package:hng/ui/shared/text_field.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/search_bar.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/easy_container.dart';
 import '../../../utilities/constants.dart';
 import '../../shared/colors.dart';
+import '../../shared/search_bar.dart';
 import '../../shared/text_styles.dart';
 import 'home_page_viewmodel.dart';
 import 'widgets/home_expanded.dart';
@@ -33,17 +24,27 @@ class HomePage extends StatelessWidget {
           const HomePageTopBar(
             organizationName: 'Zuri Organization',
           ),
-
           model.isBusy
               ? LinearProgressIndicator(
-            backgroundColor: Colors.grey[400],
-            valueColor:
-            const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
-          )
+                  backgroundColor: Colors.grey[400],
+                  valueColor:
+                      const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
+                )
               : Container(),
-
           Expanded(
             child: body(model),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                  onPressed: model.navigateToStartDMScreen,
+                  child: const Icon(
+                    Icons.open_in_new_outlined,
+                    color: AppColors.whiteColor,
+                  )),
+            ),
           )
         ],
       ),

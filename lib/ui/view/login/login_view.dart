@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/ui_helpers.dart';
-import 'package:hng/ui/view/login/login_view.form.dart';
-import 'package:hng/ui/view/login/login_viewmodel.dart';
+import '../../../general_widgets/custom_textfield.dart';
+import '../../shared/colors.dart';
+import '../../shared/long_button.dart';
+import '../../shared/styles.dart';
+import '../../shared/ui_helpers.dart';
+import 'login_view.form.dart';
+import 'login_viewmodel.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -18,7 +18,6 @@ import 'package:stacked/stacked_annotations.dart';
   ],
 )
 class LoginView extends StatelessWidget with $LoginView {
-  
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginViewModel>.reactive(
@@ -93,8 +92,11 @@ class LoginView extends StatelessWidget with $LoginView {
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all(EdgeInsets.zero),
                       ),
-                      onPressed: () =>
-                          model.navigateToForgotPasswordScreen(context),
+                      onPressed: () {
+                        //Hides the keyboard for the failure snackbar to be visible
+                        FocusScope.of(context).unfocus();
+                        model.navigateToForgotPasswordScreen();
+                      },
                       child: const Text(
                         'Forgot Password?',
                         style: TextStyle(
@@ -109,7 +111,7 @@ class LoginView extends StatelessWidget with $LoginView {
                       widthFactor: 1.0,
                       child: LongButton(
                         onPressed: () async {
-                          await model.logInUser(context);
+                          await model.logInUser();
                         },
                         label: 'Sign In',
                       ),

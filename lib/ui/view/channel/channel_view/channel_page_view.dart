@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/channel/channel_view/widgets/custom_appbar.dart';
-import 'package:hng/ui/view/channel/channel_view/widgets/custom_row.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
-import '../../../shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
 
+import '../../../shared/colors.dart';
+import '../../../shared/styles.dart';
 import 'channel_page_view.form.dart';
 import 'channel_page_viewmodel.dart';
+import 'widgets/custom_appbar.dart';
+import 'widgets/custom_row.dart';
 
 @FormView(
   fields: [
@@ -17,7 +17,7 @@ import 'channel_page_viewmodel.dart';
 )
 class ChannelPageView extends StatelessWidget with $ChannelPageView {
   ChannelPageView({Key? key}) : super(key: key);
-  static String name = "general";
+  static String name = 'general';
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
@@ -30,7 +30,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
       builder: (context, viewModel, child) {
         return Scaffold(
           appBar: CustomAppBars(
-            channelName: "#$name",
+            channelName: '#$name',
             numberOfMembers: '128',
             model: viewModel,
           ),
@@ -39,7 +39,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
             //scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                channelName("#$name"),
+                channelName('#$name'),
                 SizedBox(
                   height: 10.0,
                 ),

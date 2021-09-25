@@ -1,8 +1,8 @@
 //On login or signup the user service is used to save all the user details
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/models/organization_model.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import '../app/app.locator.dart';
+import '../models/organization_model.dart';
+import 'local_storage_services.dart';
+import '../utilities/storage_keys.dart';
 
 ///This class dont do anything special than calling the local storage
 ///And returning the data that is saved, you can choose to use it or
@@ -41,12 +41,12 @@ class UserService {
     return _currentOrgUrl;
   }
 
-  setOrganization() {
+  void setOrganization() {
     // Todo implement Organization setter
   }
 
   ///From the organization side bar set the current organissation Id
-  setCurrentOrganizationId(String currentOrgId) {
+  void setCurrentOrganizationId(String currentOrgId) {
     _currentOrgId = currentOrgId;
     _sharedPrefs.setString(StorageKeys.currentOrgId, _currentOrgId);
   }

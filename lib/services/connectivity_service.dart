@@ -39,7 +39,7 @@ class ConnectivityService with ReactiveServiceMixin {
 
   // Function that does the actual connection tests.
   Future<bool> checkConnection() async {
-    ConnectivityStatus prevStatus = ConnectivityStatus.Offline;
+    const prevStatus = ConnectivityStatus.Offline;
 
     try {
       final result = await InternetAddress.lookup('example.com');

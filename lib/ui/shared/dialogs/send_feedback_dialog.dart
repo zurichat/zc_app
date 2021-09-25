@@ -26,8 +26,8 @@ class _SendFeedbackDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    TextEditingController controller = TextEditingController();
+    final size = MediaQuery.of(context).size;
+    final controller = TextEditingController();
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * .05, vertical: size.height * .02),
@@ -39,7 +39,7 @@ class _SendFeedbackDialogContent extends StatelessWidget {
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              "Compose feedback",
+              'Compose feedback',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
@@ -49,9 +49,9 @@ class _SendFeedbackDialogContent extends StatelessWidget {
             child: TextField(
               controller: controller,
               decoration: InputDecoration(
-                  hintText: "e.g I found a bug in the Dm’s",
+                  hintText: 'e.g I found a bug in the Dm’s',
                   helperText:
-                      "We will respond via email to feedback and questions."),
+                      'We will respond via email to feedback and questions.'),
               minLines: 1,
               maxLines: 5,
             ),
@@ -63,11 +63,11 @@ class _SendFeedbackDialogContent extends StatelessWidget {
             children: [
               MaterialButton(
                   onPressed: () => completer(DialogResponse(confirmed: false)),
-                  child: Text("CANCEL")),
+                  child: Text('CANCEL')),
               MaterialButton(
                   onPressed: () => completer(
                       DialogResponse(data: controller.text, confirmed: true)),
-                  child: Text("OK")),
+                  child: Text('OK')),
             ],
           )
         ],
