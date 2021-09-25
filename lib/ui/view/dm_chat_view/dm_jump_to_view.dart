@@ -2,13 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/general_widgets/custom_user.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
-import '../../../general_widgets/custom_channel.dart';
+
+import '../../shared/colors.dart';
 import 'dm_jump_to_view.form.dart';
 import 'dm_jump_to_viewmodel.dart';
-import 'package:stacked/stacked.dart';
 
 @FormView(fields: [FormTextField(name: 'search')])
 class DmJumpToView extends StatelessWidget with $DmJumpToView {

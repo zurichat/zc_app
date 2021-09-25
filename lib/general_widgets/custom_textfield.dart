@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+import '../ui/shared/colors.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -46,7 +46,7 @@ class CustomTextField extends StatelessWidget {
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(3.0)),
         ),
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
           borderSide: BorderSide(
             color: AppColors.zuriPrimaryColor,

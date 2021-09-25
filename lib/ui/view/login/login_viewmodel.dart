@@ -1,49 +1,62 @@
-import 'package:flutter/widgets.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
-import 'package:hng/services/local_storage_services.dart';
-
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/login/login_view.form.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../app/app.locator.dart';
+import '../../../app/app.router.dart';
+import '../../../package/base/server-request/api/http_api.dart';
+import '../../../services/connectivity_service.dart';
+import '../../../services/local_storage_services.dart';
+import '../../../utilities/enums.dart';
+import '../../../utilities/storage_keys.dart';
+import '../../shared/shared.dart';
+import 'login_view.form.dart';
+
 class LoginViewModel extends FormViewModel {
-  final navigationService = locator<NavigationService>();
-  final storage = locator<SharedPreferenceLocalStorage>();
-  final snackbar = locator<SnackbarService>();
+  final _navigationService = locator<NavigationService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
+  final _snackbarService = locator<SnackbarService>();
   final _apiService = HttpApiService(coreBaseUrl);
+  final _connectivityService = locator<ConnectivityService>();
+
   bool isLoading = false;
+
   loading(status) {
     isLoading = status;
     notifyListeners();
   }
 
   void navigateToHomeScreen() {
-    navigationService.navigateTo(Routes.navBarView);
+    _navigationService.navigateTo(Routes.navBarView);
   }
 
   void navigateToSignUpScreen() {
-    navigationService.navigateTo(Routes.signUpView);
+    _navigationService.navigateTo(Routes.signUpView);
   }
 
-  void navigateToForgotPasswordScreen(BuildContext context) {
-    navigationService.navigateTo(Routes.forgotPasswordEmailView);
+  void navigateToForgotPasswordScreen() {
+    _navigationService.navigateTo(Routes.forgotPasswordEmailView);
   }
 
   // ignore: always_declare_return_types
-  Future logInUser(context) async {
+  Future logInUser() async {
+    var connected = await _connectivityService.checkConnection();
+    if (!connected) {
+      _snackbarService.showCustomSnackBar(
+        message: 'No internet connection, connect and try again.',
+        variant: SnackbarType.failure,
+        duration: Duration(milliseconds: 1500),
+      );
+      return;
+    }
     loading(true);
     const endpoint = '/auth/login';
-    if (emailValue == null || passwordValue == null) {
+    if (emailValue == null ||
+        passwordValue == null ||
+        emailValue == '' ||
+        passwordValue == '') {
       loading(false);
-      //Hides the keyboard for the failure snackbar to be visible
-      // FocusScope.of(context).unfocus();
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
+      _snackbarService.showCustomSnackBar(
+        duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.failure,
         message: 'Please fill all fields.',
       );
@@ -56,33 +69,33 @@ class LoginViewModel extends FormViewModel {
 
     //saving user details to storage on request success
     if (response?.statusCode == 200) {
-      storage.setString(
+      _storageService.setString(
         StorageKeys.currentSessionToken,
         response?.data['data']['user']['token'],
       );
-      storage.setString(
+      _storageService.setString(
         StorageKeys.currentUserId,
         response?.data['data']['user']['id'],
       );
-      storage.setString(
+      _storageService.setString(
         StorageKeys.currentUserEmail,
         response?.data['data']['user']['email'],
       );
-      storage.clearData(StorageKeys.workspaceIds);
+      _storageService.clearData(StorageKeys.currentOrgId);
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
 
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
+      _snackbarService.showCustomSnackBar(
+        duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.success,
         message: ''' ${response?.data['message']} for'''
             ''' ${response?.data['data']['user']['email']}''',
       );
 
-      //Todo check if user has currently joined an organisation
-      navigationService.navigateTo(Routes.workspaceView);
+      //Todo check if user has currently joined an Organization
+      _navigationService.pushNamedAndRemoveUntil(Routes.organizationView);
     } else {
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
+      _snackbarService.showCustomSnackBar(
+        duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.failure,
         message: response?.data['message'] ?? 'Error encountered during login.',
       );

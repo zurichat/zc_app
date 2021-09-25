@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/shared.dart';
+import '../../../general_widgets/custom_text.dart';
+import '../../shared/shared.dart';
 import 'package:stacked/stacked.dart';
 import 'clear_after_viewmodel.dart';
 import 'widget/date_and_time.dart';

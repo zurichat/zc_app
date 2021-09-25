@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/view/plugins/widgets/custom_plugin_list_tile.dart';
+import '../../../shared/colors.dart';
+import '../../plugins/widgets/custom_plugin_list_tile.dart';
 import 'package:stacked/stacked.dart';
 import '../shared_widgets.dart';
 import 'channel_members_list_model.dart';

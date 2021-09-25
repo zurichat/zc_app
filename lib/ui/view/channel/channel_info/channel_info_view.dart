@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/seventh_section.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../shared/colors.dart';
+import '../../../shared/shared.dart';
 import 'channel_info_view_model.dart';
 import 'widgets/custom_app_bar.dart';
 import 'widgets/fifth_section.dart';
