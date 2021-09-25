@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/set_status/widgets/status.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../shared/shared.dart';
 import 'set_status_viewmodel.dart';
+import 'widgets/status.dart';
 import 'widgets/statuses.dart';
 
 class SetStatusView extends StatelessWidget {
@@ -15,12 +15,12 @@ class SetStatusView extends StatelessWidget {
                 elevation: 0,
                 leading: IconButton(
                     onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
-                title: Text("Set a status"),
+                title: Text('Set a status'),
                 actions: [
                   TextButton(
                     onPressed: () {},
                     child: Text(
-                      "Save",
+                      'Save',
                       style: TextStyle(color: AppColors.zuriTextBodyColor),
                     ),
                   )
@@ -62,49 +62,49 @@ class SetStatusView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Clear after..."),
-                            Text("Today"),
+                            Text('Clear after...'),
+                            Text('Today'),
                           ],
                         ),
                       ),
                     ),
                     SizedBox(height: 10),
                     Statuses(
-                      title: "Recent",
+                      title: 'Recent',
                       children: [
                         Status(
-                            status: "Former Status",
+                            status: 'Former Status',
                             duration: "Don't clear",
                             icon: Icons.biotech_rounded),
                         Status(
-                            status: "Former Former Status",
+                            status: 'Former Former Status',
                             duration: "Don't clear",
                             icon: Icons.social_distance)
                       ],
                     ),
                     SizedBox(height: 10),
                     Statuses(
-                      title: "For HNGi8 x I4G",
+                      title: 'For HNGi8 x I4G',
                       children: [
                         Status(
-                            status: "In a meeting",
-                            duration: "1 hour",
+                            status: 'In a meeting',
+                            duration: '1 hour',
                             icon: Icons.calendar_today_rounded),
                         Status(
-                            status: "Commuting",
-                            duration: "30 minutes",
+                            status: 'Commuting',
+                            duration: '30 minutes',
                             icon: Icons.train),
-                        Status(
-                            status: "Off sick",
-                            duration: "Today",
+                        const Status(
+                            status: 'Off sick',
+                            duration: 'Today',
                             icon: Icons.sick_rounded),
                         Status(
-                            status: "On holiday",
+                            status: 'On holiday',
                             duration: "Don't clear",
                             icon: Icons.hotel),
                         Status(
-                            status: "Working remotely",
-                            duration: "Today",
+                            status: 'Working remotely',
+                            duration: 'Today',
                             icon: Icons.home),
                       ],
                     ),

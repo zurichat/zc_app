@@ -1,22 +1,30 @@
 import 'dart:developer';
 
+
+
+
+
+
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
+import 'package:hng/package/base/server-request/api/http_api.dart';
+import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
-import '../../../package/base/server-request/channels/channels_api_service.dart';
 import '../../../services/connectivity_service.dart';
 import '../../../utilities/enums.dart';
 import 'home_item_model.dart';
-
 
 final _navigationService = locator<NavigationService>();
 final connectivityService = locator<ConnectivityService>();
 
 bool connectionStatus = false;
-
 
 class HomePageViewModel extends StreamViewModel {
   void nToPref() {
@@ -43,12 +51,23 @@ class HomePageViewModel extends StreamViewModel {
   final dmApiService = locator<DMApiService>();
   final channelsApiService = locator<ChannelsApiService>();
 
+    final navigation = locator<NavigationService>();
+    final snackbar = locator<SnackbarService>();
+  final api = ChannelsApiService();
   // final _dmApiService = locator<DMApiService>();
   final _channelsApiService = locator<ChannelsApiService>();
 
-
   final _navigationService = locator<NavigationService>();
   bool connectionStatus = false;
+
+     List <ChannelModel> _channelsList = [
+  ];
+  ChannelModel? _channel;
+  List<ChannelModel>get channelsList => _channelsList;
+ChannelModel get channel=>_channel!;
+ List<ChannelMembermodel> _membersList = [
+  ];
+  List get membersList => _membersList;
 
   ///This contains the list of data for both the channels and dms
   List<HomeItemModel> homePageList = [];
@@ -79,8 +98,12 @@ class HomePageViewModel extends StreamViewModel {
     return connectionStatus;
   }
 
-    void navigateToJumpToScreen() {
+  void navigateToJumpToScreen() {
     _navigationService.navigateTo(Routes.dmJumpToView);
+  }
+
+ void navigateToStartDMScreen() {
+    _navigationService.navigateTo(Routes.startDmView);
   }
 
   ///This sets all the expanded list items
@@ -97,9 +120,9 @@ class HomePageViewModel extends StreamViewModel {
     });
   }
 
-
   //This method is just to demo the side bar data that would
   //be received by the database
+  
   getHomePageData() {
     homePageList = [
       HomeItemModel(type: HomeItemType.channels, name: 'annoucement'),
@@ -144,17 +167,17 @@ class HomePageViewModel extends StreamViewModel {
 
     setAllList();
     notifyListeners();
+  }
 
-}
   //
   //*Navigate to other routes
   void navigateToPref() {
     _navigationService.navigateTo(Routes.fileSearchView);
   }
 
-  void navigateToChannelPage() {
-    _navigationService.navigateTo(Routes.channelPageView);
-  }
+  // void navigateToChannelPage() {
+  //   _navigationService.navigateTo(Routes.channelPageView);
+  // }
 
   void navigateToInfo() {
     _navigationService.navigateTo(Routes.channelInfoView);
@@ -203,14 +226,72 @@ class HomePageViewModel extends StreamViewModel {
     //   //   name: 'alfred',
     //   // );
     // });
+    setBusy(false);
   }
 
-    // listenToChannelsChange() {
-    // _channelsApiService.onChange.stream.listen((event) {
-    //   getDmAndChannelsList();
-    // });
+  //
+  //*Navigate to other routes
+  // void navigateToPref() {
+  //   _navigationService.navigateTo(Routes.fileSearchView);
+  // }
+  // listenToChannelsChange() {
+  // _channelsApiService.onChange.stream.listen((event) {
+  //   getDmAndChannelsList();
+  // });
 
+  // void navigateToChannelPage() {
+  //   _navigationService.navigateTo(Routes.channelPageView);
   // }
 
-}
+  // void navigateToInfo() {
+  //   _navigationService.navigateTo(Routes.channelInfoView);
+  // }
 
+  // void navigateToWorkspace() {
+  //   _navigationService.navigateTo(Routes.workspaceView);
+  // }
+
+  //   void navigateToChannelScreen() {
+  //   NavigationService().navigateTo(Routes.channelPageView,arguments:
+  //   ChannelPageViewArguments(channelDetail: homePageList,
+    
+  //   ));
+  // }
+
+   navigateToChannelPage(id)async {
+    print(id);
+    try{
+        if (!await connectivityService.checkConnection()) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: 'Check your internet connection',
+        );
+
+        return;
+      }
+      setBusy(true);
+      _channel= await api.getChannelPage(id);   
+      _membersList= await api.getChannelMembers(id);
+      setBusy(false);
+NavigationService().navigateTo(Routes.channelPageView,arguments: ChannelPageViewArguments(
+  channelDetail: _channel!,channelMembers: _membersList));
+    }catch (e) {
+      print(e.toString());
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: 'Error Occured',
+      );
+    }
+    
+  }
+
+      void navigateToAllChannelsScreen() {
+    NavigationService().navigateTo(Routes.channelList);
+  }
+
+  // void navigateToDmUser() {
+  //   _navigationService.navigateTo(Routes.dmUserView);
+  // }
+}

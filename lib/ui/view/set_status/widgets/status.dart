@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/menu_item_tile.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import '../../../../general_widgets/menu_item_tile.dart';
+import '../../../shared/colors.dart';
 
 class Status extends StatelessWidget {
   const Status(

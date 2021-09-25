@@ -17,7 +17,7 @@ class AppColors {
   static const Color paleGreen = Color(0xFF89D3BB);
 
   static const Color blueTextColor = Color(0xFF2573F6);
-
+  static const Color greyBackgroundColor = Color(0xFFF4F4F4);
 
   static const Color lightBlackColor = Color(0xFF756767);
 

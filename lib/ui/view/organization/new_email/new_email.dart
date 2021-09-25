@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/organization/new_email/new_email_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
+
+import '../../../shared/shared.dart';
+import 'new_email_viewmodel.dart';
 
 class NewEmailView extends StatelessWidget {
   const NewEmailView({Key? key}) : super(key: key);
@@ -86,8 +87,9 @@ class NextButton extends ViewModelWidget<NewEmailViewModel> {
   Widget build(BuildContext context, NewEmailViewModel model) {
     return TextButton(
         style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.all<Color>(model.text.isEmpty ? Color(0xffBEBEBE) : AppColors.appBarGreen)),
+            backgroundColor: MaterialStateProperty.all<Color>(model.text.isEmpty
+                ? Color(0xffBEBEBE)
+                : AppColors.appBarGreen)),
         onPressed: () {},
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
