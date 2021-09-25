@@ -46,7 +46,10 @@ class ChannelAddPeopleView extends StatelessWidget {
                   ),
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
-                  onTap: () {},
+                  onTap: () {
+
+
+                  },
                 ),
               ),
             ],

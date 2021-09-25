@@ -77,9 +77,14 @@ class ThirdSection extends StatelessWidget {
                     left: 11,
                     top: 13,
                   ),
-                  child: Text(
-                    'Add People',
-                    style: descriptionStyle(),
+                  child: GestureDetector(
+                    onTap: () {
+                      model.navigateToAddPeopleChannel();
+                    },
+                    child: Text(
+                      'Add People',
+                      style: descriptionStyle(),
+                    ),
                   ),
                 ),
               ],
