@@ -40,30 +40,30 @@ class LoginView extends StatelessWidget with $LoginView {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  UIHelper.customVerticalSpace(57),
+                  SizedBox(height: 57.0),
                   Container(
                     alignment: Alignment.center,
                     child: Image.asset('assets/logo/zuri_chat_logo.png'),
                   ),
-                  UIHelper.customVerticalSpace(24.23),
+                  SizedBox(height: 24.23),
                   Center(
                     child: Text(
                       'Sign In',
                       style: AppTextStyles.heading7,
                     ),
                   ),
-                  UIHelper.verticalSpaceSmall,
+                  SizedBox(height: 8.0),
                   Text(
                     'Welcome! Sign in to continue',
                     textAlign: TextAlign.center,
                     style: AppTextStyles.faintBodyText,
                   ),
-                  UIHelper.customVerticalSpace(38),
+                  SizedBox(height: 38.0),
                   Text(
                     'Email Address',
                     style: AppTextStyles.body1Bold,
                   ),
-                  UIHelper.customVerticalSpace(10),
+                  SizedBox(height: 10.0),
                   CustomTextField(
                     keyboardType: TextInputType.emailAddress,
                     inputAction: TextInputAction.next,
@@ -72,7 +72,7 @@ class LoginView extends StatelessWidget with $LoginView {
                     hintText: 'Name@gmail.com',
                     controller: emailController,
                   ),
-                  UIHelper.verticalSpaceMedium,
+                  SizedBox(height: 16.0),
                   Text(
                     'Password',
                     style: AppTextStyles.body1Bold,
@@ -105,7 +105,7 @@ class LoginView extends StatelessWidget with $LoginView {
                       ),
                     ),
                   ),
-                  UIHelper.verticalSpaceLarge,
+                  SizedBox(height: 32.0),
                   Center(
                     child: FractionallySizedBox(
                       widthFactor: 1.0,
@@ -127,7 +127,7 @@ class LoginView extends StatelessWidget with $LoginView {
                           'Sign Up',
                           style: TextStyle(color: AppColors.zuriPrimaryColor),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ],

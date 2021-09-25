@@ -10,6 +10,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../models/channel_members.dart';
+import '../models/channel_model.dart';
 import '../models/user_post.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
@@ -55,12 +57,9 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
-
 import '../ui/view/start_dm/start_dm_view.dart';
-
 import '../ui/view/threads/all_threads/threads_view.dart';
 import '../ui/view/threads/thread_detail/thread_detail_view.dart';
-
 import '../ui/view/user_search/user_search_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
 import '../utilities/enums.dart';
@@ -114,10 +113,8 @@ class Routes {
   static const String editChannelPageView = '/edit-channel-page-view';
   static const String startDmView = '/start-dm-view';
   static const String organizationUrlView = '/organization-url-view';
-
   static const String channelPageView = '/channel-page-view';
   static const String channelInfoView = '/channel-info-view';
-
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -284,7 +281,7 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordOtpView: (data) {
-      final args = data.getArgs<ForgotPasswordOtpViewArguments>(
+      var args = data.getArgs<ForgotPasswordOtpViewArguments>(
         orElse: () => ForgotPasswordOtpViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -293,7 +290,7 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordNewView: (data) {
-      final args = data.getArgs<ForgotPasswordNewViewArguments>(
+      var args = data.getArgs<ForgotPasswordNewViewArguments>(
         orElse: () => ForgotPasswordNewViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -314,8 +311,11 @@ class StackedRouter extends RouterBase {
       );
     },
     HomePage: (data) {
+      var args = data.getArgs<HomePageArguments>(
+        orElse: () => HomePageArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => HomePage(),
+        builder: (context) => HomePage(key: args.key),
         settings: data,
       );
     },
@@ -332,7 +332,7 @@ class StackedRouter extends RouterBase {
       );
     },
     DmJumpToView: (data) {
-      final args = data.getArgs<DmJumpToViewArguments>(
+      var args = data.getArgs<DmJumpToViewArguments>(
         orElse: () => DmJumpToViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -341,7 +341,7 @@ class StackedRouter extends RouterBase {
       );
     },
     DmUserView: (data) {
-      final args = data.getArgs<DmUserViewArguments>(
+      var args = data.getArgs<DmUserViewArguments>(
         orElse: () => DmUserViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -362,7 +362,7 @@ class StackedRouter extends RouterBase {
       );
     },
     AddPluginView: (data) {
-      final args = data.getArgs<AddPluginViewArguments>(
+      var args = data.getArgs<AddPluginViewArguments>(
         orElse: () => AddPluginViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -461,7 +461,7 @@ class StackedRouter extends RouterBase {
       );
     },
     SelectEmail: (data) {
-      final args = data.getArgs<SelectEmailArguments>(nullOk: false);
+      var args = data.getArgs<SelectEmailArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => SelectEmail(
           key: args.key,
@@ -477,7 +477,7 @@ class StackedRouter extends RouterBase {
       );
     },
     CreateOrganization: (data) {
-      final args = data.getArgs<CreateOrganizationArguments>(nullOk: false);
+      var args = data.getArgs<CreateOrganizationArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => CreateOrganization(
           key: args.key,
@@ -505,7 +505,7 @@ class StackedRouter extends RouterBase {
       );
     },
     ThreadDetailView: (data) {
-      final args = data.getArgs<ThreadDetailViewArguments>(nullOk: false);
+      var args = data.getArgs<ThreadDetailViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => ThreadDetailView(
           args.userPost,
@@ -521,11 +521,20 @@ class StackedRouter extends RouterBase {
       );
     },
     EditChannelPageView: (data) {
-      final args = data.getArgs<EditChannelPageViewArguments>(
+      var args = data.getArgs<EditChannelPageViewArguments>(
         orElse: () => EditChannelPageViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
         builder: (context) => EditChannelPageView(key: args.key),
+        settings: data,
+      );
+    },
+    StartDmView: (data) {
+      var args = data.getArgs<StartDmViewArguments>(
+        orElse: () => StartDmViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => StartDmView(key: args.key),
         settings: data,
       );
     },
@@ -536,26 +545,23 @@ class StackedRouter extends RouterBase {
       );
     },
     ChannelPageView: (data) {
-      final args = data.getArgs<ChannelPageViewArguments>(
-        orElse: () => ChannelPageViewArguments(),
-      );
+      var args = data.getArgs<ChannelPageViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ChannelPageView(key: args.key),
+        builder: (context) => ChannelPageView(
+          channelDetail: args.channelDetail,
+          channelMembers: args.channelMembers,
+        ),
         settings: data,
       );
     },
     ChannelInfoView: (data) {
+      var args = data.getArgs<ChannelInfoViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ChannelInfoView(),
-        settings: data,
-      );
-    },
-    StartDmView: (data) {
-      final args = data.getArgs<StartDmViewArguments>(
-        orElse: () => StartDmViewArguments(),
-      );
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => StartDmView(key: args.key),
+        builder: (context) => ChannelInfoView(
+          numberOfMembers: args.numberOfMembers,
+          channelMembers: args.channelMembers,
+          channelDetail: args.channelDetail,
+        ),
         settings: data,
       );
     },
@@ -576,6 +582,12 @@ class ForgotPasswordOtpViewArguments {
 class ForgotPasswordNewViewArguments {
   final Key? key;
   ForgotPasswordNewViewArguments({this.key});
+}
+
+/// HomePage arguments holder class
+class HomePageArguments {
+  final Key? key;
+  HomePageArguments({this.key});
 }
 
 /// DmJumpToView arguments holder class
@@ -623,14 +635,27 @@ class EditChannelPageViewArguments {
   EditChannelPageViewArguments({this.key});
 }
 
-/// ChannelPageView arguments holder class
-class ChannelPageViewArguments {
-  final Key? key;
-  ChannelPageViewArguments({this.key});
-}
-
 /// StartDmView arguments holder class
 class StartDmViewArguments {
   final Key? key;
   StartDmViewArguments({this.key});
+}
+
+/// ChannelPageView arguments holder class
+class ChannelPageViewArguments {
+  final ChannelModel channelDetail;
+  final List<ChannelMembermodel> channelMembers;
+  ChannelPageViewArguments(
+      {required this.channelDetail, required this.channelMembers});
+}
+
+/// ChannelInfoView arguments holder class
+class ChannelInfoViewArguments {
+  final int numberOfMembers;
+  final List<ChannelMembermodel> channelMembers;
+  final ChannelModel channelDetail;
+  ChannelInfoViewArguments(
+      {required this.numberOfMembers,
+      required this.channelMembers,
+      required this.channelDetail});
 }

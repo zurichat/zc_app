@@ -4,30 +4,28 @@ import '../../../../shared/colors.dart';
 
 TextStyle headerStyle() {
   return TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.w700,
-      color: AppColors.zuriTextColorHeader);
+      fontSize: 20, fontWeight: FontWeight.w800, color: Colors.black);
 }
 
 TextStyle nameStyle() {
   return TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: AppColors.deepBlackColor);
 
-      fontSize: 14,
-      fontWeight: FontWeight.w700,
-      color: AppColors.zuriTextColorHeader);
 }
 
 TextStyle descriptionStyle() {
   return TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      color: AppColors.zuriTextColorHeader);
+      fontSize: 15,
+      fontWeight: FontWeight.w600,
+      color: AppColors.deepBlackColor);
 }
 
 TextStyle faintTextStyle() {
   return TextStyle(
 
-      fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.greyishColor);
+      fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.borderColor);
 
 }
 
@@ -41,7 +39,7 @@ TextStyle archiveTextStyle() {
 TextStyle greenTextStyle() {
   return TextStyle(
     fontSize: 16,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w800,
     color: AppColors.zuriPrimaryColor,
   );
 }

@@ -31,12 +31,14 @@ class OrganizationView extends StatelessWidget {
                       child: SingleChildScrollView(
                         physics: ScrollPhysics(),
                         child: model.organizations.isEmpty
-                            ? Container(
-                                alignment: Alignment.center,
-                                padding: const EdgeInsets.only(top: 50.0),
-                                child: Text(
-                                  'You have not joined any organization yet!',
-                                  style: AppTextStyles.bodyRegular,
+                            ? Center(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  padding: const EdgeInsets.only(top: 50.0),
+                                  child: Text(
+                                    'You have not joined any organization yet!',
+                                    style: AppTextStyles.bodyRegular,
+                                  ),
                                 ),
                               )
                             : Column(
@@ -51,7 +53,10 @@ class OrganizationView extends StatelessWidget {
                                     itemCount: model.organizations.length,
                                     shrinkWrap: true,
                                     itemBuilder: (context, i) {
-                                      final org = model.organizations[i];
+                                     final org = model.organizations[i];
+                                     print (org.id);
+                                     print (org.organizationUrl);
+                                     print (org.name);
                                       return OrganizationTile(org: org);
                                     },
                                   ),
