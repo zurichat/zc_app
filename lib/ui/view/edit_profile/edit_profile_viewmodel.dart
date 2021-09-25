@@ -11,15 +11,10 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-ProfileModel userData = new ProfileModel();
-String _nameD = '',
-    _displayD = '',
-    _statusD = '',
-    _phoneD = '',
-    grace = 'Omo your code is running on grace and inshaalah';
 String _name = '', _display = '', _status = '', _phone = '';
 
-class EditProfileViewModel extends BaseViewModel {
+class EditProfileViewModel extends FutureViewModel {
+  ProfileModel userData = ProfileModel();
   final snackbar = locator<SnackbarService>();
   final navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
@@ -40,38 +35,10 @@ class EditProfileViewModel extends BaseViewModel {
     }
   }
 
-  String? photoUrl = _nameD;
-  String? get url => photoUrl;
-
-  String? name = _nameD;
-
-  String? displayName = _displayD;
-
-  String? phoneNum = _phoneD;
-
-  String? profileText = _statusD;
-
   final _navigationService = locator<NavigationService>();
 
   void exitPage() {
     _navigationService.back();
-  }
-
-  Future<void> fetchUser() async {
-    setBusy(true);
-
-    _nameD = storageService.getString(StorageKeys.firstName)!;
-
-    _displayD = storageService.getString(StorageKeys.displayName)!;
-    //_displayD = userData.displayName!;
-
-    _statusD = storageService.getString(StorageKeys.status)!;
-    //_statusD = userData.status!;
-
-    _phoneD = storageService.getString(StorageKeys.phone_num)!;
-    //_phoneD = userData.phoneNumber!;
-
-    setBusy(false);
   }
 
   final storageService = locator<SharedPreferenceLocalStorage>();
@@ -93,7 +60,6 @@ class EditProfileViewModel extends BaseViewModel {
       'Authorization':
           'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
     });
-    print(editResponse);
     final snackbar = locator<SnackbarService>();
 
     if (editResponse!.statusCode == 200) {
@@ -102,7 +68,6 @@ class EditProfileViewModel extends BaseViewModel {
           variant: SnackbarType.success,
           message: ''' Profile Update Was Successful''');
       await GetUserProfile().currentUser();
-      print('I am ending');
       _navigationService.back();
     } else {
       snackbar.showCustomSnackBar(
@@ -111,6 +76,14 @@ class EditProfileViewModel extends BaseViewModel {
         message: ''' Profile Update failed''',
       );
     }
+  }
+
+  @override
+  Future futureToRun() async {
+    setBusy(true);
+    userData = await GetUserProfile().currentUser();
+    setBusy(false);
+    throw UnimplementedError();
   }
 }
 

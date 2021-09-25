@@ -7,7 +7,6 @@ class ProfileModel {
   String? lastName;
   String? displayName;
   String? email;
-  String? phoneNumber;
   String? status;
   String? bio;
   String? phoneNum;
@@ -18,9 +17,17 @@ class ProfileModel {
     this.lastName,
     this.displayName,
     this.email,
-    this.phoneNumber,
     this.status,
     this.bio,
     this.phoneNum,
   });
+  factory ProfileModel.fromJson(Map<String, dynamic> json) {
+    return ProfileModel(
+      firstName: json['first_name'],
+      displayName: json['display_name'],
+      status: json['bio'],
+      imageUrl: json['image_url'],
+      phoneNum: json['phone'],
+    );
+  }
 }
