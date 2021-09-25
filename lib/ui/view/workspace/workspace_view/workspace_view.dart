@@ -178,6 +178,7 @@ class WorkspaceView extends StatelessWidget {
                           title: Text("Add a workspace"),
                         ),
                         ListTile(
+                          onTap: () => model.viewPreferences(),
                           leading: Container(
                             child: Icon(Icons.settings),
                           ),

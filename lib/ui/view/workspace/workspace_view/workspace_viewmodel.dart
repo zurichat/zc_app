@@ -118,4 +118,8 @@ class WorkspaceViewModel extends BaseViewModel {
 
   String? get currentOrgId =>
       storageService.getString(StorageKeys.currentOrgId);
+
+  Future viewPreferences() async {
+    await navigation.navigateTo(Routes.preferenceView);
+  }
 }
