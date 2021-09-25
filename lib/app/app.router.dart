@@ -9,11 +9,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import '../models/channel_members.dart';
 import '../models/channel_model.dart';
 import '../models/user_post.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
+import '../ui/shared/bottom_sheets/custom_user_bottom_sheet_view.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
 import '../ui/view/channel/add_people/channel_add_people_view.dart';
@@ -115,6 +117,8 @@ class Routes {
   static const String organizationUrlView = '/organization-url-view';
   static const String channelPageView = '/channel-page-view';
   static const String channelInfoView = '/channel-info-view';
+  static const String customUserBottomSheetView =
+      '/custom-user-bottom-sheet-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -165,6 +169,7 @@ class Routes {
     organizationUrlView,
     channelPageView,
     channelInfoView,
+    customUserBottomSheetView,
   };
 }
 
@@ -222,6 +227,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.organizationUrlView, page: OrganizationUrlView),
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+    RouteDef(Routes.customUserBottomSheetView, page: CustomUserBottomSheetView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -565,6 +571,18 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    CustomUserBottomSheetView: (data) {
+      var args =
+          data.getArgs<CustomUserBottomSheetViewArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => CustomUserBottomSheetView(
+          key: args.key,
+          request: args.request,
+          completer: args.completer,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -658,4 +676,13 @@ class ChannelInfoViewArguments {
       {required this.numberOfMembers,
       required this.channelMembers,
       required this.channelDetail});
+}
+
+/// CustomUserBottomSheetView arguments holder class
+class CustomUserBottomSheetViewArguments {
+  final Key? key;
+  final SheetRequest<dynamic> request;
+  final dynamic Function(SheetResponse<dynamic>) completer;
+  CustomUserBottomSheetViewArguments(
+      {this.key, required this.request, required this.completer});
 }

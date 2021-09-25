@@ -1,3 +1,4 @@
+import 'package:hng/ui/shared/bottom_sheets/custom_user_bottom_sheet_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -110,6 +111,7 @@ import '../ui/view/view_profile_page/view_profile.dart';
     MaterialRoute(page: OrganizationUrlView),
     MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: ChannelInfoView),
+    MaterialRoute(page: CustomUserBottomSheetView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
