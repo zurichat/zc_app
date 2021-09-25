@@ -18,7 +18,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
     return ViewModelBuilder<DmJumpToViewModel>.reactive(
       fireOnModelReadyOnce: true,
       onModelReady: (model) {
-        // listenToFormUpdated(model);
+       // listenToFormUpdated(model);
         model.fetchUsers();
         model.fetchChannels();
       },
@@ -65,11 +65,13 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                   iconSize: 18,
                                   onPressed: () => model.navigateBack(),
                                 ),
+                               // isCollapsed: true,
+                               contentPadding: EdgeInsets.only(top: 16.0, left: 8, right: 8,),
                                 hintText: 'Jump to...',
                                 hintStyle: TextStyle(
                                   color: Color(0xffA1A9B3),
                                   fontSize: 14.4.sp,
-                                  height: 3.2.sp,
+                                 // height: 3.4.sp,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
