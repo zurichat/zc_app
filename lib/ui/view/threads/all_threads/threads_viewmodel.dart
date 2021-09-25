@@ -1,29 +1,24 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/utilities/enums.dart';
-
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../../app/app.locator.dart';
+import '../../../../app/app.router.dart';
+import '../../../../models/user_post.dart';
 import '../test_data.dart';
 
 class ThreadsViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   List<UserPost> userPosts = userPost;
-  
 
   void initialise() {
-    //refresh page
+    refreshThreadsPage();
 
     notifyListeners();
   }
 
- 
-
-
-  Future refreshThreadsPage() async {
+  Future<void> refreshThreadsPage() async {
+    notifyListeners();
     await Future.delayed(
       Duration(seconds: 5),
     );
@@ -33,7 +28,8 @@ class ThreadsViewModel extends BaseViewModel {
     _navigationService.back();
   }
 
-  Future navigateToThread() async {
-    _navigationService.navigateTo(Routes.threadDetailView);
+  Future<void> navigateToThread(UserPost? userPost) async {
+    _navigationService.navigateTo(Routes.threadDetailView,
+        arguments: ThreadDetailViewArguments(userPost: userPost));
   }
 }

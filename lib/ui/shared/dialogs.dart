@@ -41,7 +41,7 @@ class Dialogs {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text(
-              "Archive $channelName ?",
+              'Archive $channelName ?',
               style: GoogleFonts.roboto(
                 color: Color(0xff000000).withOpacity(0.87),
                 fontSize: 20.0,
@@ -49,8 +49,9 @@ class Dialogs {
               ),
             ),
             content: Text(
-              "This will close the channel for anyone who has it open.",
+              'This will close the channel for anyone who has it open.',
               style: GoogleFonts.roboto(
+                //TODO Change to Brand color
                 color: Color(0xff000000).withOpacity(0.54),
                 fontSize: 16.0,
                 fontWeight: FontWeight.w400,

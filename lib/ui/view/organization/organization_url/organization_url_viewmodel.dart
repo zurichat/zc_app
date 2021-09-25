@@ -1,22 +1,29 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/package/base/server-request/Organization_request/Organization_api_service.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../../../app/app.locator.dart';
+import '../../../../app/app.router.dart';
+import '../../../../package/base/server-request/organization_request/organization_api_service.dart';
+import '../../../../services/local_storage_services.dart';
+import '../../../../services/user_service.dart';
+import '../../../../utilities/storage_keys.dart';
+import '../../../shared/colors.dart';
 
 class OrganizationUrlViewModel extends BaseViewModel {
   final navigation = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
+  bool isBusyy = false;
+
+  void loading(status) {
+    isBusyy = status;
+    notifyListeners();
+  }
 
   final api = OrganizationApiService();
 
   bool isEmpty = true;
-  String _email = 'johndoe@gmail.com';
+  final _email = 'johndoe@gmail.com';
   String? url;
   var buttonColor = AppColors.greyishColor;
 
@@ -34,6 +41,7 @@ class OrganizationUrlViewModel extends BaseViewModel {
 
   Future<void> signInToOrganization() async {
     if (url != null && url!.isNotEmpty) {
+      loading(true);
       final organization = await api.fetchOrganizationByUrl(url!);
       // await api.joinOrganization(Organization.id!);
 
@@ -43,7 +51,7 @@ class OrganizationUrlViewModel extends BaseViewModel {
 
       //Todo: storing should be implemented after stage 7
       // await storeOrganizationId(Organization.id);
-
+      loading(false);
       navigation.navigateTo(Routes.navBarView);
 
       // popUntil((route) => route.settings.name == Routes.navBarView);
@@ -53,7 +61,7 @@ class OrganizationUrlViewModel extends BaseViewModel {
   }
 
   Future<void> storeOrganizationId(String id) async {
-    List<String> ids = storage.getStringList(StorageKeys.organizationIds) ?? [];
+    final ids = storage.getStringList(StorageKeys.organizationIds) ?? [];
     ids.add(id);
     await storage.setStringList(StorageKeys.organizationIds, ids);
   }

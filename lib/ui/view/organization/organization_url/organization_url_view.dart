@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
+import '../../../shared/shared.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
@@ -11,59 +12,66 @@ class OrganizationUrlView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<OrganizationUrlViewModel>.nonReactive(
-      builder: (context, model, child) => Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 300),
-                    child: Column(
-                      children: <Widget>[
-                        TextForm(),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        Container(
-                          child: Text.rich(
-                            TextSpan(
-                              children: [
-                                TextSpan(
-                                  text:
-                                      'If you don\'t know your Organization URL, we have sent an email to ',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16),
-                                ),
-                                TextSpan(
-                                  text: '${model.email}',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 16,
-                                    color: AppColors.appBarGreen,
+      builder: (context, model, child) => ModalProgressHUD(
+        inAsyncCall: model.isBusy,
+        color: AppColors.whiteColor,
+        progressIndicator: CircularProgressIndicator(
+          color: AppColors.zuriPrimaryColor,
+        ),
+        child: Scaffold(
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 300),
+                      child: Column(
+                        children: <Widget>[
+                          TextForm(),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          Container(
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: '''
+If you don\'t know your Organization URL, we have sent an email to ''',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16),
                                   ),
-                                ),
-                                TextSpan(
-                                  text: ' to help you sign in easily.',
-                                  style: TextStyle(
+                                  TextSpan(
+                                    text: '${model.email}',
+                                    style: TextStyle(
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 16),
-                                ),
-                              ],
+                                      fontSize: 16,
+                                      color: AppColors.appBarGreen,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: ' to help you sign in easily.',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  NextButton()
-                ],
+                    SizedBox(
+                      height: 12,
+                    ),
+                    NextButton()
+                  ],
+                ),
               ),
             ),
           ),

@@ -30,6 +30,7 @@ class BorderTextField extends StatelessWidget {
       autofocus: autofocus,
       onChanged: onChanged,
       controller: controller,
+      cursorColor: AppColors.zuriPrimaryColor,
       decoration: InputDecoration(
         hintText: hint,
         border: border(),
@@ -83,6 +84,7 @@ class LabelTextField extends StatelessWidget {
       autofocus: autofocus,
       onChanged: onChanged,
       controller: controller,
+      cursorColor: AppColors.zuriPrimaryColor,
       decoration: InputDecoration(
         labelText: label,
         border: InputBorder.none,

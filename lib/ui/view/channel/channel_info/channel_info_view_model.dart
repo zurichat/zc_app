@@ -1,12 +1,16 @@
-import 'package:hng/package/base/server-request/api/http_api.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/utilities/constants.dart';
-import 'package:hng/utilities/enums.dart';
+
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
+import 'package:hng/ui/view/channel/channel_members/channel_members_list.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.router.dart';
+import '../../../../package/base/server-request/api/http_api.dart';
+import '../../../../services/local_storage_services.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/enums.dart';
 
 class ChannelInfoViewModel extends BaseViewModel {
   final snackbar = locator<SnackbarService>();
@@ -31,8 +35,13 @@ class ChannelInfoViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
-  void navigateToMembersList() {}
-  // _navigationService.navigateTo(Routes.editChannelPage);
+navigateToMembersList(List<ChannelMembermodel> members, 
+  
+  ChannelModel channelDetail
+  ) {
+    //NavigationService.navigateTo(Routes.cha)
+    _navigationService.navigateToView(ChannelMembersList(channelMembers: members,channelDetail:channelDetail,));
+  }
 
   Future showDialog() async {
     await _dialogService.showCustomDialog(
@@ -75,3 +84,4 @@ class ChannelInfoViewModel extends BaseViewModel {
     }
   }
 }
+

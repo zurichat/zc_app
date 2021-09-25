@@ -32,7 +32,7 @@ mixin ValidatorMixin {
   }
 
   bool validateNewChannelName(String input) {
-    final reg = RegExp(".*?[A-Z\\s\.].*");
+    final reg = RegExp('.*?[A-Z\\s\.].*');
     if (reg.hasMatch(input)) {
       return true;
     } else {
@@ -44,7 +44,7 @@ mixin ValidatorMixin {
     if (input.isEmpty) {
       return false;
     } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_"
-                r"`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                r'`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+')
             .hasMatch(input) &&
         input.isNotEmpty) {
       return true;
@@ -53,11 +53,12 @@ mixin ValidatorMixin {
     }
   }
 
-  bool passValidation(String input,) {
+  bool passValidation(
+    String input,
+  ) {
     if (input.length < 6 || input.isEmpty) {
       return false;
-    } 
-     else {
+    } else {
       return true;
     }
   }

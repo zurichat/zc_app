@@ -9,8 +9,6 @@ import 'add_organization_viewmodel.dart';
 //The Add Organization page, where user can add a new organization
 //The route to this page is '/add-organization-view'
 class AddOrganizationView extends StatelessWidget {
-  
-
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AddOrganizationViewModel>.reactive(
@@ -26,7 +24,7 @@ class AddOrganizationView extends StatelessWidget {
             elevation: 8,
             shadowColor: Colors.black38,
             title: Text(
-              "Add Organizations",
+              'Add Organizations',
               style: AppTextStyles.heading4,
             ),
           ),
@@ -54,7 +52,7 @@ class AddOrganizationView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GestureDetector(
-                          onTap: () => model.navigateToJoinOrganization(
+                          onTap: () => model.navigateToSelectEmail(
                               OrganizationSwitchMethod.Create),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -66,7 +64,7 @@ class AddOrganizationView extends StatelessWidget {
                                 ),
                                 SizedBox(width: 16),
                                 Text(
-                                  "Create a new Organization",
+                                  'Create a new organization',
                                   style: AppTextStyles.regular,
                                 ),
                               ],
@@ -84,7 +82,7 @@ class AddOrganizationView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinOrganization(
+                          onTap: () => model.navigateToSelectEmail(
                               OrganizationSwitchMethod.SignIn),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -96,7 +94,7 @@ class AddOrganizationView extends StatelessWidget {
                                 ),
                                 SizedBox(width: 16),
                                 Text(
-                                  "Sign in to another Organization",
+                                  'Sign in to another organization',
                                   style: AppTextStyles.regular,
                                 ),
                               ],
@@ -114,7 +112,7 @@ class AddOrganizationView extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => model.navigateToJoinOrganization(
+                          onTap: () => model.navigateToSelectEmail(
                               OrganizationSwitchMethod.Join),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -126,7 +124,7 @@ class AddOrganizationView extends StatelessWidget {
                                 ),
                                 SizedBox(width: 16),
                                 Text(
-                                  "Join another Organization",
+                                  'Join another organization',
                                   style: AppTextStyles.regular,
                                 ),
                               ],

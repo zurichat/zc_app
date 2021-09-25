@@ -1,20 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
+
+import '../../../../shared/colors.dart';
+import '../../../../shared/styles.dart';
 import '../channel_page_viewmodel.dart';
 
 class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
   final String channelName;
-  final String numberOfMembers;
+  final int numberOfMembers;
   final double appBarHeight;
+  final List <ChannelMembermodel>channelMembers;
   final ChannelPageViewModel model;
+  ChannelModel channelDetail;
 
   CustomAppBars(
       {Key? key,
       required this.channelName,
       required this.numberOfMembers,
+      required this.channelMembers,
+      required this.channelDetail,
       this.appBarHeight = 56,
       required this.model})
       : preferredSize = Size.fromHeight(appBarHeight),
@@ -77,7 +84,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.only(right: 20.0),
           child: GestureDetector(
             onTap: () {
-              model.navigateToChannelInfo();
+              model.navigateToChannelInfoScreen(numberOfMembers, channelMembers, channelDetail);
             },
             child: SvgPicture.asset(
               'assets/channel_page/info.svg',
