@@ -10,7 +10,7 @@ import 'forgot_password_email_viewmodel.dart';
 class ForgotPasswordEmailView extends StatelessWidget
     with $ForgotPasswordEmailView {
   //bool isWrong = false;
-  ForgotPasswordEmailView({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {

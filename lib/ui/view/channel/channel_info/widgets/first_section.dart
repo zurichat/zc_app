@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/channel/channel_view/channel_page_view.dart';
 
 import '../../../../shared/colors.dart';
 import 'textstyles.dart';
 
 class FirstSection extends StatelessWidget {
-  const FirstSection({Key? key}) : super(key: key);
+final String? channelName;
+  FirstSection({this.channelName});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class FirstSection extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 19, vertical: 30),
             child: Text(
-              "#${ChannelPageView.name}",
+              "$channelName",
               style: headerStyle(),
             ),
           ),

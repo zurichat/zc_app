@@ -23,7 +23,7 @@ class YouPage extends StatelessWidget {
           // MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: Text(
-            "You",
+            'You',
             style: TextStyle(
                 fontWeight: FontWeight.bold, color: AppColors.whiteColor),
           ),
@@ -47,12 +47,12 @@ class YouPage extends StatelessWidget {
                 SizedBox(height: 20),
                 MenuItemTile(
                   icon: Icons.notifications_off_outlined,
-                  text: Text("Pause Notifications"),
+                  text: Text('Pause Notifications'),
                   onPressed: model.pauseNotifications,
                   topBorder: false,
                 ),
                 MenuItemTile(
-                  text: Text.rich(TextSpan(text: "Set Yourself as ", children: [
+                  text: Text.rich(TextSpan(text: 'Set Yourself as ', children: [
                     TextSpan(
                         text: model.otherStatus,
                         style: TextStyle(fontWeight: FontWeight.bold))
@@ -63,24 +63,24 @@ class YouPage extends StatelessWidget {
                 ),
                 MenuItemTile(
                   icon: Icons.bookmark_outline_outlined,
-                  text: Text("Saved Item"),
+                  text: Text('Saved Item'),
                   onPressed: model.viewSavedItem,
                 ),
                 MenuItemTile(
                   icon: Icons.account_circle_outlined,
                   text: Text("View Profile"),
-                  onPressed: model.showProfileSheet,
+                  onPressed: model.viewProfile,
                   topBorder: false,
                 ),
                 MenuItemTile(
                   icon: Icons.trip_origin,
-                  text: Text("Notifications"),
+                  text: Text('Notifications'),
                   onPressed: model.viewNotifications,
                   topBorder: false,
                 ),
                 MenuItemTile(
                   icon: Icons.settings,
-                  text: Text("Preferences"),
+                  text: Text('Preferences'),
                   onPressed: model.viewPreferences,
                   topBorder: false,
                 ),

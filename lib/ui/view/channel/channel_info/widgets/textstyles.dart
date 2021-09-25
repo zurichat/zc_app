@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import '../../../../shared/colors.dart';
 
 TextStyle headerStyle() {
   return TextStyle(

@@ -1,12 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/textstyles.dart';
+import 'package:hng/ui/view/channel/channel_members/channel_members_list.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../shared/colors.dart';
+import 'textstyles.dart';
+
 class ThirdSection extends StatelessWidget {
-  const ThirdSection({Key? key}) : super(key: key);
+   Function goToMembersListScreen;
+    final int  membersNumber;
+   ThirdSection({
+     required this.goToMembersListScreen,
+   required this.membersNumber
+   });
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +48,12 @@ class ThirdSection extends StatelessWidget {
                   ),
                   child: GestureDetector(
                     onTap: () {
+                      
+                      goToMembersListScreen();
                       // model.navigatoToMembersList();
                     },
                     child: Text(
-                      'Members (5)',
+                      "$membersNumber members",
                       style: descriptionStyle(),
                     ),
                   ),

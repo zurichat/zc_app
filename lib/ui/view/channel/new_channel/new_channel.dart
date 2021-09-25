@@ -11,7 +11,7 @@ import 'new_channel_viewmodel.dart';
 
 @FormView(fields: [
   FormTextField(name: 'channelName'),
-  FormTextField(name: 'channelDescription'),
+  FormTextField(name: 'channelDescription')
 ])
 class NewChannel extends StatelessWidget with $NewChannel {
   @override

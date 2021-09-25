@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
+import '../../../app/app.logger.dart';
 import '../../../general_widgets/custom_text.dart';
 import '../../../general_widgets/custom_textfield.dart';
 import '../../shared/colors.dart';
 import '../../shared/long_button.dart';
+import '../../shared/shared.dart';
 import '../../shared/styles.dart';
 import 'sign_up_view.form.dart';
 import 'sign_up_viewmodel.dart';
@@ -28,11 +28,12 @@ import 'sign_up_viewmodel.dart';
 )
 class SignUpView extends StatelessWidget with $SignUpView {
   final log = getLogger('SignUpView');
-  SignUpView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(
-        //listenToFormUpdated automatically syncs text from TextFields to the viewmodel
+        //listenToFormUpdated automatically syncs text
+        // from TextFields to the viewmodel
         onModelReady: (model) => listenToFormUpdated(model),
         disposeViewModel: false,
         initialiseSpecialViewModelsOnce: true,
@@ -51,6 +52,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         UIHelper.verticalSpaceLarge,
                         Center(
@@ -79,33 +81,45 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           ),
                         ),
                         UIHelper.customVerticalSpace(48),
+                        Text(
+                          'Email Address',
+                          style: AppTextStyles.body1Bold,
+                        ),
+                        UIHelper.customVerticalSpace(10),
                         CustomTextField(
                           keyboardType: TextInputType.emailAddress,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: false,
                           controller: emailController,
-                          labelText: 'Email Address',
                           hintText: 'Name@gmail.com',
                         ),
                         UIHelper.verticalSpaceLarge,
+                        Text(
+                          'Password',
+                          style: AppTextStyles.body1Bold,
+                        ),
+                        UIHelper.customVerticalSpace(10),
                         CustomTextField(
                           keyboardType: TextInputType.visiblePassword,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: true,
                           controller: passwordController,
-                          labelText: 'Password',
                           hintText: 'Enter Password',
                         ),
                         UIHelper.verticalSpaceLarge,
+                        Text(
+                          'Confirm Password',
+                          style: AppTextStyles.body1Bold,
+                        ),
+                        UIHelper.customVerticalSpace(10),
                         CustomTextField(
                           keyboardType: TextInputType.emailAddress,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: true,
                           controller: confirmPasswordController,
-                          labelText: 'Confirm Password',
                           hintText: 'Re-enter password',
                         ),
                         UIHelper.verticalSpaceMedium,
@@ -121,8 +135,8 @@ class SignUpView extends StatelessWidget with $SignUpView {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const CustomText(
-                                  text:
-                                      'By selecting this box, you agreed to our',
+                                  text: '''
+By selecting this box, you agreed to our''',
                                   fontSize: 14,
                                 ),
                                 const Text(
