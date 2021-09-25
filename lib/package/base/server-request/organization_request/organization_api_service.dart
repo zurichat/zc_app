@@ -1,3 +1,5 @@
+import 'package:hng/models/user_search_model.dart';
+
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
 import '../../../../models/organization_model.dart';
@@ -141,13 +143,20 @@ class OrganizationApiService {
     );
     return res?.data?['message'];
   }
-  Future<void> fetchMembersInOrganization(String orgId) async {
+
+  Future<List<UserSearch>> fetchMembersInOrganization(String orgId) async {
     final res = await _api.get(
       '/organizations/$orgId/members',
       headers: {'Authorization': 'Bearer $token'},
     );
-    return res?.data?['message'];
+    if (res?.data['data'] == null) {
+      return [];
+    }
+    return (res?.data?['data'] as List)
+        .map((e) => UserSearch.fromJson(e))
+        .toList();
   }
+
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
 }

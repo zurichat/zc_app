@@ -13,6 +13,7 @@ class ChannelAddPeopleView extends StatelessWidget {
   Widget build(BuildContext context) =>
       ViewModelBuilder<ChannelAddPeopleViewModel>.reactive(
         viewModelBuilder: () => ChannelAddPeopleViewModel(),
+        onModelReady: (model) => model.onFetchMembers(),
         initialiseSpecialViewModelsOnce: true,
         disposeViewModel: false,
         builder: (context, viewModel, child) => Scaffold(
@@ -119,20 +120,20 @@ class ChannelAddPeopleView extends StatelessWidget {
                           children: [
                             Padding(
                               padding: EdgeInsets.all(4.0),
-                              child: Image.asset(
-                                'assets/images/${viewModel.matchingUsers[index].userimg}',
+                              child: Image.network(
+                                '${viewModel.matchingUsers[index].imageUrl}',
                               ),
                             ),
-                            if (viewModel.matchingUsers[index].online)
-                              CircleAvatar(
-                                backgroundColor: AppColors.zuriPrimaryColor,
-                                radius: 4.0,
-                              ),
+                            // if (viewModel.matchingUsers[index].)
+                            //   CircleAvatar(
+                            //     backgroundColor: AppColors.zuriPrimaryColor,
+                            //     radius: 4.0,
+                            //   ),
                           ],
                         ),
                         SizedBox(width: 20.0),
                         Text(
-                          viewModel.matchingUsers[index].userName,
+                          "${viewModel.matchingUsers[index].userName}",
                           style: GoogleFonts.lato(
                               color: AppColors.zuriTextBodyColor),
                         ),

@@ -1,4 +1,5 @@
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/models/user_search_model.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart';
 import 'package:hng/services/local_storage_services.dart';
@@ -16,58 +17,33 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
   bool get allMarked =>
       markedUsers.length == matchingUsers.length && matchingUsers.isNotEmpty;
 
-  late List<StaticUserModel> matchingUsers = users;
-  late List<StaticUserModel> markedUsers = [];
+  late List<UserSearch> matchingUsers = [];
+  late List<UserSearch> markedUsers = [];
 
-  final users = [
-    StaticUserModel(
-      online: true,
-      userName: 'Chimamanda',
-      userimg: 'chimamanda.png',
-      joinInfo: '',
-      time: '',
-    ),
-    StaticUserModel(
-      online: false,
-      userName: 'Naisu',
-      userimg: 'naisu.png',
-      joinInfo: '',
-      time: '',
-    ),
-    StaticUserModel(
-      online: false,
-      userName: 'Baptist',
-      userimg: 'baptist.png',
-      joinInfo: '',
-      time: '',
-    ),
-    StaticUserModel(
-      online: true,
-      userName: 'Gringo',
-      userimg: 'gringo.png',
-      joinInfo: '',
-      time: '',
-    ),
+  List<UserSearch> users = [
+
+
   ];
 
   void onSearchUser(String input) {
+
     matchingUsers = [
       ...users.where(
-          (user) => user.userName.toLowerCase().contains(input.toLowerCase()))
+          (user) => user.userName!.toLowerCase().contains(input.toLowerCase()))
     ];
     notifyListeners();
   }
 
-  void onFetchMembers(String input) async {
+  void onFetchMembers() async {
     setBusy(true);
-    await organizationApi.fetchMembersInOrganization(orgId!);
+    matchingUsers = users = await organizationApi.fetchMembersInOrganization("614679ee1a5607b13c00bcb7");
     setBusy(false);
   }
-
+//TODO: Change channelID
   void onAddButtonTap() async {
     setBusy(true);
     for (var user in markedUsers) {
-      await addMemberToChannel("", user.userName);
+      await addMemberToChannel("6148c952e4b2aebf8ec8ccd0", user.id!);
     }
     setBusy(false);
     navigationService.popRepeated(1);
