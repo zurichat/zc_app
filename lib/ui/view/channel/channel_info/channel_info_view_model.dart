@@ -31,6 +31,10 @@ class ChannelInfoViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
+  void navigateToAddPeopleChannel() {
+    _navigationService.navigateTo(Routes.addPeopleView);
+  }
+
   void navigateToMembersList() {}
   // _navigationService.navigateTo(Routes.editChannelPage);
 
@@ -75,3 +79,5 @@ class ChannelInfoViewModel extends BaseViewModel {
     }
   }
 }
+
+

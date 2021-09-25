@@ -39,6 +39,18 @@ class ApiService {
     }
   }
 
+  Future getAddPeople(body, endpoint, userId, channel_id, org_id) async {
+    try {
+      final response =
+      await _dio.get(apiBaseUrl + endpoint);
+      final result = response.data;
+      return result;
+    } on DioError catch (e) {
+      convertException(e);
+    }
+  }
+
+
   Failure convertException(DioError e) {
     if (e.type == DioErrorType.cancel)
       return InputFailure(errorMessage: e.message);
@@ -55,4 +67,9 @@ class ApiService {
     else
       return UnknownFailure();
   }
+
+
+
+
+
 }
