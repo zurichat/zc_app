@@ -121,7 +121,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                         return CustomChannel(
                                           text: model.allChannelsSearch[i].name ??
                                             'Channel name',
-                                          lock: model.allChannelsSearch[i].private == 'True',
+                                          // lock: model.allChannelsSearch[i].private== "True",
                                         );
                                       },
                                       scrollDirection: Axis.vertical,

@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 15),
-          searchBar(),
+          searchBar(vmodel),
           Padding(
             padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
@@ -88,19 +88,22 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget searchBar() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
-      child: EasyContainer(
-        height: 50,
-        radius: 7,
-        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-        alignment: Alignment.centerLeft,
-        borderWidth: 1.5,
-        borderColor: Colors.grey[300],
-        child: Text(
-          'Jump to...',
-          style: ZuriTextStyle.mediumNormal(),
+  Widget searchBar(vmodel) {
+    return InkWell(
+      onTap: vmodel.navigateToJumpToScreen,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
+        child: EasyContainer(
+          height: 50,
+          radius: 7,
+          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+          borderWidth: 1.5,
+          borderColor: Colors.grey[300],
+          child: Text(
+            'Jump to...',
+            style: ZuriTextStyle.mediumNormal(),
+          ),
         ),
       ),
     );
