@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/custom_appbar.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/custom_row.dart';
@@ -38,8 +39,9 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
     TextEditingController _messageController = TextEditingController();
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
-        model.initialise("$channelId");
-        listenToFormUpdated(model);
+        model.fetchMessages("$channelId");
+
+        model.websocketConnect();
       },
       //this parameter allows us to reuse the view model to persist the state
       //disposeViewModel: false,

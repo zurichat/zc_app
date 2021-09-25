@@ -5,22 +5,24 @@ import 'package:hng/app/app.router.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
+import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/view/channel/channel_view/channel_page_view.form.dart';
+
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class ChannelPageViewModel extends FormViewModel {
-  String? get message => editorValue!.trim();
+class ChannelPageViewModel extends StreamViewModel {
   bool isVisible = false;
 
   final _navigationService = locator<NavigationService>();
   final _channelsApiService = locator<ChannelsApiService>();
   final _coreApiService = HttpApiService(coreBaseUrl);
   final storage = locator<SharedPreferenceLocalStorage>();
+  final _centrifugeService = locator<CentrifugeService>();
 
   final _bottomSheetService = locator<BottomSheetService>();
 
@@ -43,7 +45,7 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  void initialise(String channelId) async {
+  void fetchMessages(String channelId) async {
     setBusy(true);
 
     List? channelMessages =
@@ -54,7 +56,6 @@ class ChannelPageViewModel extends FormViewModel {
       // String endpoint = '/users/$userid';
 
       //final response = await _coreApiService.get(endpoint);
-      // print(response);
 
       channelUserMessages!.add(
         UserPost(
@@ -103,6 +104,15 @@ class ChannelPageViewModel extends FormViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
+  void websocketConnect() {
+    _centrifugeService.connect();
+  }
+
+  Stream centriSub() async* {
+    _centrifugeService.subscribe("61472280f41cb684cc531a7f");
+  }
+
   @override
-  void setFormStatus() {}
+  // TODO: implement stream
+  Stream get stream => centriSub();
 }
