@@ -20,26 +20,9 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
     notifyListeners();
   }
 
-  // submitEmail() {
-  //   loading(true);
-  //   _emailValidation();
-  //   notifyListeners();
-  // }
-
-  // void _emailValidation() {
-  //   bool validateEmail = emailValidation(forgotEmailValue!);
-  //   if (validateEmail) {
-  //     inputError = !validateEmail;
-  //     navigateToforgotPasswordOtpView();
-  //   } else {
-  //     inputError = !validateEmail;
-  //     print('$inputError');
-  //   }
-  // }
-
   Future validateEmailIsRegistered() async {
     loading(true);
-    const endpoint = '/verify/account';
+    const endpoint = 'account/request-password-reset-code';
     if (forgotEmailValue == '') {
       loading(false);
       snackbar.showCustomSnackBar(
@@ -62,18 +45,6 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
       return;
     }
 
-    final validationData = {'email': forgotEmailValue};
-    final response = await _apiService.post(endpoint, data: validationData);
-    // TODO: Use correct API endpoint to check if user exists and report
-    //  appropriate feedback.
-    loading(false);
-
-    _requestOtp();
-  }
-
-  Future _requestOtp() async {
-    loading(true);
-    const endpoint = 'account/request-password-reset-code';
     final validationData = {'email': forgotEmailValue};
     final response = await _apiService.post(endpoint, data: validationData);
     response != null ? loading(false) : loading(true);
