@@ -290,8 +290,11 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordNewView: (data) {
+      var args = data.getArgs<ForgotPasswordNewViewArguments>(
+        orElse: () => ForgotPasswordNewViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ForgotPasswordNewView(),
+        builder: (context) => ForgotPasswordNewView(key: args.key),
         settings: data,
       );
     },
@@ -329,8 +332,11 @@ class StackedRouter extends RouterBase {
       );
     },
     DmJumpToView: (data) {
+      var args = data.getArgs<DmJumpToViewArguments>(
+        orElse: () => DmJumpToViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const DmJumpToView(),
+        builder: (context) => DmJumpToView(key: args.key),
         settings: data,
       );
     },
@@ -515,8 +521,11 @@ class StackedRouter extends RouterBase {
       );
     },
     EditChannelPageView: (data) {
+      var args = data.getArgs<EditChannelPageViewArguments>(
+        orElse: () => EditChannelPageViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const EditChannelPageView(),
+        builder: (context) => EditChannelPageView(key: args.key),
         settings: data,
       );
     },
@@ -569,10 +578,22 @@ class ForgotPasswordOtpViewArguments {
   ForgotPasswordOtpViewArguments({this.key});
 }
 
+/// ForgotPasswordNewView arguments holder class
+class ForgotPasswordNewViewArguments {
+  final Key? key;
+  ForgotPasswordNewViewArguments({this.key});
+}
+
 /// HomePage arguments holder class
 class HomePageArguments {
   final Key? key;
   HomePageArguments({this.key});
+}
+
+/// DmJumpToView arguments holder class
+class DmJumpToViewArguments {
+  final Key? key;
+  DmJumpToViewArguments({this.key});
 }
 
 /// DmUserView arguments holder class
@@ -606,6 +627,12 @@ class ThreadDetailViewArguments {
   final UserPost? userPost;
   final Key? key;
   ThreadDetailViewArguments({required this.userPost, this.key});
+}
+
+/// EditChannelPageView arguments holder class
+class EditChannelPageViewArguments {
+  final Key? key;
+  EditChannelPageViewArguments({this.key});
 }
 
 /// StartDmView arguments holder class

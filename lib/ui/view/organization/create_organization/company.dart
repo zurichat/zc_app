@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/text_field.dart';
-import 'package:hng/ui/shared/ui_helpers.dart';
+import '../../../shared/colors.dart';
+import '../../../shared/long_button.dart';
+import '../../../shared/text_field.dart';
+import '../../../shared/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
 import 'create_organization_viewmodel.dart';
@@ -10,7 +10,8 @@ import 'create_organization_viewmodel.dart';
 class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
   final String email;
   const CompanyPage({
-    Key? key, required this.email,
+    Key? key,
+    required this.email,
   }) : super(key: key);
 
   @override

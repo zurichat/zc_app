@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import '../../../shared/styles.dart';
 
 class CustomStatus extends StatelessWidget {
   final bool isActive;

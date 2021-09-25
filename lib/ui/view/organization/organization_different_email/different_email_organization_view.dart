@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/text_field.dart';
-import 'package:hng/ui/view/organization/organization_different_email/different_email_organization_viewmodel.dart';
-
 import 'package:stacked/stacked.dart';
+
+import '../../../shared/shared.dart';
+import '../../../shared/text_field.dart';
+import 'different_email_organization_viewmodel.dart';
 
 class UseDifferentEmailView extends StatelessWidget {
   const UseDifferentEmailView({Key? key}) : super(key: key);

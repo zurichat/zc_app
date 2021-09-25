@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/text_field.dart';
-import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../shared/colors.dart';
+import '../../../shared/long_button.dart';
+import '../../../shared/styles.dart';
+import '../../../shared/text_field.dart';
+import '../../../shared/ui_helpers.dart';
 import 'create_organization_viewmodel.dart';
 
 class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {

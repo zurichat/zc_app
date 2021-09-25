@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import '../../../colors.dart';
 
 class RecentEmojis extends StatelessWidget {
   const RecentEmojis(this.text, {Key? key}) : super(key: key);

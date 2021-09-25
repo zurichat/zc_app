@@ -35,34 +35,34 @@ class PopUpNotificationsView extends StatelessWidget {
                             children: [
                               ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Chess Room"),
+                                title: Text('Chess Room'),
                                 leading: Icon(Icons.games_sharp),
                               ),
                               ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Meeting Room"),
+                                title: Text('Meeting Room'),
                                 leading:
                                     Icon(Icons.perm_contact_calendar_outlined),
                               ),
-                              ListTile(
+                              const ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Notice Board"),
+                                title: Text('Notice Board'),
                                 leading:
                                     Icon(Icons.notifications_paused_rounded),
                               ),
                               ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Music Room"),
+                                title: Text('Music Room'),
                                 leading: Icon(Icons.music_note),
                               ),
                               ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Duty Shift"),
+                                title: Text('Duty Shift'),
                                 leading: Icon(Icons.calendar_today_rounded),
                               ),
                               ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Important Deadlines"),
+                                title: Text('Important Deadlines'),
                                 leading: Icon(Icons.timelapse_outlined),
                               ),
                             ],

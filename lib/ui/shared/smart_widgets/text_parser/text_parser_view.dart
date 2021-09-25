@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../shared.dart';
+import 'text_parser_viewmodel.dart';
 
 class TextParser extends StatelessWidget {
   const TextParser(this.text, {Key? key}) : super(key: key);

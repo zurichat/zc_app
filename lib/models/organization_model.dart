@@ -29,11 +29,7 @@ class OrganizationModel {
   }
 
   String get initials {
-    return this
-        .name!
-        .split(' ')
-        .map((e) => e.split('').first.toUpperCase())
-        .join();
+    return name!.split(' ').map((e) => e.split('').first.toUpperCase()).join();
   }
 }
 

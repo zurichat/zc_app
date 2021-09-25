@@ -4,13 +4,17 @@ import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import '../../../../app/app.locator.dart';
+import '../../../../app/app.router.dart';
+import 'channel_page_view.form.dart';
 
-class ChannelPageViewModel extends BaseViewModel {
 
-    //final navigator = locator<NavigationService>();
-    final _navigationService = locator<NavigationService>();
+class ChannelPageViewModel extends FormViewModel {
+  String? get message => editorValue!.trim();
 
-   navigateToChannelInfoScreen(int numberOfMembers, List<ChannelMembermodel> channelMembers,
+  final _navigationService = locator<NavigationService>();
+
+  navigateToChannelInfoScreen(int numberOfMembers, List<ChannelMembermodel> channelMembers,
    
    ChannelModel channelDetail) {
     
@@ -19,17 +23,20 @@ class ChannelPageViewModel extends BaseViewModel {
    
   }
 
+  Future navigateToAddPeople() async {
+    await _navigationService.navigateTo(Routes.addPeopleView);
+  }
 
   void goBack() {
     NavigationService().back();
   
 }
-  // navigateToChannelInfo() {
-  //   _navigationService.navigateTo(Routes.channelInfoView);
-  // }
-
-  navigateToAddPeople() {
-    _navigationService.navigateTo(Routes.addPeopleView);
+  navigateToChannelEdit() {
+    _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
+  @override
+  void setFormStatus() {}
 }
+
+

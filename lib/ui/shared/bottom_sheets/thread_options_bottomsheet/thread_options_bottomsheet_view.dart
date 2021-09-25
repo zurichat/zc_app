@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/general_widgets/menu_item_tile.dart';
 import 'package:hng/ui/shared/bottom_sheets/thread_options_bottomsheet/thread_option_bottomsheet_viewmodel.dart';
-import 'package:hng/ui/shared/bottom_sheets/thread_options_bottomsheet/widget/recent_emojis.dart';
-import 'package:hng/ui/shared/shared.dart';
-
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import 'package:stacked/stacked.dart';
-
+import '../../../../general_widgets/menu_item_tile.dart';
+import '../../shared.dart';
 //import 'thread_options_bottomsheet_viewmodel.dart';
+import 'widget/recent_emojis.dart';
 
 class ThreadOptionsBottomSheetView extends StatelessWidget {
   final SheetRequest request;
@@ -23,8 +20,8 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return ViewModelBuilder<ThreadOptionsBottomSheetViewModel>.reactive(
       builder: (context, model, child) => DraggableScrollableSheet(
           maxChildSize: 0.97,
@@ -40,22 +37,22 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        RecentEmojis("😘"),
-                        RecentEmojis("😳"),
-                        RecentEmojis("😭"),
-                        RecentEmojis("🤣"),
-                        RecentEmojis("🤔"),
-                        RecentEmojis("😏"),
+                        const RecentEmojis('😘'),
+                        const RecentEmojis('😳'),
+                        const RecentEmojis('😭'),
+                        const RecentEmojis('🤣'),
+                        const RecentEmojis('🤔'),
+                        const RecentEmojis('😏'),
                         Container(
                           height: 50,
                           width: 50,
-                          child: Align(
+                          child: const Align(
                               alignment: Alignment.center,
                               child: Icon(
                                 Icons.add_reaction_outlined,
                                 size: 25,
                               )),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: AppColors.greyBackgroundColor,
                           ),
@@ -66,43 +63,43 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
                     MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
-                        text: Text("Mark unread")),
+                        text: Text('Mark unread')),
                     MenuItemTile(
                         topBorder: false,
                         icon: Icons.access_time_rounded,
-                        text: Text("Remind me")),
+                        text: Text('Remind me')),
                     MenuItemTile(
                         topBorder: false,
                         icon: Icons.bookmark_border_outlined,
-                        text: Text("Add to saved items")),
+                        text: Text('Add to saved items')),
                     MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
-                        text: Text("Reply in thread")),
+                        text: Text('Reply in thread')),
                     MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
-                        text: Text("Unfollow thread")),
+                        text: Text('Unfollow thread')),
                     MenuItemTile(
                         topBorder: false,
                         icon: Icons.forward_outlined,
-                        text: Text("Share message")),
+                        text: Text('Share message')),
                     MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
-                        text: Text("Copy link to message")),
+                        text: Text('Copy link to message')),
                     MenuItemTile(
                         topBorder: false,
                         icon: Icons.copy_rounded,
-                        text: Text("Copy text")),
+                        text: Text('Copy text')),
                     MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
-                        text: Text("Pin to conversation")),
+                        text: Text('Pin to conversation')),
                     MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
-                        text: Text("Turn question into poll")),
+                        text: Text('Turn question into poll')),
                   ],
                 ),
               ),

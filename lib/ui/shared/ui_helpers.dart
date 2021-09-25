@@ -28,6 +28,8 @@ class UIHelper {
   static Widget horizontalSpaceMedium =
       SizedBox(width: _HorizontalSpaceMedium.w);
   static Widget horizontalSpaceLarge = SizedBox(width: _HorizontalSpaceLarge.w);
+  static Widget customVerticalSpace(double value) => SizedBox(height: value);
+  static Widget customHorizontalSpace(double value) => SizedBox(width: value);
 }
 
 double screenAwareSize(double value, BuildContext context,

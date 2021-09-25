@@ -10,12 +10,26 @@ import '../../../../models/static_user_model.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/shared.dart';
 
-import 'channel_page_viewmodel.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
-class ChannelPageView extends StatelessWidget {
-  ChannelModel channelDetail;
+import '../../../shared/colors.dart';
+import '../../../shared/styles.dart';
+import 'channel_page_view.form.dart';
+import 'channel_page_viewmodel.dart';
+import 'widgets/custom_appbar.dart';
+import 'widgets/custom_row.dart';
+
+@FormView(
+  fields: [
+    FormTextField(name: 'editor'),
+  ],
+)
+class ChannelPageView extends StatelessWidget with $ChannelPageView {
+   ChannelModel channelDetail;
   List <ChannelMembermodel>channelMembers;
 ChannelPageView({required this.channelDetail,required this.channelMembers});
+  static String name = 'general';
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(

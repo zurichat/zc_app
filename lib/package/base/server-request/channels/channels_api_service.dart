@@ -1,11 +1,11 @@
-import 'package:hng/app/app.logger.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/utilities/constants.dart';
 
 import '../../../../app/app.locator.dart';
+import '../../../../app/app.logger.dart';
 import '../../../../services/local_storage_services.dart';
+import '../../../../services/user_service.dart';
+import '../../../../utilities/constants.dart';
 import '../../../../utilities/storage_keys.dart';
 import '../api/http_api.dart';
 
@@ -18,12 +18,13 @@ class ChannelsApiService {
 // Your functions for api calls can go in here
 // https://channels.zuri.chat/api/v1/61459d8e62688da5302acdb1/channels/
   //TODo - fix
+  // ignore: always_declare_return_types
   onChange() {}
   Future<List> getActiveDms() async {
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
 
-    List joinedChannels = [];
+    var joinedChannels = [];
 
     try {
       final res = await _api.get(

@@ -23,7 +23,7 @@ class YouPage extends StatelessWidget {
                 // MyHomePage object that was created by
                 // the App.build method, and use it to set our appbar title.
                 title: Text(
-                  "You",
+                  'You',
                   style: GoogleFonts.lato(
                       fontWeight: FontWeight.w700,
                       fontSize: 20,
@@ -59,7 +59,7 @@ class YouPage extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
                                     CustomText(
-                                      text: "Active",
+                                      text: 'Active',
                                       color: AppColors.greyishColor,
                                       fontSize: 15,
                                     ),
@@ -93,7 +93,7 @@ class YouPage extends StatelessWidget {
                               size: 20, color: AppColors.greyishColor),
                           SizedBox(width: 10),
                           CustomText(
-                              text: "Pause Notifications",
+                              text: 'Pause Notifications',
                               color: Colors.black87),
                         ],
                       ),
@@ -103,9 +103,9 @@ class YouPage extends StatelessWidget {
                           Icon(Icons.circle_outlined,
                               size: 20, color: AppColors.greyishColor),
                           SizedBox(width: 10),
-                          CustomText(text: "Set yourself as "),
+                          CustomText(text: 'Set yourself as '),
                           Text(
-                            "away",
+                            'away',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
                         ],
@@ -122,7 +122,7 @@ class YouPage extends StatelessWidget {
                           Icon(Icons.bookmark_outline,
                               color: AppColors.greyishColor),
                           SizedBox(width: 10),
-                          Text("Saved Items"),
+                          Text('Saved Items'),
                         ],
                       ),
                       SizedBox(height: 16),
@@ -131,7 +131,7 @@ class YouPage extends StatelessWidget {
                           Icon(Icons.person_outline,
                               color: AppColors.greyishColor),
                           SizedBox(width: 10),
-                          Text("View Profile"),
+                          Text('View Profile'),
                         ],
                       ),
                       SizedBox(height: 16),
@@ -140,7 +140,7 @@ class YouPage extends StatelessWidget {
                           Icon(Icons.circle_notifications_outlined,
                               color: AppColors.greyishColor),
                           SizedBox(width: 10),
-                          Text("Notifications"),
+                          Text('Notifications'),
                         ],
                       ),
                       SizedBox(height: 16),
@@ -149,7 +149,7 @@ class YouPage extends StatelessWidget {
                           Icon(Icons.settings_outlined,
                               color: AppColors.greyishColor),
                           SizedBox(width: 10),
-                          Text("Preferences"),
+                          Text('Preferences'),
                         ],
                       ),
                     ]),

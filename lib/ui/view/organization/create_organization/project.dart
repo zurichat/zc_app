@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
+import '../../../shared/colors.dart';
+import '../../../shared/long_button.dart';
+import '../../../shared/ui_helpers.dart';
 import 'create_organization_viewmodel.dart';
 
 class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
@@ -64,7 +64,7 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
 class TextForm extends HookViewModelWidget<CreateOrganizationViewModel> {
   final int? wordCount;
   final String hintText;
-  TextForm({Key? key, this.wordCount, required this.hintText})
+  const TextForm({Key? key, this.wordCount, required this.hintText})
       : super(key: key, reactive: false);
   @override
   Widget buildViewModelWidget(
