@@ -24,10 +24,11 @@ class ChannelsApiService {
   // Your functions for api calls can go in here
   // https://channels.zuri.chat/api/v1/61459d8e62688da5302acdb1/channels/
 
-  List joinedChannels = [];
   Future<List> getActiveDms() async {
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
+
+    List joinedChannels = [];
 
     try {
       final res = await _api.get(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/workspace/new_email/new_email_viewmodel.dart';
+import 'package:hng/ui/view/organization/new_email/new_email_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 

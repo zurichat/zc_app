@@ -24,3 +24,10 @@ void showProgress(received, total) {
     print((received / total * 100).toStringAsFixed(0) + '%');
   }
 }
+
+bool nullListChecker(List? list) {
+  if (list == null)
+    return true;
+  else
+    return false;
+}

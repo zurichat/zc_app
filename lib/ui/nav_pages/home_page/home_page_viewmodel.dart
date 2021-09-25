@@ -11,12 +11,10 @@ import '../../../services/connectivity_service.dart';
 import '../../../utilities/enums.dart';
 import 'home_item_model.dart';
 
-
 final _navigationService = locator<NavigationService>();
 final connectivityService = locator<ConnectivityService>();
 
 bool connectionStatus = false;
-
 
 class HomePageViewModel extends StreamViewModel {
   void nToPref() {
@@ -27,8 +25,8 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.channelInfoView);
   }
 
-  void nToWorkspace() {
-    _navigationService.navigateTo(Routes.workspaceView);
+  void nToOrganization() {
+    _navigationService.navigateTo(Routes.organizationView);
   }
 
   void navigateToDmUser() {
@@ -42,7 +40,6 @@ class HomePageViewModel extends StreamViewModel {
   final connectivityService = locator<ConnectivityService>();
   final dmApiService = locator<DMApiService>();
   final _channelsApiService = locator<ChannelsApiService>();
-
 
   final _navigationService = locator<NavigationService>();
   bool connectionStatus = false;
@@ -78,8 +75,12 @@ class HomePageViewModel extends StreamViewModel {
     return connectionStatus;
   }
 
-    void navigateToJumpToScreen() {
+  void navigateToJumpToScreen() {
     _navigationService.navigateTo(Routes.dmJumpToView);
+  }
+
+ void navigateToStartDMScreen() {
+    _navigationService.navigateTo(Routes.startDmView);
   }
 
   ///This sets all the expanded list items
@@ -95,7 +96,6 @@ class HomePageViewModel extends StreamViewModel {
       }
     });
   }
-
 
   //This method is just to demo the side bar data that would
   //be received by the database
@@ -143,8 +143,8 @@ class HomePageViewModel extends StreamViewModel {
 
     setAllList();
     notifyListeners();
+  }
 
-}
   //
   //*Navigate to other routes
   void navigateToPref() {
@@ -159,8 +159,8 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.channelInfoView);
   }
 
-  void navigateToWorkspace() {
-    _navigationService.navigateTo(Routes.workspaceView);
+  void navigateToOrganization() {
+    _navigationService.navigateTo(Routes.organizationView);
   }
 
   void navigateToUserSearchView() {
@@ -202,14 +202,14 @@ class HomePageViewModel extends StreamViewModel {
     //   //   name: 'alfred',
     //   // );
     // });
+    setBusy(false);
   }
 
-    // listenToChannelsChange() {
-    // _channelsApiService.onChange.stream.listen((event) {
-    //   getDmAndChannelsList();
-    // });
+  // listenToChannelsChange() {
+  // _channelsApiService.onChange.stream.listen((event) {
+  //   getDmAndChannelsList();
+  // });
 
   // }
 
 }
-

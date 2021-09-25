@@ -36,7 +36,7 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
           children: [
             GestureDetector(
               onTap: () {
-                vmodel.navigateToWorkspace();
+                vmodel.navigateToOrganization();
               },
               child: organizationLogo ??
                   EasyContainer(
@@ -55,7 +55,7 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
             SizedBox(width: 12),
             Text(
               organizationName,
-              style: ZuriTextStyle.organisationNameText(),
+              style: ZuriTextStyle.organizationNameText(),
             )
           ],
         ),

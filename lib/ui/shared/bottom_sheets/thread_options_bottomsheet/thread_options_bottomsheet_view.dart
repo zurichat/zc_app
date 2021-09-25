@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
+import 'package:hng/general_widgets/menu_item_tile.dart';
+import 'package:hng/ui/shared/bottom_sheets/thread_options_bottomsheet/widget/recent_emojis.dart';
 import 'package:hng/ui/shared/shared.dart';
 
 import 'package:stacked_services/stacked_services.dart';
@@ -25,106 +27,81 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
     return ViewModelBuilder<ThreadOptionsBottomSheetViewModel>.reactive(
       builder: (context, model, child) => DraggableScrollableSheet(
           maxChildSize: 0.97,
-          initialChildSize: 0.7,
+          initialChildSize: 0.9,
           minChildSize: 0.5,
           builder: (BuildContext context, ScrollController scrollController) {
             return Container(
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               color: AppColors.whiteColor,
               child: Expanded(
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: [
-                          Icon(Icons.access_time_rounded,
-                              color: AppColors.borderColor),
-                          SizedBox(width: 30),
-                          CustomText(text: "Remind Me", fontSize: 15)
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: [
-                          Icon(Icons.bookmark_border_outlined,
-                              color: AppColors.greyishColor),
-                          SizedBox(width: 30),
-                          CustomText(text: "Add to Saved Items", fontSize: 15)
-                        ],
-                      ),
-                    ),
-                    Divider(color: AppColors.borderColor),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: [
-                          Icon(Icons.chat, color: AppColors.greyishColor),
-                          SizedBox(width: 30),
-                          CustomText(text: "Reply in Thread", fontSize: 15)
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: [
-                          Icon(Icons.chat_bubble_outline,
-                              color: AppColors.greyishColor),
-                          SizedBox(width: 30),
-                          CustomText(text: "Follow Message", fontSize: 15)
-                        ],
-                      ),
-                    ),
-                    Divider(color: AppColors.borderColor),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: [
-                          Icon(Icons.forward_outlined,
-                              color: AppColors.greyishColor),
-                          SizedBox(width: 30),
-                          CustomText(text: "Share Message", fontSize: 15)
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: [
-                          Icon(Icons.link_outlined,
-                              color: AppColors.greyishColor),
-                          SizedBox(width: 30),
-                          CustomText(text: "Copy Link to Message", fontSize: 15)
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Row(
-                        children: [
-                          Icon(Icons.copy_rounded,
-                              color: AppColors.greyishColor),
-                          SizedBox(width: 30),
-                          CustomText(text: "Copy Text", fontSize: 15)
-                        ],
-                      ),
-                    ),
-                    Divider(color: AppColors.borderColor),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.pin,
-                            color: AppColors.greyishColor,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        RecentEmojis("😘"),
+                        RecentEmojis("😳"),
+                        RecentEmojis("😭"),
+                        RecentEmojis("🤣"),
+                        RecentEmojis("🤔"),
+                        RecentEmojis("😏"),
+                        Container(
+                          height: 50,
+                          width: 50,
+                          child: Align(
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.add_reaction_outlined,
+                                size: 25,
+                              )),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.greyBackgroundColor,
                           ),
-                          SizedBox(width: 30),
-                          CustomText(text: "Pin to Conversation", fontSize: 15)
-                        ],
-                      ),
+                        )
+                      ],
                     ),
+                    Divider(),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: Icons.message,
+                        text: Text("Mark unread")),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: Icons.access_time_rounded,
+                        text: Text("Remind me")),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: Icons.bookmark_border_outlined,
+                        text: Text("Add to saved items")),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: Icons.message,
+                        text: Text("Reply in thread")),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: Icons.message,
+                        text: Text("Unfollow thread")),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: Icons.forward_outlined,
+                        text: Text("Share message")),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: Icons.message,
+                        text: Text("Copy link to message")),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: Icons.copy_rounded,
+                        text: Text("Copy text")),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: Icons.message,
+                        text: Text("Pin to conversation")),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: Icons.message,
+                        text: Text("Turn question into poll")),
                   ],
                 ),
               ),
