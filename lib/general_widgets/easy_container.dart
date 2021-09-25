@@ -32,7 +32,7 @@ class EasyContainer extends StatelessWidget {
   final List<BoxShadow>? boxShadow;
   final Gradient? gradient;
 
-  EasyContainer({
+  const EasyContainer({
     Key? key,
     this.height,
     this.width,
@@ -53,7 +53,7 @@ class EasyContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BorderRadius? borderRadius;
-    List<double> uneven = unevenRadius ?? [];
+    final uneven = unevenRadius ?? [];
 
     if (unevenRadius == null) {
       borderRadius = circular == null
@@ -70,7 +70,7 @@ class EasyContainer extends StatelessWidget {
       }
     }
 
-    bool noBoxDeco = color == null &&
+    final noBoxDeco = color == null &&
         radius == null &&
         borderWidth == null &&
         borderColor == null &&
@@ -100,7 +100,7 @@ class EasyContainer extends StatelessWidget {
   }
 
   EdgeInsetsGeometry? getInsets(var type) {
-    EdgeInsetsGeometry inset = EdgeInsets.all(0);
+    EdgeInsetsGeometry inset = const EdgeInsets.all(0);
 
     if (type is int || type is double) {
       inset = EdgeInsets.all(type.toDouble());
@@ -131,7 +131,7 @@ class EasyContainer extends StatelessWidget {
 }
 
 BorderRadius getUnevenRadius(List<double> uneven) {
-  BorderRadius borderRadius = BorderRadius.circular(0);
+  var borderRadius = BorderRadius.circular(0);
 
   if (uneven.length == 4) {
     borderRadius = BorderRadius.only(

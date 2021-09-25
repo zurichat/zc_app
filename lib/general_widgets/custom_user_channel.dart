@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import '../ui/shared/styles.dart';
 
 class CustomUserChannel extends StatelessWidget {
   final String? image;
@@ -9,14 +10,14 @@ class CustomUserChannel extends StatelessWidget {
   final IconData? trailingIcon;
   final Color? iconColor;
 
-  const CustomUserChannel({
-    Key? key,
-    this.image,
-    this.text,
-    this.text2,
-    this.trailingIcon,
-    this.iconColor
-  }) : super(key: key);
+  const CustomUserChannel(
+      {Key? key,
+      this.image,
+      this.text,
+      this.text2,
+      this.trailingIcon,
+      this.iconColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +25,12 @@ class CustomUserChannel extends StatelessWidget {
       designSize: const Size(411, 823),
       builder: () => InkWell(
         onTap: () {},
-        child: Container(
+        child: SizedBox(
             height: 24.h,
             width: 211.w,
             child: Row(
               children: [
-                Container(
+                SizedBox(
                   child: Image(
                     height: 24.h,
                     width: 24.w,
@@ -40,12 +41,14 @@ class CustomUserChannel extends StatelessWidget {
                 SizedBox(width: 12.w),
                 Text(
                   text!,
-                  style: AppTextStyles.fileName, // textfont in here won't scale to different screens
+                  style: AppTextStyles.fileName,
+                  // textfont in here won't scale to different screens
                 ),
                 SizedBox(width: 10.w),
                 Text(
                   text2!,
-                  style: AppTextStyles.faintBodyText, // textfont in here won't scale to different screens
+                  style: AppTextStyles.faintBodyText,
+                  // textfont in here won't scale to different screens
                 ),
                 SizedBox(width: 10.w),
                 Container(

@@ -1,9 +1,8 @@
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/ui/shared/shared.dart';
-
 import '../../../../app/app.locator.dart';
+import '../../../../app/app.logger.dart';
 import '../../../../services/local_storage_services.dart';
+import '../../../../services/user_service.dart';
+import '../../../../ui/shared/shared.dart';
 import '../../../../utilities/storage_keys.dart';
 import '../api/http_api.dart';
 
@@ -17,10 +16,10 @@ class DMApiService {
   final _userService = locator<UserService>();
 
   Future<List> getActiveDms() async {
-    String userId = _userService.userId;
-    String orgId = _userService.currentOrgId;
+    // final userId = _userService.userId;
+    // final orgId = _userService.currentOrgId;
 
-    List joinedRooms = [];
+    var joinedRooms = [];
 
     try {
       final res = await _api.get(

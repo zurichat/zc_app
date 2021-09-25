@@ -5,7 +5,10 @@ import 'package:hng/services/user_service.dart';
 import 'package:hng/utilities/constants.dart';
 
 import '../../../../app/app.locator.dart';
+import '../../../../app/app.logger.dart';
 import '../../../../services/local_storage_services.dart';
+import '../../../../services/user_service.dart';
+import '../../../../utilities/constants.dart';
 import '../../../../utilities/storage_keys.dart';
 import '../api/http_api.dart';
 
@@ -28,8 +31,7 @@ class ChannelsApiService {
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
 
-    List joinedChannels = [];
-
+    var joinedChannels = [];
     try {
       final res = await _api.get(
         'v1/$orgId/channels/',

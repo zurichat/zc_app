@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
+import '../../../shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
@@ -39,8 +39,8 @@ class OrganizationUrlView extends StatelessWidget {
                               TextSpan(
                                 children: [
                                   TextSpan(
-                                    text:
-                                        'If you don\'t know your Organization URL, we have sent an email to ',
+                                    text: '''
+If you don\'t know your Organization URL, we have sent an email to ''',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 16),

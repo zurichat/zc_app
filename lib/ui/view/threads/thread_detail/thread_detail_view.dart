@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/channel_icon.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/view/dm_user/icons/zap_icon.dart';
-import 'package:hng/ui/view/threads/thread_detail/thread_detail_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../../general_widgets/channel_icon.dart';
+import '../../../../general_widgets/custom_text.dart';
+import '../../../../models/user_post.dart';
+import '../../../shared/colors.dart';
+import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';
+import '../../../shared/styles.dart';
+import '../../dm_user/icons/zap_icon.dart';
+import 'thread_detail_viewmodel.dart';
 
 class ThreadDetailView extends StatelessWidget {
   const ThreadDetailView(this.userPost, {Key? key}) : super(key: key);
@@ -17,16 +18,17 @@ class ThreadDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     // var _scrollController = useScrollController();
     // var _messageController = useTextEditingController();
-    ScrollController _scrollController = ScrollController();
-    TextEditingController _messageController = TextEditingController();
+    final _scrollController = ScrollController();
+    final _messageController = TextEditingController();
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
           appBar: AppBar(
             elevation: 0,
-            title: CustomText(text: "Threads", fontWeight: FontWeight.bold),
+            title:
+                const CustomText(text: 'Threads', fontWeight: FontWeight.bold),
             leading: IconButton(
                 onPressed: model.exitPage,
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back_ios,
                 )),
           ),
@@ -38,12 +40,12 @@ class ThreadDetailView extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Row(
                   children: [
-                    Text("Message in"),
+                    Text('Message in'),
                     TextButton.icon(
                         onPressed: () {},
                         icon: ChannelIcon(channelType: userPost!.channelType!),
                         label: Text(
-                          "${userPost!.channelName}",
+                          '${userPost!.channelName}',
                         ),
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.all(0),
@@ -62,7 +64,7 @@ class ThreadDetailView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("${userPost!.userThreadPosts!.length} Replies",
+                    Text('${userPost!.userThreadPosts!.length} Replies',
                         style: AppTextStyles.body2Bold),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -209,7 +211,7 @@ class ThreadDetailView extends StatelessWidget {
                                         _messageController.text,
                                       );
 
-                                      _messageController.text = "";
+                                      _messageController.text = '';
                                       FocusScope.of(context)
                                           .requestFocus(FocusNode());
                                       _scrollController.jumpTo(_scrollController

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
+import '../../../shared/colors.dart';
+import '../../../shared/shared.dart';
 import 'forgot_password_newview.form.dart';
 import 'forgot_password_newviewmodel.dart';
 

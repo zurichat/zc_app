@@ -8,7 +8,7 @@ class Ripple extends StatelessWidget {
   final Function()? onTap;
   final Widget? child;
 
-  Ripple({
+  const Ripple({
     Key? key,
     this.radius = 5,
     this.splashColor,
