@@ -141,7 +141,13 @@ class OrganizationApiService {
     );
     return res?.data?['message'];
   }
-
+  Future<void> fetchMembersInOrganization(String orgId) async {
+    final res = await _api.get(
+      '/organizations/$orgId/members',
+      headers: {'Authorization': 'Bearer $token'},
+    );
+    return res?.data?['message'];
+  }
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
 }
