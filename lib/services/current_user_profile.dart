@@ -27,10 +27,10 @@ class GetUserProfile {
     });
 
     if (res!.statusCode == 200) {
-      //   storageService.setString(
-      //     StorageKeys.currentMemberID,
-      //     res.data?['data'][0]['_id'],
-      //   );
+      storageService.setString(
+        StorageKeys.currentMemberID,
+        res.data?['data'][0]['_id'],
+      );
       //   storageService.setString(
       //     StorageKeys.firstName,
       //     res.data?['data'][0]['first_name'],
