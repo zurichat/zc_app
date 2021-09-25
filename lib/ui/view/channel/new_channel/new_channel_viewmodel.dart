@@ -1,9 +1,8 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import '../../../../utilities/mixins/validators_mixin.dart';
 import 'new_channel.form.dart';
 
@@ -11,6 +10,7 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
   int inputLength = 80;
   bool inputError = false;
   bool isChannelPrivate = false;
+
   final _channelApiService = locator<ChannelsApiService>();
   final _navigationService = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
@@ -45,7 +45,7 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
         channelNameValue == '' ||
         channelDescriptionValue == null) {
       snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
         message: 'Please fill all fields.',
       );
@@ -63,7 +63,7 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
       snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.success,
-          message: 'Channels $channelNameValue created successful');
+          message: 'Channels $channelNameValue created succesful');
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -78,3 +78,12 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
   @override
   void setFormStatus() {}
 }
+// import 'package:hng/app/app.router.dart';
+// import 'package:stacked/stacked.dart';
+// import 'package:stacked_services/stacked_services.dart';
+//
+// import 'new_channel.dart';
+//
+//
+//
+//
