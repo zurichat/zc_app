@@ -5,11 +5,11 @@ import 'package:hng/app/app.router.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/services/otp_service.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/otp/otp_view.form.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:hng/ui/view/otp/otp_view.form.dart';
 
 class ForgotPasswordOtpViewModel extends FormViewModel {
   NavigationService _navigationService = NavigationService();
