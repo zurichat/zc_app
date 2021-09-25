@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/view/plugins/widgets/custom_plugin_list_tile.dart';
 import '../../../shared/colors.dart';
 import '../../plugins/widgets/custom_plugin_list_tile.dart';
 import 'package:stacked/stacked.dart';
@@ -7,7 +11,9 @@ import '../shared_widgets.dart';
 import 'channel_members_list_model.dart';
 
 class ChannelMembersList extends StatelessWidget {
-  const ChannelMembersList({Key? key}) : super(key: key);
+  List <ChannelMembermodel>channelMembers;
+  ChannelModel channelDetail;
+  ChannelMembersList({required this.channelMembers,required this.channelDetail});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,7 @@ class ChannelMembersList extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              '#teamsocrates',
+              "${channelDetail.name}",
               style: GoogleFonts.lato(
                   color: Color(0xFF242424),
                   fontWeight: FontWeight.bold,
@@ -32,7 +38,9 @@ class ChannelMembersList extends StatelessWidget {
                 // size: 24,
               ),
               padding: EdgeInsets.only(left: 18),
-              onPressed: () {},
+              onPressed: () {
+                viewModel.goBack();
+              },
               iconSize: 25.0,
             ),
             actions: [
@@ -83,7 +91,7 @@ class ChannelMembersList extends StatelessWidget {
                 child: ListView.separated(
                   physics: BouncingScrollPhysics(),
                   padding: EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
-                  itemCount: viewModel.matchingUsers.length,
+                  itemCount: channelMembers.length,
                   separatorBuilder: (context, index) => SizedBox(height: 24),
                   itemBuilder: (context, index) => Row(
                     children: [
@@ -96,10 +104,10 @@ class ChannelMembersList extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.all(4.0),
                                   child: Image.asset(
-                                    'assets/images/${viewModel.matchingUsers[index].userimg}',
+                                    'assets/images/chimamanda.png',
                                   ),
                                 ),
-                                if (viewModel.matchingUsers[index].online)
+                                //if (viewModel.matchingUsers[index].online)
                                   CircleAvatar(
                                     backgroundColor: Color(0xFF00B87C),
                                     radius: 4.0,
@@ -108,7 +116,7 @@ class ChannelMembersList extends StatelessWidget {
                             ),
                             SizedBox(width: 20.0),
                             Text(
-                              viewModel.matchingUsers[index].userName,
+                              channelMembers[index].name,
                               style: GoogleFonts.lato(
                                 color: Color(0xFF424141),
                               ),
