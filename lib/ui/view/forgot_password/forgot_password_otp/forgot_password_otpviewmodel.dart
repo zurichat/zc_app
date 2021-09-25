@@ -47,7 +47,6 @@ class ForgotPasswordOtpViewModel extends FormViewModel {
     final validationData = {'code': otpValue};
     final response = await _apiService.post(endpoint, data: validationData);
     loading(false);
-    navigateToNewPassword();
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
