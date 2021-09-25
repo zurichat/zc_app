@@ -31,10 +31,9 @@ class DeleteChannelDialogViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'An error occured while creating channel ',
+        message: 'An error occured while deleting channel ',
       );
     }
-
-    popNavigation();
+   _navigationService.navigateTo(Routes.homePage);
   }
 }
