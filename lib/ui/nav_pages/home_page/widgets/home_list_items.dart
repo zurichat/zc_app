@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../app/app.router.dart';
 import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/general_widgets/ripple.dart';
 import 'package:hng/general_widgets/svg_icon.dart';
@@ -6,6 +7,7 @@ import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../general_widgets/easy_container.dart';
 import '../../../../general_widgets/ripple.dart';
@@ -47,6 +49,8 @@ class AddChannelsTextAndIcon extends StatelessWidget {
       text: 'Add channels',
       unread: false,
       onTap: () {
+        //TODO - testing, remove later
+        NavigationService().navigateTo(Routes.newChannel);
         // Navigate to add channels screens
       },
       icon: SvgIcon(

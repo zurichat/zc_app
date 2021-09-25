@@ -25,8 +25,8 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.channelInfoView);
   }
 
-  void nToWorkspace() {
-    _navigationService.navigateTo(Routes.workspaceView);
+  void nToOrganization() {
+    _navigationService.navigateTo(Routes.organizationView);
   }
 
   void navigateToDmUser() {
@@ -78,6 +78,10 @@ class HomePageViewModel extends StreamViewModel {
 
   void navigateToJumpToScreen() {
     _navigationService.navigateTo(Routes.dmJumpToView);
+  }
+
+ void navigateToStartDMScreen() {
+    _navigationService.navigateTo(Routes.startDmView);
   }
 
   ///This sets all the expanded list items
@@ -156,8 +160,8 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.channelInfoView);
   }
 
-  void navigateToWorkspace() {
-    _navigationService.navigateTo(Routes.workspaceView);
+  void navigateToOrganization() {
+    _navigationService.navigateTo(Routes.organizationView);
   }
 
   void navigateToUserSearchView() {

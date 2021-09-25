@@ -1,7 +1,7 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/utilities/enums.dart';
+import '../../../../app/app.locator.dart';
+import '../../../../app/app.router.dart';
+import '../../../../models/user_post.dart';
+import '../../../../utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -9,12 +9,15 @@ class ThreadCardViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
 
-  //Delete this random number stuff
+  //TODO Delete this random number stuff
   //this was created to give the emojis unique ids which  would be handled by the backend
   int randomVarBank = 1000;
 
-  Future navigateToThread() async {
-    _navigationService.navigateTo(Routes.threadDetailView);
+  
+
+  Future navigateToThread(UserPost? userPost) async {
+    _navigationService.navigateTo(Routes.threadDetailView,
+        arguments: ThreadDetailViewArguments(userPost: userPost));
   }
 
   Future viewProfile() async {

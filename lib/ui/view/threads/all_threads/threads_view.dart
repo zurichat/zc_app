@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../../general_widgets/custom_text.dart';
+import '../../../shared/colors.dart';
+import '../../../shared/shared.dart';
 import 'threads_viewmodel.dart';
 import 'widgets/thread_card.dart';
 

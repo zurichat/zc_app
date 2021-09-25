@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
+import '../../../../shared/colors.dart';
+import '../../../../shared/shared.dart';
+import '../../../../shared/styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../channel_info_view_model.dart';

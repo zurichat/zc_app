@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/ui/view/dm_user/dm_user_view.form.dart';
-import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
-import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
-import 'package:hng/utilities/enums.dart';
+import '../../../app/app.locator.dart';
+import 'dm_user_view.form.dart';
+import 'dummy_data/models/message.dart';
+import 'dummy_data/models/user.dart';
+import '../../../utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -28,8 +28,15 @@ class DmUserViewModel extends FormViewModel {
   bool isSendButtonEnabled = false;
 
   List<Message> chatMessages = List.empty(growable: true);
-  showButtonSheet() {
-    bottomSheet.showCustomSheet(variant: BottomSheetType.FloatingBox);
+
+  showButtonSheet(Message message) async {
+    print('Our resp ${message.message}');
+    await bottomSheet.showCustomSheet(
+        variant: BottomSheetType.FloatingBox,
+        data: message,
+        takesInput: true,
+        title: message.message);
+    notifyListeners();
   }
 
   void onTapMessageField() {
@@ -61,6 +68,7 @@ class DmUserViewModel extends FormViewModel {
   }
 
   void deleteMessage(Message message) {
+    print(message.message);
     chatMessages.remove(message);
     notifyListeners();
   }
@@ -85,7 +93,5 @@ class DmUserViewModel extends FormViewModel {
   }
 
   @override
-  void setFormStatus() {
-    // TODO: implement setFormStatus
-  }
+  void setFormStatus() {}
 }

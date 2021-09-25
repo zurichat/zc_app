@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
+import '../../../../shared/colors.dart';
+import '../../../../shared/styles.dart';
 import '../channel_page_viewmodel.dart';
 
 class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/utilities/utilities.dart';
+
+import '../../../../utilities/utilities.dart';
 
 //CustomInputChip
 class CustomInputChip extends StatelessWidget {
@@ -32,19 +33,15 @@ class CustomInputChip extends StatelessWidget {
                           width: 30,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
-                              image:
-                               DecorationImage(
+                              image: DecorationImage(
                                   image: makeNetworkImage(imageUrl),
-                                  fit: BoxFit.cover)
-                              
-                                  )),
+                                  fit: BoxFit.cover))),
                       Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(name,
-                          overflow: TextOverflow.clip,
+                              overflow: TextOverflow.clip,
                               style: GoogleFonts.lato(
                                   fontWeight: FontWeight.w700, fontSize: 16)))
                     ])))));
   }
 }
-

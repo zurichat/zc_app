@@ -1,9 +1,9 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/utilities/constants.dart';
-import 'package:hng/utilities/enums.dart';
+import '../../../../app/app.locator.dart';
+import '../../../../app/app.router.dart';
+import '../../../../package/base/server-request/api/http_api.dart';
+import '../../../../services/local_storage_services.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'edit_channel_view.form.dart';
