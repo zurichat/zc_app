@@ -29,6 +29,16 @@ class DmUserViewModel extends BaseViewModel {
 
   List<Message> chatMessages = List.empty(growable: true);
 
+  showButtonSheet(Message message) async {
+    print('Our resp ${message.message}');
+    await bottomSheet.showCustomSheet(
+        variant: BottomSheetType.FloatingBox,
+        data: message,
+        takesInput: true,
+        title: message.message);
+    notifyListeners();
+  }
+
   void onTapMessageField() {
     _hasClickedMessageField = true;
     notifyListeners();
@@ -56,6 +66,12 @@ class DmUserViewModel extends BaseViewModel {
     }
   }
 
+  void deleteMessage(Message message) {
+    print(message.message);
+    chatMessages.remove(message);
+    notifyListeners();
+  }
+
   void popScreen() {
     final navigationService = locator<NavigationService>();
     navigationService.back();
@@ -74,4 +90,7 @@ class DmUserViewModel extends BaseViewModel {
     );
     notifyListeners();
   }
+
+  @override
+  void setFormStatus() {}
 }

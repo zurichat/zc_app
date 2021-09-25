@@ -17,7 +17,6 @@ import 'package:stacked/stacked_annotations.dart';
   ],
 )
 class LoginView extends StatelessWidget with $LoginView {
-  
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginViewModel>.reactive(
@@ -92,7 +91,11 @@ class LoginView extends StatelessWidget with $LoginView {
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all(EdgeInsets.zero),
                       ),
-                      onPressed: () => model.navigateToForgotPasswordScreen(),
+                      onPressed: () {
+                        //Hides the keyboard for the failure snackbar to be visible
+                        FocusScope.of(context).unfocus();
+                        model.navigateToForgotPasswordScreen();
+                      },
                       child: const Text(
                         'Forgot Password?',
                         style: TextStyle(
@@ -107,7 +110,7 @@ class LoginView extends StatelessWidget with $LoginView {
                       widthFactor: 1.0,
                       child: LongButton(
                         onPressed: () async {
-                          await model.logInUser(context);
+                          await model.logInUser();
                         },
                         label: 'Sign In',
                       ),

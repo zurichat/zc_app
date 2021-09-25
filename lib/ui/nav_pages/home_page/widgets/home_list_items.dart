@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
+import 'package:hng/app/app.router.dart';
 import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/general_widgets/ripple.dart';
 import 'package:hng/general_widgets/svg_icon.dart';
@@ -8,6 +7,7 @@ import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import '../home_page_viewmodel.dart';
 
@@ -36,7 +36,8 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       text: 'Add channels',
       unread: false,
       onTap: () {
-        vmodel.navigateToAllChannelsScreen();
+        //TODO - testing, remove later
+        NavigationService().navigateTo(Routes.newChannel);
         // Navigate to add channels screens
       },
       icon: SvgIcon(
@@ -144,6 +145,8 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       onTap: () {
         //vmodel.navigateToChannelScreen();
         //Navigate to channels and pass the channels id
+        //This channel is is hardcoded
+        //TODO:Get dynamic id from home page view
         vmodel.navigateToChannelPage('61471f18f41cb684cc531a6d');
       },
     );

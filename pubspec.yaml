@@ -17,6 +17,8 @@ dependencies:
     sdk: flutter
   flutter_appavailability: ^0.0.21
   flutter_chips_input: ^1.10.0
+  flutter_parsed_text: ^2.2.1
+  flutter_hooks: ^0.17.0
   flutter_screenutil: ^5.0.0+2
   flutter_svg: ^0.22.0
   fluttertoast: ^8.0.8

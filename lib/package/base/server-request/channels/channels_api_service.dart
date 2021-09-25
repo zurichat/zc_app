@@ -1,9 +1,6 @@
-import 'dart:convert';
-
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
-import 'package:hng/app/app.logger.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/utilities/constants.dart';
 
@@ -20,10 +17,11 @@ class ChannelsApiService {
 
 // Your functions for api calls can go in here
 // https://channels.zuri.chat/api/v1/61459d8e62688da5302acdb1/channels/
-
+  //TODo - fix
+  onChange() {}
   Future<List> getActiveDms() async {
-    String userId = _userService.userId;
-    String orgId = _userService.currentOrgId;
+    final userId = _userService.userId;
+    final orgId = _userService.currentOrgId;
 
     List joinedChannels = [];
 
@@ -62,6 +60,41 @@ final res= await _api.get('/v1/61459d8e62688da5302acdb1/channels/',
   return channels;
 }
 
+
+  Future<bool> createChannels({
+    required String name,
+    required String description,
+    required bool private,
+  }) async {
+    final owner = _userService.userEmail;
+    final orgId = _userService.currentOrgId;
+
+    try {
+      final res = await _api.post(
+        'v1/$orgId/channels/',
+        data: {
+          'name': name,
+          'owner': owner,
+          'description': description,
+          'private': private,
+        },
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      log.i(res?.data.toString());
+
+      if (res?.statusCode == 201 || res?.statusCode == 200) {
+        // onChange.sink.add('created channel');
+        return true;
+      }
+    } on Exception catch (e) {
+      log.e(e.toString());
+    }
+
+    return false;
+  }
+
+
 getChannelPage(id) async{
   String orgId = _userService.currentOrgId;
 
@@ -75,9 +108,9 @@ getChannelPage(id) async{
    }
   catch(e){
     print(e);
-  }
-
 }
+}
+
 getChannelMembers(id) async{
   String orgId = _userService.currentOrgId;
   try{
@@ -93,6 +126,10 @@ getChannelMembers(id) async{
   }
  
 }
+
+  dispose() {
+    // onChange.close();
+  }
 
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);

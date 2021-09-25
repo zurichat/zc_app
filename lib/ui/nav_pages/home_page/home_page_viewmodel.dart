@@ -18,10 +18,35 @@ import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
 import '../../../services/connectivity_service.dart';
+import '../../../utilities/enums.dart';
+import 'home_item_model.dart';
 
-//final _navigationService = locator<NavigationService>();
+final _navigationService = locator<NavigationService>();
+final connectivityService = locator<ConnectivityService>();
+
+bool connectionStatus = false;
 
 class HomePageViewModel extends StreamViewModel {
+  void nToPref() {
+    _navigationService.navigateTo(Routes.fileSearchView);
+  }
+
+  void nToInfo() {
+    _navigationService.navigateTo(Routes.channelInfoView);
+  }
+
+  void nToOrganization() {
+    _navigationService.navigateTo(Routes.organizationView);
+  }
+
+  void navigateToDmUser() {
+    _navigationService.navigateTo(Routes.dmUserView);
+  }
+
+  Future navigateToThreads() async {
+    await _navigationService.navigateTo(Routes.threadsView);
+  }
+
   final connectivityService = locator<ConnectivityService>();
   final dmApiService = locator<DMApiService>();
   final channelsApiService = locator<ChannelsApiService>();
@@ -29,6 +54,8 @@ class HomePageViewModel extends StreamViewModel {
     final navigation = locator<NavigationService>();
     final snackbar = locator<SnackbarService>();
   final api = ChannelsApiService();
+  // final _dmApiService = locator<DMApiService>();
+  final _channelsApiService = locator<ChannelsApiService>();
 
   final _navigationService = locator<NavigationService>();
   bool connectionStatus = false;
@@ -71,8 +98,12 @@ ChannelModel get channel=>_channel!;
     return connectionStatus;
   }
 
-    void navigateToJumpToScreen() {
+  void navigateToJumpToScreen() {
     _navigationService.navigateTo(Routes.dmJumpToView);
+  }
+
+ void navigateToStartDMScreen() {
+    _navigationService.navigateTo(Routes.startDmView);
   }
 
   ///This sets all the expanded list items
@@ -138,6 +169,28 @@ ChannelModel get channel=>_channel!;
     notifyListeners();
   }
 
+  //
+  //*Navigate to other routes
+  void navigateToPref() {
+    _navigationService.navigateTo(Routes.fileSearchView);
+  }
+
+  // void navigateToChannelPage() {
+  //   _navigationService.navigateTo(Routes.channelPageView);
+  // }
+
+  void navigateToInfo() {
+    _navigationService.navigateTo(Routes.channelInfoView);
+  }
+
+  void navigateToOrganization() {
+    _navigationService.navigateTo(Routes.organizationView);
+  }
+
+  void navigateToUserSearchView() {
+    _navigationService.navigateTo(Routes.userSearchView);
+  }
+
   getDmAndChannelsList() async {
     homePageList = [];
     setBusy(true);
@@ -173,25 +226,30 @@ ChannelModel get channel=>_channel!;
     //   //   name: 'alfred',
     //   // );
     // });
+    setBusy(false);
   }
 
   //
   //*Navigate to other routes
-  void navigateToPref() {
-    _navigationService.navigateTo(Routes.fileSearchView);
-  }
+  // void navigateToPref() {
+  //   _navigationService.navigateTo(Routes.fileSearchView);
+  // }
+  // listenToChannelsChange() {
+  // _channelsApiService.onChange.stream.listen((event) {
+  //   getDmAndChannelsList();
+  // });
 
   // void navigateToChannelPage() {
   //   _navigationService.navigateTo(Routes.channelPageView);
   // }
 
-  void navigateToInfo() {
-    _navigationService.navigateTo(Routes.channelInfoView);
-  }
+  // void navigateToInfo() {
+  //   _navigationService.navigateTo(Routes.channelInfoView);
+  // }
 
-  void navigateToWorkspace() {
-    _navigationService.navigateTo(Routes.workspaceView);
-  }
+  // void navigateToWorkspace() {
+  //   _navigationService.navigateTo(Routes.workspaceView);
+  // }
 
   //   void navigateToChannelScreen() {
   //   NavigationService().navigateTo(Routes.channelPageView,arguments:
@@ -233,7 +291,7 @@ NavigationService().navigateTo(Routes.channelPageView,arguments: ChannelPageView
     NavigationService().navigateTo(Routes.channelList);
   }
 
-  void navigateToDmUser() {
-    _navigationService.navigateTo(Routes.dmUserView);
-  }
+  // void navigateToDmUser() {
+  //   _navigationService.navigateTo(Routes.dmUserView);
+  // }
 }
