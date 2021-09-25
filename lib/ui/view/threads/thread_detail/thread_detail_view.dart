@@ -1,31 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/view/dm_user/icons/zap_icon.dart';
-import 'package:hng/ui/view/threads/thread_detail/thread_detail_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
-import '../test_data.dart';
+import '../../../../general_widgets/channel_icon.dart';
+import '../../../../general_widgets/custom_text.dart';
+import '../../../../models/user_post.dart';
+import '../../../shared/colors.dart';
+import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';
+import '../../../shared/styles.dart';
+import '../../dm_user/icons/zap_icon.dart';
+import 'thread_detail_viewmodel.dart';
 
 class ThreadDetailView extends StatelessWidget {
-  const ThreadDetailView({Key? key}) : super(key: key);
+  const ThreadDetailView(this.userPost, {Key? key}) : super(key: key);
+  final UserPost? userPost;
 
   @override
   Widget build(BuildContext context) {
     // var _scrollController = useScrollController();
     // var _messageController = useTextEditingController();
-    ScrollController _scrollController = ScrollController();
-    TextEditingController _messageController = TextEditingController();
+    final _scrollController = ScrollController();
+    final _messageController = TextEditingController();
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
           appBar: AppBar(
             elevation: 0,
-            title: CustomText(text: "Threads", fontWeight: FontWeight.bold),
+            title:
+                const CustomText(text: 'Threads', fontWeight: FontWeight.bold),
             leading: IconButton(
                 onPressed: model.exitPage,
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back_ios,
                 )),
           ),
@@ -37,22 +40,22 @@ class ThreadDetailView extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Row(
                   children: [
-                    Text("Channel"),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "${userPost[0].channelName}",
-                      ),
-                    ),
+                    Text('Message in'),
+                    TextButton.icon(
+                        onPressed: () {},
+                        icon: ChannelIcon(channelType: userPost!.channelType!),
+                        label: Text(
+                          '${userPost!.channelName}',
+                        ),
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.all(0),
+                        )),
                   ],
                 ),
               ),
 
-              ThreadCardView.detail(userPost[0]),
-              // SizedBox(height: 10),
-              // Padding(
-              //     padding: EdgeInsets.all(5),
-              //     child: EmojisList(userPost: userPost[1])),
+              ThreadCardView.detail(userPost!),
+
               Divider(
                 color: AppColors.borderColor,
               ),
@@ -61,7 +64,7 @@ class ThreadDetailView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("${userPost[0].userThreadPosts!.length} Replies",
+                    Text('${userPost!.userThreadPosts!.length} Replies',
                         style: AppTextStyles.body2Bold),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -88,12 +91,15 @@ class ThreadDetailView extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: ListView.builder(
-                  controller: _scrollController,
-                  itemCount: userPost[0].userThreadPosts!.length,
-                  itemBuilder: (context, index) => ThreadCardView.threadPost(
-                      userPost[0].userThreadPosts![index]),
-                ),
+                child: userPost!.userThreadPosts != null
+                    ? ListView.builder(
+                        controller: _scrollController,
+                        itemCount: userPost!.userThreadPosts!.length,
+                        itemBuilder: (context, index) =>
+                            ThreadCardView.threadPost(
+                                userPost!.userThreadPosts![index]),
+                      )
+                    : Container(),
               ),
               //message starts here
               Align(
@@ -201,14 +207,11 @@ class ThreadDetailView extends StatelessWidget {
                                         .toString()
                                         .isNotEmpty) {
                                       model.addReply(
-                                          userPost[0],
-                                          TextSpan(
-                                              text: _messageController.text,
-                                              style: TextStyle(
-                                                  color: AppColors
-                                                      .deepBlackColor)));
+                                        userPost!,
+                                        _messageController.text,
+                                      );
 
-                                      _messageController.text = "";
+                                      _messageController.text = '';
                                       FocusScope.of(context)
                                           .requestFocus(FocusNode());
                                       _scrollController.jumpTo(_scrollController

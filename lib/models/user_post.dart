@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/utilities/enums.dart';
+import '../utilities/enums.dart';
 
 class UserThreadPost {
   int? id;
@@ -7,7 +7,7 @@ class UserThreadPost {
   String? userImage;
   IconData? statusIcon;
   String? lastSeen;
-  TextSpan message;
+  String? message;
   List<PostEmojis>? postEmojis;
   String? postDate;
 
@@ -25,8 +25,6 @@ class UserThreadPost {
   void addReaction(PostEmojis postEmoji) {
     postEmojis!.add(postEmoji);
   }
-
-  
 }
 
 class PostEmojis {
@@ -43,15 +41,23 @@ class PostEmojis {
 }
 
 class UserPost extends UserThreadPost {
+  @override
   int? id;
+  @override
   String? userImage;
+  @override
   String? displayName;
+  @override
   IconData? statusIcon;
+  @override
   String? lastSeen;
-  TextSpan message;
+  @override
+  String? message;
+  @override
   List<PostEmojis>? postEmojis;
   String? channelName;
   ChannelType? channelType;
+  @override
   String? postDate;
 
   List<UserThreadPost>? userThreadPosts;
@@ -77,7 +83,7 @@ class UserPost extends UserThreadPost {
           postEmojis: postEmojis,
         );
 
-         void addReply(UserThreadPost userThreadPost){
+  void addReply(UserThreadPost userThreadPost) {
     userThreadPosts!.add(userThreadPost);
   }
 }

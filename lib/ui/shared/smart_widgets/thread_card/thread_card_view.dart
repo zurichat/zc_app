@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/thread_card_detail.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/thread_card_main.dart';
-import 'package:hng/utilities/enums.dart';
+import '../../../../models/user_post.dart';
+import 'widgets/thread_card_detail.dart';
+import 'widgets/thread_card_main.dart';
+import '../../../../utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 
 import 'thread_card_viewmodel.dart';
