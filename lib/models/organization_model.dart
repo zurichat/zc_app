@@ -23,7 +23,7 @@ class OrganizationModel {
         name: json['name'],
         logoUrl: json['logo_url'],
         time: json['created_at'],
-        organizationUrl: json['organization_url'],
+        organizationUrl: json['workspace_url'],
         noOfMembers: json['no_of_members'],
         isOwner: json['isOwner']);
   }
