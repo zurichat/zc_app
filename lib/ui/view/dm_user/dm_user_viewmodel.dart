@@ -1,12 +1,13 @@
 import 'dart:math';
 
+import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+
 import '../../../app/app.locator.dart';
+import '../../../utilities/enums.dart';
 import 'dm_user_view.form.dart';
 import 'dummy_data/models/message.dart';
 import 'dummy_data/models/user.dart';
-import '../../../utilities/enums.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 class DmUserViewModel extends FormViewModel {
   final _username = '';

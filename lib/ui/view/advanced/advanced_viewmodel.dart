@@ -1,7 +1,8 @@
-import '../../../app/app.locator.dart';
-import '../../../utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../../app/app.locator.dart';
+import '../../../utilities/enums.dart';
 
 class AdvancedViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();

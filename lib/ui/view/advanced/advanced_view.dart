@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../general_widgets/menu_item_tile.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../general_widgets/menu_item_tile.dart';
 import 'advanced_viewmodel.dart';
 
 class AdvancedView extends StatelessWidget {

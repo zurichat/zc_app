@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../general_widgets/menu_item_tile.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../general_widgets/menu_item_tile.dart';
 import 'language_and_region_viewmodel.dart';
 
 class LanguageAndRegionModelView extends StatelessWidget {

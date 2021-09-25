@@ -1,12 +1,12 @@
-import '../../../../app/app.locator.dart';
-import '../../../../app/app.router.dart';
-import '../../../../package/base/server-request/api/http_api.dart';
-import '../../../shared/shared.dart';
-import '../../../../utilities/enums.dart';
-import '../../../../utilities/mixins/validators_mixin.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../../app/app.locator.dart';
+import '../../../../app/app.router.dart';
+import '../../../../package/base/server-request/api/http_api.dart';
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/mixins/validators_mixin.dart';
+import '../../../shared/shared.dart';
 import 'forgot_password_newview.form.dart';
 
 class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {

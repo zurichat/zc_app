@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../../general_widgets/custom_text.dart';
-import '../../../../general_widgets/menu_item_tile.dart';
-import 'widget/recent_emojis.dart';
-import '../../shared.dart';
-
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import 'package:stacked/stacked.dart';
-
+import '../../../../general_widgets/menu_item_tile.dart';
+import '../../shared.dart';
 import 'thread_options_bottomsheet_viewmodel.dart';
+import 'widget/recent_emojis.dart';
 
 class ThreadOptionsBottomSheetView extends StatelessWidget {
   final SheetRequest request;

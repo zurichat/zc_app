@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+
 import '../../../../../general_widgets/custom_text.dart';
 import '../../../../../models/user_post.dart';
 import '../../../shared.dart';
+import '../../../styles.dart';
 import '../../text_parser/text_parser_view.dart';
 import '../thread_card_viewmodel.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:stacked/stacked.dart';
 
 class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
   const ThreadCardPost(this.userThreadPost, {Key? key}) : super(key: key);

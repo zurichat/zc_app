@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+
 import '../../../general_widgets/svg_icon.dart';
 import '../../nav_pages/dm_page/dm_page.dart';
+import '../../nav_pages/home_page/home_page.dart';
 import '../../nav_pages/you_page/you_page_view.dart';
 import '../../shared/colors.dart';
 import '../../shared/shared.dart';
-import '../../nav_pages/home_page/home_page.dart';
 import 'nav_bar_viewmodel.dart';
-
-import 'package:stacked/stacked.dart';
-
-import '../../nav_pages/home_page/home_page.dart';
 
 ///Home view is the holder for all the views
 ///!Do not edit this directly, edit pages instead

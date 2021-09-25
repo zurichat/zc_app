@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../shared/colors.dart';
 
 class CustomTextWidget extends StatelessWidget {

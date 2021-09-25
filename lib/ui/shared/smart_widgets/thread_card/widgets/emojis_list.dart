@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../../models/user_post.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../../models/user_post.dart';
 import '../thread_card_viewmodel.dart';
 import 'emojis.dart';
 
