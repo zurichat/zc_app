@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/menu_item_tile.dart';
-import 'package:hng/ui/view/preference/preference_viewmodel.dart';
-
 import 'package:stacked/stacked.dart';
+
+import '../../../general_widgets/menu_item_tile.dart';
+import 'preference_viewmodel.dart';
 
 class PreferenceView extends StatelessWidget {
   const PreferenceView({Key? key}) : super(key: key);
@@ -24,28 +24,28 @@ class PreferenceView extends StatelessWidget {
           child: Column(
             children: [
               MenuItemTile(
-                text: Text("Language & Region"),
+                text: Text('Language & Region'),
                 onPressed: model.navigateLanguageAndRegion,
               ),
               MenuItemTile(
-                text: Text("Dark mode"),
+                text: Text('Dark mode'),
                 subtitle: model.currentTheme,
                 onPressed: model.changeTheme,
               ),
               MenuItemTile(
-                text: Text("Advanced"),
+                text: Text('Advanced'),
                 onPressed: model.navigateToAdvanced,
               ),
               MenuItemTile(
-                text: Text("Send Feedback"),
+                text: Text('Send Feedback'),
                 onPressed: model.sendFeedback,
               ),
               MenuItemTile(
-                text: Text("Help Center"),
+                text: Text('Help Center'),
                 onPressed: model.helpCentre,
               ),
               MenuItemTile(
-                text: Text("Privacy & licences"),
+                text: Text('Privacy & licences'),
                 onPressed: model.privacyAndLicences,
               ),
             ],

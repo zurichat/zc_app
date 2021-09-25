@@ -64,7 +64,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/ui/shared/styles.dart';
+import '../ui/shared/styles.dart';
 
 class CustomUserChannel extends StatelessWidget {
   final String? image;
@@ -73,14 +73,14 @@ class CustomUserChannel extends StatelessWidget {
   final IconData? trailingIcon;
   final Color? iconColor;
 
-  const CustomUserChannel({
-    Key? key,
-    this.image,
-    this.text,
-    this.text2,
-    this.trailingIcon,
-    this.iconColor
-  }) : super(key: key);
+  const CustomUserChannel(
+      {Key? key,
+      this.image,
+      this.text,
+      this.text2,
+      this.trailingIcon,
+      this.iconColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

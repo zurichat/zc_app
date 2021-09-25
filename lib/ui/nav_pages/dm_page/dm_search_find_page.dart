@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
-import 'package:hng/ui/nav_pages/dm_page/dm_page_viewmodel.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../shared/shared.dart';
+import 'dm_page_viewmodel.dart';
 
 class DmScreen extends StatefulWidget {
   const DmScreen({Key? key}) : super(key: key);

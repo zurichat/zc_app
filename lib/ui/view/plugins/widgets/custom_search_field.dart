@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import '../../../shared/colors.dart';
 
 class CustomSearchField extends StatelessWidget {
   final String searchHint;

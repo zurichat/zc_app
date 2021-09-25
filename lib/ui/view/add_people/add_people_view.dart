@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../../app/app.locator.dart';
+import '../../shared/shared.dart';
 import 'add_people_viewmodel.dart';
 import 'widgets/custom_people_list_tile.dart';
 
@@ -95,19 +96,19 @@ class AddPeopleView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 const CustomPeopleListTile(
-                  imagelink: "assets/channel_page/female.png",
+                  imagelink: 'assets/channel_page/female.png',
                   userName: 'Lisa',
                   isOnline: false,
                 ),
                 const SizedBox(height: 16),
                 const CustomPeopleListTile(
-                  imagelink: "assets/channel_page/femaleuser.png",
+                  imagelink: 'assets/channel_page/femaleuser.png',
                   userName: 'Jennie',
                   isOnline: false,
                 ),
                 const SizedBox(height: 16),
                 const CustomPeopleListTile(
-                  imagelink: "assets/channel_page/female.png",
+                  imagelink: 'assets/channel_page/female.png',
                   userName: 'Zigga',
                   isOnline: true,
                 ),

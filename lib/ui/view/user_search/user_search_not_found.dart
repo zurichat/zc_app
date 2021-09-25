@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/view/user_search/user_search_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
+import '../../shared/styles.dart';
+import 'user_search_viewmodel.dart';
 
 class UserSearch extends StatelessWidget {
   const UserSearch({Key? key}) : super(key: key);

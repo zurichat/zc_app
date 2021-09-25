@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:hng/ui/shared/shared.dart';
+import '../../shared/shared.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -19,14 +19,14 @@ class EditProfileView extends StatelessWidget {
           elevation: 0,
           leading: IconButton(
               onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
-          title: Text("Edit Profile"),
+          title: Text('Edit Profile'),
           actions: [
             TextButton(
               onPressed: () async {
                 await model.updateProfile();
               },
               child: Text(
-                "Save",
+                'Save',
                 style: TextStyle(color: AppColors.zuriTextBodyColor),
               ),
             )
@@ -64,7 +64,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                     height: double.maxFinite,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage("assets/background/appBarLogo.png"),
+                        image: AssetImage('assets/background/appBarLogo.png'),
                         fit: BoxFit.contain,
                       ),
                       borderRadius: BorderRadius.all(
@@ -91,7 +91,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                         model.updateString(value, '', '', '');
                       },
                       decoration: InputDecoration(
-                        labelText: "Full Name",
+                        labelText: 'Full Name',
                       ),
                     ),
                   )
@@ -105,9 +105,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                 model.updateString('', value, '', '');
               },
               decoration: InputDecoration(
-                labelText: "Display Name",
+                labelText: 'Display Name',
                 helperText:
-                    "This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.",
+                    'This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.',
                 helperMaxLines: 3,
               ),
             ),
@@ -117,7 +117,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                 model.updateString('', '', value, '');
               },
               decoration: InputDecoration(
-                  labelText: "What I do", helperText: "HNGi9 X I4G"),
+                  labelText: 'What I do', helperText: 'HNGi9 X I4G'),
             ),
             TextFormField(
               initialValue: 'The Back End for this does not exist',
@@ -125,7 +125,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                 model.updateString('', '', '', value);
               },
               decoration: InputDecoration(
-                  labelText: "Phone", helperText: "Enter your phone number"),
+                  labelText: 'Phone', helperText: 'Enter your phone number'),
             ),
           ],
         ),

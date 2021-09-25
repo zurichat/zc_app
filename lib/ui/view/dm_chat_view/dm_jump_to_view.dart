@@ -7,9 +7,9 @@ import 'package:hng/general_widgets/custom_user.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked_annotations.dart';
+import 'package:stacked/stacked.dart';
 import 'dm_jump_to_view.form.dart';
 import 'dm_jump_to_viewmodel.dart';
-import 'package:stacked/stacked.dart';
 
 @FormView(fields: [FormTextField(name: 'search')])
 class DmJumpToView extends StatelessWidget with $DmJumpToView {

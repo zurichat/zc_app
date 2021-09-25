@@ -28,7 +28,7 @@ enum HomeListType {
   messages,
 }
 
-enum WorkspaceSwitchMethod {
+enum OrganizationSwitchMethod {
   Create,
   SignIn,
   Join,
