@@ -20,7 +20,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
     return ViewModelBuilder<DmJumpToViewModel>.reactive(
       fireOnModelReadyOnce: true,
       onModelReady: (model) {
-        // listenToFormUpdated(model);
+       // listenToFormUpdated(model);
         model.fetchUsers();
         model.fetchChannels();
       },

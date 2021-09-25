@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 
@@ -14,6 +16,8 @@ class ChannelsApiService {
   final _api = HttpApiService(channelsBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
+
+  StreamController<String> controller = StreamController.broadcast();
 
 // Your functions for api calls can go in here
 // https://channels.zuri.chat/api/v1/61459d8e62688da5302acdb1/channels/
@@ -85,7 +89,7 @@ final res= await _api.get('/v1/61459d8e62688da5302acdb1/channels/',
       log.i(res?.data.toString());
 
       if (res?.statusCode == 201 || res?.statusCode == 200) {
-        // onChange.sink.add('created channel');
+        controller.sink.add('created channel');
         return true;
       }
     } on Exception catch (e) {
