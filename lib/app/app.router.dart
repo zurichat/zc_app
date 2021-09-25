@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../models/user_post.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
@@ -78,10 +79,8 @@ class Routes {
   static const String forgotPasswordNewView = '/forgot-password-new-view';
   static const String channelNotificationView = '/channel-notification-view';
   static const String newChannel = '/new-channel';
-  static const String channelInfoView = '/channel-info-view';
   static const String homePage = '/home-page';
   static const String addPeopleView = '/add-people-view';
-  static const String channelPageView = '/channel-page-view';
   static const String dmSearch = '/dm-search';
   static const String dmJumpToView = '/dm-jump-to-view';
   static const String dmUserView = '/dm-user-view';
@@ -116,6 +115,9 @@ class Routes {
   static const String startDmView = '/start-dm-view';
   static const String organizationUrlView = '/organization-url-view';
 
+  static const String channelPageView = '/channel-page-view';
+  static const String channelInfoView = '/channel-info-view';
+
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -130,10 +132,8 @@ class Routes {
     forgotPasswordNewView,
     channelNotificationView,
     newChannel,
-    channelInfoView,
     homePage,
     addPeopleView,
-    channelPageView,
     dmSearch,
     dmJumpToView,
     dmUserView,
@@ -166,6 +166,8 @@ class Routes {
     editChannelPageView,
     startDmView,
     organizationUrlView,
+    channelPageView,
+    channelInfoView,
   };
 }
 
@@ -186,10 +188,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.forgotPasswordNewView, page: ForgotPasswordNewView),
     RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
     RouteDef(Routes.newChannel, page: NewChannel),
-    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.homePage, page: HomePage),
     RouteDef(Routes.addPeopleView, page: AddPeopleView),
-    RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.dmSearch, page: DmSearch),
     RouteDef(Routes.dmJumpToView, page: DmJumpToView),
     RouteDef(Routes.dmUserView, page: DmUserView),
@@ -223,6 +223,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
     RouteDef(Routes.startDmView, page: StartDmView),
     RouteDef(Routes.organizationUrlView, page: OrganizationUrlView),
+    RouteDef(Routes.channelPageView, page: ChannelPageView),
+    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -311,12 +313,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    ChannelInfoView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const ChannelInfoView(),
-        settings: data,
-      );
-    },
     HomePage: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => HomePage(),
@@ -326,15 +322,6 @@ class StackedRouter extends RouterBase {
     AddPeopleView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => AddPeopleView(),
-        settings: data,
-      );
-    },
-    ChannelPageView: (data) {
-      var args = data.getArgs<ChannelPageViewArguments>(
-        orElse: () => ChannelPageViewArguments(),
-      );
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => ChannelPageView(key: args.key),
         settings: data,
       );
     },
@@ -518,8 +505,12 @@ class StackedRouter extends RouterBase {
       );
     },
     ThreadDetailView: (data) {
+      var args = data.getArgs<ThreadDetailViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ThreadDetailView(),
+        builder: (context) => ThreadDetailView(
+          args.userPost,
+          key: args.key,
+        ),
         settings: data,
       );
     },
@@ -544,12 +535,30 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+
+    ChannelPageView: (data) {
+      var args = data.getArgs<ChannelPageViewArguments>(
+        orElse: () => ChannelPageViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ChannelPageView(key: args.key),
+        settings: data,
+      );
+    },
+    ChannelInfoView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ChannelInfoView(),
+        settings: data,
+      );
+    },
+
     StartDmView: (data) {
       var args = data.getArgs<StartDmViewArguments>(
         orElse: () => StartDmViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
         builder: (context) => StartDmView(key: args.key),
+
         settings: data,
       );
     },
@@ -570,12 +579,6 @@ class ForgotPasswordOtpViewArguments {
 class ForgotPasswordNewViewArguments {
   final Key? key;
   ForgotPasswordNewViewArguments({this.key});
-}
-
-/// ChannelPageView arguments holder class
-class ChannelPageViewArguments {
-  final Key? key;
-  ChannelPageViewArguments({this.key});
 }
 
 /// DmJumpToView arguments holder class
@@ -610,14 +613,28 @@ class CreateOrganizationArguments {
   CreateOrganizationArguments({this.key, required this.email});
 }
 
+/// ThreadDetailView arguments holder class
+class ThreadDetailViewArguments {
+  final UserPost? userPost;
+  final Key? key;
+  ThreadDetailViewArguments({required this.userPost, this.key});
+}
+
 /// EditChannelPageView arguments holder class
 class EditChannelPageViewArguments {
   final Key? key;
   EditChannelPageViewArguments({this.key});
 }
 
+/// ChannelPageView arguments holder class
+class ChannelPageViewArguments {
+  final Key? key;
+  ChannelPageViewArguments({this.key});
+}
+
 /// StartDmView arguments holder class
 class StartDmViewArguments {
   final Key? key;
   StartDmViewArguments({this.key});
+
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_viewmodel.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
@@ -23,15 +24,18 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage("${userThreadPost!.userImage}")),
-                    )),
+                GestureDetector(
+                  onTap: model.viewProfile,
+                  child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage("${userThreadPost!.userImage}")),
+                      )),
+                ),
                 SizedBox(width: 10),
                 Expanded(
                   child: Column(
@@ -59,8 +63,9 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
                         ],
                       ),
                       SizedBox(height: 10),
-                      RichText(text: userThreadPost!.message),
+                      TextParser(userThreadPost!.message),
                       SizedBox(height: 10),
+
                       // Wrap(
                       //   spacing: 5,
                       //   runSpacing: 5,
