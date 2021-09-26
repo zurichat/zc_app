@@ -1,13 +1,7 @@
 import 'dart:developer';
 
-
-
-
-
-
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/services/user_service.dart';
@@ -54,8 +48,8 @@ class HomePageViewModel extends StreamViewModel {
   final dmApiService = locator<DMApiService>();
   final channelsApiService = locator<ChannelsApiService>();
 
-    final navigation = locator<NavigationService>();
-    final snackbar = locator<SnackbarService>();
+  final navigation = locator<NavigationService>();
+  final snackbar = locator<SnackbarService>();
   final api = ChannelsApiService();
   // final _dmApiService = locator<DMApiService>();
   final _channelsApiService = locator<ChannelsApiService>();
@@ -63,13 +57,11 @@ class HomePageViewModel extends StreamViewModel {
   final _navigationService = locator<NavigationService>();
   bool connectionStatus = false;
 
-     List <ChannelModel> _channelsList = [
-  ];
+  List<ChannelModel> _channelsList = [];
   ChannelModel? _channel;
-  List<ChannelModel>get channelsList => _channelsList;
-ChannelModel get channel=>_channel!;
- List<ChannelMembermodel> _membersList = [
-  ];
+  List<ChannelModel> get channelsList => _channelsList;
+  ChannelModel get channel => _channel!;
+  List<ChannelMembermodel> _membersList = [];
   List get membersList => _membersList;
 
   ///This contains the list of data for both the channels and dms
@@ -84,11 +76,9 @@ ChannelModel get channel=>_channel!;
   }
 
   @override
-  void onSubscribed() {
-   
-  }
+  void onSubscribed() {}
 
-  getNewChannelStream(){
+  getNewChannelStream() {
     _channelsApiService.controller.stream.listen((event) {
       getDmAndChannelsList();
     });
@@ -115,7 +105,7 @@ ChannelModel get channel=>_channel!;
     _navigationService.navigateTo(Routes.dmJumpToView);
   }
 
- void navigateToStartDMScreen() {
+  void navigateToStartDMScreen() {
     _navigationService.navigateTo(Routes.startDmView);
   }
 
@@ -135,7 +125,7 @@ ChannelModel get channel=>_channel!;
 
   //This method is just to demo the side bar data that would
   //be received by the database
-  
+
   getHomePageData() {
     homePageList = [
       HomeItemModel(type: HomeItemType.channels, name: 'annoucement'),
@@ -267,14 +257,14 @@ ChannelModel get channel=>_channel!;
   //   void navigateToChannelScreen() {
   //   NavigationService().navigateTo(Routes.channelPageView,arguments:
   //   ChannelPageViewArguments(channelDetail: homePageList,
-    
+
   //   ));
   // }
 
-   navigateToChannelPage(id)async {
+  navigateToChannelPage(id) async {
     print(id);
-    try{
-        if (!await connectivityService.checkConnection()) {
+    try {
+      if (!await connectivityService.checkConnection()) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
@@ -284,23 +274,23 @@ ChannelModel get channel=>_channel!;
         return;
       }
       setBusy(true);
-      _channel= await api.getChannelPage(id);   
-      _membersList= await api.getChannelMembers(id);
+      _channel = await api.getChannelPage(id);
+      _membersList = await api.getChannelMembers(id);
       setBusy(false);
-NavigationService().navigateTo(Routes.channelPageView,arguments: ChannelPageViewArguments(
-  channelDetail: _channel!,channelMembers: _membersList));
-    }catch (e) {
+      NavigationService().navigateTo(Routes.channelPageView,
+          arguments: ChannelPageViewArguments(
+              channelDetail: _channel!, channelMembers: _membersList));
+    } catch (e) {
       print(e.toString());
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Error Occured',
+        message: 'Error Occurred',
       );
     }
-    
   }
 
-      void navigateToAllChannelsScreen() {
+  void navigateToAllChannelsScreen() {
     NavigationService().navigateTo(Routes.channelList);
   }
 
