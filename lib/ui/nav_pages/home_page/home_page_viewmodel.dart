@@ -274,7 +274,7 @@ class HomePageViewModel extends StreamViewModel {
       // _channel= await api.getChannelPage(id);
       // _membersList= await api.getChannelMembers(id);
       setBusy(false);
-      NavigationService().navigateTo(Routes.channelPageView,
+      navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
             channelname: channelname,
             channelId: channelId,
