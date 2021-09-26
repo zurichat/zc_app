@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/easy_container.dart';
+import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
-import 'package:stacked/stacked.dart';
-
-import 'package:hng/general_widgets/easy_container.dart';
-import 'package:hng/utilities/constants.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
+import 'package:hng/utilities/constants.dart';
+import 'package:stacked/stacked_viewmodel.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
