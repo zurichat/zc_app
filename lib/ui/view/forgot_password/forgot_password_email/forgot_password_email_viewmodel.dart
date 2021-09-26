@@ -1,46 +1,28 @@
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/package/base/server-request/api/http_api.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.form.dart';
+import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/mixins/validators_mixin.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-import '../../../../app/app.locator.dart';
-import '../../../../app/app.router.dart';
-import '../../../../package/base/server-request/api/http_api.dart';
-import '../../../../utilities/enums.dart';
-import '../../../../utilities/mixins/validators_mixin.dart';
-import '../../../shared/shared.dart';
-import 'forgot_password_email_view.form.dart';
 
 class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
   bool inputError = false;
   final navigationService = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
   final _apiService = HttpApiService(coreBaseUrl);
-  bool _isLoading = false;
+  bool isLoading = false;
 
   loading(status) {
-    _isLoading = status;
+    isLoading = status;
     notifyListeners();
   }
 
-  // submitEmail() {
-  //   loading(true);
-  //   _emailValidation();
-  //   notifyListeners();
-  // }
-
-  // void _emailValidation() {
-  //   bool validateEmail = emailValidation(forgotEmailValue!);
-  //   if (validateEmail) {
-  //     inputError = !validateEmail;
-  //     navigateToforgotPasswordOtpView();
-  //   } else {
-  //     inputError = !validateEmail;
-  //     print('$inputError');
-  //   }
-  // }
-
   Future validateEmailIsRegistered() async {
     loading(true);
-    const endpoint = '/verify/account';
+    const endpoint = 'account/request-password-reset-code';
     if (forgotEmailValue == '') {
       loading(false);
       snackbar.showCustomSnackBar(
@@ -65,9 +47,7 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
 
     final validationData = {'email': forgotEmailValue};
     final response = await _apiService.post(endpoint, data: validationData);
-    loading(false);
-
-    _requestOtp();
+    response != null ? loading(false) : loading(true);
 
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
@@ -85,24 +65,13 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
     }
   }
 
-  Future _requestOtp() async {
-    loading(true);
-    const endpoint = 'account/request-password-reset-code';
-    final validationData = {'email': forgotEmailValue};
-    final response = await _apiService.post(endpoint, data: validationData);
-    response != null ? loading(false) : loading(true);
-  }
-
   @override
   void setFormStatus() {
     // TODO: implement setFormStatus
   }
 
-  void navigateToforgotPasswordOtpView() {
-    navigationService.navigateTo(Routes.forgotPasswordOtpView);
-  }
+  void navigateToforgotPasswordOtpView() =>
+      navigationService.navigateTo(Routes.forgotPasswordOtpView);
 
-  void navigateToSignIn() {
-    navigationService.navigateTo(Routes.loginView);
-  }
+  void navigateToSignIn() => navigationService.navigateTo(Routes.loginView);
 }
