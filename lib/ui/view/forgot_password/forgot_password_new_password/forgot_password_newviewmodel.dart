@@ -68,6 +68,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       'password': newPasswordValue,
       'confirm_password': confirmPasswordValue
     };
+    //should be a patch req
     final response = await _apiService.post(endpoint, data: newPasswordData);
     loading(false);
     if (response?.statusCode == 200) {
@@ -78,8 +79,6 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       );
       navigateToLogin();
     } else {
-      // AppSnackBar.failure(context,
-      //     response?.data['message'] ?? 'Password could not be updated.');
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
