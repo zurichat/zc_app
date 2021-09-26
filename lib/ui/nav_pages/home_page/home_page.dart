@@ -28,14 +28,14 @@ class HomePage extends StatelessWidget {
       builder: (context, vmodel, child) => SafeArea(
         child: Column(
           children: [
-             HomePageTopBar(
+            HomePageTopBar(
               organizationName: vmodel.orgName,
             ),
             vmodel.isBusy
                 ? LinearProgressIndicator(
                     backgroundColor: Colors.grey[400],
-                    valueColor:
-                        const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
+                    valueColor: const AlwaysStoppedAnimation(
+                        AppColors.zuriPrimaryColor),
                   )
                 : Container(),
             Expanded(

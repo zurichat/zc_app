@@ -1,17 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stacked/stacked.dart';
 
 import '../../../../shared/colors.dart';
 import '../../../../shared/styles.dart';
 import '../channel_page_viewmodel.dart';
 
-class CustomRow extends StatelessWidget {
-  final ChannelPageViewModel model;
-
-  CustomRow({Key? key, required this.model}) : super(key: key);
+class CustomRow extends ViewModelWidget<ChannelPageViewModel> {
+  CustomRow({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ChannelPageViewModel model) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       // crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,7 +47,7 @@ class CustomRow extends StatelessWidget {
         Column(
           children: [
             GestureDetector(
-                onTap: () {}, //pressed,
+                onTap: model.navigateToAddPeople, //pressed,
                 child: Container(
                   height: 56,
                   width: 56,

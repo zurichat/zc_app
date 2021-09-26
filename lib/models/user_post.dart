@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../utilities/enums.dart';
 
 class UserThreadPost {
-  int? id;
+  String? id;
+  String? userId;
   String? displayName;
   String? userImage;
   IconData? statusIcon;
@@ -13,6 +14,7 @@ class UserThreadPost {
 
   UserThreadPost({
     required this.id,
+    this.userId,
     this.userImage,
     required this.displayName,
     this.statusIcon,
@@ -41,9 +43,8 @@ class PostEmojis {
 }
 
 class UserPost extends UserThreadPost {
-  @override
-  int? id;
-  @override
+  String? id;
+  String? userID;
   String? userImage;
   @override
   String? displayName;
@@ -51,9 +52,7 @@ class UserPost extends UserThreadPost {
   IconData? statusIcon;
   @override
   String? lastSeen;
-  @override
   String? message;
-  @override
   List<PostEmojis>? postEmojis;
   String? channelName;
   ChannelType? channelType;
@@ -64,6 +63,7 @@ class UserPost extends UserThreadPost {
 
   UserPost({
     required this.id,
+    this.userID,
     required this.displayName,
     this.userImage,
     required this.message,
