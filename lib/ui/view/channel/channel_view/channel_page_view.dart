@@ -57,6 +57,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: CustomAppBars(
             channelName: "#$channelname",
             numberOfMembers: membersCount,
