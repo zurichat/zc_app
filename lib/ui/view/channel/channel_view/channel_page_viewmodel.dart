@@ -15,7 +15,7 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class ChannelPageViewModel extends StreamViewModel {
+class ChannelPageViewModel extends BaseViewModel {
   bool isVisible = false;
 
   final _navigationService = locator<NavigationService>();
@@ -62,6 +62,8 @@ class ChannelPageViewModel extends StreamViewModel {
 
     List? channelMessages =
         await _channelsApiService.getChannelMessages(channelId);
+    channelUserMessages = [];
+
     channelMessages.forEach((data) async {
       String userid = data["user_id"];
 
@@ -121,9 +123,10 @@ class ChannelPageViewModel extends StreamViewModel {
     await _centrifugeService.subscribe(channelId);
   }
 
-  Stream centriSub() async* {}
-
-  @override
-  // TODO: implement stream
-  Stream get stream => centriSub();
+  void listenToNewMessages(String channelId) {
+    _centrifugeService.messageStreamController.stream.listen((event) {
+      fetchMessages(channelId);
+      notifyListeners();
+    });
+  }
 }
