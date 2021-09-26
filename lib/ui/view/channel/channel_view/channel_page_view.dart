@@ -518,8 +518,6 @@ dateBuilder(BuildContext context) {
   ]);
 }
 
-
-
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 // import 'package:hng/models/channel_members.dart';
@@ -562,13 +560,13 @@ dateBuilder(BuildContext context) {
 //       viewModelBuilder: () => ChannelPageViewModel(),
 //       builder: (context, viewModel, child) {
 //         return Scaffold(
-//           appBar: appBar('${channelDetail.name}', "${channelMembers.length.toString()} members", 
-//           context,viewModel.goBack, 
+//           appBar: appBar('${channelDetail.name}', "${channelMembers.length.toString()} members",
+//           context,viewModel.goBack,
 //           //(){
 // //viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,channelDetail)
-//           //} 
+//           //}
 //             ),
-         
+
 //           body: SingleChildScrollView(
 //             scrollDirection: Axis.vertical,
 //             child: Column(
@@ -653,7 +651,7 @@ dateBuilder(BuildContext context) {
 
 // AppBar appBar(String text, String nexttext, BuildContext context,
 // Function backNavigation,
-// //Function infoNavigation, 
+// //Function infoNavigation,
 // ) {
 
 //   return AppBar(
