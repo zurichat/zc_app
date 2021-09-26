@@ -37,7 +37,26 @@ class ChannelsApiService {
     return joinedChannels;
   }
 
-  
+  Future<String> getChannelSocketId(String channelId) async {
+    final orgId = _userService.currentOrgId;
+
+    String socketName = '';
+
+    try {
+      final res = await _api.get(
+        'v1/$orgId/channels/$channelId/socket/',
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      socketName = res?.data['socket_name'] ?? '';
+      log.i(socketName);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return 'error';
+    }
+
+    return socketName;
+  }
+
   Future<Map> joinChannel(String channelId) async {
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;

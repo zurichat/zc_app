@@ -50,6 +50,13 @@ class ChannelPageViewModel extends StreamViewModel {
     print(joinedChannel);
   }
 
+  void getChannelSocketId(String channelId) async {
+    String channelSockId =
+        await _channelsApiService.getChannelSocketId(channelId);
+
+    websocketConnect(channelSockId);
+  }
+
   void fetchMessages(String channelId) async {
     setBusy(true);
 

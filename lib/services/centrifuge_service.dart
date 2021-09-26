@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:centrifuge/centrifuge.dart' as centrifuge;
 import 'package:centrifuge/centrifuge.dart';
@@ -12,14 +13,17 @@ class CentrifugeService with ReactiveServiceMixin {
   final log = getLogger("CentrifugeService");
 
   Future connect() async {
-    _client = centrifuge.createClient("$websocketUrl?format=protobuf");
+    _client = centrifuge.createClient("$websocketUrl?format=protobuf",
+    config: centrifuge.ClientConfig(
 
-    _client!.connectStream.listen((event) {
-      log.i("client connect stream $event");
-    });
-    _client!.disconnectStream.listen((event) {
-      log.i("Client disconnect stream $event");
-    });
+    ));
+
+    // _client!.connectStream.listen((event) {
+    //   log.i("client connect stream $event");
+    // });
+    // _client!.disconnectStream.listen((event) {
+    //   log.i("Client disconnect stream $event");
+    // });
     _client!.connect();
   }
 
@@ -38,11 +42,14 @@ class CentrifugeService with ReactiveServiceMixin {
   Future subscribe(String channel) async {
     _subscription = _client!.getSubscription(channel);
 
+    _showLog(_subscription!.channel);
+
     _subscription!.subscribeErrorStream.listen(_showError);
     _subscription!.subscribeSuccessStream.listen(_showLog);
     _subscription!.unsubscribeStream.listen(_showLog);
 
     _subscription!.joinStream.listen((event) {
+      
       log.i("Subcribe join stream $event");
     });
 
@@ -51,6 +58,7 @@ class CentrifugeService with ReactiveServiceMixin {
     });
 
     _subscription!.publishStream.listen((event) {
+      
       log.i("Subcribe publish stream $event");
     });
 

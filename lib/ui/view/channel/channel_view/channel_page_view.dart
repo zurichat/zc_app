@@ -42,7 +42,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
         model.joinChannel("$channelId");
         model.fetchMessages("$channelId");
 
-        model.websocketConnect("$channelId");
+        model.getChannelSocketId("$channelId");
       },
       //this parameter allows us to reuse the view model to persist the state
       //disposeViewModel: false,
