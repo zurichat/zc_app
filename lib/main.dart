@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/setup_bottom_sheet_ui.dart';
+import 'package:hng/ui/shared/setup_dialog_ui.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
@@ -7,8 +9,6 @@ import 'app/app.locator.dart';
 import 'app/app.router.dart';
 import 'general_widgets/app_snackbar.dart';
 import 'services/theme_setup.dart';
-import 'ui/shared/setup_bottom_sheet_ui.dart';
-import 'ui/shared/setup_dialog_ui.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
