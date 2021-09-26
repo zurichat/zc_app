@@ -54,7 +54,9 @@ class OrganizationView extends StatelessWidget {
                                     shrinkWrap: true,
                                     itemBuilder: (context, i) {
                                       final org = model.organizations[i];
-                                      model.log.i('');
+                                      model.log.i(org.id);
+                                      model.log.i(org.organizationUrl);
+                                      model.log.i(org.name);
                                       return OrganizationTile(org: org);
                                     },
                                   ),
