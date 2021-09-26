@@ -14,6 +14,7 @@ import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
 
 final navigationService = locator<NavigationService>();
+
 class ThreadTextAndIcon extends StatelessWidget {
   const ThreadTextAndIcon({Key? key}) : super(key: key);
 
@@ -35,7 +36,7 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   const AddChannelsTextAndIcon({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context,vmodel) {
+  Widget build(BuildContext context, vmodel) {
     return _TextAndIcon(
       text: 'Add channels',
       unread: false,
@@ -149,9 +150,10 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       onTap: () {
         //vmodel.navigateToChannelScreen();
         //Navigate to channels and pass the channels id
-        //This channel is is hardcoded
-        //TODO:Get dynamic id from home page view
-        vmodel.navigateToChannelPage('61471f18f41cb684cc531a6d');
+        ChannelPageView.name = data.name ?? '';
+        print("Data id is ${data.id}");
+        vmodel.navigateToChannelPage(
+            data.name, data.id, data.membersCount, data.public);
       },
     );
   }

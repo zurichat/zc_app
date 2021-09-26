@@ -10,18 +10,18 @@ import '../channel_page_viewmodel.dart';
 
 class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
   final String channelName;
-  final int numberOfMembers;
+  final int? numberOfMembers;
   final double appBarHeight;
-  final List <ChannelMembermodel>channelMembers;
+  final List<ChannelMembermodel>? channelMembers;
   final ChannelPageViewModel model;
-  ChannelModel channelDetail;
+  ChannelModel? channelDetail;
 
   CustomAppBars(
       {Key? key,
       required this.channelName,
       required this.numberOfMembers,
-      required this.channelMembers,
-      required this.channelDetail,
+      this.channelDetail,
+      this.channelMembers,
       this.appBarHeight = 56,
       required this.model})
       : preferredSize = Size.fromHeight(appBarHeight),
@@ -84,7 +84,8 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.only(right: 20.0),
           child: GestureDetector(
             onTap: () {
-              model.navigateToChannelInfoScreen(numberOfMembers, channelMembers, channelDetail);
+              // model.navigateToChannelInfoScreen(
+              //     numberOfMembers, channelMembers, channelDetail);
             },
             child: SvgPicture.asset(
               'assets/channel_page/info.svg',
