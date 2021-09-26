@@ -46,7 +46,6 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
 
   @override
   Widget build(BuildContext context) {
-    ScrollController _scrollController = ScrollController();
     TextEditingController _messageController = TextEditingController();
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
@@ -66,34 +65,83 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : Column(
+              : Stack(
                   children: [
-                    channelName("#$channelname"),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Container(
-                      child: channelInfo('@mark',
-                          ' created this channel on August 12, 2021. This is the very beginning of the #$name channel.'),
-                    ),
-                    const SizedBox(height: 20),
+                    SingleChildScrollView(
+                      controller: viewModel.scrollController,
+                      child: Column(
+                        children: [
+                          channelName("#$channelname"),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Container(
+                            child: channelInfo('@mark',
+                                ' created this channel on August 12, 2021. This is the very beginning of the #$name channel.'),
+                          ),
+                          const SizedBox(height: 20),
 
-                    CustomRow(),
-                    const SizedBox(height: 20),
-                    dateBuilder(context),
-                    const SizedBox(height: 7),
-                    Expanded(
-                      child: !nullListChecker(viewModel.channelUserMessages)
-                          ? ListView.builder(
-                              controller: _scrollController,
-                              itemCount: viewModel.channelUserMessages!.length,
-                              itemBuilder: (context, index) =>
-                                  ThreadCardView.threadChannelMain(
-                                      viewModel.channelUserMessages![index]),
-                            )
-                          : Container(),
+                          CustomRow(),
+                          const SizedBox(height: 20),
+                          dateBuilder(context),
+                          const SizedBox(height: 7),
+                          Container(
+                            child: !nullListChecker(
+                                    viewModel.channelUserMessages)
+                                ? ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount:
+                                        viewModel.channelUserMessages!.length,
+                                    itemBuilder: (context, index) =>
+                                        ThreadCardView.threadChannelMain(
+                                            viewModel
+                                                .channelUserMessages![index]),
+                                  )
+                                : Container(),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.05,
+                          )
+                          //message starts here
+
+                          // ListTile(
+                          //   leading: Image.asset('assets/channel_page/female.png'),
+                          //   title: Row(
+                          //     children: [
+                          //       Text(
+                          //         'Clutch',
+                          //         style: AppTextStyles.nameStyle,
+                          //       ),
+                          //       const SizedBox(width: 10),
+                          //       Text(
+                          //         '12:30pm',
+                          //         style: AppTextStyles.smallText,
+                          //       ),
+                          //     ],
+                          //   ),
+                          //   subtitle: Text('Joined #$name'),
+                          // ),
+                          // ListTile(
+                          //   leading: Image.asset('assets/channel_page/femaleuser.png'),
+                          //   title: Row(
+                          //     children: [
+                          //       Text(
+                          //         'Ali',
+                          //         style: AppTextStyles.nameStyle,
+                          //       ),
+                          //       const SizedBox(width: 10),
+                          //       Text(
+                          //         '12:30pm',
+                          //         style: AppTextStyles.smallText,
+                          //       ),
+                          //     ],
+                          //   ),
+                          //   subtitle: Text('Joined #$name'),
+                          // ),
+                        ],
+                      ),
                     ),
-                    //message starts here
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Material(
@@ -208,9 +256,6 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                                             _messageController.text = "";
                                             FocusScope.of(context)
                                                 .requestFocus(FocusNode());
-                                            _scrollController.jumpTo(
-                                                _scrollController
-                                                    .position.maxScrollExtent);
                                           }
                                         },
                                         icon: Icon(
@@ -223,40 +268,6 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                         ),
                       ),
                     )
-                    // ListTile(
-                    //   leading: Image.asset('assets/channel_page/female.png'),
-                    //   title: Row(
-                    //     children: [
-                    //       Text(
-                    //         'Clutch',
-                    //         style: AppTextStyles.nameStyle,
-                    //       ),
-                    //       const SizedBox(width: 10),
-                    //       Text(
-                    //         '12:30pm',
-                    //         style: AppTextStyles.smallText,
-                    //       ),
-                    //     ],
-                    //   ),
-                    //   subtitle: Text('Joined #$name'),
-                    // ),
-                    // ListTile(
-                    //   leading: Image.asset('assets/channel_page/femaleuser.png'),
-                    //   title: Row(
-                    //     children: [
-                    //       Text(
-                    //         'Ali',
-                    //         style: AppTextStyles.nameStyle,
-                    //       ),
-                    //       const SizedBox(width: 10),
-                    //       Text(
-                    //         '12:30pm',
-                    //         style: AppTextStyles.smallText,
-                    //       ),
-                    //     ],
-                    //   ),
-                    //   subtitle: Text('Joined #$name'),
-                    // ),
                   ],
                 ),
           //  bottomSheet: sendMessageArea(name, editorController),

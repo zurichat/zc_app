@@ -1,7 +1,7 @@
 //TODO: remove material import, this is temporary for testing
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; //TODO material was only imported for the icons
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/models/channel_members.dart';
@@ -32,6 +32,9 @@ class ChannelPageViewModel extends BaseViewModel {
 
   final _bottomSheetService = locator<BottomSheetService>();
 
+//TODO This ScrollController will be removed
+  ScrollController scrollController = ScrollController();
+
   bool isLoading = true;
   List<UserSearch> usersInOrg = [];
 
@@ -47,13 +50,8 @@ class ChannelPageViewModel extends BaseViewModel {
     fetchMessages("$channelId");
 
     getChannelSocketId("$channelId");
-    fetchMembersInOrganisation();
-    listenToNewMessages("$channelId");
-  }
 
-  void fetchMembersInOrganisation() async {
-    usersInOrg = await _jumpToApiService.fetchListOfMembers();
-    print(usersInOrg);
+    listenToNewMessages("$channelId");
   }
 
   void showThreadOptions() async {
@@ -110,6 +108,7 @@ class ChannelPageViewModel extends BaseViewModel {
       );
     });
     isLoading = false;
+    scrollController.jumpTo(scrollController.position.maxScrollExtent);
 
     notifyListeners();
   }

@@ -16,6 +16,7 @@ class ChannelAddPeopleView extends StatelessWidget {
         initialiseSpecialViewModelsOnce: true,
         disposeViewModel: false,
         builder: (context, viewModel, child) => Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
             title: Text(
               'Add People',
