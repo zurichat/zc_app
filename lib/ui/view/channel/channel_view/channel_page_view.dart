@@ -61,215 +61,211 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
             numberOfMembers: membersCount,
             model: viewModel,
           ),
-          body: viewModel.isLoading
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Stack(
+          body:
+              // body: viewModel.isLoading
+              //     ? Center(
+              //         child: CircularProgressIndicator(),
+              //       )
+              //     :
+              Stack(
+            children: [
+              SingleChildScrollView(
+                controller: viewModel.scrollController,
+                child: Column(
                   children: [
-                    SingleChildScrollView(
-                      controller: viewModel.scrollController,
-                      child: Column(
-                        children: [
-                          channelName("#$channelname"),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Container(
-                            child: channelInfo('@mark',
-                                ' created this channel on August 12, 2021. This is the very beginning of the #$name channel.'),
-                          ),
-                          const SizedBox(height: 20),
-
-                          CustomRow(),
-                          const SizedBox(height: 20),
-                          dateBuilder(context),
-                          const SizedBox(height: 7),
-                          Container(
-                            child: !nullListChecker(
-                                    viewModel.channelUserMessages)
-                                ? ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount:
-                                        viewModel.channelUserMessages!.length,
-                                    itemBuilder: (context, index) =>
-                                        ThreadCardView.threadChannelMain(
-                                            viewModel
-                                                .channelUserMessages![index]),
-                                  )
-                                : Container(),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.05,
-                          )
-                          //message starts here
-
-                          // ListTile(
-                          //   leading: Image.asset('assets/channel_page/female.png'),
-                          //   title: Row(
-                          //     children: [
-                          //       Text(
-                          //         'Clutch',
-                          //         style: AppTextStyles.nameStyle,
-                          //       ),
-                          //       const SizedBox(width: 10),
-                          //       Text(
-                          //         '12:30pm',
-                          //         style: AppTextStyles.smallText,
-                          //       ),
-                          //     ],
-                          //   ),
-                          //   subtitle: Text('Joined #$name'),
-                          // ),
-                          // ListTile(
-                          //   leading: Image.asset('assets/channel_page/femaleuser.png'),
-                          //   title: Row(
-                          //     children: [
-                          //       Text(
-                          //         'Ali',
-                          //         style: AppTextStyles.nameStyle,
-                          //       ),
-                          //       const SizedBox(width: 10),
-                          //       Text(
-                          //         '12:30pm',
-                          //         style: AppTextStyles.smallText,
-                          //       ),
-                          //     ],
-                          //   ),
-                          //   subtitle: Text('Joined #$name'),
-                          // ),
-                        ],
-                      ),
+                    channelName("#$channelname"),
+                    SizedBox(
+                      height: 10.0,
                     ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Material(
-                        color: Colors.white,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Divider(height: 0, color: Color(0xFF999999)),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    height: 56,
-                                    margin: EdgeInsets.only(left: 13.0),
-                                    alignment: Alignment.centerLeft,
-                                    child: FocusScope(
-                                      child: Focus(
-                                        onFocusChange: (focus) {
-                                          if (focus) {
-                                            viewModel.onMessageFieldTap();
-                                          } else {
-                                            viewModel.onMessageFocusChanged();
-                                          }
-                                        },
-                                        child: TextField(
-                                          controller: _messageController,
-                                          expands: true,
-                                          maxLines: null,
-                                          textAlignVertical:
-                                              TextAlignVertical.center,
-                                          decoration: InputDecoration.collapsed(
-                                              hintText: 'Add a Reply',
-                                              hintStyle:
-                                                  AppTextStyles.faintBodyText),
-                                        ),
-                                      ),
-                                    ),
+                    Container(
+                      child: channelInfo('@mark',
+                          ' created this channel on August 12, 2021. This is the very beginning of the #$name channel.'),
+                    ),
+                    const SizedBox(height: 20),
+
+                    CustomRow(),
+                    const SizedBox(height: 20),
+                    dateBuilder(context),
+                    const SizedBox(height: 7),
+                    Container(
+                      child: !nullListChecker(viewModel.channelUserMessages)
+                          ? ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: viewModel.channelUserMessages!.length,
+                              itemBuilder: (context, index) =>
+                                  ThreadCardView.threadChannelMain(
+                                      viewModel.channelUserMessages![index]),
+                            )
+                          : Container(),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
+                    )
+                    //message starts here
+
+                    // ListTile(
+                    //   leading: Image.asset('assets/channel_page/female.png'),
+                    //   title: Row(
+                    //     children: [
+                    //       Text(
+                    //         'Clutch',
+                    //         style: AppTextStyles.nameStyle,
+                    //       ),
+                    //       const SizedBox(width: 10),
+                    //       Text(
+                    //         '12:30pm',
+                    //         style: AppTextStyles.smallText,
+                    //       ),
+                    //     ],
+                    //   ),
+                    //   subtitle: Text('Joined #$name'),
+                    // ),
+                    // ListTile(
+                    //   leading: Image.asset('assets/channel_page/femaleuser.png'),
+                    //   title: Row(
+                    //     children: [
+                    //       Text(
+                    //         'Ali',
+                    //         style: AppTextStyles.nameStyle,
+                    //       ),
+                    //       const SizedBox(width: 10),
+                    //       Text(
+                    //         '12:30pm',
+                    //         style: AppTextStyles.smallText,
+                    //       ),
+                    //     ],
+                    //   ),
+                    //   subtitle: Text('Joined #$name'),
+                    // ),
+                  ],
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Material(
+                  color: Colors.white,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Divider(height: 0, color: Color(0xFF999999)),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              height: 56,
+                              margin: EdgeInsets.only(left: 13.0),
+                              alignment: Alignment.centerLeft,
+                              child: FocusScope(
+                                child: Focus(
+                                  onFocusChange: (focus) {
+                                    if (focus) {
+                                      viewModel.onMessageFieldTap();
+                                    } else {
+                                      viewModel.onMessageFocusChanged();
+                                    }
+                                  },
+                                  child: TextField(
+                                    controller: _messageController,
+                                    expands: true,
+                                    maxLines: null,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    decoration: InputDecoration.collapsed(
+                                        hintText: 'Add a Reply',
+                                        hintStyle: AppTextStyles.faintBodyText),
                                   ),
                                 ),
-                                Visibility(
-                                  visible: !viewModel.isVisible,
-                                  child: Row(
-                                    children: [
-                                      IconButton(
-                                        icon: Icon(
-                                          Icons.camera_alt_outlined,
-                                          color: AppColors.darkGreyColor,
-                                        ),
-                                        onPressed: () {},
-                                      ),
-                                      IconButton(
-                                        icon: Icon(
-                                          Icons.attach_file_outlined,
-                                          color: AppColors.darkGreyColor,
-                                        ),
-                                        onPressed: () {},
-                                      )
-                                    ],
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: !viewModel.isVisible,
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.camera_alt_outlined,
+                                    color: AppColors.darkGreyColor,
                                   ),
+                                  onPressed: () {},
+                                ),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.attach_file_outlined,
+                                    color: AppColors.darkGreyColor,
+                                  ),
+                                  onPressed: () {},
                                 )
                               ],
                             ),
-                            Visibility(
-                                visible: viewModel.isVisible,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(
-                                              AppIcons.shapezap,
-                                              color: AppColors.darkGreyColor,
-                                            )),
-                                        IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(
-                                              Icons.alternate_email_outlined,
-                                              color: AppColors.darkGreyColor,
-                                            )),
-                                        IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(
-                                              Icons.tag_faces_sharp,
-                                              color: AppColors.darkGreyColor,
-                                            )),
-                                        IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(
-                                              Icons.camera_alt_outlined,
-                                              color: AppColors.darkGreyColor,
-                                            )),
-                                        IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(
-                                              Icons.attach_file_outlined,
-                                              color: AppColors.darkGreyColor,
-                                            )),
-                                      ],
-                                    ),
-                                    IconButton(
-                                        onPressed: () {
-                                          if (_messageController.text
-                                              .toString()
-                                              .isNotEmpty) {
-                                            viewModel.sendMessage(
-                                                _messageController.text,
-                                                "$channelId");
-
-                                            _messageController.text = "";
-                                            FocusScope.of(context)
-                                                .requestFocus(FocusNode());
-                                          }
-                                        },
-                                        icon: Icon(
-                                          Icons.send,
-                                          color: AppColors.darkGreyColor,
-                                        ))
-                                  ],
-                                ))
-                          ],
-                        ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
+                      Visibility(
+                          visible: viewModel.isVisible,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        AppIcons.shapezap,
+                                        color: AppColors.darkGreyColor,
+                                      )),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.alternate_email_outlined,
+                                        color: AppColors.darkGreyColor,
+                                      )),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.tag_faces_sharp,
+                                        color: AppColors.darkGreyColor,
+                                      )),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.camera_alt_outlined,
+                                        color: AppColors.darkGreyColor,
+                                      )),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.attach_file_outlined,
+                                        color: AppColors.darkGreyColor,
+                                      )),
+                                ],
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    if (_messageController.text
+                                        .toString()
+                                        .isNotEmpty) {
+                                      viewModel.sendMessage(
+                                          _messageController.text,
+                                          "$channelId");
+
+                                      _messageController.text = "";
+                                      FocusScope.of(context)
+                                          .requestFocus(FocusNode());
+                                    }
+                                  },
+                                  icon: Icon(
+                                    Icons.send,
+                                    color: AppColors.darkGreyColor,
+                                  ))
+                            ],
+                          ))
+                    ],
+                  ),
                 ),
+              )
+            ],
+          ),
           //  bottomSheet: sendMessageArea(name, editorController),
         );
       },
@@ -529,8 +525,6 @@ dateBuilder(BuildContext context) {
   ]);
 }
 
-
-
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 // import 'package:hng/models/channel_members.dart';
@@ -573,13 +567,13 @@ dateBuilder(BuildContext context) {
 //       viewModelBuilder: () => ChannelPageViewModel(),
 //       builder: (context, viewModel, child) {
 //         return Scaffold(
-//           appBar: appBar('${channelDetail.name}', "${channelMembers.length.toString()} members", 
-//           context,viewModel.goBack, 
+//           appBar: appBar('${channelDetail.name}', "${channelMembers.length.toString()} members",
+//           context,viewModel.goBack,
 //           //(){
 // //viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,channelDetail)
-//           //} 
+//           //}
 //             ),
-         
+
 //           body: SingleChildScrollView(
 //             scrollDirection: Axis.vertical,
 //             child: Column(
@@ -664,7 +658,7 @@ dateBuilder(BuildContext context) {
 
 // AppBar appBar(String text, String nexttext, BuildContext context,
 // Function backNavigation,
-// //Function infoNavigation, 
+// //Function infoNavigation,
 // ) {
 
 //   return AppBar(
