@@ -14,7 +14,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+# echo "{name}={value}" >> $GITHUB_ENV
    
     steps:
       - uses: actions/checkout@v2
@@ -25,7 +25,7 @@ jobs:
         with:
           flutter-version: '2.2.3'
       - run: flutter pub get
-      - run: flutter test
+      # - run: flutter test
 
       # Note: This workflow uses the latest stable version of the Dart SDK.
       # You can specify other versions if desired, see documentation here:
@@ -41,8 +41,8 @@ jobs:
       #   run: dart format --output=none --set-exit-if-changed .
 
       # Consider passing '--fatal-infos' for slightly stricter analysis.
-      - name: Analyze project source
-        run: dart analyze
+      # - name: Analyze project source
+        # run: dart analyze
 
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/ui_helpers.dart';
-import 'package:hng/ui/view/create_channel_view/widgets/custom_text_field.dart';
-import 'package:hng/ui/view/create_channel_view/widgets/custom_text_widget.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../shared/shared.dart';
+import '../../shared/ui_helpers.dart';
 import 'create_channel_viewmodel.dart';
+import 'widgets/custom_text_field.dart';
+import 'widgets/custom_text_widget.dart';
 
 class CreateChannelView extends StatelessWidget {
   @override
@@ -23,7 +23,7 @@ class CreateChannelView extends StatelessWidget {
                       padding: 17,
                       fontWeight: FontWeight.bold,
                       text: 'Cancel',
-                      color: AppColors.greenColor,
+                      color: AppColors.zuriPrimaryColor,
                       decoration: TextDecoration.underline),
                 ),
                 title: Text(
@@ -39,7 +39,7 @@ class CreateChannelView extends StatelessWidget {
                         padding: 17,
                         fontWeight: FontWeight.bold,
                         text: 'Create',
-                        color: AppColors.greenColor,
+                        color: AppColors.zuriPrimaryColor,
                         decoration: TextDecoration.underline),
                   ),
                 ],
@@ -121,7 +121,7 @@ class CreateChannelView extends StatelessWidget {
                           UIHelper.verticalSpaceMedium,
                           CustomTextWidget(
                             text:
-                                'When channel is set to private, members of your workspace can only view or join by invitation',
+                                'When channel is set to private, members of your organization can only view or join by invitation',
                             color: AppColors.greyishColor,
                             fontSize: 14,
                           )

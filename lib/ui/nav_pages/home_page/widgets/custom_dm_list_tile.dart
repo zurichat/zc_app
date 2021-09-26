@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../shared/colors.dart';
+import '../../../shared/shared.dart';
+import '../home_page_viewmodel.dart';
+
+// import 'package:hng/ui/direct_message/direct_message.dart';
+
+// import '../../../shared/colors.dart';
 
 class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
   final imagelink;
   final userName;
   final String name;
+
   const CustomDMListTile({
     Key? key,
     this.imagelink,
@@ -17,7 +22,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
 
   showProfileDialog(BuildContext context) {
     // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
+    final alert = AlertDialog(
       elevation: 4.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
@@ -31,11 +36,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
           const SizedBox(width: 8),
           Text(
             userName,
-            style: const TextStyle(
-              fontWeight: FontWeight.w700,
-              color: AppColors.greyishColor,
-              fontSize: 15,
-            ),
+            style: AppTextStyles.normalText,
           ),
         ],
       ),
@@ -65,36 +66,15 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
                 borderRadius: BorderRadius.circular(4),
                 image: DecorationImage(
                     image: AssetImage(imagelink), fit: BoxFit.cover)),
-        ),
-        const SizedBox(width: 8),
-//TODO master
-        GestureDetector(
-          onLongPress: () {
-            showProfileDialog(context);
-          },
-          child: Text(
-            userName,
-            style: const TextStyle(
-              fontWeight: FontWeight.w700,
-              color: AppColors.greyishColor,
-              fontSize: 15,
-            ),
-//TODO
-        Text(
-          userName,
-          style: const TextStyle(
-            fontWeight: FontWeight.w500,
-            color: AppColors.greyishColor,
-            fontSize: 16,
-//TODO dev incoming
           ),
           const SizedBox(width: 8),
-          Text(
-            userName,
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              color: AppColors.greyishColor,
-              fontSize: 16,
+          GestureDetector(
+            onLongPress: () {
+              showProfileDialog(context);
+            },
+            child: Text(
+              userName,
+              style: AppTextStyles.normalText,
             ),
           ),
           const SizedBox(width: 8),

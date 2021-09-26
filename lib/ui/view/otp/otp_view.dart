@@ -1,198 +1,196 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'otp_viewmodel.dart';
+import 'package:flutter/rendering.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
-class OtpView extends StatefulWidget {
-  const OtpView({Key? key}) : super(key: key);
+import '../../../app/app.logger.dart';
+import '../../shared/colors.dart';
+import '../../shared/shared.dart';
+import 'otp_view.form.dart';
+import 'otp_viewmodel.dart';
 
-  @override
-  _OtpViewState createState() => _OtpViewState();
-}
-
-class _OtpViewState extends State<OtpView> {
-  FocusNode? pin1FocusNode;
-  FocusNode? pin2FocusNode;
-  FocusNode? pin3FocusNode;
-  FocusNode? pin4FocusNode;
-
-  @override
-  void initState() {
-    super.initState();
-    pin1FocusNode = FocusNode();
-    pin2FocusNode = FocusNode();
-    pin3FocusNode = FocusNode();
-    pin4FocusNode = FocusNode();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    pin1FocusNode!.dispose();
-    pin2FocusNode!.dispose();
-    pin3FocusNode!.dispose();
-    pin4FocusNode!.dispose();
-  }
-
-  void otpPassField(String value, FocusNode? focusNode) {
-    if (value.length == 1) {
-      focusNode!.requestFocus();
-    }
-    if (value.length == 0) {
-      focusNode!.previousFocus();
-    }
-  }
+//stacked forms handling
+@FormView(
+  fields: [
+    FormTextField(name: 'otp'),
+  ],
+)
+class OTPView extends StatelessWidget with $OTPView {
+  final log = getLogger('OTPView');
 
   @override
   Widget build(BuildContext context) {
-    RoundedRectangleBorder roundedBorder() {
-      return RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6),
-          side: BorderSide(color: AppColors.greenColor));
-    }
-
-    OutlineInputBorder outlineInputBorder() {
-      return OutlineInputBorder(
-          borderRadius: BorderRadius.circular((7.0)),
-          borderSide: BorderSide(color: AppColors.blackColor));
-    }
-
-    final  otpDecorator = InputDecoration(
-        contentPadding: EdgeInsets.all(screenAwareSize(20, context)),
-        focusedBorder: outlineInputBorder(),
-        enabledBorder: outlineInputBorder(),
-        border: outlineInputBorder());
-
-    TextFormField textFormField(inputFocusNode_1, inputFocusNode_2) {
-      return TextFormField(
-        maxLines: 1,
-        inputFormatters: [LengthLimitingTextInputFormatter(1)],
-        style: AppTextStyles.body1Bold,
-        textAlign: TextAlign.center,
-        focusNode: inputFocusNode_1,
-        keyboardType: TextInputType.number,
-        obscureText: true,
-        cursorColor: AppColors.blackColor,
-        decoration: otpDecorator,
-        onChanged: (value) => otpPassField(value, inputFocusNode_2),
-      );
-    }
-
-    return ViewModelBuilder<OtpViewModel>.reactive(
-      viewModelBuilder: () => OtpViewModel(),
-      builder: (context, model, child) => Scaffold(
-        // appBar: AppBar(),
-        body: Container(
-          child: ListView(children: [
-            Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: screenAwareSize(70, context),
-                      bottom: screenAwareSize(5, context)),
-                  child: Center(
-                      child: Image.asset(
-                    'assets/logo/zuri_logo.png',
-                    height: screenAwareSize(85, context),
-                    width: screenAwareSize(85, context),
-                  )),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: screenAwareSize(7, context)),
-                  child: Center(
-                      child: Text('Forgot Password',
-                          style: AppTextStyles.heading7)),
-                ),
-                Padding(
-                  padding:
-                      EdgeInsets.only(bottom: screenAwareSize(25, context)),
-                  child: Center(
+    return ViewModelBuilder<OTPViewModel>.reactive(
+      //listenToFormUpdated automatically syncs text from TextFields to the viewmodel
+      onModelReady: (model) => listenToFormUpdated(model),
+      viewModelBuilder: () => OTPViewModel(),
+      staticChild: OTPViewModel.init(),
+      builder: (context, model, child) => ModalProgressHUD(
+        inAsyncCall: model.isLoading,
+        color: AppColors.whiteColor,
+        progressIndicator: CircularProgressIndicator(
+          color: AppColors.zuriPrimaryColor,
+        ),
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: AppColors.whiteColor,
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: Image.asset('assets/logo/zuri_chat_logo.png'),
+                    ),
+                    SizedBox(
+                      height: 24.0,
+                    ),
+                    Center(
                       child: Text(
-                    'Enter the 4-digit OTP sent to your email',
-                    style: AppTextStyles.body1Regular,
-                  )),
-                ),
-                Form(
-                    child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: screenAwareSize(10, context),
-                      horizontal: screenAwareSize(75, context)),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: screenAwareSize(50, context),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        'One-Time Password',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 20.0),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Center(
+                      child: Text(
+                        'Enter the 6-digit OTP sent to your email',
+                      ),
+                    ),
+                    SizedBox(
+                      height: 49.0,
+                    ),
+                    Form(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 30),
+                        child: PinCodeTextField(
+                          appContext: context,
+                          pastedTextStyle: TextStyle(
+                            color: AppColors.zuriPrimaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          validator: (value) {},
+                          length: 6,
+                          blinkWhenObscuring: true,
+                          animationType: AnimationType.fade,
+                          pinTheme: PinTheme(
+                            selectedColor: AppColors.zuriPrimaryColor,
+                            selectedFillColor: AppColors.zuriPrimaryColor,
+                            shape: PinCodeFieldShape.box,
+                            activeColor: AppColors.zuriPrimaryColor,
+                            disabledColor: Colors.grey,
+                            inactiveColor: Colors.white,
+                            inactiveFillColor: AppColors.whiteColor,
+                            borderRadius: BorderRadius.circular(5),
+                            fieldHeight: 40,
+                            fieldWidth: 40,
+                            activeFillColor: Colors.white,
+                          ),
+                          cursorColor: AppColors.zuriPrimaryColor,
+                          animationDuration: Duration(milliseconds: 300),
+                          enableActiveFill: true,
+                          controller: otpController,
+                          keyboardType: TextInputType.number,
+                          boxShadows: [
+                            BoxShadow(
+                              offset: Offset(0, 1),
+                              color: Colors.black12,
+                              blurRadius: 10,
+                            )
+                          ],
+                          onCompleted: (value) {},
+                          onTap: () {},
+                          onChanged: (value) {},
+                          beforeTextPaste: (text) {
+                            log.i('Allowing to paste $text');
+                            //if you return true then it will show the
+                            //paste confirmation dialog. Otherwise if
+                            // false, then nothing will happen.
+                            //but you can show anything you want here,
+                            // like your pop up saying wrong paste format or etc
+                            return true;
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Center(
+                      child: RichText(
+                        text: TextSpan(
                           children: [
-                            SizedBox(
-                              width: screenAwareSize(50, context),
-                              height: screenAwareSize(50, context),
-                              child:
-                                  textFormField(pin1FocusNode, pin2FocusNode),
+                            TextSpan(
+                              text: 'Didn\'t receive any code? ',
+                              style: AppTextStyles.normalText.copyWith(
+                                color: Colors.black,
+                              ),
                             ),
-                            SizedBox(
-                              width: screenAwareSize(50, context),
-                              height: screenAwareSize(50, context),
-                              child:
-                                  textFormField(pin2FocusNode, pin3FocusNode),
-                            ),
-                            SizedBox(
-                              width: screenAwareSize(50, context),
-                              height: screenAwareSize(50, context),
-                              child:
-                                  textFormField(pin3FocusNode, pin4FocusNode),
-                            ),
-                            SizedBox(
-                              width: screenAwareSize(50, context),
-                              height: screenAwareSize(50, context),
-                              child:
-                                  textFormField(pin4FocusNode, pin4FocusNode),
+                            TextSpan(
+                              text: 'Resend',
+                              style: AppTextStyles.body2Bold.copyWith(
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                )),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: screenAwareSize(7, context),
-                      bottom: screenAwareSize(15, context)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Didn\'t receive any code?',
-                          style: AppTextStyles.body1Regular),
-                      TextButton(
-                          onPressed: () {
-                            //navigation.navigateTo(Routes.homeView);
-                          },
-                          child: Text('Resend',
-                              style: AppTextStyles.textButtonText)),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 40.0,
+                    ),
+                    Center(
+                      child: FractionallySizedBox(
+                        widthFactor: 1.0,
+                        child: ElevatedButton(
+                          onPressed: () => model.verifyOTP(context),
+                          child: Text(
+                            'Continue',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                fontStyle: FontStyle.normal,
+                                color: Color(0xffFFFFFF)),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                            primary: Color(0xff00B87C),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          model.navigateLogin();
+                        },
+                        child: Text(
+                          'Back to login',
+                          style: TextStyle(color: AppColors.zuriPrimaryColor),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenAwareSize(30, context)),
-                  height: screenAwareSize(35, context),
-                  width: double.infinity,
-                  child: MaterialButton(
-                      shape: roundedBorder(),
-                      color: AppColors.greenColor,
-                      onPressed: () {
-                        model.navigatorToHome();
-                      },
-                      child: Text(
-                        'Continue',
-                        style: AppTextStyles.buttonText,
-                      )),
-                ),
-              ],
+              ),
             ),
-          ]),
+          ),
         ),
       ),
     );

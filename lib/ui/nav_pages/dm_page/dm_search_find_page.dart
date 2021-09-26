@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
-import 'package:hng/ui/nav_pages/dm_page/dm_page_viewmodel.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../shared/shared.dart';
+import 'dm_page_viewmodel.dart';
 
 class DmScreen extends StatefulWidget {
   const DmScreen({Key? key}) : super(key: key);
@@ -239,7 +240,7 @@ Container onlineStatusDot({bool isOnline = false}) {
     height: 8,
     width: 8,
     decoration: BoxDecoration(
-        color: isOnline ? AppColors.greenColor : Colors.transparent,
+        color: isOnline ? AppColors.zuriPrimaryColor : Colors.transparent,
         shape: BoxShape.circle,
         border: isOnline
             ? Border.all(color: Colors.transparent)

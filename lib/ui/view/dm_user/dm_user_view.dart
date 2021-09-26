@@ -3,28 +3,41 @@ import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/view/dm_user/dm_user_viewmodel.dart';
-import 'package:hng/ui/view/dm_user/dummy_data/models/Message.dart';
+import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
 import 'package:hng/ui/view/dm_user/icons/zap_icon.dart';
+import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
+import 'package:hng/ui/view/dm_user/widgets/custom_status.dart';
+import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
 import 'package:hng/ui/view/dm_user/widgets/message_view.dart';
+import 'package:hng/ui/view/dm_user/widgets/online_indicator.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
-class DmUserView extends StatelessWidget {
+import 'dm_user_view.form.dart';
+
+@FormView(
+  fields: [
+    FormTextField(name: 'message'),
+  ],
+)
+class DmUserView extends StatelessWidget with $DmUserView {
   DmUserView({Key? key}) : super(key: key);
 
-  final _scrollController = ScrollController();
+  final scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmUserViewModel>.reactive(
+        onModelReady: (model) => listenToFormUpdated(model),
         viewModelBuilder: () => DmUserViewModel(),
         builder: (context, model, child) {
           debugPrint(model.hasClickedMessageField.toString());
           return Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: AppColors.whiteColor,
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: AppColors.whiteColor,
               leading: IconButton(
-                icon: Icon(Icons.arrow_back_ios_sharp),
+                icon: const Icon(Icons.arrow_back_ios_sharp),
                 iconSize: 18.0,
                 color: AppColors.deepBlackColor,
                 onPressed: () {
@@ -37,116 +50,134 @@ class DmUserView extends StatelessWidget {
                 children: [
                   Row(
                     children: [
+                      OnlineIndicator(),
+                      const SizedBox(width: 4.0),
                       Text(model.receiver.username,
-                          style: TextStyle(
-                              color: Colors.black,
+                          style: const TextStyle(
+                              color: AppColors.deepBlackColor,
                               fontSize: 16.0,
                               fontWeight: FontWeight.w400)),
-                      SizedBox(width: 12.0),
-                      _onlineIndicator(0xFF007952),
                     ],
                   ),
-                  Text(
-                    "View Details",
-                    style: TextStyle(color: Color(0xFF999999), fontSize: 12.0),
+                  const Text(
+                    'View Details',
+                    style: TextStyle(
+                        color: AppColors.greyishColor, fontSize: 12.0),
                   )
                 ],
               ),
               actions: [
                 IconButton(
-                  icon: Icon(Icons.info_outline),
-                  color: Color(0xFF4D4D4D),
+                  icon: const Icon(Icons.info_outline),
+                  color: AppColors.greyColor,
                   onPressed: () {},
                 )
               ],
-              elevation: 0.0,
+              elevation: 1.0,
             ),
             body: Stack(
               children: [
                 SingleChildScrollView(
-                  controller: _scrollController,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Divider(height: 0, color: AppColors.greyishColor),
-                      Container(
-                        padding: EdgeInsets.only(bottom: 80.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                  physics: BouncingScrollPhysics(),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10, left: 5, right: 10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 16.0, top: 24.0),
+                            Container(
+                              padding: const EdgeInsets.only(bottom: 20.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(3),
-                                      child: Container(
-                                        width: 70,
-                                        height: 70,
-                                        child: Image.asset("assets/images/avatar.png",
-                                            fit: BoxFit.fill),
-                                      ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 20.0, top: 24.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(3),
+                                          child: Container(
+                                            width: 50,
+                                            height: 50,
+                                            child: Image.asset(
+                                                'assets/images/avatar.png',
+                                                fit: BoxFit.fill),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20.0),
+                                        Row(
+                                          children: [
+                                            OnlineIndicator(),
+                                            const SizedBox(width: 7.0),
+                                            Text(model.receiver.username,
+                                                style: const TextStyle(
+                                                    fontSize: 16.0,
+                                                    fontWeight:
+                                                        FontWeight.w700)),
+                                            const SizedBox(width: 7.0),
+                                            const CustomStatus(
+                                              isActive: true,
+                                              data: '5',
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Text(model.bio,
+                                            style: const TextStyle(
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w400,
+                                                color: AppColors.greyColor)),
+                                        const SizedBox(height: 10),
+                                        const StartMessage(),
+                                        const SizedBox(height: 20)
+                                      ],
                                     ),
                                   ),
-                                  SizedBox(height: 20.0),
-                                  Row(
-                                    children: [
-                                      _onlineIndicator(0xFF00B87C),
-                                      SizedBox(width: 16.0),
-                                      Text(model.receiver.username,
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.w700)),
-                                      SizedBox(width: 8.0),
-                                      Image.asset("assets/images/status.png",
-                                          width: 16.67, height: 16.0)
-                                    ],
+                                  GroupedListView<Message, String>(
+                                    controller: scrollController,
+                                    shrinkWrap: true,
+                                    elements: model.chatMessages,
+                                    groupBy: (message) {
+                                      return message.getRelativeTime();
+                                    },
+                                    groupSeparatorBuilder: (value) {
+                                      return GroupSeparator(value);
+                                    },
+                                    itemBuilder: (context, msg) {
+                                      return InkWell(
+                                          onLongPress: () =>
+                                              model.showButtonSheet(msg),
+                                          child: MessageView(msg));
+                                    },
+                                    groupComparator: (groupOne, groupTwo) =>
+                                        groupOne.compareTo(groupTwo),
+                                    itemComparator: (itemOne, itemTwo) =>
+                                        itemOne.id.compareTo(itemTwo.id),
                                   ),
-                                  SizedBox(height: 5),
-                                  Text(model.bio,
-                                      style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color(0xFF3A3A3A))),
-                                  SizedBox(height: 15),
-                                  _startMessage(model.receiver.username)
+                                  const SizedBox(height: 40)
                                 ],
                               ),
                             ),
-                            GroupedListView<Message, String>(
-                              shrinkWrap: true,
-                              elements: model.chatMessages,
-                              groupBy: (message) {
-                                return message.getRelativeTime();
-                              },
-                              groupSeparatorBuilder: (value) {
-                                return _groupSeparator(value);
-                              },
-                              itemBuilder: (context, message) {
-                                return MessageView(message);
-                              },
-                              groupComparator: (groupOne, groupTwo) =>
-                                  groupOne.compareTo(groupTwo),
-                              itemComparator: (itemOne, itemTwo) =>
-                                  itemOne.id.compareTo(itemTwo.id),
-                            ),
-                            SizedBox(height: 40)
                           ],
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Material(
-                    color: Colors.white,
+                    color: AppColors.whiteColor,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Divider(height: 0, color: Color(0xFF999999)),
+                        Divider(height: 0, color: AppColors.greyishColor),
                         Row(
                           children: [
                             Expanded(
@@ -163,18 +194,25 @@ class DmUserView extends StatelessWidget {
                                         model.onUnfocusMessageField();
                                       }
                                     },
-                                    child: TextField(
-                                      controller: model.messageController,
-                                      expands: true,
-                                      maxLines: null,
-                                      textAlignVertical:
-                                          TextAlignVertical.center,
-                                      decoration: InputDecoration.collapsed(
-                                          hintText: "Message ${model.receiver.username}",
-                                          hintStyle: TextStyle(
-                                              color: Color(0xFFBEBEBE),
-                                              fontSize: 14.0,
-                                              fontWeight: FontWeight.w400)),
+                                    child: Flexible(
+                                      fit: FlexFit.loose,
+                                      child: TextField(
+                                        controller: messageController,
+                                        expands: true,
+                                        maxLines: null,
+                                        textAlignVertical:
+                                            TextAlignVertical.center,
+                                        decoration: InputDecoration(
+                                            hintText:
+                                                'Message ${model.receiver.username}',
+                                            // suffixIcon: CustomStatus(isActive: true,
+                                            //   data: '5'),
+
+                                            hintStyle: TextStyle(
+                                                color: AppColors.faintTextColor,
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w400)),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -185,16 +223,22 @@ class DmUserView extends StatelessWidget {
                               child: Row(
                                 children: [
                                   IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        AppIcons.shapezap,
+                                        color: AppColors.zuriTextBodyColor,
+                                      )),
+                                  IconButton(
                                     icon: Icon(
                                       Icons.camera_alt_outlined,
-                                      color: Color(0xFF424141),
+                                      color: AppColors.zuriTextBodyColor,
                                     ),
                                     onPressed: () {},
                                   ),
                                   IconButton(
                                     icon: Icon(
-                                      Icons.attach_file_outlined,
-                                      color: Color(0xFF424141),
+                                      Icons.attach_file_sharp,
+                                      color: AppColors.zuriTextBodyColor,
                                     ),
                                     onPressed: () {},
                                   )
@@ -214,49 +258,50 @@ class DmUserView extends StatelessWidget {
                                         onPressed: () {},
                                         icon: Icon(
                                           AppIcons.shapezap,
-                                          color: Color(0xFF424141),
+                                          color: AppColors.zuriTextBodyColor,
                                         )),
                                     IconButton(
                                         onPressed: () {},
                                         icon: Icon(
                                           Icons.alternate_email_outlined,
-                                          color: Color(0xFF424141),
+                                          color: AppColors.zuriTextBodyColor,
                                         )),
                                     IconButton(
                                         onPressed: () {},
                                         icon: Icon(
                                           Icons.tag_faces_sharp,
-                                          color: Color(0xFF424141),
+                                          color: AppColors.zuriTextBodyColor,
                                         )),
                                     IconButton(
                                         onPressed: () {},
                                         icon: Icon(
                                           Icons.camera_alt_outlined,
-                                          color: Color(0xFF424141),
+                                          color: AppColors.zuriTextBodyColor,
                                         )),
                                     IconButton(
                                         onPressed: () {},
                                         icon: Icon(
                                           Icons.attach_file_outlined,
-                                          color: Color(0xFF424141),
+                                          color: AppColors.zuriTextBodyColor,
                                         )),
                                   ],
                                 ),
                                 IconButton(
                                     onPressed: () {
                                       model.sendMessage();
-                                      FocusScope.of(context).requestFocus(FocusNode());
-                                      _scrollController.jumpTo(
-                                          _scrollController.position.maxScrollExtent);
-                                          // duration: Duration(milliseconds: 500),
-                                          // curve: Curves.fastOutSlowIn);
+                                      FocusScope.of(context)
+                                          .requestFocus(FocusNode());
+                                      scrollController.jumpTo(scrollController
+                                          .position.maxScrollExtent);
+                                      // duration: Duration(milliseconds: 500),
+                                      // curve: Curves.fastOutSlowIn);
                                     },
                                     icon: Icon(
                                       Icons.send,
-                                      color: Color(0xFFBEBEBE),
+                                      color: AppColors.faintTextColor,
                                     ))
                               ],
-                            ))
+                            )),
                       ],
                     ),
                   ),
@@ -265,70 +310,5 @@ class DmUserView extends StatelessWidget {
             ),
           );
         });
-  }
-
-  Widget _onlineIndicator(int color) {
-    return Icon(
-      Icons.circle,
-      color: Color(color),
-      size: 10,
-    );
-  }
-
-  Widget _groupSeparator(String value) {
-    return Container(
-      margin: EdgeInsets.only(top: 16.0),
-      child: Row(
-        children: [
-          Expanded(child: Divider(
-            color: Color(0xFF7B8794),
-          )),
-          Container(
-            child: Text(value,
-                style: TextStyle(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w400
-                )),
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: Color(0xFF7B8794),
-                    width: 0.5
-                ),
-                borderRadius: BorderRadius.all(
-                    Radius.circular(10)
-                )
-
-            ),
-          ),
-          Expanded(child: Divider(
-            color: Color(0xFF7B8794),
-          )),
-        ],
-      ),
-    );
-  }
-
-  Widget _startMessage(String username) {
-    return RichText(
-      text: TextSpan(
-          text:
-          "This is the very beginning of your "
-              "direct message \nhistory with ",
-          style: TextStyle(
-              color: Color(0xFF808080),
-              fontSize: 14.0,
-              fontWeight: FontWeight.w400),
-          children: [
-            TextSpan(
-                text: "@$username. ",
-                style: TextStyle(
-                    color: Color(0xFF8CDEC3))),
-            TextSpan(
-                text:
-                "Only the two of you are in \nthis conversation, "
-                    "and no one else can join it.")
-          ]),
-    );
   }
 }

@@ -1,4 +1,4 @@
-import 'dart:ui';
+// import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
@@ -7,16 +7,16 @@ import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 
 class PopUpNotificationsView extends StatelessWidget {
-  const PopUpNotificationsView({ Key? key }) : super(key: key);
+  const PopUpNotificationsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PopupNotificationViewModel>.reactive(
-      builder:(context, model, child) {
+      builder: (context, model, child) {
         return Scaffold(
             appBar: AppBar(
               title: Text(model.title),
-              backgroundColor: AppColors.greenColor,
+              backgroundColor: AppColors.zuriPrimaryColor,
             ),
             body: SingleChildScrollView(
               child: Container(
@@ -35,34 +35,34 @@ class PopUpNotificationsView extends StatelessWidget {
                             children: [
                               ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Chess Room"),
+                                title: Text('Chess Room'),
                                 leading: Icon(Icons.games_sharp),
                               ),
                               ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Meeting Room"),
+                                title: Text('Meeting Room'),
                                 leading:
                                     Icon(Icons.perm_contact_calendar_outlined),
                               ),
-                              ListTile(
+                              const ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Notice Board"),
+                                title: Text('Notice Board'),
                                 leading:
                                     Icon(Icons.notifications_paused_rounded),
                               ),
                               ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Music Room"),
+                                title: Text('Music Room'),
                                 leading: Icon(Icons.music_note),
                               ),
                               ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Duty Shift"),
+                                title: Text('Duty Shift'),
                                 leading: Icon(Icons.calendar_today_rounded),
                               ),
                               ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Important Deadlines"),
+                                title: Text('Important Deadlines'),
                                 leading: Icon(Icons.timelapse_outlined),
                               ),
                             ],
@@ -76,7 +76,7 @@ class PopUpNotificationsView extends StatelessWidget {
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
                 child: Icon(Icons.add),
-                backgroundColor: AppColors.greenColor,
+                backgroundColor: AppColors.zuriPrimaryColor,
                 onPressed: () {
                   showSimpleNotification(
                     Padding(
@@ -136,19 +136,24 @@ class PopUpNotificationsView extends StatelessWidget {
                                     child: CircleAvatar(
                                       radius: 5,
                                       backgroundColor: AppColors.greyishColor,
-                                      child: Image.asset(model.profileImage2,
-                                        fit:BoxFit.contain,
-
+                                      child: Image.asset(
+                                        model.profileImage2,
+                                        fit: BoxFit.contain,
                                       ),
-                                    ),),
+                                    ),
+                                  ),
                                 ),
-
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      child: Text(model.notiText2, style: TextStyle(color: AppColors.deepBlackColor, fontSize: 12.0, )
-                                        ,),
+                                      child: Text(
+                                        model.notiText2,
+                                        style: TextStyle(
+                                          color: AppColors.deepBlackColor,
+                                          fontSize: 12.0,
+                                        ),
+                                      ),
                                     ),
                                     Container(
                                       child: Text(
@@ -188,5 +193,4 @@ class PopUpNotificationsView extends StatelessWidget {
       viewModelBuilder: () => PopupNotificationViewModel(),
     );
   }
-
 }
