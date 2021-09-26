@@ -28,31 +28,31 @@ class HomePage extends StatelessWidget {
       builder: (context, vmodel, child) => SafeArea(
         child: Column(
           children: [
-             HomePageTopBar(
+            HomePageTopBar(
               organizationName: vmodel.orgName,
             ),
             vmodel.isBusy
                 ? LinearProgressIndicator(
                     backgroundColor: Colors.grey[400],
-                    valueColor:
-                        const AlwaysStoppedAnimation(AppColors.zuriPrimaryColor),
+                    valueColor: const AlwaysStoppedAnimation(
+                        AppColors.zuriPrimaryColor),
                   )
                 : Container(),
             Expanded(
               child: body(vmodel),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                    onPressed: vmodel.navigateToStartDMScreen,
-                    child: const Icon(
-                      Icons.open_in_new_outlined,
-                      color: AppColors.whiteColor,
-                    )),
-              ),
-            )
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Align(
+            //     alignment: Alignment.bottomRight,
+            //     child: FloatingActionButton(
+            //         onPressed: vmodel.navigateToStartDMScreen,
+            //         child: const Icon(
+            //           Icons.open_in_new_outlined,
+            //           color: AppColors.whiteColor,
+            //         )),
+            //   ),
+            // )
           ],
         ),
       ),
