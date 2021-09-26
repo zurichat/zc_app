@@ -74,6 +74,12 @@ class MenuItemTile extends StatelessWidget {
         return ListTile(
           title: text,
           subtitle: subtitle != null ? Text(subtitle ?? '') : null,
+          dense: true,
+          // contentPadding: EdgeInsets.symmetric(
+          //   horizontal: 0.0,
+          //   vertical: 0.0,
+          // ),
+          visualDensity: VisualDensity(horizontal: 0.0, vertical: -4.0),
           onTap: onPressed,
           shape: Border(
             top: BorderSide(

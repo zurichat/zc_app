@@ -98,6 +98,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 26,
+            ),
             TextFormField(
               initialValue:
                   ' Please open and close this page twice to see changes after saving',
@@ -111,6 +114,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                 helperMaxLines: 3,
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
             TextFormField(
               initialValue: 'The Back End for this does not exist',
               onChanged: (value) {
@@ -118,6 +124,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               },
               decoration: InputDecoration(
                   labelText: 'What I do', helperText: 'HNGi9 X I4G'),
+            ),
+            SizedBox(
+              height: 10,
             ),
             TextFormField(
               initialValue: 'The Back End for this does not exist',
