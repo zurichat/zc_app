@@ -259,9 +259,20 @@ class AppTextStyles {
     color: AppColors.zuriPrimaryColor,
     fontSize: 16,
   );
+
+  static TextStyle appBarTextStyle = GoogleFonts.lato(
+      fontSize: 20,
+      fontWeight: FontWeight.w700,
+      color: AppColors.zuriTextColorHeader);
+
   static TextStyle headerStyle = GoogleFonts.lato(
       fontSize: 16,
       fontWeight: FontWeight.w700,
+      color: AppColors.zuriTextColorHeader);
+
+  static TextStyle headerStyle1 = GoogleFonts.lato(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
       color: AppColors.zuriTextColorHeader);
 
   static TextStyle namesStyle = GoogleFonts.lato(

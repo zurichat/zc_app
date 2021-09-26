@@ -19,6 +19,11 @@ class ChannelInfoViewModel extends BaseViewModel {
   final storage = locator<SharedPreferenceLocalStorage>();
   final _dialogService = locator<DialogService>();
 
+  //  int numberOfMembers;
+  // List <ChannelMembermodel>channelMembers;
+  // ChannelModel channelDetail;
+  String? _channelName;
+
   String? _channelDescription;
 
   String get channelDescription {
@@ -31,8 +36,22 @@ class ChannelInfoViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  String get channelName {
+    return _channelName ?? 'Unnamed Channel';
+  }
+
+  void setChannelName(String channelName) {
+    _channelName = channelName;
+    // print('pppp $channelDescription');
+    notifyListeners();
+  }
+
   void navigateToEditChannel() {
     _navigationService.navigateTo(Routes.editChannelPageView);
+  }
+
+  navigateBack() {
+    _navigationService.back();
   }
 
 navigateToMembersList(List<ChannelMembermodel> members, 
@@ -64,6 +83,7 @@ navigateToMembersList(List<ChannelMembermodel> members,
       String des = response?.data['description'];
       print('sacas $des');
       setChannelDescription(des);
+      setChannelName(channelName);
 
       /*storage.setString(
         StorageKeys.currentSessionToken,

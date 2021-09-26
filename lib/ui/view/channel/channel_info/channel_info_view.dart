@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
@@ -18,80 +19,82 @@ import 'widgets/sixth_section.dart';
 import 'widgets/textstyles.dart';
 import 'widgets/third_section.dart';
 
-class ChannelInfoView extends StatefulWidget {
-  final int numberOfMembers;
-  List <ChannelMembermodel>channelMembers;
-  ChannelModel channelDetail;
-  ChannelInfoView({required this.numberOfMembers,required this.channelMembers,required this.channelDetail});
-
-  @override
-  _ChannelInfoViewState createState() => _ChannelInfoViewState();
-}
-
-class _ChannelInfoViewState extends State<ChannelInfoView> {
+class ChannelInfoView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
+        SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
     return ViewModelBuilder<ChannelInfoViewModel>.reactive(
-      builder: (context, model, child) => Scaffold(
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(60), child: customAppBar()),
-        // ignore: avoid_unnecessary_containers
-        body: SafeArea(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                 FirstSection(channelName: widget.channelDetail.name),
+      fireOnModelReadyOnce: true,
+      onModelReady: (model) {
+        model.getChannelInfo();
+      },
+      disposeViewModel: false,
+      builder: (context, model, child)
+      => ScreenUtilInit(
+          designSize: const Size(411, 823),
+          builder: () => Scaffold(
+          appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(56),
+              child: customAppBar(model)
+          ),
+          // ignore: avoid_unnecessary_containers
+          body: SafeArea(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.fromLTRB(8.w, 16.h, 8.w, 0),
+              scrollDirection: Axis.vertical,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                   FirstSection(model),
 
-                GestureDetector(
-                  onTap: model.navigateToEditChannel,
-                  //child:  EditButton(),
-                ),
-
-                const SecondSection(),
-
-                Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 19),
-                    child: Text(
-                      'You wont\'t  recieve any messages from a muted channel',
-                      style: faintTextStyle(),
-                    )),
-//Third Section
-
-                ThirdSection(
-                  goToMembersListScreen:(){
-model.navigateToMembersList(widget.channelMembers,widget.channelDetail);
-                }  ,
-                membersNumber: widget.numberOfMembers
-                ),
-
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
-                  child: Text(
-                    'Bookmarks',
-                    style: faintTextStyle(),
-                  ),
-                ),
-
-                const FourthSection(),
-                const FifthSection(),
-
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
-                  child: Text(
-                    'Advanced',
-                    style: faintTextStyle(),
-                  ),
-                ),
-
-                const SixthSection(),
-              ],
+//                   GestureDetector(
+//                     onTap: model.navigateToEditChannel,
+//                     //child:  EditButton(),
+//                   ),
+//
+//                   const SecondSection(),
+//
+//                   Container(
+//                       margin: const EdgeInsets.symmetric(
+//                           vertical: 15, horizontal: 19),
+//                       child: Text(
+//                         'You wont\'t  recieve any messages from a muted channel',
+//                         style: faintTextStyle(),
+//                       )),
+// //Third Section
+//
+//                   ThirdSection(
+//                     goToMembersListScreen:(){
+// model.navigateToMembersList(widget.channelMembers,widget.channelDetail);
+//                   }  ,
+//                   membersNumber: widget.numberOfMembers
+//                   ),
+//
+//                   Container(
+//                     margin:
+//                         const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
+//                     child: Text(
+//                       'Bookmarks',
+//                       style: faintTextStyle(),
+//                     ),
+//                   ),
+//
+//                   const FourthSection(),
+//                   const FifthSection(),
+//
+//                   Container(
+//                     margin:
+//                         const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
+//                     child: Text(
+//                       'Advanced',
+//                       style: faintTextStyle(),
+//                     ),
+//                   ),
+//
+//                   const SixthSection(),
+                ],
+              ),
             ),
           ),
         ),
