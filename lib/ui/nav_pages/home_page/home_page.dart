@@ -7,7 +7,7 @@ import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/constants.dart';
-import 'package:stacked/stacked_viewmodel.dart';
+import 'package:stacked/stacked.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
