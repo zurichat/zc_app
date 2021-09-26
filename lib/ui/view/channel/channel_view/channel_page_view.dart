@@ -39,9 +39,10 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
     TextEditingController _messageController = TextEditingController();
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
+        model.joinChannel("$channelId");
         model.fetchMessages("$channelId");
 
-        model.websocketConnect();
+        model.websocketConnect("$channelId");
       },
       //this parameter allows us to reuse the view model to persist the state
       //disposeViewModel: false,
@@ -66,6 +67,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                     ' created this channel on August 12, 2021. This is the very beginning of the #$name channel.'),
               ),
               const SizedBox(height: 20),
+              Text("${viewModel.data}"),
               CustomRow(model: viewModel),
               const SizedBox(height: 20),
               dateBuilder(context),

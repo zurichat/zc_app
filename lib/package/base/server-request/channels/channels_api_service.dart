@@ -37,6 +37,34 @@ class ChannelsApiService {
     return joinedChannels;
   }
 
+  
+  Future<Map> joinChannel(String channelId) async {
+    final userId = _userService.userId;
+    final orgId = _userService.currentOrgId;
+
+    var channelMessages;
+
+    try {
+      final res =
+          await _api.post('v1/$orgId/channels/$channelId/members/', headers: {
+        'Authorization': 'Bearer $token'
+      }, data: {
+        '_id': userId,
+        'is_admin': true,
+      });
+
+      log.i(res?.data);
+      //  channelMessages = res?.data["data"] ?? [];
+
+      //  log.i(channelMessages);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return {};
+    }
+
+    return {};
+  }
+
   Future<List> getChannelMessages(String channelId) async {
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;

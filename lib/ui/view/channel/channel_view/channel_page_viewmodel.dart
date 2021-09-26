@@ -45,6 +45,11 @@ class ChannelPageViewModel extends StreamViewModel {
     notifyListeners();
   }
 
+  void joinChannel(String channelId) async {
+    var joinedChannel = await _channelsApiService.joinChannel(channelId);
+    print(joinedChannel);
+  }
+
   void fetchMessages(String channelId) async {
     setBusy(true);
 
@@ -80,7 +85,7 @@ class ChannelPageViewModel extends StreamViewModel {
     String? userId = storage.getString(StorageKeys.currentUserId);
     var channelMessages = await _channelsApiService.sendChannelMessages(
         channelId, "$userId", message);
-    print(channelMessages);
+
     notifyListeners();
   }
 
@@ -104,13 +109,12 @@ class ChannelPageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
-  void websocketConnect() {
-    _centrifugeService.connect();
+  void websocketConnect(String channelId) async {
+    await _centrifugeService.connect();
+    await _centrifugeService.subscribe(channelId);
   }
 
-  Stream centriSub() async* {
-    _centrifugeService.subscribe("61472280f41cb684cc531a7f");
-  }
+  Stream centriSub() async* {}
 
   @override
   // TODO: implement stream

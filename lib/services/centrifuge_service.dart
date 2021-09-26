@@ -11,7 +11,7 @@ class CentrifugeService with ReactiveServiceMixin {
   Subscription? _subscription;
   final log = getLogger("CentrifugeService");
 
-  void connect() async {
+  Future connect() async {
     _client = centrifuge.createClient("$websocketUrl?format=protobuf");
 
     _client!.connectStream.listen((event) {
@@ -33,10 +33,9 @@ class CentrifugeService with ReactiveServiceMixin {
 
   void _showLog(dynamic _message) {
     log.i(_message);
-    log.d(_message);
   }
 
-  void subscribe(String channel) async {
+  Future subscribe(String channel) async {
     _subscription = _client!.getSubscription(channel);
 
     _subscription!.subscribeErrorStream.listen(_showError);
