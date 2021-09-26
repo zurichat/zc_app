@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../shared/shared.dart';
+import 'package:hng/ui/shared/shared.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -13,28 +13,41 @@ class EditProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     return ViewModelBuilder<EditProfileViewModel>.reactive(
-      onModelReady: (model) => model.fetchUser(),
+      viewModelBuilder: () => EditProfileViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
               onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
-          title: Text('Edit Profile'),
+          title: Text("Edit Profile"),
           actions: [
             TextButton(
               onPressed: () async {
                 await model.updateProfile();
               },
               child: Text(
-                'Save',
+                "Save",
                 style: TextStyle(color: AppColors.zuriTextBodyColor),
               ),
             )
           ],
         ),
-        body: Body(size: _size),
+        body: Visibility(
+          visible: !model.isBusy,
+          child: Body(size: _size),
+          replacement: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Getting Your data...'),
+                CircularProgressIndicator(
+                  color: AppColors.zuriPrimaryColor,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
-      viewModelBuilder: () => EditProfileViewModel(),
     );
   }
 }
@@ -64,7 +77,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                     height: double.maxFinite,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/background/appBarLogo.png'),
+                        image: AssetImage("assets/background/appBarLogo.png"),
                         fit: BoxFit.contain,
                       ),
                       borderRadius: BorderRadius.all(
@@ -86,12 +99,12 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   Container(
                     width: _size.width * 0.55,
                     child: TextFormField(
-                      initialValue: model.name,
+                      initialValue: model.userData.firstName,
                       onChanged: (value) {
                         model.updateString(value, '', '', '');
                       },
                       decoration: InputDecoration(
-                        labelText: 'Full Name',
+                        labelText: "Full Name",
                       ),
                     ),
                   )
@@ -99,33 +112,32 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue:
-                  ' Please open and close this page twice to see changes after saving',
+              initialValue: model.userData.displayName,
               onChanged: (value) {
                 model.updateString('', value, '', '');
               },
               decoration: InputDecoration(
-                labelText: 'Display Name',
+                labelText: "Display Name",
                 helperText:
-                    'This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.',
+                    "This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.",
                 helperMaxLines: 3,
               ),
             ),
             TextFormField(
-              initialValue: 'The Back End for this does not exist',
+              initialValue: model.userData.status,
               onChanged: (value) {
                 model.updateString('', '', value, '');
               },
               decoration: InputDecoration(
-                  labelText: 'What I do', helperText: 'HNGi9 X I4G'),
+                  labelText: "What I do", helperText: "HNGi9 X I4G"),
             ),
             TextFormField(
-              initialValue: 'The Back End for this does not exist',
+              initialValue: model.userData.phoneNum,
               onChanged: (value) {
                 model.updateString('', '', '', value);
               },
               decoration: InputDecoration(
-                  labelText: 'Phone', helperText: 'Enter your phone number'),
+                  labelText: "Phone", helperText: "Enter your phone number"),
             ),
           ],
         ),
