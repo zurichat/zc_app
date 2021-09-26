@@ -1,5 +1,6 @@
-import '../../../app/app.logger.dart';
-import '../../../utilities/enums.dart';
+import 'package:flutter/material.dart';
+import 'package:hng/app/app.logger.dart';
+import 'package:hng/utilities/enums.dart';
 
 class HomeItemModel {
   final log = getLogger('HomeItemModel');
@@ -20,6 +21,10 @@ class HomeItemModel {
     _type = type;
     log.i('i');
   }
+
+  // static HomeItemModel fromMap(map) {
+  //   // return HomeItemModel();
+  // }
 
   HomeItemType _type = HomeItemType.channels;
   HomeItemType get type {

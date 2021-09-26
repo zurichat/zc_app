@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/utilities/enums.dart';
+
+import '../ui/shared/colors.dart';
+import '../utilities/enums.dart';
 
 class ChannelIcon extends StatelessWidget {
   const ChannelIcon({required this.channelType, this.color, Key? key})
@@ -32,7 +33,7 @@ class ChannelIcon extends StatelessWidget {
         );
 
       default:
-        return Icon(null);
+        return const Icon(null);
     }
   }
 }

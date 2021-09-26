@@ -1,6 +1,6 @@
 //keep Hng Project
 import 'package:flutter/material.dart';
-import 'package:hng/utilities/constants.dart';
+import '../../../utilities/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 

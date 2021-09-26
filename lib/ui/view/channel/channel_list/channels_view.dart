@@ -13,6 +13,7 @@ class ChannelList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelListViewModel>.reactive(
       viewModelBuilder: () => ChannelListViewModel(),
+      onModelReady: (model) => model.initViewModel(),
       builder: (context, model, child) => Scaffold(
         backgroundColor: Color(0XFFF4F4F4),
         appBar: AppBar(
@@ -35,12 +36,12 @@ class ChannelList extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               subtitle: Text(
-                '5 Channels',
+                model.isBusy?"0": model.channelsList.length.toString(),
                 style: TextStyle(fontSize: 13),
               )),
         ),
         body: SafeArea(
-          child: Column(
+          child: model.isBusy?Center(child: CircularProgressIndicator()): Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
@@ -67,7 +68,7 @@ class ChannelList extends StatelessWidget {
               Expanded(
                 child: GroupedListView<dynamic, String>(
                   elements: model.channelsList,
-                  groupBy: (elements) => elements.toLowerCase()?[0],
+                  groupBy: (elements) => elements.name.toLowerCase()?[0],
                   groupSeparatorBuilder: (String value) => Padding(
                     padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                     child: Text(
@@ -77,7 +78,8 @@ class ChannelList extends StatelessWidget {
                     ),
                   ),
                   itemBuilder: (context, element) {
-                    return ChannelBrowserContainer(channelName: element);
+                    print("el ${element.name}");
+                    return ChannelBrowserContainer(channelName: element.name,channelId:element.id);
                   },
                 ),
               ),

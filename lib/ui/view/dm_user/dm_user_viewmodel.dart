@@ -28,8 +28,15 @@ class DmUserViewModel extends FormViewModel {
   bool isSendButtonEnabled = false;
 
   List<Message> chatMessages = List.empty(growable: true);
-  showButtonSheet() {
-    bottomSheet.showCustomSheet(variant: BottomSheetType.FloatingBox);
+
+  showButtonSheet(Message message) async {
+    print('Our resp ${message.message}');
+    await bottomSheet.showCustomSheet(
+        variant: BottomSheetType.FloatingBox,
+        data: message,
+        takesInput: true,
+        title: message.message);
+    notifyListeners();
   }
 
   void onTapMessageField() {
@@ -61,6 +68,7 @@ class DmUserViewModel extends FormViewModel {
   }
 
   void deleteMessage(Message message) {
+    print(message.message);
     chatMessages.remove(message);
     notifyListeners();
   }
@@ -85,7 +93,5 @@ class DmUserViewModel extends FormViewModel {
   }
 
   @override
-  void setFormStatus() {
-    // TODO: implement setFormStatus
-  }
+  void setFormStatus() {}
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../../general_widgets/custom_text.dart';
+import '../../../../../models/user_post.dart';
+import '../../../colors.dart';
+import '../../text_parser/text_parser_view.dart';
+import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
 
 class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
@@ -40,7 +40,7 @@ class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: (){},
+                  onTap: () {},
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

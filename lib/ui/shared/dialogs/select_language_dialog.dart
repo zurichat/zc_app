@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../colors.dart';
 
 class SelectLanguageDialog extends StatefulWidget {
   final DialogRequest request;
@@ -17,7 +18,7 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    int? _currentValue = widget.request.data["currentValue"];
+    int? _currentValue = widget.request.data['currentValue'];
 
     return StatefulBuilder(builder: (context, setState) {
       return AlertDialog(
@@ -32,7 +33,7 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Select Language",
+                  'Select Language',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 21,
@@ -43,10 +44,10 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
               Flexible(
                 fit: FlexFit.loose,
                 child: ListView.builder(
-                  itemCount: widget.request.data["languages"].length,
+                  itemCount: widget.request.data['languages'].length,
                   itemBuilder: (context, index) => Container(
                     child: ListTile(
-                      title: Text(widget.request.data["languages"][index]),
+                      title: Text(widget.request.data['languages'][index]),
                       leading: Radio(
                         activeColor: AppColors.zuriPrimaryColor,
                         value: index,
@@ -69,11 +70,11 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
                   MaterialButton(
                       onPressed: () =>
                           widget.completer(DialogResponse(confirmed: false)),
-                      child: Text("CANCEL")),
+                      child: Text('CANCEL')),
                   MaterialButton(
                       onPressed: () => widget.completer(
                           DialogResponse(data: _currentValue, confirmed: true)),
-                      child: Text("OK")),
+                      child: Text('OK')),
                 ],
               )
             ],

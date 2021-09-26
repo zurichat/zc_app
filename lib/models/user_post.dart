@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/utilities/enums.dart';
+import '../utilities/enums.dart';
 
 class UserThreadPost {
   String? id;
@@ -46,13 +46,17 @@ class UserPost extends UserThreadPost {
   String? id;
   String? userID;
   String? userImage;
+  @override
   String? displayName;
+  @override
   IconData? statusIcon;
+  @override
   String? lastSeen;
   String? message;
   List<PostEmojis>? postEmojis;
   String? channelName;
   ChannelType? channelType;
+  @override
   String? postDate;
 
   List<UserThreadPost>? userThreadPosts;

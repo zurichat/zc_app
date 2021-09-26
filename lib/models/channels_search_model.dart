@@ -10,8 +10,8 @@ class ChannelsSearch {
   });
 
   factory ChannelsSearch.fromJson(Map<String, dynamic> json) => ChannelsSearch(
-        id: json["_id"],
-        slug: json["slug"],
-        name: json["name"],
+        id: json['_id'],
+        slug: json['slug'],
+        name: json['name'],
       );
 }

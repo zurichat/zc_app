@@ -2,18 +2,20 @@
 import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/ui/view/channel/channel_view/channel_page_view.form.dart';
 
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+
 
 class ChannelPageViewModel extends BaseViewModel {
   bool isVisible = false;
@@ -106,14 +108,23 @@ class ChannelPageViewModel extends BaseViewModel {
     return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
   }
 
-  Future navigateToChannelInfo() async {
-    await _navigationService.navigateTo(Routes.channelInfoView);
+  navigateToChannelInfoScreen(int numberOfMembers, List<ChannelMembermodel> channelMembers,
+   
+   ChannelModel channelDetail) {
+    
+    NavigationService().navigateTo(Routes.channelInfoView,arguments: ChannelInfoViewArguments(
+      numberOfMembers: numberOfMembers, channelMembers: channelMembers,channelDetail: channelDetail));
+   
   }
 
   Future navigateToAddPeople() async {
     await _navigationService.navigateTo(Routes.addPeopleView);
   }
 
+  void goBack() {
+    NavigationService().back();
+  
+}
   navigateToChannelEdit() {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
@@ -130,3 +141,5 @@ class ChannelPageViewModel extends BaseViewModel {
     });
   }
 }
+
+

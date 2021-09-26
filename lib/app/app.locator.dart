@@ -35,8 +35,6 @@ Future setupLocator(
       await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);
 
-  locator.registerSingleton(CentrifugeService());
-
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => BottomSheetService());
   final connectivityService = await ConnectivityService.getInstance();
@@ -46,4 +44,5 @@ Future setupLocator(
   locator.registerLazySingleton(() => DMApiService());
   locator.registerLazySingleton(() => ChannelsApiService());
   locator.registerLazySingleton(() => JumpToApi());
+  locator.registerLazySingleton(() => CentrifugeService());
 }
