@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.locator.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -12,6 +13,7 @@ import '../../../view/channel/channel_view/channel_page_view.dart';
 import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
 
+final navigationService = locator<NavigationService>();
 class ThreadTextAndIcon extends StatelessWidget {
   const ThreadTextAndIcon({Key? key}) : super(key: key);
 
@@ -22,6 +24,7 @@ class ThreadTextAndIcon extends StatelessWidget {
       unread: true,
       onTap: () {
         // Navigate to threads screen
+        navigationService.navigateTo(Routes.threadsView);
       },
       icon: SvgIcon(svgIcon: SvgAssets.threads),
     );
