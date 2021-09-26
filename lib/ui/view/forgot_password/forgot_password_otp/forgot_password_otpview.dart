@@ -161,7 +161,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                           padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: Color(0xff00B87C),
                         ),
-                        onPressed: () => model.verifyOtpCode(),
+                        // onPressed: () => model.verifyOtpCode(),
                       ),
                     ),
                   ),
