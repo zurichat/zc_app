@@ -652,8 +652,6 @@ class StartDmViewArguments {
 
 /// ChannelPageView arguments holder class
 class ChannelPageViewArguments {
-  final Key? key;
-  ChannelPageViewArguments({this.key});
   final ChannelModel channelDetail;
   final List<ChannelMembermodel> channelMembers;
   ChannelPageViewArguments(
@@ -668,6 +666,5 @@ class ChannelInfoViewArguments {
   ChannelInfoViewArguments(
       {required this.numberOfMembers,
       required this.channelMembers,
-      required this.channelDetail}
-  );
+      required this.channelDetail});
 }

@@ -77,7 +77,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                           fontWeight: FontWeight.bold,
                         ),
                         validator: (value) {},
-                        length: 4,
+                        length: 6,
                         blinkWhenObscuring: true,
                         animationType: AnimationType.fade,
                         pinTheme: PinTheme(
@@ -148,7 +148,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                     child: FractionallySizedBox(
                       widthFactor: 1.0,
                       child: ElevatedButton(
-                        onPressed: () => model.navigateToNewPassword(),
+                        // onPressed: () => model.navigateToNewPassword(),
                         child: Text(
                           'Continue',
                           style: TextStyle(

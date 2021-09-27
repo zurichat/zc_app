@@ -9,11 +9,11 @@ import '../../../../general_widgets/ripple.dart';
 import '../../../../general_widgets/svg_icon.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/text_styles.dart';
-import '../../../view/channel/channel_view/channel_page_view.dart';
 import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
 
 final navigationService = locator<NavigationService>();
+
 class ThreadTextAndIcon extends StatelessWidget {
   const ThreadTextAndIcon({Key? key}) : super(key: key);
 
@@ -35,7 +35,7 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   const AddChannelsTextAndIcon({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context,vmodel) {
+  Widget build(BuildContext context, vmodel) {
     return _TextAndIcon(
       text: 'Add channels',
       unread: false,
@@ -99,6 +99,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 //the top pad of the first child to make it look visually ok
 class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   final HomeItemModel data;
+  final channelId;
   final bool? noTopPad;
   bool isUnread = false;
 
@@ -106,6 +107,7 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
     Key? key,
     required this.data,
     this.noTopPad,
+    required this.channelId,
   }) : super(key: key);
 
   Widget prefixIcon() {
@@ -151,7 +153,7 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
         //Navigate to channels and pass the channels id
         //This channel is is hardcoded
         //TODO:Get dynamic id from home page view
-        vmodel.navigateToChannelPage('61471f18f41cb684cc531a6d');
+        vmodel.navigateToChannelPage(channelId);
       },
     );
   }
