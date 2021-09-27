@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/models/organization_model.dart';
