@@ -23,6 +23,7 @@ class HomePageViewModel extends StreamViewModel {
   final dmApiService = locator<DMApiService>();
   final channelsApiService = locator<ChannelsApiService>();
 
+  final navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
   final api = ChannelsApiService();
   // final _dmApiService = locator<DMApiService>();
@@ -115,6 +116,56 @@ class HomePageViewModel extends StreamViewModel {
     });
   }
 
+  //This method is just to demo the side bar data that would
+  //be received by the database
+
+  getHomePageData() {
+    homePageList = [
+      HomeItemModel(type: HomeItemType.channels, name: 'annoucement'),
+      HomeItemModel(
+          type: HomeItemType.channels, unreadCount: 1, name: 'random'),
+      HomeItemModel(
+          type: HomeItemType.channels, unreadCount: 0, name: 'team-app'),
+      HomeItemModel(
+          type: HomeItemType.channels,
+          unreadCount: 5,
+          name: 'backend',
+          public: false),
+      HomeItemModel(
+          type: HomeItemType.channels,
+          unreadCount: 0,
+          name: 'frontend',
+          public: false),
+      HomeItemModel(
+          type: HomeItemType.channels, unreadCount: 4, name: 'work-flow'),
+      HomeItemModel(
+          type: HomeItemType.channels,
+          unreadCount: 1,
+          name: 'stage7',
+          public: false),
+      HomeItemModel(
+          type: HomeItemType.channels, unreadCount: 3, name: 'random'),
+      HomeItemModel(
+          type: HomeItemType.channels, unreadCount: 0, name: 'general'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Paul'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Timi'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Mayowa'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 1, name: 'Colins'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Brain'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Folks'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'DeveloperB'),
+      HomeItemModel(type: HomeItemType.dm, unreadCount: 1, name: 'edward'),
+    ];
+
+    unreads.clear();
+    directMessages.clear();
+    joinedChannels.clear();
+
+    setAllList();
+    notifyListeners();
+  }
+
+  //
   //*Navigate to other routes
   void navigateToPref() {
     _navigationService.navigateTo(Routes.fileSearchView);
@@ -123,7 +174,6 @@ class HomePageViewModel extends StreamViewModel {
   // void navigateToChannelPage() {
   //   _navigationService.navigateTo(Routes.channelPageView);
   // }
-
   void navigateToUserSearchView() {
     _navigationService.navigateTo(Routes.userSearchView);
   }
@@ -210,7 +260,8 @@ class HomePageViewModel extends StreamViewModel {
   //   ));
   // }
 
-  navigateToChannelPage(id) async {
+  navigateToChannelPage(String? channelname, String? channelId,
+      int? membersCount, bool? public) async {
     try {
       if (!await connectivityService.checkConnection()) {
         snackbar.showCustomSnackBar(
@@ -222,12 +273,16 @@ class HomePageViewModel extends StreamViewModel {
         return;
       }
       setBusy(true);
-      _channel = await api.getChannelPage(id);
-      _membersList = await api.getChannelMembers(id);
+      // _channel= await api.getChannelPage(id);
+      // _membersList= await api.getChannelMembers(id);
       setBusy(false);
-      NavigationService().navigateTo(Routes.channelPageView,
+      navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
-              channelDetail: _channel!, channelMembers: _membersList));
+            channelname: channelname,
+            channelId: channelId,
+            membersCount: membersCount,
+            public: public,
+          ));
     } catch (e) {
       print(e.toString());
       snackbar.showCustomSnackBar(

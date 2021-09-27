@@ -37,13 +37,13 @@ class _CustomPeopleListTileState extends State<CustomPeopleListTile> {
     }
 
     return ListTile(
-      leading: Container(
+      leading: SizedBox(
         child: Image.asset(widget.imagelink),
         height: 30,
         width: 30,
       ),
       title: Text('${widget.userName}',
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.w400,
             color: Color(0xFF333333),
             fontSize: 16,

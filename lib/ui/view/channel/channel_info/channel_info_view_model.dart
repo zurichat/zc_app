@@ -1,4 +1,3 @@
-
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/view/channel/channel_members/channel_members_list.dart';
@@ -35,12 +34,13 @@ class ChannelInfoViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
-navigateToMembersList(List<ChannelMembermodel> members, 
-  
-  ChannelModel channelDetail
-  ) {
+  navigateToMembersList(
+      List<ChannelMembermodel> members, ChannelModel channelDetail) {
     //NavigationService.navigateTo(Routes.cha)
-    _navigationService.navigateToView(ChannelMembersList(channelMembers: members,channelDetail:channelDetail,));
+    _navigationService.navigateToView(ChannelMembersList(
+      channelMembers: members,
+      channelDetail: channelDetail,
+    ));
   }
 
   Future showDialog() async {
@@ -84,4 +84,3 @@ navigateToMembersList(List<ChannelMembermodel> members,
     }
   }
 }
-

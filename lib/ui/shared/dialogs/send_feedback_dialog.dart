@@ -36,19 +36,19 @@ class _SendFeedbackDialogContent extends StatelessWidget {
       height: size.height * .3,
       child: Column(
         children: [
-          Align(
+          const Align(
             alignment: Alignment.topLeft,
             child: Text(
               'Compose feedback',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: double.infinity),
+            constraints: const BoxConstraints(maxWidth: double.infinity),
             child: TextField(
               controller: controller,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   hintText: 'e.g I found a bug in the Dm’s',
                   helperText:
                       'We will respond via email to feedback and questions.'),
@@ -56,18 +56,18 @@ class _SendFeedbackDialogContent extends StatelessWidget {
               maxLines: 5,
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               MaterialButton(
                   onPressed: () => completer(DialogResponse(confirmed: false)),
-                  child: Text('CANCEL')),
+                  child: const Text('CANCEL')),
               MaterialButton(
                   onPressed: () => completer(
                       DialogResponse(data: controller.text, confirmed: true)),
-                  child: Text('OK')),
+                  child: const Text('OK')),
             ],
           )
         ],

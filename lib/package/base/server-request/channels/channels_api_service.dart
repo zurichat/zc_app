@@ -25,7 +25,6 @@ class ChannelsApiService {
   // ignore: always_declare_return_types
   onChange() {}
   Future<List> getActiveDms() async {
-    final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
 
     var joinedChannels = [];
@@ -45,9 +44,100 @@ class ChannelsApiService {
     return joinedChannels;
   }
 
+  Future<String> getChannelSocketId(String channelId) async {
+    final orgId = _userService.currentOrgId;
+
+    var socketName = '';
+
+    try {
+      final res = await _api.get(
+        'v1/$orgId/channels/$channelId/socket/',
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      socketName = res?.data['socket_name'] ?? '';
+      log.i(socketName);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return 'error';
+    }
+
+    return socketName;
+  }
+
+  Future<Map> joinChannel(String channelId) async {
+    final userId = _userService.userId;
+    final orgId = _userService.currentOrgId;
+
+    // var channelMessages;
+
+    try {
+      final res =
+          await _api.post('v1/$orgId/channels/$channelId/members/', headers: {
+        'Authorization': 'Bearer $token'
+      }, data: {
+        '_id': userId,
+        'is_admin': true,
+      });
+
+      log.i(res?.data);
+      //  channelMessages = res?.data["data"] ?? [];
+
+      //  log.i(channelMessages);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return {};
+    }
+
+    return {};
+  }
+
+  Future<List> getChannelMessages(String channelId) async {
+    // final userId = _userService.userId;
+    final orgId = _userService.currentOrgId;
+
+    List channelMessages;
+
+    try {
+      final res = await _api.get(
+        'v1/$orgId/channels/$channelId/messages/',
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      channelMessages = res?.data['data'] ?? [];
+
+      log.i(channelMessages);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return [];
+    }
+
+    return channelMessages;
+  }
+
+  Future sendChannelMessages(
+      String channelId, String userId, String message) async {
+    final userId = _userService.userId;
+    final orgId = _userService.currentOrgId;
+
+    var channelMessage;
+
+    try {
+      final res = await _api.post('v1/$orgId/channels/$channelId/messages/',
+          headers: {'Authorization': 'Bearer $token'},
+          data: {'user_id': userId, 'content': message});
+
+      channelMessage = res?.data['data'] ?? {};
+
+      log.i(channelMessage);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return [];
+    }
+
+    return channelMessage;
+  }
+
   Future<List<ChannelModel>> fetchChannel() async {
-    String orgId = _userService.currentOrgId;
-    List<ChannelModel> channels = [];
+    var channels = <ChannelModel>[];
     try {
       final res = await _api.get(
         '/v1/61459d8e62688da5302acdb1/channels/',
@@ -56,9 +146,9 @@ class ChannelsApiService {
       channels =
           (res?.data as List).map((e) => ChannelModel.fromJson(e)).toList();
     } on Exception catch (e) {
-      print("Channels EXception $e");
+      log.i('Channels EXception $e');
     } catch (e) {
-      print(e);
+      log.e(e);
     }
 
     return channels;
@@ -107,9 +197,9 @@ class ChannelsApiService {
       );
       return ChannelModel.fromJson(response?.data);
     } on Exception catch (e) {
-      print("Channels page Exception $e");
+      log.e("Channels page Exception $e");
     } catch (e) {
-      print(e);
+      log.e(e);
     }
   }
 
@@ -124,14 +214,14 @@ class ChannelsApiService {
           .map((e) => ChannelMembermodel.fromJson(e))
           .toList();
     } on Exception catch (e) {
-      print("Channels member EXception $e");
+      log.e("Channels member EXception $e");
     } catch (e) {
-      print(e);
+      log.e(e);
     }
   }
 
-  dispose() {
-    // onChange.close();
+  Future<void>? dispose() {
+    controller.close();
   }
 
   String? get token =>

@@ -22,7 +22,7 @@ class YouPage extends StatelessWidget {
           // Here we take the value from the
           // MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Text(
+          title: const Text(
             'You',
             style: TextStyle(
                 fontWeight: FontWeight.bold, color: AppColors.whiteColor),
@@ -42,12 +42,12 @@ class YouPage extends StatelessWidget {
                     image: model.profileImage,
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 StatusForm(onPressed: model.setStatus),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 MenuItemTile(
                   icon: Icons.notifications_off_outlined,
-                  text: Text('Pause Notifications'),
+                  text: const Text('Pause Notifications'),
                   onPressed: model.pauseNotifications,
                   topBorder: false,
                 ),
@@ -55,7 +55,7 @@ class YouPage extends StatelessWidget {
                   text: Text.rich(TextSpan(text: 'Set Yourself as ', children: [
                     TextSpan(
                         text: model.otherStatus,
-                        style: TextStyle(fontWeight: FontWeight.bold))
+                        style: const TextStyle(fontWeight: FontWeight.bold))
                   ])),
                   icon: Icons.circle_outlined,
                   onPressed: model.toggleStatus,
@@ -63,24 +63,24 @@ class YouPage extends StatelessWidget {
                 ),
                 MenuItemTile(
                   icon: Icons.bookmark_outline_outlined,
-                  text: Text('Saved Item'),
+                  text: const Text('Saved Item'),
                   onPressed: model.viewSavedItem,
                 ),
                 MenuItemTile(
                   icon: Icons.account_circle_outlined,
-                  text: Text('View Profile'),
+                  text: const Text('View Profile'),
                   onPressed: model.viewProfile,
                   topBorder: false,
                 ),
                 MenuItemTile(
                   icon: Icons.trip_origin,
-                  text: Text('Notifications'),
+                  text: const Text('Notifications'),
                   onPressed: model.viewNotifications,
                   topBorder: false,
                 ),
                 MenuItemTile(
                   icon: Icons.settings,
-                  text: Text('Preferences'),
+                  text: const Text('Preferences'),
                   onPressed: model.viewPreferences,
                   topBorder: false,
                 ),
