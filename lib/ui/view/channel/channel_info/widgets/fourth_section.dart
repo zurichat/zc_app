@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/ui/view/channel/channel_info/widgets/textstyles.dart';
+
+import '../../../../shared/colors.dart';
+import '../../../../shared/styles.dart';
 
 class FourthSection extends StatelessWidget {
   const FourthSection({Key? key}) : super(key: key);

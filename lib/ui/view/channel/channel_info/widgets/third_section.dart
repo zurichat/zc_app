@@ -8,7 +8,12 @@ import '../../../../shared/colors.dart';
 import 'textstyles.dart';
 
 class ThirdSection extends StatelessWidget {
-  const ThirdSection({Key? key}) : super(key: key);
+   Function goToMembersListScreen;
+    final int  membersNumber;
+   ThirdSection({
+     required this.goToMembersListScreen,
+   required this.membersNumber
+   });
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +48,12 @@ class ThirdSection extends StatelessWidget {
                   ),
                   child: GestureDetector(
                     onTap: () {
+                      
+                      goToMembersListScreen();
                       // model.navigatoToMembersList();
                     },
                     child: Text(
-                      'Members (5)',
+                      "$membersNumber members",
                       style: descriptionStyle(),
                     ),
                   ),

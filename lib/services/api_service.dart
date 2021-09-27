@@ -15,8 +15,11 @@ class ApiService {
 
   Future sendPostRequest(body, endpoint) async {
     try {
-      final response = await _dio.post(apiBaseUrl + endpoint, data: json.encode(body));
-     
+      final response = await _dio.post(
+        apiBaseUrl + endpoint,
+        data: json.encode(body),
+      );
+
       final result = response.data;
       return result;
     } on DioError catch (e) {

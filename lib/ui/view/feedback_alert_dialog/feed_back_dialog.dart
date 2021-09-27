@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/app_alert_dialog.dart';
+
+import '../../../general_widgets/app_alert_dialog.dart';
 
 class FeedBackDialogCall extends StatelessWidget {
   @override

@@ -63,7 +63,7 @@ class ZuriTextStyle {
     );
   }
 
-  static TextStyle organisationNameText() {
+  static TextStyle organizationNameText() {
     return _base(
       19,
       FontWeight.w800,

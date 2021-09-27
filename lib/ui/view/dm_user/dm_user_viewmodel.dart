@@ -1,18 +1,18 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/ui/view/dm_user/dm_user_view.form.dart';
+import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
+import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../app/app.locator.dart';
-import 'dummy_data/models/message.dart';
-import 'dummy_data/models/user.dart';
-
-class DmUserViewModel extends BaseViewModel {
+class DmUserViewModel extends FormViewModel {
   final _username = '';
   String get username => _username;
 
-  TextEditingController messageController = TextEditingController();
+  final bottomSheet = locator<BottomSheetService>();
 
   final _isOnline = true;
   bool get isOnline => _isOnline;
@@ -29,6 +29,16 @@ class DmUserViewModel extends BaseViewModel {
 
   List<Message> chatMessages = List.empty(growable: true);
 
+  showButtonSheet(Message message) async {
+    print('Our resp ${message.message}');
+    await bottomSheet.showCustomSheet(
+        variant: BottomSheetType.FloatingBox,
+        data: message,
+        takesInput: true,
+        title: message.message);
+    notifyListeners();
+  }
+
   void onTapMessageField() {
     _hasClickedMessageField = true;
     notifyListeners();
@@ -40,8 +50,8 @@ class DmUserViewModel extends BaseViewModel {
   }
 
   void sendMessage() {
-    final message = messageController.text;
-    if (message.trim().isNotEmpty) {
+    final message = messageValue;
+    if (message!.trim().isNotEmpty) {
       chatMessages.add(
         Message(
           id: chatMessages.length,
@@ -50,10 +60,17 @@ class DmUserViewModel extends BaseViewModel {
           time: DateTime.now(),
         ),
       );
-      messageController.clear();
+      //TODO - fix autoclear
+      // clearText();
       notifyListeners();
       sendResponse();
     }
+  }
+
+  void deleteMessage(Message message) {
+    print(message.message);
+    chatMessages.remove(message);
+    notifyListeners();
   }
 
   void popScreen() {
@@ -74,4 +91,7 @@ class DmUserViewModel extends BaseViewModel {
     );
     notifyListeners();
   }
+
+  @override
+  void setFormStatus() {}
 }

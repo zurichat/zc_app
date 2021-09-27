@@ -6,12 +6,15 @@ import 'package:hng/ui/shared/shared.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
+
+// GENERATED IMPORTS -- DO NOT SIMPLY EDIT.
 import 'forgot_password_otp.form.dart';
 import 'forgot_password_otpviewmodel.dart';
 
 class ForgotPasswordOtpView extends StatelessWidget
     with $ForgotPasswordOtpView {
   final log = getLogger('ForgotPasswordOtpView');
+
   ForgotPasswordOtpView({Key? key}) : super(key: key);
 
   //stacked forms handling
@@ -74,7 +77,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                           fontWeight: FontWeight.bold,
                         ),
                         validator: (value) {},
-                        length: 4,
+                        length: 6,
                         blinkWhenObscuring: true,
                         animationType: AnimationType.fade,
                         pinTheme: PinTheme(
@@ -145,7 +148,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                     child: FractionallySizedBox(
                       widthFactor: 1.0,
                       child: ElevatedButton(
-                        onPressed: () => model.navigateToNewPassword(),
+                        // onPressed: () => model.navigateToNewPassword(),
                         child: Text(
                           'Continue',
                           style: TextStyle(
@@ -158,6 +161,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                           padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: Color(0xff00B87C),
                         ),
+                        onPressed: () => model.verifyOtpCode(),
                       ),
                     ),
                   ),

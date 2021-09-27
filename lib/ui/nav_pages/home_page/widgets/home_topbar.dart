@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/easy_container.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../general_widgets/easy_container.dart';
+import '../../../shared/colors.dart';
+import '../../../shared/shared.dart';
+import '../../../shared/text_styles.dart';
 import '../home_page_viewmodel.dart';
 
 class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
@@ -22,11 +22,11 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
     //Todo:get the standard app bar height
     return EasyContainer(
       color: AppColors.zuriPrimaryColor,
-      height: kToolbarHeight + 30,
-      padding: EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
+      height: kToolbarHeight + 10,
+      padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
       boxShadow: [
         BoxShadow(
-          offset: Offset(0, 3),
+          offset: const Offset(0, 3),
           blurRadius: 6,
           color: Colors.black.withOpacity(0.1),
         )
@@ -36,7 +36,7 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
           children: [
             GestureDetector(
               onTap: () {
-                vmodel.navigateToWorkspace();
+                vmodel.navigateToOrganization();
               },
               child: organizationLogo ??
                   EasyContainer(
@@ -45,17 +45,17 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
                     color: AppColors.whiteColor,
                     alignment: Alignment.center,
                     radius: 6,
-                    child: Image(
+                    child: const Image(
                       image: appBarLogo,
                       fit: BoxFit.cover,
                       height: 25,
                     ),
                   ),
             ),
-            SizedBox(width: 12),
+            const SizedBox(width: 16),
             Text(
               organizationName,
-              style: ZuriTextStyle.organisationNameText(),
+              style: ZuriTextStyle.organizationNameText(),
             )
           ],
         ),

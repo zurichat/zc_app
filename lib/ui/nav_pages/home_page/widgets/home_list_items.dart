@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
-import 'package:hng/general_widgets/easy_container.dart';
-import 'package:hng/general_widgets/ripple.dart';
-import 'package:hng/general_widgets/svg_icon.dart';
-import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/app/app.locator.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
+import '../../../../app/app.router.dart';
+import '../../../../general_widgets/easy_container.dart';
+import '../../../../general_widgets/ripple.dart';
+import '../../../../general_widgets/svg_icon.dart';
+import '../../../shared/colors.dart';
+import '../../../shared/text_styles.dart';
+import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
+
+final navigationService = locator<NavigationService>();
 
 class ThreadTextAndIcon extends StatelessWidget {
   const ThreadTextAndIcon({Key? key}) : super(key: key);
@@ -21,21 +24,24 @@ class ThreadTextAndIcon extends StatelessWidget {
       unread: true,
       onTap: () {
         // Navigate to threads screen
+        navigationService.navigateTo(Routes.threadsView);
       },
       icon: SvgIcon(svgIcon: SvgAssets.threads),
     );
   }
 }
 
-class AddChannelsTextAndIcon extends StatelessWidget {
+class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   const AddChannelsTextAndIcon({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, vmodel) {
     return _TextAndIcon(
       text: 'Add channels',
       unread: false,
       onTap: () {
+        //TODO - testing, remove later
+        NavigationService().navigateTo(Routes.newChannel);
         // Navigate to add channels screens
       },
       icon: SvgIcon(
@@ -93,6 +99,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 //the top pad of the first child to make it look visually ok
 class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   final HomeItemModel data;
+  final channelId;
   final bool? noTopPad;
   bool isUnread = false;
 
@@ -100,6 +107,7 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
     Key? key,
     required this.data,
     this.noTopPad,
+    required this.channelId,
   }) : super(key: key);
 
   Widget prefixIcon() {
@@ -141,8 +149,11 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       unread: isUnread,
       icon: prefixIcon(),
       onTap: () {
+        //vmodel.navigateToChannelScreen();
         //Navigate to channels and pass the channels id
-        vmodel.navigateToChannelPage();
+        //This channel is is hardcoded
+        //TODO:Get dynamic id from home page view
+        vmodel.navigateToChannelPage(channelId);
       },
     );
   }

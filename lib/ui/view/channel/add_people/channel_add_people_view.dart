@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
 
-import 'package:hng/ui/view/channel/add_people/channel_add_people_viewmodel.dart';
-import 'package:hng/ui/view/channel/shared_widgets.dart';
+import '../../../shared/colors.dart';
+import '../shared_widgets.dart';
+import 'channel_add_people_viewmodel.dart';
 
 class ChannelAddPeopleView extends StatelessWidget {
   const ChannelAddPeopleView({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                 size: 24.0,
               ),
               padding: EdgeInsets.zero,
-              onPressed: () {},
+              onPressed: viewModel.navigateBack(),
               iconSize: 32.0,
             ),
             actions: [
