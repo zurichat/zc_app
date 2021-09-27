@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:centrifuge/centrifuge.dart' as centrifuge;
 import 'package:centrifuge/centrifuge.dart';
@@ -13,10 +12,10 @@ class CentrifugeService with ReactiveServiceMixin {
   Subscription? _subscription;
   StreamController<String> messageStreamController =
       StreamController.broadcast();
-  final log = getLogger("CentrifugeService");
+  final log = getLogger('CentrifugeService');
 
   Future connect() async {
-    _client = centrifuge.createClient("$websocketUrl?format=protobuf",
+    _client = centrifuge.createClient('$websocketUrl?format=protobuf',
         config: centrifuge.ClientConfig());
 
     // _client!.connectStream.listen((event) {
@@ -32,11 +31,11 @@ class CentrifugeService with ReactiveServiceMixin {
     _client!.disconnect();
   }
 
-  void _showError(dynamic _error) {
+  void _showError(_error) {
     log.e(_error);
   }
 
-  void _showLog(dynamic _message) {
+  void _showLog(_message) {
     log.i(_message);
   }
 
@@ -50,20 +49,24 @@ class CentrifugeService with ReactiveServiceMixin {
     _subscription!.unsubscribeStream.listen(_showLog);
 
     _subscription!.joinStream.listen((event) {
-      log.i("Subcribe join stream $event");
+      log.i('Subcribe join stream $event');
     });
 
     _subscription!.leaveStream.listen((event) {
-      log.i("Subcribe leave stream $event");
+      log.i('Subcribe leave stream $event');
     });
 
     _subscription!.publishStream.listen((event) {
-      log.i("WORK WORK RIGHT NOW ${json.decode(utf8.decode(event.data))}");
+      log.i('WORK WORK RIGHT NOW ${json.decode(utf8.decode(event.data))}');
 
-      messageStreamController.sink.add("Message Received");
+      messageStreamController.sink.add('Message Received');
       Map user_message = json.decode(utf8.decode(event.data));
     });
 
     _subscription!.subscribe();
+  }
+
+  void dispose() {
+    messageStreamController.close();
   }
 }

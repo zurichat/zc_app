@@ -57,7 +57,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
             height: 16.0,
             width: 16.0,
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios, size: 16.0),
+              icon: const Icon(Icons.arrow_back_ios, size: 16.0),
               onPressed: () {
                 Navigator.pop(context);
                 /*if (appbarAction == 'Edit') {

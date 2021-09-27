@@ -8,7 +8,7 @@ import '../../../../shared/styles.dart';
 import '../channel_page_viewmodel.dart';
 
 class CustomRow extends ViewModelWidget<ChannelPageViewModel> {
-  CustomRow({Key? key}) : super(key: key);
+  const CustomRow({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, ChannelPageViewModel model) {
     return Row(

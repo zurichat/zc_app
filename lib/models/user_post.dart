@@ -43,8 +43,10 @@ class PostEmojis {
 }
 
 class UserPost extends UserThreadPost {
+  @override
   String? id;
   String? userID;
+  @override
   String? userImage;
   @override
   String? displayName;
@@ -52,7 +54,9 @@ class UserPost extends UserThreadPost {
   IconData? statusIcon;
   @override
   String? lastSeen;
+  @override
   String? message;
+  @override
   List<PostEmojis>? postEmojis;
   String? channelName;
   ChannelType? channelType;

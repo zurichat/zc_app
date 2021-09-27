@@ -37,8 +37,8 @@ class CreateOrganization extends StatelessWidget {
                 controller: model.pageController,
                 children: [
                   CompanyPage(email: email),
-                  ProjectPage(),
-                  InvitePage(),
+                  const ProjectPage(),
+                  const InvitePage(),
                 ],
               ),
             ),
@@ -49,7 +49,7 @@ class CreateOrganization extends StatelessWidget {
               bottom: 0,
               child: Visibility(
                 visible: model.isBusy,
-                child: Center(
+                child: const Center(
                   child: CircularProgressIndicator(
                     color: AppColors.zuriPrimaryColor,
                   ),

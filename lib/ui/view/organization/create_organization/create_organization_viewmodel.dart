@@ -90,7 +90,10 @@ class CreateOrganizationViewModel extends BaseViewModel {
   }
 
   void next() {
-    pageController.nextPage(duration: Duration(seconds: 1), curve: Curves.ease);
+    pageController.nextPage(
+      duration: const Duration(seconds: 1),
+      curve: Curves.ease,
+    );
   }
 
   Future<void> addTeammates() async {
@@ -101,7 +104,9 @@ class CreateOrganizationViewModel extends BaseViewModel {
     if (org == null) {
       print('org is null oooo');
       return snackbar.showCustomSnackBar(
-          message: 'Org is null oooo', variant: SnackbarType.failure);
+        message: 'Org is null oooo',
+        variant: SnackbarType.failure,
+      );
     }
     setBusy(true);
     await _api.addMemberToOrganization(org!.id!, inviteController.text);

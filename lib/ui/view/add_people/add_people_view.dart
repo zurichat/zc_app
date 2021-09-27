@@ -41,80 +41,78 @@ class AddPeopleView extends StatelessWidget {
         ),
         backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                Container(
-                  height: 40,
-                  margin: const EdgeInsets.only(top: 20),
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Material(
-                    elevation: 5.0,
-                    shadowColor: Colors.grey,
-                    child: TextField(
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.all(15),
-                        hintText: 'Search people to add',
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
+          child: Column(
+            children: [
+              Container(
+                height: 40,
+                margin: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: const Material(
+                  elevation: 5.0,
+                  shadowColor: Colors.grey,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(15),
+                      hintText: 'Search people to add',
+                      hintStyle: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                          ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
                         ),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
-                const Divider(),
-                ListTile(
-                  title: Text('Add Everyone',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF333333),
-                        fontSize: 16,
-                      )),
-                  subtitle: Text('Everyone will be added to channel'),
-                  trailing: Checkbox(
-                      checkColor: Colors.white,
-                      value: true,
-                      onChanged: (bool? value) {}),
-                ),
-                const Divider(),
-                const CustomPeopleListTile(
-                  imagelink: 'assets/channel_page/femaleuser.png',
-                  userName: 'Caleb',
-                  isOnline: true,
-                ),
-                const SizedBox(height: 16),
-                const CustomPeopleListTile(
-                  imagelink: 'assets/channel_page/female.png',
-                  userName: 'Lisa',
-                  isOnline: false,
-                ),
-                const SizedBox(height: 16),
-                const CustomPeopleListTile(
-                  imagelink: 'assets/channel_page/femaleuser.png',
-                  userName: 'Jennie',
-                  isOnline: false,
-                ),
-                const SizedBox(height: 16),
-                const CustomPeopleListTile(
-                  imagelink: 'assets/channel_page/female.png',
-                  userName: 'Zigga',
-                  isOnline: true,
-                ),
-                const SizedBox(height: 20),
-              ],
-            ),
+              ),
+              const SizedBox(height: 16),
+              const Divider(),
+              ListTile(
+                title: const Text('Add Everyone',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF333333),
+                      fontSize: 16,
+                    )),
+                subtitle: const Text('Everyone will be added to channel'),
+                trailing: Checkbox(
+                    checkColor: Colors.white,
+                    value: true,
+                    onChanged: (bool? value) {}),
+              ),
+              const Divider(),
+              const CustomPeopleListTile(
+                imagelink: 'assets/channel_page/femaleuser.png',
+                userName: 'Caleb',
+                isOnline: true,
+              ),
+              const SizedBox(height: 16),
+              const CustomPeopleListTile(
+                imagelink: 'assets/channel_page/female.png',
+                userName: 'Lisa',
+                isOnline: false,
+              ),
+              const SizedBox(height: 16),
+              const CustomPeopleListTile(
+                imagelink: 'assets/channel_page/femaleuser.png',
+                userName: 'Jennie',
+                isOnline: false,
+              ),
+              const SizedBox(height: 16),
+              const CustomPeopleListTile(
+                imagelink: 'assets/channel_page/female.png',
+                userName: 'Zigga',
+                isOnline: true,
+              ),
+              const SizedBox(height: 20),
+            ],
           ),
         ),
       ),

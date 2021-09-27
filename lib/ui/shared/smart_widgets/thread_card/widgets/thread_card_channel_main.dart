@@ -19,7 +19,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
     return GestureDetector(
       onTap: () => model.navigateToThread(userPost),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -30,13 +30,13 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                   height: 40,
                   decoration: BoxDecoration(
                     color: Colors.blue,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: AssetImage("${userPost!.userImage}")),
+                        image: AssetImage('${userPost!.userImage}')),
                   )),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +58,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                             color: Colors.blue,
                             size: 18,
                           ),
-                          SizedBox(width: 2),
+                          const SizedBox(width: 2),
                           CustomText(
                             text: '${userPost!.lastSeen}',
                             fontSize: 12,
@@ -66,13 +66,13 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextParser(userPost!.message),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   EmojisList(userPost: userPost),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                 ],
               ),
             )

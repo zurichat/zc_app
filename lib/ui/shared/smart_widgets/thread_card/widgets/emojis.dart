@@ -26,8 +26,8 @@ class _EmojisState extends State<Emojis> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
 
     _sizeAnimation = TweenSequence(<TweenSequenceItem<double>>[
       TweenSequenceItem<double>(
@@ -64,13 +64,13 @@ class _EmojisState extends State<Emojis> with SingleTickerProviderStateMixin {
           animation: _controller!,
           builder: (BuildContext context, _) {
             return Container(
-              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               height: 30,
               decoration: BoxDecoration(
                   color: widget.postEmoji.hasReacted
                       ? Colors.blueAccent
                       : Colors.black12,
-                  borderRadius: BorderRadius.all(Radius.circular(30))),
+                  borderRadius: const BorderRadius.all(Radius.circular(30))),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -78,13 +78,13 @@ class _EmojisState extends State<Emojis> with SingleTickerProviderStateMixin {
                     "${widget.postEmoji.postEmoji}",
                     style: TextStyle(fontSize: _sizeAnimation!.value),
                   ),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   CustomText(
                     text: widget.postEmoji.postEmojiCount.toString(),
                     fontSize: _sizeAnimation!.value,
                     fontWeight: FontWeight.bold,
                   ),
-                  RichText(text: TextSpan())
+                  RichText(text: const TextSpan())
                 ],
               ),
             );

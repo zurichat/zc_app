@@ -281,7 +281,7 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordOtpView: (data) {
-      var args = data.getArgs<ForgotPasswordOtpViewArguments>(
+      final args = data.getArgs<ForgotPasswordOtpViewArguments>(
         orElse: () => ForgotPasswordOtpViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -290,7 +290,7 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordNewView: (data) {
-      var args = data.getArgs<ForgotPasswordNewViewArguments>(
+      final args = data.getArgs<ForgotPasswordNewViewArguments>(
         orElse: () => ForgotPasswordNewViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -311,7 +311,7 @@ class StackedRouter extends RouterBase {
       );
     },
     HomePage: (data) {
-      var args = data.getArgs<HomePageArguments>(
+      final args = data.getArgs<HomePageArguments>(
         orElse: () => HomePageArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -332,7 +332,7 @@ class StackedRouter extends RouterBase {
       );
     },
     DmJumpToView: (data) {
-      var args = data.getArgs<DmJumpToViewArguments>(
+      final args = data.getArgs<DmJumpToViewArguments>(
         orElse: () => DmJumpToViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -341,7 +341,7 @@ class StackedRouter extends RouterBase {
       );
     },
     DmUserView: (data) {
-      var args = data.getArgs<DmUserViewArguments>(
+      final args = data.getArgs<DmUserViewArguments>(
         orElse: () => DmUserViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -362,7 +362,7 @@ class StackedRouter extends RouterBase {
       );
     },
     AddPluginView: (data) {
-      var args = data.getArgs<AddPluginViewArguments>(
+      final args = data.getArgs<AddPluginViewArguments>(
         orElse: () => AddPluginViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -461,7 +461,7 @@ class StackedRouter extends RouterBase {
       );
     },
     SelectEmail: (data) {
-      var args = data.getArgs<SelectEmailArguments>(nullOk: false);
+      final args = data.getArgs<SelectEmailArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => SelectEmail(
           key: args.key,
@@ -477,7 +477,7 @@ class StackedRouter extends RouterBase {
       );
     },
     CreateOrganization: (data) {
-      var args = data.getArgs<CreateOrganizationArguments>(nullOk: false);
+      final args = data.getArgs<CreateOrganizationArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => CreateOrganization(
           key: args.key,
@@ -505,7 +505,7 @@ class StackedRouter extends RouterBase {
       );
     },
     ThreadDetailView: (data) {
-      var args = data.getArgs<ThreadDetailViewArguments>(nullOk: false);
+      final args = data.getArgs<ThreadDetailViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => ThreadDetailView(
           args.userPost,
@@ -521,7 +521,7 @@ class StackedRouter extends RouterBase {
       );
     },
     EditChannelPageView: (data) {
-      var args = data.getArgs<EditChannelPageViewArguments>(
+      final args = data.getArgs<EditChannelPageViewArguments>(
         orElse: () => EditChannelPageViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -530,7 +530,7 @@ class StackedRouter extends RouterBase {
       );
     },
     StartDmView: (data) {
-      var args = data.getArgs<StartDmViewArguments>(
+      final args = data.getArgs<StartDmViewArguments>(
         orElse: () => StartDmViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
@@ -545,7 +545,7 @@ class StackedRouter extends RouterBase {
       );
     },
     ChannelPageView: (data) {
-      var args = data.getArgs<ChannelPageViewArguments>(nullOk: false);
+      final args = data.getArgs<ChannelPageViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => ChannelPageView(
           key: args.key,
@@ -558,7 +558,7 @@ class StackedRouter extends RouterBase {
       );
     },
     ChannelInfoView: (data) {
-      var args = data.getArgs<ChannelInfoViewArguments>(nullOk: false);
+      final args = data.getArgs<ChannelInfoViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => ChannelInfoView(
           numberOfMembers: args.numberOfMembers,

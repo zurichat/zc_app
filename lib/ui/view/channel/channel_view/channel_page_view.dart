@@ -38,7 +38,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
     required this.membersCount,
     required this.public,
   }) : super(key: key);
-  static String name = "general";
+  static String name = 'general';
   final String? channelname;
   final String? channelId;
   final int? membersCount;
@@ -49,7 +49,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
     TextEditingController _messageController = TextEditingController();
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
-        model.initialise("$channelId");
+        model.initialise('$channelId');
       },
       //this parameter allows us to reuse the view model to persist the state
 
@@ -58,12 +58,12 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
         return Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: CustomAppBars(
-            channelName: "#$channelname",
+            channelName: '#$channelname',
             numberOfMembers: membersCount,
             model: viewModel,
           ),
           body: viewModel.isLoading
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : Stack(
@@ -72,17 +72,17 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                       controller: viewModel.scrollController,
                       child: Column(
                         children: [
-                          channelName("#$channelname"),
-                          SizedBox(
+                          channelName('#$channelname'),
+                          const SizedBox(
                             height: 10.0,
                           ),
                           Container(
-                            child: channelInfo('@mark',
-                                ' created this channel on August 12, 2021. This is the very beginning of the #$name channel.'),
+                            child: channelInfo('@mark', '''
+ created this channel on August 12, 2021. This is the very beginning of the #$name channel.'''),
                           ),
                           const SizedBox(height: 20),
 
-                          CustomRow(),
+                          const CustomRow(),
                           const SizedBox(height: 20),
                           dateBuilder(context),
                           const SizedBox(height: 7),
@@ -90,7 +90,8 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                             child: !nullListChecker(
                                     viewModel.channelUserMessages)
                                 ? ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     itemCount:
                                         viewModel.channelUserMessages!.length,
@@ -150,13 +151,13 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Divider(height: 0, color: Color(0xFF999999)),
+                            const Divider(height: 0, color: Color(0xFF999999)),
                             Row(
                               children: [
                                 Expanded(
                                   child: Container(
                                     height: 56,
-                                    margin: EdgeInsets.only(left: 13.0),
+                                    margin: const EdgeInsets.only(left: 13.0),
                                     alignment: Alignment.centerLeft,
                                     child: FocusScope(
                                       child: Focus(
@@ -187,14 +188,14 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                                   child: Row(
                                     children: [
                                       IconButton(
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.camera_alt_outlined,
                                           color: AppColors.darkGreyColor,
                                         ),
                                         onPressed: () {},
                                       ),
                                       IconButton(
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.attach_file_outlined,
                                           color: AppColors.darkGreyColor,
                                         ),
@@ -215,31 +216,31 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                                       children: [
                                         IconButton(
                                             onPressed: () {},
-                                            icon: Icon(
+                                            icon: const Icon(
                                               AppIcons.shapezap,
                                               color: AppColors.darkGreyColor,
                                             )),
                                         IconButton(
                                             onPressed: () {},
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.alternate_email_outlined,
                                               color: AppColors.darkGreyColor,
                                             )),
                                         IconButton(
                                             onPressed: () {},
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.tag_faces_sharp,
                                               color: AppColors.darkGreyColor,
                                             )),
                                         IconButton(
                                             onPressed: () {},
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.camera_alt_outlined,
                                               color: AppColors.darkGreyColor,
                                             )),
                                         IconButton(
                                             onPressed: () {},
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.attach_file_outlined,
                                               color: AppColors.darkGreyColor,
                                             )),
@@ -252,14 +253,14 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                                               .isNotEmpty) {
                                             viewModel.sendMessage(
                                                 _messageController.text,
-                                                "$channelId");
+                                                '$channelId');
 
-                                            _messageController.text = "";
+                                            _messageController.text = '';
                                             FocusScope.of(context)
                                                 .requestFocus(FocusNode());
                                           }
                                         },
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.send,
                                           color: AppColors.darkGreyColor,
                                         ))
@@ -375,40 +376,38 @@ Padding channelName(String text) {
   );
 }
 
-Container channelInfo(String text, String nexttext) {
-  return Container(
-    child: Padding(
-      padding: const EdgeInsets.only(left: 10.0, top: 1.0, right: 20),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: RichText(
-              maxLines: 2,
-              overflow: TextOverflow.clip,
-              text: TextSpan(
-                text: text,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.zuriPrimaryColor,
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: nexttext,
-                    style: TextStyle(
-                      height: 1.5,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.greyishColor,
-                    ),
-                  ),
-                ],
+Padding channelInfo(String text, String nexttext) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 10.0, top: 1.0, right: 20),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(
+          child: RichText(
+            maxLines: 2,
+            overflow: TextOverflow.clip,
+            text: TextSpan(
+              text: text,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: AppColors.zuriPrimaryColor,
               ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: nexttext,
+                  style: const TextStyle(
+                    height: 1.5,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.greyishColor,
+                  ),
+                ),
+              ],
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     ),
   );
 }

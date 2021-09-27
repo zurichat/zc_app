@@ -16,7 +16,7 @@ class ChannelBrowserContainer extends ViewModelWidget<ChannelListViewModel> {
         //     channelname, channelId, membersCount, public);
       },
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
         ),
         child: Padding(

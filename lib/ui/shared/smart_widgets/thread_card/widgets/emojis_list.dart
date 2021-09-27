@@ -26,12 +26,12 @@ class EmojisList extends ViewModelWidget<ThreadCardViewModel> {
           ),
         Container(
             height: 30,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 color: Colors.black12,
                 borderRadius: BorderRadius.all(Radius.circular(30))),
             child: IconButton(
               onPressed: () => model.addEmojis(userPost!),
-              icon: Icon(
+              icon: const Icon(
                 Icons.add_reaction_outlined,
                 size: 14,
               ),

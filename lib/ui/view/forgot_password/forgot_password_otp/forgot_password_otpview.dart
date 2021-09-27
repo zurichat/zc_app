@@ -30,38 +30,38 @@ class ForgotPasswordOtpView extends StatelessWidget
         backgroundColor: AppColors.whiteColor,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
+            padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 6.0,
                   ),
                   Container(
                     alignment: Alignment.center,
                     child: Image.asset('assets/logo/zuri_chat_logo.png'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 24.0,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Forgot Password',
                       style: TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 20.0),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 6.0,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Enter the 4-digit OTP sent to your email',
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 49.0,
                   ),
                   Form(
@@ -70,7 +70,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                           vertical: 8.0, horizontal: 30),
                       child: PinCodeTextField(
                         appContext: context,
-                        pastedTextStyle: TextStyle(
+                        pastedTextStyle: const TextStyle(
                           color: AppColors.zuriPrimaryColor,
                           fontWeight: FontWeight.bold,
                         ),
@@ -92,12 +92,12 @@ class ForgotPasswordOtpView extends StatelessWidget
                           activeFillColor: Colors.white,
                         ),
                         cursorColor: AppColors.zuriPrimaryColor,
-                        animationDuration: Duration(milliseconds: 300),
+                        animationDuration: const Duration(milliseconds: 300),
                         enableActiveFill: true,
                         controller: otpController,
                         keyboardType: TextInputType.number,
                         boxShadows: [
-                          BoxShadow(
+                          const BoxShadow(
                             offset: Offset(0, 1),
                             color: Colors.black12,
                             blurRadius: 10,
@@ -107,15 +107,18 @@ class ForgotPasswordOtpView extends StatelessWidget
                         onTap: () {},
                         onChanged: (value) {},
                         beforeTextPaste: (text) {
-                          log.i("Allowing to paste $text");
-                          //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                          //but you can show anything you want here, like your pop up saying wrong paste format or etc
+                          log.i('Allowing to paste $text');
+                          //if you return true then it will show the paste
+                          //confirmation dialog. Otherwise if false,
+                          //then nothing will happen.
+                          //but you can show anything you want here,
+                          //like your pop up saying wrong paste format or etc
                           return true;
                         },
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
                   Center(
@@ -139,7 +142,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40.0,
                   ),
                   Center(
@@ -147,7 +150,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                       widthFactor: 1.0,
                       child: ElevatedButton(
                         onPressed: () => model.navigateToNewPassword(),
-                        child: Text(
+                        child: const Text(
                           'Continue',
                           style: TextStyle(
                               fontSize: 16,
@@ -156,8 +159,9 @@ class ForgotPasswordOtpView extends StatelessWidget
                               color: Color(0xffFFFFFF)),
                         ),
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                          primary: Color(0xff00B87C),
+                          padding:
+                              const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                          primary: const Color(0xff00B87C),
                         ),
                       ),
                     ),
