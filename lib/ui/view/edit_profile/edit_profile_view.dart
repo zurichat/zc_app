@@ -92,6 +92,9 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
                 ],
               ),
             ),
+            SizedBox(
+              height: 26,
+            ),
             TextFormField(
               initialValue: model.userModel?.lastName,
               controller: display_nameController,
@@ -102,9 +105,15 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
                 helperMaxLines: 3,
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
             TextFormField(
               decoration: InputDecoration(
                   labelText: 'What I do', helperText: 'HNGi9 X I4G'),
+            ),
+            SizedBox(
+              height: 10,
             ),
             TextFormField(
               initialValue: model.userModel?.phoneNumber,

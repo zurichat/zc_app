@@ -279,8 +279,11 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordEmailView: (data) {
+      var args = data.getArgs<ForgotPasswordEmailViewArguments>(
+        orElse: () => ForgotPasswordEmailViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ForgotPasswordEmailView(),
+        builder: (context) => ForgotPasswordEmailView(key: args.key),
         settings: data,
       );
     },
@@ -581,6 +584,12 @@ class StackedRouter extends RouterBase {
 /// ************************************************************************
 /// Arguments holder classes
 /// *************************************************************************
+
+/// ForgotPasswordEmailView arguments holder class
+class ForgotPasswordEmailViewArguments {
+  final Key? key;
+  ForgotPasswordEmailViewArguments({this.key});
+}
 
 /// ForgotPasswordOtpView arguments holder class
 class ForgotPasswordOtpViewArguments {

@@ -1,24 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.locator.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
-import '../../../../app/app.locator.dart';
-import '../../../../app/app.router.dart';
-import '../../../../models/static_user_model.dart';
-import '../../../shared/colors.dart';
-import '../../../shared/shared.dart';
-
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/channel/channel_view/channel_page_view.form.dart';
+import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
-
-import '../../../shared/colors.dart';
-import '../../../shared/styles.dart';
-import 'channel_page_view.form.dart';
-import 'channel_page_viewmodel.dart';
-import 'widgets/custom_appbar.dart';
-import 'widgets/custom_row.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 @FormView(
   fields: [
@@ -26,9 +17,9 @@ import 'widgets/custom_row.dart';
   ],
 )
 class ChannelPageView extends StatelessWidget with $ChannelPageView {
-   ChannelModel channelDetail;
-  List <ChannelMembermodel>channelMembers;
-ChannelPageView({required this.channelDetail,required this.channelMembers});
+  ChannelModel channelDetail;
+  List<ChannelMembermodel> channelMembers;
+  ChannelPageView({required this.channelDetail, required this.channelMembers});
   static String name = 'general';
   @override
   Widget build(BuildContext context) {
@@ -40,11 +31,14 @@ ChannelPageView({required this.channelDetail,required this.channelMembers});
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: appBar('${channelDetail.name}', "${channelMembers.length.toString()} members", 
-          context,viewModel.goBack, (){
-viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,channelDetail);
-          } 
-            ),
+          appBar: appBar(
+              '${channelDetail.name}',
+              "${channelMembers.length.toString()} members",
+              context,
+              viewModel.goBack, () {
+            viewModel.navigateToChannelInfoScreen(
+                channelMembers.length, channelMembers, channelDetail);
+          }),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -63,7 +57,7 @@ viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,chann
                   ],
                 ),
                 const SizedBox(height: 20),
-                row(),
+                row(viewModel),
                 const SizedBox(height: 20),
                 dateBuilder(context),
                 const SizedBox(height: 7),
@@ -127,9 +121,13 @@ viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,chann
   }
 }
 
-AppBar appBar(String text, String nexttext, BuildContext context,
-Function backNavigation,Function infoNavigation, ) {
-
+AppBar appBar(
+  String text,
+  String nexttext,
+  BuildContext context,
+  Function backNavigation,
+  Function infoNavigation,
+) {
   return AppBar(
     elevation: 1,
     backgroundColor: AppColors.whiteColor,
@@ -177,9 +175,7 @@ Function backNavigation,Function infoNavigation, ) {
       Padding(
           padding: const EdgeInsets.only(right: 20.0),
           child: GestureDetector(
-            onTap: () {
-
-            },
+            onTap: () {},
             child: const Icon(
               CupertinoIcons.search,
               color: AppColors.deepBlackColor,
@@ -189,9 +185,9 @@ Function backNavigation,Function infoNavigation, ) {
       Padding(
         padding: const EdgeInsets.only(right: 20.0),
         child: GestureDetector(
-          onTap:(){
+          onTap: () {
             infoNavigation();
-          } ,
+          },
           child: const Icon(
             CupertinoIcons.info,
             color: AppColors.deepBlackColor,
@@ -260,7 +256,7 @@ Container channelInfo(String text, String nexttext) {
   );
 }
 
-Row row() {
+Row row(ChannelPageViewModel model) {
   final navigator = locator<NavigationService>();
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -289,7 +285,7 @@ Row row() {
       Column(
         children: [
           GestureDetector(
-            onTap: () => navigator.navigateTo(Routes.addPeopleView),
+            onTap: () => model.navigateToAddPeople(),
             child: const CircleAvatar(
               radius: 30,
               backgroundColor: AppColors.lightGreen,
@@ -377,8 +373,6 @@ dateBuilder(BuildContext context) {
   ]);
 }
 
-
-
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 // import 'package:hng/models/channel_members.dart';
@@ -421,13 +415,13 @@ dateBuilder(BuildContext context) {
 //       viewModelBuilder: () => ChannelPageViewModel(),
 //       builder: (context, viewModel, child) {
 //         return Scaffold(
-//           appBar: appBar('${channelDetail.name}', "${channelMembers.length.toString()} members", 
-//           context,viewModel.goBack, 
+//           appBar: appBar('${channelDetail.name}', "${channelMembers.length.toString()} members",
+//           context,viewModel.goBack,
 //           //(){
 // //viewModel.navigateToChannelInfoScreen(channelMembers.length,channelMembers,channelDetail)
-//           //} 
+//           //}
 //             ),
-         
+
 //           body: SingleChildScrollView(
 //             scrollDirection: Axis.vertical,
 //             child: Column(
@@ -512,7 +506,7 @@ dateBuilder(BuildContext context) {
 
 // AppBar appBar(String text, String nexttext, BuildContext context,
 // Function backNavigation,
-// //Function infoNavigation, 
+// //Function infoNavigation,
 // ) {
 
 //   return AppBar(
