@@ -214,7 +214,7 @@ ChannelModel get channel=>_channel!;
         type: HomeItemType.channels,
         unreadCount: 0,
         name: data['name'],
-        id: data['id'],
+        id: data['id']?? data["_id"],
         public: data['private'] != "True",
         membersCount: data['members'],
       ));
