@@ -11,8 +11,8 @@ import '../shared_widgets.dart';
 import 'channel_members_list_model.dart';
 
 class ChannelMembersList extends StatelessWidget {
-  List <ChannelMembermodel>channelMembers;
-  ChannelModel channelDetail;
+  final List <ChannelMembermodel>channelMembers;
+  final ChannelModel channelDetail;
   ChannelMembersList({required this.channelMembers,required this.channelDetail});
 
   @override

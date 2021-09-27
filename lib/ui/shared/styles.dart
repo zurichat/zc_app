@@ -289,7 +289,14 @@ class AppTextStyles {
       fontSize: 15,
       fontWeight: FontWeight.w600,
       color: AppColors.unreadMessageColor);
+
+  static TextStyle archiveTextStyle2 = GoogleFonts.lato(
+      fontSize: 14,
+      fontWeight: FontWeight.w700,
+      color: AppColors.unreadMessageColor);
 }
+
+
 
 class StatusIcon extends StatelessWidget {
   int count = 5;

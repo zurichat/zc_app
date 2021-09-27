@@ -14,13 +14,12 @@ class ChannelPageViewModel extends FormViewModel {
 
   final _navigationService = locator<NavigationService>();
 
-  navigateToChannelInfoScreen(int numberOfMembers, List<ChannelMembermodel> channelMembers,
+  void navigateToChannelInfoScreen(int numberOfMembers, List<ChannelMembermodel> channelMembers,
    
    ChannelModel channelDetail) {
     
-    NavigationService().navigateTo(Routes.channelInfoView,arguments: ChannelInfoViewArguments(
+    _navigationService.navigateTo(Routes.channelInfoView,arguments: ChannelInfoViewArguments(
       numberOfMembers: numberOfMembers, channelMembers: channelMembers,channelDetail: channelDetail));
-   
   }
 
   Future navigateToAddPeople() async {

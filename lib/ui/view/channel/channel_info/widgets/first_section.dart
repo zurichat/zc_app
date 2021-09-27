@@ -6,12 +6,13 @@ import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import '../../../../shared/colors.dart';
 
 class FirstSection extends StatelessWidget {
-  FirstSection(this.model);
+  const FirstSection(this.model);
   final ChannelInfoViewModel model;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 284.w,
+      height: 284.h,
+      width: 395.w,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6.r),
           border: Border.all(width: 1.w, color: AppColors.borderColor),
@@ -28,67 +29,47 @@ class FirstSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 19, vertical: 30),
-            child: Text(
-              // "$channelName",
-              "${model.channelName}",
-              style: AppTextStyles.body1Light,
-            ),
+          Text(
+            // "$channelName",
+            "#${model.channelName}",
+            style: AppTextStyles.body1Light,
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 19,
-            ),
-            child: Text(
-              'Description',
-              style: AppTextStyles.body1Light,
-            ),
+          Text(
+            'Description',
+            style: AppTextStyles.body1Light,
           ),
           SizedBox(height: 24.h),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 19,
-              vertical: 15,
-            ),
-            child: Text(
-              '${model.channelDescription}',
-              style: AppTextStyles.body1Light.copyWith(letterSpacing:0.005 ),
-            ),
+          Text(
+            '${model.channelDescription}',
+            style: AppTextStyles.body1Light.copyWith(letterSpacing:0.005 ),
           ),
           SizedBox(height: 6.h),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 19,
-            ),
-            child: Text(
-              'Mark created this channel on August 13.',
-              style: AppTextStyles.body1Regular.copyWith(letterSpacing:0.005 ),
-            ),
+          Text(
+            'Mark created this channel on August 13.',
+            style: AppTextStyles.body1Regular.copyWith(letterSpacing:0.005 ),
           ),
           SizedBox(height: 18.h),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 19,
-              vertical: 15,
-            ),
-            child: Text(
-              'Topic',
-              style: AppTextStyles.headerStyle1,
-            ),
+          Text(
+            'Topic',
+            style: AppTextStyles.headerStyle1.copyWith(fontSize: 16.sp),
           ),
           SizedBox(height: 10.h),
           Text(
               'Creating the zuri main app',
-              style: AppTextStyles.body1Light,
+              style: AppTextStyles.body1Light.copyWith(fontSize: 16.sp),
             ),
           SizedBox(height: 26.h),
           Divider(thickness: 0.5.h, color: AppColors.borderColor,),
           SizedBox(height: 16.h),
           Center(
-            child: Text(
-              'Edit',
-              style: AppTextStyles.bodyBig,
+            child: InkWell(
+              onTap: (){
+                model.navigateToEditChannel();
+              },
+              child: Text(
+                'Edit',
+                style: AppTextStyles.bodyBig..copyWith(fontSize: 16.sp),
+              ),
             ),
           ),
         ],
