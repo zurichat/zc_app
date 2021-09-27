@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hng/app/app.logger.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import '../../../../app/app.logger.dart';
-import '../../../shared/colors.dart';
-import '../../../shared/shared.dart';
+// GENERATED IMPORTS -- DO NOT SIMPLY EDIT.
 import 'forgot_password_otp.form.dart';
 import 'forgot_password_otpviewmodel.dart';
 
 class ForgotPasswordOtpView extends StatelessWidget
     with $ForgotPasswordOtpView {
   final log = getLogger('ForgotPasswordOtpView');
+
   ForgotPasswordOtpView({Key? key}) : super(key: key);
 
   //stacked forms handling
@@ -159,6 +161,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                           padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: Color(0xff00B87C),
                         ),
+                        onPressed: () => model.verifyOtpCode(),
                       ),
                     ),
                   ),
