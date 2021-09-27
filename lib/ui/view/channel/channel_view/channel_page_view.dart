@@ -285,7 +285,9 @@ Row row(ChannelPageViewModel model) {
       Column(
         children: [
           GestureDetector(
+
             onTap: () => model.navigateToAddPeople(),
+
             child: const CircleAvatar(
               radius: 30,
               backgroundColor: AppColors.lightGreen,

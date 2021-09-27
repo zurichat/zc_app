@@ -4,66 +4,42 @@ import '../../../../shared/colors.dart';
 
 TextStyle headerStyle() {
   return TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.w700,
-      fontFamily: 'Lato',
-      color: Colors.black);
-}
-
-TextStyle addStyle() {
-  return TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.w400,
-      fontFamily: 'Lato',
-      color: Colors.black);
-}
-
-
-TextStyle lightStyle() {
-  return TextStyle(
-      fontSize: 16,
-      fontFamily: 'Lato',
-      fontWeight: FontWeight.w700,
-      color: AppColors.borderColor);
+      fontSize: 20, fontWeight: FontWeight.w800, color: Colors.black);
 }
 
 TextStyle nameStyle() {
   return TextStyle(
-      fontSize: 14,
-      fontFamily: 'Lato',
-      fontWeight: FontWeight.w700,
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
       color: AppColors.deepBlackColor);
+
 }
 
 TextStyle descriptionStyle() {
   return TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      fontFamily: 'Lato',
+      fontSize: 15,
+      fontWeight: FontWeight.w600,
       color: AppColors.deepBlackColor);
 }
 
 TextStyle faintTextStyle() {
   return TextStyle(
-      fontSize: 14,
-      fontFamily: 'Lato',
-      fontWeight: FontWeight.w400,
-      color: AppColors.borderColor);
+
+      fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.borderColor);
+
 }
 
 TextStyle archiveTextStyle() {
   return TextStyle(
-      fontFamily: 'Lato',
-      fontSize: 14,
-      fontWeight: FontWeight.w700,
+      fontSize: 15,
+      fontWeight: FontWeight.w600,
       color: AppColors.redColor);
 }
 
 TextStyle greenTextStyle() {
   return TextStyle(
-    fontFamily: 'Lato',
     fontSize: 16,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w800,
     color: AppColors.zuriPrimaryColor,
   );
 }

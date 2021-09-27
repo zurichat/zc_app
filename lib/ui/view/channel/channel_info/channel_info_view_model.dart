@@ -41,13 +41,18 @@ class ChannelInfoViewModel extends BaseViewModel {
   }
 
 
+
 navigateToMembersList(List<ChannelMembermodel> members, 
+
+  // _navigationService.navigateTo(Routes.editChannelPage);
+
   
   ChannelModel channelDetail
   ) {
     //NavigationService.navigateTo(Routes.cha)
     _navigationService.navigateToView(ChannelMembersList(channelMembers: members,channelDetail:channelDetail,));
   }
+
 
   Future showDialog() async {
     await _dialogService.showCustomDialog(

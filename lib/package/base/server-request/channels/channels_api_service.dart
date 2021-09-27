@@ -113,6 +113,7 @@ class ChannelsApiService {
     }
   }
 
+
   getChannelMembers(id) async {
     String orgId = _userService.currentOrgId;
     try {
@@ -128,6 +129,7 @@ class ChannelsApiService {
     } catch (e) {
       print(e);
     }
+
   }
 
   dispose() {

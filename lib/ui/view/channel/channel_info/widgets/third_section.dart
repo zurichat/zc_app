@@ -48,7 +48,7 @@ class ThirdSection extends StatelessWidget {
                   ),
                   child: GestureDetector(
                     onTap: () {
-                      
+
                       goToMembersListScreen();
                       // model.navigatoToMembersList();
                     },
@@ -84,14 +84,9 @@ class ThirdSection extends StatelessWidget {
                     left: 11,
                     top: 13,
                   ),
-                  child: GestureDetector(
-                    onTap: () {
-                      model.navigateToAddPeopleChannel();
-                    },
-                    child: Text(
-                      'Add People',
-                      style: descriptionStyle(),
-                    ),
+                  child: Text(
+                    'Add People',
+                    style: descriptionStyle(),
                   ),
                 ),
               ],
