@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/bottom_sheets/custom_user_bottomsheet/custom_user_bottom_sheet_viewmodel.dart';
+import 'package:hng/ui/view/edit_profile/edit_profile_view.form.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import '../../shared/shared.dart';
 
@@ -6,15 +9,24 @@ import 'package:stacked/stacked.dart';
 
 import 'edit_profile_viewmodel.dart';
 
-class EditProfileView extends StatelessWidget {
-  const EditProfileView({Key? key}) : super(key: key);
+@FormView(
+  fields: [
+    FormTextField(name: 'full_name'),
+    FormTextField(name: 'display_name'),
+    FormTextField(name: 'phone_number'),
+  ]
+)
+
+class EditProfileView extends StatelessWidget with $EditProfileView {
+  // const EditProfileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     return ViewModelBuilder<EditProfileViewModel>.reactive(
-      onModelReady: (model) => model.fetchUser(),
-      builder: (context, model, child) => Scaffold(
+      onModelReady: (model) => listenToFormUpdated(model),
+      builder: (context, model, child) => model.isBusy ? Center() :
+      Scaffold(
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
@@ -23,7 +35,7 @@ class EditProfileView extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () async {
-                await model.updateProfile();
+                await model.updateDetails();
               },
               child: Text(
                 'Save',
@@ -32,23 +44,7 @@ class EditProfileView extends StatelessWidget {
             )
           ],
         ),
-        body: Body(size: _size),
-      ),
-      viewModelBuilder: () => EditProfileViewModel(),
-    );
-  }
-}
-
-class Body extends ViewModelWidget<EditProfileViewModel> {
-  final Size _size;
-  Body({
-    Key? key,
-    required Size size,
-  })  : _size = size,
-        super(key: key, reactive: true);
-  @override
-  Widget build(BuildContext context, EditProfileViewModel model) {
-    return Container(
+        body: Container(
       padding: EdgeInsets.symmetric(
           vertical: _size.height * 0.02, horizontal: _size.width * 0.05),
       child: SingleChildScrollView(
@@ -86,10 +82,8 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   Container(
                     width: _size.width * 0.55,
                     child: TextFormField(
-                      initialValue: model.name,
-                      onChanged: (value) {
-                        model.updateString(value, '', '', '');
-                      },
+                      initialValue: model.userModel?.firstName,
+                      controller: full_nameController,
                       decoration: InputDecoration(
                         labelText: 'Full Name',
                       ),
@@ -99,11 +93,8 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue:
-                  ' Please open and close this page twice to see changes after saving',
-              onChanged: (value) {
-                model.updateString('', value, '', '');
-              },
+              initialValue: model.userModel?.lastName,
+              controller: display_nameController,
               decoration: InputDecoration(
                 labelText: 'Display Name',
                 helperText:
@@ -112,24 +103,21 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue: 'The Back End for this does not exist',
-              onChanged: (value) {
-                model.updateString('', '', value, '');
-              },
               decoration: InputDecoration(
                   labelText: 'What I do', helperText: 'HNGi9 X I4G'),
             ),
             TextFormField(
-              initialValue: 'The Back End for this does not exist',
-              onChanged: (value) {
-                model.updateString('', '', '', value);
-              },
+              initialValue: model.userModel?.phoneNumber,
+              controller: phone_numberController,
               decoration: InputDecoration(
                   labelText: 'Phone', helperText: 'Enter your phone number'),
             ),
           ],
         ),
       ),
+      )
+      ),
+      viewModelBuilder: () => EditProfileViewModel(),
     );
   }
 }

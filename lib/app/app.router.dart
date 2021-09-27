@@ -14,6 +14,7 @@ import '../models/channel_members.dart';
 import '../models/channel_model.dart';
 import '../models/user_post.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
+import '../ui/nav_pages/you_page/you_page_view.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
 import '../ui/view/channel/add_people/channel_add_people_view.dart';
@@ -115,6 +116,7 @@ class Routes {
   static const String organizationUrlView = '/organization-url-view';
   static const String channelPageView = '/channel-page-view';
   static const String channelInfoView = '/channel-info-view';
+  static const String youPage = '/you-page';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -165,6 +167,7 @@ class Routes {
     organizationUrlView,
     channelPageView,
     channelInfoView,
+    youPage,
   };
 }
 
@@ -222,6 +225,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.organizationUrlView, page: OrganizationUrlView),
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+    RouteDef(Routes.youPage, page: YouPage),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -444,7 +448,7 @@ class StackedRouter extends RouterBase {
     },
     EditProfileView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const EditProfileView(),
+        builder: (context) => EditProfileView(),
         settings: data,
       );
     },
@@ -562,6 +566,12 @@ class StackedRouter extends RouterBase {
           channelMembers: args.channelMembers,
           channelDetail: args.channelDetail,
         ),
+        settings: data,
+      );
+    },
+    YouPage: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const YouPage(),
         settings: data,
       );
     },

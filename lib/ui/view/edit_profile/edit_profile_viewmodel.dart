@@ -1,3 +1,9 @@
+import 'dart:developer';
+
+import 'package:hng/app/app.router.dart';
+import 'package:hng/models/user_model.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/edit_profile/edit_profile_view.form.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -14,11 +20,40 @@ ProfileModel userData = new ProfileModel();
 String _nameD = '', _displayD = '', _statusD = '', _phoneD = '';
 String _name = '', _display = '', _status = '', _phone = '';
 
-class EditProfileViewModel extends BaseViewModel {
+class EditProfileViewModel extends FormViewModel {
   final snackbar = locator<SnackbarService>();
   final navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
-  final _api = HttpApiService('https://api.zuri.chat/');
+  final _api = HttpApiService(coreBaseUrl);
+  final _storage = locator<SharedPreferenceLocalStorage>();
+  UserModel? _userModel;
+
+  Future futureToRun() async {
+    final userID = _storage.getString(StorageKeys.currentUserId);
+    final currentSessionToken =
+        _storage.getString(StorageKeys.currentSessionToken);
+    final response = await _api.get('users/$userID',
+        headers: {'Authorization': 'Bearer $currentSessionToken'});
+    _userModel = UserModel.fromJson(response!.data['data']);
+  }
+
+  UserModel? get userModel => _userModel;
+
+  Future updateDetails() async {
+    final userData = {
+      'first_name': fullNameValue,
+      'phone_number': phoneNumberValue,
+      'last_name': displayNameValue
+    };
+    final currentSessionToken =
+        _storage.getString(StorageKeys.currentSessionToken);
+    final userId = _storage.getString(StorageKeys.currentUserId);
+    final res = await _api.patch('/users/$userId',
+        data: userData,
+        headers: {'Authorization': 'Bearer $currentSessionToken'});
+    _userModel = UserModel.fromJson(res!.data['data']);
+    navigationService.pushNamedAndRemoveUntil(Routes.navBarView);
+  }
 
   void updateString(String name, String display, String status, String phone) {
     if (name.trim().isNotEmpty) {
@@ -155,6 +190,11 @@ class EditProfileViewModel extends BaseViewModel {
       'Authorization':
           'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
     });
+  }
+
+  @override
+  void setFormStatus() {
+    // TODO: implement setFormStatus
   }
 }
 

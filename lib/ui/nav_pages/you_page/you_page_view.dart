@@ -8,13 +8,20 @@ import 'widgets/profile_page_head.dart';
 import 'widgets/status_form.dart';
 import 'you_page_viewmodel.dart';
 
-class YouPage extends StatelessWidget {
+class YouPage extends StatefulWidget {
   const YouPage({Key? key}) : super(key: key);
 
   @override
+  State<YouPage> createState() => _YouPageState();
+}
+
+class _YouPageState extends State<YouPage> {
+  @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<YouPageViewModel>.reactive(
+      onModelReady: (model) => model.futureToRun(),
       viewModelBuilder: () => YouPageViewModel(),
+      disposeViewModel: false,
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -37,7 +44,7 @@ class YouPage extends StatelessWidget {
                 GestureDetector(
                   onTap: model.editProfile,
                   child: ProfilePageHead(
-                    name: model.username,
+                    name: '${model.userModel?.lastName}',
                     currentStatus: model.currentStatus,
                     image: model.profileImage,
                   ),

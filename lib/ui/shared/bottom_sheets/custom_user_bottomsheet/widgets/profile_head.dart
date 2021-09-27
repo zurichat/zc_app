@@ -34,7 +34,7 @@ class ProfileHead extends StatelessWidget {
                     Flexible(
                       fit: FlexFit.loose,
                       child: CustomText(
-                        text: "Paul Imoke Eke",
+                        text: "test",
                         color: AppColors.whiteColor,
                         fontWeight: FontWeight.bold,
                         fontSize: height * 0.025,

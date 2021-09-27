@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/ui/shared/bottom_sheets/widgets/custom_button.dart';
 import 'package:hng/ui/shared/bottom_sheets/widgets/custom_profile_tile.dart';
@@ -9,8 +10,6 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked/stacked.dart';
 
 import 'custom_user_bottomsheet/custom_user_bottom_sheet_viewmodel.dart';
-
-
 
 class CustomUserBottomSheetView extends StatelessWidget {
   final SheetRequest request;
@@ -24,6 +23,13 @@ class CustomUserBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width,
+        maxHeight: MediaQuery.of(context).size.height,
+      ),
+      designSize: Size(411, 823)
+    );
     double height = MediaQuery.of(context).size.height;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
@@ -35,7 +41,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
               builder:
                   (BuildContext context, ScrollController scrollController) {
                 return Container(
-                  height: height * .97,
+                  // height: height * .97,
                   color: Colors.white,
                   child: SingleChildScrollView(
                     controller: scrollController,
@@ -49,16 +55,37 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         Container(
                           height: height * .1,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              CustomButton(text: 'Message', onPressed: () {}),
-                              CustomButton(
-                                text: 'Edit Profile',
-                                onPressed: () => model.navigateToEditProfile(),
+                              SizedBox(
+                                width: 24.5.w,
                               ),
-                              CustomButton.icon(
-                                  icon: Icons.more_horiz_rounded,
-                                  onPressed: () {}),
+                              SizedBox(
+                                  width: 123.w,
+                                  height: 40.0.h,
+                                  child: CustomButton(
+                                      text: 'Message', onPressed: () {})),
+                              SizedBox(
+                                width: 20.w,
+                              ),
+                              SizedBox(
+                                width: 123.w,
+                                height: 40.0.h,
+                                child: CustomButton(
+                                  text: 'Edit Profile',
+                                  onPressed: () =>
+                                      model.navigateToEditProfile(),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20.w,
+                              ),
+                              SizedBox(
+                                width: 75.0.w,
+                                height: 40.0.h,
+                                child: CustomButton.icon(
+                                    icon: Icons.more_horiz_rounded,
+                                    onPressed: () {}),
+                              ),
                             ],
                           ),
                         ),
@@ -67,7 +94,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
                             title: 'What I do', subtitle: 'Mobile Dev'),
                         Divider(),
                         CustomProfileTile(
-                            title: 'Display Name', subtitle: 'pauleke65'),
+                            title: 'Display Name', subtitle: '${model.userModel?.lastName}'),
                         Divider(),
                         ListTile(
                           title: CustomText(
@@ -85,11 +112,12 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         ),
                         Divider(),
                         CustomProfileTile(
-                            title: 'Mobile Number', subtitle: '+2347023456789'),
+                            title: 'Mobile Number',
+                            subtitle: '${model.userModel?.phoneNumber}'),
                         Divider(),
                         CustomProfileTile(
                             title: 'Email Address',
-                            subtitle: 'myemail@mail.com'),
+                            subtitle: '${model.userModel!.email.toString()}'),
                       ],
                     ),
                   ),

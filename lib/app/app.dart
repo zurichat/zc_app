@@ -58,6 +58,7 @@ import '../ui/view/threads/all_threads/threads_view.dart';
 import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 import '../ui/view/user_search/user_search_view.dart';
 import '../ui/view/view_profile_page/view_profile.dart';
+import '../ui/nav_pages/you_page/you_page_view.dart';
 
 @StackedApp(
   routes: [
@@ -110,6 +111,7 @@ import '../ui/view/view_profile_page/view_profile.dart';
     MaterialRoute(page: OrganizationUrlView),
     MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: ChannelInfoView),
+    MaterialRoute(page: YouPage),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

@@ -25,15 +25,16 @@ class CustomButton extends StatelessWidget {
     return _customButtonType == _CustomButtonType.normal
         ? MaterialButton(
             onPressed: onPressed,
-            padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.02),
-            shape: Border.all(color: AppColors.greyishColor),
+            // padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.02),
+            shape: Border.all(
+            color: AppColors.greyishColor),
             child: Text(
               " $text",
               style: const TextStyle(color: AppColors.greyishColor),
             ))
         : MaterialButton(
             onPressed: onPressed,
-            padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.015),
+            // padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.015),
             shape: Border.all(color: AppColors.greyishColor),
             child: Icon(
               icon,
