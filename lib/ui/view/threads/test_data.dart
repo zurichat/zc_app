@@ -5,8 +5,8 @@ import 'package:hng/utilities/enums.dart';
 List<UserThreadPost> thread1 = [
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 1,
-    displayName: 'PrincessLiz',
+    id: "1",
+    displayName: "PrincessLiz",
     statusIcon: Icons.looks_6,
     lastSeen: '4 hours ago',
     userImage: 'assets/images/chimamanda.png',
@@ -14,8 +14,8 @@ List<UserThreadPost> thread1 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 2,
-    displayName: 'PrincessLiz',
+    id: "2",
+    displayName: "PrincessLiz",
     statusIcon: Icons.looks_6,
     userImage: 'assets/images/chimamanda.png',
     lastSeen: '4 hours ago',
@@ -26,8 +26,8 @@ List<UserThreadPost> thread1 = [
 List<UserThreadPost> thread2 = [
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 3,
-    displayName: 'PrincessLiz',
+    id: "3",
+    displayName: "PrincessLiz",
     statusIcon: Icons.looks_6,
     lastSeen: '4 hours ago',
     userImage: 'assets/images/chimamanda.png',
@@ -35,8 +35,8 @@ List<UserThreadPost> thread2 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 4,
-    displayName: 'Dee',
+    id: "4",
+    displayName: "Dee",
     statusIcon: Icons.looks_6,
     userImage: 'assets/images/chimamanda.png',
     lastSeen: '4 hours ago',
@@ -47,8 +47,8 @@ List<UserThreadPost> thread2 = [
 List<UserThreadPost> thread3 = [
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 12,
-    displayName: 'mark',
+    id: "12",
+    displayName: "mark",
     statusIcon: Icons.looks_6,
     userImage: 'assets/images/user.png',
     lastSeen: '4 hours ago',
@@ -57,8 +57,8 @@ List<UserThreadPost> thread3 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 13,
-    displayName: 'princess',
+    id: "13",
+    displayName: "princess",
     statusIcon: Icons.looks_6,
     userImage: 'assets/images/user.png',
     lastSeen: '4 hours ago',
@@ -67,8 +67,8 @@ List<UserThreadPost> thread3 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 14,
-    displayName: 'pauleke65',
+    id: "14",
+    displayName: "pauleke65",
     statusIcon: Icons.looks_6,
     userImage: 'assets/images/user.png',
     lastSeen: '4 hours ago',
@@ -77,8 +77,8 @@ List<UserThreadPost> thread3 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 15,
-    displayName: 'FreshFish',
+    id: "15",
+    displayName: "FreshFish",
     statusIcon: Icons.looks_6,
     userImage: 'assets/images/user.png',
     lastSeen: '4 hours ago',
@@ -87,8 +87,8 @@ List<UserThreadPost> thread3 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 16,
-    displayName: 'Sticklo',
+    id: "16",
+    displayName: "Sticklo",
     statusIcon: Icons.looks_6,
     userImage: 'assets/images/user.png',
     lastSeen: '4 hours ago',
@@ -97,8 +97,8 @@ List<UserThreadPost> thread3 = [
   ),
   UserThreadPost(
     postEmojis: <PostEmojis>[],
-    id: 17,
-    displayName: 'EunicePops',
+    id: "17",
+    displayName: "EunicePops",
     statusIcon: Icons.looks_6,
     userImage: 'assets/images/user.png',
     lastSeen: '4 hours ago',
@@ -116,9 +116,9 @@ List<PostEmojis> postEmoji2 = [
 
 List<UserPost> userPost = [
   UserPost(
-    id: 11,
-    displayName: 'richieoscar',
-    postDate: 'Sept 19 at 9:56am',
+    id: "11",
+    displayName: "richieoscar",
+    postDate: "Sept 19 at 9:56am",
     message:
         'Please who is the team lead for mobile track? I have some questions please',
     userImage: 'assets/images/1.png',
@@ -130,9 +130,9 @@ List<UserPost> userPost = [
     channelName: 'team-app',
   ),
   UserPost(
-    id: 5,
-    displayName: 'Nonso',
-    userImage: 'assets/images/chimamanda.png',
+    id: "5",
+    displayName: "Nonso",
+    userImage: "assets/images/chimamanda.png",
     statusIcon: Icons.looks_6,
     lastSeen: '4 hours ago',
     message: 'Designers and Developers in Mega...',
@@ -142,9 +142,9 @@ List<UserPost> userPost = [
     channelName: 'team-app',
   ),
   UserPost(
-    id: 6,
-    displayName: 'Dee',
-    userImage: 'assets/images/chimamanda.png',
+    id: "6",
+    displayName: "Dee",
+    userImage: "assets/images/chimamanda.png",
     statusIcon: Icons.looks_6,
     lastSeen: '4 hours ago',
     message: 'How are you',
@@ -154,9 +154,9 @@ List<UserPost> userPost = [
     channelName: 'Dee',
   ),
   UserPost(
-    id: 7,
-    displayName: 'Mark',
-    userImage: 'assets/images/chimamanda.png',
+    id: "7",
+    displayName: "Mark",
+    userImage: "assets/images/chimamanda.png",
     statusIcon: Icons.looks_6,
     lastSeen: '4 hours ago',
     message: 'Fire on the MOUNTAINNNNN!!!!!, Run, Run Run, Runnnnnn',

@@ -24,21 +24,21 @@ class ForgotPasswordNewView extends StatelessWidget
         backgroundColor: AppColors.whiteColor,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
+            padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 6.0,
                   ),
                   Container(
                     alignment: Alignment.center,
                     child: Image.asset('assets/logo/zuri_chat_logo.png'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 24.0,
                   ),
                   Center(
@@ -47,26 +47,26 @@ class ForgotPasswordNewView extends StatelessWidget
                       style: AppTextStyles.body1Bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 6.0,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Your new password must be different from ',
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'previously used password',
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 49.0,
                   ),
                   Container(
-                      margin: EdgeInsets.symmetric(vertical: 8.0),
+                      margin: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'New Password',
                         style: AppTextStyles.body1Bold,
@@ -81,7 +81,7 @@ class ForgotPasswordNewView extends StatelessWidget
                           obscureText: true,
                           textInputAction: TextInputAction.done,
                           autocorrect: true,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(3.0))),
@@ -117,11 +117,11 @@ class ForgotPasswordNewView extends StatelessWidget
                         ),
 
                         //Changes  ss
-                        SizedBox(
+                        const SizedBox(
                           height: 15.0,
                         ),
                         Container(
-                          margin: EdgeInsets.symmetric(vertical: 8.0),
+                          margin: const EdgeInsets.symmetric(vertical: 8.0),
                           child: Text(
                             'Confirm Password',
                             style: AppTextStyles.body1Bold,
@@ -133,7 +133,7 @@ class ForgotPasswordNewView extends StatelessWidget
                           obscureText: true,
                           textInputAction: TextInputAction.done,
                           autocorrect: true,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(3.0))),
@@ -172,7 +172,7 @@ class ForgotPasswordNewView extends StatelessWidget
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30.0,
                   ),
                   Center(
@@ -188,7 +188,8 @@ class ForgotPasswordNewView extends StatelessWidget
                           style: AppTextStyles.buttonText,
                         ),
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                          padding:
+                              const EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: AppColors.zuriPrimaryColor,
                         ),
                       ),

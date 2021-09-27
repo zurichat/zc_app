@@ -20,7 +20,7 @@ class PopUpNotificationsView extends StatelessWidget {
             ),
             body: SingleChildScrollView(
               child: Container(
-                margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+                margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -33,12 +33,12 @@ class PopUpNotificationsView extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              ListTile(
+                              const ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Chess Room'),
                                 leading: Icon(Icons.games_sharp),
                               ),
-                              ListTile(
+                              const ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Meeting Room'),
                                 leading:
@@ -50,17 +50,17 @@ class PopUpNotificationsView extends StatelessWidget {
                                 leading:
                                     Icon(Icons.notifications_paused_rounded),
                               ),
-                              ListTile(
+                              const ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Music Room'),
                                 leading: Icon(Icons.music_note),
                               ),
-                              ListTile(
+                              const ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Duty Shift'),
                                 leading: Icon(Icons.calendar_today_rounded),
                               ),
-                              ListTile(
+                              const ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Important Deadlines'),
                                 leading: Icon(Icons.timelapse_outlined),
@@ -75,7 +75,7 @@ class PopUpNotificationsView extends StatelessWidget {
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.add),
+                child: const Icon(Icons.add),
                 backgroundColor: AppColors.zuriPrimaryColor,
                 onPressed: () {
                   showSimpleNotification(
@@ -96,7 +96,7 @@ class PopUpNotificationsView extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(height: 20),
+                                    const SizedBox(height: 20),
                                     Container(
                                       height: 40,
                                       width: 60,
@@ -109,11 +109,11 @@ class PopUpNotificationsView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           left: 180, top: 8.0),
-                                      child: Container(
+                                      child: SizedBox(
                                         height: 40,
                                         child: Text(
                                           model.notiText,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: AppColors.deepBlackColor,
                                             fontSize: 12.0,
                                           ),
@@ -124,13 +124,13 @@ class PopUpNotificationsView extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(16.0),
-                                  child: Container(
+                                  child: SizedBox(
                                     width: 70,
                                     height: 70,
                                     child: CircleAvatar(
@@ -146,22 +146,18 @@ class PopUpNotificationsView extends StatelessWidget {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      child: Text(
-                                        model.notiText2,
-                                        style: TextStyle(
-                                          color: AppColors.deepBlackColor,
-                                          fontSize: 12.0,
-                                        ),
+                                    Text(
+                                      model.notiText2,
+                                      style: const TextStyle(
+                                        color: AppColors.deepBlackColor,
+                                        fontSize: 12.0,
                                       ),
                                     ),
-                                    Container(
-                                      child: Text(
-                                        model.notiText4,
-                                        style: TextStyle(
-                                          color: AppColors.deepBlackColor,
-                                          fontSize: 12.0,
-                                        ),
+                                    Text(
+                                      model.notiText4,
+                                      style: const TextStyle(
+                                        color: AppColors.deepBlackColor,
+                                        fontSize: 12.0,
                                       ),
                                     ),
                                   ],
@@ -173,12 +169,10 @@ class PopUpNotificationsView extends StatelessWidget {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(16.0),
-                                  child: Container(
-                                    child: Text(
-                                      model.notiText3,
-                                      style: TextStyle(
-                                          color: AppColors.deepBlackColor),
-                                    ),
+                                  child: Text(
+                                    model.notiText3,
+                                    style: const TextStyle(
+                                        color: AppColors.deepBlackColor),
                                   ),
                                 ),
                               ],

@@ -22,7 +22,7 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
     //Todo:get the standard app bar height
     return EasyContainer(
       color: AppColors.zuriPrimaryColor,
-      height: kToolbarHeight + 30,
+      height: kToolbarHeight + 10,
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
       boxShadow: [
         BoxShadow(
@@ -39,20 +39,20 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
                 vmodel.navigateToOrganization();
               },
               child: organizationLogo ??
-                  EasyContainer(
+                  const EasyContainer(
                     height: 35,
                     width: 35,
                     color: AppColors.whiteColor,
                     alignment: Alignment.center,
                     radius: 6,
-                    child: const Image(
+                    child: Image(
                       image: appBarLogo,
                       fit: BoxFit.cover,
                       height: 25,
                     ),
                   ),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: 16),
             Text(
               organizationName,
               style: ZuriTextStyle.organizationNameText(),

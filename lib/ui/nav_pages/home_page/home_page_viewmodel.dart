@@ -1,16 +1,13 @@
 import 'dart:developer';
 
-
-
-
-
-
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
+import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -23,6 +20,7 @@ import 'home_item_model.dart';
 
 final _navigationService = locator<NavigationService>();
 final connectivityService = locator<ConnectivityService>();
+final userService = locator<UserService>();
 
 bool connectionStatus = false;
 
@@ -51,8 +49,8 @@ class HomePageViewModel extends StreamViewModel {
   final dmApiService = locator<DMApiService>();
   final channelsApiService = locator<ChannelsApiService>();
 
-    final navigation = locator<NavigationService>();
-    final snackbar = locator<SnackbarService>();
+  final navigation = locator<NavigationService>();
+  final snackbar = locator<SnackbarService>();
   final api = ChannelsApiService();
   // final _dmApiService = locator<DMApiService>();
   final _channelsApiService = locator<ChannelsApiService>();
@@ -60,13 +58,11 @@ class HomePageViewModel extends StreamViewModel {
   final _navigationService = locator<NavigationService>();
   bool connectionStatus = false;
 
-     List <ChannelModel> _channelsList = [
-  ];
+  List<ChannelModel> _channelsList = [];
   ChannelModel? _channel;
-  List<ChannelModel>get channelsList => _channelsList;
-ChannelModel get channel=>_channel!;
- List<ChannelMembermodel> _membersList = [
-  ];
+  List<ChannelModel> get channelsList => _channelsList;
+  ChannelModel get channel => _channel!;
+  List<ChannelMembermodel> _membersList = [];
   List get membersList => _membersList;
 
   ///This contains the list of data for both the channels and dms
@@ -82,6 +78,14 @@ ChannelModel get channel=>_channel!;
 
   @override
   void onSubscribed() {}
+
+  getNewChannelStream() {
+    _channelsApiService.controller.stream.listen((event) {
+      getDmAndChannelsList();
+    });
+  }
+
+  String get orgName => userService.currentOrgName;
 
   Stream<bool> checkConnectivity() async* {
     yield await connectivityService.checkConnection();
@@ -102,7 +106,7 @@ ChannelModel get channel=>_channel!;
     _navigationService.navigateTo(Routes.dmJumpToView);
   }
 
- void navigateToStartDMScreen() {
+  void navigateToStartDMScreen() {
     _navigationService.navigateTo(Routes.startDmView);
   }
 
@@ -122,7 +126,7 @@ ChannelModel get channel=>_channel!;
 
   //This method is just to demo the side bar data that would
   //be received by the database
-  
+
   getHomePageData() {
     homePageList = [
       HomeItemModel(type: HomeItemType.channels, name: 'annoucement'),
@@ -175,10 +179,6 @@ ChannelModel get channel=>_channel!;
     _navigationService.navigateTo(Routes.fileSearchView);
   }
 
-  // void navigateToChannelPage() {
-  //   _navigationService.navigateTo(Routes.channelPageView);
-  // }
-
   void navigateToInfo() {
     _navigationService.navigateTo(Routes.channelInfoView);
   }
@@ -201,7 +201,7 @@ ChannelModel get channel=>_channel!;
         type: HomeItemType.channels,
         unreadCount: 0,
         name: data['name'],
-        id: data['id'],
+        id: data['_id'],
         public: data['private'] != "True",
         membersCount: data['members'],
       ));
@@ -254,14 +254,14 @@ ChannelModel get channel=>_channel!;
   //   void navigateToChannelScreen() {
   //   NavigationService().navigateTo(Routes.channelPageView,arguments:
   //   ChannelPageViewArguments(channelDetail: homePageList,
-    
+
   //   ));
   // }
 
-   navigateToChannelPage(id)async {
-    print(id);
-    try{
-        if (!await connectivityService.checkConnection()) {
+  navigateToChannelPage(String? channelname, String? channelId,
+      int? membersCount, bool? public) async {
+    try {
+      if (!await connectivityService.checkConnection()) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
@@ -271,12 +271,17 @@ ChannelModel get channel=>_channel!;
         return;
       }
       setBusy(true);
-      _channel= await api.getChannelPage(id);   
-      _membersList= await api.getChannelMembers(id);
+      // _channel= await api.getChannelPage(id);
+      // _membersList= await api.getChannelMembers(id);
       setBusy(false);
-NavigationService().navigateTo(Routes.channelPageView,arguments: ChannelPageViewArguments(
-  channelDetail: _channel!,channelMembers: _membersList));
-    }catch (e) {
+      navigation.navigateTo(Routes.channelPageView,
+          arguments: ChannelPageViewArguments(
+            channelname: channelname,
+            channelId: channelId,
+            membersCount: membersCount,
+            public: public,
+          ));
+    } catch (e) {
       print(e.toString());
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -284,11 +289,14 @@ NavigationService().navigateTo(Routes.channelPageView,arguments: ChannelPageView
         message: 'Error Occured',
       );
     }
-    
   }
 
-      void navigateToAllChannelsScreen() {
+  void navigateToAllChannelsScreen() {
     NavigationService().navigateTo(Routes.channelList);
+  }
+
+  onJumpToScreen() {
+    navigationService.navigateTo(Routes.dmJumpToView);
   }
 
   // void navigateToDmUser() {

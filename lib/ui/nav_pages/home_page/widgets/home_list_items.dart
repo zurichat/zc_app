@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.locator.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -12,6 +13,8 @@ import '../../../view/channel/channel_view/channel_page_view.dart';
 import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
 
+final navigationService = locator<NavigationService>();
+
 class ThreadTextAndIcon extends StatelessWidget {
   const ThreadTextAndIcon({Key? key}) : super(key: key);
 
@@ -22,6 +25,7 @@ class ThreadTextAndIcon extends StatelessWidget {
       unread: true,
       onTap: () {
         // Navigate to threads screen
+        navigationService.navigateTo(Routes.threadsView);
       },
       icon: SvgIcon(svgIcon: SvgAssets.threads),
     );
@@ -32,7 +36,7 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   const AddChannelsTextAndIcon({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context,vmodel) {
+  Widget build(BuildContext context, vmodel) {
     return _TextAndIcon(
       text: 'Add channels',
       unread: false,
@@ -56,7 +60,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   final HomeItemModel data;
   final bool? noTopPad;
 
-  DMTextAndIcon({
+  const DMTextAndIcon({
     Key? key,
     required this.data,
     this.noTopPad,
@@ -79,7 +83,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       },
       icon: Container(
         alignment: Alignment.centerLeft,
-        child: EasyContainer(
+        child: const EasyContainer(
           height: 23,
           width: 23,
           radius: 3,
@@ -146,9 +150,10 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       onTap: () {
         //vmodel.navigateToChannelScreen();
         //Navigate to channels and pass the channels id
-        //This channel is is hardcoded
-        //TODO:Get dynamic id from home page view
-        vmodel.navigateToChannelPage('61471f18f41cb684cc531a6d');
+        ChannelPageView.name = data.name ?? '';
+        print('Data id is ${data.id}');
+        vmodel.navigateToChannelPage(
+            data.name, data.id, data.membersCount, data.public);
       },
     );
   }
@@ -188,7 +193,7 @@ class _TextAndIcon extends StatelessWidget {
     return Ripple(
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
+        padding: const EdgeInsets.fromLTRB(0, 14, 0, 14),
         child: Row(
           children: [
             Container(
@@ -196,7 +201,7 @@ class _TextAndIcon extends StatelessWidget {
               alignment: Alignment.center,
               child: icon,
             ),
-            SizedBox(
+            const SizedBox(
               width: 12,
             ),
             Text(
