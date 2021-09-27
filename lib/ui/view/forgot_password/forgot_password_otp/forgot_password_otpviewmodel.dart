@@ -1,19 +1,20 @@
 import 'dart:async';
 
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/package/base/server-request/api/http_api.dart';
+import 'package:hng/services/otp_service.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/otp/otp_view.form.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../../app/app.locator.dart';
-import '../../../../app/app.router.dart';
-import '../../../../package/base/server-request/api/http_api.dart';
-import '../../../../utilities/enums.dart';
-import '../../../shared/shared.dart';
-import '../../otp/otp_view.form.dart';
-
 class ForgotPasswordOtpViewModel extends FormViewModel {
   NavigationService _navigationService = NavigationService();
   final _apiService = HttpApiService(coreBaseUrl);
+  final _otpService = locator<OtpService>();
   final snackbar = locator<SnackbarService>();
   bool isLoading = false;
 
@@ -40,10 +41,12 @@ class ForgotPasswordOtpViewModel extends FormViewModel {
           message: 'Please Fill in all fields');
       return;
     }
+    _otpService.otp = otpValue!;
+    notifyListeners();
+
     final validationData = {'code': otpValue};
     final response = await _apiService.post(endpoint, data: validationData);
     loading(false);
-    navigateToNewPassword();
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),

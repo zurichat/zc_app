@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:stacked/stacked.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
-import '../../../shared/colors.dart';
 import '../../../shared/shared.dart';
-import 'widgets/seventh_section.dart';
-import 'package:stacked/stacked.dart';
 import 'channel_info_view_model.dart';
 import 'widgets/custom_app_bar.dart';
 import 'widgets/edit_button.dart';
