@@ -10,7 +10,9 @@ import 'package:hng/models/channel_model.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
+import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -23,6 +25,7 @@ import 'home_item_model.dart';
 
 final _navigationService = locator<NavigationService>();
 final connectivityService = locator<ConnectivityService>();
+final userService = locator<UserService>();
 
 bool connectionStatus = false;
 
@@ -80,7 +83,17 @@ ChannelModel get channel=>_channel!;
   }
 
   @override
-  void onSubscribed() {}
+  void onSubscribed() {
+   
+  }
+
+  getNewChannelStream(){
+    _channelsApiService.controller.stream.listen((event) {
+      getDmAndChannelsList();
+    });
+  }
+
+  String get orgName => userService.currentOrgName;
 
   Stream<bool> checkConnectivity() async* {
     yield await connectivityService.checkConnection();
@@ -290,6 +303,10 @@ NavigationService().navigateTo(Routes.channelPageView,arguments: ChannelPageView
 
       void navigateToAllChannelsScreen() {
     NavigationService().navigateTo(Routes.channelList);
+  }
+
+  onJumpToScreen() {
+    navigationService.navigateTo(Routes.dmJumpToView);
   }
 
   // void navigateToDmUser() {

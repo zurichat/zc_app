@@ -1,8 +1,5 @@
-   import 'dart:async';
+import 'dart:async';
 
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/utilities/constants.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import '../../../../app/app.locator.dart';

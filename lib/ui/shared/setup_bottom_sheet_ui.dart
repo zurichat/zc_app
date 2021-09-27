@@ -3,8 +3,6 @@ import '../../utilities/enums.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'bottom_sheets/custom_user_bottom_sheet_view.dart';
-import 'bottom_sheets/edit_message_bottom_sheet/setup_bottom_sheet_ui.dart';
-import 'bottom_sheets/thread_options_bottomsheet/thread_options_bottomsheet_view.dart';
 
 void setupBottomSheetUi() {
   final bottomSheetService = locator<BottomSheetService>();
