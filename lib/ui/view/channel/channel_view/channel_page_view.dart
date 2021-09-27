@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
+// import 'package:hng/app/app.locator.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_view/channel_page_view.form.dart';
 import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
+import 'package:hng/ui/view/channel/channel_view/widgets/message_tile.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
-import 'package:stacked_services/stacked_services.dart';
+// import 'package:stacked_services/stacked_services.dart';
 
 @FormView(
   fields: [
@@ -17,13 +18,52 @@ import 'package:stacked_services/stacked_services.dart';
   ],
 )
 class ChannelPageView extends StatelessWidget with $ChannelPageView {
-  ChannelModel channelDetail;
-  List<ChannelMembermodel> channelMembers;
+
+  final List<ChannelMembermodel> channelMembers;
+  final ChannelModel channelDetail;
+
   ChannelPageView({required this.channelDetail, required this.channelMembers});
-  static String name = 'general';
+
+  // static String name = 'general';
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
+      onModelReady: (model) {
+        listenToFormUpdated(model);
+        model.initializeWith([
+          Column(
+            children: [
+              channelName(channelDetail.name),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: channelInfo('@mark', ' created this channel on August 12, 2021. This is the very beginning of the #teamsocrates channel.'),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20.0),
+          row(model),
+          const SizedBox(height: 20.0),
+          dateBuilder(context),
+          const SizedBox(height: 8.0),
+          MessageTile(
+            message: "Joined #${channelDetail.name}",
+            avatar: "assets/channel_page/female.png",
+            time: "09:41",
+            name: "Naza",
+          ),
+          MessageTile(
+            message: "Joined #${channelDetail.name}",
+            avatar: "assets/channel_page/femaleuser.png",
+            time: "17:59",
+            name: "Abbie",
+          ),
+        ]);
+        model.fetchMessages();
+      },
       //this parameter allows us to reuse the view model to persist the state
       disposeViewModel: false,
       //initialise the view model only once
@@ -31,103 +71,23 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: appBar(
-              '${channelDetail.name}',
-              "${channelMembers.length.toString()} members",
-              context,
-              viewModel.goBack, () {
-            viewModel.navigateToChannelInfoScreen(
-                channelMembers.length, channelMembers, channelDetail);
+          appBar: appBar(channelDetail.name, "${channelMembers.length} members", context, viewModel.goBack, () {
+            viewModel.navigateToChannelInfoScreen(channelMembers.length, channelMembers, channelDetail);
           }),
-          body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                Column(
-                  children: [
-                    channelName('${channelDetail.name}'),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: channelInfo('@mark', '''
- created this channel on August 12, 2021. This is the very beginning of the #teamsocrates channel.'''),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                row(viewModel),
-                const SizedBox(height: 20),
-                dateBuilder(context),
-                const SizedBox(height: 7),
-                ListTile(
-                  leading: Image.asset('assets/channel_page/female.png'),
-                  title: Row(
-                    children: [
-                      const Text(
-                        'Clutch',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.deepBlackColor,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      const Text(
-                        '12:30pm',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.greyishColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  subtitle: const Text('Joined #teamsocrates'),
-                ),
-                ListTile(
-                  leading: Image.asset('assets/channel_page/femaleuser.png'),
-                  title: Row(
-                    children: [
-                      const Text(
-                        'Ali',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.deepBlackColor,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      const Text(
-                        '12:30pm',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.greyishColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  subtitle: const Text('Joined #teamsocrates'),
-                ),
-              ],
-            ),
+          body: ListView.builder(
+            itemCount: viewModel.channelPageContents.length,
+            itemBuilder: (context, index) => viewModel.channelPageContents[index],
+            padding: const EdgeInsets.symmetric(vertical: 200.0),
+            physics: const BouncingScrollPhysics(),
           ),
-          bottomSheet: sendMessageArea(),
+          bottomSheet: sendMessageArea(editorController, viewModel, context, channelDetail),
         );
       },
     );
   }
 }
 
-AppBar appBar(
-  String text,
-  String nexttext,
-  BuildContext context,
-  Function backNavigation,
-  Function infoNavigation,
-) {
+AppBar appBar(String text, String nexttext, BuildContext context, Function backNavigation, Function infoNavigation) {
   return AppBar(
     elevation: 1,
     backgroundColor: AppColors.whiteColor,
@@ -201,7 +161,7 @@ AppBar appBar(
 
 Padding channelName(String text) {
   return Padding(
-    padding: const EdgeInsets.only(left: 10, top: 200),
+    padding: const EdgeInsets.only(left: 10),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -257,19 +217,29 @@ Container channelInfo(String text, String nexttext) {
 }
 
 Row row(ChannelPageViewModel model) {
-  final navigator = locator<NavigationService>();
+  // final navigator = locator<NavigationService>();
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     // crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Column(
         children: [
-          GestureDetector(
+          InkWell(
             onTap: () {},
-            child: const CircleAvatar(
-                radius: 30,
-                backgroundColor: AppColors.lightGreen,
-                child: ImageIcon(AssetImage('assets/channel_page/edit.png'))),
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: AppColors.zuriPrimaryColor,
+                    width: 1.28,
+                  ),
+              ),
+              child: ImageIcon(AssetImage('assets/channel_page/edit.png'), color: AppColors.zuriPrimaryColor),
+              height: 60.0,
+              width: 60.0,
+            ),
           ),
           const SizedBox(height: 5),
           const Text(
@@ -284,15 +254,24 @@ Row row(ChannelPageViewModel model) {
       const SizedBox(width: 30),
       Column(
         children: [
-          GestureDetector(
+          InkWell(
             onTap: () => model.navigateToAddPeople(),
-            child: const CircleAvatar(
-              radius: 30,
-              backgroundColor: AppColors.lightGreen,
-              child: Icon(
-                Icons.person_add_alt_1_sharp,
-                color: AppColors.greyishColor,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: AppColors.zuriPrimaryColor,
+                    width: 1.28,
+                  ),
               ),
+              child: Icon(
+                Icons.person_add_alt_1_outlined,
+                color: AppColors.zuriPrimaryColor,
+              ),
+              height: 60.0,
+              width: 60.0,
             ),
           ),
           const SizedBox(height: 5),
@@ -309,7 +288,54 @@ Row row(ChannelPageViewModel model) {
   );
 }
 
-sendMessageArea() {
+Container sendMessageArea(TextEditingController editorController, ChannelPageViewModel viewModel, BuildContext context, ChannelModel channel) {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+    height: 70.0,
+    color: Colors.white,
+    child: Row(
+      children: <Widget>[
+        Expanded(
+          child: TextField(
+            controller: editorController,
+            decoration: InputDecoration.collapsed(
+              hintText: 'Message #${channel.name}',
+              hintStyle: TextStyle(
+                fontWeight: FontWeight.w400,
+                color: AppColors.ZuriGrey,
+                fontSize: 16.0,
+              ),
+            ),
+            textCapitalization: TextCapitalization.sentences,
+          ),
+        ),
+        // const ImageIcon(AssetImage('assets/channel_page/light.png')),
+        // const SizedBox(width: 22),
+        // const Icon(CupertinoIcons.camera),
+        // const SizedBox(width: 22),
+        // const ImageIcon(AssetImage('assets/channel_page/attach.png')),
+        IconButton(
+          icon: Icon(Icons.send),
+          onPressed: () {
+            final text = editorController.text.trim();
+            if (text.isNotEmpty) {
+              FocusScope.of(context).unfocus();
+              viewModel.addMessageTile(MessageTile(
+                time: "${DateTime.now()}".substring(11, 16),
+                avatar: "assets/images/nate.png",
+                message: text,
+                name: "You",
+              ));
+              editorController.clear();
+            }
+          },
+        ),
+      ],
+    ),
+  );
+}
+
+/* Container sendMessageArea() {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 8),
     height: 70,
@@ -337,9 +363,9 @@ sendMessageArea() {
       ],
     ),
   );
-}
+} */
 
-dateBuilder(BuildContext context) {
+Row dateBuilder(BuildContext context) {
   return Row(children: <Widget>[
     const Expanded(
         child: Divider(
