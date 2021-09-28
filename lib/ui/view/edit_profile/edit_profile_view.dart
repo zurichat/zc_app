@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/bottom_sheets/custom_user_bottomsheet/custom_user_bottom_sheet_viewmodel.dart';
+import 'package:hng/ui/view/edit_profile/edit_profile_view.form.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import 'package:hng/ui/shared/shared.dart';
 
@@ -6,8 +9,16 @@ import 'package:stacked/stacked.dart';
 
 import 'edit_profile_viewmodel.dart';
 
-class EditProfileView extends StatelessWidget {
-  const EditProfileView({Key? key}) : super(key: key);
+@FormView(
+  fields: [
+    FormTextField(name: 'full_name'),
+    FormTextField(name: 'display_name'),
+    FormTextField(name: 'phone_number'),
+  ]
+)
+
+class EditProfileView extends StatelessWidget with $EditProfileView {
+  // const EditProfileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +34,7 @@ class EditProfileView extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () async {
-                await model.updateProfile();
+                await model.updateDetails();
               },
               child: Text(
                 "Save",
@@ -99,10 +110,8 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   Container(
                     width: _size.width * 0.55,
                     child: TextFormField(
-                      initialValue: model.userData.firstName,
-                      onChanged: (value) {
-                        model.updateString(value, '', '', '');
-                      },
+                      initialValue: model.userModel?.firstName,
+                      controller: full_nameController,
                       decoration: InputDecoration(
                         labelText: "Full Name",
                       ),
@@ -112,10 +121,8 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue: model.userData.displayName,
-              onChanged: (value) {
-                model.updateString('', value, '', '');
-              },
+              initialValue: model.userModel?.lastName,
+              controller: display_nameController,
               decoration: InputDecoration(
                 labelText: "Display Name",
                 helperText:
@@ -124,24 +131,21 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue: model.userData.status,
-              onChanged: (value) {
-                model.updateString('', '', value, '');
-              },
               decoration: InputDecoration(
                   labelText: "What I do", helperText: "HNGi9 X I4G"),
             ),
             TextFormField(
-              initialValue: model.userData.phoneNum,
-              onChanged: (value) {
-                model.updateString('', '', '', value);
-              },
+              initialValue: model.userModel?.phoneNumber,
+              controller: phone_numberController,
               decoration: InputDecoration(
                   labelText: "Phone", helperText: "Enter your phone number"),
             ),
           ],
         ),
       ),
+      )
+      ),
+      viewModelBuilder: () => EditProfileViewModel(),
     );
   }
 }
