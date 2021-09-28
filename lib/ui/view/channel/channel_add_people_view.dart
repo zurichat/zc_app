@@ -39,7 +39,11 @@ class ChannelAddPeopleView extends StatelessWidget {
                     .make(),
                 highlightColor: Colors.transparent,
                 splashColor: Colors.transparent,
-                onTap: () {},
+                onTap: () async {
+                  await addPeople().then((value) {
+                    print(value);
+                  });
+                },
               ).pLTRB(0.0, 16.0, 20.0, 0.0),
             ],
           ),
@@ -128,4 +132,28 @@ class ChannelAddPeopleView extends StatelessWidget {
         initialiseSpecialViewModelsOnce: true,
         disposeViewModel: false,
       );
+}
+
+Dio dio = new Dio();
+Future addPeople() async {
+  final String pathUrl =
+      'https://channels.zuri.chat/api/v1/614679ee1a5607b13c00bcb7/channels/614679ee1a5607b13c00bcb7/members/';
+
+  dynamic data = {
+    "_id": "string",
+    "role_id": "string",
+    "is_admin": false,
+    "notifications": {
+      "additionalProp1": "string",
+      "additionalProp2": "string",
+      "additionalProp3": "string"
+    }
+  };
+
+  var response = await dio.post(pathUrl,
+      data: data,
+      options: Options(headers: {
+        "Content-Type": "application/json",
+      }));
+  return response.data;
 }
