@@ -23,6 +23,7 @@ class HomePageViewModel extends StreamViewModel {
   final dmApiService = locator<DMApiService>();
   final channelsApiService = locator<ChannelsApiService>();
 
+  final navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
   final api = ChannelsApiService();
   // final _dmApiService = locator<DMApiService>();
@@ -115,34 +116,15 @@ class HomePageViewModel extends StreamViewModel {
     });
   }
 
+  //
   //*Navigate to other routes
   void navigateToPref() {
     _navigationService.navigateTo(Routes.fileSearchView);
   }
 
-  // void navigateToChannelPage() {
-  //   _navigationService.navigateTo(Routes.channelPageView);
-  // }
-
   void navigateToUserSearchView() {
     _navigationService.navigateTo(Routes.userSearchView);
   }
-
-  // setList(List data) async {
-  //   channelsList.forEach((data) {
-  //     homePageList.add(
-  //       HomeItemModel(
-  //         type: HomeItemType.channels,
-  //         unreadCount: 0,
-  //         name: data['name'],
-  //         id: data['id'],
-  //         public: data['private'] != "True",
-  //         membersCount: data['members'],
-  //       ),
-  //     );
-  //     print('channelsList from API ${data}');
-  //   });
-  // }
 
   getDmAndChannelsList() async {
     homePageList = [];
@@ -210,7 +192,8 @@ class HomePageViewModel extends StreamViewModel {
   //   ));
   // }
 
-  navigateToChannelPage(id) async {
+  navigateToChannelPage(String? channelname, String? channelId,
+      int? membersCount, bool? public) async {
     try {
       if (!await connectivityService.checkConnection()) {
         snackbar.showCustomSnackBar(
@@ -222,12 +205,16 @@ class HomePageViewModel extends StreamViewModel {
         return;
       }
       setBusy(true);
-      _channel = await api.getChannelPage(id);
-      _membersList = await api.getChannelMembers(id);
+      // _channel= await api.getChannelPage(id);
+      // _membersList= await api.getChannelMembers(id);
       setBusy(false);
-      NavigationService().navigateTo(Routes.channelPageView,
+      navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
-              channelDetail: _channel!, channelMembers: _membersList));
+            channelname: channelname,
+            channelId: channelId,
+            membersCount: membersCount,
+            public: public,
+          ));
     } catch (e) {
       print(e.toString());
       snackbar.showCustomSnackBar(

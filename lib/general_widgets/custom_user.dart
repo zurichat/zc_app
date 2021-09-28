@@ -23,10 +23,8 @@ class CustomUser extends StatelessWidget {
                       image,
                     ))),
           ),
-          SizedBox(
-            height: 8,
-          ),
-          Container(height: 17, child: Text(text))
+          const SizedBox(height: 8),
+          SizedBox(height: 17, child: Text(text))
         ],
       ),
     );

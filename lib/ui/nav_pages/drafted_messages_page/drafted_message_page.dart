@@ -13,11 +13,11 @@ class DraftedMessagePage extends StatelessWidget {
               appBar: AppBar(
                 backgroundColor: Colors.white,
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+                  icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 centerTitle: false,
-                title: Text(
+                title: const Text(
                   'Draft',
                   style: TextStyle(color: Colors.black),
                 ),
@@ -39,7 +39,7 @@ class DraftedMessagePage extends StatelessWidget {
                   Icons.open_in_new_outlined,
                   color: Colors.white,
                 ),
-                backgroundColor: Color(0xff00B87C),
+                backgroundColor: const Color(0xff00B87C),
               ),
             ),
         viewModelBuilder: () => DraftedMessagePageModel());

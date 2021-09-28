@@ -24,7 +24,7 @@ class JumpToSearchBar extends StatelessWidget {
         child: EasyContainer(
           height: 50,
           radius: 7,
-          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
           alignment: Alignment.centerLeft,
           borderWidth: 1.5,
           borderColor: Colors.grey[300],

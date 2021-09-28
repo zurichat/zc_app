@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';

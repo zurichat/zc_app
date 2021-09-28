@@ -23,11 +23,11 @@ class Status extends StatelessWidget {
         icon: icon,
         text: Text.rich(TextSpan(
             text: status,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
             children: [
               TextSpan(
-                  text: " - $duration",
-                  style: TextStyle(color: AppColors.greyishColor))
+                  text: ' - $duration',
+                  style: const TextStyle(color: AppColors.greyishColor))
             ])),
       ),
     );

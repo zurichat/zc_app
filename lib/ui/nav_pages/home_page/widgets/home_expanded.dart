@@ -50,7 +50,7 @@ class HomeExpandedList extends StatelessWidget {
     });
 
     if (title == 'Channels') {
-      expansionList.add(AddChannelsTextAndIcon());
+      expansionList.add(const AddChannelsTextAndIcon());
     }
 
     return expansionList;

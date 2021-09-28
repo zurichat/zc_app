@@ -60,7 +60,9 @@ class JumpToApi {
       log.i("Org members length - ${res?.data?['data'].length}");
       log.i("Org members List ${res?.data?['data'].toString()}");
       //  var meSearch = UserSearch.fromJson(res!.data['data']);
-      return res!.data['data'].map((e) => UserSearch.fromJson(e)).toList();
+      return await res!.data['data']
+          .map((e) => UserSearch.fromJson(e))
+          .toList();
     } on DioError catch (e) {
       log.e('Error Watch - $e');
       return [];
