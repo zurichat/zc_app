@@ -19,7 +19,8 @@ class EditProfileViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
   final _api = HttpApiService('https://api.zuri.chat/');
-
+  final storageService = locator<SharedPreferenceLocalStorage>();
+  
   void updateString(String name, String display, String status, String phone) {
     if (name.trim().isNotEmpty) {
       _name = name;
@@ -92,10 +93,7 @@ class EditProfileViewModel extends BaseViewModel {
     }
   }
 
-  final storageService = locator<SharedPreferenceLocalStorage>();
   Future updateProfile() async {
-    String? orgId = storageService.getString(StorageKeys.currentOrgId);
-    String? userId = storageService.getString(StorageKeys.currentUserId);
     //TODO CHange these links to there rightful values once they can be updated
     //I interchanged most calls because at the point of writing they did not have their patch call
     String link =
@@ -112,7 +110,7 @@ class EditProfileViewModel extends BaseViewModel {
         'organizations/61459d8e62688da5302acdb1/members/614729a2f41cb684cc531ac7/status';
 
     final editData3 = {'status': _status};
-    final res3 = await _api.patch(link3, data: editData3, headers: {
+     await _api.patch(link3, data: editData3, headers: {
       'Authorization':
           'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
     });
@@ -140,7 +138,7 @@ class EditProfileViewModel extends BaseViewModel {
     final editData1 = {
       'data': _display,
     };
-    final res1 = await _api.patch(link1, data: editData1, headers: {
+    await _api.patch(link1, data: editData1, headers: {
       'Authorization':
           'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
     });
@@ -151,7 +149,7 @@ class EditProfileViewModel extends BaseViewModel {
     final editData2 = {
       'phone': _phone,
     };
-    final res2 = await _api.patch(link2, data: editData2, headers: {
+     await _api.patch(link2, data: editData2, headers: {
       'Authorization':
           'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
     });
@@ -162,12 +160,11 @@ class EditProfileViewModel extends BaseViewModel {
 class GetUserProfile {
   final _api = HttpApiService('https://api.zuri.chat/');
 
-  final storageService = locator<SharedPreferenceLocalStorage>();
 
   /// Fetches info of the current user
   Future<ProfileModel> currentUser() async {
-    String? orgId = storageService.getString(StorageKeys.currentOrgId);
-    String? userId = storageService.getString(StorageKeys.currentUserId);
+  final storageService = locator<SharedPreferenceLocalStorage>();
+   
     String link =
         'organizations/61459d8e62688da5302acdb1/members/614729a2f41cb684cc531ac7';
 

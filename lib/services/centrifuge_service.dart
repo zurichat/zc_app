@@ -18,7 +18,6 @@ class CentrifugeService with ReactiveServiceMixin {
     _client = centrifuge.createClient('$websocketUrl?format=protobuf',
         config: centrifuge.ClientConfig());
 
-   
     _client!.connect();
   }
 
@@ -55,7 +54,7 @@ class CentrifugeService with ReactiveServiceMixin {
       log.i('WORK WORK RIGHT NOW ${json.decode(utf8.decode(event.data))}');
 
       messageStreamController.sink.add('Message Received');
-      Map user_message = json.decode(utf8.decode(event.data));
+      // Map user_message = json.decode(utf8.decode(event.data));
     });
 
     _subscription!.subscribe();

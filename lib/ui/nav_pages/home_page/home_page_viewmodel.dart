@@ -102,7 +102,6 @@ class HomePageViewModel extends StreamViewModel {
     return connectionStatus;
   }
 
-
   ///This sets all the expanded list items
   ///into unreads, channels and dms
   setAllList() {
@@ -117,82 +116,15 @@ class HomePageViewModel extends StreamViewModel {
     });
   }
 
-  //This method is just to demo the side bar data that would
-  //be received by the database
-
-  getHomePageData() {
-    homePageList = [
-      HomeItemModel(type: HomeItemType.channels, name: 'annoucement'),
-      HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 1, name: 'random'),
-      HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 0, name: 'team-app'),
-      HomeItemModel(
-          type: HomeItemType.channels,
-          unreadCount: 5,
-          name: 'backend',
-          public: false),
-      HomeItemModel(
-          type: HomeItemType.channels,
-          unreadCount: 0,
-          name: 'frontend',
-          public: false),
-      HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 4, name: 'work-flow'),
-      HomeItemModel(
-          type: HomeItemType.channels,
-          unreadCount: 1,
-          name: 'stage7',
-          public: false),
-      HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 3, name: 'random'),
-      HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 0, name: 'general'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Paul'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Timi'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Mayowa'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 1, name: 'Colins'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Brain'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Folks'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'DeveloperB'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 1, name: 'edward'),
-    ];
-
-    unreads.clear();
-    directMessages.clear();
-    joinedChannels.clear();
-
-    setAllList();
-    notifyListeners();
-  }
-
   //
   //*Navigate to other routes
   void navigateToPref() {
     _navigationService.navigateTo(Routes.fileSearchView);
   }
 
-
-
   void navigateToUserSearchView() {
     _navigationService.navigateTo(Routes.userSearchView);
   }
-
-  // setList(List data) async {
-  //   channelsList.forEach((data) {
-  //     homePageList.add(
-  //       HomeItemModel(
-  //         type: HomeItemType.channels,
-  //         unreadCount: 0,
-  //         name: data['name'],
-  //         id: data['id'],
-  //         public: data['private'] != "True",
-  //         membersCount: data['members'],
-  //       ),
-  //     );
-  //     print('channelsList from API ${data}');
-  //   });
-  // }
 
   getDmAndChannelsList() async {
     homePageList = [];

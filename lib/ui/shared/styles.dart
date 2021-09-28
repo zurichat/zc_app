@@ -260,6 +260,7 @@ class AppTextStyles {
       color: AppColors.unreadMessageColor);
 }
 
+// ignore: must_be_immutable
 class StatusIcon extends StatelessWidget {
   int count = 5;
 
