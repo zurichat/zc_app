@@ -26,7 +26,7 @@ class DeleteMessageDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Align(
+              const Align(
                 alignment: Alignment.topLeft,
                 child: Text(
                   'Delete message',
@@ -41,7 +41,7 @@ class DeleteMessageDialog extends StatelessWidget {
                 height: size.width * .01,
               ),
               Text.rich(
-                TextSpan(
+                const TextSpan(
                   text: '''
 Are you sure you want to delete this message?\nThis cannot be undone.''',
                 ),
@@ -59,11 +59,11 @@ Are you sure you want to delete this message?\nThis cannot be undone.''',
                     MaterialButton(
                         onPressed: () =>
                             completer(DialogResponse(confirmed: false)),
-                        child: Text('Cancel')),
+                        child: const Text('Cancel')),
                   MaterialButton(
                       onPressed: () =>
                           completer(DialogResponse(confirmed: true)),
-                      child: Text('Delete')),
+                      child: const Text('Delete')),
                 ],
               )
             ],

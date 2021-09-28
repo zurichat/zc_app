@@ -7,7 +7,7 @@ import '../../../../utilities/utilities.dart';
 import 'custom_input_chip.dart';
 
 class CustomChipInput extends StatelessWidget {
-  CustomChipInput({
+  const CustomChipInput({
     Key? key,
     required GlobalKey<ChipsInputState> chipKey,
     required this.mockResults,
@@ -16,7 +16,7 @@ class CustomChipInput extends StatelessWidget {
 
   final GlobalKey<ChipsInputState> _chipKey;
   final List<UserModel> mockResults;
-  final horizontalSpace = SizedBox(width: 12);
+  final horizontalSpace = const SizedBox(width: 12);
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +24,15 @@ class CustomChipInput extends StatelessWidget {
       key: _chipKey,
       textCapitalization: TextCapitalization.words,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.only(left: 10),
+        contentPadding: const EdgeInsets.only(left: 10),
         border: InputBorder.none,
         prefixText: 'To:',
         hintText: '    Type the name of a channel or person',
         hintStyle: GoogleFonts.lato(
           fontWeight: FontWeight.w400,
           fontSize: 16,
-          color: Color(0xFFF999999),
+          //TODO CHange to brand colors
+          color: const Color(0xFFF999999),
         ),
       ),
       findSuggestions: (String query) {
@@ -90,11 +91,15 @@ class CustomChipInput extends StatelessWidget {
                   height: 8,
                   width: 8,
                   decoration: BoxDecoration(
-                    color: profile.isOnline == true ? Color(0xFF007952) : null,
+                    //TODO Change to brand colors
+                    color: profile.isOnline == true
+                        ? const Color(0xFF007952)
+                        : null,
                     shape: BoxShape.circle,
                     border: profile.isOnline == true
                         ? null
-                        : Border.all(color: Color(0xFF424141)),
+                        //TODO Change to brand colors
+                        : Border.all(color: const Color(0xFF424141)),
                   )),
               horizontalSpace,
               Flexible(

@@ -21,7 +21,7 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
       builder: (context, constraint) {
         return SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 minHeight: constraint.maxHeight - kToolbarHeight,
@@ -31,12 +31,12 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Text(
-                        "Who else is working with you?",
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: const Text(
+                        'Who else is working with you?',
                         style: TextStyle(
                           letterSpacing: 0.5,
                           color: AppColors.blackColor,
@@ -48,7 +48,7 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                     ), //Copy and share your invute link
                     Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.only(bottom: 20),
+                      padding: const EdgeInsets.only(bottom: 20),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -57,9 +57,9 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                             width: 18,
                             // color: AppColors.zuriPrimaryColor,
                           ),
-                          SizedBox(width: 10),
-                          Text(
-                            "Copy and share your invite link",
+                          const SizedBox(width: 10),
+                          const Text(
+                            'Copy and share your invite link',
                             style: TextStyle(
                               letterSpacing: 0.5,
                               color: AppColors.zuriPrimaryColor,
@@ -76,10 +76,12 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                       controller: model.inviteController,
                       hint: 'name@example.com',
                     ),
-                    InviteButton(),
+                    const InviteButton(),
                     UIHelper.verticalSpaceMedium,
-                    LongButton(onPressed: () => model.addTeammates(), label: 'Add Teammates'),
-                    Spacer(flex: 3),
+                    LongButton(
+                        onPressed: () => model.addTeammates(),
+                        label: 'Add Teammates'),
+                    const Spacer(flex: 3),
                   ],
                 ),
               ),
@@ -92,12 +94,12 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
 }
 
 class InviteButton extends ViewModelWidget<CreateOrganizationViewModel> {
-  InviteButton({Key? key}) : super(key: key, reactive: true);
+  const InviteButton({Key? key}) : super(key: key, reactive: true);
 
   @override
   Widget build(BuildContext context, CreateOrganizationViewModel model) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 15.0),
+      padding: const EdgeInsets.symmetric(vertical: 15.0),
       child: TextButton(
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
@@ -105,7 +107,8 @@ class InviteButton extends ViewModelWidget<CreateOrganizationViewModel> {
             ),
             shape: MaterialStateProperty.all<OutlinedBorder>(
               RoundedRectangleBorder(
-                side: BorderSide(color: AppColors.zuriPrimaryColor, width: 1),
+                side: const BorderSide(
+                    color: AppColors.zuriPrimaryColor, width: 1),
                 borderRadius: BorderRadius.circular(4),
               ),
             ),
@@ -118,17 +121,17 @@ class InviteButton extends ViewModelWidget<CreateOrganizationViewModel> {
         onPressed: model.onInviteTap,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-          child: Container(
+          child: SizedBox(
             width: 300,
             child: Center(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.person_add_alt_outlined,
                     color: AppColors.zuriPrimaryColor,
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Text(
                     'Invite from Contacts',
                     style: AppTextStyles.buttonText

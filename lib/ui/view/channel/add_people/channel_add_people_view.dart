@@ -16,6 +16,7 @@ class ChannelAddPeopleView extends StatelessWidget {
         initialiseSpecialViewModelsOnce: true,
         disposeViewModel: false,
         builder: (context, viewModel, child) => Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
             title: Text(
               'Add People',
@@ -53,20 +54,20 @@ class ChannelAddPeopleView extends StatelessWidget {
           ),
           body: Column(
             children: [
-              SizedBox(height: 24.0),
+              const SizedBox(height: 24.0),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: SearchField(
                   onChanged: viewModel.onSearchUser,
                   labelText: 'Search people to add',
                   // controller: viewModel.editor,
                 ),
               ),
-              SizedBox(height: 16.0),
-              Divider(thickness: 2.0),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
+              const Divider(thickness: 2.0),
+              const SizedBox(height: 16.0),
               Padding(
-                padding: EdgeInsets.fromLTRB(20.0, 0.0, 12.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 12.0, 0.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -76,11 +77,12 @@ class ChannelAddPeopleView extends StatelessWidget {
                         Text(
                           'Add Everyone',
                           style: GoogleFonts.lato(
-                            color: Color(0xFF242424),
+                            //TODO change color to brand
+                            color: const Color(0xFF242424),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 4.0),
+                        const SizedBox(height: 4.0),
                         Text(
                           'Everyone will be added to this channel',
                           style: GoogleFonts.lato(
@@ -93,20 +95,21 @@ class ChannelAddPeopleView extends StatelessWidget {
                     ),
                     Checkbox(
                       onChanged: viewModel.onMarkAll,
-                      side: BorderSide(width: 0.96),
+                      side: const BorderSide(width: 0.96),
                       value: viewModel.allMarked,
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 16.0),
-              Divider(thickness: 2.0),
+              const SizedBox(height: 16.0),
+              const Divider(thickness: 2.0),
               ListView.separated(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
-                padding: EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
+                padding: const EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
                 itemCount: viewModel.matchingUsers.length,
-                separatorBuilder: (context, index) => SizedBox(height: 24.0),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 24.0),
                 itemBuilder: (context, index) => Row(
                   children: [
                     Row(
@@ -115,19 +118,19 @@ class ChannelAddPeopleView extends StatelessWidget {
                           alignment: Alignment.topRight,
                           children: [
                             Padding(
-                              padding: EdgeInsets.all(4.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Image.asset(
                                 'assets/images/${viewModel.matchingUsers[index].userimg}',
                               ),
                             ),
                             if (viewModel.matchingUsers[index].online)
-                              CircleAvatar(
+                              const CircleAvatar(
                                 backgroundColor: AppColors.zuriPrimaryColor,
                                 radius: 4.0,
                               ),
                           ],
                         ),
-                        SizedBox(width: 20.0),
+                        const SizedBox(width: 20.0),
                         Text(
                           viewModel.matchingUsers[index].userName,
                           style: GoogleFonts.lato(
@@ -135,12 +138,12 @@ class ChannelAddPeopleView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Checkbox(
                       value: viewModel.markedUsers
                           .contains(viewModel.matchingUsers[index]),
                       onChanged: (marked) => viewModel.onMarkOne(marked, index),
-                      side: BorderSide(width: 0.96),
+                      side: const BorderSide(width: 0.96),
                     )
                   ],
                 ),

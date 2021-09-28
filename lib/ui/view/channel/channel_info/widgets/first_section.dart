@@ -5,8 +5,8 @@ import '../../../../shared/colors.dart';
 import 'textstyles.dart';
 
 class FirstSection extends StatelessWidget {
-final String? channelName;
-  FirstSection({this.channelName});
+  final String? channelName;
+   FirstSection({this.channelName});
 
   @override
   Widget build(BuildContext context) {

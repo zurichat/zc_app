@@ -159,7 +159,7 @@ class AppTextStyles {
     fontSize: 16,
   );
 
-  static TextStyle zuriAppBarWordLogo = TextStyle(
+  static TextStyle zuriAppBarWordLogo = const TextStyle(
       fontSize: 18.08,
       fontFamily: 'Lato',
       fontWeight: FontWeight.w700,
@@ -263,7 +263,9 @@ class AppTextStyles {
 class StatusIcon extends StatelessWidget {
   int count = 5;
 
-  StatusIcon(int parse);
+  StatusIcon(
+    this.count,
+  );
   @override
   Widget build(BuildContext context) {
     return Container(
