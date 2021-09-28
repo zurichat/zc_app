@@ -152,6 +152,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                       widthFactor: 1.0,
                       child: ElevatedButton(
                         // onPressed: () => model.navigateToNewPassword(),
+                        onPressed: () {  },
                         child: Text(
                           'Continue',
                           style: TextStyle(
