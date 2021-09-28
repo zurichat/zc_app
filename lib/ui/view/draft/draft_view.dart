@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
-
-import 'app/data.dart';
-import 'app/drafted_item_widget.dart';
 import 'draft_viewmodel.dart';
 
 class DraftView extends StatelessWidget {

@@ -6,8 +6,6 @@ import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
-
-import 'package:hng/models/static_user_model.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ChannelAddPeopleViewModel extends BaseViewModel {

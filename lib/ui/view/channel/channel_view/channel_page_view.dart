@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_reply_box.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 import '../../../shared/shared.dart';
 
 import 'channel_page_viewmodel.dart';
