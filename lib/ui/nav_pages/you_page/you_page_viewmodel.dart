@@ -4,12 +4,10 @@ import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';
 import '../../../app/app.router.dart';
-import '../../../utilities/enums.dart';
 
 class YouPageViewModel extends BaseViewModel {
   final log = getLogger('YouPageViewModel');
   final _navigationService = locator<NavigationService>();
-  final _bottomSheetService = locator<BottomSheetService>();
 
   String username = 'pauleke65';
   String profileImage = 'assets/background/appBarLogo.png';
