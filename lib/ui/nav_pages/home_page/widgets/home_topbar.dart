@@ -39,13 +39,13 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
                 vmodel.navigateToOrganization();
               },
               child: organizationLogo ??
-                  EasyContainer(
+                  const EasyContainer(
                     height: 35,
                     width: 35,
                     color: AppColors.whiteColor,
                     alignment: Alignment.center,
                     radius: 6,
-                    child: const Image(
+                    child: Image(
                       image: appBarLogo,
                       fit: BoxFit.cover,
                       height: 25,

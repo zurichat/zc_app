@@ -14,9 +14,9 @@ class RecentEmojis extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             text,
-            style: TextStyle(fontSize: 25),
+            style: const TextStyle(fontSize: 25),
           )),
-      decoration: BoxDecoration(
+      decoration:const  BoxDecoration(
         shape: BoxShape.circle,
         color: AppColors.greyBackgroundColor,
       ),

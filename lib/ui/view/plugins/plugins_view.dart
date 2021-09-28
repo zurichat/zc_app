@@ -28,12 +28,12 @@ class PluginView extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 24.0),
             child: Column(
               children: [
-                Container(
+                const SizedBox(
                     height: 40.0,
                     child: CustomSearchField(
                       searchHint: 'Search plugin',
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 25.0,
                 ),
                 GestureDetector(
@@ -41,7 +41,7 @@ class PluginView extends StatelessWidget {
                     model.nToAdd();
                   },
                   child: CustomPluginPageListTile(
-                    leadingIcon: Icon(
+                    leadingIcon: const Icon(
                       Icons.add,
                       color: AppColors.zuriPrimaryColor,
                     ),
@@ -49,7 +49,7 @@ class PluginView extends StatelessWidget {
                     textColor: AppColors.zuriPrimaryColor,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
                 CustomPluginPageListTile(
@@ -58,7 +58,7 @@ class PluginView extends StatelessWidget {
                     width: 20,
                   ),
                   text: 'Quick message plugin',
-                  textColor: Color(0xFF242424),
+                  textColor: const Color(0xFF242424),
                 )
               ],
             ),
