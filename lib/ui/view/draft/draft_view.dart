@@ -12,7 +12,7 @@ class DraftView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           title: Text(model.title),
-          leading: Icon(Icons.arrow_back_ios),
+          leading: const Icon(Icons.arrow_back_ios),
         ),
         body: ListView.builder(
           itemCount: model.draft.length,
@@ -23,11 +23,10 @@ class DraftView extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           tooltip: 'Add draft',
-          child: Icon(Icons.notes),
+          child: const Icon(Icons.notes),
         ),
       ),
       viewModelBuilder: () => DraftViewModel(),
     );
   }
 }
-

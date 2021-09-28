@@ -10,7 +10,6 @@ class DMMessageUnread extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
       child: Row(
         children: [
           Container(
@@ -18,15 +17,15 @@ class DMMessageUnread extends StatelessWidget {
             width: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3),
-              color: Color(0xff1A61DB),
-              image: DecorationImage(
+              color: const Color(0xff1A61DB),
+              image: const DecorationImage(
                 image: NetworkImage(
                     'https://th.bing.com/th/id/OIP.QHG-JO3iI1u8VQjSkpO0HwHaLH?pid=ImgDet&rs=1'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,24 +34,24 @@ class DMMessageUnread extends StatelessWidget {
                 'OyinkaUA 4️⃣',
                 style: AppTextStyles.body1Bold,
               ),
-              SizedBox(height: 5),
-              Text(
+              const SizedBox(height: 5),
+              const Text(
                 'You: Have you been promoted?',
                 // style: AppTextStyles.normalText
               ),
             ],
           ),
-          Spacer(),
+          const Spacer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 '1m',
                 // style:
                 //     AppTextStyles.timestamp,
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               AppTextStyles.unreadCount(3)
             ],
           ),

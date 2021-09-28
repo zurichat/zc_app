@@ -13,7 +13,7 @@ class ChannelNotificationView extends StatelessWidget {
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
-            appBar: ZuriAppBar(
+            appBar: const ZuriAppBar(
               60,
               'Notifications',
               subtitle: 'Settings for #teamsocrates',
@@ -22,12 +22,12 @@ class ChannelNotificationView extends StatelessWidget {
             body: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.all(16),
+                  margin: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: AppColors.whiteColor,
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
-                      BoxShadow(
+                      const BoxShadow(
                         color: AppColors.shadowColor,
                         blurRadius: 5,
                       ),
@@ -59,7 +59,7 @@ class ChannelNotificationView extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 16),
+                  margin: const EdgeInsets.only(left: 16),
                   width: double.infinity,
                   child: Text(
                     'This setting only applies to #teamsocrates channel.',
@@ -80,7 +80,7 @@ class ChannelNotificationView extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: border
-            ? Border(top: BorderSide(width: 1, color: Colors.grey))
+            ? const Border(top: BorderSide(width: 1, color: Colors.grey))
             : null,
       ),
       child: RadioListTile(
@@ -123,7 +123,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(
@@ -152,8 +152,8 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                     color: AppColors.deepBlackColor,
                   ),
                 ),
-                SizedBox(height: 4),
-                if (this.subtitle != null)
+                const SizedBox(height: 4),
+                if (subtitle != null)
                   Text(
                     '$subtitle',
                     style: AppTextStyles.body1Regular,

@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/view/plugins/plugin_viewmodel.dart';
-import 'package:hng/ui/view/plugins/widgets/custom_appbar.dart';
-import 'package:hng/ui/view/plugins/widgets/custom_plugin_list_tile.dart';
-import 'package:hng/ui/view/plugins/widgets/custom_search_field.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../shared/colors.dart';
+import 'plugin_viewmodel.dart';
+import 'widgets/custom_appbar.dart';
+import 'widgets/custom_plugin_list_tile.dart';
+import 'widgets/custom_search_field.dart';
 
 class PluginView extends StatelessWidget {
   const PluginView({Key? key}) : super(key: key);
@@ -27,12 +28,12 @@ class PluginView extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 24.0),
             child: Column(
               children: [
-                Container(
+                const SizedBox(
                     height: 40.0,
                     child: CustomSearchField(
                       searchHint: 'Search plugin',
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 25.0,
                 ),
                 GestureDetector(
@@ -40,7 +41,7 @@ class PluginView extends StatelessWidget {
                     model.nToAdd();
                   },
                   child: CustomPluginPageListTile(
-                    leadingIcon: Icon(
+                    leadingIcon: const Icon(
                       Icons.add,
                       color: AppColors.zuriPrimaryColor,
                     ),
@@ -48,7 +49,7 @@ class PluginView extends StatelessWidget {
                     textColor: AppColors.zuriPrimaryColor,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
                 CustomPluginPageListTile(
@@ -57,7 +58,7 @@ class PluginView extends StatelessWidget {
                     width: 20,
                   ),
                   text: 'Quick message plugin',
-                  textColor: Color(0xFF242424),
+                  textColor: const Color(0xFF242424),
                 )
               ],
             ),

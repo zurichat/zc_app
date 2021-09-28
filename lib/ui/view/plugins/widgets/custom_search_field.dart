@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import '../../../shared/colors.dart';
 
 class CustomSearchField extends StatelessWidget {
   final String searchHint;
 
-  CustomSearchField({
+  const CustomSearchField({
     Key? key,
     required this.searchHint,
   }) : super(key: key);
@@ -15,14 +16,14 @@ class CustomSearchField extends StatelessWidget {
     return TextField(
         decoration: InputDecoration(
       hintText: searchHint,
-      hintStyle: TextStyle(
+      hintStyle: const TextStyle(
           color: Color(0xFFA1A9B2),
           fontWeight: FontWeight.w400,
           fontSize: 14.0),
-      focusedBorder: OutlineInputBorder(
+      focusedBorder: const OutlineInputBorder(
         borderSide: BorderSide(width: 0.5),
       ),
-      enabledBorder: OutlineInputBorder(
+      enabledBorder: const OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.borderColor, width: 0.5),
       ),
     ));

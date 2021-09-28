@@ -26,8 +26,8 @@ class _SendFeedbackDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    TextEditingController controller = TextEditingController();
+    final size = MediaQuery.of(context).size;
+    final controller = TextEditingController();
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * .05, vertical: size.height * .02),
@@ -36,38 +36,38 @@ class _SendFeedbackDialogContent extends StatelessWidget {
       height: size.height * .3,
       child: Column(
         children: [
-          Align(
+          const Align(
             alignment: Alignment.topLeft,
             child: Text(
-              "Compose feedback",
+              'Compose feedback',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: double.infinity),
+            constraints: const BoxConstraints(maxWidth: double.infinity),
             child: TextField(
               controller: controller,
-              decoration: InputDecoration(
-                  hintText: "e.g I found a bug in the Dm’s",
+              decoration: const InputDecoration(
+                  hintText: 'e.g I found a bug in the Dm’s',
                   helperText:
-                      "We will respond via email to feedback and questions."),
+                      'We will respond via email to feedback and questions.'),
               minLines: 1,
               maxLines: 5,
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               MaterialButton(
                   onPressed: () => completer(DialogResponse(confirmed: false)),
-                  child: Text("CANCEL")),
+                  child: const Text('CANCEL')),
               MaterialButton(
                   onPressed: () => completer(
                       DialogResponse(data: controller.text, confirmed: true)),
-                  child: Text("OK")),
+                  child: const Text('OK')),
             ],
           )
         ],

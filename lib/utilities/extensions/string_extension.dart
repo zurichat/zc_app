@@ -28,6 +28,6 @@ extension StringExtension on String {
   }
 
   String get initials {
-    return this.split(' ').map((e) => e.split('').first.toUpperCase()).join();
+    return split(' ').map((e) => e.split('').first.toUpperCase()).join();
   }
 }

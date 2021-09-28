@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../general_widgets/custom_text.dart';
+import '../../shared/shared.dart';
 import 'do_not_disturb_viewmodel.dart';
 
 class DoNotDisturbView extends StatelessWidget {
@@ -15,40 +15,38 @@ class DoNotDisturbView extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
-              onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
-          title: Text("Do not disturb"),
+            onPressed: model.exitPage,
+            icon: const Icon(Icons.close_rounded),
+          ),
+          title: const Text('Do not disturb'),
           actions: [
             TextButton(
               onPressed: () {},
-              child: Text(
-                "Save",
+              child: const Text(
+                'Save',
                 style: TextStyle(color: AppColors.zuriPrimaryColor),
               ),
             )
           ],
         ),
-        body: Container(
-          child: Column(
-            children: [
-              Flexible(
-                fit: FlexFit.loose,
-                child: ListView.builder(
-                  itemCount: model.doNotDisturbTimes.length,
-                  itemBuilder: (context, index) => Container(
-                    child: ListTile(
-                      title: CustomText(text: model.doNotDisturbTimes[index]),
-                      leading: Radio(
-                        activeColor: AppColors.zuriPrimaryColor,
-                        value: index,
-                        groupValue: model.currentValue,
-                        onChanged: model.changeTime,
-                      ),
-                    ),
+        body: Column(
+          children: [
+            Flexible(
+              fit: FlexFit.loose,
+              child: ListView.builder(
+                itemCount: model.doNotDisturbTimes.length,
+                itemBuilder: (context, index) => ListTile(
+                  title: CustomText(text: model.doNotDisturbTimes[index]),
+                  leading: Radio(
+                    activeColor: AppColors.zuriPrimaryColor,
+                    value: index,
+                    groupValue: model.currentValue,
+                    onChanged: model.changeTime,
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       viewModelBuilder: () => DoNotDisturbViewModel(),

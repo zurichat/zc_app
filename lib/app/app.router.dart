@@ -9,15 +9,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
 
+import '../models/channel_members.dart';
+import '../models/channel_model.dart';
+import '../models/user_post.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
+import '../ui/view/channel/add_people/channel_add_people_view.dart';
 import '../ui/view/channel/channel_info/channel_info_view.dart';
 import '../ui/view/channel/channel_list/channels_view.dart';
 import '../ui/view/channel/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel/channel_view/channel_page_view.dart';
+import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/clear_after/clear_after_view.dart';
 import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
@@ -27,14 +31,20 @@ import '../ui/view/do_not_disturb/do_not_disturb_view.dart';
 import '../ui/view/draft/draft_view.dart';
 import '../ui/view/edit_profile/edit_profile_view.dart';
 import '../ui/view/file_search/file_search_view.dart';
-import '../ui/view/forgot_password_email/forgot_password_email_view.dart';
-import '../ui/view/forgot_password_new_password/forgot_password_newview.dart';
-import '../ui/view/forgot_password_otp/forgot_password_otpview.dart';
+import '../ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
+import '../ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
+import '../ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
 import '../ui/view/language_and_region/language_and_region_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/notifications/notifications_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
+import '../ui/view/organization/add_organization/add_organization_view.dart';
+import '../ui/view/organization/create_organization/create_organization.dart';
+import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
+import '../ui/view/organization/organization_url/organization_url_view.dart';
+import '../ui/view/organization/organization_view/organization_view.dart';
+import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
 import '../ui/view/pinned_messages/pinned_message.dart';
 import '../ui/view/plugins/add_plugin_view.dart';
@@ -47,29 +57,29 @@ import '../ui/view/saved_items/saved_items_view.dart';
 import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
-import '../ui/view/view_profile_page/view_profile_page.dart';
-import '../ui/view/workspace/add_workspace/add_workspace_view.dart';
-import '../ui/view/workspace/create_workspace/create_workspace.dart';
-import '../ui/view/workspace/workspace_different_email/difference_email_workspace_view.dart';
-import '../ui/view/workspace/workspace_view/workspace_view.dart';
+import '../ui/view/start_dm/start_dm_view.dart';
+import '../ui/view/threads/all_threads/threads_view.dart';
+import '../ui/view/threads/thread_detail/thread_detail_view.dart';
+import '../ui/view/user_search/user_search_view.dart';
+import '../ui/view/view_profile_page/view_profile.dart';
+import '../utilities/enums.dart';
 
 class Routes {
+  static const String channelAddPeopleView = '/channel-add-people-view';
   static const String navBarView = '/nav-bar-view';
   static const String onboardingView = '/onboarding-view';
   static const String loginView = '/login-view';
-  static const String otpView = '/otp-view';
+  static const String oTPView = '/o-tp-view';
   static const String signUpView = '/sign-up-view';
-  static const String workspaceView = '/workspace-view';
+  static const String organizationView = '/organization-view';
   static const String channelList = '/channel-list';
   static const String forgotPasswordEmailView = '/forgot-password-email-view';
   static const String forgotPasswordOtpView = '/forgot-password-otp-view';
   static const String forgotPasswordNewView = '/forgot-password-new-view';
   static const String channelNotificationView = '/channel-notification-view';
   static const String newChannel = '/new-channel';
-  static const String channelInfoView = '/channel-info-view';
   static const String homePage = '/home-page';
   static const String addPeopleView = '/add-people-view';
-  static const String channelPageView = '/channel-page-view';
   static const String dmSearch = '/dm-search';
   static const String dmJumpToView = '/dm-jump-to-view';
   static const String dmUserView = '/dm-user-view';
@@ -78,7 +88,7 @@ class Routes {
   static const String addPluginView = '/add-plugin-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String editPluginView = '/edit-plugin-view';
-  static const String viewProfilePage = '/view-profile-page';
+  static const String viewProfile = '/view-profile';
   static const String setStatusView = '/set-status-view';
   static const String profilePageView = '/profile-page-view';
   static const String preferenceView = '/preference-view';
@@ -92,27 +102,35 @@ class Routes {
   static const String editProfileView = '/edit-profile-view';
   static const String popUpNotificationsView = '/pop-up-notifications-view';
   static const String pinnedMessages = '/pinned-messages';
-  static const String addWorkspaceView = '/add-workspace-view';
-  static const String createWorkSpace = '/create-work-space';
+  static const String selectEmail = '/select-email';
+  static const String addOrganizationView = '/add-organization-view';
+  static const String createOrganization = '/create-organization';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
+  static const String threadsView = '/threads-view';
+  static const String threadDetailView = '/thread-detail-view';
+  static const String userSearchView = '/user-search-view';
+  static const String editChannelPageView = '/edit-channel-page-view';
+  static const String startDmView = '/start-dm-view';
+  static const String organizationUrlView = '/organization-url-view';
+  static const String channelPageView = '/channel-page-view';
+  static const String channelInfoView = '/channel-info-view';
   static const all = <String>{
+    channelAddPeopleView,
     navBarView,
     onboardingView,
     loginView,
-    otpView,
+    oTPView,
     signUpView,
-    workspaceView,
+    organizationView,
     channelList,
     forgotPasswordEmailView,
     forgotPasswordOtpView,
     forgotPasswordNewView,
     channelNotificationView,
     newChannel,
-    channelInfoView,
     homePage,
     addPeopleView,
-    channelPageView,
     dmSearch,
     dmJumpToView,
     dmUserView,
@@ -121,7 +139,7 @@ class Routes {
     addPluginView,
     useDifferentEmailView,
     editPluginView,
-    viewProfilePage,
+    viewProfile,
     setStatusView,
     profilePageView,
     preferenceView,
@@ -134,10 +152,19 @@ class Routes {
     editProfileView,
     popUpNotificationsView,
     pinnedMessages,
-    addWorkspaceView,
-    createWorkSpace,
+    selectEmail,
+    addOrganizationView,
+    createOrganization,
     fileSearchView,
     draftView,
+    threadsView,
+    threadDetailView,
+    userSearchView,
+    editChannelPageView,
+    startDmView,
+    organizationUrlView,
+    channelPageView,
+    channelInfoView,
   };
 }
 
@@ -145,22 +172,21 @@ class StackedRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
+    RouteDef(Routes.channelAddPeopleView, page: ChannelAddPeopleView),
     RouteDef(Routes.navBarView, page: NavBarView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.loginView, page: LoginView),
-    RouteDef(Routes.otpView, page: OtpView),
+    RouteDef(Routes.oTPView, page: OTPView),
     RouteDef(Routes.signUpView, page: SignUpView),
-    RouteDef(Routes.workspaceView, page: WorkspaceView),
+    RouteDef(Routes.organizationView, page: OrganizationView),
     RouteDef(Routes.channelList, page: ChannelList),
     RouteDef(Routes.forgotPasswordEmailView, page: ForgotPasswordEmailView),
     RouteDef(Routes.forgotPasswordOtpView, page: ForgotPasswordOtpView),
     RouteDef(Routes.forgotPasswordNewView, page: ForgotPasswordNewView),
     RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
     RouteDef(Routes.newChannel, page: NewChannel),
-    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
     RouteDef(Routes.homePage, page: HomePage),
     RouteDef(Routes.addPeopleView, page: AddPeopleView),
-    RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.dmSearch, page: DmSearch),
     RouteDef(Routes.dmJumpToView, page: DmJumpToView),
     RouteDef(Routes.dmUserView, page: DmUserView),
@@ -169,7 +195,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.addPluginView, page: AddPluginView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.editPluginView, page: EditPluginView),
-    RouteDef(Routes.viewProfilePage, page: ViewProfilePage),
+    RouteDef(Routes.viewProfile, page: ViewProfile),
     RouteDef(Routes.setStatusView, page: SetStatusView),
     RouteDef(Routes.profilePageView, page: ProfilePageView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
@@ -183,188 +209,182 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.editProfileView, page: EditProfileView),
     RouteDef(Routes.popUpNotificationsView, page: PopUpNotificationsView),
     RouteDef(Routes.pinnedMessages, page: PinnedMessages),
-    RouteDef(Routes.addWorkspaceView, page: AddWorkspaceView),
-    RouteDef(Routes.createWorkSpace, page: CreateWorkSpace),
+    RouteDef(Routes.selectEmail, page: SelectEmail),
+    RouteDef(Routes.addOrganizationView, page: AddOrganizationView),
+    RouteDef(Routes.createOrganization, page: CreateOrganization),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
+    RouteDef(Routes.threadsView, page: ThreadsView),
+    RouteDef(Routes.threadDetailView, page: ThreadDetailView),
+    RouteDef(Routes.userSearchView, page: UserSearchView),
+    RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
+    RouteDef(Routes.startDmView, page: StartDmView),
+    RouteDef(Routes.organizationUrlView, page: OrganizationUrlView),
+    RouteDef(Routes.channelPageView, page: ChannelPageView),
+    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
+    ChannelAddPeopleView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ChannelAddPeopleView(),
+        settings: data,
+      );
+    },
     NavBarView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const NavBarView(),
         settings: data,
       );
     },
-    ViewProfilePage: (data) {
-      var args = data.getArgs<ViewProfilePageArguments>(
-        orElse: () => ViewProfilePageArguments(),
-      );
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => ViewProfilePage(
-          key: args.key,
-          isActive: args.isActive,
-        ),
-        settings: data,
-      );
-    },
     OnboardingView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const OnboardingView(),
         settings: data,
       );
     },
-    PreferenceView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const PreferenceView(),
-        settings: data,
-      );
-    },
     LoginView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const LoginView(),
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => LoginView(),
         settings: data,
       );
     },
-    OtpView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const OtpView(),
+    OTPView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => OTPView(),
         settings: data,
       );
     },
     SignUpView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const SignUpView(),
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SignUpView(),
         settings: data,
       );
     },
-    WorkspaceView: (data) {
+    OrganizationView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const WorkspaceView(),
+        builder: (context) => const OrganizationView(),
         settings: data,
       );
     },
     ChannelList: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const ChannelList(),
         settings: data,
       );
     },
     ForgotPasswordEmailView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const ForgotPasswordEmailView(),
+      var args = data.getArgs<ForgotPasswordEmailViewArguments>(
+        orElse: () => ForgotPasswordEmailViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ForgotPasswordEmailView(key: args.key),
         settings: data,
       );
     },
     ForgotPasswordOtpView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const ForgotPasswordOtpView(),
+      var args = data.getArgs<ForgotPasswordOtpViewArguments>(
+        orElse: () => ForgotPasswordOtpViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ForgotPasswordOtpView(key: args.key),
         settings: data,
       );
     },
     ForgotPasswordNewView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const ForgotPasswordNewView(),
+      var args = data.getArgs<ForgotPasswordNewViewArguments>(
+        orElse: () => ForgotPasswordNewViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ForgotPasswordNewView(key: args.key),
         settings: data,
       );
     },
     ChannelNotificationView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => ChannelNotificationView(),
         settings: data,
       );
     },
     NewChannel: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const NewChannel(),
-        settings: data,
-      );
-    },
-    ChannelInfoView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const ChannelInfoView(),
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => NewChannel(),
         settings: data,
       );
     },
     HomePage: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => HomePage(),
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const HomePage(),
         settings: data,
       );
     },
     AddPeopleView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => AddPeopleView(),
         settings: data,
       );
     },
-    ChannelPageView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const ChannelPageView(),
-        settings: data,
-      );
-    },
     DmSearch: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const DmSearch(),
         settings: data,
       );
     },
     DmJumpToView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const DmJumpToView(),
+      var args = data.getArgs<DmJumpToViewArguments>(
+        orElse: () => DmJumpToViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => DmJumpToView(key: args.key),
         settings: data,
       );
     },
     DmUserView: (data) {
-      final args = data.getArgs<DmUserViewArguments>(
+      var args = data.getArgs<DmUserViewArguments>(
         orElse: () => DmUserViewArguments(),
       );
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => DmUserView(key: args.key),
         settings: data,
       );
     },
     Splashview: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const Splashview(),
         settings: data,
       );
     },
     PluginView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const PluginView(),
         settings: data,
       );
     },
     AddPluginView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const AddPluginView(),
+      var args = data.getArgs<AddPluginViewArguments>(
+        orElse: () => AddPluginViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => AddPluginView(key: args.key),
         settings: data,
       );
     },
     UseDifferentEmailView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const UseDifferentEmailView(),
         settings: data,
       );
     },
     EditPluginView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const EditPluginView(),
         settings: data,
       );
     },
-    ViewProfilePage: (data) {
-      var args = data.getArgs<ViewProfilePageArguments>(
-        orElse: () => ViewProfilePageArguments(),
-      );
+    ViewProfile: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ViewProfilePage(
-          key: args.key,
-          isActive: args.isActive,
-        ),
+        builder: (context) => ViewProfile(),
         settings: data,
       );
     },
@@ -377,6 +397,12 @@ class StackedRouter extends RouterBase {
     ProfilePageView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ProfilePageView(),
+        settings: data,
+      );
+    },
+    PreferenceView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PreferenceView(),
         settings: data,
       );
     },
@@ -423,38 +449,122 @@ class StackedRouter extends RouterBase {
       );
     },
     PopUpNotificationsView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const PopUpNotificationsView(),
         settings: data,
       );
     },
     PinnedMessages: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const PinnedMessages(),
         settings: data,
       );
     },
-    AddWorkspaceView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => const AddWorkspaceView(),
+    SelectEmail: (data) {
+      var args = data.getArgs<SelectEmailArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SelectEmail(
+          key: args.key,
+          method: args.method,
+        ),
         settings: data,
       );
     },
-    CreateWorkSpace: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
-        builder: (context) => CreateWorkSpace(),
+    AddOrganizationView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => AddOrganizationView(),
+        settings: data,
+      );
+    },
+    CreateOrganization: (data) {
+      var args = data.getArgs<CreateOrganizationArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => CreateOrganization(
+          key: args.key,
+          email: args.email,
+        ),
         settings: data,
       );
     },
     FileSearchView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const FileSearchView(),
         settings: data,
       );
     },
     DraftView: (data) {
-      return MaterialPageRoute<MaterialRoute<dynamic>>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const DraftView(),
+        settings: data,
+      );
+    },
+    ThreadsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ThreadsView(),
+        settings: data,
+      );
+    },
+    ThreadDetailView: (data) {
+      var args = data.getArgs<ThreadDetailViewArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ThreadDetailView(
+          args.userPost,
+          key: args.key,
+        ),
+        settings: data,
+      );
+    },
+    UserSearchView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const UserSearchView(),
+        settings: data,
+      );
+    },
+    EditChannelPageView: (data) {
+      var args = data.getArgs<EditChannelPageViewArguments>(
+        orElse: () => EditChannelPageViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => EditChannelPageView(key: args.key),
+        settings: data,
+      );
+    },
+    StartDmView: (data) {
+      var args = data.getArgs<StartDmViewArguments>(
+        orElse: () => StartDmViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => StartDmView(key: args.key),
+        settings: data,
+      );
+    },
+    OrganizationUrlView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const OrganizationUrlView(),
+        settings: data,
+      );
+    },
+    ChannelPageView: (data) {
+      var args = data.getArgs<ChannelPageViewArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ChannelPageView(
+          key: args.key,
+          channelname: args.channelname,
+          channelId: args.channelId,
+          membersCount: args.membersCount,
+          public: args.public,
+        ),
+        settings: data,
+      );
+    },
+    ChannelInfoView: (data) {
+      var args = data.getArgs<ChannelInfoViewArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ChannelInfoView(
+          numberOfMembers: args.numberOfMembers,
+          channelMembers: args.channelMembers,
+          channelDetail: args.channelDetail,
+        ),
         settings: data,
       );
     },
@@ -465,15 +575,97 @@ class StackedRouter extends RouterBase {
 /// Arguments holder classes
 /// *************************************************************************
 
+/// ForgotPasswordEmailView arguments holder class
+class ForgotPasswordEmailViewArguments {
+  final Key? key;
+  ForgotPasswordEmailViewArguments({this.key});
+}
+
+/// ForgotPasswordOtpView arguments holder class
+class ForgotPasswordOtpViewArguments {
+  final Key? key;
+  ForgotPasswordOtpViewArguments({this.key});
+}
+
+/// ForgotPasswordNewView arguments holder class
+class ForgotPasswordNewViewArguments {
+  final Key? key;
+  ForgotPasswordNewViewArguments({this.key});
+}
+
+/// DmJumpToView arguments holder class
+class DmJumpToViewArguments {
+  final Key? key;
+  DmJumpToViewArguments({this.key});
+}
+
 /// DmUserView arguments holder class
 class DmUserViewArguments {
   final Key? key;
   DmUserViewArguments({this.key});
 }
 
-/// ViewProfilePage arguments holder class
-class ViewProfilePageArguments {
+/// AddPluginView arguments holder class
+class AddPluginViewArguments {
   final Key? key;
-  final bool isActive;
-  ViewProfilePageArguments({this.key, this.isActive = true});
+  AddPluginViewArguments({this.key});
+}
+
+/// SelectEmail arguments holder class
+class SelectEmailArguments {
+  final Key? key;
+  final OrganizationSwitchMethod method;
+  SelectEmailArguments({this.key, required this.method});
+}
+
+/// CreateOrganization arguments holder class
+class CreateOrganizationArguments {
+  final Key? key;
+  final String email;
+  CreateOrganizationArguments({this.key, required this.email});
+}
+
+/// ThreadDetailView arguments holder class
+class ThreadDetailViewArguments {
+  final UserPost? userPost;
+  final Key? key;
+  ThreadDetailViewArguments({required this.userPost, this.key});
+}
+
+/// EditChannelPageView arguments holder class
+class EditChannelPageViewArguments {
+  final Key? key;
+  EditChannelPageViewArguments({this.key});
+}
+
+/// StartDmView arguments holder class
+class StartDmViewArguments {
+  final Key? key;
+  StartDmViewArguments({this.key});
+}
+
+/// ChannelPageView arguments holder class
+class ChannelPageViewArguments {
+  final Key? key;
+  final String? channelname;
+  final String? channelId;
+  final int? membersCount;
+  final bool? public;
+  ChannelPageViewArguments(
+      {this.key,
+      required this.channelname,
+      required this.channelId,
+      required this.membersCount,
+      required this.public});
+}
+
+/// ChannelInfoView arguments holder class
+class ChannelInfoViewArguments {
+  final int numberOfMembers;
+  final List<ChannelMembermodel> channelMembers;
+  final ChannelModel channelDetail;
+  ChannelInfoViewArguments(
+      {required this.numberOfMembers,
+      required this.channelMembers,
+      required this.channelDetail});
 }
