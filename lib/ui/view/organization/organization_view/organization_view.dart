@@ -79,13 +79,14 @@ class OrganizationView extends StatelessWidget {
                           leading: const Icon(Icons.add_box_outlined),
                           title: const Text('Add an organization'),
                         ),
-                        const ListTile(
-                          leading: Icon(Icons.settings),
-                          title: Text('Preferences'),
+                        ListTile(
+                          onTap: () => model.viewPreferences(),
+                          leading: const Icon(Icons.settings),
+                          title: const Text('Preferences'),
                         ),
-                        const ListTile(
-                          leading: Icon(Icons.help_outline),
-                          title: Text('Help'),
+                        ListTile(
+                          leading: const Icon(Icons.help_outline),
+                          title: const Text('Help'),
                         ),
                       ],
                     ),
