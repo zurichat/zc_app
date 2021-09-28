@@ -1,6 +1,7 @@
 //Temporary Placeholders
 
 const String AppName = 'Zuri Chat';
+const String Zuri = 'ZURI';
 
 //Snackbar
 const String NoInternet = 'No internet connection, connect and try again.';
@@ -61,19 +62,23 @@ const String EnterOTP = 'Enter the 6-digit OTP sent to your email';
 const String EnterNewPassword = 'Please enter a new password';
 const String OTP = 'One-Time Password';
 const String BackToLogin = 'Back to login';
-// const String        =        ;
-// const String        =        ;
-// const String        =        ;
-// const String        =        ;
-// const String        =        ;
+
+//Home
+const String Unreads = 'Unreads';
+const String Channels = 'Channels';
+const String DMs = 'Direct Messages';
+const String JumpTo = 'Jump to...';
+const String hash = ' # ';
+const String AddChannels = 'Add channels';
+const String Threads = 'Threads';
 //
 
-const String AvatarNetworkImage =
-    'https://th.bing.com/th/id/OIP.QHG-JO3iI1u8VQjSkpO0HwHaLH?pid=ImgDet&rs=1';
-
-//Images
+//Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String GoogleLogo = 'assets/logo/Google_logo.png';
+const String AvatarNetworkImage =
+    'https://th.bing.com/th/id/OIP.QHG-JO3iI1u8VQjSkpO0HwHaLH?pid=ImgDet&rs=1';
+const String statusBackground = 'assets/background/status.png';
 // const String     =     ;
 // const String     =     ;
 // const String     =     ;
