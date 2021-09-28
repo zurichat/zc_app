@@ -1,4 +1,5 @@
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/models/user_search_model.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
@@ -144,6 +145,19 @@ class OrganizationApiService {
       data: {'user_email': email},
     );
     return res?.data?['message'];
+  }
+
+  Future<List<UserSearch>> fetchMembersInOrganization(String orgId) async {
+    final res = await _api.get(
+      '/organizations/$orgId/members',
+      headers: {'Authorization': 'Bearer $token'},
+    );
+    if (res?.data['data'] == null) {
+      return [];
+    }
+    return (res?.data?['data'] as List)
+        .map((e) => UserSearch.fromJson(e))
+        .toList();
   }
 
   String? get token =>
