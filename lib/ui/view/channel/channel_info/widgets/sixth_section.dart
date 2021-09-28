@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/textstyles.dart';
 
 class SixthSection extends StatelessWidget {
   @override
