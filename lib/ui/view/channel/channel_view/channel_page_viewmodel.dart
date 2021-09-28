@@ -1,7 +1,7 @@
 //TODO: remove material import, this is temporary for testing
 import 'dart:developer';
 
-import 'package:flutter/material.dart'; //TODO material was only imported for the icons
+import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/models/channel_members.dart';
@@ -32,7 +32,7 @@ class ChannelPageViewModel extends BaseViewModel {
 
   final _bottomSheetService = locator<BottomSheetService>();
 
-//TODO This ScrollController will be removed
+//TODO refactor this
   ScrollController scrollController = ScrollController();
 
   bool isLoading = true;
@@ -79,24 +79,21 @@ class ChannelPageViewModel extends BaseViewModel {
   }
 
   void fetchMessages(String channelId) async {
-    setBusy(true);
+    //setBusy(true);
 
     List? channelMessages =
         await _channelsApiService.getChannelMessages(channelId);
+    print(channelMessages);
     channelUserMessages = [];
 
     channelMessages.forEach((data) async {
       String userid = data["user_id"];
 
-      // String endpoint = '/users/$userid';
-
-      //final response = await _coreApiService.get(endpoint);
-
       channelUserMessages!.add(
         UserPost(
             id: data["_id"],
             displayName: userid,
-            statusIcon: Icons.looks_6,
+            statusIcon: "7️⃣",
             lastSeen: "4 hours ago",
             message: data["content"],
             channelType: ChannelType.public,
@@ -113,7 +110,10 @@ class ChannelPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void sendMessage(String message, String channelId) async {
+  void sendMessage(
+    String message,
+    String channelId,
+  ) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
     var channelMessages = await _channelsApiService.sendChannelMessages(
         channelId, "$userId", message);
@@ -139,20 +139,20 @@ class ChannelPageViewModel extends BaseViewModel {
   }
 
   Future navigateToAddPeople() async {
-    await _navigationService.navigateTo(Routes.addPeopleView);
+    await _navigationService.navigateTo(Routes.channelAddPeopleView);
   }
 
   void goBack() {
-    NavigationService().back();
+    _navigationService.back();
   }
 
   navigateToChannelEdit() {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
-  void websocketConnect(String channelId) async {
+  void websocketConnect(String channelSocketId) async {
     await _centrifugeService.connect();
-    await _centrifugeService.subscribe(channelId);
+    await _centrifugeService.subscribe(channelSocketId);
   }
 
   void listenToNewMessages(String channelId) {

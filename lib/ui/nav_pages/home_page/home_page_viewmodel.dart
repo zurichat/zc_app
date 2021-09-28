@@ -1,10 +1,12 @@
 import 'dart:developer';
 
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
@@ -12,39 +14,11 @@ import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../app/app.locator.dart';
-import '../../../app/app.router.dart';
-import '../../../services/connectivity_service.dart';
-import '../../../utilities/enums.dart';
-import 'home_item_model.dart';
-
-final _navigationService = locator<NavigationService>();
-final connectivityService = locator<ConnectivityService>();
-final userService = locator<UserService>();
-
 bool connectionStatus = false;
 
 class HomePageViewModel extends StreamViewModel {
-  void nToPref() {
-    _navigationService.navigateTo(Routes.fileSearchView);
-  }
-
-  void nToInfo() {
-    _navigationService.navigateTo(Routes.channelInfoView);
-  }
-
-  void nToOrganization() {
-    _navigationService.navigateTo(Routes.organizationView);
-  }
-
-  void navigateToDmUser() {
-    _navigationService.navigateTo(Routes.dmUserView);
-  }
-
-  Future navigateToThreads() async {
-    await _navigationService.navigateTo(Routes.threadsView);
-  }
-
+  final _navigationService = locator<NavigationService>();
+  final userService = locator<UserService>();
   final connectivityService = locator<ConnectivityService>();
   final dmApiService = locator<DMApiService>();
   final channelsApiService = locator<ChannelsApiService>();
@@ -54,8 +28,6 @@ class HomePageViewModel extends StreamViewModel {
   final api = ChannelsApiService();
   // final _dmApiService = locator<DMApiService>();
   final _channelsApiService = locator<ChannelsApiService>();
-
-  final _navigationService = locator<NavigationService>();
   bool connectionStatus = false;
 
   List<ChannelModel> _channelsList = [];
@@ -71,6 +43,39 @@ class HomePageViewModel extends StreamViewModel {
   List<HomeItemModel> joinedChannels = [];
   List<HomeItemModel> directMessages = [];
 
+  String get orgName => userService.currentOrgName;
+
+  @override
+  Stream get stream => checkConnectivity();
+
+  void nToPref() {
+    _navigationService.navigateTo(Routes.fileSearchView);
+  }
+
+  navigateToInfo() {
+    _navigationService.navigateTo(Routes.channelInfoView);
+  }
+
+  navigateToOrganization() {
+    _navigationService.navigateTo(Routes.organizationView);
+  }
+
+  navigateToDmUser() {
+    _navigationService.navigateTo(Routes.dmUserView);
+  }
+
+  navigateToThreads() async {
+    await _navigationService.navigateTo(Routes.threadsView);
+  }
+
+  void navigateToJumpToScreen() {
+    _navigationService.navigateTo(Routes.dmJumpToView);
+  }
+
+  void navigateToStartDMScreen() {
+    _navigationService.navigateTo(Routes.startDmView);
+  }
+
   @override
   void onError(error) {
     log('Error: $error');
@@ -85,14 +90,9 @@ class HomePageViewModel extends StreamViewModel {
     });
   }
 
-  String get orgName => userService.currentOrgName;
-
   Stream<bool> checkConnectivity() async* {
     yield await connectivityService.checkConnection();
   }
-
-  @override
-  Stream get stream => checkConnectivity();
 
   bool get status {
     stream.listen((event) {
@@ -102,13 +102,6 @@ class HomePageViewModel extends StreamViewModel {
     return connectionStatus;
   }
 
-  void navigateToJumpToScreen() {
-    _navigationService.navigateTo(Routes.dmJumpToView);
-  }
-
-  void navigateToStartDMScreen() {
-    _navigationService.navigateTo(Routes.startDmView);
-  }
 
   ///This sets all the expanded list items
   ///into unreads, channels and dms
@@ -179,33 +172,47 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.fileSearchView);
   }
 
-  void navigateToInfo() {
-    _navigationService.navigateTo(Routes.channelInfoView);
-  }
 
-  void navigateToOrganization() {
-    _navigationService.navigateTo(Routes.organizationView);
-  }
 
   void navigateToUserSearchView() {
     _navigationService.navigateTo(Routes.userSearchView);
   }
+
+  // setList(List data) async {
+  //   channelsList.forEach((data) {
+  //     homePageList.add(
+  //       HomeItemModel(
+  //         type: HomeItemType.channels,
+  //         unreadCount: 0,
+  //         name: data['name'],
+  //         id: data['id'],
+  //         public: data['private'] != "True",
+  //         membersCount: data['members'],
+  //       ),
+  //     );
+  //     print('channelsList from API ${data}');
+  //   });
+  // }
 
   getDmAndChannelsList() async {
     homePageList = [];
     setBusy(true);
 
     List? channelsList = await channelsApiService.getActiveDms();
-    channelsList.forEach((data) {
-      homePageList.add(HomeItemModel(
-        type: HomeItemType.channels,
-        unreadCount: 0,
-        name: data['name'],
-        id: data['_id'],
-        public: data['private'] != "True",
-        membersCount: data['members'],
-      ));
-    });
+    channelsList.forEach(
+      (data) {
+        homePageList.add(
+          HomeItemModel(
+            type: HomeItemType.channels,
+            unreadCount: 0,
+            name: data['name'],
+            id: data['_id'],
+            public: data['private'] != "True",
+            membersCount: data['members'],
+          ),
+        );
+      },
+    );
 
     //Todo: add channels implementation
 
@@ -215,7 +222,7 @@ class HomePageViewModel extends StreamViewModel {
 
     setAllList();
     notifyListeners();
-
+    print('All channels $homePageList');
     // //get dms data
     // List? dmList = await dmApiService.getActiveDms();
     // dmList.forEach((data) {
@@ -229,11 +236,6 @@ class HomePageViewModel extends StreamViewModel {
     setBusy(false);
   }
 
-  //
-  //*Navigate to other routes
-  // void navigateToPref() {
-  //   _navigationService.navigateTo(Routes.fileSearchView);
-  // }
   // listenToChannelsChange() {
   // _channelsApiService.onChange.stream.listen((event) {
   //   getDmAndChannelsList();
@@ -286,7 +288,7 @@ class HomePageViewModel extends StreamViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Error Occured',
+        message: 'Error Occurred',
       );
     }
   }

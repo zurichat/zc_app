@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/ui_helpers.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
+
 import '../../../general_widgets/custom_textfield.dart';
 import '../../shared/colors.dart';
 import '../../shared/long_button.dart';
 import '../../shared/styles.dart';
 import 'login_view.form.dart';
 import 'login_viewmodel.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
 
 //stacked forms handling
 @FormView(
@@ -40,30 +42,30 @@ class LoginView extends StatelessWidget with $LoginView {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const SizedBox(height: 57.0),
+                  UIHelper.customVerticalSpace(57.0),
                   Container(
                     alignment: Alignment.center,
                     child: Image.asset('assets/logo/zuri_chat_logo.png'),
                   ),
-                  const SizedBox(height: 24.23),
+                  UIHelper.customVerticalSpace(24.23),
                   Center(
                     child: Text(
                       'Sign In',
                       style: AppTextStyles.heading7,
                     ),
                   ),
-                  const SizedBox(height: 8.0),
+                  UIHelper.verticalSpaceSmall,
                   Text(
                     'Welcome! Sign in to continue',
                     textAlign: TextAlign.center,
                     style: AppTextStyles.faintBodyText,
                   ),
-                  const SizedBox(height: 38.0),
+                  UIHelper.customVerticalSpace(38.0),
                   Text(
                     'Email Address',
                     style: AppTextStyles.body1Bold,
                   ),
-                  const SizedBox(height: 10.0),
+                  UIHelper.customVerticalSpace(10.0),
                   CustomTextField(
                     keyboardType: TextInputType.emailAddress,
                     inputAction: TextInputAction.next,
@@ -72,12 +74,12 @@ class LoginView extends StatelessWidget with $LoginView {
                     hintText: 'Name@gmail.com',
                     controller: emailController,
                   ),
-                  const SizedBox(height: 16.0),
+                  UIHelper.verticalSpaceMedium,
                   Text(
                     'Password',
                     style: AppTextStyles.body1Bold,
                   ),
-                  const SizedBox(height: 10.0),
+                  UIHelper.customVerticalSpace(10.0),
                   CustomTextField(
                     keyboardType: TextInputType.visiblePassword,
                     inputAction: TextInputAction.next,
@@ -106,7 +108,7 @@ class LoginView extends StatelessWidget with $LoginView {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 32.0),
+                  UIHelper.verticalSpaceLarge,
                   Center(
                     child: FractionallySizedBox(
                       widthFactor: 1.0,

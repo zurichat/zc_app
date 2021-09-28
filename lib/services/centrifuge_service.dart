@@ -18,12 +18,7 @@ class CentrifugeService with ReactiveServiceMixin {
     _client = centrifuge.createClient('$websocketUrl?format=protobuf',
         config: centrifuge.ClientConfig());
 
-    // _client!.connectStream.listen((event) {
-    //   log.i("client connect stream $event");
-    // });
-    // _client!.disconnectStream.listen((event) {
-    //   log.i("Client disconnect stream $event");
-    // });
+   
     _client!.connect();
   }
 

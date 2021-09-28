@@ -146,9 +146,9 @@ class ChannelsApiService {
       channels =
           (res?.data as List).map((e) => ChannelModel.fromJson(e)).toList();
     } on Exception catch (e) {
-      print('Channels EXception $e');
+      log.e('Channels EXception $e');
     } catch (e) {
-      print(e);
+      log.e(e);
     }
 
     return channels;
@@ -187,33 +187,36 @@ class ChannelsApiService {
     return false;
   }
 
-  Future<ChannelModel?> getChannelPage(id) async {
+  getChannelPage(id) async {
+    String orgId = _userService.currentOrgId;
+
     try {
-      final res = await _api.get(
-        '/v1/61459d8e62688da5302acdb1/channels/$id/',
+      final response = await _api.get(
+        '/v1/$orgId/channels/$id/',
         //headers: {'Authorization': 'Bearer $token'},
       );
-      return ChannelModel.fromJson(res?.data);
+      return ChannelModel.fromJson(response?.data);
     } on Exception catch (e) {
-      print('Channels page EXception $e');
+      log.e("Channels page Exception $e");
     } catch (e) {
-      print(e);
+      log.e(e);
     }
   }
 
-  Future<List<ChannelMembermodel>?> getChannelMembers(id) async {
+  getChannelMembers(id) async {
+    String orgId = _userService.currentOrgId;
     try {
       final res = await _api.get(
-        '/v1/61459d8e62688da5302acdb1/channels/$id/members/',
+        '/v1/$orgId/channels/$id/members/',
         //headers: {'Authorization': 'Bearer $token'},
       );
       return (res?.data as List)
           .map((e) => ChannelMembermodel.fromJson(e))
           .toList();
     } on Exception catch (e) {
-      print('Channels member EXception $e');
+      log.e("Channels member EXception $e");
     } catch (e) {
-      print(e);
+      log.e(e);
     }
   }
 

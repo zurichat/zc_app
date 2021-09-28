@@ -9,7 +9,6 @@ import '../../../../general_widgets/ripple.dart';
 import '../../../../general_widgets/svg_icon.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/text_styles.dart';
-import '../../../view/channel/channel_view/channel_page_view.dart';
 import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
 
@@ -100,6 +99,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 //the top pad of the first child to make it look visually ok
 class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   final HomeItemModel data;
+  final channelId;
   final bool? noTopPad;
   bool isUnread = false;
 
@@ -107,6 +107,7 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
     Key? key,
     required this.data,
     this.noTopPad,
+    required this.channelId,
   }) : super(key: key);
 
   Widget prefixIcon() {
@@ -147,14 +148,8 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       text: data.name ?? '',
       unread: isUnread,
       icon: prefixIcon(),
-      onTap: () {
-        //vmodel.navigateToChannelScreen();
-        //Navigate to channels and pass the channels id
-        ChannelPageView.name = data.name ?? '';
-        print('Data id is ${data.id}');
-        vmodel.navigateToChannelPage(
-            data.name, data.id, data.membersCount, data.public);
-      },
+      onTap: () => vmodel.navigateToChannelPage(
+          data.name, data.id, data.membersCount, data.public),
     );
   }
 }
