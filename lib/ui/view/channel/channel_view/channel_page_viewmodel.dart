@@ -32,7 +32,7 @@ class ChannelPageViewModel extends BaseViewModel {
 
   final _bottomSheetService = locator<BottomSheetService>();
 
-//TODO refactor thiss
+//TODO refactor this
   ScrollController scrollController = ScrollController();
 
   bool isLoading = true;
@@ -105,6 +105,7 @@ class ChannelPageViewModel extends BaseViewModel {
       );
     });
     isLoading = false;
+    scrollController.jumpTo(scrollController.position.maxScrollExtent);
 
     notifyListeners();
   }
@@ -116,7 +117,6 @@ class ChannelPageViewModel extends BaseViewModel {
     String? userId = storage.getString(StorageKeys.currentUserId);
     var channelMessages = await _channelsApiService.sendChannelMessages(
         channelId, "$userId", message);
-    scrollController.jumpTo(scrollController.position.maxScrollExtent);
 
     notifyListeners();
   }
@@ -150,9 +150,9 @@ class ChannelPageViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
-  void websocketConnect(String channelId) async {
+  void websocketConnect(String channelSocketId) async {
     await _centrifugeService.connect();
-    await _centrifugeService.subscribe(channelId);
+    await _centrifugeService.subscribe(channelSocketId);
   }
 
   void listenToNewMessages(String channelId) {

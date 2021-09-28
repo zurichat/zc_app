@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
+import 'package:hng/ui/view/channel/channel_view/widgets/channel_reply_box.dart';
 import 'package:hng/ui/view/dm_user/icons/zap_icon.dart';
 import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
@@ -26,7 +27,6 @@ class ChannelPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _messageController = TextEditingController();
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
         model.initialise('$channelId');
@@ -36,7 +36,6 @@ class ChannelPageView extends StatelessWidget {
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, model, child) {
         return Scaffold(
-          resizeToAvoidBottomInset: true,
           appBar: AppBar(
             leading: Padding(
               padding: const EdgeInsets.only(left: 5),
@@ -76,13 +75,23 @@ class ChannelPageView extends StatelessWidget {
               //     :
               Column(
             children: [
-              ChannelIntro(
-                channelName: channelname,
-              ),
               Expanded(
-                  child: ChannelChat(
-                channelId: channelId,
-              )),
+                child: SingleChildScrollView(
+                  reverse: true,
+                  controller: model.scrollController,
+                  child: Column(
+                    children: [
+                      ChannelIntro(
+                        channelName: channelname,
+                      ),
+                      ChannelChat(
+                        channelId: channelId,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ChannelReplyBox(channelId: channelId),
             ],
           ),
         );
