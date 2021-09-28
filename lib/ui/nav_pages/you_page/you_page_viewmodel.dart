@@ -42,17 +42,7 @@ class YouPageViewModel extends BaseViewModel {
   }
 
   Future viewProfile() async {
-    var sheetResponse = await _bottomSheetService.showCustomSheet(
-      variant: BottomSheetType.user,
-      isScrollControlled: true,
-      title: 'This is a floating bottom sheet',
-      description:
-          'This sheet is a custom built bottom sheet UI that allows you to show it from any service or viewmodel.',
-      mainButtonTitle: 'Awesome!',
-      secondaryButtonTitle: 'This is cool',
-    );
-
-    log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
+    _navigationService.navigateTo(Routes.viewProfile);
   }
 
   Future viewNotifications() async {
