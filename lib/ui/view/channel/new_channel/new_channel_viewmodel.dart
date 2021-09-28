@@ -64,17 +64,11 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
 
     if (res) {
       snackbar.showCustomSnackBar(
-<<<<<<< HEAD
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.success,
-          message: 'Channels $channelNameValue created succesful');
-=======
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
         message: 'Channels $channelNameValue created successful',
       );
      
->>>>>>> 883d23487139e00ae21c6dfd7135d197d3d4adea
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -91,16 +85,3 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
   @override
   void setFormStatus() {}
 }
-<<<<<<< HEAD
-// import 'package:hng/app/app.router.dart';
-// import 'package:stacked/stacked.dart';
-// import 'package:stacked_services/stacked_services.dart';
-//
-// import 'new_channel.dart';
-//
-//
-//
-//
-=======
-
->>>>>>> 883d23487139e00ae21c6dfd7135d197d3d4adea

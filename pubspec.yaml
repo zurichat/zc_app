@@ -8,8 +8,9 @@ environment:
 
 dependencies:
   analyzer: ^1.7.1
-  centrifuge: ^0.7.0
+  awesome_notifications: ^0.0.6+10
   cached_network_image: ^3.1.0
+  centrifuge: ^0.7.0
   connectivity: ^3.0.6
   cupertino_icons: ^1.0.2
   dio: ^4.0.0
