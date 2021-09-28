@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 
 import '../../../shared/shared.dart';
 
@@ -20,7 +21,8 @@ class DMMessageUnread extends StatelessWidget {
               color: const Color(0xff1A61DB),
               image: const DecorationImage(
                 image: NetworkImage(
-                    'https://th.bing.com/th/id/OIP.QHG-JO3iI1u8VQjSkpO0HwHaLH?pid=ImgDet&rs=1'),
+                  AvatarNetworkImage,
+                ),
                 fit: BoxFit.cover,
               ),
             ),
