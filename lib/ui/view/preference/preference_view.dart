@@ -13,9 +13,9 @@ class PreferenceView extends StatelessWidget {
     return ViewModelBuilder<PreferenceViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          title: Text('Preferences'),
+          title: const Text('Preferences'),
           leading: IconButton(
-            icon: Icon(Icons.close_outlined),
+            icon: const Icon(Icons.close_outlined),
             onPressed: model.exitPage,
           ),
           elevation: 0,
@@ -24,28 +24,28 @@ class PreferenceView extends StatelessWidget {
           child: Column(
             children: [
               MenuItemTile(
-                text: Text('Language & Region'),
+                text: const Text('Language & Region'),
                 onPressed: model.navigateLanguageAndRegion,
               ),
               MenuItemTile(
-                text: Text('Dark mode'),
+                text: const Text('Dark mode'),
                 subtitle: model.currentTheme,
                 onPressed: model.changeTheme,
               ),
               MenuItemTile(
-                text: Text('Advanced'),
+                text: const Text('Advanced'),
                 onPressed: model.navigateToAdvanced,
               ),
               MenuItemTile(
-                text: Text('Send Feedback'),
+                text: const Text('Send Feedback'),
                 onPressed: model.sendFeedback,
               ),
               MenuItemTile(
-                text: Text('Help Center'),
+                text: const Text('Help Center'),
                 onPressed: model.helpCentre,
               ),
               MenuItemTile(
-                text: Text('Privacy & licences'),
+                text: const Text('Privacy & licences'),
                 onPressed: model.privacyAndLicences,
               ),
             ],

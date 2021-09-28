@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import '../../../../shared/colors.dart';
 
 TextStyle headerStyle() {
-  return TextStyle(
+  return const TextStyle(
       fontSize: 20, fontWeight: FontWeight.w800, color: Colors.black);
 }
 
 TextStyle nameStyle() {
-  return TextStyle(
+  return const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w600,
       color: AppColors.deepBlackColor);
@@ -16,28 +16,24 @@ TextStyle nameStyle() {
 }
 
 TextStyle descriptionStyle() {
-  return TextStyle(
+  return const TextStyle(
       fontSize: 15,
       fontWeight: FontWeight.w600,
       color: AppColors.deepBlackColor);
 }
 
 TextStyle faintTextStyle() {
-  return TextStyle(
-
+  return const TextStyle(
       fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.borderColor);
-
 }
 
 TextStyle archiveTextStyle() {
-  return TextStyle(
-      fontSize: 15,
-      fontWeight: FontWeight.w600,
-      color: AppColors.redColor);
+  return const TextStyle(
+      fontSize: 15, fontWeight: FontWeight.w600, color: AppColors.redColor);
 }
 
 TextStyle greenTextStyle() {
-  return TextStyle(
+  return const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w800,
     color: AppColors.zuriPrimaryColor,

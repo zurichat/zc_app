@@ -1,4 +1,3 @@
-
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/view/channel/channel_members/channel_members_list.dart';
@@ -35,22 +34,18 @@ class ChannelInfoViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
+  //void navigateToAddPeopleChannel() {
+    //_navigationService.navigateTo(Routes.addPeopleView);
+  //}
 
-  void navigateToAddPeopleChannel() {
-    _navigationService.navigateTo(Routes.addPeopleView);
-  }
+  navigateToMembersList(
+      List<ChannelMembermodel> members, ChannelModel channelDetail) {
 
-
-
-navigateToMembersList(List<ChannelMembermodel> members, 
-
-  // _navigationService.navigateTo(Routes.editChannelPage);
-
-  
-  ChannelModel channelDetail
-  ) {
     //NavigationService.navigateTo(Routes.cha)
-    _navigationService.navigateToView(ChannelMembersList(channelMembers: members,channelDetail:channelDetail,));
+    _navigationService.navigateToView(ChannelMembersList(
+      channelMembers: members,
+      channelDetail: channelDetail,
+    ));
   }
 
 
@@ -71,15 +66,10 @@ navigateToMembersList(List<ChannelMembermodel> members,
     final response = await _apiService.get(endpoint);
     if (response?.statusCode == 200) {
       print(response?.data);
-      String channelName = response?.data['name'];
       String des = response?.data['description'];
       print('sacas $des');
       setChannelDescription(des);
 
-      /*storage.setString(
-        StorageKeys.currentSessionToken,
-        response?.data['data']['name']['token'],
-      );*/
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
@@ -95,5 +85,4 @@ navigateToMembersList(List<ChannelMembermodel> members,
     }
   }
 }
-
 

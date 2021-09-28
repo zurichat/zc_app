@@ -29,17 +29,17 @@ class OnboardingView extends StatelessWidget {
                           ? TextButton(
                               onPressed: () => model.navigateToNext(),
                               child: Text(
-                                "Skip",
+                                'Skip',
                                 style: AppTextStyles.heading8.copyWith(
                                     decoration: TextDecoration.underline,
                                     fontSize: 18),
                               ),
                             )
-                          : SizedBox(height: 50),
+                          : const SizedBox(height: 50),
                     ],
                   ),
                   pages[index],
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   PageViewDotIndicator(
                       currentItem: index,
                       count: pages.length,
@@ -49,7 +49,7 @@ class OnboardingView extends StatelessWidget {
                       unselectedSize: const Size(8, 8),
                       duration: const Duration(milliseconds: 200),
                       margin: const EdgeInsets.symmetric(horizontal: 8)),
-                  SizedBox(height: 70),
+                  const SizedBox(height: 70),
                   InkWell(
                     onTap: index < 2
                         ? () => model.animateToPage(index)
@@ -67,7 +67,7 @@ class OnboardingView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                 ],
               );
             },
@@ -98,18 +98,18 @@ class PageViewOnboarding extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
+          SizedBox(
             height: theme.height * .45,
             width: theme.width * .85,
             child: Image.asset(image!, fit: BoxFit.fill),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Text(
             title!,
             textAlign: TextAlign.center,
             style: AppTextStyles.heading7,
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             subtitle!,
             textAlign: TextAlign.center,
@@ -122,18 +122,18 @@ class PageViewOnboarding extends StatelessWidget {
 }
 
 final List<Widget> pages = [
-  PageViewOnboarding(
+  const PageViewOnboarding(
       title: 'Perfect Collaboration App For Teams',
       subtitle: '''Chat with other team members'''
           ''' without any distractions from the world''',
       image: 'assets/images/onboarding_screen_0.png'),
-  PageViewOnboarding(
+  const PageViewOnboarding(
     title: 'Music Room',
     subtitle: '''Now you can listen to your favourite'''
         ''' tracks right in the App''',
     image: 'assets/images/onboarding_screen_1.png',
   ),
-  PageViewOnboarding(
+  const PageViewOnboarding(
     title: 'Chess Room',
     subtitle: '''Chat with other team members without'''
         ''' any distractions from the world''',

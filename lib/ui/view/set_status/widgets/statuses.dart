@@ -8,12 +8,12 @@ class Statuses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> columnChildren = [
+    var columnChildren = [
       Padding(
         padding: const EdgeInsets.all(10),
-        child: Text("$title"),
+        child: Text('$title'),
       ),
-      Divider(),
+      const Divider(),
     ];
     columnChildren += children;
     return Column(

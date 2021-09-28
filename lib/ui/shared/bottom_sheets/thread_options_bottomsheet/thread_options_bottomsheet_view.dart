@@ -20,8 +20,6 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     return ViewModelBuilder<ThreadOptionsBottomSheetViewModel>.reactive(
       builder: (context, model, child) => DraggableScrollableSheet(
           maxChildSize: 0.97,
@@ -29,7 +27,7 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
           minChildSize: 0.5,
           builder: (BuildContext context, ScrollController scrollController) {
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               color: AppColors.whiteColor,
               child: Expanded(
                 child: Column(
@@ -59,44 +57,44 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
                         )
                       ],
                     ),
-                    Divider(),
-                    MenuItemTile(
+                    const Divider(),
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
                         text: Text('Mark unread')),
-                    MenuItemTile(
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.access_time_rounded,
                         text: Text('Remind me')),
-                    MenuItemTile(
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.bookmark_border_outlined,
                         text: Text('Add to saved items')),
-                    MenuItemTile(
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
                         text: Text('Reply in thread')),
-                    MenuItemTile(
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
                         text: Text('Unfollow thread')),
-                    MenuItemTile(
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.forward_outlined,
                         text: Text('Share message')),
-                    MenuItemTile(
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
                         text: Text('Copy link to message')),
-                    MenuItemTile(
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.copy_rounded,
                         text: Text('Copy text')),
-                    MenuItemTile(
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
                         text: Text('Pin to conversation')),
-                    MenuItemTile(
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
                         text: Text('Turn question into poll')),

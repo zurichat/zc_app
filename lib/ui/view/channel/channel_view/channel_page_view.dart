@@ -1,125 +1,103 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/channel/channel_view/channel_page_view.form.dart';
-import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
+import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
+import 'package:hng/ui/view/channel/channel_view/widgets/channel_reply_box.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
+import '../../../shared/shared.dart';
 
-@FormView(
-  fields: [
-    FormTextField(name: 'editor'),
-  ],
-)
-class ChannelPageView extends StatelessWidget with $ChannelPageView {
-  ChannelModel channelDetail;
-  List<ChannelMembermodel> channelMembers;
-  ChannelPageView({required this.channelDetail, required this.channelMembers});
-  static String name = 'general';
+import 'channel_page_viewmodel.dart';
+import 'widgets/channel_chat.dart';
+
+class ChannelPageView extends StatelessWidget {
+  ChannelPageView({
+    Key? key,
+    required this.channelname,
+    required this.channelId,
+    required this.membersCount,
+    required this.public,
+  }) : super(key: key);
+  final String? channelname;
+  final String? channelId;
+  final int? membersCount;
+  final bool? public;
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
+      onModelReady: (model) {
+        model.initialise('$channelId');
+      },
       //this parameter allows us to reuse the view model to persist the state
-      disposeViewModel: false,
-      //initialise the view model only once
-      initialiseSpecialViewModelsOnce: true,
+
       viewModelBuilder: () => ChannelPageViewModel(),
-      builder: (context, viewModel, child) {
+      builder: (context, model, child) {
         return Scaffold(
-          appBar: appBar(
-              '${channelDetail.name}',
-              "${channelMembers.length.toString()} members",
-              context,
-              viewModel.goBack, () {
-            viewModel.navigateToChannelInfoScreen(
-                channelMembers.length, channelMembers, channelDetail);
-          }),
-          body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
+          appBar: AppBar(
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 5),
+              child: IconButton(
+                  onPressed: model.goBack, icon: Icon(Icons.arrow_back_ios)),
+            ),
+            centerTitle: false,
+            leadingWidth: 20,
+            title: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  children: [
-                    channelName('${channelDetail.name}'),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: channelInfo('@mark', '''
- created this channel on August 12, 2021. This is the very beginning of the #teamsocrates channel.'''),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                row(viewModel),
-                const SizedBox(height: 20),
-                dateBuilder(context),
-                const SizedBox(height: 7),
-                ListTile(
-                  leading: Image.asset('assets/channel_page/female.png'),
-                  title: Row(
-                    children: [
-                      const Text(
-                        'Clutch',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.deepBlackColor,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      const Text(
-                        '12:30pm',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.greyishColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  subtitle: const Text('Joined #teamsocrates'),
-                ),
-                ListTile(
-                  leading: Image.asset('assets/channel_page/femaleuser.png'),
-                  title: Row(
-                    children: [
-                      const Text(
-                        'Ali',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.deepBlackColor,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      const Text(
-                        '12:30pm',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.greyishColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  subtitle: const Text('Joined #teamsocrates'),
+                Text("#$channelname", style: AppTextStyles.body1Bold),
+                Text(
+                  "$membersCount members",
+                  style: AppTextStyles.body2Medium,
                 ),
               ],
             ),
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.search),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 5),
+                child: IconButton(
+                    onPressed: () {}, icon: Icon(Icons.info_outlined)),
+              ),
+            ],
           ),
-          bottomSheet: sendMessageArea(),
+          body:
+              // body: model.isLoading
+              //     ? Center(
+              //         child: CircularProgressIndicator(),
+              //       )
+              //     :
+              Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  reverse: true,
+                  controller: model.scrollController,
+                  child: Column(
+                    children: [
+                      ChannelIntro(
+                        channelName: channelname,
+                      ),
+                      ChannelChat(
+                        channelId: channelId,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ChannelReplyBox(channelId: channelId),
+            ],
+          ),
         );
       },
     );
   }
 }
+
 
 AppBar appBar(
   String text,
@@ -756,3 +734,4 @@ dateBuilder(BuildContext context) {
 //     )),
 //   ]);
 // }
+

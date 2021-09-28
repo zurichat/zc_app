@@ -20,7 +20,7 @@ class ThreadCardViewModel extends BaseViewModel {
   }
 
   Future viewProfile() async {
-    var sheetResponse = await _bottomSheetService.showCustomSheet(
+    await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.user,
       isScrollControlled: true,
     );

@@ -10,7 +10,7 @@ import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomePageViewModel>.reactive(
@@ -35,18 +35,18 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: body(vmodel),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                    onPressed: vmodel.navigateToStartDMScreen,
-                    child: const Icon(
-                      Icons.open_in_new_outlined,
-                      color: AppColors.whiteColor,
-                    )),
-              ),
-            )
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Align(
+            //     alignment: Alignment.bottomRight,
+            //     child: FloatingActionButton(
+            //         onPressed: vmodel.navigateToStartDMScreen,
+            //         child: const Icon(
+            //           Icons.open_in_new_outlined,
+            //           color: AppColors.whiteColor,
+            //         )),
+            //   ),
+            // )
           ],
         ),
       ),
@@ -57,29 +57,29 @@ class HomePage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           searchBar(vmodel),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
           ),
-          Divider(),
+          const Divider(),
           HomeExpandedList(
             title: 'Unreads',
             canExpand: false,
             data: vmodel.unreads,
           ),
-          Divider(),
+          const Divider(),
           HomeExpandedList(
             title: 'Channels',
             data: vmodel.joinedChannels,
           ),
-          Divider(),
+          const Divider(),
           HomeExpandedList(
             title: 'Direct Messages',
             data: vmodel.directMessages,
           ),
-          Divider(),
+          const Divider(),
         ],
       ),
     );
@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
         child: EasyContainer(
           height: 50,
           radius: 7,
-          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
           alignment: Alignment.centerLeft,
           borderWidth: 1.5,
           borderColor: Colors.grey[300],
