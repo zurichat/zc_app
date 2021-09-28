@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/otp/otp_view.form.dart';
@@ -30,31 +31,34 @@ class ForgotPasswordOtpViewModel extends FormViewModel {
 
   Future verifyOtpCode() async {
     loading(true);
-    const endpoint = '/account/verify-reset-password';
+
     if (otpValue == '') {
       loading(false);
       _snackbarService.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: 'Please Fill in all fields');
+          message: FillAllFields);
       return;
     }
     notifyListeners();
 
     final validationData = {'code': otpValue};
-    final response = await _apiService.post(endpoint, data: validationData);
+    final response =
+        await _apiService.post(VerifyOTPEndpoint, data: validationData);
     loading(false);
     if (response?.statusCode == 200) {
       _snackbarService.showCustomSnackBar(
-          duration: const Duration(seconds: 2),
-          variant: SnackbarType.success,
-          message: 'Please enter a new password');
+        duration: const Duration(seconds: 2),
+        variant: SnackbarType.success,
+        message: EnterNewPassword,
+      );
       navigateToNewPassword();
     } else {
       _snackbarService.showCustomSnackBar(
-          duration: const Duration(seconds: 2),
-          variant: SnackbarType.failure,
-          message: response?.data['message'] ?? 'OTP could not be validated.');
+        duration: const Duration(seconds: 2),
+        variant: SnackbarType.failure,
+        message: response?.data['message'] ?? IncorrectOTP,
+      );
     }
   }
 

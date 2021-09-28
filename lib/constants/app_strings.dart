@@ -15,12 +15,14 @@ const String PasswordsMustMatch = 'Passwords do not match';
 const String PasswordUpdated = 'Password Successfully Updated';
 const String PasswordNotUpdated = 'Password could not be updated';
 const String ErrorOccurred = 'An Error Occurred';
+const String IncorrectOTP = 'OTP could not be validated';
 
 //API Endpoints
 const String LoginEndpoint = '/auth/login';
 const String SignUpEndpoint = '/users';
 const String ResetPasswordEndpoint = '/account/update-password/';
 const String RequestOTPEndpoint = 'account/request-password-reset-code';
+const String VerifyOTPEndpoint = '/account/verify-reset-password';
 
 //Auth Screens
 const String SignIn = 'Sign In';
@@ -52,10 +54,10 @@ const String InvalidEmail = 'invalid email address';
 const String BackTo = 'Back to ';
 //TODO - appStr
 const String Header = 'Please enter the email used in registering this account';
-// const String        =        ;
-// const String        =        ;
-// const String        =        ;
-// const String        =        ;
+const String DidntRecieveOTP = 'Didn\'t receive any code? ';
+const String Resend = 'Resend';
+const String EnterOTP = 'Enter the 4-digit OTP sent to your email';
+const String EnterNewPassword = 'Please enter a new password';
 // const String        =        ;
 // const String        =        ;
 // const String        =        ;
