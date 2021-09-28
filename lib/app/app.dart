@@ -1,4 +1,5 @@
 import 'package:hng/services/centrifuge_service.dart';
+import 'package:hng/services/notification_service.dart';
 import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/ui/view/user_search/user_search_view.dart';
@@ -144,6 +145,7 @@ import '../ui/view/view_profile_page/view_profile.dart';
     LazySingleton(classType: ChannelsApiService),
     LazySingleton(classType: JumpToApi),
     LazySingleton(classType: CentrifugeService),
+    LazySingleton(classType: NotificationService),
   ],
   logger: StackedLogger(),
 )
