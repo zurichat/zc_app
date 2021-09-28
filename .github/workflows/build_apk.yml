@@ -7,7 +7,7 @@ on:
     
 jobs:
   build:
-    if: ${{ github.event.label.name == 'enhancement' }}
+    if: ${{ github.event.label.name == 'Accepted' }}
     runs-on: ubuntu-latest
     steps:
    
