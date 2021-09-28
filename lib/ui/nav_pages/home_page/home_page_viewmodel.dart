@@ -21,6 +21,7 @@ class HomePageViewModel extends StreamViewModel {
   final userService = locator<UserService>();
   final connectivityService = locator<ConnectivityService>();
   final dmApiService = locator<DMApiService>();
+  final channelsApiService = locator<ChannelsApiService>();
 
   final navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
@@ -41,6 +42,39 @@ class HomePageViewModel extends StreamViewModel {
   List<HomeItemModel> unreads = [];
   List<HomeItemModel> joinedChannels = [];
   List<HomeItemModel> directMessages = [];
+
+  String get orgName => userService.currentOrgName;
+
+  @override
+  Stream get stream => checkConnectivity();
+
+  void nToPref() {
+    _navigationService.navigateTo(Routes.fileSearchView);
+  }
+
+  navigateToInfo() {
+    _navigationService.navigateTo(Routes.channelInfoView);
+  }
+
+  navigateToOrganization() {
+    _navigationService.navigateTo(Routes.organizationView);
+  }
+
+  navigateToDmUser() {
+    _navigationService.navigateTo(Routes.dmUserView);
+  }
+
+  navigateToThreads() async {
+    await _navigationService.navigateTo(Routes.threadsView);
+  }
+
+  void navigateToJumpToScreen() {
+    _navigationService.navigateTo(Routes.dmJumpToView);
+  }
+
+  void navigateToStartDMScreen() {
+    _navigationService.navigateTo(Routes.startDmView);
+  }
 
   String get orgName => userService.currentOrgName;
 
@@ -101,6 +135,7 @@ class HomePageViewModel extends StreamViewModel {
     return connectionStatus;
   }
 
+<<<<<<< HEAD
   void navigateToJumpToScreen() {
     _navigationService.navigateTo(Routes.dmJumpToView);
   }
@@ -109,6 +144,8 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.startDmView);
   }
 
+=======
+>>>>>>> d4f077f1ecab6b315ee58c05d2e2116f60d012a3
   ///This sets all the expanded list items
   ///into unreads, channels and dms
   setAllList() {
@@ -121,55 +158,6 @@ class HomePageViewModel extends StreamViewModel {
         directMessages.add(e);
       }
     });
-  }
-
-  //This method is just to demo the side bar data that would
-  //be received by the database
-
-  getHomePageData() {
-    homePageList = [
-      HomeItemModel(type: HomeItemType.channels, name: 'annoucement'),
-      HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 1, name: 'random'),
-      HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 0, name: 'team-app'),
-      HomeItemModel(
-          type: HomeItemType.channels,
-          unreadCount: 5,
-          name: 'backend',
-          public: false),
-      HomeItemModel(
-          type: HomeItemType.channels,
-          unreadCount: 0,
-          name: 'frontend',
-          public: false),
-      HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 4, name: 'work-flow'),
-      HomeItemModel(
-          type: HomeItemType.channels,
-          unreadCount: 1,
-          name: 'stage7',
-          public: false),
-      HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 3, name: 'random'),
-      HomeItemModel(
-          type: HomeItemType.channels, unreadCount: 0, name: 'general'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Paul'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Timi'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Mayowa'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 1, name: 'Colins'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Brain'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'Folks'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 0, name: 'DeveloperB'),
-      HomeItemModel(type: HomeItemType.dm, unreadCount: 1, name: 'edward'),
-    ];
-
-    unreads.clear();
-    directMessages.clear();
-    joinedChannels.clear();
-
-    setAllList();
-    notifyListeners();
   }
 
   //
