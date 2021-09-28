@@ -18,8 +18,6 @@ const String ErrorOccurred = 'An Error Occurred';
 const String ErrorOTP = 'OTP could not be validated';
 const String WrongOTP = 'Wrong OTP, please check again';
 
-
-
 //API Endpoints
 const String LoginEndpoint = '/auth/login';
 const String SignUpEndpoint = '/users';
@@ -62,7 +60,7 @@ const String Resend = 'Resend';
 const String EnterOTP = 'Enter the 6-digit OTP sent to your email';
 const String EnterNewPassword = 'Please enter a new password';
 const String OTP = 'One-Time Password';
-const String BackToLogin       =    'Back to login'    ;
+const String BackToLogin = 'Back to login';
 // const String        =        ;
 // const String        =        ;
 // const String        =        ;
