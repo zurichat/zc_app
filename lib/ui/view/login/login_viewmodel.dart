@@ -1,3 +1,4 @@
+import 'package:hng/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -17,12 +18,17 @@ class LoginViewModel extends FormViewModel {
   final _snackbarService = locator<SnackbarService>();
   final _apiService = HttpApiService(coreBaseUrl);
   final _connectivityService = locator<ConnectivityService>();
+  final _userService = locator<UserService>();
 
   bool isLoading = false;
 
   loading(status) {
     isLoading = status;
     notifyListeners();
+  }
+  Future initialise() async{
+     var hasUser = _userService.hasUser;
+     return hasUser;
   }
 
   void navigateToHomeScreen() {
