@@ -13,7 +13,7 @@ enum ChannelType { private, public, personal }
 
 enum CustomUserProfileButtonType { normal, icon }
 
-enum ThreadCardType { threadMain, threadDetail, threadPost }
+enum ThreadCardType { threadMain, threadDetail, threadPost, threadChannelMain }
 
 enum BottomSheetType {
   user,

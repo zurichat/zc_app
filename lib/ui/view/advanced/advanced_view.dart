@@ -13,7 +13,7 @@ class AdvancedView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           elevation: 0,
-          title: Text(
+          title: const Text(
             'Advanced',
           ),
         ),
@@ -21,47 +21,47 @@ class AdvancedView extends StatelessWidget {
           child: Column(
             children: <Widget>[
               MenuItemTile.icon(
-                text: Text('Emoji Deluxe'),
+                text: const Text('Emoji Deluxe'),
                 subtitle: 'Choose your default skin tone',
                 imageIcon: 'assets/icons/emojiHands/${model.currentEmoji}.png',
                 onPressed: model.changeSkinTone,
               ),
               MenuItemTile.flipSwitch(
-                text: Text('Show image previews'),
+                text: const Text('Show image previews'),
                 subtitle: 'Image previews not displayed',
                 onChanged: model.toggleShowImagePreviews,
                 value: model.showImagePreviews,
               ),
               MenuItemTile.flipSwitch(
-                text: Text('Open web pages in app'),
+                text: const Text('Open web pages in app'),
                 subtitle: 'Link will open in Zuri Chat',
                 value: model.openWebPagesInApp,
                 onChanged: model.toggleOpenWebPagesInApp,
               ),
               MenuItemTile.flipSwitch(
-                text: Text('Display typing indicators'),
+                text: const Text('Display typing indicators'),
                 subtitle: 'Typing indicators will be displayed',
                 value: model.displayTypingIndicators,
                 onChanged: model.toggleDisplayTypingIndicators,
               ),
               MenuItemTile.flipSwitch(
-                text: Text('Allow animated image and emoji'),
+                text: const Text('Allow animated image and emoji'),
                 subtitle: 'Images and emoji can be animated',
                 value: model.allowAnimatedImageAndEmoji,
                 onChanged: model.toggleAllowAnimatedImageAndEmoji,
               ),
               MenuItemTile.flipSwitch(
-                  text: Text('Optimize image uploads'),
+                  text: const Text('Optimize image uploads'),
                   subtitle: 'Images are optimized for upload performance',
                   value: model.optimizeImageUploads,
                   onChanged: model.toggleOptimizeImageUploads),
-              MenuItemTile(
+              const MenuItemTile(
                 text: Text(
                   'Reset Cache',
                   style: TextStyle(color: Colors.red),
                 ),
               ),
-              MenuItemTile(
+              const MenuItemTile(
                 text: Text(
                   'Force Stop',
                   style: TextStyle(color: Colors.red),

@@ -15,7 +15,7 @@ class OrganizationUrlView extends StatelessWidget {
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isBusy,
         color: AppColors.whiteColor,
-        progressIndicator: CircularProgressIndicator(
+        progressIndicator: const CircularProgressIndicator(
           color: AppColors.zuriPrimaryColor,
         ),
         child: Scaffold(
@@ -30,46 +30,44 @@ class OrganizationUrlView extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 300),
                       child: Column(
                         children: <Widget>[
-                          TextForm(),
-                          SizedBox(
+                          const TextForm(),
+                          const SizedBox(
                             height: 12,
                           ),
-                          Container(
-                            child: Text.rich(
-                              TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: '''
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                const TextSpan(
+                                  text: '''
 If you don\'t know your Organization URL, we have sent an email to ''',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16),
-                                  ),
-                                  TextSpan(
-                                    text: '${model.email}',
-                                    style: TextStyle(
+                                  style: TextStyle(
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 16,
-                                      color: AppColors.appBarGreen,
-                                    ),
+                                      fontSize: 16),
+                                ),
+                                TextSpan(
+                                  text: '${model.email}',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
+                                    color: AppColors.appBarGreen,
                                   ),
-                                  TextSpan(
-                                    text: ' to help you sign in easily.',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16),
-                                  ),
-                                ],
-                              ),
+                                ),
+                                const TextSpan(
+                                  text: ' to help you sign in easily.',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 16),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
-                    NextButton()
+                    const NextButton()
                   ],
                 ),
               ),
@@ -83,13 +81,13 @@ If you don\'t know your Organization URL, we have sent an email to ''',
 }
 
 class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
-  TextForm({Key? key}) : super(key: key, reactive: false);
+  const TextForm({Key? key}) : super(key: key, reactive: false);
   @override
   Widget buildViewModelWidget(
       BuildContext context, OrganizationUrlViewModel model) {
     return Center(
       child: TextField(
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           labelText: 'Enter Organization URL',
           hintText: 'https://organization.zuri.com',
           hintStyle: TextStyle(
@@ -112,7 +110,7 @@ class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
 }
 
 class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
-  NextButton({Key? key}) : super(key: key, reactive: true);
+  const NextButton({Key? key}) : super(key: key, reactive: true);
 
   @override
   Widget build(BuildContext context, OrganizationUrlViewModel model) {

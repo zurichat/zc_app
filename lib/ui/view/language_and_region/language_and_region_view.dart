@@ -12,18 +12,18 @@ class LanguageAndRegionModelView extends StatelessWidget {
     return ViewModelBuilder<LanguageAndRegionModelViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          title: Text('Languages & Region'),
+          title: const Text('Languages & Region'),
           elevation: 0,
         ),
         body: Column(
           children: [
             MenuItemTile(
-              text: Text('Language'),
+              text: const Text('Language'),
               subtitle: model.currentLanguage,
               onPressed: model.changeLanguage,
             ),
             MenuItemTile.flipSwitch(
-              text: Text('Set time zone automatically'),
+              text: const Text('Set time zone automatically'),
               subtitle: model.currentTimeZone,
               value: model.automaticTimeZone,
               onChanged: model.toggleAutomaticTimeZone,

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/custom_text.dart';
+import 'package:hng/models/user_post.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
+import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_viewmodel.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../../general_widgets/custom_text.dart';
-import '../../../../../models/user_post.dart';
-import '../../../../../utilities/utilities.dart';
-import '../../../shared.dart';
-import '../../text_parser/text_parser_view.dart';
-import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
 
-class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
-  const ThreadCardMain(this.userPost, {Key? key}) : super(key: key);
+class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
+  const ThreadChannelMain(this.userPost, {Key? key}) : super(key: key);
 
   final UserPost? userPost;
 
@@ -72,16 +72,6 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
                   const SizedBox(height: 10),
                   EmojisList(userPost: userPost),
                   const SizedBox(height: 15),
-                  !nullListChecker(userPost!.userThreadPosts)
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Text(
-                            '''Show ${userPost!.userThreadPosts!.length}'''
-                            '''more replies''',
-                            style: AppTextStyles.textButton1,
-                          ),
-                        )
-                      : Container(),
                 ],
               ),
             )

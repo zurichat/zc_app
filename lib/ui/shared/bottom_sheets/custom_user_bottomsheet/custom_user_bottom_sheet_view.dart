@@ -22,10 +22,10 @@ class CustomUserBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : DraggableScrollableSheet(
               maxChildSize: 0.97,
               initialChildSize: 0.7,
@@ -40,11 +40,11 @@ class CustomUserBottomSheetView extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Container(
+                        SizedBox(
                           height: height * .3,
-                          child: ProfileHead(),
+                          child: const ProfileHead(),
                         ),
-                        Container(
+                        SizedBox(
                           height: height * .1,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -60,32 +60,33 @@ class CustomUserBottomSheetView extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Divider(),
-                        CustomProfileTile(
+                        const Divider(),
+                        const CustomProfileTile(
                             title: 'What I do', subtitle: 'Mobile Dev'),
-                        Divider(),
-                        CustomProfileTile(
+                        const Divider(),
+                        const CustomProfileTile(
                             title: 'Display Name', subtitle: 'pauleke65'),
-                        Divider(),
+                        const Divider(),
                         ListTile(
-                          title: CustomText(
+                          title: const CustomText(
                               text: 'Status', fontWeight: FontWeight.w300),
-                          subtitle: Align(
+                          subtitle: const Align(
                               alignment: Alignment.centerLeft,
-                              child: Icon(Icons.looks_5, color: AppColors.blueTextColor)),
-                          shape: Border(
+                              child: Icon(Icons.looks_5,
+                                  color: AppColors.blueTextColor)),
+                          shape: const Border(
                             top: BorderSide(
                                 width: .5, color: AppColors.greyishColor),
                           ),
                           onTap: () => model.navigateToSetStatus(),
                           trailing: IconButton(
-                              onPressed: () {}, icon: Icon(Icons.cancel)),
+                              onPressed: () {}, icon: const Icon(Icons.cancel)),
                         ),
-                        Divider(),
-                        CustomProfileTile(
+                        const Divider(),
+                        const CustomProfileTile(
                             title: 'Mobile Number', subtitle: '+2347023456789'),
-                        Divider(),
-                        CustomProfileTile(
+                        const Divider(),
+                        const CustomProfileTile(
                             title: 'Email Address',
                             subtitle: 'myemail@mail.com'),
                       ],

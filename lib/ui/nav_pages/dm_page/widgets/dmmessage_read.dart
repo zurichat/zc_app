@@ -45,7 +45,7 @@ class DMMessageRead extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 '1d',
                 // style: AppTextStyles.timestamp,
               ),

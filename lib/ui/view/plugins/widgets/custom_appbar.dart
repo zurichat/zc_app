@@ -29,7 +29,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Text(
             appbarTitle,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.w700,
                 color: AppColors.deepBlackColor),
@@ -49,7 +49,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
             },
             child: Text(
               appbarAction,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.w400,
                   color: AppColors.zuriPrimaryColor),
@@ -63,7 +63,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
             height: 16.0,
             width: 16.0,
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios, size: 16.0),
+              icon: const Icon(Icons.arrow_back_ios, size: 16.0),
               onPressed: () {
                 if (appbarAction == 'Edit') {
                   model.nToHome();
