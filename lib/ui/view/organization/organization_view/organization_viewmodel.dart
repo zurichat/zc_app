@@ -60,7 +60,7 @@ class OrganizationViewModel extends BaseViewModel {
       } else {
         organizations = resFromApi;
       }
-      //filterOrganization();
+    //  filterOrganization();
 
       setBusy(false);
     } catch (e) {

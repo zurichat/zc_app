@@ -34,14 +34,20 @@ class ChannelInfoViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
+  //void navigateToAddPeopleChannel() {
+    //_navigationService.navigateTo(Routes.addPeopleView);
+  //}
+
   navigateToMembersList(
       List<ChannelMembermodel> members, ChannelModel channelDetail) {
+
     //NavigationService.navigateTo(Routes.cha)
     _navigationService.navigateToView(ChannelMembersList(
       channelMembers: members,
       channelDetail: channelDetail,
     ));
   }
+
 
   Future showDialog() async {
     await _dialogService.showCustomDialog(
@@ -79,3 +85,4 @@ class ChannelInfoViewModel extends BaseViewModel {
     }
   }
 }
+
