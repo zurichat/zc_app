@@ -21,7 +21,7 @@ class DMMessageUnread extends StatelessWidget {
               color: const Color(0xff1A61DB),
               image: const DecorationImage(
                 image: NetworkImage(
-                  AvatarNetworkImage,
+                  DmUnreadAvatar,
                 ),
                 fit: BoxFit.cover,
               ),
