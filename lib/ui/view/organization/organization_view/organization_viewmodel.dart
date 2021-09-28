@@ -1,3 +1,5 @@
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -17,8 +19,12 @@ class OrganizationViewModel extends BaseViewModel {
   final snackbar = locator<SnackbarService>();
   final connectivityService = locator<ConnectivityService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
-  final api = OrganizationApiService();
   List<OrganizationModel> organizations = [];
+  static final _userService = locator<UserService>();
+  final zuriApi = locator<ZuriApi>();
+  String get email => _userService.userEmail;
+
+  String? get token => storageService.getString(StorageKeys.currentSessionToken);
 
   void initViewModel() {
     fetchOrganizations();
@@ -27,7 +33,7 @@ class OrganizationViewModel extends BaseViewModel {
   Future<void> navigateToNewOrganization() async {
     try {
       await navigation.navigateTo(Routes.addOrganizationView);
-      organizations = await api.getJoinedOrganizations();
+      organizations = await zuriApi.getJoinedOrganizations(token, email);
       // filterOrganization();
       notifyListeners();
     } catch (e) {
@@ -42,6 +48,7 @@ class OrganizationViewModel extends BaseViewModel {
   //Returns the list of Organization the user is part of
   Future fetchOrganizations() async {
     if (!await connectivityService.checkConnection()) {
+       await zuriApi.fetchListOfOrganizations(token);
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
@@ -53,7 +60,7 @@ class OrganizationViewModel extends BaseViewModel {
 
     try {
       setBusy(true);
-      final resFromApi = await api.getJoinedOrganizations();
+      final resFromApi = await zuriApi.getJoinedOrganizations(token, email);
       if (resFromApi.isEmpty) {
         organizations = [];
       } else {

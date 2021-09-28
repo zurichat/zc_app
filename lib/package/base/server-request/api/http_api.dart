@@ -6,12 +6,12 @@ import '../../../../utilities/api_utils.dart';
 import 'api.dart';
 import 'dio_interceptors.dart';
 
-class HttpApiService implements Api {
+class HttpApiService {
   final log = getLogger('HttpApiService');
   HttpApiService(baseUrl) {
     _dio.interceptors.add(DioInterceptor());
     _dio.options.sendTimeout = 60000;
-    _dio.options.receiveTimeout = 60000;
+    _dio.options.receiveTimeout = 60000; 
     _dio.options.baseUrl = baseUrl;
   }
 
@@ -81,5 +81,11 @@ class HttpApiService implements Api {
     } on DioError catch (e) {
       log.i(e);
     }
+  }
+
+  @override
+  Future getUserInformation(String userId) {
+    // TODO: implement getUserInformation
+    throw UnimplementedError();
   }
 }

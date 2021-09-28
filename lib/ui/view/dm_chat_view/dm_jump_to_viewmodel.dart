@@ -1,3 +1,6 @@
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/services/user_service.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -15,10 +18,16 @@ class DmJumpToViewModel extends FormViewModel {
   final log = getLogger('DmJumpToViewModel');
   static final storageService = locator<SharedPreferenceLocalStorage>();
   final connectivityService = locator<ConnectivityService>();
-  final api = locator<JumpToApi>();
+  // final api = locator<JumpToApi>();
+  final zuriApi = locator<ZuriApi>();
   List<NewUser> userSearch = [];
   List<ChannelsSearch> joinedChannelsSearch = [];
   List<ChannelsSearch> allChannelsSearch = [];
+    static final _userService = locator<UserService>();
+
+   String get currentOrgId => _userService.currentOrgId;
+
+  String? get token => storageService.getString(StorageKeys.currentSessionToken);
 
   // @override
   // // Future futureToRun() => fetchUsers();
@@ -55,10 +64,10 @@ class DmJumpToViewModel extends FormViewModel {
     yield await connectivityService.checkConnection();
   }
 
-  Future<List<ChannelsSearch>?>? fetchChannels() async {
+  Future fetchChannels() async {
     try {
       setBusy(true);
-      allChannelsSearch = await api.allChannelsList();
+      allChannelsSearch = await zuriApi.allChannelsList(currentOrgId, token);
       setBusy(false);
       notifyListeners();
       return allChannelsSearch;
@@ -70,7 +79,7 @@ class DmJumpToViewModel extends FormViewModel {
   Future<List<NewUser>?>? fetchUsers() async {
     try {
       setBusy(true);
-      userSearch = (await api.fetchList());
+      userSearch = await zuriApi.fetchList(currentOrgId, token);
       setBusy(false);
       notifyListeners();
       return userSearch;

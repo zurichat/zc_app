@@ -1,3 +1,5 @@
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
+
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
 import '../../../../models/organization_model.dart';
@@ -7,11 +9,13 @@ import '../../../../ui/shared/shared.dart';
 import '../../../../utilities/storage_keys.dart';
 import '../api/http_api.dart';
 
+
 class OrganizationApiService {
   final log = getLogger('OrganizationApiService');
   final _api = HttpApiService(coreBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
+  // final zuriApi = locator<ZuriApiService>();
 
   /// Fetches a list of organizations that exist in the zuri database
   /// This does not fetch the Organization the user belongs to
