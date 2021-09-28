@@ -1,6 +1,3 @@
-//TODO: remove material import, this is temporary for testing
-import 'dart:developer';
-
 import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
@@ -8,13 +5,10 @@ import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/models/user_search_model.dart';
-import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 
-import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
@@ -25,8 +19,6 @@ class ChannelPageViewModel extends BaseViewModel {
 
   final _navigationService = locator<NavigationService>();
   final _channelsApiService = locator<ChannelsApiService>();
-  final _jumpToApiService = locator<JumpToApi>();
-  final _coreApiService = HttpApiService(coreBaseUrl);
   final storage = locator<SharedPreferenceLocalStorage>();
   final _centrifugeService = locator<CentrifugeService>();
 
@@ -55,7 +47,7 @@ class ChannelPageViewModel extends BaseViewModel {
   }
 
   void showThreadOptions() async {
-    var sheetResponse = await _bottomSheetService.showCustomSheet(
+    await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.threadOptions,
       isScrollControlled: true,
     );
@@ -115,7 +107,7 @@ class ChannelPageViewModel extends BaseViewModel {
     String channelId,
   ) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
-    var channelMessages = await _channelsApiService.sendChannelMessages(
+    await _channelsApiService.sendChannelMessages(
         channelId, "$userId", message);
 
     notifyListeners();

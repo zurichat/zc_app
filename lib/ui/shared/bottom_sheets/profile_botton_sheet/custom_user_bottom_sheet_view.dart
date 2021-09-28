@@ -3,7 +3,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../general_widgets/custom_text.dart';
-import '../../../../models/user_model.dart';
 import '../../colors.dart';
 import 'custom_user_bottom_sheet_viewmodel.dart';
 import 'widgets/custom_button.dart';

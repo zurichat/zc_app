@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
 import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
-import 'package:hng/ui/view/dm_user/icons/zap_icon.dart';
 import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
 
@@ -15,7 +13,6 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
 
   @override
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
-    TextEditingController _messageController = TextEditingController();
 
     return Container(
       child: !nullListChecker(viewModel.channelUserMessages)

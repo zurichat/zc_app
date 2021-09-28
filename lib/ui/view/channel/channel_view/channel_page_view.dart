@@ -1,12 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_reply_box.dart';
-import 'package:hng/ui/view/dm_user/icons/zap_icon.dart';
-import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
-import '../../../shared/colors.dart';
 import '../../../shared/shared.dart';
 
 import 'channel_page_viewmodel.dart';
