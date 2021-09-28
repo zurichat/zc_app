@@ -47,19 +47,6 @@ class OrganizationView extends StatelessWidget {
                                     height: MediaQuery.of(context).size.height *
                                         0.005,
                                   ),
-                                  ListView.builder(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemCount: model.organizations.length,
-                                    shrinkWrap: true,
-                                    itemBuilder: (context, i) {
-                                      final org = model.organizations[i];
-                                      model.log.i(org.id);
-                                      model.log.i(org.organizationUrl);
-                                      model.log.i(org.name);
-                                      return OrganizationTile(org: org);
-                                    },
-                                  ),
                                 ],
                               ),
                       ),
