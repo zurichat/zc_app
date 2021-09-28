@@ -40,7 +40,7 @@ Future setupLocator(
   final connectivityService = await ConnectivityService.getInstance();
   locator.registerSingleton(connectivityService);
 
-  locator.registerLazySingleton(() => UserService());
+  // locator.registerLazySingleton(() => UserService());
   locator.registerLazySingleton(() => DMApiService());
   locator.registerLazySingleton(() => ChannelsApiService());
   locator.registerLazySingleton(() => JumpToApi());
