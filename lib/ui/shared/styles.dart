@@ -298,7 +298,6 @@ class AppTextStyles {
 
 
 // ignore: must_be_immutable
-
 class StatusIcon extends StatelessWidget {
   int count = 5;
 
