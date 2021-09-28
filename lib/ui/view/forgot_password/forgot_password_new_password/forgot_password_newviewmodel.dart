@@ -1,7 +1,6 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
-import 'package:hng/services/otp_service.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/mixins/validators_mixin.dart';
@@ -14,7 +13,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   bool inputError = false;
   NavigationService _navigationService = NavigationService();
   final _apiService = HttpApiService(coreBaseUrl);
-  final _otpService = locator<OtpService>();
+  // final _otpService = locator<OtpService>();
   final snackbar = locator<SnackbarService>();
   bool isLoading = false;
 
@@ -45,7 +44,8 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
 
   Future resetPassword() async {
     loading(true);
-    final endpoint = '/account/update-password/$otp';
+    //TODO - wrong endpoint
+    final endpoint = '/account/update-password/';
     if (newPasswordValue == '' || confirmPasswordValue == '') {
       loading(false);
       snackbar.showCustomSnackBar(
@@ -68,6 +68,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       'password': newPasswordValue,
       'confirm_password': confirmPasswordValue
     };
+    //should be a patch req
     final response = await _apiService.post(endpoint, data: newPasswordData);
     loading(false);
     if (response?.statusCode == 200) {
@@ -78,8 +79,6 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       );
       navigateToLogin();
     } else {
-      // AppSnackBar.failure(context,
-      //     response?.data['message'] ?? 'Password could not be updated.');
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
@@ -92,7 +91,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   void setFormStatus() {
     // TODO: implement setFormStatus
   }
-  
+
   // method to get the OTP into this ViewModel from {@link ForgotPasswordOtpViewModel}
-  String get otp => _otpService.otp;
+  // String get otp => _otpService.otp;
 }

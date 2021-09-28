@@ -31,7 +31,7 @@ class _SelectThemeDialogState extends State<SelectThemeDialog> {
           height: size.height * .4,
           child: Column(
             children: [
-              Align(
+              const Align(
                 alignment: Alignment.topLeft,
                 child:
                     CustomText(text: 'Dark mode', fontWeight: FontWeight.bold),
@@ -40,20 +40,18 @@ class _SelectThemeDialogState extends State<SelectThemeDialog> {
                 fit: FlexFit.loose,
                 child: ListView.builder(
                   itemCount: widget.request.data['themes'].length,
-                  itemBuilder: (context, index) => Container(
-                    child: ListTile(
-                      title: CustomText(
-                          text: widget.request.data['themes'][index]),
-                      leading: Radio(
-                        activeColor: AppColors.zuriPrimaryColor,
-                        value: index,
-                        groupValue: _currentThemeValue,
-                        onChanged: (int? value) {
-                          setState(() {
-                            _currentThemeValue = value;
-                          });
-                        },
-                      ),
+                  itemBuilder: (context, index) => ListTile(
+                    title:
+                        CustomText(text: widget.request.data['themes'][index]),
+                    leading: Radio(
+                      activeColor: AppColors.zuriPrimaryColor,
+                      value: index,
+                      groupValue: _currentThemeValue,
+                      onChanged: (int? value) {
+                        setState(() {
+                          _currentThemeValue = value;
+                        });
+                      },
                     ),
                   ),
                 ),
@@ -65,11 +63,11 @@ class _SelectThemeDialogState extends State<SelectThemeDialog> {
                   MaterialButton(
                       onPressed: () =>
                           widget.completer(DialogResponse(confirmed: false)),
-                      child: Text('CANCEL')),
+                      child: const Text('CANCEL')),
                   MaterialButton(
                       onPressed: () => widget.completer(DialogResponse(
                           data: _currentThemeValue, confirmed: true)),
-                      child: Text('SET')),
+                      child: const Text('SET')),
                 ],
               )
             ],

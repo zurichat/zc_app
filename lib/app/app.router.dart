@@ -314,11 +314,8 @@ class StackedRouter extends RouterBase {
       );
     },
     HomePage: (data) {
-      var args = data.getArgs<HomePageArguments>(
-        orElse: () => HomePageArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => HomePage(key: args.key),
+        builder: (context) => const HomePage(),
         settings: data,
       );
     },
@@ -551,8 +548,11 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<ChannelPageViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => ChannelPageView(
-          channelDetail: args.channelDetail,
-          channelMembers: args.channelMembers,
+          key: args.key,
+          channelname: args.channelname,
+          channelId: args.channelId,
+          membersCount: args.membersCount,
+          public: args.public,
         ),
         settings: data,
       );
@@ -591,12 +591,6 @@ class ForgotPasswordOtpViewArguments {
 class ForgotPasswordNewViewArguments {
   final Key? key;
   ForgotPasswordNewViewArguments({this.key});
-}
-
-/// HomePage arguments holder class
-class HomePageArguments {
-  final Key? key;
-  HomePageArguments({this.key});
 }
 
 /// DmJumpToView arguments holder class
@@ -653,11 +647,16 @@ class StartDmViewArguments {
 /// ChannelPageView arguments holder class
 class ChannelPageViewArguments {
   final Key? key;
-  ChannelPageViewArguments({this.key});
-  final ChannelModel channelDetail;
-  final List<ChannelMembermodel> channelMembers;
+  final String? channelname;
+  final String? channelId;
+  final int? membersCount;
+  final bool? public;
   ChannelPageViewArguments(
-      {required this.channelDetail, required this.channelMembers});
+      {this.key,
+      required this.channelname,
+      required this.channelId,
+      required this.membersCount,
+      required this.public});
 }
 
 /// ChannelInfoView arguments holder class
@@ -668,6 +667,5 @@ class ChannelInfoViewArguments {
   ChannelInfoViewArguments(
       {required this.numberOfMembers,
       required this.channelMembers,
-      required this.channelDetail}
-  );
+      required this.channelDetail});
 }

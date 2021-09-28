@@ -33,10 +33,10 @@ class _ClearNotificationViewState extends State<ClearNotificationView> {
               appBar: AppBar(
                 backgroundColor: Colors.white,
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  icon: const Icon(Icons.arrow_back, color: Colors.black),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
-                title: Text(
+                title: const Text(
                   'Clear after...',
                   style: TextStyle(color: Colors.black),
                 ),
@@ -65,10 +65,10 @@ class _ClearNotificationViewState extends State<ClearNotificationView> {
               groupValue: selectedValue,
               title: Text(
                 value,
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
               activeColor: selectedColor,
-              onChanged: (value) => setState(() => this.selectedValue = value!),
+              onChanged: (value) => setState(() => selectedValue = value!),
             );
           },
         ).toList(),

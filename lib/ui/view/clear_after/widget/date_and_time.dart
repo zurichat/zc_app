@@ -45,7 +45,7 @@ class _DateAndTimeState extends State<DateAndTime> {
           controller: dateController,
           readOnly: true,
           onTap: () => _selectDate(context),
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: 'Date',
             suffix: Icon(Icons.keyboard_arrow_down_rounded),
           ),
@@ -54,7 +54,7 @@ class _DateAndTimeState extends State<DateAndTime> {
           controller: timeController,
           onTap: () => _selectTime(context),
           readOnly: true,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: 'Time',
             suffix: Icon(Icons.keyboard_arrow_down_rounded),
           ),

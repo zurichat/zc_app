@@ -40,7 +40,7 @@ class IntegratePage2 extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Align(
@@ -48,8 +48,8 @@ class IntegratePage2 extends StatelessWidget {
             // ignore: deprecated_member_use
             child: TextButton.icon(
               onPressed: () => {},
-              icon: Icon(Icons.calendar_today),
-              label: Text(
+              icon: const Icon(Icons.calendar_today),
+              label: const Text(
                 'Holiday-Calender',
               ),
             ),
@@ -58,8 +58,8 @@ class IntegratePage2 extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: TextButton.icon(
               onPressed: () => {},
-              icon: Icon(Icons.today),
-              label: Text(
+              icon: const Icon(Icons.today),
+              label: const Text(
                 'To-do',
               ),
             ),
@@ -68,8 +68,8 @@ class IntegratePage2 extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: TextButton.icon(
               onPressed: () => {},
-              icon: Icon(FontAwesomeIcons.chessKnight),
-              label: Text(
+              icon: const Icon(FontAwesomeIcons.chessKnight),
+              label: const Text(
                 'Chess Room',
               ),
             ),
@@ -78,8 +78,8 @@ class IntegratePage2 extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: TextButton.icon(
               onPressed: () => {},
-              icon: Icon(Icons.meeting_room),
-              label: Text(
+              icon: const Icon(Icons.meeting_room),
+              label: const Text(
                 'Meeting Room',
               ),
             ),
@@ -88,8 +88,8 @@ class IntegratePage2 extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: TextButton.icon(
               onPressed: () => {},
-              icon: Icon(Icons.notifications_none_sharp),
-              label: Text(
+              icon: const Icon(Icons.notifications_none_sharp),
+              label: const Text(
                 'Notice Board',
               ),
             ),
@@ -98,8 +98,8 @@ class IntegratePage2 extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: TextButton.icon(
               onPressed: () => {},
-              icon: Icon(FontAwesomeIcons.music),
-              label: Text(
+              icon: const Icon(FontAwesomeIcons.music),
+              label: const Text(
                 'Music Room',
               ),
             ),
@@ -108,8 +108,8 @@ class IntegratePage2 extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: TextButton.icon(
               onPressed: () => {},
-              icon: Icon(Icons.donut_small),
-              label: Text(
+              icon: const Icon(Icons.donut_small),
+              label: const Text(
                 'Duty Shift',
               ),
             ),
@@ -118,8 +118,8 @@ class IntegratePage2 extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: TextButton.icon(
               onPressed: () => {},
-              icon: Icon(Icons.timer),
-              label: Text(
+              icon: const Icon(Icons.timer),
+              label: const Text(
                 'Important Deadline',
               ),
             ),

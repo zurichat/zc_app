@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
-import 'package:hng/services/otp_service.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/otp/otp_view.form.dart';
 import 'package:hng/utilities/enums.dart';
@@ -14,8 +13,7 @@ import 'package:stacked_services/stacked_services.dart';
 class ForgotPasswordOtpViewModel extends FormViewModel {
   NavigationService _navigationService = NavigationService();
   final _apiService = HttpApiService(coreBaseUrl);
-  final _otpService = locator<OtpService>();
-  final snackbar = locator<SnackbarService>();
+  final _snackbarService = locator<SnackbarService>();
   bool isLoading = false;
 
   // ignore: close_sinks
@@ -35,36 +33,31 @@ class ForgotPasswordOtpViewModel extends FormViewModel {
     const endpoint = '/account/verify-reset-password';
     if (otpValue == '') {
       loading(false);
-      snackbar.showCustomSnackBar(
+      _snackbarService.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
           message: 'Please Fill in all fields');
       return;
     }
-    _otpService.otp = otpValue!;
     notifyListeners();
 
     final validationData = {'code': otpValue};
     final response = await _apiService.post(endpoint, data: validationData);
     loading(false);
     if (response?.statusCode == 200) {
-      snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
+      _snackbarService.showCustomSnackBar(
+          duration: const Duration(seconds: 2),
           variant: SnackbarType.success,
-          message: '''Password reset. Enter a new one.''');
+          message: 'Please enter a new password');
       navigateToNewPassword();
     } else {
-      // AppSnackBar.failure(
-      //     context,response?.data['message'] ?? 'OTP could not be validated.' );
-      snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
+      _snackbarService.showCustomSnackBar(
+          duration: const Duration(seconds: 2),
           variant: SnackbarType.failure,
           message: response?.data['message'] ?? 'OTP could not be validated.');
     }
   }
 
   @override
-  void setFormStatus() {
-    // TODO: implement setFormStatus
-  }
+  void setFormStatus() {}
 }
