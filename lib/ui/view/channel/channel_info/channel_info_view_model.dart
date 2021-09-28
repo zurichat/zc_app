@@ -53,7 +53,10 @@ class ChannelInfoViewModel extends BaseViewModel {
 
   void navigateToMembersList(List<ChannelMembermodel> members, ChannelModel channelDetail) {
     //NavigationService.navigateTo(Routes.cha)
-    _navigationService.navigateToView(ChannelMembersList(channelMembers: members,channelDetail:channelDetail,));
+    _navigationService.navigateToView(ChannelMembersList(
+      channelMembers: members,
+      channelDetail: channelDetail,
+    ));
   }
 
   Future showDialog() async {
@@ -73,16 +76,11 @@ class ChannelInfoViewModel extends BaseViewModel {
     final response = await _apiService.get(endpoint);
     if (response?.statusCode == 200) {
       print(response?.data);
-      String channelName = response?.data['name'];
       String des = response?.data['description'];
       print('sacas $des');
       setChannelDescription(des);
       setChannelName(channelName);
 
-      /*storage.setString(
-        StorageKeys.currentSessionToken,
-        response?.data['data']['name']['token'],
-      );*/
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
@@ -98,4 +96,3 @@ class ChannelInfoViewModel extends BaseViewModel {
     }
   }
 }
-

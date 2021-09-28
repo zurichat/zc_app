@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class GroupSeparator extends StatelessWidget {
   String value = 'Today';
 
@@ -8,22 +9,29 @@ class GroupSeparator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 16.0),
+      margin: const EdgeInsets.only(top: 16.0),
       child: Row(
         children: [
-          Expanded(
+          const Expanded(
               child: Divider(
             color: Color(0xFF7B8794),
           )),
           Container(
             child: Text(value,
-                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                style: const TextStyle(
+                    fontSize: 12.0, fontWeight: FontWeight.w400)),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
             decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFF7B8794), width: 0.5),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+              border: Border.all(
+                color: const Color(0xFF7B8794),
+                width: 0.5,
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
           ),
-          Expanded(
+          const Expanded(
               child: Divider(
             color: Color(0xFF7B8794),
           )),

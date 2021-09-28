@@ -1,12 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hng/ui/view/channel/channel_info/widgets/newRowTile.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/textstyles.dart';
-
 import '../../../../shared/colors.dart';
-import '../../../../shared/styles.dart';
 
 class FifthSection extends StatelessWidget {
 

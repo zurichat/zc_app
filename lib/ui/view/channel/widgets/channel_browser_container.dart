@@ -10,12 +10,13 @@ class ChannelBrowserContainer extends ViewModelWidget<ChannelListViewModel> {
   @override
   Widget build(BuildContext context, ChannelListViewModel model) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         print(channelId);
-        model.navigateToChannelPage(channelId);
+        // model.navigateToChannelPage(
+        //     channelname, channelId, membersCount, public);
       },
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
         ),
         child: Padding(
@@ -49,8 +50,8 @@ class ChannelBrowserContainer extends ViewModelWidget<ChannelListViewModel> {
                         const SizedBox(width: 5),
                         const Text(
                           '128 members',
-                          style:
-                              TextStyle(color: Color(0XFFFBEBEBE), fontSize: 15),
+                          style: TextStyle(
+                              color: Color(0XFFFBEBEBE), fontSize: 15),
                         )
                       ],
                     )

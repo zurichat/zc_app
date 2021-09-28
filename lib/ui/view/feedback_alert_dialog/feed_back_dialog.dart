@@ -9,10 +9,10 @@ class FeedBackDialogCall extends StatelessWidget {
       body: ElevatedButton(
         onPressed: () => AppAlertDialog().appDialog(
           context,
-          "Compose feedback",
+          'Compose feedback',
           "e.g i found a bug in the DM\'s",
         ),
-        child: Text("Alert"),
+        child: const Text('Alert'),
       ),
     );
   }

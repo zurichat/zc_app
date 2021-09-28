@@ -52,7 +52,8 @@ class ChannelListViewModel extends BaseViewModel {
     }
   }
 
-  void navigateToChannelPage(id) async {
+  navigateToChannelPage(String? channelname, String? channelId,
+      int? membersCount, bool? public) async {
     try {
       if (!await connectivityService.checkConnection()) {
         snackbar.showCustomSnackBar(
@@ -64,14 +65,16 @@ class ChannelListViewModel extends BaseViewModel {
         return;
       }
       setBusy(true);
-      _channel = await api.getChannelPage(id);
-      _membersList = await api.getChannelMembers(id);
+      // _channel= await api.getChannelPage(id);
+      // _membersList= await api.getChannelMembers(id);
       setBusy(false);
-      NavigationService().navigateTo(Routes.channelPageView,
+      navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
-              channelDetail: _channel!, channelMembers: _membersList));
-    } on Exception catch (e) {
-      print("C $e");
+            channelname: channelname,
+            channelId: channelId,
+            membersCount: membersCount,
+            public: public,
+          ));
     } catch (e) {
       print(e.toString());
       snackbar.showCustomSnackBar(

@@ -10,8 +10,8 @@ import 'package:stacked_services/stacked_services.dart';
 
 class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
   bool inputError = false;
-  final navigationService = locator<NavigationService>();
-  final snackbar = locator<SnackbarService>();
+  final _navigationService = locator<NavigationService>();
+  final _snackbarService = locator<SnackbarService>();
   final _apiService = HttpApiService(coreBaseUrl);
   bool isLoading = false;
 
@@ -25,8 +25,8 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
     const endpoint = 'account/request-password-reset-code';
     if (forgotEmailValue == '') {
       loading(false);
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
+      _snackbarService.showCustomSnackBar(
+        duration: const Duration(seconds: 2),
         variant: SnackbarType.failure,
         message: 'Please fill all fields.',
       );
@@ -37,8 +37,8 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
       loading(true);
     } else {
       loading(false);
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
+      _snackbarService.showCustomSnackBar(
+        duration: const Duration(seconds: 2),
         variant: SnackbarType.failure,
         message: 'Invalid email format',
       );
@@ -50,28 +50,25 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
     response != null ? loading(false) : loading(true);
 
     if (response?.statusCode == 200) {
-      snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
+      _snackbarService.showCustomSnackBar(
+          duration: const Duration(seconds: 2),
           variant: SnackbarType.success,
-          message:
-              '''User registered on ZuriChat. Password reset code requested.''');
+          message: 'Please check your email for your one-time password');
 
-      navigateToforgotPasswordOtpView();
+      navigateToForgotPasswordOtpView();
     } else {
-      snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
+      _snackbarService.showCustomSnackBar(
+          duration: const Duration(seconds: 2),
           variant: SnackbarType.failure,
-          message: 'No user is registered with the e-mail you provided.');
+          message: response?.data['message'] ?? 'An Error Occurred.');
     }
   }
 
   @override
-  void setFormStatus() {
-    // TODO: implement setFormStatus
-  }
+  void setFormStatus() {}
 
-  void navigateToforgotPasswordOtpView() =>
-      navigationService.navigateTo(Routes.forgotPasswordOtpView);
+  void navigateToForgotPasswordOtpView() =>
+      _navigationService.navigateTo(Routes.forgotPasswordOtpView);
 
-  void navigateToSignIn() => navigationService.navigateTo(Routes.loginView);
+  void navigateToSignIn() => _navigationService.navigateTo(Routes.loginView);
 }

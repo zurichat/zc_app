@@ -39,7 +39,7 @@ class DraftedItemWidget extends StatelessWidget {
                       child: Text(
                         username,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
                         ),
@@ -48,17 +48,17 @@ class DraftedItemWidget extends StatelessWidget {
                     Text(
                       time,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 13),
+                      style: const TextStyle(fontSize: 13),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 6,
                 ),
                 Text(
                   message,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                   ),
@@ -66,7 +66,7 @@ class DraftedItemWidget extends StatelessWidget {
               ],
             ),
           ),
-          Divider(
+          const Divider(
             thickness: 1.0,
             //height: 3.0,
           ),

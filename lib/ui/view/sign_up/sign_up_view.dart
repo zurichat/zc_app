@@ -115,7 +115,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                         ),
                         UIHelper.customVerticalSpace(10),
                         CustomTextField(
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.visiblePassword,
                           inputAction: TextInputAction.next,
                           autoCorrect: false,
                           obscureText: true,
@@ -207,7 +207,7 @@ By selecting this box, you agreed to our''',
                                   height: 24,
                                   width: 24,
                                 ),
-                                const SizedBox(width: 12),
+                                UIHelper.customHorizontalSpace(12.0),
                                 Text(
                                   'Sign Up with Google',
                                   style: AppTextStyles.body1Bold,

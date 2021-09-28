@@ -9,11 +9,11 @@ import '../../../../general_widgets/ripple.dart';
 import '../../../../general_widgets/svg_icon.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/text_styles.dart';
-import '../../../view/channel/channel_view/channel_page_view.dart';
 import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
 
 final navigationService = locator<NavigationService>();
+
 class ThreadTextAndIcon extends StatelessWidget {
   const ThreadTextAndIcon({Key? key}) : super(key: key);
 
@@ -35,7 +35,7 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   const AddChannelsTextAndIcon({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context,vmodel) {
+  Widget build(BuildContext context, vmodel) {
     return _TextAndIcon(
       text: 'Add channels',
       unread: false,
@@ -59,7 +59,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   final HomeItemModel data;
   final bool? noTopPad;
 
-  DMTextAndIcon({
+  const DMTextAndIcon({
     Key? key,
     required this.data,
     this.noTopPad,
@@ -82,7 +82,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       },
       icon: Container(
         alignment: Alignment.centerLeft,
-        child: EasyContainer(
+        child: const EasyContainer(
           height: 23,
           width: 23,
           radius: 3,
@@ -97,8 +97,10 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 ///
 //Expanded tile don't allow sizing so we have to decrease
 //the top pad of the first child to make it look visually ok
+// ignore: must_be_immutable
 class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   final HomeItemModel data;
+  final channelId;
   final bool? noTopPad;
   bool isUnread = false;
 
@@ -106,6 +108,7 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
     Key? key,
     required this.data,
     this.noTopPad,
+    required this.channelId,
   }) : super(key: key);
 
   Widget prefixIcon() {
@@ -146,13 +149,8 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       text: data.name ?? '',
       unread: isUnread,
       icon: prefixIcon(),
-      onTap: () {
-        //vmodel.navigateToChannelScreen();
-        //Navigate to channels and pass the channels id
-        //This channel is is hardcoded
-        //TODO:Get dynamic id from home page view
-        vmodel.navigateToChannelPage('61471f18f41cb684cc531a6d');
-      },
+      onTap: () => vmodel.navigateToChannelPage(
+          data.name, data.id, data.membersCount, data.public),
     );
   }
 }
@@ -191,7 +189,7 @@ class _TextAndIcon extends StatelessWidget {
     return Ripple(
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
+        padding: const EdgeInsets.fromLTRB(0, 14, 0, 14),
         child: Row(
           children: [
             Container(
@@ -199,7 +197,7 @@ class _TextAndIcon extends StatelessWidget {
               alignment: Alignment.center,
               child: icon,
             ),
-            SizedBox(
+            const SizedBox(
               width: 12,
             ),
             Text(

@@ -6,6 +6,7 @@ import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:hng/ui/view/channel/channel_info/widgets/newRowTile.dart';
 import '../../../../shared/colors.dart';
 
+// ignore: must_be_immutable
 class ThirdSection extends StatelessWidget {
   ThirdSection(this.model, this.numberOfMembers, this.channelDetail, this.channelMembers);
   final numberOfMembers;

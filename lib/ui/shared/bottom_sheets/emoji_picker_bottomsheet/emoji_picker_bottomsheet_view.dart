@@ -19,8 +19,8 @@ class EmojiPickerBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return ViewModelBuilder<EmojiPickerBottomSheetViewModel>.reactive(
       builder: (context, model, child) => DraggableScrollableSheet(
         maxChildSize: 0.97,
@@ -28,12 +28,12 @@ class EmojiPickerBottomSheetView extends StatelessWidget {
         minChildSize: 0.5,
         builder: (BuildContext context, ScrollController scrollController) {
           return Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(15), topRight: Radius.circular(15)),
             ),
-            padding: EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 10),
             height: height * .97,
             child: SingleChildScrollView(
               controller: scrollController,
@@ -41,7 +41,7 @@ class EmojiPickerBottomSheetView extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(bottom: 20),
+                    padding: const EdgeInsets.only(bottom: 20),
                     height: 5,
                     width: width * 0.15,
                     decoration: BoxDecoration(
@@ -57,10 +57,10 @@ class EmojiPickerBottomSheetView extends StatelessWidget {
                       maxLines: 1,
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search),
+                        prefixIcon: const Icon(Icons.search),
                         isCollapsed: true,
-                        hintText: "Search emoji",
-                        suffixIcon: Icon(Icons.mic_none_outlined),
+                        hintText: 'Search emoji',
+                        suffixIcon: const Icon(Icons.mic_none_outlined),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15)),
                       ),
@@ -74,24 +74,25 @@ class EmojiPickerBottomSheetView extends StatelessWidget {
                         onEmojiSelected: (Category category, Emoji emoji) =>
                             completer(
                                 SheetResponse(confirmed: true, data: emoji)),
-                        config: Config(
-                            columns: 7,
-                            emojiSizeMax: 25,
-                            initCategory: Category.RECENT,
-                            bgColor: Colors.transparent,
-                            indicatorColor: AppColors.zuriPrimaryColor,
-                            iconColor: AppColors.greyColor,
-                            iconColorSelected: AppColors.zuriPrimaryColor,
-                            progressIndicatorColor: AppColors.zuriPrimaryColor,
-                            backspaceColor: AppColors.zuriPrimaryColor,
-                            showRecentsTab: true,
-                            recentsLimit: 28,
-                            noRecentsText: 'No Recents',
-                            noRecentsStyle: const TextStyle(
-                                fontSize: 20, color: Colors.black26),
-                            tabIndicatorAnimDuration: kTabScrollDuration,
-                            categoryIcons: const CategoryIcons(),
-                            buttonMode: ButtonMode.MATERIAL),
+                        config: const Config(
+                          columns: 7,
+                          emojiSizeMax: 25,
+                          initCategory: Category.RECENT,
+                          bgColor: Colors.transparent,
+                          indicatorColor: AppColors.zuriPrimaryColor,
+                          iconColor: AppColors.greyColor,
+                          iconColorSelected: AppColors.zuriPrimaryColor,
+                          progressIndicatorColor: AppColors.zuriPrimaryColor,
+                          backspaceColor: AppColors.zuriPrimaryColor,
+                          showRecentsTab: true,
+                          recentsLimit: 28,
+                          noRecentsText: 'No Recents',
+                          noRecentsStyle:
+                              TextStyle(fontSize: 20, color: Colors.black26),
+                          tabIndicatorAnimDuration: kTabScrollDuration,
+                          categoryIcons: CategoryIcons(),
+                          buttonMode: ButtonMode.MATERIAL,
+                        ),
                       ),
                     ),
                   ),
