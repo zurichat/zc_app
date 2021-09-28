@@ -59,7 +59,7 @@ class ChannelInfoView extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
-                          'You wont\'t  recieve any messages from a muted channel',
+                          'You wont\'t recieve any messages from a muted channel',
                           style: AppTextStyles.body1Grey,
                         ),
                       ),

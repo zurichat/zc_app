@@ -299,7 +299,7 @@ class AppTextStyles {
 
 
 class StatusIcon extends StatelessWidget {
-  int count = 5;
+  final int count = 5;
 
   StatusIcon(int parse);
   @override
