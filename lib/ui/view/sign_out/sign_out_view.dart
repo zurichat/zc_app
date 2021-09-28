@@ -1,11 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
 import 'package:hng/models/organization_model.dart';
-import 'package:stacked_services/stacked_services.dart';
 import '../../../../general_widgets/custom_text.dart';
-import 'package:flutter/foundation.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
 

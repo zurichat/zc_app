@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/view/sign_out/sign_out_view.dart';
-import 'package:hng/ui/view/sign_up/sign_up_view.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
 import 'organization_viewmodel.dart';
