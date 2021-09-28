@@ -47,6 +47,7 @@ class ChannelInfoViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
+
   navigateBack() {
     _navigationService.back();
   }
@@ -58,6 +59,7 @@ class ChannelInfoViewModel extends BaseViewModel {
       channelDetail: channelDetail,
     ));
   }
+
 
   Future showDialog() async {
     await _dialogService.showCustomDialog(
@@ -96,3 +98,4 @@ class ChannelInfoViewModel extends BaseViewModel {
     }
   }
 }
+
