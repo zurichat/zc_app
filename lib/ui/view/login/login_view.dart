@@ -102,7 +102,7 @@ class LoginView extends StatelessWidget with $LoginView {
                         model.navigateToForgotPasswordScreen();
                       },
                       child: const Text(
-                        ForgotPassword,
+                        ForgotPasswordBtn,
                         style: TextStyle(
                           color: AppColors.zuriPrimaryColor,
                         ),

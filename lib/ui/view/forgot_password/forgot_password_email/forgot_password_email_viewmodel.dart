@@ -1,5 +1,6 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.form.dart';
@@ -22,13 +23,13 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
 
   Future validateEmailIsRegistered() async {
     loading(true);
-    const endpoint = 'account/request-password-reset-code';
+
     if (forgotEmailValue == '') {
       loading(false);
       _snackbarService.showCustomSnackBar(
         duration: const Duration(seconds: 2),
         variant: SnackbarType.failure,
-        message: 'Please fill all fields.',
+        message: FillAllFields,
       );
       return;
     } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_"
@@ -40,27 +41,30 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(seconds: 2),
         variant: SnackbarType.failure,
-        message: 'Invalid email format',
+        message: InvalidEmailFormat,
       );
       return;
     }
 
     final validationData = {'email': forgotEmailValue};
-    final response = await _apiService.post(endpoint, data: validationData);
+    final response =
+        await _apiService.post(RequestOTPEndpoint, data: validationData);
     response != null ? loading(false) : loading(true);
 
     if (response?.statusCode == 200) {
       _snackbarService.showCustomSnackBar(
-          duration: const Duration(seconds: 2),
-          variant: SnackbarType.success,
-          message: 'Please check your email for your one-time password');
+        duration: const Duration(seconds: 2),
+        variant: SnackbarType.success,
+        message: CheckEmailForOTP,
+      );
 
       navigateToForgotPasswordOtpView();
     } else {
       _snackbarService.showCustomSnackBar(
-          duration: const Duration(seconds: 2),
-          variant: SnackbarType.failure,
-          message: response?.data['message'] ?? 'An Error Occurred.');
+        duration: const Duration(seconds: 2),
+        variant: SnackbarType.failure,
+        message: response?.data['message'] ?? ErrorOccurred,
+      );
     }
   }
 

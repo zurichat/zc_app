@@ -1,5 +1,6 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/enums.dart';
@@ -13,7 +14,6 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   bool inputError = false;
   NavigationService _navigationService = NavigationService();
   final _apiService = HttpApiService(coreBaseUrl);
-  // final _otpService = locator<OtpService>();
   final snackbar = locator<SnackbarService>();
   bool isLoading = false;
 
@@ -45,13 +45,13 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   Future resetPassword() async {
     loading(true);
     //TODO - wrong endpoint
-    final endpoint = '/account/update-password/';
+
     if (newPasswordValue == '' || confirmPasswordValue == '') {
       loading(false);
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Please fill all fields.',
+        message: FillAllFields,
       );
       return;
     } else if (newPasswordValue != confirmPasswordValue) {
@@ -59,7 +59,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Passwords must match',
+        message: PasswordsMustMatch,
       );
       return;
     }
@@ -68,30 +68,26 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       'password': newPasswordValue,
       'confirm_password': confirmPasswordValue
     };
-    //should be a patch req
-    final response = await _apiService.post(endpoint, data: newPasswordData);
+    //TODO - CONFIRM ENDPOINT - should be a patch req
+    final response =
+        await _apiService.post(ResetPasswordEndpoint, data: newPasswordData);
     loading(false);
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
-        message: 'Password Successfully Updated',
+        message: PasswordUpdated,
       );
       navigateToLogin();
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
-        message: response?.data['message'] ?? 'Password could not be updated.',
+        message: response?.data['message'] ?? PasswordNotUpdated,
       );
     }
   }
 
   @override
-  void setFormStatus() {
-    // TODO: implement setFormStatus
-  }
-
-  // method to get the OTP into this ViewModel from {@link ForgotPasswordOtpViewModel}
-  // String get otp => _otpService.otp;
+  void setFormStatus() {}
 }
