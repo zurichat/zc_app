@@ -88,6 +88,17 @@ const String Abroad = 'Abroad';
 const String Kristie = 'Kristie';
 const String Kara = 'Kara';
 
+//Integrate
+const String Integrate = 'Integrate';
+const String Calendar = 'Holiday-Calender';
+const String Todo = 'To-do';
+const String Chess = 'Chess Room';
+const String Meeting = 'Meeting Room';
+const String Board = 'Notice Board';
+const String Music = 'Music Room';
+const String Shifts = 'Duty Shift';
+const String Deadlines = 'Important Deadline';
+
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String GoogleLogo = 'assets/logo/Google_logo.png';
