@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
+import '../../../shared/colors.dart';
+import '../../../shared/long_button.dart';
+import '../../../shared/ui_helpers.dart';
 import 'create_organization_viewmodel.dart';
 
 class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
@@ -18,7 +18,7 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
       builder: (context, constraint) {
         return SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 minHeight: constraint.maxHeight - kToolbarHeight,
@@ -28,11 +28,11 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Text(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: const Text(
                         "What's a project your team is working on?",
                         style: TextStyle(
                           letterSpacing: 0.5,
@@ -43,13 +43,13 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    TextForm(
+                    const TextForm(
                       hintText: 'Eg.  Q4 Budget, Website Update',
                       wordCount: 80,
                     ),
                     UIHelper.verticalSpaceMedium,
                     LongButton(onPressed: () => model.next(), label: 'Next'),
-                    Spacer(flex: 3),
+                    const Spacer(flex: 3),
                   ],
                 ),
               ),
@@ -64,7 +64,7 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
 class TextForm extends HookViewModelWidget<CreateOrganizationViewModel> {
   final int? wordCount;
   final String hintText;
-  TextForm({Key? key, this.wordCount, required this.hintText})
+  const TextForm({Key? key, this.wordCount, required this.hintText})
       : super(key: key, reactive: false);
   @override
   Widget buildViewModelWidget(
@@ -72,24 +72,24 @@ class TextForm extends HookViewModelWidget<CreateOrganizationViewModel> {
     return Center(
       child: TextField(
         controller: model.projectController,
-        maxLength: this.wordCount,
+        maxLength: wordCount,
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             fontSize: 16,
             color: Colors.black45,
             fontWeight: FontWeight.w300,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: AppColors.greyColor,
               width: 1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: AppColors.greyColor,
               width: 1,
             ),

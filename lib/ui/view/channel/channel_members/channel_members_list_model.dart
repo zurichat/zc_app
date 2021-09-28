@@ -1,7 +1,13 @@
+import 'package:hng/app/app.locator.dart';
 import 'package:hng/models/static_user_model.dart';
+
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class ChannelMembersModel extends BaseViewModel {
+
+   final navigator = locator<NavigationService>();
+ 
   bool get allMarked =>
       markedUsers.length == matchingUsers.length && matchingUsers.isNotEmpty;
 
@@ -59,4 +65,9 @@ class ChannelMembersModel extends BaseViewModel {
     markedUsers = marked! ? matchingUsers : [];
     notifyListeners();
   }
+
+   void goBack() {
+    NavigationService().back();
+  }
+
 }

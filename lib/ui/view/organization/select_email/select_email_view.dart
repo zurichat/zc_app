@@ -19,7 +19,7 @@ class SelectEmail extends StatelessWidget {
               appBar: AppBar(
                 title: Text(
                   model.getScreenTitle(method),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     color: AppColors.deepBlackColor,
                   ),
@@ -30,12 +30,12 @@ class SelectEmail extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back_ios_outlined),
+                  icon: const Icon(Icons.arrow_back_ios_outlined),
                   color: Colors.black,
                 ),
               ),
               body: Container(
-                margin: EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
+                margin: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
                 height: 137.0,
                 width: 395.0,
                 decoration: BoxDecoration(
@@ -52,8 +52,8 @@ class SelectEmail extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 17.5, top: 24),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 17.5, top: 24),
                           child: Icon(
                             Icons.email_outlined,
                             size: 20,
@@ -68,7 +68,7 @@ class SelectEmail extends StatelessWidget {
                             },
                             child: Text(
                               model.userEmail ?? '',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: AppColors.deepBlackColor,
                                   fontSize: 14),
                             ),
@@ -76,9 +76,8 @@ class SelectEmail extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 57.0, top: 24, bottom: 24),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 57.0, top: 24, bottom: 24),
                       child: Divider(
                         thickness: 1,
                         height: 9,
@@ -87,8 +86,8 @@ class SelectEmail extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
+                        const Padding(
+                          padding: EdgeInsets.only(
                             left: 17.5,
                           ),
                           child: Icon(
@@ -104,7 +103,7 @@ class SelectEmail extends StatelessWidget {
                           child: GestureDetector(
                             child: Text(
                               model.anotherEmail,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: AppColors.deepBlackColor,
                                   fontSize: 14),
                             ),

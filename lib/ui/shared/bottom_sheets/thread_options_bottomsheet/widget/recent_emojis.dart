@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import '../../../colors.dart';
 
 class RecentEmojis extends StatelessWidget {
   const RecentEmojis(this.text, {Key? key}) : super(key: key);
@@ -13,9 +14,9 @@ class RecentEmojis extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             text,
-            style: TextStyle(fontSize: 25),
+            style: const TextStyle(fontSize: 25),
           )),
-      decoration: BoxDecoration(
+      decoration:const  BoxDecoration(
         shape: BoxShape.circle,
         color: AppColors.greyBackgroundColor,
       ),

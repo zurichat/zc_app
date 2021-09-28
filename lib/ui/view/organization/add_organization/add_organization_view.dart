@@ -9,8 +9,6 @@ import 'add_organization_viewmodel.dart';
 //The Add Organization page, where user can add a new organization
 //The route to this page is '/add-organization-view'
 class AddOrganizationView extends StatelessWidget {
-  
-
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AddOrganizationViewModel>.reactive(
@@ -26,14 +24,14 @@ class AddOrganizationView extends StatelessWidget {
             elevation: 8,
             shadowColor: Colors.black38,
             title: Text(
-              "Add Organizations",
+              'Add Organizations',
               style: AppTextStyles.heading4,
             ),
           ),
           body: GestureDetector(
             onTap: () => FocusScope.of(context).unfocus(),
             child: Column(children: [
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -41,7 +39,7 @@ class AddOrganizationView extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(3),
                       boxShadow: [
-                        BoxShadow(
+                        const BoxShadow(
                           color: Colors.black26,
                           blurRadius: 8,
                           offset: Offset(0, 2),
@@ -60,13 +58,13 @@ class AddOrganizationView extends StatelessWidget {
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.edit_outlined,
                                   color: AppColors.blackColor,
                                 ),
-                                SizedBox(width: 16),
+                                const SizedBox(width: 16),
                                 Text(
-                                  "Create a new organization",
+                                  'Create a new organization',
                                   style: AppTextStyles.regular,
                                 ),
                               ],
@@ -75,8 +73,8 @@ class AddOrganizationView extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            SizedBox(width: 32),
-                            Expanded(
+                            const SizedBox(width: 32),
+                            const Expanded(
                               child: Divider(
                                 color: AppColors.dividerColor,
                               ),
@@ -90,13 +88,13 @@ class AddOrganizationView extends StatelessWidget {
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.grid_view,
                                   color: AppColors.blackColor,
                                 ),
-                                SizedBox(width: 16),
+                                const SizedBox(width: 16),
                                 Text(
-                                  "Sign in to another organization",
+                                  'Sign in to another organization',
                                   style: AppTextStyles.regular,
                                 ),
                               ],
@@ -105,8 +103,8 @@ class AddOrganizationView extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            SizedBox(width: 48),
-                            Expanded(
+                            const SizedBox(width: 48),
+                            const Expanded(
                               child: Divider(
                                 color: AppColors.dividerColor,
                               ),
@@ -120,13 +118,13 @@ class AddOrganizationView extends StatelessWidget {
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.add_box_outlined,
                                   color: AppColors.blackColor,
                                 ),
-                                SizedBox(width: 16),
+                                const SizedBox(width: 16),
                                 Text(
-                                  "Join another organization",
+                                  'Join another organization',
                                   style: AppTextStyles.regular,
                                 ),
                               ],
@@ -138,7 +136,7 @@ class AddOrganizationView extends StatelessWidget {
                   ),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -146,7 +144,7 @@ class AddOrganizationView extends StatelessWidget {
                     BoxShadow(
                       color: Colors.black.withOpacity(0.2),
                       blurRadius: 5,
-                      offset: Offset(0, 2),
+                      offset: const Offset(0, 2),
                     )
                   ],
                 ),

@@ -29,16 +29,18 @@ class OrganizationView extends StatelessWidget {
                     child: Visibility(
                       visible: !model.isBusy,
                       child: SingleChildScrollView(
-                        physics: ScrollPhysics(),
+                        physics: const ScrollPhysics(),
                         child: model.organizations.isEmpty
-                            ? Container(
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.only(top: 50.0),
-                              child: Text(
-                                "You have not joined any organization yet!",
-                                style: AppTextStyles.bodyRegular,
-                              ),
-                            )
+                            ? Center(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  padding: const EdgeInsets.only(top: 50.0),
+                                  child: Text(
+                                    'You have not joined any organization yet!',
+                                    style: AppTextStyles.bodyRegular,
+                                  ),
+                                ),
+                              )
                             : Column(
                                 children: [
                                   SizedBox(
@@ -46,148 +48,44 @@ class OrganizationView extends StatelessWidget {
                                         0.005,
                                   ),
                                   ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     itemCount: model.organizations.length,
                                     shrinkWrap: true,
                                     itemBuilder: (context, i) {
                                       final org = model.organizations[i];
+                                      print(org.id);
+                                      print(org.organizationUrl);
+                                      print(org.name);
                                       return OrganizationTile(org: org);
                                     },
                                   ),
                                 ],
                               ),
-//                                : Column(
-//                                    children: [
-//                                      SizedBox(height: 10.0),
-//                                      ListView.builder(
-//                                        physics: NeverScrollableScrollPhysics(),
-//                                        itemCount: model.Organizations.length,
-//                                        shrinkWrap: true,
-//                                        itemBuilder: (context, i) {
-//                                          OrganizationModel data =
-//                                              model.Organizations[i];
-//                                          return ListTile(
-//                                            onTap: () => model.onTap(data.id),
-//                                            leading: Container(
-//                                              height: 50,
-//                                              width: 50,
-//                                              padding: EdgeInsets.all(2),
-//                                              decoration: BoxDecoration(
-//                                                color: model.currentOrgId ==
-//                                                        data.id
-//                                                    ? AppColors.blackColor
-//                                                    : AppColors.whiteColor,
-//                                                borderRadius:
-//                                                    BorderRadius.circular(5),
-//                                              ),
-//                                              child: Container(
-//                                                height: 45,
-//                                                width: 45,
-//                                                decoration: BoxDecoration(
-//                                                  border: Border.all(
-//                                                    color: AppColors.whiteColor,
-//                                                    width: 2,
-//                                                    style: BorderStyle.solid,
-//                                                  ),
-//                                                  color: AppColors.greyishColor,
-//                                                  borderRadius:
-//                                                      BorderRadius.circular(5),
-//                                                ),
-//                                                clipBehavior: Clip.antiAlias,
-//                                                child: data.imageUrl
-//                                                            ?.validateLink() ??
-//                                                        false
-//                                                    ? Image.network(
-//                                                        data.imageUrl!,
-//                                                        errorBuilder:
-//                                                            (__, err, _) =>
-//                                                                Center(
-//                                                          child: Text(
-//                                                            '${data.name.initials}',
-//                                                            textAlign: TextAlign
-//                                                                .center,
-//                                                            style: TextStyle(
-//                                                              color:
-//                                                                  Colors.black,
-//                                                              fontSize: 21,
-//                                                              fontFamily:
-//                                                                  'OverpassRegular',
-//                                                              fontWeight:
-//                                                                  FontWeight
-//                                                                      .bold,
-//                                                            ),
-//                                                          ),
-//                                                        ),
-//                                                      )
-//                                                    : Center(
-//                                                        child: Text(
-//                                                          '${data.name.initials}',
-//                                                          textAlign:
-//                                                              TextAlign.center,
-//                                                          maxLines: 1,
-//                                                          style: TextStyle(
-//                                                            color: Colors.black,
-//                                                            fontSize: 21,
-//                                                            fontFamily:
-//                                                                'OverpassRegular',
-//                                                            fontWeight:
-//                                                                FontWeight.bold,
-//                                                          ),
-//                                                        ),
-//                                                      ),
-//                                              ),
-//                                            ),
-//                                            title: Text(
-//                                              data.name,
-//                                              style: TextStyle(
-//                                                  fontWeight: FontWeight.bold),
-//                                            ),
-//                                            subtitle: Container(
-//                                              padding: const EdgeInsets.only(
-//                                                  top: 5.0),
-//                                              child: Text(
-//                                                '${data.OrganizationUrl}',
-//                                                style: TextStyle(
-//                                                    color: Colors.grey,
-//                                                    fontSize: 15.0),
-//                                              ),
-//                                            ),
-//                                            trailing: Icon(Icons.more_vert),
-//                                          );
-//                                        },
-//                                      ),
-//                                    ],
-//                                  ),
                       ),
-                      replacement: Center(
+                      replacement: const Center(
                         child: CircularProgressIndicator(
                           color: AppColors.zuriPrimaryColor,
                         ),
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: Column(
                       children: [
                         ListTile(
                           onTap: () => model.navigateToNewOrganization(),
-                          leading: Container(
-                            child: Icon(Icons.add_box_outlined),
-                          ),
-                          title: Text("Add an organization"),
+                          leading: const Icon(Icons.add_box_outlined),
+                          title: const Text('Add an organization'),
                         ),
-                        ListTile(
-                          leading: Container(
-                            child: Icon(Icons.settings),
-                          ),
-                          title: Text("Preferences"),
+                        const ListTile(
+                          leading: Icon(Icons.settings),
+                          title: Text('Preferences'),
                         ),
-                        ListTile(
-                          leading: Container(
-                            child: Icon(Icons.help_outline),
-                          ),
-                          title: Text("Help"),
+                        const ListTile(
+                          leading: Icon(Icons.help_outline),
+                          title: Text('Help'),
                         ),
                       ],
                     ),
@@ -218,7 +116,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
       leading: Container(
         height: MediaQuery.of(context).size.height * 0.06,
         width: MediaQuery.of(context).size.height * 0.06,
-        padding: EdgeInsets.all(2),
+        padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(
           color: model.currentOrgId == org.id
               ? AppColors.blackColor
@@ -263,7 +161,10 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
           style: AppTextStyles.body3Medium,
         ),
       ),
-      trailing: GestureDetector(onTap: () {}, child: Icon(Icons.more_vert)),
+      trailing: GestureDetector(
+        onTap: () {},
+        child: const Icon(Icons.more_vert),
+      ),
     );
   }
 }

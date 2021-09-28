@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:hng/ui/shared/shared.dart';
+import '../../shared/shared.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -18,15 +18,17 @@ class EditProfileView extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
-              onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
-          title: Text("Edit Profile"),
+            onPressed: model.exitPage,
+            icon: const Icon(Icons.close_rounded),
+          ),
+          title: const Text('Edit Profile'),
           actions: [
             TextButton(
               onPressed: () async {
                 await model.updateProfile();
               },
-              child: Text(
-                "Save",
+              child: const Text(
+                'Save',
                 style: TextStyle(color: AppColors.zuriTextBodyColor),
               ),
             )
@@ -54,7 +56,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: _size.height * 0.14,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -62,9 +64,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   Container(
                     width: _size.height * 0.14,
                     height: double.maxFinite,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage("assets/background/appBarLogo.png"),
+                        image: AssetImage('assets/background/appBarLogo.png'),
                         fit: BoxFit.contain,
                       ),
                       borderRadius: BorderRadius.all(
@@ -82,50 +84,60 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                           )),
                     ),
                   ),
-                  Spacer(),
-                  Container(
+                  const Spacer(),
+                  SizedBox(
                     width: _size.width * 0.55,
                     child: TextFormField(
                       initialValue: model.name,
                       onChanged: (value) {
                         model.updateString(value, '', '', '');
                       },
-                      decoration: InputDecoration(
-                        labelText: "Full Name",
+                      decoration: const InputDecoration(
+                        labelText: 'Full Name',
                       ),
                     ),
                   )
                 ],
               ),
             ),
+            SizedBox(
+              height: 26,
+            ),
             TextFormField(
-              initialValue:
-                  ' Please open and close this page twice to see changes after saving',
+              initialValue: ''' Please open and close this '''
+                  '''page twice to see changes after saving''',
               onChanged: (value) {
                 model.updateString('', value, '', '');
               },
-              decoration: InputDecoration(
-                labelText: "Display Name",
-                helperText:
-                    "This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.",
+              decoration: const InputDecoration(
+                labelText: 'Display Name',
+                helperText: '''This is how your name will show '''
+                    '''up in Zuri Chat. It’s best kept simple: whatever '''
+                    '''people call you in everyday conversation.''',
                 helperMaxLines: 3,
               ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             TextFormField(
               initialValue: 'The Back End for this does not exist',
               onChanged: (value) {
                 model.updateString('', '', value, '');
               },
-              decoration: InputDecoration(
-                  labelText: "What I do", helperText: "HNGi9 X I4G"),
+              decoration: const InputDecoration(
+                  labelText: 'What I do', helperText: 'HNGi9 X I4G'),
+            ),
+            SizedBox(
+              height: 10,
             ),
             TextFormField(
               initialValue: 'The Back End for this does not exist',
               onChanged: (value) {
                 model.updateString('', '', '', value);
               },
-              decoration: InputDecoration(
-                  labelText: "Phone", helperText: "Enter your phone number"),
+              decoration: const InputDecoration(
+                  labelText: 'Phone', helperText: 'Enter your phone number'),
             ),
           ],
         ),

@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/svg_icon.dart';
-import 'package:hng/ui/nav_pages/dm_page/dm_page.dart';
-import 'package:hng/ui/nav_pages/you_page/you_page_view.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import '../../nav_pages/home_page/home_page.dart';
-import 'package:hng/ui/view/nav_bar/nav_bar_viewmodel.dart';
-
 import 'package:stacked/stacked.dart';
 
+import '../../../general_widgets/svg_icon.dart';
+import '../../nav_pages/dm_page/dm_page.dart';
 import '../../nav_pages/home_page/home_page.dart';
+import '../../nav_pages/you_page/you_page_view.dart';
+import '../../shared/colors.dart';
+import '../../shared/shared.dart';
+import 'nav_bar_viewmodel.dart';
 
 ///Home view is the holder for all the views
 ///!Do not edit this directly, edit pages instead
@@ -107,7 +105,7 @@ class NavBarView extends StatelessWidget {
   Widget getViewForIndex(int index) {
     switch (index) {
       case 0:
-        return HomePage();
+        return const HomePage();
       case 1:
         return const DmPage();
       // case 2:

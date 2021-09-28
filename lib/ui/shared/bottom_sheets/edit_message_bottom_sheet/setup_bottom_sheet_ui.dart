@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/view/dm_user/dm_user_viewmodel.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../../../app/app.locator.dart';
+import '../../../../utilities/enums.dart';
+import '../../../view/dm_user/dm_user_viewmodel.dart';
+import '../../colors.dart';
 
 void setupBottomSheetUi2() {
   final bottomSheetService = locator<BottomSheetService>();
@@ -33,8 +34,8 @@ class FloatingBoxBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmUserViewModel>.reactive(
       builder: (context, model, child) => Container(
-        padding: EdgeInsets.symmetric(horizontal: 18, vertical: 14),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+        decoration: const BoxDecoration(
           color: AppColors.whiteColor,
         ),
         child: SingleChildScrollView(
@@ -47,37 +48,35 @@ class FloatingBoxBottomSheet extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Icon(Icons.face_outlined),
-                      Icon(Icons.face),
-                      Icon(Icons.face),
-                      Icon(Icons.face),
+                      const Icon(Icons.face_outlined),
+                      const Icon(Icons.face),
+                      const Icon(Icons.face),
+                      const Icon(Icons.face),
                     ],
                   )
                 ],
               ),
-              Divider(
-                thickness: 10,
-              ),
+              const Divider(thickness: 10),
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   ListTile(
-                    leading: new Icon(Icons.message_rounded),
-                    title: new Text('Follow Thread'),
+                    leading: const Icon(Icons.message_rounded),
+                    title: const Text('Follow Thread'),
                     onTap: () {
                       Navigator.pop(context);
                     },
                   ),
                   ListTile(
-                    leading: new Icon(Icons.mark_as_unread),
-                    title: new Text('Mark Unread'),
+                    leading: const Icon(Icons.mark_as_unread),
+                    title: const Text('Mark Unread'),
                     onTap: () {
                       Navigator.pop(context);
                     },
                   ),
                   ListTile(
-                    leading: new Icon(Icons.delete),
-                    title: new Text('Delete Message'),
+                    leading: const Icon(Icons.delete),
+                    title: const Text('Delete Message'),
                     onTap: () {
                       model.deleteMessage(request!.data);
                       print('Our data ${request!.title}');
@@ -85,36 +84,36 @@ class FloatingBoxBottomSheet extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: new Icon(Icons.copy),
-                    title: new Text('Copy Text'),
+                    leading: const Icon(Icons.copy),
+                    title: const Text('Copy Text'),
                     onTap: () {
                       Navigator.pop(context);
                     },
                   ),
                   ListTile(
-                    leading: new Icon(Icons.message_sharp),
-                    title: new Text('Reply In Thread'),
+                    leading: const Icon(Icons.message_sharp),
+                    title: const Text('Reply In Thread'),
                     onTap: () {
                       Navigator.pop(context);
                     },
                   ),
                   ListTile(
-                    leading: new Icon(Icons.directions),
-                    title: new Text('Share Message'),
+                    leading: const Icon(Icons.directions),
+                    title: const Text('Share Message'),
                     onTap: () {
                       Navigator.pop(context);
                     },
                   ),
                   ListTile(
-                    leading: new Icon(Icons.bookmark),
-                    title: new Text('Save'),
+                    leading: const Icon(Icons.bookmark),
+                    title: const Text('Save'),
                     onTap: () {
                       Navigator.pop(context);
                     },
                   ),
                   ListTile(
-                    leading: new Icon(Icons.link),
-                    title: new Text('Copy Link to Message'),
+                    leading: const Icon(Icons.link),
+                    title: const Text('Copy Link to Message'),
                     onTap: () {
                       Navigator.pop(context);
                     },

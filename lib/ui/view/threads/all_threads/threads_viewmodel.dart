@@ -1,11 +1,9 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/utilities/enums.dart';
-
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../../app/app.locator.dart';
+import '../../../../app/app.router.dart';
+import '../../../../models/user_post.dart';
 import '../test_data.dart';
 
 class ThreadsViewModel extends BaseViewModel {
@@ -22,7 +20,7 @@ class ThreadsViewModel extends BaseViewModel {
   Future<void> refreshThreadsPage() async {
     notifyListeners();
     await Future.delayed(
-      Duration(seconds: 5),
+      const Duration(seconds: 5),
     );
   }
 

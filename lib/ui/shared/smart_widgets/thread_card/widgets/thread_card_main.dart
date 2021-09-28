@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_viewmodel.dart';
-import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../../general_widgets/custom_text.dart';
+import '../../../../../models/user_post.dart';
+import '../../../../../utilities/utilities.dart';
+import '../../../shared.dart';
+import '../../text_parser/text_parser_view.dart';
+import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
 
 class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
@@ -19,7 +19,7 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
     return GestureDetector(
       onTap: () => model.navigateToThread(userPost),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -30,13 +30,13 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
                   height: 40,
                   decoration: BoxDecoration(
                     color: Colors.blue,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: AssetImage("${userPost!.userImage}")),
+                        image: AssetImage('${userPost!.userImage}')),
                   )),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,12 +53,11 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Icon(
-                            userPost!.statusIcon,
-                            color: Colors.blue,
-                            size: 18,
+                          Text(
+                            "${userPost!.statusIcon}",
+                            style: AppTextStyles.regular,
                           ),
-                          SizedBox(width: 2),
+                          const SizedBox(width: 2),
                           CustomText(
                             text: '${userPost!.lastSeen}',
                             fontSize: 12,
@@ -66,18 +65,19 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
-                     TextParser(userPost!.message),
+                      const SizedBox(height: 10),
+                      TextParser(userPost!.message),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   EmojisList(userPost: userPost),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   !nullListChecker(userPost!.userThreadPosts)
                       ? Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Text(
-                            "Show ${userPost!.userThreadPosts!.length} more replies",
+                            '''Show ${userPost!.userThreadPosts!.length}'''
+                            '''more replies''',
                             style: AppTextStyles.textButton1,
                           ),
                         )

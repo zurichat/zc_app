@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:hng/app/app.logger.dart';
 
+import '../../../../app/app.logger.dart';
 import '../../../../models/api_response.dart';
 import '../../../../utilities/api_utils.dart';
 import 'api.dart';

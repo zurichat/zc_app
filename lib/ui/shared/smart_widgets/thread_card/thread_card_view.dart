@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/thread_card_detail.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/thread_card_main.dart';
+import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/thread_card_channel_main.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 
 import 'thread_card_viewmodel.dart';
 import 'widgets/thread_card_post.dart';
 
+// ignore: must_be_immutable
 class ThreadCardView extends StatelessWidget {
   ThreadCardView.main(this.userPost, {Key? key})
       : _threadCardType = ThreadCardType.threadMain,
@@ -19,6 +21,10 @@ class ThreadCardView extends StatelessWidget {
 
   ThreadCardView.threadPost(this.userThreadPost, {Key? key})
       : _threadCardType = ThreadCardType.threadPost,
+        super(key: key);
+
+  ThreadCardView.threadChannelMain(this.userPost, {Key? key})
+      : _threadCardType = ThreadCardType.threadChannelMain,
         super(key: key);
 
   UserThreadPost? userThreadPost;
@@ -36,6 +42,8 @@ class ThreadCardView extends StatelessWidget {
             return ThreadCardDetail(userPost);
           case ThreadCardType.threadPost:
             return ThreadCardPost(userThreadPost);
+          case ThreadCardType.threadChannelMain:
+            return ThreadChannelMain(userPost);
         }
       },
       viewModelBuilder: () => ThreadCardViewModel(),

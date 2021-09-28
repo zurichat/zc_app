@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../shared/styles.dart';
+import '../channel_info_view_model.dart';
 
 class EditButton extends StatelessWidget {
   final ChannelInfoViewModel model;
-  EditButton({Key? key, required this.model}) : super(key: key);
+  const EditButton({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

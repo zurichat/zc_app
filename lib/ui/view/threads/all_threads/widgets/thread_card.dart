@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/channel_icon.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../../general_widgets/channel_icon.dart';
+import '../../../../../general_widgets/custom_text.dart';
+import '../../../../../models/user_post.dart';
+import '../../../../shared/shared.dart';
+import '../../../../shared/smart_widgets/thread_card/thread_card_view.dart';
 import '../threads_viewmodel.dart';
 
 class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
@@ -20,7 +19,7 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
   @override
   Widget build(BuildContext context, ThreadsViewModel model) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       color: AppColors.whiteColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +31,7 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
             title: Row(
               children: [
                 ChannelIcon(channelType: userPost!.channelType!),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 CustomText(
                   text: userPost!.channelName ?? '',
                   fontSize: 14,
@@ -48,7 +47,7 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
           ThreadCardView.main(userPost),
           userPost!.userThreadPosts != null
               ? ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: userPost!.userThreadPosts!.length,
                   itemBuilder: (ctx, index) {
@@ -59,14 +58,20 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
                   })
               : Container(),
           Padding(
-            padding: EdgeInsets.only(left: 60),
+            padding: const EdgeInsets.only(left: 60),
             child: MaterialButton(
               //TODO navigate to details page and focus input
               onPressed: () => model.navigateToThread(userPost),
-              shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              child: CustomText(text: "Reply", fontWeight: FontWeight.w500),
+              shape: const RoundedRectangleBorder(
+                side: BorderSide(width: 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
+                ),
+              ),
+              child: const CustomText(
+                text: 'Reply',
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ],

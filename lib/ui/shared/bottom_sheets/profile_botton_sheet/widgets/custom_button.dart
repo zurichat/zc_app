@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import '../../../colors.dart';
 
 enum _CustomButtonType { normal, icon }
 
@@ -28,7 +29,7 @@ class CustomButton extends StatelessWidget {
             shape: Border.all(color: AppColors.greyishColor),
             child: Text(
               " $text",
-              style: TextStyle(color: AppColors.greyishColor),
+              style: const TextStyle(color: AppColors.greyishColor),
             ))
         : MaterialButton(
             onPressed: onPressed,

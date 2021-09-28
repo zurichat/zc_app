@@ -1,16 +1,17 @@
 import 'package:dio/dio.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/models/channels_search_model.dart';
-import 'package:hng/models/user_search_model.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/utilities/storage_keys.dart';
+
+import '../../../app/app.locator.dart';
+import '../../../app/app.logger.dart';
+import '../../../models/channels_search_model.dart';
+import '../../../models/user_search_model.dart';
+import '../../../services/local_storage_services.dart';
+import '../../../utilities/storage_keys.dart';
+import '../server-request/api/http_api.dart';
 
 class JumpToApi {
   final log = getLogger('JumpToApi');
-  final _channelsApi = HttpApiService("https://channels.zuri.chat/");
-  final _dmApi = HttpApiService("https://api.zuri.chat/");
+  final _channelsApi = HttpApiService('https://channels.zuri.chat/');
+  final _dmApi = HttpApiService('https://api.zuri.chat/');
   static final storageService = locator<SharedPreferenceLocalStorage>();
   static String? get currentOrgId =>
       storageService.getString(StorageKeys.currentOrgId);
@@ -34,7 +35,7 @@ class JumpToApi {
           .map<ChannelsSearch>((e) => ChannelsSearch.fromJson(e))
           .toList();
     } on DioError catch (e) {
-      log.e("API All channels error $e");
+      log.e('API All channels error $e');
       return [];
     }
   }
@@ -59,9 +60,11 @@ class JumpToApi {
       log.i("Org members length - ${res?.data?['data'].length}");
       log.i("Org members List ${res?.data?['data'].toString()}");
       //  var meSearch = UserSearch.fromJson(res!.data['data']);
-      return res!.data['data'].map((e) => UserSearch.fromJson(e)).toList();
+      return await res!.data['data']
+          .map((e) => UserSearch.fromJson(e))
+          .toList();
     } on DioError catch (e) {
-      log.e("Error Watch - $e");
+      log.e('Error Watch - $e');
       return [];
     }
 
@@ -83,7 +86,7 @@ class JumpToApi {
       // MainMembers mainMembers = MainMembers.fromJson(res!.data);
       // return mainMembers.data;
     } on DioError catch (e) {
-      print("Error error $e");
+      print('Error error $e');
     }
     return [];
   }

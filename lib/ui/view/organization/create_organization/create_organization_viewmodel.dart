@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/organization_model.dart';
-import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.locator.dart';
+import '../../../../app/app.router.dart';
+import '../../../../models/organization_model.dart';
+import '../../../../package/base/server-request/organization_request/organization_api_service.dart';
+import '../../../../utilities/enums.dart';
 // import '../../../../services/local_storage_services.dart';
 
 class CreateOrganizationViewModel extends BaseViewModel {
@@ -90,7 +90,10 @@ class CreateOrganizationViewModel extends BaseViewModel {
   }
 
   void next() {
-    pageController.nextPage(duration: Duration(seconds: 1), curve: Curves.ease);
+    pageController.nextPage(
+      duration: const Duration(seconds: 1),
+      curve: Curves.ease,
+    );
   }
 
   Future<void> addTeammates() async {
@@ -99,9 +102,11 @@ class CreateOrganizationViewModel extends BaseViewModel {
           message: 'Must not be empty', variant: SnackbarType.failure);
     }
     if (org == null) {
-      print("org is null oooo");
+      print('org is null oooo');
       return snackbar.showCustomSnackBar(
-          message: 'Org is null oooo', variant: SnackbarType.failure);
+        message: 'Org is null oooo',
+        variant: SnackbarType.failure,
+      );
     }
     setBusy(true);
     await _api.addMemberToOrganization(org!.id!, inviteController.text);

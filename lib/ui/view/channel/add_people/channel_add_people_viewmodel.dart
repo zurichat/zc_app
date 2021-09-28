@@ -1,8 +1,10 @@
-import 'package:stacked/stacked.dart';
-
+import 'package:hng/app/app.locator.dart';
 import 'package:hng/models/static_user_model.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class ChannelAddPeopleViewModel extends BaseViewModel {
+  final _navigationService = locator<NavigationService>();
   bool get allMarked =>
       markedUsers.length == matchingUsers.length && matchingUsers.isNotEmpty;
 
@@ -40,6 +42,7 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
     ),
   ];
 
+  navigateBack() => _navigationService.popRepeated(1);
   void onSearchUser(String input) {
     matchingUsers = [
       ...users.where(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/text_field.dart';
-import 'package:hng/ui/shared/ui_helpers.dart';
+import '../../../shared/colors.dart';
+import '../../../shared/long_button.dart';
+import '../../../shared/text_field.dart';
+import '../../../shared/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
 import 'create_organization_viewmodel.dart';
@@ -10,7 +10,8 @@ import 'create_organization_viewmodel.dart';
 class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
   final String email;
   const CompanyPage({
-    Key? key, required this.email,
+    Key? key,
+    required this.email,
   }) : super(key: key);
 
   @override
@@ -19,7 +20,7 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
       builder: (context, constraint) {
         return SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 minHeight: constraint.maxHeight - 20 - kToolbarHeight,
@@ -29,11 +30,11 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Text(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: const Text(
                         "What's the name of the\ncompany or team?",
                         style: TextStyle(
                           letterSpacing: 0.5,
@@ -52,8 +53,8 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                     LongButton(
                         onPressed: () => model.onCompanyNext(email),
                         label: 'Next'),
-                    SizedBox(height: 15),
-                    Text.rich(
+                    const SizedBox(height: 15),
+                    const Text.rich(
                       TextSpan(
                         children: [
                           TextSpan(
@@ -97,15 +98,16 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                         value: model.checkBoxVal,
                         onChanged: model.onCheckBoxChanged,
                         controlAffinity: ListTileControlAffinity.leading,
-                        title: Text(
-                          'It’s okay to send me email with slack app, news and offer',
+                        title: const Text(
+                          '''It’s okay to send me email '''
+                          '''with slack app, news and offer''',
                           style: TextStyle(
                             fontSize: 15,
                           ),
                         ),
                       ),
                     ),
-                    Spacer(flex: 3),
+                    const Spacer(flex: 3),
                   ],
                 ),
               ),

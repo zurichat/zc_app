@@ -2,13 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/general_widgets/custom_user.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
-import '../../../general_widgets/custom_channel.dart';
+
+import '../../shared/colors.dart';
 import 'dm_jump_to_view.form.dart';
 import 'dm_jump_to_viewmodel.dart';
-import 'package:stacked/stacked.dart';
 
 @FormView(fields: [FormTextField(name: 'search')])
 class DmJumpToView extends StatelessWidget with $DmJumpToView {
@@ -62,15 +61,23 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                       style: BorderStyle.solid),
                                 ),
                                 prefixIcon: IconButton(
-                                  icon: Icon(Icons.arrow_back_ios_outlined),
+                                  icon:
+                                      const Icon(Icons.arrow_back_ios_outlined),
                                   iconSize: 18,
                                   onPressed: () => model.navigateBack(),
                                 ),
+                                // isCollapsed: true,
+                                contentPadding: const EdgeInsets.only(
+                                  top: 16.0,
+                                  left: 8,
+                                  right: 8,
+                                ),
                                 hintText: 'Jump to...',
                                 hintStyle: TextStyle(
-                                  color: Color(0xffA1A9B3),
+                                  //TODO change to Brand Colors
+                                  color: const Color(0xffA1A9B3),
                                   fontSize: 14.4.sp,
-                                  height: 3.2.sp,
+                                  // height: 3.4.sp,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -101,7 +108,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(8.r),
-                                          image: DecorationImage(
+                                          image: const DecorationImage(
                                             fit: BoxFit.cover,
                                             image: AssetImage(
                                               'assets/images/Rectangle 138a.png',
@@ -112,7 +119,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                       SizedBox(
                                         height: 8.h,
                                       ),
-                                      Container(
+                                      SizedBox(
                                           height: 32.h,
                                           child: Text(
                                             model.userSearch[i].username!,

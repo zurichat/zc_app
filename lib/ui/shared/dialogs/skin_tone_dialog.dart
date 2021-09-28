@@ -25,7 +25,7 @@ class _SkinToneDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * .05, vertical: size.height * .02),
@@ -34,26 +34,26 @@ class _SkinToneDialogContent extends StatelessWidget {
       height: size.height * .3,
       child: Column(
         children: [
-          Align(
+          const Align(
             alignment: Alignment.topLeft,
             child: Text(
-              "Default skin tone",
+              'Default skin tone',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                onPressed: () => completer(DialogResponse(data: "1")),
+                onPressed: () => completer(DialogResponse(data: '1')),
                 icon: Image.asset('assets/icons/emojiHands/1.png'),
               ),
               IconButton(
-                  onPressed: () => completer(DialogResponse(data: "2")),
+                  onPressed: () => completer(DialogResponse(data: '2')),
                   icon: Image.asset('assets/icons/emojiHands/2.png')),
               IconButton(
-                  onPressed: () => completer(DialogResponse(data: "3")),
+                  onPressed: () => completer(DialogResponse(data: '3')),
                   icon: Image.asset('assets/icons/emojiHands/3.png'))
             ],
           ),
@@ -61,17 +61,17 @@ class _SkinToneDialogContent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                  onPressed: () => completer(DialogResponse(data: "4")),
+                  onPressed: () => completer(DialogResponse(data: '4')),
                   icon: Image.asset('assets/icons/emojiHands/4.png')),
               IconButton(
-                  onPressed: () => completer(DialogResponse(data: "5")),
+                  onPressed: () => completer(DialogResponse(data: '5')),
                   icon: Image.asset('assets/icons/emojiHands/5.png')),
               IconButton(
-                  onPressed: () => completer(DialogResponse(data: "6")),
+                  onPressed: () => completer(DialogResponse(data: '6')),
                   icon: Image.asset('assets/icons/emojiHands/6.png'))
             ],
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

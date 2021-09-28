@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/general_widgets/menu_item_tile.dart';
-import 'package:hng/ui/shared/bottom_sheets/thread_options_bottomsheet/widget/recent_emojis.dart';
-import 'package:hng/ui/shared/shared.dart';
-
+import 'package:hng/ui/shared/bottom_sheets/thread_options_bottomsheet/thread_option_bottomsheet_viewmodel.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import 'package:stacked/stacked.dart';
-
-import 'thread_options_bottomsheet_viewmodel.dart';
+import '../../../../general_widgets/menu_item_tile.dart';
+import '../../shared.dart';
+//import 'thread_options_bottomsheet_viewmodel.dart';
+import 'widget/recent_emojis.dart';
 
 class ThreadOptionsBottomSheetView extends StatelessWidget {
   final SheetRequest request;
@@ -22,8 +20,6 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return ViewModelBuilder<ThreadOptionsBottomSheetViewModel>.reactive(
       builder: (context, model, child) => DraggableScrollableSheet(
           maxChildSize: 0.97,
@@ -31,7 +27,7 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
           minChildSize: 0.5,
           builder: (BuildContext context, ScrollController scrollController) {
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               color: AppColors.whiteColor,
               child: Expanded(
                 child: Column(
@@ -39,69 +35,69 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        RecentEmojis("😘"),
-                        RecentEmojis("😳"),
-                        RecentEmojis("😭"),
-                        RecentEmojis("🤣"),
-                        RecentEmojis("🤔"),
-                        RecentEmojis("😏"),
+                        const RecentEmojis('😘'),
+                        const RecentEmojis('😳'),
+                        const RecentEmojis('😭'),
+                        const RecentEmojis('🤣'),
+                        const RecentEmojis('🤔'),
+                        const RecentEmojis('😏'),
                         Container(
                           height: 50,
                           width: 50,
-                          child: Align(
+                          child: const Align(
                               alignment: Alignment.center,
                               child: Icon(
                                 Icons.add_reaction_outlined,
                                 size: 25,
                               )),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: AppColors.greyBackgroundColor,
                           ),
                         )
                       ],
                     ),
-                    Divider(),
-                    MenuItemTile(
+                    const Divider(),
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
-                        text: Text("Mark unread")),
-                    MenuItemTile(
+                        text: Text('Mark unread')),
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.access_time_rounded,
-                        text: Text("Remind me")),
-                    MenuItemTile(
+                        text: Text('Remind me')),
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.bookmark_border_outlined,
-                        text: Text("Add to saved items")),
-                    MenuItemTile(
+                        text: Text('Add to saved items')),
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
-                        text: Text("Reply in thread")),
-                    MenuItemTile(
+                        text: Text('Reply in thread')),
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
-                        text: Text("Unfollow thread")),
-                    MenuItemTile(
+                        text: Text('Unfollow thread')),
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.forward_outlined,
-                        text: Text("Share message")),
-                    MenuItemTile(
+                        text: Text('Share message')),
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
-                        text: Text("Copy link to message")),
-                    MenuItemTile(
+                        text: Text('Copy link to message')),
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.copy_rounded,
-                        text: Text("Copy text")),
-                    MenuItemTile(
+                        text: Text('Copy text')),
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
-                        text: Text("Pin to conversation")),
-                    MenuItemTile(
+                        text: Text('Pin to conversation')),
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,
-                        text: Text("Turn question into poll")),
+                        text: Text('Turn question into poll')),
                   ],
                 ),
               ),
