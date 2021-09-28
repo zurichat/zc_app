@@ -1,70 +1,97 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/ui/view/dm_user/dummy_data/models/Message.dart';
-import 'package:hng/ui/view/dm_user/dummy_data/models/User.dart';
+import 'package:hng/ui/view/dm_user/dm_user_view.form.dart';
+import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
+import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class DmUserViewModel extends BaseViewModel {
-
-  String _username = "OyinkanUa";
+class DmUserViewModel extends FormViewModel {
+  final _username = '';
   String get username => _username;
 
-  TextEditingController messageController = TextEditingController();
+  final bottomSheet = locator<BottomSheetService>();
 
-  bool _isOnline = true;
+  final _isOnline = true;
   bool get isOnline => _isOnline;
 
-  String _bio = "Product designer";
+  final _bio = 'Product designer';
   String get bio => _bio;
 
   bool _hasClickedMessageField = false;
   bool get hasClickedMessageField => _hasClickedMessageField;
 
-  User receiver = User("John Doe", "JohnDoe");
-  User sender = User("Jane Doe", "JaneDoe");
-
+  User receiver = User('OyinkanUA', 'OyinkanUA');
+  User sender = User('Jaytek', 'Jaytek');
   bool isSendButtonEnabled = false;
 
   List<Message> chatMessages = List.empty(growable: true);
 
+  showButtonSheet(Message message) async {
+    print('Our resp ${message.message}');
+    await bottomSheet.showCustomSheet(
+        variant: BottomSheetType.FloatingBox,
+        data: message,
+        takesInput: true,
+        title: message.message);
+    notifyListeners();
+  }
 
-  onTapMessageField() {
+  void onTapMessageField() {
     _hasClickedMessageField = true;
     notifyListeners();
   }
 
-  onUnfocusMessageField() {
+  void onUnfocusMessageField() {
     _hasClickedMessageField = false;
     notifyListeners();
   }
 
   void sendMessage() {
-    String message = messageController.text;
-    if(message.trim().isNotEmpty) {
-      chatMessages.add(Message(id: chatMessages.length,
-          sender: sender, message: message, time: DateTime.now()));
-      messageController.clear();
+    final message = messageValue;
+    if (message!.trim().isNotEmpty) {
+      chatMessages.add(
+        Message(
+          id: chatMessages.length,
+          sender: sender,
+          message: message,
+          time: DateTime.now(),
+        ),
+      );
+      //TODO - fix autoclear
+      // clearText();
       notifyListeners();
       sendResponse();
     }
   }
 
+  void deleteMessage(Message message) {
+    print(message.message);
+    chatMessages.remove(message);
+    notifyListeners();
+  }
+
   void popScreen() {
-    var navigationService = locator<NavigationService>();
+    final navigationService = locator<NavigationService>();
     navigationService.back();
   }
 
   void sendResponse() async {
-    await Future.delayed(Duration(seconds: 2));
-    var randomNum = Random().nextInt(Message.responses().length);
-    chatMessages.add(Message(id: chatMessages.length,
-        sender: receiver, message: Message.responses()[randomNum], time: DateTime.now()));
+    await Future.delayed(const Duration(seconds: 0));
+    final randomNum = Random().nextInt(Message.responses().length);
+    chatMessages.add(
+      Message(
+        id: chatMessages.length,
+        sender: receiver,
+        message: Message.responses()[randomNum],
+        time: DateTime.now(),
+      ),
+    );
     notifyListeners();
   }
 
-
+  @override
+  void setFormStatus() {}
 }

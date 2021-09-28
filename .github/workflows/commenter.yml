@@ -50,5 +50,3 @@ jobs:
               issue_number: issue_number,
               body: 'The status is ${{ github.event.workflow_run.conclusion }}'
             });
-
-    

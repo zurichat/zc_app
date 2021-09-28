@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import '../ui/shared/colors.dart';
 
 // ignore: use_key_in_widget_constructors
 class CustomBottomNavBar extends StatelessWidget {
@@ -8,7 +9,7 @@ class CustomBottomNavBar extends StatelessWidget {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       backgroundColor: AppColors.whiteColor,
-      selectedItemColor: AppColors.greenColor,
+      selectedItemColor: AppColors.zuriPrimaryColor,
       unselectedItemColor: AppColors.navBarItemColor,
       selectedFontSize: 14,
       unselectedFontSize: 14,

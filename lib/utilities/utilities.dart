@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 
 // import 'package:url_launcher/url_launcher.dart';
 
-import '../ui/shared/constants.dart';
+import 'constants.dart';
 import 'extensions/string_extension.dart';
 
 ImageProvider makeNetworkImage(String? link) {
@@ -17,4 +17,17 @@ Future<void> openUrl(String? url) async {
     // final canOpen = await canLaunch(url);
     // if (canOpen) await launch(url);
   }
+}
+
+void showProgress(received, total) {
+  if (total != -1) {
+    print((received / total * 100).toStringAsFixed(0) + '%');
+  }
+}
+
+bool nullListChecker(List? list) {
+  if (list == null)
+    return true;
+  else
+    return false;
 }

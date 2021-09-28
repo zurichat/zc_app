@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/colors.dart';
-
 import 'package:stacked/stacked.dart';
 
+import '../../shared/colors.dart';
+import '../../shared/search_bar.dart';
 import 'dm_page_viewmodel.dart';
 import 'widgets/dmmessage_read.dart';
 import 'widgets/dmmessage_unread.dart';
-
 
 class DmPage extends StatelessWidget {
   const DmPage({Key? key}) : super(key: key);
@@ -18,13 +17,15 @@ class DmPage extends StatelessWidget {
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             elevation: 0,
-            backgroundColor: Color(0xff00B87C),
+            backgroundColor: AppColors.zuriPrimaryColor,
             title: Text(
-              "Direct Messages",
+              'Direct Messages',
               style: GoogleFonts.lato(
-                fontWeight: FontWeight.w700,
-              ),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                  color: AppColors.whiteColor),
             ),
             centerTitle: false,
           ),
@@ -34,64 +35,61 @@ class DmPage extends StatelessWidget {
               Icons.add,
               color: AppColors.whiteColor,
             ),
-            backgroundColor: AppColors.greenColor,
+            backgroundColor: AppColors.zuriPrimaryColor,
           ),
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 10,
+                  const SizedBox(height: 10),
+                  JumpToSearchBar(
+                      onTap: () => model.navigateToJumpToScreen(),
+                      left: 6,
+                      right: 6),
+                  const SizedBox(height: 30),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: const DMMessageUnread(),
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Jump to...',
-                      hintStyle: GoogleFonts.lato(
-                        color: Colors.grey,
-                      ),
-                    ),
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: const DMMessageRead(),
                   ),
-                  SizedBox(
-                    height: 30,
+                  const SizedBox(height: 20),
+                  const DMMessageUnread(),
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: const DMMessageRead(),
                   ),
-                  DMMessageUnread(),
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: const DMMessageRead(),
                   ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: const DMMessageRead(),
                   ),
-                  DMMessageUnread(),
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: const DMMessageRead(),
                   ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: const DMMessageRead(),
                   ),
-                  DMMessageUnread(),
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () => model.navigateToDmUserView(),
+                    child: const DMMessageRead(),
                   ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageUnread(),
-                  SizedBox(
-                    height: 30,
-                  ),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),
@@ -102,7 +100,3 @@ class DmPage extends StatelessWidget {
     );
   }
 }
-
-
-
-
