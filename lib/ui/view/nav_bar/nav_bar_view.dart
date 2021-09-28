@@ -105,7 +105,7 @@ class NavBarView extends StatelessWidget {
   Widget getViewForIndex(int index) {
     switch (index) {
       case 0:
-        return HomePage();
+        return const HomePage();
       case 1:
         return const DmPage();
       // case 2:

@@ -15,12 +15,12 @@ class ThreadsView extends StatelessWidget {
     return ViewModelBuilder<ThreadsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          title: CustomText(
+          title: const CustomText(
             text: 'Threads',
             fontWeight: FontWeight.bold,
           ),
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: model.exitPage,
           ),
           elevation: 1,
@@ -35,19 +35,21 @@ class ThreadsView extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Text(
                     'No new replies',
                     style: AppTextStyles.body2Bold,
                   ),
                 ),
                 ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: model.userPosts.length,
-                    itemBuilder: (ctx, index) {
-                      return ThreadCard(model.userPosts[index]);
-                    }),
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: model.userPosts.length,
+                  itemBuilder: (ctx, index) {
+                    return ThreadCard(model.userPosts[index]);
+                  },
+                ),
               ],
             ),
           ),

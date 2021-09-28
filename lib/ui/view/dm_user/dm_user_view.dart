@@ -78,7 +78,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
             body: Stack(
               children: [
                 SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   child: Padding(
                     padding: const EdgeInsets.only(top: 10, left: 5, right: 10),
                     child: Column(
@@ -177,13 +177,13 @@ class DmUserView extends StatelessWidget with $DmUserView {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Divider(height: 0, color: AppColors.greyishColor),
+                        const Divider(height: 0, color: AppColors.greyishColor),
                         Row(
                           children: [
                             Expanded(
                               child: Container(
                                 height: 56,
-                                margin: EdgeInsets.only(left: 13.0),
+                                margin: const EdgeInsets.only(left: 13.0),
                                 alignment: Alignment.centerLeft,
                                 child: FocusScope(
                                   child: Focus(
@@ -203,15 +203,17 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                         textAlignVertical:
                                             TextAlignVertical.center,
                                         decoration: InputDecoration(
-                                            hintText:
-                                                'Message ${model.receiver.username}',
-                                            // suffixIcon: CustomStatus(isActive: true,
-                                            //   data: '5'),
+                                          hintText:
+                                              'Message ${model.receiver.username}',
+                                          // suffixIcon: CustomStatus(isActive: true,
+                                          //   data: '5'),
 
-                                            hintStyle: TextStyle(
-                                                color: AppColors.faintTextColor,
-                                                fontSize: 14.0,
-                                                fontWeight: FontWeight.w400)),
+                                          hintStyle: const TextStyle(
+                                            color: AppColors.faintTextColor,
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -224,19 +226,19 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                 children: [
                                   IconButton(
                                       onPressed: () {},
-                                      icon: Icon(
+                                      icon: const Icon(
                                         AppIcons.shapezap,
                                         color: AppColors.zuriTextBodyColor,
                                       )),
                                   IconButton(
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.camera_alt_outlined,
                                       color: AppColors.zuriTextBodyColor,
                                     ),
                                     onPressed: () {},
                                   ),
                                   IconButton(
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.attach_file_sharp,
                                       color: AppColors.zuriTextBodyColor,
                                     ),
@@ -256,31 +258,31 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                   children: [
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           AppIcons.shapezap,
                                           color: AppColors.zuriTextBodyColor,
                                         )),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.alternate_email_outlined,
                                           color: AppColors.zuriTextBodyColor,
                                         )),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.tag_faces_sharp,
                                           color: AppColors.zuriTextBodyColor,
                                         )),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.camera_alt_outlined,
                                           color: AppColors.zuriTextBodyColor,
                                         )),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.attach_file_outlined,
                                           color: AppColors.zuriTextBodyColor,
                                         )),
@@ -296,7 +298,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                       // duration: Duration(milliseconds: 500),
                                       // curve: Curves.fastOutSlowIn);
                                     },
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.send,
                                       color: AppColors.faintTextColor,
                                     ))

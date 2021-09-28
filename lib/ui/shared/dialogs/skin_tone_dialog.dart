@@ -25,7 +25,7 @@ class _SkinToneDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * .05, vertical: size.height * .02),
@@ -34,14 +34,14 @@ class _SkinToneDialogContent extends StatelessWidget {
       height: size.height * .3,
       child: Column(
         children: [
-          Align(
+          const Align(
             alignment: Alignment.topLeft,
             child: Text(
               'Default skin tone',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -71,7 +71,7 @@ class _SkinToneDialogContent extends StatelessWidget {
                   icon: Image.asset('assets/icons/emojiHands/6.png'))
             ],
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );
