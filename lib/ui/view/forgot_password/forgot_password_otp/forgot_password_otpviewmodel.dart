@@ -57,7 +57,7 @@ class ForgotPasswordOtpViewModel extends FormViewModel {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(seconds: 2),
         variant: SnackbarType.failure,
-        message: response?.data['message'] ?? IncorrectOTP,
+        message: response?.data['message'] ?? ErrorOTP,
       );
     }
   }

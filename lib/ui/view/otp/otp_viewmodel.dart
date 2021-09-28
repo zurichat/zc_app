@@ -1,3 +1,4 @@
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -38,14 +39,14 @@ class OTPViewModel extends FormViewModel {
 
   void verifyOTP(context) async {
     _loading(true);
-    const endpoint = 'account/verify-account';
+
     if ((otpValue!.length) > 5) {
       final verificationData = {
         'code': otpValue,
       };
       if (_storedOTP == otpValue) {
         final response =
-            await _apiService.post(endpoint, data: verificationData);
+            await _apiService.post(VerifyAcctEndpoint, data: verificationData);
         _loading(false);
         if (response?.statusCode == 200) {
           snackbar.showCustomSnackBar(
@@ -59,7 +60,7 @@ class OTPViewModel extends FormViewModel {
           snackbar.showCustomSnackBar(
             duration: const Duration(seconds: 3),
             variant: SnackbarType.failure,
-            message: response?.data['message'] ?? 'Something went wrong',
+            message: response?.data['message'] ?? ErrorOccurred,
           );
         }
       } else {
@@ -67,7 +68,7 @@ class OTPViewModel extends FormViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: 'Wrong OTP, please check again.',
+          message: WrongOTP,
         );
       }
     }
