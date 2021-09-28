@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../../general_widgets/custom_text.dart';
+import '../colors.dart';
 
 class SelectThemeDialog extends StatefulWidget {
   final DialogRequest request;
@@ -18,7 +19,7 @@ class _SelectThemeDialogState extends State<SelectThemeDialog> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    int? _currentThemeValue = widget.request.data["currentThemeValue"];
+    int? _currentThemeValue = widget.request.data['currentThemeValue'];
 
     return StatefulBuilder(builder: (context, setState) {
       return AlertDialog(
@@ -30,29 +31,27 @@ class _SelectThemeDialogState extends State<SelectThemeDialog> {
           height: size.height * .4,
           child: Column(
             children: [
-              Align(
+              const Align(
                 alignment: Alignment.topLeft,
                 child:
-                    CustomText(text: "Dark mode", fontWeight: FontWeight.bold),
+                    CustomText(text: 'Dark mode', fontWeight: FontWeight.bold),
               ),
               Flexible(
                 fit: FlexFit.loose,
                 child: ListView.builder(
-                  itemCount: widget.request.data["themes"].length,
-                  itemBuilder: (context, index) => Container(
-                    child: ListTile(
-                      title: CustomText(
-                          text: widget.request.data["themes"][index]),
-                      leading: Radio(
-                        activeColor: AppColors.zuriPrimaryColor,
-                        value: index,
-                        groupValue: _currentThemeValue,
-                        onChanged: (int? value) {
-                          setState(() {
-                            _currentThemeValue = value;
-                          });
-                        },
-                      ),
+                  itemCount: widget.request.data['themes'].length,
+                  itemBuilder: (context, index) => ListTile(
+                    title:
+                        CustomText(text: widget.request.data['themes'][index]),
+                    leading: Radio(
+                      activeColor: AppColors.zuriPrimaryColor,
+                      value: index,
+                      groupValue: _currentThemeValue,
+                      onChanged: (int? value) {
+                        setState(() {
+                          _currentThemeValue = value;
+                        });
+                      },
                     ),
                   ),
                 ),
@@ -64,11 +63,11 @@ class _SelectThemeDialogState extends State<SelectThemeDialog> {
                   MaterialButton(
                       onPressed: () =>
                           widget.completer(DialogResponse(confirmed: false)),
-                      child: Text("CANCEL")),
+                      child: const Text('CANCEL')),
                   MaterialButton(
                       onPressed: () => widget.completer(DialogResponse(
                           data: _currentThemeValue, confirmed: true)),
-                      child: Text("SET")),
+                      child: const Text('SET')),
                 ],
               )
             ],

@@ -10,13 +10,13 @@ class ClearAfterViewModel extends BaseViewModel {
   bool lastIndex = false;
 
   List clearAfterTimes = [
-    "Don’t clear",
-    "30 minutes",
-    "1 hour",
-    "4 hours",
-    "Today",
-    "This week",
-    "Choose date and time",
+    'Don’t clear',
+    '30 minutes',
+    '1 hour',
+    '4 hours',
+    'Today',
+    'This week',
+    'Choose date and time',
   ];
   int? currentValue = 0;
 

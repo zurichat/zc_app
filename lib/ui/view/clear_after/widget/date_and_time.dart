@@ -10,8 +10,8 @@ class DateAndTime extends StatefulWidget {
 class _DateAndTimeState extends State<DateAndTime> {
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
-  TextEditingController dateController = TextEditingController(text: "Today");
-  TextEditingController timeController = TextEditingController(text: "2:00 PM");
+  TextEditingController dateController = TextEditingController(text: 'Today');
+  TextEditingController timeController = TextEditingController(text: '2:00 PM');
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -21,7 +21,7 @@ class _DateAndTimeState extends State<DateAndTime> {
         lastDate: DateTime(2101));
     if (picked != null && picked != selectedDate)
       setState(() {
-        dateController.text = "${picked.toLocal()}".split(' ')[0];
+        dateController.text = '${picked.toLocal()}'.split(' ')[0];
       });
   }
 
@@ -33,7 +33,7 @@ class _DateAndTimeState extends State<DateAndTime> {
 
     if (picked != null && picked != selectedTime)
       setState(() {
-        timeController.text = "${picked.format(context)}";
+        timeController.text = '${picked.format(context)}';
       });
   }
 
@@ -45,8 +45,8 @@ class _DateAndTimeState extends State<DateAndTime> {
           controller: dateController,
           readOnly: true,
           onTap: () => _selectDate(context),
-          decoration: InputDecoration(
-            labelText: "Date",
+          decoration: const InputDecoration(
+            labelText: 'Date',
             suffix: Icon(Icons.keyboard_arrow_down_rounded),
           ),
         ),
@@ -54,8 +54,8 @@ class _DateAndTimeState extends State<DateAndTime> {
           controller: timeController,
           onTap: () => _selectTime(context),
           readOnly: true,
-          decoration: InputDecoration(
-            labelText: "Time",
+          decoration: const InputDecoration(
+            labelText: 'Time',
             suffix: Icon(Icons.keyboard_arrow_down_rounded),
           ),
         ),

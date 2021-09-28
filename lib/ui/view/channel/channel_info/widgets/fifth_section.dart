@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:flutter/material.dart';
 import 'package:hng/ui/view/channel/channel_info/widgets/textstyles.dart';
+
+import '../../../../shared/colors.dart';
 
 class FifthSection extends StatelessWidget {
   const FifthSection({Key? key}) : super(key: key);

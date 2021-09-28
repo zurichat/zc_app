@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/menu_item_tile.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import '../../../../general_widgets/menu_item_tile.dart';
+import '../../../shared/colors.dart';
 
 class Status extends StatelessWidget {
   const Status(
@@ -22,11 +23,11 @@ class Status extends StatelessWidget {
         icon: icon,
         text: Text.rich(TextSpan(
             text: status,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
             children: [
               TextSpan(
-                  text: " - $duration",
-                  style: TextStyle(color: AppColors.greyishColor))
+                  text: ' - $duration',
+                  style: const TextStyle(color: AppColors.greyishColor))
             ])),
       ),
     );

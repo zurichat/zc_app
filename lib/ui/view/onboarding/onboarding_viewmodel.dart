@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/services/local_storage_services.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -19,11 +18,14 @@ class OnboardingViewModel extends BaseViewModel {
     switch (index) {
       case 0:
         controller?.animateToPage(1,
-            duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+            duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
         break;
       case 1:
-        controller?.animateToPage(2,
-            duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+        controller?.animateToPage(
+          2,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
         break;
       default:
     }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
-import 'package:hng/ui/nav_pages/dm_page/dm_page_viewmodel.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../shared/shared.dart';
+import 'dm_page_viewmodel.dart';
 
 class DmScreen extends StatefulWidget {
   const DmScreen({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _DmScreenState extends State<DmScreen> {
   final _chipKey = GlobalKey<ChipsInputState>();
 
   //Hardcoded list of users
-  List<UserProfile> _userResults = [
+  final List<UserProfile> _userResults = [
     UserProfile(username: 'Mark', isOnline: true),
     UserProfile(username: 'Naza', isOnline: true),
     UserProfile(username: 'OyinkanUA', isOnline: true),
@@ -40,14 +41,14 @@ class _DmScreenState extends State<DmScreen> {
         appBar: AppBar(
           elevation: 1,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             'Direct Message',
             style: TextStyle(color: AppColors.deepBlackColor),
           ),
           actions: [
             TextButton(
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 'Done',
                 style: TextStyle(color: AppColors.borderColor),
               ),
@@ -57,7 +58,7 @@ class _DmScreenState extends State<DmScreen> {
         body: Column(
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border.symmetric(
                   horizontal: BorderSide(
                     width: 0.5,
@@ -69,31 +70,29 @@ class _DmScreenState extends State<DmScreen> {
               child: ChipInputTextField(
                   chipKey: _chipKey, mockResults: _userResults),
             ),
-            Container(
-              child: Expanded(
-                child: ListView.builder(
-                  itemCount: _userResults.length,
-                  itemBuilder: (_, index) => CustomSearchTile(
-                    username: _userResults[index].username,
-                    userOnline: _userResults[index].isOnline,
-                    checkBoxValue: _userResults[index].checked,
-                    onChange: (bool? value) {
-                      setState(() {
-                        _userResults[index].checked = value;
-                        if (value == true) {
-                          _chipKey.currentState!.selectSuggestion(UserProfile(
-                            username: _userResults[index].username,
-                          ));
-                        } else if (value == false) {
-                          _chipKey.currentState!.deleteChip(UserProfile(
-                            username: _userResults[index].username,
-                          ));
-                        }
-                      });
-                    },
-                  ),
-                  shrinkWrap: true,
+            Expanded(
+              child: ListView.builder(
+                itemCount: _userResults.length,
+                itemBuilder: (_, index) => CustomSearchTile(
+                  username: _userResults[index].username,
+                  userOnline: _userResults[index].isOnline,
+                  checkBoxValue: _userResults[index].checked,
+                  onChange: (bool? value) {
+                    setState(() {
+                      _userResults[index].checked = value;
+                      if (value == true) {
+                        _chipKey.currentState!.selectSuggestion(UserProfile(
+                          username: _userResults[index].username,
+                        ));
+                      } else if (value == false) {
+                        _chipKey.currentState!.deleteChip(UserProfile(
+                          username: _userResults[index].username,
+                        ));
+                      }
+                    });
+                  },
                 ),
+                shrinkWrap: true,
               ),
             ),
           ],
@@ -140,10 +139,12 @@ class ChipInputTextField extends StatelessWidget {
                 .toLowerCase()
                 .contains(query.toLowerCase());
           }).toList(growable: false)
-            ..sort((a, b) => a.username!
-                .toLowerCase()
-                .indexOf(lowercaseQuery)
-                .compareTo(b.username!.toLowerCase().indexOf(lowercaseQuery)));
+            ..sort(
+              (a, b) =>
+                  a.username!.toLowerCase().indexOf(lowercaseQuery).compareTo(
+                        b.username!.toLowerCase().indexOf(lowercaseQuery),
+                      ),
+            );
         }
 
         return mockResults;
@@ -151,7 +152,7 @@ class ChipInputTextField extends StatelessWidget {
       onChanged: (data) {},
       chipBuilder: (context, state, UserProfile profile) {
         return Chip(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(3),
             ),
@@ -212,7 +213,7 @@ class CustomSearchTile extends StatelessWidget {
       leading: Container(
         height: 40,
         width: 40,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
             image: AssetImage('assets/background/bga.png'),
@@ -222,7 +223,7 @@ class CustomSearchTile extends StatelessWidget {
       title: Row(
         children: [
           Text(username!),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
           onlineStatusDot(isOnline: userOnline!),
