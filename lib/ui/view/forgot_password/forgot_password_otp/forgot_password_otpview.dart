@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hng/app/app.logger.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import '../../../../app/app.logger.dart';
-import '../../../shared/colors.dart';
-import '../../../shared/shared.dart';
+// GENERATED IMPORTS -- DO NOT SIMPLY EDIT.
 import 'forgot_password_otp.form.dart';
 import 'forgot_password_otpviewmodel.dart';
 
 class ForgotPasswordOtpView extends StatelessWidget
     with $ForgotPasswordOtpView {
   final log = getLogger('ForgotPasswordOtpView');
+
   ForgotPasswordOtpView({Key? key}) : super(key: key);
 
   //stacked forms handling
@@ -75,7 +77,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                           fontWeight: FontWeight.bold,
                         ),
                         validator: (value) {},
-                        length: 4,
+                        length: 6,
                         blinkWhenObscuring: true,
                         animationType: AnimationType.fade,
                         pinTheme: PinTheme(
@@ -149,8 +151,8 @@ class ForgotPasswordOtpView extends StatelessWidget
                     child: FractionallySizedBox(
                       widthFactor: 1.0,
                       child: ElevatedButton(
-                        onPressed: () => model.navigateToNewPassword(),
-                        child: const Text(
+                        // onPressed: () => model.navigateToNewPassword(),
+                        child: Text(
                           'Continue',
                           style: TextStyle(
                               fontSize: 16,
@@ -163,6 +165,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                               const EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: const Color(0xff00B87C),
                         ),
+                        onPressed: () => model.verifyOtpCode(),
                       ),
                     ),
                   ),

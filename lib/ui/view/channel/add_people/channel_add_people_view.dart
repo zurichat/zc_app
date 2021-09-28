@@ -33,7 +33,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                 size: 24.0,
               ),
               padding: EdgeInsets.zero,
-              onPressed: () {},
+              onPressed: viewModel.navigateBack(),
               iconSize: 32.0,
             ),
             actions: [

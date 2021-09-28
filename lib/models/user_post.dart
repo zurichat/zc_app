@@ -6,7 +6,8 @@ class UserThreadPost {
   String? userId;
   String? displayName;
   String? userImage;
-  IconData? statusIcon;
+  String? statusIcon;
+
   String? lastSeen;
   String? message;
   List<PostEmojis>? postEmojis;
@@ -51,7 +52,7 @@ class UserPost extends UserThreadPost {
   @override
   String? displayName;
   @override
-  IconData? statusIcon;
+  String? statusIcon;
   @override
   String? lastSeen;
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../../general_widgets/custom_text.dart';
@@ -55,10 +56,9 @@ class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Icon(
-                                userPost!.statusIcon,
-                                color: Colors.blue,
-                                size: 18,
+                              Text(
+                                "${userPost!.statusIcon}",
+                                style: AppTextStyles.regular,
                               ),
                               const SizedBox(width: 2),
                               Padding(

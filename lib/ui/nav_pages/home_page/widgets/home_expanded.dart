@@ -40,7 +40,10 @@ class HomeExpandedList extends StatelessWidget {
     List<Widget> expansionList = List.generate(data.length, (i) {
       HomeItemModel item = data[i];
       if (item.type == HomeItemType.channels) {
-        return ChannelTextAndIcon(data: data[i]);
+        return ChannelTextAndIcon(
+          data: data[i],
+          channelId: data[i].id,
+        );
       } else {
         return DMTextAndIcon(data: data[i]);
       }

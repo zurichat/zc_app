@@ -53,10 +53,9 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Icon(
-                            userPost!.statusIcon,
-                            color: Colors.blue,
-                            size: 18,
+                          Text(
+                            "${userPost!.statusIcon}",
+                            style: AppTextStyles.regular,
                           ),
                           const SizedBox(width: 2),
                           CustomText(
