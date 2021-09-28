@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/models/channel_members.dart';
@@ -231,7 +230,7 @@ class HomePageViewModel extends StreamViewModel {
     NavigationService().navigateTo(Routes.channelList);
   }
 
-  onJumpToScreen() {
+  void onJumpToScreen() {
     navigationService.navigateTo(Routes.dmJumpToView);
   }
 
