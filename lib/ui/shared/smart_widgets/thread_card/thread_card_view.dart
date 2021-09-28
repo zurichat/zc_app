@@ -9,6 +9,7 @@ import 'package:stacked/stacked.dart';
 import 'thread_card_viewmodel.dart';
 import 'widgets/thread_card_post.dart';
 
+// ignore: must_be_immutable
 class ThreadCardView extends StatelessWidget {
   ThreadCardView.main(this.userPost, {Key? key})
       : _threadCardType = ThreadCardType.threadMain,

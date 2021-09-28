@@ -1,8 +1,7 @@
 import '../extensions/string_extension.dart';
 
 mixin ValidatorMixin {
-
-  static int INPUT_LENGTH = 6;
+  static int inputLength = 6;
 
   String? validateNotEmptyField(String input, [String? label]) {
     if (input.isEmpty)
@@ -27,20 +26,16 @@ mixin ValidatorMixin {
       return 'Enter your password';
   }
 
-   bool? isPasswordValid(String password) {
-     
-     
-   if(password.length < INPUT_LENGTH ){
-   return false;
-   }
-   if(password.isEmpty){
-   return false;
-   }
+  bool? isPasswordValid(String password) {
+    if (password.length < inputLength) {
+      return false;
+    }
+    if (password.isEmpty) {
+      return false;
+    }
 
-   return true;
-  
-   }
-   
+    return true;
+  }
 
   String? validateConfirmPasswordField(String input, String password) {
     if (input != password)
@@ -73,13 +68,11 @@ mixin ValidatorMixin {
 
   bool passValidation(
     String input,
- ) {
-    if (input.length < 6|| input.isEmpty) {
+  ) {
+    if (input.length < 6 || input.isEmpty) {
       return false;
     } else {
       return true;
     }
   }
-
-  
 }

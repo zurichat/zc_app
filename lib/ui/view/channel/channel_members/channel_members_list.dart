@@ -10,6 +10,7 @@ import 'package:stacked/stacked.dart';
 import '../shared_widgets.dart';
 import 'channel_members_list_model.dart';
 
+// ignore: must_be_immutable
 class ChannelMembersList extends StatelessWidget {
   List<ChannelMembermodel> channelMembers;
   ChannelModel channelDetail;
