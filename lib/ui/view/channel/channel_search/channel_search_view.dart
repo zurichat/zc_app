@@ -6,7 +6,6 @@ import 'package:stacked/stacked.dart';
 import 'channel_search_view_model.dart';
 import 'widgets/appBar.dart';
 import 'widgets/search_result.dart';
-import 'widgets/textfield_style.dart';
 
 class ChannelSearchPageView extends StatefulWidget {
   const ChannelSearchPageView({Key? key}) : super(key: key);

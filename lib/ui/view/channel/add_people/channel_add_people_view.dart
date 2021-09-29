@@ -4,7 +4,6 @@ import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
-import '../shared_widgets.dart';
 import 'channel_add_people_viewmodel.dart';
 
 class ChannelAddPeopleView extends StatelessWidget {
