@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -42,14 +43,14 @@ class ForgotPasswordEmailView extends StatelessWidget
                   ),
                   Container(
                     alignment: Alignment.center,
-                    child: Image.asset('assets/logo/zuri_chat_logo.png'),
+                    child: Image.asset(ZuriLogo),
                   ),
                   SizedBox(
                     height: 24.0,
                   ),
                   Center(
                     child: Text(
-                      'Forgot Password',
+                      ForgotPassword,
                       style: AppTextStyles.heading9,
                     ),
                   ),
@@ -58,15 +59,8 @@ class ForgotPasswordEmailView extends StatelessWidget
                   ),
                   Center(
                     child: Text(
-                      'Please enter the email used in registering',
-                    ),
-                  ),
-                  SizedBox(
-                    height: 4.0,
-                  ),
-                  Center(
-                    child: Text(
-                      'this account',
+                      Header,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   SizedBox(
@@ -75,7 +69,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
-                      'Email Address',
+                      EmailAddress,
                       style: AppTextStyles.body1Bold,
                     ),
                   ),
@@ -88,11 +82,16 @@ class ForgotPasswordEmailView extends StatelessWidget
                           autoCorrect: false,
                           obscureText: false,
                           controller: forgotEmailController,
-                          hintText: 'Name@gmail.com',
+                           hintText: EmailHintText,
+
+
                           border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(3.0)),
-                          )),
+                          ),
+                          ),
+                          // onChanged: model.submitEmail,
+                  
                       ////Changes
                       Padding(
                         padding: const EdgeInsets.only(left: 16.0),
@@ -102,7 +101,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                             children: [
                               UIHelper.verticalSpaceSmall,
                               Text(
-                                'invalid email address',
+                                InvalidEmail,
                                 style: AppTextStyles.body2Medium.copyWith(
                                   color: AppColors.redColor,
                                 ),
@@ -126,8 +125,10 @@ class ForgotPasswordEmailView extends StatelessWidget
                           // model.submitEmail();
                           model.validateEmailIsRegistered();
                         },
-                        child:
-                            Text('Continue', style: AppTextStyles.buttonText),
+                        child: Text(
+                          Continue,
+                          style: AppTextStyles.buttonText,
+                        ),
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: AppColors.zuriPrimaryColor,
@@ -145,13 +146,13 @@ class ForgotPasswordEmailView extends StatelessWidget
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: 'Back to ',
+                              text: BackTo,
                               style: AppTextStyles.normalText.copyWith(
                                 color: AppColors.blackColor,
                               ),
                             ),
                             TextSpan(
-                              text: 'Sign In.',
+                              text: SignIn,
                               style: AppTextStyles.body2Bold.copyWith(
                                 color: AppColors.zuriPrimaryColor,
                               ),

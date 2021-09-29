@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
@@ -45,55 +46,53 @@ class LoginView extends StatelessWidget with $LoginView {
                   UIHelper.customVerticalSpace(57.0),
                   Container(
                     alignment: Alignment.center,
-                    child: Image.asset('assets/logo/zuri_chat_logo.png'),
+                    child: Image.asset(ZuriLogo),
                   ),
                   UIHelper.customVerticalSpace(24.23),
                   Center(
                     child: Text(
-                      'Sign In',
+                      SignIn,
                       style: AppTextStyles.heading7,
                     ),
                   ),
                   UIHelper.verticalSpaceSmall,
                   Text(
-                    'Welcome! Sign in to continue',
+                    WelcomeSignIn,
                     textAlign: TextAlign.center,
                     style: AppTextStyles.faintBodyText,
                   ),
                   UIHelper.customVerticalSpace(38.0),
                   Text(
-                    'Email Address',
+                    EmailAddress,
                     style: AppTextStyles.body1Bold,
                   ),
                   UIHelper.customVerticalSpace(10.0),
                   CustomTextField(
-                      keyboardType: TextInputType.emailAddress,
-                      inputAction: TextInputAction.next,
-                      autoCorrect: false,
-                      obscureText: false,
-                      hintText: 'Name@gmail.com',
-                      controller: emailController,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(3.0)),
-                      )),
+                    keyboardType: TextInputType.emailAddress,
+                    inputAction: TextInputAction.next,
+                    autoCorrect: false,
+                    obscureText: false,
+                    hintText: EmailHintText,
+                    controller: emailController,
+                           border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(3.0))),
+                  ),
                   UIHelper.verticalSpaceMedium,
                   Text(
-                    'Password',
+                    Password,
                     style: AppTextStyles.body1Bold,
                   ),
                   UIHelper.customVerticalSpace(10.0),
                   CustomTextField(
-                      keyboardType: TextInputType.visiblePassword,
-                      inputAction: TextInputAction.next,
-                      autoCorrect: false,
-                      obscureText: true,
-                      hintText: 'Enter Password',
-                      
-                      controller: passwordController,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(3.0)),
-                      )
-                      ),
+                    keyboardType: TextInputType.visiblePassword,
+                    inputAction: TextInputAction.next,
+                    autoCorrect: false,
+                    obscureText: true,
+                    hintText: PasswordHintText,
+                    controller: passwordController,
+                        border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(3.0))),
+                  ),
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -107,7 +106,7 @@ class LoginView extends StatelessWidget with $LoginView {
                         model.navigateToForgotPasswordScreen();
                       },
                       child: const Text(
-                        'Forgot Password?',
+                        ForgotPasswordBtn,
                         style: TextStyle(
                           color: AppColors.zuriPrimaryColor,
                         ),
@@ -122,18 +121,18 @@ class LoginView extends StatelessWidget with $LoginView {
                         onPressed: () async {
                           await model.logInUser();
                         },
-                        label: 'Sign In',
+                        label: SignIn,
                       ),
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Don\'t have an account?'),
+                      const Text(DontHaveAccount),
                       TextButton(
                         onPressed: () => model.navigateToSignUpScreen(),
                         child: const Text(
-                          'Sign Up',
+                          SignUp,
                           style: TextStyle(color: AppColors.zuriPrimaryColor),
                         ),
                       )

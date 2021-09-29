@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
 
-import '../../shared/shared.dart';
+import 'package:hng/ui/shared/shared.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -14,30 +14,41 @@ class EditProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     return ViewModelBuilder<EditProfileViewModel>.reactive(
-      onModelReady: (model) => model.fetchUser(),
+      viewModelBuilder: () => EditProfileViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
-            onPressed: model.exitPage,
-            icon: const Icon(Icons.close_rounded),
-          ),
-          title: const Text('Edit Profile'),
+              onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
+          title: Text("Edit Profile"),
           actions: [
             TextButton(
               onPressed: () async {
                 await model.updateProfile();
               },
-              child: const Text(
-                'Save',
+              child: Text(
+                "Save",
                 style: TextStyle(color: AppColors.zuriTextBodyColor),
               ),
             )
           ],
         ),
-        body: Body(size: _size),
+        body: Visibility(
+          visible: !model.isBusy,
+          child: Body(size: _size),
+          replacement: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Getting Your data...'),
+                CircularProgressIndicator(
+                  color: AppColors.zuriPrimaryColor,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
-      viewModelBuilder: () => EditProfileViewModel(),
     );
   }
 }
@@ -57,7 +68,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            Container(
               height: _size.height * 0.14,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -65,9 +76,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   Container(
                     width: _size.height * 0.14,
                     height: double.maxFinite,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/background/appBarLogo.png'),
+                        image: AssetImage("assets/background/appBarLogo.png"),
                         fit: BoxFit.contain,
                       ),
                       borderRadius: BorderRadius.all(
@@ -85,8 +96,8 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                           )),
                     ),
                   ),
-                  const Spacer(),
-                  SizedBox(
+                  Spacer(),
+                  Container(
                     width: _size.width * 0.55,
                     child: CustomTextField(
                       keyboardType: TextInputType.text,
@@ -97,7 +108,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                       onChanged: (value) {
                         model.updateString(value, '', '', '');
                       },
-                      initialValue: model.name,
+                      initialValue: model.userData.firstName,
                     ),
 
                     // TextFormField(
@@ -125,11 +136,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               onChanged: (value) {
                 model.updateString('', value, '', '');
               },
-              initialValue: ''' Please open and close this '''
-                  '''page twice to see changes after saving''',
-              helperText: '''This is how your name will show '''
-                  '''up in Zuri Chat. It’s best kept simple: whatever '''
-                  '''people call you in everyday conversation.''',
+              initialValue: model.userData.displayName,
+                            helperText:
+                    "This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.",
               helperMaxLines: 3,
             ),
 
@@ -161,7 +170,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               onChanged: (value) {
                 model.updateString('', '', value, '');
               },
-              initialValue: 'The Back End for this does not exist',
+              initialValue: model.userData.status,
            helperText: 'HNGi9 X I4G'
               
             ),
@@ -183,21 +192,33 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               autoCorrect: false,
               obscureText: false,
               labelText: 'Phone',
+              
                helperText: 'Enter your phone number',
          onChanged: (value) {
                 model.updateString('', '', '', value);
               },
-              initialValue: 'The Back End for this does not exist',
+             initialValue: model.userData.phoneNum,
             ),
 
+
+    //  TextFormField(
+    //           initialValue: model.userData.status,
+    //           onChanged: (value) {
+    //             model.updateString('', '', value, '');
+    //           },
+    //           decoration: InputDecoration(
+    //               labelText: "What I do", helperText: "HNGi9 X I4G"),
+    //         ),
             // TextFormField(
-            //   initialValue: 'The Back End for this does not exist',
+            //   initialValue: model.userData.phoneNum,
             //   onChanged: (value) {
             //     model.updateString('', '', '', value);
             //   },
-            //   decoration: const InputDecoration(
-            //       labelText: 'Phone', helperText: 'Enter your phone number'),
+            //   decoration: InputDecoration(
+            //       labelText: "Phone", helperText: "Enter your phone number"),
             // ),
+
+
           ],
         ),
       ),

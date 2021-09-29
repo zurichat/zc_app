@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -45,14 +46,14 @@ class ForgotPasswordNewView extends StatelessWidget
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child: Image.asset('assets/logo/zuri_chat_logo.png'),
+                      child: Image.asset(ZuriLogo),
                     ),
                     SizedBox(
                       height: 24.0,
                     ),
                     Center(
                       child: Text(
-                        'Forgot Password',
+                        ForgotPassword,
                         style: AppTextStyles.body1Bold,
                       ),
                     ),
@@ -61,13 +62,7 @@ class ForgotPasswordNewView extends StatelessWidget
                     ),
                     Center(
                       child: Text(
-                        'Your new password must be different from ',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Center(
-                      child: Text(
-                        'previously used password',
+                        NewPasswordHeader,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -75,22 +70,24 @@ class ForgotPasswordNewView extends StatelessWidget
                       height: 49.0,
                     ),
                     Container(
-                        margin: EdgeInsets.symmetric(vertical: 8.0),
-                        child: Text(
-                          'New Password',
-                          style: AppTextStyles.body1Bold,
-                        )),
+                      margin: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        NewPassword,
+                        style: AppTextStyles.body1Bold,
+                      ),
+                    ),
                     Form(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomTextField(
                               keyboardType: TextInputType.visiblePassword,
-                              inputAction: TextInputAction.next,
+                              inputAction: TextInputAction.done,
                               autoCorrect: false,
                               obscureText: true,
                               controller: newPasswordController,
-                              hintText: 'Enter Password',
+                              hintText: PasswordHintText,
+                              
                               border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(3.0)),
@@ -105,7 +102,7 @@ class ForgotPasswordNewView extends StatelessWidget
                                 children: [
                                   UIHelper.verticalSpaceSmall,
                                   Text(
-                                    'Password Must be at least 6 characters',
+                                    PasswordLengthWarning,
                                     style: AppTextStyles.body2Medium.copyWith(
                                       color: AppColors.redColor,
                                     ),
@@ -122,17 +119,17 @@ class ForgotPasswordNewView extends StatelessWidget
                           Container(
                             margin: EdgeInsets.symmetric(vertical: 8.0),
                             child: Text(
-                              'Confirm Password',
+                              ConfirmPassword,
                               style: AppTextStyles.body1Bold,
                             ),
                           ),
                           CustomTextField(
                               keyboardType: TextInputType.visiblePassword,
-                              inputAction: TextInputAction.next,
+                              inputAction: TextInputAction.done,
                               autoCorrect: false,
                               obscureText: true,
                               controller: confirmPasswordController,
-                              hintText: 'Confirm Password',
+                             hintText: ConfirmPasswordHinText,
                               border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(3.0)),
@@ -147,7 +144,7 @@ class ForgotPasswordNewView extends StatelessWidget
                                 children: [
                                   UIHelper.verticalSpaceSmall,
                                   Text(
-                                    'Passwords do not match',
+                                    PasswordsMustMatch,
                                     style: AppTextStyles.body2Medium.copyWith(
                                       color: AppColors.redColor,
                                     ),
@@ -173,7 +170,7 @@ class ForgotPasswordNewView extends StatelessWidget
                             model.resetPassword();
                           },
                           child: Text(
-                            'Continue',
+                            Continue,
                             style: AppTextStyles.buttonText,
                           ),
                           style: ElevatedButton.styleFrom(
