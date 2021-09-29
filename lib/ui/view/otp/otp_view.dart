@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
@@ -48,14 +49,14 @@ class OTPView extends StatelessWidget with $OTPView {
                     const SizedBox(height: 6.0),
                     Container(
                       alignment: Alignment.center,
-                      child: Image.asset('assets/logo/zuri_chat_logo.png'),
+                      child: Image.asset(ZuriLogo),
                     ),
                     const SizedBox(
                       height: 24.0,
                     ),
                     const Center(
                       child: Text(
-                        'One-Time Password',
+                        OTP,
                         style: TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 20.0),
                       ),
@@ -65,7 +66,7 @@ class OTPView extends StatelessWidget with $OTPView {
                     ),
                     const Center(
                       child: Text(
-                        'Enter the 6-digit OTP sent to your email',
+                        EnterOTP,
                       ),
                     ),
                     const SizedBox(
@@ -74,7 +75,9 @@ class OTPView extends StatelessWidget with $OTPView {
                     Form(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 30),
+                          vertical: 8.0,
+                          horizontal: 30,
+                        ),
                         child: PinCodeTextField(
                           appContext: context,
                           pastedTextStyle: const TextStyle(
@@ -133,13 +136,13 @@ class OTPView extends StatelessWidget with $OTPView {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: 'Didn\'t receive any code? ',
+                              text: DidntRecieveOTP,
                               style: AppTextStyles.normalText.copyWith(
                                 color: Colors.black,
                               ),
                             ),
                             TextSpan(
-                              text: 'Resend',
+                              text: Resend,
                               style: AppTextStyles.body2Bold.copyWith(
                                 color: Colors.blue,
                                 decoration: TextDecoration.underline,
@@ -158,7 +161,7 @@ class OTPView extends StatelessWidget with $OTPView {
                         child: ElevatedButton(
                           onPressed: () => model.verifyOTP(context),
                           child: const Text(
-                            'Continue',
+                            Continue,
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
@@ -181,7 +184,7 @@ class OTPView extends StatelessWidget with $OTPView {
                           model.navigateLogin();
                         },
                         child: const Text(
-                          'Back to login',
+                          BackToLogin,
                           style: TextStyle(color: AppColors.zuriPrimaryColor),
                         ),
                       ),

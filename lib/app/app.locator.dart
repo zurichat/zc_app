@@ -12,6 +12,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 import '../package/base/jump_to_request/jump_to_api.dart';
+import '../package/base/server-request/api/zuri_api.dart';
 import '../package/base/server-request/channels/channels_api_service.dart';
 import '../package/base/server-request/dms/dms_api_service.dart';
 import '../services/centrifuge_service.dart';
@@ -30,7 +31,7 @@ Future setupLocator(
 // Register dependencies
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
-  locator.registerLazySingleton(() => ThemeService());
+  locator.registerLazySingleton(() => ThemeService.getInstance());
   final sharedPreferenceLocalStorage =
       await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);
@@ -45,4 +46,5 @@ Future setupLocator(
   locator.registerLazySingleton(() => ChannelsApiService());
   locator.registerLazySingleton(() => JumpToApi());
   locator.registerLazySingleton(() => CentrifugeService());
+  locator.registerLazySingleton(() => ZuriApi());
 }

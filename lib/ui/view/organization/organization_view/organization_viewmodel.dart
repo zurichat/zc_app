@@ -1,4 +1,3 @@
-import 'package:hng/services/current_user_profile.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -93,7 +92,6 @@ class OrganizationViewModel extends BaseViewModel {
         variant: SnackbarType.success,
         message: 'You have entered $name',
       );
-      await GetUserProfile().currentUser();
       storageService.setString(StorageKeys.currentOrgName, name!);
       storageService.setString(StorageKeys.currentOrgUrl, url!);
 
@@ -122,10 +120,10 @@ class OrganizationViewModel extends BaseViewModel {
   String? get currentOrgId =>
       storageService.getString(StorageKeys.currentOrgId);
 
-
   Future<void> viewPreferences() async {
     await navigation.navigateTo(Routes.preferenceView);
   }
 
 
 }
+
