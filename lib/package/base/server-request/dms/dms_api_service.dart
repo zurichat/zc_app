@@ -1,16 +1,18 @@
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/utilities/storage_keys.dart';
+
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
 import '../../../../services/local_storage_services.dart';
 import '../../../../services/user_service.dart';
 import '../../../../ui/shared/shared.dart';
-import '../../../../utilities/storage_keys.dart';
-import '../api/http_api.dart';
+
 
 class DMApiService {
-  final _api = HttpApiService(dmsBaseUrl);
+  final _api = ZuriApi(baseUrl: dmsBaseUrl);
   final log = getLogger('DMApiService');
   //Todo: implement this in another service
-  final _userApi = HttpApiService('https://api.zuri.chat/');
+  final _userApi = ZuriApi(baseUrl: 'https://api.zuri.chat/');
 
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
@@ -25,7 +27,7 @@ class DMApiService {
       final res = await _api.get(
         /*'v1/sidebar?org=$orgId&user=$userId'*/
         'https://dm.zuri.chat/api/v1/sidebar?org=614679ee1a5607b13c00bcb7&user=6146ce37845b436ea04d102d',
-        headers: {'Authorization': 'Bearer $token'},
+         token: token,
       );
       joinedRooms = res?.data?['joined_rooms'];
       log.i(joinedRooms);

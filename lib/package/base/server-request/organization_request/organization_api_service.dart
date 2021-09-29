@@ -1,3 +1,4 @@
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/models/user_search_model.dart';
 
 import '../../../../app/app.locator.dart';
@@ -7,13 +8,13 @@ import '../../../../services/local_storage_services.dart';
 import '../../../../services/user_service.dart';
 import '../../../../ui/shared/shared.dart';
 import '../../../../utilities/storage_keys.dart';
-import '../api/http_api.dart';
 
 class OrganizationApiService {
   final log = getLogger('OrganizationApiService');
-  final _api = HttpApiService(coreBaseUrl);
+  final _api = ZuriApi(baseUrl: coreBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
+  // final zuriApi = locator<ZuriApiService>();
 
   /// Fetches a list of organizations that exist in the zuri database
   /// This does not fetch the Organization the user belongs to
@@ -21,7 +22,7 @@ class OrganizationApiService {
   Future<List<OrganizationModel>> fetchListOfOrganizations() async {
     final res = await _api.get(
       '/organizations',
-      headers: {'Authorization': 'Bearer $token'},
+       token: token,
     );
     log.i(res?.data?['data'].length);
     return (res?.data?['data'] as List)
@@ -35,7 +36,7 @@ class OrganizationApiService {
 
     final res = await _api.get(
       '/users/$email/organizations',
-      headers: {'Authorization': 'Bearer $token'},
+       token: token,
     );
     log.i(res?.data?['data']);
     print(res?.data);
@@ -52,7 +53,7 @@ class OrganizationApiService {
   Future<OrganizationModel> fetchOrganizationInfo(String id) async {
     final res = await _api.get(
       '/organizations/$id',
-      headers: {'Authorization': 'Bearer $token'},
+       token: token,
     );
     return OrganizationModel.fromJson(res?.data?['data']);
   }
@@ -62,7 +63,7 @@ class OrganizationApiService {
   Future<OrganizationModel> fetchOrganizationByUrl(String url) async {
     final res = await _api.get(
       '/organizations/url/$url',
-      headers: {'Authorization': 'Bearer $token'},
+       token: token,
     );
     log.i(res?.data);
     print(res?.data);
@@ -80,8 +81,8 @@ class OrganizationApiService {
 
     final res = await _api.post(
       '/organizations/$orgId/members',
-      data: {'user_email': email},
-      headers: {'Authorization': 'Bearer $token'},
+      body: {'user_email': email},
+       token: token,
     );
 
     if (res?.statusCode == 200) {
@@ -96,8 +97,8 @@ class OrganizationApiService {
   Future<String> createOrganization(String email) async {
     final res = await _api.post(
       '/organizations',
-      headers: {'Authorization': 'Bearer $token'},
-      data: {'creator_email': email},
+       token: token,
+      body: {'creator_email': email},
     );
     return res?.data?['data']['InsertedID'];
   }
@@ -107,8 +108,8 @@ class OrganizationApiService {
   Future<void> updateOrgUrl(String orgId, String url) async {
     final res = await _api.patch(
       '/organizations/$orgId/url',
-      headers: {'Authorization': 'Bearer $token'},
-      data: {'url': url},
+       token: token,
+      body: {'url': url},
     );
     return res?.data?['message'];
   }
@@ -118,8 +119,8 @@ class OrganizationApiService {
   Future<void> updateOrgName(String orgId, String name) async {
     final res = await _api.patch(
       '/organizations/$orgId/name',
-      headers: {'Authorization': 'Bearer $token'},
-      data: {'organization_name': name},
+       token: token,
+      body: {'organization_name': name},
     );
     return res?.data?['message'];
   }
@@ -129,8 +130,8 @@ class OrganizationApiService {
   Future<void> updateOrgLogo(String orgId, String url) async {
     final res = await _api.patch(
       '/organizations/$orgId/logo',
-      headers: {'Authorization': 'Bearer $token'},
-      data: {'url': url},
+       token: token,
+      body: {'url': url},
     );
     return res?.data?['message'];
   }
@@ -138,8 +139,8 @@ class OrganizationApiService {
   Future<void> addMemberToOrganization(String orgId, String email) async {
     final res = await _api.post(
       '/organizations/$orgId/members',
-      headers: {'Authorization': 'Bearer $token'},
-      data: {'user_email': email},
+       token: token,
+      body: {'user_email': email},
     );
     return res?.data?['message'];
   }
@@ -147,7 +148,7 @@ class OrganizationApiService {
   Future<List<UserSearch>> fetchMembersInOrganization(String orgId) async {
     final res = await _api.get(
       '/organizations/$orgId/members',
-      headers: {'Authorization': 'Bearer $token'},
+       token: token,
     );
     if (res?.data['data'] == null) {
       return [];
