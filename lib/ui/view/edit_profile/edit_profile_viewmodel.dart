@@ -1,7 +1,6 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/models/profile_model.dart';
-
-import 'package:hng/package/base/server-request/api/http_api.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/api_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/current_user_profile.dart';
@@ -19,8 +18,9 @@ class EditProfileViewModel extends FutureViewModel {
   final snackbar = locator<SnackbarService>();
   final navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
-  final _api = HttpApiService(coreBaseUrl);
+  final _api = ZuriApi(baseUrl: coreBaseUrl);
   final api = ApiService();
+  String? get token => storageService.getString(StorageKeys.currentSessionToken);
 
   void updateString(String name, String display, String status, String phone) {
     if (name.trim().isNotEmpty) {
@@ -58,10 +58,7 @@ class EditProfileViewModel extends FutureViewModel {
       'phone': _phone
     };
     final editResponse =
-        await _api.patch(profileEndPoint, data: profileData, headers: {
-      'Authorization':
-          'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
-    });
+        await _api.patch(profileEndPoint, body: profileData, token: token);
     final snackbar = locator<SnackbarService>();
 
     if (editResponse!.statusCode == 200) {

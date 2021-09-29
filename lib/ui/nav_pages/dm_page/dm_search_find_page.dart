@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -18,19 +19,19 @@ class _DmScreenState extends State<DmScreen> {
 
   //Hardcoded list of users
   final List<UserProfile> _userResults = [
-    UserProfile(username: 'Mark', isOnline: true),
-    UserProfile(username: 'Naza', isOnline: true),
-    UserProfile(username: 'OyinkanUA', isOnline: true),
-    UserProfile(username: 'Xclusivecyborg'),
-    UserProfile(username: 'Fierce', isOnline: true),
-    UserProfile(username: 'BlazeBrain'),
-    UserProfile(username: 'FreshFish', isOnline: true),
-    UserProfile(username: 'Ekpess'),
-    UserProfile(username: 'Protector', isOnline: true),
-    UserProfile(username: 'BusyBee', isOnline: true),
-    UserProfile(username: 'Abroad'),
-    UserProfile(username: 'Kristie'),
-    UserProfile(username: 'Kara', isOnline: true),
+    UserProfile(username: Mark, isOnline: true),
+    UserProfile(username: Naza, isOnline: true),
+    UserProfile(username: OyinkanUA, isOnline: true),
+    UserProfile(username: Xclusivecyborg),
+    UserProfile(username: Fierce, isOnline: true),
+    UserProfile(username: BlazeBrain),
+    UserProfile(username: FreshFish, isOnline: true),
+    UserProfile(username: Ekpess),
+    UserProfile(username: Protector, isOnline: true),
+    UserProfile(username: BusyBee, isOnline: true),
+    UserProfile(username: Abroad),
+    UserProfile(username: Kristie),
+    UserProfile(username: Kara, isOnline: true),
   ];
   @override
   Widget build(BuildContext context) {
@@ -42,14 +43,14 @@ class _DmScreenState extends State<DmScreen> {
           elevation: 1,
           backgroundColor: Colors.white,
           title: const Text(
-            'Direct Message',
+            DM,
             style: TextStyle(color: AppColors.deepBlackColor),
           ),
           actions: [
             TextButton(
               onPressed: () {},
               child: const Text(
-                'Done',
+                Done,
                 style: TextStyle(color: AppColors.borderColor),
               ),
             ),
@@ -124,7 +125,7 @@ class ChipInputTextField extends StatelessWidget {
       decoration: const InputDecoration(
         contentPadding: EdgeInsets.only(left: 10),
         border: InputBorder.none,
-        hintText: 'To: Type the name of a person or channel',
+        hintText: UserSearchHint,
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.greyishColor,
@@ -216,7 +217,7 @@ class CustomSearchTile extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage('assets/background/bga.png'),
+            image: AssetImage(UserAvatar),
           ),
         ),
       ),
@@ -256,7 +257,7 @@ class UserProfile {
   final String? imageUrl;
 
   UserProfile(
-      {this.imageUrl = 'assets/background/bga.png',
+      {this.imageUrl = UserAvatar,
       this.checked = false,
       this.username,
       this.isOnline = false});
