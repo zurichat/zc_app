@@ -12,9 +12,7 @@ class CustomChannelStage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(411, 823),
-      builder: () => InkWell(
+    return InkWell(
         onTap: () {},
         child: SizedBox(
           height: 24.h,
@@ -41,7 +39,6 @@ class CustomChannelStage extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
   }
 }

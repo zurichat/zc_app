@@ -1,17 +1,18 @@
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../models/start_dm_models.dart';
-import '../../../package/base/server-request/api/http_api.dart';
 import '../../../services/local_storage_services.dart';
 import '../../../utilities/constants.dart';
 import '../../../utilities/storage_keys.dart';
 
 class StartDmViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();
-  final _api = HttpApiService(coreBaseUrl);
+  final _api = ZuriApi(baseUrl: coreBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
+   String? get token => storageService.getString(StorageKeys.currentSessionToken);
 
   // bool _hasClickedMessageField = false;
   // bool get hasClickedMessageField => _hasClickedMessageField;
@@ -33,10 +34,7 @@ class StartDmViewModel extends FormViewModel {
       }
       final response = await _api.get(
         endpoint,
-        headers: {
-          'Authorization':
-              'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
-        },
+        token: token,
       );
       // print(response);
       // print(response?.data?['data']);

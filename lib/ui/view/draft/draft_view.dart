@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
 import 'draft_viewmodel.dart';
 
 class DraftView extends StatelessWidget {
@@ -9,6 +8,7 @@ class DraftView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DraftViewModel>.reactive(
+
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           title: Text(model.title),
