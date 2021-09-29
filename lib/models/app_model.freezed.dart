@@ -23,7 +23,7 @@ class _$ApiResponseTearOff {
   _ApiResponse call(
       {required int? statusCode,
       required String? statusMessage,
-      required dynamic? data}) {
+      required dynamic data}) {
     return _ApiResponse(
       statusCode: statusCode,
       statusMessage: statusMessage,
@@ -43,7 +43,7 @@ const $ApiResponse = _$ApiResponseTearOff();
 mixin _$ApiResponse {
   int? get statusCode => throw _privateConstructorUsedError;
   String? get statusMessage => throw _privateConstructorUsedError;
-  dynamic? get data => throw _privateConstructorUsedError;
+  dynamic get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +56,7 @@ abstract class $ApiResponseCopyWith<$Res> {
   factory $ApiResponseCopyWith(
           ApiResponse value, $Res Function(ApiResponse) then) =
       _$ApiResponseCopyWithImpl<$Res>;
-  $Res call({int? statusCode, String? statusMessage, dynamic? data});
+  $Res call({int? statusCode, String? statusMessage, dynamic data});
 }
 
 /// @nodoc
@@ -85,7 +85,7 @@ class _$ApiResponseCopyWithImpl<$Res> implements $ApiResponseCopyWith<$Res> {
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as dynamic?,
+              as dynamic,
     ));
   }
 }
@@ -97,7 +97,7 @@ abstract class _$ApiResponseCopyWith<$Res>
           _ApiResponse value, $Res Function(_ApiResponse) then) =
       __$ApiResponseCopyWithImpl<$Res>;
   @override
-  $Res call({int? statusCode, String? statusMessage, dynamic? data});
+  $Res call({int? statusCode, String? statusMessage, dynamic data});
 }
 
 /// @nodoc
@@ -128,7 +128,7 @@ class __$ApiResponseCopyWithImpl<$Res> extends _$ApiResponseCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as dynamic?,
+              as dynamic,
     ));
   }
 }
@@ -149,7 +149,7 @@ class _$_ApiResponse implements _ApiResponse {
   @override
   final String? statusMessage;
   @override
-  final dynamic? data;
+  final dynamic data;
 
   @override
   String toString() {
@@ -192,7 +192,7 @@ abstract class _ApiResponse implements ApiResponse {
   factory _ApiResponse(
       {required int? statusCode,
       required String? statusMessage,
-      required dynamic? data}) = _$_ApiResponse;
+      required dynamic data}) = _$_ApiResponse;
 
   factory _ApiResponse.fromJson(Map<String, dynamic> json) =
       _$_ApiResponse.fromJson;
@@ -202,7 +202,7 @@ abstract class _ApiResponse implements ApiResponse {
   @override
   String? get statusMessage => throw _privateConstructorUsedError;
   @override
-  dynamic? get data => throw _privateConstructorUsedError;
+  dynamic get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ApiResponseCopyWith<_ApiResponse> get copyWith =>
@@ -4186,7 +4186,7 @@ class _$UserSearchTearOff {
       required DateTime? deletedAt,
       required String? displayName,
       required String? email,
-      required dynamic? files,
+      required dynamic files,
       required String? firstName,
       required String? imageUrl,
       required String? joinedAt,
@@ -4197,7 +4197,7 @@ class _$UserSearchTearOff {
       required String? pronouns,
       required String? role,
       required String? settings,
-      required dynamic? socials,
+      required dynamic socials,
       required String? status,
       required String? timeZone,
       required String? userName}) {
@@ -4242,7 +4242,7 @@ mixin _$UserSearch {
   DateTime? get deletedAt => throw _privateConstructorUsedError;
   String? get displayName => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  dynamic? get files => throw _privateConstructorUsedError;
+  dynamic get files => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   String? get joinedAt => throw _privateConstructorUsedError;
@@ -4253,7 +4253,7 @@ mixin _$UserSearch {
   String? get pronouns => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   String? get settings => throw _privateConstructorUsedError;
-  dynamic? get socials => throw _privateConstructorUsedError;
+  dynamic get socials => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   String? get timeZone => throw _privateConstructorUsedError;
   String? get userName => throw _privateConstructorUsedError;
@@ -4276,7 +4276,7 @@ abstract class $UserSearchCopyWith<$Res> {
       DateTime? deletedAt,
       String? displayName,
       String? email,
-      dynamic? files,
+      dynamic files,
       String? firstName,
       String? imageUrl,
       String? joinedAt,
@@ -4287,7 +4287,7 @@ abstract class $UserSearchCopyWith<$Res> {
       String? pronouns,
       String? role,
       String? settings,
-      dynamic? socials,
+      dynamic socials,
       String? status,
       String? timeZone,
       String? userName});
@@ -4353,7 +4353,7 @@ class _$UserSearchCopyWithImpl<$Res> implements $UserSearchCopyWith<$Res> {
       files: files == freezed
           ? _value.files
           : files // ignore: cast_nullable_to_non_nullable
-              as dynamic?,
+              as dynamic,
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -4397,7 +4397,7 @@ class _$UserSearchCopyWithImpl<$Res> implements $UserSearchCopyWith<$Res> {
       socials: socials == freezed
           ? _value.socials
           : socials // ignore: cast_nullable_to_non_nullable
-              as dynamic?,
+              as dynamic,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -4427,7 +4427,7 @@ abstract class _$UserSearchCopyWith<$Res> implements $UserSearchCopyWith<$Res> {
       DateTime? deletedAt,
       String? displayName,
       String? email,
-      dynamic? files,
+      dynamic files,
       String? firstName,
       String? imageUrl,
       String? joinedAt,
@@ -4438,7 +4438,7 @@ abstract class _$UserSearchCopyWith<$Res> implements $UserSearchCopyWith<$Res> {
       String? pronouns,
       String? role,
       String? settings,
-      dynamic? socials,
+      dynamic socials,
       String? status,
       String? timeZone,
       String? userName});
@@ -4506,7 +4506,7 @@ class __$UserSearchCopyWithImpl<$Res> extends _$UserSearchCopyWithImpl<$Res>
       files: files == freezed
           ? _value.files
           : files // ignore: cast_nullable_to_non_nullable
-              as dynamic?,
+              as dynamic,
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -4550,7 +4550,7 @@ class __$UserSearchCopyWithImpl<$Res> extends _$UserSearchCopyWithImpl<$Res>
       socials: socials == freezed
           ? _value.socials
           : socials // ignore: cast_nullable_to_non_nullable
-              as dynamic?,
+              as dynamic,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -4609,7 +4609,7 @@ class _$_UserSearch implements _UserSearch {
   @override
   final String? email;
   @override
-  final dynamic? files;
+  final dynamic files;
   @override
   final String? firstName;
   @override
@@ -4631,7 +4631,7 @@ class _$_UserSearch implements _UserSearch {
   @override
   final String? settings;
   @override
-  final dynamic? socials;
+  final dynamic socials;
   @override
   final String? status;
   @override
@@ -4749,7 +4749,7 @@ abstract class _UserSearch implements UserSearch {
       required DateTime? deletedAt,
       required String? displayName,
       required String? email,
-      required dynamic? files,
+      required dynamic files,
       required String? firstName,
       required String? imageUrl,
       required String? joinedAt,
@@ -4760,7 +4760,7 @@ abstract class _UserSearch implements UserSearch {
       required String? pronouns,
       required String? role,
       required String? settings,
-      required dynamic? socials,
+      required dynamic socials,
       required String? status,
       required String? timeZone,
       required String? userName}) = _$_UserSearch;
@@ -4781,7 +4781,7 @@ abstract class _UserSearch implements UserSearch {
   @override
   String? get email => throw _privateConstructorUsedError;
   @override
-  dynamic? get files => throw _privateConstructorUsedError;
+  dynamic get files => throw _privateConstructorUsedError;
   @override
   String? get firstName => throw _privateConstructorUsedError;
   @override
@@ -4803,7 +4803,7 @@ abstract class _UserSearch implements UserSearch {
   @override
   String? get settings => throw _privateConstructorUsedError;
   @override
-  dynamic? get socials => throw _privateConstructorUsedError;
+  dynamic get socials => throw _privateConstructorUsedError;
   @override
   String? get status => throw _privateConstructorUsedError;
   @override
