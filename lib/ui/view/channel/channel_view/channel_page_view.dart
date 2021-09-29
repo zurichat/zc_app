@@ -69,35 +69,29 @@ class ChannelPageView extends StatelessWidget {
               ),
             ],
           ),
-          body:
-              // body: model.isLoading
-              //     ? Center(
-              //         child: CircularProgressIndicator(),
-              //       )
-              //     :
-              Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  reverse: true,
-                  controller: model.scrollController,
-                  child: Column(
-                    children: [
-                      ChannelIntro(
-                        channelName: channelname,
+          body: model.isExpanded
+              ? ChannelReplyBox(channelId: channelId)
+              : Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        reverse: true,
+                        controller: model.scrollController,
+                        child: Column(
+                          children: [
+                            ChannelIntro(
+                              channelName: channelname,
+                            ),
+                            ChannelChat(
+                              channelId: channelId,
+                            ),
+                          ],
+                        ),
                       ),
-                      ChannelChat(
-                        channelId: channelId,
-                      ),
-                    ],
-                  ),
+                    ),
+                    ChannelReplyBox(channelId: channelId),
+                  ],
                 ),
-              ),
-              Flexible(
-                child: ChannelReplyBox(channelId: channelId),
-              ),
-            ],
-          ),
         );
       },
     );

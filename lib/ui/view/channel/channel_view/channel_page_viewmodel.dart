@@ -59,8 +59,7 @@ class ChannelPageViewModel extends BaseViewModel {
 
   void joinChannel(String channelId) async {
     var joinedChannel = await _channelsApiService.joinChannel(channelId);
-    channelMembers.add(
-        ChannelMembermodel.fromJson(joinedChannel));
+    channelMembers.add(ChannelMembermodel.fromJson(joinedChannel));
     print(joinedChannel);
   }
 

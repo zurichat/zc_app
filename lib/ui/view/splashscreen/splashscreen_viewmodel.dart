@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:hng/ui/view/channel/channel_view/channel_page_view.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -22,15 +23,17 @@ class SplashscreenViewModel extends BaseViewModel {
             storage.getBool('onboarded') == false) {
           storage.setBool('onboarded', true);
           navigation.navigateTo(Routes.onboardingView);
-        } else if (
-        storage.getBool(StorageKeys.registeredNotverifiedOTP) == true) {
+        } else if (storage.getBool(StorageKeys.registeredNotverifiedOTP) ==
+            true) {
           navigation.navigateTo(Routes.oTPView);
-        }
-         else if (
-        storage.getString(StorageKeys.currentSessionToken)!= null) {
-          navigation.navigateTo(Routes.navBarView);
-        } 
-        else {
+        } else if (storage.getString(StorageKeys.currentSessionToken) != null) {
+          navigation.navigateToView(ChannelPageView(
+            channelId: '',
+            channelname: '',
+            membersCount: 1,
+            public: true,
+          ));
+        } else {
           navigation.navigateTo(Routes.loginView);
         }
         // navigation.navigateTo(Routes.onboardingView);
