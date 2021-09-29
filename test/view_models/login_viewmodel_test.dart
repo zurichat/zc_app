@@ -1,16 +1,17 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hng/ui/view/login/login_viewmodel.dart';
-import '../setup/test_helpers.dart';
-
+import 'package:mockito/mockito.dart';
+import '../helpers/test_helpers.dart';
+// This is a test setup
 void main() {
   group('loginViewModelTest -', () {
+    setUp(registerServices);
+    tearDown(unregisterServices);
     group('initialise -', () {
       test('When called, check if user is registered on the system', () async {
-        var userService = getAndRegisterUserServiceMock();
-        await setupLocator();
-        var model = LoginViewModel();
+        final userService = getAndRegisterUserServiceMock();
+        //await setupLocator();
+        final model = LoginViewModel();
         await model.initialise();
         verify(userService.hasUser);
       });

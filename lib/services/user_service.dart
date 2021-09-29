@@ -8,7 +8,7 @@ import '../utilities/storage_keys.dart';
 ///And returning the data that is saved, you can choose to use it or
 ///get the data to local storage yourself
 class UserService {
-  bool? get hasUser => null;
+  bool? get hasUser => hasUser;
   final _sharedPrefs = locator<SharedPreferenceLocalStorage>();
 
 
