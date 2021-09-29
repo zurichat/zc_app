@@ -104,12 +104,37 @@ const String Active = 'Active';
 const String Draft = 'Draft';
 
 //UI/Shared
-const String Cancel = 'CANCEL';
-const String Archive = 'ARCHIVE';
+const String Cancel = 'Cancel';
+const String Archive = 'Archive';
 const String CloseChannelWarning =
     'This will close the channel for anyone who has it open.';
 const String moreReplies = 'more replies';
 const String Show = 'Show';
+const String DeleteMsg = 'Delete message';
+const String DeleteMsgWarning =
+    'Are you sure you want to delete this message?\nThis cannot be undone';
+const String Delete = 'Delete';
+const String Ok = 'Ok';
+const String SelectLang = 'Select Language';
+const String DarkMode = 'Dark mode';
+const String Set = 'Set';
+const String ComposeFeedback = 'Compose feedback';
+const String FeedbackHint = 'e.g I found a bug in the Dm’s';
+const String FeedbackHelperText =
+    'We will respond via email to feedback and questions.';
+const String DefSkinTone = 'Default skin tone';
+const String Emoji1 = 'assets/icons/emojiHands/1.png';
+const String Emoji2 = 'assets/icons/emojiHands/2.png';
+const String Emoji3 = 'assets/icons/emojiHands/3.png';
+const String Emoji4 = 'assets/icons/emojiHands/4.png';
+const String Emoji5 = 'assets/icons/emojiHands/5.png';
+const String Emoji6 = 'assets/icons/emojiHands/6.png';
+const String Emoji1DialogData = '1';
+const String Emoji2DialogData = '2';
+const String Emoji3DialogData = '3';
+const String Emoji4DialogData = '4';
+const String Emoji5DialogData = '5';
+const String Emoji6DialogData = '6';
 
 //----------------
 //Images and Logos

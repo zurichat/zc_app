@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SendFeedbackDialog extends StatelessWidget {
@@ -39,7 +40,7 @@ class _SendFeedbackDialogContent extends StatelessWidget {
           const Align(
             alignment: Alignment.topLeft,
             child: Text(
-              'Compose feedback',
+              ComposeFeedback,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
@@ -49,9 +50,7 @@ class _SendFeedbackDialogContent extends StatelessWidget {
             child: TextField(
               controller: controller,
               decoration: const InputDecoration(
-                  hintText: 'e.g I found a bug in the Dm’s',
-                  helperText:
-                      'We will respond via email to feedback and questions.'),
+                  hintText: FeedbackHint, helperText: FeedbackHelperText),
               minLines: 1,
               maxLines: 5,
             ),
@@ -63,11 +62,11 @@ class _SendFeedbackDialogContent extends StatelessWidget {
             children: [
               MaterialButton(
                   onPressed: () => completer(DialogResponse(confirmed: false)),
-                  child: const Text('CANCEL')),
+                  child: const Text(Cancel)),
               MaterialButton(
                   onPressed: () => completer(
                       DialogResponse(data: controller.text, confirmed: true)),
-                  child: const Text('OK')),
+                  child: const Text(Ok)),
             ],
           )
         ],
