@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
@@ -41,7 +43,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                 splashColor: Colors.transparent,
                 onTap: () async {
                   await addPeople().then((value) {
-                    print(value);
+                    log(value);
                   });
                 },
               ).pLTRB(0.0, 16.0, 20.0, 0.0),
