@@ -102,7 +102,14 @@ const String Active = 'Active';
 
 //Drafts
 const String Draft = 'Draft';
-// const String            =                                    ;
+
+//UI/Shared
+const String Cancel = 'CANCEL';
+const String Archive = 'ARCHIVE';
+const String CloseChannelWarning =
+    'This will close the channel for anyone who has it open.';
+const String moreReplies = 'more replies';
+const String Show = 'Show';
 
 //----------------
 //Images and Logos
