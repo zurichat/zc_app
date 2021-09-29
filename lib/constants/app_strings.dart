@@ -99,9 +99,12 @@ const String SetStatusText = 'Set yourself as ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
-// const String            =                                    ;
+
+//Drafts
+const String Draft = 'Draft';
 // const String            =                                    ;
 
+//----------------
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
@@ -135,9 +138,9 @@ const String BottomSheetTitle = 'This is a floating bottom sheet';
 const String BSheetMainBtn = 'Awesome!';
 const String BSheetSecBtn = 'This is cool';
 
-// const String     =     ;
-// const String     =     ;
-// const String     =     ;
-// const String     =     ;
-// const String     =     ;
+const String Okay = 'Okay';
+const String Date = 'August 31 at 9:09 PM';
+const String AbdSalam = 'Abd_salam';
+const String Random = 'Abd_salam';
+const String NoWahala = 'No Wahala';
 // const String     =     ;
