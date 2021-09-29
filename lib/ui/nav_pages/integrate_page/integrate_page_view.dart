@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
 
@@ -30,7 +31,7 @@ class IntegratePage2 extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: AppColors.zuriPrimaryColor,
         title: Text(
-          'Integrate',
+          Integrate,
           style: GoogleFonts.lato(
               fontWeight: FontWeight.w700,
               fontSize: 20,
@@ -50,7 +51,7 @@ class IntegratePage2 extends StatelessWidget {
               onPressed: () => {},
               icon: const Icon(Icons.calendar_today),
               label: const Text(
-                'Holiday-Calender',
+                Calendar,
               ),
             ),
           ),
@@ -60,7 +61,7 @@ class IntegratePage2 extends StatelessWidget {
               onPressed: () => {},
               icon: const Icon(Icons.today),
               label: const Text(
-                'To-do',
+                Todo,
               ),
             ),
           ),
@@ -70,7 +71,7 @@ class IntegratePage2 extends StatelessWidget {
               onPressed: () => {},
               icon: const Icon(FontAwesomeIcons.chessKnight),
               label: const Text(
-                'Chess Room',
+                Chess,
               ),
             ),
           ),
@@ -80,7 +81,7 @@ class IntegratePage2 extends StatelessWidget {
               onPressed: () => {},
               icon: const Icon(Icons.meeting_room),
               label: const Text(
-                'Meeting Room',
+                Meeting,
               ),
             ),
           ),
@@ -90,7 +91,7 @@ class IntegratePage2 extends StatelessWidget {
               onPressed: () => {},
               icon: const Icon(Icons.notifications_none_sharp),
               label: const Text(
-                'Notice Board',
+                Board,
               ),
             ),
           ),
@@ -100,7 +101,7 @@ class IntegratePage2 extends StatelessWidget {
               onPressed: () => {},
               icon: const Icon(FontAwesomeIcons.music),
               label: const Text(
-                'Music Room',
+                Music,
               ),
             ),
           ),
@@ -110,7 +111,7 @@ class IntegratePage2 extends StatelessWidget {
               onPressed: () => {},
               icon: const Icon(Icons.donut_small),
               label: const Text(
-                'Duty Shift',
+                Shifts,
               ),
             ),
           ),
@@ -120,7 +121,7 @@ class IntegratePage2 extends StatelessWidget {
               onPressed: () => {},
               icon: const Icon(Icons.timer),
               label: const Text(
-                'Important Deadline',
+                Deadlines,
               ),
             ),
           ),

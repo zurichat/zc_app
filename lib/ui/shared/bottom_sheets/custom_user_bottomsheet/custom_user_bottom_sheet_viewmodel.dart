@@ -1,5 +1,6 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/start_dm_models.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/local_storage_services.dart';
@@ -25,7 +26,11 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
 
   @override
   Future<void> futureToRun() async {
+<<<<<<< HEAD
     final response = await _apiService.get('users/$userID', token: token);
+=======
+    final response = await _apiService.get('$UserDataEndpoint', token: token);
+>>>>>>> 6ac6c85e6c499e4ce561dab8d84b37a74fd447f6
     _userModel = UserModel.fromJson(response!.data['data']);
   }
 
