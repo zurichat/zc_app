@@ -34,7 +34,8 @@ class ProfileHead extends StatelessWidget {
                       ],
                     ),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Row(
@@ -50,8 +51,8 @@ class ProfileHead extends StatelessWidget {
                             maxLines: 3,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(5),
+                        const Padding(
+                          padding: EdgeInsets.all(5),
                           child: Icon(
                             Icons.circle,
                             size: 10,

@@ -1,23 +1,25 @@
-
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/ui/view/channel/channel_members/channel_members_list.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.router.dart';
-import '../../../../package/base/server-request/api/http_api.dart';
 import '../../../../services/local_storage_services.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 
 class ChannelInfoViewModel extends BaseViewModel {
   final snackbar = locator<SnackbarService>();
-  final _apiService = HttpApiService(channelsBaseUrl);
+  final _apiService = ZuriApi(baseUrl: channelsBaseUrl);
   final _navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _dialogService = locator<DialogService>();
+  final log = getLogger('ChannelInfoViewModel');
+
+  String? _channelName;
 
   String? _channelDescription;
 
@@ -27,7 +29,17 @@ class ChannelInfoViewModel extends BaseViewModel {
 
   void setChannelDescription(String channelDescription) {
     _channelDescription = channelDescription;
-    print('pppp $channelDescription');
+    log.i('pppp $channelDescription');
+    notifyListeners();
+  }
+
+  String get channelName {
+    return _channelName ?? 'Unnamed Channel';
+  }
+
+  void setChannelName(String channelName) {
+    _channelName = channelName;
+    log.i('pppp $channelDescription');
     notifyListeners();
   }
 
@@ -35,13 +47,19 @@ class ChannelInfoViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
-navigateToMembersList(List<ChannelMembermodel> members, 
-  
-  ChannelModel channelDetail
-  ) {
-    //NavigationService.navigateTo(Routes.cha)
-    _navigationService.navigateToView(ChannelMembersList(channelMembers: members,channelDetail:channelDetail,));
+
+  navigateBack() {
+    _navigationService.back();
   }
+
+  void navigateToMembersList(List<ChannelMembermodel> members, ChannelModel channelDetail) {
+    //NavigationService.navigateTo(Routes.cha)
+    _navigationService.navigateToView(ChannelMembersList(
+      channelMembers: members,
+      channelDetail: channelDetail,
+    ));
+  }
+
 
   Future showDialog() async {
     await _dialogService.showCustomDialog(
@@ -60,15 +78,11 @@ navigateToMembersList(List<ChannelMembermodel> members,
     final response = await _apiService.get(endpoint);
     if (response?.statusCode == 200) {
       print(response?.data);
-      String channelName = response?.data['name'];
       String des = response?.data['description'];
       print('sacas $des');
       setChannelDescription(des);
+      setChannelName(channelName);
 
-      /*storage.setString(
-        StorageKeys.currentSessionToken,
-        response?.data['data']['name']['token'],
-      );*/
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,

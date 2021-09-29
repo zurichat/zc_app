@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/shared.dart';
@@ -16,7 +17,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
   const CustomDMListTile({
     Key? key,
     this.imagelink,
-    this.name = 'assets/background/status.png',
+    this.name = statusBackground,
     this.userName,
   }) : super(key: key);
 

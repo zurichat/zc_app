@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
@@ -23,14 +24,15 @@ class OTPView extends StatelessWidget with $OTPView {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<OTPViewModel>.reactive(
-      //listenToFormUpdated automatically syncs text from TextFields to the viewmodel
+      //listenToFormUpdated automatically syncs text
+      //from TextFields to the viewmodel
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => OTPViewModel(),
       staticChild: OTPViewModel.init(),
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
         color: AppColors.whiteColor,
-        progressIndicator: CircularProgressIndicator(
+        progressIndicator: const CircularProgressIndicator(
           color: AppColors.zuriPrimaryColor,
         ),
         child: Scaffold(
@@ -38,47 +40,47 @@ class OTPView extends StatelessWidget with $OTPView {
           backgroundColor: AppColors.whiteColor,
           body: SafeArea(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
+              padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(
-                      height: 6.0,
-                    ),
+                    const SizedBox(height: 6.0),
                     Container(
                       alignment: Alignment.center,
-                      child: Image.asset('assets/logo/zuri_chat_logo.png'),
+                      child: Image.asset(ZuriLogo),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 24.0,
                     ),
-                    Center(
+                    const Center(
                       child: Text(
-                        'One-Time Password',
+                        OTP,
                         style: TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 20.0),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 6.0,
                     ),
-                    Center(
+                    const Center(
                       child: Text(
-                        'Enter the 6-digit OTP sent to your email',
+                        EnterOTP,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 49.0,
                     ),
                     Form(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 30),
+                          vertical: 8.0,
+                          horizontal: 30,
+                        ),
                         child: PinCodeTextField(
                           appContext: context,
-                          pastedTextStyle: TextStyle(
+                          pastedTextStyle: const TextStyle(
                             color: AppColors.zuriPrimaryColor,
                             fontWeight: FontWeight.bold,
                           ),
@@ -100,12 +102,12 @@ class OTPView extends StatelessWidget with $OTPView {
                             activeFillColor: Colors.white,
                           ),
                           cursorColor: AppColors.zuriPrimaryColor,
-                          animationDuration: Duration(milliseconds: 300),
+                          animationDuration: const Duration(milliseconds: 300),
                           enableActiveFill: true,
                           controller: otpController,
                           keyboardType: TextInputType.number,
                           boxShadows: [
-                            BoxShadow(
+                            const BoxShadow(
                               offset: Offset(0, 1),
                               color: Colors.black12,
                               blurRadius: 10,
@@ -126,7 +128,7 @@ class OTPView extends StatelessWidget with $OTPView {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10.0,
                     ),
                     Center(
@@ -134,13 +136,13 @@ class OTPView extends StatelessWidget with $OTPView {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: 'Didn\'t receive any code? ',
+                              text: DidntRecieveOTP,
                               style: AppTextStyles.normalText.copyWith(
                                 color: Colors.black,
                               ),
                             ),
                             TextSpan(
-                              text: 'Resend',
+                              text: Resend,
                               style: AppTextStyles.body2Bold.copyWith(
                                 color: Colors.blue,
                                 decoration: TextDecoration.underline,
@@ -150,7 +152,7 @@ class OTPView extends StatelessWidget with $OTPView {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40.0,
                     ),
                     Center(
@@ -158,8 +160,8 @@ class OTPView extends StatelessWidget with $OTPView {
                         widthFactor: 1.0,
                         child: ElevatedButton(
                           onPressed: () => model.verifyOTP(context),
-                          child: Text(
-                            'Continue',
+                          child: const Text(
+                            Continue,
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
@@ -167,8 +169,9 @@ class OTPView extends StatelessWidget with $OTPView {
                                 color: Color(0xffFFFFFF)),
                           ),
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                            primary: Color(0xff00B87C),
+                            padding:
+                                const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                            primary: const Color(0xff00B87C),
                           ),
                         ),
                       ),
@@ -180,8 +183,8 @@ class OTPView extends StatelessWidget with $OTPView {
                         onPressed: () {
                           model.navigateLogin();
                         },
-                        child: Text(
-                          'Back to login',
+                        child: const Text(
+                          BackToLogin,
                           style: TextStyle(color: AppColors.zuriPrimaryColor),
                         ),
                       ),

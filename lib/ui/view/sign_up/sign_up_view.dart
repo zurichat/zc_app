@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -32,198 +33,198 @@ class SignUpView extends StatelessWidget with $SignUpView {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(
-        //listenToFormUpdated automatically syncs text
-        // from TextFields to the viewmodel
-        onModelReady: (model) => listenToFormUpdated(model),
-        disposeViewModel: false,
-        initialiseSpecialViewModelsOnce: true,
-        viewModelBuilder: () => SignUpViewModel(),
-        builder: (context, model, child) {
-          return ModalProgressHUD(
-            inAsyncCall: model.isLoading,
-            color: AppColors.whiteColor,
-            progressIndicator: const CircularProgressIndicator(
-              color: AppColors.zuriPrimaryColor,
-            ),
-            child: Scaffold(
-              backgroundColor: AppColors.whiteColor,
-              body: Center(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        UIHelper.verticalSpaceLarge,
-                        Center(
-                          child: Image.asset(
-                            'assets/logo/zuri_chat_logo.png',
-                            height: 32,
-                            width: 32,
+      //listenToFormUpdated automatically syncs text
+      // from TextFields to the viewmodel
+      onModelReady: (model) => listenToFormUpdated(model),
+      disposeViewModel: false,
+      initialiseSpecialViewModelsOnce: true,
+      viewModelBuilder: () => SignUpViewModel(),
+      builder: (context, model, child) {
+        return ModalProgressHUD(
+          inAsyncCall: model.isLoading,
+          color: AppColors.whiteColor,
+          progressIndicator: const CircularProgressIndicator(
+            color: AppColors.zuriPrimaryColor,
+          ),
+          child: Scaffold(
+            backgroundColor: AppColors.whiteColor,
+            body: Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      UIHelper.verticalSpaceLarge,
+                      Center(
+                        child: Image.asset(
+                          ZuriLogo,
+                          height: 32,
+                          width: 32,
+                        ),
+                      ),
+                      UIHelper.customVerticalSpace(24),
+                      const Center(
+                        child: CustomText(
+                          text: SignUp,
+                          fontSize: 20.0,
+                          color: AppColors.zuriTextBodyColor,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      UIHelper.verticalSpaceExtraSmall,
+                      const Center(
+                        child: CustomText(
+                          text: PleaseSignUp,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          color: AppColors.zuriDarkGrey,
+                        ),
+                      ),
+                      UIHelper.customVerticalSpace(48),
+                      Text(
+                        EmailAddress,
+                        style: AppTextStyles.body1Bold,
+                      ),
+                      UIHelper.customVerticalSpace(10),
+                      CustomTextField(
+                        keyboardType: TextInputType.emailAddress,
+                        inputAction: TextInputAction.next,
+                        autoCorrect: false,
+                        obscureText: false,
+                        controller: emailController,
+                        hintText: EmailHintText,
+                      ),
+                      UIHelper.verticalSpaceLarge,
+                      Text(
+                        Password,
+                        style: AppTextStyles.body1Bold,
+                      ),
+                      UIHelper.customVerticalSpace(10),
+                      CustomTextField(
+                        keyboardType: TextInputType.visiblePassword,
+                        inputAction: TextInputAction.next,
+                        autoCorrect: false,
+                        obscureText: true,
+                        controller: passwordController,
+                        hintText: PasswordHintText,
+                      ),
+                      UIHelper.verticalSpaceLarge,
+                      Text(
+                        ConfirmPassword,
+                        style: AppTextStyles.body1Bold,
+                      ),
+                      UIHelper.customVerticalSpace(10),
+                      CustomTextField(
+                        keyboardType: TextInputType.visiblePassword,
+                        inputAction: TextInputAction.next,
+                        autoCorrect: false,
+                        obscureText: true,
+                        controller: confirmPasswordController,
+                        hintText: ConfirmPasswordHinText,
+                      ),
+                      UIHelper.verticalSpaceMedium,
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: model.checkBoxValue,
+                            onChanged: (newValue) =>
+                                model.updateValue(newValue),
                           ),
-                        ),
-                        UIHelper.customVerticalSpace(24),
-                        const Center(
-                          child: CustomText(
-                            text: 'Sign Up',
-                            fontSize: 20.0,
-                            color: AppColors.zuriTextBodyColor,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        UIHelper.verticalSpaceExtraSmall,
-                        const Center(
-                          child: CustomText(
-                            text: 'Please sign up to create account',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            color: AppColors.zuriDarkGrey,
-                          ),
-                        ),
-                        UIHelper.customVerticalSpace(48),
-                        Text(
-                          'Email Address',
-                          style: AppTextStyles.body1Bold,
-                        ),
-                        UIHelper.customVerticalSpace(10),
-                        CustomTextField(
-                          keyboardType: TextInputType.emailAddress,
-                          inputAction: TextInputAction.next,
-                          autoCorrect: false,
-                          obscureText: false,
-                          controller: emailController,
-                          hintText: 'Name@gmail.com',
-                        ),
-                        UIHelper.verticalSpaceLarge,
-                        Text(
-                          'Password',
-                          style: AppTextStyles.body1Bold,
-                        ),
-                        UIHelper.customVerticalSpace(10),
-                        CustomTextField(
-                          keyboardType: TextInputType.visiblePassword,
-                          inputAction: TextInputAction.next,
-                          autoCorrect: false,
-                          obscureText: true,
-                          controller: passwordController,
-                          hintText: 'Enter Password',
-                        ),
-                        UIHelper.verticalSpaceLarge,
-                        Text(
-                          'Confirm Password',
-                          style: AppTextStyles.body1Bold,
-                        ),
-                        UIHelper.customVerticalSpace(10),
-                        CustomTextField(
-                          keyboardType: TextInputType.emailAddress,
-                          inputAction: TextInputAction.next,
-                          autoCorrect: false,
-                          obscureText: true,
-                          controller: confirmPasswordController,
-                          hintText: 'Re-enter password',
-                        ),
-                        UIHelper.verticalSpaceMedium,
-                        Row(
-                          children: [
-                            Checkbox(
-                              value: model.checkBoxValue,
-                              onChanged: (newValue) =>
-                                  model.updateValue(newValue),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const CustomText(
-                                  text: '''
-By selecting this box, you agreed to our''',
-                                  fontSize: 14,
-                                ),
-                                const Text(
-                                  'terms and conditions',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: AppColors.zuriPrimaryColor,
-                                    fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: AppColors.zuriPrimaryColor,
-                                    decorationStyle: TextDecorationStyle.solid,
-                                    decorationThickness: 2,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                        UIHelper.verticalSpaceLarge,
-                        LongButton(
-                          onPressed: () => model.createUser(context),
-                          label: 'Create Account',
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const CustomText(
-                              text: 'Already  have an Account ?',
-                              fontSize: 14,
-                            ),
-                            TextButton(
-                              child: const CustomText(
-                                text: 'Sign In',
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const CustomText(
+                                text: TnC1,
                                 fontSize: 14,
-                                color: AppColors.zuriPrimaryColor,
-                                fontWeight: FontWeight.bold,
                               ),
-                              onPressed: () => model.navigateToSignIn(),
-                            )
-                          ],
+                              const Text(
+                                TnC2,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: AppColors.zuriPrimaryColor,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: AppColors.zuriPrimaryColor,
+                                  decorationStyle: TextDecorationStyle.solid,
+                                  decorationThickness: 2,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      UIHelper.verticalSpaceLarge,
+                      LongButton(
+                        onPressed: () => model.createUser(context),
+                        label: CreateAccount,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const CustomText(
+                            text: AlreadyHaveAcct,
+                            fontSize: 14,
+                          ),
+                          TextButton(
+                            child: const CustomText(
+                              text: SignIn,
+                              fontSize: 14,
+                              color: AppColors.zuriPrimaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            onPressed: () => model.navigateToSignIn(),
+                          )
+                        ],
+                      ),
+                      const Center(
+                        child: CustomText(
+                          fontSize: 16,
+                          text: Or,
+                          color: AppColors.zuriTextColorHeader,
                         ),
-                        const Center(
-                          child: CustomText(
-                            fontSize: 16,
-                            text: 'or',
+                      ),
+                      UIHelper.verticalSpaceMedium,
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          border: Border.all(
                             color: AppColors.zuriTextColorHeader,
+                            width: 1,
                           ),
                         ),
-                        UIHelper.verticalSpaceMedium,
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            border: Border.all(
-                              color: AppColors.zuriTextColorHeader,
-                              width: 1,
-                            ),
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              log.i(' chiboy clicked');
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/logo/Google_logo.png',
-                                  height: 24,
-                                  width: 24,
-                                ),
-                                const SizedBox(width: 12),
-                                Text(
-                                  'Sign Up with Google',
-                                  style: AppTextStyles.body1Bold,
-                                ),
-                              ],
-                            ),
+                        child: InkWell(
+                          onTap: () {
+                            log.i(' chiboy clicked');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                GoogleLogo,
+                                height: 24,
+                                width: 24,
+                              ),
+                              UIHelper.customHorizontalSpace(12.0),
+                              Text(
+                                SignUpGoogle,
+                                style: AppTextStyles.body1Bold,
+                              ),
+                            ],
                           ),
                         ),
-                        UIHelper.verticalSpaceLarge,
-                      ],
-                    ),
+                      ),
+                      UIHelper.verticalSpaceLarge,
+                    ],
                   ),
                 ),
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }

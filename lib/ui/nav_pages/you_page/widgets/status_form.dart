@@ -12,19 +12,19 @@ class StatusForm extends StatelessWidget {
       color: AppColors.whiteColor,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5),
-          side: BorderSide(width: 1, color: AppColors.shadowColor)),
-      padding: EdgeInsets.all(12),
+          side: const BorderSide(width: 1, color: AppColors.shadowColor)),
+      padding: const EdgeInsets.all(12),
       elevation: 3,
       onPressed: onPressed,
       child: Row(
         children: [
-          Icon(Icons.chat_bubble_outline_rounded),
-          SizedBox(width: 7),
-          Flexible(
+          const Icon(Icons.chat_bubble_outline_rounded),
+          const SizedBox(width: 7),
+          const Flexible(
             child: Text("What's your status?"),
             fit: FlexFit.tight,
           ),
-          Icon(Icons.close_rounded),
+          const Icon(Icons.close_rounded),
         ],
       ),
     );

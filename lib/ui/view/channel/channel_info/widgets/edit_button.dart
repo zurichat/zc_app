@@ -6,7 +6,7 @@ import '../channel_info_view_model.dart';
 
 class EditButton extends StatelessWidget {
   final ChannelInfoViewModel model;
-  EditButton({Key? key, required this.model}) : super(key: key);
+  const EditButton({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

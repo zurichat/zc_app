@@ -20,7 +20,7 @@ class ThreadsViewModel extends BaseViewModel {
   Future<void> refreshThreadsPage() async {
     notifyListeners();
     await Future.delayed(
-      Duration(seconds: 5),
+      const Duration(seconds: 5),
     );
   }
 
