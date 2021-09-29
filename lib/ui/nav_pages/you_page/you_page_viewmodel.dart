@@ -1,3 +1,4 @@
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -11,10 +12,10 @@ class YouPageViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
 
-  String username = 'pauleke65';
-  String profileImage = 'assets/background/appBarLogo.png';
-  String currentStatus = 'Active';
-  String otherStatus = 'away';
+  String username = PaulEke;
+  String profileImage = ZuriAppbarLogo;
+  String currentStatus = Active;
+  String otherStatus = Away;
 
   Future editProfile() async {
     await _navigationService.navigateTo(Routes.editProfileView);
