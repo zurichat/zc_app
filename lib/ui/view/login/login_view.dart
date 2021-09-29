@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
@@ -45,24 +46,24 @@ class LoginView extends StatelessWidget with $LoginView {
                   UIHelper.customVerticalSpace(57.0),
                   Container(
                     alignment: Alignment.center,
-                    child: Image.asset('assets/logo/zuri_chat_logo.png'),
+                    child: Image.asset(ZuriLogo),
                   ),
                   UIHelper.customVerticalSpace(24.23),
                   Center(
                     child: Text(
-                      'Sign In',
+                      SignIn,
                       style: AppTextStyles.heading7,
                     ),
                   ),
                   UIHelper.verticalSpaceSmall,
                   Text(
-                    'Welcome! Sign in to continue',
+                    WelcomeSignIn,
                     textAlign: TextAlign.center,
                     style: AppTextStyles.faintBodyText,
                   ),
                   UIHelper.customVerticalSpace(38.0),
                   Text(
-                    'Email Address',
+                    EmailAddress,
                     style: AppTextStyles.body1Bold,
                   ),
                   UIHelper.customVerticalSpace(10.0),
@@ -71,12 +72,12 @@ class LoginView extends StatelessWidget with $LoginView {
                     inputAction: TextInputAction.next,
                     autoCorrect: false,
                     obscureText: false,
-                    hintText: 'Name@gmail.com',
+                    hintText: EmailHintText,
                     controller: emailController,
                   ),
                   UIHelper.verticalSpaceMedium,
                   Text(
-                    'Password',
+                    Password,
                     style: AppTextStyles.body1Bold,
                   ),
                   UIHelper.customVerticalSpace(10.0),
@@ -85,7 +86,7 @@ class LoginView extends StatelessWidget with $LoginView {
                     inputAction: TextInputAction.next,
                     autoCorrect: false,
                     obscureText: true,
-                    hintText: 'Enter Password',
+                    hintText: PasswordHintText,
                     controller: passwordController,
                   ),
                   Align(
@@ -101,7 +102,7 @@ class LoginView extends StatelessWidget with $LoginView {
                         model.navigateToForgotPasswordScreen();
                       },
                       child: const Text(
-                        'Forgot Password?',
+                        ForgotPasswordBtn,
                         style: TextStyle(
                           color: AppColors.zuriPrimaryColor,
                         ),
@@ -116,18 +117,18 @@ class LoginView extends StatelessWidget with $LoginView {
                         onPressed: () async {
                           await model.logInUser();
                         },
-                        label: 'Sign In',
+                        label: SignIn,
                       ),
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Don\'t have an account?'),
+                      const Text(DontHaveAccount),
                       TextButton(
                         onPressed: () => model.navigateToSignUpScreen(),
                         child: const Text(
-                          'Sign Up',
+                          SignUp,
                           style: TextStyle(color: AppColors.zuriPrimaryColor),
                         ),
                       )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class DeleteMessageDialog extends StatelessWidget {
@@ -29,7 +30,7 @@ class DeleteMessageDialog extends StatelessWidget {
               const Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Delete message',
+                  DeleteMsg,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 21,
@@ -42,8 +43,7 @@ class DeleteMessageDialog extends StatelessWidget {
               ),
               Text.rich(
                 const TextSpan(
-                  text: '''
-Are you sure you want to delete this message?\nThis cannot be undone.''',
+                  text: DeleteMsgWarning,
                 ),
                 style: GoogleFonts.roboto(
                   fontSize: 16,
@@ -59,11 +59,11 @@ Are you sure you want to delete this message?\nThis cannot be undone.''',
                     MaterialButton(
                         onPressed: () =>
                             completer(DialogResponse(confirmed: false)),
-                        child: const Text('Cancel')),
+                        child: const Text(Cancel)),
                   MaterialButton(
                       onPressed: () =>
                           completer(DialogResponse(confirmed: true)),
-                      child: const Text('Delete')),
+                      child: const Text(Delete)),
                 ],
               )
             ],

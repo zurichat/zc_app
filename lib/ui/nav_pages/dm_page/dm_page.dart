@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -21,7 +22,7 @@ class DmPage extends StatelessWidget {
             elevation: 0,
             backgroundColor: AppColors.zuriPrimaryColor,
             title: Text(
-              'Direct Messages',
+              DMs,
               style: GoogleFonts.lato(
                   fontWeight: FontWeight.w700,
                   fontSize: 20,

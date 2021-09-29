@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hng/app/app.logger.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -43,16 +44,18 @@ class ForgotPasswordOtpView extends StatelessWidget
                   ),
                   Container(
                     alignment: Alignment.center,
-                    child: Image.asset('assets/logo/zuri_chat_logo.png'),
+                    child: Image.asset(ZuriLogo),
                   ),
                   const SizedBox(
                     height: 24.0,
                   ),
                   const Center(
                     child: Text(
-                      'Forgot Password',
+                      ForgotPassword,
                       style: TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 20.0),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20.0,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -60,7 +63,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                   ),
                   const Center(
                     child: Text(
-                      'Enter the 4-digit OTP sent to your email',
+                      EnterOTP,
                     ),
                   ),
                   const SizedBox(
@@ -69,7 +72,9 @@ class ForgotPasswordOtpView extends StatelessWidget
                   Form(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 8.0, horizontal: 30),
+                        vertical: 8.0,
+                        horizontal: 30,
+                      ),
                       child: PinCodeTextField(
                         appContext: context,
                         pastedTextStyle: const TextStyle(
@@ -128,13 +133,13 @@ class ForgotPasswordOtpView extends StatelessWidget
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: 'Didn\'t receive any code? ',
+                            text: DidntRecieveOTP,
                             style: AppTextStyles.normalText.copyWith(
                               color: Colors.black,
                             ),
                           ),
                           TextSpan(
-                            text: 'Resend',
+                            text: Resend,
                             style: AppTextStyles.body2Bold.copyWith(
                               color: Colors.blue,
                               decoration: TextDecoration.underline,
@@ -154,7 +159,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                         // onPressed: () => model.navigateToNewPassword(),
                         onPressed: () {  },
                         child: Text(
-                          'Continue',
+                          Continue,
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,

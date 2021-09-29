@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../general_widgets/custom_text.dart';
@@ -33,8 +34,7 @@ class _SelectThemeDialogState extends State<SelectThemeDialog> {
             children: [
               const Align(
                 alignment: Alignment.topLeft,
-                child:
-                    CustomText(text: 'Dark mode', fontWeight: FontWeight.bold),
+                child: CustomText(text: DarkMode, fontWeight: FontWeight.bold),
               ),
               Flexible(
                 fit: FlexFit.loose,
@@ -63,11 +63,11 @@ class _SelectThemeDialogState extends State<SelectThemeDialog> {
                   MaterialButton(
                       onPressed: () =>
                           widget.completer(DialogResponse(confirmed: false)),
-                      child: const Text('CANCEL')),
+                      child: const Text(Cancel)),
                   MaterialButton(
                       onPressed: () => widget.completer(DialogResponse(
                           data: _currentThemeValue, confirmed: true)),
-                      child: const Text('SET')),
+                      child: const Text(Set)),
                 ],
               )
             ],
