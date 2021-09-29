@@ -157,6 +157,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                       widthFactor: 1.0,
                       child: ElevatedButton(
                         // onPressed: () => model.navigateToNewPassword(),
+                        onPressed: () {  },
                         child: Text(
                           Continue,
                           style: TextStyle(
@@ -170,7 +171,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                               const EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: const Color(0xff00B87C),
                         ),
-                        onPressed: () => model.verifyOtpCode(),
+                        // onPressed: () => model.verifyOtpCode(),
                       ),
                     ),
                   ),

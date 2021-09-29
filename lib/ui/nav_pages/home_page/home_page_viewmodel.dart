@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/constants/app_strings.dart';
@@ -132,6 +131,7 @@ class HomePageViewModel extends StreamViewModel {
     setBusy(true);
 
     List? channelsList = await channelsApiService.getActiveDms();
+
     channelsList.forEach(
       (data) {
         homePageList.add(
@@ -146,6 +146,7 @@ class HomePageViewModel extends StreamViewModel {
         );
       },
     );
+
 
     //Todo: add channels implementation
 
@@ -230,7 +231,7 @@ class HomePageViewModel extends StreamViewModel {
     NavigationService().navigateTo(Routes.channelList);
   }
 
-  onJumpToScreen() {
+  void onJumpToScreen() {
     navigationService.navigateTo(Routes.dmJumpToView);
   }
 

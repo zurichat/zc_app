@@ -1,4 +1,3 @@
-import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -26,14 +25,14 @@ class YouPageViewModel extends BaseViewModel {
   }
 
   void toggleStatus() {
-    currentStatus == Active
+    currentStatus == 'Active'
         ? () {
-            currentStatus = Away;
-            otherStatus = Active;
+            currentStatus = 'Away';
+            otherStatus = 'active';
           }()
         : () {
-            currentStatus = Active;
-            otherStatus = Away;
+            currentStatus = 'Active';
+            otherStatus = 'away';
           }();
     notifyListeners();
   }
@@ -46,10 +45,11 @@ class YouPageViewModel extends BaseViewModel {
     var sheetResponse = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.user,
       isScrollControlled: true,
-      title: BottomSheetTitle,
-      description: BottomSheetDesc,
-      mainButtonTitle: BSheetMainBtn,
-      secondaryButtonTitle: BSheetSecBtn,
+      title: 'This is a floating bottom sheet',
+      description:
+          'This sheet is a custom built bottom sheet UI that allows you to show it from any service or viewmodel.',
+      mainButtonTitle: 'Awesome!',
+      secondaryButtonTitle: 'This is cool',
     );
 
     log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');

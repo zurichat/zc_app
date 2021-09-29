@@ -1,162 +1,108 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
-import 'package:stacked/stacked.dart';
-
+import 'package:hng/ui/view/channel/channel_info/widgets/newRowTile.dart';
 import '../../../../shared/colors.dart';
-import 'textstyles.dart';
 
 // ignore: must_be_immutable
 class ThirdSection extends StatelessWidget {
-   Function goToMembersListScreen;
-    final int  membersNumber;
-   ThirdSection({
-     required this.goToMembersListScreen,
-   required this.membersNumber
-   });
+  ThirdSection(this.model, this.numberOfMembers, this.channelDetail, this.channelMembers);
+  final numberOfMembers;
+  final channelDetail;
+  final channelMembers;
+  final ChannelInfoViewModel model;
+
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<ChannelInfoViewModel>.reactive(
-      viewModelBuilder: () => ChannelInfoViewModel(),
-      builder: (context, model, child) => Container(
-        width: MediaQuery.of(context).size.width,
-        alignment: Alignment.center,
-        margin: const EdgeInsets.only(right: 5, left: 5, bottom: 15),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(2),
-            border: Border.all(width: 1.0, color: AppColors.borderColor)),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 9,
-                    top: 19,
-                  ),
-                  child: const Icon(
-                    Icons.group_outlined,
-                    color: AppColors.deepBlackColor,
-                    size: 28,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 11,
-                    top: 19,
-                  ),
-                  child: GestureDetector(
-                    onTap: () {
-                      
-                      goToMembersListScreen();
-                      // model.navigatoToMembersList();
-                    },
-                    child: Text(
-                      "$membersNumber members",
-                      style: descriptionStyle(),
-                    ),
-                  ),
-                ),
-              ],
+    return Container(
+      height: 284.h,
+      width: 395.w,
+      alignment: Alignment.center,
+      padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6.r),
+          border: Border.all(width: 1.w, color: AppColors.borderColor),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5.r,
+              blurRadius: 6.r,
+              offset: Offset(0, 3.h), // changes position of shadow
             ),
-            Divider(
-              thickness: 0.5,
-              color: AppColors.deepBlackColor.withOpacity(0.5),
-              indent: 53,
-              endIndent: 33,
-            ),
-            Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 9,
-                    top: 13,
-                  ),
-                  child: const Icon(
-                    Icons.person_add_alt_1_outlined,
-                    color: AppColors.deepBlackColor,
-                    size: 28,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 11,
-                    top: 13,
-                  ),
-                  child: Text(
-                    'Add People',
-                    style: descriptionStyle(),
-                  ),
-                ),
-              ],
-            ),
-            Divider(
-              thickness: 0.5,
-              color: AppColors.deepBlackColor.withOpacity(0.5),
-              indent: 53,
-              endIndent: 33,
-            ),
-            Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 9,
-                    top: 13,
-                  ),
-                  child: const Icon(
-                    Icons.dashboard_outlined,
-                    color: AppColors.deepBlackColor,
-                    size: 28,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 11,
-                    top: 13,
-                  ),
-                  child: Text(
-                    'Plugins (1)',
-                    style: descriptionStyle(),
-                  ),
-                ),
-              ],
-            ),
-            Divider(
-              thickness: 0.5,
-              color: AppColors.deepBlackColor.withOpacity(0.5),
-              indent: 53,
-              endIndent: 33,
-            ),
-            Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 9,
-                    top: 13,
-                    bottom: 10,
-                  ),
-                  child: const Icon(
-                    Icons.phone_outlined,
-                    color: AppColors.deepBlackColor,
-                    size: 28,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(
-                    left: 11,
-                    top: 19,
-                    bottom: 10,
-                  ),
-                  child: Text(
-                    'Start a call',
-                    style: descriptionStyle(),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+          ]),
+      child: Column(
+        children: [
+          InkWell(
+              onTap: (){
+                model.navigateToMembersList(channelMembers, channelDetail);
+              },
+              child: NewRowTile(
+                icon: Icons.group_outlined,
+                text: "Members ($numberOfMembers)"
+              )
+          ),
+
+          SizedBox(height: 10.h),
+
+          Divider(
+            thickness: 0.5.h,
+            color: AppColors.deepBlackColor.withOpacity(0.5),
+            indent: 66.6.w,
+            // endIndent: 33,
+          ),
+
+          SizedBox(height: 18.h),
+
+          InkWell(
+              onTap: (){},
+              child: NewRowTile(
+                icon: Icons.person_add_alt_1_outlined,
+                text: 'Add People'
+              )
+          ),
+
+          SizedBox(height: 10.h),
+
+          Divider(
+            thickness: 0.5.h,
+            color: AppColors.deepBlackColor.withOpacity(0.5),
+            indent: 66.6.w,
+            // endIndent: 33,
+          ),
+
+          SizedBox(height: 18.h),
+
+          InkWell(
+              onTap: (){},
+              child: NewRowTile(
+                  icon: Icons.dashboard_outlined,
+                  text: 'Plugins (1)'
+              )
+          ),
+
+          SizedBox(height: 10.h),
+
+          Divider(
+            thickness: 0.5.h,
+            color: AppColors.deepBlackColor.withOpacity(0.5),
+            indent: 66.6.w,
+            // endIndent: 33,
+          ),
+
+          SizedBox(height: 18.h),
+
+          InkWell(
+              onTap: (){},
+              child: NewRowTile(
+                  icon: Icons.phone_outlined,
+                  text: 'Start a call'
+              )
+          ),
+
+        ],
       ),
     );
   }

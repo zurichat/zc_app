@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget searchBar(HomePageViewModel vmodel) {
+  Widget searchBar(vmodel) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
       child: GestureDetector(
