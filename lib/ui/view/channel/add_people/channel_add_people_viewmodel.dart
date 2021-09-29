@@ -1,6 +1,5 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/models/user_search_model.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart';
 import 'package:hng/services/local_storage_services.dart';

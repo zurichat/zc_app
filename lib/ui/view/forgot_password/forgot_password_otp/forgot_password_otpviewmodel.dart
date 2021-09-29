@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/shared/shared.dart';

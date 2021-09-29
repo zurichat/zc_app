@@ -1,7 +1,6 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/models/start_dm_models.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/constants.dart';

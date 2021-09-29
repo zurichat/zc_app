@@ -1,7 +1,6 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/models/profile_model.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
