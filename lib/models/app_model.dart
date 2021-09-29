@@ -6,6 +6,20 @@ part 'app_model.freezed.dart';
 part 'app_model.g.dart';
 
 
+///Freezed and serialized model for adding people to channel
+@freezed
+class AddPeopleToChannel with _$AddPeopleToChannel {
+
+  factory AddPeopleToChannel({
+    required String? id,
+    required String? roleId,
+    required String? isAdmin,
+  }) = _AddPeopleToChannel;
+
+  factory AddPeopleToChannel.fromJson(Map<String, dynamic> json) => _$AddPeopleToChannelFromJson(json);}
+
+
+///Freezed and serialized model for ApiResponse
 @freezed
 class ApiResponse with _$ApiResponse {
    factory ApiResponse({
@@ -15,11 +29,11 @@ class ApiResponse with _$ApiResponse {
    }) = _ApiResponse;
 
 
-   factory ApiResponse.fromJson(Map<String, dynamic>json) =>_$ApiResponseFromJson(json);
+   factory ApiResponse.fromJson(Map<String, dynamic>json) =>_$ApiResponseFromJson(json);}
 
 
-}
 
+///Freezed and serialized model for channel members
 @freezed
 class ChannelMembersModel with _$ChannelMembersModel{
   factory ChannelMembersModel({
@@ -30,16 +44,20 @@ class ChannelMembersModel with _$ChannelMembersModel{
   factory ChannelMembersModel.fromJson(Map<String, dynamic>json)=> _$ChannelMembersModelFromJson(json);
 }
 
-  @freezed
+
+///Freezed and serialized model for creating channel
+@freezed
 class ChannelModel with _$ChannelModel {
   factory ChannelModel({
     required int? id,
     required String? name,
   }) = _ChannelModel;
 
-  factory ChannelModel.fromJson(Map<String, dynamic> json) => _$ChannelModelFromJson(json);
-  }
+  factory ChannelModel.fromJson(Map<String, dynamic> json) => _$ChannelModelFromJson(json);}
 
+
+
+///Freezed and serialized model for searching channel
 @freezed
 class ChannelsSearch with _$ChannelsSearch {
    factory ChannelsSearch({
@@ -48,10 +66,11 @@ class ChannelsSearch with _$ChannelsSearch {
     required String?name,
   }) = _ChannelsSearch;
 
-  factory ChannelsSearch.fromJson(Map<String, dynamic> json) => _$ChannelsSearchFromJson(json);
+  factory ChannelsSearch.fromJson(Map<String, dynamic> json) => _$ChannelsSearchFromJson(json);}
 
-}
 
+
+///Freezed and serialized model for organization
 @freezed
 class OrganizationModel with _$OrganizationModel {
    factory OrganizationModel({
@@ -68,6 +87,8 @@ class OrganizationModel with _$OrganizationModel {
 
   }
 
+
+///Freezed and serialized model for creating user profile
 @freezed
 class ProfileModel with _$ProfileModel {
    factory ProfileModel({
@@ -84,6 +105,9 @@ class ProfileModel with _$ProfileModel {
   factory ProfileModel.fromJson(Map<String, dynamic> json)  => _$ProfileModelFromJson(json);
   }
 
+
+
+///Freezed and serialized model for user sign_up data
 @freezed
 class SignUpDataModel with _$SignUpDataModel{
   factory SignUpDataModel({
@@ -96,11 +120,11 @@ class SignUpDataModel with _$SignUpDataModel{
     required String?phoneNumber,
   }) = _SignUpDataModel;
 
-  factory SignUpDataModel.fromJson(Map<String, dynamic> json) => _$SignUpDataModelFromJson(json);
+  factory SignUpDataModel.fromJson(Map<String, dynamic> json) => _$SignUpDataModelFromJson(json);}
 
 
-  }
 
+///Freezed and serialized model for starting a direct message
 @freezed
 class StartDmModel with _$StartDmModel {
   factory StartDmModel({
@@ -123,6 +147,9 @@ class StartDmModel with _$StartDmModel {
   factory StartDmModel.fromJson(Map<String, dynamic>json) => StartDmModel.fromJson(json);
   }
 
+
+
+///Freezed and serialized model for static user
 @freezed
 class StaticUserModel with _$StaticUserModel{
   factory StaticUserModel({
@@ -138,6 +165,8 @@ class StaticUserModel with _$StaticUserModel{
   }
 
 
+
+///Freezed and serialized model for todo
 @freezed
 class TodoModel with _$TodoModel {
   factory TodoModel({
@@ -151,6 +180,9 @@ class TodoModel with _$TodoModel {
 
   }
 
+
+
+///Freezed and serialized model for creating new user
 @freezed
 class UserModel with _$UserModel {
   factory UserModel({
@@ -169,6 +201,8 @@ class UserModel with _$UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
   }
 
+
+///Freezed and serialized model for user thread post
 @freezed
 class UserThreadPost with _$UserThreadPost {
 
@@ -188,6 +222,8 @@ class UserThreadPost with _$UserThreadPost {
   }
 
 
+
+///Freezed and serialized model for post emojis
 @freezed
 class PostEmojis with _$PostEmojis{
 
@@ -200,6 +236,8 @@ class PostEmojis with _$PostEmojis{
   factory PostEmojis.fromJson(Map<String, dynamic> json) => _$PostEmojisFromJson(json);
   }
 
+
+///Freezed and serialized model for user post
 @freezed
 class UserPost with _$UserPost{
 
@@ -221,6 +259,9 @@ class UserPost with _$UserPost{
   factory UserPost.fromJson(Map<String, dynamic> json) => _$UserPostFromJson(json);
 }
 
+
+
+///Freezed and serialized model for new user
 @freezed
 class NewUser with _$NewUser {
 
@@ -229,6 +270,9 @@ class NewUser with _$NewUser {
   factory NewUser.fromJson(Map<String, dynamic> json) => _$NewUserFromJson(json);
 }
 
+
+
+///Freezed and serialized model for user search
 @freezed
 class UserSearch with _$UserSearch {
   factory UserSearch({
@@ -258,6 +302,9 @@ class UserSearch with _$UserSearch {
   factory UserSearch.fromJson(Map<String, dynamic> json) => _$UserSearchFromJson(json);
 }
 
+
+
+///Freezed and serialized model for main members
 @freezed
 class MainMembers with _$MainMembers{
 

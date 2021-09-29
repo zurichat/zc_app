@@ -6,6 +6,23 @@ part of 'app_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$_AddPeopleToChannel _$_$_AddPeopleToChannelFromJson(
+    Map<String, dynamic> json) {
+  return _$_AddPeopleToChannel(
+    id: json['id'] as String?,
+    roleId: json['roleId'] as String?,
+    isAdmin: json['isAdmin'] as String?,
+  );
+}
+
+Map<String, dynamic> _$_$_AddPeopleToChannelToJson(
+        _$_AddPeopleToChannel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'roleId': instance.roleId,
+      'isAdmin': instance.isAdmin,
+    };
+
 _$_ApiResponse _$_$_ApiResponseFromJson(Map<String, dynamic> json) {
   return _$_ApiResponse(
     statusCode: json['statusCode'] as int?,

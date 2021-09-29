@@ -12,6 +12,201 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+AddPeopleToChannel _$AddPeopleToChannelFromJson(Map<String, dynamic> json) {
+  return _AddPeopleToChannel.fromJson(json);
+}
+
+/// @nodoc
+class _$AddPeopleToChannelTearOff {
+  const _$AddPeopleToChannelTearOff();
+
+  _AddPeopleToChannel call(
+      {required String? id,
+      required String? roleId,
+      required String? isAdmin}) {
+    return _AddPeopleToChannel(
+      id: id,
+      roleId: roleId,
+      isAdmin: isAdmin,
+    );
+  }
+
+  AddPeopleToChannel fromJson(Map<String, Object> json) {
+    return AddPeopleToChannel.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $AddPeopleToChannel = _$AddPeopleToChannelTearOff();
+
+/// @nodoc
+mixin _$AddPeopleToChannel {
+  String? get id => throw _privateConstructorUsedError;
+  String? get roleId => throw _privateConstructorUsedError;
+  String? get isAdmin => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AddPeopleToChannelCopyWith<AddPeopleToChannel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddPeopleToChannelCopyWith<$Res> {
+  factory $AddPeopleToChannelCopyWith(
+          AddPeopleToChannel value, $Res Function(AddPeopleToChannel) then) =
+      _$AddPeopleToChannelCopyWithImpl<$Res>;
+  $Res call({String? id, String? roleId, String? isAdmin});
+}
+
+/// @nodoc
+class _$AddPeopleToChannelCopyWithImpl<$Res>
+    implements $AddPeopleToChannelCopyWith<$Res> {
+  _$AddPeopleToChannelCopyWithImpl(this._value, this._then);
+
+  final AddPeopleToChannel _value;
+  // ignore: unused_field
+  final $Res Function(AddPeopleToChannel) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? roleId = freezed,
+    Object? isAdmin = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      roleId: roleId == freezed
+          ? _value.roleId
+          : roleId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isAdmin: isAdmin == freezed
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$AddPeopleToChannelCopyWith<$Res>
+    implements $AddPeopleToChannelCopyWith<$Res> {
+  factory _$AddPeopleToChannelCopyWith(
+          _AddPeopleToChannel value, $Res Function(_AddPeopleToChannel) then) =
+      __$AddPeopleToChannelCopyWithImpl<$Res>;
+  @override
+  $Res call({String? id, String? roleId, String? isAdmin});
+}
+
+/// @nodoc
+class __$AddPeopleToChannelCopyWithImpl<$Res>
+    extends _$AddPeopleToChannelCopyWithImpl<$Res>
+    implements _$AddPeopleToChannelCopyWith<$Res> {
+  __$AddPeopleToChannelCopyWithImpl(
+      _AddPeopleToChannel _value, $Res Function(_AddPeopleToChannel) _then)
+      : super(_value, (v) => _then(v as _AddPeopleToChannel));
+
+  @override
+  _AddPeopleToChannel get _value => super._value as _AddPeopleToChannel;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? roleId = freezed,
+    Object? isAdmin = freezed,
+  }) {
+    return _then(_AddPeopleToChannel(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      roleId: roleId == freezed
+          ? _value.roleId
+          : roleId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isAdmin: isAdmin == freezed
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_AddPeopleToChannel implements _AddPeopleToChannel {
+  _$_AddPeopleToChannel(
+      {required this.id, required this.roleId, required this.isAdmin});
+
+  factory _$_AddPeopleToChannel.fromJson(Map<String, dynamic> json) =>
+      _$_$_AddPeopleToChannelFromJson(json);
+
+  @override
+  final String? id;
+  @override
+  final String? roleId;
+  @override
+  final String? isAdmin;
+
+  @override
+  String toString() {
+    return 'AddPeopleToChannel(id: $id, roleId: $roleId, isAdmin: $isAdmin)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _AddPeopleToChannel &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.roleId, roleId) ||
+                const DeepCollectionEquality().equals(other.roleId, roleId)) &&
+            (identical(other.isAdmin, isAdmin) ||
+                const DeepCollectionEquality().equals(other.isAdmin, isAdmin)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(roleId) ^
+      const DeepCollectionEquality().hash(isAdmin);
+
+  @JsonKey(ignore: true)
+  @override
+  _$AddPeopleToChannelCopyWith<_AddPeopleToChannel> get copyWith =>
+      __$AddPeopleToChannelCopyWithImpl<_AddPeopleToChannel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_AddPeopleToChannelToJson(this);
+  }
+}
+
+abstract class _AddPeopleToChannel implements AddPeopleToChannel {
+  factory _AddPeopleToChannel(
+      {required String? id,
+      required String? roleId,
+      required String? isAdmin}) = _$_AddPeopleToChannel;
+
+  factory _AddPeopleToChannel.fromJson(Map<String, dynamic> json) =
+      _$_AddPeopleToChannel.fromJson;
+
+  @override
+  String? get id => throw _privateConstructorUsedError;
+  @override
+  String? get roleId => throw _privateConstructorUsedError;
+  @override
+  String? get isAdmin => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$AddPeopleToChannelCopyWith<_AddPeopleToChannel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 ApiResponse _$ApiResponseFromJson(Map<String, dynamic> json) {
   return _ApiResponse.fromJson(json);
 }
