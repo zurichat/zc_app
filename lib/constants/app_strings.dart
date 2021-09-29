@@ -25,6 +25,9 @@ const String RequestOTPEndpoint = 'account/request-password-reset-code';
 const String VerifyOTPEndpoint = '/account/verify-reset-password';
 const String VerifyAcctEndpoint = 'account/verify-account';
 
+/// Full endpoint is users/{userID}
+const String UserDataEndpoint = 'users/';
+
 //Auth Screens
 const String SignIn = 'Sign In';
 const String WelcomeSignIn = 'Welcome! Sign in to continue';
@@ -135,6 +138,11 @@ const String Emoji3DialogData = '3';
 const String Emoji4DialogData = '4';
 const String Emoji5DialogData = '5';
 const String Emoji6DialogData = '6';
+const String Msg = 'Message';
+const String EditProfile = 'Edit Profile';
+const String Number = 'Mobile Number';
+const String Status = 'Status';
+const String DisplayName = 'Display Name';
 
 //----------------
 //Images and Logos
@@ -169,10 +177,13 @@ const String BottomSheetDesc =
 const String BottomSheetTitle = 'This is a floating bottom sheet';
 const String BSheetMainBtn = 'Awesome!';
 const String BSheetSecBtn = 'This is cool';
-
+const String PaulImoke = 'Paul Imoke Eke';
 const String Okay = 'Okay';
 const String Date = 'August 31 at 9:09 PM';
 const String AbdSalam = 'Abd_salam';
 const String Random = 'Abd_salam';
 const String NoWahala = 'No Wahala';
-// const String     =     ;
+const String sampleNumber = '+2347023456789';
+const String EmailPlaceholder = 'myemail@mail.com';
+const String Track = 'What I do';
+const String MobileDev = 'Mobile Dev';
