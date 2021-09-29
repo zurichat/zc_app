@@ -21,7 +21,6 @@ class SecondSection extends StatelessWidget {
         children: [
           Row(
             children: [
-              // ignore: avoid_unnecessary_containers
               Container(
                 margin: const EdgeInsets.only(
                   left: 9,
@@ -33,7 +32,6 @@ class SecondSection extends StatelessWidget {
                   size: 28,
                 ),
               ),
-
               Container(
                 margin: const EdgeInsets.only(
                   left: 11,

@@ -25,7 +25,12 @@ class SplashscreenViewModel extends BaseViewModel {
         } else if (
         storage.getBool(StorageKeys.registeredNotverifiedOTP) == true) {
           navigation.navigateTo(Routes.oTPView);
-        } else {
+        }
+         else if (
+        storage.getString(StorageKeys.currentSessionToken)!= null) {
+          navigation.navigateTo(Routes.navBarView);
+        } 
+        else {
           navigation.navigateTo(Routes.loginView);
         }
         // navigation.navigateTo(Routes.onboardingView);

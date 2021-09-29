@@ -39,11 +39,7 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
     return _TextAndIcon(
       text: 'Add channels',
       unread: false,
-      onTap: () {
-        //TODO - testing, remove later
-        NavigationService().navigateTo(Routes.newChannel);
-        // Navigate to add channels screens
-      },
+      onTap: () => vmodel.navigateToCreateChannel(),
       icon: SvgIcon(
         svgIcon: SvgAssets.addChannels,
       ),

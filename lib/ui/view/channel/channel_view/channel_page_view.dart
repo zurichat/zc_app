@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_reply_box.dart';
 import 'package:stacked/stacked.dart';
@@ -59,7 +60,12 @@ class ChannelPageView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 5),
                 child: IconButton(
-                    onPressed: () {}, icon: Icon(Icons.info_outlined)),
+                  onPressed: () => model.navigateToChannelInfoScreen(
+                    membersCount!,
+                    ChannelModel(id: channelId!, name: channelname!),
+                  ),
+                  icon: Icon(Icons.info_outlined),
+                ),
               ),
             ],
           ),
@@ -87,7 +93,9 @@ class ChannelPageView extends StatelessWidget {
                   ),
                 ),
               ),
-              ChannelReplyBox(channelId: channelId),
+              Flexible(
+                child: ChannelReplyBox(channelId: channelId),
+              ),
             ],
           ),
         );

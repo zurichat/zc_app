@@ -16,7 +16,7 @@ import 'widgets/textstyles.dart';
 import 'widgets/third_section.dart';
 
 // ignore: must_be_immutable
-class ChannelInfoView extends StatefulWidget {
+class ChannelInfoView extends StatelessWidget {
   final int numberOfMembers;
   List<ChannelMembermodel> channelMembers;
   ChannelModel channelDetail;
@@ -25,51 +25,42 @@ class ChannelInfoView extends StatefulWidget {
       required this.channelMembers,
       required this.channelDetail});
 
-  @override
-  _ChannelInfoViewState createState() => _ChannelInfoViewState();
-}
-
-class _ChannelInfoViewState extends State<ChannelInfoView> {
-  @override
+ @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
     return ViewModelBuilder<ChannelInfoViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(60), child: customAppBar()),
-        // ignore: avoid_unnecessary_containers
+          preferredSize: const Size.fromHeight(60),
+          child: customAppBar(),
+        ),
         body: SafeArea(
           child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FirstSection(channelName: widget.channelDetail.name),
-
-                GestureDetector(
-                  onTap: model.navigateToEditChannel,
-                  //child:  EditButton(),
-                ),
-
+                FirstSection(channelName: channelDetail.name),
+                // GestureDetector(
+                //   onTap: model.navigateToEditChannel,
+                //   //child:  EditButton(),
+                // ),
                 const SecondSection(),
-
                 Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 19),
-                    child: Text(
-                      'You wont\'t  recieve any messages from a muted channel',
-                      style: faintTextStyle(),
-                    )),
-//Third Section
-
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 19),
+                  child: Text(
+                    'You wont\'t  recieve any messages from a muted channel',
+                    style: faintTextStyle(),
+                  ),
+                ),
                 ThirdSection(
-                    goToMembersListScreen: () {
-                      model.navigateToMembersList(
-                          widget.channelMembers, widget.channelDetail);
-                    },
-                    membersNumber: widget.numberOfMembers),
-
+                  goToMembersListScreen: () {
+                    model.navigateToMembersList(
+                        channelMembers, channelDetail);
+                  },
+                  membersNumber: numberOfMembers,
+                ),
                 Container(
                   margin:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
@@ -78,10 +69,8 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                     style: faintTextStyle(),
                   ),
                 ),
-
                 const FourthSection(),
                 const FifthSection(),
-
                 Container(
                   margin:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
@@ -90,8 +79,7 @@ class _ChannelInfoViewState extends State<ChannelInfoView> {
                     style: faintTextStyle(),
                   ),
                 ),
-
-                const SixthSection(),
+                SixthSection(channelDetail: channelDetail),
               ],
             ),
           ),

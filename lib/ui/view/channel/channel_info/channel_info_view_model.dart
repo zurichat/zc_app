@@ -1,5 +1,8 @@
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
+import 'package:hng/services/user_service.dart';
+import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/ui/view/channel/channel_members/channel_members_list.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -14,6 +17,8 @@ import '../../../../utilities/enums.dart';
 class ChannelInfoViewModel extends BaseViewModel {
   final snackbar = locator<SnackbarService>();
   final _apiService = HttpApiService(channelsBaseUrl);
+  final _channelApi = locator<ChannelsApiService>();
+  final _userService = locator<UserService>();
   final _navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _dialogService = locator<DialogService>();
@@ -75,6 +80,34 @@ class ChannelInfoViewModel extends BaseViewModel {
         variant: SnackbarType.failure,
         message: response?.data['message'] ??
             'Error encountered during channel update.',
+      );
+    }
+  }
+
+  Future<void> deleteChannel(ChannelModel channel) async {
+    try {
+      bool res = await _channelApi.deleteChannel(
+          _userService.currentOrgId, channel.id);
+      if (res) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.success,
+          message: 'Channels ${channel.name} deleted successful',
+        );
+
+        navigationService.popRepeated(2);
+      } else {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: 'Delete organization failed',
+        );
+      }
+    } catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.toString(),
       );
     }
   }

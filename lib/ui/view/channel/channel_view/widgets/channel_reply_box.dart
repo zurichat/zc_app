@@ -22,57 +22,70 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Divider(height: 0, color: Color(0xFF999999)),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 56,
-                    margin: EdgeInsets.only(left: 13.0),
-                    alignment: Alignment.centerLeft,
-                    child: FocusScope(
-                      child: Focus(
-                        onFocusChange: (focus) {
-                          if (focus) {
-                            model.onMessageFieldTap();
-                          } else {
-                            model.onMessageFocusChanged();
-                          }
-                        },
-                        child: TextField(
-                          controller: _messageController,
-                          expands: true,
-                          maxLines: null,
-                          textAlignVertical: TextAlignVertical.center,
-                          decoration: InputDecoration.collapsed(
+            Flexible(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: model.isExpanded ? double.maxFinite : 56,
+                      margin: EdgeInsets.only(left: 13.0),
+                      alignment: Alignment.centerLeft,
+                      child: FocusScope(
+                        child: Focus(
+                          onFocusChange: (focus) {
+                            if (focus) {
+                              model.onMessageFieldTap();
+                            } else {
+                              model.onMessageFocusChanged();
+                            }
+                          },
+                          child: TextField(
+                            controller: _messageController,
+                            expands: false,
+                            maxLines: model.isExpanded
+                                ? double.maxFinite.toInt()
+                                : null,
+                            minLines: model.isExpanded ? 1 : null,
+                            textAlignVertical: TextAlignVertical.center,
+                            decoration: InputDecoration.collapsed(
                               hintText: 'Add a Reply',
-                              hintStyle: AppTextStyles.faintBodyText),
+                              hintStyle: AppTextStyles.faintBodyText,
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Visibility(
-                  visible: !model.isVisible,
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(
-                          Icons.camera_alt_outlined,
-                          color: AppColors.darkGreyColor,
+                  Visibility(
+                    visible: !model.isVisible,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            Icons.camera_alt_outlined,
+                            color: AppColors.darkGreyColor,
+                          ),
+                          onPressed: () {},
                         ),
-                        onPressed: () {},
+                        IconButton(
+                          icon: Icon(
+                            Icons.attach_file_outlined,
+                            color: AppColors.darkGreyColor,
+                          ),
+                          onPressed: () {},
+                        )
+                      ],
+                    ),
+                    replacement: IconButton(
+                      onPressed: () => model.toggleExpanded(),
+                      icon: Icon(
+                        Icons.zoom_out_map,
+                        color: AppColors.darkGreyColor,
                       ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.attach_file_outlined,
-                          color: AppColors.darkGreyColor,
-                        ),
-                        onPressed: () {},
-                      )
-                    ],
+                    ),
                   ),
-                )
-              ],
+                ],
+              ),
             ),
             Visibility(
                 visible: model.isVisible,
