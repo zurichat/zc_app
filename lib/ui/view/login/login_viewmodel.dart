@@ -1,3 +1,4 @@
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -15,8 +16,10 @@ class LoginViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
-  final _apiService = HttpApiService(coreBaseUrl);
+  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
   final _connectivityService = locator<ConnectivityService>();
+     final storageService = locator<SharedPreferenceLocalStorage>();
+   String? get token => storageService.getString(StorageKeys.currentSessionToken);
 
   bool isLoading = false;
 
@@ -64,7 +67,7 @@ class LoginViewModel extends FormViewModel {
       return;
     }
     final loginData = {'email': emailValue, 'password': passwordValue};
-    final response = await _apiService.post(endpoint, data: loginData);
+    final response = await _apiService.post(endpoint, body: loginData, token: token);
     loading(false);
 
     //saving user details to storage on request success

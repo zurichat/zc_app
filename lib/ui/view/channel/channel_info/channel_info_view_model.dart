@@ -1,6 +1,7 @@
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/ui/view/channel/channel_members/channel_members_list.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -13,7 +14,7 @@ import '../../../../utilities/enums.dart';
 
 class ChannelInfoViewModel extends BaseViewModel {
   final snackbar = locator<SnackbarService>();
-  final _apiService = HttpApiService(channelsBaseUrl);
+  final _apiService = ZuriApi(baseUrl: channelsBaseUrl);
   final _navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _dialogService = locator<DialogService>();

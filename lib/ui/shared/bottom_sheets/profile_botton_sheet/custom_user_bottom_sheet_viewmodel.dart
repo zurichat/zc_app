@@ -1,3 +1,4 @@
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -12,7 +13,7 @@ import '../../../../utilities/storage_keys.dart';
 class CustomUserBottomSheetViewModel extends FutureViewModel {
   final _navigationService = locator<NavigationService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
-  final _apiService = HttpApiService(coreBaseUrl);
+  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
   UserModel? _userModel;
 
   void navigateToSetStatus() =>
@@ -27,7 +28,7 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
     final currentSessionToken =
         _storage.getString(StorageKeys.currentSessionToken);
     final response = await _apiService.get('users/$userID',
-        headers: {'Authorization': 'Bearer $currentSessionToken'});
+        token: currentSessionToken);
     _userModel = UserModel.fromJson(response!.data['data']);
     print(response);
   }

@@ -1,3 +1,4 @@
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -12,10 +13,11 @@ import 'otp_view.form.dart';
 
 class OTPViewModel extends FormViewModel {
   final _navigationService = NavigationService();
-  final _apiService = HttpApiService(coreBaseUrl);
+  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
   static final _storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
   static String? _storedOTP;
+   String? get token => _storage.getString(StorageKeys.currentSessionToken);
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -45,7 +47,7 @@ class OTPViewModel extends FormViewModel {
       };
       if (_storedOTP == otpValue) {
         final response =
-            await _apiService.post(endpoint, data: verificationData);
+            await _apiService.post(endpoint, body: verificationData, token: token);
         _loading(false);
         if (response?.statusCode == 200) {
           snackbar.showCustomSnackBar(

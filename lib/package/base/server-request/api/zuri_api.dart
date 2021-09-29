@@ -3,12 +3,14 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/app/app.logger.dart';
+import 'package:hng/models/api_response.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/models/channels_search_model.dart';
 import 'package:hng/models/organization_model.dart';
 import 'package:hng/models/user_search_model.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/utilities/api_utils.dart';
 import 'package:hng/utilities/failures.dart';
 
 import 'api.dart';
@@ -19,11 +21,11 @@ class ZuriApi implements Api {
   final dio = Dio();
   // ignore: close_sinks
   StreamController<String> controller = StreamController.broadcast();
-  ZuriApi() {
+  ZuriApi({baseUrl}) {
     dio.interceptors.add(DioInterceptor());
     dio.options.sendTimeout = 60000;
     dio.options.receiveTimeout = 60000;
-    dio.options.baseUrl = coreBaseUrl;
+    dio.options.baseUrl = baseUrl;
     log.i('Zuri Api constructed and DIO setup register');
   }
 
@@ -76,6 +78,19 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return response.data;
     } on DioError catch (e) {
+      log.w(e.toString());
+      handleApiError(e);
+    }
+  }
+
+    @override
+  Future<ApiResponse?> patch(String path,
+      {Map<String, dynamic>? body, String? token}) async {
+    try {
+      final res = await dio.patch(path,
+          data: body, options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return ApiUtils.toApiResponse(res);
+    }on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
     }
