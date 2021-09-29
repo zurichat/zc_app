@@ -15,6 +15,11 @@ class NotificationService {
 
   ///Listen to notification click by listening to stream and navigate to the
   ///respective screen by using the payload returned
+  ///```
+  ///  NotificationService().onNotificationTap.listen((payload) {
+  ///     //move to the respective screeen
+  ///  });
+  /// ```
   Stream<NotificationPayload> get onNotificationTap =>
       _notificationControl.stream;
 
