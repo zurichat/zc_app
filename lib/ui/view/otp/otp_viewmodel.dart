@@ -1,10 +1,10 @@
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
-import '../../../package/base/server-request/api/http_api.dart';
 import '../../../services/local_storage_services.dart';
 import '../../../utilities/constants.dart';
 import '../../../utilities/enums.dart';
@@ -13,10 +13,11 @@ import 'otp_view.form.dart';
 
 class OTPViewModel extends FormViewModel {
   final _navigationService = NavigationService();
-  final _apiService = HttpApiService(coreBaseUrl);
+  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
   static final _storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
   static String? _storedOTP;
+  String? get token => _storage.getString(StorageKeys.currentSessionToken);
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -45,8 +46,8 @@ class OTPViewModel extends FormViewModel {
         'code': otpValue,
       };
       if (_storedOTP == otpValue) {
-        final response =
-            await _apiService.post(VerifyAcctEndpoint, data: verificationData);
+        final response = await _apiService.post(VerifyAcctEndpoint,
+            body: verificationData, token: token);
         _loading(false);
         if (response?.statusCode == 200) {
           snackbar.showCustomSnackBar(
