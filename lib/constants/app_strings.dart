@@ -62,6 +62,7 @@ const String OTP = 'One-Time Password';
 const String BackToLogin = 'Back to login';
 
 //Home
+const String Home = 'Home';
 const String Unreads = 'Unreads';
 const String Channels = 'Channels';
 const String DMs = 'Direct Messages';
@@ -71,9 +72,49 @@ const String AddChannels = 'Add channels';
 const String Threads = 'Threads';
 
 //DM
+const String DmTitle = 'Dm';
 const String DM = 'Direct Message';
 const String Done = 'Done';
 const String UserSearchHint = 'To: Type the name of a person or channel';
+
+//Integrate
+const String Integrate = 'Integrate';
+const String Calendar = 'Holiday-Calender';
+const String Todo = 'To-do';
+const String Chess = 'Chess Room';
+const String Meeting = 'Meeting Room';
+const String Board = 'Notice Board';
+const String Music = 'Music Room';
+const String Shifts = 'Duty Shift';
+const String Deadlines = 'Important Deadline';
+
+//You
+const String You = 'You';
+const String PauseNotifs = 'Pause Notifications';
+const String Preferences = 'Preferences';
+const String Notifs = 'Notifications';
+const String ViewProfile = 'View Profile';
+const String SavedItems = 'Saved Items';
+const String SetStatusText = 'Set yourself as ';
+const String Away = 'away';
+const String StatusHintText = 'What\'s your status?';
+const String Active = 'Active';
+// const String            =                                    ;
+// const String            =                                    ;
+
+//Images and Logos
+const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
+const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
+const String GoogleLogo = 'assets/logo/Google_logo.png';
+const String statusBackground = 'assets/background/status.png';
+
+//Temporary Placeholders and Dummy Data
+const String DmUnreadAvatar =
+    'https://th.bing.com/th/id/OIP.QHG-JO3iI1u8VQjSkpO0HwHaLH?pid=ImgDet&rs=1';
+const String DmReadAvatar =
+    'https://th.bing.com/th/id/OIP.Obw6BUTUPdQGToOSCz5t8QHaHC?pid=ImgDet&w=549&h=522&rs=1';
+const String UserAvatar = 'assets/background/bga.png';
+
 const String Mark = 'Mark';
 const String Naza = 'Naza';
 const String OyinkanUA = 'OyinkanUA';
@@ -87,29 +128,13 @@ const String BusyBee = 'BusyBee';
 const String Abroad = 'Abroad';
 const String Kristie = 'Kristie';
 const String Kara = 'Kara';
+const String PaulEke = 'pauleke65';
+const String BottomSheetDesc =
+    'This sheet is a custom built bottom sheet UI that allows you to show it from any service or viewmodel.';
+const String BottomSheetTitle = 'This is a floating bottom sheet';
+const String BSheetMainBtn = 'Awesome!';
+const String BSheetSecBtn = 'This is cool';
 
-//Integrate
-const String Integrate = 'Integrate';
-const String Calendar = 'Holiday-Calender';
-const String Todo = 'To-do';
-const String Chess = 'Chess Room';
-const String Meeting = 'Meeting Room';
-const String Board = 'Notice Board';
-const String Music = 'Music Room';
-const String Shifts = 'Duty Shift';
-const String Deadlines = 'Important Deadline';
-
-//Images and Logos
-const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
-const String GoogleLogo = 'assets/logo/Google_logo.png';
-const String statusBackground = 'assets/background/status.png';
-
-//Temporary Placeholders
-const String DmUnreadAvatar =
-    'https://th.bing.com/th/id/OIP.QHG-JO3iI1u8VQjSkpO0HwHaLH?pid=ImgDet&rs=1';
-const String DmReadAvatar =
-    'https://th.bing.com/th/id/OIP.Obw6BUTUPdQGToOSCz5t8QHaHC?pid=ImgDet&w=549&h=522&rs=1';
-const String UserAvatar = 'assets/background/bga.png';
 // const String     =     ;
 // const String     =     ;
 // const String     =     ;

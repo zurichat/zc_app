@@ -1,3 +1,4 @@
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -11,10 +12,10 @@ class YouPageViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
 
-  String username = 'pauleke65';
-  String profileImage = 'assets/background/appBarLogo.png';
-  String currentStatus = 'Active';
-  String otherStatus = 'away';
+  String username = PaulEke;
+  String profileImage = ZuriAppbarLogo;
+  String currentStatus = Active;
+  String otherStatus = Away;
 
   Future editProfile() async {
     await _navigationService.navigateTo(Routes.editProfileView);
@@ -25,14 +26,14 @@ class YouPageViewModel extends BaseViewModel {
   }
 
   void toggleStatus() {
-    currentStatus == 'Active'
+    currentStatus == Active
         ? () {
-            currentStatus = 'Away';
-            otherStatus = 'active';
+            currentStatus = Away;
+            otherStatus = Active;
           }()
         : () {
-            currentStatus = 'Active';
-            otherStatus = 'away';
+            currentStatus = Active;
+            otherStatus = Away;
           }();
     notifyListeners();
   }
@@ -45,11 +46,10 @@ class YouPageViewModel extends BaseViewModel {
     var sheetResponse = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.user,
       isScrollControlled: true,
-      title: 'This is a floating bottom sheet',
-      description:
-          'This sheet is a custom built bottom sheet UI that allows you to show it from any service or viewmodel.',
-      mainButtonTitle: 'Awesome!',
-      secondaryButtonTitle: 'This is cool',
+      title: BottomSheetTitle,
+      description: BottomSheetDesc,
+      mainButtonTitle: BSheetMainBtn,
+      secondaryButtonTitle: BSheetSecBtn,
     );
 
     log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
