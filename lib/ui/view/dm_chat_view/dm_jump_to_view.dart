@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -38,50 +39,84 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                           SizedBox(
                             height: 40.h,
                             width: 361.w,
-                            child: TextField(
-                              controller: searchController,
+                            child: CustomTextField(
                               keyboardType: TextInputType.text,
-                              maxLines: 1,
+                              inputAction: TextInputAction.next,
+                              autoCorrect: false,
+                              obscureText: false,
                               onChanged: model.onChanged,
-                              decoration: InputDecoration(
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5.r)),
-                                  borderSide: BorderSide(
-                                      color: AppColors.borderColor,
-                                      width: 0.5.w,
-                                      style: BorderStyle.solid),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5.r)),
-                                  borderSide: BorderSide(
-                                      color: AppColors.borderColor,
-                                      width: 0.5.w,
-                                      style: BorderStyle.solid),
-                                ),
-                                prefixIcon: IconButton(
-                                  icon:
-                                      const Icon(Icons.arrow_back_ios_outlined),
-                                  iconSize: 18,
-                                  onPressed: () => model.navigateBack(),
-                                ),
-                                // isCollapsed: true,
-                                contentPadding: const EdgeInsets.only(
-                                  top: 16.0,
-                                  left: 8,
-                                  right: 8,
-                                ),
-                                hintText: 'Jump to...',
-                                hintStyle: TextStyle(
-                                  //TODO change to Brand Colors
-                                  color: const Color(0xffA1A9B3),
-                                  fontSize: 14.4.sp,
-                                  // height: 3.4.sp,
-                                  fontWeight: FontWeight.w400,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFF7B8794),
+                                  width: 0.2,
                                 ),
                               ),
+                              prefixIcon: IconButton(
+                                icon: const Icon(Icons.arrow_back_ios_outlined),
+                                iconSize: 18,
+                                onPressed: () => model.navigateBack(),
+                              ),
+                              isCollapsed: true,
+                              controller: searchController,
+                              hintText: 'Jump to...',
+                              hintStyle: TextStyle(
+                                //TODO change to Brand Colors
+                                color: const Color(0xffA1A9B3),
+                                fontSize: 14.4.sp,
+                                // height: 3.4.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              contentPadding: const EdgeInsets.only(
+                                top: 16.0,
+                                left: 8,
+                                right: 8,
+                              ),
                             ),
+
+                            // TextField(
+                            //   controller: searchController,
+                            //   keyboardType: TextInputType.text,
+                            //   maxLines: 1,
+                            //   onChanged: model.onChanged,
+                            //   decoration: InputDecoration(
+                            // focusedBorder: OutlineInputBorder(
+                            //       borderRadius:
+                            //           BorderRadius.all(Radius.circular(5.r)),
+                            //       borderSide: BorderSide(
+                            //           color: AppColors.borderColor,
+                            //           width: 0.5.w,
+                            //           style: BorderStyle.solid),
+                            //     ),
+                            //     border: OutlineInputBorder(
+                            //       borderRadius:
+                            //           BorderRadius.all(Radius.circular(5.r)),
+                            //       borderSide: BorderSide(
+                            //           color: AppColors.borderColor,
+                            //           width: 0.5.w,
+                            //           style: BorderStyle.solid),
+                            //     ),
+                            //     prefixIcon: IconButton(
+                            //       icon:
+                            //           const Icon(Icons.arrow_back_ios_outlined),
+                            //       iconSize: 18,
+                            //       onPressed: () => model.navigateBack(),
+                            //     ),
+                            //     // isCollapsed: true,
+                            //     contentPadding: const EdgeInsets.only(
+                            //       top: 16.0,
+                            //       left: 8,
+                            //       right: 8,
+                            //     ),
+                            //     hintText: 'Jump to...',
+                            //     hintStyle: TextStyle(
+                            //       //TODO change to Brand Colors
+                            //       color: const Color(0xffA1A9B3),
+                            //       fontSize: 14.4.sp,
+                            //       // height: 3.4.sp,
+                            //       fontWeight: FontWeight.w400,
+                            //     ),
+                            //   ),
+                            // ),
                           ),
                           SizedBox(
                             height: 24.h,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -81,30 +82,17 @@ class ForgotPasswordEmailView extends StatelessWidget
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Form(
-                        child: TextField(
-                          controller: forgotEmailController,
+                      CustomTextField(
                           keyboardType: TextInputType.emailAddress,
+                          inputAction: TextInputAction.next,
+                          autoCorrect: false,
                           obscureText: false,
-                          textInputAction: TextInputAction.done,
-                          autocorrect: true,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(3.0))),
-                            hintText: 'Name@gmail.com',
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5.0)),
-                              borderSide: BorderSide(
-                                color: AppColors.zuriPrimaryColor,
-                              ),
-                            ),
-                          ),
-                          // onChanged: model.submitEmail,
-                        ),
-                      ),
-
+                          controller: forgotEmailController,
+                          hintText: 'Name@gmail.com',
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(3.0)),
+                          )),
                       ////Changes
                       Padding(
                         padding: const EdgeInsets.only(left: 16.0),

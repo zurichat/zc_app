@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -53,16 +54,31 @@ class ChannelList extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15.0),
                         child: Center(
-                          child: TextField(
-                            decoration: InputDecoration(
-                                isDense: true,
-                                contentPadding: const EdgeInsets.all(8.8),
-                                labelText: 'Search for channel...',
-                                labelStyle:
-                                    const TextStyle(color: Color(0xffA1A9B3)),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10))),
+                          child: CustomTextField(
+                            keyboardType: TextInputType.text,
+                            inputAction: TextInputAction.search,
+                            autoCorrect: false,
+                            obscureText: false,
+                            //controller: newPasswordController,
+                            labelText: 'Search for channel...',
+                            labelStyle:
+                                const TextStyle(color: Color(0xffA1A9B3)),
+                            isDense: true,
+                            contentPadding: EdgeInsets.all(8.8),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
                           ),
+
+                          //  TextField(
+                          //   decoration: InputDecoration(
+                          //       isDense: true,
+                          //       contentPadding: const EdgeInsets.all(8.8),
+                          //       labelText: 'Search for channel...',
+                          //       labelStyle:
+                          //           const TextStyle(color: Color(0xffA1A9B3)),
+                          //       border: OutlineInputBorder(
+                          //           borderRadius: BorderRadius.circular(10))),
+                          // ),
                         ),
                       ),
                     ),

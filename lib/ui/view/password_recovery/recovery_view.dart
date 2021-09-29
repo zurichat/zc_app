@@ -36,16 +36,18 @@ class ForgotPassView extends StatelessWidget {
                 style: TextStyle(fontSize: 14),
               ),
               const SizedBox(height: 30),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: CustomTextField(
-                  keyboardType: TextInputType.emailAddress,
-                  inputAction: TextInputAction.done,
-                  autoCorrect: true,
-                  labelText: 'Email Address',
-                  hintText: 'Name@gmail.com',
-                  obscureText: false,
-                ),
+                    keyboardType: TextInputType.emailAddress,
+                    inputAction: TextInputAction.done,
+                    autoCorrect: true,
+                    labelText: 'Email Address',
+                    hintText: 'Name@gmail.com',
+                    obscureText: false,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(3.0)),
+                    )),
               ),
               const SizedBox(
                 height: 35,

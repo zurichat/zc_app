@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -92,25 +93,40 @@ class NewChannel extends StatelessWidget with $NewChannel {
                           ),
                         ),
                         Expanded(
-                          child: TextField(
+                          child: CustomTextField(
+                            keyboardType: TextInputType.text,
+                            inputAction: TextInputAction.search,
+                            autoCorrect: false,
+                            obscureText: false,
+                            onChanged: model.onChangeChannelNameField,
                             controller: channelNameController,
+                            hintText: 'e.g team-uchiha',
+                            border: InputBorder.none,
+                            formatter: [LengthLimitingTextInputFormatter(80)],
                             style: AppTextStyles.body2Medium.copyWith(
                               color: AppColors.blackColor,
                             ),
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(80)
-                            ],
-                            cursorColor: AppColors.zuriPrimaryColor,
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'e.g team-uchiha',
-                              hintStyle: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFFA1A9B2),
-                              ),
-                            ),
-                            onChanged: model.onChangeChannelNameField,
                           ),
+
+                          // TextField(
+                          //   controller: channelNameController,
+                          //   style: AppTextStyles.body2Medium.copyWith(
+                          //     color: AppColors.blackColor,
+                          //   ),
+                          //   inputFormatters: [
+                          //     LengthLimitingTextInputFormatter(80)
+                          //   ],
+                          //   cursorColor: AppColors.zuriPrimaryColor,
+                          //   decoration: const InputDecoration(
+                          //     border: InputBorder.none,
+                          //     hintText: 'e.g team-uchiha',
+                          //     hintStyle: TextStyle(
+                          //       fontWeight: FontWeight.w400,
+                          //       color: Color(0xFFA1A9B2),
+                          //     ),
+                          //   ),
+                          //   onChanged: model.onChangeChannelNameField,
+                          // ),
                         ),
                         Text(
                           '${model.inputLength}',
@@ -164,21 +180,35 @@ class NewChannel extends StatelessWidget with $NewChannel {
                   Container(
                     padding: const EdgeInsets.only(left: 16, top: 8, right: 16),
                     height: 180,
-                    child: TextField(
-                      maxLines: null,
+                    child: CustomTextField(
+                      keyboardType: TextInputType.multiline,
+                      maxlines: null,
+                      inputAction: TextInputAction.search,
+                      autoCorrect: false,
+                      obscureText: false,
                       controller: channelDescriptionController,
+                      hintText: 'Add a Desription',
                       style: AppTextStyles.body2Medium.copyWith(
                         color: AppColors.blackColor,
                       ),
-                      cursorColor: AppColors.zuriPrimaryColor,
-                      keyboardType: TextInputType.multiline,
-                      decoration: InputDecoration.collapsed(
-                        hintText: 'Add a Desription',
-                        hintStyle: AppTextStyles.body2Medium.copyWith(
-                          color: AppColors.zuriDarkGrey,
-                        ),
-                      ),
+                      isCollapsed: true,
                     ),
+
+                    // TextField(
+                    //   maxLines: null,
+                    //   controller: channelDescriptionController,
+                    //   style: AppTextStyles.body2Medium.copyWith(
+                    //     color: AppColors.blackColor,
+                    //   ),
+                    //   cursorColor: AppColors.zuriPrimaryColor,
+                    //   keyboardType: TextInputType.multiline,
+                    //   decoration: InputDecoration.collapsed(
+                    //     hintText: 'Add a Desription',
+                    //     hintStyle: AppTextStyles.body2Medium.copyWith(
+                    //       color: AppColors.zuriDarkGrey,
+                    //     ),
+                    //   ),
+                    // ),
                   ),
                   const Divider(
                     thickness: 0.5,

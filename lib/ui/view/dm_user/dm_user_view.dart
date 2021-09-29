@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/view/dm_user/dm_user_viewmodel.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
@@ -196,25 +197,49 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                     },
                                     child: Flexible(
                                       fit: FlexFit.loose,
-                                      child: TextField(
-                                        controller: messageController,
-                                        expands: true,
-                                        maxLines: null,
-                                        textAlignVertical:
-                                            TextAlignVertical.center,
-                                        decoration: InputDecoration(
+                                      child: CustomTextField(
+                                          keyboardType: TextInputType.text,
+                                          inputAction: TextInputAction.send,
+                                          autoCorrect: false,
+                                          obscureText: false,
+                                          controller: messageController,
+                                          expands: true,
+                                          maxlines: null,
+                                          suffixIcon: CustomStatus(
+                                              isActive: true, data: '5'),
+                                          textAlignVertical:
+                                              TextAlignVertical.center,
                                           hintText:
                                               'Message ${model.receiver.username}',
-                                          // suffixIcon: CustomStatus(isActive: true,
-                                          //   data: '5'),
-
                                           hintStyle: const TextStyle(
                                             color: AppColors.faintTextColor,
                                             fontSize: 14.0,
                                             fontWeight: FontWeight.w400,
                                           ),
-                                        ),
-                                      ),
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(3.0)),
+                                          )),
+
+                                      // TextField(
+                                      //   controller: messageController,
+                                      //   expands: true,
+                                      //   maxLines: null,
+                                      //   textAlignVertical:
+                                      //       TextAlignVertical.center,
+                                      //   decoration: InputDecoration(
+                                      //     hintText:
+                                      //         'Message ${model.receiver.username}',
+                                      //     // suffixIcon: CustomStatus(isActive: true,
+                                      //     //   data: '5'),
+
+                                      //     hintStyle: const TextStyle(
+                                      //       color: AppColors.faintTextColor,
+                                      //       fontSize: 14.0,
+                                      //       fontWeight: FontWeight.w400,
+                                      //     ),
+                                      //   ),
+                                      // ),
                                     ),
                                   ),
                                 ),

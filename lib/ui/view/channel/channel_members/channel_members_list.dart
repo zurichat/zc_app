@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
@@ -71,11 +72,33 @@ class ChannelMembersList extends StatelessWidget {
                 child: Card(
                   shadowColor: Colors.black,
                   elevation: 4,
-                  child: SearchField(
+                  child: CustomTextField(
+                    keyboardType: TextInputType.text,
+                    inputAction: TextInputAction.search,
+                    autoCorrect: false,
+                    obscureText: false,
+                    contentPadding:
+                        const EdgeInsets.fromLTRB(12.0, 16.0, 12.0, 16.0),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xFF7B8794),
+                        width: 0.2,
+                      ),
+                    ),
                     onChanged: viewModel.onSearchUser,
+                    //controller: channelDescriptionController,
                     labelText: 'Search for people',
-                    // controller: viewModel.editor,
+                    style: GoogleFonts.lato(
+                      color: const Color(0xFF7B8794),
+                      fontSize: 16.0,
+                    ),
                   ),
+
+                 // SearchField(
+                  //   onChanged: viewModel.onSearchUser,
+                  //   labelText: 'Search for people',
+                  //   // controller: viewModel.editor,
+                  // ),
                 ),
               ),
               Padding(

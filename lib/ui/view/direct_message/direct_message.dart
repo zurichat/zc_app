@@ -1,5 +1,6 @@
 //keep Hng Project
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
 import '../../../utilities/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
@@ -166,15 +167,27 @@ class DirectMessage extends StatelessWidget {
                       child: Row(
                         children: <Widget>[
                           Expanded(
-                            child: TextField(
-                              controller: model.controller,
-                              decoration: const InputDecoration(
-                                hintText: 'Write message...',
-                                hintStyle: TextStyle(color: Colors.black54),
-                              ),
+                            child: CustomTextField(
+                              keyboardType: TextInputType.text,
+                              inputAction: TextInputAction.send,
+                              autoCorrect: false,
+                              obscureText: false,
                               onEditingComplete: () =>
                                   model.controller.clearComposing(),
+                              controller: model.controller,
+                              hintText: 'Write message...',
+                              hintStyle: TextStyle(color: Colors.black54),
                             ),
+
+                            //  TextField(
+                            //   controller: model.controller,
+                            //   decoration: const InputDecoration(
+                            //     hintText: 'Write message...',
+                            //     hintStyle: TextStyle(color: Colors.black54),
+                            //   ),
+                            //   onEditingComplete: () =>
+                            //       model.controller.clearComposing(),
+                            // ),
                           ),
                           const SizedBox(
                             width: 15,

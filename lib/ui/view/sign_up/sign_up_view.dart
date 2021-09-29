@@ -93,6 +93,10 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           obscureText: false,
                           controller: emailController,
                           hintText: 'Name@gmail.com',
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(3.0)),
+                          ),
                         ),
                         UIHelper.verticalSpaceLarge,
                         Text(
@@ -107,6 +111,10 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           obscureText: true,
                           controller: passwordController,
                           hintText: 'Enter Password',
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(3.0)),
+                          ),
                         ),
                         UIHelper.verticalSpaceLarge,
                         Text(
@@ -121,6 +129,10 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           obscureText: true,
                           controller: confirmPasswordController,
                           hintText: 'Re-enter password',
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(3.0)),
+                          ),
                         ),
                         UIHelper.verticalSpaceMedium,
                         Row(

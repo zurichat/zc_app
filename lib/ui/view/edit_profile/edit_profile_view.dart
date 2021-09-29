@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
 
 import '../../shared/shared.dart';
 
@@ -87,15 +88,27 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   const Spacer(),
                   SizedBox(
                     width: _size.width * 0.55,
-                    child: TextFormField(
-                      initialValue: model.name,
+                    child: CustomTextField(
+                      keyboardType: TextInputType.text,
+                      inputAction: TextInputAction.next,
+                      autoCorrect: false,
+                      obscureText: false,
+                      labelText: 'Full Name',
                       onChanged: (value) {
                         model.updateString(value, '', '', '');
                       },
-                      decoration: const InputDecoration(
-                        labelText: 'Full Name',
-                      ),
+                      initialValue: model.name,
                     ),
+
+                    // TextFormField(
+                    //   initialValue: model.name,
+                    //   onChanged: (value) {
+                    //     model.updateString(value, '', '', '');
+                    //   },
+                    //   decoration: const InputDecoration(
+                    //     labelText: 'Full Name',
+                    //   ),
+                    // ),
                   )
                 ],
               ),
@@ -103,42 +116,88 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
             SizedBox(
               height: 26,
             ),
-            TextFormField(
-              initialValue: ''' Please open and close this '''
-                  '''page twice to see changes after saving''',
+            CustomTextField(
+              keyboardType: TextInputType.text,
+              inputAction: TextInputAction.next,
+              autoCorrect: false,
+              obscureText: false,
+              labelText: 'Display Name',
               onChanged: (value) {
                 model.updateString('', value, '', '');
               },
-              decoration: const InputDecoration(
-                labelText: 'Display Name',
-                helperText: '''This is how your name will show '''
-                    '''up in Zuri Chat. It’s best kept simple: whatever '''
-                    '''people call you in everyday conversation.''',
-                helperMaxLines: 3,
-              ),
+              initialValue: ''' Please open and close this '''
+                  '''page twice to see changes after saving''',
+              helperText: '''This is how your name will show '''
+                  '''up in Zuri Chat. It’s best kept simple: whatever '''
+                  '''people call you in everyday conversation.''',
+              helperMaxLines: 3,
             ),
+
+            // TextFormField(
+            //   initialValue: ''' Please open and close this '''
+            //       '''page twice to see changes after saving''',
+            //   onChanged: (value) {
+            //     model.updateString('', value, '', '');
+            //   },
+            //   decoration: const InputDecoration(
+            //     labelText: 'Display Name',
+            //     helperText: '''This is how your name will show '''
+            //         '''up in Zuri Chat. It’s best kept simple: whatever '''
+            //         '''people call you in everyday conversation.''',
+            //     helperMaxLines: 3,
+            //   ),
+            // ),
             SizedBox(
               height: 10,
             ),
-            TextFormField(
-              initialValue: 'The Back End for this does not exist',
+
+
+                       CustomTextField(
+              keyboardType: TextInputType.text,
+              inputAction: TextInputAction.next,
+              autoCorrect: false,
+              obscureText: false,
+             labelText: 'What I do',
               onChanged: (value) {
                 model.updateString('', '', value, '');
               },
-              decoration: const InputDecoration(
-                  labelText: 'What I do', helperText: 'HNGi9 X I4G'),
+              initialValue: 'The Back End for this does not exist',
+           helperText: 'HNGi9 X I4G'
+              
             ),
+
+            // TextFormField(
+            //   initialValue: 'The Back End for this does not exist',
+            //   onChanged: (value) {
+            //     model.updateString('', '', value, '');
+            //   },
+            //   decoration: const InputDecoration(
+            //       labelText: 'What I do', helperText: 'HNGi9 X I4G'),
+            // ),
             SizedBox(
               height: 10,
             ),
-            TextFormField(
-              initialValue: 'The Back End for this does not exist',
-              onChanged: (value) {
+                CustomTextField(
+              keyboardType: TextInputType.text,
+              inputAction: TextInputAction.next,
+              autoCorrect: false,
+              obscureText: false,
+              labelText: 'Phone',
+               helperText: 'Enter your phone number',
+         onChanged: (value) {
                 model.updateString('', '', '', value);
               },
-              decoration: const InputDecoration(
-                  labelText: 'Phone', helperText: 'Enter your phone number'),
+              initialValue: 'The Back End for this does not exist',
             ),
+
+            // TextFormField(
+            //   initialValue: 'The Back End for this does not exist',
+            //   onChanged: (value) {
+            //     model.updateString('', '', '', value);
+            //   },
+            //   decoration: const InputDecoration(
+            //       labelText: 'Phone', helperText: 'Enter your phone number'),
+            // ),
           ],
         ),
       ),

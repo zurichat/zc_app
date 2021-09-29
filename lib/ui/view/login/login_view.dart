@@ -67,13 +67,15 @@ class LoginView extends StatelessWidget with $LoginView {
                   ),
                   UIHelper.customVerticalSpace(10.0),
                   CustomTextField(
-                    keyboardType: TextInputType.emailAddress,
-                    inputAction: TextInputAction.next,
-                    autoCorrect: false,
-                    obscureText: false,
-                    hintText: 'Name@gmail.com',
-                    controller: emailController,
-                  ),
+                      keyboardType: TextInputType.emailAddress,
+                      inputAction: TextInputAction.next,
+                      autoCorrect: false,
+                      obscureText: false,
+                      hintText: 'Name@gmail.com',
+                      controller: emailController,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(3.0)),
+                      )),
                   UIHelper.verticalSpaceMedium,
                   Text(
                     'Password',
@@ -81,13 +83,17 @@ class LoginView extends StatelessWidget with $LoginView {
                   ),
                   UIHelper.customVerticalSpace(10.0),
                   CustomTextField(
-                    keyboardType: TextInputType.visiblePassword,
-                    inputAction: TextInputAction.next,
-                    autoCorrect: false,
-                    obscureText: true,
-                    hintText: 'Enter Password',
-                    controller: passwordController,
-                  ),
+                      keyboardType: TextInputType.visiblePassword,
+                      inputAction: TextInputAction.next,
+                      autoCorrect: false,
+                      obscureText: true,
+                      hintText: 'Enter Password',
+                      
+                      controller: passwordController,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(3.0)),
+                      )
+                      ),
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -83,27 +84,17 @@ class ForgotPasswordNewView extends StatelessWidget
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextField(
-                            controller: newPasswordController,
-                            keyboardType: TextInputType.visiblePassword,
-                            obscureText: true,
-                            textInputAction: TextInputAction.done,
-                            autocorrect: true,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(3.0))),
+                          CustomTextField(
+                              keyboardType: TextInputType.visiblePassword,
+                              inputAction: TextInputAction.next,
+                              autoCorrect: false,
+                              obscureText: true,
+                              controller: newPasswordController,
                               hintText: 'Enter Password',
-                              focusedBorder: OutlineInputBorder(
+                              border: OutlineInputBorder(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(5.0)),
-                                borderSide: BorderSide(
-                                  color: AppColors.zuriPrimaryColor,
-                                ),
-                              ),
-                            ),
-                            // onChanged: model.submitEmail,
-                          ),
+                                    BorderRadius.all(Radius.circular(3.0)),
+                              )),
 
                           ////Changes
                           Padding(
@@ -135,27 +126,17 @@ class ForgotPasswordNewView extends StatelessWidget
                               style: AppTextStyles.body1Bold,
                             ),
                           ),
-                          TextField(
-                            controller: confirmPasswordController,
-                            keyboardType: TextInputType.visiblePassword,
-                            obscureText: true,
-                            textInputAction: TextInputAction.done,
-                            autocorrect: true,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(3.0))),
+                          CustomTextField(
+                              keyboardType: TextInputType.visiblePassword,
+                              inputAction: TextInputAction.next,
+                              autoCorrect: false,
+                              obscureText: true,
+                              controller: confirmPasswordController,
                               hintText: 'Confirm Password',
-                              focusedBorder: OutlineInputBorder(
+                              border: OutlineInputBorder(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(5.0)),
-                                borderSide: BorderSide(
-                                  color: AppColors.zuriPrimaryColor,
-                                ),
-                              ),
-                            ),
-                            //  onChanged: model.submitEmail,
-                          ),
+                                    BorderRadius.all(Radius.circular(3.0)),
+                              )),
 
                           ////Changes
                           Padding(

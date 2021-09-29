@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
 import 'package:hng/ui/view/dm_user/icons/zap_icon.dart';
@@ -38,15 +40,35 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
                             model.onMessageFocusChanged();
                           }
                         },
-                        child: TextField(
-                          controller: _messageController,
+                        child: CustomTextField(
+                          keyboardType: TextInputType.text,
+                          maxlines:null,
+                          inputAction: TextInputAction.send,
                           expands: true,
-                          maxLines: null,
+                          autoCorrect: false,
+                          obscureText: false,
+                          isCollapsed: true,
                           textAlignVertical: TextAlignVertical.center,
-                          decoration: InputDecoration.collapsed(
-                              hintText: 'Add a Reply',
-                              hintStyle: AppTextStyles.faintBodyText),
+                        controller: _messageController,
+                          hintText: 'Add a Reply',
+                           hintStyle: AppTextStyles.faintBodyText,
+                             style: GoogleFonts.lato(
+          color: const Color(0xFF7B8794),
+          fontSize: 16.0,
+        ),
+
+                         
                         ),
+                        
+                        // TextField(
+                        //   controller: _messageController,
+                        //   expands: true,
+                        //   maxLines: null,
+                        //   textAlignVertical: TextAlignVertical.center,
+                        //   decoration: InputDecoration.collapsed(
+                        //       hintText: 'Add a Reply',
+                        //       hintStyle: AppTextStyles.faintBodyText),
+                        // ),
                       ),
                     ),
                   ),

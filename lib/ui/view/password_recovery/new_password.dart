@@ -34,27 +34,31 @@ class NewPassView extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14)),
                 const SizedBox(height: 30),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(15.0),
                   child: CustomTextField(
-                    keyboardType: TextInputType.visiblePassword,
-                    inputAction: TextInputAction.next,
-                    autoCorrect: false,
-                    obscureText: true,
-                    labelText: 'Password',
-                    hintText: 'Enter Password',
-                  ),
+                      keyboardType: TextInputType.visiblePassword,
+                      inputAction: TextInputAction.next,
+                      autoCorrect: false,
+                      obscureText: true,
+                      labelText: 'Password',
+                      hintText: 'Enter Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(3.0)),
+                      )),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(15.0),
                   child: CustomTextField(
-                    keyboardType: TextInputType.visiblePassword,
-                    inputAction: TextInputAction.done,
-                    obscureText: true,
-                    autoCorrect: false,
-                    labelText: 'Confirm Password',
-                    hintText: 'Re-enter Password',
-                  ),
+                      keyboardType: TextInputType.visiblePassword,
+                      inputAction: TextInputAction.done,
+                      obscureText: true,
+                      autoCorrect: false,
+                      labelText: 'Confirm Password',
+                      hintText: 'Re-enter Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(3.0)),
+                      )),
                 ),
                 const SizedBox(
                   height: 40,

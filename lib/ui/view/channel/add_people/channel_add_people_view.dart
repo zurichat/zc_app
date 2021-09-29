@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -57,11 +58,51 @@ class ChannelAddPeopleView extends StatelessWidget {
               const SizedBox(height: 24.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: SearchField(
-                  onChanged: viewModel.onSearchUser,
+                child: CustomTextField(
+                  keyboardType: TextInputType.text,
+                  maxlines: null,
+                  inputAction: TextInputAction.search,
+                  autoCorrect: false,
+                  obscureText: false,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xFF7B8794),
+                      width: 0.2,
+                    ),
+                  ),
+                  onChanged:viewModel.onSearchUser,
+                  contentPadding: const EdgeInsets.fromLTRB(12.0, 16.0, 12.0, 16.0),
                   labelText: 'Search people to add',
-                  // controller: viewModel.editor,
+                  labelStyle: GoogleFonts.lato(color: const Color(0xFF727272)),
+                  style: GoogleFonts.lato(
+                    color: const Color(0xFF7B8794),
+                    fontSize: 16.0,
+                  ),
                 ),
+
+                 //SearchField(
+                //   onChanged: viewModel.onSearchUser,
+                //   labelText: 'Search people to add',
+                //   // controller: viewModel.editor,
+                // ),
+
+// TextField(
+//         cursorColor: const Color(0xFF7B8794),
+//         decoration: InputDecoration(
+//           labelStyle: GoogleFonts.lato(color: const Color(0xFF727272)),
+//           contentPadding: const EdgeInsets.fromLTRB(12.0, 16.0, 12.0, 16.0),
+//           alignLabelWithHint: true,
+//           enabledBorder: OUTLINE,
+//           focusedBorder: OUTLINE,
+//           labelText: labelText,
+//           border: OUTLINE,
+//         ),
+//         onChanged: onChanged,
+//         style: GoogleFonts.lato(
+//           color: const Color(0xFF7B8794),
+//           fontSize: 16.0,
+//         ),
+//       );
               ),
               const SizedBox(height: 16.0),
               const Divider(thickness: 2.0),
