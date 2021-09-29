@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 import 'package:hng/app/app.logger.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/user_service.dart';
-=======
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
->>>>>>> 6ac6c85e6c499e4ce561dab8d84b37a74fd447f6
+import 'package:hng/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -25,13 +21,10 @@ class LoginViewModel extends FormViewModel {
   final _apiService = ZuriApi(baseUrl: coreBaseUrl);
   final _connectivityService = locator<ConnectivityService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
-<<<<<<< HEAD
   final _userService = locator<UserService>();
 
   final log = getLogger('LogInViewModel');
 
-=======
->>>>>>> 6ac6c85e6c499e4ce561dab8d84b37a74fd447f6
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
 
@@ -87,12 +80,8 @@ class LoginViewModel extends FormViewModel {
     }
     final loginData = {'email': emailValue, 'password': passwordValue};
     final response =
-<<<<<<< HEAD
-        await _apiService.post(endpoint, body: loginData, token: token);
-=======
         await _apiService.post(LoginEndpoint, body: loginData, token: token);
 
->>>>>>> 6ac6c85e6c499e4ce561dab8d84b37a74fd447f6
     loading(false);
 
     //saving user details to storage on request success

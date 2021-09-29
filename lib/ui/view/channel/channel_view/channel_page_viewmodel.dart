@@ -24,6 +24,7 @@ class ChannelPageViewModel extends BaseViewModel {
 
   final _bottomSheetService = locator<BottomSheetService>();
 
+// ignore: todo
 //TODO refactor this
   ScrollController scrollController = ScrollController();
 

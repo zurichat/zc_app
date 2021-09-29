@@ -1,9 +1,6 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
-<<<<<<< HEAD
-=======
 import 'package:hng/constants/app_strings.dart';
->>>>>>> 6ac6c85e6c499e4ce561dab8d84b37a74fd447f6
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/shared/shared.dart';
@@ -18,21 +15,14 @@ import 'forgot_password_newview.form.dart';
 class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   bool inputError = false;
   NavigationService _navigationService = NavigationService();
-<<<<<<< HEAD
+
   final _apiService = ZuriApi(baseUrl: coreBaseUrl);
   // final _otpService = locator<OtpService>();
-  final snackbar = locator<SnackbarService>();
-     final storageService = locator<SharedPreferenceLocalStorage>();
-   String? get token => storageService.getString(StorageKeys.currentSessionToken);
-=======
-
-  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
-
   final snackbar = locator<SnackbarService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
->>>>>>> 6ac6c85e6c499e4ce561dab8d84b37a74fd447f6
+
   bool isLoading = false;
 
   loading(status) {
@@ -62,6 +52,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
 
   Future resetPassword() async {
     loading(true);
+    // ignore: todo
     //TODO - wrong endpoint
 
     if (newPasswordValue == '' || confirmPasswordValue == '') {
@@ -87,13 +78,10 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       'confirm_password': confirmPasswordValue
     };
     //should be a patch req
-<<<<<<< HEAD
-    final response = await _apiService.post(endpoint, body: newPasswordData, token: token);
-=======
+
     final response = await _apiService.post(ResetPasswordEndpoint,
         body: newPasswordData, token: token);
 
->>>>>>> 6ac6c85e6c499e4ce561dab8d84b37a74fd447f6
     loading(false);
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(

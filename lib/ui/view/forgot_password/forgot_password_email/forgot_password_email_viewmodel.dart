@@ -1,9 +1,6 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
-<<<<<<< HEAD
-=======
 import 'package:hng/constants/app_strings.dart';
->>>>>>> 6ac6c85e6c499e4ce561dab8d84b37a74fd447f6
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/shared/shared.dart';
@@ -19,16 +16,10 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
   final _navigationService = locator<NavigationService>();
   final _snackbarService = locator<SnackbarService>();
   final _apiService = ZuriApi(baseUrl: coreBaseUrl);
-<<<<<<< HEAD
-   final storageService = locator<SharedPreferenceLocalStorage>();
-  bool isLoading = false;
-   String? get token => storageService.getString(StorageKeys.currentSessionToken);
-=======
   final storageService = locator<SharedPreferenceLocalStorage>();
   bool isLoading = false;
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
->>>>>>> 6ac6c85e6c499e4ce561dab8d84b37a74fd447f6
 
   loading(status) {
     isLoading = status;
@@ -61,13 +52,9 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
     }
 
     final validationData = {'email': forgotEmailValue};
-<<<<<<< HEAD
-    final response = await _apiService.post(endpoint, body: validationData, token: token);
-=======
     final response = await _apiService.post(RequestOTPEndpoint,
         body: validationData, token: token);
 
->>>>>>> 6ac6c85e6c499e4ce561dab8d84b37a74fd447f6
     response != null ? loading(false) : loading(true);
 
     if (response?.statusCode == 200) {
