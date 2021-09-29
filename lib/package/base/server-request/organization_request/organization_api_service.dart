@@ -10,7 +10,6 @@ import '../../../../ui/shared/shared.dart';
 import '../../../../utilities/storage_keys.dart';
 import '../api/http_api.dart';
 
-
 class OrganizationApiService {
   final log = getLogger('OrganizationApiService');
   final _api = HttpApiService(coreBaseUrl);

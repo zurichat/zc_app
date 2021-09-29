@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/app/app.logger.dart';
@@ -8,7 +7,6 @@ import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/models/channels_search_model.dart';
 import 'package:hng/models/organization_model.dart';
-import 'package:hng/models/user_model.dart';
 import 'package:hng/models/user_search_model.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/failures.dart';
@@ -30,36 +28,34 @@ class ZuriApi implements Api {
   }
 
   Future<dynamic> get(
-    Uri uri, {
+    String string, {
     Map<String, dynamic>? queryParameters,
-    Map<String, String>? headers,
+    String? token,
   }) async {
-    log.i('Making request to $uri');
+    log.i('Making request to $string');
     try {
-      final response = await dio.get(uri.toString(),
-          queryParameters: queryParameters, options: Options(headers: headers));
+      final response = await dio.get(string.toString(),
+          queryParameters: queryParameters,  options: Options(headers: {'Authorization': 'Bearer $token'}));
 
-      //log.i('Response from $uri \n${response.data}');
+      //log.i('Response from $string \n${response.data}');
       return response.data;
-    }  on DioError catch (e) {
+    } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
     }
   }
 
-
-
   Future<dynamic> post(
-    Uri uri, {
+    String string, {
     required Map<String, dynamic> body,
-    Map<String, String>? headers,
+    String? token,
   }) async {
-    log.i('Making request to $uri');
+    log.i('Making request to $string');
     try {
-      final response = await dio.post(uri.toString(),
-          data: body, options: Options(headers: headers));
+      final response = await dio.post(string.toString(),
+          data: body,  options: Options(headers: {'Authorization': 'Bearer $token'}));
 
-      log.i('Response from $uri \n${response.data}');
+      log.i('Response from $string \n${response.data}');
       return response.data;
     } on DioError catch (e) {
       log.w(e.toString());
@@ -68,41 +64,71 @@ class ZuriApi implements Api {
   }
 
   Future<dynamic> put(
-    Uri uri, {
+    String string, {
     required Map<String, dynamic> body,
-    Map<String, String>? headers,
+    String? token,
   }) async {
-    log.i('Making request to $uri');
+    log.i('Making request to $string');
     try {
-      final response = await dio.put(uri.toString(),
-          data: body, options: Options(headers: headers));
+      final response = await dio.put(string.toString(),
+          data: body,  options: Options(headers: {'Authorization': 'Bearer $token'}));
 
-      log.i('Response from $uri \n${response.data}');
+      log.i('Response from $string \n${response.data}');
       return response.data;
-    }  on DioError catch (e) {
+    } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
     }
   }
 
-  Future<dynamic> delete(Uri uri) async {
-    log.i('Making request to $uri');
+  Future<dynamic> delete(String string) async {
+    log.i('Making request to $string');
     try {
-      final response = await dio.delete(uri.toString());
+      final response = await dio.delete(string.toString());
 
-      log.i('Response from $uri \n${response.data}');
+      log.i('Response from $string \n${response.data}');
       return response.data;
-    }  on DioError catch (e) {
+    } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
     }
   }
+
+  /// -------------------------------------------------------------------------------------------
 
   /// THE API SERVICES
 
+  /// LOGIN FLOW
+  @override
+  Future<dynamic> login(
+      {required String email, required String password}) async {
+    return await post(
+      "$coreBaseUrl/login/auth",
+      body: {
+        "email": email,
+        "password": password,
+      },
+    );
+  }
 
 
-  /// Fetches a list of organizations that exist in the zuri database
+  @override
+  Future<dynamic> signUp(
+      {required String email, required String password, required String firstName, required String lastName, required String displayName, required String phoneNumber, required String token}) async {
+    return await post(
+      "$coreBaseUrl/users",
+      body: {
+        'first_name': firstName,
+        'last_name': lastName,
+        'display_name': displayName,
+        'email': email,
+        'password': password,
+        'phone': phoneNumber,
+      },
+    );
+  }
+
+  /// Fetches a list of organizations that exist in the Zuri database
   /// This does not fetch the Organization the user belongs to
   /// To implement that use `getJoinedOrganizations()`
   @override
@@ -120,10 +146,8 @@ class ZuriApi implements Api {
     }
   }
 
-  
 
   @override
-
   ///Get the list of Organization the user has joined
   Future getJoinedOrganizations(token, String email) async {
     try {
@@ -157,7 +181,7 @@ class ZuriApi implements Api {
   }
 
   /// takes in a `url` and returns a Organization that matches the url
-  /// use this url for testing `zurichat-fsp1856.zurichat.com`
+  /// use this url for testing `Zurichat-fsp1856.Zurichat.com`
   @override
   Future fetchOrganizationByUrl(String url, token) async {
     try {
@@ -263,6 +287,8 @@ class ZuriApi implements Api {
     }
   }
 
+  /// Add members to an organization either through invite 
+  /// or by calls
   @override
   Future addMemberToOrganization(String orgId, String email, token) async {
     final res = await dio.post(
@@ -275,6 +301,7 @@ class ZuriApi implements Api {
     return res.data;
   }
 
+    /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
 //TODO CONFIRM websocketUrl
   @override
   Future getChannelSocketId(String channelId, String orgId, token) async {
@@ -292,6 +319,7 @@ class ZuriApi implements Api {
     }
   }
 
+  // Joins a channel using the parameters below
   @override
   Future joinChannel(
       String channelId, String userId, String orgId, token) async {
@@ -312,6 +340,8 @@ class ZuriApi implements Api {
     }
   }
 
+  /// Getting Channel messages is this function below.
+  /// The Channel ID must not be null
   @override
   Future getChannelMessages(String channelId, String orgId, token) async {
     try {
@@ -328,6 +358,8 @@ class ZuriApi implements Api {
     }
   }
 
+    /// Sends channels message
+    /// Channel ID, User ID, Org ID must not be null
   @override
   Future sendChannelMessages(String channelId, String userId, String orgId,
       String message, token) async {
@@ -347,6 +379,9 @@ class ZuriApi implements Api {
     }
   }
 
+  /// Fetches channels from an organization
+  /// Org ID must not be null
+
   @override
   Future fetchChannel(String orgId, token) async {
     try {
@@ -364,6 +399,8 @@ class ZuriApi implements Api {
     }
   }
 
+    /// Creates channels into the organization
+    /// All are required
   @override
   Future<bool> createChannels(
       {required String name,
@@ -396,6 +433,8 @@ class ZuriApi implements Api {
     return false;
   }
 
+
+  /// Gets Channel pages
   @override
   getChannelPage(String id, String orgId, token) async {
     try {
@@ -410,6 +449,8 @@ class ZuriApi implements Api {
     }
   }
 
+
+    /// Fetches channel messages
   @override
   getChannelMembers(String id, String orgId, token) async {
     try {
@@ -425,6 +466,7 @@ class ZuriApi implements Api {
     }
   }
 
+  /// Themes for the mobile app
   @override
   List<ThemeData> getThemes() {
     return [
@@ -471,6 +513,7 @@ class ZuriApi implements Api {
     ];
   }
 
+  /// Basically send get requests
   @override
   void sendGetRequest(endpoint) async {
     final response = await dio.get(apiBaseUrl + endpoint);
@@ -537,31 +580,14 @@ class ZuriApi implements Api {
     }
   }
 
+
+
   /// Fetches a list of members in that organization
-  @override
   Future fetchListOfMembers(String currentOrgId, token) async {
     try {
       final res = await dio.get(
-        '$coreBaseUrl/organizations/$currentOrgId/members/',
-        options: Options(headers: {'Authorization': 'Bearer $token'}),
-      );
-      log.i(res.data);
-      return UserSearch.fromJson(json.decode(res.data));
-    } on DioError catch (e) {
-      log.w(e.toString());
-      handleApiError(e);
-    }
-  }
-
-    /// Fetches a list of members in that organization
-  Future fetchList(String currentOrgId, token) async {
-    try {
-      final res =
-          await dio.get('$coreBaseUrl/organizations/$currentOrgId/members/', options: Options(
-          headers: {
-        'Authorization':
-            'Bearer $token'
-      }));
+          '$coreBaseUrl/organizations/$currentOrgId/members/',
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
       log.i(res.data);
       return NewUser.fromJson(json.decode(res.data));
     } on DioError catch (e) {
