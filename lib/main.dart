@@ -7,6 +7,7 @@ import 'package:stacked_themes/stacked_themes.dart';
 
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
+import 'constants/app_strings.dart';
 import 'general_widgets/app_snackbar.dart';
 import 'services/theme_setup.dart';
 
@@ -28,15 +29,14 @@ class MyApp extends StatelessWidget {
       themes: getThemes(),
       builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(
         child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          navigatorKey: StackedService.navigatorKey,
-          onGenerateRoute: StackedRouter().onGenerateRoute,
-          title: 'ZuriChat',
-          theme: regularTheme,
-          darkTheme: darkTheme,
-          themeMode: themeMode,
-          initialRoute: Routes.splashview
-        ),
+            debugShowCheckedModeBanner: false,
+            navigatorKey: StackedService.navigatorKey,
+            onGenerateRoute: StackedRouter().onGenerateRoute,
+            title: AppName,
+            theme: regularTheme,
+            darkTheme: darkTheme,
+            themeMode: themeMode,
+            initialRoute: Routes.splashview),
       ),
     );
   }

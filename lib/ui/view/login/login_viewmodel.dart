@@ -1,3 +1,4 @@
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -17,8 +18,9 @@ class LoginViewModel extends FormViewModel {
   final _snackbarService = locator<SnackbarService>();
   final _apiService = ZuriApi(baseUrl: coreBaseUrl);
   final _connectivityService = locator<ConnectivityService>();
-     final storageService = locator<SharedPreferenceLocalStorage>();
-   String? get token => storageService.getString(StorageKeys.currentSessionToken);
+  final storageService = locator<SharedPreferenceLocalStorage>();
+  String? get token =>
+      storageService.getString(StorageKeys.currentSessionToken);
 
   bool isLoading = false;
 
@@ -44,14 +46,14 @@ class LoginViewModel extends FormViewModel {
     var connected = await _connectivityService.checkConnection();
     if (!connected) {
       _snackbarService.showCustomSnackBar(
-        message: 'No internet connection, connect and try again.',
+        message: NoInternet,
         variant: SnackbarType.failure,
         duration: Duration(milliseconds: 1500),
       );
       return;
     }
     loading(true);
-    const endpoint = '/auth/login';
+
     if (emailValue == null ||
         passwordValue == null ||
         emailValue == '' ||
@@ -60,13 +62,15 @@ class LoginViewModel extends FormViewModel {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.failure,
-        message: 'Please fill all fields.',
+        message: FillAllFields,
       );
 
       return;
     }
     final loginData = {'email': emailValue, 'password': passwordValue};
-    final response = await _apiService.post(endpoint, body: loginData, token: token);
+    final response =
+        await _apiService.post(LoginEndpoint, body: loginData, token: token);
+
     loading(false);
 
     //saving user details to storage on request success
@@ -99,7 +103,7 @@ class LoginViewModel extends FormViewModel {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.failure,
-        message: response?.data['message'] ?? 'Error encountered during login.',
+        message: response?.data['message'] ?? ErrorEncounteredLogin,
       );
     }
   }
