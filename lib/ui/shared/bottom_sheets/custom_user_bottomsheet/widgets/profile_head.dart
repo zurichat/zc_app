@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/ui/shared/colors.dart';
 
@@ -11,7 +12,7 @@ class ProfileHead extends StatelessWidget {
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
-        Image.asset('assets/background/appBarLogo.png'),
+        Image.asset(ZuriAppbarLogo),
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
@@ -34,7 +35,7 @@ class ProfileHead extends StatelessWidget {
                     Flexible(
                       fit: FlexFit.loose,
                       child: CustomText(
-                        text: 'Paul Imoke Eke',
+                        text: PaulImoke,
                         color: AppColors.whiteColor,
                         fontWeight: FontWeight.bold,
                         fontSize: height * 0.025,
