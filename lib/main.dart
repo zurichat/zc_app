@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/services/notification_service.dart';
 import 'package:hng/ui/shared/setup_bottom_sheet_ui.dart';
 import 'package:hng/ui/shared/setup_dialog_ui.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -16,6 +17,8 @@ Future main() async {
   await setupLocator();
   setupBottomSheetUi();
   setupDialogUi();
+
+  initNotificationService();
   AppSnackBar.setupSnackbarUi();
   runApp(MyApp());
 }
@@ -28,15 +31,14 @@ class MyApp extends StatelessWidget {
       themes: getThemes(),
       builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(
         child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          navigatorKey: StackedService.navigatorKey,
-          onGenerateRoute: StackedRouter().onGenerateRoute,
-          title: 'ZuriChat',
-          theme: regularTheme,
-          darkTheme: darkTheme,
-          themeMode: themeMode,
-          initialRoute: Routes.splashview
-        ),
+            debugShowCheckedModeBanner: false,
+            navigatorKey: StackedService.navigatorKey,
+            onGenerateRoute: StackedRouter().onGenerateRoute,
+            title: 'ZuriChat',
+            theme: regularTheme,
+            darkTheme: darkTheme,
+            themeMode: themeMode,
+            initialRoute: Routes.splashview),
       ),
     );
   }

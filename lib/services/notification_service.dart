@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.locator.dart';
 
 class NotificationService {
   String messsageChannelKey = 'message';
@@ -9,14 +11,17 @@ class NotificationService {
   StreamController<NotificationPayload> _notificationControl =
       StreamController.broadcast();
 
+  Random rand = Random();
+
   ///Listen to notification click by listening to stream and navigate to the
   ///respective screen by using the payload returned
   Stream<NotificationPayload> get onNotificationTap =>
       _notificationControl.stream;
 
   void init() {
-    AwesomeNotifications().initialize(null, // icon for your app notification
-        [
+    AwesomeNotifications()
+        .initialize(null, // use the default icon for your app notification
+            [
           NotificationChannel(
             channelKey: messsageChannelKey,
             channelName: 'Message Notification',
@@ -25,6 +30,7 @@ class NotificationService {
             ledColor: Colors.white,
             playSound: true,
             enableLights: true,
+            importance: NotificationImportance.High,
             enableVibration: true,
           )
         ]);
@@ -42,7 +48,7 @@ class NotificationService {
   }) {
     AwesomeNotifications().createNotification(
       content: NotificationContent(
-        id: 1,
+        id: rand.nextInt(999999999),
         channelKey: messsageChannelKey,
         title: title,
         body: body,
@@ -59,7 +65,7 @@ class NotificationService {
   }) {
     AwesomeNotifications().createNotification(
       content: NotificationContent(
-        id: 1,
+        id: rand.nextInt(999999999),
         channelKey: messsageChannelKey,
         title: title,
         body: body,
@@ -122,4 +128,10 @@ class NotificationPayload {
       'public': public == true ? 'T' : 'F',
     };
   }
+}
+
+void initNotificationService() {
+  final NotificationService notificationService =
+      locator<NotificationService>();
+  notificationService.init();
 }
