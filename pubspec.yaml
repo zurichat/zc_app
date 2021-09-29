@@ -50,6 +50,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   stacked_generator: ^0.4.6
+  test:
 
 flutter_native_splash:
   color: "#ffffff"
