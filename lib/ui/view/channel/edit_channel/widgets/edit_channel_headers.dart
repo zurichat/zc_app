@@ -4,15 +4,15 @@ import 'package:hng/ui/shared/shared.dart';
 
 class TextHeader extends StatelessWidget {
   final String headerText;
-  TextHeader({
+  const TextHeader({
     Key? key,
     required this.headerText,
-  });
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: AppColors.ZuriBGLightgrey,
+      color: AppColors.zuriBGLightgrey,
       height: 48,
       child: Padding(
         padding: const EdgeInsets.only(left: 25.0),

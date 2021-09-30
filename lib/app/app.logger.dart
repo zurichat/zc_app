@@ -62,8 +62,8 @@ class SimpleLogPrinter extends LogPrinter {
       var currentStack = StackTrace.current;
       var formattedStacktrace = _formatStackTrace(currentStack, 3);
 
-      var realFirstLine = formattedStacktrace
-          ?.firstWhere((line) => line.contains(className), orElse: () => "");
+      var realFirstLine =
+          formattedStacktrace?.firstWhere((line) => line.contains(className));
 
       var methodName = realFirstLine?.replaceAll('$className.', '');
       return methodName;
@@ -114,6 +114,7 @@ class MultipleLoggerOutput extends LogOutput {
       try {
         logOutput.output(event);
       } catch (e) {
+        // ignore: avoid_print
         print('Log output failed');
       }
     }

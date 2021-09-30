@@ -60,13 +60,12 @@ class ChannelPageViewModel extends BaseViewModel {
   }
 
   void joinChannel(String channelId) async {
-    var joinedChannel = await _channelsApiService.joinChannel(channelId);
-    print(joinedChannel);
+    await _channelsApiService.joinChannel(channelId);
   }
 
   void getChannelSocketId(String channelId) async {
     String channelSockId =
-    await _channelsApiService.getChannelSocketId(channelId);
+        await _channelsApiService.getChannelSocketId(channelId);
 
     websocketConnect(channelSockId);
   }
@@ -75,8 +74,7 @@ class ChannelPageViewModel extends BaseViewModel {
     //setBusy(true);
 
     List? channelMessages =
-    await _channelsApiService.getChannelMessages(channelId);
-    print(channelMessages);
+        await _channelsApiService.getChannelMessages(channelId);
     channelUserMessages = [];
 
     channelMessages.forEach((data) async {
@@ -98,15 +96,15 @@ class ChannelPageViewModel extends BaseViewModel {
       );
     });
     isLoading = false;
-    scrollController.jumpTo(scrollController.position.maxScrollExtent);
+    //scrollController.jumpTo(scrollController.position.maxScrollExtent);
 
     notifyListeners();
   }
 
   void sendMessage(
-      String message,
-      String channelId,
-      ) async {
+    String message,
+    String channelId,
+  ) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
     await _channelsApiService.sendChannelMessages(
         channelId, "$userId", message);
@@ -144,13 +142,14 @@ class ChannelPageViewModel extends BaseViewModel {
   }
 
   void websocketConnect(String channelSocketId) async {
-    await _centrifugeService.connect();
     await _centrifugeService.subscribe(channelSocketId);
   }
 
   void listenToNewMessages(String channelId) {
     _centrifugeService.messageStreamController.stream.listen((event) {
-      fetchMessages(channelId);
+      String? eventType = event['event']['action'];
+      if (eventType == 'create:message') fetchMessages(channelId);
+
       notifyListeners();
     });
   }

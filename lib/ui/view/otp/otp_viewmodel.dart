@@ -13,7 +13,7 @@ import 'otp_view.form.dart';
 
 class OTPViewModel extends FormViewModel {
   final _navigationService = NavigationService();
-  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
+  final zuriApi = ZuriApi(coreBaseUrl);
   static final _storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
   static String? _storedOTP;
@@ -46,7 +46,7 @@ class OTPViewModel extends FormViewModel {
         'code': otpValue,
       };
       if (_storedOTP == otpValue) {
-        final response = await _apiService.post(VerifyAcctEndpoint,
+        final response = await zuriApi.post(verifyAcctEndpoint,
             body: verificationData, token: token);
         _loading(false);
         if (response?.statusCode == 200) {
@@ -61,7 +61,7 @@ class OTPViewModel extends FormViewModel {
           snackbar.showCustomSnackBar(
             duration: const Duration(seconds: 3),
             variant: SnackbarType.failure,
-            message: response?.data['message'] ?? ErrorOccurred,
+            message: response?.data['message'] ?? errorOccurred,
           );
         }
       } else {
@@ -69,7 +69,7 @@ class OTPViewModel extends FormViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: WrongOTP,
+          message: wrongOTP,
         );
       }
     }

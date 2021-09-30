@@ -12,17 +12,16 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
   final organizationApi = OrganizationApiService();
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _navigationService = locator<NavigationService>();
-  // final api = HttpApiService("https://channels.zuri.chat/api/v1");
-  final api = ZuriApi(baseUrl: channelsBaseUrl);
+  final api = ZuriApi(channelsBaseUrl);
+
+  String? get token =>
+      storageService.getString(StorageKeys.currentSessionToken);
 
   bool get allMarked =>
       markedUsers.length == matchingUsers.length && matchingUsers.isNotEmpty;
 
   late List<UserSearch> matchingUsers = [];
   late List<UserSearch> markedUsers = [];
-
-  String? get token =>
-      storageService.getString(StorageKeys.currentSessionToken);
 
   List<UserSearch> users = [];
 
@@ -42,13 +41,11 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
     setBusy(false);
   }
 
-// ignore: todo
 //TODO: Change channelID
   void onAddButtonTap() async {
     setBusy(true);
     for (var user in markedUsers) {
       await addMemberToChannel("6148c952e4b2aebf8ec8ccd0", user.id!);
-      print(user.id);
     }
     setBusy(false);
     _navigationService.popRepeated(1);
@@ -73,10 +70,11 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
   }
 
   void onMarkOne(bool? marked, int i) {
-    if (marked!)
+    if (marked!) {
       markedUsers.add(matchingUsers[i]);
-    else
+    } else {
       markedUsers.remove(matchingUsers[i]);
+    }
     notifyListeners();
   }
 

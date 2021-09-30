@@ -34,14 +34,13 @@ mixin $ForgotPasswordEmailView on StatelessWidget {
     // The dispose function for a TextEditingController sets all listeners to null
 
     forgotEmailController.dispose();
-    forgotEmailFocusNode.dispose();
   }
 }
 
 extension ValueProperties on FormViewModel {
-  String? get forgotEmailValue => this.formValueMap[ForgotEmailValueKey];
+  String? get forgotEmailValue => formValueMap[ForgotEmailValueKey];
 
-  bool get hasForgotEmail => this.formValueMap.containsKey(ForgotEmailValueKey);
+  bool get hasForgotEmail => formValueMap.containsKey(ForgotEmailValueKey);
 }
 
 extension Methods on FormViewModel {}

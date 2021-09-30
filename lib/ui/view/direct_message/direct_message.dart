@@ -113,7 +113,7 @@ class DirectMessage extends StatelessWidget {
                                     children: [
                                       Row(
                                         children: [
-                                          Container(
+                                          SizedBox(
                                             height: size.height * 0.08,
                                             width: size.height * 0.08,
                                             child: Image.asset(

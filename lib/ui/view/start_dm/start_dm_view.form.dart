@@ -34,14 +34,13 @@ mixin $StartDmView on StatelessWidget {
     // The dispose function for a TextEditingController sets all listeners to null
 
     messageController.dispose();
-    messageFocusNode.dispose();
   }
 }
 
 extension ValueProperties on FormViewModel {
-  String? get messageValue => this.formValueMap[MessageValueKey];
+  String? get messageValue => formValueMap[MessageValueKey];
 
-  bool get hasMessage => this.formValueMap.containsKey(MessageValueKey);
+  bool get hasMessage => formValueMap.containsKey(MessageValueKey);
 }
 
 extension Methods on FormViewModel {}

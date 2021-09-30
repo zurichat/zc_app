@@ -34,14 +34,13 @@ mixin $DmJumpToView on StatelessWidget {
     // The dispose function for a TextEditingController sets all listeners to null
 
     searchController.dispose();
-    searchFocusNode.dispose();
   }
 }
 
 extension ValueProperties on FormViewModel {
-  String? get searchValue => this.formValueMap[SearchValueKey];
+  String? get searchValue => formValueMap[SearchValueKey];
 
-  bool get hasSearch => this.formValueMap.containsKey(SearchValueKey);
+  bool get hasSearch => formValueMap.containsKey(SearchValueKey);
 }
 
 extension Methods on FormViewModel {}

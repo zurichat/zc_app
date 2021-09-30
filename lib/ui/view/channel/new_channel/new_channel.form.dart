@@ -40,20 +40,18 @@ mixin $NewChannel on StatelessWidget {
     // The dispose function for a TextEditingController sets all listeners to null
 
     channelNameController.dispose();
-    channelNameFocusNode.dispose();
     channelDescriptionController.dispose();
-    channelDescriptionFocusNode.dispose();
   }
 }
 
 extension ValueProperties on FormViewModel {
-  String? get channelNameValue => this.formValueMap[ChannelNameValueKey];
+  String? get channelNameValue => formValueMap[ChannelNameValueKey];
   String? get channelDescriptionValue =>
-      this.formValueMap[ChannelDescriptionValueKey];
+      formValueMap[ChannelDescriptionValueKey];
 
-  bool get hasChannelName => this.formValueMap.containsKey(ChannelNameValueKey);
+  bool get hasChannelName => formValueMap.containsKey(ChannelNameValueKey);
   bool get hasChannelDescription =>
-      this.formValueMap.containsKey(ChannelDescriptionValueKey);
+      formValueMap.containsKey(ChannelDescriptionValueKey);
 }
 
 extension Methods on FormViewModel {}

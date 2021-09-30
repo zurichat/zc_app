@@ -34,14 +34,13 @@ mixin $OTPView on StatelessWidget {
     // The dispose function for a TextEditingController sets all listeners to null
 
     otpController.dispose();
-    otpFocusNode.dispose();
   }
 }
 
 extension ValueProperties on FormViewModel {
-  String? get otpValue => this.formValueMap[OtpValueKey];
+  String? get otpValue => formValueMap[OtpValueKey];
 
-  bool get hasOtp => this.formValueMap.containsKey(OtpValueKey);
+  bool get hasOtp => formValueMap.containsKey(OtpValueKey);
 }
 
 extension Methods on FormViewModel {}

@@ -85,7 +85,7 @@ class ThreadDetailView extends StatelessWidget {
                 ),
               ),
               const Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
+                padding: EdgeInsets.symmetric(vertical: 5),
                 child: Divider(
                   color: AppColors.borderColor,
                 ),

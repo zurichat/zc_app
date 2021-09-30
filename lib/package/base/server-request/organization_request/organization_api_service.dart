@@ -1,5 +1,5 @@
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/models/user_search_model.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
@@ -11,19 +11,15 @@ import '../../../../utilities/storage_keys.dart';
 
 class OrganizationApiService {
   final log = getLogger('OrganizationApiService');
-  final _api = ZuriApi(baseUrl: coreBaseUrl);
+  final _api = ZuriApi(coreBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
-  // final zuriApi = locator<ZuriApiService>();
 
   /// Fetches a list of organizations that exist in the zuri database
   /// This does not fetch the Organization the user belongs to
   /// To implement that use `getJoinedOrganizations()`
   Future<List<OrganizationModel>> fetchListOfOrganizations() async {
-    final res = await _api.get(
-      '/organizations',
-       token: token,
-    );
+    final res = await _api.get('/organizations', token: token);
     log.i(res?.data?['data'].length);
     return (res?.data?['data'] as List)
         .map((e) => OrganizationModel.fromJson(e))
@@ -34,12 +30,8 @@ class OrganizationApiService {
   Future<List<OrganizationModel>> getJoinedOrganizations() async {
     final email = _userService.userEmail;
 
-    final res = await _api.get(
-      '/users/$email/organizations',
-       token: token,
-    );
-    log.i(res?.data?['data']);
-    print(res?.data);
+    final res = await _api.get('/users/$email/organizations', token: token);
+    log.i(res?.data);
     if (res?.data['data'] == null) {
       return [];
     }
@@ -51,22 +43,15 @@ class OrganizationApiService {
   /// Fetches information on a particular Organization. It takes a parameter
   /// `id` which is the id of the organization
   Future<OrganizationModel> fetchOrganizationInfo(String id) async {
-    final res = await _api.get(
-      '/organizations/$id',
-       token: token,
-    );
+    final res = await _api.get('/organizations/$id', token: token);
     return OrganizationModel.fromJson(res?.data?['data']);
   }
 
   /// takes in a `url` and returns a Organization that matches the url
   /// use this url for testing `zurichat-fsp1856.zurichat.com`
   Future<OrganizationModel> fetchOrganizationByUrl(String url) async {
-    final res = await _api.get(
-      '/organizations/url/$url',
-       token: token,
-    );
+    final res = await _api.get('/organizations/url/$url', token: token);
     log.i(res?.data);
-    print(res?.data);
 
     res?.data?['data']['id'] = res.data['data']['_id'];
     return OrganizationModel.fromJson(res?.data?['data']);
@@ -79,11 +64,8 @@ class OrganizationApiService {
   Future<bool> joinOrganization(String orgId) async {
     final email = _userService.userEmail;
 
-    final res = await _api.post(
-      '/organizations/$orgId/members',
-      body: {'user_email': email},
-       token: token,
-    );
+    final res = await _api.post('/organizations/$orgId/members',
+        body: {'user_email': email}, token: token);
 
     if (res?.statusCode == 200) {
       return true;
@@ -97,7 +79,7 @@ class OrganizationApiService {
   Future<String> createOrganization(String email) async {
     final res = await _api.post(
       '/organizations',
-       token: token,
+      token: token,
       body: {'creator_email': email},
     );
     return res?.data?['data']['InsertedID'];
@@ -108,7 +90,7 @@ class OrganizationApiService {
   Future<void> updateOrgUrl(String orgId, String url) async {
     final res = await _api.patch(
       '/organizations/$orgId/url',
-       token: token,
+      token: token,
       body: {'url': url},
     );
     return res?.data?['message'];
@@ -119,7 +101,7 @@ class OrganizationApiService {
   Future<void> updateOrgName(String orgId, String name) async {
     final res = await _api.patch(
       '/organizations/$orgId/name',
-       token: token,
+      token: token,
       body: {'organization_name': name},
     );
     return res?.data?['message'];
@@ -130,7 +112,7 @@ class OrganizationApiService {
   Future<void> updateOrgLogo(String orgId, String url) async {
     final res = await _api.patch(
       '/organizations/$orgId/logo',
-       token: token,
+      token: token,
       body: {'url': url},
     );
     return res?.data?['message'];
@@ -139,17 +121,14 @@ class OrganizationApiService {
   Future<void> addMemberToOrganization(String orgId, String email) async {
     final res = await _api.post(
       '/organizations/$orgId/members',
-       token: token,
+      token: token,
       body: {'user_email': email},
     );
     return res?.data?['message'];
   }
 
   Future<List<UserSearch>> fetchMembersInOrganization(String orgId) async {
-    final res = await _api.get(
-      '/organizations/$orgId/members',
-       token: token,
-    );
+    final res = await _api.get('/organizations/$orgId/members', token: token);
     if (res?.data['data'] == null) {
       return [];
     }

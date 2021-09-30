@@ -79,7 +79,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
             ),
           ),
           const SizedBox(width: 8),
-          Container(
+          SizedBox(
             width: 14,
             height: 14,
             child: Image.asset(name),

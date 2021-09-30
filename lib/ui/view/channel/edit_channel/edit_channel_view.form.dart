@@ -39,18 +39,16 @@ mixin $EditChannelPageView on StatelessWidget {
     // The dispose function for a TextEditingController sets all listeners to null
 
     descriptionController.dispose();
-    descriptionFocusNode.dispose();
     topicController.dispose();
-    topicFocusNode.dispose();
   }
 }
 
 extension ValueProperties on FormViewModel {
-  String? get descriptionValue => this.formValueMap[DescriptionValueKey];
-  String? get topicValue => this.formValueMap[TopicValueKey];
+  String? get descriptionValue => formValueMap[DescriptionValueKey];
+  String? get topicValue => formValueMap[TopicValueKey];
 
-  bool get hasDescription => this.formValueMap.containsKey(DescriptionValueKey);
-  bool get hasTopic => this.formValueMap.containsKey(TopicValueKey);
+  bool get hasDescription => formValueMap.containsKey(DescriptionValueKey);
+  bool get hasTopic => formValueMap.containsKey(TopicValueKey);
 }
 
 extension Methods on FormViewModel {}
