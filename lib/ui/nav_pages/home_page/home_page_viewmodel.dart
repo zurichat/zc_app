@@ -27,7 +27,7 @@ class HomePageViewModel extends StreamViewModel {
 
   final navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
-  // final _channelsApiService = locator<ChannelsApiService>();
+  final _channelsApiService = locator<ChannelsApiService>();
   bool connectionStatus = false;
 
   List<ChannelModel> _channelsList = [];
@@ -86,6 +86,9 @@ class HomePageViewModel extends StreamViewModel {
 
   getNewChannelStream() {
     zuriApi.controller.stream.listen((event) {
+      getDmAndChannelsList();
+    });
+    _channelsApiService.controller.stream.listen((event) {
       getDmAndChannelsList();
     });
   }

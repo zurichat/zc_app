@@ -22,8 +22,9 @@ class ExpandableTextFieldScreen extends HookWidget {
     return ViewModelBuilder<ExpandableTextFieldScreenViewModel>.reactive(
       viewModelBuilder: () => ExpandableTextFieldScreenViewModel(),
       builder: (__, model, _) {
-        if (model.isExpanded) {
-          return Hero(
+        return Visibility(
+          visible: model.isExpanded,
+          child: Hero(
             tag: 'textfield',
             child: ExpandableTextField(
               focus: focusNode,
@@ -40,9 +41,8 @@ class ExpandableTextFieldScreen extends HookWidget {
               toggleExpanded: model.toggleExpanded,
               toggleVisibility: (val) => model.toggleVisibility(val),
             ),
-          );
-        } else {
-          return Column(
+          ),
+          replacement: Column(
             children: [
               Expanded(
                 child: widget,
@@ -61,8 +61,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                 ),
               ),
             ],
-          );
-        }
+          ),
+        );
       },
     );
   }

@@ -24,8 +24,8 @@ class OrganizationApiService {
       '/organizations',
        token: token,
     );
-    log.i(res?.data?['data'].length);
-    return (res?.data?['data'] as List)
+    log.i(res?['data'].length);
+    return (res?['data'] as List)
         .map((e) => OrganizationModel.fromJson(e))
         .toList();
   }
@@ -38,12 +38,12 @@ class OrganizationApiService {
       '/users/$email/organizations',
        token: token,
     );
-    log.i(res?.data?['data']);
-    print(res?.data);
-    if (res?.data['data'] == null) {
+    log.i(res['data']);
+    print(res);
+    if (res['data'] == null) {
       return [];
     }
-    return (res?.data?['data'] as List)
+    return (res['data'] as List)
         .map((e) => OrganizationModel.fromJson(e))
         .toList();
   }
@@ -55,7 +55,7 @@ class OrganizationApiService {
       '/organizations/$id',
        token: token,
     );
-    return OrganizationModel.fromJson(res?.data?['data']);
+    return OrganizationModel.fromJson(res?['data']);
   }
 
   /// takes in a `url` and returns a Organization that matches the url
@@ -65,11 +65,11 @@ class OrganizationApiService {
       '/organizations/url/$url',
        token: token,
     );
-    log.i(res?.data);
-    print(res?.data);
+    log.i(res);
+    print(res);
 
-    res?.data?['data']['id'] = res.data['data']['_id'];
-    return OrganizationModel.fromJson(res?.data?['data']);
+    res?['data']['id'] = res['data']['_id'];
+    return OrganizationModel.fromJson(res?['data']);
   }
 
   ///Limited to the admin who created the org
@@ -85,7 +85,7 @@ class OrganizationApiService {
        token: token,
     );
 
-    if (res?.statusCode == 200) {
+    if (res['status'] == 200) {
       return true;
     }
 
@@ -100,7 +100,7 @@ class OrganizationApiService {
        token: token,
       body: {'creator_email': email},
     );
-    return res?.data?['data']['InsertedID'];
+    return res?['data']['InsertedID'];
   }
 
   /// Updates an organization's URL. The organization's id `orgId` must not be
@@ -150,10 +150,10 @@ class OrganizationApiService {
       '/organizations/$orgId/members',
        token: token,
     );
-    if (res?.data['data'] == null) {
+    if (res?['data'] == null) {
       return [];
     }
-    return (res?.data?['data'] as List)
+    return (res?['data'] as List)
         .map((e) => UserSearch.fromJson(e))
         .toList();
   }

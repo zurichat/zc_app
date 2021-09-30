@@ -51,19 +51,18 @@ class ChannelInfoViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
-
   navigateBack() {
     _navigationService.back();
   }
 
-  void navigateToMembersList(List<ChannelMembermodel> members, ChannelModel channelDetail) {
+  void navigateToMembersList(
+      List<ChannelMembermodel> members, ChannelModel channelDetail) {
     //NavigationService.navigateTo(Routes.cha)
     _navigationService.navigateToView(ChannelMembersList(
       channelMembers: members,
       channelDetail: channelDetail,
     ));
   }
-
 
   Future showDialog() async {
     await _dialogService.showCustomDialog(
@@ -80,9 +79,9 @@ class ChannelInfoViewModel extends BaseViewModel {
     const endpoint = 'v1/1/channels/$channel_id/';
 
     final response = await _apiService.get(endpoint);
-    if (response?.statusCode == 200) {
-      print(response?.data);
-      String des = response?.data['description'];
+    if (response?['status'] == 200) {
+      print(response);
+      String des = response?['description'];
       print('sacas $des');
       setChannelDescription(des);
       setChannelName(channelName);
@@ -90,14 +89,14 @@ class ChannelInfoViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
-        message: response?.data['message'] ?? 'Update succesful',
+        message: response?['message'] ?? 'Update succesful',
       );
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: response?.data['message'] ??
-            'Error encountered during channel update.',
+        message:
+            response?['message'] ?? 'Error encountered during channel update.',
       );
     }
   }
@@ -107,13 +106,12 @@ class ChannelInfoViewModel extends BaseViewModel {
       bool res = await _channelApi.deleteChannel(
           _userService.currentOrgId, channel.id);
       if (res) {
+        _navigationService.popRepeated(2);
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.success,
           message: 'Channels ${channel.name} deleted successful',
         );
-
-        _navigationService.popRepeated(2);
       } else {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
@@ -130,4 +128,3 @@ class ChannelInfoViewModel extends BaseViewModel {
     }
   }
 }
-

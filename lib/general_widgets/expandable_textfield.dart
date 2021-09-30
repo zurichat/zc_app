@@ -25,7 +25,6 @@ class ExpandableTextField extends StatelessWidget {
   final void Function(bool) toggleVisibility;
   final void Function() sendMessage;
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -157,7 +156,7 @@ class ExpandableTextField extends StatelessWidget {
               maxLines: null,
               minLines: null,
               focusNode: focus,
-              autofocus: focus.hasFocus,
+              autofocus: isVisible,
               cursorColor: AppColors.zuriPrimaryColor,
               textAlignVertical:
                   isExpanded ? TextAlignVertical.top : TextAlignVertical.center,

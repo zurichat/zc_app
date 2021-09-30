@@ -34,7 +34,7 @@ class ChannelsApiService {
         'v1/$orgId/channels/',
         token: token,
       );
-      joinedChannels = res?.data ?? [];
+      joinedChannels = res ?? [];
       log.i(joinedChannels);
     } on Exception catch (e) {
       log.e(e.toString());
@@ -54,7 +54,7 @@ class ChannelsApiService {
         'v1/$orgId/channels/$channelId/socket/',
         token: token,
       );
-      socketName = res?.data['socket_name'] ?? '';
+      socketName = res?['socket_name'] ?? '';
       log.i(socketName);
     } on Exception catch (e) {
       log.e(e.toString());
@@ -77,11 +77,11 @@ class ChannelsApiService {
         'is_admin': true,
       });
 
-      log.i(res?.data);
+      log.i(res);
       //  channelMessages = res?.data["data"] ?? [];
 
       //  log.i(channelMessages);
-      return res?.data ?? {};
+      return res ?? {};
     } on Exception catch (e) {
       log.e(e.toString());
       return {};
@@ -99,7 +99,7 @@ class ChannelsApiService {
         'v1/$orgId/channels/$channelId/messages/',
         token: token,
       );
-      channelMessages = res?.data['data'] ?? [];
+      channelMessages = res?['data'] ?? [];
 
       log.i(channelMessages);
     } on Exception catch (e) {
@@ -121,7 +121,7 @@ class ChannelsApiService {
       final res = await _api.post('v1/$orgId/channels/$channelId/messages/',
           token: token, body: {'user_id': userId, 'content': message});
 
-      channelMessage = res?.data['data'] ?? {};
+      channelMessage = res?['data'] ?? {};
 
       log.i(channelMessage);
     } on Exception catch (e) {
@@ -139,8 +139,7 @@ class ChannelsApiService {
         '/v1/61459d8e62688da5302acdb1/channels/',
         // token: token,
       );
-      channels =
-          (res?.data as List).map((e) => ChannelModel.fromJson(e)).toList();
+      channels = (res as List).map((e) => ChannelModel.fromJson(e)).toList();
     } on Exception catch (e) {
       log.e('Channels EXception $e');
     } catch (e) {
@@ -170,12 +169,12 @@ class ChannelsApiService {
         token: token,
       );
 
-      log.i(res?.data.toString());
+      log.i(res?.toString());
 
-      if (res?.statusCode == 201 || res?.statusCode == 200) {
-        controller.sink.add('created channel');
-        return true;
-      }
+      // if (res?['status'] == 201 || res?['status'] == 200) {
+      controller.sink.add('created channel');
+      return true;
+      // }
     } on Exception catch (e) {
       log.e(e.toString());
     }
@@ -185,16 +184,16 @@ class ChannelsApiService {
 
   Future<bool> deleteChannel(String orgId, String channelId) async {
     try {
-      final res = await _api.delete(
+      await _api.delete(
         '/v1/$orgId/channels/$channelId/',
         token: token,
       );
-      print("RES IS ${res?.statusCode}");
-      if (res?.statusCode == 201 || res?.statusCode == 204) {
-        controller.sink.add('Channel Deleted');
-        return true;
-      }
-      return false;
+      // print("RES IS ${res?['status']}");
+      // if (res?['status'] == 201 || res?['status'] == 204) {
+      //   return true;
+      // }
+      controller.sink.add('Channel Deleted');
+      return true;
     } catch (e) {
       log.e(e.toString());
       return false;
@@ -209,7 +208,7 @@ class ChannelsApiService {
         '/v1/$orgId/channels/$id/',
         // token: token,
       );
-      return ChannelModel.fromJson(response?.data);
+      return ChannelModel.fromJson(response);
     } on Exception catch (e) {
       log.e("Channels page Exception $e");
     } catch (e) {
@@ -224,9 +223,7 @@ class ChannelsApiService {
         '/v1/$orgId/channels/$id/members/',
         // token: token,
       );
-      return (res?.data as List)
-          .map((e) => ChannelMembermodel.fromJson(e))
-          .toList();
+      return (res as List).map((e) => ChannelMembermodel.fromJson(e)).toList();
     } on Exception catch (e) {
       log.e("Channels member EXception $e");
     } catch (e) {

@@ -85,18 +85,18 @@ class LoginViewModel extends FormViewModel {
     loading(false);
 
     //saving user details to storage on request success
-    if (response?.statusCode == 200) {
+    if (response['status'] == 200) {
       _storageService.setString(
         StorageKeys.currentSessionToken,
-        response?.data['data']['user']['token'],
+        response['data']['user']['token'],
       );
       _storageService.setString(
         StorageKeys.currentUserId,
-        response?.data['data']['user']['id'],
+        response['data']['user']['id'],
       );
       _storageService.setString(
         StorageKeys.currentUserEmail,
-        response?.data['data']['user']['email'],
+        response['data']['user']['email'],
       );
       _storageService.clearData(StorageKeys.currentOrgId);
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
@@ -104,8 +104,8 @@ class LoginViewModel extends FormViewModel {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.success,
-        message: ''' ${response?.data['message']} for'''
-            ''' ${response?.data['data']['user']['email']}''',
+        message: ''' ${response['message']} for'''
+            ''' ${response['data']['user']['email']}''',
       );
 
       //Todo check if user has currently joined an Organization
@@ -114,7 +114,7 @@ class LoginViewModel extends FormViewModel {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.failure,
-        message: response?.data['message'] ?? ErrorEncounteredLogin,
+        message: response['message'] ?? ErrorEncounteredLogin,
       );
     }
   }
