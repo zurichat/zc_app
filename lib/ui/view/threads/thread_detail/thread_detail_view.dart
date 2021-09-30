@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:stacked/stacked.dart';
 
@@ -9,16 +10,14 @@ import '../../../shared/colors.dart';
 import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';
 import 'thread_detail_viewmodel.dart';
 
-class ThreadDetailView extends StatelessWidget {
+class ThreadDetailView extends HookWidget {
   const ThreadDetailView(this.userPost, {Key? key}) : super(key: key);
   final UserPost? userPost;
 
   @override
   Widget build(BuildContext context) {
-    // var _scrollController = useScrollController();
-    // var _messageController = useTextEditingController();
-    final _scrollController = ScrollController();
-    final _messageController = TextEditingController();
+    final _scrollController = useScrollController();
+    final _messageController = useTextEditingController();
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
@@ -54,15 +53,15 @@ class ThreadDetailView extends StatelessWidget {
                     children: [
                       const Text('Message in'),
                       TextButton.icon(
-                          onPressed: () {},
-                          icon:
-                              ChannelIcon(channelType: userPost!.channelType!),
-                          label: Text(
-                            '${userPost!.channelName}',
-                          ),
-                          style: TextButton.styleFrom(
-                            padding: const EdgeInsets.all(0),
-                          )),
+                        onPressed: () {},
+                        icon: ChannelIcon(channelType: userPost!.channelType!),
+                        label: Text(
+                          '${userPost!.channelName}',
+                        ),
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.all(0),
+                        ),
+                      ),
                     ],
                   ),
                 ),

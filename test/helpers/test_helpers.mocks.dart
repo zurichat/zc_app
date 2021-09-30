@@ -828,9 +828,13 @@ class MockZuriApi extends _i1.Mock implements _i17.ZuriApi {
               returnValue: Future<_i18.ApiResponse?>.value())
           as _i2.Future<_i18.ApiResponse?>);
   @override
-  _i2.Future<dynamic> delete(String? string, {String? token}) =>
-      (super.noSuchMethod(Invocation.method(#delete, [string], {#token: token}),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+  _i2.Future<_i18.ApiResponse?> delete(String? string,
+          {Map<String, dynamic>? body, String? token}) =>
+      (super.noSuchMethod(
+          Invocation.method(#delete, [string], {#body: body, #token: token}),
+          returnValue:
+              Future<_i18.ApiResponse?>.value()) as _i2
+          .Future<_i18.ApiResponse?>);
   @override
   _i2.Future<dynamic> login({String? email, String? password, dynamic token}) =>
       (super.noSuchMethod(

@@ -25,7 +25,6 @@ class ExpandableTextField extends StatelessWidget {
   final void Function(bool) toggleVisibility;
   final void Function() sendMessage;
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -57,11 +56,27 @@ class ExpandableTextField extends StatelessWidget {
           Visibility(
             visible: isExpanded,
             child: Expanded(
-              child: _buildTextField(),
+              child: MyTextField(
+                toggleVisibility: toggleVisibility,
+                isExpanded: isExpanded,
+                controller: controller,
+                focus: focus,
+                hintText: hintText,
+                isVisible: isVisible,
+                toggleExpanded: toggleExpanded,
+              ),
             ),
             replacement: Container(
               height: 56,
-              child: _buildTextField(),
+              child: MyTextField(
+                toggleVisibility: toggleVisibility,
+                isExpanded: isExpanded,
+                controller: controller,
+                focus: focus,
+                hintText: hintText,
+                isVisible: isVisible,
+                toggleExpanded: toggleExpanded,
+              ),
             ),
           ),
           Visibility(
@@ -142,8 +157,30 @@ class ExpandableTextField extends StatelessWidget {
       ),
     );
   }
+}
 
-  Focus _buildTextField() {
+class MyTextField extends StatelessWidget {
+  const MyTextField({
+    Key? key,
+    required this.toggleVisibility,
+    required this.isExpanded,
+    required this.controller,
+    required this.focus,
+    required this.hintText,
+    required this.isVisible,
+    required this.toggleExpanded,
+  }) : super(key: key);
+
+  final void Function(bool p1) toggleVisibility;
+  final bool isExpanded;
+  final TextEditingController controller;
+  final FocusNode focus;
+  final String hintText;
+  final bool isVisible;
+  final void Function() toggleExpanded;
+
+  @override
+  Widget build(BuildContext context) {
     return Focus(
       onFocusChange: toggleVisibility,
       child: Row(
