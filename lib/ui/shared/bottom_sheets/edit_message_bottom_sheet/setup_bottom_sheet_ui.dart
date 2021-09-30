@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -77,7 +76,7 @@ class FloatingBoxBottomSheet extends StatelessWidget {
                   ),
                   ListTile(
                     leading: const Icon(Icons.delete),
-                    title: const Text(DeleteMsg),
+                    title: const Text('Delete Message'),
                     onTap: () {
                       model.deleteMessage(request!.data);
                       print('Our data ${request!.title}');
