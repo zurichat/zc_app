@@ -143,8 +143,7 @@ import '../ui/view/view_profile_page/view_profile.dart';
     LazySingleton(classType: DMApiService),
     LazySingleton(classType: ChannelsApiService),
     LazySingleton(classType: JumpToApi),
-    LazySingleton(classType: CentrifugeService),
-     Presolve(
+    Presolve(
       classType: CentrifugeService,
       presolveUsing: CentrifugeService.getInstance,
     ),
