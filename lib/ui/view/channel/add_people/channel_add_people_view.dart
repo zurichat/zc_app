@@ -118,6 +118,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                         Text(
                           'Add Everyone',
                           style: GoogleFonts.lato(
+                            // ignore: todo
                             //TODO change color to brand
                             color: const Color(0xFF242424),
                             fontWeight: FontWeight.bold,

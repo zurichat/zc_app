@@ -27,7 +27,7 @@ class StartDmViewModel extends FormViewModel {
     // getString(StorageKeys.currentSessionToken)}");
     // print("token $token");
     final endpoint =
-        '/organizations/${storageService.getString(StorageKeys.currentOrgId)}/members/';
+        '/organizations/${storageService.getString(StorageKeys.currentUserId)}/members/';
     try {
       if (_currentOrgId == null || token == null) {
         return [];

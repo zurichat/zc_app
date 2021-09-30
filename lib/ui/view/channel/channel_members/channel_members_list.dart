@@ -27,6 +27,7 @@ class ChannelMembersList extends StatelessWidget {
             title: Text(
               '${channelDetail.name}',
               style: GoogleFonts.lato(
+                  // ignore: todo
                   //TODO change to brand colors
                   color: const Color(0xFF242424),
                   fontWeight: FontWeight.bold,
@@ -53,6 +54,7 @@ class ChannelMembersList extends StatelessWidget {
                   child: Text(
                     'Edit',
                     style: GoogleFonts.lato(
+                        // ignore: todo
                         //TODO change to brand colors
                         color: const Color(0xFF00B87C),
                         fontSize: 16.0),
@@ -146,6 +148,7 @@ class ChannelMembersList extends StatelessWidget {
                             Text(
                               channelMembers[index].name,
                               style: GoogleFonts.lato(
+                                // ignore: todo
                                 //TODO change to brand colors
                                 color: const Color(0xFF424141),
                               ),
