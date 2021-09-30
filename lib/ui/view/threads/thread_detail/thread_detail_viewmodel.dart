@@ -14,7 +14,7 @@ class ThreadDetailViewModel extends BaseViewModel {
   final _channelsApiService = locator<ChannelsApiService>();
 
   bool _isVisible = false;
-  bool isLoading = true;
+  bool isLoading = false;
   bool get isVisible => _isVisible;
 
   List<UserThreadPost>? messsageRepliesList = [];
@@ -38,6 +38,7 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   Future<void> getRepliesToMessages(UserPost? post) async {
+    loading(true);
     List? threadReplies =
         await _channelsApiService.getRepliesToMessages(post?.id);
 
@@ -58,8 +59,7 @@ class ThreadDetailViewModel extends BaseViewModel {
         );
       },
     );
-    isLoading = false;
-    notifyListeners();
+    loading(false);
   }
 
   void onMessageFocusChanged() {
@@ -79,5 +79,10 @@ class ThreadDetailViewModel extends BaseViewModel {
   String time(timestamp) {
     return '''${DateTime.parse(timestamp).hour.toString()}'''
         ''':${DateTime.parse(timestamp).minute.toString()}''';
+  }
+
+  loading(status) {
+    isLoading = status;
+    notifyListeners();
   }
 }
