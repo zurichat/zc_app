@@ -6,9 +6,7 @@ import '../../../colors.dart';
 import '../custom_user_bottom_sheet_viewmodel.dart';
 
 class ProfileHead extends StatelessWidget {
-  final name;
-
-  const ProfileHead({Key? key, this.name}) : super(key: key);
+  const ProfileHead({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
