@@ -12,6 +12,7 @@ TextStyle nameStyle() {
       fontSize: 16,
       fontWeight: FontWeight.w600,
       color: AppColors.deepBlackColor);
+
 }
 
 TextStyle descriptionStyle() {

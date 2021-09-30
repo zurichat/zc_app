@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/custom_text.dart';
 import '../../shared/colors.dart';
 import '../../shared/shared.dart';
 import 'you_page_viewmodel.dart';
+
+// ignore: todo
+// TODO - NOT EXTRACTING STRINGS IN THIS FILE
+//  Seems to be duplicated, NOT IN USE
 
 class YouPage extends StatelessWidget {
   const YouPage({Key? key}) : super(key: key);
@@ -23,7 +28,7 @@ class YouPage extends StatelessWidget {
                 // MyHomePage object that was created by
                 // the App.build method, and use it to set our appbar title.
                 title: Text(
-                  'You',
+                  You,
                   style: GoogleFonts.lato(
                       fontWeight: FontWeight.w700,
                       fontSize: 20,
@@ -41,13 +46,13 @@ class YouPage extends StatelessWidget {
                           Row(
                             children: [
                               const SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: Image(
-                                    image:
-                                        AssetImage('assets/images/naisu.png'),
-                                    fit: BoxFit.cover,
-                                  )),
+                                width: 50,
+                                height: 50,
+                                child: Image(
+                                  image: AssetImage('assets/images/naisu.png'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                               const SizedBox(width: 10),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -59,7 +64,7 @@ class YouPage extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
                                     const CustomText(
-                                      text: 'Active',
+                                      text: Active,
                                       color: AppColors.greyishColor,
                                       fontSize: 15,
                                     ),
@@ -80,7 +85,7 @@ class YouPage extends StatelessWidget {
                         child: const TextField(
                           decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'What\'s your status?',
+                              hintText: StatusHintText,
                               prefixIcon:
                                   Icon(Icons.chat_bubble_outline_rounded),
                               suffixIcon: Icon(Icons.close)),
@@ -93,8 +98,7 @@ class YouPage extends StatelessWidget {
                               size: 20, color: AppColors.greyishColor),
                           const SizedBox(width: 10),
                           const CustomText(
-                              text: 'Pause Notifications',
-                              color: Colors.black87),
+                              text: PauseNotifs, color: Colors.black87),
                         ],
                       ),
                       const SizedBox(height: 16),
@@ -103,9 +107,9 @@ class YouPage extends StatelessWidget {
                           const Icon(Icons.circle_outlined,
                               size: 20, color: AppColors.greyishColor),
                           const SizedBox(width: 10),
-                          const CustomText(text: 'Set yourself as '),
+                          const CustomText(text: SetStatusText),
                           const Text(
-                            'away',
+                            Away,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
                         ],
@@ -122,7 +126,7 @@ class YouPage extends StatelessWidget {
                           const Icon(Icons.bookmark_outline,
                               color: AppColors.greyishColor),
                           const SizedBox(width: 10),
-                          const Text('Saved Items'),
+                          const Text(SavedItems),
                         ],
                       ),
                       const SizedBox(height: 16),
@@ -131,7 +135,7 @@ class YouPage extends StatelessWidget {
                           const Icon(Icons.person_outline,
                               color: AppColors.greyishColor),
                           const SizedBox(width: 10),
-                          const Text('View Profile'),
+                          const Text(ViewProfile),
                         ],
                       ),
                       const SizedBox(height: 16),
@@ -140,7 +144,7 @@ class YouPage extends StatelessWidget {
                           const Icon(Icons.circle_notifications_outlined,
                               color: AppColors.greyishColor),
                           const SizedBox(width: 10),
-                          const Text('Notifications'),
+                          const Text(Notifs),
                         ],
                       ),
                       const SizedBox(height: 16),
@@ -149,7 +153,7 @@ class YouPage extends StatelessWidget {
                           const Icon(Icons.settings_outlined,
                               color: AppColors.greyishColor),
                           const SizedBox(width: 10),
-                          const Text('Preferences'),
+                          const Text(Preferences),
                         ],
                       ),
                     ]),
