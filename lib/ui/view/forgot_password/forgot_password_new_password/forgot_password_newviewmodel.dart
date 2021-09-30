@@ -15,15 +15,11 @@ import 'forgot_password_newview.form.dart';
 class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   bool inputError = false;
   NavigationService _navigationService = NavigationService();
-
-  final zuriApi = locator<ZuriApi>();
-
+  final _apiService = ZuriApi(coreBaseUrl);
   final snackbar = locator<SnackbarService>();
-  final storageService = locator<SharedPreferenceLocalStorage>();
-  String? get token =>
-      storageService.getString(StorageKeys.currentSessionToken);
-
   bool isLoading = false;
+      final storageService = locator<SharedPreferenceLocalStorage>();
+   String? get token => storageService.getString(StorageKeys.currentSessionToken);
 
   loading(status) {
     isLoading = status;
@@ -52,7 +48,6 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
 
   Future resetPassword() async {
     loading(true);
-    // ignore: todo
     //TODO - wrong endpoint
 
     if (newPasswordValue == '' || confirmPasswordValue == '') {
@@ -77,10 +72,9 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       'password': newPasswordValue,
       'confirm_password': confirmPasswordValue
     };
-    //should be a patch req
-    final response = await zuriApi.post("$coreBaseUrl/$ResetPasswordEndpoint",
-        body: newPasswordData, token: token);
-
+    //TODO - CONFIRM ENDPOINT - should be a patch req
+    final response =
+        await _apiService.post(ResetPasswordEndpoint, body: newPasswordData, token: token);
     loading(false);
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(

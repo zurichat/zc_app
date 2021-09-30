@@ -23,11 +23,11 @@ class ZuriApi implements Api {
   final dio = Dio();
   // ignore: close_sinks
   StreamController<String> controller = StreamController.broadcast();
-  ZuriApi() {
+  ZuriApi(baseUrl) {
     dio.interceptors.add(DioInterceptor());
     dio.options.sendTimeout = 60000;
     dio.options.receiveTimeout = 60000;
-    dio.options.baseUrl = coreBaseUrl;
+    dio.options.baseUrl = baseUrl;
     log.i('Zuri Api constructed and DIO setup register');
   }
 
@@ -38,7 +38,7 @@ class ZuriApi implements Api {
   }) async {
     log.i('Making request to $string');
     try {
-      final response = await dio.get(string.toString(),
+      final response = await dio.get(string,
           queryParameters: queryParameters,
           options: Options(headers: {'Authorization': 'Bearer $token'}));
 
@@ -57,7 +57,7 @@ class ZuriApi implements Api {
   }) async {
     log.i('Making request to $string');
     try {
-      final response = await dio.post(string.toString(),
+      final response = await dio.post(string,
           data: body,
           options: Options(headers: {'Authorization': 'Bearer $token'}));
 
@@ -76,7 +76,7 @@ class ZuriApi implements Api {
   }) async {
     log.i('Making request to $string');
     try {
-      final response = await dio.put(string.toString(),
+      final response = await dio.put(string,
           data: body,
           options: Options(headers: {'Authorization': 'Bearer $token'}));
 
@@ -105,7 +105,7 @@ class ZuriApi implements Api {
   Future<dynamic> delete(String string) async {
     log.i('Making request to $string');
     try {
-      final response = await dio.delete(string.toString());
+      final response = await dio.delete(string);
 
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
@@ -123,7 +123,7 @@ class ZuriApi implements Api {
   @override
   Future<dynamic> login(
       {required String email, required String password, token}) async {
-    return await post("$coreBaseUrl/auth/login",
+    return await post("${coreBaseUrl}auth/login",
         body: {
           "email": email,
           "password": password,
@@ -372,7 +372,7 @@ class ZuriApi implements Api {
   }
 
   /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
-    /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
+  /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
 // ignore: todo
 //TODO CONFIRM websocketUrl
   @override
@@ -648,10 +648,9 @@ class ZuriApi implements Api {
   @override
   Future allChannelsList(String currentOrgId, token) async {
     try {
-      final res = await dio.get(
-          '$channelsBaseUrl/api/v1/$currentOrgId/channels/',
+      final res = await dio.get('$channelsBaseUrl/v1/$currentOrgId/channels/',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
-      log.i(res.data);
+      log.i(res.data['data']);
       return ChannelsSearch.fromJson(json.decode(res.data));
     } on DioError catch (e) {
       log.w(e.toString());
@@ -676,13 +675,14 @@ class ZuriApi implements Api {
   }
 
   /// Fetches a list of members in that organization
-  Future fetchListOfMembers(String currentOrgId, token) async {
+  Future fetchListOfMembers(
+      String currentOrgId, String channelId, token) async {
     try {
       final res = await dio.get(
-          '$coreBaseUrl/organizations/$currentOrgId/members/',
+          '$channelsBaseUrl/vi/$currentOrgId/channels/$channelId/members/',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       log.i(res.data);
-      return NewUser.fromJson(json.decode(res.data));
+      return NewUser.fromJson(json.decode(res.data['data']));
     } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);

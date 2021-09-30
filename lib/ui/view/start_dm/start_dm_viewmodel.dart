@@ -10,9 +10,10 @@ import '../../../utilities/storage_keys.dart';
 
 class StartDmViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();
-  final zuriApi = locator<ZuriApi>();
+  final zuriApi = ZuriApi(coreBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
-   String? get token => storageService.getString(StorageKeys.currentSessionToken);
+  String? get token =>
+      storageService.getString(StorageKeys.currentSessionToken);
 
   // bool _hasClickedMessageField = false;
   // bool get hasClickedMessageField => _hasClickedMessageField;
@@ -33,7 +34,7 @@ class StartDmViewModel extends FormViewModel {
         return [];
       }
       final response = await zuriApi.get(
-        "$coreBaseUrl/$endpoint",
+        endpoint,
         token: token,
       );
       // print(response);

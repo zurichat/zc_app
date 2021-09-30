@@ -144,7 +144,6 @@ import '../ui/view/view_profile_page/view_profile.dart';
     LazySingleton(classType: ChannelsApiService),
     LazySingleton(classType: JumpToApi),
     LazySingleton(classType: CentrifugeService),
-    LazySingleton(classType: ZuriApi)
   ],
   logger: StackedLogger(),
 )

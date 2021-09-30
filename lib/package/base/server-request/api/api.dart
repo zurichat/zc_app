@@ -150,7 +150,7 @@ abstract class Api {
 
   /// THE SERVICE TO FETCH ALL MEMBERS IN AN ORGANIZATIONS
   /// THIS INCLUDES THE ADMINS AND MEMBERS
-  Future fetchListOfMembers(String currentOrgId, token);
+  Future fetchListOfMembers(String currentOrgId, String channelId, token);
 
   /// A SERVICE TO SEND PATCH REQUEST TO THE ENDPOINT
   Future<ApiResponse?> patch(String path,

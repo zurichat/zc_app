@@ -12,6 +12,7 @@ import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
@@ -24,12 +25,12 @@ class HomePageViewModel extends StreamViewModel {
   final userService = locator<UserService>();
   final connectivityService = locator<ConnectivityService>();
   final dmApiService = locator<DMApiService>();
-  final zuriApi = locator<ZuriApi>();
+  final zuriApi = ZuriApi(channelsBaseUrl);
   final channelsApiService = locator<ChannelsApiService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
 
-
-  String? get token => storageService.getString(StorageKeys.currentSessionToken);
+  String? get token =>
+      storageService.getString(StorageKeys.currentSessionToken);
 
   final navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
@@ -92,7 +93,7 @@ class HomePageViewModel extends StreamViewModel {
   void onSubscribed() {}
 
   getNewChannelStream() {
-    zuriApi.controller.stream.listen((event) {
+    channelsApiService.controller.stream.listen((event) {
       getDmAndChannelsList();
     });
   }
@@ -137,7 +138,7 @@ class HomePageViewModel extends StreamViewModel {
     homePageList = [];
     setBusy(true);
 
-    List? channelsList = await zuriApi.getActiveDms(orgId, token);
+    List? channelsList = await channelsApiService.getActiveDms();
 
     channelsList.forEach(
       (data) {
@@ -153,7 +154,6 @@ class HomePageViewModel extends StreamViewModel {
         );
       },
     );
-
 
     //Todo: add channels implementation
 
@@ -172,8 +172,6 @@ class HomePageViewModel extends StreamViewModel {
   // _channelsApiService.onChange.stream.listen((event) {
   //   getDmAndChannelsList();
   // });
-
- 
 
   navigateToChannelPage(String? channelname, String? channelId,
       int? membersCount, bool? public) async {

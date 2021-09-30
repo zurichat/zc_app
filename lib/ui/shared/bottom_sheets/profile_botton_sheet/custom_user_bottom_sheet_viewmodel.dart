@@ -13,7 +13,7 @@ import '../../../../utilities/storage_keys.dart';
 class CustomUserBottomSheetViewModel extends FutureViewModel {
   final _navigationService = locator<NavigationService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
-  final _apiService = ZuriApi();
+  final _apiService = ZuriApi(coreBaseUrl);
   UserModel? _userModel;
 
   void navigateToSetStatus() =>

@@ -15,7 +15,8 @@ class SignUpViewModel extends FormViewModel {
   final storage = locator<SharedPreferenceLocalStorage>();
   final navigator = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
-  final zuriApi = locator<ZuriApi>();
+    final zuriApi = ZuriApi(coreBaseUrl);
+
   String? get token => storage.getString(StorageKeys.currentSessionToken);
 
   bool isLoading = false;
@@ -52,8 +53,9 @@ class SignUpViewModel extends FormViewModel {
         'phone': phoneNumberValue,
       };
       final response = await zuriApi.post(
-        "$coreBaseUrl/$SignUpEndpoint",
+        SignUpEndpoint,
         body: signUpData,
+        token: token
       );
       loading(false);
       if (response?.statusCode == 200) {

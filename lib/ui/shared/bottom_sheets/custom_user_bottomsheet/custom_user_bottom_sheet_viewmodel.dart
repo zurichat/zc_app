@@ -12,7 +12,8 @@ import 'package:stacked_services/stacked_services.dart';
 class CustomUserBottomSheetViewModel extends FutureViewModel {
   final _navigationService = locator<NavigationService>();
   static final _storage = locator<SharedPreferenceLocalStorage>();
-  final zuriApi = locator<ZuriApi>();
+  final zuriApi = ZuriApi(coreBaseUrl);
+
   UserModel? _userModel;
 
   void navigateToSetStatus() =>

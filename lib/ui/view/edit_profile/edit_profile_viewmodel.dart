@@ -18,8 +18,10 @@ class EditProfileViewModel extends FutureViewModel {
   final snackbar = locator<SnackbarService>();
   final navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
-  final zuriApi = locator<ZuriApi>();
-  String? get token => storageService.getString(StorageKeys.currentSessionToken);
+  final _api = ZuriApi(coreBaseUrl);
+  final api = ApiService();
+    String? get token => storageService.getString(StorageKeys.currentSessionToken);
+  
 
   void updateString(String name, String display, String status, String phone) {
     if (name.trim().isNotEmpty) {
@@ -46,7 +48,6 @@ class EditProfileViewModel extends FutureViewModel {
   Future updateProfile() async {
     String? orgId = storageService.getString(StorageKeys.currentOrgId);
     String? memId = storageService.getString(StorageKeys.currentMemberID);
-    // ignore: todo
     //TODO CHange these links to there rightful values once they can be updated
 
     String profileEndPoint = 'organizations/$orgId/members/$memId/profile';
@@ -58,7 +59,7 @@ class EditProfileViewModel extends FutureViewModel {
       'phone': _phone
     };
     final editResponse =
-        await zuriApi.patch("$coreBaseUrl/$profileEndPoint}", body: profileData, token: token);
+        await _api.patch(profileEndPoint, body: profileData, token: token);
     final snackbar = locator<SnackbarService>();
 
     if (editResponse!.statusCode == 200) {

@@ -40,9 +40,7 @@ mixin $NewChannel on StatelessWidget {
     // The dispose function for a TextEditingController sets all listeners to null
 
     channelNameController.dispose();
-    channelNameFocusNode.dispose();
     channelDescriptionController.dispose();
-    channelDescriptionFocusNode.dispose();
   }
 }
 
