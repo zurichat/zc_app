@@ -4,10 +4,10 @@ import 'package:hng/ui/shared/shared.dart';
 
 class TextHeader extends StatelessWidget {
   final String headerText;
-  TextHeader({
+  const TextHeader({
     Key? key,
     required this.headerText,
-  });
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

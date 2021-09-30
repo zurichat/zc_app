@@ -8,3 +8,6 @@ analyzer:
     prefer_typing_uninitialized_variables: ignore
     constant_identifier_names: ignore
     prefer_const_constructors: ignore
+    overridden_fields: ignore
+    avoid_function_literals_in_foreach_calls: ignore
+    avoid_renaming_method_parameters: ignore

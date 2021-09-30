@@ -14,7 +14,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ForgotPasswordOtpViewModel extends FormViewModel {
-  NavigationService _navigationService = NavigationService();
+  final NavigationService _navigationService = NavigationService();
   final _apiService = ZuriApi(coreBaseUrl);
   final _snackbarService = locator<SnackbarService>();
   bool isLoading = false;

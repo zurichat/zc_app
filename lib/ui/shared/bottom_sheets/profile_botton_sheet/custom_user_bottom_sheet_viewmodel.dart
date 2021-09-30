@@ -24,7 +24,7 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
   void navigateToEditProfile() =>
       _navigationService.navigateTo(Routes.editProfileView);
 
-//TODO
+//TODO CHECK THIS ENTIRE BOTTOM SHEET
   @override
   Future<void> futureToRun() async {
     final userID = _storage.getString(StorageKeys.currentUserId);

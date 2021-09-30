@@ -299,9 +299,7 @@ class AppTextStyles {
 class StatusIcon extends StatelessWidget {
   int count = 5;
 
-  StatusIcon(
-    this.count,
-  );
+  StatusIcon(this.count, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

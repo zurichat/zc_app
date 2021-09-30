@@ -51,6 +51,8 @@ dev_dependencies:
     sdk: flutter
   stacked_generator:
   mockito:
+  flutter_lints: ^1.0.4
+  
 
 flutter_native_splash:
   color: "#ffffff"

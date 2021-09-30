@@ -1,5 +1,5 @@
-import 'dart:developer';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
@@ -34,14 +34,15 @@ class HomePageViewModel extends StreamViewModel {
 
   final navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
+  final log = getLogger("Home Page View Model");
   // final _channelsApiService = locator<ChannelsApiService>();
   bool connectionStatus = false;
 
-  List<ChannelModel> _channelsList = [];
+  final List<ChannelModel> _channelsList = [];
   ChannelModel? _channel;
   List<ChannelModel> get channelsList => _channelsList;
   ChannelModel get channel => _channel!;
-  List<ChannelMembermodel> _membersList = [];
+  final List<ChannelMembermodel> _membersList = [];
   List get membersList => _membersList;
 
   ///This contains the list of data for both the channels and dms
@@ -86,7 +87,7 @@ class HomePageViewModel extends StreamViewModel {
 
   @override
   void onError(error) {
-    log('Error: $error');
+    log.e('Error: $error');
   }
 
   @override
@@ -163,7 +164,7 @@ class HomePageViewModel extends StreamViewModel {
 
     setAllList();
     notifyListeners();
-    print('All channels $homePageList');
+    log.i('All channels $homePageList');
 
     setBusy(false);
   }
@@ -197,7 +198,7 @@ class HomePageViewModel extends StreamViewModel {
             public: public,
           ));
     } catch (e) {
-      print(e.toString());
+      log.e(e.toString());
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,

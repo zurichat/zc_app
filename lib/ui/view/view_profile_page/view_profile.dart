@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -11,10 +8,8 @@ import 'widgets/profile_action.dart';
 import 'widgets/profile_list.dart';
 
 class ViewProfile extends StatelessWidget {
-  //TODO add const keyword
-  ViewProfile({Key? key}) : super(key: key);
-  //TODO move this to the viewmodel
-  final storageService = locator<SharedPreferenceLocalStorage>();
+  const ViewProfile({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ViewProfileViewModel>.reactive(
@@ -35,7 +30,7 @@ class ViewProfile extends StatelessWidget {
                 replacement: Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Text('Getting Your data...'),
                       CircularProgressIndicator(
                         color: AppColors.zuriPrimaryColor,
@@ -43,113 +38,104 @@ class ViewProfile extends StatelessWidget {
                     ],
                   ),
                 ),
-                child: Container(
-                  child: Column(
-                    children: [
-                      Stack(
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.3,
+                          width: MediaQuery.of(context).size.width,
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: const [
+                              Image(
+                                fit: BoxFit.cover,
+                                image: AssetImage('assets/images/user.png'),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 20.0,
+                          left: 12.0,
+                          child: Row(
+                            children: [
+                              Text(
+                                model.userData.firstName.toString(),
+                                //TODO change this to AppTextStyle
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                              Container(
+                                //Icon wrapped in container with margin, so long names with stack over/below it
+                                margin: const EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.circle,
+                                  size: 12.0,
+                                  // color: isActive!
+                                  color: model.isActive == true
+                                      ? AppColors.zuriPrimaryColor
+                                      : Colors.transparent,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(
+                          top: 16.0, left: 20.0, right: 16.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.3,
-                            width: MediaQuery.of(context).size.width,
-                            child: Stack(
-                              fit: StackFit.expand,
-                              children: [
-                                 Image(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage('assets/images/user.png'),
-                                ),
-                              ],
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              ProfileAction(
+                                title: const Text('Message'),
+                                onTap: () {},
+                              ),
+                              ProfileAction(
+                                title: const Text('Edit Profile'),
+                                onTap: () {
+                                  // model.editProfile;
+                                },
+                              ),
+                              ProfileAction(
+                                title: const Icon(Icons.more_horiz),
+                                onTap: () {},
+                              ),
+                            ],
                           ),
-                          Positioned(
-                            bottom: 20.0,
-                            left: 12.0,
-                            child: Row(
-                              children: [
-                                Text(
-                                  model.userData.firstName.toString(),
-                                  //TODO change this to AppTextStyle
-                                  style: const TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 18.0,
-                                  ),
-                                ),
-                                Container(
-                                  //Icon wrapped in container with margin, so long names with stack over/below it
-                                  margin: const EdgeInsets.all(8.0),
-                                  child: Icon(
-                                    Icons.circle,
-                                    size: 12.0,
-                                    // color: isActive!
-                                    color: model.isActive == true
-                                        ? AppColors.zuriPrimaryColor
-                                        : Colors.transparent,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                          const Divider(),
+                          ProfileList(
+                              title: 'What I do',
+                              description: model.userData.status.toString()),
+                          const Divider(),
+                          ProfileList(
+                              title: 'Display Name',
+                              description:
+                                  model.userData.displayName.toString()),
+                          const Divider(),
+                          ProfileList(
+                              title: 'Status', description: model.status),
+                          const Divider(),
+                          ProfileList(
+                              title: 'Mobile Number',
+                              description: model.userData.phoneNum.toString()),
+                          const Divider(),
+                          ProfileList(
+                              title: 'Email Address',
+                              description: model.currentUserEmail)
                         ],
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(
-                            top: 16.0, left: 20.0, right: 16.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                ProfileAction(
-                                  title: const Text('Message'),
-                                  onTap: () {},
-                                ),
-                                ProfileAction(
-                                  title: const Text('Edit Profile'),
-                                  onTap: () {
-                                    // model.editProfile;
-                                  },
-                                ),
-                                ProfileAction(
-                                  title: const Icon(Icons.more_horiz),
-                                  onTap: () {},
-                                ),
-                              ],
-                            ),
-                            const Divider(),
-                            ProfileList(
-                                title: 'What I do',
-                                description: model.userData.status.toString()),
-                            const Divider(),
-                            ProfileList(
-                                title: 'Display Name',
-                                description:
-                                    model.userData.displayName.toString()),
-                            const Divider(),
-                            ProfileList(
-                              title: 'Status',
-                              description: storageService
-                                  .getString(StorageKeys.status)
-                                  .toString(),
-                            ),
-                            const Divider(),
-                            ProfileList(
-                                title: 'Mobile Number',
-                                description:
-                                    model.userData.phoneNum.toString()),
-                            const Divider(),
-                            ProfileList(
-                                title: 'Email Address',
-                                description: storageService
-                                    .getString(StorageKeys.currentUserEmail)
-                                    .toString())
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

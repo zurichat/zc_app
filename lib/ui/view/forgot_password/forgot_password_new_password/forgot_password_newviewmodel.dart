@@ -1,4 +1,5 @@
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
@@ -14,9 +15,10 @@ import 'forgot_password_newview.form.dart';
 
 class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   bool inputError = false;
-  NavigationService _navigationService = NavigationService();
+  final NavigationService _navigationService = NavigationService();
   final _apiService = ZuriApi(coreBaseUrl);
   final snackbar = locator<SnackbarService>();
+  final log = getLogger("Forgot Password New View Model");
   bool isLoading = false;
   final storageService = locator<SharedPreferenceLocalStorage>();
   String? get token =>
@@ -43,7 +45,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       navigateToLogin();
     } else {
       inputError = !validatePassword;
-      print('$inputError');
+      log.e('$inputError');
     }
   }
 

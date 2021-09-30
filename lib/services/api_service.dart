@@ -9,8 +9,7 @@ class ApiService {
   final Dio _dio = Dio();
   void sendGetRequest(endpoint) async {
     final response = await _dio.get(apiBaseUrl + endpoint);
-    final result = jsonDecode(response.data);
-    return result;
+    jsonDecode(response.data);
   }
 
   Future sendPostRequest(body, endpoint) async {
