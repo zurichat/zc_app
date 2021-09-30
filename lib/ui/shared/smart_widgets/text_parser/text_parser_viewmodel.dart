@@ -1,4 +1,5 @@
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
+import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared.dart';
@@ -14,25 +15,25 @@ class TextParserViewModel extends BaseViewModel {
         type: ParsedType.EMAIL,
         style: AppTextStyles.messageTextButton,
         onTap: ((url) {
-          //launch("mailto:" + url);
+          launcher("mailto:" + url);
         })),
     //Opens a browser when an HTML is clicked
     MatchText(
         type: ParsedType.URL,
         style: AppTextStyles.messageTextButton,
         onTap: ((url) async {
-          //var canBrowse = await canLaunch(url);
+          var canBrowse = await canLaunch(url);
 
-          //if (canBrowse) {
-          // launch(url);
-          //}
+          if (canBrowse) {
+            launcher(url);
+          }
         })),
     //passes a number as intent to a dialer
     MatchText(
         type: ParsedType.PHONE,
         style: AppTextStyles.messageTextButton,
         onTap: ((url) {
-          // launch("tel:" + url);
+          launcher("tel:" + url);
         })),
     //To make a text bold using *...*
     MatchText(
