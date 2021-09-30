@@ -38,9 +38,9 @@ mixin $DmUserView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get messageValue => this.formValueMap[MessageValueKey];
+  String? get messageValue => formValueMap[MessageValueKey];
 
-  bool get hasMessage => this.formValueMap.containsKey(MessageValueKey);
+  bool get hasMessage => formValueMap.containsKey(MessageValueKey);
 }
 
 extension Methods on FormViewModel {}

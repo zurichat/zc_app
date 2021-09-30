@@ -39,7 +39,7 @@ class OrganizationUrlView extends StatelessWidget {
                               children: [
                                 const TextSpan(
                                   text: '''
-If you don\'t know your Organization URL, we have sent an email to ''',
+If you don't know your Organization URL, we have sent an email to ''',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
@@ -121,7 +121,7 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
         onPressed: () => model.signInToOrganization(),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-          child: Container(
+          child: SizedBox(
             width: 300,
             child: Center(
               child: Text(

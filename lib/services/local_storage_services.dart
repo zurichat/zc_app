@@ -4,12 +4,8 @@ class SharedPreferenceLocalStorage {
   static SharedPreferenceLocalStorage? _instance;
   static SharedPreferences? _preferences;
   static Future<SharedPreferenceLocalStorage> getInstance() async {
-    if (_instance == null) {
-      _instance = SharedPreferenceLocalStorage();
-    }
-    if (_preferences == null) {
-      _preferences = await SharedPreferences.getInstance();
-    }
+    _instance ??= SharedPreferenceLocalStorage();
+    _preferences ??= await SharedPreferences.getInstance();
     return _instance!;
   }
 
@@ -21,11 +17,11 @@ class SharedPreferenceLocalStorage {
     await _preferences?.setString(key, value);
   }
 
-  Future setDouble(String key, num value)async {
+  Future setDouble(String key, num value) async {
     return _preferences!.setDouble(key, value.toDouble());
   }
 
-  Future setStringList(String key, List<String> value) async{
+  Future setStringList(String key, List<String> value) async {
     await _preferences!.setStringList(key, value);
   }
 

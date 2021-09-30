@@ -17,7 +17,7 @@ class ProfilePageHead extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
       children: [
-        Container(
+        SizedBox(
           width: 75,
           height: 75,
           child: Stack(

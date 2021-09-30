@@ -12,7 +12,8 @@ class SearchField extends StatelessWidget {
     ),
   );
 
-  SearchField({this.onChanged, this.labelText});
+  const SearchField({this.onChanged, this.labelText, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => TextField(
