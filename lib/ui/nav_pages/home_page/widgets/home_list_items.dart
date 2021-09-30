@@ -41,6 +41,7 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       text: AddChannels,
       unread: false,
       onTap: () {
+        // ignore: todo
         //TODO - testing, remove later
         NavigationService().navigateTo(Routes.newChannel);
         // Navigate to add channels screens

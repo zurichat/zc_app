@@ -1,5 +1,7 @@
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -19,6 +21,10 @@ class LoginViewModel extends FormViewModel {
   final _apiService = ZuriApi(baseUrl: coreBaseUrl);
   final _connectivityService = locator<ConnectivityService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
+  final _userService = locator<UserService>();
+
+  final log = getLogger('LogInViewModel');
+
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
 
@@ -27,6 +33,11 @@ class LoginViewModel extends FormViewModel {
   loading(status) {
     isLoading = status;
     notifyListeners();
+  }
+
+  Future initialise() async {
+    var hasUser = _userService.hasUser;
+    return hasUser;
   }
 
   void navigateToHomeScreen() {
