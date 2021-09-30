@@ -5,6 +5,7 @@ import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 
 class SixthSection extends StatelessWidget {
+  const SixthSection({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,16 +37,16 @@ class SixthSection extends StatelessWidget {
             children: [
               Text(
                 'Archive Channel',
-                style: AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14.sp),
+                style:
+                    AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14.sp),
               ),
               Container(
                   alignment: Alignment.center,
                   child: Text(
                     'Archiving the channel will remover it from the channel list, and close it from all members.'
-                        'All chats and filse will still be stored and searchable',
+                    'All chats and filse will still be stored and searchable',
                     style: AppTextStyles.body2_400.copyWith(fontSize: 14.sp),
-                  )
-              ),
+                  )),
             ],
           )
         ],

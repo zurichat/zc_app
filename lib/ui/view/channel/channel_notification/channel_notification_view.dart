@@ -6,6 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'channel_notification_viewmodel.dart';
 
 class ChannelNotificationView extends StatelessWidget {
+  const ChannelNotificationView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelNotificationViewModel>.reactive(
@@ -26,8 +27,8 @@ class ChannelNotificationView extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: AppColors.whiteColor,
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      const BoxShadow(
+                    boxShadow: const [
+                      BoxShadow(
                         color: AppColors.shadowColor,
                         blurRadius: 5,
                       ),
@@ -115,7 +116,8 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onIconTap,
     this.buttonText,
     this.onButtanTap,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -137,8 +139,8 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
-              icon: Icon(this.icon, size: 25, color: AppColors.deepBlackColor),
-              onPressed: this.onIconTap,
+              icon: Icon(icon, size: 25, color: AppColors.deepBlackColor),
+              onPressed: onIconTap,
             ),
           ),
           Expanded(
@@ -161,7 +163,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
               ],
             ),
           ),
-          if (this.buttonText != null)
+          if (buttonText != null)
             TextButton(
               onPressed: onButtanTap,
               child: Text(

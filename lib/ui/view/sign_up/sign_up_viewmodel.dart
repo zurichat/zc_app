@@ -15,7 +15,7 @@ class SignUpViewModel extends FormViewModel {
   final storage = locator<SharedPreferenceLocalStorage>();
   final navigator = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
-    final zuriApi = ZuriApi(coreBaseUrl);
+  final zuriApi = ZuriApi(coreBaseUrl);
 
   String? get token => storage.getString(StorageKeys.currentSessionToken);
 
@@ -52,17 +52,15 @@ class SignUpViewModel extends FormViewModel {
         'password': passwordValue,
         'phone': phoneNumberValue,
       };
-      final response = await zuriApi.post(
-        SignUpEndpoint,
-        body: signUpData,
-        token: token
-      );
+
+      final response =
+          await zuriApi.post(signUpEndpoint, body: signUpData, token: token);
       loading(false);
       if (response?.statusCode == 200) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.success,
-          message: CheckEmailForOTP,
+          message: checkEmailForOTP,
         );
 
         storage.setString(
@@ -74,14 +72,14 @@ class SignUpViewModel extends FormViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: response?.data['message'] ?? ErrorEncounteredSignUp,
+          message: response?.data['message'] ?? errorEncounteredSignUp,
         );
       }
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: AcceptTnC,
+        message: acceptTnC,
       );
     }
   }

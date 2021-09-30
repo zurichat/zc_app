@@ -11,7 +11,7 @@ extension StringExtension on String {
   }
 
   bool strip() {
-    return replaceAll(RegExp(r'\s+'), '').length == 0;
+    return replaceAll(RegExp(r'\s+'), '').isEmpty;
   }
 
   String turnStringToDate(String format) {

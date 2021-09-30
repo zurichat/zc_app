@@ -230,12 +230,12 @@ class AppTextStyles {
   );
   static TextStyle hintStyle = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
-    color: AppColors.SearchHintColor,
+    color: AppColors.searchHintColor,
     fontSize: 14,
   );
   static TextStyle smallText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
-    color: AppColors.ZuriGrey,
+    color: AppColors.zuriGrey,
     fontSize: 12,
   );
   static TextStyle smallTextGrey = GoogleFonts.lato(
@@ -245,7 +245,7 @@ class AppTextStyles {
   );
   static TextStyle mediumText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
-    color: AppColors.ZuriGrey,
+    color: AppColors.zuriGrey,
     fontSize: 16,
   );
   static TextStyle bodySmall = GoogleFonts.lato(
@@ -295,14 +295,11 @@ class AppTextStyles {
       color: AppColors.unreadMessageColor);
 }
 
-
 // ignore: must_be_immutable
 class StatusIcon extends StatelessWidget {
   int count = 5;
 
-  StatusIcon(
-    this.count,
-  );
+  StatusIcon(this.count, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

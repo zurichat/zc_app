@@ -22,13 +22,13 @@ class Message extends StatelessWidget {
             color: Colors.white,
             child: Column(children: [
               Row(
-                children: [
-                  const Text('#stage4-design',
+                children: const [
+                  Text('#stage4-design',
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.black)),
-                  const Text('Today', style: TextStyle(color: Colors.black))
+                  Text('Today', style: TextStyle(color: Colors.black))
                 ],
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
               ),
@@ -46,8 +46,8 @@ class Message extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
-                          children: [
-                            const Padding(
+                          children: const [
+                            Padding(
                               padding: EdgeInsets.only(right: 10),
                               child: Text('Nate',
                                   style: TextStyle(
@@ -56,7 +56,7 @@ class Message extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   )),
                             ),
-                            const Text('19:58',
+                            Text('19:58',
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.black)),
                           ],
@@ -66,7 +66,7 @@ class Message extends StatelessWidget {
                               vertical:
                                   MediaQuery.of(context).size.height * 0.01),
                           child: const Text(
-                            '''What\'s the update designers. '''
+                            '''What's the update designers. '''
                             '''The deadline is tomorrow, ensure you'''
                             ''' write the name of those who contributed.''',
                             style: TextStyle(
