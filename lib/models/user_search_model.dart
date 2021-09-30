@@ -23,6 +23,7 @@ class UserSearch {
   String? lastName;
   String? orgId;
 
+  // ignore: todo
   //TODO Change back to normal type phone and presence and speak with backend
   String? phone;
   String? presence;

@@ -17,11 +17,12 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   NavigationService _navigationService = NavigationService();
 
   final _apiService = ZuriApi(baseUrl: coreBaseUrl);
-
+  // final _otpService = locator<OtpService>();
   final snackbar = locator<SnackbarService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
+
   bool isLoading = false;
 
   loading(status) {
@@ -51,6 +52,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
 
   Future resetPassword() async {
     loading(true);
+    // ignore: todo
     //TODO - wrong endpoint
 
     if (newPasswordValue == '' || confirmPasswordValue == '') {
@@ -76,6 +78,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       'confirm_password': confirmPasswordValue
     };
     //should be a patch req
+
     final response = await _apiService.post(ResetPasswordEndpoint,
         body: newPasswordData, token: token);
 

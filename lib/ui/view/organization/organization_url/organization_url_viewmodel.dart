@@ -57,6 +57,7 @@ class OrganizationUrlViewModel extends BaseViewModel {
       // popUntil((route) => route.settings.name == Routes.navBarView);
       // popUntil(ModalRoute.withName(Routes.OrganizationView));
     }
+    // ignore: todo
     //TODO: put the error text
   }
 
