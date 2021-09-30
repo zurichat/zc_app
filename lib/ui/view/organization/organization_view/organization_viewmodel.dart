@@ -1,4 +1,3 @@
-import 'package:hng/services/current_user_profile.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -60,7 +59,7 @@ class OrganizationViewModel extends BaseViewModel {
       } else {
         organizations = resFromApi;
       }
-    //  filterOrganization();
+      //filterOrganization();
 
       setBusy(false);
     } catch (e) {
@@ -73,6 +72,7 @@ class OrganizationViewModel extends BaseViewModel {
     }
   }
 
+// ignore: todo
 //TODO change this to fetch the list of organizations the user is part of alone
   void filterOrganization() {
     final ids = storageService.getStringList(StorageKeys.organizationIds) ?? [];
@@ -93,7 +93,6 @@ class OrganizationViewModel extends BaseViewModel {
         variant: SnackbarType.success,
         message: 'You have entered $name',
       );
-      await GetUserProfile().currentUser();
       storageService.setString(StorageKeys.currentOrgName, name!);
       storageService.setString(StorageKeys.currentOrgUrl, url!);
 

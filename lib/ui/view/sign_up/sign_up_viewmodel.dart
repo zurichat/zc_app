@@ -1,10 +1,10 @@
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
-import '../../../package/base/server-request/api/http_api.dart';
 import '../../../services/local_storage_services.dart';
 import '../../../utilities/enums.dart';
 import '../../../utilities/storage_keys.dart';
@@ -16,7 +16,8 @@ class SignUpViewModel extends FormViewModel {
   final storage = locator<SharedPreferenceLocalStorage>();
   final navigator = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
-  final apiService = HttpApiService(coreBaseUrl);
+  final apiService = ZuriApi(baseUrl: coreBaseUrl);
+  String? get token => storage.getString(StorageKeys.currentSessionToken);
 
   bool isLoading = false;
   bool checkBoxValue = false;
@@ -51,7 +52,10 @@ class SignUpViewModel extends FormViewModel {
         'password': passwordValue,
         'phone': phoneNumberValue,
       };
-      final response = await apiService.post(SignUpEndpoint, data: signUpData);
+      final response = await apiService.post(
+        SignUpEndpoint,
+        body: signUpData,
+      );
       loading(false);
       if (response?.statusCode == 200) {
         snackbar.showCustomSnackBar(
