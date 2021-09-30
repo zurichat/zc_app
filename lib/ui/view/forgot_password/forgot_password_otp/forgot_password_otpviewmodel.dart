@@ -15,12 +15,11 @@ import 'package:stacked_services/stacked_services.dart';
 
 class ForgotPasswordOtpViewModel extends FormViewModel {
   NavigationService _navigationService = NavigationService();
-  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
+  final _apiService = ZuriApi(coreBaseUrl);
   final _snackbarService = locator<SnackbarService>();
   bool isLoading = false;
-  final storageService = locator<SharedPreferenceLocalStorage>();
-  String? get token =>
-      storageService.getString(StorageKeys.currentSessionToken);
+        final storageService = locator<SharedPreferenceLocalStorage>();
+   String? get token => storageService.getString(StorageKeys.currentSessionToken);
 
   // ignore: close_sinks
   StreamController<ErrorAnimationType>? errorController;
@@ -48,9 +47,8 @@ class ForgotPasswordOtpViewModel extends FormViewModel {
     notifyListeners();
 
     final validationData = {'code': otpValue};
-
-    final response = await _apiService.post(VerifyOTPEndpoint,
-        body: validationData, token: token);
+    final response =
+        await _apiService.post(VerifyOTPEndpoint, body: validationData, token: token);
     loading(false);
     if (response?.statusCode == 200) {
       _snackbarService.showCustomSnackBar(
