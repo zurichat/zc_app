@@ -49,8 +49,8 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  void sendMessage() {
-    final message = messageValue;
+  void sendMessage(String? _message) {
+    final message = _message;
     if (message!.trim().isNotEmpty) {
       chatMessages.add(
         Message(

@@ -59,8 +59,7 @@ class ChannelPageViewModel extends BaseViewModel {
 
   void joinChannel(String channelId) async {
     var joinedChannel = await _channelsApiService.joinChannel(channelId);
-    channelMembers.add(
-        ChannelMembermodel.fromJson(joinedChannel));
+    channelMembers.add(ChannelMembermodel.fromJson(joinedChannel));
     print(joinedChannel);
   }
 
@@ -98,7 +97,7 @@ class ChannelPageViewModel extends BaseViewModel {
       );
     });
     isLoading = false;
-    scrollController.jumpTo(scrollController.position.maxScrollExtent);
+    scrollController.jumpTo(scrollController.position.minScrollExtent);
 
     notifyListeners();
   }
@@ -110,7 +109,7 @@ class ChannelPageViewModel extends BaseViewModel {
     String? userId = storage.getString(StorageKeys.currentUserId);
     await _channelsApiService.sendChannelMessages(
         channelId, "$userId", message);
-
+    scrollController.jumpTo(scrollController.position.minScrollExtent);
     notifyListeners();
   }
 

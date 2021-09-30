@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:stacked/stacked.dart';
 
-class ExpandableTextFieldScreenViewModel extends ChangeNotifier {
-  final ScrollController scrollController = ScrollController();
-  final TextEditingController textController = TextEditingController();
-
+class ExpandableTextFieldScreenViewModel extends BaseViewModel {
   bool isVisible = false;
   bool isExpanded = false;
 

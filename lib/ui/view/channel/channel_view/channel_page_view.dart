@@ -70,16 +70,21 @@ class ChannelPageView extends StatelessWidget {
             ],
           ),
           body: ExpandableTextFieldScreen(
-            sendMessage: (val)=> model.sendMessage(val, channelId!),
-            widget: Column(
-              children: [
-                ChannelIntro(
-                  channelName: channelname,
-                ),
-                ChannelChat(
-                  channelId: channelId,
-                ),
-              ],
+            hintText: 'Add a Reply',
+            sendMessage: (val) => model.sendMessage(val, channelId!),
+            widget: SingleChildScrollView(
+              reverse: true,
+              controller: model.scrollController,
+              child: Column(
+                children: [
+                  ChannelIntro(
+                    channelName: channelname,
+                  ),
+                  ChannelChat(
+                    channelId: channelId,
+                  ),
+                ],
+              ),
             ),
           ),
         );

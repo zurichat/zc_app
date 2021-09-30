@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/dm_user/icons/zap_icon.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../ui/shared/shared.dart';
 
 class ExpandableTextField extends StatelessWidget {
   const ExpandableTextField({
     Key? key,
+    required this.hintText,
     required this.isExpanded,
     required this.isVisible,
+    required this.focus,
     required this.toggleExpanded,
     required this.toggleVisibility,
     required this.sendMessage,
     required this.controller,
   }) : super(key: key);
 
+  final String hintText;
   final bool isExpanded;
   final bool isVisible;
+  final FocusNode focus;
   final TextEditingController controller;
   final void Function() toggleExpanded;
   final void Function(bool) toggleVisibility;
   final void Function() sendMessage;
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +42,14 @@ class ExpandableTextField extends StatelessWidget {
             alignment: Alignment.topRight,
             child: Visibility(
               visible: isExpanded,
-              child: IconButton(
-                onPressed: () => toggleExpanded(),
-                icon: Icon(
-                  Icons.zoom_out_map,
-                  color: AppColors.darkGreyColor,
+              child: GestureDetector(
+                onTap: () => toggleExpanded(),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SvgPicture.asset(
+                    'assets/icons/svg_icons/minimize.svg',
+                    color: AppColors.darkGreyColor,
+                  ),
                 ),
               ),
             ),
@@ -63,46 +71,62 @@ class ExpandableTextField extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      AppIcons.shapezap,
-                      color: AppColors.darkGreyColor,
+                  GestureDetector(
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(
+                        'assets/icons/svg_icons/zap.svg',
+                        color: AppColors.darkGreyColor,
+                      ),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.alternate_email_outlined,
-                      color: AppColors.darkGreyColor,
+                  GestureDetector(
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(
+                        'assets/icons/svg_icons/at_sign.svg',
+                        color: AppColors.darkGreyColor,
+                      ),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.tag_faces_sharp,
-                      color: AppColors.darkGreyColor,
+                  GestureDetector(
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(
+                        'assets/icons/svg_icons/smile.svg',
+                        color: AppColors.darkGreyColor,
+                      ),
                     ),
                   ),
                   Spacer(),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.camera_alt_outlined,
-                      color: AppColors.darkGreyColor,
+                  GestureDetector(
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(
+                        'assets/icons/svg_icons/camera.svg',
+                        color: AppColors.darkGreyColor,
+                      ),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.attach_file_outlined,
-                      color: AppColors.darkGreyColor,
+                  GestureDetector(
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(
+                        'assets/icons/svg_icons/paperclip.svg',
+                        color: AppColors.darkGreyColor,
+                      ),
                     ),
                   ),
                   IconButton(
                     onPressed: () {
                       if (controller.text.toString().isNotEmpty) {
-                        sendMessage();                        
+                        sendMessage();
+                        controller.clear();
                       }
                     },
                     icon: Icon(
@@ -133,43 +157,64 @@ class ExpandableTextField extends StatelessWidget {
               expands: true,
               maxLines: null,
               minLines: null,
+              focusNode: focus,
+              autofocus: focus.hasFocus,
+              cursorColor: AppColors.zuriPrimaryColor,
               textAlignVertical:
                   isExpanded ? TextAlignVertical.top : TextAlignVertical.center,
               decoration: InputDecoration.collapsed(
-                hintText: 'Add a Reply',
+                hintText: hintText,
                 hintStyle: AppTextStyles.faintBodyText,
-              ).copyWith(contentPadding: EdgeInsets.all(10)),
+              ).copyWith(contentPadding: EdgeInsets.all(8)),
             ),
           ),
           Visibility(
             visible: !isExpanded && isVisible,
-            child: IconButton(
-              onPressed: () => toggleExpanded(),
-              icon: Icon(
-                Icons.zoom_out_map,
-                color: AppColors.darkGreyColor,
+            child: GestureDetector(
+              onTap: () => toggleExpanded(),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset(
+                  'assets/icons/svg_icons/maximize.svg',
+                  color: AppColors.darkGreyColor,
+                ),
               ),
-              padding: EdgeInsets.all(2),
             ),
           ),
           Visibility(
             visible: !isVisible,
             child: Row(
               children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.camera_alt_outlined,
-                    color: AppColors.darkGreyColor,
+                GestureDetector(
+                  onTap: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      'assets/icons/svg_icons/zap.svg',
+                      color: AppColors.darkGreyColor,
+                    ),
                   ),
-                  onPressed: () {},
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.attach_file_outlined,
-                    color: AppColors.darkGreyColor,
+                GestureDetector(
+                  onTap: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      'assets/icons/svg_icons/camera.svg',
+                      color: AppColors.darkGreyColor,
+                    ),
                   ),
-                  onPressed: () {},
-                )
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      'assets/icons/svg_icons/paperclip.svg',
+                      color: AppColors.darkGreyColor,
+                    ),
+                  ),
+                ),
               ],
             ),
           )
