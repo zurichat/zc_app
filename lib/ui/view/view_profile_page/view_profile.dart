@@ -23,7 +23,7 @@ class ViewProfile extends StatelessWidget {
             builder:
                 (BuildContext context, ScrollController scrollController) =>
                     SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               controller: scrollController,
               child: Visibility(
                 visible: !model.isBusy,
