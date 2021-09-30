@@ -9,7 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-const String messageValueKey = 'message';
+const String MessageValueKey = 'message';
 
 mixin $StartDmView on StatelessWidget {
   final TextEditingController messageController = TextEditingController();
@@ -25,7 +25,7 @@ mixin $StartDmView on StatelessWidget {
   void _updateFormData(FormViewModel model) => model.setData(
         model.formValueMap
           ..addAll({
-            messageValueKey: messageController.text,
+            MessageValueKey: messageController.text,
           }),
       );
 
@@ -38,9 +38,9 @@ mixin $StartDmView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get messageValue => formValueMap[messageValueKey];
+  String? get messageValue => formValueMap[MessageValueKey];
 
-  bool get hasMessage => formValueMap.containsKey(messageValueKey);
+  bool get hasMessage => formValueMap.containsKey(MessageValueKey);
 }
 
 extension Methods on FormViewModel {}

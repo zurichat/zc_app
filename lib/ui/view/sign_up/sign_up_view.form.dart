@@ -9,13 +9,13 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-const String emailValueKey = 'email';
-const String firstNameValueKey = 'firstName';
-const String lastNameValueKey = 'lastName';
-const String displayNameValueKey = 'displayName';
-const String passwordValueKey = 'password';
-const String confirmPasswordValueKey = 'confirmPassword';
-const String phoneNumberValueKey = 'phoneNumber';
+const String EmailValueKey = 'email';
+const String FirstNameValueKey = 'firstName';
+const String LastNameValueKey = 'lastName';
+const String DisplayNameValueKey = 'displayName';
+const String PasswordValueKey = 'password';
+const String ConfirmPasswordValueKey = 'confirmPassword';
+const String PhoneNumberValueKey = 'phoneNumber';
 
 mixin $SignUpView on StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -50,13 +50,13 @@ mixin $SignUpView on StatelessWidget {
   void _updateFormData(FormViewModel model) => model.setData(
         model.formValueMap
           ..addAll({
-            emailValueKey: emailController.text,
-            firstNameValueKey: firstNameController.text,
-            lastNameValueKey: lastNameController.text,
-            displayNameValueKey: displayNameController.text,
-            passwordValueKey: passwordController.text,
-            confirmPasswordValueKey: confirmPasswordController.text,
-            phoneNumberValueKey: phoneNumberController.text,
+            EmailValueKey: emailController.text,
+            FirstNameValueKey: firstNameController.text,
+            LastNameValueKey: lastNameController.text,
+            DisplayNameValueKey: displayNameController.text,
+            PasswordValueKey: passwordController.text,
+            ConfirmPasswordValueKey: confirmPasswordController.text,
+            PhoneNumberValueKey: phoneNumberController.text,
           }),
       );
 
@@ -75,22 +75,23 @@ mixin $SignUpView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get emailValue => formValueMap[emailValueKey];
-  String? get firstNameValue => formValueMap[firstNameValueKey];
-  String? get lastNameValue => formValueMap[lastNameValueKey];
-  String? get displayNameValue => formValueMap[displayNameValueKey];
-  String? get passwordValue => formValueMap[passwordValueKey];
-  String? get confirmPasswordValue => formValueMap[confirmPasswordValueKey];
-  String? get phoneNumberValue => formValueMap[phoneNumberValueKey];
+  String? get emailValue => formValueMap[EmailValueKey];
+  String? get firstNameValue => formValueMap[FirstNameValueKey];
+  String? get lastNameValue => formValueMap[LastNameValueKey];
+  String? get displayNameValue => formValueMap[DisplayNameValueKey];
+  String? get passwordValue => formValueMap[PasswordValueKey];
+  String? get confirmPasswordValue =>
+      formValueMap[ConfirmPasswordValueKey];
+  String? get phoneNumberValue => formValueMap[PhoneNumberValueKey];
 
-  bool get hasEmail => formValueMap.containsKey(emailValueKey);
-  bool get hasFirstName => formValueMap.containsKey(firstNameValueKey);
-  bool get hasLastName => formValueMap.containsKey(lastNameValueKey);
-  bool get hasDisplayName => formValueMap.containsKey(displayNameValueKey);
-  bool get hasPassword => formValueMap.containsKey(passwordValueKey);
+  bool get hasEmail => formValueMap.containsKey(EmailValueKey);
+  bool get hasFirstName => formValueMap.containsKey(FirstNameValueKey);
+  bool get hasLastName => formValueMap.containsKey(LastNameValueKey);
+  bool get hasDisplayName => formValueMap.containsKey(DisplayNameValueKey);
+  bool get hasPassword => formValueMap.containsKey(PasswordValueKey);
   bool get hasConfirmPassword =>
-      formValueMap.containsKey(confirmPasswordValueKey);
-  bool get hasPhoneNumber => formValueMap.containsKey(phoneNumberValueKey);
+      formValueMap.containsKey(ConfirmPasswordValueKey);
+  bool get hasPhoneNumber => formValueMap.containsKey(PhoneNumberValueKey);
 }
 
 extension Methods on FormViewModel {}
