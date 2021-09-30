@@ -1,16 +1,16 @@
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../models/start_dm_models.dart';
 import '../../../services/local_storage_services.dart';
-import '../../../utilities/constants.dart';
 import '../../../utilities/storage_keys.dart';
 
 class StartDmViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();
-  final _api = ZuriApi(baseUrl: coreBaseUrl);
+  final zuriApi = locator<ZuriApi>();
   final storageService = locator<SharedPreferenceLocalStorage>();
    String? get token => storageService.getString(StorageKeys.currentSessionToken);
 
@@ -32,8 +32,8 @@ class StartDmViewModel extends FormViewModel {
       if (_currentOrgId == null || token == null) {
         return [];
       }
-      final response = await _api.get(
-        endpoint,
+      final response = await zuriApi.get(
+        "$coreBaseUrl/$endpoint",
         token: token,
       );
       // print(response);

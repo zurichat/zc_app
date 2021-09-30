@@ -11,12 +11,12 @@ import '../../../../utilities/enums.dart';
 import 'edit_channel_view.form.dart';
 
 class EditChannelViewModel extends FormViewModel {
-  //final _apiService = locator<ChannelApiService>();
+  //final zuriApi = locator<ChannelApiService>();
   //final storage = locator<SharedPreferenceLocalStorage>();
   final navigationService = locator<NavigationService>();
   static final storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
-  final _apiService = ZuriApi(baseUrl: channelsBaseUrl);
+  final zuriApi = locator<ZuriApi>();
   bool isLoading = false;
   String? token = storage.getString(StorageKeys.currentSessionToken);
   loading(status) {
@@ -41,7 +41,7 @@ class EditChannelViewModel extends FormViewModel {
     const channel_id = '613f70bd6173056af01b4aba';
     const endpoint = '/v1/1/channels/$channel_id/';
     final des = {/*'topic': topic.text, */ 'description': descriptionValue};
-    final response = await _apiService.put(endpoint, body: des, token: token);
+    final response = await zuriApi.put("$channelsBaseUrl/$endpoint", body: des, token: token);
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -64,7 +64,7 @@ class EditChannelViewModel extends FormViewModel {
     const endpoint = '/v1/1/channels/$channel_id/';
     // Called when save button in the edit channel view is pressed
     final des = {/*'topic': topic.text, */ 'description': description.text};
-    final response = await _apiService.put(endpoint, data: des, headers: {
+    final response = await zuriApi.put(endpoint, data: des, headers: {
       'Authorization': 'Bearer $token',
     });
     loading(false);
@@ -102,7 +102,7 @@ class EditChannelViewModel extends FormViewModel {
       return;
     }
     final loginData = {'email': email.text, 'password': password.text};
-    final response = await _apiService.post(endpoint, data: loginData);
+    final response = await zuriApi.post(endpoint, data: loginData);
     loading(false);
     if (response?.statusCode == 200) {
       storage.setString(

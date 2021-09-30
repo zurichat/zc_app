@@ -18,8 +18,7 @@ class EditProfileViewModel extends FutureViewModel {
   final snackbar = locator<SnackbarService>();
   final navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
-  final _api = ZuriApi(baseUrl: coreBaseUrl);
-  final api = ApiService();
+  final zuriApi = locator<ZuriApi>();
   String? get token => storageService.getString(StorageKeys.currentSessionToken);
 
   void updateString(String name, String display, String status, String phone) {
@@ -58,7 +57,7 @@ class EditProfileViewModel extends FutureViewModel {
       'phone': _phone
     };
     final editResponse =
-        await _api.patch(profileEndPoint, body: profileData, token: token);
+        await zuriApi.patch("$coreBaseUrl/$profileEndPoint}", body: profileData, token: token);
     final snackbar = locator<SnackbarService>();
 
     if (editResponse!.statusCode == 200) {

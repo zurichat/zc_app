@@ -12,7 +12,7 @@ import 'package:stacked_services/stacked_services.dart';
 class CustomUserBottomSheetViewModel extends FutureViewModel {
   final _navigationService = locator<NavigationService>();
   static final _storage = locator<SharedPreferenceLocalStorage>();
-  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
+  final zuriApi = locator<ZuriApi>();
   UserModel? _userModel;
 
   void navigateToSetStatus() =>
@@ -26,7 +26,7 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
 
   @override
   Future<void> futureToRun() async {
-    final response = await _apiService.get('$UserDataEndpoint', token: token);
+    final response = await zuriApi.get('$UserDataEndpoint', token: token);
     _userModel = UserModel.fromJson(response!.data['data']);
   }
 

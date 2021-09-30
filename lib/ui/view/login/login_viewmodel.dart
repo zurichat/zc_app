@@ -16,7 +16,7 @@ class LoginViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
-  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
+  final zuriApi = locator<ZuriApi>();
   final _connectivityService = locator<ConnectivityService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
   String? get token =>
@@ -68,8 +68,8 @@ class LoginViewModel extends FormViewModel {
       return;
     }
     final loginData = {'email': emailValue, 'password': passwordValue};
-    final response =
-        await _apiService.post(LoginEndpoint, body: loginData, token: token);
+    final response = await zuriApi.login(
+        email: emailValue!, password: passwordValue!, token: token);
 
     loading(false);
 

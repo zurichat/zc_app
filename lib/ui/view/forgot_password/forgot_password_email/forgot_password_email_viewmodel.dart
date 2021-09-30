@@ -15,7 +15,7 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
   bool inputError = false;
   final _navigationService = locator<NavigationService>();
   final _snackbarService = locator<SnackbarService>();
-  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
+  final zuriApi = locator<ZuriApi>();
   final storageService = locator<SharedPreferenceLocalStorage>();
   bool isLoading = false;
   String? get token =>
@@ -52,7 +52,7 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
     }
 
     final validationData = {'email': forgotEmailValue};
-    final response = await _apiService.post(RequestOTPEndpoint,
+    final response = await zuriApi.post("$coreBaseUrl/$RequestOTPEndpoint",
         body: validationData, token: token);
 
     response != null ? loading(false) : loading(true);

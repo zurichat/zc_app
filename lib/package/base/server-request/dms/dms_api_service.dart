@@ -7,36 +7,34 @@ import '../../../../services/local_storage_services.dart';
 import '../../../../services/user_service.dart';
 import '../../../../ui/shared/shared.dart';
 
-
 class DMApiService {
-  final _api = ZuriApi(baseUrl: dmsBaseUrl);
   final log = getLogger('DMApiService');
   //Todo: implement this in another service
-  final _userApi = ZuriApi(baseUrl: 'https://api.zuri.chat/');
-
+  final zuriApi = locator<ZuriApi>();
   final storageService = locator<SharedPreferenceLocalStorage>();
-  final _userService = locator<UserService>();
+  static final _userService = locator<UserService>();
+  final userId = _userService.userId;
+  final orgId = _userService.currentOrgId;
 
   Future<List> getActiveDms() async {
-    // final userId = _userService.userId;
-    // final orgId = _userService.currentOrgId;
+    final res = await zuriApi.getActiveRooms(orgId, userId, token);
+    return res;
+    // var joinedRooms = [];
 
-    var joinedRooms = [];
+    // try {
+    //   final res = await zuriApi.get(
+    //     /*'v1/sidebar?org=$orgId&user=$userId'*/
+    //     'https://dm.zuri.chat/api/v1/sidebar?org=614679ee1a5607b13c00bcb7&user=6146ce37845b436ea04d102d',
+    //      token: token,
+    //   );
+    //   joinedRooms = res?.data?['joined_rooms'];
+    //   log.i(joinedRooms);
+    // } on Exception catch (e) {
+    //   log.e(e.toString());
+    //   return [];
+    // }
 
-    try {
-      final res = await _api.get(
-        /*'v1/sidebar?org=$orgId&user=$userId'*/
-        'https://dm.zuri.chat/api/v1/sidebar?org=614679ee1a5607b13c00bcb7&user=6146ce37845b436ea04d102d',
-         token: token,
-      );
-      joinedRooms = res?.data?['joined_rooms'];
-      log.i(joinedRooms);
-    } on Exception catch (e) {
-      log.e(e.toString());
-      return [];
-    }
-
-    return joinedRooms;
+    // return joinedRooms;
   }
 
   //Todo: this method does not belong here
@@ -46,7 +44,7 @@ class DMApiService {
       if (ids[0] == _userService.userId) {
         id = id[1];
       }
-      final res = _userApi.get('users/$id');
+      final res = zuriApi.get('users/$id');
       log.i(res);
     } on Exception catch (e) {
       log.e(e.toString());

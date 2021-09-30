@@ -16,7 +16,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   bool inputError = false;
   NavigationService _navigationService = NavigationService();
 
-  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
+  final zuriApi = locator<ZuriApi>();
 
   final snackbar = locator<SnackbarService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
@@ -76,7 +76,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       'confirm_password': confirmPasswordValue
     };
     //should be a patch req
-    final response = await _apiService.post(ResetPasswordEndpoint,
+    final response = await zuriApi.post("$coreBaseUrl/$ResetPasswordEndpoint",
         body: newPasswordData, token: token);
 
     loading(false);

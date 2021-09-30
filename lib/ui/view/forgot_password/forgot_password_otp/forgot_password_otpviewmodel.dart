@@ -15,7 +15,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class ForgotPasswordOtpViewModel extends FormViewModel {
   NavigationService _navigationService = NavigationService();
-  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
+  final zuriApi = locator<ZuriApi>();
   final _snackbarService = locator<SnackbarService>();
   bool isLoading = false;
   final storageService = locator<SharedPreferenceLocalStorage>();
@@ -49,7 +49,7 @@ class ForgotPasswordOtpViewModel extends FormViewModel {
 
     final validationData = {'code': otpValue};
 
-    final response = await _apiService.post(VerifyOTPEndpoint,
+    final response = await zuriApi.post("$coreBaseUrl/$VerifyOTPEndpoint",
         body: validationData, token: token);
     loading(false);
     if (response?.statusCode == 200) {

@@ -3,7 +3,7 @@ import 'package:hng/models/user_search_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart';
 import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/utilities/constants.dart';
+import 'package:hng/services/user_service.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -12,8 +12,10 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
   final organizationApi = OrganizationApiService();
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _navigationService = locator<NavigationService>();
-  // final api = HttpApiService("https://channels.zuri.chat/api/v1");
-  final api = ZuriApi(baseUrl: channelsBaseUrl);
+  final zuriApi = locator<ZuriApi>();
+  static final _userService = locator<UserService>();
+
+  String? get orgId => _userService.currentOrgId;
 
   bool get allMarked =>
       markedUsers.length == matchingUsers.length && matchingUsers.isNotEmpty;
@@ -38,7 +40,7 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
   void onFetchMembers() async {
     setBusy(true);
     matchingUsers =
-        users = await organizationApi.fetchMembersInOrganization(orgId!);
+        users = await organizationApi.fetchMembersInOrganization();
     setBusy(false);
   }
 
@@ -54,9 +56,8 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
   }
 
   Future<void> addMemberToChannel(String channelId, String userId) async {
-    await api.post(
+    await zuriApi.post(
       "/$orgId/channels/$channelId/members/",
-      //  "/614679ee1a5607b13c00bcb7/channels/$channelId/members/",
       token: token,
       body: {
         "_id": userId,
@@ -84,5 +85,4 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  String? get orgId => storageService.getString(StorageKeys.currentOrgId);
 }

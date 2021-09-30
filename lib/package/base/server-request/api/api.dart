@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/models/api_response.dart';
+import 'package:hng/models/organization_model.dart';
+import 'package:hng/models/user_search_model.dart';
 import 'package:hng/utilities/failures.dart';
 
 abstract class Api {
@@ -25,7 +27,7 @@ abstract class Api {
   /// -----------------------------------------------------------------------
 
   // LOGIN SERVICE
-  Future<dynamic> login({required String email, required String password});
+  Future<dynamic> login({required String email, required String password, token});
 
   // SIGNUP SERVICE
   Future<dynamic> signUp(
@@ -38,10 +40,10 @@ abstract class Api {
       required String token});
 
   // THE SERVICE TO GET LIST OF ORGANIZATIONS
-  Future fetchListOfOrganizations(token);
+  Future<List<OrganizationModel>> fetchListOfOrganizations(token);
 
   // THE SERVICE TO GET LIST OF JOINED ORGANIZATIONS OF A USER
-  Future getJoinedOrganizations(token, String email);
+  Future<List<OrganizationModel>> getJoinedOrganizations(token, String email);
 
   // THE SERVICE TO GET THE INFORMATION OF AN ORGANIZATION
   Future fetchOrganizationInfo(String id, token);
@@ -53,7 +55,7 @@ abstract class Api {
   Future<bool> joinOrganization(String orgId, String email, token);
 
   // THE SERVICE TO CREATE AN ORGANIZATION
-  Future createOrganization(String email, token);
+  Future<String> createOrganization(String email, token);
 
   /// THE SERVICE TO UPDATE AN ORGANIZATION URL
   /// THIS GIVES THE ORGANIZATION A PRIVILEDGE TO
@@ -71,14 +73,21 @@ abstract class Api {
   // THE SERVICE TO ADD A MEMBERS TO AN ORGANIZATION
   Future addMemberToOrganization(String orgId, String email, token);
 
+  // THE SERVICE TO FETCH MEMBERS IN AN ORGANIZATION
+  Future<List<UserSearch>> fetchMembersInOrganization(String orgId, token);
+
   /// THE SERVICE TO GET THE SOCKET ID FOR A CHANNEL
   /// THIS AIDS THE RTC AS WELL AS GETTING THE MESSAGES
   Future getChannelSocketId(String channelId, String orgId, token);
 
+
+  /// THE SERVICE TO GET THE LIST OF ACTIVE DMs
+  Future<List> getActiveDms(String orgId, token);
+
   /// THE SERVICE TO JOIN A CHANNEL
   /// THIS CAN BE DONE EITHER BY CALLING THE USER
   /// OR BY MANUALLY ADDING THEM BY USERNAME
-  Future joinChannel(String channelId, String userId, String orgId, token);
+  Future<Map> joinChannel(String channelId, String userId, String orgId, token);
 
   /// THE SERVICE TO GET ALL CHANNEL MESSAGES FROM THE BACKEND
   /// THIS SERVICE IS SUPPORTED WITH THE RTC METHODS
@@ -142,7 +151,6 @@ abstract class Api {
   /// THE SERVICE TO FETCH ALL MEMBERS IN AN ORGANIZATIONS
   /// THIS INCLUDES THE ADMINS AND MEMBERS
   Future fetchListOfMembers(String currentOrgId, token);
-
 
   /// A SERVICE TO SEND PATCH REQUEST TO THE ENDPOINT
   Future<ApiResponse?> patch(String path,

@@ -8,10 +8,12 @@ import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/services/connectivity_service.dart';
+import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -24,6 +26,10 @@ class HomePageViewModel extends StreamViewModel {
   final dmApiService = locator<DMApiService>();
   final zuriApi = locator<ZuriApi>();
   final channelsApiService = locator<ChannelsApiService>();
+  final storageService = locator<SharedPreferenceLocalStorage>();
+
+
+  String? get token => storageService.getString(StorageKeys.currentSessionToken);
 
   final navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
@@ -44,6 +50,7 @@ class HomePageViewModel extends StreamViewModel {
   List<HomeItemModel> directMessages = [];
 
   String get orgName => userService.currentOrgName;
+  String get orgId => userService.currentOrgId;
 
   @override
   Stream get stream => checkConnectivity();
@@ -130,7 +137,7 @@ class HomePageViewModel extends StreamViewModel {
     homePageList = [];
     setBusy(true);
 
-    List? channelsList = await channelsApiService.getActiveDms();
+    List? channelsList = await zuriApi.getActiveDms(orgId, token);
 
     channelsList.forEach(
       (data) {
