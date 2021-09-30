@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -20,7 +21,7 @@ class ThreadTextAndIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _TextAndIcon(
-      text: 'Threads',
+      text: Threads,
       unread: true,
       onTap: () {
         // Navigate to threads screen
@@ -37,9 +38,10 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   @override
   Widget build(BuildContext context, vmodel) {
     return _TextAndIcon(
-      text: 'Add channels',
+      text: AddChannels,
       unread: false,
       onTap: () {
+        // ignore: todo
         //TODO - testing, remove later
         NavigationService().navigateTo(Routes.newChannel);
         // Navigate to add channels screens

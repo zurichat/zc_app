@@ -46,7 +46,8 @@ Future setupLocator(
   locator.registerLazySingleton(() => DMApiService());
   locator.registerLazySingleton(() => ChannelsApiService());
   locator.registerLazySingleton(() => JumpToApi());
-  locator.registerLazySingleton(() => CentrifugeService());
   locator.registerLazySingleton(() => NotificationService());
   locator.registerLazySingleton(() => ZuriApi());
+  final centrifugeService = await CentrifugeService.getInstance();
+  locator.registerSingleton(centrifugeService);
 }

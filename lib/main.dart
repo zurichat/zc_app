@@ -8,6 +8,7 @@ import 'package:stacked_themes/stacked_themes.dart';
 
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
+import 'constants/app_strings.dart';
 import 'general_widgets/app_snackbar.dart';
 import 'services/theme_setup.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             navigatorKey: StackedService.navigatorKey,
             onGenerateRoute: StackedRouter().onGenerateRoute,
-            title: 'ZuriChat',
+            title: AppName,
             theme: regularTheme,
             darkTheme: darkTheme,
             themeMode: themeMode,

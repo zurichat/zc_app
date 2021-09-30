@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/constants/app_strings.dart';
 
 import 'shared.dart';
 
@@ -17,7 +18,7 @@ class Dialogs {
 //Buttons set up
     final cancelButton = TextButton(
       child: Text(
-        'CANCEL',
+        Cancel,
         style: actionsTextStyle,
       ),
       onPressed: () {
@@ -26,7 +27,7 @@ class Dialogs {
     );
     final continueButton = TextButton(
       child: Text(
-        'ARCHIVE',
+        Archive,
         style: actionsTextStyle,
       ),
       onPressed: () {
@@ -41,7 +42,7 @@ class Dialogs {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text(
-              'Archive $channelName ?',
+              '$Archive $channelName ?',
               style: GoogleFonts.roboto(
                 color: const Color(0xff000000).withOpacity(0.87),
                 fontSize: 20.0,
@@ -49,8 +50,9 @@ class Dialogs {
               ),
             ),
             content: Text(
-              'This will close the channel for anyone who has it open.',
+              CloseChannelWarning,
               style: GoogleFonts.roboto(
+                // ignore: todo
                 //TODO Change to Brand color
                 color: const Color(0xff000000).withOpacity(0.54),
                 fontSize: 16.0,

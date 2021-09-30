@@ -169,9 +169,8 @@ class AppTextStyles {
     fontSize: 16,
   );
 
-  static TextStyle zuriAppBarWordLogo = const TextStyle(
+  static TextStyle zuriAppBarWordLogo = GoogleFonts.lato(
       fontSize: 18.08,
-      fontFamily: 'Lato',
       fontWeight: FontWeight.w700,
       color: AppColors.whiteColor,
       height: 1,

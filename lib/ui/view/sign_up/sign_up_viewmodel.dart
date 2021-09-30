@@ -1,3 +1,4 @@
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -16,7 +17,7 @@ class SignUpViewModel extends FormViewModel {
   final navigator = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
   final apiService = ZuriApi(baseUrl: coreBaseUrl);
-   String? get token => storage.getString(StorageKeys.currentSessionToken);
+  String? get token => storage.getString(StorageKeys.currentSessionToken);
 
   bool isLoading = false;
   bool checkBoxValue = false;
@@ -42,7 +43,7 @@ class SignUpViewModel extends FormViewModel {
   createUser(context) async {
     if (checkBoxValue == true) {
       loading(true);
-      const endpoint = '/users';
+
       final signUpData = {
         'first_name': firstNameValue,
         'last_name': lastNameValue,
@@ -51,13 +52,16 @@ class SignUpViewModel extends FormViewModel {
         'password': passwordValue,
         'phone': phoneNumberValue,
       };
-      final response = await apiService.post(endpoint, body: signUpData, token: token);
+      final response = await apiService.post(
+        SignUpEndpoint,
+        body: signUpData,
+      );
       loading(false);
       if (response?.statusCode == 200) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.success,
-          message: 'Please check your email for your one-time-password',
+          message: CheckEmailForOTP,
         );
 
         storage.setString(
@@ -69,15 +73,14 @@ class SignUpViewModel extends FormViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message:
-              response?.data['message'] ?? 'Error encountered during signup.',
+          message: response?.data['message'] ?? ErrorEncounteredSignUp,
         );
       }
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'You must accept T & C to signup',
+        message: AcceptTnC,
       );
     }
   }

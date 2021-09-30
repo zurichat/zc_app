@@ -109,6 +109,7 @@ class ThreadDetailView extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      // ignore: todo
                       //TODO Change to brand colors
                       const Divider(height: 0, color: Color(0xFF999999)),
                       Row(

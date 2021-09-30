@@ -53,6 +53,7 @@ class UserSearch extends StatelessWidget {
                         border: const OutlineInputBorder(),
                         hintText: 'Search for members',
                         hintStyle: GoogleFonts.lato(
+                          // ignore: todo
                           //TODO Change to brand colors
                           color: Colors.grey,
                         ),

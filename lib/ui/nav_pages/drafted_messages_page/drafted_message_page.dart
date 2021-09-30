@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/nav_pages/drafted_messages_page/widgets/app/data.dart';
 import 'package:hng/ui/nav_pages/drafted_messages_page/widgets/app/drafted_item_widget.dart';
 import 'package:stacked/stacked.dart';
@@ -18,7 +19,7 @@ class DraftedMessagePage extends StatelessWidget {
                 ),
                 centerTitle: false,
                 title: const Text(
-                  'Draft',
+                  Draft,
                   style: TextStyle(color: Colors.black),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
@@ -65,18 +66,18 @@ class HomePage extends StatelessWidget {
           ),
           const Divider(),
           HomeExpandedList(
-            title: 'Unreads',
+            title: Unreads,
             canExpand: false,
             data: vmodel.unreads,
           ),
           const Divider(),
           HomeExpandedList(
-            title: 'Channels',
+            title: Channels,
             data: vmodel.joinedChannels,
           ),
           const Divider(),
           HomeExpandedList(
-            title: 'Direct Messages',
+            title: DMs,
             data: vmodel.directMessages,
           ),
           const Divider(),
@@ -98,7 +99,7 @@ class HomePage extends StatelessWidget {
           borderWidth: 1.5,
           borderColor: Colors.grey[300],
           child: Text(
-            'Jump to...',
+            JumpTo,
             style: ZuriTextStyle.mediumNormal(),
           ),
         ),
