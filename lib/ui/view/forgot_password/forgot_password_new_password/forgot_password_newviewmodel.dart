@@ -22,6 +22,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   final storageService = locator<SharedPreferenceLocalStorage>();
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
+
   bool isLoading = false;
 
   loading(status) {
@@ -51,6 +52,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
 
   Future resetPassword() async {
     loading(true);
+    // ignore: todo
     //TODO - wrong endpoint
 
     if (newPasswordValue == '' || confirmPasswordValue == '') {

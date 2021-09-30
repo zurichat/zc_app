@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:async';
 import 'dart:convert';
 import 'package:dio/dio.dart';
@@ -370,6 +372,8 @@ class ZuriApi implements Api {
   }
 
   /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
+    /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
+// ignore: todo
 //TODO CONFIRM websocketUrl
   @override
   Future getChannelSocketId(String channelId, String orgId, token) async {

@@ -46,6 +46,7 @@ class EditProfileViewModel extends FutureViewModel {
   Future updateProfile() async {
     String? orgId = storageService.getString(StorageKeys.currentOrgId);
     String? memId = storageService.getString(StorageKeys.currentMemberID);
+    // ignore: todo
     //TODO CHange these links to there rightful values once they can be updated
 
     String profileEndPoint = 'organizations/$orgId/members/$memId/profile';
