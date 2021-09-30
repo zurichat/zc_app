@@ -40,6 +40,7 @@ class CentrifugeService with ReactiveServiceMixin {
   }
 
   Future<Stream?> subscribe(String channelSocketId) async {
+    _subscription?.unsubscribe();
     if (channelSocketId == "")
       throw Exception(
           "Channel Socket ID is required to subscribe to a channel");
