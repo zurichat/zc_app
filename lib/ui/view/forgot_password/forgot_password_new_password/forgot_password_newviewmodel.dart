@@ -60,7 +60,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: FillAllFields,
+        message: fillAllFields,
       );
       return;
     } else if (newPasswordValue != confirmPasswordValue) {
@@ -68,7 +68,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: PasswordsMustMatch,
+        message: passwordsMustMatch,
       );
       return;
     }
@@ -79,7 +79,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
     };
     //should be a patch req
 
-    final response = await _apiService.post(ResetPasswordEndpoint,
+    final response = await _apiService.post(resetPasswordEndpoint,
         body: newPasswordData, token: token);
 
     loading(false);
@@ -87,14 +87,14 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
-        message: PasswordUpdated,
+        message: passwordUpdated,
       );
       navigateToLogin();
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
-        message: response?.data['message'] ?? PasswordNotUpdated,
+        message: response?.data['message'] ?? passwordNotUpdated,
       );
     }
   }

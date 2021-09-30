@@ -13,7 +13,8 @@ class GetUserProfile {
   final _api = ZuriApi(baseUrl: 'https://api.zuri.chat/');
   final snackbar = locator<SnackbarService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
-   String? get token => storageService.getString(StorageKeys.currentSessionToken);
+  String? get token =>
+      storageService.getString(StorageKeys.currentSessionToken);
 
   /// Fetches info of the current user
   Future<ProfileModel> currentUser() async {
@@ -42,7 +43,7 @@ class GetUserProfile {
         res.data?['data'][0]['bio'],
       );
       storageService.setString(
-        StorageKeys.phone_num,
+        StorageKeys.phoneNum,
         res.data?['data'][0]['phone'],
       );
       storageService.setString(

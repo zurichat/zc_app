@@ -175,7 +175,7 @@ class HomePageViewModel extends StreamViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: NoInternet,
+          message: noInternet,
         );
 
         return;
@@ -196,7 +196,7 @@ class HomePageViewModel extends StreamViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: ErrorOccurred,
+        message: errorOccurred,
       );
     }
   }

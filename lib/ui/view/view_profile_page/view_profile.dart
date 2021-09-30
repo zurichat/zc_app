@@ -11,6 +11,9 @@ import 'widgets/profile_action.dart';
 import 'widgets/profile_list.dart';
 
 class ViewProfile extends StatelessWidget {
+  //TODO add const keyword
+  ViewProfile({Key? key}) : super(key: key);
+  //TODO move this to the viewmodel
   final storageService = locator<SharedPreferenceLocalStorage>();
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,7 @@ class ViewProfile extends StatelessWidget {
                             child: Stack(
                               fit: StackFit.expand,
                               children: [
-                                Image(
+                                 Image(
                                   fit: BoxFit.cover,
                                   image: AssetImage('assets/images/user.png'),
                                 ),
@@ -65,7 +68,8 @@ class ViewProfile extends StatelessWidget {
                               children: [
                                 Text(
                                   model.userData.firstName.toString(),
-                                  style: TextStyle(
+                                  //TODO change this to AppTextStyle
+                                  style: const TextStyle(
                                     color: Colors.grey,
                                     fontWeight: FontWeight.normal,
                                     fontSize: 18.0,
@@ -73,7 +77,7 @@ class ViewProfile extends StatelessWidget {
                                 ),
                                 Container(
                                   //Icon wrapped in container with margin, so long names with stack over/below it
-                                  margin: EdgeInsets.all(8.0),
+                                  margin: const EdgeInsets.all(8.0),
                                   child: Icon(
                                     Icons.circle,
                                     size: 12.0,
@@ -89,8 +93,8 @@ class ViewProfile extends StatelessWidget {
                         ],
                       ),
                       Container(
-                        margin:
-                            EdgeInsets.only(top: 16.0, left: 20.0, right: 16.0),
+                        margin: const EdgeInsets.only(
+                            top: 16.0, left: 20.0, right: 16.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,43 +103,43 @@ class ViewProfile extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 ProfileAction(
-                                  title: Text('Message'),
+                                  title: const Text('Message'),
                                   onTap: () {},
                                 ),
                                 ProfileAction(
-                                  title: Text('Edit Profile'),
+                                  title: const Text('Edit Profile'),
                                   onTap: () {
                                     // model.editProfile;
                                   },
                                 ),
                                 ProfileAction(
-                                  title: Icon(Icons.more_horiz),
+                                  title: const Icon(Icons.more_horiz),
                                   onTap: () {},
                                 ),
                               ],
                             ),
-                            Divider(),
+                            const Divider(),
                             ProfileList(
                                 title: 'What I do',
                                 description: model.userData.status.toString()),
-                            Divider(),
+                            const Divider(),
                             ProfileList(
                                 title: 'Display Name',
                                 description:
                                     model.userData.displayName.toString()),
-                            Divider(),
+                            const Divider(),
                             ProfileList(
                               title: 'Status',
                               description: storageService
                                   .getString(StorageKeys.status)
                                   .toString(),
                             ),
-                            Divider(),
+                            const Divider(),
                             ProfileList(
                                 title: 'Mobile Number',
                                 description:
                                     model.userData.phoneNum.toString()),
-                            Divider(),
+                            const Divider(),
                             ProfileList(
                                 title: 'Email Address',
                                 description: storageService

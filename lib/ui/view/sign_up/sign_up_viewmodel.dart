@@ -53,7 +53,7 @@ class SignUpViewModel extends FormViewModel {
         'phone': phoneNumberValue,
       };
       final response = await apiService.post(
-        SignUpEndpoint,
+        signUpEndpoint,
         body: signUpData,
       );
       loading(false);
@@ -61,7 +61,7 @@ class SignUpViewModel extends FormViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.success,
-          message: CheckEmailForOTP,
+          message: checkEmailForOTP,
         );
 
         storage.setString(
@@ -73,14 +73,14 @@ class SignUpViewModel extends FormViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: response?.data['message'] ?? ErrorEncounteredSignUp,
+          message: response?.data['message'] ?? errorEncounteredSignUp,
         );
       }
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: AcceptTnC,
+        message: acceptTnC,
       );
     }
   }

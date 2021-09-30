@@ -9,13 +9,13 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-const String EmailValueKey = 'email';
-const String FirstNameValueKey = 'firstName';
-const String LastNameValueKey = 'lastName';
-const String DisplayNameValueKey = 'displayName';
-const String PasswordValueKey = 'password';
-const String ConfirmPasswordValueKey = 'confirmPassword';
-const String PhoneNumberValueKey = 'phoneNumber';
+const String emailValueKey = 'email';
+const String firstNameValueKey = 'firstName';
+const String lastNameValueKey = 'lastName';
+const String displayNameValueKey = 'displayName';
+const String passwordValueKey = 'password';
+const String confirmPasswordValueKey = 'confirmPassword';
+const String phoneNumberValueKey = 'phoneNumber';
 
 mixin $SignUpView on StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -50,13 +50,13 @@ mixin $SignUpView on StatelessWidget {
   void _updateFormData(FormViewModel model) => model.setData(
         model.formValueMap
           ..addAll({
-            EmailValueKey: emailController.text,
-            FirstNameValueKey: firstNameController.text,
-            LastNameValueKey: lastNameController.text,
-            DisplayNameValueKey: displayNameController.text,
-            PasswordValueKey: passwordController.text,
-            ConfirmPasswordValueKey: confirmPasswordController.text,
-            PhoneNumberValueKey: phoneNumberController.text,
+            emailValueKey: emailController.text,
+            firstNameValueKey: firstNameController.text,
+            lastNameValueKey: lastNameController.text,
+            displayNameValueKey: displayNameController.text,
+            passwordValueKey: passwordController.text,
+            confirmPasswordValueKey: confirmPasswordController.text,
+            phoneNumberValueKey: phoneNumberController.text,
           }),
       );
 
@@ -75,23 +75,22 @@ mixin $SignUpView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get emailValue => this.formValueMap[EmailValueKey];
-  String? get firstNameValue => this.formValueMap[FirstNameValueKey];
-  String? get lastNameValue => this.formValueMap[LastNameValueKey];
-  String? get displayNameValue => this.formValueMap[DisplayNameValueKey];
-  String? get passwordValue => this.formValueMap[PasswordValueKey];
-  String? get confirmPasswordValue =>
-      this.formValueMap[ConfirmPasswordValueKey];
-  String? get phoneNumberValue => this.formValueMap[PhoneNumberValueKey];
+  String? get emailValue => formValueMap[emailValueKey];
+  String? get firstNameValue => formValueMap[firstNameValueKey];
+  String? get lastNameValue => formValueMap[lastNameValueKey];
+  String? get displayNameValue => formValueMap[displayNameValueKey];
+  String? get passwordValue => formValueMap[passwordValueKey];
+  String? get confirmPasswordValue => formValueMap[confirmPasswordValueKey];
+  String? get phoneNumberValue => formValueMap[phoneNumberValueKey];
 
-  bool get hasEmail => this.formValueMap.containsKey(EmailValueKey);
-  bool get hasFirstName => this.formValueMap.containsKey(FirstNameValueKey);
-  bool get hasLastName => this.formValueMap.containsKey(LastNameValueKey);
-  bool get hasDisplayName => this.formValueMap.containsKey(DisplayNameValueKey);
-  bool get hasPassword => this.formValueMap.containsKey(PasswordValueKey);
+  bool get hasEmail => formValueMap.containsKey(emailValueKey);
+  bool get hasFirstName => formValueMap.containsKey(firstNameValueKey);
+  bool get hasLastName => formValueMap.containsKey(lastNameValueKey);
+  bool get hasDisplayName => formValueMap.containsKey(displayNameValueKey);
+  bool get hasPassword => formValueMap.containsKey(passwordValueKey);
   bool get hasConfirmPassword =>
-      this.formValueMap.containsKey(ConfirmPasswordValueKey);
-  bool get hasPhoneNumber => this.formValueMap.containsKey(PhoneNumberValueKey);
+      formValueMap.containsKey(confirmPasswordValueKey);
+  bool get hasPhoneNumber => formValueMap.containsKey(phoneNumberValueKey);
 }
 
 extension Methods on FormViewModel {}

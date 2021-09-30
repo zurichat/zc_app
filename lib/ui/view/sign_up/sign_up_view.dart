@@ -28,6 +28,8 @@ import 'sign_up_viewmodel.dart';
   ],
 )
 class SignUpView extends StatelessWidget with $SignUpView {
+ SignUpView({Key? key}): super(key: key);
+  //TODO remove this logger
   final log = getLogger('SignUpView');
 
   @override
@@ -134,12 +136,12 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const CustomText(
+                            children: const [
+                              CustomText(
                                 text: TnC1,
                                 fontSize: 14,
                               ),
-                              const Text(
+                              Text(
                                 TnC2,
                                 style: TextStyle(
                                   fontSize: 14,

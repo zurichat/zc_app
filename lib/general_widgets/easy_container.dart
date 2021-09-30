@@ -22,13 +22,13 @@ class EasyContainer extends StatelessWidget {
   ///* [left, top, rigt bottom]
   ///* [left&right, top& bottom]
   ///* or as an integer for all the sides
-  final margin;
+  final EdgeInsetsGeometry? margin;
 
   ///you can use padding and margin in list form using
   ///* [left, top, right bottom]
   ///* [left&right, top& bottom]
   ///* or as an integer for all the sides
-  final padding;
+  final EdgeInsetsGeometry? padding;
   final List<BoxShadow>? boxShadow;
   final Gradient? gradient;
 
@@ -116,15 +116,17 @@ class EasyContainer extends StatelessWidget {
           type[0].toDouble(),
           type[1].toDouble(),
         );
-      } else
+      } else {
         inset = EdgeInsets.fromLTRB(
           type[0].toDouble(),
           type[1].toDouble(),
           type[2].toDouble(),
           type[3].toDouble(),
         );
-    } else
+      }
+    } else {
       return type;
+    }
 
     return inset;
   }

@@ -42,14 +42,14 @@ class ForgotPasswordOtpViewModel extends FormViewModel {
       _snackbarService.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: FillAllFields);
+          message: fillAllFields);
       return;
     }
     notifyListeners();
 
     final validationData = {'code': otpValue};
 
-    final response = await _apiService.post(VerifyOTPEndpoint,
+    final response = await _apiService.post(verifyOTPEndpoint,
         body: validationData, token: token);
     loading(false);
     if (response?.statusCode == 200) {
@@ -63,7 +63,7 @@ class ForgotPasswordOtpViewModel extends FormViewModel {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(seconds: 2),
         variant: SnackbarType.failure,
-        message: response?.data['message'] ?? ErrorOTP,
+        message: response?.data['message'] ?? errorOTP,
       );
     }
   }

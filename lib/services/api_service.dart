@@ -41,8 +41,7 @@ class ApiService {
 
   Future getAddPeople(body, endpoint, userId, channelId, orgId) async {
     try {
-      final response =
-      await _dio.get(apiBaseUrl + endpoint);
+      final response = await _dio.get(apiBaseUrl + endpoint);
       final result = response.data;
       return result;
     } on DioError catch (e) {
@@ -50,26 +49,23 @@ class ApiService {
     }
   }
 
-
   Failure convertException(DioError e) {
-    if (e.type == DioErrorType.cancel)
+    if (e.type == DioErrorType.cancel) {
       return InputFailure(errorMessage: e.message);
-    else if (e.type == DioErrorType.connectTimeout)
+    } else if (e.type == DioErrorType.connectTimeout) {
       return NetworkFailure();
-    else if (e.type == DioErrorType.receiveTimeout)
+    } else if (e.type == DioErrorType.receiveTimeout) {
       return NetworkFailure();
-    else if (e.type == DioErrorType.sendTimeout)
+    } else if (e.type == DioErrorType.sendTimeout) {
       return NetworkFailure();
-    else if (e.type == DioErrorType.response)
-      return ServerFailure(error: e.message);
-    else if (e.type == DioErrorType.other)
-      return UnknownFailure();
-    else
-      return UnknownFailure();
+    } else {
+      if (e.type == DioErrorType.response) {
+        return ServerFailure(error: e.message);
+      } else if (e.type == DioErrorType.other) {
+        return UnknownFailure();
+      } else {
+        return UnknownFailure();
+      }
+    }
   }
-
-
-
-
-
 }

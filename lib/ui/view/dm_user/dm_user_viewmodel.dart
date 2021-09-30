@@ -32,7 +32,7 @@ class DmUserViewModel extends FormViewModel {
   showButtonSheet(Message message) async {
     print('Our resp ${message.message}');
     await bottomSheet.showCustomSheet(
-        variant: BottomSheetType.FloatingBox,
+        variant: BottomSheetType.floatingBox,
         data: message,
         takesInput: true,
         title: message.message);

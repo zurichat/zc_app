@@ -12,7 +12,7 @@ class TextHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: AppColors.ZuriBGLightgrey,
+      color: AppColors.zuriBGLightgrey,
       height: 48,
       child: Padding(
         padding: const EdgeInsets.only(left: 25.0),

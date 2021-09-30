@@ -39,7 +39,8 @@ class ZuriApi implements Api {
     log.i('Making request to $string');
     try {
       final response = await dio.get(string.toString(),
-          queryParameters: queryParameters,  options: Options(headers: {'Authorization': 'Bearer $token'}));
+          queryParameters: queryParameters,
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
 
       //log.i('Response from $string \n${response.data}');
       return response.data;
@@ -57,7 +58,8 @@ class ZuriApi implements Api {
     log.i('Making request to $string');
     try {
       final response = await dio.post(string.toString(),
-          data: body,  options: Options(headers: {'Authorization': 'Bearer $token'}));
+          data: body,
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
 
       log.i('Response from $string \n${response.data}');
       return response.data;
@@ -75,7 +77,8 @@ class ZuriApi implements Api {
     log.i('Making request to $string');
     try {
       final response = await dio.put(string.toString(),
-          data: body,  options: Options(headers: {'Authorization': 'Bearer $token'}));
+          data: body,
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
 
       log.i('Response from $string \n${response.data}');
       return response.data;
@@ -85,14 +88,15 @@ class ZuriApi implements Api {
     }
   }
 
-    @override
+  @override
   Future<ApiResponse?> patch(String path,
       {Map<String, dynamic>? body, String? token}) async {
     try {
       final res = await dio.patch(path,
-          data: body, options: Options(headers: {'Authorization': 'Bearer $token'}));
+          data: body,
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
       return ApiUtils.toApiResponse(res);
-    }on DioError catch (e) {
+    } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
     }
@@ -128,10 +132,15 @@ class ZuriApi implements Api {
     );
   }
 
-
   @override
   Future<dynamic> signUp(
-      {required String email, required String password, required String firstName, required String lastName, required String displayName, required String phoneNumber, required String token}) async {
+      {required String email,
+      required String password,
+      required String firstName,
+      required String lastName,
+      required String displayName,
+      required String phoneNumber,
+      required String token}) async {
     return await post(
       "$coreBaseUrl/users",
       body: {
@@ -163,8 +172,8 @@ class ZuriApi implements Api {
     }
   }
 
-
   @override
+
   ///Get the list of Organization the user has joined
   Future getJoinedOrganizations(token, String email) async {
     try {
@@ -304,7 +313,7 @@ class ZuriApi implements Api {
     }
   }
 
-  /// Add members to an organization either through invite 
+  /// Add members to an organization either through invite
   /// or by calls
   @override
   Future addMemberToOrganization(String orgId, String email, token) async {
@@ -318,7 +327,7 @@ class ZuriApi implements Api {
     return res.data;
   }
 
-    /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
+  /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
 // ignore: todo
 //TODO CONFIRM websocketUrl
   @override
@@ -376,8 +385,8 @@ class ZuriApi implements Api {
     }
   }
 
-    /// Sends channels message
-    /// Channel ID, User ID, Org ID must not be null
+  /// Sends channels message
+  /// Channel ID, User ID, Org ID must not be null
   @override
   Future sendChannelMessages(String channelId, String userId, String orgId,
       String message, token) async {
@@ -417,8 +426,8 @@ class ZuriApi implements Api {
     }
   }
 
-    /// Creates channels into the organization
-    /// All are required
+  /// Creates channels into the organization
+  /// All are required
   @override
   Future<bool> createChannels(
       {required String name,
@@ -451,7 +460,6 @@ class ZuriApi implements Api {
     return false;
   }
 
-
   /// Gets Channel pages
   @override
   getChannelPage(String id, String orgId, token) async {
@@ -467,8 +475,7 @@ class ZuriApi implements Api {
     }
   }
 
-
-    /// Fetches channel messages
+  /// Fetches channel messages
   @override
   getChannelMembers(String id, String orgId, token) async {
     try {
@@ -598,9 +605,8 @@ class ZuriApi implements Api {
     }
   }
 
-
-
   /// Fetches a list of members in that organization
+  @override
   Future fetchListOfMembers(String currentOrgId, token) async {
     try {
       final res = await dio.get(
@@ -616,19 +622,20 @@ class ZuriApi implements Api {
 
   @override
   Failure handleApiError(DioError e) {
-    if (e.type == DioErrorType.cancel)
+    if (e.type == DioErrorType.cancel) {
       return InputFailure(errorMessage: e.message);
-    else if (e.type == DioErrorType.connectTimeout)
+    } else if (e.type == DioErrorType.connectTimeout) {
       return NetworkFailure();
-    else if (e.type == DioErrorType.receiveTimeout)
+    } else if (e.type == DioErrorType.receiveTimeout) {
       return NetworkFailure();
-    else if (e.type == DioErrorType.sendTimeout)
+    } else if (e.type == DioErrorType.sendTimeout) {
       return NetworkFailure();
-    else if (e.type == DioErrorType.response)
+    } else if (e.type == DioErrorType.response) {
       return ServerFailure(error: e.message);
-    else if (e.type == DioErrorType.other)
+    } else if (e.type == DioErrorType.other) {
       return UnknownFailure();
-    else
+    } else {
       return UnknownFailure();
+    }
   }
 }

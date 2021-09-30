@@ -26,7 +26,7 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
 
   @override
   Future<void> futureToRun() async {
-    final response = await _apiService.get('$UserDataEndpoint', token: token);
+    final response = await _apiService.get('$userDataEndpoint', token: token);
     _userModel = UserModel.fromJson(response!.data['data']);
   }
 

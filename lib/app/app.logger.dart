@@ -87,8 +87,8 @@ List<String>? _formatStackTrace(StackTrace stackTrace, int methodCount) {
       if (match.group(2)!.startsWith('package:logger')) {
         continue;
       }
-      var newLine = ("${match.group(1)}");
-      formatted.add(newLine.replaceAll('<anonymous closure>', '()'));
+      var newLine = (match.group(1));
+      formatted.add(newLine!.replaceAll('<anonymous closure>', '()'));
       if (++count == methodCount) {
         break;
       }
@@ -114,7 +114,7 @@ class MultipleLoggerOutput extends LogOutput {
       try {
         logOutput.output(event);
       } catch (e) {
-        print('Log output failed');
+        throw ('Log output failed');
       }
     }
   }

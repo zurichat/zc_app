@@ -61,7 +61,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../ui/shared/styles.dart';
@@ -86,12 +85,12 @@ class CustomUserChannel extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      child: Container(
+      child: SizedBox(
           height: 24.h,
           width: 211.w,
           child: Row(
             children: [
-              Container(
+              SizedBox(
                 child: Image(
                   height: 24.h,
                   width: 24.w,
@@ -102,15 +101,18 @@ class CustomUserChannel extends StatelessWidget {
               SizedBox(width: 12.w),
               Text(
                 '$text',
-                style: AppTextStyles.fileName.copyWith(fontSize: 14.sp), // textfont in here won't scale to different screens
+                style: AppTextStyles.fileName.copyWith(
+                    fontSize: 14
+                        .sp), // textfont in here won't scale to different screens
               ),
               SizedBox(width: 10.w),
               Text(
                 '$text2',
-                style: AppTextStyles.faintBodyText, // textfont in here won't scale to different screens
+                style: AppTextStyles
+                    .faintBodyText, // textfont in here won't scale to different screens
               ),
               SizedBox(width: 10.w),
-              Container(
+              SizedBox(
                 height: 8.h,
                 width: 8.w,
                 child: Icon(
