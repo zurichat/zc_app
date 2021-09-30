@@ -42,6 +42,7 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
     setBusy(false);
   }
 
+// ignore: todo
 //TODO: Change channelID
   void onAddButtonTap() async {
     setBusy(true);
