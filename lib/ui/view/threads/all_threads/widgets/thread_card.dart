@@ -17,7 +17,7 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
   final UserPost? userPost;
 
   @override
-  Widget build(BuildContext context, ThreadsViewModel model) {
+  Widget build(BuildContext context, ThreadsViewModel viewModel) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       color: AppColors.whiteColor,
@@ -52,7 +52,7 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
                   itemCount: userPost!.userThreadPosts!.length,
                   itemBuilder: (ctx, index) {
                     return GestureDetector(
-                        onTap: () => model.navigateToThread(userPost),
+                        onTap: () => viewModel.navigateToThread(userPost),
                         child: ThreadCardView.threadPost(
                             userPost!.userThreadPosts![index]));
                   })
@@ -62,7 +62,7 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
             child: MaterialButton(
               // ignore: todo
               //TODO navigate to details page and focus input
-              onPressed: () => model.navigateToThread(userPost),
+              onPressed: () => viewModel.navigateToThread(userPost),
               shape: const RoundedRectangleBorder(
                 side: BorderSide(width: 1),
                 borderRadius: BorderRadius.all(

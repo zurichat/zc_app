@@ -9,7 +9,7 @@ import '../../../utilities/enums.dart';
 
 class PreferenceViewModel extends BaseViewModel {
   final log = getLogger('PreferenceViewModel');
-  ThemeService _themeService = locator<ThemeService>();
+  final ThemeService _themeService = locator<ThemeService>();
   final _dialogService = locator<DialogService>();
   final _navigationService = locator<NavigationService>();
 

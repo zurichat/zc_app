@@ -5,9 +5,8 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ChannelMembersModel extends BaseViewModel {
+  final navigator = locator<NavigationService>();
 
-   final navigator = locator<NavigationService>();
- 
   bool get allMarked =>
       markedUsers.length == matchingUsers.length && matchingUsers.isNotEmpty;
 
@@ -54,10 +53,11 @@ class ChannelMembersModel extends BaseViewModel {
   }
 
   void onMarkOne(bool? marked, int i) {
-    if (marked!)
+    if (marked!) {
       markedUsers.add(matchingUsers[i]);
-    else
+    } else {
       markedUsers.remove(matchingUsers[i]);
+    }
     notifyListeners();
   }
 
@@ -66,8 +66,7 @@ class ChannelMembersModel extends BaseViewModel {
     notifyListeners();
   }
 
-   void goBack() {
+  void goBack() {
     NavigationService().back();
   }
-
 }

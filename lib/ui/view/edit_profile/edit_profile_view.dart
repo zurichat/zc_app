@@ -38,7 +38,7 @@ class EditProfileView extends StatelessWidget {
           replacement: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 Text('Getting Your data...'),
                 CircularProgressIndicator(
                   color: AppColors.zuriPrimaryColor,
@@ -54,7 +54,7 @@ class EditProfileView extends StatelessWidget {
 
 class Body extends ViewModelWidget<EditProfileViewModel> {
   final Size _size;
-  Body({
+  const Body({
     Key? key,
     required Size size,
   })  : _size = size,
@@ -67,7 +67,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: _size.height * 0.14,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -96,7 +96,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                     ),
                   ),
                   Spacer(),
-                  Container(
+                  SizedBox(
                     width: _size.width * 0.55,
                     child: TextFormField(
                       initialValue: model.userData.firstName,

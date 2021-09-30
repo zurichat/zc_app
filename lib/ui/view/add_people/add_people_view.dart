@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
-import '../../../app/app.locator.dart';
 import '../../shared/shared.dart';
 import 'add_people_viewmodel.dart';
 import 'widgets/custom_people_list_tile.dart';
 
 class AddPeopleView extends StatelessWidget {
-  final navigator = locator<NavigationService>();
+  const AddPeopleView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AddPeopleViewModel>.reactive(
@@ -16,9 +15,7 @@ class AddPeopleView extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: IconButton(
-            onPressed: () {
-              navigator.back();
-            },
+            onPressed: model.goBack,
             icon: const Icon(Icons.close, color: Colors.black),
           ),
           title: const Text('Add People',
