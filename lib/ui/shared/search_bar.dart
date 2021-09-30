@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
+
 import '../../general_widgets/easy_container.dart';
 import '../../utilities/constants.dart';
-
 import 'text_styles.dart';
 
 class JumpToSearchBar extends StatelessWidget {
@@ -29,7 +30,7 @@ class JumpToSearchBar extends StatelessWidget {
           borderWidth: 1.5,
           borderColor: Colors.grey[300],
           child: Text(
-            'Jump to...',
+            JumpTo,
             style: ZuriTextStyle.mediumNormal(),
           ),
         ),

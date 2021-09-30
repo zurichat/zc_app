@@ -133,6 +133,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
             borderRadius: BorderRadius.circular(5),
           ),
           clipBehavior: Clip.antiAlias,
+          // ignore: todo
           //TODO : Add the org image here
           child: Container(
             height: MediaQuery.of(context).size.height * 0.05,
@@ -141,6 +142,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
           ),
         ),
       ),
+      // ignore: todo
       //TODO : Add the org name here
       title: Text(
         org.name ?? '',

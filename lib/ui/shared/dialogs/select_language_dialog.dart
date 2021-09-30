@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../colors.dart';
@@ -33,7 +34,7 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
               const Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Select Language',
+                  SelectLang,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 21,
@@ -68,13 +69,13 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
                   MaterialButton(
                       onPressed: () =>
                           widget.completer(DialogResponse(confirmed: false)),
-                      child: const Text('CANCEL')),
+                      child: const Text(Cancel)),
                   MaterialButton(
                       onPressed: () => widget.completer(
                           DialogResponse(data: _currentValue, confirmed: true)),
-                      child: const Text('OK')),
+                      child: const Text(Ok)),
                 ],
-              )
+              ),
             ],
           ),
         ),

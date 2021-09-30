@@ -76,8 +76,9 @@ class ThreadDetailView extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('${userPost!.userThreadPosts!.length} Replies',
-                          style: AppTextStyles.body2Bold),
+                      // ignore: todo
+                      //TODO Change to brand colors
+                      const Divider(height: 0, color: Color(0xFF999999)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [

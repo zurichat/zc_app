@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
@@ -9,11 +10,11 @@ import '../../../../services/local_storage_services.dart';
 import '../../../../services/user_service.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/storage_keys.dart';
-import '../api/http_api.dart';
+
 
 class ChannelsApiService {
   final log = getLogger('ChannelsApiService');
-  final _api = HttpApiService(channelsBaseUrl);
+  final _api = ZuriApi(baseUrl: channelsBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
 
@@ -32,7 +33,7 @@ class ChannelsApiService {
     try {
       final res = await _api.get(
         'v1/$orgId/channels/',
-        headers: {'Authorization': 'Bearer $token'},
+         token: token,
       );
       joinedChannels = res?.data ?? [];
       log.i(joinedChannels);
@@ -52,7 +53,7 @@ class ChannelsApiService {
     try {
       final res = await _api.get(
         'v1/$orgId/channels/$channelId/socket/',
-        headers: {'Authorization': 'Bearer $token'},
+         token: token,
       );
       socketName = res?.data['socket_name'] ?? '';
       log.i(socketName);
@@ -72,9 +73,7 @@ class ChannelsApiService {
 
     try {
       final res =
-          await _api.post('v1/$orgId/channels/$channelId/members/', headers: {
-        'Authorization': 'Bearer $token'
-      }, data: {
+          await _api.post('v1/$orgId/channels/$channelId/members/',  token: token, body: {
         '_id': userId,
         'is_admin': true,
       });
@@ -99,7 +98,7 @@ class ChannelsApiService {
     try {
       final res = await _api.get(
         'v1/$orgId/channels/$channelId/messages/',
-        headers: {'Authorization': 'Bearer $token'},
+         token: token,
       );
       channelMessages = res?.data['data'] ?? [];
 
@@ -121,8 +120,8 @@ class ChannelsApiService {
 
     try {
       final res = await _api.post('v1/$orgId/channels/$channelId/messages/',
-          headers: {'Authorization': 'Bearer $token'},
-          data: {'user_id': userId, 'content': message});
+           token: token,
+          body: {'user_id': userId, 'content': message});
 
       channelMessage = res?.data['data'] ?? {};
 
@@ -140,7 +139,7 @@ class ChannelsApiService {
     try {
       final res = await _api.get(
         '/v1/61459d8e62688da5302acdb1/channels/',
-        //headers: {'Authorization': 'Bearer $token'},
+        // token: token,
       );
       channels =
           (res?.data as List).map((e) => ChannelModel.fromJson(e)).toList();
@@ -164,13 +163,13 @@ class ChannelsApiService {
     try {
       final res = await _api.post(
         'v1/$orgId/channels/',
-        data: {
+        body: {
           'name': name,
           'owner': owner,
           'description': description,
           'private': private,
         },
-        headers: {'Authorization': 'Bearer $token'},
+         token: token,
       );
 
       log.i(res?.data.toString());
@@ -210,7 +209,7 @@ class ChannelsApiService {
     try {
       final response = await _api.get(
         '/v1/$orgId/channels/$id/',
-        //headers: {'Authorization': 'Bearer $token'},
+        // token: token,
       );
       return ChannelModel.fromJson(response?.data);
     } on Exception catch (e) {
@@ -220,12 +219,13 @@ class ChannelsApiService {
     }
   }
 
+
   getChannelMembers(id) async {
     String orgId = _userService.currentOrgId;
     try {
       final res = await _api.get(
         '/v1/$orgId/channels/$id/members/',
-        //headers: {'Authorization': 'Bearer $token'},
+        // token: token,
       );
       return (res?.data as List)
           .map((e) => ChannelMembermodel.fromJson(e))
@@ -235,6 +235,7 @@ class ChannelsApiService {
     } catch (e) {
       log.e(e);
     }
+
   }
 
   Future<void>? dispose() {
