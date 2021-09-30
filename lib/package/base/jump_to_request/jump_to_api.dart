@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/utilities/constants.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';

@@ -78,7 +78,7 @@ class LoginViewModel extends FormViewModel {
 
       return;
     }
-    final loginData = {'email': emailValue, 'password': passwordValue};
+    // final loginData = {'email': emailValue, 'password': passwordValue};
     final response = await zuriApi.login(
         email: emailValue!, password: passwordValue!, token: token);
 

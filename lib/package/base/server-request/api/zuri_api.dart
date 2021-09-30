@@ -325,7 +325,6 @@ class ZuriApi implements Api {
     }
   }
 
-  @override
   Future<void> addMemberToChannel(
       String channelId, String orgId, String userId, token) async {
     await post(
@@ -393,7 +392,6 @@ class ZuriApi implements Api {
   }
 
   // THIS SERVICE IS FOR JOINED ROOMS FOR ACTIVE DMs
-  @override
   Future<List> getActiveRooms(String orgId, String userId, token) async {
     try {
       final res = await get(
