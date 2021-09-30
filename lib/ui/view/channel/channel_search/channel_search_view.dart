@@ -52,24 +52,7 @@ class _ChannelSearchPageViewState extends State<ChannelSearchPageView> {
                       )
                       ),
                     
-      //               TextFormField(
-      //                   // style: textStyling(),
-      //                   decoration:
-      //                   InputDecoration(
-      // hintText: 'Search people on #teamsocrates',
-      // hintStyle: GoogleFonts.lato(
-      //     fontSize: 14,
-      //     color: const Color(
-      //       0xFFA1A9B3,
-      //     )),
-      // focusedBorder: const OutlineInputBorder(
-      //   borderSide: BorderSide(color: Color(0xFF7B8794)),
-      // ),
-      // enabledBorder: const OutlineInputBorder(
-      //   borderSide: BorderSide(color: Color(0xFF7B8794)),
-      // )),
-                          
-      //                       ),
+  
                   ),
 
                   // ignore: avoid_unnecessary_containers

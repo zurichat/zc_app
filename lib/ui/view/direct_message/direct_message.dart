@@ -179,15 +179,6 @@ class DirectMessage extends StatelessWidget {
                               hintStyle: TextStyle(color: Colors.black54),
                             ),
 
-                            //  TextField(
-                            //   controller: model.controller,
-                            //   decoration: const InputDecoration(
-                            //     hintText: 'Write message...',
-                            //     hintStyle: TextStyle(color: Colors.black54),
-                            //   ),
-                            //   onEditingComplete: () =>
-                            //       model.controller.clearComposing(),
-                            // ),
                           ),
                           const SizedBox(
                             width: 15,

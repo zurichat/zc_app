@@ -76,16 +76,7 @@ class _DmSearchState extends State<DmSearch> {
                         color: Color(0xFF999999),
                       ),
                     ),
-                    // TextField(
-                    //   controller: searchCon,
-                    //   decoration: InputDecoration(
-                    //     hintText: 'To: Type the name of a channel or person',
-                    //     hintStyle: GoogleFonts.lato(
-                    //       color: Color(0xFF999999),
-                    //     ),
-                    //     border: InputBorder.none,
-                    //   ),
-                    // ),
+          
                   ),
                   Divider(),
                   ChannelorPerson(),

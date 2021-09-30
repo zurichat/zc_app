@@ -175,14 +175,6 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               
             ),
 
-            // TextFormField(
-            //   initialValue: 'The Back End for this does not exist',
-            //   onChanged: (value) {
-            //     model.updateString('', '', value, '');
-            //   },
-            //   decoration: const InputDecoration(
-            //       labelText: 'What I do', helperText: 'HNGi9 X I4G'),
-            // ),
             SizedBox(
               height: 10,
             ),

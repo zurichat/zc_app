@@ -221,25 +221,6 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                                 Radius.circular(3.0)),
                                           )),
 
-                                      // TextField(
-                                      //   controller: messageController,
-                                      //   expands: true,
-                                      //   maxLines: null,
-                                      //   textAlignVertical:
-                                      //       TextAlignVertical.center,
-                                      //   decoration: InputDecoration(
-                                      //     hintText:
-                                      //         'Message ${model.receiver.username}',
-                                      //     // suffixIcon: CustomStatus(isActive: true,
-                                      //     //   data: '5'),
-
-                                      //     hintStyle: const TextStyle(
-                                      //       color: AppColors.faintTextColor,
-                                      //       fontSize: 14.0,
-                                      //       fontWeight: FontWeight.w400,
-                                      //     ),
-                                      //   ),
-                                      // ),
                                     ),
                                   ),
                                 ),

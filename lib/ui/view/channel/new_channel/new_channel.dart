@@ -108,25 +108,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                             ),
                           ),
 
-                          // TextField(
-                          //   controller: channelNameController,
-                          //   style: AppTextStyles.body2Medium.copyWith(
-                          //     color: AppColors.blackColor,
-                          //   ),
-                          //   inputFormatters: [
-                          //     LengthLimitingTextInputFormatter(80)
-                          //   ],
-                          //   cursorColor: AppColors.zuriPrimaryColor,
-                          //   decoration: const InputDecoration(
-                          //     border: InputBorder.none,
-                          //     hintText: 'e.g team-uchiha',
-                          //     hintStyle: TextStyle(
-                          //       fontWeight: FontWeight.w400,
-                          //       color: Color(0xFFA1A9B2),
-                          //     ),
-                          //   ),
-                          //   onChanged: model.onChangeChannelNameField,
-                          // ),
+   
                         ),
                         Text(
                           '${model.inputLength}',

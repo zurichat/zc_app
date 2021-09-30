@@ -69,17 +69,7 @@ class ChannelList extends StatelessWidget {
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10)),
                           ),
-
-                          //  TextField(
-                          //   decoration: InputDecoration(
-                          //       isDense: true,
-                          //       contentPadding: const EdgeInsets.all(8.8),
-                          //       labelText: 'Search for channel...',
-                          //       labelStyle:
-                          //           const TextStyle(color: Color(0xffA1A9B3)),
-                          //       border: OutlineInputBorder(
-                          //           borderRadius: BorderRadius.circular(10))),
-                          // ),
+    
                         ),
                       ),
                     ),

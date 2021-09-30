@@ -95,11 +95,6 @@ class ChannelMembersList extends StatelessWidget {
                     ),
                   ),
 
-                 // SearchField(
-                  //   onChanged: viewModel.onSearchUser,
-                  //   labelText: 'Search for people',
-                  //   // controller: viewModel.editor,
-                  // ),
                 ),
               ),
               Padding(
@@ -116,6 +111,7 @@ class ChannelMembersList extends StatelessWidget {
                   ),
                 ),
               ),
+         
               Expanded(
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),

@@ -80,29 +80,6 @@ class ChannelAddPeopleView extends StatelessWidget {
                   ),
                 ),
 
-                 //SearchField(
-                //   onChanged: viewModel.onSearchUser,
-                //   labelText: 'Search people to add',
-                //   // controller: viewModel.editor,
-                // ),
-
-// TextField(
-//         cursorColor: const Color(0xFF7B8794),
-//         decoration: InputDecoration(
-//           labelStyle: GoogleFonts.lato(color: const Color(0xFF727272)),
-//           contentPadding: const EdgeInsets.fromLTRB(12.0, 16.0, 12.0, 16.0),
-//           alignLabelWithHint: true,
-//           enabledBorder: OUTLINE,
-//           focusedBorder: OUTLINE,
-//           labelText: labelText,
-//           border: OUTLINE,
-//         ),
-//         onChanged: onChanged,
-//         style: GoogleFonts.lato(
-//           color: const Color(0xFF7B8794),
-//           fontSize: 16.0,
-//         ),
-//       );
               ),
               const SizedBox(height: 16.0),
               const Divider(thickness: 2.0),
