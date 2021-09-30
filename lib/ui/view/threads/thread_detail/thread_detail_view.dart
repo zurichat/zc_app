@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
+//Giving me details of what i clicked from
+// the threads screen linked to the homepage
+// Home -> THreads -> Details Screen
 import '../../../../general_widgets/channel_icon.dart';
 import '../../../../general_widgets/custom_text.dart';
 import '../../../../models/user_post.dart';
@@ -16,11 +18,10 @@ class ThreadDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var _scrollController = useScrollController();
-    // var _messageController = useTextEditingController();
-    final _scrollController = ScrollController();
     final _messageController = TextEditingController();
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
+      viewModelBuilder: () => ThreadDetailViewModel(),
+      onModelReady: (model) => model.getRepliesToMessages(userPost),
       builder: (context, model, child) => Scaffold(
           appBar: AppBar(
             elevation: 0,
@@ -70,15 +71,17 @@ class ThreadDetailView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.forward_outlined,
-                              color: AppColors.greyishColor,
-                            )),
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.forward_outlined,
+                            color: AppColors.greyishColor,
+                          ),
+                        ),
                         IconButton(
-                            onPressed: model.showThreadOptions,
-                            icon: const Icon(Icons.more_vert_rounded,
-                                color: AppColors.greyishColor)),
+                          onPressed: model.showThreadOptions,
+                          icon: const Icon(Icons.more_vert_rounded,
+                              color: AppColors.greyishColor),
+                        ),
                       ],
                     )
                   ],
@@ -91,13 +94,14 @@ class ThreadDetailView extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: userPost!.userThreadPosts != null
+                child: model.messsageRepliesList != null
                     ? ListView.builder(
-                        controller: _scrollController,
-                        itemCount: userPost!.userThreadPosts!.length,
+                        controller: model.scrollController,
+                        itemCount: model.messsageRepliesList?.length,
                         itemBuilder: (context, index) =>
                             ThreadCardView.threadPost(
-                                userPost!.userThreadPosts![index]),
+                          model.messsageRepliesList?[index],
+                        ),
                       )
                     : Container(),
               ),
@@ -210,15 +214,17 @@ class ThreadDetailView extends StatelessWidget {
                                         .toString()
                                         .isNotEmpty) {
                                       model.addReply(
-                                        userPost!,
-                                        _messageController.text,
+                                        channelMessageId: userPost?.id,
+                                        reply: _messageController.text,
                                       );
 
                                       _messageController.text = '';
                                       FocusScope.of(context)
                                           .requestFocus(FocusNode());
-                                      _scrollController.jumpTo(_scrollController
-                                          .position.maxScrollExtent);
+                                      model.scrollController.jumpTo(model
+                                          .scrollController
+                                          .position
+                                          .maxScrollExtent);
                                     }
                                   },
                                   icon: const Icon(
@@ -233,7 +239,6 @@ class ThreadDetailView extends StatelessWidget {
               )
             ]),
           )),
-      viewModelBuilder: () => ThreadDetailViewModel(),
     );
   }
 }

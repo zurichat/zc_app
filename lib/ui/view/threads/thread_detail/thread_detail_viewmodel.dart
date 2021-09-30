@@ -1,5 +1,8 @@
+import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../../../package/base/server-request/channels/channels_api_service.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../models/user_post.dart';
@@ -8,9 +11,18 @@ import '../../../../utilities/enums.dart';
 class ThreadDetailViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
+  final _channelsApiService = locator<ChannelsApiService>();
 
   bool _isVisible = false;
+  bool isLoading = true;
   bool get isVisible => _isVisible;
+
+  List<UserThreadPost>? messsageRepliesList = [];
+
+  ScrollController scrollController = ScrollController();
+  initialize(UserPost post) async {
+    await getRepliesToMessages(post);
+  }
 
   void onMessageFieldTap() {
     _isVisible = true;
@@ -25,30 +37,47 @@ class ThreadDetailViewModel extends BaseViewModel {
     );
   }
 
+  Future<void> getRepliesToMessages(UserPost? post) async {
+    List? threadReplies =
+        await _channelsApiService.getRepliesToMessages(post?.id);
+
+    threadReplies.forEach(
+      (reply) {
+        messsageRepliesList!.add(
+          UserThreadPost(
+            id: reply['_id'],
+            displayName: reply['user_id'],
+            message: reply['content'],
+            postEmojis: reply['emojis'],
+            userId: reply['user_id'],
+            userImage: 'assets/images/user.png',
+            postDate: time(
+              reply['timestamp'],
+            ),
+          ),
+        );
+      },
+    );
+    isLoading = false;
+    notifyListeners();
+  }
+
   void onMessageFocusChanged() {
     _isVisible = false;
     notifyListeners();
   }
 
-  void addReply(UserPost userPost, String? reply) {
-    userPost.addReply(
-      UserThreadPost(
-        id: "25",
-        displayName: "richieoscar",
-        userImage: "assets/images/1.png",
-        lastSeen: "4 hours ago",
-        postDate: "20:23",
-        message: reply,
-      ),
-    );
-    notifyListeners();
+  void addReply({String? reply, String? channelMessageId, channelId}) async {
+    final res =
+        await _channelsApiService.addReplyToMessage(channelMessageId, reply);
   }
 
   void exitPage() {
     _navigationService.back();
   }
 
-  String time() {
-    return '${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}';
+  String time(timestamp) {
+    return '''${DateTime.parse(timestamp).hour.toString()}'''
+        ''':${DateTime.parse(timestamp).minute.toString()}''';
   }
 }

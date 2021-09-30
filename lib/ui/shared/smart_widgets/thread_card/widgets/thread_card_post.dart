@@ -59,7 +59,7 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
                           ),
                           const SizedBox(width: 2),
                           Text(
-                            '${userThreadPost!.lastSeen}',
+                            '${userThreadPost!.postDate}',
                             style: AppTextStyles.lastSeen,
                           ),
                         ],

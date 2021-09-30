@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
+//Shows the original message with the number of replies
 import '../../../../../general_widgets/custom_text.dart';
 import '../../../../../models/user_post.dart';
 import '../../../../../utilities/utilities.dart';
