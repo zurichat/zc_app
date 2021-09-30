@@ -46,72 +46,105 @@ MockSharedPreferenceLocalStorage
     getAndRegisterSharedPreferencesLocalStorageMock() {
   _removeRegistrationIfExists<SharedPreferenceLocalStorage>();
   final service = MockSharedPreferenceLocalStorage();
+  locator.registerSingleton<SharedPreferenceLocalStorage>(service);
+
   return service;
 }
 
 MockNavigationService getAndRegisterNavigationServiceMock() {
   _removeRegistrationIfExists<NavigationService>();
   final service = MockNavigationService();
+  locator.registerSingleton<NavigationService>(service);
+
   return service;
 }
 
 MockSnackbarService getAndRegisterSnackbarServiceMock() {
   _removeRegistrationIfExists<SnackbarService>();
   final service = MockSnackbarService();
+  locator.registerSingleton<SnackbarService>(service);
+
   return service;
 }
 
 MockThemeService getAndRegisterThemeServiceMock() {
   _removeRegistrationIfExists<ThemeService>();
   final service = MockThemeService();
+  locator.registerSingleton<ThemeService>(service);
+
   return service;
 }
 
 MockDialogService getAndRegisterDialogServiceMock() {
   _removeRegistrationIfExists<DialogService>();
   final service = MockDialogService();
+  locator.registerSingleton<DialogService>(service);
+
   return service;
 }
 
 MockBottomSheetService getAndRegisterBottomSheetServiceMock() {
   _removeRegistrationIfExists<BottomSheetService>();
   final service = MockBottomSheetService();
+  locator.registerSingleton<BottomSheetService>(service);
+
   return service;
 }
 
 MockDMApiService getAndRegisterDMApiServiceMock() {
   _removeRegistrationIfExists<DMApiService>();
   final service = MockDMApiService();
+  locator.registerSingleton<DMApiService>(service);
+
   return service;
 }
 
 MockChannelsApiService getAndRegisterChannelsApiServiceMock() {
   _removeRegistrationIfExists<ChannelsApiService>();
   final service = MockChannelsApiService();
+  locator.registerSingleton<ChannelsApiService>(service);
+
   return service;
 }
 
 MockCentrifugeService getAndRegisterCentrifugeServiceMock() {
   _removeRegistrationIfExists<CentrifugeService>();
+  Map eventData = {"some_key": "some_returned_string"};
+  final Future<Stream?> streamtoReturn =
+      Future.value(Stream.fromIterable([eventData]));
   final service = MockCentrifugeService();
+  when(service.subscribe("channelSocketID"))
+      .thenAnswer((_) async => streamtoReturn);
+
+  when(service.subscribe("")).thenAnswer((_) => throw Exception(
+      "Channel Socket ID is required to subscribe to a channel"));
+
+  locator.registerSingleton<CentrifugeService>(service);
+
   return service;
 }
 
 MockZuriApi getAndRegisterZuriApiMock() {
   _removeRegistrationIfExists<ZuriApi>();
   final service = MockZuriApi();
+  locator.registerSingleton<ZuriApi>(service);
+
   return service;
 }
 
 MockConnectivityService getAndRegisterConnectivityServiceMock() {
   _removeRegistrationIfExists<ConnectivityService>();
   final service = MockConnectivityService();
+  locator.registerSingleton<ConnectivityService>(service);
+
   return service;
 }
 
 MockJumpToApi getAndRegisterJumpToApiMock() {
   _removeRegistrationIfExists<JumpToApi>();
   final service = MockJumpToApi();
+  locator.registerSingleton<JumpToApi>(service);
+
   return service;
 }
 

@@ -2,6 +2,7 @@ import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/models/profile_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -10,7 +11,7 @@ import 'local_storage_services.dart';
 
 class GetUserProfile {
   final log = getLogger('Get User Profile');
-  final _api = ZuriApi(baseUrl: 'https://api.zuri.chat/');
+  final _api = locator<ZuriApi>();
   final snackbar = locator<SnackbarService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
    String? get token => storageService.getString(StorageKeys.currentSessionToken);
@@ -22,7 +23,7 @@ class GetUserProfile {
     String? userEmail = storageService.getString(StorageKeys.currentUserEmail);
     String endPoint = '/organizations/$orgId/members?query=$userEmail';
 
-    final res = await _api.get(endPoint, token: token);
+    final res = await _api.get("$coreBaseUrl/$endPoint", token: token);
 
     if (res!.statusCode == 200) {
       storageService.setString(

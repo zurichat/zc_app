@@ -34,17 +34,11 @@ class DmJumpToViewModel extends FormViewModel {
   }
 
   void _onChanged() => (value) {
-        if (value.isNotEmpty) {
           allChannelsSearch = allChannelsSearch
               .where((channels) => (channels.name.toString().contains(
                     value.toLowerCase(),
                   )))
               .toList();
-          notifyListeners();
-        } else {
-          allChannelsSearch = allChannelsSearch;
-          notifyListeners();
-        }
         notifyListeners();
       };
 

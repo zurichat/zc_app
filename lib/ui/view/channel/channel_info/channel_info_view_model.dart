@@ -10,14 +10,13 @@ import 'package:stacked_services/stacked_services.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.router.dart';
 import '../../../../services/local_storage_services.dart';
-import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 
 class ChannelInfoViewModel extends BaseViewModel {
   final snackbar = locator<SnackbarService>();
-  final _apiService = ZuriApi(baseUrl: channelsBaseUrl);
   final _channelApi = locator<ChannelsApiService>();
   final _userService = locator<UserService>();
+  final _apiService = locator<ZuriApi>();
   final _navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _dialogService = locator<DialogService>();
