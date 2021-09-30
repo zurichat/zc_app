@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/threads/test_data.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 //Giving me details of what i clicked from
@@ -218,6 +219,7 @@ class ThreadDetailView extends StatelessWidget {
                                     ),
                                     IconButton(
                                         onPressed: () {
+                                          print(userPost?.id);
                                           if (_messageController.text
                                               .toString()
                                               .isNotEmpty) {

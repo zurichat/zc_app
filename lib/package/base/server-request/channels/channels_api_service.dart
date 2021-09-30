@@ -131,20 +131,21 @@ class ChannelsApiService {
     return messageReplies;
   }
 
-  Future<void> addReplyToMessage(String? channelMessageId, content) async {
+  Future<void> addReplyToMessage(
+      String? channelMessageId, content, files) async {
     final orgId = _userService.currentOrgId;
     final userId = _userService.userId;
     final channelId = storageService.getString(StorageKeys.currentChannelId);
+    print('channelll Iddd >>>>>>>> $channelId');
     try {
       final res = await _api.post(
-        '/v1/$orgId/messages/$channelMessageId}/threads/?channel_id=${channelId}',
+        '/v1/$orgId/messages/$channelMessageId/threads/?channel_id=$channelId',
         data: {
           'user_id': userId,
           'content': content,
+          'files': files ?? [],
         },
       );
-      // reply = res?.data['data'];
-
       log.i('>>>>>>>>>>>>Adding Reply>>>>>$res');
     } on Exception catch (e) {
       log.e(e.toString());

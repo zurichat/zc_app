@@ -67,9 +67,10 @@ class ThreadDetailViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void addReply({String? reply, String? channelMessageId, channelId}) async {
-    final res =
-        await _channelsApiService.addReplyToMessage(channelMessageId, reply);
+  void addReply(
+      {String? reply, String? channelMessageId, channelId, files}) async {
+    final res = await _channelsApiService.addReplyToMessage(
+        channelMessageId, reply, files);
   }
 
   void exitPage() {
