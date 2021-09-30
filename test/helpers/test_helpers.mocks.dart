@@ -738,27 +738,24 @@ class MockChannelsApiService extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockCentrifugeService extends _i1.Mock implements _i16.CentrifugeService {
   @override
-  _i2.StreamController<String> get messageStreamController =>
+  _i2.StreamController<dynamic> get messageStreamController =>
       (super.noSuchMethod(Invocation.getter(#messageStreamController),
-              returnValue: _FakeStreamController_0<String>())
-          as _i2.StreamController<String>);
+              returnValue: _FakeStreamController_0<dynamic>())
+          as _i2.StreamController<dynamic>);
   @override
   set messageStreamController(
-          _i2.StreamController<String>? _messageStreamController) =>
+          _i2.StreamController<dynamic>? _messageStreamController) =>
       super.noSuchMethod(
           Invocation.setter(#messageStreamController, _messageStreamController),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<dynamic> connect() =>
-      (super.noSuchMethod(Invocation.method(#connect, []),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
-  @override
   void disconnect() => super.noSuchMethod(Invocation.method(#disconnect, []),
       returnValueForMissingStub: null);
   @override
-  _i2.Future<dynamic> subscribe(String? channel) =>
-      (super.noSuchMethod(Invocation.method(#subscribe, [channel]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+  _i2.Future<_i2.Stream<dynamic>?> subscribe(String? channelSocketId) =>
+      (super.noSuchMethod(Invocation.method(#subscribe, [channelSocketId]),
+              returnValue: Future<_i2.Stream<dynamic>?>.value())
+          as _i2.Future<_i2.Stream<dynamic>?>);
   @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
