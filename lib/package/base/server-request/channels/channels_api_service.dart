@@ -11,7 +11,6 @@ import '../../../../services/user_service.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/storage_keys.dart';
 
-
 class ChannelsApiService {
   final log = getLogger('ChannelsApiService');
   final _api = ZuriApi(baseUrl: channelsBaseUrl);
@@ -33,7 +32,7 @@ class ChannelsApiService {
     try {
       final res = await _api.get(
         'v1/$orgId/channels/',
-         token: token,
+        token: token,
       );
       joinedChannels = res?.data ?? [];
       log.i(joinedChannels);
@@ -53,7 +52,7 @@ class ChannelsApiService {
     try {
       final res = await _api.get(
         'v1/$orgId/channels/$channelId/socket/',
-         token: token,
+        token: token,
       );
       socketName = res?.data['socket_name'] ?? '';
       log.i(socketName);
@@ -72,8 +71,8 @@ class ChannelsApiService {
     // var channelMessages;
 
     try {
-      final res =
-          await _api.post('v1/$orgId/channels/$channelId/members/',  token: token, body: {
+      final res = await _api
+          .post('v1/$orgId/channels/$channelId/members/', token: token, body: {
         '_id': userId,
         'is_admin': true,
       });
@@ -98,7 +97,7 @@ class ChannelsApiService {
     try {
       final res = await _api.get(
         'v1/$orgId/channels/$channelId/messages/',
-         token: token,
+        token: token,
       );
       channelMessages = res?.data['data'] ?? [];
 
@@ -120,8 +119,7 @@ class ChannelsApiService {
 
     try {
       final res = await _api.post('v1/$orgId/channels/$channelId/messages/',
-           token: token,
-          body: {'user_id': userId, 'content': message});
+          token: token, body: {'user_id': userId, 'content': message});
 
       channelMessage = res?.data['data'] ?? {};
 
@@ -169,7 +167,7 @@ class ChannelsApiService {
           'description': description,
           'private': private,
         },
-         token: token,
+        token: token,
       );
 
       log.i(res?.data.toString());
@@ -189,7 +187,7 @@ class ChannelsApiService {
     try {
       final res = await _api.delete(
         '/v1/$orgId/channels/$channelId/',
-        headers: {'Authorization': 'Bearer $token'},
+        token: token,
       );
       print("RES IS ${res?.statusCode}");
       if (res?.statusCode == 201 || res?.statusCode == 204) {
@@ -219,7 +217,6 @@ class ChannelsApiService {
     }
   }
 
-
   getChannelMembers(id) async {
     String orgId = _userService.currentOrgId;
     try {
@@ -235,7 +232,6 @@ class ChannelsApiService {
     } catch (e) {
       log.e(e);
     }
-
   }
 
   Future<void>? dispose() {

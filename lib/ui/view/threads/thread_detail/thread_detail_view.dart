@@ -7,7 +7,6 @@ import '../../../../general_widgets/custom_text.dart';
 import '../../../../models/user_post.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';
-import '../../../shared/styles.dart';
 import 'thread_detail_viewmodel.dart';
 
 class ThreadDetailView extends StatelessWidget {

@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/ui/view/dm_user/dm_user_view.form.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
 import 'package:hng/utilities/enums.dart';

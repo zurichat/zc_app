@@ -141,7 +141,6 @@ class ExpandableTextField extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 
   Focus _buildTextField() {

@@ -98,10 +98,10 @@ class ZuriApi implements Api {
     }
   }
 
-  Future<dynamic> delete(String string) async {
+  Future<dynamic> delete(String string, {String? token}) async {
     log.i('Making request to $string');
     try {
-      final response = await dio.delete(string.toString());
+      final response = await dio.delete(string.toString(),options: Options(headers: {'Authorization': 'Bearer $token'}));
 
       log.i('Response from $string \n${response.data}');
       return response.data;
