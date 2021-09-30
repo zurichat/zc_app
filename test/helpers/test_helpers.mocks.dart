@@ -752,9 +752,10 @@ class MockCentrifugeService extends _i1.Mock implements _i16.CentrifugeService {
   void disconnect() => super.noSuchMethod(Invocation.method(#disconnect, []),
       returnValueForMissingStub: null);
   @override
-  _i2.Future<dynamic> subscribe(String? channel) =>
-      (super.noSuchMethod(Invocation.method(#subscribe, [channel]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+  _i2.Future<_i2.Stream<dynamic>?> subscribe(String? channelSocketId) =>
+      (super.noSuchMethod(Invocation.method(#subscribe, [channelSocketId]),
+              returnValue: Future<_i2.Stream<dynamic>?>.value())
+          as _i2.Future<_i2.Stream<dynamic>?>);
   @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);

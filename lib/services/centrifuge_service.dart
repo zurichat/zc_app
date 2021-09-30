@@ -39,8 +39,11 @@ class CentrifugeService with ReactiveServiceMixin {
     log.i(_message);
   }
 
-  Future subscribe(String channel) async {
-    _subscription = _client.getSubscription(channel);
+  Future<Stream?> subscribe(String channelSocketId) async {
+    if (channelSocketId == "")
+      throw Exception(
+          "Channel Socket ID is required to subscribe to a channel");
+    _subscription = _client.getSubscription(channelSocketId);
 
     _subscription!.subscribeErrorStream.listen(_showError);
     _subscription!.subscribeSuccessStream.listen(_showLog);

@@ -1,0 +1,5 @@
+include: package:flutter_lints/flutter.yaml
+analyzer:
+  exclude:
+    - test/helpers/*.mocks.dart
+    - lib/models/*.g.dart
