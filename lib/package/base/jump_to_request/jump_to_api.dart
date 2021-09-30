@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/utilities/constants.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';
@@ -10,8 +11,8 @@ import '../../../utilities/storage_keys.dart';
 
 class JumpToApi {
   final log = getLogger('JumpToApi');
-  final _channelsApi = ZuriApi(baseUrl: 'https://channels.zuri.chat/');
-  final _dmApi = ZuriApi(baseUrl: 'https://api.zuri.chat/');
+  final _channelsApi = ZuriApi('https://channels.zuri.chat/');
+  final _dmApi = ZuriApi('https://api.zuri.chat/');
   static final storageService = locator<SharedPreferenceLocalStorage>();
   static String? get currentOrgId =>
       storageService.getString(StorageKeys.currentOrgId);
@@ -54,8 +55,8 @@ class JumpToApi {
   /// Fetches a list of members in that organization
   Future<List<UserSearch>> fetchListOfMembers() async {
     try {
-      final res =
-          await _dmApi.get('organizations/$currentOrgId/members/',  token: token);
+      final res = await _dmApi.get('organizations/$currentOrgId/members/',
+          token: token);
       log.i("Org members length - ${res?.data?['data'].length}");
       log.i("Org members List ${res?.data?['data'].toString()}");
       //  var meSearch = UserSearch.fromJson(res!.data['data']);
@@ -66,17 +67,13 @@ class JumpToApi {
       log.e('Error Watch - $e');
       return [];
     }
-
-    // return (res?.data?['data'])
-    //     .map((e) => UserSearch.fromJson(e))
-    //     .toList();
   }
 
   /// Fetches a list of members in that organization
   Future<List<NewUser>> fetchList() async {
     try {
-      final res =
-          await _dmApi.get('organizations/$currentOrgId/members/',  token: token);
+      final res = await _dmApi.get('organizations/$currentOrgId/members/',
+          token: token);
       final userList = res?.data['data'];
       return (userList as List).map((e) => NewUser.fromJson(e)).toList();
       // MainMembers mainMembers = MainMembers.fromJson(res!.data);
