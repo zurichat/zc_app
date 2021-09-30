@@ -14,8 +14,8 @@ import '../../../../utilities/storage_keys.dart';
 class CustomUserBottomSheetViewModel extends FutureViewModel {
   final _navigationService = locator<NavigationService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
-  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
-  final log = getLogger('CustomUserBottomSheetViewModel');
+  final _apiService = ZuriApi(coreBaseUrl);
+  final log = getLogger("Custom User Bottom Sheet");
   UserModel? _userModel;
 
   void navigateToSetStatus() =>
@@ -24,6 +24,7 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
   void navigateToEditProfile() =>
       _navigationService.navigateTo(Routes.editProfileView);
 
+//TODO
   @override
   Future<void> futureToRun() async {
     final userID = _storage.getString(StorageKeys.currentUserId);
