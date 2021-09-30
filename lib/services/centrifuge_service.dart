@@ -8,35 +8,39 @@ import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 
 class CentrifugeService with ReactiveServiceMixin {
-  static Client? _client;
+  static Client _client =
+      centrifuge.createClient('$websocketUrl?format=protobuf');
   Subscription? _subscription;
-  StreamController<String> messageStreamController =
-      StreamController.broadcast();
-  final log = getLogger('CentrifugeService');
+  static CentrifugeService? _instance;
+  StreamController messageStreamController = StreamController.broadcast();
+  static final log = getLogger('CentrifugeService');
 
-  Future connect() async {
-    _client = centrifuge.createClient('$websocketUrl?format=protobuf',
-        config: centrifuge.ClientConfig());
+  static Future<CentrifugeService> getInstance() async {
+    if (_instance == null) {
+      _instance = CentrifugeService();
+    }
 
-    _client!.connect();
+    _client.connectStream.listen(_showLog);
+    _client.disconnectStream.listen(_showLog);
+
+    _client.connect();
+    return _instance!;
   }
 
   void disconnect() async {
-    _client!.disconnect();
+    _client.disconnect();
   }
 
   void _showError(_error) {
     log.e(_error);
   }
 
-  void _showLog(_message) {
+  static void _showLog(_message) {
     log.i(_message);
   }
 
   Future subscribe(String channel) async {
-    _subscription = _client!.getSubscription(channel);
-
-    _showLog(_subscription!.channel);
+    _subscription = _client.getSubscription(channel);
 
     _subscription!.subscribeErrorStream.listen(_showError);
     _subscription!.subscribeSuccessStream.listen(_showLog);
@@ -51,10 +55,12 @@ class CentrifugeService with ReactiveServiceMixin {
     });
 
     _subscription!.publishStream.listen((event) {
-      log.i('WORK WORK RIGHT NOW ${json.decode(utf8.decode(event.data))}');
+      log.i(
+          'CENTRIFUGE RTC EVENT OUTPUT ${json.decode(utf8.decode(event.data))}');
 
-      messageStreamController.sink.add('Message Received');
-      // Map user_message = json.decode(utf8.decode(event.data));
+      Map userMessage = json.decode(utf8.decode(event.data));
+
+      messageStreamController.sink.add(userMessage);
     });
 
     _subscription!.subscribe();
