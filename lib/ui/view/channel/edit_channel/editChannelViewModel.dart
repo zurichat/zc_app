@@ -90,6 +90,7 @@ class EditChannelViewModel extends FormViewModel {
 
   @override
   void setFormStatus() {
+    // ignore: todo
     // TODO: implement setFormStatus
   }
   // ignore: always_declare_return_types

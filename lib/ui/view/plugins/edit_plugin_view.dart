@@ -54,6 +54,7 @@ class EditPluginView extends StatelessWidget {
                           icon: const Icon(
                             Icons.clear,
                             size: 24.0,
+                            // ignore: todo
                             //TODO change colors to brand colors
                             color: Color(0xFFF40101),
                           ),
