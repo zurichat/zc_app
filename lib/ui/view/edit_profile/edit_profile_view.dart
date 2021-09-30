@@ -193,23 +193,6 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
             ),
 
 
-    //  TextFormField(
-    //           initialValue: model.userData.status,
-    //           onChanged: (value) {
-    //             model.updateString('', '', value, '');
-    //           },
-    //           decoration: InputDecoration(
-    //               labelText: "What I do", helperText: "HNGi9 X I4G"),
-    //         ),
-            // TextFormField(
-            //   initialValue: model.userData.phoneNum,
-            //   onChanged: (value) {
-            //     model.updateString('', '', '', value);
-            //   },
-            //   decoration: InputDecoration(
-            //       labelText: "Phone", helperText: "Enter your phone number"),
-            // ),
-
 
           ],
         ),
