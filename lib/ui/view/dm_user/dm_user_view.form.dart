@@ -34,7 +34,6 @@ mixin $DmUserView on StatelessWidget {
     // The dispose function for a TextEditingController sets all listeners to null
 
     messageController.dispose();
-    messageFocusNode.dispose();
   }
 }
 

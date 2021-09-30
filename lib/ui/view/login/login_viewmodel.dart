@@ -2,6 +2,7 @@ import 'package:hng/app/app.logger.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/user_service.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -11,17 +12,16 @@ import '../../../services/connectivity_service.dart';
 import '../../../services/local_storage_services.dart';
 import '../../../utilities/enums.dart';
 import '../../../utilities/storage_keys.dart';
-import '../../shared/shared.dart';
 import 'login_view.form.dart';
 
 class LoginViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
-  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
   final _connectivityService = locator<ConnectivityService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
+  final zuriApi = ZuriApi(coreBaseUrl);
 
   final log = getLogger('LogInViewModel');
 
@@ -79,8 +79,8 @@ class LoginViewModel extends FormViewModel {
       return;
     }
     final loginData = {'email': emailValue, 'password': passwordValue};
-    final response =
-        await _apiService.post(LoginEndpoint, body: loginData, token: token);
+    final response = await zuriApi.login(
+        email: emailValue!, password: passwordValue!, token: token);
 
     loading(false);
 

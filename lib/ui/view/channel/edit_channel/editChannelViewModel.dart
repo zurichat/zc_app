@@ -14,11 +14,11 @@ class EditChannelViewModel extends FormViewModel {
   //final _apiService = locator<ChannelApiService>();
   //final storage = locator<SharedPreferenceLocalStorage>();
   final navigationService = locator<NavigationService>();
-  static final storage = locator<SharedPreferenceLocalStorage>();
+  final storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
-  final _apiService = ZuriApi(baseUrl: channelsBaseUrl);
+  final _apiService = ZuriApi(channelsBaseUrl);
+    String? get token => storage.getString(StorageKeys.currentSessionToken);
   bool isLoading = false;
-  String? token = storage.getString(StorageKeys.currentSessionToken);
   loading(status) {
     isLoading = status;
     notifyListeners();
@@ -90,7 +90,6 @@ class EditChannelViewModel extends FormViewModel {
 
   @override
   void setFormStatus() {
-    // ignore: todo
     // TODO: implement setFormStatus
   }
   // ignore: always_declare_return_types
