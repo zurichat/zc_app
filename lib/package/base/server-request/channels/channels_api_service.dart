@@ -11,10 +11,9 @@ import '../../../../services/user_service.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/storage_keys.dart';
 
-
 class ChannelsApiService {
   final log = getLogger('ChannelsApiService');
-  final _api = ZuriApi(baseUrl: channelsBaseUrl);
+  final _api = ZuriApi(channelsBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
 
@@ -33,7 +32,7 @@ class ChannelsApiService {
     try {
       final res = await _api.get(
         'v1/$orgId/channels/',
-         token: token,
+        token: token,
       );
       joinedChannels = res?.data ?? [];
       log.i(joinedChannels);
@@ -53,7 +52,7 @@ class ChannelsApiService {
     try {
       final res = await _api.get(
         'v1/$orgId/channels/$channelId/socket/',
-         token: token,
+        token: token,
       );
       socketName = res?.data['socket_name'] ?? '';
       log.i(socketName);
@@ -72,8 +71,8 @@ class ChannelsApiService {
     // var channelMessages;
 
     try {
-      final res =
-          await _api.post('v1/$orgId/channels/$channelId/members/',  token: token, body: {
+      final res = await _api
+          .post('v1/$orgId/channels/$channelId/members/', token: token, body: {
         '_id': userId,
         'is_admin': true,
       });
@@ -99,7 +98,7 @@ class ChannelsApiService {
     try {
       final res = await _api.get(
         'v1/$orgId/channels/$channelId/messages/',
-         token: token,
+        token: token,
       );
       channelMessages = res?.data['data'] ?? [];
 
@@ -121,8 +120,7 @@ class ChannelsApiService {
 
     try {
       final res = await _api.post('v1/$orgId/channels/$channelId/messages/',
-           token: token,
-          body: {'user_id': userId, 'content': message});
+          token: token, body: {'user_id': userId, 'content': message});
 
       channelMessage = res?.data['data'] ?? {};
 
@@ -140,7 +138,7 @@ class ChannelsApiService {
     try {
       final res = await _api.get(
         '/v1/61459d8e62688da5302acdb1/channels/',
-        // token: token,
+        //token: token,
       );
       channels =
           (res?.data as List).map((e) => ChannelModel.fromJson(e)).toList();
@@ -170,7 +168,7 @@ class ChannelsApiService {
           'description': description,
           'private': private,
         },
-         token: token,
+        token: token,
       );
 
       log.i(res?.data.toString());
@@ -192,7 +190,7 @@ class ChannelsApiService {
     try {
       final response = await _api.get(
         '/v1/$orgId/channels/$id/',
-        // token: token,
+        //token: token,
       );
       return ChannelModel.fromJson(response?.data);
     } on Exception catch (e) {
@@ -202,13 +200,12 @@ class ChannelsApiService {
     }
   }
 
-
   getChannelMembers(id) async {
     String orgId = _userService.currentOrgId;
     try {
       final res = await _api.get(
         '/v1/$orgId/channels/$id/members/',
-        // token: token,
+        //token: token,
       );
       return (res?.data as List)
           .map((e) => ChannelMembermodel.fromJson(e))
@@ -218,7 +215,6 @@ class ChannelsApiService {
     } catch (e) {
       log.e(e);
     }
-
   }
 
   Future<void>? dispose() {
