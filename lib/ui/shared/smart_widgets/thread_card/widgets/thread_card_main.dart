@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 //Shows the original message with the number of replies
 import '../../../../../general_widgets/custom_text.dart';
@@ -76,8 +77,7 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
                       ? Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Text(
-                            '''Show ${userPost!.userThreadPosts!.length}'''
-                            '''more replies''',
+                            '$Show ${userPost!.userThreadPosts!.length} $moreReplies',
                             style: AppTextStyles.textButton1,
                           ),
                         )

@@ -62,6 +62,7 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
           Padding(
             padding: const EdgeInsets.only(left: 60),
             child: MaterialButton(
+              // ignore: todo
               //TODO navigate to details page and focus input
               onPressed: () => model.navigateToThread(userPost),
               shape: const RoundedRectangleBorder(

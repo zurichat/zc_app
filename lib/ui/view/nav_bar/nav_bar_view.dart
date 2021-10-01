@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/svg_icon.dart';
@@ -51,7 +52,7 @@ class NavBarView extends StatelessWidget {
   }
 
   List<BottomNavigationBarItem> getBottomIcons() {
-    List<String> name = ['Home', 'Dm', 'You'];
+    List<String> name = [Home, DmTitle, You];
     List<SvgData> icons = [SvgAssets.home, SvgAssets.dm, SvgAssets.you];
 
     List<BottomNavigationBarItem> bottomNavList = List.generate(3, (i) {

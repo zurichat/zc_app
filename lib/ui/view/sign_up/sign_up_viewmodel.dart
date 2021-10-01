@@ -1,13 +1,13 @@
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
-import '../../../package/base/server-request/api/http_api.dart';
 import '../../../services/local_storage_services.dart';
 import '../../../utilities/enums.dart';
 import '../../../utilities/storage_keys.dart';
-import '../../shared/shared.dart';
 import 'sign_up_view.form.dart';
 
 class SignUpViewModel extends FormViewModel {
@@ -15,7 +15,9 @@ class SignUpViewModel extends FormViewModel {
   final storage = locator<SharedPreferenceLocalStorage>();
   final navigator = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
-  final apiService = HttpApiService(coreBaseUrl);
+    final zuriApi = ZuriApi(coreBaseUrl);
+
+  String? get token => storage.getString(StorageKeys.currentSessionToken);
 
   bool isLoading = false;
   bool checkBoxValue = false;
@@ -41,7 +43,7 @@ class SignUpViewModel extends FormViewModel {
   createUser(context) async {
     if (checkBoxValue == true) {
       loading(true);
-      const endpoint = '/users';
+
       final signUpData = {
         'first_name': firstNameValue,
         'last_name': lastNameValue,
@@ -50,13 +52,17 @@ class SignUpViewModel extends FormViewModel {
         'password': passwordValue,
         'phone': phoneNumberValue,
       };
-      final response = await apiService.post(endpoint, data: signUpData);
+      final response = await zuriApi.post(
+        SignUpEndpoint,
+        body: signUpData,
+        token: token
+      );
       loading(false);
       if (response?.statusCode == 200) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.success,
-          message: 'Please check your email for your one-time-password',
+          message: CheckEmailForOTP,
         );
 
         storage.setString(
@@ -68,15 +74,14 @@ class SignUpViewModel extends FormViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message:
-              response?.data['message'] ?? 'Error encountered during signup.',
+          message: response?.data['message'] ?? ErrorEncounteredSignUp,
         );
       }
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'You must accept T & C to signup',
+        message: AcceptTnC,
       );
     }
   }

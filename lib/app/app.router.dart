@@ -561,6 +561,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<ChannelInfoViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => ChannelInfoView(
+          key: args.key,
           numberOfMembers: args.numberOfMembers,
           channelMembers: args.channelMembers,
           channelDetail: args.channelDetail,
@@ -661,11 +662,13 @@ class ChannelPageViewArguments {
 
 /// ChannelInfoView arguments holder class
 class ChannelInfoViewArguments {
+  final Key? key;
   final int numberOfMembers;
   final List<ChannelMembermodel> channelMembers;
   final ChannelModel channelDetail;
   ChannelInfoViewArguments(
-      {required this.numberOfMembers,
+      {this.key,
+      required this.numberOfMembers,
       required this.channelMembers,
       required this.channelDetail});
 }

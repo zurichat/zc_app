@@ -24,6 +24,7 @@ class ChannelPageViewModel extends BaseViewModel {
 
   final _bottomSheetService = locator<BottomSheetService>();
 
+// ignore: todo
 //TODO refactor this
   ScrollController scrollController = ScrollController();
 
@@ -147,13 +148,14 @@ ${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}''';
   }
 
   void websocketConnect(String channelSocketId) async {
-    await _centrifugeService.connect();
     await _centrifugeService.subscribe(channelSocketId);
   }
 
   void listenToNewMessages(String channelId) {
     _centrifugeService.messageStreamController.stream.listen((event) {
-      fetchMessages(channelId);
+      String? eventType = event['event']['action'];
+      if (eventType == 'create:message') fetchMessages(channelId);
+
       notifyListeners();
     });
   }

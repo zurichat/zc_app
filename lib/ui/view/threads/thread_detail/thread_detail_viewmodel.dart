@@ -1,20 +1,29 @@
 import 'package:flutter/widgets.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../../package/base/server-request/channels/channels_api_service.dart';
-
 import '../../../../app/app.locator.dart';
 import '../../../../models/user_post.dart';
+import '../../../../package/base/server-request/api/zuri_api.dart';
+import '../../../../package/base/server-request/channels/channels_api_service.dart';
+import '../../../../services/local_storage_services.dart';
+import '../../../../services/user_service.dart';
 import '../../../../utilities/enums.dart';
+import '../../../../utilities/storage_keys.dart';
 
 class ThreadDetailViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
-  final _channelsApiService = locator<ChannelsApiService>();
+  final storageService = locator<SharedPreferenceLocalStorage>();
+
+  // final _channelsApiService = locator<ChannelsApiService>();
+  final _userService = locator<UserService>();
+  final _api = ZuriApi(channelsBaseUrl);
 
   bool _isVisible = false;
-  bool isLoading = false;
+  bool isLoading = true;
+  bool shouldLoad = false;
   bool get isVisible => _isVisible;
 
   List<UserThreadPost>? messsageRepliesList = [];
@@ -38,10 +47,9 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   Future<void> getRepliesToMessages(UserPost? post) async {
-    loading(true);
-    List? threadReplies =
-        await _channelsApiService.getRepliesToMessages(post?.id);
-
+    final orgId = _userService.currentOrgId;
+    List? threadReplies = await _api.getRepliesToMessages(post?.id, orgId);
+    messsageRepliesList = [];
     threadReplies.forEach(
       (reply) {
         messsageRepliesList!.add(
@@ -60,6 +68,8 @@ class ThreadDetailViewModel extends BaseViewModel {
       },
     );
     loading(false);
+
+    scrollController.jumpTo(scrollController.position.maxScrollExtent);
   }
 
   void onMessageFocusChanged() {
@@ -69,8 +79,21 @@ class ThreadDetailViewModel extends BaseViewModel {
 
   void addReply(
       {String? reply, String? channelMessageId, channelId, files}) async {
-    final res = await _channelsApiService.addReplyToMessage(
-        channelMessageId, reply, files);
+    final orgId = _userService.currentOrgId;
+    final userId = _userService.userId;
+    final channelId = storageService.getString(StorageKeys.currentChannelId);
+    final res = await _api.addReplyToMessage(
+        channelMessageId, reply, files, orgId, userId, channelId);
+  }
+
+  // ignore: always_declare_return_types
+  listenForChanges(UserPost? post) async {
+    _api.controller.stream.listen(
+      (event) async {
+        shouldLoadd(false);
+        await getRepliesToMessages(post);
+      },
+    );
   }
 
   void exitPage() {
@@ -82,8 +105,12 @@ class ThreadDetailViewModel extends BaseViewModel {
         ''':${DateTime.parse(timestamp).minute.toString()}''';
   }
 
-  loading(status) {
+  void loading(status) {
     isLoading = status;
+    notifyListeners();
+  }
+
+  void shouldLoadd(status) {
     notifyListeners();
   }
 }

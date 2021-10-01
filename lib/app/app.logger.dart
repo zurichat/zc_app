@@ -9,7 +9,6 @@
 /// import 'package:customer_app/services/stackdriver/stackdriver_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
-// import 'package:logger/logger.dart';
 
 class SimpleLogPrinter extends LogPrinter {
   final String className;
