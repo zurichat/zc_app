@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 import '../ui/shared/colors.dart';
@@ -5,7 +7,7 @@ import '../ui/shared/colors.dart';
 List<ThemeData> getThemes() {
   return [
     ThemeData.light().copyWith(
-      accentColor: AppColors.zuriPrimaryColor,
+      primaryColor: AppColors.zuriPrimaryColor,
       appBarTheme: const AppBarTheme(
         color: AppColors.whiteColor,
         iconTheme: IconThemeData(color: AppColors.blackColor),
@@ -19,12 +21,11 @@ List<ThemeData> getThemes() {
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: AppColors.zuriPrimaryColor,
-      ),
+      ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: AppColors.zuriPrimaryColor),
     ),
     ThemeData.light(),
     ThemeData.dark(),
     ThemeData.dark().copyWith(
-      accentColor: AppColors.kimbieAccent,
       appBarTheme: const AppBarTheme(
         color: AppColors.kimbieAccent,
         iconTheme: IconThemeData(color: AppColors.blackColor),
@@ -37,7 +38,7 @@ List<ThemeData> getThemes() {
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: AppColors.kimbieAccent,
-      ),
+      ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: AppColors.kimbieAccent),
     ),
   ];
 }

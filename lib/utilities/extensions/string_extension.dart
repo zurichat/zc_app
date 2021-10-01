@@ -11,7 +11,7 @@ extension StringExtension on String {
   }
 
   bool strip() {
-    return replaceAll(RegExp(r'\s+'), '').length == 0;
+    return replaceAll(RegExp(r'\s+'), '').isEmpty;
   }
 
   String turnStringToDate(String format) {
@@ -28,6 +28,6 @@ extension StringExtension on String {
   }
 
   String get initials {
-    return this.split(' ').map((e) => e.split('').first.toUpperCase()).join();
+    return split(' ').map((e) => e.split('').first.toUpperCase()).join();
   }
 }

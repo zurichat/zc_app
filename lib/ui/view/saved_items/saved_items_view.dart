@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../general_widgets/custom_text.dart';
+import '../../shared/colors.dart';
 import 'saved_items_viewmodel.dart';
 
 class SavedItemsView extends StatelessWidget {
@@ -10,16 +10,18 @@ class SavedItemsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
+    final _size = MediaQuery.of(context).size;
     return ViewModelBuilder<SavedItemsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
-              onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
-          title: Text("Saved Items"),
+            onPressed: model.exitPage,
+            icon: const Icon(Icons.close_rounded),
+          ),
+          title: const Text('Saved Items'),
         ),
-        body: Container(
+        body: SizedBox(
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -31,13 +33,13 @@ class SavedItemsView extends StatelessWidget {
                 size: _size.height * .3,
                 color: AppColors.greyishColor,
               ),
-              CustomText(
-                text: "No saved items",
+              const CustomText(
+                text: 'No saved items',
                 fontWeight: FontWeight.w600,
               ),
-              SizedBox(height: 10),
-              Text(
-                "Add messages and files to easily \ncome back to them later.",
+              const SizedBox(height: 10),
+              const Text(
+                'Add messages and files to easily \ncome back to them later.',
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(color: AppColors.greyishColor, fontSize: 16),

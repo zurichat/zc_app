@@ -17,7 +17,7 @@ class ProfilePageHead extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
       children: [
-        Container(
+        SizedBox(
           width: 75,
           height: 75,
           child: Stack(
@@ -38,7 +38,7 @@ class ProfilePageHead extends StatelessWidget {
                   ),
                 ),
               ),
-              Align(
+              const Align(
                 alignment: Alignment.topRight,
                 child: Icon(
                   Icons.circle,
@@ -49,7 +49,7 @@ class ProfilePageHead extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Flexible(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,7 +62,7 @@ class ProfilePageHead extends StatelessWidget {
                 lineHeight: 1.5,
               ),
               CustomText(
-                text: "$currentStatus",
+                text: '$currentStatus',
                 color: AppColors.greyishColor,
                 fontSize: 15,
                 lineHeight: 1.5,

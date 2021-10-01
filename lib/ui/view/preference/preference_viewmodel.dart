@@ -1,33 +1,36 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
+import '../../../app/app.locator.dart';
+import '../../../app/app.logger.dart';
+import '../../../app/app.router.dart';
+import '../../../utilities/enums.dart';
+
 class PreferenceViewModel extends BaseViewModel {
-  ThemeService _themeService = locator<ThemeService>();
+  final log = getLogger('PreferenceViewModel');
+  final ThemeService _themeService = locator<ThemeService>();
   final _dialogService = locator<DialogService>();
   final _navigationService = locator<NavigationService>();
 
-  String currentTheme = "System Default";
+  String currentTheme = 'System Default';
   int currentThemeValue = 1;
 
   List themes = [
-    "System Default",
-    "Off",
-    "On",
-    "Kimbie Dark",
+    'System Default',
+    'Off',
+    'On',
+    'Kimbie Dark',
   ];
 
   Future changeTheme() async {
     final dialogResult = await _dialogService.showCustomDialog(
       variant: DialogType.themeMode,
-      data: {"themes": themes, "currentThemeValue": currentThemeValue},
+      data: {'themes': themes, 'currentThemeValue': currentThemeValue},
     );
 
     if (dialogResult != null && dialogResult.confirmed == true) {
-      print(dialogResult.data);
+      log.i(dialogResult.data);
       currentThemeValue = dialogResult.data;
       _themeService.selectThemeAtIndex(currentThemeValue);
       currentTheme = themes[dialogResult.data];
@@ -56,7 +59,7 @@ class PreferenceViewModel extends BaseViewModel {
     );
 
     if (dialogResult != null && dialogResult.confirmed == true) {
-      print(dialogResult.data);
+      log.i(dialogResult.data);
       notifyListeners();
     }
   }

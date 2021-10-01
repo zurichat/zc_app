@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:stacked/stacked.dart';
 
 import 'plugin_viewmodel.dart';
@@ -9,7 +10,8 @@ import 'widgets/custom_plugin_list_tile.dart';
 import 'widgets/custom_search_field.dart';
 
 class AddPluginView extends StatelessWidget {
-  const AddPluginView({Key? key}) : super(key: key);
+  final log = getLogger('AddPluginView');
+  AddPluginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +29,12 @@ class AddPluginView extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 24.0),
             child: Column(
               children: [
-                Container(
+                const SizedBox(
                     height: 40.0,
                     child: CustomSearchField(
                       searchHint: 'Search people to add',
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 25.0,
                 ),
                 Row(
@@ -44,7 +46,9 @@ class AddPluginView extends StatelessWidget {
                           width: 20,
                         ),
                         text: 'Quick message plugin',
-                        textColor: Color(0xFF242424),
+                        // ignore: todo
+                        //TODO change color to brand colors
+                        textColor: const Color(0xFF242424),
                       ),
                     ),
                     SizedBox(
@@ -55,7 +59,7 @@ class AddPluginView extends StatelessWidget {
                         value: model.checked,
                         onChanged: (bool? value) {
                           model.setChecked(value!);
-                          print(value);
+                          log.i(value);
                         },
                       ),
                     )

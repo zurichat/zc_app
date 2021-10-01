@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/constants.dart';
-import '../../nav_pages/home_page/home_page.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../general_widgets/svg_icon.dart';
 import '../../nav_pages/dm_page/dm_page.dart';
-import '../../nav_pages/integrate_page/integrate_page_view.dart';
+import '../../nav_pages/home_page/home_page.dart';
 import '../../nav_pages/you_page/you_page_view.dart';
+import '../../shared/colors.dart';
+import '../../shared/shared.dart';
 import 'nav_bar_viewmodel.dart';
 
 ///Home view is the holder for all the views
@@ -25,12 +24,15 @@ class NavBarView extends StatelessWidget {
       //initialise the view model only once
       initialiseSpecialViewModelsOnce: true,
       viewModelBuilder: () => NavBarViewModel(),
-      builder: (context, viewModel, child) {
+      onModelReady: (vModel) {
+        // vModel.bottomNavList = getBottomIcons();
+      },
+      builder: (context, vModel, child) {
         return Scaffold(
           //passing in the current index from the view model
           // so it can return the right screen
 
-          body: getViewForIndex(viewModel.currentIndex),
+          body: getViewForIndex(vModel.currentIndex),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             backgroundColor: AppColors.whiteColor,
@@ -40,55 +42,76 @@ class NavBarView extends StatelessWidget {
             unselectedFontSize: 14,
             selectedLabelStyle: AppTextStyles.normalText,
             unselectedLabelStyle: AppTextStyles.normalText,
-            currentIndex: viewModel.currentIndex,
-            onTap: viewModel.setIndex,
-            items: [
-              BottomNavigationBarItem(
-                label: 'Home',
-                icon: Image.asset(
-                  homeIcon,
-                  height: 20,
-                ),
-              ),
-              BottomNavigationBarItem(
-                label: 'Dm',
-                icon: Image.asset(
-                  dmIcon,
-                  height: 20,
-                ),
-              ),
-              BottomNavigationBarItem(
-                label: 'Integrate',
-                icon: Image.asset(
-                  integrateIcon,
-                  height: 20,
-                ),
-              ),
-              BottomNavigationBarItem(
-                label: 'You',
-                icon: Image.asset(
-                  youIcon,
-                  height: 20
-                ),
-              ),
-            ],
+            currentIndex: vModel.currentIndex,
+            onTap: vModel.setIndex,
+            items: getBottomIcons(),
           ),
         );
       },
     );
   }
 
+  List<BottomNavigationBarItem> getBottomIcons() {
+    List<String> name = [Home, DmTitle, You];
+    List<SvgData> icons = [SvgAssets.home, SvgAssets.dm, SvgAssets.you];
+
+    List<BottomNavigationBarItem> bottomNavList = List.generate(3, (i) {
+      var item = BottomNavigationBarItem(
+        label: name[i],
+        icon: SvgIcon(
+          svgIcon: icons[i],
+        ),
+        activeIcon: SvgIcon(
+          svgIcon: icons[i],
+          color: AppColors.zuriPrimaryColor,
+        ),
+      );
+
+      return item;
+    });
+
+    return bottomNavList;
+  }
+
+  // [
+  //             BottomNavigationBarItem(
+  //               label: 'Home',
+  //               icon: Image.asset(
+  //                 homeIcon,
+  //                 height: 20,
+  //               ),
+  //             ),
+  //             BottomNavigationBarItem(
+  //               label: 'Dm',
+  //               icon: Image.asset(
+  //                 dmIcon,
+  //                 height: 20,
+  //               ),
+  //             ),
+  //             BottomNavigationBarItem(
+  //               label: 'Integrate',
+  //               icon: Image.asset(
+  //                 integrateIcon,
+  //                 height: 20,
+  //               ),
+  //             ),
+  //             BottomNavigationBarItem(
+  //               label: 'You',
+  //               icon: Image.asset(youIcon, height: 20),
+  //             ),
+  //           ],
+
   ///Get all the pages and match them to the bottom nav icon
   ///that is clicked this would change the view to the current
   Widget getViewForIndex(int index) {
     switch (index) {
       case 0:
-        return HomePage();
+        return const HomePage();
       case 1:
         return const DmPage();
+      // case 2:
+      //   return const IntegratePage();
       case 2:
-        return const IntegratePage();
-      case 3:
         return const YouPage();
       default:
         return Container();

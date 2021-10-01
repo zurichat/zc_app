@@ -18,11 +18,14 @@ class OnboardingViewModel extends BaseViewModel {
     switch (index) {
       case 0:
         controller?.animateToPage(1,
-            duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+            duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
         break;
       case 1:
-        controller?.animateToPage(2,
-            duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+        controller?.animateToPage(
+          2,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
         break;
       default:
     }

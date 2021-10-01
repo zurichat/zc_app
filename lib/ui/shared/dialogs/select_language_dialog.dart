@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../colors.dart';
 
 class SelectLanguageDialog extends StatefulWidget {
   final DialogRequest request;
@@ -17,7 +19,7 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    int? _currentValue = widget.request.data["currentValue"];
+    int? _currentValue = widget.request.data['currentValue'];
 
     return StatefulBuilder(builder: (context, setState) {
       return AlertDialog(
@@ -29,39 +31,37 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
           height: size.height * .8,
           child: Column(
             children: [
-              Align(
+              const Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Select Language",
+                  SelectLang,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 21,
                   ),
                 ),
               ),
-              Divider(thickness: 2),
+              const Divider(thickness: 2),
               Flexible(
                 fit: FlexFit.loose,
                 child: ListView.builder(
-                  itemCount: widget.request.data["languages"].length,
-                  itemBuilder: (context, index) => Container(
-                    child: ListTile(
-                      title: Text(widget.request.data["languages"][index]),
-                      leading: Radio(
-                        activeColor: AppColors.zuriPrimaryColor,
-                        value: index,
-                        groupValue: _currentValue,
-                        onChanged: (int? value) {
-                          setState(() {
-                            _currentValue = value;
-                          });
-                        },
-                      ),
+                  itemCount: widget.request.data['languages'].length,
+                  itemBuilder: (context, index) => ListTile(
+                    title: Text(widget.request.data['languages'][index]),
+                    leading: Radio(
+                      activeColor: AppColors.zuriPrimaryColor,
+                      value: index,
+                      groupValue: _currentValue,
+                      onChanged: (int? value) {
+                        setState(() {
+                          _currentValue = value;
+                        });
+                      },
                     ),
                   ),
                 ),
               ),
-              Divider(thickness: 2),
+              const Divider(thickness: 2),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -69,13 +69,13 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
                   MaterialButton(
                       onPressed: () =>
                           widget.completer(DialogResponse(confirmed: false)),
-                      child: Text("CANCEL")),
+                      child: const Text(Cancel)),
                   MaterialButton(
                       onPressed: () => widget.completer(
                           DialogResponse(data: _currentValue, confirmed: true)),
-                      child: Text("OK")),
+                      child: const Text(Ok)),
                 ],
-              )
+              ),
             ],
           ),
         ),

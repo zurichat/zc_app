@@ -8,8 +8,8 @@ class UIHelper {
   static const double _VerticalSpaceMedium = 16.0;
   static const double _VerticalSpaceLarge = 32.0;
 
+  static const double _HorizontalSpaceExtraSmall = 4.0;
   static const double _HorizontalSpaceSmall = 8.0;
-  static const double _HorizontalSpaceExtraSmall = 8.0;
   static const double _HorizontalSpaceMedium = 16.0;
   static const double _HorizontalSpaceLarge = 32.0;
   static Widget verticalSpaceExtraSmall = const SizedBox(
@@ -28,6 +28,8 @@ class UIHelper {
   static Widget horizontalSpaceMedium =
       SizedBox(width: _HorizontalSpaceMedium.w);
   static Widget horizontalSpaceLarge = SizedBox(width: _HorizontalSpaceLarge.w);
+  static Widget customVerticalSpace(double value) => SizedBox(height: value);
+  static Widget customHorizontalSpace(double value) => SizedBox(width: value);
 }
 
 double screenAwareSize(double value, BuildContext context,
