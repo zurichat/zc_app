@@ -11,7 +11,6 @@ class UserService {
   bool? get hasUser => hasUser;
   final _sharedPrefs = locator<SharedPreferenceLocalStorage>();
 
-
   //All this are the current user details to be used
   String _currentOrgId = '';
   String _currentOrgUrl = '';
@@ -19,7 +18,6 @@ class UserService {
   String _authToken = '';
   String _userId = '';
   String _userEmail = '';
-
 
   ///This will give you null because organization data has not been added
   OrganizationModel? organizationModel;

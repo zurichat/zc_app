@@ -13,7 +13,7 @@ import '../../../../utilities/enums.dart';
 
 class ChannelInfoViewModel extends BaseViewModel {
   final snackbar = locator<SnackbarService>();
-  final _apiService = ZuriApi(baseUrl: channelsBaseUrl);
+  final _apiService = locator<ZuriApi>();
   final _navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _dialogService = locator<DialogService>();
