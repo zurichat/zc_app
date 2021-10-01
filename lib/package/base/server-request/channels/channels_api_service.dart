@@ -65,7 +65,7 @@ class ChannelsApiService {
     return socketName;
   }
 
-  Future<Map> joinChannel(String channelId) async {
+  Future<Map?> joinChannel(String channelId) async {
     await storageService.clearData(StorageKeys.currentChannelId);
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
@@ -83,13 +83,11 @@ class ChannelsApiService {
       //  channelMessages = res?.data["data"] ?? [];
 
       //  log.i(channelMessages);
-
+      return res?.data ?? {};
     } on Exception catch (e) {
       log.e(e.toString());
       return {};
     }
-
-    return {};
   }
 
   Future<List> getChannelMessages(String channelId) async {
@@ -187,7 +185,25 @@ class ChannelsApiService {
     return false;
   }
 
-  Future<ChannelModel?> getChannelPage(id) async {
+  Future<bool> deleteChannel(String orgId, String channelId) async {
+    try {
+      final res = await _api.delete(
+        '/v1/$orgId/channels/$channelId/',
+        token: token,
+      );
+      // print("RES IS ${res?.statusCode}");
+      if (res?.statusCode == 201 || res?.statusCode == 204) {
+        controller.sink.add('Channel Deleted');
+        return true;
+      }
+      return false;
+    } catch (e) {
+      log.e(e.toString());
+      return false;
+    }
+  }
+
+  getChannelPage(id) async {
     String orgId = _userService.currentOrgId;
 
     try {

@@ -696,11 +696,11 @@ class MockChannelsApiService extends _i1.Mock
       (super.noSuchMethod(Invocation.method(#getChannelSocketId, [channelId]),
           returnValue: Future<String>.value('')) as _i2.Future<String>);
   @override
-  _i2.Future<Map<dynamic, dynamic>> joinChannel(String? channelId) =>
+  _i2.Future<Map<String, dynamic>> joinChannel(String? channelId) =>
       (super.noSuchMethod(Invocation.method(#joinChannel, [channelId]),
               returnValue:
-                  Future<Map<dynamic, dynamic>>.value(<dynamic, dynamic>{}))
-          as _i2.Future<Map<dynamic, dynamic>>);
+                  Future<Map<String, dynamic>>.value(<String, dynamic>{}))
+          as _i2.Future<Map<String, dynamic>>);
   @override
   _i2.Future<List<dynamic>> getChannelMessages(String? channelId) =>
       (super.noSuchMethod(Invocation.method(#getChannelMessages, [channelId]),
@@ -724,6 +724,10 @@ class MockChannelsApiService extends _i1.Mock
       (super.noSuchMethod(
           Invocation.method(#createChannels, [],
               {#name: name, #description: description, #private: private}),
+          returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
+  @override
+  _i2.Future<bool> deleteChannel(String? orgId, String? channelId) =>
+      (super.noSuchMethod(Invocation.method(#deleteChannel, [orgId, channelId]),
           returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
   @override
   _i2.Future<void>? dispose() => (super.noSuchMethod(
@@ -824,9 +828,13 @@ class MockZuriApi extends _i1.Mock implements _i17.ZuriApi {
               returnValue: Future<_i18.ApiResponse?>.value())
           as _i2.Future<_i18.ApiResponse?>);
   @override
-  _i2.Future<dynamic> delete(String? string) =>
-      (super.noSuchMethod(Invocation.method(#delete, [string]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+  _i2.Future<_i18.ApiResponse?> delete(String? string,
+          {Map<String, dynamic>? body, String? token}) =>
+      (super.noSuchMethod(
+          Invocation.method(#delete, [string], {#body: body, #token: token}),
+          returnValue:
+              Future<_i18.ApiResponse?>.value()) as _i2
+          .Future<_i18.ApiResponse?>);
   @override
   _i2.Future<dynamic> login({String? email, String? password, dynamic token}) =>
       (super.noSuchMethod(
