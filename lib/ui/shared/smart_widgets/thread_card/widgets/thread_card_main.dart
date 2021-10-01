@@ -16,16 +16,16 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
   final UserPost? userPost;
 
   @override
-  Widget build(BuildContext context, ThreadCardViewModel model) {
+  Widget build(BuildContext context, ThreadCardViewModel viewModel) {
     return GestureDetector(
-      onTap: () => model.navigateToThread(userPost),
+      onTap: () => viewModel.navigateToThread(userPost),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             InkWell(
-              onTap: model.viewProfile,
+              onTap: viewModel.viewProfile,
               child: Container(
                   width: 40,
                   height: 40,

@@ -18,7 +18,7 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, vmodel) {
+  Widget build(BuildContext context, viewModel) {
     //Todo:get the standard app bar height
     return EasyContainer(
       color: AppColors.zuriPrimaryColor,
@@ -36,7 +36,7 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
           children: [
             GestureDetector(
               onTap: () {
-                vmodel.navigateToOrganization();
+                viewModel.navigateToOrganization();
               },
               child: organizationLogo ??
                   const EasyContainer(

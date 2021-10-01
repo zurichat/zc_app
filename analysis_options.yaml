@@ -7,8 +7,8 @@ analyzer:
     - lib/app/app.logger.dart
   errors:
     unnecessary_string_interpolations: ignore
-    constant_identifier_names: ignore
     overridden_fields: ignore
     avoid_function_literals_in_foreach_calls: ignore
-    avoid_renaming_method_parameters: ignore
     todo: ignore
+    constant_identifier_names: ignore
+    #avoid_renaming_method_parameters: ignore

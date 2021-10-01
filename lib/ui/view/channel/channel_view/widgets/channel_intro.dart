@@ -13,7 +13,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
 
   final String? channelName;
   @override
-  Widget build(BuildContext context, ChannelPageViewModel model) {
+  Widget build(BuildContext context, ChannelPageViewModel viewModel) {
     return Container(
       padding: const EdgeInsets.all(15),
       child: Column(
@@ -21,10 +21,10 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("#$channelName", style: AppTextStyles.heading7),
-         const  SizedBox(height: 10),
+          const SizedBox(height: 10),
           TextParser(
               '[@mark:3433] created this channel on August 12, 2021. This is the very beginning of the #$channelName channel.'),
-         const  SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -32,8 +32,8 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                 children: [
                   MaterialButton(
                     onPressed: () {},
-                    padding:const  EdgeInsets.all(15),
-                    shape:const  CircleBorder(
+                    padding: const EdgeInsets.all(15),
+                    shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
                     child: const ImageIcon(
                       AssetImage('assets/channel_page/edit.png'),
@@ -55,10 +55,10 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                 children: [
                   MaterialButton(
                     onPressed: () {},
-                    padding:const  EdgeInsets.all(15),
-                    shape:const  CircleBorder(
+                    padding: const EdgeInsets.all(15),
+                    shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
-                    child:const  Icon(
+                    child: const Icon(
                       Icons.person_add_alt_1_outlined,
                       color: AppColors.zuriPrimaryColor,
                     ),

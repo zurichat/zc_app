@@ -11,7 +11,7 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
   final String? channelId;
   @override
   Widget buildViewModelWidget(
-      BuildContext context, ChannelPageViewModel model) {
+      BuildContext context, ChannelPageViewModel viewModel) {
     TextEditingController _messageController = useTextEditingController();
 
     return Align(
@@ -33,9 +33,9 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
                       child: Focus(
                         onFocusChange: (focus) {
                           if (focus) {
-                            model.onMessageFieldTap();
+                            viewModel.onMessageFieldTap();
                           } else {
-                            model.onMessageFocusChanged();
+                            viewModel.onMessageFocusChanged();
                           }
                         },
                         child: TextField(
@@ -52,7 +52,7 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
                   ),
                 ),
                 Visibility(
-                  visible: !model.isVisible,
+                  visible: !viewModel.isVisible,
                   child: Row(
                     children:[
                       IconButton(
@@ -75,7 +75,7 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
               ],
             ),
             Visibility(
-                visible: model.isVisible,
+                visible: viewModel.isVisible,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -116,7 +116,7 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
                     IconButton(
                         onPressed: () {
                           if (_messageController.text.toString().isNotEmpty) {
-                            model.sendMessage(
+                            viewModel.sendMessage(
                                 _messageController.text, "$channelId");
 
                             _messageController.text = "";

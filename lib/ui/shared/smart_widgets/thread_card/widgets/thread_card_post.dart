@@ -14,7 +14,7 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
   final UserThreadPost? userThreadPost;
 
   @override
-  Widget build(BuildContext context, ThreadCardViewModel model) {
+  Widget build(BuildContext context, ThreadCardViewModel viewModel) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       child: Column(
@@ -26,7 +26,7 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: model.viewProfile,
+                  onTap: viewModel.viewProfile,
                   child: Container(
                       width: 40,
                       height: 40,
