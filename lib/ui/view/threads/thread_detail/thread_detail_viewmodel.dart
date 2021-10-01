@@ -1,3 +1,4 @@
+import 'package:hng/package/base/server-request/threads/threads_api_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -8,6 +9,10 @@ import '../../../../utilities/enums.dart';
 class ThreadDetailViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
+  final _threadsApiService = locator<ThreadsApiService>();
+
+  List<UserThreadPost> channelMessages = [];
+  late String channelMessageId;
 
   bool _isVisible = false;
   bool get isVisible => _isVisible;
@@ -30,19 +35,41 @@ class ThreadDetailViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void addReply(UserPost userPost, String? reply) {
-    userPost.addReply(
-      UserThreadPost(
-        id: "25",
-        displayName: "richieoscar",
-        userImage: "assets/images/1.png",
-        lastSeen: "4 hours ago",
-        postDate: "20:23",
-        message: reply,
-      ),
-    );
+
+  void initialise(String messageId) {
+    channelMessageId = messageId;
+    fetchThreadMessages();
+  }
+
+  void fetchThreadMessages() async {
+    List? threadMessages = await _threadsApiService
+        .getThreadMessages(channelMessageId);
+
+    threadMessages.forEach((message) async {
+      String userId = message["user_id"];
+
+      channelMessages.add(
+          UserThreadPost(
+              id: message["_id"],
+              displayName: userId,
+              message: message["content"],
+              postEmojis: <PostEmojis>[],
+              userId: userId,
+              postDate: message["timestamp"],
+              statusIcon: "7️⃣",
+              userImage: "assets/images/chimamanda.png"
+          )
+      );
+
+    });
     notifyListeners();
   }
+
+  void sendThreadMessage(String message, String channelId) async {
+    await _threadsApiService.sendThreadMessage(messageId: channelMessageId, message: message, channelId: channelId);
+    fetchThreadMessages();
+  }
+
 
   void exitPage() {
     _navigationService.back();

@@ -68,6 +68,8 @@ class UserPost extends UserThreadPost {
   String? channelName;
   ChannelType? channelType;
 
+  String channelId;
+
   @override
   String? postDate;
 
@@ -86,6 +88,7 @@ class UserPost extends UserThreadPost {
     this.channelName,
     this.channelType,
     this.postDate,
+    required this.channelId,
   }) : super(
           id: id,
           displayName: displayName,

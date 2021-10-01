@@ -65,7 +65,7 @@ class ChannelPageViewModel extends BaseViewModel {
 
   void getChannelSocketId(String channelId) async {
     String channelSockId =
-        await _channelsApiService.getChannelSocketId(channelId);
+    await _channelsApiService.getChannelSocketId(channelId);
 
     websocketConnect(channelSockId);
   }
@@ -74,7 +74,7 @@ class ChannelPageViewModel extends BaseViewModel {
     //setBusy(true);
 
     List? channelMessages =
-        await _channelsApiService.getChannelMessages(channelId);
+    await _channelsApiService.getChannelMessages(channelId);
     channelUserMessages = [];
 
     channelMessages.forEach((data) async {
@@ -92,7 +92,9 @@ class ChannelPageViewModel extends BaseViewModel {
             userThreadPosts: <UserThreadPost>[],
             channelName: channelId,
             userImage: "assets/images/chimamanda.png",
-            userID: userid),
+            userID: userid,
+            channelId: channelId
+        ),
       );
     });
     isLoading = false;
@@ -101,10 +103,8 @@ class ChannelPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void sendMessage(
-    String message,
-    String channelId,
-  ) async {
+  void sendMessage(String message,
+      String channelId,) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
     await _channelsApiService.sendChannelMessages(
         channelId, "$userId", message);
@@ -117,7 +117,13 @@ class ChannelPageViewModel extends BaseViewModel {
   }
 
   String time() {
-    return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
+    return "${DateTime
+        .now()
+        .hour
+        .toString()}:${DateTime
+        .now()
+        .minute
+        .toString()}";
   }
 
   navigateToChannelInfoScreen(int numberOfMembers,
@@ -140,6 +146,7 @@ class ChannelPageViewModel extends BaseViewModel {
   navigateToChannelEdit() {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
+
 
   void websocketConnect(String channelSocketId) async {
     await _centrifugeService.subscribe(channelSocketId);

@@ -38,9 +38,9 @@ mixin $DmJumpToView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get searchValue => formValueMap[SearchValueKey];
+  String? get searchValue => this.formValueMap[SearchValueKey];
 
-  bool get hasSearch => formValueMap.containsKey(SearchValueKey);
+  bool get hasSearch => this.formValueMap.containsKey(SearchValueKey);
 }
 
 extension Methods on FormViewModel {}
