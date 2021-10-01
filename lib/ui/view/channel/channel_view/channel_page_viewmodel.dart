@@ -37,13 +37,13 @@ class ChannelPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void initialise(String channelId) {
-    joinChannel("$channelId");
-    fetchMessages("$channelId");
+  void initialise(String channelId) async {
+    await joinChannel('$channelId');
+    fetchMessages('$channelId');
 
-    getChannelSocketId("$channelId");
+    getChannelSocketId('$channelId');
 
-    listenToNewMessages("$channelId");
+    listenToNewMessages('$channelId');
   }
 
   void showThreadOptions() async {
@@ -58,12 +58,12 @@ class ChannelPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void joinChannel(String channelId) async {
+  Future<void> joinChannel(String channelId) async {
     await _channelsApiService.joinChannel(channelId);
   }
 
   void getChannelSocketId(String channelId) async {
-    String channelSockId =
+    final channelSockId =
         await _channelsApiService.getChannelSocketId(channelId);
 
     websocketConnect(channelSockId);
@@ -77,21 +77,22 @@ class ChannelPageViewModel extends BaseViewModel {
     channelUserMessages = [];
 
     channelMessages.forEach((data) async {
-      String userid = data["user_id"];
+      final String userid = data['user_id'];
 
       channelUserMessages!.add(
         UserPost(
-            id: data["_id"],
-            displayName: userid,
-            statusIcon: "7️⃣",
-            lastSeen: "4 hours ago",
-            message: data["content"],
-            channelType: ChannelType.public,
-            postEmojis: <PostEmojis>[],
-            userThreadPosts: <UserThreadPost>[],
-            channelName: channelId,
-            userImage: "assets/images/chimamanda.png",
-            userID: userid),
+          id: data['_id'],
+          displayName: userid,
+          statusIcon: '7️⃣',
+          lastSeen: '4 hours ago',
+          message: data['content'],
+          channelType: ChannelType.public,
+          postEmojis: <PostEmojis>[],
+          userThreadPosts: <UserThreadPost>[],
+          channelName: channelId,
+          userImage: 'assets/images/chimamanda.png',
+          userID: userid,
+        ),
       );
     });
     isLoading = false;
@@ -100,11 +101,8 @@ class ChannelPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void sendMessage(
-    String message,
-    String channelId,
-  ) async {
-    String? userId = storage.getString(StorageKeys.currentUserId);
+  void sendMessage(String message, String channelId) async {
+    final userId = storage.getString(StorageKeys.currentUserId);
     await _channelsApiService.sendChannelMessages(
         channelId, "$userId", message);
     scrollController.jumpTo(scrollController.position.minScrollExtent);
@@ -116,15 +114,17 @@ class ChannelPageViewModel extends BaseViewModel {
   }
 
   String time() {
-    return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
+    return '''
+${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}''';
   }
 
   navigateToChannelInfoScreen(int numberOfMembers, ChannelModel channelDetail) {
     NavigationService().navigateTo(Routes.channelInfoView,
         arguments: ChannelInfoViewArguments(
-            numberOfMembers: numberOfMembers,
-            channelMembers: channelMembers,
-            channelDetail: channelDetail));
+          numberOfMembers: numberOfMembers,
+          channelMembers: channelMembers,
+          channelDetail: channelDetail,
+        ));
   }
 
   Future navigateToAddPeople() async {
@@ -135,6 +135,7 @@ class ChannelPageViewModel extends BaseViewModel {
     _navigationService.back();
   }
 
+  // ignore: always_declare_return_types
   navigateToChannelEdit() {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
