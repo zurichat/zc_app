@@ -7,6 +7,7 @@ import 'package:hng/models/channel_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/user_service.dart';
@@ -28,6 +29,7 @@ class HomePageViewModel extends StreamViewModel {
   final zuriApi = ZuriApi(channelsBaseUrl);
   final channelsApiService = locator<ChannelsApiService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
+  final _centrifugeService = locator<CentrifugeService>();
 
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
@@ -142,6 +144,7 @@ class HomePageViewModel extends StreamViewModel {
 
     channelsList.forEach(
       (data) {
+        listenToChannelMessage(data['_id']);
         homePageList.add(
           HomeItemModel(
             type: HomeItemType.channels,
@@ -166,6 +169,13 @@ class HomePageViewModel extends StreamViewModel {
     print('All channels $homePageList');
 
     setBusy(false);
+  }
+
+  void listenToChannelMessage(String channelId) async {
+    String channelSockId =
+        await channelsApiService.getChannelSocketId(channelId);
+
+    _centrifugeService.subscribe(channelSockId);
   }
 
   // listenToChannelsChange() {
