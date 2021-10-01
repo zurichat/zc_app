@@ -7,7 +7,7 @@ final Image closeIcon = Image.asset('assets/images/close_search.png');
 final Image voiceSearch = Image.asset('assets/images/voice_search.png');
 
 class CustomSearchBar extends StatelessWidget {
-  final searchFilter;
+  final String? searchFilter;
   const CustomSearchBar({
     Key? key,
     this.searchFilter,

@@ -50,7 +50,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
               children: [
                 Row(
                   children: [
-                    OnlineIndicator(),
+                    const OnlineIndicator(),
                     const SizedBox(width: 4.0),
                     Text(model.receiver.username,
                         style: const TextStyle(
@@ -134,7 +134,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                         const SizedBox(height: 20.0),
                                         Row(
                                           children: [
-                                            OnlineIndicator(),
+                                         const    OnlineIndicator(),
                                             const SizedBox(width: 7.0),
                                             Text(model.receiver.username,
                                                 style: const TextStyle(

@@ -12,14 +12,14 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
   const SixthSection(this.channelDetail, {Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ChannelInfoViewModel model) {
+  Widget build(BuildContext context, ChannelInfoViewModel viewModel) {
     return GestureDetector(
-      onTap: () => model.deleteChannel(channelDetail),
+      onTap: () => viewModel.deleteChannel(channelDetail),
       child: Container(
         height: 136,
         width: 395,
         alignment: Alignment.center,
-        padding: EdgeInsets.fromLTRB(16, 18, 0, 0),
+        padding: const EdgeInsets.fromLTRB(16, 18, 0, 0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
             border: Border.all(width: 1, color: AppColors.borderColor),
@@ -28,13 +28,13 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 6,
-                offset: Offset(0, 3), // changes position of shadow
+                offset: const Offset(0, 3), // changes position of shadow
               ),
             ]),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(
+            const Icon(
               Icons.archive_rounded,
               color: AppColors.deepBlackColor,
               size: 28,

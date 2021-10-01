@@ -45,13 +45,13 @@ mixin $NewChannel on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get channelNameValue => formValueMap[ChannelNameValueKey];
+  String? get channelNameValue => this.formValueMap[ChannelNameValueKey];
   String? get channelDescriptionValue =>
-      formValueMap[ChannelDescriptionValueKey];
+      this.formValueMap[ChannelDescriptionValueKey];
 
-  bool get hasChannelName => formValueMap.containsKey(ChannelNameValueKey);
+  bool get hasChannelName => this.formValueMap.containsKey(ChannelNameValueKey);
   bool get hasChannelDescription =>
-      formValueMap.containsKey(ChannelDescriptionValueKey);
+      this.formValueMap.containsKey(ChannelDescriptionValueKey);
 }
 
 extension Methods on FormViewModel {}

@@ -36,7 +36,7 @@ class ExpandableTextField extends StatelessWidget {
       child: Column(
         mainAxisSize: isExpanded ? MainAxisSize.max : MainAxisSize.min,
         children: [
-          Divider(height: 0, color: Color(0xFF999999)),
+          const Divider(height: 0, color: Color(0xFF999999)),
           Container(
             alignment: Alignment.topRight,
             child: Visibility(
@@ -116,7 +116,7 @@ class ExpandableTextField extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   GestureDetector(
                     onTap: () {},
                     child: Padding(
@@ -144,7 +144,7 @@ class ExpandableTextField extends StatelessWidget {
                         controller.clear();
                       }
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.send,
                       color: AppColors.darkGreyColor,
                     ),
@@ -201,7 +201,7 @@ class MyTextField extends StatelessWidget {
               decoration: InputDecoration.collapsed(
                 hintText: hintText,
                 hintStyle: AppTextStyles.faintBodyText,
-              ).copyWith(contentPadding: EdgeInsets.all(8)),
+              ).copyWith(contentPadding: const EdgeInsets.all(8)),
             ),
           ),
           Visibility(

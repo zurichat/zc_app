@@ -44,11 +44,11 @@ mixin $EditChannelPageView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get descriptionValue => formValueMap[DescriptionValueKey];
-  String? get topicValue => formValueMap[TopicValueKey];
+  String? get descriptionValue => this.formValueMap[DescriptionValueKey];
+  String? get topicValue => this.formValueMap[TopicValueKey];
 
-  bool get hasDescription => formValueMap.containsKey(DescriptionValueKey);
-  bool get hasTopic => formValueMap.containsKey(TopicValueKey);
+  bool get hasDescription => this.formValueMap.containsKey(DescriptionValueKey);
+  bool get hasTopic => this.formValueMap.containsKey(TopicValueKey);
 }
 
 extension Methods on FormViewModel {}

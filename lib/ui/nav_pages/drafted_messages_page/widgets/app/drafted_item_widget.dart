@@ -7,7 +7,7 @@ class DraftedItemWidget extends StatelessWidget {
     this.time,
     Key? key,
   }) : super(key: key);
-  final username, message, time;
+  final String? username, message, time;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,7 +23,7 @@ class DraftedItemWidget extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Text(
-                      username,
+                      "$username",
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontSize: 15,
@@ -32,7 +32,7 @@ class DraftedItemWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    time,
+                    "$time",
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(fontSize: 13),
                   ),
@@ -42,7 +42,7 @@ class DraftedItemWidget extends StatelessWidget {
                 height: 6,
               ),
               Text(
-                message,
+                "$message",
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontSize: 12,

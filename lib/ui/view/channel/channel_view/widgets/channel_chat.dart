@@ -17,7 +17,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
     return Container(
       child: !nullListChecker(viewModel.channelUserMessages)
           ? ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: viewModel.channelUserMessages!.length,
               itemBuilder: (context, index) => ThreadCardView.threadChannelMain(
