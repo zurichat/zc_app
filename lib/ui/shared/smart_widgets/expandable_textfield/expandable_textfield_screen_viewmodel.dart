@@ -4,8 +4,8 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
   bool isVisible = false;
   bool isExpanded = false;
 
-  void toggleExpanded() {
-    isExpanded = !isExpanded;
+  void toggleExpanded(bool val) {
+    isExpanded = val;
     notifyListeners();
   }
 
