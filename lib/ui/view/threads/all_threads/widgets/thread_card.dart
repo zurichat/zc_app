@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
+//The screen shown in homepage -> Threads
 import '../../../../../general_widgets/channel_icon.dart';
 import '../../../../../general_widgets/custom_text.dart';
 import '../../../../../models/user_post.dart';
@@ -52,9 +52,11 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
                   itemCount: userPost!.userThreadPosts!.length,
                   itemBuilder: (ctx, index) {
                     return GestureDetector(
-                        onTap: () => viewModel.navigateToThread(userPost),
-                        child: ThreadCardView.threadPost(
-                            userPost!.userThreadPosts![index]));
+                      onTap: () => viewModel.navigateToThread(userPost),
+                      child: ThreadCardView.threadPost(
+                        userPost!.userThreadPosts![index],
+                      ),
+                    );
                   })
               : Container(),
           Padding(
