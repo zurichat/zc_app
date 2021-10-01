@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class GroupSeparator extends StatelessWidget {
-  String value = 'Today';
+ final String value = 'Today';
 
-  GroupSeparator(String value);
+  const GroupSeparator(String value, {Key? key}):super(key: key);
 
   @override
   Widget build(BuildContext context) {

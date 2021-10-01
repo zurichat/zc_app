@@ -16,7 +16,7 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, CreateOrganizationViewModel model) {
+  Widget build(BuildContext context, CreateOrganizationViewModel viewModel) {
     return LayoutBuilder(
       builder: (context, constraint) {
         return SingleChildScrollView(
@@ -73,13 +73,13 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                       ),
                     ),
                     BorderTextField(
-                      controller: model.inviteController,
+                      controller: viewModel.inviteController,
                       hint: 'name@example.com',
                     ),
                     const InviteButton(),
                     UIHelper.verticalSpaceMedium,
                     LongButton(
-                        onPressed: () => model.addTeammates(),
+                        onPressed: () => viewModel.addTeammates(),
                         label: 'Add Teammates'),
                     const Spacer(flex: 3),
                   ],
@@ -97,7 +97,7 @@ class InviteButton extends ViewModelWidget<CreateOrganizationViewModel> {
   const InviteButton({Key? key}) : super(key: key, reactive: true);
 
   @override
-  Widget build(BuildContext context, CreateOrganizationViewModel model) {
+  Widget build(BuildContext context, CreateOrganizationViewModel viewModel) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15.0),
       child: TextButton(
@@ -118,7 +118,7 @@ class InviteButton extends ViewModelWidget<CreateOrganizationViewModel> {
                 48,
               ),
             )),
-        onPressed: model.onInviteTap,
+        onPressed: viewModel.onInviteTap,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
           child: SizedBox(

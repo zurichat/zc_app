@@ -28,7 +28,7 @@ class ThreadCardViewModel extends BaseViewModel {
   }
 
   Future addEmojis(UserPost? userPost) async {
-    var emoji;
+    String? emoji;
     var sheetResponse = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.emojiPicker,
       isScrollControlled: true,
@@ -36,7 +36,6 @@ class ThreadCardViewModel extends BaseViewModel {
 
     if (sheetResponse!.confirmed == true) {
       emoji = sheetResponse.data.emoji;
-      print(emoji);
 
       userPost!.addReaction(
           PostEmojis(id: randomVarBank, postEmoji: emoji, postEmojiCount: 1));
@@ -48,14 +47,13 @@ class ThreadCardViewModel extends BaseViewModel {
   }
 
   void checkReact(UserPost? userPost, int? emojiId) {
-    var testvar = userPost!.postEmojis!.where((e) {
+    userPost!.postEmojis!.where((e) {
       if (e.id == emojiId) {
         e.hasReacted ? unReact(userPost, e) : react(e);
       }
 
       return false;
     });
-    print(testvar);
   }
 
   void react(PostEmojis emoji) {

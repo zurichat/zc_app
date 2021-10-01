@@ -6,7 +6,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import '../../../app/app.logger.dart';
 import '../../shared/colors.dart';
 import '../../shared/shared.dart';
 import 'otp_view.form.dart';
@@ -19,8 +18,7 @@ import 'otp_viewmodel.dart';
   ],
 )
 class OTPView extends StatelessWidget with $OTPView {
-  final log = getLogger('OTPView');
-
+  OTPView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<OTPViewModel>.reactive(
@@ -106,8 +104,8 @@ class OTPView extends StatelessWidget with $OTPView {
                           enableActiveFill: true,
                           controller: otpController,
                           keyboardType: TextInputType.number,
-                          boxShadows: [
-                            const BoxShadow(
+                          boxShadows: const [
+                            BoxShadow(
                               offset: Offset(0, 1),
                               color: Colors.black12,
                               blurRadius: 10,
@@ -117,7 +115,6 @@ class OTPView extends StatelessWidget with $OTPView {
                           onTap: () {},
                           onChanged: (value) {},
                           beforeTextPaste: (text) {
-                            log.i('Allowing to paste $text');
                             //if you return true then it will show the
                             //paste confirmation dialog. Otherwise if
                             // false, then nothing will happen.

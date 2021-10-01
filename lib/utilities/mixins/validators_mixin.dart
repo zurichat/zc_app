@@ -4,26 +4,29 @@ mixin ValidatorMixin {
   static int inputLength = 6;
 
   String? validateNotEmptyField(String input, [String? label]) {
-    if (input.isEmpty)
+    if (input.isEmpty) {
       return label == null ? 'This field cannot be empty' : 'Enter a $label';
-    else
+    } else {
       return null;
+    }
   }
 
   String? validateEmail(String input) {
-    if (input.validateEmail())
+    if (input.validateEmail()) {
       return null;
-    else if (input.isEmpty)
+    } else if (input.isEmpty) {
       return 'Enter your email';
-    else
+    } else {
       return 'Enter a valid email address';
+    }
   }
 
   String? validatePassword(input) {
-    if (input.isNotEmpty)
+    if (input.isNotEmpty) {
       return null;
-    else
+    } else {
       return 'Enter your password';
+    }
   }
 
   bool? isPasswordValid(String password) {
@@ -38,13 +41,16 @@ mixin ValidatorMixin {
   }
 
   String? validateConfirmPasswordField(String input, String password) {
-    if (input != password)
+    if (input != password) {
       return 'Passwords do not match';
-    else
+    } else {
       return null;
+    }
   }
 
   bool validateNewChannelName(String input) {
+    // TODO review this
+    // ignore: unnecessary_string_escapes
     final reg = RegExp('.*?[A-Z\\s\.].*');
     if (reg.hasMatch(input)) {
       return true;

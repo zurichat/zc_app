@@ -9,7 +9,7 @@ import 'channel_page_viewmodel.dart';
 import 'widgets/channel_chat.dart';
 
 class ChannelPageView extends StatelessWidget {
-  ChannelPageView({
+  const ChannelPageView({
     Key? key,
     required this.channelname,
     required this.channelId,
@@ -36,7 +36,7 @@ class ChannelPageView extends StatelessWidget {
             leading: Padding(
               padding: const EdgeInsets.only(left: 5),
               child: IconButton(
-                  onPressed: model.goBack, icon: Icon(Icons.arrow_back_ios)),
+                  onPressed: model.goBack, icon:const  Icon(Icons.arrow_back_ios)),
             ),
             centerTitle: false,
             leadingWidth: 20,
@@ -54,12 +54,12 @@ class ChannelPageView extends StatelessWidget {
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.search),
+                icon:const  Icon(Icons.search),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 5),
                 child: IconButton(
-                    onPressed: () {}, icon: Icon(Icons.info_outlined)),
+                    onPressed: () {}, icon:const  Icon(Icons.info_outlined)),
               ),
             ],
           ),

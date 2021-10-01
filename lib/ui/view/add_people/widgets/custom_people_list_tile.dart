@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 // import '../../shared/colors.dart';
 
 class CustomPeopleListTile extends StatefulWidget {
-  final imagelink;
-  final userName;
-  final isOnline;
+  final String? imagelink;
+  final String? userName;
+  final bool? isOnline;
 
   const CustomPeopleListTile({
     Key? key,
@@ -38,7 +38,7 @@ class _CustomPeopleListTileState extends State<CustomPeopleListTile> {
 
     return ListTile(
       leading: SizedBox(
-        child: Image.asset(widget.imagelink),
+        child: Image.asset("${widget.imagelink}"),
         height: 30,
         width: 30,
       ),

@@ -12,8 +12,8 @@ class OrganizationUrlView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<OrganizationUrlViewModel>.nonReactive(
-      builder: (context, model, child) => ModalProgressHUD(
-        inAsyncCall: model.isBusy,
+      builder: (context, viewModel, child) => ModalProgressHUD(
+        inAsyncCall: viewModel.isBusy,
         color: AppColors.whiteColor,
         progressIndicator: const CircularProgressIndicator(
           color: AppColors.zuriPrimaryColor,
@@ -39,13 +39,13 @@ class OrganizationUrlView extends StatelessWidget {
                               children: [
                                 const TextSpan(
                                   text: '''
-If you don\'t know your Organization URL, we have sent an email to ''',
+If you don't know your Organization URL, we have sent an email to ''',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
                                 ),
                                 TextSpan(
-                                  text: '${model.email}',
+                                  text: '${viewModel.email}',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16,
@@ -84,7 +84,7 @@ class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
   const TextForm({Key? key}) : super(key: key, reactive: false);
   @override
   Widget buildViewModelWidget(
-      BuildContext context, OrganizationUrlViewModel model) {
+      BuildContext context, OrganizationUrlViewModel viewModel) {
     return Center(
       child: TextField(
         decoration: const InputDecoration(
@@ -102,7 +102,7 @@ class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
           disabledBorder: InputBorder.none,
         ),
         onChanged: (value) {
-          model.updateString(value);
+          viewModel.updateString(value);
         },
       ),
     );
@@ -113,15 +113,15 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
   const NextButton({Key? key}) : super(key: key, reactive: true);
 
   @override
-  Widget build(BuildContext context, OrganizationUrlViewModel model) {
+  Widget build(BuildContext context, OrganizationUrlViewModel viewModel) {
     return TextButton(
         style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all<Color>(model.buttonColors)),
-        onPressed: () => model.signInToOrganization(),
+                MaterialStateProperty.all<Color>(viewModel.buttonColors)),
+        onPressed: () => viewModel.signInToOrganization(),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-          child: Container(
+          child: SizedBox(
             width: 300,
             child: Center(
               child: Text(

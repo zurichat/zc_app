@@ -36,7 +36,7 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   const AddChannelsTextAndIcon({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, vmodel) {
+  Widget build(BuildContext context, viewModel) {
     return _TextAndIcon(
       text: AddChannels,
       unread: false,
@@ -68,7 +68,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, vmodel) {
+  Widget build(BuildContext context, viewModel) {
     bool isUnread = false;
     if (data.unreadCount != null && data.unreadCount != 0) {
       isUnread = true;
@@ -80,7 +80,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       onTap: () {
         //Navigate to dm screen
         //Todo: pass the navigation Id
-        vmodel.navigateToDmUser();
+        viewModel.navigateToDmUser();
       },
       icon: Container(
         alignment: Alignment.centerLeft,
@@ -102,7 +102,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 // ignore: must_be_immutable
 class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   final HomeItemModel data;
-  final channelId;
+  final String? channelId;
   final bool? noTopPad;
   bool isUnread = false;
 
@@ -142,7 +142,7 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   }
 
   @override
-  Widget build(BuildContext context, vmodel) {
+  Widget build(BuildContext context, viewModel) {
     if (data.unreadCount != null && data.unreadCount != 0) {
       isUnread = true;
     }
@@ -151,7 +151,7 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       text: data.name ?? '',
       unread: isUnread,
       icon: prefixIcon(),
-      onTap: () => vmodel.navigateToChannelPage(
+      onTap: () => viewModel.navigateToChannelPage(
           data.name, data.id, data.membersCount, data.public),
     );
   }

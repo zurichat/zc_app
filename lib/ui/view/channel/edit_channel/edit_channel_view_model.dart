@@ -17,7 +17,7 @@ class EditChannelViewModel extends FormViewModel {
   final storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
   final _apiService = ZuriApi(channelsBaseUrl);
-    String? get token => storage.getString(StorageKeys.currentSessionToken);
+  String? get token => storage.getString(StorageKeys.currentSessionToken);
   bool isLoading = false;
   loading(status) {
     isLoading = status;

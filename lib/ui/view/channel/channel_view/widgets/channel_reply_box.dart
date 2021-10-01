@@ -11,7 +11,7 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
   final String? channelId;
   @override
   Widget buildViewModelWidget(
-      BuildContext context, ChannelPageViewModel model) {
+      BuildContext context, ChannelPageViewModel viewModel) {
     TextEditingController _messageController = useTextEditingController();
 
     return Align(
@@ -21,21 +21,21 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Divider(height: 0, color: Color(0xFF999999)),
+          const   Divider(height: 0, color: Color(0xFF999999)),
             Row(
               children: [
                 Expanded(
                   child: Container(
                     height: 56,
-                    margin: EdgeInsets.only(left: 13.0),
+                    margin:const  EdgeInsets.only(left: 13.0),
                     alignment: Alignment.centerLeft,
                     child: FocusScope(
                       child: Focus(
                         onFocusChange: (focus) {
                           if (focus) {
-                            model.onMessageFieldTap();
+                            viewModel.onMessageFieldTap();
                           } else {
-                            model.onMessageFocusChanged();
+                            viewModel.onMessageFocusChanged();
                           }
                         },
                         child: TextField(
@@ -52,18 +52,18 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
                   ),
                 ),
                 Visibility(
-                  visible: !model.isVisible,
+                  visible: !viewModel.isVisible,
                   child: Row(
-                    children: [
+                    children:[
                       IconButton(
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.camera_alt_outlined,
                           color: AppColors.darkGreyColor,
                         ),
                         onPressed: () {},
                       ),
                       IconButton(
-                        icon: Icon(
+                        icon:const  Icon(
                           Icons.attach_file_outlined,
                           color: AppColors.darkGreyColor,
                         ),
@@ -75,7 +75,7 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
               ],
             ),
             Visibility(
-                visible: model.isVisible,
+                visible: viewModel.isVisible,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -83,31 +83,31 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
                       children: [
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon:const  Icon(
                               AppIcons.shapezap,
                               color: AppColors.darkGreyColor,
                             )),
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon:const  Icon(
                               Icons.alternate_email_outlined,
                               color: AppColors.darkGreyColor,
                             )),
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon:const  Icon(
                               Icons.tag_faces_sharp,
                               color: AppColors.darkGreyColor,
                             )),
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon:const  Icon(
                               Icons.camera_alt_outlined,
                               color: AppColors.darkGreyColor,
                             )),
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon:const  Icon(
                               Icons.attach_file_outlined,
                               color: AppColors.darkGreyColor,
                             )),
@@ -116,14 +116,14 @@ class ChannelReplyBox extends HookViewModelWidget<ChannelPageViewModel> {
                     IconButton(
                         onPressed: () {
                           if (_messageController.text.toString().isNotEmpty) {
-                            model.sendMessage(
+                            viewModel.sendMessage(
                                 _messageController.text, "$channelId");
 
                             _messageController.text = "";
                             FocusScope.of(context).requestFocus(FocusNode());
                           }
                         },
-                        icon: Icon(
+                        icon:const  Icon(
                           Icons.send,
                           color: AppColors.darkGreyColor,
                         ))

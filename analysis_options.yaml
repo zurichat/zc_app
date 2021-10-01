@@ -1,0 +1,14 @@
+include: package:flutter_lints/flutter.yaml
+analyzer:
+  exclude:
+    - test/helpers/*.mocks.dart
+    - lib/models/*.g.dart
+    - lib/ui/view/**.form.dart
+    - lib/app/app.logger.dart
+  errors:
+    unnecessary_string_interpolations: ignore
+    overridden_fields: ignore
+    avoid_function_literals_in_foreach_calls: ignore
+    todo: ignore
+    constant_identifier_names: ignore
+    #avoid_renaming_method_parameters: ignore

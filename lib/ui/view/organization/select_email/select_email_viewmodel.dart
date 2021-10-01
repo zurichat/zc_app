@@ -19,13 +19,13 @@ class SelectEmailViewModel extends BaseViewModel {
 
   void onEmailTap(OrganizationSwitchMethod method) {
     switch (method) {
-      case OrganizationSwitchMethod.SignIn:
+      case OrganizationSwitchMethod.signIn:
         navigateToOrganizationUrl();
         break;
-      case OrganizationSwitchMethod.Create:
+      case OrganizationSwitchMethod.create:
         navigateToCreateOrganization();
         break;
-      case OrganizationSwitchMethod.Join:
+      case OrganizationSwitchMethod.join:
         navigateToOrganizationUrl();
         break;
     }
@@ -63,11 +63,11 @@ class SelectEmailViewModel extends BaseViewModel {
 
   String getScreenTitle(OrganizationSwitchMethod method) {
     switch (method) {
-      case OrganizationSwitchMethod.Create:
+      case OrganizationSwitchMethod.create:
         return 'Create a workspace';
-      case OrganizationSwitchMethod.SignIn:
+      case OrganizationSwitchMethod.signIn:
         return 'Sign in to a workspace';
-      case OrganizationSwitchMethod.Join:
+      case OrganizationSwitchMethod.join:
         return 'Join a workspace';
     }
   }

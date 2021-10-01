@@ -29,7 +29,7 @@ class CustomPluginListTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              this.icon != null ? 
+              icon != null ? 
                 Icon(
                   icon,
                   color: isActive ? Colors.black : AppColors.greyishColor,

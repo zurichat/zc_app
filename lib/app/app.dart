@@ -1,4 +1,3 @@
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';

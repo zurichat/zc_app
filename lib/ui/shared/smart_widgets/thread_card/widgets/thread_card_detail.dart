@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../../general_widgets/custom_text.dart';
-import '../../../../../models/user_post.dart';
 import '../../../colors.dart';
 import '../../text_parser/text_parser_view.dart';
 import '../thread_card_viewmodel.dart';
@@ -15,14 +15,14 @@ class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
   final UserPost? userPost;
 
   @override
-  Widget build(BuildContext context, ThreadCardViewModel model) {
+  Widget build(BuildContext context, ThreadCardViewModel viewModel) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-            onTap: model.viewProfile,
+            onTap: viewModel.viewProfile,
             child: Container(
                 width: 40,
                 height: 40,

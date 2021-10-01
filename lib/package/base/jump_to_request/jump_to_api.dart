@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/utilities/constants.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';
@@ -79,7 +78,7 @@ class JumpToApi {
       // MainMembers mainMembers = MainMembers.fromJson(res!.data);
       // return mainMembers.data;
     } on DioError catch (e) {
-      print('Error error $e');
+      log.e('Error error $e');
     }
     return [];
   }
