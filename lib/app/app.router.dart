@@ -20,6 +20,7 @@ import '../ui/view/channel/add_people/channel_add_people_view.dart';
 import '../ui/view/channel/channel_info/channel_info_view.dart';
 import '../ui/view/channel/channel_list/channels_view.dart';
 import '../ui/view/channel/channel_notification/channel_notification_view.dart';
+import '../ui/view/channel/channel_search/channel_search_view.dart';
 import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
@@ -115,6 +116,7 @@ class Routes {
   static const String organizationUrlView = '/organization-url-view';
   static const String channelPageView = '/channel-page-view';
   static const String channelInfoView = '/channel-info-view';
+  static const String channelSearchPageView = '/channel-search-page-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -165,6 +167,7 @@ class Routes {
     organizationUrlView,
     channelPageView,
     channelInfoView,
+    channelSearchPageView,
   };
 }
 
@@ -222,6 +225,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.organizationUrlView, page: OrganizationUrlView),
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+    RouteDef(Routes.channelSearchPageView, page: ChannelSearchPageView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -569,6 +573,17 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    ChannelSearchPageView: (data) {
+      var args = data.getArgs<ChannelSearchPageViewArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ChannelSearchPageView(
+          key: args.key,
+          channelId: args.channelId,
+          channelMembers: args.channelMembers,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -664,11 +679,20 @@ class ChannelPageViewArguments {
 class ChannelInfoViewArguments {
   final Key? key;
   final int numberOfMembers;
-  final List<ChannelMembermodel> channelMembers;
+  final List<ChannelMemberModel> channelMembers;
   final ChannelModel channelDetail;
   ChannelInfoViewArguments(
       {this.key,
       required this.numberOfMembers,
       required this.channelMembers,
       required this.channelDetail});
+}
+
+/// ChannelSearchPageView arguments holder class
+class ChannelSearchPageViewArguments {
+  final Key? key;
+  final String channelId;
+  final List<ChannelMemberModel> channelMembers;
+  ChannelSearchPageViewArguments(
+      {this.key, required this.channelId, required this.channelMembers});
 }

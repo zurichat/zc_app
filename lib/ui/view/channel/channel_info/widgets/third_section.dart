@@ -4,16 +4,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:hng/ui/view/channel/channel_info/widgets/newRowTile.dart';
+
 import '../../../../shared/colors.dart';
 
 // ignore: must_be_immutable
 class ThirdSection extends StatelessWidget {
-  ThirdSection(this.model, this.numberOfMembers, this.channelDetail, this.channelMembers);
+  ThirdSection(
+    this.model,
+    this.numberOfMembers,
+    this.channelMembers,
+    this.channelDetail,
+  );
+
   final numberOfMembers;
   final channelDetail;
   final channelMembers;
   final ChannelInfoViewModel model;
-
 
   @override
   Widget build(BuildContext context) {
@@ -36,72 +42,56 @@ class ThirdSection extends StatelessWidget {
       child: Column(
         children: [
           InkWell(
-              onTap: (){
-                model.navigateToMembersList(channelMembers, channelDetail);
-              },
-              child: NewRowTile(
-                icon: Icons.group_outlined,
-                text: "Members ($numberOfMembers)"
-              )
+            onTap: () {
+              model.navigateToMembersList(channelMembers, channelDetail);
+            },
+            child: NewRowTile(
+              icon: Icons.group_outlined,
+              text: "Members ($numberOfMembers)",
+            ),
           ),
-
           SizedBox(height: 10.h),
-
           Divider(
             thickness: 0.5.h,
             color: AppColors.deepBlackColor.withOpacity(0.5),
             indent: 66.6.w,
             // endIndent: 33,
           ),
-
           SizedBox(height: 18.h),
-
           InkWell(
-              onTap: (){},
-              child: NewRowTile(
-                icon: Icons.person_add_alt_1_outlined,
-                text: 'Add People'
-              )
+            onTap: () {},
+            child: NewRowTile(
+              icon: Icons.person_add_alt_1_outlined,
+              text: 'Add People',
+            ),
           ),
-
           SizedBox(height: 10.h),
-
           Divider(
             thickness: 0.5.h,
             color: AppColors.deepBlackColor.withOpacity(0.5),
             indent: 66.6.w,
             // endIndent: 33,
           ),
-
           SizedBox(height: 18.h),
-
           InkWell(
-              onTap: (){},
+              onTap: () {},
               child: NewRowTile(
-                  icon: Icons.dashboard_outlined,
-                  text: 'Plugins (1)'
-              )
-          ),
-
+                  icon: Icons.dashboard_outlined, text: 'Plugins (1)')),
           SizedBox(height: 10.h),
-
           Divider(
             thickness: 0.5.h,
             color: AppColors.deepBlackColor.withOpacity(0.5),
             indent: 66.6.w,
             // endIndent: 33,
           ),
-
           SizedBox(height: 18.h),
-
           InkWell(
-              onTap: (){},
-              child: NewRowTile(
-                  icon: Icons.phone_outlined,
-                  text: 'Start a call'
-              )
+            onTap: () {},
+            child: NewRowTile(
+              icon: Icons.phone_outlined,
+              text: 'Start a call',
+            ),
           ),
-
         ],
       ),
     );

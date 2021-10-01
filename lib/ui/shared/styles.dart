@@ -20,11 +20,6 @@ class AppTextStyles {
     color: AppColors.blackColor,
     fontSize: 20,
   );
-  static TextStyle hashtag = GoogleFonts.lato(
-    fontWeight: FontWeight.w400,
-    color: AppColors.greyColor,
-    fontSize: 20,
-  );
   static TextStyle heading6 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
     color: AppColors.greyishColor,
@@ -293,8 +288,25 @@ class AppTextStyles {
       fontSize: 14,
       fontWeight: FontWeight.w700,
       color: AppColors.unreadMessageColor);
-}
 
+  static TextStyle kTabTitleTextStyle = GoogleFonts.lato(
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+  );
+
+  static TextStyle kSectionTextStyle = GoogleFonts.lato(
+    color: Color(0xFF3A3A3A),
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+  );
+
+  static TextStyle kSubSectionTextStyle = GoogleFonts.lato(
+    color: AppColors.greyColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+}
 
 // ignore: must_be_immutable
 class StatusIcon extends StatelessWidget {
@@ -303,6 +315,7 @@ class StatusIcon extends StatelessWidget {
   StatusIcon(
     this.count,
   );
+
   @override
   Widget build(BuildContext context) {
     return Container(

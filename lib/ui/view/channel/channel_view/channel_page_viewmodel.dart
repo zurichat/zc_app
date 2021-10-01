@@ -8,7 +8,6 @@ import 'package:hng/models/user_search_model.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/local_storage_services.dart';
-
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
@@ -24,12 +23,12 @@ class ChannelPageViewModel extends BaseViewModel {
 
   final _bottomSheetService = locator<BottomSheetService>();
 
-// ignore: todo
 //TODO refactor this
   ScrollController scrollController = ScrollController();
 
   bool isLoading = true;
   List<UserSearch> usersInOrg = [];
+  List<ChannelMemberModel> usersInChannel = [];
 
   List<UserPost>? channelUserMessages = [];
 
@@ -69,6 +68,20 @@ class ChannelPageViewModel extends BaseViewModel {
         await _channelsApiService.getChannelSocketId(channelId);
 
     websocketConnect(channelSockId);
+  }
+
+  void fetchChannelMembers(String channelId) async {
+    List? channelMembers =
+        await _channelsApiService.getChannelMembers(channelId);
+    print(channelMembers);
+    // print('Channel Members: $usersInChannel');
+
+    channelMembers.forEach((data) async {
+      String userId = data['_id'];
+      bool isAdmin = data['is_admin'];
+
+      usersInChannel.add(ChannelMemberModel(id: userId, isAdmin: isAdmin));
+    });
   }
 
   void fetchMessages(String channelId) async {
@@ -123,7 +136,7 @@ class ChannelPageViewModel extends BaseViewModel {
   }
 
   navigateToChannelInfoScreen(int numberOfMembers,
-      List<ChannelMembermodel> channelMembers, ChannelModel channelDetail) {
+      List<ChannelMemberModel> channelMembers, ChannelModel channelDetail) {
     NavigationService().navigateTo(Routes.channelInfoView,
         arguments: ChannelInfoViewArguments(
             numberOfMembers: numberOfMembers,
@@ -142,6 +155,9 @@ class ChannelPageViewModel extends BaseViewModel {
   navigateToChannelEdit() {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
+
+  void navigateToSearchPage() =>
+      _navigationService.navigateTo(Routes.channelSearchPageView);
 
   void websocketConnect(String channelSocketId) async {
     await _centrifugeService.subscribe(channelSocketId);

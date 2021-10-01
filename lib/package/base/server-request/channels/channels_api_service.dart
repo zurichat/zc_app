@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/models/search_result_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 
 import '../../../../app/app.locator.dart';
@@ -24,6 +25,7 @@ class ChannelsApiService {
   //TODo - fix
   // ignore: always_declare_return_types
   onChange() {}
+
   Future<List> getActiveDms() async {
     final orgId = _userService.currentOrgId;
 
@@ -200,21 +202,84 @@ class ChannelsApiService {
     }
   }
 
-  getChannelMembers(id) async {
+  /// Fetch a list of members that belong in a specific channel
+  Future<List> getChannelMembers(String channelId) async {
     String orgId = _userService.currentOrgId;
+    List channelMembers;
+
     try {
       final res = await _api.get(
-        '/v1/$orgId/channels/$id/members/',
-        //token: token,
+        '/v1/$orgId/channels/$channelId/members/',
+        token: token,
       );
-      return (res?.data as List)
-          .map((e) => ChannelMembermodel.fromJson(e))
-          .toList();
+
+      channelMembers = res?.data ?? [];
+      print('Channel Members: $channelMembers');
+      return channelMembers;
     } on Exception catch (e) {
-      log.e("Channels member EXception $e");
+      log.e("Channels member Exception $e");
+      return [];
     } catch (e) {
       log.e(e);
+      return [];
     }
+  }
+
+  /// Lookup the list of file(s)/message(s) user seeks in a joined channel
+  Future<List<SearchResultModel>> getItems(
+      String channelId, Map<String, dynamic>? searchQuery) async {
+    final orgId = _userService.currentOrgId;
+
+    final res = await _api.post(
+        'v1/$orgId/channels/$channelId/search_messages/',
+        body: searchQuery!,
+        token: token);
+
+    // _log.i(res?.data?['result']);
+    log.i(res?.data);
+    if (res?.data == null) {
+      return [];
+    }
+
+    return SearchResultsList.fromJson(res!.data).results;
+  }
+
+  ///Get list of Channels the user has joined
+  Future<List<ChannelModel>> getJoinedChannels() async {
+    final orgId = _userService.currentOrgId;
+    final userId = _userService.userId;
+
+    final res = await _api.get(
+      'v1/$orgId/channels/users/$userId/',
+      token: token,
+    );
+    log.i(res?.data);
+    print(res?.data);
+    if (res?.data == null) {
+      return [];
+    }
+    return (res?.data as List).map((e) => ChannelModel.fromJson(e)).toList();
+  }
+
+  Future<dynamic> getChannelInfo(String channelId) async {
+    final orgId = _userService.currentOrgId;
+
+    final channelInfo;
+    try {
+      final res = await _api.get(
+        'v1/$orgId/channels/$channelId/',
+        token: token,
+      );
+
+      channelInfo = res?.statusCode == 200 ? res : null;
+
+      log.i(channelInfo);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return [];
+    }
+
+    return channelInfo;
   }
 
   Future<void>? dispose() {

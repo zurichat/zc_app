@@ -1,73 +1,43 @@
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/static_user_model.dart';
-
+import 'package:hng/models/user_search_model.dart';
+import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class ChannelMembersModel extends BaseViewModel {
+class ChannelMembersListModel extends BaseViewModel {
+  final navigator = locator<NavigationService>();
+  final _organisationApiService = OrganizationApiService();
 
-   final navigator = locator<NavigationService>();
- 
   bool get allMarked =>
       markedUsers.length == matchingUsers.length && matchingUsers.isNotEmpty;
 
-  late List<StaticUserModel> matchingUsers = users;
+  late List<UserSearch> matchingUsers = [];
+  late List<UserSearch> channelMembers = [];
+  late List<UserSearch> organisationMembers = [];
+
   late List<StaticUserModel> markedUsers = [];
 
-  final users = [
-    StaticUserModel(
-      online: true,
-      userName: 'Chimamanda',
-      userimg: 'chimamanda.png',
-      joinInfo: '',
-      time: '',
-    ),
-    StaticUserModel(
-      online: false,
-      userName: 'Naisu',
-      userimg: 'naisu.png',
-      joinInfo: '',
-      time: '',
-    ),
-    StaticUserModel(
-      online: false,
-      userName: 'Baptist',
-      userimg: 'baptist.png',
-      joinInfo: '',
-      time: '',
-    ),
-    StaticUserModel(
-      online: true,
-      userName: 'Gringo',
-      userimg: 'gringo.png',
-      joinInfo: '',
-      time: '',
-    ),
-  ];
+  /// Based on the 'id' attribute of each channel member, fetch their detail
+  /// from the organisation endpoint (which holds all details about a member)
+  Future<void> fetchOrganisationMembers(
+      {required List<ChannelMemberModel> channelMembersId,
+      String? memberId}) async {}
 
-  void onSearchUser(String input) {
-    matchingUsers = [
-      ...users.where(
-          (user) => user.userName.toLowerCase().contains(input.toLowerCase()))
-    ];
-    notifyListeners();
+  void fetchOrganisationMember(String memberId) async {
+    final organisationMember =
+        await _organisationApiService.fetchOrganisationMember(memberId);
+    print('Organisation Member: $organisationMember');
+
+    UserSearch.fromJson(organisationMember);
   }
 
-  void onMarkOne(bool? marked, int i) {
-    if (marked!)
-      markedUsers.add(matchingUsers[i]);
-    else
-      markedUsers.remove(matchingUsers[i]);
-    notifyListeners();
-  }
+  void onSearchUser(String namePattern) {}
 
-  void onMarkAll(bool? marked) {
-    markedUsers = marked! ? matchingUsers : [];
-    notifyListeners();
-  }
+  void onSelectUser(String namePattern) {}
 
-   void goBack() {
+  void goBack() {
     NavigationService().back();
   }
-
 }

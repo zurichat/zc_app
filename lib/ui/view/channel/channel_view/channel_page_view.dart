@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_reply_box.dart';
 import 'package:stacked/stacked.dart';
-import '../../../shared/shared.dart';
 
+import '../../../shared/shared.dart';
 import 'channel_page_viewmodel.dart';
 import 'widgets/channel_chat.dart';
 
@@ -26,6 +28,8 @@ class ChannelPageView extends StatelessWidget {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
         model.initialise('$channelId');
+        model.initialise('$membersCount');
+        model.fetchChannelMembers(channelId!);
       },
       //this parameter allows us to reuse the view model to persist the state
 
@@ -53,14 +57,30 @@ class ChannelPageView extends StatelessWidget {
             ),
             actions: [
               IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.search),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5),
-                child: IconButton(
-                    onPressed: () {}, icon: Icon(Icons.info_outlined)),
-              ),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      Routes.channelSearchPageView,
+                      arguments: ChannelSearchPageViewArguments(
+                          channelId: channelId!,
+                          channelMembers: model.usersInChannel),
+                    );
+                  },
+                  icon: Icon(Icons.search)),
+              IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      Routes.channelInfoView,
+                      arguments: ChannelInfoViewArguments(
+                        numberOfMembers: membersCount!,
+                        channelMembers: model.usersInChannel,
+                        channelDetail:
+                            ChannelModel(id: channelId!, name: channelname!),
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.info_outlined)),
             ],
           ),
           body:
@@ -95,4 +115,3 @@ class ChannelPageView extends StatelessWidget {
     );
   }
 }
-

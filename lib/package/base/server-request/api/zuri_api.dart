@@ -553,7 +553,7 @@ class ZuriApi implements Api {
           token: token);
       log.i(res.data);
       return (res?.data as List)
-          .map((e) => ChannelMembermodel.fromJson(e))
+          .map((e) => ChannelMemberModel.fromJson(e))
           .toList();
     } on DioError catch (e) {
       log.w(e.toString());

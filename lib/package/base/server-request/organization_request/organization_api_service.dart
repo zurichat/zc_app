@@ -8,7 +8,6 @@ import '../../../../services/local_storage_services.dart';
 import '../../../../services/user_service.dart';
 import '../../../../ui/shared/shared.dart';
 import '../../../../utilities/storage_keys.dart';
-import '../api/http_api.dart';
 
 class OrganizationApiService {
   final log = getLogger('OrganizationApiService');
@@ -22,7 +21,7 @@ class OrganizationApiService {
   Future<List<OrganizationModel>> fetchListOfOrganizations() async {
     final res = await _api.get(
       '/organizations',
-      token: token
+      token: token,
     );
     log.i(res?.data?['data'].length);
     return (res?.data?['data'] as List)
@@ -36,7 +35,7 @@ class OrganizationApiService {
 
     final res = await _api.get(
       '/users/$email/organizations',
-      token: token
+      token: token,
     );
     log.i(res?.data?['data']);
     print(res?.data);
@@ -51,11 +50,31 @@ class OrganizationApiService {
   /// Fetches information on a particular Organization. It takes a parameter
   /// `id` which is the id of the organization
   Future<OrganizationModel> fetchOrganizationInfo(String id) async {
-    final res = await _api.get(
-      '/organizations/$id',
-      token: token
-    );
+    final res = await _api.get('/organizations/$id', token: token);
     return OrganizationModel.fromJson(res?.data?['data']);
+  }
+
+  /// Fetches information about a member of the specified Organisation. It takes
+  /// 'id's of the organisation & member/user as parameters.
+  Future<dynamic> fetchOrganisationMember(String memberId) async {
+    final orgId = locator<UserService>().currentOrgId;
+    final res = await _api.get(
+      'organizations/$orgId/members/$memberId',
+      token: token,
+    );
+    print('Organisation Member: $res');
+    return res?.data['status'] == 200 ? res?.data['data'] : [];
+  }
+
+  /// Fetches information about all members of the specified Organisation.
+  Future<dynamic> fetchOrganisationMembers() async {
+    final orgId = locator<UserService>().currentOrgId;
+    final res = await _api.get(
+      'organizations/$orgId/members/',
+      token: token,
+    );
+
+    return res?.data['status'] == 200 ? res?.data['data'] : [];
   }
 
   /// takes in a `url` and returns a Organization that matches the url
@@ -63,7 +82,7 @@ class OrganizationApiService {
   Future<OrganizationModel> fetchOrganizationByUrl(String url) async {
     final res = await _api.get(
       '/organizations/url/$url',
-      token: token
+      token: token,
     );
     log.i(res?.data);
     print(res?.data);
@@ -82,7 +101,7 @@ class OrganizationApiService {
     final res = await _api.post(
       '/organizations/$orgId/members',
       body: {'user_email': email},
-      token: token
+      token: token,
     );
 
     if (res?.statusCode == 200) {
@@ -148,7 +167,7 @@ class OrganizationApiService {
   Future<List<UserSearch>> fetchMembersInOrganization(String orgId) async {
     final res = await _api.get(
       '/organizations/$orgId/members',
-      token: token
+      token: token,
     );
     if (res?.data['data'] == null) {
       return [];

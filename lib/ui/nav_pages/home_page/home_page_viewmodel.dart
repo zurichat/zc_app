@@ -41,7 +41,7 @@ class HomePageViewModel extends StreamViewModel {
   ChannelModel? _channel;
   List<ChannelModel> get channelsList => _channelsList;
   ChannelModel get channel => _channel!;
-  List<ChannelMembermodel> _membersList = [];
+  List<ChannelMemberModel> _membersList = [];
   List get membersList => _membersList;
 
   ///This contains the list of data for both the channels and dms

@@ -1,16 +1,19 @@
-class ChannelMembermodel {
-  String name;
+class ChannelMemberModel {
+  String? id, roleId;
   bool isAdmin;
-  // bool archived;
-  // bool private;
-  ChannelMembermodel({
-    required this.name,
+
+  ChannelMemberModel({
+    required this.id,
     required this.isAdmin,
+    this.roleId,
   });
 
-  factory ChannelMembermodel.fromJson(Map<String, dynamic> json) {
-    return ChannelMembermodel(name: json['_id'], isAdmin: json['is_admin']);
-    // archived: json['archived'],
-    //private:json['private'] );
+  factory ChannelMemberModel.fromJson(Map<String, dynamic> json) {
+    return ChannelMemberModel(
+        id: json['_id'], isAdmin: json['is_admin'], roleId: json['role_id']);
+  }
+
+  String toString() {
+    return '_id: $id, is_admin: $isAdmin, role_id: $roleId';
   }
 }

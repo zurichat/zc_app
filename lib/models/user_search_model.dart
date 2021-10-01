@@ -35,6 +35,7 @@ class UserSearch {
   String? timeZone;
   String? userName;
 
+  // TODO: Add isOnline to track online/offline status
   UserSearch({
     this.id,
     this.bio,
