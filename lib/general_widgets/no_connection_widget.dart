@@ -25,7 +25,7 @@ class NoConnectionWidget extends StatelessWidget {
       initialData: locator<ConnectivityService>().hasConnection,
       stream: stream,
       builder: (context, snapshot) {
-        if (!snapshot.data!) {
+        if (snapshot.data!) {
           return Container();
         }
         return Container(
