@@ -113,46 +113,6 @@ class ChannelsApiService {
     return channelMessages;
   }
 
-  // Future<List> getRepliesToMessages(channelMessageId) async {
-  //   final orgId = _userService.currentOrgId;
-  //   List messageReplies;
-  //   try {
-  //     final res = await _api.get(
-  //       '/v1/$orgId/messages/$channelMessageId/threads/',
-  //     );
-  //     messageReplies = res?.data ?? [];
-  //     log.i('>>>>>>>>>>>ResponseFromDB>>>>>>>>>>>>>>>> $res');
-  //     log.i('>>>>>>>>>>>MessageReplies>>>>>>>>>>>>>>>> $messageReplies');
-  //   } on Exception catch (e) {
-  //     log.e(e.toString());
-  //     return [];
-  //   }
-
-  //   return messageReplies;
-  // }
-
-  // Future<void> addReplyToMessage(
-  //     String? channelMessageId, content, files) async {
-  //   final orgId = _userService.currentOrgId;
-  //   final userId = _userService.userId;
-  //   final channelId = storageService.getString(StorageKeys.currentChannelId);
-  //   print('channelll Iddd >>>>>>>> $channelId');
-  //   try {
-  //     final res = await _api.post(
-  //       '/v1/$orgId/messages/$channelMessageId/threads/?channel_id=$channelId',
-  //       body: {
-  //         'user_id': userId,
-  //         'content': content,
-  //         'files': files ?? [],
-  //       },
-  //     );
-  //     log.i('>>>>>>>>>>>>Adding Reply>>>>>$res');
-  //   } on Exception catch (e) {
-  //     log.e(e.toString());
-  //     return;
-  //   }
-  // }
-
   Future sendChannelMessages(
       String channelId, String userId, String message) async {
     final userId = _userService.userId;
