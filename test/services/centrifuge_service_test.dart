@@ -10,7 +10,7 @@ void main() {
       test(
           'When called it should subscribe to a channel and return a stream of events',
           () {
-        centrifugeService.subscribe("channelSocketID");
+           // final model = Cha
         verify(centrifugeService.subscribe("channelSocketID"));
       });
     });
