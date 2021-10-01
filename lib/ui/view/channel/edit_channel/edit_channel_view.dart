@@ -37,7 +37,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const SizedBox(height: 20),
-            TextHeader(headerText: 'Channel Name'),
+           const  TextHeader(headerText: 'Channel Name'),
             const SizedBox(
               height: 16.0,
             ),
@@ -62,12 +62,12 @@ Channel names must be lowercase, without spaces or periods, and can't be longer 
             const SizedBox(
               height: 36.0,
             ),
-            TextHeader(headerText: 'Channel Topic'),
+            const TextHeader(headerText: 'Channel Topic'),
             TextBox(
               hint: 'Add a topic',
               controller: topicController,
             ),
-            TextHeader(headerText: 'Channel Description'),
+           const  TextHeader(headerText: 'Channel Description'),
             TextBox(
                 hint: 'Set a description', controller: descriptionController),
             const SizedBox(

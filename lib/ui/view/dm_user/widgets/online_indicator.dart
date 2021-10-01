@@ -5,7 +5,7 @@ class OnlineIndicator extends StatelessWidget {
   const OnlineIndicator({Key? key}):super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Icon(
+    return const  Icon(
       Icons.circle,
       color: AppColors.zuriPrimaryColor,
       size: 10,

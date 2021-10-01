@@ -30,7 +30,7 @@ class ChannelInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
+        const SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
     return ViewModelBuilder<ChannelInfoViewModel>.reactive(
       fireOnModelReadyOnce: true,
       onModelReady: (model) {
@@ -53,7 +53,7 @@ class ChannelInfoView extends StatelessWidget {
                     children: [
                       FirstSection(model),
                       SizedBox(height: 16.h),
-                      SecondSection(),
+                      const SecondSection(),
                       SizedBox(height: 8.h),
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
@@ -62,8 +62,8 @@ class ChannelInfoView extends StatelessWidget {
                           style: AppTextStyles.body1Grey,
                         ),
                       ),
-                      ThirdSection(model, numberOfMembers, channelMembers,
-                          channelDetail),
+                      ThirdSection(model, numberOfMembers, channelDetail,
+                          channelMembers),
                       SizedBox(height: 16.h),
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
@@ -73,9 +73,9 @@ class ChannelInfoView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 8.h),
-                      FourthSection(),
+                      const FourthSection(),
                       SizedBox(height: 16.h),
-                      FifthSection(),
+                      const FifthSection(),
                       SizedBox(height: 16.h),
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),

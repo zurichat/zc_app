@@ -37,7 +37,7 @@ class ChannelPageView extends StatelessWidget {
             leading: Padding(
               padding: const EdgeInsets.only(left: 5),
               child: IconButton(
-                  onPressed: model.goBack, icon: Icon(Icons.arrow_back_ios)),
+                  onPressed: model.goBack, icon:const  Icon(Icons.arrow_back_ios)),
             ),
             centerTitle: false,
             leadingWidth: 20,
@@ -55,7 +55,7 @@ class ChannelPageView extends StatelessWidget {
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.search),
+                icon:const  Icon(Icons.search),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 5),
