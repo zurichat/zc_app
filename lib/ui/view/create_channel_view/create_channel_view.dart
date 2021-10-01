@@ -8,6 +8,7 @@ import 'widgets/custom_text_field.dart';
 import 'widgets/custom_text_widget.dart';
 
 class CreateChannelView extends StatelessWidget {
+  const CreateChannelView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CreateChannelViewModel>.reactive(
@@ -33,8 +34,8 @@ class CreateChannelView extends StatelessWidget {
                       color: AppColors.deepBlackColor,
                       fontWeight: FontWeight.bold),
                 ),
-                actions: [
-                  const Center(
+                actions: const [
+                  Center(
                     child: CustomTextWidget(
                         padding: 17,
                         fontWeight: FontWeight.bold,

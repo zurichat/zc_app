@@ -17,14 +17,14 @@ class StatusForm extends StatelessWidget {
       elevation: 3,
       onPressed: onPressed,
       child: Row(
-        children: [
-          const Icon(Icons.chat_bubble_outline_rounded),
-          const SizedBox(width: 7),
-          const Flexible(
+        children: const [
+          Icon(Icons.chat_bubble_outline_rounded),
+          SizedBox(width: 7),
+          Flexible(
             child: Text("What's your status?"),
             fit: FlexFit.tight,
           ),
-          const Icon(Icons.close_rounded),
+          Icon(Icons.close_rounded),
         ],
       ),
     );

@@ -45,13 +45,13 @@ mixin $ForgotPasswordNewView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get newPasswordValue => this.formValueMap[NewPasswordValueKey];
+  String? get newPasswordValue => formValueMap[NewPasswordValueKey];
   String? get confirmPasswordValue =>
-      this.formValueMap[ConfirmPasswordValueKey];
+      formValueMap[ConfirmPasswordValueKey];
 
-  bool get hasNewPassword => this.formValueMap.containsKey(NewPasswordValueKey);
+  bool get hasNewPassword => formValueMap.containsKey(NewPasswordValueKey);
   bool get hasConfirmPassword =>
-      this.formValueMap.containsKey(ConfirmPasswordValueKey);
+      formValueMap.containsKey(ConfirmPasswordValueKey);
 }
 
 extension Methods on FormViewModel {}

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class CustomPluginPageListTile extends StatelessWidget {
-  final leadingIcon;
+  final Widget leadingIcon;
   final String text;
   final Color textColor;
   final IconData trailingIcon;
   final bool isChecked;
 
-  CustomPluginPageListTile(
+  const CustomPluginPageListTile(
       {Key? key,
       required this.leadingIcon,
       required this.text,
@@ -25,7 +25,7 @@ class CustomPluginPageListTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         leadingIcon,
-        SizedBox(
+        const SizedBox(
           width: 16,
         ),
         Text(text,

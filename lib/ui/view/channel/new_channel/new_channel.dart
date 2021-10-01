@@ -15,6 +15,7 @@ import 'new_channel_viewmodel.dart';
   FormTextField(name: 'channelDescription')
 ])
 class NewChannel extends StatelessWidget with $NewChannel {
+  NewChannel({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<NewChannelViewModel>.reactive(
@@ -227,7 +228,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                               child: Switch(
                                 // ignore: todo
                                 //TODO  Change to brand colors
-                                inactiveTrackColor: const Color(0XFFEBEBEB),
+                                inactiveTrackColor: const Color(0xffebebeb),
                                 activeColor: AppColors.zuriPrimaryColor,
                                 value: model.isChannelPrivate,
                                 onChanged: model.toggleSwitch,

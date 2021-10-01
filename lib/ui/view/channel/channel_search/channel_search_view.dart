@@ -4,7 +4,7 @@ import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:stacked/stacked.dart';
 
 import 'channel_search_view_model.dart';
-import 'widgets/appBar.dart';
+import 'widgets/app_bar_main.dart';
 import 'widgets/search_result.dart';
 
 class ChannelSearchPageView extends StatefulWidget {

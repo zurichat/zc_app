@@ -10,7 +10,7 @@ import '../../colors.dart';
 void setupBottomSheetUi2() {
   final bottomSheetService = locator<BottomSheetService>();
   final builders = {
-    BottomSheetType.FloatingBox: (context, sheetRequest, completer) =>
+    BottomSheetType.floatingBox: (context, sheetRequest, completer) =>
         FloatingBoxBottomSheet(
           request: sheetRequest,
           completer: completer,
@@ -47,11 +47,11 @@ class FloatingBoxBottomSheet extends StatelessWidget {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Icon(Icons.face_outlined),
-                      const Icon(Icons.face),
-                      const Icon(Icons.face),
-                      const Icon(Icons.face),
+                    children: const [
+                      Icon(Icons.face_outlined),
+                      Icon(Icons.face),
+                      Icon(Icons.face),
+                      Icon(Icons.face),
                     ],
                   )
                 ],
@@ -79,7 +79,7 @@ class FloatingBoxBottomSheet extends StatelessWidget {
                     title: const Text('Delete Message'),
                     onTap: () {
                       model.deleteMessage(request!.data);
-                      print('Our data ${request!.title}');
+
                       model.popScreen();
                     },
                   ),

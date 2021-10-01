@@ -58,12 +58,12 @@ class YouPage extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const CustomText(
+                                  children: const [
+                                    CustomText(
                                         text: 'Oscar',
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
-                                    const CustomText(
+                                    CustomText(
                                       text: Active,
                                       color: AppColors.greyishColor,
                                       fontSize: 15,
@@ -93,22 +93,21 @@ class YouPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 32),
                       Row(
-                        children: [
-                          const Icon(Icons.notifications_off_outlined,
+                        children: const [
+                          Icon(Icons.notifications_off_outlined,
                               size: 20, color: AppColors.greyishColor),
-                          const SizedBox(width: 10),
-                          const CustomText(
-                              text: PauseNotifs, color: Colors.black87),
+                          SizedBox(width: 10),
+                          CustomText(text: PauseNotifs, color: Colors.black87),
                         ],
                       ),
                       const SizedBox(height: 16),
                       Row(
-                        children: [
-                          const Icon(Icons.circle_outlined,
+                        children: const [
+                          Icon(Icons.circle_outlined,
                               size: 20, color: AppColors.greyishColor),
-                          const SizedBox(width: 10),
-                          const CustomText(text: SetStatusText),
-                          const Text(
+                          SizedBox(width: 10),
+                          CustomText(text: SetStatusText),
+                          Text(
                             Away,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
@@ -122,38 +121,38 @@ class YouPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       Row(
-                        children: [
-                          const Icon(Icons.bookmark_outline,
+                        children: const [
+                          Icon(Icons.bookmark_outline,
                               color: AppColors.greyishColor),
-                          const SizedBox(width: 10),
-                          const Text(SavedItems),
+                          SizedBox(width: 10),
+                          Text(SavedItems),
                         ],
                       ),
                       const SizedBox(height: 16),
                       Row(
-                        children: [
-                          const Icon(Icons.person_outline,
+                        children: const [
+                          Icon(Icons.person_outline,
                               color: AppColors.greyishColor),
-                          const SizedBox(width: 10),
-                          const Text(ViewProfile),
+                          SizedBox(width: 10),
+                          Text(ViewProfile),
                         ],
                       ),
                       const SizedBox(height: 16),
                       Row(
-                        children: [
-                          const Icon(Icons.circle_notifications_outlined,
+                        children: const [
+                          Icon(Icons.circle_notifications_outlined,
                               color: AppColors.greyishColor),
-                          const SizedBox(width: 10),
-                          const Text(Notifs),
+                          SizedBox(width: 10),
+                          Text(Notifs),
                         ],
                       ),
                       const SizedBox(height: 16),
                       Row(
-                        children: [
-                          const Icon(Icons.settings_outlined,
+                        children: const [
+                          Icon(Icons.settings_outlined,
                               color: AppColors.greyishColor),
-                          const SizedBox(width: 10),
-                          const Text(Preferences),
+                          SizedBox(width: 10),
+                          Text(Preferences),
                         ],
                       ),
                     ]),

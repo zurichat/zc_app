@@ -103,7 +103,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                         ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(3),
-                                          child: Container(
+                                          child: SizedBox(
                                             width: 50,
                                             height: 50,
                                             child: Image.asset(
