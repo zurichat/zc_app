@@ -14,16 +14,16 @@ class EditProfileView extends StatelessWidget {
     Size _size = MediaQuery.of(context).size;
     return ViewModelBuilder<EditProfileViewModel>.reactive(
       viewModelBuilder: () => EditProfileViewModel(),
-      builder: (context, model, child) => Scaffold(
+      builder: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
-              onPressed: model.exitPage, icon:const  Icon(Icons.close_rounded)),
+              onPressed: viewModel.exitPage, icon:const  Icon(Icons.close_rounded)),
           title:const  Text("Edit Profile"),
           actions: [
             TextButton(
               onPressed: () async {
-                await model.updateProfile();
+                await viewModel.updateProfile();
               },
               child:const  Text(
                 "Save",
@@ -33,7 +33,7 @@ class EditProfileView extends StatelessWidget {
           ],
         ),
         body: Visibility(
-          visible: !model.isBusy,
+          visible: !viewModel.isBusy,
           child: Body(size: _size),
           replacement: Center(
             child: Row(
@@ -60,7 +60,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
   })  : _size = size,
         super(key: key, reactive: true);
   @override
-  Widget build(BuildContext context, EditProfileViewModel model) {
+  Widget build(BuildContext context, EditProfileViewModel viewModel) {
     return Container(
       padding: EdgeInsets.symmetric(
           vertical: _size.height * 0.02, horizontal: _size.width * 0.05),
@@ -99,9 +99,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   SizedBox(
                     width: _size.width * 0.55,
                     child: TextFormField(
-                      initialValue: model.userData.firstName,
+                      initialValue: viewModel.userData.firstName,
                       onChanged: (value) {
-                        model.updateString(value, '', '', '');
+                        viewModel.updateString(value, '', '', '');
                       },
                       decoration:const  InputDecoration(
                         labelText: "Full Name",
@@ -112,9 +112,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue: model.userData.displayName,
+              initialValue: viewModel.userData.displayName,
               onChanged: (value) {
-                model.updateString('', value, '', '');
+                viewModel.updateString('', value, '', '');
               },
               decoration:const  InputDecoration(
                 labelText: "Display Name",
@@ -124,17 +124,17 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue: model.userData.status,
+              initialValue: viewModel.userData.status,
               onChanged: (value) {
-                model.updateString('', '', value, '');
+                viewModel.updateString('', '', value, '');
               },
               decoration:const  InputDecoration(
                   labelText: "What I do", helperText: "HNGi9 X I4G"),
             ),
             TextFormField(
-              initialValue: model.userData.phoneNum,
+              initialValue: viewModel.userData.phoneNum,
               onChanged: (value) {
-                model.updateString('', '', '', value);
+                viewModel.updateString('', '', '', value);
               },
               decoration:const  InputDecoration(
                   labelText: "Phone", helperText: "Enter your phone number"),
