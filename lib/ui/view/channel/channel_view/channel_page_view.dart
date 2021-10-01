@@ -95,4 +95,3 @@ class ChannelPageView extends StatelessWidget {
     );
   }
 }
-

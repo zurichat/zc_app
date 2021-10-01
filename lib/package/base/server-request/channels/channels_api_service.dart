@@ -23,6 +23,7 @@ class ChannelsApiService {
 // https://channels.zuri.chat/api/v1/61459d8e62688da5302acdb1/channels/
   //TODo - fix
   // ignore: always_declare_return_types
+
   onChange() {}
   Future<List> getActiveDms() async {
     final orgId = _userService.currentOrgId;
@@ -65,6 +66,7 @@ class ChannelsApiService {
   }
 
   Future<Map> joinChannel(String channelId) async {
+    await storageService.clearData(StorageKeys.currentChannelId);
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
 
@@ -76,11 +78,12 @@ class ChannelsApiService {
         '_id': userId,
         'is_admin': true,
       });
-
+      await storageService.setString(StorageKeys.currentChannelId, channelId);
       log.i(res?.data);
       //  channelMessages = res?.data["data"] ?? [];
 
       //  log.i(channelMessages);
+
     } on Exception catch (e) {
       log.e(e.toString());
       return {};
@@ -100,8 +103,7 @@ class ChannelsApiService {
         'v1/$orgId/channels/$channelId/messages/',
         token: token,
       );
-      channelMessages = res?.data['data'] ?? [];
-
+      channelMessages = res?.data ?? [];
       log.i(channelMessages);
     } on Exception catch (e) {
       log.e(e.toString());
@@ -110,6 +112,46 @@ class ChannelsApiService {
 
     return channelMessages;
   }
+
+  // Future<List> getRepliesToMessages(channelMessageId) async {
+  //   final orgId = _userService.currentOrgId;
+  //   List messageReplies;
+  //   try {
+  //     final res = await _api.get(
+  //       '/v1/$orgId/messages/$channelMessageId/threads/',
+  //     );
+  //     messageReplies = res?.data ?? [];
+  //     log.i('>>>>>>>>>>>ResponseFromDB>>>>>>>>>>>>>>>> $res');
+  //     log.i('>>>>>>>>>>>MessageReplies>>>>>>>>>>>>>>>> $messageReplies');
+  //   } on Exception catch (e) {
+  //     log.e(e.toString());
+  //     return [];
+  //   }
+
+  //   return messageReplies;
+  // }
+
+  // Future<void> addReplyToMessage(
+  //     String? channelMessageId, content, files) async {
+  //   final orgId = _userService.currentOrgId;
+  //   final userId = _userService.userId;
+  //   final channelId = storageService.getString(StorageKeys.currentChannelId);
+  //   print('channelll Iddd >>>>>>>> $channelId');
+  //   try {
+  //     final res = await _api.post(
+  //       '/v1/$orgId/messages/$channelMessageId/threads/?channel_id=$channelId',
+  //       body: {
+  //         'user_id': userId,
+  //         'content': content,
+  //         'files': files ?? [],
+  //       },
+  //     );
+  //     log.i('>>>>>>>>>>>>Adding Reply>>>>>$res');
+  //   } on Exception catch (e) {
+  //     log.e(e.toString());
+  //     return;
+  //   }
+  // }
 
   Future sendChannelMessages(
       String channelId, String userId, String message) async {
@@ -185,7 +227,7 @@ class ChannelsApiService {
     return false;
   }
 
-  getChannelPage(id) async {
+  Future<ChannelModel?> getChannelPage(id) async {
     String orgId = _userService.currentOrgId;
 
     try {
@@ -201,7 +243,7 @@ class ChannelsApiService {
     }
   }
 
-  getChannelMembers(id) async {
+  Future<List<ChannelMembermodel>?> getChannelMembers(id) async {
     String orgId = _userService.currentOrgId;
     try {
       final res = await _api.get(
