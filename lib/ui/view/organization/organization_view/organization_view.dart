@@ -82,9 +82,9 @@ class OrganizationView extends StatelessWidget {
                           leading: const Icon(Icons.settings),
                           title: const Text('Preferences'),
                         ),
-                        ListTile(
-                          leading: const Icon(Icons.help_outline),
-                          title: const Text('Help'),
+                        const ListTile(
+                          leading: Icon(Icons.help_outline),
+                          title: Text('Help'),
                         ),
                       ],
                     ),
