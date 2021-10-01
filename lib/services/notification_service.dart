@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/ui/shared/colors.dart';
 
 class NotificationService {
   String messsageChannelKey = 'message';
@@ -24,14 +25,14 @@ class NotificationService {
       _notificationControl.stream;
 
   void init() {
-    AwesomeNotifications()
-        .initialize(null, // use the default icon for your app notification
-            [
+    AwesomeNotifications().initialize(
+        'resource://drawable/zuri_chat_logo', // use the default icon for your app notification
+        [
           NotificationChannel(
             channelKey: messsageChannelKey,
             channelName: 'Message Notification',
             channelDescription: "Notification example",
-            defaultColor: Color(0XFF9050DD),
+            defaultColor: AppColors.zuriPrimaryColor,
             ledColor: Colors.white,
             playSound: true,
             enableLights: true,

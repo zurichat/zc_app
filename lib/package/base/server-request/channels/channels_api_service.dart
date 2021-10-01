@@ -100,7 +100,7 @@ class ChannelsApiService {
         'v1/$orgId/channels/$channelId/messages/',
         token: token,
       );
-      channelMessages = res?.data['data'] ?? [];
+      channelMessages = res?.data ?? [];
 
       log.i(channelMessages);
     } on Exception catch (e) {
