@@ -110,16 +110,6 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                       },
                       initialValue: model.userData.firstName,
                     ),
-
-                    // TextFormField(
-                    //   initialValue: model.name,
-                    //   onChanged: (value) {
-                    //     model.updateString(value, '', '', '');
-                    //   },
-                    //   decoration: const InputDecoration(
-                    //     labelText: 'Full Name',
-                    //   ),
-                    // ),
                   )
                 ],
               ),
@@ -142,20 +132,6 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               helperMaxLines: 3,
             ),
 
-            // TextFormField(
-            //   initialValue: ''' Please open and close this '''
-            //       '''page twice to see changes after saving''',
-            //   onChanged: (value) {
-            //     model.updateString('', value, '', '');
-            //   },
-            //   decoration: const InputDecoration(
-            //     labelText: 'Display Name',
-            //     helperText: '''This is how your name will show '''
-            //         '''up in Zuri Chat. It’s best kept simple: whatever '''
-            //         '''people call you in everyday conversation.''',
-            //     helperMaxLines: 3,
-            //   ),
-            // ),
             SizedBox(
               height: 10,
             ),
