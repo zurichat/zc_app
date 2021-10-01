@@ -102,8 +102,8 @@ class ChannelMembersList extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(25.0, 24.0, 16.0, 0),
                 child: GestureDetector(
                   onTap: () {},
-                  child: CustomPluginPageListTile(
-                    leadingIcon: const Icon(
+                  child: const CustomPluginPageListTile(
+                    leadingIcon: Icon(
                       Icons.add,
                       color: AppColors.zuriPrimaryColor,
                     ),

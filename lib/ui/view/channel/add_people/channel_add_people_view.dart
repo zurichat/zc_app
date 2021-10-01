@@ -121,15 +121,15 @@ class ChannelAddPeopleView extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 16.0),
-              Divider(thickness: 2.0),
+              const SizedBox(height: 16.0),
+              const Divider(thickness: 2.0),
               Expanded(
                 child: ListView.separated(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  padding: EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
+                  padding: const EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
                   itemCount: viewModel.matchingUsers.length,
-                  separatorBuilder: (context, index) => SizedBox(height: 24.0),
+                  separatorBuilder: (context, index) => const SizedBox(height: 24.0),
                   itemBuilder: (context, index) => Row(
                     children: [
                       Row(
@@ -138,7 +138,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                             alignment: Alignment.topRight,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(4.0),
+                                padding: const EdgeInsets.all(4.0),
                                 child: viewModel.matchingUsers[index].imageUrl!.startsWith("http")? Image.network(
                                   '${viewModel.matchingUsers[index].imageUrl}',
                                 ):Container(
@@ -152,7 +152,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                               //   ),
                             ],
                           ),
-                          SizedBox(width: 20.0),
+                          const SizedBox(width: 20.0),
                           Text(
                             "${viewModel.matchingUsers[index].userName}",
                             style: GoogleFonts.lato(
@@ -160,12 +160,12 @@ class ChannelAddPeopleView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Spacer(),
+                     const  Spacer(),
                       Checkbox(
                         value: viewModel.markedUsers
                             .contains(viewModel.matchingUsers[index]),
                         onChanged: (marked) => viewModel.onMarkOne(marked, index),
-                        side: BorderSide(width: 0.96),
+                        side:const  BorderSide(width: 0.96),
                       )
                     ],
                   )

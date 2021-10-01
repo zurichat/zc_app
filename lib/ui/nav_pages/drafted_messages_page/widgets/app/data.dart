@@ -1,7 +1,7 @@
 import 'package:hng/constants/app_strings.dart';
 
 class DraftedItem {
-  final username, message, time;
+  final String? username, message, time;
 
   DraftedItem({
     this.username,
