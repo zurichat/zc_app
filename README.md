@@ -1,4 +1,4 @@
-# Zuri Chat 
+ # Zuri Chat
   ## Overview 
   This is the **Zuri Chat** Android app project repository handled by **_TEAM SOCRATES_**, written with pure [Flutter](https://flutter.dev/).
   
