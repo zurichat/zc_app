@@ -13,7 +13,7 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, CreateOrganizationViewModel model) {
+  Widget build(BuildContext context, CreateOrganizationViewModel viewModel) {
     return LayoutBuilder(
       builder: (context, constraint) {
         return SingleChildScrollView(
@@ -48,7 +48,7 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
                       wordCount: 80,
                     ),
                     UIHelper.verticalSpaceMedium,
-                    LongButton(onPressed: () => model.next(), label: 'Next'),
+                    LongButton(onPressed: () => viewModel.next(), label: 'Next'),
                     const Spacer(flex: 3),
                   ],
                 ),
@@ -68,10 +68,10 @@ class TextForm extends HookViewModelWidget<CreateOrganizationViewModel> {
       : super(key: key, reactive: false);
   @override
   Widget buildViewModelWidget(
-      BuildContext context, CreateOrganizationViewModel model) {
+      BuildContext context, CreateOrganizationViewModel viewModel) {
     return Center(
       child: TextField(
-        controller: model.projectController,
+        controller: viewModel.projectController,
         maxLength: wordCount,
         decoration: InputDecoration(
           hintText: hintText,

@@ -37,7 +37,6 @@ class ChannelMembersListModel extends BaseViewModel {
 
   void onSelectUser(String namePattern) {}
 
-  void goBack() {
-    NavigationService().back();
-  }
+  void goBack() => NavigationService().back();
+
 }

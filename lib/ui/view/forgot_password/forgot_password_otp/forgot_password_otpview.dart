@@ -103,8 +103,8 @@ class ForgotPasswordOtpView extends StatelessWidget
                         enableActiveFill: true,
                         controller: otpController,
                         keyboardType: TextInputType.number,
-                        boxShadows: [
-                          const BoxShadow(
+                        boxShadows: const [
+                          BoxShadow(
                             offset: Offset(0, 1),
                             color: Colors.black12,
                             blurRadius: 10,
@@ -157,7 +157,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                       widthFactor: 1.0,
                       child: ElevatedButton(
                         // onPressed: () => model.navigateToNewPassword(),
-                        onPressed: () {  },
+                        onPressed: () {},
                         child: Text(
                           Continue,
                           style: TextStyle(

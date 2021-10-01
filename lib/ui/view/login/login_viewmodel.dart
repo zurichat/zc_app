@@ -57,7 +57,7 @@ class LoginViewModel extends FormViewModel {
     var connected = await _connectivityService.checkConnection();
     if (!connected) {
       _snackbarService.showCustomSnackBar(
-        message: NoInternet,
+        message: noInternet,
         variant: SnackbarType.failure,
         duration: Duration(milliseconds: 1500),
       );
@@ -73,12 +73,11 @@ class LoginViewModel extends FormViewModel {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.failure,
-        message: FillAllFields,
+        message: fillAllFields,
       );
 
       return;
     }
-    final loginData = {'email': emailValue, 'password': passwordValue};
     final response = await zuriApi.login(
         email: emailValue!, password: passwordValue!, token: token);
 
@@ -114,7 +113,7 @@ class LoginViewModel extends FormViewModel {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.failure,
-        message: response?.data['message'] ?? ErrorEncounteredLogin,
+        message: response?.data['message'] ?? errorEncounteredLogin,
       );
     }
   }

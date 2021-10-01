@@ -249,20 +249,29 @@ class StackedRouter extends RouterBase {
       );
     },
     LoginView: (data) {
+      var args = data.getArgs<LoginViewArguments>(
+        orElse: () => LoginViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => LoginView(),
+        builder: (context) => LoginView(key: args.key),
         settings: data,
       );
     },
     OTPView: (data) {
+      var args = data.getArgs<OTPViewArguments>(
+        orElse: () => OTPViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => OTPView(),
+        builder: (context) => OTPView(key: args.key),
         settings: data,
       );
     },
     SignUpView: (data) {
+      var args = data.getArgs<SignUpViewArguments>(
+        orElse: () => SignUpViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => SignUpView(),
+        builder: (context) => SignUpView(key: args.key),
         settings: data,
       );
     },
@@ -307,13 +316,16 @@ class StackedRouter extends RouterBase {
     },
     ChannelNotificationView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ChannelNotificationView(),
+        builder: (context) => const ChannelNotificationView(),
         settings: data,
       );
     },
     NewChannel: (data) {
+      var args = data.getArgs<NewChannelArguments>(
+        orElse: () => NewChannelArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => NewChannel(),
+        builder: (context) => NewChannel(key: args.key),
         settings: data,
       );
     },
@@ -325,7 +337,7 @@ class StackedRouter extends RouterBase {
     },
     AddPeopleView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => AddPeopleView(),
+        builder: (context) => const AddPeopleView(),
         settings: data,
       );
     },
@@ -388,13 +400,13 @@ class StackedRouter extends RouterBase {
     },
     ViewProfile: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ViewProfile(),
+        builder: (context) => const ViewProfile(),
         settings: data,
       );
     },
     SetStatusView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => SetStatusView(),
+        builder: (context) => const SetStatusView(),
         settings: data,
       );
     },
@@ -476,7 +488,7 @@ class StackedRouter extends RouterBase {
     },
     AddOrganizationView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => AddOrganizationView(),
+        builder: (context) => const AddOrganizationView(),
         settings: data,
       );
     },
@@ -591,6 +603,24 @@ class StackedRouter extends RouterBase {
 /// Arguments holder classes
 /// *************************************************************************
 
+/// LoginView arguments holder class
+class LoginViewArguments {
+  final Key? key;
+  LoginViewArguments({this.key});
+}
+
+/// OTPView arguments holder class
+class OTPViewArguments {
+  final Key? key;
+  OTPViewArguments({this.key});
+}
+
+/// SignUpView arguments holder class
+class SignUpViewArguments {
+  final Key? key;
+  SignUpViewArguments({this.key});
+}
+
 /// ForgotPasswordEmailView arguments holder class
 class ForgotPasswordEmailViewArguments {
   final Key? key;
@@ -607,6 +637,12 @@ class ForgotPasswordOtpViewArguments {
 class ForgotPasswordNewViewArguments {
   final Key? key;
   ForgotPasswordNewViewArguments({this.key});
+}
+
+/// NewChannel arguments holder class
+class NewChannelArguments {
+  final Key? key;
+  NewChannelArguments({this.key});
 }
 
 /// DmJumpToView arguments holder class

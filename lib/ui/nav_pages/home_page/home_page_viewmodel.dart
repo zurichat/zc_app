@@ -34,10 +34,11 @@ class HomePageViewModel extends StreamViewModel {
 
   final navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
+  final log = getLogger("Home Page View Model");
   // final _channelsApiService = locator<ChannelsApiService>();
   bool connectionStatus = false;
 
-  List<ChannelModel> _channelsList = [];
+  final List<ChannelModel> _channelsList = [];
   ChannelModel? _channel;
   List<ChannelModel> get channelsList => _channelsList;
   ChannelModel get channel => _channel!;
@@ -86,7 +87,7 @@ class HomePageViewModel extends StreamViewModel {
 
   @override
   void onError(error) {
-    log('Error: $error');
+    log.e('Error: $error');
   }
 
   @override
@@ -163,7 +164,7 @@ class HomePageViewModel extends StreamViewModel {
 
     setAllList();
     notifyListeners();
-    print('All channels $homePageList');
+    log.i('All channels $homePageList');
 
     setBusy(false);
   }
@@ -180,7 +181,7 @@ class HomePageViewModel extends StreamViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: NoInternet,
+          message: noInternet,
         );
 
         return;
@@ -197,11 +198,11 @@ class HomePageViewModel extends StreamViewModel {
             public: public,
           ));
     } catch (e) {
-      print(e.toString());
+      log.e(e.toString());
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: ErrorOccurred,
+        message: errorOccurred,
       );
     }
   }

@@ -76,9 +76,8 @@ class ChannelInfoViewModel extends BaseViewModel {
 
     final response = await _apiService.getChannelInfo(endpoint);
     if (response?.statusCode == 200) {
-      print(response?.data);
+      log.i(response?.data);
       String des = response?.data['description'];
-      print('sacas $des');
       setChannelDescription(des);
       setChannelName(channelName);
 

@@ -322,7 +322,6 @@ class ZuriApi implements Api {
     }
   }
 
-  @override
   Future<void> addMemberToChannel(
       String channelId, String orgId, String userId, token) async {
     await post(
@@ -358,6 +357,7 @@ class ZuriApi implements Api {
 
   /// FETCHING MEMBERS
 
+  @override
   Future<List<UserSearch>> fetchMembersInOrganization(
       String orgId, token) async {
     final res = await dio.get(
@@ -390,7 +390,6 @@ class ZuriApi implements Api {
   }
 
   // THIS SERVICE IS FOR JOINED ROOMS FOR ACTIVE DMs
-  @override
   Future<List> getActiveRooms(String orgId, String userId, token) async {
     try {
       final res = await get(
@@ -612,8 +611,7 @@ class ZuriApi implements Api {
   @override
   void sendGetRequest(endpoint) async {
     final response = await dio.get(apiBaseUrl + endpoint);
-    final result = jsonDecode(response.data);
-    return result;
+    jsonDecode(response.data);
   }
 
   @override
@@ -675,6 +673,7 @@ class ZuriApi implements Api {
   }
 
   /// Fetches a list of members in that organization
+  @override
   Future fetchListOfMembers(
       String currentOrgId, String channelId, token) async {
     try {
@@ -691,19 +690,20 @@ class ZuriApi implements Api {
 
   @override
   Failure handleApiError(DioError e) {
-    if (e.type == DioErrorType.cancel)
+    if (e.type == DioErrorType.cancel) {
       return InputFailure(errorMessage: e.message);
-    else if (e.type == DioErrorType.connectTimeout)
+    } else if (e.type == DioErrorType.connectTimeout) {
       return NetworkFailure();
-    else if (e.type == DioErrorType.receiveTimeout)
+    } else if (e.type == DioErrorType.receiveTimeout) {
       return NetworkFailure();
-    else if (e.type == DioErrorType.sendTimeout)
+    } else if (e.type == DioErrorType.sendTimeout) {
       return NetworkFailure();
-    else if (e.type == DioErrorType.response)
+    } else if (e.type == DioErrorType.response) {
       return ServerFailure(error: e.message);
-    else if (e.type == DioErrorType.other)
+    } else if (e.type == DioErrorType.other) {
       return UnknownFailure();
-    else
+    } else {
       return UnknownFailure();
+    }
   }
 }

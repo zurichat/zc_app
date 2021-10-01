@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/newRowTile.dart';
+import 'package:hng/ui/view/channel/channel_info/widgets/new_row_tile.dart';
 
 import '../../../../shared/colors.dart';
 

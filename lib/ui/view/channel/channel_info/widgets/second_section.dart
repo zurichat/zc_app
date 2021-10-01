@@ -5,6 +5,7 @@ import 'package:hng/ui/shared/shared.dart';
 import '../../../../shared/colors.dart';
 
 class SecondSection extends StatelessWidget {
+  const SecondSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class SecondSection extends StatelessWidget {
       height: 128.h,
       width: 395.w,
       alignment: Alignment.center,
-      padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 26.h,16.37.w),
+      padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 26.h, 16.37.w),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6.r),
           border: Border.all(width: 1.w, color: AppColors.borderColor),
@@ -23,12 +24,11 @@ class SecondSection extends StatelessWidget {
               blurRadius: 6.r,
               offset: Offset(0, 3.h), // changes position of shadow
             ),
-          ]
-      ),
+          ]),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             height: 78.h,
             width: 279.03.w,
             child: Row(
@@ -43,26 +43,29 @@ class SecondSection extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     InkWell(
-                      onTap: (){},
+                      onTap: () {},
                       child: Text(
                         'Notification',
-                        style: AppTextStyles.namesStyle.copyWith(fontSize: 14.sp),
+                        style:
+                            AppTextStyles.namesStyle.copyWith(fontSize: 14.sp),
                       ),
                     ),
                     SizedBox(height: 6.h),
                     InkWell(
-                      onTap: (){},
+                      onTap: () {},
                       child: Text(
                         'Every New Message',
-                        style: AppTextStyles.body1Grey.copyWith(fontSize: 14.sp),
+                        style:
+                            AppTextStyles.body1Grey.copyWith(fontSize: 14.sp),
                       ),
                     ),
                     SizedBox(height: 18.h),
                     InkWell(
-                      onTap: (){},
+                      onTap: () {},
                       child: Text(
                         'Mute Channel',
-                        style: AppTextStyles.descriptionStyle..copyWith(fontSize: 14.sp),
+                        style: AppTextStyles.descriptionStyle
+                          ..copyWith(fontSize: 14.sp),
                       ),
                     ),
                   ],

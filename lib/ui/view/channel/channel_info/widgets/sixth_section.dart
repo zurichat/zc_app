@@ -5,6 +5,7 @@ import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 
 class SixthSection extends StatelessWidget {
+  const SixthSection({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

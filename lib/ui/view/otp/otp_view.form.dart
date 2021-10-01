@@ -38,9 +38,9 @@ mixin $OTPView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get otpValue => this.formValueMap[OtpValueKey];
+  String? get otpValue => formValueMap[OtpValueKey];
 
-  bool get hasOtp => this.formValueMap.containsKey(OtpValueKey);
+  bool get hasOtp => formValueMap.containsKey(OtpValueKey);
 }
 
 extension Methods on FormViewModel {}

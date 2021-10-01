@@ -39,10 +39,8 @@ class ChannelListViewModel extends BaseViewModel {
       }
       setBusy(true);
       _channelsList = await api.fetchChannel();
-      print("chan $_channelsList");
       setBusy(false);
     } catch (e) {
-      print(e.toString());
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
@@ -75,7 +73,6 @@ class ChannelListViewModel extends BaseViewModel {
             public: public,
           ));
     } catch (e) {
-      print(e.toString());
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,

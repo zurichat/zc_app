@@ -1,32 +1,32 @@
-const String AppName = 'Zuri Chat';
-const String Zuri = 'ZURI';
+const String appName = 'Zuri Chat';
+const String zuri = 'ZURI';
 
 //Snackbar
-const String NoInternet = 'No internet connection, connect and try again.';
-const String FillAllFields = 'Please fill all fields.';
-const String ErrorEncounteredLogin = 'Error encountered during login.';
-const String CheckEmailForOTP =
+const String noInternet = 'No internet connection, connect and try again.';
+const String fillAllFields = 'Please fill all fields.';
+const String errorEncounteredLogin = 'Error encountered during login.';
+const String checkEmailForOTP =
     'Please check your email for your one-time password';
-const String AcceptTnC = 'You must accept T & C to signup';
-const String ErrorEncounteredSignUp = 'Error encountered during signup.';
-const String InvalidEmailFormat = 'Invalid email format';
-const String PasswordsMustMatch = 'Passwords do not match';
-const String PasswordUpdated = 'Password Successfully Updated';
-const String PasswordNotUpdated = 'Password could not be updated';
-const String ErrorOccurred = 'An Error Occurred';
-const String ErrorOTP = 'OTP could not be validated';
-const String WrongOTP = 'Wrong OTP, please check again';
+const String acceptTnC = 'You must accept T & C to signup';
+const String errorEncounteredSignUp = 'Error encountered during signup.';
+const String invalidEmailFormat = 'Invalid email format';
+const String passwordsMustMatch = 'Passwords do not match';
+const String passwordUpdated = 'Password Successfully Updated';
+const String passwordNotUpdated = 'Password could not be updated';
+const String errorOccurred = 'An Error Occurred';
+const String errorOTP = 'OTP could not be validated';
+const String wrongOTP = 'Wrong OTP, please check again';
 
 //API Endpoints
-const String LoginEndpoint = '/auth/login';
-const String SignUpEndpoint = '/users';
-const String ResetPasswordEndpoint = '/account/update-password/';
-const String RequestOTPEndpoint = 'account/request-password-reset-code';
-const String VerifyOTPEndpoint = '/account/verify-reset-password';
-const String VerifyAcctEndpoint = 'account/verify-account';
+const String loginEndpoint = '/auth/login';
+const String signUpEndpoint = '/users';
+const String resetPasswordEndpoint = '/account/update-password/';
+const String requestOTPEndpoint = 'account/request-password-reset-code';
+const String verifyOTPEndpoint = '/account/verify-reset-password';
+const String verifyAcctEndpoint = 'account/verify-account';
 
 /// Full endpoint is users/{userID}
-const String UserDataEndpoint = 'users/';
+const String userDataEndpoint = 'users/';
 
 //Auth Screens
 const String SignIn = 'Sign In';

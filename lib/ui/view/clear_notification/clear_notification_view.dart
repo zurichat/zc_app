@@ -5,8 +5,9 @@ import 'package:stacked/stacked.dart';
 import 'clear_notification_viewmodel.dart';
 
 class ClearNotificationView extends StatefulWidget {
+  const ClearNotificationView({Key? key}) : super(key: key);
   static const values = <String>[
-    "Don\'t clear",
+    "Don't clear",
     '30 minutes',
     '1 hour',
     '4 hour',
