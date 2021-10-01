@@ -102,10 +102,16 @@ class ZuriApi implements Api {
     }
   }
 
-  Future<dynamic> delete(String string) async {
+  @override
+  Future<ApiResponse?> delete(String string,
+      {Map<String, dynamic>? body, String? token}) async {
     log.i('Making request to $string');
     try {
-      final response = await dio.delete(string);
+      final response = await dio.delete(
+        string,
+        data: body,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
 
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
@@ -322,6 +328,7 @@ class ZuriApi implements Api {
     }
   }
 
+  @override
   Future<void> addMemberToChannel(
       String channelId, String orgId, String userId, token) async {
     await post(
@@ -477,6 +484,44 @@ class ZuriApi implements Api {
     } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
+    }
+  }
+
+  Future<List> getRepliesToMessages(channelMessageId, orgId) async {
+    List messageReplies;
+    try {
+      final res = await get(
+        '/v1/$orgId/messages/$channelMessageId/threads/',
+      );
+      messageReplies = res?.data ?? [];
+      log.i('>>>>>>>>>>>ResponseFromDB>>>>>>>>>>>>>>>> $res');
+      log.i('>>>>>>>>>>>MessageReplies>>>>>>>>>>>>>>>> $messageReplies');
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return [];
+    }
+
+    return messageReplies;
+  }
+
+  Future<bool> addReplyToMessage(String? channelMessageId, content, files,
+      orgId, userId, channelId) async {
+    log.i('channelll Iddd >>>>>>>> $channelId');
+    try {
+      final res = await post(
+        '/v1/$orgId/messages/$channelMessageId/threads/?channel_id=$channelId',
+        body: {
+          'user_id': userId,
+          'content': content,
+          'files': files ?? [],
+        },
+      );
+      controller.sink.add('Reply sent successfully');
+      log.i('>>>>>>>>>>>>Adding Reply>>>>>$res');
+      return true;
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return false;
     }
   }
 
