@@ -23,6 +23,7 @@ dependencies:
   flutter_parsed_text: ^2.2.1
   flutter_screenutil: ^5.0.0+2
   flutter_svg: ^0.22.0
+  flutter_typeahead: ^3.2.1
   fluttertoast: ^8.0.8
   font_awesome_flutter: ^9.1.0
   freezed_annotation:
@@ -58,8 +59,6 @@ dev_dependencies:
     sdk: flutter
   stacked_generator:
   mockito:
-  flutter_lints: ^1.0.4
-  
 
 flutter_native_splash:
   color: "#ffffff"
