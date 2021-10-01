@@ -15,4 +15,5 @@ class StorageKeys {
   static const status = 'status';
   static const phoneNum = 'phoneNum';
   static const currentUserImageUrl = 'current_url';
+  static const currentUserDrafts = 'current_drafts';
 }
