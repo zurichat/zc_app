@@ -3,6 +3,8 @@ analyzer:
   exclude:
     - test/helpers/*.mocks.dart
     - lib/models/*.g.dart
+    - lib/ui/view/**.form.dart
+    - lib/app/app.logger.dart
   errors:
     unnecessary_string_interpolations: ignore
     prefer_typing_uninitialized_variables: ignore
