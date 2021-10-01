@@ -65,7 +65,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                     ),
                                   ),
                                   prefixIcon: IconButton(
-                                    icon: Icon(Icons.arrow_back_ios_outlined),
+                                    icon:const  Icon(Icons.arrow_back_ios_outlined),
                                     iconSize: 18.sp,
                                     onPressed: () => model.navigateBack(),
                                   ),
@@ -76,8 +76,8 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                             ),
                             Expanded(
                               child: ListView(
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                physics: BouncingScrollPhysics(),
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                physics: const BouncingScrollPhysics(),
                                 children: [
                                   SizedBox(
                                     height: 24.h,

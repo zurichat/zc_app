@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class StartMessage extends StatelessWidget {
-  final userName;
+  final String? userName;
 
   const StartMessage({
     Key? key,

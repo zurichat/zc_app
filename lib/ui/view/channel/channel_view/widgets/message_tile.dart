@@ -21,7 +21,8 @@ class MessageTile extends StatelessWidget {
           children: [
             Text(
               name,
-              style: TextStyle(
+              //TODO use App TextStyle
+              style: const TextStyle(
                 fontWeight: FontWeight.w700,
                 color: AppColors.deepBlackColor,
               ),

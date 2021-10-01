@@ -28,7 +28,7 @@ class FourthSection extends StatelessWidget {
                 offset: Offset(0, 3.h), // changes position of shadow
               ),
             ]),
-        child: NewRowTile(
+        child: const NewRowTile(
             icon:Icons.push_pin_outlined,
             text: 'Pinned messages (1)'
         )

@@ -27,7 +27,7 @@ class FifthSection extends StatelessWidget {
                   offset: Offset(0, 3.h), // changes position of shadow
                 ),
               ]),
-          child: NewRowTile(icon: Icons.push_pin_outlined, text: 'Leave')),
+          child: const NewRowTile(icon: Icons.push_pin_outlined, text: 'Leave')),
     );
   }
 }
