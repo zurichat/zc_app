@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hng/models/user_post.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../../models/user_post.dart';
 import '../thread_card_viewmodel.dart';
 import 'emojis.dart';
 
@@ -14,7 +14,7 @@ class EmojisList extends ViewModelWidget<ThreadCardViewModel> {
   final UserPost? userPost;
 
   @override
-  Widget build(BuildContext context, ThreadCardViewModel model) {
+  Widget build(BuildContext context, ThreadCardViewModel viewModel) {
     return Wrap(
       spacing: 5,
       runSpacing: 5,
@@ -22,7 +22,7 @@ class EmojisList extends ViewModelWidget<ThreadCardViewModel> {
         for (PostEmojis postEmoji in userPost!.postEmojis!)
           Emojis(
             postEmoji,
-            checkReact: () => model.checkReact(userPost, postEmoji.id),
+            checkReact: () => viewModel.checkReact(userPost, postEmoji.id),
           ),
         Container(
             height: 30,
@@ -30,7 +30,7 @@ class EmojisList extends ViewModelWidget<ThreadCardViewModel> {
                 color: Colors.black12,
                 borderRadius: BorderRadius.all(Radius.circular(30))),
             child: IconButton(
-              onPressed: () => model.addEmojis(userPost!),
+              onPressed: () => viewModel.addEmojis(userPost!),
               icon: const Icon(
                 Icons.add_reaction_outlined,
                 size: 14,

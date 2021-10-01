@@ -109,7 +109,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                   children: [
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(3),
-                                      child: Container(
+                                      child: SizedBox(
                                         width: 50,
                                         height: 50,
                                         child: Image.asset(
@@ -120,9 +120,36 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                     const SizedBox(height: 20.0),
                                     Row(
                                       children: [
-                                        OnlineIndicator(),
-                                        const SizedBox(width: 7.0),
-                                        Text(model.receiver.username,
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(3),
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Image.asset(
+                                                'assets/images/avatar.png',
+                                                fit: BoxFit.fill),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20.0),
+                                        Row(
+                                          children: [
+                                            OnlineIndicator(),
+                                            const SizedBox(width: 7.0),
+                                            Text(model.receiver.username,
+                                                style: const TextStyle(
+                                                    fontSize: 16.0,
+                                                    fontWeight:
+                                                        FontWeight.w700)),
+                                            const SizedBox(width: 7.0),
+                                            const CustomStatus(
+                                              isActive: true,
+                                              data: '5',
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Text(model.bio,
                                             style: const TextStyle(
                                                 fontSize: 16.0,
                                                 fontWeight: FontWeight.w700)),

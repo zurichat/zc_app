@@ -54,6 +54,7 @@ class OrganizationView extends StatelessWidget {
                                     shrinkWrap: true,
                                     itemBuilder: (context, i) {
                                       final org = model.organizations[i];
+                                    
                                       return OrganizationTile(org: org);
                                     },
                                   ),
@@ -76,14 +77,13 @@ class OrganizationView extends StatelessWidget {
                           leading: const Icon(Icons.add_box_outlined),
                           title: const Text('Add an organization'),
                         ),
-                        ListTile(
-                          onTap: () => model.viewPreferences(),
-                          leading: const Icon(Icons.settings),
-                          title: const Text('Preferences'),
+                        const ListTile(
+                          leading: Icon(Icons.settings),
+                          title: Text('Preferences'),
                         ),
-                        ListTile(
-                          leading: const Icon(Icons.help_outline),
-                          title: const Text('Help'),
+                        const ListTile(
+                          leading: Icon(Icons.help_outline),
+                          title: Text('Help'),
                         ),
                       ],
                     ),
@@ -134,7 +134,6 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
             borderRadius: BorderRadius.circular(5),
           ),
           clipBehavior: Clip.antiAlias,
-          // ignore: todo
           //TODO : Add the org image here
           child: Container(
             height: MediaQuery.of(context).size.height * 0.05,
@@ -143,7 +142,6 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
           ),
         ),
       ),
-      // ignore: todo
       //TODO : Add the org name here
       title: Text(
         org.name ?? '',

@@ -66,7 +66,7 @@ class ExpandableTextField extends StatelessWidget {
                 toggleExpanded: toggleExpanded,
               ),
             ),
-            replacement: Container(
+            replacement: SizedBox(
               height: 56,
               child: MyTextField(
                 toggleVisibility: toggleVisibility,
@@ -81,7 +81,7 @@ class ExpandableTextField extends StatelessWidget {
           ),
           Visibility(
             visible: isVisible,
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

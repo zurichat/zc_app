@@ -78,7 +78,7 @@ class JumpToApi {
       // MainMembers mainMembers = MainMembers.fromJson(res!.data);
       // return mainMembers.data;
     } on DioError catch (e) {
-      print('Error error $e');
+      log.e('Error error $e');
     }
     return [];
   }

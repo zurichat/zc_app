@@ -189,7 +189,7 @@ class ChannelsApiService {
         '/v1/$orgId/channels/$channelId/',
         token: token,
       );
-      print("RES IS ${res?.statusCode}");
+      // print("RES IS ${res?.statusCode}");
       if (res?.statusCode == 201 || res?.statusCode == 204) {
         controller.sink.add('Channel Deleted');
         return true;

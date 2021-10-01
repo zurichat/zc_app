@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
@@ -10,7 +9,8 @@ import 'package:stacked/stacked.dart';
 class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
   final ChannelModel channelDetail;
 
-  SixthSection(this.channelDetail);
+  const SixthSection(this.channelDetail, {Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context, ChannelInfoViewModel model) {
     return GestureDetector(
@@ -50,10 +50,9 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
                     alignment: Alignment.center,
                     child: Text(
                       'Archiving the channel will remover it from the channel list, and close it from all members.'
-                          'All chats and filse will still be stored and searchable',
+                      'All chats and filse will still be stored and searchable',
                       style: AppTextStyles.body2_400.copyWith(fontSize: 14),
-                    )
-                ),
+                    )),
               ],
             )
           ],

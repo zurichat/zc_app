@@ -17,7 +17,7 @@ class ProfileAction extends StatelessWidget {
       child: Container(
         height: 45.0,
         alignment: Alignment.center,
-        margin: EdgeInsets.only(top: 4.0, bottom: 12.0),
+        margin: const EdgeInsets.only(top: 4.0, bottom: 12.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6.0),
           border: Border.all(color: Colors.black54),

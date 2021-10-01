@@ -5,4 +5,8 @@ import '../../../app/app.locator.dart';
 
 class AddPeopleViewModel extends BaseViewModel {
   final navigator = locator<NavigationService>();
+
+  void goBack() {
+    navigator.back();
+  }
 }

@@ -10,7 +10,7 @@ import 'channel_page_viewmodel.dart';
 import 'widgets/channel_chat.dart';
 
 class ChannelPageView extends StatelessWidget {
-  ChannelPageView({
+  const ChannelPageView({
     Key? key,
     required this.channelname,
     required this.channelId,

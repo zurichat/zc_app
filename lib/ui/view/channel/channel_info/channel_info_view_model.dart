@@ -51,19 +51,18 @@ class ChannelInfoViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
-
   navigateBack() {
     _navigationService.back();
   }
 
-  void navigateToMembersList(List<ChannelMembermodel> members, ChannelModel channelDetail) {
+  void navigateToMembersList(
+      List<ChannelMembermodel> members, ChannelModel channelDetail) {
     //NavigationService.navigateTo(Routes.cha)
     _navigationService.navigateToView(ChannelMembersList(
       channelMembers: members,
       channelDetail: channelDetail,
     ));
   }
-
 
   Future showDialog() async {
     await _dialogService.showCustomDialog(
@@ -81,9 +80,8 @@ class ChannelInfoViewModel extends BaseViewModel {
 
     final response = await _apiService.get(endpoint);
     if (response?.statusCode == 200) {
-      print(response?.data);
+      log.i(response?.data);
       String des = response?.data['description'];
-      print('sacas $des');
       setChannelDescription(des);
       setChannelName(channelName);
 
@@ -130,4 +128,3 @@ class ChannelInfoViewModel extends BaseViewModel {
     }
   }
 }
-

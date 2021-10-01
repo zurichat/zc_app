@@ -124,7 +124,4 @@ class OrganizationViewModel extends BaseViewModel {
   Future<void> viewPreferences() async {
     await navigation.navigateTo(Routes.preferenceView);
   }
-
-
 }
-
