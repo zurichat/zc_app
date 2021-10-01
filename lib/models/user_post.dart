@@ -9,8 +9,8 @@ class UserThreadPost {
 
   String? lastSeen;
   String? message;
-  List<PostEmojis>? postEmojis;
-  String? postDate;
+  List<dynamic>? postEmojis;
+  String postDate;
 
   UserThreadPost({
     required this.id,
@@ -21,7 +21,7 @@ class UserThreadPost {
     this.lastSeen,
     required this.message,
     this.postEmojis,
-    this.postDate,
+    this.postDate = '',
   });
 
   void addReaction(PostEmojis postEmoji) {
@@ -64,29 +64,29 @@ class UserPost extends UserThreadPost {
   String? message;
 
   @override
-  List<PostEmojis>? postEmojis;
+  List<dynamic>? postEmojis;
   String? channelName;
   ChannelType? channelType;
 
   @override
-  String? postDate;
+  String postDate;
 
   List<UserThreadPost>? userThreadPosts;
 
-  UserPost({
-    required this.id,
-    this.userID,
-    required this.displayName,
-    this.userImage,
-    required this.message,
-    this.statusIcon,
-    this.lastSeen,
-    this.postEmojis,
-    this.userThreadPosts,
-    this.channelName,
-    this.channelType,
-    this.postDate,
-  }) : super(
+  UserPost(
+      {required this.id,
+      this.userID,
+      required this.displayName,
+      this.userImage,
+      required this.message,
+      this.statusIcon,
+      this.lastSeen,
+      this.postEmojis,
+      this.userThreadPosts,
+      this.channelName,
+      this.channelType,
+      this.postDate = ''})
+      : super(
           id: id,
           displayName: displayName,
           message: message,

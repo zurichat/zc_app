@@ -212,6 +212,10 @@ class HomePageViewModel extends StreamViewModel {
     navigationService.navigateTo(Routes.dmJumpToView);
   }
 
+  void navigateToCreateChannel() {
+    _navigationService.navigateTo(Routes.newChannel);
+  }
+
   // void navigateToDmUser() {
   //   _navigationService.navigateTo(Routes.dmUserView);
   // }
