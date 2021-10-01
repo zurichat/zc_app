@@ -20,7 +20,7 @@ class DmUserView extends StatelessWidget {
     return ViewModelBuilder<DmUserViewModel>.reactive(
         viewModelBuilder: () => DmUserViewModel(),
         builder: (context, model, child) {
-          debugPrint(model.hasClickedMessageField.toString());
+
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
