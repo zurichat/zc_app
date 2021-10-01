@@ -35,7 +35,7 @@ class ChannelInfoView extends StatelessWidget {
     return ViewModelBuilder<ChannelInfoViewModel>.reactive(
       fireOnModelReadyOnce: true,
       onModelReady: (model) {
-        model.getChannelInfo();
+        model.getChannelInfo(channelDetail.id);
       },
       disposeViewModel: false,
       builder: (context, model, child) => ScreenUtilInit(

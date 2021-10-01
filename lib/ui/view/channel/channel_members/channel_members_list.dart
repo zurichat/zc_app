@@ -3,21 +3,23 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/models/user_search_model.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/styles.dart';
-import 'package:stacked/stacked.dart';
-
 import '../../../shared/colors.dart';
+import 'package:stacked/stacked.dart';
 import '../shared_widgets.dart';
 import 'channel_members_list_model.dart';
 
 class ChannelMembersList extends StatefulWidget {
   final ChannelModel channelDetail;
-  final List<ChannelMemberModel> channelMembers;
+  final List<ChannelMemberModel> channelMembersIdentifications;
 
   ChannelMembersList(
-      {required this.channelMembers, required this.channelDetail, Key? key})
+      {required this.channelMembersIdentifications,
+      required this.channelDetail,
+      Key? key})
       : super(key: key);
 
   @override
@@ -36,6 +38,14 @@ class _ChannelMembersListState extends State<ChannelMembersList> {
         );
     return ViewModelBuilder<ChannelMembersListModel>.reactive(
       viewModelBuilder: () => ChannelMembersListModel(),
+      onModelReady: (ChannelMembersListModel model) async {
+        for (int i = 0; i < widget.channelMembersIdentifications.length; i++) {
+          print(
+              'Member [$i] deets:: ${widget.channelMembersIdentifications[i].id}');
+        }
+        await model.fetchOrganisationMembers(
+            channelMembersId: widget.channelMembersIdentifications);
+      },
       builder: (context, viewModel, child) {
         return Scaffold(
           backgroundColor: Colors.white,
@@ -49,7 +59,7 @@ class _ChannelMembersListState extends State<ChannelMembersList> {
                   Text("#${widget.channelDetail.name}",
                       style: AppTextStyles.body1Bold),
                   Text(
-                    "${widget.channelMembers.length} members",
+                    "${widget.channelMembersIdentifications.length} members",
                     style: AppTextStyles.faintBodyText,
                   ),
                 ],
@@ -89,48 +99,53 @@ class _ChannelMembersListState extends State<ChannelMembersList> {
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   padding: const EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
-                  itemCount: widget.channelMembers.length,
+                  itemCount: widget.channelMembersIdentifications.length,
                   separatorBuilder: (context, index) =>
                       const SizedBox(height: 24),
-                  itemBuilder: (context, index) => Row(
-                    children: [
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Stack(
-                              alignment: Alignment.topRight,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Image.asset(
-                                    'assets/images/chimamanda.png',
+                  itemBuilder: (context, index) {
+                    viewModel.fetchOrganisationMembers(
+                        channelMembersId: widget.channelMembersIdentifications);
+
+                    return Row(
+                      children: [
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Stack(
+                                alignment: Alignment.topRight,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Image.asset(
+                                      'assets/images/chimamanda.png',
+                                    ),
                                   ),
-                                ),
-                                //if (viewModel.matchingUsers[index].online)
-                                const CircleAvatar(
-                                  backgroundColor: Color(0xFF00B87C),
-                                  radius: 4.0,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 20.0),
-                            Text(
-                              viewModel.channelMembers[index].userName!,
-                              style: GoogleFonts.lato(
-                                color: AppColors.deepGreyColor,
+                                  //if (viewModel.matchingUsers[index].online)
+                                  const CircleAvatar(
+                                    backgroundColor: Color(0xFF00B87C),
+                                    radius: 4.0,
+                                  ),
+                                ],
                               ),
-                            ),
-                            Text(
-                              '${viewModel.channelMembers[index].firstName} ${viewModel.channelMembers[index].lastName}',
-                              style: GoogleFonts.lato(
-                                color: AppColors.darkGreyColor,
+                              const SizedBox(width: 20.0),
+                              Text(
+                                viewModel.channelMembers[index].userName!,
+                                style: GoogleFonts.lato(
+                                  color: AppColors.deepGreyColor,
+                                ),
                               ),
-                            ),
-                          ],
+                              Text(
+                                '${viewModel.channelMembers[index].firstName} ${viewModel.channelMembers[index].lastName}',
+                                style: GoogleFonts.lato(
+                                  color: AppColors.darkGreyColor,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    );
+                  },
                 ),
               ),
             ],

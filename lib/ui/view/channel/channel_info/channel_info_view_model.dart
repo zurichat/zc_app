@@ -53,9 +53,8 @@ class ChannelInfoViewModel extends BaseViewModel {
 
   void navigateToMembersList(
       List<ChannelMemberModel> members, ChannelModel channelDetail) {
-    //NavigationService.navigateTo(Routes.cha)
     _navigationService.navigateToView(ChannelMembersList(
-      channelMembers: members,
+      channelMembersIdentifications: members,
       channelDetail: channelDetail,
     ));
   }
@@ -70,13 +69,10 @@ class ChannelInfoViewModel extends BaseViewModel {
     );
   }
 
-  getChannelInfo() async {
-    const channel_id = '613f70bd6173056af01b4aba';
-    const endpoint = 'v1/1/channels/$channel_id/';
-
-    final response = await _apiService.getChannelInfo(endpoint);
-    if (response?.statusCode == 200) {
-      log.i(response?.data);
+  getChannelInfo(String channelId) async {
+    final response = await _apiService.getChannelInfo(channelId);
+    if (response.statusCode == 200) {
+      log.i('Response ' + response?.data);
       String des = response?.data['description'];
       setChannelDescription(des);
       setChannelName(channelName);
