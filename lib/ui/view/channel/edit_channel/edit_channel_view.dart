@@ -5,7 +5,7 @@ import 'package:stacked/stacked_annotations.dart';
 
 import '../../../shared/colors.dart';
 import '../../../shared/styles.dart';
-import 'editChannelViewModel.dart';
+import 'edit_channel_view_model.dart';
 import 'edit_channel_view.form.dart';
 import 'widgets/edit_channel_appbar.dart';
 import 'widgets/edit_channel_headers.dart';

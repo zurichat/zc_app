@@ -60,8 +60,7 @@ class ChannelPageViewModel extends BaseViewModel {
   }
 
   void joinChannel(String channelId) async {
-    var joinedChannel = await _channelsApiService.joinChannel(channelId);
-    print(joinedChannel);
+    await _channelsApiService.joinChannel(channelId);
   }
 
   void getChannelSocketId(String channelId) async {
@@ -76,7 +75,6 @@ class ChannelPageViewModel extends BaseViewModel {
 
     List? channelMessages =
         await _channelsApiService.getChannelMessages(channelId);
-    print(channelMessages);
     channelUserMessages = [];
 
     channelMessages.forEach((data) async {
@@ -98,7 +96,7 @@ class ChannelPageViewModel extends BaseViewModel {
       );
     });
     isLoading = false;
-    scrollController.jumpTo(scrollController.position.maxScrollExtent);
+    //scrollController.jumpTo(scrollController.position.maxScrollExtent);
 
     notifyListeners();
   }

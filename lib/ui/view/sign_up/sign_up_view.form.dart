@@ -75,23 +75,23 @@ mixin $SignUpView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get emailValue => this.formValueMap[EmailValueKey];
-  String? get firstNameValue => this.formValueMap[FirstNameValueKey];
-  String? get lastNameValue => this.formValueMap[LastNameValueKey];
-  String? get displayNameValue => this.formValueMap[DisplayNameValueKey];
-  String? get passwordValue => this.formValueMap[PasswordValueKey];
+  String? get emailValue => formValueMap[EmailValueKey];
+  String? get firstNameValue => formValueMap[FirstNameValueKey];
+  String? get lastNameValue => formValueMap[LastNameValueKey];
+  String? get displayNameValue => formValueMap[DisplayNameValueKey];
+  String? get passwordValue => formValueMap[PasswordValueKey];
   String? get confirmPasswordValue =>
-      this.formValueMap[ConfirmPasswordValueKey];
-  String? get phoneNumberValue => this.formValueMap[PhoneNumberValueKey];
+      formValueMap[ConfirmPasswordValueKey];
+  String? get phoneNumberValue => formValueMap[PhoneNumberValueKey];
 
-  bool get hasEmail => this.formValueMap.containsKey(EmailValueKey);
-  bool get hasFirstName => this.formValueMap.containsKey(FirstNameValueKey);
-  bool get hasLastName => this.formValueMap.containsKey(LastNameValueKey);
-  bool get hasDisplayName => this.formValueMap.containsKey(DisplayNameValueKey);
-  bool get hasPassword => this.formValueMap.containsKey(PasswordValueKey);
+  bool get hasEmail => formValueMap.containsKey(EmailValueKey);
+  bool get hasFirstName => formValueMap.containsKey(FirstNameValueKey);
+  bool get hasLastName => formValueMap.containsKey(LastNameValueKey);
+  bool get hasDisplayName => formValueMap.containsKey(DisplayNameValueKey);
+  bool get hasPassword => formValueMap.containsKey(PasswordValueKey);
   bool get hasConfirmPassword =>
-      this.formValueMap.containsKey(ConfirmPasswordValueKey);
-  bool get hasPhoneNumber => this.formValueMap.containsKey(PhoneNumberValueKey);
+      formValueMap.containsKey(ConfirmPasswordValueKey);
+  bool get hasPhoneNumber => formValueMap.containsKey(PhoneNumberValueKey);
 }
 
 extension Methods on FormViewModel {}

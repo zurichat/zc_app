@@ -43,7 +43,7 @@ class StartDmView extends StatelessWidget with $StartDmView {
           ),
           actions: [
             TextButton(
-              onPressed: () => print('Hello'),
+              onPressed: (){},
               child: const Text('Done'),
             )
           ],

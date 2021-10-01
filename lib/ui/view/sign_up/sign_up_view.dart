@@ -5,7 +5,6 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import '../../../app/app.logger.dart';
 import '../../../general_widgets/custom_text.dart';
 import '../../../general_widgets/custom_textfield.dart';
 import '../../shared/colors.dart';
@@ -28,7 +27,7 @@ import 'sign_up_viewmodel.dart';
   ],
 )
 class SignUpView extends StatelessWidget with $SignUpView {
-  final log = getLogger('SignUpView');
+  SignUpView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -134,12 +133,12 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const CustomText(
+                            children: const [
+                              CustomText(
                                 text: TnC1,
                                 fontSize: 14,
                               ),
-                              const Text(
+                              Text(
                                 TnC2,
                                 style: TextStyle(
                                   fontSize: 14,
@@ -196,9 +195,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           ),
                         ),
                         child: InkWell(
-                          onTap: () {
-                            log.i(' chiboy clicked');
-                          },
+                          onTap: () {},
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

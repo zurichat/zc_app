@@ -10,10 +10,9 @@ import '../channel_info_view_model.dart';
 class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
   const SeventhSection({Key? key}) : super(key: key);
 
+  @override
   Widget build(BuildContext context, ChannelInfoViewModel model) {
-    // return ViewModelBuilder<ChannelInfoViewModel>.reactive(
-    //   viewModelBuilder: () => ChannelInfoViewModel(),
-    // builder: (context, model, child) =>
+  
     return Container(
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.center,
