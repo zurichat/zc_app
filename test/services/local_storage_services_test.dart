@@ -3,20 +3,18 @@ import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/storage_keys.dart';
 
 void main() {
-  group('Local Storage', () {
-    group('SetString and getString Functions', () {
-      test('To test that the user email address is being stored locally',
-          () async {
-        await SharedPreferenceLocalStorage.getInstance();
+  group('LocalStorageServiceTest -', () {
+    setUp(() async {
+      await SharedPreferenceLocalStorage.getInstance();
+    });
+    group('SetString and getString test', () {
+      test('When called, value should be set to userEmail', () async {
         final service = SharedPreferenceLocalStorage();
         service.setString(StorageKeys.currentUserEmail, 'Zuri@gmail.com');
         expect(
             service.getString(StorageKeys.currentUserEmail), 'Zuri@gmail.com');
       });
-      test(
-          'To test that the setStringList function accepts a list of properties',
-          () async {
-        await SharedPreferenceLocalStorage.getInstance();
+      test('When called, a list of properties should be set', () async {
         final service = SharedPreferenceLocalStorage();
         service.setStringList('channelMembers', [
           'BlazeBrain',
@@ -29,27 +27,25 @@ void main() {
         expect(service.getStringList('channelMembers')!.length, 6);
       });
     });
-    group('SetBool and getBool Functions', () {
-      test("To test thant the setBool function is working properly", () async {
-        await SharedPreferenceLocalStorage.getInstance();
+    group('SetBool and getBool test', () {
+      test(
+          "When called, it gives confirmation that a user is registered but hasn't been verified yet",
+          () async {
         final service = SharedPreferenceLocalStorage();
         service.setBool(StorageKeys.registeredNotverifiedOTP, true);
         expect(service.getBool(StorageKeys.registeredNotverifiedOTP), true);
       });
     });
 
-    group('clearData and clearStorage Functions', () {
-      test("Test that the clearData function works when it is called",
-          () async {
-        await SharedPreferenceLocalStorage.getInstance();
+    group('clearData and clearStorage test', () {
+      test("When called, it clears the data set to a given property", () async {
         final service = SharedPreferenceLocalStorage();
         service.setString('Email', 'Zuri@gmail.com');
         await service.clearData('Email');
         expect(service.getString('Email'), null);
       });
-      test("Test that the clearStorage function works when it is called",
+      test("When called, it clears all data stored in the local storage",
           () async {
-        await SharedPreferenceLocalStorage.getInstance();
         final service = SharedPreferenceLocalStorage();
         service.setString('Email', 'ayodeji@gmail.com');
         service.setBool(StorageKeys.registeredNotverifiedOTP, true);

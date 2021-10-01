@@ -7,6 +7,7 @@ import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/user_service.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -78,6 +79,9 @@ MockThemeService getAndRegisterThemeServiceMock() {
 MockDialogService getAndRegisterDialogServiceMock() {
   _removeRegistrationIfExists<DialogService>();
   final service = MockDialogService();
+  when(service.showCustomDialog(
+    variant: DialogType.deleteChannel,
+  )).thenAnswer((realInvocation) => Future.value(DialogResponse()));
   locator.registerSingleton<DialogService>(service);
 
   return service;
@@ -86,6 +90,10 @@ MockDialogService getAndRegisterDialogServiceMock() {
 MockBottomSheetService getAndRegisterBottomSheetServiceMock() {
   _removeRegistrationIfExists<BottomSheetService>();
   final service = MockBottomSheetService();
+  when(service.showCustomSheet(
+    variant: BottomSheetType.user,
+    isScrollControlled: true,
+  )).thenAnswer((realInvocation) => Future.value(SheetResponse()));
   locator.registerSingleton<BottomSheetService>(service);
 
   return service;
