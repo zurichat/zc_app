@@ -74,8 +74,10 @@ class ThreadDetailView extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('${userPost!.userThreadPosts!.length} Replies',
-                                style: AppTextStyles.body2Bold),
+                            Text(
+                              '${userPost!.userThreadPosts!.length} Replies',
+                              style: AppTextStyles.body2Bold,
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
