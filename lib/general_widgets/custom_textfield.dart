@@ -12,9 +12,9 @@ class CustomTextField extends StatelessWidget {
     this.labelText,
     this.hintText,
   }) : super(key: key);
-  final keyboardType;
-  final inputAction;
-  final controller;
+  final TextInputType? keyboardType;
+  final TextInputAction? inputAction;
+  final TextEditingController? controller;
 
   final bool? autoCorrect;
   final bool? obscureText;

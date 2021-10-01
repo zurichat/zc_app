@@ -59,7 +59,7 @@ class LoginViewModel extends FormViewModel {
       _snackbarService.showCustomSnackBar(
         message: noInternet,
         variant: SnackbarType.failure,
-        duration: Duration(milliseconds: 1500),
+        duration:const  Duration(milliseconds: 1500),
       );
       return;
     }
