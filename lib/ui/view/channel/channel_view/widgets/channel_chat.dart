@@ -13,7 +13,6 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
 
   @override
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
-
     return Container(
       child: !nullListChecker(viewModel.channelUserMessages)
           ? ListView.builder(
