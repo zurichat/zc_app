@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:hng/ui/view/channel/channel_info/widgets/new_row_tile.dart';
@@ -12,9 +14,9 @@ class ThirdSection extends StatelessWidget {
       this.model, this.numberOfMembers, this.channelDetail, this.channelMembers,
       {Key? key})
       : super(key: key);
-  final numberOfMembers;
-  final channelDetail;
-  final channelMembers;
+  final int numberOfMembers;
+  final ChannelModel channelDetail;
+  final List<ChannelMembermodel> channelMembers;
   final ChannelInfoViewModel model;
 
   @override
@@ -54,7 +56,7 @@ class ThirdSection extends StatelessWidget {
           SizedBox(height: 18.h),
           InkWell(
               onTap: () {},
-              child: NewRowTile(
+              child: const NewRowTile(
                   icon: Icons.person_add_alt_1_outlined, text: 'Add People')),
           SizedBox(height: 10.h),
           Divider(
@@ -66,7 +68,7 @@ class ThirdSection extends StatelessWidget {
           SizedBox(height: 18.h),
           InkWell(
               onTap: () {},
-              child: NewRowTile(
+              child: const NewRowTile(
                   icon: Icons.dashboard_outlined, text: 'Plugins (1)')),
           SizedBox(height: 10.h),
           Divider(
@@ -78,8 +80,8 @@ class ThirdSection extends StatelessWidget {
           SizedBox(height: 18.h),
           InkWell(
               onTap: () {},
-              child:
-                  NewRowTile(icon: Icons.phone_outlined, text: 'Start a call')),
+              child: const NewRowTile(
+                  icon: Icons.phone_outlined, text: 'Start a call')),
         ],
       ),
     );

@@ -102,7 +102,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 // ignore: must_be_immutable
 class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   final HomeItemModel data;
-  final channelId;
+  final String? channelId;
   final bool? noTopPad;
   bool isUnread = false;
 

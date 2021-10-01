@@ -68,7 +68,7 @@ class CreateChannelView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    CustomTextField(),
+                  const   CustomTextField(),
                     UIHelper.verticalSpaceMedium,
                     const Divider(
                       color: AppColors.greyishColor,
@@ -93,7 +93,7 @@ class CreateChannelView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    CustomTextField(),
+                 const    CustomTextField(),
                     UIHelper.verticalSpaceMedium,
                     const Divider(
                       color: AppColors.greyishColor,
