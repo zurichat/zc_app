@@ -9,6 +9,7 @@ import 'add_organization_viewmodel.dart';
 //The Add Organization page, where user can add a new organization
 //The route to this page is '/add-organization-view'
 class AddOrganizationView extends StatelessWidget {
+  const AddOrganizationView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AddOrganizationViewModel>.reactive(
@@ -38,6 +39,7 @@ class AddOrganizationView extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(3),
+                      // ignore: prefer_const_literals_to_create_immutables
                       boxShadow: [
                         const BoxShadow(
                           color: Colors.black26,
@@ -53,7 +55,7 @@ class AddOrganizationView extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () => model.navigateToSelectEmail(
-                              OrganizationSwitchMethod.Create),
+                              OrganizationSwitchMethod.create),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
@@ -72,9 +74,9 @@ class AddOrganizationView extends StatelessWidget {
                           ),
                         ),
                         Row(
-                          children: [
-                            const SizedBox(width: 32),
-                            const Expanded(
+                          children: const [
+                            SizedBox(width: 32),
+                            Expanded(
                               child: Divider(
                                 color: AppColors.dividerColor,
                               ),
@@ -83,7 +85,7 @@ class AddOrganizationView extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () => model.navigateToSelectEmail(
-                              OrganizationSwitchMethod.SignIn),
+                              OrganizationSwitchMethod.signIn),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
@@ -102,6 +104,7 @@ class AddOrganizationView extends StatelessWidget {
                           ),
                         ),
                         Row(
+                          // ignore: prefer_const_literals_to_create_immutables
                           children: [
                             const SizedBox(width: 48),
                             const Expanded(
@@ -113,7 +116,7 @@ class AddOrganizationView extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () => model.navigateToSelectEmail(
-                              OrganizationSwitchMethod.Join),
+                              OrganizationSwitchMethod.join),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(

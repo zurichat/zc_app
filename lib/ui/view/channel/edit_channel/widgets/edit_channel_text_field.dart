@@ -10,7 +10,7 @@ class TextBox extends StatelessWidget {
     Key? key,
     required this.hint,
     required this.controller,
-  });
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(

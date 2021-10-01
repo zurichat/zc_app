@@ -66,8 +66,11 @@ class ThreadDetailView extends HookWidget {
                   ),
                 ),
                 ThreadCardView.detail(userPost!),
-                const Divider(
-                  color: AppColors.borderColor,
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: Divider(
+                    color: AppColors.borderColor,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),

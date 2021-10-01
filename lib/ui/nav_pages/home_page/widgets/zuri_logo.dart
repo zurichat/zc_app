@@ -21,7 +21,7 @@ class ZuriLogo extends StatelessWidget {
         const SizedBox(
           width: 5,
         ),
-        Text(Zuri, style: AppTextStyles.zuriAppBarWordLogo),
+        Text(zuri, style: AppTextStyles.zuriAppBarWordLogo),
       ],
     );
   }

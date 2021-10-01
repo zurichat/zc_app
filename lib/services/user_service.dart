@@ -8,9 +8,8 @@ import '../utilities/storage_keys.dart';
 ///And returning the data that is saved, you can choose to use it or
 ///get the data to local storage yourself
 class UserService {
-  bool? get hasUser => hasUser;
+  bool? get hasUser => null;
   final _sharedPrefs = locator<SharedPreferenceLocalStorage>();
-
 
   //All this are the current user details to be used
   String _currentOrgId = '';
@@ -19,7 +18,6 @@ class UserService {
   String _authToken = '';
   String _userId = '';
   String _userEmail = '';
-
 
   ///This will give you null because organization data has not been added
   OrganizationModel? organizationModel;
