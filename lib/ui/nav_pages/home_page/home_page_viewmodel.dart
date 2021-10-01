@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
