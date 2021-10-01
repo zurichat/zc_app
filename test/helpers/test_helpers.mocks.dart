@@ -734,19 +734,11 @@ class MockChannelsApiService extends _i1.Mock
       (super.noSuchMethod(Invocation.method(#getChannelSocketId, [channelId]),
           returnValue: Future<String>.value('')) as _i4.Future<String>);
   @override
-  _i4.Future<Map<dynamic, dynamic>> joinChannel(String? channelId) =>
-      (super.noSuchMethod(Invocation.method(#joinChannel, [channelId]),
-              returnValue:
-                  Future<Map<dynamic, dynamic>>.value(<dynamic, dynamic>{}))
-          as _i4.Future<Map<dynamic, dynamic>>);
-  @override
-  _i4.Future<List<dynamic>> getChannelMessages(String? channelId) =>
       (super.noSuchMethod(Invocation.method(#getChannelMessages, [channelId]),
               returnValue: Future<List<dynamic>>.value(<dynamic>[]))
           as _i4.Future<List<dynamic>>);
   @override
   _i4.Future<dynamic> sendChannelMessages(
-          String? channelId, String? userId, String? message) =>
       (super.noSuchMethod(
           Invocation.method(#sendChannelMessages, [channelId, userId, message]),
           returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
@@ -764,7 +756,11 @@ class MockChannelsApiService extends _i1.Mock
               {#name: name, #description: description, #private: private}),
           returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i4.Future<void>? dispose() => (super.noSuchMethod(
+  _i2.Future<bool> deleteChannel(String? orgId, String? channelId) =>
+      (super.noSuchMethod(Invocation.method(#deleteChannel, [orgId, channelId]),
+          returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
+  @override
+  _i2.Future<void>? dispose() => (super.noSuchMethod(
       Invocation.method(#dispose, []),
       returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>?);
   @override
@@ -866,9 +862,13 @@ class MockZuriApi extends _i1.Mock implements _i7.ZuriApi {
               returnValue: Future<_i19.ApiResponse?>.value())
           as _i4.Future<_i19.ApiResponse?>);
   @override
-  _i4.Future<dynamic> delete(String? string) =>
-      (super.noSuchMethod(Invocation.method(#delete, [string]),
-          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
+  _i2.Future<_i18.ApiResponse?> delete(String? string,
+          {Map<String, dynamic>? body, String? token}) =>
+      (super.noSuchMethod(
+          Invocation.method(#delete, [string], {#body: body, #token: token}),
+          returnValue:
+              Future<_i18.ApiResponse?>.value()) as _i2
+          .Future<_i18.ApiResponse?>);
   @override
   _i4.Future<dynamic> login({String? email, String? password, dynamic token}) =>
       (super.noSuchMethod(
@@ -1099,7 +1099,7 @@ class MockConnectivityService extends _i1.Mock
   @override
   _i23.ConnectivityStatus get networkStatus => (super.noSuchMethod(
       Invocation.getter(#networkStatus),
-      returnValue: _i23.ConnectivityStatus.Wifi) as _i23.ConnectivityStatus);
+      returnValue: _i21.ConnectivityStatus.wifi) as _i21.ConnectivityStatus);
   @override
   set networkStatus(_i23.ConnectivityStatus? _networkStatus) =>
       super.noSuchMethod(Invocation.setter(#networkStatus, _networkStatus),

@@ -12,10 +12,11 @@ import 'channel_members_list_model.dart';
 
 // ignore: must_be_immutable
 class ChannelMembersList extends StatelessWidget {
-  List<ChannelMembermodel> channelMembers;
-  ChannelModel channelDetail;
-  ChannelMembersList(
-      {required this.channelMembers, required this.channelDetail});
+  final List<ChannelMembermodel> channelMembers;
+  final ChannelModel channelDetail;
+  const ChannelMembersList(
+      {required this.channelMembers, required this.channelDetail, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +85,8 @@ class ChannelMembersList extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(25.0, 24.0, 16.0, 0),
                 child: GestureDetector(
                   onTap: () {},
-                  child: CustomPluginPageListTile(
-                    leadingIcon: const Icon(
+                  child: const CustomPluginPageListTile(
+                    leadingIcon: Icon(
                       Icons.add,
                       color: AppColors.zuriPrimaryColor,
                     ),

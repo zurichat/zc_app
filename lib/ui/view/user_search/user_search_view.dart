@@ -66,13 +66,13 @@ class UserSearchView extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children: const [
+                      CustomPluginListTile(
                         icon: Icons.access_time,
                         pluginName: 'in:#project-socrates Productbob',
                         isActive: false,
                       ),
-                      const CustomPluginListTile(
+                      CustomPluginListTile(
                         icon: Icons.clear,
                       )
                     ],
@@ -80,13 +80,13 @@ class UserSearchView extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children: const [
+                      CustomPluginListTile(
                         icon: Icons.access_time,
                         pluginName: 'has:stage 4',
                         isActive: false,
                       ),
-                      const CustomPluginListTile(
+                      CustomPluginListTile(
                         icon: Icons.clear,
                       )
                     ],
@@ -96,61 +96,61 @@ class UserSearchView extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children: const [
+                      CustomPluginListTile(
                         icon: Icons.add_box_outlined,
                         pluginName: 'to:',
                         isActive: false,
                       ),
-                      const Text('E.g. #project-socrates')
+                      Text('E.g. #project-socrates')
                     ],
                   ),
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children: const [
+                      CustomPluginListTile(
                         icon: Icons.add_box_outlined,
                         pluginName: 'from:',
                         isActive: false,
                       ),
-                      const Text('E.g. Adediwura Emmanuel')
+                      Text('E.g. Adediwura Emmanuel')
                     ],
                   ),
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children: const [
+                      CustomPluginListTile(
                         icon: Icons.add_box_outlined,
                         pluginName: 'has:',
                         isActive: false,
                       ),
-                      const Text('E.g. star')
+                      Text('E.g. star')
                     ],
                   ),
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children: const [
+                      CustomPluginListTile(
                         icon: Icons.add_box_outlined,
                         pluginName: 'after:',
                         isActive: false,
                       ),
-                      const Text('Ex: 08-31-2021')
+                      Text('Ex: 08-31-2021')
                     ],
                   ),
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children:const [
+                      CustomPluginListTile(
                         icon: Icons.add_box_outlined,
                         pluginName: 'to:',
                         isActive: false,
                       ),
-                      const Text('E.g. me')
+                      Text('E.g. me')
                     ],
                   ),
                   const SizedBox(height: 20.0),

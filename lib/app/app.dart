@@ -1,4 +1,3 @@
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/media_service.dart';
 import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
@@ -145,8 +144,7 @@ import '../ui/view/view_profile_page/view_profile.dart';
     LazySingleton(classType: DMApiService),
     LazySingleton(classType: ChannelsApiService),
     LazySingleton(classType: JumpToApi),
-    LazySingleton(classType: CentrifugeService),
-     Presolve(
+    Presolve(
       classType: CentrifugeService,
       presolveUsing: CentrifugeService.getInstance,
     ),

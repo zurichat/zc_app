@@ -29,7 +29,8 @@ abstract class Api {
   /// -----------------------------------------------------------------------
 
   // LOGIN SERVICE
-  Future<dynamic> login({required String email, required String password, token});
+  Future<dynamic> login(
+      {required String email, required String password, token});
 
   // SIGNUP SERVICE
   Future<dynamic> signUp(
@@ -89,7 +90,6 @@ abstract class Api {
   /// THE SERVICE TO GET THE SOCKET ID FOR A CHANNEL
   /// THIS AIDS THE RTC AS WELL AS GETTING THE MESSAGES
   Future getChannelSocketId(String channelId, String orgId, token);
-
 
   /// THE SERVICE TO GET THE LIST OF ACTIVE DMs
   Future<List> getActiveDms(String orgId, token);
@@ -154,6 +154,9 @@ abstract class Api {
   /// YOU CAN FILTER TO GET YOUR DESIRED RESULT
   Future allChannelsList(String currentOrgId, token);
 
+  Future<void> addMemberToChannel(
+      String channelId, String orgId, String userId, token);
+
   /// THE SERVICE TO SEARCH FOR CHANNELS JOINED BY A USER
   /// THIS IS A SERVICE HAVE HAS HELPED WITH FILTERING
   Future joinedChannelsList(String currentOrgId, String currentUserId, token);
@@ -164,5 +167,8 @@ abstract class Api {
 
   /// A SERVICE TO SEND PATCH REQUEST TO THE ENDPOINT
   Future<ApiResponse?> patch(String path,
+      {Map<String, dynamic>? body, String? token});
+
+  Future<ApiResponse?> delete(String path,
       {Map<String, dynamic>? body, String? token});
 }

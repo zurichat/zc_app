@@ -7,6 +7,7 @@ import 'package:stacked/stacked.dart';
 import 'drafted_message_page_viewmodel.dart';
 
 class DraftedMessagePage extends StatelessWidget {
+  const DraftedMessagePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DraftedMessagePageModel>.reactive(

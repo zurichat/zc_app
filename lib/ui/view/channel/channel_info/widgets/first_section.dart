@@ -6,7 +6,7 @@ import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import '../../../../shared/colors.dart';
 
 class FirstSection extends StatelessWidget {
-  const FirstSection(this.model);
+  const FirstSection(this.model, {Key? key}) : super(key: key);
   final ChannelInfoViewModel model;
   @override
   Widget build(BuildContext context) {
@@ -21,11 +21,10 @@ class FirstSection extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 5.r,
               blurRadius: 6.r,
-              offset: Offset(0, 3), // changes position of shadow
+              offset:const  Offset(0, 3), // changes position of shadow
             ),
-          ]
-      ),
-      padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 24.h,16.37.w),
+          ]),
+      padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 24.h, 16.37.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -41,12 +40,12 @@ class FirstSection extends StatelessWidget {
           SizedBox(height: 24.h),
           Text(
             '${model.channelDescription}',
-            style: AppTextStyles.body1Light.copyWith(letterSpacing:0.005 ),
+            style: AppTextStyles.body1Light.copyWith(letterSpacing: 0.005),
           ),
           SizedBox(height: 6.h),
           Text(
             'Mark created this channel on August 13.',
-            style: AppTextStyles.body1Regular.copyWith(letterSpacing:0.005 ),
+            style: AppTextStyles.body1Regular.copyWith(letterSpacing: 0.005),
           ),
           SizedBox(height: 18.h),
           Text(
@@ -55,15 +54,18 @@ class FirstSection extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
           Text(
-              'Creating the zuri main app',
-              style: AppTextStyles.body1Light.copyWith(fontSize: 16.sp),
-            ),
+            'Creating the zuri main app',
+            style: AppTextStyles.body1Light.copyWith(fontSize: 16.sp),
+          ),
           SizedBox(height: 26.h),
-          Divider(thickness: 0.5.h, color: AppColors.borderColor,),
+          Divider(
+            thickness: 0.5.h,
+            color: AppColors.borderColor,
+          ),
           SizedBox(height: 16.h),
           Center(
             child: InkWell(
-              onTap: (){
+              onTap: () {
                 model.navigateToEditChannel();
               },
               child: Text(
