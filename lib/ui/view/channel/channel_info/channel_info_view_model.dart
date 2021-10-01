@@ -129,32 +129,33 @@ class ChannelInfoViewModel extends BaseViewModel {
 //             'Error encountered during channel update.',
 //       );
 //     }
-    Future<void> deleteChannel(ChannelModel channel) async {
-      try {
-        bool res = await _channelApi.deleteChannel(
-            _userService.currentOrgId, channel.id);
-        if (res) {
-          snackbar.showCustomSnackBar(
-            duration: const Duration(seconds: 3),
-            variant: SnackbarType.success,
-            message: 'Channels ${channel.name} deleted successful',
-          );
+  }
 
-          _navigationService.popRepeated(2);
-        } else {
-          snackbar.showCustomSnackBar(
-            duration: const Duration(seconds: 3),
-            variant: SnackbarType.failure,
-            message: 'Delete organization failed',
-          );
-        }
-      } catch (e) {
+  Future<void> deleteChannel(ChannelModel channel) async {
+    try {
+      bool res = await _channelApi.deleteChannel(
+          _userService.currentOrgId, channel.id);
+      if (res) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.success,
+          message: 'Channels ${channel.name} deleted successful',
+        );
+
+        _navigationService.popRepeated(2);
+      } else {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: e.toString(),
+          message: 'Delete organization failed',
         );
       }
+    } catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.toString(),
+      );
     }
   }
 }
