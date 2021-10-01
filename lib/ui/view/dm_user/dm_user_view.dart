@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
+import 'package:hng/ui/view/dm_user/widgets/start_message.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -9,6 +11,7 @@ import 'dm_user_viewmodel.dart';
 import 'dummy_data/models/message.dart';
 import 'icons/zap_icon.dart';
 import 'widgets/message_view.dart';
+import 'widgets/online_indicator.dart';
 
 class DmUserView extends StatelessWidget {
   DmUserView({Key? key}) : super(key: key);
@@ -45,7 +48,7 @@ class DmUserView extends StatelessWidget {
                               fontSize: 16.0,
                               fontWeight: FontWeight.w400)),
                       const SizedBox(width: 12.0),
-                      _onlineIndicator(0xFF007952),
+                      OnlineIndicator(0xFF007952),
                     ],
                   ),
                   const Text(
@@ -95,7 +98,7 @@ class DmUserView extends StatelessWidget {
                                   const SizedBox(height: 20.0),
                                   Row(
                                     children: [
-                                      _onlineIndicator(0xFF00B87C),
+                                      OnlineIndicator(0xFF00B87C),
                                       const SizedBox(width: 16.0),
                                       Text(model.receiver.username,
                                           style: const TextStyle(
@@ -113,7 +116,7 @@ class DmUserView extends StatelessWidget {
                                           fontWeight: FontWeight.w400,
                                           color: Color(0xFF3A3A3A))),
                                   const SizedBox(height: 15),
-                                  _startMessage(model.receiver.username)
+                                  Startdm(model.receiver.username)
                                 ],
                               ),
                             ),
@@ -124,7 +127,7 @@ class DmUserView extends StatelessWidget {
                                 return message.getRelativeTime();
                               },
                               groupSeparatorBuilder: (value) {
-                                return _groupSeparator(value);
+                                return GroupSeparator(value);
                               },
                               itemBuilder: (context, message) {
                                 return MessageView(message);
@@ -255,7 +258,7 @@ class DmUserView extends StatelessWidget {
                                 ),
                                 IconButton(
                                     onPressed: () {
-                                      model.sendMessage();
+                                      //model.sendMessage();
                                       FocusScope.of(context)
                                           .requestFocus(FocusNode());
                                       _scrollController.jumpTo(_scrollController
@@ -279,39 +282,39 @@ class DmUserView extends StatelessWidget {
         });
   }
 
-  Widget _onlineIndicator(int color) {
-    return Icon(
-      Icons.circle,
-      color: Color(color),
-      size: 10,
-    );
-  }
+  // Widget _onlineIndicator(int color) {
+  //   return Icon(
+  //     Icons.circle,
+  //     color: Color(color),
+  //     size: 10,
+  //   );
+  // }
 
-  Widget _groupSeparator(String value) {
-    return Container(
-      margin: EdgeInsets.only(top: 16.0),
-      child: Row(
-        children: [
-          Expanded(
-              child: Divider(
-                color: Color(0xFF7B8794),
-              )),
-          Container(
-            child: Text(value,
-                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-            decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFF7B8794), width: 0.5),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-          ),
-          Expanded(
-              child: Divider(
-                color: Color(0xFF7B8794),
-              )),
-        ],
-      ),
-    );
-  }
+  // Widget _groupSeparator(String value) {
+  //   return Container(
+  //     margin: EdgeInsets.only(top: 16.0),
+  //     child: Row(
+  //       children: [
+  //         Expanded(
+  //             child: Divider(
+  //               color: Color(0xFF7B8794),
+  //             )),
+  //         Container(
+  //           child: Text(value,
+  //               style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
+  //           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+  //           decoration: BoxDecoration(
+  //               border: Border.all(color: Color(0xFF7B8794), width: 0.5),
+  //               borderRadius: BorderRadius.all(Radius.circular(10))),
+  //         ),
+  //         Expanded(
+  //             child: Divider(
+  //               color: Color(0xFF7B8794),
+  //             )),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _startMessage(String username) {
     return RichText(
