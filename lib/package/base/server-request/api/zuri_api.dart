@@ -497,9 +497,9 @@ class ZuriApi implements Api {
     return messageReplies;
   }
 
-  Future<void> addReplyToMessage(String? channelMessageId, content, files,
+  Future<bool> addReplyToMessage(String? channelMessageId, content, files,
       orgId, userId, channelId) async {
-    print('channelll Iddd >>>>>>>> $channelId');
+    log.i('channelll Iddd >>>>>>>> $channelId');
     try {
       final res = await post(
         '/v1/$orgId/messages/$channelMessageId/threads/?channel_id=$channelId',
@@ -511,9 +511,10 @@ class ZuriApi implements Api {
       );
       controller.sink.add('Reply sent successfully');
       log.i('>>>>>>>>>>>>Adding Reply>>>>>$res');
+      return true;
     } on Exception catch (e) {
       log.e(e.toString());
-      return;
+      return false;
     }
   }
 

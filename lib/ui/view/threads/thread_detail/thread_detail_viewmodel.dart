@@ -1,14 +1,15 @@
 import 'package:flutter/widgets.dart';
-import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../models/user_post.dart';
 import '../../../../package/base/server-request/api/zuri_api.dart';
-import '../../../../package/base/server-request/channels/channels_api_service.dart';
 import '../../../../services/local_storage_services.dart';
 import '../../../../services/user_service.dart';
+import '../../../../utilities/constants.dart';
+
+import 'package:hng/app/app.logger.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/storage_keys.dart';
 
@@ -16,7 +17,7 @@ class ThreadDetailViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
-
+  final log = getLogger('ThreadDetailViewModel');
   // final _channelsApiService = locator<ChannelsApiService>();
   final _userService = locator<UserService>();
   final _api = ZuriApi(channelsBaseUrl);
@@ -83,7 +84,18 @@ class ThreadDetailViewModel extends BaseViewModel {
     final userId = _userService.userId;
     final channelId = storageService.getString(StorageKeys.currentChannelId);
     final res = await _api.addReplyToMessage(
-        channelMessageId, reply, files, orgId, userId, channelId);
+      channelMessageId,
+      reply,
+      files,
+      orgId,
+      userId,
+      channelId,
+    );
+    if (res == true) {
+      log.i('Reply successfully added');
+    } else {
+      log.e('Reply not successfully added');
+    }
   }
 
   // ignore: always_declare_return_types
