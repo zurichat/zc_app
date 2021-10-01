@@ -5,10 +5,6 @@ import 'package:stacked/stacked.dart';
 import '../../../shared/shared.dart';
 import '../home_page_viewmodel.dart';
 
-// import 'package:hng/ui/direct_message/direct_message.dart';
-
-// import '../../../shared/colors.dart';
-
 class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
   final String? imagelink;
   final String? userName;
@@ -53,10 +49,10 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
   }
 
   @override
-  Widget build(BuildContext context, HomePageViewModel model) {
+  Widget build(BuildContext context, HomePageViewModel viewModel) {
     return InkWell(
       onTap: () {
-        model.navigateToDmUser();
+        viewModel.navigateToDmUser();
       },
       child: Row(
         children: [

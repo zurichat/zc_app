@@ -18,22 +18,8 @@ class DraftView extends StatelessWidget {
         body: ListView.builder(
           itemCount: model.draft.length,
           itemBuilder: (BuildContext context, int index) {
-            return     ListTile(
-      title: Text(
-        model.draft[index]["title"],
-        style: AppTextStyles.heading6,
-      ),
-      subtitle: Text(
-       model.draft[index]["subtitle"],
-        style: AppTextStyles.body1Bold,
-      ),
-      trailing: Text(
-        model.draft[index]["trailing"],
-        style: AppTextStyles.body2Bold,
-      ),
-    );
+            return model.draft[index];
             
-            // model.draft[index];
           },
         ),
         floatingActionButton: FloatingActionButton(
