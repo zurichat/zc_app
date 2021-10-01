@@ -85,7 +85,7 @@ class ChannelInfoView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 8.h),
-                      const SixthSection(),
+                      SixthSection(channelDetail),
                     ],
                   ),
                 ),

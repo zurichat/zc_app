@@ -15,22 +15,21 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ChannelPageViewModel extends BaseViewModel {
-  bool isVisible = false;
-
   final _navigationService = locator<NavigationService>();
   final _channelsApiService = locator<ChannelsApiService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _centrifugeService = locator<CentrifugeService>();
-
   final _bottomSheetService = locator<BottomSheetService>();
 
 // ignore: todo
 //TODO refactor this
   ScrollController scrollController = ScrollController();
+  bool isVisible = false;
+  bool isExpanded = false;
 
   bool isLoading = true;
   List<UserSearch> usersInOrg = [];
-
+  List<ChannelMembermodel> channelMembers = [];
   List<UserPost>? channelUserMessages = [];
 
   void onMessageFieldTap() {
@@ -108,7 +107,7 @@ class ChannelPageViewModel extends BaseViewModel {
     String? userId = storage.getString(StorageKeys.currentUserId);
     await _channelsApiService.sendChannelMessages(
         channelId, "$userId", message);
-
+    scrollController.jumpTo(scrollController.position.minScrollExtent);
     notifyListeners();
   }
 
@@ -120,8 +119,7 @@ class ChannelPageViewModel extends BaseViewModel {
     return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
   }
 
-  navigateToChannelInfoScreen(int numberOfMembers,
-      List<ChannelMembermodel> channelMembers, ChannelModel channelDetail) {
+  navigateToChannelInfoScreen(int numberOfMembers, ChannelModel channelDetail) {
     NavigationService().navigateTo(Routes.channelInfoView,
         arguments: ChannelInfoViewArguments(
             numberOfMembers: numberOfMembers,
@@ -152,5 +150,10 @@ class ChannelPageViewModel extends BaseViewModel {
 
       notifyListeners();
     });
+  }
+
+  void toggleExpanded() {
+    isExpanded = !isExpanded;
+    notifyListeners();
   }
 }
