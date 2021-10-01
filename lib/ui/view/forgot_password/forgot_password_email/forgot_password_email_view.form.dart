@@ -38,9 +38,9 @@ mixin $ForgotPasswordEmailView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get forgotEmailValue => formValueMap[ForgotEmailValueKey];
+  String? get forgotEmailValue => this.formValueMap[ForgotEmailValueKey];
 
-  bool get hasForgotEmail => formValueMap.containsKey(ForgotEmailValueKey);
+  bool get hasForgotEmail => this.formValueMap.containsKey(ForgotEmailValueKey);
 }
 
 extension Methods on FormViewModel {}

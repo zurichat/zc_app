@@ -10,8 +10,8 @@ import '../home_page_viewmodel.dart';
 // import '../../../shared/colors.dart';
 
 class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
-  final imagelink;
-  final userName;
+  final String? imagelink;
+  final String? userName;
   final String name;
 
   const CustomDMListTile({
@@ -31,12 +31,12 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
       content: Row(
         children: [
           CircleAvatar(
-            backgroundImage: AssetImage(imagelink),
+            backgroundImage: AssetImage("$imagelink"),
             radius: 20.0,
           ),
           const SizedBox(width: 8),
           Text(
-            userName,
+            "$userName",
             style: AppTextStyles.normalText,
           ),
         ],
@@ -66,7 +66,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
                 image: DecorationImage(
-                    image: AssetImage(imagelink), fit: BoxFit.cover)),
+                    image: AssetImage("$imagelink"), fit: BoxFit.cover)),
           ),
           const SizedBox(width: 8),
           GestureDetector(
@@ -74,7 +74,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
               showProfileDialog(context);
             },
             child: Text(
-              userName,
+              "$userName",
               style: AppTextStyles.normalText,
             ),
           ),

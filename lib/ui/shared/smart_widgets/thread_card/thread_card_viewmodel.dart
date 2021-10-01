@@ -30,7 +30,7 @@ class ThreadCardViewModel extends BaseViewModel {
   }
 
   Future addEmojis(UserPost? userPost) async {
-    var emoji;
+    String? emoji;
     var sheetResponse = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.emojiPicker,
       isScrollControlled: true,

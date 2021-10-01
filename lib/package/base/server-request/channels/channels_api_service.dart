@@ -158,6 +158,7 @@ class ChannelsApiService {
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
 
+    // ignore: prefer_typing_uninitialized_variables
     var channelMessage;
 
     try {
