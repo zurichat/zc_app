@@ -689,14 +689,18 @@ class ZuriApi implements Api {
   }
 
   @override
-  Future uploadImage(
-    File image, {
+  Future<String> uploadImage(
+    File? image, {
     required String token,
-    required int orgId,
-    required int memberId,
+    required String memberId,
+    required String orgId,
   }) async {
     var formData = FormData.fromMap({
-      'image': await MultipartFile.fromFile(image.path, filename: 'image'),
+      "image": MultipartFile(
+            image!.openRead(),
+            await image.length(),
+            filename: image.path.split(Platform.pathSeparator).last,
+          ),
     });
     try {
       final res = await dio.post(
@@ -706,12 +710,12 @@ class ZuriApi implements Api {
         ),
         data: formData,
       );
-
       log.i(res.data);
       return res.data;
     } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
+      return "error uploading the image";
     }
   }
 }

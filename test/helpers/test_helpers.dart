@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
@@ -6,6 +8,7 @@ import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/services/media_service.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -31,6 +34,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<ZuriApi>(returnNullOnMissingStub: true),
   MockSpec<ConnectivityService>(returnNullOnMissingStub: true),
   MockSpec<JumpToApi>(returnNullOnMissingStub: true),
+  MockSpec<MediaService>(returnNullOnMissingStub: true),
 ])
 MockUserService getAndRegisterUserServiceMock({
   bool hasUser = false,
@@ -129,6 +133,13 @@ MockZuriApi getAndRegisterZuriApiMock() {
   final service = MockZuriApi();
   locator.registerSingleton<ZuriApi>(service);
 
+  File? file;
+  String token = "my token";
+  String memberId = "my member id";
+  String orgId = "my org id";
+  when(service.uploadImage(file,
+          token: token, memberId: memberId, orgId: orgId))
+      .thenAnswer((_) async  => Future.value("Image Address"));
   return service;
 }
 
@@ -148,6 +159,14 @@ MockJumpToApi getAndRegisterJumpToApiMock() {
   return service;
 }
 
+MockMediaService getAndRegisterMediaServiceMock() {
+  _removeRegistrationIfExists<MediaService>();
+  final service = MockMediaService();
+  locator.registerSingleton<MediaService>(service);
+
+  return service;
+}
+
 void registerServices() {
   getAndRegisterUserServiceMock();
   getAndRegisterSharedPreferencesLocalStorageMock();
@@ -162,6 +181,7 @@ void registerServices() {
   getAndRegisterZuriApiMock();
   getAndRegisterConnectivityServiceMock();
   getAndRegisterJumpToApiMock();
+  getAndRegisterMediaServiceMock();
 }
 
 void unregisterServices() {
@@ -179,6 +199,7 @@ void unregisterServices() {
   _removeRegistrationIfExists<ZuriApi>();
   _removeRegistrationIfExists<ConnectivityService>();
   _removeRegistrationIfExists<JumpToApi>();
+  _removeRegistrationIfExists<MediaService>();
 }
 
 // Call this before any service registration helper. This is to ensure that if there
