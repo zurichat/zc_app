@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
 import 'draft_viewmodel.dart';
 
@@ -17,7 +18,22 @@ class DraftView extends StatelessWidget {
         body: ListView.builder(
           itemCount: model.draft.length,
           itemBuilder: (BuildContext context, int index) {
-            return model.draft[index];
+            return     ListTile(
+      title: Text(
+        model.draft[index]["title"],
+        style: AppTextStyles.heading6,
+      ),
+      subtitle: Text(
+       model.draft[index]["subtitle"],
+        style: AppTextStyles.body1Bold,
+      ),
+      trailing: Text(
+        model.draft[index]["trailing"],
+        style: AppTextStyles.body2Bold,
+      ),
+    );
+            
+            // model.draft[index];
           },
         ),
         floatingActionButton: FloatingActionButton(
