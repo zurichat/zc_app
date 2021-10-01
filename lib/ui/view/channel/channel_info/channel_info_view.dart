@@ -16,22 +16,21 @@ import 'widgets/fifth_section.dart';
 import 'widgets/sixth_section.dart';
 
 class ChannelInfoView extends StatelessWidget {
-
   final int numberOfMembers;
-  final List <ChannelMembermodel>channelMembers;
+  final List<ChannelMembermodel> channelMembers;
   final ChannelModel channelDetail;
 
-  const ChannelInfoView({
-    Key? key,
-    required this.numberOfMembers,
-    required this.channelMembers,
-    required this.channelDetail
-  }) : super(key: key);
+  const ChannelInfoView(
+      {Key? key,
+      required this.numberOfMembers,
+      required this.channelMembers,
+      required this.channelDetail})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
+        const SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
     return ViewModelBuilder<ChannelInfoViewModel>.reactive(
       fireOnModelReadyOnce: true,
       onModelReady: (model) {
@@ -54,7 +53,7 @@ class ChannelInfoView extends StatelessWidget {
                     children: [
                       FirstSection(model),
                       SizedBox(height: 16.h),
-                      SecondSection(),
+                      const SecondSection(),
                       SizedBox(height: 8.h),
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
@@ -63,7 +62,8 @@ class ChannelInfoView extends StatelessWidget {
                           style: AppTextStyles.body1Grey,
                         ),
                       ),
-                      ThirdSection(model, numberOfMembers, channelMembers, channelDetail),
+                      ThirdSection(model, numberOfMembers, channelDetail,
+                          channelMembers),
                       SizedBox(height: 16.h),
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
@@ -73,9 +73,9 @@ class ChannelInfoView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 8.h),
-                      FourthSection(),
+                      const FourthSection(),
                       SizedBox(height: 16.h),
-                      FifthSection(),
+                      const FifthSection(),
                       SizedBox(height: 16.h),
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
@@ -85,7 +85,7 @@ class ChannelInfoView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 8.h),
-                      SixthSection(),
+                      SixthSection(channelDetail),
                     ],
                   ),
                 ),

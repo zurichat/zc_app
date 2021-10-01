@@ -10,7 +10,7 @@ class ChannelBrowserContainer extends ViewModelWidget<ChannelListViewModel> {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context, ChannelListViewModel model) {
+  Widget build(BuildContext context, ChannelListViewModel viewModel) {
     return InkWell(
       onTap: () {},
       child: Container(

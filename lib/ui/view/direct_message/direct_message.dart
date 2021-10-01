@@ -8,7 +8,7 @@ import '../../../general_widgets/custom_text.dart';
 import 'direct_message_viewmodel.dart';
 
 class DirectMessage extends StatelessWidget {
-  final username;
+  final String? username;
   const DirectMessage({Key? key, this.username}) : super(key: key);
 
   @override
