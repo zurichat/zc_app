@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'dart:async';
+import 'dart:io';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class ZuriApi implements Api {
   }) async {
     log.i('Making request to $string');
     try {
-      final response = await dio.get(string,
+      final response = await dio.get(string.toString(),
           queryParameters: queryParameters,
           options: Options(headers: {'Authorization': 'Bearer $token'}));
 
@@ -76,7 +77,7 @@ class ZuriApi implements Api {
   }) async {
     log.i('Making request to $string');
     try {
-      final response = await dio.put(string,
+      final response = await dio.put(string.toString(),
           data: body,
           options: Options(headers: {'Authorization': 'Bearer $token'}));
 
@@ -320,26 +321,6 @@ class ZuriApi implements Api {
       log.w(e.toString());
       handleApiError(e);
     }
-  }
-
-  @override
-  Future<void> addMemberToChannel(
-      String channelId, String orgId, String userId, token) async {
-    await post(
-      "$channelsBaseUrl/v1/$orgId/channels/$channelId/members/",
-      //  "/614679ee1a5607b13c00bcb7/channels/$channelId/members/",
-      token: token,
-      body: {
-        "_id": userId,
-        "role_id": "",
-        "is_admin": false,
-        "notifications": {
-          "additionalProp1": "",
-          "additionalProp2": "",
-          "additionalProp3": ""
-        }
-      },
-    );
   }
 
   /// Add members to an organization either through invite
@@ -705,5 +686,32 @@ class ZuriApi implements Api {
       return UnknownFailure();
     else
       return UnknownFailure();
+  }
+
+  @override
+  Future uploadImage(
+    File image, {
+    required String token,
+    required int orgId,
+    required int memberId,
+  }) async {
+    var formData = FormData.fromMap({
+      'image': await MultipartFile.fromFile(image.path, filename: 'image'),
+    });
+    try {
+      final res = await dio.post(
+        'https://api.zuri.chat/organizations/$orgId/members/$memberId/photo',
+        options: Options(
+          headers: {'Authorization': 'Bearer $token'},
+        ),
+        data: formData,
+      );
+
+      log.i(res.data);
+      return res.data;
+    } on DioError catch (e) {
+      log.w(e.toString());
+      handleApiError(e);
+    }
   }
 }
