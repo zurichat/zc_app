@@ -102,10 +102,16 @@ class ZuriApi implements Api {
     }
   }
 
-  Future<dynamic> delete(String string) async {
+  @override
+  Future<ApiResponse?> delete(String string,
+      {Map<String, dynamic>? body, String? token}) async {
     log.i('Making request to $string');
     try {
-      final response = await dio.delete(string);
+      final response = await dio.delete(
+        string,
+        data: body,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
 
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
@@ -322,6 +328,7 @@ class ZuriApi implements Api {
     }
   }
 
+  @override
   Future<void> addMemberToChannel(
       String channelId, String orgId, String userId, token) async {
     await post(
