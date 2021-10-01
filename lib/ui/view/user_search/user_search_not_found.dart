@@ -36,9 +36,9 @@ class UserSearch extends StatelessWidget {
                     children: [
                       const Icon(Icons.arrow_back_ios),
                       Column(
-                        children: [
-                          const Text('People'),
-                          const Text('2552 members'),
+                        children: const [
+                          Text('People'),
+                          Text('2552 members'),
                         ],
                       )
                     ],

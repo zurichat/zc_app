@@ -30,9 +30,8 @@ class DmUserViewModel extends FormViewModel {
   List<Message> chatMessages = List.empty(growable: true);
 
   showButtonSheet(Message message) async {
-    print('Our resp ${message.message}');
     await bottomSheet.showCustomSheet(
-        variant: BottomSheetType.FloatingBox,
+        variant: BottomSheetType.floatingBox,
         data: message,
         takesInput: true,
         title: message.message);
@@ -69,7 +68,6 @@ class DmUserViewModel extends FormViewModel {
   }
 
   void deleteMessage(Message message) {
-    print(message.message);
     chatMessages.remove(message);
     notifyListeners();
   }

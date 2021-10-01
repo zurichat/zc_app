@@ -45,21 +45,29 @@ class PostEmojis {
 class UserPost extends UserThreadPost {
   @override
   String? id;
+
   String? userID;
+
   @override
   String? userImage;
+
   @override
   String? displayName;
+
   @override
   String? statusIcon;
+
   @override
   String? lastSeen;
+
   @override
   String? message;
+
   @override
   List<dynamic>? postEmojis;
   String? channelName;
   ChannelType? channelType;
+
   @override
   String postDate;
 

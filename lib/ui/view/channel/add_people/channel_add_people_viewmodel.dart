@@ -14,7 +14,8 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final api = ZuriApi(channelsBaseUrl);
 
-  String? get token => storageService.getString(StorageKeys.currentSessionToken);
+  String? get token =>
+      storageService.getString(StorageKeys.currentSessionToken);
 
   bool get allMarked =>
       markedUsers.length == matchingUsers.length && matchingUsers.isNotEmpty;
@@ -22,14 +23,10 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
   late List<UserSearch> matchingUsers = [];
   late List<UserSearch> markedUsers = [];
 
-  List<UserSearch> users = [
-
-
-  ];
+  List<UserSearch> users = [];
 
   navigateBack() => _navigationService.popRepeated(1);
   void onSearchUser(String input) {
-
     matchingUsers = [
       ...users.where(
           (user) => user.userName!.toLowerCase().contains(input.toLowerCase()))
@@ -39,40 +36,45 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
 
   void onFetchMembers() async {
     setBusy(true);
-    matchingUsers = users = await organizationApi.fetchMembersInOrganization(orgId!);
+    matchingUsers =
+        users = await organizationApi.fetchMembersInOrganization(orgId!);
     setBusy(false);
   }
+
 //TODO: Change channelID
   void onAddButtonTap() async {
     setBusy(true);
     for (var user in markedUsers) {
       await addMemberToChannel("6148c952e4b2aebf8ec8ccd0", user.id!);
-      print(user.id);
     }
     setBusy(false);
     _navigationService.popRepeated(1);
   }
 
- Future <void> addMemberToChannel(String channelId, String userId) async {
+  Future<void> addMemberToChannel(String channelId, String userId) async {
     await api.post(
       "/$orgId/channels/$channelId/members/",
-    //  "/614679ee1a5607b13c00bcb7/channels/$channelId/members/",
+      //  "/614679ee1a5607b13c00bcb7/channels/$channelId/members/",
       token: token,
-      body: {"_id":userId, "role_id": "",
+      body: {
+        "_id": userId,
+        "role_id": "",
         "is_admin": false,
         "notifications": {
           "additionalProp1": "",
           "additionalProp2": "",
           "additionalProp3": ""
-        }},
+        }
+      },
     );
   }
 
   void onMarkOne(bool? marked, int i) {
-    if (marked!)
+    if (marked!) {
       markedUsers.add(matchingUsers[i]);
-    else
+    } else {
       markedUsers.remove(matchingUsers[i]);
+    }
     notifyListeners();
   }
 
@@ -83,4 +85,3 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
 
   String? get orgId => storageService.getString(StorageKeys.currentOrgId);
 }
-

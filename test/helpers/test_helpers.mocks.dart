@@ -1085,7 +1085,11 @@ class MockConnectivityService extends _i1.Mock
   @override
   _i22.ConnectivityStatus get networkStatus => (super.noSuchMethod(
       Invocation.getter(#networkStatus),
+<<<<<<< HEAD
       returnValue: _i22.ConnectivityStatus.Wifi) as _i22.ConnectivityStatus);
+=======
+      returnValue: _i21.ConnectivityStatus.wifi) as _i21.ConnectivityStatus);
+>>>>>>> 4ba1efc0076a5a0d705a868b8d6a7299d39b3572
   @override
   set networkStatus(_i22.ConnectivityStatus? _networkStatus) =>
       super.noSuchMethod(Invocation.setter(#networkStatus, _networkStatus),

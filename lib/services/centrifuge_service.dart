@@ -8,7 +8,7 @@ import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 
 class CentrifugeService with ReactiveServiceMixin {
-  static Client _client =
+  static final Client _client =
       centrifuge.createClient('$websocketUrl?format=protobuf');
   Subscription? _subscription;
   static CentrifugeService? _instance;
@@ -16,9 +16,7 @@ class CentrifugeService with ReactiveServiceMixin {
   static final log = getLogger('CentrifugeService');
 
   static Future<CentrifugeService> getInstance() async {
-    if (_instance == null) {
-      _instance = CentrifugeService();
-    }
+    _instance ??= CentrifugeService();
 
     _client.connectStream.listen(_showLog);
     _client.disconnectStream.listen(_showLog);
@@ -36,13 +34,14 @@ class CentrifugeService with ReactiveServiceMixin {
   }
 
   static void _showLog(_message) {
-    log.i(_message);
+    log.wtf(_message);
   }
 
   Future<Stream?> subscribe(String channelSocketId) async {
-    if (channelSocketId == "")
+    if (channelSocketId == "") {
       throw Exception(
           "Channel Socket ID is required to subscribe to a channel");
+    }
     _subscription = _client.getSubscription(channelSocketId);
 
     _subscription!.subscribeErrorStream.listen(_showError);

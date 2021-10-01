@@ -13,7 +13,7 @@ class StorageKeys {
   static const displayName = 'display_name';
   static const firstName = 'first_name';
   static const status = 'status';
-  static const phone_num = 'phone_num';
+  static const phoneNum = 'phoneNum';
   static const currentUserImageUrl = 'current_url';
   static const currentChannelId = 'current_channel_id';
 }

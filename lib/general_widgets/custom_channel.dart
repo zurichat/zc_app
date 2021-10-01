@@ -13,7 +13,7 @@ class CustomChannel extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      child: Container(
+      child: SizedBox(
         height: 24.h,
         width: 211.w,
         child: Padding(

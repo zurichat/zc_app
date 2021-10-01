@@ -33,11 +33,11 @@ class CustomChipInput extends StatelessWidget {
           fontSize: 16,
           // ignore: todo
           //TODO CHange to brand colors
-          color: const Color(0xFFF999999),
+          color: const Color(0xFF999999),
         ),
       ),
       findSuggestions: (String query) {
-        if (query.length != 0) {
+        if (query.isNotEmpty) {
           final lowercaseQuery = query.toLowerCase();
 
           return mockResults.where((profile) {

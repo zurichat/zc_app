@@ -17,8 +17,8 @@ class Splashview extends StatelessWidget {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Image(
+            children: const [
+               Image(
                 image: AssetImage('assets/logo/splash_image.png'),
               ),
             ],
