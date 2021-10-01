@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/styles.dart';
 
 class DMMessageRead extends StatelessWidget {
@@ -19,7 +20,8 @@ class DMMessageRead extends StatelessWidget {
               color: const Color(0xff1A61DB),
               image: const DecorationImage(
                 image: NetworkImage(
-                    'https://th.bing.com/th/id/OIP.Obw6BUTUPdQGToOSCz5t8QHaHC?pid=ImgDet&w=549&h=522&rs=1'),
+                  DmReadAvatar,
+                ),
                 fit: BoxFit.cover,
               ),
             ),
@@ -44,8 +46,8 @@ class DMMessageRead extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
+            children: const[
+               Text(
                 '1d',
                 // style: AppTextStyles.timestamp,
               ),

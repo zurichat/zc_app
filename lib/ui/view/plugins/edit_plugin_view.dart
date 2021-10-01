@@ -27,12 +27,12 @@ class EditPluginView extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 24.0),
             child: Column(
               children: [
-                Container(
+                const SizedBox(
                     height: 40.0,
                     child: CustomSearchField(
                       searchHint: 'Search plugin',
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 25.0,
                 ),
                 Row(
@@ -44,16 +44,18 @@ class EditPluginView extends StatelessWidget {
                           width: 20,
                         ),
                         text: 'Quick message plugin',
-                        textColor: Color(0xFF242424),
+                        textColor: const Color(0xFF242424),
                       ),
                     ),
                     SizedBox(
                         width: 24.0,
                         height: 24.0,
                         child: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.clear,
                             size: 24.0,
+                            // ignore: todo
+                            //TODO change colors to brand colors
                             color: Color(0xFFF40101),
                           ),
                           onPressed: () {},

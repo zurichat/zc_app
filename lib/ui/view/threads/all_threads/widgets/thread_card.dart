@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
+//The screen shown in homepage -> Threads
 import '../../../../../general_widgets/channel_icon.dart';
 import '../../../../../general_widgets/custom_text.dart';
 import '../../../../../models/user_post.dart';
@@ -17,9 +17,9 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
   final UserPost? userPost;
 
   @override
-  Widget build(BuildContext context, ThreadsViewModel model) {
+  Widget build(BuildContext context, ThreadsViewModel viewModel) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       color: AppColors.whiteColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +31,7 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
             title: Row(
               children: [
                 ChannelIcon(channelType: userPost!.channelType!),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 CustomText(
                   text: userPost!.channelName ?? '',
                   fontSize: 14,
@@ -47,25 +47,34 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
           ThreadCardView.main(userPost),
           userPost!.userThreadPosts != null
               ? ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: userPost!.userThreadPosts!.length,
                   itemBuilder: (ctx, index) {
                     return GestureDetector(
-                        onTap: () => model.navigateToThread(userPost),
-                        child: ThreadCardView.threadPost(
-                            userPost!.userThreadPosts![index]));
+                      onTap: () => viewModel.navigateToThread(userPost),
+                      child: ThreadCardView.threadPost(
+                        userPost!.userThreadPosts![index],
+                      ),
+                    );
                   })
               : Container(),
           Padding(
-            padding: EdgeInsets.only(left: 60),
+            padding: const EdgeInsets.only(left: 60),
             child: MaterialButton(
+              // ignore: todo
               //TODO navigate to details page and focus input
-              onPressed: () => model.navigateToThread(userPost),
-              shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              child: CustomText(text: "Reply", fontWeight: FontWeight.w500),
+              onPressed: () => viewModel.navigateToThread(userPost),
+              shape: const RoundedRectangleBorder(
+                side: BorderSide(width: 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
+                ),
+              ),
+              child: const CustomText(
+                text: 'Reply',
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ],

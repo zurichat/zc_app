@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/ui/view/dm_user/dm_user_view.form.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
 import 'package:hng/utilities/enums.dart';
@@ -30,9 +29,8 @@ class DmUserViewModel extends FormViewModel {
   List<Message> chatMessages = List.empty(growable: true);
 
   showButtonSheet(Message message) async {
-    print('Our resp ${message.message}');
     await bottomSheet.showCustomSheet(
-        variant: BottomSheetType.FloatingBox,
+        variant: BottomSheetType.floatingBox,
         data: message,
         takesInput: true,
         title: message.message);
@@ -49,8 +47,8 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  void sendMessage() {
-    final message = messageValue;
+  void sendMessage(String? _message) {
+    final message = _message;
     if (message!.trim().isNotEmpty) {
       chatMessages.add(
         Message(
@@ -60,6 +58,7 @@ class DmUserViewModel extends FormViewModel {
           time: DateTime.now(),
         ),
       );
+      // ignore: todo
       //TODO - fix autoclear
       // clearText();
       notifyListeners();
@@ -68,7 +67,6 @@ class DmUserViewModel extends FormViewModel {
   }
 
   void deleteMessage(Message message) {
-    print(message.message);
     chatMessages.remove(message);
     notifyListeners();
   }

@@ -35,24 +35,26 @@ class UserSearch extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.arrow_back_ios),
-                      Column(
-                        children: [
+                      const Icon(Icons.arrow_back_ios),
+                    Column(
+                        children: const [
                           Text('People'),
                           Text('2552 members'),
                         ],
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                         hintText: 'Search for members',
                         hintStyle: GoogleFonts.lato(
+                          // ignore: todo
+                          //TODO Change to brand colors
                           color: Colors.grey,
                         ),
                       ),

@@ -5,7 +5,7 @@ import 'package:stacked/stacked_annotations.dart';
 
 import '../../../shared/colors.dart';
 import '../../../shared/styles.dart';
-import 'editChannelViewModel.dart';
+import 'edit_channel_view_model.dart';
 import 'edit_channel_view.form.dart';
 import 'widgets/edit_channel_appbar.dart';
 import 'widgets/edit_channel_headers.dart';
@@ -36,9 +36,9 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
         body: SingleChildScrollView(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(height: 20),
-            TextHeader(headerText: 'Channel Name'),
-            SizedBox(
+            const SizedBox(height: 20),
+           const  TextHeader(headerText: 'Channel Name'),
+            const SizedBox(
               height: 16.0,
             ),
             Container(
@@ -48,33 +48,34 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
                 style: AppTextStyles.body1Light,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25.0,
             ),
             Container(
               margin: _padding,
               child: Text(
-                "Channel names must be lowercase, without spaces or periods, and can't be longer than 80 characters",
+                """
+Channel names must be lowercase, without spaces or periods, and can't be longer than 80 characters""",
                 style: AppTextStyles.body2_400,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 36.0,
             ),
-            TextHeader(headerText: 'Channel Topic'),
+            const TextHeader(headerText: 'Channel Topic'),
             TextBox(
               hint: 'Add a topic',
               controller: topicController,
             ),
-            TextHeader(headerText: 'Channel Description'),
+           const  TextHeader(headerText: 'Channel Description'),
             TextBox(
                 hint: 'Set a description', controller: descriptionController),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Container(
               width: double.infinity,
-              decoration: BoxDecoration(color: Color(0xffF6F6F6)),
+              decoration: const BoxDecoration(color: Color(0xffF6F6F6)),
               height: 90,
             ),
           ]),

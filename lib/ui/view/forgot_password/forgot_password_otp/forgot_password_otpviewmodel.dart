@@ -1,21 +1,26 @@
 import 'dart:async';
 
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/otp/otp_view.form.dart';
+import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../../app/app.locator.dart';
-import '../../../../app/app.router.dart';
-import '../../../../package/base/server-request/api/http_api.dart';
-import '../../../../utilities/enums.dart';
-import '../../../shared/shared.dart';
-import '../../otp/otp_view.form.dart';
-
 class ForgotPasswordOtpViewModel extends FormViewModel {
-  NavigationService _navigationService = NavigationService();
-  final _apiService = HttpApiService(coreBaseUrl);
-  final snackbar = locator<SnackbarService>();
+  final NavigationService _navigationService = NavigationService();
+  final _apiService = ZuriApi(coreBaseUrl);
+  final _snackbarService = locator<SnackbarService>();
   bool isLoading = false;
+  final storageService = locator<SharedPreferenceLocalStorage>();
+  String? get token =>
+      storageService.getString(StorageKeys.currentSessionToken);
 
   // ignore: close_sinks
   StreamController<ErrorAnimationType>? errorController;
@@ -31,37 +36,37 @@ class ForgotPasswordOtpViewModel extends FormViewModel {
 
   Future verifyOtpCode() async {
     loading(true);
-    const endpoint = '/account/verify-reset-password';
+
     if (otpValue == '') {
       loading(false);
-      snackbar.showCustomSnackBar(
+      _snackbarService.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: 'Please Fill in all fields');
+          message: fillAllFields);
       return;
     }
+    notifyListeners();
+
     final validationData = {'code': otpValue};
-    final response = await _apiService.post(endpoint, data: validationData);
+    final response = await _apiService.post(verifyOTPEndpoint,
+        body: validationData, token: token);
     loading(false);
-    navigateToNewPassword();
     if (response?.statusCode == 200) {
-      snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.success,
-          message: '''Password reset. Enter a new one.''');
+      _snackbarService.showCustomSnackBar(
+        duration: const Duration(seconds: 2),
+        variant: SnackbarType.success,
+        message: EnterNewPassword,
+      );
       navigateToNewPassword();
     } else {
-      // AppSnackBar.failure(
-      //     context,response?.data['message'] ?? 'OTP could not be validated.' );
-      snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.failure,
-          message: response?.data['message'] ?? 'OTP could not be validated.');
+      _snackbarService.showCustomSnackBar(
+        duration: const Duration(seconds: 2),
+        variant: SnackbarType.failure,
+        message: response?.data['message'] ?? errorOTP,
+      );
     }
   }
 
   @override
-  void setFormStatus() {
-    // TODO: implement setFormStatus
-  }
+  void setFormStatus() {}
 }

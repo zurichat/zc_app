@@ -10,10 +10,13 @@ import 'package:stacked/stacked.dart';
 import '../shared_widgets.dart';
 import 'channel_members_list_model.dart';
 
+// ignore: must_be_immutable
 class ChannelMembersList extends StatelessWidget {
-  List <ChannelMembermodel>channelMembers;
-  ChannelModel channelDetail;
-  ChannelMembersList({required this.channelMembers,required this.channelDetail});
+  final List<ChannelMembermodel> channelMembers;
+  final ChannelModel channelDetail;
+  const ChannelMembersList(
+      {required this.channelMembers, required this.channelDetail, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +26,23 @@ class ChannelMembersList extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              "${channelDetail.name}",
+              '${channelDetail.name}',
               style: GoogleFonts.lato(
-                  color: Color(0xFF242424),
+                  // ignore: todo
+                  //TODO change to brand colors
+                  color: const Color(0xFF242424),
                   fontWeight: FontWeight.bold,
                   fontSize: 20.0),
             ),
             backgroundColor: Colors.white,
             elevation: 1.5,
             leading: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.clear,
                 color: Color(0xFF333333),
                 // size: 24,
               ),
-              padding: EdgeInsets.only(left: 18),
+              padding: const EdgeInsets.only(left: 18),
               onPressed: () {
                 viewModel.goBack();
               },
@@ -50,7 +55,10 @@ class ChannelMembersList extends StatelessWidget {
                   child: Text(
                     'Edit',
                     style: GoogleFonts.lato(
-                        color: Color(0xFF00B87C), fontSize: 16.0),
+                        // ignore: todo
+                        //TODO change to brand colors
+                        color: const Color(0xFF00B87C),
+                        fontSize: 16.0),
                   ),
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
@@ -77,7 +85,7 @@ class ChannelMembersList extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(25.0, 24.0, 16.0, 0),
                 child: GestureDetector(
                   onTap: () {},
-                  child: CustomPluginPageListTile(
+                  child: const CustomPluginPageListTile(
                     leadingIcon: Icon(
                       Icons.add,
                       color: AppColors.zuriPrimaryColor,
@@ -89,10 +97,11 @@ class ChannelMembersList extends StatelessWidget {
               ),
               Expanded(
                 child: ListView.separated(
-                  physics: BouncingScrollPhysics(),
-                  padding: EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
                   itemCount: channelMembers.length,
-                  separatorBuilder: (context, index) => SizedBox(height: 24),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 24),
                   itemBuilder: (context, index) => Row(
                     children: [
                       Expanded(
@@ -108,17 +117,19 @@ class ChannelMembersList extends StatelessWidget {
                                   ),
                                 ),
                                 //if (viewModel.matchingUsers[index].online)
-                                  CircleAvatar(
-                                    backgroundColor: Color(0xFF00B87C),
-                                    radius: 4.0,
-                                  ),
+                                const CircleAvatar(
+                                  backgroundColor: Color(0xFF00B87C),
+                                  radius: 4.0,
+                                ),
                               ],
                             ),
-                            SizedBox(width: 20.0),
+                            const SizedBox(width: 20.0),
                             Text(
                               channelMembers[index].name,
                               style: GoogleFonts.lato(
-                                color: Color(0xFF424141),
+                                // ignore: todo
+                                //TODO change to brand colors
+                                color: const Color(0xFF424141),
                               ),
                             ),
                           ],

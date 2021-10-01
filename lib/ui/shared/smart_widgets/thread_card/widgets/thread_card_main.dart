@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
-
+//Shows the original message with the number of replies
 import '../../../../../general_widgets/custom_text.dart';
 import '../../../../../models/user_post.dart';
 import '../../../../../utilities/utilities.dart';
@@ -15,28 +16,28 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
   final UserPost? userPost;
 
   @override
-  Widget build(BuildContext context, ThreadCardViewModel model) {
+  Widget build(BuildContext context, ThreadCardViewModel viewModel) {
     return GestureDetector(
-      onTap: () => model.navigateToThread(userPost),
+      onTap: () => viewModel.navigateToThread(userPost),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             InkWell(
-              onTap: model.viewProfile,
+              onTap: viewModel.viewProfile,
               child: Container(
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
                     color: Colors.blue,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: AssetImage("${userPost!.userImage}")),
+                        image: AssetImage('${userPost!.userImage}')),
                   )),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,12 +54,11 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Icon(
-                            userPost!.statusIcon,
-                            color: Colors.blue,
-                            size: 18,
+                          Text(
+                            "${userPost!.statusIcon}",
+                            style: AppTextStyles.regular,
                           ),
-                          SizedBox(width: 2),
+                          const SizedBox(width: 2),
                           CustomText(
                             text: '${userPost!.lastSeen}',
                             fontSize: 12,
@@ -66,18 +66,18 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextParser(userPost!.message),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   EmojisList(userPost: userPost),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   !nullListChecker(userPost!.userThreadPosts)
                       ? Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Text(
-                            "Show ${userPost!.userThreadPosts!.length} more replies",
+                            '$Show ${userPost!.userThreadPosts!.length} $moreReplies',
                             style: AppTextStyles.textButton1,
                           ),
                         )

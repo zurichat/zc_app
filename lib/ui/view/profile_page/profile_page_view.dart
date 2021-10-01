@@ -28,18 +28,18 @@ class _MyHomePageState extends State<ProfilePageView> {
                     Column(children: <Widget>[
                       Image.network(model.url),
                       Container(
-                        margin: EdgeInsets.all(12),
+                        margin: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
                             border: Border.all(width: 1.0, color: Colors.grey)),
                         child: TextButton.icon(
                           onPressed: () {
                             model.saveProfilePictureLocally();
                             final snackBar = SnackBar(
-                              content: Text(
+                              content: const Text(
                                 'Downloaded',
                               ),
                               backgroundColor: Colors.green,
-                              duration: Duration(milliseconds: 1000),
+                              duration: const Duration(milliseconds: 1000),
                               behavior: SnackBarBehavior.floating,
                               width: 280.0,
                               shape: RoundedRectangleBorder(
@@ -49,11 +49,11 @@ class _MyHomePageState extends State<ProfilePageView> {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
                           },
-                          label: Text(
+                          label: const Text(
                             'download',
                             style: TextStyle(color: Colors.grey),
                           ),
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.download,
                             color: Colors.grey,
                           ),

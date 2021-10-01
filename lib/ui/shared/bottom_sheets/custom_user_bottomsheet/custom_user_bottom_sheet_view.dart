@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/custom_text.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import 'custom_user_bottom_sheet_viewmodel.dart';
 import 'widgets/custom_button.dart';
 import 'widgets/custom_profile_tile.dart';
 import 'widgets/profile_head.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:stacked_services/stacked_services.dart';
-
-import 'package:stacked/stacked.dart';
-
-import 'custom_user_bottom_sheet_viewmodel.dart';
 
 class CustomUserBottomSheetView extends StatelessWidget {
   final SheetRequest request;
@@ -22,10 +22,10 @@ class CustomUserBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : DraggableScrollableSheet(
               maxChildSize: 0.97,
               initialChildSize: 0.7,
@@ -40,18 +40,18 @@ class CustomUserBottomSheetView extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Container(
+                        SizedBox(
                           height: height * .3,
-                          child: ProfileHead(),
+                          child: const ProfileHead(),
                         ),
-                        Container(
+                        SizedBox(
                           height: height * .1,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              CustomButton(text: 'Message', onPressed: () {}),
+                              CustomButton(text: Msg, onPressed: () {}),
                               CustomButton(
-                                text: 'Edit Profile',
+                                text: EditProfile,
                                 onPressed: () => model.navigateToEditProfile(),
                               ),
                               CustomButton.icon(
@@ -60,34 +60,34 @@ class CustomUserBottomSheetView extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Divider(),
-                        CustomProfileTile(
-                            title: 'What I do', subtitle: 'Mobile Dev'),
-                        Divider(),
-                        CustomProfileTile(
-                            title: 'Display Name', subtitle: 'pauleke65'),
-                        Divider(),
+                        const Divider(),
+                        const CustomProfileTile(
+                            title: Track, subtitle: MobileDev),
+                        const Divider(),
+                        const CustomProfileTile(
+                            title: DisplayName, subtitle: PaulEke),
+                        const Divider(),
                         ListTile(
-                          title: CustomText(
-                              text: 'Status', fontWeight: FontWeight.w300),
-                          subtitle: Align(
+                          title: const CustomText(
+                              text: Status, fontWeight: FontWeight.w300),
+                          subtitle: const Align(
                               alignment: Alignment.centerLeft,
-                              child: Icon(Icons.looks_5, color: AppColors.blueTextColor)),
-                          shape: Border(
+                              child: Icon(Icons.looks_5,
+                                  color: AppColors.blueTextColor)),
+                          shape: const Border(
                             top: BorderSide(
                                 width: .5, color: AppColors.greyishColor),
                           ),
                           onTap: () => model.navigateToSetStatus(),
                           trailing: IconButton(
-                              onPressed: () {}, icon: Icon(Icons.cancel)),
+                              onPressed: () {}, icon: const Icon(Icons.cancel)),
                         ),
-                        Divider(),
-                        CustomProfileTile(
-                            title: 'Mobile Number', subtitle: '+2347023456789'),
-                        Divider(),
-                        CustomProfileTile(
-                            title: 'Email Address',
-                            subtitle: 'myemail@mail.com'),
+                        const Divider(),
+                        const CustomProfileTile(
+                            title: Number, subtitle: sampleNumber),
+                        const Divider(),
+                        const CustomProfileTile(
+                            title: EmailAddress, subtitle: EmailPlaceholder),
                       ],
                     ),
                   ),

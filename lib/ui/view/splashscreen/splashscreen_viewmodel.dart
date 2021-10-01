@@ -16,15 +16,16 @@ class SplashscreenViewModel extends BaseViewModel {
     Timer(
       const Duration(seconds: 1),
       () {
-        navigation.navigateTo(Routes.signUpView);
         //TODO comment it out to get access to once only view
         if (storage.getBool('onboarded') == null ||
             storage.getBool('onboarded') == false) {
           storage.setBool('onboarded', true);
           navigation.navigateTo(Routes.onboardingView);
-        } else if (
-        storage.getBool(StorageKeys.registeredNotverifiedOTP) == true) {
+        } else if (storage.getBool(StorageKeys.registeredNotverifiedOTP) ==
+            true) {
           navigation.navigateTo(Routes.oTPView);
+        } else if (storage.getString(StorageKeys.currentUserId) == null) {
+          navigation.navigateTo(Routes.signUpView);
         } else {
           navigation.navigateTo(Routes.loginView);
         }

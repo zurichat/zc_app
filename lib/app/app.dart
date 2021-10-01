@@ -1,8 +1,21 @@
+import 'package:hng/services/centrifuge_service.dart';
+import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
+import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
+import 'package:hng/ui/view/user_search/user_search_view.dart';
+import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
+import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/services/user_service.dart';
+import 'package:hng/ui/view/channel/edit_channel/edit_channel_view.dart';
+import 'package:hng/ui/view/threads/thread_detail/thread_detail_view.dart';
+import 'package:hng/ui/view/organization/organization_url/organization_url_view.dart';
+import 'package:hng/ui/view/channel/add_people/channel_add_people_view.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
-
 import '../package/base/jump_to_request/jump_to_api.dart';
 import '../package/base/server-request/channels/channels_api_service.dart';
 import '../package/base/server-request/dms/dms_api_service.dart';
@@ -129,6 +142,10 @@ import '../ui/view/view_profile_page/view_profile.dart';
     LazySingleton(classType: DMApiService),
     LazySingleton(classType: ChannelsApiService),
     LazySingleton(classType: JumpToApi),
+    Presolve(
+      classType: CentrifugeService,
+      presolveUsing: CentrifugeService.getInstance,
+    ),
   ],
   logger: StackedLogger(),
 )

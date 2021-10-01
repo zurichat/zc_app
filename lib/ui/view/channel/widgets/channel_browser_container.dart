@@ -5,17 +5,16 @@ import 'package:stacked/stacked.dart';
 class ChannelBrowserContainer extends ViewModelWidget<ChannelListViewModel> {
   final String channelName;
   final String? channelId;
-  ChannelBrowserContainer({required this.channelName, this.channelId});
+  const ChannelBrowserContainer(
+      {required this.channelName, this.channelId, Key? key})
+      : super(key: key);
 
   @override
-  Widget build(BuildContext context, ChannelListViewModel model) {
+  Widget build(BuildContext context, ChannelListViewModel viewModel) {
     return InkWell(
-      onTap: (){
-        print(channelId);
-        model.navigateToChannelPage(channelId);
-      },
+      onTap: () {},
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
         ),
         child: Padding(
@@ -39,18 +38,17 @@ class ChannelBrowserContainer extends ViewModelWidget<ChannelListViewModel> {
                     ),
                     const SizedBox(height: 7),
                     Row(
-                      children: <Widget>[
-                        const Text('You are a member',
+                      children: const [
+                        Text('You are a member',
                             style: TextStyle(
                                 color: Color(0xff00B87C), fontSize: 14)),
-                        const SizedBox(width: 5),
-                        const Icon(Icons.circle,
-                            color: Color(0XFFFBEBEBE), size: 10),
-                        const SizedBox(width: 5),
-                        const Text(
+                        SizedBox(width: 5),
+                        Icon(Icons.circle, color: Color(0xffbebebe), size: 10),
+                        SizedBox(width: 5),
+                        Text(
                           '128 members',
                           style:
-                              TextStyle(color: Color(0XFFFBEBEBE), fontSize: 15),
+                              TextStyle(color: Color(0xffbebebe), fontSize: 15),
                         )
                       ],
                     )

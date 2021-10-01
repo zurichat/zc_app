@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -10,6 +11,7 @@ import '../../../../utilities/enums.dart';
 // import '../../../../services/local_storage_services.dart';
 
 class CreateOrganizationViewModel extends BaseViewModel {
+  final log = getLogger("CreateOrganizationViewModel");
   final _navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
   // final _storage = locator<SharedPreferenceLocalStorage>();
@@ -31,6 +33,7 @@ class CreateOrganizationViewModel extends BaseViewModel {
   //       navigateToWorkSpaceUrl();
   //       break;
   //     case WorkspaceSwitchMethod.Create:
+  // ignore: todo
   //       // TODO: Handle this case.
   //       break;
   //     case WorkspaceSwitchMethod.Join:
@@ -61,7 +64,7 @@ class CreateOrganizationViewModel extends BaseViewModel {
         noOfMembers: 0,
       );
     } catch (e) {
-      print(e.toString());
+      log.e(e.toString());
       snackbar.showSnackbar(message: e.toString());
     }
   }
@@ -90,7 +93,10 @@ class CreateOrganizationViewModel extends BaseViewModel {
   }
 
   void next() {
-    pageController.nextPage(duration: Duration(seconds: 1), curve: Curves.ease);
+    pageController.nextPage(
+      duration: const Duration(seconds: 1),
+      curve: Curves.ease,
+    );
   }
 
   Future<void> addTeammates() async {
@@ -99,9 +105,11 @@ class CreateOrganizationViewModel extends BaseViewModel {
           message: 'Must not be empty', variant: SnackbarType.failure);
     }
     if (org == null) {
-      print('org is null oooo');
+      log.i('org is null oooo');
       return snackbar.showCustomSnackBar(
-          message: 'Org is null oooo', variant: SnackbarType.failure);
+        message: 'Org is null oooo',
+        variant: SnackbarType.failure,
+      );
     }
     setBusy(true);
     await _api.addMemberToOrganization(org!.id!, inviteController.text);

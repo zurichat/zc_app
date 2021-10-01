@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
-import '../editChannelViewModel.dart';
+import '../edit_channel_view_model.dart';
 
 class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
   final String appbarTitle;
@@ -44,7 +44,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
                 //model.nToPlugins();
               }
             },
-            child: Container(
+            child: SizedBox(
               width: 60.0,
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 8.0, 0, 8.0),
@@ -64,7 +64,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
             height: 16.0,
             width: 16.0,
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios, size: 16.0),
+              icon: const Icon(Icons.arrow_back_ios, size: 16.0),
               onPressed: () {
                 if (appbarAction == 'Edit') {
                   model.nToChannelInfo();

@@ -13,28 +13,30 @@ class _DateAndTimeState extends State<DateAndTime> {
   TextEditingController dateController = TextEditingController(text: 'Today');
   TextEditingController timeController = TextEditingController(text: '2:00 PM');
 
-  Future<Null> _selectDate(BuildContext context) async {
+  Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
         firstDate: selectedDate,
         lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate)
+    if (picked != null && picked != selectedDate) {
       setState(() {
         dateController.text = '${picked.toLocal()}'.split(' ')[0];
       });
+    }
   }
 
-  Future<Null> _selectTime(BuildContext context) async {
+  Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
       initialTime: selectedTime,
     );
 
-    if (picked != null && picked != selectedTime)
+    if (picked != null && picked != selectedTime) {
       setState(() {
         timeController.text = '${picked.format(context)}';
       });
+    }
   }
 
   @override
@@ -45,7 +47,7 @@ class _DateAndTimeState extends State<DateAndTime> {
           controller: dateController,
           readOnly: true,
           onTap: () => _selectDate(context),
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: 'Date',
             suffix: Icon(Icons.keyboard_arrow_down_rounded),
           ),
@@ -54,7 +56,7 @@ class _DateAndTimeState extends State<DateAndTime> {
           controller: timeController,
           onTap: () => _selectTime(context),
           readOnly: true,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: 'Time',
             suffix: Icon(Icons.keyboard_arrow_down_rounded),
           ),

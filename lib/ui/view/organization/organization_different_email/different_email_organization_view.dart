@@ -18,13 +18,11 @@ class UseDifferentEmailView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.zuriPrimaryColor,
-          title: Text(
-            'Use a different email',
-          ),
+          title: const Text('Use a different email'),
         ),
         body: SafeArea(
           child: Container(
-            margin: EdgeInsets.all(19.8),
+            margin: const EdgeInsets.all(19.8),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -40,11 +38,12 @@ class UseDifferentEmailView extends StatelessWidget {
                           }
                         },
                         controller: email,
-                        hint: "Enter Email Address",
+                        hint: 'Enter Email Address',
                         autofocus: true,
                       ),
-                      Text(
-                        "We’ll send you an email that will instantly sign you in",
+                      const Text(
+                        '''We’ll send you an email '''
+                        '''that will instantly sign you in''',
                       ),
                     ],
                   ),
@@ -53,8 +52,12 @@ class UseDifferentEmailView extends StatelessWidget {
                     children: [
                       TextButton(
                           style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Color(0xffBEBEBE))),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              // ignore: todo
+                              //TODO Change brand colors
+                              const Color(0xffBEBEBE),
+                            ),
+                          ),
                           onPressed: () {},
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -71,7 +74,7 @@ class UseDifferentEmailView extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.nightlife),
+          child: const Icon(Icons.nightlife),
           onPressed: () {},
         ),
       ),

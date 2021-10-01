@@ -22,8 +22,11 @@ class UserSearch {
   DateTime? joinedAt;
   String? lastName;
   String? orgId;
-  int? phone;
-  bool presence;
+
+  // ignore: todo
+  //TODO Change back to normal type phone and presence and speak with backend
+  String? phone;
+  String? presence;
   String? pronouns;
   String? role;
   dynamic settings;
@@ -46,7 +49,7 @@ class UserSearch {
     this.lastName,
     this.orgId,
     this.phone,
-    this.presence = true,
+    this.presence,
     this.pronouns,
     this.role,
     this.settings,

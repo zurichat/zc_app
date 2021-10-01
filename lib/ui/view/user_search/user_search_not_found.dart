@@ -34,22 +34,22 @@ class UserSearch extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.arrow_back_ios),
+                      const Icon(Icons.arrow_back_ios),
                       Column(
-                        children: [
+                        children: const [
                           Text('People'),
                           Text('2552 members'),
                         ],
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                         hintText: 'Search for members',
                         hintStyle: GoogleFonts.lato(
                           color: Colors.grey,
@@ -58,7 +58,7 @@ class UserSearch extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Text('No result found'),
+                  const Text('No result found'),
                   Container(
                     height: 50,
                     alignment: Alignment.center,

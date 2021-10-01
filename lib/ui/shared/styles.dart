@@ -20,6 +20,11 @@ class AppTextStyles {
     color: AppColors.blackColor,
     fontSize: 20,
   );
+  static TextStyle hashtag = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.greyColor,
+    fontSize: 20,
+  );
   static TextStyle heading6 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
     color: AppColors.greyishColor,
@@ -133,6 +138,11 @@ class AppTextStyles {
     color: AppColors.greyColor,
     fontSize: 12,
   );
+  static TextStyle subtitle1 = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.deepGreyColor,
+    fontSize: 12,
+  );
   static TextStyle normalGrey = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     color: AppColors.greyColor,
@@ -159,9 +169,8 @@ class AppTextStyles {
     fontSize: 16,
   );
 
-  static TextStyle zuriAppBarWordLogo = TextStyle(
+  static TextStyle zuriAppBarWordLogo = GoogleFonts.lato(
       fontSize: 18.08,
-      fontFamily: 'Lato',
       fontWeight: FontWeight.w700,
       color: AppColors.whiteColor,
       height: 1,
@@ -214,9 +223,19 @@ class AppTextStyles {
     color: AppColors.darkGreyColor,
     fontSize: 14,
   );
+  static TextStyle nameStyle1 = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.deepGreyColor,
+    fontSize: 14,
+  );
+  static TextStyle hintStyle = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.searchHintColor,
+    fontSize: 14,
+  );
   static TextStyle smallText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
-    color: AppColors.ZuriGrey,
+    color: AppColors.zuriGrey,
     fontSize: 12,
   );
   static TextStyle smallTextGrey = GoogleFonts.lato(
@@ -226,7 +245,7 @@ class AppTextStyles {
   );
   static TextStyle mediumText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
-    color: AppColors.ZuriGrey,
+    color: AppColors.zuriGrey,
     fontSize: 16,
   );
   static TextStyle bodySmall = GoogleFonts.lato(
@@ -239,9 +258,20 @@ class AppTextStyles {
     color: AppColors.zuriPrimaryColor,
     fontSize: 16,
   );
+
+  static TextStyle appBarTextStyle = GoogleFonts.lato(
+      fontSize: 20,
+      fontWeight: FontWeight.w700,
+      color: AppColors.zuriTextColorHeader);
+
   static TextStyle headerStyle = GoogleFonts.lato(
       fontSize: 16,
       fontWeight: FontWeight.w700,
+      color: AppColors.zuriTextColorHeader);
+
+  static TextStyle headerStyle1 = GoogleFonts.lato(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
       color: AppColors.zuriTextColorHeader);
 
   static TextStyle namesStyle = GoogleFonts.lato(
@@ -258,12 +288,18 @@ class AppTextStyles {
       fontSize: 15,
       fontWeight: FontWeight.w600,
       color: AppColors.unreadMessageColor);
+
+  static TextStyle archiveTextStyle2 = GoogleFonts.lato(
+      fontSize: 14,
+      fontWeight: FontWeight.w700,
+      color: AppColors.unreadMessageColor);
 }
 
+// ignore: must_be_immutable
 class StatusIcon extends StatelessWidget {
   int count = 5;
 
-  StatusIcon(int parse);
+  StatusIcon(this.count, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

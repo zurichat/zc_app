@@ -1,25 +1,27 @@
-import 'package:flutter/material.dart';
 import '../utilities/enums.dart';
 
 class UserThreadPost {
-  int? id;
+  String? id;
+  String? userId;
   String? displayName;
   String? userImage;
-  IconData? statusIcon;
+  String? statusIcon;
+
   String? lastSeen;
   String? message;
-  List<PostEmojis>? postEmojis;
-  String? postDate;
+  List<dynamic>? postEmojis;
+  String postDate;
 
   UserThreadPost({
     required this.id,
+    this.userId,
     this.userImage,
     required this.displayName,
     this.statusIcon,
     this.lastSeen,
     required this.message,
     this.postEmojis,
-    this.postDate,
+    this.postDate = '',
   });
 
   void addReaction(PostEmojis postEmoji) {
@@ -42,39 +44,49 @@ class PostEmojis {
 
 class UserPost extends UserThreadPost {
   @override
-  int? id;
+  String? id;
+
+  String? userID;
+
   @override
   String? userImage;
+
   @override
   String? displayName;
+
   @override
-  IconData? statusIcon;
+  String? statusIcon;
+
   @override
   String? lastSeen;
+
   @override
   String? message;
+
   @override
-  List<PostEmojis>? postEmojis;
+  List<dynamic>? postEmojis;
   String? channelName;
   ChannelType? channelType;
+
   @override
-  String? postDate;
+  String postDate;
 
   List<UserThreadPost>? userThreadPosts;
 
-  UserPost({
-    required this.id,
-    required this.displayName,
-    this.userImage,
-    required this.message,
-    this.statusIcon,
-    this.lastSeen,
-    this.postEmojis,
-    this.userThreadPosts,
-    this.channelName,
-    this.channelType,
-    this.postDate,
-  }) : super(
+  UserPost(
+      {required this.id,
+      this.userID,
+      required this.displayName,
+      this.userImage,
+      required this.message,
+      this.statusIcon,
+      this.lastSeen,
+      this.postEmojis,
+      this.userThreadPosts,
+      this.channelName,
+      this.channelType,
+      this.postDate = ''})
+      : super(
           id: id,
           displayName: displayName,
           message: message,

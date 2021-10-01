@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../shared/shared.dart';
+import 'package:hng/ui/shared/shared.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -13,48 +13,61 @@ class EditProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     return ViewModelBuilder<EditProfileViewModel>.reactive(
-      onModelReady: (model) => model.fetchUser(),
-      builder: (context, model, child) => Scaffold(
+      viewModelBuilder: () => EditProfileViewModel(),
+      builder: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
-              onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
-          title: Text('Edit Profile'),
+              onPressed: viewModel.exitPage, icon:const  Icon(Icons.close_rounded)),
+          title:const  Text("Edit Profile"),
           actions: [
             TextButton(
               onPressed: () async {
-                await model.updateProfile();
+                await viewModel.updateProfile();
               },
-              child: Text(
-                'Save',
+              child:const  Text(
+                "Save",
                 style: TextStyle(color: AppColors.zuriTextBodyColor),
               ),
             )
           ],
         ),
-        body: Body(size: _size),
+        body: Visibility(
+          visible: !viewModel.isBusy,
+          child: Body(size: _size),
+          replacement: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text('Getting Your data...'),
+                CircularProgressIndicator(
+                  color: AppColors.zuriPrimaryColor,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
-      viewModelBuilder: () => EditProfileViewModel(),
     );
   }
 }
 
 class Body extends ViewModelWidget<EditProfileViewModel> {
   final Size _size;
-  Body({
+  const Body({
     Key? key,
     required Size size,
   })  : _size = size,
         super(key: key, reactive: true);
   @override
-  Widget build(BuildContext context, EditProfileViewModel model) {
+  Widget build(BuildContext context, EditProfileViewModel viewModel) {
     return Container(
       padding: EdgeInsets.symmetric(
           vertical: _size.height * 0.02, horizontal: _size.width * 0.05),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: _size.height * 0.14,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -62,9 +75,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   Container(
                     width: _size.height * 0.14,
                     height: double.maxFinite,
-                    decoration: BoxDecoration(
+                    decoration:const  BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/background/appBarLogo.png'),
+                        image: AssetImage("assets/background/appBarLogo.png"),
                         fit: BoxFit.contain,
                       ),
                       borderRadius: BorderRadius.all(
@@ -82,16 +95,16 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                           )),
                     ),
                   ),
-                  Spacer(),
-                  Container(
+                const   Spacer(),
+                  SizedBox(
                     width: _size.width * 0.55,
                     child: TextFormField(
-                      initialValue: model.name,
+                      initialValue: viewModel.userData.firstName,
                       onChanged: (value) {
-                        model.updateString(value, '', '', '');
+                        viewModel.updateString(value, '', '', '');
                       },
-                      decoration: InputDecoration(
-                        labelText: 'Full Name',
+                      decoration:const  InputDecoration(
+                        labelText: "Full Name",
                       ),
                     ),
                   )
@@ -99,33 +112,32 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue:
-                  ' Please open and close this page twice to see changes after saving',
+              initialValue: viewModel.userData.displayName,
               onChanged: (value) {
-                model.updateString('', value, '', '');
+                viewModel.updateString('', value, '', '');
               },
-              decoration: InputDecoration(
-                labelText: 'Display Name',
+              decoration:const  InputDecoration(
+                labelText: "Display Name",
                 helperText:
-                    'This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.',
+                    "This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.",
                 helperMaxLines: 3,
               ),
             ),
             TextFormField(
-              initialValue: 'The Back End for this does not exist',
+              initialValue: viewModel.userData.status,
               onChanged: (value) {
-                model.updateString('', '', value, '');
+                viewModel.updateString('', '', value, '');
               },
-              decoration: InputDecoration(
-                  labelText: 'What I do', helperText: 'HNGi9 X I4G'),
+              decoration:const  InputDecoration(
+                  labelText: "What I do", helperText: "HNGi9 X I4G"),
             ),
             TextFormField(
-              initialValue: 'The Back End for this does not exist',
+              initialValue: viewModel.userData.phoneNum,
               onChanged: (value) {
-                model.updateString('', '', '', value);
+                viewModel.updateString('', '', '', value);
               },
-              decoration: InputDecoration(
-                  labelText: 'Phone', helperText: 'Enter your phone number'),
+              decoration:const  InputDecoration(
+                  labelText: "Phone", helperText: "Enter your phone number"),
             ),
           ],
         ),

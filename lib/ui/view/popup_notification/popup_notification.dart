@@ -20,7 +20,7 @@ class PopUpNotificationsView extends StatelessWidget {
             ),
             body: SingleChildScrollView(
               child: Container(
-                margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+                margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -32,7 +32,7 @@ class PopUpNotificationsView extends StatelessWidget {
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children: const [
                               ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Chess Room'),
@@ -44,7 +44,7 @@ class PopUpNotificationsView extends StatelessWidget {
                                 leading:
                                     Icon(Icons.perm_contact_calendar_outlined),
                               ),
-                              const ListTile(
+                              ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Notice Board'),
                                 leading:
@@ -75,7 +75,7 @@ class PopUpNotificationsView extends StatelessWidget {
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.add),
+                child: const Icon(Icons.add),
                 backgroundColor: AppColors.zuriPrimaryColor,
                 onPressed: () {
                   showSimpleNotification(
@@ -91,46 +91,44 @@ class PopUpNotificationsView extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(height: 20),
-                                    Container(
-                                      height: 40,
-                                      width: 60,
-                                      alignment: Alignment.centerLeft,
-                                      child: Image.asset(
-                                        model.profileImage,
-                                        fit: BoxFit.contain,
-                                      ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(height: 20),
+                                  Container(
+                                    height: 40,
+                                    width: 60,
+                                    alignment: Alignment.centerLeft,
+                                    child: Image.asset(
+                                      model.profileImage,
+                                      fit: BoxFit.contain,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 180, top: 8.0),
-                                      child: Container(
-                                        height: 40,
-                                        child: Text(
-                                          model.notiText,
-                                          style: TextStyle(
-                                            color: AppColors.deepBlackColor,
-                                            fontSize: 12.0,
-                                          ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 180, top: 8.0),
+                                    child: SizedBox(
+                                      height: 40,
+                                      child: Text(
+                                        model.notiText,
+                                        style: const TextStyle(
+                                          color: AppColors.deepBlackColor,
+                                          fontSize: 12.0,
                                         ),
                                       ),
-                                    )
-                                  ],
-                                ),
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(16.0),
-                                  child: Container(
+                                  child: SizedBox(
                                     width: 70,
                                     height: 70,
                                     child: CircleAvatar(
@@ -146,22 +144,18 @@ class PopUpNotificationsView extends StatelessWidget {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      child: Text(
-                                        model.notiText2,
-                                        style: TextStyle(
-                                          color: AppColors.deepBlackColor,
-                                          fontSize: 12.0,
-                                        ),
+                                    Text(
+                                      model.notiText2,
+                                      style: const TextStyle(
+                                        color: AppColors.deepBlackColor,
+                                        fontSize: 12.0,
                                       ),
                                     ),
-                                    Container(
-                                      child: Text(
-                                        model.notiText4,
-                                        style: TextStyle(
-                                          color: AppColors.deepBlackColor,
-                                          fontSize: 12.0,
-                                        ),
+                                    Text(
+                                      model.notiText4,
+                                      style: const TextStyle(
+                                        color: AppColors.deepBlackColor,
+                                        fontSize: 12.0,
                                       ),
                                     ),
                                   ],
@@ -173,12 +167,10 @@ class PopUpNotificationsView extends StatelessWidget {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(16.0),
-                                  child: Container(
-                                    child: Text(
-                                      model.notiText3,
-                                      style: TextStyle(
-                                          color: AppColors.deepBlackColor),
-                                    ),
+                                  child: Text(
+                                    model.notiText3,
+                                    style: const TextStyle(
+                                        color: AppColors.deepBlackColor),
                                   ),
                                 ),
                               ],

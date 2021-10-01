@@ -6,14 +6,14 @@ class TextBox extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
 
-  TextBox({
+  const TextBox({
     Key? key,
     required this.hint,
     required this.controller,
-  });
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 192,
       child: TextField(
         //maxLines: 9,
@@ -21,8 +21,8 @@ class TextBox extends StatelessWidget {
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: hint,
-          hintStyle: TextStyle(color: AppColors.zuriDarkGrey),
-          contentPadding: EdgeInsets.fromLTRB(25.0, 16.0, 25.0, 16.0),
+          hintStyle: const TextStyle(color: AppColors.zuriDarkGrey),
+          contentPadding: const EdgeInsets.fromLTRB(25.0, 16.0, 25.0, 16.0),
           fillColor: Colors.white,
           filled: true,
         ),

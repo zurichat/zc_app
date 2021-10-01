@@ -3,7 +3,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../general_widgets/custom_text.dart';
-import '../../../../models/user_model.dart';
 import '../../colors.dart';
 import 'custom_user_bottom_sheet_viewmodel.dart';
 import 'widgets/custom_button.dart';
@@ -22,17 +21,17 @@ class CustomUserBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : DraggableScrollableSheet(
               maxChildSize: 0.97,
               initialChildSize: 0.7,
               minChildSize: 0.5,
               builder:
                   (BuildContext context, ScrollController scrollController) {
-                    UserModel? user = model.userModel;
+                final user = model.userModel;
                 return Container(
                   height: height * .97,
                   color: Colors.white,
@@ -41,11 +40,11 @@ class CustomUserBottomSheetView extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Container(
+                        SizedBox(
                           height: height * .3,
-                          child: ProfileHead(),
+                          child: const ProfileHead(),
                         ),
-                        Container(
+                        SizedBox(
                           height: height * .1,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -61,34 +60,35 @@ class CustomUserBottomSheetView extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Divider(),
-                        CustomProfileTile(
+                        const Divider(),
+                        const CustomProfileTile(
                             title: 'What I do', subtitle: 'Mobile Dev'),
-                        Divider(),
+                        const Divider(),
                         CustomProfileTile(
-                            title: 'Display Name', subtitle: user?.displayName ?? ''),
-                        Divider(),
+                            title: 'Display Name',
+                            subtitle: user?.displayName ?? ''),
+                        const Divider(),
                         ListTile(
-                          title: CustomText(
+                          title: const CustomText(
                               text: 'Status', fontWeight: FontWeight.w300),
-                          subtitle: Align(
+                          subtitle: const Align(
                               alignment: Alignment.centerLeft,
                               child: Icon(Icons.looks_5, color: Colors.blue)),
-                          shape: Border(
+                          shape: const Border(
                             top: BorderSide(
                                 width: .5, color: AppColors.greyishColor),
                           ),
                           onTap: () => model.navigateToSetStatus(),
                           trailing: IconButton(
-                              onPressed: () {}, icon: Icon(Icons.cancel)),
+                              onPressed: () {}, icon: const Icon(Icons.cancel)),
                         ),
-                        Divider(),
+                        const Divider(),
                         CustomProfileTile(
-                            title: 'Mobile Number', subtitle: user?.phoneNumber ?? ''),
-                        Divider(),
+                            title: 'Mobile Number',
+                            subtitle: user?.phoneNumber ?? ''),
+                        const Divider(),
                         CustomProfileTile(
-                            title: 'Email Address',
-                            subtitle: '${user?.email}'),
+                            title: 'Email Address', subtitle: '${user?.email}'),
                       ],
                     ),
                   ),

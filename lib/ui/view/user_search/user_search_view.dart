@@ -28,7 +28,7 @@ class UserSearchView extends StatelessWidget {
                         Border.all(width: 0.5, color: AppColors.greyishColor),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: TextField(
+                  child: const TextField(
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Search messages, files and users',
@@ -62,17 +62,17 @@ class UserSearchView extends StatelessWidget {
                     data: '1',
                   ),
                   const SizedBox(height: 20.0),
-                  Text('Recent searches'),
+                  const Text('Recent searches'),
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children: const [
+                      CustomPluginListTile(
                         icon: Icons.access_time,
                         pluginName: 'in:#project-socrates Productbob',
                         isActive: false,
                       ),
-                      const CustomPluginListTile(
+                      CustomPluginListTile(
                         icon: Icons.clear,
                       )
                     ],
@@ -80,24 +80,24 @@ class UserSearchView extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children: const [
+                      CustomPluginListTile(
                         icon: Icons.access_time,
                         pluginName: 'has:stage 4',
                         isActive: false,
                       ),
-                      const CustomPluginListTile(
+                      CustomPluginListTile(
                         icon: Icons.clear,
                       )
                     ],
                   ),
                   const SizedBox(height: 20.0),
-                  Text('Narrow your search'),
+                  const Text('Narrow your search'),
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children: const [
+                      CustomPluginListTile(
                         icon: Icons.add_box_outlined,
                         pluginName: 'to:',
                         isActive: false,
@@ -108,8 +108,8 @@ class UserSearchView extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children: const [
+                      CustomPluginListTile(
                         icon: Icons.add_box_outlined,
                         pluginName: 'from:',
                         isActive: false,
@@ -120,8 +120,8 @@ class UserSearchView extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children: const [
+                      CustomPluginListTile(
                         icon: Icons.add_box_outlined,
                         pluginName: 'has:',
                         isActive: false,
@@ -132,8 +132,8 @@ class UserSearchView extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children: const [
+                      CustomPluginListTile(
                         icon: Icons.add_box_outlined,
                         pluginName: 'after:',
                         isActive: false,
@@ -144,8 +144,8 @@ class UserSearchView extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomPluginListTile(
+                    children:const [
+                      CustomPluginListTile(
                         icon: Icons.add_box_outlined,
                         pluginName: 'to:',
                         isActive: false,

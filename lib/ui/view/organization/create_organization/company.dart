@@ -15,12 +15,12 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, CreateOrganizationViewModel model) {
+  Widget build(BuildContext context, CreateOrganizationViewModel viewModel) {
     return LayoutBuilder(
       builder: (context, constraint) {
         return SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 minHeight: constraint.maxHeight - 20 - kToolbarHeight,
@@ -30,11 +30,11 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Text(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: const Text(
                         "What's the name of the\ncompany or team?",
                         style: TextStyle(
                           letterSpacing: 0.5,
@@ -46,15 +46,15 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                       ),
                     ),
                     BorderTextField(
-                      controller: model.companyController,
+                      controller: viewModel.companyController,
                       hint: 'Eg.  HNG I8 / Team Socrates',
                     ),
                     UIHelper.verticalSpaceMedium,
                     LongButton(
-                        onPressed: () => model.onCompanyNext(email),
+                        onPressed: () => viewModel.onCompanyNext(email),
                         label: 'Next'),
-                    SizedBox(height: 15),
-                    Text.rich(
+                    const SizedBox(height: 15),
+                    const Text.rich(
                       TextSpan(
                         children: [
                           TextSpan(
@@ -95,18 +95,19 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                       child: CheckboxListTile(
                         contentPadding: EdgeInsets.zero,
                         activeColor: AppColors.zuriPrimaryColor,
-                        value: model.checkBoxVal,
-                        onChanged: model.onCheckBoxChanged,
+                        value: viewModel.checkBoxVal,
+                        onChanged: viewModel.onCheckBoxChanged,
                         controlAffinity: ListTileControlAffinity.leading,
-                        title: Text(
-                          'It’s okay to send me email with slack app, news and offer',
+                        title: const Text(
+                          '''It’s okay to send me email '''
+                          '''with slack app, news and offer''',
                           style: TextStyle(
                             fontSize: 15,
                           ),
                         ),
                       ),
                     ),
-                    Spacer(flex: 3),
+                    const Spacer(flex: 3),
                   ],
                 ),
               ),

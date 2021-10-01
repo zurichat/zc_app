@@ -13,12 +13,12 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, CreateOrganizationViewModel model) {
+  Widget build(BuildContext context, CreateOrganizationViewModel viewModel) {
     return LayoutBuilder(
       builder: (context, constraint) {
         return SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 minHeight: constraint.maxHeight - kToolbarHeight,
@@ -28,11 +28,11 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Text(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: const Text(
                         "What's a project your team is working on?",
                         style: TextStyle(
                           letterSpacing: 0.5,
@@ -43,13 +43,13 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    TextForm(
+                    const TextForm(
                       hintText: 'Eg.  Q4 Budget, Website Update',
                       wordCount: 80,
                     ),
                     UIHelper.verticalSpaceMedium,
-                    LongButton(onPressed: () => model.next(), label: 'Next'),
-                    Spacer(flex: 3),
+                    LongButton(onPressed: () => viewModel.next(), label: 'Next'),
+                    const Spacer(flex: 3),
                   ],
                 ),
               ),
@@ -68,28 +68,28 @@ class TextForm extends HookViewModelWidget<CreateOrganizationViewModel> {
       : super(key: key, reactive: false);
   @override
   Widget buildViewModelWidget(
-      BuildContext context, CreateOrganizationViewModel model) {
+      BuildContext context, CreateOrganizationViewModel viewModel) {
     return Center(
       child: TextField(
-        controller: model.projectController,
-        maxLength: this.wordCount,
+        controller: viewModel.projectController,
+        maxLength: wordCount,
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             fontSize: 16,
             color: Colors.black45,
             fontWeight: FontWeight.w300,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: AppColors.greyColor,
               width: 1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: AppColors.greyColor,
               width: 1,
             ),

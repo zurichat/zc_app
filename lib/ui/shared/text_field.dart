@@ -36,16 +36,16 @@ class BorderTextField extends StatelessWidget {
         border: border(),
         focusedBorder: border(),
         enabledBorder: border(),
-        hintStyle: TextStyle(
+        hintStyle: const TextStyle(
           fontSize: 16,
           color: Colors.black45,
         ),
-        contentPadding: EdgeInsets.fromLTRB(16, 5, 16, 5),
+        contentPadding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
       ),
     );
   }
 
-  border({Color? color}) {
+  OutlineInputBorder border({Color? color}) {
     return OutlineInputBorder(
       borderSide: BorderSide(
         color: Colors.grey[300] ?? AppColors.greyColor,

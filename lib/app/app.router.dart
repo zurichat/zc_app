@@ -245,20 +245,29 @@ class StackedRouter extends RouterBase {
       );
     },
     LoginView: (data) {
+      var args = data.getArgs<LoginViewArguments>(
+        orElse: () => LoginViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => LoginView(),
+        builder: (context) => LoginView(key: args.key),
         settings: data,
       );
     },
     OTPView: (data) {
+      var args = data.getArgs<OTPViewArguments>(
+        orElse: () => OTPViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => OTPView(),
+        builder: (context) => OTPView(key: args.key),
         settings: data,
       );
     },
     SignUpView: (data) {
+      var args = data.getArgs<SignUpViewArguments>(
+        orElse: () => SignUpViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => SignUpView(),
+        builder: (context) => SignUpView(key: args.key),
         settings: data,
       );
     },
@@ -275,8 +284,11 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordEmailView: (data) {
+      var args = data.getArgs<ForgotPasswordEmailViewArguments>(
+        orElse: () => ForgotPasswordEmailViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ForgotPasswordEmailView(),
+        builder: (context) => ForgotPasswordEmailView(key: args.key),
         settings: data,
       );
     },
@@ -300,28 +312,28 @@ class StackedRouter extends RouterBase {
     },
     ChannelNotificationView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ChannelNotificationView(),
+        builder: (context) => const ChannelNotificationView(),
         settings: data,
       );
     },
     NewChannel: (data) {
+      var args = data.getArgs<NewChannelArguments>(
+        orElse: () => NewChannelArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => NewChannel(),
+        builder: (context) => NewChannel(key: args.key),
         settings: data,
       );
     },
     HomePage: (data) {
-      var args = data.getArgs<HomePageArguments>(
-        orElse: () => HomePageArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => HomePage(key: args.key),
+        builder: (context) => const HomePage(),
         settings: data,
       );
     },
     AddPeopleView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => AddPeopleView(),
+        builder: (context) => const AddPeopleView(),
         settings: data,
       );
     },
@@ -384,13 +396,13 @@ class StackedRouter extends RouterBase {
     },
     ViewProfile: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ViewProfile(),
+        builder: (context) => const ViewProfile(),
         settings: data,
       );
     },
     SetStatusView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => SetStatusView(),
+        builder: (context) => const SetStatusView(),
         settings: data,
       );
     },
@@ -472,7 +484,7 @@ class StackedRouter extends RouterBase {
     },
     AddOrganizationView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => AddOrganizationView(),
+        builder: (context) => const AddOrganizationView(),
         settings: data,
       );
     },
@@ -548,8 +560,11 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<ChannelPageViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => ChannelPageView(
-          channelDetail: args.channelDetail,
-          channelMembers: args.channelMembers,
+          key: args.key,
+          channelname: args.channelname,
+          channelId: args.channelId,
+          membersCount: args.membersCount,
+          public: args.public,
         ),
         settings: data,
       );
@@ -558,6 +573,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<ChannelInfoViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => ChannelInfoView(
+          key: args.key,
           numberOfMembers: args.numberOfMembers,
           channelMembers: args.channelMembers,
           channelDetail: args.channelDetail,
@@ -572,6 +588,30 @@ class StackedRouter extends RouterBase {
 /// Arguments holder classes
 /// *************************************************************************
 
+/// LoginView arguments holder class
+class LoginViewArguments {
+  final Key? key;
+  LoginViewArguments({this.key});
+}
+
+/// OTPView arguments holder class
+class OTPViewArguments {
+  final Key? key;
+  OTPViewArguments({this.key});
+}
+
+/// SignUpView arguments holder class
+class SignUpViewArguments {
+  final Key? key;
+  SignUpViewArguments({this.key});
+}
+
+/// ForgotPasswordEmailView arguments holder class
+class ForgotPasswordEmailViewArguments {
+  final Key? key;
+  ForgotPasswordEmailViewArguments({this.key});
+}
+
 /// ForgotPasswordOtpView arguments holder class
 class ForgotPasswordOtpViewArguments {
   final Key? key;
@@ -584,10 +624,10 @@ class ForgotPasswordNewViewArguments {
   ForgotPasswordNewViewArguments({this.key});
 }
 
-/// HomePage arguments holder class
-class HomePageArguments {
+/// NewChannel arguments holder class
+class NewChannelArguments {
   final Key? key;
-  HomePageArguments({this.key});
+  NewChannelArguments({this.key});
 }
 
 /// DmJumpToView arguments holder class
@@ -643,19 +683,28 @@ class StartDmViewArguments {
 
 /// ChannelPageView arguments holder class
 class ChannelPageViewArguments {
-  final ChannelModel channelDetail;
-  final List<ChannelMembermodel> channelMembers;
+  final Key? key;
+  final String? channelname;
+  final String? channelId;
+  final int? membersCount;
+  final bool? public;
   ChannelPageViewArguments(
-      {required this.channelDetail, required this.channelMembers});
+      {this.key,
+      required this.channelname,
+      required this.channelId,
+      required this.membersCount,
+      required this.public});
 }
 
 /// ChannelInfoView arguments holder class
 class ChannelInfoViewArguments {
+  final Key? key;
   final int numberOfMembers;
   final List<ChannelMembermodel> channelMembers;
   final ChannelModel channelDetail;
   ChannelInfoViewArguments(
-      {required this.numberOfMembers,
+      {this.key,
+      required this.numberOfMembers,
       required this.channelMembers,
       required this.channelDetail});
 }

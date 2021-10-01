@@ -42,9 +42,9 @@ class TextParserViewModel extends BaseViewModel {
 
         return {'display': match[1]!};
       },
-      onTap: (profile_id) async {
+      onTap: (_) async {
         final _bottomSheetService = locator<BottomSheetService>();
-        final sheetResponse = await _bottomSheetService.showCustomSheet(
+        await _bottomSheetService.showCustomSheet(
           variant: BottomSheetType.user,
           isScrollControlled: true,
         );

@@ -7,6 +7,7 @@ import 'widgets/status.dart';
 import 'widgets/statuses.dart';
 
 class SetStatusView extends StatelessWidget {
+  const SetStatusView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
@@ -14,12 +15,13 @@ class SetStatusView extends StatelessWidget {
               appBar: AppBar(
                 elevation: 0,
                 leading: IconButton(
-                    onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
-                title: Text('Set a status'),
+                    onPressed: model.exitPage,
+                    icon: const Icon(Icons.close_rounded)),
+                title: const Text('Set a status'),
                 actions: [
                   TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       'Save',
                       style: TextStyle(color: AppColors.zuriTextBodyColor),
                     ),
@@ -31,13 +33,14 @@ class SetStatusView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Divider(),
+                    const Divider(),
                     Row(
                       children: [
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.looks_5, color: Colors.blue)),
-                        Flexible(
+                            icon:
+                                const Icon(Icons.looks_5, color: Colors.blue)),
+                        const Flexible(
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -47,13 +50,13 @@ class SetStatusView extends StatelessWidget {
                         ),
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.cancel,
                               color: AppColors.greyishColor,
                             )),
                       ],
                     ),
-                    Divider(),
+                    const Divider(),
                     MaterialButton(
                       minWidth: double.infinity,
                       onPressed: model.clearAfter,
@@ -61,15 +64,15 @@ class SetStatusView extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Text('Clear after...'),
                             Text('Today'),
                           ],
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Statuses(
+                    const SizedBox(height: 10),
+                    const Statuses(
                       title: 'Recent',
                       children: [
                         Status(
@@ -82,8 +85,8 @@ class SetStatusView extends StatelessWidget {
                             icon: Icons.social_distance)
                       ],
                     ),
-                    SizedBox(height: 10),
-                    Statuses(
+                    const SizedBox(height: 10),
+                    const Statuses(
                       title: 'For HNGi8 x I4G',
                       children: [
                         Status(
@@ -94,7 +97,7 @@ class SetStatusView extends StatelessWidget {
                             status: 'Commuting',
                             duration: '30 minutes',
                             icon: Icons.train),
-                        const Status(
+                        Status(
                             status: 'Off sick',
                             duration: 'Today',
                             icon: Icons.sick_rounded),
