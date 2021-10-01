@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 class MediaService {
   final _picker = ImagePicker();
-  final zuriApi   = locator<ZuriApi>();
+  final zuriApi = locator<ZuriApi>();
   final storageService = locator<SharedPreferenceLocalStorage>();
   final userService = locator<UserService>();
 
@@ -19,17 +19,16 @@ class MediaService {
     final XFile? image = await _picker.pickImage(
         source: fromGallery ? ImageSource.gallery : ImageSource.camera);
 
-        Future<String?> imageAddress = uploadImage(image: image);
-        return imageAddress;
-
-  }
-  Future<String?> uploadImage({required XFile? image }) async {
     final File? file = File(image!.path);
-      String imageAddress = await zuriApi.uploadImage(file,
-          token: userService.authToken,
-          orgId: userService.currentOrgId,
-          memberId: userService.userId);
-        return imageAddress;
-    
+    Future<String?> imageAddress = uploadImage(file);
+    return imageAddress;
+  }
+
+  Future<String?> uploadImage(File? file) async {
+    String imageAddress = await zuriApi.uploadImage(file,
+        token: userService.authToken,
+        orgId: userService.currentOrgId,
+        memberId: userService.userId);
+    return imageAddress;
   }
 }

@@ -15,6 +15,7 @@ import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
+import 'test_constants.dart';
 import 'test_helpers.mocks.dart';
 
 ///SUPPLY THE MOCKS FOR ANY SERVICE YOU WANT TO AUTO-GENERATE.
@@ -133,13 +134,9 @@ MockZuriApi getAndRegisterZuriApiMock() {
   final service = MockZuriApi();
   locator.registerSingleton<ZuriApi>(service);
 
-  File? file;
-  String token = "my token";
-  String memberId = "my member id";
-  String orgId = "my org id";
-  when(service.uploadImage(file,
-          token: token, memberId: memberId, orgId: orgId))
-      .thenAnswer((_) async  => Future.value("Image Address"));
+  when(service.uploadImage(fileMock,
+          token: token_string, memberId: memberId_string, orgId: orgId_string))
+      .thenAnswer((_) async => Future.value("Image Address"));
   return service;
 }
 
@@ -161,7 +158,13 @@ MockJumpToApi getAndRegisterJumpToApiMock() {
 
 MockMediaService getAndRegisterMediaServiceMock() {
   _removeRegistrationIfExists<MediaService>();
+
   final service = MockMediaService();
+
+  Future<String> response = Future<String>.value("Image Address");
+
+  when(service.uploadImage(fileMock)).thenAnswer((_) async => response);
+
   locator.registerSingleton<MediaService>(service);
 
   return service;
