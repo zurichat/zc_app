@@ -226,8 +226,13 @@ class StackedRouter extends RouterBase {
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
     ChannelAddPeopleView: (data) {
+      var args = data.getArgs<ChannelAddPeopleViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ChannelAddPeopleView(),
+        builder: (context) => ChannelAddPeopleView(
+          key: args.key,
+          channelId: args.channelId,
+          channelName: args.channelName,
+        ),
         settings: data,
       );
     },
@@ -560,7 +565,7 @@ class StackedRouter extends RouterBase {
       return MaterialPageRoute<dynamic>(
         builder: (context) => ChannelPageView(
           key: args.key,
-          channelname: args.channelname,
+          channelName: args.channelName,
           channelId: args.channelId,
           membersCount: args.membersCount,
           public: args.public,
@@ -586,6 +591,15 @@ class StackedRouter extends RouterBase {
 /// ************************************************************************
 /// Arguments holder classes
 /// *************************************************************************
+
+/// ChannelAddPeopleView arguments holder class
+class ChannelAddPeopleViewArguments {
+  final Key? key;
+  final String channelId;
+  final String channelName;
+  ChannelAddPeopleViewArguments(
+      {this.key, required this.channelId, required this.channelName});
+}
 
 /// LoginView arguments holder class
 class LoginViewArguments {
@@ -683,13 +697,13 @@ class StartDmViewArguments {
 /// ChannelPageView arguments holder class
 class ChannelPageViewArguments {
   final Key? key;
-  final String? channelname;
+  final String? channelName;
   final String? channelId;
   final int? membersCount;
   final bool? public;
   ChannelPageViewArguments(
       {this.key,
-      required this.channelname,
+      required this.channelName,
       required this.channelId,
       required this.membersCount,
       required this.public});
