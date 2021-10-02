@@ -62,6 +62,7 @@ MockSharedPreferenceLocalStorage
 MockNavigationService getAndRegisterNavigationServiceMock() {
   _removeRegistrationIfExists<NavigationService>();
   final service = MockNavigationService();
+  when(service.back()).thenAnswer((realInvocation) => true);
   locator.registerSingleton<NavigationService>(service);
   service.navigateTo(Routes.signUpView);
   service.navigateTo(Routes.forgotPasswordEmailView);
