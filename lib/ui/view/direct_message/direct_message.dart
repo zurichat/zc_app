@@ -6,12 +6,14 @@ import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/custom_text.dart';
+import 'direct_message_text_field_hook.dart';
 import 'direct_message_viewmodel.dart';
 
 class DirectMessage extends StatelessWidget {
   final String? username;
-  DirectMessage({Key? key, this.username}) : super(key: key);
-  final controller = TextEditingController();
+
+  const DirectMessage({Key? key, this.username}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -70,7 +72,7 @@ class DirectMessage extends StatelessWidget {
                               height: size.height * 0.15,
                               width: size.height * 0.15,
                               decoration:
-                              const BoxDecoration(color: Colors.grey),
+                                  const BoxDecoration(color: Colors.grey),
                               child: Image.asset(
                                 dummyUserImage,
                                 fit: BoxFit.cover,
@@ -125,7 +127,7 @@ class DirectMessage extends StatelessWidget {
                                           const SizedBox(width: 10),
                                           Column(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Row(
                                                 children: [
@@ -136,7 +138,7 @@ class DirectMessage extends StatelessWidget {
                                                   CustomText(
                                                       text: DateFormat('hh:mm')
                                                           .format(
-                                                          DateTime.now()))
+                                                              DateTime.now()))
                                                 ],
                                               ),
                                               const CustomText(
@@ -165,16 +167,8 @@ class DirectMessage extends StatelessWidget {
                       color: Colors.white,
                       child: Row(
                         children: <Widget>[
-                          Expanded(
-                            child: TextField(
-                              controller: controller,
-                              decoration: const InputDecoration(
-                                hintText: WriteMsgHint,
-                                hintStyle: TextStyle(color: Colors.black54),
-                              ),
-                              onEditingComplete: () =>
-                                 controller.clearComposing(),
-                            ),
+                          const Expanded(
+                            child: TextFieldHook(),
                           ),
                           const SizedBox(
                             width: 15,
