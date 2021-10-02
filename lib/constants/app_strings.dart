@@ -382,6 +382,13 @@ const String AddOrganisations = 'Add Organisations';
 const String CreateNewOrg = 'Create a new organization';
 const String SignInNewOrg = 'Sign in to another organization';
 const String JoinAnotherOrg = 'Join another organization';
+const String SplashScreen = 'assets/logo/splash_image.png';
+
+//Pinned Messages
+const String PinnedMsgs = 'Pinned Messages';
+
+//View Profile
+const String Message = 'Message';
 
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';

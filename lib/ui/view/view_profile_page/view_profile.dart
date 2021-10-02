@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -31,7 +32,7 @@ class ViewProfile extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Text('Getting Your data...'),
+                      Text(GettingYourData),
                       CircularProgressIndicator(
                         color: AppColors.zuriPrimaryColor,
                       ),
@@ -50,7 +51,7 @@ class ViewProfile extends StatelessWidget {
                             children: const [
                               Image(
                                 fit: BoxFit.cover,
-                                image: AssetImage('assets/images/user.png'),
+                                image: AssetImage(UserAvatar),
                               ),
                             ],
                           ),
@@ -97,11 +98,11 @@ class ViewProfile extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               ProfileAction(
-                                title: const Text('Message'),
+                                title: const Text(Message),
                                 onTap: () {},
                               ),
                               ProfileAction(
-                                title: const Text('Edit Profile'),
+                                title: const Text(EditProfile),
                                 onTap: () {
                                   // model.editProfile;
                                 },
@@ -114,23 +115,22 @@ class ViewProfile extends StatelessWidget {
                           ),
                           const Divider(),
                           ProfileList(
-                              title: 'What I do',
+                              title: Track,
                               description: model.userData.status.toString()),
                           const Divider(),
                           ProfileList(
-                              title: 'Display Name',
+                              title: DisplayName,
                               description:
                                   model.userData.displayName.toString()),
                           const Divider(),
-                          ProfileList(
-                              title: 'Status', description: model.status),
+                          ProfileList(title: Status, description: model.status),
                           const Divider(),
                           ProfileList(
-                              title: 'Mobile Number',
+                              title: Phone,
                               description: model.userData.phoneNum.toString()),
                           const Divider(),
                           ProfileList(
-                              title: 'Email Address',
+                              title: EmailAddress,
                               description: model.currentUserEmail)
                         ],
                       ),
