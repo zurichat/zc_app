@@ -135,7 +135,7 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.userSearchView);
   }
 
-  getDmAndChannelsList() async {
+    getDmAndChannelsList() async {
     homePageList = [];
     setBusy(true);
 
