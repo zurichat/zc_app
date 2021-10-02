@@ -216,6 +216,7 @@ const String TeamSocrates = '#teamsocrates';
 const String AddDescription = 'Add Description';
 const String Today = 'today';
 const String AddReply = 'Add a Reply';
+
 //Edit Channel
 const String Save = 'Save';
 const String EditChannel = 'Edit Channel';
@@ -226,6 +227,17 @@ const String ChannelTopic = 'Channel Topic';
 const String AddTopic = 'Add a Topic';
 const String ChannelDescription = 'Channel Description';
 const String ChannelCreationHint = 'Set a description';
+
+//New Channel
+const String ErrorOccurredCreation = 'An error occured while creating channel';
+const String Create = 'Create';
+const String ErrorMsg = 'Error Message';
+const String ChannelTextFieldHint = 'e.g team-uchiha';
+const String ChannelCreationWarningMsg =
+    'Channel names must be lowercase, without spaces or\nperiods, and can\'t be longer than 80 characters';
+const String MakeChannelPrivate = 'Make channel private';
+const String PrivateChannelDescription =
+    'A private channel can only be viewed or joined';
 
 //----------------
 //Images and Logos
@@ -238,13 +250,14 @@ const String Female = 'assets/channel_page/female.png';
 const String Chimamanda = 'assets/images/chimamanda.png';
 const String UserImage = 'assets/images/user.png';
 const String EditLogo = 'assets/channel_page/edit.png';
+const String ArrowIcon = 'assets/icons/back_arrow_icon.png';
+
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
     'https://th.bing.com/th/id/OIP.QHG-JO3iI1u8VQjSkpO0HwHaLH?pid=ImgDet&rs=1';
 const String DmReadAvatar =
     'https://th.bing.com/th/id/OIP.Obw6BUTUPdQGToOSCz5t8QHaHC?pid=ImgDet&w=549&h=522&rs=1';
 const String UserAvatar = 'assets/background/bga.png';
-
 const String Mark = 'Mark';
 const String Naza = 'Naza';
 const String OyinkanUA = 'OyinkanUA';
