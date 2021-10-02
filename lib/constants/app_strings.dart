@@ -262,7 +262,7 @@ const String PrivateDescription =
 //DM dirs
 const String ViewDetails = 'View details';
 const String Recent = 'Recent';
-
+const String DMHint = 'To: Type the name of a channel or person';
 //----------------
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
@@ -281,6 +281,8 @@ const String DmUnreadAvatar =
     'https://th.bing.com/th/id/OIP.QHG-JO3iI1u8VQjSkpO0HwHaLH?pid=ImgDet&rs=1';
 const String DmReadAvatar =
     'https://th.bing.com/th/id/OIP.Obw6BUTUPdQGToOSCz5t8QHaHC?pid=ImgDet&w=549&h=522&rs=1';
+const String DMSearchAvatar =
+    'https://images.unsplash.com/photo-1520583457224-aee11bad5112?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=401&q=80';
 const String UserAvatar = 'assets/background/bga.png';
 const String Mark = 'Mark';
 const String Naza = 'Naza';
@@ -320,3 +322,12 @@ const String MembersCount = '128 members';
 const String SoftwareDev = 'Software Development';
 const String PromotedPlaceholder = 'Have you been Promoted?';
 const String WriteMsgHint = 'Write message...';
+const String Dee = 'Dee';
+const String ASAP = 'ASAP';
+const String Happix = 'Happix';
+const String ChiSarah = 'ChiSarah';
+const String damiAaron = 'damiAaron';
+const String maxiron = 'maxiron';
+const String Engr_Jimmy = 'Engr_Jimmy';
+const String Detective_Khalifah = 'Detective_Khalifah';
+const String ChristieDesign = 'ChristieDesign';
