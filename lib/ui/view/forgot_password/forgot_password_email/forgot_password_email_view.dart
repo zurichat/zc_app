@@ -24,7 +24,7 @@ class ForgotPasswordEmailView extends StatelessWidget
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
         color: AppColors.whiteColor,
-        progressIndicator: CircularProgressIndicator(
+        progressIndicator: const CircularProgressIndicator(
           color: AppColors.zuriPrimaryColor,
         ),
         child: Scaffold(
@@ -32,19 +32,19 @@ class ForgotPasswordEmailView extends StatelessWidget
           backgroundColor: AppColors.whiteColor,
           body: SafeArea(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
+              padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(
+                const   SizedBox(
                     height: 6.0,
                   ),
                   Container(
                     alignment: Alignment.center,
                     child: Image.asset(ZuriLogo),
                   ),
-                  SizedBox(
+                const   SizedBox(
                     height: 24.0,
                   ),
                   Center(
@@ -53,20 +53,20 @@ class ForgotPasswordEmailView extends StatelessWidget
                       style: AppTextStyles.heading9,
                     ),
                   ),
-                  SizedBox(
+              const     SizedBox(
                     height: 6.0,
                   ),
-                  Center(
+               const    Center(
                     child: Text(
                       Header,
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  SizedBox(
+               const    SizedBox(
                     height: 49.0,
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 8.0),
+                    margin:const  EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       EmailAddress,
                       style: AppTextStyles.body1Bold,
@@ -82,7 +82,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                           obscureText: false,
                           textInputAction: TextInputAction.done,
                           autocorrect: true,
-                          decoration: InputDecoration(
+                          decoration:const  InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(3.0),
@@ -123,7 +123,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                     ],
                   ),
                   //Changes  ss
-                  SizedBox(
+               const    SizedBox(
                     height: 30.0,
                   ),
                   Center(
@@ -140,13 +140,13 @@ class ForgotPasswordEmailView extends StatelessWidget
                           style: AppTextStyles.buttonText,
                         ),
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                          padding:const  EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: AppColors.zuriPrimaryColor,
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+              const     SizedBox(height: 10),
                   Center(
                     child: GestureDetector(
                       onTap: () {

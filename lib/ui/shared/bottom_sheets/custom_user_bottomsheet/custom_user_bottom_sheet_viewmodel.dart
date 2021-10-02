@@ -27,7 +27,7 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
 
   @override
   Future<void> futureToRun() async {
-    final response = await zuriApi.get('$UserDataEndpoint', token: token);
+    final response = await zuriApi.get('$userDataEndpoint', token: token);
     _userModel = UserModel.fromJson(response!.data['data']);
   }
 

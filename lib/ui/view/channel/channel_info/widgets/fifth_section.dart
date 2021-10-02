@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/newRowTile.dart';
+import 'package:hng/ui/view/channel/channel_info/widgets/new_row_tile.dart';
 import '../../../../shared/colors.dart';
 
 class FifthSection extends StatelessWidget {
+  const FifthSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: () {},
       child: Container(
           height: 53.h,
           width: 395.w,
@@ -26,11 +27,7 @@ class FifthSection extends StatelessWidget {
                   offset: Offset(0, 3.h), // changes position of shadow
                 ),
               ]),
-          child: NewRowTile(
-              icon:Icons.push_pin_outlined,
-              text: 'Leave'
-          )
-      ),
+          child: const NewRowTile(icon: Icons.push_pin_outlined, text: 'Leave')),
     );
   }
 }

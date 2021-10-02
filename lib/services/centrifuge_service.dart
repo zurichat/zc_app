@@ -21,9 +21,7 @@ class CentrifugeService with ReactiveServiceMixin {
   Map<String, Subscription> subList = {};
 
   static Future<CentrifugeService> getInstance() async {
-    if (_instance == null) {
-      _instance = CentrifugeService();
-    }
+    _instance ??= CentrifugeService();
 
     _client.connectStream.listen(_showLog);
     _client.disconnectStream.listen(_showLog);
@@ -41,7 +39,7 @@ class CentrifugeService with ReactiveServiceMixin {
   }
 
   static void _showLog(_message) {
-    log.i(_message);
+    log.wtf(_message);
   }
 
   ///Use this to listen to centrifuge event either from dm, channels
@@ -99,9 +97,10 @@ class CentrifugeService with ReactiveServiceMixin {
   }
 
   Future<Stream?> subscribe(String channelSocketId) async {
-    if (channelSocketId == "")
+    if (channelSocketId == "") {
       throw Exception(
           "Channel Socket ID is required to subscribe to a channel");
+    }
     Subscription? subscription = _client.getSubscription(channelSocketId);
 
     subscription.subscribeErrorStream.listen(_showError);

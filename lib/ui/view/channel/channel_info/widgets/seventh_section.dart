@@ -10,10 +10,10 @@ import '../channel_info_view_model.dart';
 class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
   const SeventhSection({Key? key}) : super(key: key);
 
-  Widget build(BuildContext context, ChannelInfoViewModel model) {
-    // return ViewModelBuilder<ChannelInfoViewModel>.reactive(
-    //   viewModelBuilder: () => ChannelInfoViewModel(),
-    // builder: (context, model, child) =>
+
+  @override
+  Widget build(BuildContext context, ChannelInfoViewModel viewModel) {
+  
     return Container(
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.center,
@@ -43,7 +43,7 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
                   bottom: 10,
                 ),
                 child: TextButton(
-                  onPressed: model.showDialog,
+                  onPressed: viewModel.showDialog,
                   child: Text(
                     'Delete Channel',
                     style: AppTextStyles.heading7,
@@ -99,7 +99,7 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
 //                   ),
 //                   child: TextButton(
 //                     onPressed: (){
-//                       models.showDialog();
+//                       viewModels.showDialog();
 //                     },
 //                     child: Text(
 //                       'Delete Channel',

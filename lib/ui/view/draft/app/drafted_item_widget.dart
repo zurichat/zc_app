@@ -8,52 +8,49 @@ class DraftedItemWidget extends StatelessWidget {
     this.time,
     Key? key,
   }) : super(key: key);
-  final username, message, time;
+  final String? username, message, time;
   @override
   Widget build(BuildContext context) {
-    return Container(
-
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        username,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.body1Bold,
-                        ),
-                      ),
-                    Text(
-                      time,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Text(
+                      "$username",
                       overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.normalText,
+                      style: AppTextStyles.body1Bold,
+                      ),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  message,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.normalText,
+                  Text(
+                    "$time",
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyles.normalText,
                   ),
-              ]
-            ),
+                ],
+              ),
+          const     SizedBox(
+                height: 6,
+              ),
+              Text(
+                "$message",
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyles.normalText,
+                ),
+            ]
           ),
-          Divider(
-            thickness: 1.0,
-          ),
-        ],
-      ),
+        ),
+     const    Divider(
+          thickness: 1.0,
+        ),
+      ],
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
-
-import 'package:connectivity/connectivity.dart';
+// import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:stacked/stacked.dart';
 
 import '../utilities/enums.dart';
@@ -18,10 +18,11 @@ class ConnectivityService with ReactiveServiceMixin {
 
   // Flags to keep track of connection state.
   bool hasConnection = false;
-  ConnectivityStatus networkStatus = ConnectivityStatus.Offline;
+  ConnectivityStatus networkStatus = ConnectivityStatus.offline;
 
   // Allow subscription to connection changes.
-  StreamController connectionChangeController = StreamController.broadcast();
+  StreamController<ConnectivityStatus> connectionChangeController =
+      StreamController<ConnectivityStatus>.broadcast();
 
   final Connectivity _connectivity = Connectivity();
 
@@ -31,7 +32,8 @@ class ConnectivityService with ReactiveServiceMixin {
     checkConnection();
   }
 
-  Stream get connectionChange => connectionChangeController.stream;
+  Stream<ConnectivityStatus> get connectionChange =>
+      connectionChangeController.stream;
 
   void _connectionChange(ConnectivityResult result) {
     checkConnection();
@@ -39,20 +41,20 @@ class ConnectivityService with ReactiveServiceMixin {
 
   // Function that does the actual connection tests.
   Future<bool> checkConnection() async {
-    const prevStatus = ConnectivityStatus.Offline;
+    const prevStatus = ConnectivityStatus.offline;
 
     try {
       final result = await InternetAddress.lookup('example.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         hasConnection = true;
-        networkStatus = ConnectivityStatus.Online;
+        networkStatus = ConnectivityStatus.online;
       } else {
         hasConnection = false;
-        networkStatus = ConnectivityStatus.Offline;
+        networkStatus = ConnectivityStatus.offline;
       }
     } on SocketException catch (_) {
       hasConnection = false;
-      networkStatus = ConnectivityStatus.Offline;
+      networkStatus = ConnectivityStatus.offline;
     }
 
     // Status change sends out an update to all listeners.

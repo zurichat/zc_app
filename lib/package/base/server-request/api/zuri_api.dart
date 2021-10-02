@@ -102,10 +102,16 @@ class ZuriApi implements Api {
     }
   }
 
-  Future<dynamic> delete(String string) async {
+  @override
+  Future<ApiResponse?> delete(String string,
+      {Map<String, dynamic>? body, String? token}) async {
     log.i('Making request to $string');
     try {
-      final response = await dio.delete(string);
+      final response = await dio.delete(
+        string,
+        data: body,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
 
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
@@ -358,6 +364,7 @@ class ZuriApi implements Api {
 
   /// FETCHING MEMBERS
 
+  @override
   Future<List<UserSearch>> fetchMembersInOrganization(
       String orgId, token) async {
     final res = await dio.get(
@@ -390,7 +397,6 @@ class ZuriApi implements Api {
   }
 
   // THIS SERVICE IS FOR JOINED ROOMS FOR ACTIVE DMs
-  @override
   Future<List> getActiveRooms(String orgId, String userId, token) async {
     try {
       final res = await get(
@@ -478,6 +484,44 @@ class ZuriApi implements Api {
     } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
+    }
+  }
+
+  Future<List> getRepliesToMessages(channelMessageId, orgId) async {
+    List messageReplies;
+    try {
+      final res = await get(
+        '/v1/$orgId/messages/$channelMessageId/threads/',
+      );
+      messageReplies = res?.data ?? [];
+      log.i('>>>>>>>>>>>ResponseFromDB>>>>>>>>>>>>>>>> $res');
+      log.i('>>>>>>>>>>>MessageReplies>>>>>>>>>>>>>>>> $messageReplies');
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return [];
+    }
+
+    return messageReplies;
+  }
+
+  Future<bool> addReplyToMessage(String? channelMessageId, content, files,
+      orgId, userId, channelId) async {
+    log.i('channelll Iddd >>>>>>>> $channelId');
+    try {
+      final res = await post(
+        '/v1/$orgId/messages/$channelMessageId/threads/?channel_id=$channelId',
+        body: {
+          'user_id': userId,
+          'content': content,
+          'files': files ?? [],
+        },
+      );
+      controller.sink.add('Reply sent successfully');
+      log.i('>>>>>>>>>>>>Adding Reply>>>>>$res');
+      return true;
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return false;
     }
   }
 
@@ -612,8 +656,7 @@ class ZuriApi implements Api {
   @override
   void sendGetRequest(endpoint) async {
     final response = await dio.get(apiBaseUrl + endpoint);
-    final result = jsonDecode(response.data);
-    return result;
+    jsonDecode(response.data);
   }
 
   @override
@@ -675,6 +718,7 @@ class ZuriApi implements Api {
   }
 
   /// Fetches a list of members in that organization
+  @override
   Future fetchListOfMembers(
       String currentOrgId, String channelId, token) async {
     try {
@@ -691,19 +735,20 @@ class ZuriApi implements Api {
 
   @override
   Failure handleApiError(DioError e) {
-    if (e.type == DioErrorType.cancel)
+    if (e.type == DioErrorType.cancel) {
       return InputFailure(errorMessage: e.message);
-    else if (e.type == DioErrorType.connectTimeout)
+    } else if (e.type == DioErrorType.connectTimeout) {
       return NetworkFailure();
-    else if (e.type == DioErrorType.receiveTimeout)
+    } else if (e.type == DioErrorType.receiveTimeout) {
       return NetworkFailure();
-    else if (e.type == DioErrorType.sendTimeout)
+    } else if (e.type == DioErrorType.sendTimeout) {
       return NetworkFailure();
-    else if (e.type == DioErrorType.response)
+    } else if (e.type == DioErrorType.response) {
       return ServerFailure(error: e.message);
-    else if (e.type == DioErrorType.other)
+    } else if (e.type == DioErrorType.other) {
       return UnknownFailure();
-    else
+    } else {
       return UnknownFailure();
+    }
   }
 }

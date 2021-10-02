@@ -120,4 +120,8 @@ class OrganizationViewModel extends BaseViewModel {
 
   String? get currentOrgId =>
       storageService.getString(StorageKeys.currentOrgId);
+
+  Future<void> viewPreferences() async {
+    await navigation.navigateTo(Routes.preferenceView);
+  }
 }

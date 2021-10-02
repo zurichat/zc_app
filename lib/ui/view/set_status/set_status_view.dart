@@ -7,6 +7,7 @@ import 'widgets/status.dart';
 import 'widgets/statuses.dart';
 
 class SetStatusView extends StatelessWidget {
+  const SetStatusView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
@@ -63,9 +64,9 @@ class SetStatusView extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('Clear after...'),
-                            const Text('Today'),
+                          children: const [
+                            Text('Clear after...'),
+                            Text('Today'),
                           ],
                         ),
                       ),
