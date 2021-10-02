@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -37,8 +38,8 @@ class UserSearch extends StatelessWidget {
                       const Icon(Icons.arrow_back_ios),
                       Column(
                         children: const [
-                          Text('People'),
-                          Text('2552 members'),
+                          Text(People),
+                          Text(PeopleCount),
                         ],
                       )
                     ],
@@ -50,7 +51,7 @@ class UserSearch extends StatelessWidget {
                     child: TextField(
                       decoration: InputDecoration(
                         border: const OutlineInputBorder(),
-                        hintText: 'Search for members',
+                        hintText: SearchHint,
                         hintStyle: GoogleFonts.lato(
                           color: Colors.grey,
                         ),
@@ -58,13 +59,13 @@ class UserSearch extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text('No result found'),
+                  const Text(NoResult),
                   Container(
                     height: 50,
                     alignment: Alignment.center,
                     margin: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Text('Start new search',
-                        style: AppTextStyles.buttonText),
+                    child:
+                        Text(StartNewSearch, style: AppTextStyles.buttonText),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
