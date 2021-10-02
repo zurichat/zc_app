@@ -1,6 +1,5 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
-import 'package:hng/models/organization_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
@@ -10,19 +9,24 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class SignOutViewModel extends BaseViewModel {
+class SignOutBottomSheetViewModel extends BaseViewModel {
   final _navigator = locator<NavigationService>();
   final _apiService = ZuriApi(coreBaseUrl);
   final _storage = locator<SharedPreferenceLocalStorage>();
   final _snackBar = locator<SnackbarService>();
   final _connectivityService = locator<ConnectivityService>();
+  final _dialogService = locator<DialogService>();
 
-  late OrganizationModel organization;
 
-  initViewModel(OrganizationModel org) {
-    organization = org;
+  void showSignOutDialog(String orgName) async {
+    final result = await _dialogService.showCustomDialog(
+      variant: DialogType.signOut,
+      data: orgName
+    );
+    if(result != null && result.confirmed) {
+      signOutUser();
+    }
   }
-
 
   void navigateToSignIn() =>
       _navigator.pushNamedAndRemoveUntil(Routes.loginView);
@@ -50,7 +54,7 @@ class SignOutViewModel extends BaseViewModel {
     } else {
       _snackBar.showCustomSnackBar(
           message:
-              response?.data["message"] ?? "Error occurred while Signing out",
+          response?.data["message"] ?? "Error occurred while Signing out",
           variant: SnackbarType.failure,
           duration: const Duration(milliseconds: 1500));
     }

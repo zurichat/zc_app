@@ -1092,21 +1092,24 @@ class MockConnectivityService extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#networkStatus, _networkStatus),
           returnValueForMissingStub: null);
   @override
-  _i2.StreamController<dynamic> get connectionChangeController =>
-      (super.noSuchMethod(Invocation.getter(#connectionChangeController),
-              returnValue: _FakeStreamController_0<dynamic>())
-          as _i2.StreamController<dynamic>);
+  _i2.StreamController<_i22.ConnectivityStatus>
+      get connectionChangeController => (super.noSuchMethod(
+              Invocation.getter(#connectionChangeController),
+              returnValue: _FakeStreamController_0<_i22.ConnectivityStatus>())
+          as _i2.StreamController<_i22.ConnectivityStatus>);
   @override
   set connectionChangeController(
-          _i2.StreamController<dynamic>? _connectionChangeController) =>
+          _i2.StreamController<_i22.ConnectivityStatus>?
+              _connectionChangeController) =>
       super.noSuchMethod(
           Invocation.setter(
               #connectionChangeController, _connectionChangeController),
           returnValueForMissingStub: null);
   @override
-  _i2.Stream<dynamic> get connectionChange =>
+  _i2.Stream<_i22.ConnectivityStatus> get connectionChange =>
       (super.noSuchMethod(Invocation.getter(#connectionChange),
-          returnValue: Stream<dynamic>.empty()) as _i2.Stream<dynamic>);
+              returnValue: Stream<_i22.ConnectivityStatus>.empty())
+          as _i2.Stream<_i22.ConnectivityStatus>);
   @override
   void initialize() => super.noSuchMethod(Invocation.method(#initialize, []),
       returnValueForMissingStub: null);

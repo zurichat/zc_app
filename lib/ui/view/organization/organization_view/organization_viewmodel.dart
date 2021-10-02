@@ -19,6 +19,7 @@ class OrganizationViewModel extends BaseViewModel {
   final storageService = locator<SharedPreferenceLocalStorage>();
   final api = OrganizationApiService();
   List<OrganizationModel> organizations = [];
+  final _bottomSheetService = locator<BottomSheetService>();
 
   void initViewModel() {
     fetchOrganizations();
@@ -123,5 +124,12 @@ class OrganizationViewModel extends BaseViewModel {
 
   Future<void> viewPreferences() async {
     await navigation.navigateTo(Routes.preferenceView);
+  }
+
+  void showSignOutBottomSheet(OrganizationModel org) {
+    _bottomSheetService.showCustomSheet(
+        variant: BottomSheetType.signOut,
+        isScrollControlled: true,
+        data: org);
   }
 }

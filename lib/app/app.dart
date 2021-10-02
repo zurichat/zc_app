@@ -122,7 +122,7 @@ import '../ui/view/view_profile_page/view_profile.dart';
     MaterialRoute(page: StartDmView),
     MaterialRoute(page: OrganizationUrlView),
     MaterialRoute(page: ChannelPageView),
-    MaterialRoute(page: ChannelInfoView),
+    MaterialRoute(page: ChannelInfoView)
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

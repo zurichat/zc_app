@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/sign_out/sign_out_view.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
@@ -160,8 +159,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
         ),
       ),
       trailing: GestureDetector(onTap: () {
-        showModalBottomSheet(context: context,
-            builder: (context) => SignOutView(org));
+        viewModel.showSignOutBottomSheet(org);
       },
     child: const Icon(Icons.more_vert))
     );
