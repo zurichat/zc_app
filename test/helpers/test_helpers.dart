@@ -157,7 +157,11 @@ MockZuriApi getAndRegisterZuriApiMock() {
 MockConnectivityService getAndRegisterConnectivityServiceMock() {
   _removeRegistrationIfExists<ConnectivityService>();
   final service = MockConnectivityService();
+  var result =
+      Future.value(const bool.fromEnvironment("network status") ? true : false);
+  when(service.checkConnection()).thenAnswer((realInvocation) => result);
   locator.registerSingleton<ConnectivityService>(service);
+
   return service;
 }
 
