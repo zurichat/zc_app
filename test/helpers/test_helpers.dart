@@ -102,6 +102,9 @@ MockDMApiService getAndRegisterDMApiServiceMock() {
 MockChannelsApiService getAndRegisterChannelsApiServiceMock() {
   _removeRegistrationIfExists<ChannelsApiService>();
   final service = MockChannelsApiService();
+  when(service.createChannels(
+          name: 'des', description: 'Welcome', private: true))
+      .thenAnswer((_) async => Future.value(true));
   locator.registerSingleton<ChannelsApiService>(service);
 
   return service;

@@ -1,4 +1,3 @@
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
@@ -25,7 +24,8 @@ class EditChannelViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  editChannel(context) async {
+// editChannel(context) async
+  editChannel() async {
     loading(true);
     if (topicValue == '' || descriptionValue == '') {
       loading(false);
@@ -34,20 +34,20 @@ class EditChannelViewModel extends FormViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: fillAllFields,
+        message: 'Please fill all fields.',
       );
 
       return;
     }
     const channel_id = '613f70bd6173056af01b4aba';
-    const endpoint = '$ChannelInfoEndpoint$channel_id/';
+    const endpoint = '/v1/1/channels/$channel_id/';
     final des = {/*'topic': topic.text, */ 'description': descriptionValue};
     final response = await _apiService.put(endpoint, body: des, token: token);
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
-        message: response?.data['message'] ?? UpdateSuccessful,
+        message: response?.data['message'] ?? 'Update succesful',
       );
       // Return to channel info
       nToChannelInfo();
@@ -55,7 +55,8 @@ class EditChannelViewModel extends FormViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: response?.data['message'] ?? ChannelUpdateError,
+        message: response?.data['message'] ??
+            'Error encountered during channel update.',
       );
     }
     /*var token = storage.getString(StorageKeys.currentSessionToken);
