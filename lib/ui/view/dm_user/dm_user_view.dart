@@ -320,7 +320,7 @@ class DmUserView extends StatelessWidget {
   //   return RichText(
   //     text: TextSpan(
   //         text: 'This is the very beginning of your '
-  //             'direct message \nhistory with ',
+  //             'direct message \history with ',
   //         style: TextStyle(
   //             color: Color(0xFF808080),
   //             fontSize: 14.0,
