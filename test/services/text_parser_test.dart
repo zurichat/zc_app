@@ -7,22 +7,22 @@ void main() {
   String sample4 = 'www.facebook.com';
   String sample5 = 'keyword k5yk5yk';
   group('RegEx Tests', () {
-    test("Contains Url", () async {
+    test("Returns true if it contains a Url", () async {
       expect(
           RegExp(r'(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})')
               .hasMatch(sample3),
           false);
     });
-    test("Contains '@'mentions", () async {
+    test("Returns true if it contains '@'mentions", () async {
       expect(RegExp(r'\B@+([\w]+)\b').hasMatch(sample1), true);
     });
-    test("Contains hashtag", () async {
+    test("Returns true if it contains hashtag", () async {
       expect(RegExp(r'keyword').hasMatch(sample5), true);
     });
-    test("Contains hashtag", () async {
+    test("Returns true if it contains hashtag", () async {
       expect(RegExp(r'(?<=\*)(.*)(\*)').hasMatch(sample2), true);
     });
-    test("Contains Url", () async {
+    test("Returns true if it contains Url", () async {
       expect(
           RegExp(r'(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})')
               .hasMatch(sample4),
