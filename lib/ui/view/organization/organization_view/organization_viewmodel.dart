@@ -1,3 +1,4 @@
+import 'package:hng/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'dart:convert';
@@ -17,12 +18,13 @@ class OrganizationViewModel extends BaseViewModel {
   final snackbar = locator<SnackbarService>();
   final connectivityService = locator<ConnectivityService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
+  final _userService = locator<UserService>();
   final api = OrganizationApiService();
   List<OrganizationModel> organizations = [];
 
   void initViewModel() {
     fetchOrganizations();
-    fetchOrganizationMemberList();
+    getOrganizationMemberList();
   }
 
   Future<void> navigateToNewOrganization() async {
@@ -120,7 +122,7 @@ class OrganizationViewModel extends BaseViewModel {
   }
 
   //Returns the list of members of an Organization
-  Future fetchOrganizationMemberList() async {
+  Future getOrganizationMemberList() async {
     if (!await connectivityService.checkConnection()) {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -132,15 +134,22 @@ class OrganizationViewModel extends BaseViewModel {
 
     try {
       setBusy(true);
-      var orgId = currentOrgId ?? '';
+      var orgId = currentOrgId ?? '61459d8e62688da5302acdb1';
+      print('${currentOrgId} currentOrgId');
+
+      print('Organization id from user service ${_userService.currentOrgId}');
 
       if (orgId.isNotEmpty) {
         final orgMemberList = await api.getOrganizationMemberList(orgId);
 
-        if (orgMemberList.isNotEmpty) {
-          storageService.setString(
-              StorageKeys.organizationMemberList, jsonEncode(orgMemberList));
+        print('Organization member list length ${orgMemberList.data.length}');
+
+        if (orgMemberList.data.isNotEmpty) {
+          storageService.setString(StorageKeys.organizationMemberList,
+              jsonEncode(orgMemberList.data));
         }
+        print(
+            'Stored Organization Member list ${storageService.getString(StorageKeys.organizationMemberList)}');
       }
       setBusy(false);
     } catch (e) {
