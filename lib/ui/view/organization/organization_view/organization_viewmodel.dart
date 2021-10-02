@@ -1,3 +1,4 @@
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'dart:convert';
@@ -35,7 +36,7 @@ class OrganizationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Error Updating Organizations',
+        message: UpdateFailed,
       );
     }
   }
@@ -46,7 +47,7 @@ class OrganizationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Check your internet connection',
+        message: noInternet,
       );
 
       return;
@@ -67,7 +68,7 @@ class OrganizationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Error Occured',
+        message: errorOccurred,
       );
     }
   }
@@ -102,7 +103,7 @@ class OrganizationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Error fetching Organization Info',
+        message: FetchError,
       );
     }
   }
@@ -112,7 +113,7 @@ class OrganizationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Check your internet connection',
+        message: noInternet,
       );
       return;
     }
@@ -124,7 +125,7 @@ class OrganizationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Check your internet connection',
+        message: noInternet,
       );
       return;
     }
@@ -147,7 +148,7 @@ class OrganizationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'An unexpected error occurred',
+        message: errorOccurred,
       );
     }
   }
