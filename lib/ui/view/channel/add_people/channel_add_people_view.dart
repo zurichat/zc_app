@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -20,7 +21,7 @@ class ChannelAddPeopleView extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             title: Text(
-              'Add People',
+              AddPeople,
               style: GoogleFonts.lato(
                   color: AppColors.zuriTextColorHeader,
                   fontWeight: FontWeight.bold,
@@ -42,7 +43,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 0.0),
                 child: InkWell(
                   child: Text(
-                    'Add',
+                    Add,
                     style: GoogleFonts.lato(
                         color: AppColors.zuriPrimaryColor, fontSize: 16.0),
                   ),
@@ -60,7 +61,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: SearchField(
                   onChanged: viewModel.onSearchUser,
-                  labelText: 'Search people to add',
+                  labelText: SearchPeople,
                   // controller: viewModel.editor,
                 ),
               ),
@@ -76,7 +77,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Add Everyone',
+                          AddEveryone,
                           style: GoogleFonts.lato(
                             // ignore: todo
                             //TODO change color to brand
@@ -86,7 +87,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                         ),
                         const SizedBox(height: 4.0),
                         Text(
-                          'Everyone will be added to this channel',
+                          EveryoneWillBeAdded,
                           style: GoogleFonts.lato(
                             color: AppColors.greyishColor,
                             fontWeight: FontWeight.bold,
@@ -103,56 +104,58 @@ class ChannelAddPeopleView extends StatelessWidget {
                   ],
                 ),
               ),
-
               const SizedBox(height: 16.0),
               const Divider(thickness: 2.0),
               Expanded(
                 child: ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
-                  itemCount: viewModel.matchingUsers.length,
-                  separatorBuilder: (context, index) => const SizedBox(height: 24.0),
-                  itemBuilder: (context, index) => Row(
-                    children: [
-                      Row(
-                        children: [
-                          Stack(
-                            alignment: Alignment.topRight,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: viewModel.matchingUsers[index].imageUrl!.startsWith("http")? Image.network(
-                                  '${viewModel.matchingUsers[index].imageUrl}',
-                                ):Container(
-
+                    physics: const BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
+                    itemCount: viewModel.matchingUsers.length,
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 24.0),
+                    itemBuilder: (context, index) => Row(
+                          children: [
+                            Row(
+                              children: [
+                                Stack(
+                                  alignment: Alignment.topRight,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: viewModel
+                                              .matchingUsers[index].imageUrl!
+                                              .startsWith("http")
+                                          ? Image.network(
+                                              '${viewModel.matchingUsers[index].imageUrl}',
+                                            )
+                                          : Container(),
+                                    ),
+                                    // if (viewModel.matchingUsers[index].)
+                                    //   CircleAvatar(
+                                    //     backgroundColor: AppColors.zuriPrimaryColor,
+                                    //     radius: 4.0,
+                                    //   ),
+                                  ],
                                 ),
-                              ),
-                              // if (viewModel.matchingUsers[index].)
-                              //   CircleAvatar(
-                              //     backgroundColor: AppColors.zuriPrimaryColor,
-                              //     radius: 4.0,
-                              //   ),
-                            ],
-                          ),
-                          const SizedBox(width: 20.0),
-                          Text(
-                            "${viewModel.matchingUsers[index].userName}",
-                            style: GoogleFonts.lato(
-                                color: AppColors.zuriTextBodyColor),
-                          ),
-                        ],
-                      ),
-                     const  Spacer(),
-                      Checkbox(
-                        value: viewModel.markedUsers
-                            .contains(viewModel.matchingUsers[index]),
-                        onChanged: (marked) => viewModel.onMarkOne(marked, index),
-                        side:const  BorderSide(width: 0.96),
-                      )
-                    ],
-                  )
-                ),
+                                const SizedBox(width: 20.0),
+                                Text(
+                                  "${viewModel.matchingUsers[index].userName}",
+                                  style: GoogleFonts.lato(
+                                      color: AppColors.zuriTextBodyColor),
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            Checkbox(
+                              value: viewModel.markedUsers
+                                  .contains(viewModel.matchingUsers[index]),
+                              onChanged: (marked) =>
+                                  viewModel.onMarkOne(marked, index),
+                              side: const BorderSide(width: 0.96),
+                            )
+                          ],
+                        )),
               ),
             ],
           ),
