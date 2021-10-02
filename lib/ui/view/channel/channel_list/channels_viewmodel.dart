@@ -49,7 +49,7 @@ class ChannelListViewModel extends BaseViewModel {
     }
   }
 
-  navigateToChannelPage(String? channelname, String? channelId,
+  void navigateToChannelPage(String? channelName, String? channelId,
       int? membersCount, bool? public) async {
     try {
       if (!await connectivityService.checkConnection()) {
@@ -67,7 +67,7 @@ class ChannelListViewModel extends BaseViewModel {
       setBusy(false);
       navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
-            channelname: channelname,
+            channelName: channelName,
             channelId: channelId,
             membersCount: membersCount,
             public: public,

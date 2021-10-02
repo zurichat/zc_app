@@ -12,12 +12,12 @@ import 'widgets/channel_chat.dart';
 class ChannelPageView extends StatelessWidget {
   const ChannelPageView({
     Key? key,
-    required this.channelname,
+    required this.channelName,
     required this.channelId,
     required this.membersCount,
     required this.public,
   }) : super(key: key);
-  final String? channelname;
+  final String? channelName;
   final String? channelId;
   final int? membersCount;
   final bool? public;
@@ -25,17 +25,14 @@ class ChannelPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
-      onModelReady: (model) {
-        model.initialise('$channelId');
-      },
+      onModelReady: (model) => model.initialise(channelId!),
       //this parameter allows us to reuse the view model to persist the state
-
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
             leading: Padding(
-              padding: const EdgeInsets.only(left: 5),
+              padding: const EdgeInsets.only(left: 5.0, right: 20.0),
               child: IconButton(
                   onPressed: model.goBack,
                   icon: const Icon(Icons.arrow_back_ios)),
@@ -46,9 +43,9 @@ class ChannelPageView extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("#$channelname", style: AppTextStyles.body1Bold),
+                Text("#$channelName", style: AppTextStyles.body1Bold),
                 Text(
-                  "$membersCount members",
+                  "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
                   style: AppTextStyles.body2Medium,
                 ),
               ],
@@ -63,7 +60,7 @@ class ChannelPageView extends StatelessWidget {
                 child: IconButton(
                   onPressed: () => model.navigateToChannelInfoScreen(
                     membersCount!,
-                    ChannelModel(id: channelId!, name: channelname!),
+                    ChannelModel(id: channelId!, name: channelName!),
                   ),
                   icon: const Icon(Icons.info_outlined),
                 ),
@@ -74,12 +71,14 @@ class ChannelPageView extends StatelessWidget {
             hintText: 'Add a Reply',
             sendMessage: (val) => model.sendMessage(val, channelId!),
             widget: SingleChildScrollView(
-              reverse: true,
+              physics: const BouncingScrollPhysics(),
               controller: model.scrollController,
+              reverse: true,
               child: Column(
                 children: [
                   ChannelIntro(
-                    channelName: channelname,
+                    channelName: channelName!,
+                    channelId: channelId!,
                   ),
                   ChannelChat(
                     channelId: channelId,

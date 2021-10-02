@@ -174,7 +174,7 @@ class HomePageViewModel extends StreamViewModel {
   //   getDmAndChannelsList();
   // });
 
-  navigateToChannelPage(String? channelname, String? channelId,
+  navigateToChannelPage(String? channelName, String? channelId,
       int? membersCount, bool? public) async {
     try {
       if (!await connectivityService.checkConnection()) {
@@ -192,7 +192,7 @@ class HomePageViewModel extends StreamViewModel {
       setBusy(false);
       navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
-            channelname: channelname,
+            channelName: channelName,
             channelId: channelId,
             membersCount: membersCount,
             public: public,
