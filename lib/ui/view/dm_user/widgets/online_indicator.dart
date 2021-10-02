@@ -11,13 +11,6 @@ class OnlineIndicator extends StatelessWidget {
       size: 10,
     );
   }
-  Widget _OnlineIndicator(int color) {
-    return Icon(
-      Icons.circle,
-      color: Color(color),
-      size: 10,
-    );
-  }
 }
 
 

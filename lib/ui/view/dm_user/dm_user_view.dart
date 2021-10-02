@@ -48,7 +48,7 @@ class DmUserView extends StatelessWidget {
                               fontSize: 16.0,
                               fontWeight: FontWeight.w400)),
                       const SizedBox(width: 12.0),
-                      OnlineIndicator(0xFF007952),
+                      const OnlineIndicator(0xFF007952),
                     ],
                   ),
                   const Text(
@@ -87,7 +87,7 @@ class DmUserView extends StatelessWidget {
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(3),
-                                    child: Container(
+                                    child: SizedBox(
                                       width: 70,
                                       height: 70,
                                       child: Image.asset(
@@ -98,7 +98,7 @@ class DmUserView extends StatelessWidget {
                                   const SizedBox(height: 20.0),
                                   Row(
                                     children: [
-                                      OnlineIndicator(0xFF00B87C),
+                                      const OnlineIndicator(0xFF00B87C),
                                       const SizedBox(width: 16.0),
                                       Text(model.receiver.username,
                                           style: const TextStyle(
@@ -151,13 +151,13 @@ class DmUserView extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Divider(height: 0, color: Color(0xFF999999)),
+                        const Divider(height: 0, color: Color(0xFF999999)),
                         Row(
                           children: [
                             Expanded(
                               child: Container(
                                 height: 56,
-                                margin: EdgeInsets.only(left: 13.0),
+                                margin: const EdgeInsets.only(left: 13.0),
                                 alignment: Alignment.centerLeft,
                                 child: FocusScope(
                                   child: Focus(
@@ -177,7 +177,7 @@ class DmUserView extends StatelessWidget {
                                       decoration: InputDecoration.collapsed(
                                           hintText:
                                           'Message ${model.receiver.username}',
-                                          hintStyle: TextStyle(
+                                          hintStyle: const TextStyle(
                                               color: Color(0xFFBEBEBE),
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.w400)),
@@ -192,7 +192,7 @@ class DmUserView extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       onPressed: () {},
-                                      icon: Icon(
+                                      icon: const Icon(
                                         AppIcons.shapezap,
                                         color: Color(0xFF424141),
                                       )),
@@ -200,7 +200,7 @@ class DmUserView extends StatelessWidget {
                                     onPressed: () {},
                                     icon: SvgPicture.asset(
                                       "assets/icons/fluent_camera-16-regular.svg",
-                                      color: Color(0xFF424141),
+                                      color: const Color(0xFF424141),
                                     ),
                                     //onPressed: () {},
                                   ),
@@ -208,7 +208,7 @@ class DmUserView extends StatelessWidget {
                                     onPressed: () {},
                                     icon: SvgPicture.asset(
                                       "assets/icons/Vector.svg",
-                                      color: Color(0xFF424141),
+                                      color: const Color(0xFF424141),
                                     ),
                                     //onPressed: () {},
                                   ),
@@ -226,31 +226,31 @@ class DmUserView extends StatelessWidget {
                                   children: [
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           AppIcons.shapezap,
                                           color: Color(0xFF424141),
                                         )),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.alternate_email_outlined,
                                           color: Color(0xFF424141),
                                         )),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.tag_faces_sharp,
                                           color: Color(0xFF424141),
                                         )),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.camera_alt_outlined,
                                           color: Color(0xFF424141),
                                         )),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.attach_file_outlined,
                                           color: Color(0xFF424141),
                                         )),
@@ -266,7 +266,7 @@ class DmUserView extends StatelessWidget {
                                       // duration: Duration(milliseconds: 500),
                                       // curve: Curves.fastOutSlowIn);
                                     },
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.send,
                                       color: Color(0xFFBEBEBE),
                                     ))

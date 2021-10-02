@@ -64,7 +64,7 @@ class ChannelPageViewModel extends BaseViewModel {
 
   void getChannelSocketId(String channelId) async {
     final channelSockId =
-        await _channelsApiService.getChannelSocketId(channelId);
+    await _channelsApiService.getChannelSocketId(channelId);
 
     websocketConnect(channelSockId);
   }
@@ -73,7 +73,7 @@ class ChannelPageViewModel extends BaseViewModel {
     //setBusy(true);
 
     List? channelMessages =
-        await _channelsApiService.getChannelMessages(channelId);
+    await _channelsApiService.getChannelMessages(channelId);
     channelUserMessages = [];
 
     channelMessages.forEach((data) async {
@@ -92,6 +92,7 @@ class ChannelPageViewModel extends BaseViewModel {
           channelName: channelId,
           userImage: 'assets/images/chimamanda.png',
           userID: userid,
+          channelId: channelId
         ),
       );
     });

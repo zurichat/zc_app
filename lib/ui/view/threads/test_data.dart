@@ -127,6 +127,7 @@ List<UserPost> userPost = [
     userThreadPosts: thread3,
     channelType: ChannelType.private,
     channelName: 'team-app',
+    channelId: ""
   ),
   UserPost(
     id: "5",
@@ -139,6 +140,7 @@ List<UserPost> userPost = [
     userThreadPosts: thread1,
     channelType: ChannelType.private,
     channelName: 'team-app',
+    channelId: ""
   ),
   UserPost(
     id: "6",
@@ -151,6 +153,7 @@ List<UserPost> userPost = [
     userThreadPosts: thread2,
     channelType: ChannelType.personal,
     channelName: 'Dee',
+    channelId: ""
   ),
   UserPost(
     id: "7",
@@ -162,6 +165,7 @@ List<UserPost> userPost = [
     channelType: ChannelType.public,
     channelName: 'Announcement',
     postEmojis: <PostEmojis>[],
+    channelId: "",
     userThreadPosts: <UserThreadPost>[],
   ),
 ];
