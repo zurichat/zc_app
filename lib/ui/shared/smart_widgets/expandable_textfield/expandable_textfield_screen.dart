@@ -3,10 +3,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hng/general_widgets/expandable_textfield.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen_viewmodel.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../colors.dart';
-import '../../styles.dart';
 
 class ExpandableTextFieldScreen extends HookWidget {
   ExpandableTextFieldScreen({
@@ -19,147 +19,238 @@ class ExpandableTextFieldScreen extends HookWidget {
   final Function(String message) sendMessage;
   final String hintText;
   final focusNode = FocusNode();
-  double minSize = 70;
+  var keyboardVisibilityController = KeyboardVisibilityController();
+  Stream<bool> get stream =>
+      keyboardVisibilityController.onChange.asBroadcastStream();
 
   @override
   Widget build(BuildContext context) {
-    double maxSize = MediaQuery.of(context).size.height - kToolbarHeight - 100;
-    double size = minSize;
-    double offset = 0;
+    double maxSize = MediaQuery.of(context).size.height - kToolbarHeight - 30;
     TextEditingController textController = useTextEditingController();
     return ViewModelBuilder<ExpandableTextFieldScreenViewModel>.reactive(
-        viewModelBuilder: () => ExpandableTextFieldScreenViewModel(),
-        builder: (__, model, _) {
-          // if (model.isExpanded) {
-          //   return ExpandableTextField(
-          //     focus: focusNode,
-          //     hintText: hintText,
-          //     controller: textController,
-          //     isExpanded: model.isExpanded,
-          //     isVisible: model.isVisible,
-          //     sendMessage: () {
-          //       sendMessage(textController.text);
-          //       textController.clear();
-          //       model.toggleExpanded();
-          //       // model.toggleExpanded();
-          //     },
-          //     toggleExpanded: model.toggleExpanded,
-          //     toggleVisibility: (val) => model.toggleVisibility(val),
-          //   );
-          // } else {
-          return SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Column(
-                    children: [
-                      Expanded(child: widget),
-                      SizedBox.fromSize(size: Size.fromHeight(minSize))
-                    ],
+      viewModelBuilder: () => ExpandableTextFieldScreenViewModel(),
+      onModelReady: (model) {
+        model.init(maxSize);
+        keyboardVisibilityController.onChange.listen((bool visible) {
+          model.notifyListeners();
+        });
+      },
+      builder: (__, model, _) {
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            model.maxSize = constraints.maxHeight;
+            if (model.isExpanded) model.size = model.maxSize;
+            return SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Column(
+                      children: [
+                        Expanded(child: widget),
+                        SizedBox.fromSize(
+                            size: Size.fromHeight(!model.isVisible
+                                ? model.minSize
+                                : model.minSize + 50))
+                      ],
+                    ),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Column(
-                    children: [
-                      Expanded(child: Container()),
-                      Divider(thickness: 2),
-                      GestureDetector(
-                        onPanUpdate: (details) {
-                          offset = details.delta.dy;
-                          double currentSize = minSize + offset;
-
-                          if (currentSize > maxSize / 2) {
-                            size = maxSize;
-                            model.toggleExpanded(true);
-                          } else {
-                            size = minSize;
-                            model.toggleExpanded(false);
-                          }
-                          // notifyListeners?
-                        },
-                        onPanEnd: (details) {
-                          double vel = details.velocity.pixelsPerSecond.dy;
-                          print(vel);
-
-                          if (vel > 100) {
-                            if (details.velocity.pixelsPerSecond.direction >
-                                0) {
-                              //going down
-                              size = minSize;
-                              model.toggleExpanded(false);
-                            } else {
-                              size = maxSize;
-                              model.toggleExpanded(true);
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Divider(height: 0, color: Color(0xFF999999)),
+                        GestureDetector(
+                          onPanUpdate: (details) {
+                            if (model.isVisible) {
+                              double offset = details.delta.dy;
+                              double currentSize = model.size - offset;
+                              // print("moving");
+                              model.size = currentSize;
+                              if (model.size > model.maxSize) {
+                                model.size = model.maxSize;
+                              }
+                              if (model.size < model.minSize) {
+                                model.size = model.minSize + 50;
+                              }
+                              model.notifyListeners();
                             }
-                          }
-                        },
-                        child: SizedBox.fromSize(
-                          size: Size.fromHeight(size),
-                          child: Column(
-                            crossAxisAlignment: model.isExpanded
-                                ? CrossAxisAlignment.start
-                                : CrossAxisAlignment.center,
-                            children: [
-                              Divider(height: 0, color: Color(0xFF999999)),
-                              Container(
-                                alignment: Alignment.topRight,
-                                child: Visibility(
-                                  visible: model.isExpanded,
-                                  child: GestureDetector(
-                                    onTap: () =>
-                                        model.toggleExpanded(!model.isExpanded),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: SvgPicture.asset(
-                                        'assets/icons/svg_icons/minimize.svg',
-                                        color: AppColors.darkGreyColor,
+
+                            // if (currentSize < model.maxSize / 2) {
+                            //   model.toggleExpanded(true);
+                            // } else {
+                            //   // size = minSize;
+                            //   model.toggleExpanded(false);
+                            // }
+                            // notifyListeners?
+                          },
+                          onPanEnd: (details) {
+                            double vel = details.velocity.pixelsPerSecond.dy;
+                            print(vel);
+                            if (vel == 0) {
+                              if (model.size > (model.maxSize / 2)) {
+                                model.toggleExpanded(true);
+                              } else {
+                                model.toggleExpanded(false);
+                              }
+                            }
+
+                            if (vel > 1000) {
+                              // size = minSize;
+                              model.toggleExpanded(false);
+                            } else if (vel < -1000) {
+                              // size = maxSize;
+                              model.toggleExpanded(true);
+                            } else {
+                              model.toggleExpanded(model.isExpanded);
+                            }
+                          },
+                          child: Container(
+                            color: AppColors.whiteColor,
+                            child: SizedBox.fromSize(
+                              size: Size.fromHeight(model.size),
+                              child: Column(
+                                crossAxisAlignment: model.isExpanded
+                                    ? CrossAxisAlignment.start
+                                    : CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.topRight,
+                                    child: Visibility(
+                                      visible: model.isExpanded,
+                                      child: GestureDetector(
+                                        onTap: () => model
+                                            .toggleExpanded(!model.isExpanded),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: SvgPicture.asset(
+                                            'assets/icons/svg_icons/minimize.svg',
+                                            color: AppColors.darkGreyColor,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
-                              Row(
-                                children: [
                                   Expanded(
+                                    // height:
+                                    //     size,
                                     child: MyTextField(
+                                      toggleVisibility: model.toggleVisibility,
+                                      isExpanded: model.isExpanded,
                                       controller: textController,
-                                      isExpanded: true,
                                       focus: focusNode,
                                       hintText: hintText,
                                       isVisible: model.isVisible,
-                                      toggleExpanded: () => model
-                                          .toggleExpanded(!model.isExpanded),
-                                      toggleVisibility: model.toggleVisibility,
+                                      toggleExpanded: () {
+                                        if (!model.isExpanded) {
+                                          // size = maxSize;
+                                          model.toggleExpanded(true);
+                                        } else {
+                                          // size = minSize;
+                                          model.toggleExpanded(false);
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: model.isVisible,
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () {},
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: SvgPicture.asset(
+                                                'assets/icons/svg_icons/zap.svg',
+                                                color: AppColors.darkGreyColor,
+                                              ),
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {},
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: SvgPicture.asset(
+                                                'assets/icons/svg_icons/at_sign.svg',
+                                                color: AppColors.darkGreyColor,
+                                              ),
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {},
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: SvgPicture.asset(
+                                                'assets/icons/svg_icons/smile.svg',
+                                                color: AppColors.darkGreyColor,
+                                              ),
+                                            ),
+                                          ),
+                                          Spacer(),
+                                          GestureDetector(
+                                            onTap: () {},
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: SvgPicture.asset(
+                                                'assets/icons/svg_icons/camera.svg',
+                                                color: AppColors.darkGreyColor,
+                                              ),
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {},
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: SvgPicture.asset(
+                                                'assets/icons/svg_icons/paperclip.svg',
+                                                color: AppColors.darkGreyColor,
+                                              ),
+                                            ),
+                                          ),
+                                          IconButton(
+                                            onPressed: () {
+                                              if (textController.text
+                                                  .toString()
+                                                  .isNotEmpty) {
+                                                sendMessage;
+                                                textController.clear();
+                                              }
+                                            },
+                                            icon: Icon(
+                                              Icons.send,
+                                              color: AppColors.darkGreyColor,
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                      // ExpandableTextField(
-                      //   focus: focusNode,
-                      //   hintText: hintText,
-                      //   controller: textController,
-                      //   isExpanded: model.isExpanded,
-                      //   isVisible: model.isVisible,
-                      //   sendMessage: () => sendMessage(textController.text),
-                      //   toggleExpanded: model.toggleExpanded,
-                      //   toggleVisibility: model.toggleVisibility,
-                      // ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-        }
-        // },
+                ],
+              ),
+            );
+          },
         );
+      },
+    );
   }
 }
