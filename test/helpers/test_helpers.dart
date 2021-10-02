@@ -1,4 +1,5 @@
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
@@ -7,6 +8,7 @@ import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/user_service.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -15,7 +17,7 @@ import 'package:stacked_themes/stacked_themes.dart';
 import 'test_helpers.mocks.dart';
 
 ///SUPPLY THE MOCKS FOR ANY SERVICE YOU WANT TO AUTO-GENERATE.
-///ONCE YOU SUPPLY BELOW AUTO GENERATE BY RUNNING "flutter pub run build_runner build --delete-conflicting-outputs"
+///ONCE YOU SUPPLY BELOW AUTO GENERATE BY RUNNING ""
 
 @GenerateMocks([], customMocks: [
   MockSpec<UserService>(returnNullOnMissingStub: true),
@@ -55,15 +57,22 @@ MockNavigationService getAndRegisterNavigationServiceMock() {
   _removeRegistrationIfExists<NavigationService>();
   final service = MockNavigationService();
   locator.registerSingleton<NavigationService>(service);
-
+  service.navigateTo(Routes.signUpView);
+  service.navigateTo(Routes.forgotPasswordEmailView);
+  service.navigateTo(Routes.forgotPasswordOtpView);
+  service.navigateTo(Routes.forgotPasswordNewView);
+  service.navigateTo(Routes.loginView);
   return service;
 }
 
-MockSnackbarService getAndRegisterSnackbarServiceMock() {
+MockSnackbarService getAndRegisterSnackbarServiceMock(
+    {bool userRegistered = false}) {
   _removeRegistrationIfExists<SnackbarService>();
   final service = MockSnackbarService();
+  when(service.showCustomSnackBar(
+    variant: SnackbarType.failure,
+  )).thenAnswer((_) => Future.value(userRegistered));
   locator.registerSingleton<SnackbarService>(service);
-
   return service;
 }
 
@@ -135,11 +144,7 @@ MockZuriApi getAndRegisterZuriApiMock() {
 MockConnectivityService getAndRegisterConnectivityServiceMock() {
   _removeRegistrationIfExists<ConnectivityService>();
   final service = MockConnectivityService();
-  var result =
-      Future.value(const bool.fromEnvironment("network status") ? true : false);
-  when(service.checkConnection()).thenAnswer((realInvocation) => result);
   locator.registerSingleton<ConnectivityService>(service);
-
   return service;
 }
 
