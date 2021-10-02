@@ -1,6 +1,6 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
+import 'dart:convert';
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
 import '../../../../app/app.router.dart';
@@ -23,6 +23,7 @@ class OrganizationViewModel extends BaseViewModel {
 
   void initViewModel() {
     fetchOrganizations();
+    fetchOrganizationMemberList();
   }
 
   Future<void> navigateToNewOrganization() async {
@@ -116,6 +117,40 @@ class OrganizationViewModel extends BaseViewModel {
         message: 'Check your internet connection',
       );
       return;
+    }
+  }
+
+  //Returns the list of members of an Organization
+  Future fetchOrganizationMemberList() async {
+    if (!await connectivityService.checkConnection()) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: 'Check your internet connection',
+      );
+      return;
+    }
+
+    try {
+      setBusy(true);
+      var orgId = currentOrgId ?? '';
+
+      if (orgId.isNotEmpty) {
+        final orgMemberList = await api.getOrganizationMemberList(orgId);
+
+        if (orgMemberList.isNotEmpty) {
+          storageService.setString(
+              StorageKeys.organizationMemberList, jsonEncode(orgMemberList));
+        }
+      }
+      setBusy(false);
+    } catch (e) {
+      log.i(e.toString());
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: 'An unexpected error occurred',
+      );
     }
   }
 

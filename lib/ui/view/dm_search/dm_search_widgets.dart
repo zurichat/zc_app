@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/constants/app_strings.dart';
 
 class Users {
   String? userName;
@@ -17,19 +18,19 @@ class ChannelorPerson extends StatefulWidget {
 
 class _ChannelorPersonState extends State<ChannelorPerson> {
   List<Users> names = [
-    Users(userName: 'Freshfish', status: true),
-    Users(userName: 'Fierce', status: false),
-    Users(userName: 'Dee', status: true),
-    Users(userName: 'ASAP_A1', status: true),
-    Users(userName: 'Happix', status: false),
-    Users(userName: 'Kara', status: true),
-    Users(userName: 'ChiSarah', status: true),
-    Users(userName: 'OyinkanUA', status: false),
-    Users(userName: 'damiAaron', status: true),
-    Users(userName: 'maxiron', status: true),
-    Users(userName: 'ChristieDesign', status: true),
-    Users(userName: 'Detective_Khalifah', status: true),
-    Users(userName: 'Engr_Jimmy', status: true),
+    Users(userName: FreshFish, status: true),
+    Users(userName: Fierce, status: false),
+    Users(userName: Dee, status: true),
+    Users(userName: ASAP, status: true),
+    Users(userName: Happix, status: false),
+    Users(userName: Kara, status: true),
+    Users(userName: ChiSarah, status: true),
+    Users(userName: OyinkanUA, status: false),
+    Users(userName: damiAaron, status: true),
+    Users(userName: maxiron, status: true),
+    Users(userName: ChristieDesign, status: true),
+    Users(userName: Detective_Khalifah, status: true),
+    Users(userName: Engr_Jimmy, status: true),
   ];
   bool isOnline = false;
   @override
@@ -75,7 +76,7 @@ class _CustomTileState extends State<CustomTile> {
             // color: Colors.amberAccent,
             image: const DecorationImage(
               image: NetworkImage(
-                'https://images.unsplash.com/photo-1520583457224-aee11bad5112?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=401&q=80',
+                DMSearchAvatar,
               ),
               fit: BoxFit.fill,
             ),
