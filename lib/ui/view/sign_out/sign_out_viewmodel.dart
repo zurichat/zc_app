@@ -1,7 +1,7 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/models/organization_model.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/constants.dart';
@@ -12,7 +12,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class SignOutViewModel extends BaseViewModel {
   final _navigator = locator<NavigationService>();
-  final _apiService = HttpApiService(coreBaseUrl);
+  final _apiService = ZuriApi(coreBaseUrl);
   final _storage = locator<SharedPreferenceLocalStorage>();
   final _snackBar = locator<SnackbarService>();
   final _connectivityService = locator<ConnectivityService>();
@@ -20,7 +20,7 @@ class SignOutViewModel extends BaseViewModel {
   late OrganizationModel organization;
 
   initViewModel(OrganizationModel org) {
-    this.organization = org;
+    organization = org;
   }
 
 
@@ -32,17 +32,15 @@ class SignOutViewModel extends BaseViewModel {
   Future<void> signOutUser() async {
     bool connected = await _connectivityService.checkConnection();
     const endpoint = "/auth/logout";
-    String? token = _storage.getString(StorageKeys.currentSessionToken);
-    final headers = {"Authorization": "Bearer $token"};
     if (!connected) {
       _snackBar.showCustomSnackBar(
           message: "No internet connection, connect and try again.",
           variant: SnackbarType.failure,
-          duration: Duration(milliseconds: 1500));
+          duration: const Duration(milliseconds: 1500));
       return;
     }
 
-    final response = await _apiService.post(endpoint, headers: headers);
+    final response = await _apiService.post(endpoint, body: {},  token: token);
 
     if (response?.statusCode == 200) {
       _storage.clearData(StorageKeys.currentSessionToken);
@@ -54,7 +52,9 @@ class SignOutViewModel extends BaseViewModel {
           message:
               response?.data["message"] ?? "Error occurred while Signing out",
           variant: SnackbarType.failure,
-          duration: Duration(milliseconds: 1500));
+          duration: const Duration(milliseconds: 1500));
     }
   }
+
+  String? get token => _storage.getString(StorageKeys.currentSessionToken);
 }

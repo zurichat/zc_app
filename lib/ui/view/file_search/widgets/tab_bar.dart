@@ -4,8 +4,8 @@ import '../../../shared/shared.dart';
 
 // tab bar
 class CustomTabBar extends StatelessWidget {
-  final tab1;
-  final tab2;
+  final String? tab1;
+  final String? tab2;
   const CustomTabBar({
     Key? key,
     this.tab1,
@@ -22,8 +22,8 @@ class CustomTabBar extends StatelessWidget {
         child: TabBar(
           indicatorColor: AppColors.zuriPrimaryColor,
           tabs: [
-            Tab(child: Text(tab1, style: AppTextStyles.unselectedLabelText)),
-            Tab(child: Text(tab2, style: AppTextStyles.unselectedLabelText)),
+            Tab(child: Text("$tab1", style: AppTextStyles.unselectedLabelText)),
+            Tab(child: Text("$tab2", style: AppTextStyles.unselectedLabelText)),
           ],
         ),
       ),

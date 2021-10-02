@@ -3,10 +3,10 @@ import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_viewmodel.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
 
+import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
 
 class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
@@ -15,16 +15,16 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
   final UserPost? userPost;
 
   @override
-  Widget build(BuildContext context, ThreadCardViewModel model) {
+  Widget build(BuildContext context, ThreadCardViewModel viewModel) {
     return GestureDetector(
-      onTap: () => model.navigateToThread(userPost),
+      onTap: () => viewModel.navigateToThread(userPost),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             InkWell(
-              onTap: model.viewProfile,
+              onTap: viewModel.viewProfile,
               child: Container(
                   width: 40,
                   height: 40,
