@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Organization
+<Workspace
    version = "1.0">
    <FileRef
       location = "group:Runner.xcodeproj">
    </FileRef>
-<<<<<<< HEAD
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
-=======
-</Organization>
->>>>>>> aca3e3809b41d6227ca29c3ab4f1e52db4dd00dc
