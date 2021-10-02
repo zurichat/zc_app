@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 
 class DateAndTime extends StatefulWidget {
   const DateAndTime({Key? key}) : super(key: key);
@@ -48,7 +49,7 @@ class _DateAndTimeState extends State<DateAndTime> {
           readOnly: true,
           onTap: () => _selectDate(context),
           decoration: const InputDecoration(
-            labelText: 'Date',
+            labelText: DateText,
             suffix: Icon(Icons.keyboard_arrow_down_rounded),
           ),
         ),
@@ -57,7 +58,7 @@ class _DateAndTimeState extends State<DateAndTime> {
           onTap: () => _selectTime(context),
           readOnly: true,
           decoration: const InputDecoration(
-            labelText: 'Time',
+            labelText: Time,
             suffix: Icon(Icons.keyboard_arrow_down_rounded),
           ),
         ),

@@ -4,6 +4,7 @@ import 'dart:io';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_appavailability/flutter_appavailability.dart';
 import 'package:hng/app/app.logger.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -25,7 +26,7 @@ class EmailConfirmationViewModel extends BaseViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: 'App Email not found!',
+          message: EmailAppNotFound,
         );
         log.i(err);
       });
@@ -34,7 +35,7 @@ class EmailConfirmationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Email App not found',
+        message: EmailAppNotFound,
       );
     }
   }

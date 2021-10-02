@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 //import 'package:hng_task2/ui/views/clear_notification/widgets/clear_notification_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
@@ -7,13 +8,14 @@ import 'clear_notification_viewmodel.dart';
 class ClearNotificationView extends StatefulWidget {
   const ClearNotificationView({Key? key}) : super(key: key);
   static const values = <String>[
-    "Don't clear",
-    '30 minutes',
-    '1 hour',
-    '4 hour',
-    'Today',
-    'This week',
-    'Choose date and time'
+    DontClear,
+    ThirtyMins,
+    OneHour,
+    FourHours,
+    Today,
+    ThisWeek,
+    ChooseDate,
+    ClearAfter,
   ];
 
   @override

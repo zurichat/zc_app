@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -10,13 +11,14 @@ class ClearAfterViewModel extends BaseViewModel {
   bool lastIndex = false;
 
   List clearAfterTimes = [
-    'Don’t clear',
-    '30 minutes',
-    '1 hour',
-    '4 hours',
-    'Today',
-    'This week',
-    'Choose date and time',
+    DontClear,
+    ThirtyMins,
+    OneHour,
+    FourHours,
+    Today,
+    ThisWeek,
+    ChooseDate,
+    ClearAfter,
   ];
   int? currentValue = 0;
 
