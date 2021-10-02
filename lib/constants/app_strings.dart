@@ -208,6 +208,7 @@ const String GoogleLogo = 'assets/logo/Google_logo.png';
 const String statusBackground = 'assets/background/status.png';
 const String FemaleUser = 'assets/channel_page/femaleuser.png';
 const String Female = 'assets/channel_page/female.png';
+const String Chimamanda = 'assets/images/chimamanda.png';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
