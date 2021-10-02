@@ -161,4 +161,6 @@ abstract class Api {
 
   Future<ApiResponse?> delete(String path,
       {Map<String, dynamic>? body, String? token});
+
+  Future<ApiResponse?> fetchRoomMessages(String orgId, String roomId);
 }

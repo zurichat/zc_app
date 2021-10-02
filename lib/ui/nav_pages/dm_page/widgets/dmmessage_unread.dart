@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/nav_pages/dm_page/dm_page_viewmodel.dart';
 
 import '../../../shared/shared.dart';
 
 class DMMessageUnread extends StatelessWidget {
-  const DMMessageUnread({
+  const DMMessageUnread(this.dm, {
     Key? key,
   }) : super(key: key);
-
+final DmListItem dm; 
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -33,12 +34,12 @@ class DMMessageUnread extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'OyinkaUA 4️⃣',
+                dm.name,
                 style: AppTextStyles.body1Bold,
               ),
               const SizedBox(height: 5),
-              const Text(
-                'You: Have you been promoted?',
+               Text(
+                dm.lastMessage,
                 // style: AppTextStyles.normalText
               ),
             ],
@@ -48,13 +49,13 @@ class DMMessageUnread extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+               const Text(
                 '1m',
                 // style:
                 //     AppTextStyles.timestamp,
               ),
               const SizedBox(height: 5),
-              AppTextStyles.unreadCount(3)
+              AppTextStyles.unreadCount(dm.unread??0)
             ],
           ),
         ],

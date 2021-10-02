@@ -400,9 +400,9 @@ class ZuriApi implements Api {
   Future<List> getActiveRooms(String orgId, String userId, token) async {
     try {
       final res = await get(
-              '$dmsBaseUrl/api/v1/org/$orgId/users/$userId/rooms/',
+              '${dmsBaseUrl}api/v1/org/$orgId/users/$userId/rooms',
               token: token),
-          joinedChannels = res?.data['joined_rooms'] ?? [];
+          joinedChannels = res?.data;
       log.i(joinedChannels);
       return joinedChannels;
     } on DioError catch (e) {
@@ -749,6 +749,17 @@ class ZuriApi implements Api {
       return UnknownFailure();
     } else {
       return UnknownFailure();
+    }
+  }
+
+  @override
+  Future<ApiResponse?> fetchRoomMessages(String orgId, String roomId) async {
+   try {
+     final res = await get("$dmsBaseUrl/dmapi/v1/org/$orgId/rooms/$roomId/messages");
+        return ApiUtils.toApiResponse(res);
+    } on DioError catch (e) {
+      log.w(e.toString());
+      handleApiError(e);
     }
   }
 }
