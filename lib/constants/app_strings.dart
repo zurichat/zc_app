@@ -149,7 +149,7 @@ const String Emoji6DialogData = '6';
 const String Msg = 'Message';
 const String EditProfile = 'Edit Profile';
 const String Number = 'Mobile Number';
-const String Status = 'Status';
+const String StatusText = 'Status';
 const String DisplayName = 'Display Name';
 
 //Add People
@@ -388,7 +388,7 @@ const String SplashScreen = 'assets/logo/splash_image.png';
 const String PinnedMsgs = 'Pinned Messages';
 
 //View Profile
-const String Message = 'Message';
+const String MessageText = 'Message';
 
 //User
 const String People = 'People';
@@ -400,6 +400,18 @@ const String MsgIn = 'Message In';
 const String YouAndOthers = 'You, Jane and 2 others';
 const String Reply = 'Reply';
 const String NoNewReplies = 'No new replies';
+
+//Start DM
+const String To = 'To:';
+const String StartDmHint = '    Type the name of a channel or person';
+
+//Set Status
+const String FormerStatus = 'Former Status';
+const String WorkingRemotely = 'Working Remotely';
+const String OnHoliday = 'On holiday';
+const String OffSick = 'Off sick';
+const String InMeeting = 'In a meeting';
+const String Commuting = 'Commuting';
 
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';

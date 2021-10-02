@@ -98,7 +98,7 @@ class ViewProfile extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               ProfileAction(
-                                title: const Text(Message),
+                                title: const Text(MessageText),
                                 onTap: () {},
                               ),
                               ProfileAction(
@@ -123,7 +123,8 @@ class ViewProfile extends StatelessWidget {
                               description:
                                   model.userData.displayName.toString()),
                           const Divider(),
-                          ProfileList(title: Status, description: model.status),
+                          ProfileList(
+                              title: StatusText, description: model.status),
                           const Divider(),
                           ProfileList(
                               title: Phone,
