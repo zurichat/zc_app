@@ -19,8 +19,8 @@ class ChannelsApiService {
 
   StreamController<String> controller = StreamController.broadcast();
 
-// Your functions for api calls can go in here
-// https://channels.zuri.chat/api/v1/61459d8e62688da5302acdb1/channels/
+  // Your functions for api calls can go in here
+  // https://channels.zuri.chat/api/v1/61459d8e62688da5302acdb1/channels/
   //TODo - fix
   // ignore: always_declare_return_types
 
@@ -102,6 +102,7 @@ class ChannelsApiService {
         token: token,
       );
       channelMessages = res?.data ?? [];
+
       log.i(channelMessages);
     } on Exception catch (e) {
       log.e(e.toString());

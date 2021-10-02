@@ -2,6 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 import 'package:stacked/stacked.dart';
 
@@ -29,7 +30,7 @@ class OnboardingView extends StatelessWidget {
                           ? TextButton(
                               onPressed: () => model.navigateToNext(),
                               child: Text(
-                                'Skip',
+                                Skip,
                                 style: AppTextStyles.heading8.copyWith(
                                     decoration: TextDecoration.underline,
                                     fontSize: 18),
@@ -58,7 +59,7 @@ class OnboardingView extends StatelessWidget {
                       height: 50,
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Text(index < 2 ? 'Next' : 'Get Started',
+                      child: Text(index < 2 ? Next : GetStarted,
                           style: AppTextStyles.buttonText),
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -123,20 +124,17 @@ class PageViewOnboarding extends StatelessWidget {
 
 final List<Widget> pages = [
   const PageViewOnboarding(
-      title: 'Perfect Collaboration App For Teams',
-      subtitle: '''Chat with other team members'''
-          ''' without any distractions from the world''',
-      image: 'assets/images/onboarding_screen_0.png'),
+      title: OnboardingOneTitle,
+      subtitle: OnboardingOneSubtitle,
+      image: OnboardingOne),
   const PageViewOnboarding(
-    title: 'Music Room',
-    subtitle: '''Now you can listen to your favourite'''
-        ''' tracks right in the App''',
-    image: 'assets/images/onboarding_screen_1.png',
+    title: OnboardingTwoTitle,
+    subtitle: OnboardingTwoSubtitle,
+    image: OnboardingTwo,
   ),
   const PageViewOnboarding(
-    title: 'Chess Room',
-    subtitle: '''Chat with other team members without'''
-        ''' any distractions from the world''',
-    image: 'assets/images/onboarding_screen_2.png',
+    title: OnboardingThreeTitle,
+    subtitle: OnboardingThreeSubtitle,
+    image: OnboardingThree,
   ),
 ];

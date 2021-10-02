@@ -1,61 +1,65 @@
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
+import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
-import '../../../../app/app.locator.dart';
-import '../../../../utilities/enums.dart';
 import '../../shared.dart';
 import '../../styles.dart';
 
+//To receive keywords
+String keyword = '';
+
 class TextParserViewModel extends BaseViewModel {
+// To handle keywords a user would want to get notified about
+
   final parse = <MatchText>[
+    //opens the mail app
     MatchText(
         type: ParsedType.EMAIL,
         style: AppTextStyles.messageTextButton,
-        onTap: ((_) {})),
+        onTap: ((url) {
+          launcher("mailto:" + url);
+        })),
+    //Opens a browser when an HTML is clicked
     MatchText(
         type: ParsedType.URL,
         style: AppTextStyles.messageTextButton,
-        onTap: ((_) {})),
+        onTap: ((url) async {
+          var canBrowse = await canLaunch(url);
+
+          if (canBrowse) {
+            launcher(url);
+          }
+        })),
+    //passes a number as intent to a dialer
     MatchText(
         type: ParsedType.PHONE,
         style: AppTextStyles.messageTextButton,
-        onTap: ((_) {})),
+        onTap: ((url) {
+          launcher("tel:" + url);
+        })),
+    //To make a text bold using *...*
     MatchText(
         type: ParsedType.CUSTOM,
-        pattern:
-            r'^(?:http|https):\/\/[\w\-_]+(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)',
-        style: AppTextStyles.messageTextButton,
-        onTap: ((_) {})),
-    MatchText(
-        type: ParsedType.CUSTOM,
-        pattern:
-            '(---( )?(`)?spoiler(`)?( )?---)\n\n(.*?)\n( )?(---( )?(`)?spoiler(`)?( )?---)',
-        style: AppTextStyles.messageTextButton,
-        onTap: ((_) {})),
-    MatchText(
-      pattern: r'\[(@[^:]+):([^\]]+)\]',
-      style: AppTextStyles.messageTextButton,
-      renderText: ({required pattern, required str}) {
-        final customRegExp = RegExp(r'\[(@[^:]+):([^\]]+)\]');
-        final Match match = customRegExp.firstMatch(str)!;
+        pattern: r'(?<=\*)(.*)(\*)',
+        style: AppTextStyles.archiveTextStyle),
 
-        return {'display': match[1]!};
-      },
-      onTap: (_) async {
-        final _bottomSheetService = locator<BottomSheetService>();
-        await _bottomSheetService.showCustomSheet(
-          variant: BottomSheetType.user,
-          isScrollControlled: true,
-        );
-      },
-    ),
+// To call channels using the hashtag
     MatchText(
-        pattern: r'\B#+([\w]+)\b',
+        type: ParsedType.CUSTOM,
+        pattern: r'\B#+([\w-]+)\b',
         style: AppTextStyles.messageTextButton,
         onTap: ((_) {})),
+    //To alert user of words set as key words
     MatchText(
-        pattern: r'lon',
+        //TODO change keyword to variable set by user
+        type: ParsedType.CUSTOM,
+        pattern: keyword,
+        style: AppTextStyles.messageTextButton,
+        onTap: ((_) {})),
+    //gets '@' mentions
+    MatchText(
+        type: ParsedType.CUSTOM,
+        pattern: r'\B@+([\w]+)\b',
         style: AppTextStyles.messageTextButton,
         onTap: ((_) {})),
   ];

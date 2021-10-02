@@ -1,4 +1,5 @@
 import 'package:hng/app/app.logger.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
@@ -28,7 +29,7 @@ class ChannelInfoViewModel extends BaseViewModel {
   String? _channelDescription;
 
   String get channelDescription {
-    return _channelDescription ?? 'No description Added';
+    return _channelDescription ?? NoDescription;
   }
 
   void setChannelDescription(String channelDescription) {
@@ -38,7 +39,7 @@ class ChannelInfoViewModel extends BaseViewModel {
   }
 
   String get channelName {
-    return _channelName ?? 'Unnamed Channel';
+    return _channelName ?? UnnamedChannel;
   }
 
   void setChannelName(String channelName) {
@@ -76,7 +77,7 @@ class ChannelInfoViewModel extends BaseViewModel {
 
   getChannelInfo() async {
     const channel_id = '613f70bd6173056af01b4aba';
-    const endpoint = 'v1/1/channels/$channel_id/';
+    const endpoint = '$ChannelInfoEndpoint$channel_id/';
 
     final response = await _apiService.get(endpoint);
     if (response?.statusCode == 200) {
@@ -88,14 +89,13 @@ class ChannelInfoViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
-        message: response?.data['message'] ?? 'Update succesful',
+        message: response?.data['message'] ?? UpdateSuccessful,
       );
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: response?.data['message'] ??
-            'Error encountered during channel update.',
+        message: response?.data['message'] ?? ChannelUpdateError,
       );
     }
   }
@@ -116,7 +116,7 @@ class ChannelInfoViewModel extends BaseViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: 'Delete organization failed',
+          message: DeleteOrgError,
         );
       }
     } catch (e) {
