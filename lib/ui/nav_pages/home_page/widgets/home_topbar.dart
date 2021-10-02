@@ -56,7 +56,14 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
             Text(
               organizationName,
               style: ZuriTextStyle.organizationNameText(),
-            )
+            ),
+             const SizedBox(width: 150),
+             IconButton(
+               color: Colors.white,
+               onPressed: (){
+                 viewModel.navigateToUserSearchView();
+               }, icon:  Icon(Icons.search))
+           
           ],
         ),
       ),

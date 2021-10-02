@@ -65,6 +65,10 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.channelInfoView);
   }
 
+  navigateToSearchView() {
+    _navigationService.navigateTo(Routes.userSearchView);
+  }
+
   navigateToOrganization() {
     _navigationService.navigateTo(Routes.organizationView);
   }

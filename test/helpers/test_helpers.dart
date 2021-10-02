@@ -113,11 +113,11 @@ MockCentrifugeService getAndRegisterCentrifugeServiceMock() {
   final Future<Stream?> streamtoReturn =
       Future.value(Stream.fromIterable([eventData]));
   final service = MockCentrifugeService();
-  when(service.subscribe("channelSocketID"))
-      .thenAnswer((_) async => streamtoReturn);
+ // when(service.subscribe("channelSocketID"))
+     // .thenAnswer((_) async => streamtoReturn);
 
-  when(service.subscribe("")).thenAnswer((_) => throw Exception(
-      "Channel Socket ID is required to subscribe to a channel"));
+ // when(service.subscribe("")).thenAnswer((_) => throw Exception(
+     // "Channel Socket ID is required to subscribe to a channel"));
 
   locator.registerSingleton<CentrifugeService>(service);
 
