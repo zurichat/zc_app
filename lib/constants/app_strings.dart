@@ -263,7 +263,12 @@ const String PrivateDescription =
 const String ViewDetails = 'View details';
 const String Recent = 'Recent';
 const String DMHint = 'To: Type the name of a channel or person';
-//----------------
+const String Yesterday = 'Yesterday';
+const String CustomStartMsg1 =
+    'This is the very beginning of your direct message history with ';
+const String CustomStartMsgTwo =
+    'Only the two of you are in this conversation, and no one else can join it.';
+
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
@@ -285,6 +290,7 @@ const String DmReadAvatar =
 const String DMSearchAvatar =
     'https://images.unsplash.com/photo-1520583457224-aee11bad5112?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=401&q=80';
 const String UserAvatar = 'assets/background/bga.png';
+const String AvatarTwo = 'assets/avatar.png';
 const String Mark = 'Mark';
 const String Naza = 'Naza';
 const String OyinkanUA = 'OyinkanUA';
@@ -333,3 +339,8 @@ const String Detective_Khalifah = 'Detective_Khalifah';
 const String ChristieDesign = 'ChristieDesign';
 const String Jaytek = 'Jaytek';
 const String ProductDesigner = 'Product designer';
+const String Hello = 'Hello...';
+const String Cool = 'Cool...';
+const String Nice = 'Nice...';
+const String Yeah = 'Yeah';
+const String Nope = 'Nope';
