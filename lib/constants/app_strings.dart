@@ -152,6 +152,25 @@ const String AddPeople = 'Add People';
 const String Add = 'Add';
 const String EveryoneWillBeAdded = 'Everyone will be added to channel';
 
+//Advanced
+const String Advanced = 'Advanced';
+const String EmojiDeluxe = 'Emoji Deluxe';
+const String EmojiDeluxeSubititle = 'Choose your default skin tone';
+const String ShowPreviewsSubtitle = 'Image previews not displayed';
+const String ShowPreviews = 'Show image previews';
+const String OpenWebPages = 'Open web pages in app';
+const String OpenWebPagesSubtitle = 'Link will open in Zuri Chat';
+const String TypingIndicator = 'Display typing indicators';
+const String TypingIndicatorSubtitle = 'Typing indicators will be displayed';
+const String AnimateEmoji = 'Allow animated image and emoji';
+const String AnimateEmojiSubtitle = 'Images and emoji can be animated';
+const String OptimiseImage = 'Optimize image uploads';
+const String OptimiseImageSubtitle =
+    'Images are optimized for upload performance';
+const String ResetCache = 'Reset Cache';
+const String ForceStop = 'Force Stop';
+const String UnsavedDataWarning = 'Unsaved data may be lost';
+
 //----------------
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
