@@ -70,13 +70,6 @@ class ChannelPageViewModel extends BaseViewModel {
     await _channelsApiService.joinChannel(channelId);
   }
 
-  // void getChannelSocketId(String channelId) async {
-  //   final channelSockId =
-  //   await _channelsApiService.getChannelSocketId(channelId);
-
-  //   websocketConnect(channelSockId);
-  // }
-
   void fetchMessages(String channelId) async {
     //setBusy(true);
 
