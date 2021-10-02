@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/utilities/enums.dart';
@@ -25,7 +26,7 @@ class AddOrganizationView extends StatelessWidget {
             elevation: 8,
             shadowColor: Colors.black38,
             title: Text(
-              'Add Organizations',
+              AddOrganisations,
               style: AppTextStyles.heading4,
             ),
           ),
@@ -66,7 +67,7 @@ class AddOrganizationView extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 16),
                                 Text(
-                                  'Create a new organization',
+                                  CreateNewOrg,
                                   style: AppTextStyles.regular,
                                 ),
                               ],
@@ -96,7 +97,7 @@ class AddOrganizationView extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 16),
                                 Text(
-                                  'Sign in to another organization',
+                                  SignInNewOrg,
                                   style: AppTextStyles.regular,
                                 ),
                               ],
@@ -127,7 +128,7 @@ class AddOrganizationView extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 16),
                                 Text(
-                                  'Join another organization',
+                                  JoinAnotherOrg,
                                   style: AppTextStyles.regular,
                                 ),
                               ],
