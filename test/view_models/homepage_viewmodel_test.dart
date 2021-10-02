@@ -10,7 +10,7 @@ void main() {
     setUp(() => registerServices());
     tearDown(() => unregisterServices());
 
-    group("Navigation services test", () {
+    group("View model methods test", () {
       test("Navigate to file search page", () {
         final model = HomePageViewModel();
         model.nToPref();
@@ -22,8 +22,28 @@ void main() {
         verify(navigationService.navigateTo(Routes.dmUserView));
       });
 
-      
+     test('Get Dms and channels list', () async {
+        var service = getAndRegisterChannelsApiServiceMock();
+        var model = HomePageViewModel();
+        await model.getDmAndChannelsList();
+        verify(service.getActiveDms());
+      });
 
+   
+
+      // test("Navigate to channel page", ()async{
+      //   var service= getAndRegisterNavigationServiceMock();
+      //   var model=HomePageViewModel();
+      //   await model.navigateToChannelPage("channelname", "channelId", 5, true);
+      //   verify(service.navigateTo(Routes.channelPageView,
+      //   arguments: ChannelPageViewArguments(
+      //       channelname: "channelname",
+      //       channelId: "channelId",
+      //       membersCount:5,
+      //       public: true,
+      //     ),
+      //     ));
+      // });
 
     });
   });

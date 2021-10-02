@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
@@ -7,6 +9,7 @@ import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/user_service.dart';
+import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -102,6 +105,12 @@ MockDMApiService getAndRegisterDMApiServiceMock() {
 MockChannelsApiService getAndRegisterChannelsApiServiceMock() {
   _removeRegistrationIfExists<ChannelsApiService>();
   final service = MockChannelsApiService();
+  const String= "Here is an event";
+  Map eventData = {"some_key": "some_returned_string"};
+  final Future<Stream?> streamtoReturn =
+      Future.value(Stream.fromIterable([eventData]));
+  when(service.getActiveDms()).thenAnswer((realInvocation) => Future.value(<HomeItemModel>[]));
+  
   locator.registerSingleton<ChannelsApiService>(service);
 
   return service;
@@ -132,9 +141,12 @@ MockZuriApi getAndRegisterZuriApiMock() {
   return service;
 }
 
-MockConnectivityService getAndRegisterConnectivityServiceMock() {
+MockConnectivityService getAndRegisterConnectivityServiceMock(
+ // {bool? hasConnection}
+) {
   _removeRegistrationIfExists<ConnectivityService>();
   final service = MockConnectivityService();
+  //when(service.hasConnection).thenAnswer((realInvocation) => hasConnection!) ;
   locator.registerSingleton<ConnectivityService>(service);
 
   return service;

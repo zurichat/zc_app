@@ -173,8 +173,9 @@ class HomePageViewModel extends StreamViewModel {
 
   navigateToChannelPage(String? channelname, String? channelId,
       int? membersCount, bool? public) async {
+        var hasConnection= true;
     try {
-      if (!await connectivityService.checkConnection()) {
+      if (!hasConnection) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
@@ -182,18 +183,20 @@ class HomePageViewModel extends StreamViewModel {
         );
 
         return;
-      }
-      setBusy(true);
-      // _channel= await api.getChannelPage(id);
-      // _membersList= await api.getChannelMembers(id);
-      setBusy(false);
-      navigation.navigateTo(Routes.channelPageView,
+      }else{
+              setBusy(false);
+      _navigationService.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
             channelname: channelname,
             channelId: channelId,
             membersCount: membersCount,
             public: public,
           ));
+      }
+      setBusy(true);
+      // _channel= await api.getChannelPage(id);
+      // _membersList= await api.getChannelMembers(id);
+
     } catch (e) {
       log.e(e.toString());
       snackbar.showCustomSnackBar(

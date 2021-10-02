@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import '../ui/shared/colors.dart';
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField(
+  const CustomTextField(
       {Key? key,
       this.controller,
       required this.keyboardType,

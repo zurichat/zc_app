@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/ui/view/dm_user/dm_user_viewmodel.dart';
@@ -161,90 +160,6 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                         ),
                                       ],
                                     ),
-                                  ),
-                                  GroupedListView<Message, String>(
-                                    controller: scrollController,
-                                    shrinkWrap: true,
-                                    elements: model.chatMessages,
-                                    groupBy: (message) {
-                                      return message.getRelativeTime();
-                                    },
-                                    groupSeparatorBuilder: (value) {
-                                      return GroupSeparator(value);
-                                    },
-                                    itemBuilder: (context, msg) {
-                                      return InkWell(
-                                          onLongPress: () =>
-                                              model.showButtonSheet(msg),
-                                          child: MessageView(msg));
-                                    },
-                                    groupComparator: (groupOne, groupTwo) =>
-                                        groupOne.compareTo(groupTwo),
-                                    itemComparator: (itemOne, itemTwo) =>
-                                        itemOne.id.compareTo(itemTwo.id),
-                                  ),
-                                  const SizedBox(height: 40)
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Material(
-                    color: AppColors.whiteColor,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Divider(height: 0, color: AppColors.greyishColor),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                height: 56,
-                                margin: const EdgeInsets.only(left: 13.0),
-                                alignment: Alignment.centerLeft,
-                                child: FocusScope(
-                                  child: Focus(
-                                    onFocusChange: (focus) {
-                                      if (focus) {
-                                        model.onTapMessageField();
-                                      } else {
-                                        model.onUnfocusMessageField();
-                                      }
-                                    },
-                                    child: Flexible(
-                                      fit: FlexFit.loose,
-                                      child: CustomTextField(
-                                          keyboardType: TextInputType.text,
-                                          inputAction: TextInputAction.send,
-                                          autoCorrect: false,
-                                          obscureText: false,
-                                          controller: messageController,
-                                          expands: true,
-                                          maxlines: null,
-                                          suffixIcon: CustomStatus(
-                                              isActive: true, data: '5'),
-                                          textAlignVertical:
-                                              TextAlignVertical.center,
-                                          hintText:
-                                              'Message ${model.receiver.username}',
-                                          hintStyle: const TextStyle(
-                                            color: AppColors.faintTextColor,
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(3.0)),
-                                          )),
-
-                                    ),
-                                  ),
                                     const SizedBox(height: 5),
                                     Text(model.bio,
                                         style: const TextStyle(
