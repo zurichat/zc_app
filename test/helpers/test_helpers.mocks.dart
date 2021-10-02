@@ -25,6 +25,7 @@ import 'package:hng/services/centrifuge_service.dart' as _i17;
 import 'package:hng/services/connectivity_service.dart' as _i21;
 import 'package:hng/services/local_storage_services.dart' as _i7;
 import 'package:hng/services/user_service.dart' as _i6;
+
 import 'package:hng/utilities/enums.dart' as _i22;
 import 'package:hng/utilities/failures.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
@@ -1188,6 +1189,7 @@ class MockJumpToApi extends _i1.Mock implements _i23.JumpToApi {
       (super.noSuchMethod(Invocation.method(#fetchList, []),
               returnValue: Future<List<_i20.NewUser>>.value(<_i20.NewUser>[]))
           as _i2.Future<List<_i20.NewUser>>);
+
   @override
   String toString() => super.toString();
 }
@@ -1257,6 +1259,7 @@ class MockOrganizationApiService extends _i1.Mock
               returnValue:
                   Future<List<_i20.UserSearch>>.value(<_i20.UserSearch>[]))
           as _i2.Future<List<_i20.UserSearch>>);
+
   @override
   String toString() => super.toString();
 }
