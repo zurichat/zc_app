@@ -212,6 +212,11 @@ const String Nothing = 'Nothing';
 //Channel Search
 const String TeamSocrates = '#teamsocrates';
 
+//Channel View
+const String AddDescription = 'Add Description';
+const String Today = 'today';
+const String AddReply = 'Add a Reply';
+
 //----------------
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
@@ -222,7 +227,7 @@ const String FemaleUser = 'assets/channel_page/femaleuser.png';
 const String Female = 'assets/channel_page/female.png';
 const String Chimamanda = 'assets/images/chimamanda.png';
 const String UserImage = 'assets/images/user.png';
-
+const String EditLogo = 'assets/channel_page/edit.png';
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
     'https://th.bing.com/th/id/OIP.QHG-JO3iI1u8VQjSkpO0HwHaLH?pid=ImgDet&rs=1';

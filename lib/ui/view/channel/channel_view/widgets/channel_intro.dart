@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:stacked/stacked.dart';
@@ -36,13 +37,13 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                     shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
                     child: const ImageIcon(
-                      AssetImage('assets/channel_page/edit.png'),
+                      AssetImage(EditLogo),
                       color: AppColors.zuriPrimaryColor,
                     ),
                   ),
                   const SizedBox(height: 5),
                   const Text(
-                    'Add Description',
+                    AddDescription,
                     style: TextStyle(
                       color: AppColors.greyishColor,
                       fontSize: 14,
@@ -65,7 +66,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                   ),
                   const SizedBox(height: 5),
                   const Text(
-                    'Add People .',
+                    AddPeople,
                     style: TextStyle(
                       color: AppColors.greyishColor,
                       fontSize: 14,

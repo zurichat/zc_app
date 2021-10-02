@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
@@ -71,7 +72,7 @@ class ChannelPageView extends StatelessWidget {
             ],
           ),
           body: ExpandableTextFieldScreen(
-            hintText: 'Add a Reply',
+            hintText: AddReply,
             sendMessage: (val) => model.sendMessage(val, channelId!),
             widget: SingleChildScrollView(
               reverse: true,
