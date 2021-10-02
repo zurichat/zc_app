@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.logger.dart';
 
-// import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'constants.dart';
 import 'extensions/string_extension.dart';
@@ -33,4 +33,14 @@ bool nullListChecker(List? list) {
   } else {
     return false;
   }
+}
+
+launcher(String url) {
+  var _launcher = launch(url);
+  return _launcher;
+}
+
+Future<bool> canLaunch(String url) async {
+  var islaunchable = await canLaunch(url);
+  return islaunchable;
 }
