@@ -1,4 +1,5 @@
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/profile_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/api_service.dart';
@@ -20,8 +21,8 @@ class EditProfileViewModel extends FutureViewModel {
   final connectivityService = locator<ConnectivityService>();
   final _api = ZuriApi(coreBaseUrl);
   final api = ApiService();
-    String? get token => storageService.getString(StorageKeys.currentSessionToken);
-  
+  String? get token =>
+      storageService.getString(StorageKeys.currentSessionToken);
 
   void updateString(String name, String display, String status, String phone) {
     if (name.trim().isNotEmpty) {
@@ -66,14 +67,14 @@ class EditProfileViewModel extends FutureViewModel {
       snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 5),
           variant: SnackbarType.success,
-          message: ''' Profile Update Was Successful''');
+          message: UpdateSuccessful);
       await GetUserProfile().currentUser();
       _navigationService.back();
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: ''' Profile Update failed''',
+        message: UpdateFailed,
       );
     }
   }
