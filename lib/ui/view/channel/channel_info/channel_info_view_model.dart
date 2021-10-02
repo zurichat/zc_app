@@ -102,33 +102,6 @@ class ChannelInfoViewModel extends BaseViewModel {
 
   navigateToAddMembers() {
     _navigationService.navigateTo(Routes.addPeopleView);
-//  const channel_id = '613f70bd6173056af01b4aba';
-//     const endpoint = 'v1/1/channels/$channel_id/members/';
-
-//     Map<String, dynamic> body = {
-
-//     };
-
-//     final response = await _apiService.post(endpoint, data:body );
-//     if (response?.statusCode == 201) {
-//       print(response?.data);
-//       String channelName = response?.data['name'];
-//       String des = response?.data['description'];
-//       print('sacas $des');
-//       setChannelDescription(des);
-//       snackbar.showCustomSnackBar(
-//         duration: const Duration(seconds: 3),
-//         variant: SnackbarType.success,
-//         message: response?.data['message'] ?? 'Update succesful',
-//       );
-//     } else {
-//       snackbar.showCustomSnackBar(
-//         duration: const Duration(seconds: 3),
-//         variant: SnackbarType.failure,
-//         message: response?.data['message'] ??
-//             'Error encountered during channel update.',
-//       );
-//     }
   }
 
   Future<void> deleteChannel(ChannelModel channel) async {
