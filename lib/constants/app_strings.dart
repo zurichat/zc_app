@@ -309,6 +309,23 @@ const String Portugues = 'Portugues (Brazil)';
 const String Chinese = '陈摩托何';
 const String Mandarin = '来 本 嗄';
 
+//Notifications
+const String NotifyAbout = 'On mobile, notify me about...';
+const String NotifyAboutSubtitle = 'Direct messages, mentions & keywords';
+const String NotifyOnMobile = 'Notify me on mobile...';
+const String NotifyOnMobileSubtitle = "As soon as I'm active";
+const String Ding = 'Ding';
+const String Sound = 'Sound';
+const String Vibrate = 'Vibrate';
+const String Light = 'Light';
+const String TroubleshootNotifs = 'Troubleshoot notifications';
+const String GeneralSettings = 'General Settings';
+const String NotificationSchedule = 'Notification Schedule';
+const String Everyday = 'Everyday';
+const String InAppNotif = 'In-app notification';
+const String MyKeyword = 'My Keyword';
+const String MyKeywordSubtitle = 'Get notified when people say...';
+const String ChannelSPecificNotif = 'Channel-specific notifications (0)';
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
