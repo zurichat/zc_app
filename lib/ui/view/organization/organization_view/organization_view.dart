@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/models/organization_model.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../models/organization_model.dart';
@@ -10,9 +11,9 @@ class OrganizationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<OrganizationViewModel>.reactive(
-      onModelReady: (model) => model.initViewModel(),
+      onModelReady: (viewModel) => viewModel.initViewModel(),
       disposeViewModel: false,
-      builder: (context, model, child) {
+      builder: (context, viewModel, child) {
         return Scaffold(
           body: SafeArea(
             child: Padding(
@@ -27,10 +28,10 @@ class OrganizationView extends StatelessWidget {
                   ),
                   Expanded(
                     child: Visibility(
-                      visible: !model.isBusy,
+                      visible: !viewModel.isBusy,
                       child: SingleChildScrollView(
                         physics: const ScrollPhysics(),
-                        child: model.organizations.isEmpty
+                        child: viewModel.organizations.isEmpty
                             ? Center(
                                 child: Container(
                                   alignment: Alignment.center,
@@ -50,10 +51,11 @@ class OrganizationView extends StatelessWidget {
                                   ListView.builder(
                                     physics:
                                         const NeverScrollableScrollPhysics(),
-                                    itemCount: model.organizations.length,
+                                    itemCount: viewModel.organizations.length,
                                     shrinkWrap: true,
                                     itemBuilder: (context, i) {
-                                      final org = model.organizations[i];
+                                      final org = viewModel.organizations[i];
+
                                       return OrganizationTile(org: org);
                                     },
                                   ),
@@ -72,13 +74,14 @@ class OrganizationView extends StatelessWidget {
                     child: Column(
                       children: [
                         ListTile(
-                          onTap: () => model.navigateToNewOrganization(),
+                          onTap: () => viewModel.navigateToNewOrganization(),
                           leading: const Icon(Icons.add_box_outlined),
                           title: const Text('Add an organization'),
                         ),
-                        const ListTile(
-                          leading: Icon(Icons.settings),
-                          title: Text('Preferences'),
+                        ListTile(
+                          onTap: () => viewModel.viewPreferences(),
+                          leading: const Icon(Icons.settings),
+                          title: const Text('Preferences'),
                         ),
                         const ListTile(
                           leading: Icon(Icons.help_outline),
@@ -107,15 +110,15 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
   final OrganizationModel org;
 
   @override
-  Widget build(BuildContext context, OrganizationViewModel model) {
+  Widget build(BuildContext context, OrganizationViewModel viewModel) {
     return ListTile(
-      onTap: () => model.onTap(org.id, org.name, org.organizationUrl),
+      onTap: () => viewModel.onTap(org.id, org.name, org.organizationUrl),
       leading: Container(
         height: MediaQuery.of(context).size.height * 0.06,
         width: MediaQuery.of(context).size.height * 0.06,
         padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(
-          color: model.currentOrgId == org.id
+          color: viewModel.currentOrgId == org.id
               ? AppColors.blackColor
               : AppColors.whiteColor,
           borderRadius: BorderRadius.circular(5),
@@ -158,10 +161,8 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
           style: AppTextStyles.body3Medium,
         ),
       ),
-      trailing: GestureDetector(
-        onTap: () {},
-        child: const Icon(Icons.more_vert),
-      ),
+      trailing:
+          GestureDetector(onTap: () {}, child: const Icon(Icons.more_vert)),
     );
   }
 }

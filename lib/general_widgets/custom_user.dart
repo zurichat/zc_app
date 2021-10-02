@@ -4,8 +4,8 @@ import 'package:hng/ui/shared/shared.dart';
 
 class CustomUser extends StatelessWidget {
   const CustomUser({Key? key, this.image, this.text}) : super(key: key);
-  final text;
-  final image;
+  final String? text;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {

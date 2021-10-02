@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import '../../../../shared/colors.dart';
@@ -21,7 +22,7 @@ class FirstSection extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 5.r,
               blurRadius: 6.r,
-              offset: Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3), // changes position of shadow
             ),
           ]),
       padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 24.h, 16.37.w),
@@ -34,7 +35,7 @@ class FirstSection extends StatelessWidget {
             style: AppTextStyles.body1Light,
           ),
           Text(
-            'Description',
+            Description,
             style: AppTextStyles.body1Light,
           ),
           SizedBox(height: 24.h),
@@ -44,17 +45,17 @@ class FirstSection extends StatelessWidget {
           ),
           SizedBox(height: 6.h),
           Text(
-            'Mark created this channel on August 13.',
+            MarkCreatedChannel,
             style: AppTextStyles.body1Regular.copyWith(letterSpacing: 0.005),
           ),
           SizedBox(height: 18.h),
           Text(
-            'Topic',
+            Topic,
             style: AppTextStyles.headerStyle1.copyWith(fontSize: 16.sp),
           ),
           SizedBox(height: 10.h),
           Text(
-            'Creating the zuri main app',
+            CreatingZuri,
             style: AppTextStyles.body1Light.copyWith(fontSize: 16.sp),
           ),
           SizedBox(height: 26.h),
@@ -69,7 +70,7 @@ class FirstSection extends StatelessWidget {
                 model.navigateToEditChannel();
               },
               child: Text(
-                'Edit',
+                Edit,
                 style: AppTextStyles.bodyBig..copyWith(fontSize: 16.sp),
               ),
             ),

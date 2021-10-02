@@ -16,8 +16,10 @@ class ThreadCardViewModel extends BaseViewModel {
   int randomVarBank = 1000;
 
   Future navigateToThread(UserPost? userPost) async {
-    _navigationService.navigateTo(Routes.threadDetailView,
-        arguments: ThreadDetailViewArguments(userPost: userPost));
+    _navigationService.navigateTo(
+      Routes.threadDetailView,
+      arguments: ThreadDetailViewArguments(userPost: userPost),
+    );
   }
 
   Future viewProfile() async {
@@ -28,7 +30,7 @@ class ThreadCardViewModel extends BaseViewModel {
   }
 
   Future addEmojis(UserPost? userPost) async {
-    var emoji;
+    String? emoji;
     var sheetResponse = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.emojiPicker,
       isScrollControlled: true,

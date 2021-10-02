@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:hng/app/app.logger.dart';
 
 class DioInterceptor implements Interceptor {
-  final log = getLogger("Dio Interceptor");
+  final log = getLogger("DioInterceptor");
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {

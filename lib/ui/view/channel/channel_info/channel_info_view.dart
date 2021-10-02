@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
@@ -31,7 +32,7 @@ class ChannelInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
+        const SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
     return ViewModelBuilder<ChannelInfoViewModel>.reactive(
       fireOnModelReadyOnce: true,
       onModelReady: (model) {
@@ -54,39 +55,43 @@ class ChannelInfoView extends StatelessWidget {
                     children: [
                       FirstSection(model),
                       SizedBox(height: 16.h),
-                      SecondSection(),
+                      const SecondSection(),
                       SizedBox(height: 8.h),
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
-                          'You wont\'t receive any messages from a muted channel',
+                          MuteChannelWarning,
                           style: AppTextStyles.body1Grey,
                         ),
                       ),
-                      ThirdSection(model, numberOfMembers, channelMembers,
-                          channelDetail),
+                      ThirdSection(
+                        model,
+                        numberOfMembers,
+                        channelDetail,
+                        channelMembers,
+                      ),
                       SizedBox(height: 16.h),
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
-                          'Bookmarks',
+                          Bookmarks,
                           style: AppTextStyles.body1Grey,
                         ),
                       ),
                       SizedBox(height: 8.h),
-                      FourthSection(),
+                      const FourthSection(),
                       SizedBox(height: 16.h),
-                      FifthSection(),
+                      const FifthSection(),
                       SizedBox(height: 16.h),
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
-                          'Advanced',
+                          Advanced,
                           style: AppTextStyles.body1Grey,
                         ),
                       ),
                       SizedBox(height: 8.h),
-                      SixthSection(),
+                      SixthSection(channelDetail),
                     ],
                   ),
                 ),

@@ -1,8 +1,12 @@
 import 'package:hng/app/app.logger.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
+import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/view/channel/channel_members/channel_members_list.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -14,6 +18,9 @@ import '../../../../utilities/enums.dart';
 class ChannelInfoViewModel extends BaseViewModel {
   final snackbar = locator<SnackbarService>();
   final _apiService = ChannelsApiService();
+  final _channelApi = locator<ChannelsApiService>();
+  final _userService = locator<UserService>();
+  // final _apiService = ZuriApi(channelsBaseUrl);
   final _navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _dialogService = locator<DialogService>();
@@ -24,7 +31,7 @@ class ChannelInfoViewModel extends BaseViewModel {
   String? _channelDescription;
 
   String get channelDescription {
-    return _channelDescription ?? 'No description Added';
+    return _channelDescription ?? NoDescription;
   }
 
   void setChannelDescription(String channelDescription) {
@@ -34,7 +41,7 @@ class ChannelInfoViewModel extends BaseViewModel {
   }
 
   String get channelName {
-    return _channelName ?? 'Unnamed Channel';
+    return _channelName ?? UnnamedChannel;
   }
 
   void setChannelName(String channelName) {
@@ -80,14 +87,41 @@ class ChannelInfoViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
-        message: response?.data['message'] ?? 'Update succesful',
+        message: response?.data['message'] ?? UpdateSuccessful,
       );
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: response?.data['message'] ??
-            'Error encountered during channel update.',
+        message: response?.data['message'] ?? ChannelUpdateError,
+      );
+    }
+  }
+
+  Future<void> deleteChannel(ChannelModel channel) async {
+    try {
+      bool res = await _channelApi.deleteChannel(
+          _userService.currentOrgId, channel.id);
+      if (res) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.success,
+          message: 'Channels ${channel.name} deleted successful',
+        );
+
+        _navigationService.popRepeated(2);
+      } else {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: DeleteOrgError,
+        );
+      }
+    } catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.toString(),
       );
     }
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -28,57 +29,58 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
       viewModelBuilder: () => EditChannelViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: CustomAppBars(
-          appbarTitle: 'Edit Channel',
-          appbarAction: 'Save',
+          appbarTitle: EditChannel,
+          appbarAction: Save,
           model: model,
         ),
         backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const SizedBox(height: 20),
-            TextHeader(headerText: 'Channel Name'),
-            const SizedBox(
-              height: 16.0,
-            ),
-            Container(
-              margin: _padding,
-              child: Text(
-                '#teamsocrates',
-                style: AppTextStyles.body1Light,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              const TextHeader(headerText: ChannelName),
+              const SizedBox(
+                height: 16.0,
               ),
-            ),
-            const SizedBox(
-              height: 25.0,
-            ),
-            Container(
-              margin: _padding,
-              child: Text(
-                """
-Channel names must be lowercase, without spaces or periods, and can't be longer than 80 characters""",
-                style: AppTextStyles.body2_400,
+              Container(
+                margin: _padding,
+                child: Text(
+                  TeamSocrates,
+                  style: AppTextStyles.body1Light,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 36.0,
-            ),
-            TextHeader(headerText: 'Channel Topic'),
-            TextBox(
-              hint: 'Add a topic',
-              controller: topicController,
-            ),
-            TextHeader(headerText: 'Channel Description'),
-            TextBox(
-                hint: 'Set a description', controller: descriptionController),
-            const SizedBox(
-              height: 30,
-            ),
-            Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(color: Color(0xffF6F6F6)),
-              height: 90,
-            ),
-          ]),
+              const SizedBox(
+                height: 25.0,
+              ),
+              Container(
+                margin: _padding,
+                child: Text(
+                  ChannelCreationWarning,
+                  style: AppTextStyles.body2_400,
+                ),
+              ),
+              const SizedBox(
+                height: 36.0,
+              ),
+              const TextHeader(headerText: ChannelTopic),
+              TextBox(
+                hint: AddTopic,
+                controller: topicController,
+              ),
+              const TextHeader(headerText: ChannelDescription),
+              TextBox(
+                  hint: ChannelCreationHint, controller: descriptionController),
+              const SizedBox(
+                height: 30,
+              ),
+              Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(color: Color(0xffF6F6F6)),
+                height: 90,
+              ),
+            ],
+          ),
         ),
       ),
     );

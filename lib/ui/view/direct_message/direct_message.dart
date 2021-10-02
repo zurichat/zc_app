@@ -1,5 +1,6 @@
 //keep Hng Project
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import '../../../utilities/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
@@ -8,7 +9,7 @@ import '../../../general_widgets/custom_text.dart';
 import 'direct_message_viewmodel.dart';
 
 class DirectMessage extends StatelessWidget {
-  final username;
+  final String? username;
   const DirectMessage({Key? key, this.username}) : super(key: key);
 
   @override
@@ -42,7 +43,7 @@ class DirectMessage extends StatelessWidget {
                   ),
                   const CustomText(
                     color: Colors.black,
-                    text: 'View details',
+                    text: ViewDetails,
                   ),
                 ],
               ),
@@ -96,7 +97,7 @@ class DirectMessage extends StatelessWidget {
                                   ],
                                 ),
                                 const CustomText(
-                                  text: 'Software Development',
+                                  text: SoftwareDev,
                                   color: Colors.black,
                                 ),
                                 const SizedBox(height: 10),
@@ -139,8 +140,7 @@ class DirectMessage extends StatelessWidget {
                                                 ],
                                               ),
                                               const CustomText(
-                                                  text:
-                                                      'Have you been Promtoed?')
+                                                  text: PromotedPlaceholder)
                                             ],
                                           ),
                                         ],
@@ -169,7 +169,7 @@ class DirectMessage extends StatelessWidget {
                             child: TextField(
                               controller: model.controller,
                               decoration: const InputDecoration(
-                                hintText: 'Write message...',
+                                hintText: WriteMsgHint,
                                 hintStyle: TextStyle(color: Colors.black54),
                               ),
                               onEditingComplete: () =>

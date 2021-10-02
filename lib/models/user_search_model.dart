@@ -31,7 +31,7 @@ class UserSearch {
   String? role;
   dynamic settings;
   dynamic socials;
-  String? status;
+  //   String? status;
   String? timeZone;
   String? userName;
 
@@ -55,7 +55,7 @@ class UserSearch {
     this.role,
     this.settings,
     this.socials,
-    this.status,
+    // this.status,
     this.timeZone,
     this.userName,
   });
@@ -79,7 +79,7 @@ class UserSearch {
         role: json['role'],
         settings: json['settings'],
         socials: json['socials'],
-        status: json['status'],
+        // status: json['status'],
         timeZone: json['time_zone'],
         userName: json['user_name'],
       );
