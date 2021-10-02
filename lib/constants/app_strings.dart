@@ -18,8 +18,10 @@ const String errorOTP = 'OTP could not be validated';
 const String wrongOTP = 'Wrong OTP, please check again';
 const String UpdateSuccessful = 'Update successful';
 const String UpdateFailed = 'Update failed';
+const String FetchError = 'Error fetching info';
 const String ChannelUpdateError = 'Error encountered during channel update';
 const String DeleteOrgError = 'Delete organization failed';
+const String ComingSoon = 'Coming soon!!';
 
 //API Endpoints
 const String loginEndpoint = '/auth/login';
@@ -326,6 +328,61 @@ const String InAppNotif = 'In-app notification';
 const String MyKeyword = 'My Keyword';
 const String MyKeywordSubtitle = 'Get notified when people say...';
 const String ChannelSPecificNotif = 'Channel-specific notifications (0)';
+
+//Onboarding
+const String Skip = 'Skip';
+const String OnboardingOneTitle = 'Perfect Collaboration App For Teams';
+const String OnboardingOneSubtitle =
+    'Chat with other team members without any distractions from the world';
+const String OnboardingTwoTitle = 'Music Room';
+const String OnboardingTwoSubtitle =
+    'Now you can listen to your favourite tracks right in the App';
+const String OnboardingThreeTitle = 'Chess Room';
+const String OnboardingThreeSubtitle =
+    'Chat with other team members without any distractions from the world';
+const String Next = 'Next';
+const String GetStarted = 'Get Started';
+
+//Organisation
+const String UseAnotherEmail = 'Use another email address';
+const String CreateWorkspace = 'Create a workspace';
+const String SignInWorkspace = 'Sign in to a workspace';
+const String JoinWorkspace = 'Join a workspace';
+const String Organizations = 'Organizations';
+const String NotJoinedOrgYet = 'You have not joined any organization yet!';
+const String Help = 'Help';
+const String AddOrg = 'Add an organisation';
+const String EnterOrgUrl = 'Enter Organization URL';
+const String EnterOrgUrlHint = 'https://organization.zuri.com';
+const String OrgDesc1 =
+    'If you don\'t know your Organization URL, we have sent an email to ';
+const String OrgDesc2 = ' to help you sign in easily';
+const String InputRequired = 'Input is required';
+const String EnterEmail = 'Enter Email Address';
+const String WillSendEmail =
+    'We’ll send you an email that will instantly sign you in';
+const String YourEmail = 'Your email address';
+const String EmailAppNotFound = 'Email App not found';
+const String OpenEmail = 'Open email app';
+const String ToConfirmEmailAdd =
+    'To confirm your email address, tap the button in the email we sent to lukeskylwalker@gmail.com';
+const String CheckYourMail = 'Check your mail';
+const String ProjectHint = 'Eg.  Q4 Budget, Website Update';
+const String ProjectName = "What's a project your team is working on?";
+const String AddTeammates = 'Add Teammates';
+const String SampleEmail = 'name@example.com';
+const String ShareInviteLink = 'Copy and share your invite link';
+const String TeammateNames = 'Who else is working with you?';
+const String CompanyName = "What's the name of the\ncompany or team?";
+const String CompanyNameHint = 'Eg.  HNG I8 / Team Socrates';
+const String CookiePolicy = 'Cookie Policy';
+const String CustomerAgreementText =
+    'It’s okay to send me email with Zuri Chat app, news and offer';
+const String AddOrganisations = 'Add Organisations';
+const String CreateNewOrg = 'Create a new organization';
+const String SignInNewOrg = 'Sign in to another organization';
+const String JoinAnotherOrg = 'Join another organization';
+
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
@@ -342,6 +399,11 @@ const String FileLogo = 'assets/images/file_image.png';
 const String Arrows = 'assets/images/arrows.png';
 const String CloseSearch = 'assets/images/close_search.png';
 const String VoiceSearch = 'assets/images/voice_search.png';
+const String OnboardingOne = 'assets/images/onboarding_screen_0.png';
+const String OnboardingTwo = 'assets/images/onboarding_screen_1.png';
+const String OnboardingThree = 'assets/images/onboarding_screen_2.png';
+const String LinkLogo = 'assets/icons/svg_icons/link.svg';
+const String CancelLogo = 'assets/icons/cancel.png';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/organization_model.dart';
 import 'package:stacked/stacked.dart';
 import '../../../shared/shared.dart';
@@ -20,7 +21,7 @@ class OrganizationView extends StatelessWidget {
                 children: [
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text('Organizations',
+                    child: Text(Organizations,
                         style: AppTextStyles.heading6
                             .copyWith(color: AppColors.blackColor)),
                   ),
@@ -35,7 +36,7 @@ class OrganizationView extends StatelessWidget {
                                   alignment: Alignment.center,
                                   padding: const EdgeInsets.only(top: 50.0),
                                   child: Text(
-                                    'You have not joined any organization yet!',
+                                    NotJoinedOrgYet,
                                     style: AppTextStyles.bodyRegular,
                                   ),
                                 ),
@@ -74,16 +75,16 @@ class OrganizationView extends StatelessWidget {
                         ListTile(
                           onTap: () => viewModel.navigateToNewOrganization(),
                           leading: const Icon(Icons.add_box_outlined),
-                          title: const Text('Add an organization'),
+                          title: const Text(AddOrg),
                         ),
                         ListTile(
                           onTap: () => viewModel.viewPreferences(),
                           leading: const Icon(Icons.settings),
-                          title: const Text('Preferences'),
+                          title: const Text(Preferences),
                         ),
                         const ListTile(
                           leading: Icon(Icons.help_outline),
-                          title: Text('Help'),
+                          title: Text(Help),
                         ),
                       ],
                     ),
@@ -159,10 +160,8 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
           style: AppTextStyles.body3Medium,
         ),
       ),
-      trailing: GestureDetector(onTap: () {
-
-      }, child: const Icon(Icons.more_vert)),
-
+      trailing:
+          GestureDetector(onTap: () {}, child: const Icon(Icons.more_vert)),
     );
   }
 }
