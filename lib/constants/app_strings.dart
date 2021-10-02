@@ -196,7 +196,7 @@ const String DeleteChannelWarning =
     'All messages from this channel will be removed from Zuri Chat. Any files uploaded to this channel would not be removed.';
 const String StartCall = 'Start a call';
 
-//CHannels View
+//Channels View
 const String ChannelBrowser = 'Channel Browser';
 const String SearchChannel = 'Search for channel...';
 //Channel Notif
@@ -209,6 +209,9 @@ const String Mentions = 'mentions';
 const String None = 'none';
 const String Nothing = 'Nothing';
 
+//Channel Search
+const String TeamSocrates = '#teamsocrates';
+
 //----------------
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
@@ -218,6 +221,7 @@ const String statusBackground = 'assets/background/status.png';
 const String FemaleUser = 'assets/channel_page/femaleuser.png';
 const String Female = 'assets/channel_page/female.png';
 const String Chimamanda = 'assets/images/chimamanda.png';
+const String UserImage = 'assets/images/user.png';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
