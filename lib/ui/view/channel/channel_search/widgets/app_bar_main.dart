@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 
 import 'textfield_style.dart';
 
@@ -10,7 +11,7 @@ Widget appBarMain() {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 35.0, vertical: 19),
           child: Text(
-            'Done',
+            Done,
             style: greenTextStyle(),
           ),
         ),
@@ -18,7 +19,7 @@ Widget appBarMain() {
     ],
     backgroundColor: Colors.white,
     title: Text(
-      '#teamsocrates',
+      TeamSocrates,
       style: headerStyle(),
     ),
   );
