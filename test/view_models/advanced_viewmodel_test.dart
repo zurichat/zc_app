@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hng/ui/view/advanced/advanced_viewmodel.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:mockito/mockito.dart';
+import 'package:stacked_services/stacked_services.dart';
 import '../helpers/test_helpers.dart';
 
 AdvancedViewModel _getModel() => AdvancedViewModel();
@@ -17,6 +18,12 @@ void main() {
         var model = _getModel();
         await model.changeSkinTone();
         verify(dialogService.showCustomDialog(variant: DialogType.skinTone));
+      });
+      test('when called and dialog result is not null set the current emoji',
+          () async {
+        var model = _getModel();
+        await model.changeSkinTone();
+        expect(model.currentEmoji, 'laughing face');
       });
     });
 

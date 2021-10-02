@@ -83,17 +83,16 @@ MockThemeService getAndRegisterThemeServiceMock() {
 }
 
 MockDialogService getAndRegisterDialogServiceMock(
-    {DialogResponse<dynamic>? dialogResult /*,String? currentEmoji*/}) {
+    {DialogResponse<dynamic>? dialogResult}) {
   _removeRegistrationIfExists<DialogService>();
   final service = MockDialogService();
   when(service.showCustomDialog(
     variant: DialogType.skinTone,
-  )).thenAnswer(
-      (realInvocation) => Future<DialogResponse<dynamic>>.value(dialogResult ??
-          DialogResponse<dynamic>(
-            confirmed: false,
-            data: 'lol',
-          )));
+  )).thenAnswer((realInvocation) =>
+      Future<DialogResponse<dynamic>>.value(DialogResponse<dynamic>(
+        confirmed: false,
+        data: 'laughing face',
+      )));
   locator.registerSingleton<DialogService>(service);
   return service;
 }
@@ -150,6 +149,9 @@ MockZuriApi getAndRegisterZuriApiMock() {
 MockConnectivityService getAndRegisterConnectivityServiceMock() {
   _removeRegistrationIfExists<ConnectivityService>();
   final service = MockConnectivityService();
+  var result =
+      Future.value(const bool.fromEnvironment("network status") ? true : false);
+  when(service.checkConnection()).thenAnswer((realInvocation) => result);
   locator.registerSingleton<ConnectivityService>(service);
 
   return service;
