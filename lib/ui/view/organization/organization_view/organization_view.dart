@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/models/organization_model.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../shared/shared.dart';
 import 'organization_viewmodel.dart';
 
@@ -159,10 +158,10 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
           style: AppTextStyles.body3Medium,
         ),
       ),
-      trailing: GestureDetector(
-        onTap: () {},
-        child: const Icon(Icons.more_vert),
-      ),
+      trailing: GestureDetector(onTap: () {
+
+      }, child: const Icon(Icons.more_vert)),
+
     );
   }
 }
