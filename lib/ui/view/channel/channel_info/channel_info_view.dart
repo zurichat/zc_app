@@ -1,109 +1,98 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/seventh_section.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
 import 'package:stacked/stacked.dart';
+import 'package:hng/ui/shared/colors.dart';
+import '../../../shared/shared.dart';
 import 'channel_info_view_model.dart';
 import 'widgets/custom_app_bar.dart';
-import 'widgets/fifth_section.dart';
 import 'widgets/first_section.dart';
-import 'widgets/fourth_section.dart';
 import 'widgets/second_section.dart';
-import 'widgets/seventh_section.dart';
-import 'widgets/sixth_section.dart';
 import 'widgets/third_section.dart';
+import 'widgets/fourth_section.dart';
+import 'widgets/fifth_section.dart';
+import 'widgets/sixth_section.dart';
 
-const _margin = EdgeInsets.only(left: 16.0);
+class ChannelInfoView extends StatelessWidget {
 
-class ChannelInfoView extends StatefulWidget {
-  const ChannelInfoView({Key? key}) : super(key: key);
+  final int numberOfMembers;
+  final List <ChannelMembermodel>channelMembers;
+  final ChannelModel channelDetail;
 
-  @override
-  _ChannelInfoViewState createState() => _ChannelInfoViewState();
-}
+  const ChannelInfoView({
+    Key? key,
+    required this.numberOfMembers,
+    required this.channelMembers,
+    required this.channelDetail
+  }) : super(key: key);
 
-class _ChannelInfoViewState extends State<ChannelInfoView> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
+        SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
     return ViewModelBuilder<ChannelInfoViewModel>.reactive(
-        onModelReady: (model) {
-          model.getChannelInfo();
-        },
-        viewModelBuilder: () => ChannelInfoViewModel(),
-        builder: (context, model, child) {
-          return Scaffold(
-            appBar: PreferredSize(
-                preferredSize: const Size.fromHeight(60),
-                child: customAppBar(context)),
-            // ignore: avoid_unnecessary_containers
-            body: SafeArea(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    FirstSection(
-                      model: model,
-                    ),
-                    /*GestureDetector(
-                  onTap: model.navigateToEditChannel,
-                  child: const EditButton(),
-                ),*/
-                    const SecondSection(),
-                    SizedBox(
-                      height: 8.0,
-                    ),
-                    Container(
-                        margin: _margin,
+      fireOnModelReadyOnce: true,
+      onModelReady: (model) {
+        model.getChannelInfo();
+      },
+      disposeViewModel: false,
+      builder: (context, model, child) => ScreenUtilInit(
+          designSize: const Size(411, 823),
+          builder: () {
+            return Scaffold(
+              appBar: PreferredSize(
+                  preferredSize: const Size.fromHeight(56),
+                  child: customAppBar(model)),
+              body: SafeArea(
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.fromLTRB(8.w, 16.h, 8.w, 0),
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FirstSection(model),
+                      SizedBox(height: 16.h),
+                      SecondSection(),
+                      SizedBox(height: 8.h),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8.w),
                         child: Text(
-                          'You wont\'t  recieve any messages from a muted channel',
+                          'You wont\'t recieve any messages from a muted channel',
                           style: AppTextStyles.body1Grey,
-                        )),
-                    SizedBox(
-                      height: 18.0,
-                    ),
-                    const ThirdSection(),
-                    SizedBox(
-                      height: 16.0,
-                    ),
-                    Container(
-                      margin: _margin,
-                      child: Text(
-                        'Bookmarks',
-                        style: AppTextStyles.body1Grey,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 8.0,
-                    ),
-                    const FourthSection(),
-                    SizedBox(
-                      height: 16.0,
-                    ),
-                    const FifthSection(),
-                    SizedBox(
-                      height: 16.0,
-                    ),
-                    Container(
-                      margin: _margin,
-                      child: Text(
-                        'Advanced',
-                        style: AppTextStyles.body1Grey,
+                      ThirdSection(model, numberOfMembers, channelMembers, channelDetail),
+                      SizedBox(height: 16.h),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8.w),
+                        child: Text(
+                          'Bookmarks',
+                          style: AppTextStyles.body1Grey,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 8.0,
-                    ),
-                    const SixthSection(),
-                    const SeventhSection()
-                  ],
+                      SizedBox(height: 8.h),
+                      FourthSection(),
+                      SizedBox(height: 16.h),
+                      FifthSection(),
+                      SizedBox(height: 16.h),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8.w),
+                        child: Text(
+                          'Advanced',
+                          style: AppTextStyles.body1Grey,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      SixthSection(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        });
+            );
+          }),
+      viewModelBuilder: () => ChannelInfoViewModel(),
+    );
   }
 }

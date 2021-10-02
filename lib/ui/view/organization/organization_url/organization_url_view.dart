@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
+import '../../../shared/shared.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
@@ -11,42 +12,47 @@ class OrganizationUrlView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<OrganizationUrlViewModel>.nonReactive(
-      builder: (context, model, child) => Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 300),
-                    child: Column(
-                      children: <Widget>[
-                        TextForm(),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        Container(
-                          child: Text.rich(
+      builder: (context, model, child) => ModalProgressHUD(
+        inAsyncCall: model.isBusy,
+        color: AppColors.whiteColor,
+        progressIndicator: const CircularProgressIndicator(
+          color: AppColors.zuriPrimaryColor,
+        ),
+        child: Scaffold(
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 300),
+                      child: Column(
+                        children: <Widget>[
+                          const TextForm(),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          Text.rich(
                             TextSpan(
                               children: [
-                                TextSpan(
-                                  text:
-                                      'If you don\'t know your Organization URL, we have sent an email to ',
+                                const TextSpan(
+                                  text: '''
+If you don\'t know your Organization URL, we have sent an email to ''',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
                                 ),
                                 TextSpan(
                                   text: '${model.email}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16,
                                     color: AppColors.appBarGreen,
                                   ),
                                 ),
-                                TextSpan(
+                                const TextSpan(
                                   text: ' to help you sign in easily.',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
@@ -55,15 +61,15 @@ class OrganizationUrlView extends StatelessWidget {
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  NextButton()
-                ],
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    const NextButton()
+                  ],
+                ),
               ),
             ),
           ),
@@ -75,13 +81,13 @@ class OrganizationUrlView extends StatelessWidget {
 }
 
 class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
-  TextForm({Key? key}) : super(key: key, reactive: false);
+  const TextForm({Key? key}) : super(key: key, reactive: false);
   @override
   Widget buildViewModelWidget(
       BuildContext context, OrganizationUrlViewModel model) {
     return Center(
       child: TextField(
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           labelText: 'Enter Organization URL',
           hintText: 'https://organization.zuri.com',
           hintStyle: TextStyle(
@@ -104,7 +110,7 @@ class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
 }
 
 class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
-  NextButton({Key? key}) : super(key: key, reactive: true);
+  const NextButton({Key? key}) : super(key: key, reactive: true);
 
   @override
   Widget build(BuildContext context, OrganizationUrlViewModel model) {

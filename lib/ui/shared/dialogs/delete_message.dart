@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class DeleteMessageDialog extends StatelessWidget {
@@ -18,21 +19,18 @@ class DeleteMessageDialog extends StatelessWidget {
         content: Container(
           padding: EdgeInsets.symmetric(
               horizontal: size.width * .02, vertical: size.height * .02),
-          
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15)
-          ),
+              color: Colors.white, borderRadius: BorderRadius.circular(15)),
           width: size.width * .9,
           height: size.height * .8,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Align(
+              const Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Delete message",
+                  DeleteMsg,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 21,
@@ -44,12 +42,10 @@ class DeleteMessageDialog extends StatelessWidget {
                 height: size.width * .01,
               ),
               Text.rich(
-                TextSpan(
-                  text:
-                      "Are you sure you want to delete this message?\nThis cannot be undone.",
+                const TextSpan(
+                  text: DeleteMsgWarning,
                 ),
                 style: GoogleFonts.roboto(
-                
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                 ),
@@ -59,15 +55,15 @@ class DeleteMessageDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  if(request.secondaryButtonTitle !=null )
+                  if (request.secondaryButtonTitle != null)
+                    MaterialButton(
+                        onPressed: () =>
+                            completer(DialogResponse(confirmed: false)),
+                        child: const Text(Cancel)),
                   MaterialButton(
                       onPressed: () =>
-                         completer(DialogResponse(confirmed: false)),
-                      child: Text("Cancel")),
-                  MaterialButton(
-                      onPressed: () =>completer(
-                          DialogResponse(confirmed: true)),
-                      child: Text("Delete")),
+                          completer(DialogResponse(confirmed: true)),
+                      child: const Text(Delete)),
                 ],
               )
             ],

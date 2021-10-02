@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/custom_channel_list_tile.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/custom_plugin_list_tile.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/user_search/user_search_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../nav_pages/home_page/widgets/custom_channel_list_tile.dart';
+import '../../nav_pages/home_page/widgets/custom_plugin_list_tile.dart';
+import '../../shared/colors.dart';
+import '../../shared/shared.dart';
+import 'user_search_viewmodel.dart';
 
 class UserSearchView extends StatelessWidget {
   const UserSearchView({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class UserSearchView extends StatelessWidget {
                         Border.all(width: 0.5, color: AppColors.greyishColor),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: TextField(
+                  child: const TextField(
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Search messages, files and users',
@@ -61,7 +62,7 @@ class UserSearchView extends StatelessWidget {
                     data: '1',
                   ),
                   const SizedBox(height: 20.0),
-                  Text('Recent searches'),
+                  const Text('Recent searches'),
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,7 +92,7 @@ class UserSearchView extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 20.0),
-                  Text('Narrow your search'),
+                  const Text('Narrow your search'),
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,7 +102,7 @@ class UserSearchView extends StatelessWidget {
                         pluginName: 'to:',
                         isActive: false,
                       ),
-                      Text('E.g. #project-socrates')
+                      const Text('E.g. #project-socrates')
                     ],
                   ),
                   const SizedBox(height: 20.0),
@@ -113,7 +114,7 @@ class UserSearchView extends StatelessWidget {
                         pluginName: 'from:',
                         isActive: false,
                       ),
-                      Text('E.g. Adediwura Emmanuel')
+                      const Text('E.g. Adediwura Emmanuel')
                     ],
                   ),
                   const SizedBox(height: 20.0),
@@ -125,7 +126,7 @@ class UserSearchView extends StatelessWidget {
                         pluginName: 'has:',
                         isActive: false,
                       ),
-                      Text('E.g. star')
+                      const Text('E.g. star')
                     ],
                   ),
                   const SizedBox(height: 20.0),
@@ -137,7 +138,7 @@ class UserSearchView extends StatelessWidget {
                         pluginName: 'after:',
                         isActive: false,
                       ),
-                      Text('Ex: 08-31-2021')
+                      const Text('Ex: 08-31-2021')
                     ],
                   ),
                   const SizedBox(height: 20.0),
@@ -149,7 +150,7 @@ class UserSearchView extends StatelessWidget {
                         pluginName: 'to:',
                         isActive: false,
                       ),
-                      Text('E.g. me')
+                      const Text('E.g. me')
                     ],
                   ),
                   const SizedBox(height: 20.0),

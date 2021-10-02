@@ -30,21 +30,22 @@ class BorderTextField extends StatelessWidget {
       autofocus: autofocus,
       onChanged: onChanged,
       controller: controller,
+      cursorColor: AppColors.zuriPrimaryColor,
       decoration: InputDecoration(
         hintText: hint,
         border: border(),
         focusedBorder: border(),
         enabledBorder: border(),
-        hintStyle: TextStyle(
+        hintStyle: const TextStyle(
           fontSize: 16,
           color: Colors.black45,
         ),
-        contentPadding: EdgeInsets.fromLTRB(16, 5, 16, 5),
+        contentPadding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
       ),
     );
   }
 
-  border({Color? color}) {
+  OutlineInputBorder border({Color? color}) {
     return OutlineInputBorder(
       borderSide: BorderSide(
         color: Colors.grey[300] ?? AppColors.greyColor,
@@ -83,6 +84,7 @@ class LabelTextField extends StatelessWidget {
       autofocus: autofocus,
       onChanged: onChanged,
       controller: controller,
+      cursorColor: AppColors.zuriPrimaryColor,
       decoration: InputDecoration(
         labelText: label,
         border: InputBorder.none,

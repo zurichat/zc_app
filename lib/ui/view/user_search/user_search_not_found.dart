@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/view/user_search/user_search_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
+import '../../shared/styles.dart';
+import 'user_search_viewmodel.dart';
 
 class UserSearch extends StatelessWidget {
   const UserSearch({Key? key}) : super(key: key);
@@ -34,22 +34,22 @@ class UserSearch extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.arrow_back_ios),
+                      const Icon(Icons.arrow_back_ios),
                       Column(
                         children: [
-                          Text('People'),
-                          Text('2552 members'),
+                          const Text('People'),
+                          const Text('2552 members'),
                         ],
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                         hintText: 'Search for members',
                         hintStyle: GoogleFonts.lato(
                           color: Colors.grey,
@@ -58,7 +58,7 @@ class UserSearch extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Text('No result found'),
+                  const Text('No result found'),
                   Container(
                     height: 50,
                     alignment: Alignment.center,

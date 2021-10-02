@@ -25,7 +25,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
           backgroundColor: AppColors.whiteColor,
           elevation: 2.0,
           leading: IconButton(
-            icon: ImageIcon(
+            icon: const ImageIcon(
               AssetImage('assets/icons/back_arrow_icon.png'),
               size: 12.0,
             ),
@@ -37,9 +37,11 @@ class NewChannel extends StatelessWidget with $NewChannel {
           ),
           actions: <Widget>[
             TextButton(
-              style:
-                  TextButton.styleFrom(padding: EdgeInsets.only(right: 16.0)),
-              onPressed: () {},
+              style: TextButton.styleFrom(
+                  padding: const EdgeInsets.only(right: 16.0)),
+              onPressed: () {
+                model.createChannel();
+              },
               child: Text(
                 'Create',
                 style: AppTextStyles.heading8.copyWith(
@@ -70,8 +72,8 @@ class NewChannel extends StatelessWidget with $NewChannel {
                   Container(
                     height: 40,
                     width: double.infinity,
-                    margin: EdgeInsets.symmetric(horizontal: 16),
-                    padding: EdgeInsets.only(left: 12, right: 8),
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.only(left: 12, right: 8),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5.0),
                       border: Border.all(
@@ -99,7 +101,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                               LengthLimitingTextInputFormatter(80)
                             ],
                             cursorColor: AppColors.zuriPrimaryColor,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: InputBorder.none,
                               hintText: 'e.g team-uchiha',
                               hintStyle: TextStyle(
@@ -112,8 +114,9 @@ class NewChannel extends StatelessWidget with $NewChannel {
                         ),
                         Text(
                           '${model.inputLength}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w400,
+                            //TODO Change to brand colors
                             color: Color(0xFFA1A9B2),
                           ),
                         )
@@ -159,7 +162,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 16, top: 8, right: 16),
+                    padding: const EdgeInsets.only(left: 16, top: 8, right: 16),
                     height: 180,
                     child: TextField(
                       maxLines: null,
@@ -187,7 +190,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                     color: AppColors.navBarItemColor,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 16.0, bottom: 14.0),
+                    padding: const EdgeInsets.only(left: 16.0, bottom: 14.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -209,7 +212,8 @@ class NewChannel extends StatelessWidget with $NewChannel {
                             SizedBox(
                               height: 20,
                               child: Switch(
-                                inactiveTrackColor: Color(0XFFEBEBEB),
+                                //TODO  Change to brand colors
+                                inactiveTrackColor: const Color(0XFFEBEBEB),
                                 activeColor: AppColors.zuriPrimaryColor,
                                 value: model.isChannelPrivate,
                                 onChanged: model.toggleSwitch,
@@ -217,7 +221,9 @@ class NewChannel extends StatelessWidget with $NewChannel {
                             )
                           ],
                         ),
-                        //add this part here because the Row widget won't align with just the upper part of the text when there's a new line
+                        //add this part here because the Row
+                        //widget won't align with just the
+                        //upper part of the text when there's a new line
                         Text(
                           'by invitation.',
                           style: AppTextStyles.body2Medium,

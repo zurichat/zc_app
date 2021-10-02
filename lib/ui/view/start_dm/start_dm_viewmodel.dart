@@ -1,31 +1,32 @@
-import 'package:hng/app/app.locator.dart';
-
-import 'package:hng/models/start_dm_models.dart';
-import 'package:hng/package/base/server-request/api/http_api.dart';
-
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/ui/view/start_dm/widgets/custom_chip_input.dart';
-import 'package:hng/utilities/storage_keys.dart';
-import 'package:hng/utilities/constants.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../app/app.locator.dart';
+import '../../../models/start_dm_models.dart';
+import '../../../services/local_storage_services.dart';
+import '../../../utilities/constants.dart';
+import '../../../utilities/storage_keys.dart';
+
 class StartDmViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();
-  final _api = HttpApiService(coreBaseUrl);
+  final _api = ZuriApi(baseUrl: coreBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
+   String? get token => storageService.getString(StorageKeys.currentSessionToken);
 
   // bool _hasClickedMessageField = false;
   // bool get hasClickedMessageField => _hasClickedMessageField;
 
   Future<List<UserModel>> allUsers() async {
-    String? _currentOrgId = storageService.getString(StorageKeys.currentOrgId);
-    // print("_currentOrgId ${storageService.getString(StorageKeys.currentOrgId)}");
+    final _currentOrgId = storageService.getString(StorageKeys.currentOrgId);
+    // print("_currentOrgId ${storageService.
+    // getString(StorageKeys.currentOrgId)}");
     // print("_currentOrgId $_currentOrgId");
-    String? token = storageService.getString(StorageKeys.currentSessionToken);
-    // print("token ${storageService.getString(StorageKeys.currentSessionToken)}");
+    final token = storageService.getString(StorageKeys.currentSessionToken);
+    // print("token ${storageService.
+    // getString(StorageKeys.currentSessionToken)}");
     // print("token $token");
-    String endpoint =
+    final endpoint =
         '/organizations/${storageService.getString(StorageKeys.currentOrgId)}/members/';
     try {
       if (_currentOrgId == null || token == null) {
@@ -33,10 +34,7 @@ class StartDmViewModel extends FormViewModel {
       }
       final response = await _api.get(
         endpoint,
-        headers: {
-          'Authorization':
-              'Bearer ${storageService.getString(StorageKeys.currentSessionToken)}'
-        },
+        token: token,
       );
       // print(response);
       // print(response?.data?['data']);
@@ -54,13 +52,12 @@ class StartDmViewModel extends FormViewModel {
   }
 
   Future<List<UserModel>> get userResults async {
-    List<UserModel> _userResults = await allUsers();
+    final _userResults = await allUsers();
     // print("Donnnneee");
     // print("_userResults $_userResults");
     return [..._userResults];
   }
 
-  
   // onTapMessageField() {
   //   _hasClickedMessageField = true;
   //   notifyListeners();

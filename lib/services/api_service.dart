@@ -15,8 +15,11 @@ class ApiService {
 
   Future sendPostRequest(body, endpoint) async {
     try {
-      final response = await _dio.post(apiBaseUrl + endpoint, data: json.encode(body));
-     
+      final response = await _dio.post(
+        apiBaseUrl + endpoint,
+        data: json.encode(body),
+      );
+
       final result = response.data;
       return result;
     } on DioError catch (e) {
@@ -36,6 +39,18 @@ class ApiService {
     }
   }
 
+  Future getAddPeople(body, endpoint, userId, channelId, orgId) async {
+    try {
+      final response =
+      await _dio.get(apiBaseUrl + endpoint);
+      final result = response.data;
+      return result;
+    } on DioError catch (e) {
+      convertException(e);
+    }
+  }
+
+
   Failure convertException(DioError e) {
     if (e.type == DioErrorType.cancel)
       return InputFailure(errorMessage: e.message);
@@ -52,4 +67,9 @@ class ApiService {
     else
       return UnknownFailure();
   }
+
+
+
+
+
 }

@@ -1,46 +1,35 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/ui/view/channel/channel_info/widgets/newRowTile.dart';
+import '../../../../shared/colors.dart';
 
 class FifthSection extends StatelessWidget {
-  const FifthSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 56.0,
-      margin: EdgeInsets.only(left: 5, right: 5),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6.0),
-        ),
-        color: AppColors.whiteColor,
-        elevation: 1.0,
-        child: Row(
-          children: [
-            SizedBox(
-              width: 16.0,
-            ),
-            Container(
-              child: SvgPicture.asset(
-                'assets/channel_page/leave.svg',
-                width: 20,
-              ),
-            ),
-            SizedBox(
-              width: 25.0,
-            ),
-            Container(
-              child: Text(
-                'Leave',
-                style: AppTextStyles.namesStyle,
-              ),
-            ),
-          ],
-        ),
+    return InkWell(
+      onTap: (){},
+      child: Container(
+          height: 53.h,
+          width: 395.w,
+          alignment: Alignment.center,
+          padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6.r),
+              border: Border.all(width: 1.w, color: AppColors.borderColor),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5.r,
+                  blurRadius: 6.r,
+                  offset: Offset(0, 3.h), // changes position of shadow
+                ),
+              ]),
+          child: NewRowTile(
+              icon:Icons.push_pin_outlined,
+              text: 'Leave'
+          )
       ),
     );
   }

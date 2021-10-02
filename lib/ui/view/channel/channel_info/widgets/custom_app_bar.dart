@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 
-Widget customAppBar(context) {
+Widget customAppBar(model) {
   return AppBar(
-    elevation: 1,
     leading: IconButton(
-      icon: Icon(Icons.close),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
+      icon: Icon(
+          Icons.clear,
+        size: 24.sp,
+      ),
+      onPressed: () => model.navigateBack(),
     ),
     actions: [
-      GestureDetector(
-          onTap: () {},
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 19.0, vertical: 19),
-            child: SvgPicture.asset(
-              'assets/channel_page/star.svg',
-              width: 20,
-            ),
-          ))
+      Icon(
+        Icons.star,
+        color: AppColors.zuriPrimaryColor,
+        size: 24.sp,
+      )
     ],
     backgroundColor: Colors.white,
     title: Text(
       'Channel Info',
-      style: AppTextStyles.heading5,
+      style: AppTextStyles.appBarTextStyle,
     ),
   );
 }

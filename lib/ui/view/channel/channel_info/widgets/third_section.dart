@@ -1,156 +1,108 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
-import 'package:stacked/stacked.dart';
-
+import 'package:hng/ui/view/channel/channel_info/widgets/newRowTile.dart';
 import '../../../../shared/colors.dart';
 
+// ignore: must_be_immutable
 class ThirdSection extends StatelessWidget {
-  const ThirdSection({Key? key}) : super(key: key);
+  ThirdSection(this.model, this.numberOfMembers, this.channelDetail, this.channelMembers);
+  final numberOfMembers;
+  final channelDetail;
+  final channelMembers;
+  final ChannelInfoViewModel model;
+
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<ChannelInfoViewModel>.reactive(
-      viewModelBuilder: () => ChannelInfoViewModel(),
-      builder: (context, model, child) => Container(
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left: 5, right: 5),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6.0),
+    return Container(
+      height: 284.h,
+      width: 395.w,
+      alignment: Alignment.center,
+      padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6.r),
+          border: Border.all(width: 1.w, color: AppColors.borderColor),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5.r,
+              blurRadius: 6.r,
+              offset: Offset(0, 3.h), // changes position of shadow
+            ),
+          ]),
+      child: Column(
+        children: [
+          InkWell(
+              onTap: (){
+                model.navigateToMembersList(channelMembers, channelDetail);
+              },
+              child: NewRowTile(
+                icon: Icons.group_outlined,
+                text: "Members ($numberOfMembers)"
+              )
           ),
-          color: AppColors.whiteColor,
-          elevation: 1.0,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 18.0,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 16.0,
-                  ),
-                  Container(
-                    child: SvgPicture.asset(
-                      'assets/channel_page/members.svg',
-                      width: 24,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 25.0,
-                  ),
-                  Container(
-                    child: GestureDetector(
-                      onTap: () {
-                        // model.navigatoToMembersList();
-                      },
-                      child: Text(
-                        'Members (5)',
-                        style: AppTextStyles.namesStyle,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Divider(
-                thickness: 0.5,
-                color: AppColors.deepBlackColor.withOpacity(0.5),
-                indent: 65,
-              ),
-              SizedBox(
-                height: 18.0,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 16.0,
-                  ),
-                  Container(
-                    child: SvgPicture.asset(
-                      'assets/channel_page/add_people.svg',
-                      width: 24,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 25.0,
-                  ),
-                  Container(
-                    child: Text(
-                      'Add People',
-                      style: AppTextStyles.namesStyle,
-                    ),
-                  ),
-                ],
-              ),
-              Divider(
-                thickness: 0.5,
-                color: AppColors.deepBlackColor.withOpacity(0.5),
-                indent: 65,
-              ),
-              SizedBox(
-                height: 18.0,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 16.0,
-                  ),
-                  Container(
-                    child: SvgPicture.asset(
-                      'assets/channel_page/plugins.svg',
-                      width: 24,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 25.0,
-                  ),
-                  Container(
-                    child: Text(
-                      'Plugins (1)',
-                      style: AppTextStyles.namesStyle,
-                    ),
-                  ),
-                ],
-              ),
-              Divider(
-                thickness: 0.5,
-                color: AppColors.deepBlackColor.withOpacity(0.5),
-                indent: 65,
-              ),
-              SizedBox(
-                height: 18.0,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 16.0,
-                  ),
-                  Container(
-                    child: SvgPicture.asset(
-                      'assets/channel_page/phone.svg',
-                      width: 24,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 25.0,
-                  ),
-                  Container(
-                    child: Text(
-                      'Start a call',
-                      style: AppTextStyles.namesStyle,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-            ],
+
+          SizedBox(height: 10.h),
+
+          Divider(
+            thickness: 0.5.h,
+            color: AppColors.deepBlackColor.withOpacity(0.5),
+            indent: 66.6.w,
+            // endIndent: 33,
           ),
-        ),
+
+          SizedBox(height: 18.h),
+
+          InkWell(
+              onTap: (){},
+              child: NewRowTile(
+                icon: Icons.person_add_alt_1_outlined,
+                text: 'Add People'
+              )
+          ),
+
+          SizedBox(height: 10.h),
+
+          Divider(
+            thickness: 0.5.h,
+            color: AppColors.deepBlackColor.withOpacity(0.5),
+            indent: 66.6.w,
+            // endIndent: 33,
+          ),
+
+          SizedBox(height: 18.h),
+
+          InkWell(
+              onTap: (){},
+              child: NewRowTile(
+                  icon: Icons.dashboard_outlined,
+                  text: 'Plugins (1)'
+              )
+          ),
+
+          SizedBox(height: 10.h),
+
+          Divider(
+            thickness: 0.5.h,
+            color: AppColors.deepBlackColor.withOpacity(0.5),
+            indent: 66.6.w,
+            // endIndent: 33,
+          ),
+
+          SizedBox(height: 18.h),
+
+          InkWell(
+              onTap: (){},
+              child: NewRowTile(
+                  icon: Icons.phone_outlined,
+                  text: 'Start a call'
+              )
+          ),
+
+        ],
       ),
     );
   }

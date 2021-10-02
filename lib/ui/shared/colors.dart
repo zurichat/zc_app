@@ -17,7 +17,7 @@ class AppColors {
   static const Color paleGreen = Color(0xFF89D3BB);
 
   static const Color blueTextColor = Color(0xFF2573F6);
-
+  static const Color greyBackgroundColor = Color(0xFFF4F4F4);
 
   static const Color lightBlackColor = Color(0xFF756767);
 
@@ -36,6 +36,7 @@ class AppColors {
   static const Color appBarGreen = Color(0xFF43A047);
   static const Color ZuriBGLightgrey = Color(0xFFF7F7F7);
   static const Color ZuriGrey = Color(0xFFBEBEBE);
+  static const Color SearchHintColor = Color(0xffA1A9B3);
 
   ///Kimbie Dark Theme
   static const kimbieAccent = Color(0xFF6E9B3B);

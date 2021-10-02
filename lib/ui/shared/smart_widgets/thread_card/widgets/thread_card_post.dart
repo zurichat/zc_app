@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_viewmodel.dart';
-import 'package:hng/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../../../general_widgets/custom_text.dart';
+import '../../../../../models/user_post.dart';
+import '../../../shared.dart';
+import '../../../styles.dart';
+import '../../text_parser/text_parser_view.dart';
+import '../thread_card_viewmodel.dart';
 
 class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
   const ThreadCardPost(this.userThreadPost, {Key? key}) : super(key: key);
@@ -14,25 +16,29 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
   @override
   Widget build(BuildContext context, ThreadCardViewModel model) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage("${userThreadPost!.userImage}")),
-                    )),
-                SizedBox(width: 10),
+                GestureDetector(
+                  onTap: model.viewProfile,
+                  child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage('${userThreadPost!.userImage}')),
+                      )),
+                ),
+                const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,26 +52,28 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Icon(
+                          const Icon(
                             Icons.looks_6,
                             color: AppColors.iconBlueColor,
                             size: 18,
                           ),
-                          SizedBox(width: 2),
+                          const SizedBox(width: 2),
                           Text(
-                            "${userThreadPost!.lastSeen}",
+                            '${userThreadPost!.lastSeen}',
                             style: AppTextStyles.lastSeen,
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
-                      RichText(text: userThreadPost!.message),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
+                      TextParser(userThreadPost!.message),
+                      const SizedBox(height: 10),
+
                       // Wrap(
                       //   spacing: 5,
                       //   runSpacing: 5,
                       //   children: [
-                      //     for (Widget item in userThreadPost.postEmojis ?? [])
+                      //     for (Widget item in userThreadPost.
+                      //postEmojis ?? [])
                       //       item
                       //   ],
                       // ),

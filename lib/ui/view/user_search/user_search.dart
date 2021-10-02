@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/home/widgets/custom_dm_list_tile.dart';
-import 'package:hng/ui/view/user_search/user_search_viewmodel.dart';
-import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../utilities/constants.dart';
+import '../../home/widgets/custom_dm_list_tile.dart';
 import '../../shared/colors.dart';
+import 'user_search_viewmodel.dart';
 
 class UserSearch extends StatelessWidget {
   const UserSearch({Key? key}) : super(key: key);
@@ -35,24 +35,25 @@ class UserSearch extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.arrow_back_ios),
+                      const Icon(Icons.arrow_back_ios),
                       Column(
                         children: [
-                          Text('People'),
-                          Text('2552 members'),
+                          const Text('People'),
+                          const Text('2552 members'),
                         ],
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                         hintText: 'Search for members',
                         hintStyle: GoogleFonts.lato(
+                          //TODO Change to brand colors
                           color: Colors.grey,
                         ),
                       ),

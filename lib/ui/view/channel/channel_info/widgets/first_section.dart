@@ -1,106 +1,78 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
-import 'package:hng/ui/view/channel/channel_view/channel_page_view.dart';
-
 import '../../../../shared/colors.dart';
-import 'edit_button.dart';
 
 class FirstSection extends StatelessWidget {
+  const FirstSection(this.model);
   final ChannelInfoViewModel model;
-  const FirstSection({Key? key, required this.model}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Container(
-        width: double.infinity,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6.0),
+    return Container(
+      height: 284.h,
+      width: 395.w,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6.r),
+          border: Border.all(width: 1.w, color: AppColors.borderColor),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5.r,
+              blurRadius: 6.r,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ]
+      ),
+      padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 24.h,16.37.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            // "$channelName",
+            "#${model.channelName}",
+            style: AppTextStyles.body1Light,
           ),
-          color: AppColors.whiteColor,
-          elevation: 1.0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 16.0,
-                    ),
-                    Container(
-                      child: Text(
-                        "#${ChannelPageView.name}",
-                        style: AppTextStyles.headerStyle,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 24.0,
-                    ),
-                    Container(
-                      child: Text(
-                        'Description',
-                        style: AppTextStyles.namesStyle,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Container(
-                      child: Text(
-                        model.channelDescription,
-                        style: AppTextStyles.descriptionStyle,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Container(
-                      child: Text(
-                        'Mark created this channel on August 13.',
-                        style: AppTextStyles.body1Grey,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 18.0,
-                    ),
-                    Container(
-                      child: Text(
-                        'Topic',
-                        style: AppTextStyles.namesStyle,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Container(
-                      child: Text(
-                        'Creating the zuri main app',
-                        style: AppTextStyles.descriptionStyle,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 26.0,
-                    ),
-                  ],
-                ),
-              ),
-              Divider(
-                color: AppColors.borderColor,
-              ),
-              GestureDetector(
-                onTap: () => model.navigateToEditChannel(),
-                child: EditButton(model: model),
-              ),
-            ],
+          Text(
+            'Description',
+            style: AppTextStyles.body1Light,
           ),
-        ),
+          SizedBox(height: 24.h),
+          Text(
+            '${model.channelDescription}',
+            style: AppTextStyles.body1Light.copyWith(letterSpacing:0.005 ),
+          ),
+          SizedBox(height: 6.h),
+          Text(
+            'Mark created this channel on August 13.',
+            style: AppTextStyles.body1Regular.copyWith(letterSpacing:0.005 ),
+          ),
+          SizedBox(height: 18.h),
+          Text(
+            'Topic',
+            style: AppTextStyles.headerStyle1.copyWith(fontSize: 16.sp),
+          ),
+          SizedBox(height: 10.h),
+          Text(
+              'Creating the zuri main app',
+              style: AppTextStyles.body1Light.copyWith(fontSize: 16.sp),
+            ),
+          SizedBox(height: 26.h),
+          Divider(thickness: 0.5.h, color: AppColors.borderColor,),
+          SizedBox(height: 16.h),
+          Center(
+            child: InkWell(
+              onTap: (){
+                model.navigateToEditChannel();
+              },
+              child: Text(
+                'Edit',
+                style: AppTextStyles.bodyBig..copyWith(fontSize: 16.sp),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

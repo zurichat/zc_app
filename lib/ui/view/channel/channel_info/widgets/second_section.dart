@@ -1,88 +1,86 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/ui/shared/shared.dart';
 import '../../../../shared/colors.dart';
 
 class SecondSection extends StatelessWidget {
-  const SecondSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      margin: EdgeInsets.only(left: 5, right: 5),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6.0),
-        ),
-        color: AppColors.whiteColor,
-        elevation: 1.0,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(
-                left: 18,
-                top: 24,
-                right: 25,
-              ),
-              child: SvgPicture.asset(
-                'assets/channel_page/bell.svg',
-                width: 20,
-              ),
+      height: 128.h,
+      width: 395.w,
+      alignment: Alignment.center,
+      padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 26.h,16.37.w),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6.r),
+          border: Border.all(width: 1.w, color: AppColors.borderColor),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5.r,
+              blurRadius: 6.r,
+              offset: Offset(0, 3.h), // changes position of shadow
             ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 24.0,
-                  ),
-                  Container(
-                    child: Text(
-                      'Notification',
-                      style: AppTextStyles.namesStyle,
+          ]
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            height: 78.h,
+            width: 279.03.w,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.notifications_none_outlined,
+                  color: AppColors.deepBlackColor,
+                  size: 24.sp,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    InkWell(
+                      onTap: (){},
+                      child: Text(
+                        'Notification',
+                        style: AppTextStyles.namesStyle.copyWith(fontSize: 14.sp),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 6.0,
-                  ),
-                  Container(
-                    child: Text(
-                      'Every New Message',
-                      style: AppTextStyles.body1Grey,
+                    SizedBox(height: 6.h),
+                    InkWell(
+                      onTap: (){},
+                      child: Text(
+                        'Every New Message',
+                        style: AppTextStyles.body1Grey.copyWith(fontSize: 14.sp),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 18.0,
-                  ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Text(
-                            'Mute Channel',
-                            style: AppTextStyles.descriptionStyle,
-                          ),
-                        ),
-                        Container(
-                            child: Switch(
-                          value: false,
-                          onChanged: (bool value) {},
-                        ))
-                      ],
+                    SizedBox(height: 18.h),
+                    InkWell(
+                      onTap: (){},
+                      child: Text(
+                        'Mute Channel',
+                        style: AppTextStyles.descriptionStyle..copyWith(fontSize: 14.sp),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 26.0,
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Icon(
+                      Icons.toggle_off_sharp,
+                      color: AppColors.faintTextColor,
+                      size: 40.sp,
+                    ),
+                  ],
+                )
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

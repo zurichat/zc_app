@@ -29,7 +29,7 @@ class _FileSearchViewState extends State<FileSearchView> {
               child: Scaffold(
                 backgroundColor: AppColors.whiteColor,
                 appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(100),
+                  preferredSize: const Size.fromHeight(100),
                   child: AppBar(
                     backgroundColor: AppColors.zuriPrimaryColor,
                     automaticallyImplyLeading: false,
@@ -48,14 +48,14 @@ class _FileSearchViewState extends State<FileSearchView> {
                       // ignore: sized_box_for_whitespace
                       Container(
                         height: 49,
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Row(
                           children: [
                             Positioned(
                                 left: 12,
                                 child: Text('50 Results',
                                     style: AppTextStyles.normalGrey)),
-                            Expanded(child: SizedBox(width: 1000)),
+                            const Expanded(child: SizedBox(width: 1000)),
                             Positioned(
                               right: 12,
                               child: Row(

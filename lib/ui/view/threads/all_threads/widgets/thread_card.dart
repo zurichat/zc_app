@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../../general_widgets/channel_icon.dart';
+import '../../../../../general_widgets/custom_text.dart';
+import '../../../../../models/user_post.dart';
+import '../../../../shared/shared.dart';
+import '../../../../shared/smart_widgets/thread_card/thread_card_view.dart';
 import '../threads_viewmodel.dart';
 
 class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
@@ -16,35 +16,10 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
 
   final UserPost? userPost;
 
-  Icon channelIcon() {
-    switch (userPost!.channelType) {
-      case ChannelType.private:
-        return Icon(
-          Icons.lock,
-          size: 14,
-        );
-      case ChannelType.public:
-        return Icon(
-          Icons.tag,
-          size: 14,
-        );
-
-      case ChannelType.personal:
-        return Icon(
-          Icons.circle,
-          size: 14,
-          color: AppColors.zuriPrimaryColor,
-        );
-
-      default:
-        return Icon(null);
-    }
-  }
-
   @override
   Widget build(BuildContext context, ThreadsViewModel model) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       color: AppColors.whiteColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,8 +30,8 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
             minVerticalPadding: 0,
             title: Row(
               children: [
-                channelIcon(),
-                SizedBox(width: 5),
+                ChannelIcon(channelType: userPost!.channelType!),
+                const SizedBox(width: 5),
                 CustomText(
                   text: userPost!.channelName ?? '',
                   fontSize: 14,
@@ -71,38 +46,32 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
           ),
           ThreadCardView.main(userPost),
           userPost!.userThreadPosts != null
-              ? Padding(
-                  padding: const EdgeInsets.only(left: 60),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: CustomText(
-                        text:
-                            "Show ${userPost!.userThreadPosts!.length} more replies",
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.blueColor),
-                  ),
-                )
-              : Container(),
-          userPost!.userThreadPosts != null
               ? ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: userPost!.userThreadPosts!.length,
                   itemBuilder: (ctx, index) {
                     return GestureDetector(
-                        onTap: model.navigateToThread,
+                        onTap: () => model.navigateToThread(userPost),
                         child: ThreadCardView.threadPost(
                             userPost!.userThreadPosts![index]));
                   })
               : Container(),
           Padding(
-            padding: EdgeInsets.only(left: 60),
+            padding: const EdgeInsets.only(left: 60),
             child: MaterialButton(
-              onPressed: () {},
-              shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              child: CustomText(text: "Reply", fontWeight: FontWeight.w500),
+              //TODO navigate to details page and focus input
+              onPressed: () => model.navigateToThread(userPost),
+              shape: const RoundedRectangleBorder(
+                side: BorderSide(width: 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
+                ),
+              ),
+              child: const CustomText(
+                text: 'Reply',
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ],

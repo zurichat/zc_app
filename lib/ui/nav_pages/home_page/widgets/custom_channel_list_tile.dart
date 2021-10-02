@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 
 class CustomChannelListTile extends StatelessWidget {
@@ -20,13 +21,10 @@ class CustomChannelListTile extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          ' # ' + '   '+channelName,
-          style: isActive ? AppTextStyles.unreadText : AppTextStyles.normalText
-        ),
-        isActive
-            ? AppTextStyles.unreadCount(int.parse(data!))
-            : Container()
+        Text(hash + '   ' + channelName,
+            style:
+                isActive ? AppTextStyles.unreadText : AppTextStyles.normalText),
+        isActive ? AppTextStyles.unreadCount(int.parse(data!)) : Container()
       ],
     );
   }

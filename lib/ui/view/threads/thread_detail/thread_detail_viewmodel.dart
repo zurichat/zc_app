@@ -1,8 +1,9 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../../../app/app.locator.dart';
+import '../../../../models/user_post.dart';
+import '../../../../utilities/enums.dart';
 
 class ThreadDetailViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
@@ -16,13 +17,9 @@ class ThreadDetailViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void pop() {
-    _navigationService.back();
-  }
-
   void showThreadOptions() async {
-  
-    var sheetResponse = await _bottomSheetService.showCustomSheet(
+    // ignore: unused_local_variable
+    final sheetResponse = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.threadOptions,
       isScrollControlled: true,
     );
@@ -33,10 +30,10 @@ class ThreadDetailViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void addReply(UserPost userPost, var reply) {
+  void addReply(UserPost userPost, String? reply) {
     userPost.addReply(
       UserThreadPost(
-        id: 25,
+        id: "25",
         displayName: "richieoscar",
         userImage: "assets/images/1.png",
         lastSeen: "4 hours ago",
@@ -47,12 +44,11 @@ class ThreadDetailViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  
   void exitPage() {
     _navigationService.back();
   }
 
   String time() {
-    return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
+    return '${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}';
   }
 }

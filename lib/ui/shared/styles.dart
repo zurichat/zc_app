@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
 class AppTextStyles {
-  
   static TextStyle heading9 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
     color: AppColors.blackColor,
@@ -19,6 +18,11 @@ class AppTextStyles {
   static TextStyle heading7 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
     color: AppColors.blackColor,
+    fontSize: 20,
+  );
+  static TextStyle hashtag = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.greyColor,
     fontSize: 20,
   );
   static TextStyle heading6 = GoogleFonts.lato(
@@ -35,7 +39,7 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.blackColor,
     fontSize: 18,
-  );            
+  );
   static TextStyle body1Regular = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     color: AppColors.greyishColor,
@@ -49,6 +53,22 @@ class AppTextStyles {
   static TextStyle normalText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     fontSize: 12,
+  );
+  static TextStyle messageText = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: AppColors.blackColor,
+  );
+
+  static TextStyle textButton1 = GoogleFonts.lato(
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    color: AppColors.blueTextColor,
+  );
+  static TextStyle messageTextButton = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: AppColors.blueTextColor,
   );
   static TextStyle body3Medium = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
@@ -70,7 +90,7 @@ class AppTextStyles {
     color: AppColors.deepBlackColor,
     fontSize: 16,
   );
-   static TextStyle regular = GoogleFonts.lato(
+  static TextStyle regular = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     color: AppColors.darkGreyColor,
     fontSize: 18,
@@ -118,6 +138,11 @@ class AppTextStyles {
     color: AppColors.greyColor,
     fontSize: 12,
   );
+  static TextStyle subtitle1 = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.deepGreyColor,
+    fontSize: 12,
+  );
   static TextStyle normalGrey = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     color: AppColors.greyColor,
@@ -144,9 +169,8 @@ class AppTextStyles {
     fontSize: 16,
   );
 
-  static TextStyle zuriAppBarWordLogo = TextStyle(
+  static TextStyle zuriAppBarWordLogo = GoogleFonts.lato(
       fontSize: 18.08,
-      fontFamily: 'Lato',
       fontWeight: FontWeight.w700,
       color: AppColors.whiteColor,
       height: 1,
@@ -199,6 +223,16 @@ class AppTextStyles {
     color: AppColors.darkGreyColor,
     fontSize: 14,
   );
+  static TextStyle nameStyle1 = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.deepGreyColor,
+    fontSize: 14,
+  );
+  static TextStyle hintStyle = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.SearchHintColor,
+    fontSize: 14,
+  );
   static TextStyle smallText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     color: AppColors.ZuriGrey,
@@ -224,9 +258,20 @@ class AppTextStyles {
     color: AppColors.zuriPrimaryColor,
     fontSize: 16,
   );
+
+  static TextStyle appBarTextStyle = GoogleFonts.lato(
+      fontSize: 20,
+      fontWeight: FontWeight.w700,
+      color: AppColors.zuriTextColorHeader);
+
   static TextStyle headerStyle = GoogleFonts.lato(
       fontSize: 16,
       fontWeight: FontWeight.w700,
+      color: AppColors.zuriTextColorHeader);
+
+  static TextStyle headerStyle1 = GoogleFonts.lato(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
       color: AppColors.zuriTextColorHeader);
 
   static TextStyle namesStyle = GoogleFonts.lato(
@@ -243,12 +288,21 @@ class AppTextStyles {
       fontSize: 15,
       fontWeight: FontWeight.w600,
       color: AppColors.unreadMessageColor);
+
+  static TextStyle archiveTextStyle2 = GoogleFonts.lato(
+      fontSize: 14,
+      fontWeight: FontWeight.w700,
+      color: AppColors.unreadMessageColor);
 }
 
+
+// ignore: must_be_immutable
 class StatusIcon extends StatelessWidget {
   int count = 5;
 
-  StatusIcon(int parse);
+  StatusIcon(
+    this.count,
+  );
   @override
   Widget build(BuildContext context) {
     return Container(

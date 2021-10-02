@@ -23,17 +23,13 @@ class OrganizationModel {
         name: json['name'],
         logoUrl: json['logo_url'],
         time: json['created_at'],
-        organizationUrl: json['organization_url'],
+        organizationUrl: json['workspace_url'],
         noOfMembers: json['no_of_members'],
         isOwner: json['isOwner']);
   }
 
   String get initials {
-    return this
-        .name!
-        .split(' ')
-        .map((e) => e.split('').first.toUpperCase())
-        .join();
+    return name!.split(' ').map((e) => e.split('').first.toUpperCase()).join();
   }
 }
 

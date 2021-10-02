@@ -1,13 +1,14 @@
-import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
-import '../../../package/base/server-request/api/http_api.dart';
 import '../../../services/local_storage_services.dart';
 import '../../../utilities/enums.dart';
 import '../../../utilities/storage_keys.dart';
+import '../../shared/shared.dart';
 import 'sign_up_view.form.dart';
 
 class SignUpViewModel extends FormViewModel {
@@ -15,7 +16,8 @@ class SignUpViewModel extends FormViewModel {
   final storage = locator<SharedPreferenceLocalStorage>();
   final navigator = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
-  final apiService = HttpApiService(coreBaseUrl);
+  final apiService = ZuriApi(baseUrl: coreBaseUrl);
+  String? get token => storage.getString(StorageKeys.currentSessionToken);
 
   bool isLoading = false;
   bool checkBoxValue = false;
@@ -39,54 +41,46 @@ class SignUpViewModel extends FormViewModel {
 
   // ignore: always_declare_return_types
   createUser(context) async {
-    if (emailValue!.isNotEmpty &&
-        passwordValue!.isNotEmpty &&
-        confirmPasswordValue!.isNotEmpty) {
-      if (checkBoxValue == true) {
-        loading(true);
-        const endpoint = '/users';
-        final signUpData = {
-          'first_name': firstNameValue,
-          'last_name': lastNameValue,
-          'display_name': displayNameValue,
-          'email': emailValue,
-          'password': passwordValue,
-          'phone': phoneNumberValue,
-        };
-        final response = await apiService.post(endpoint, data: signUpData);
-        loading(false);
-        if (response?.statusCode == 200) {
-          snackbar.showCustomSnackBar(
-            duration: const Duration(seconds: 3),
-            variant: SnackbarType.success,
-            message: 'Please check your email for your one-time-password',
-          );
+    if (checkBoxValue == true) {
+      loading(true);
 
-          storage.setString(
-              StorageKeys.otp, response?.data['data']['verification_code']);
-          storage.setString(StorageKeys.currentUserEmail, emailValue!);
-          storage.setBool(StorageKeys.registeredNotverifiedOTP, true);
-          navigateToOTPView();
-        } else {
-          snackbar.showCustomSnackBar(
-            duration: const Duration(seconds: 3),
-            variant: SnackbarType.failure,
-            message:
-                response?.data['message'] ?? 'Error encountered during signup.',
-          );
-        }
+      final signUpData = {
+        'first_name': firstNameValue,
+        'last_name': lastNameValue,
+        'display_name': displayNameValue,
+        'email': emailValue,
+        'password': passwordValue,
+        'phone': phoneNumberValue,
+      };
+      final response = await apiService.post(
+        SignUpEndpoint,
+        body: signUpData,
+      );
+      loading(false);
+      if (response?.statusCode == 200) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.success,
+          message: CheckEmailForOTP,
+        );
+
+        storage.setString(
+            StorageKeys.otp, response?.data['data']['verification_code']);
+        storage.setString(StorageKeys.currentUserEmail, emailValue!);
+        storage.setBool(StorageKeys.registeredNotverifiedOTP, true);
+        navigateToOTPView();
       } else {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: 'You must accept T & C to signup',
+          message: response?.data['message'] ?? ErrorEncounteredSignUp,
         );
       }
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Please fill all fields.',
+        message: AcceptTnC,
       );
     }
   }
