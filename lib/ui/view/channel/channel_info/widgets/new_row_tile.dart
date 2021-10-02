@@ -9,8 +9,8 @@ class NewRowTile extends StatelessWidget {
     this.text,
   }) : super(key: key);
 
-  final icon;
-  final text;
+  final IconData? icon;
+  final String? text;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +21,9 @@ class NewRowTile extends StatelessWidget {
           color: AppColors.deepBlackColor,
           size: 24.sp,
         ),
-        SizedBox(width:24.23.w),
+        SizedBox(width: 24.23.w),
         Text(
-          text,
+          "$text",
           style: AppTextStyles.namesStyle.copyWith(fontSize: 14.sp),
         ),
       ],

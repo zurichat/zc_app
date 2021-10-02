@@ -33,7 +33,7 @@ class ThreadDetailView extends StatelessWidget {
                 )),
           ),
           body: model.isBusy
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : Column(children: [
                   Expanded(
                     child: SingleChildScrollView(
@@ -68,7 +68,8 @@ class ThreadDetailView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                  '${model.channelThreadMessages.length} Replies',
+                                  '${model.channelThreadMessages.length} '
+                                      '${model.channelThreadMessages.length == 1? "Reply": "Replies"}',
                                   style: AppTextStyles.body2Bold),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,

@@ -1,5 +1,5 @@
 class DraftedItem {
-  final username, message, time;
+  final String? username, message, time;
 
   DraftedItem({
     this.username,

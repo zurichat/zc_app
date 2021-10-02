@@ -5,45 +5,43 @@ part 'app_model.freezed.dart';
 
 part 'app_model.g.dart';
 
-
 ///Freezed and serialized model for adding people to channel
 @freezed
 class AddPeopleToChannel with _$AddPeopleToChannel {
-
   factory AddPeopleToChannel({
     required String? id,
     required String? roleId,
     required String? isAdmin,
   }) = _AddPeopleToChannel;
 
-  factory AddPeopleToChannel.fromJson(Map<String, dynamic> json) => _$AddPeopleToChannelFromJson(json);}
-
+  factory AddPeopleToChannel.fromJson(Map<String, dynamic> json) =>
+      _$AddPeopleToChannelFromJson(json);
+}
 
 ///Freezed and serialized model for ApiResponse
 @freezed
 class ApiResponse with _$ApiResponse {
-   factory ApiResponse({
-     required  int? statusCode,
-     required  String? statusMessage,
-     required dynamic data,
-   }) = _ApiResponse;
+  factory ApiResponse({
+    required int? statusCode,
+    required String? statusMessage,
+    required dynamic data,
+  }) = _ApiResponse;
 
-
-   factory ApiResponse.fromJson(Map<String, dynamic>json) =>_$ApiResponseFromJson(json);}
-
-
+  factory ApiResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApiResponseFromJson(json);
+}
 
 ///Freezed and serialized model for channel members
 @freezed
-class ChannelMembersModel with _$ChannelMembersModel{
+class ChannelMembersModel with _$ChannelMembersModel {
   factory ChannelMembersModel({
     required String? name,
     required bool? isAdmin,
   }) = _ChannelMembersModel;
 
-  factory ChannelMembersModel.fromJson(Map<String, dynamic>json)=> _$ChannelMembersModelFromJson(json);
+  factory ChannelMembersModel.fromJson(Map<String, dynamic> json) =>
+      _$ChannelMembersModelFromJson(json);
 }
-
 
 ///Freezed and serialized model for creating channel
 @freezed
@@ -53,27 +51,27 @@ class ChannelModel with _$ChannelModel {
     required String? name,
   }) = _ChannelModel;
 
-  factory ChannelModel.fromJson(Map<String, dynamic> json) => _$ChannelModelFromJson(json);}
-
-
+  factory ChannelModel.fromJson(Map<String, dynamic> json) =>
+      _$ChannelModelFromJson(json);
+}
 
 ///Freezed and serialized model for searching channel
 @freezed
 class ChannelsSearch with _$ChannelsSearch {
-   factory ChannelsSearch({
-    required int?id,
-    required String?slug,
-    required String?name,
+  factory ChannelsSearch({
+    required int? id,
+    required String? slug,
+    required String? name,
   }) = _ChannelsSearch;
 
-  factory ChannelsSearch.fromJson(Map<String, dynamic> json) => _$ChannelsSearchFromJson(json);}
-
-
+  factory ChannelsSearch.fromJson(Map<String, dynamic> json) =>
+      _$ChannelsSearchFromJson(json);
+}
 
 ///Freezed and serialized model for organization
 @freezed
 class OrganizationModel with _$OrganizationModel {
-   factory OrganizationModel({
+  factory OrganizationModel({
     required int? id,
     required String? name,
     required String? organizationUrl,
@@ -83,15 +81,14 @@ class OrganizationModel with _$OrganizationModel {
     required int? noOfMembers,
   }) = _OrganizationModel;
 
-  factory OrganizationModel.fromJson(Map<String, dynamic> json) => _$OrganizationModelFromJson(json);
-
-  }
-
+  factory OrganizationModel.fromJson(Map<String, dynamic> json) =>
+      _$OrganizationModelFromJson(json);
+}
 
 ///Freezed and serialized model for creating user profile
 @freezed
 class ProfileModel with _$ProfileModel {
-   factory ProfileModel({
+  factory ProfileModel({
     required bool? userId,
     required String? firstName,
     required String? lastName,
@@ -102,69 +99,64 @@ class ProfileModel with _$ProfileModel {
     required String? bio,
   }) = _ProfileModel;
 
-  factory ProfileModel.fromJson(Map<String, dynamic> json)  => _$ProfileModelFromJson(json);
-  }
-
-
+  factory ProfileModel.fromJson(Map<String, dynamic> json) =>
+      _$ProfileModelFromJson(json);
+}
 
 ///Freezed and serialized model for user sign_up data
 @freezed
-class SignUpDataModel with _$SignUpDataModel{
+class SignUpDataModel with _$SignUpDataModel {
   factory SignUpDataModel({
-    required String?firstName,
-    required String?lastName,
-    required String?email,
-    required String?password,
-    required String?confirmPassword,
-    required String?displayName,
-    required String?phoneNumber,
+    required String? firstName,
+    required String? lastName,
+    required String? email,
+    required String? password,
+    required String? confirmPassword,
+    required String? displayName,
+    required String? phoneNumber,
   }) = _SignUpDataModel;
 
-  factory SignUpDataModel.fromJson(Map<String, dynamic> json) => _$SignUpDataModelFromJson(json);}
-
-
+  factory SignUpDataModel.fromJson(Map<String, dynamic> json) =>
+      _$SignUpDataModelFromJson(json);
+}
 
 ///Freezed and serialized model for starting a direct message
 @freezed
 class StartDmModel with _$StartDmModel {
-  factory StartDmModel({
-    required int? id,
-    required String? orgId,
-    required bool? isOnline ,
-    required String? imageUrl,
-    required String? fullName,
-    required String? files,
-    required String? status,
-    required String? email,
-    required String? displayName,
-    required String? bio,
-    required String? pronouns,
-    required String? phone,
-    required String? timeZone,
-    required String? joinedAt,
-     required bool? isChecked
-  }) = _StartDmModel;
-  factory StartDmModel.fromJson(Map<String, dynamic>json) => StartDmModel.fromJson(json);
-  }
-
-
+  factory StartDmModel(
+      {required int? id,
+      required String? orgId,
+      required bool? isOnline,
+      required String? imageUrl,
+      required String? fullName,
+      required String? files,
+      required String? status,
+      required String? email,
+      required String? displayName,
+      required String? bio,
+      required String? pronouns,
+      required String? phone,
+      required String? timeZone,
+      required String? joinedAt,
+      required bool? isChecked}) = _StartDmModel;
+  factory StartDmModel.fromJson(Map<String, dynamic> json) =>
+      StartDmModel.fromJson(json);
+}
 
 ///Freezed and serialized model for static user
 @freezed
-class StaticUserModel with _$StaticUserModel{
+class StaticUserModel with _$StaticUserModel {
   factory StaticUserModel({
     required String? userName,
     required String? userImg,
     required String? joinInfo,
     required String? time,
-   required bool? online,
+    required bool? online,
   }) = _StaticUserModel;
 
-  factory StaticUserModel.fromJson(Map<String, dynamic> json) => _$StaticUserModelFromJson(json);
-
-  }
-
-
+  factory StaticUserModel.fromJson(Map<String, dynamic> json) =>
+      _$StaticUserModelFromJson(json);
+}
 
 ///Freezed and serialized model for todo
 @freezed
@@ -173,74 +165,69 @@ class TodoModel with _$TodoModel {
     required int? userId,
     required int? id,
     required String? title,
-    required bool?status,
+    required bool? status,
   }) = _TodoModel;
 
-  factory TodoModel.fromJson(Map<String, dynamic> json) => _$TodoModelFromJson(json);
-
-  }
-
-
+  factory TodoModel.fromJson(Map<String, dynamic> json) =>
+      _$TodoModelFromJson(json);
+}
 
 ///Freezed and serialized model for creating new user
 @freezed
 class UserModel with _$UserModel {
   factory UserModel({
-  required String?userId,
-  required String?firstName,
-  required String?lastName,
-  required String?displayName,
-  required String?email,
-  required String?phoneNumber,
-  required int?status,
-  required String?timezone,
-  required String?createdAt,
-  required String?updatedAt,
+    required String? userId,
+    required String? firstName,
+    required String? lastName,
+    required String? displayName,
+    required String? email,
+    required String? phoneNumber,
+    required int? status,
+    required String? timezone,
+    required String? createdAt,
+    required String? updatedAt,
   }) = _UserModel;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
-  }
-
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
+}
 
 ///Freezed and serialized model for user thread post
 @freezed
 class UserThreadPost with _$UserThreadPost {
-
   factory UserThreadPost({
     required int? id,
-  required String? userId,
+    required String? userId,
     required String? image,
     required String? displayName,
     required String? statusIcon,
     required String? lastSeen,
     required String? message,
-     List<PostEmojis>? postEmojis,
+    List<PostEmojis>? postEmojis,
     required String? postDate,
   }) = _UserThreadPost;
 
-  factory UserThreadPost.fromJson(Map<String, dynamic> json) => _$UserThreadPostFromJson(json);
-  }
-
-
+  factory UserThreadPost.fromJson(Map<String, dynamic> json) =>
+      _$UserThreadPostFromJson(json);
+}
 
 ///Freezed and serialized model for post emojis
 @freezed
-class PostEmojis with _$PostEmojis{
+class PostEmojis with _$PostEmojis {
+  factory PostEmojis({
+    required int? id,
+    required String? postEmoji,
+    required int? postEmojiCount,
+    required bool? hasReacted,
+  }) = _PostEmojis;
 
-  factory PostEmojis(
-      {required int?id,
-        required String?postEmoji,
-        required int?postEmojiCount,
-       required bool?hasReacted,}) = _PostEmojis;
-
-  factory PostEmojis.fromJson(Map<String, dynamic> json) => _$PostEmojisFromJson(json);
-  }
-
+  factory PostEmojis.fromJson(Map<String, dynamic> json) =>
+      _$PostEmojisFromJson(json);
+}
 
 ///Freezed and serialized model for user post
 @freezed
-class UserPost with _$UserPost{
-
+class UserPost with _$UserPost {
   factory UserPost({
     required int? id,
     required String? userId,
@@ -248,29 +235,26 @@ class UserPost with _$UserPost{
     required String? userImage,
     required String? message,
     required String? statusIcon,
-    required String?lastSeen,
+    required String? lastSeen,
     List<PostEmojis>? postEmojis,
     List<UserThreadPost>? userThreadPosts,
-    required String?channelName,
-    required String?channelType,
-    required String?postDate,
+    required String? channelName,
+    required String? channelType,
+    required String? postDate,
   }) = _UserPost;
 
-  factory UserPost.fromJson(Map<String, dynamic> json) => _$UserPostFromJson(json);
+  factory UserPost.fromJson(Map<String, dynamic> json) =>
+      _$UserPostFromJson(json);
 }
-
-
 
 ///Freezed and serialized model for new user
 @freezed
 class NewUser with _$NewUser {
-
   factory NewUser({required int? id, required String? username}) = _NewUser;
 
-  factory NewUser.fromJson(Map<String, dynamic> json) => _$NewUserFromJson(json);
+  factory NewUser.fromJson(Map<String, dynamic> json) =>
+      _$NewUserFromJson(json);
 }
-
-
 
 ///Freezed and serialized model for user search
 @freezed
@@ -278,7 +262,7 @@ class UserSearch with _$UserSearch {
   factory UserSearch({
     required int? id,
     required String? bio,
-     required bool? deleted,
+    required bool? deleted,
     required DateTime? deletedAt,
     required String? displayName,
     required String? email,
@@ -299,24 +283,19 @@ class UserSearch with _$UserSearch {
     required String? userName,
   }) = _UserSearch;
 
-  factory UserSearch.fromJson(Map<String, dynamic> json) => _$UserSearchFromJson(json);
+  factory UserSearch.fromJson(Map<String, dynamic> json) =>
+      _$UserSearchFromJson(json);
 }
-
-
 
 ///Freezed and serialized model for main members
 @freezed
-class MainMembers with _$MainMembers{
-
+class MainMembers with _$MainMembers {
   factory MainMembers({
     required int? id,
-  required String? name,
+    required String? name,
     List<UserSearch>? data,
   }) = _MainMembeers;
 
-  factory MainMembers.fromJson(Map<String, dynamic> json) => _$MainMembersFromJson(json);
-
+  factory MainMembers.fromJson(Map<String, dynamic> json) =>
+      _$MainMembersFromJson(json);
 }
-
-
-

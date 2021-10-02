@@ -23,6 +23,7 @@ class ChannelsApiService {
 // https://channels.zuri.chat/api/v1/61459d8e62688da5302acdb1/channels/
   //TODo - fix
   // ignore: always_declare_return_types
+
   onChange() {}
   Future<List> getActiveDms() async {
     final orgId = _userService.currentOrgId;
@@ -64,7 +65,8 @@ class ChannelsApiService {
     return socketName;
   }
 
-  Future<Map> joinChannel(String channelId) async {
+  Future<Map?> joinChannel(String channelId) async {
+    await storageService.clearData(StorageKeys.currentChannelId);
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
 
@@ -76,17 +78,16 @@ class ChannelsApiService {
         '_id': userId,
         'is_admin': true,
       });
-
+      await storageService.setString(StorageKeys.currentChannelId, channelId);
       log.i(res?.data);
       //  channelMessages = res?.data["data"] ?? [];
 
       //  log.i(channelMessages);
+      return res?.data ?? {};
     } on Exception catch (e) {
       log.e(e.toString());
       return {};
     }
-
-    return {};
   }
 
   Future<List> getChannelMessages(String channelId) async {
@@ -101,7 +102,6 @@ class ChannelsApiService {
         token: token,
       );
       channelMessages = res?.data ?? [];
-
       log.i(channelMessages);
     } on Exception catch (e) {
       log.e(e.toString());
@@ -116,6 +116,7 @@ class ChannelsApiService {
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
 
+    // ignore: prefer_typing_uninitialized_variables
     var channelMessage;
 
     try {
@@ -184,6 +185,24 @@ class ChannelsApiService {
     return false;
   }
 
+  Future<bool> deleteChannel(String orgId, String channelId) async {
+    try {
+      final res = await _api.delete(
+        '/v1/$orgId/channels/$channelId/',
+        token: token,
+      );
+      // print("RES IS ${res?.statusCode}");
+      if (res?.statusCode == 201 || res?.statusCode == 204) {
+        controller.sink.add('Channel Deleted');
+        return true;
+      }
+      return false;
+    } catch (e) {
+      log.e(e.toString());
+      return false;
+    }
+  }
+
   getChannelPage(id) async {
     String orgId = _userService.currentOrgId;
 
@@ -200,7 +219,7 @@ class ChannelsApiService {
     }
   }
 
-  getChannelMembers(id) async {
+  Future<List<ChannelMembermodel>?> getChannelMembers(id) async {
     String orgId = _userService.currentOrgId;
     try {
       final res = await _api.get(

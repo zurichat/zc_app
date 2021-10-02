@@ -1,4 +1,6 @@
-import 'package:hng/package/base/server-request/threads/threads_api_service.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/services/user_service.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -11,7 +13,8 @@ import '../../../../utilities/enums.dart';
 class ThreadDetailViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
-  final _threadsApiService = locator<ThreadsApiService>();
+  final _apiService = ZuriApi(channelsBaseUrl);
+  final _userService = locator<UserService>();
 
 
   List<UserThreadPost> channelThreadMessages = [];
@@ -46,8 +49,8 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   void fetchThreadMessages() async {
-    List? threadMessages = await _threadsApiService
-        .getThreadMessages(channelMessageId);
+    List? threadMessages = await _apiService
+        .getRepliesToMessages(channelMessageId, currentOrg);
 
     channelThreadMessages.clear();
     threadMessages.forEach((message) async {
@@ -72,9 +75,14 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   Future<void> sendThreadMessage(String message, String channelId) async {
-    await _threadsApiService.sendThreadMessage(messageId: channelMessageId, message: message, channelId: channelId);
+    await _apiService.addReplyToMessage(channelMessageId, message, null, currentOrg, userId, channelId);
     fetchThreadMessages();
   }
+
+
+  String get currentOrg => _userService.currentOrgId;
+
+  String get userId => _userService.userId;
   
   
 

@@ -8,7 +8,7 @@ class DraftedItemWidget extends StatelessWidget {
     this.time,
     Key? key,
   }) : super(key: key);
-  final username, message, time;
+  final String? username, message, time;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,30 +24,30 @@ class DraftedItemWidget extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Text(
-                      username,
+                      "$username",
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.body1Bold,
                       ),
                     ),
                   Text(
-                    time,
+                    "$time",
                     overflow: TextOverflow.ellipsis,
                     style: AppTextStyles.normalText,
                   ),
                 ],
               ),
-              SizedBox(
+          const     SizedBox(
                 height: 6,
               ),
               Text(
-                message,
+                "$message",
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyles.normalText,
                 ),
             ]
           ),
         ),
-        Divider(
+     const    Divider(
           thickness: 1.0,
         ),
       ],
