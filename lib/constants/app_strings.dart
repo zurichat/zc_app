@@ -259,8 +259,9 @@ const String MakePrivate = 'Make Private';
 const String PrivateDescription =
     'When channel is set to private, members of your organization can only view or join by invitation';
 
-//DM
+//DM dirs
 const String ViewDetails = 'View details';
+const String Recent = 'Recent';
 
 //----------------
 //Images and Logos
