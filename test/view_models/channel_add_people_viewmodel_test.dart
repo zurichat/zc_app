@@ -74,40 +74,6 @@ void main() {
       });
     });
 
-    /*group('onFetchedUser -', () {
-      test('When called fetch members', () {
-        final organizationApiService = getAndRegisterOrganizationApiService();
-        var model = _getModel();
-        model.onFetchMembers();
-        verify(organizationApiService.fetchMembersInOrganization('orgId'));
-        //expect(model.markedUsers, 'matcher');
-      });
-    });*/
-    /* group('onAddButtonTap -', () {
-      test('lol', () {
-        final api = getAndRegisterZuriApiMock();
-        var model = _getModel();
-        model.onAddButtonTap();
-        var channelId = 'channel_id';
-        var userId = 'user_id';
-        var orgId = 'org_id';
-        var token = 'token';
-      });
-    });
-
-    group('addMemberToChannel -', () {
-      test('When call add a member to channel', () async {
-        final api = getAndRegisterZuriApiMock();
-        var model = _getModel();
-        var channelId = 'channel_id';
-        var userId = 'user_id';
-        var orgId = 'org_id';
-        var token = 'token';
-        await model.addMemberToChannel(channelId, userId);
-        verify(api.addMemberToChannel(channelId, orgId, userId, token));
-      });
-    });*/
-
     group('onMarkOne -', () {
       test('When called and marked is true, add user to marked users list', () {
         var model = _getModel();
@@ -143,8 +109,6 @@ void main() {
         model.matchingUsers.add(search);
         model.matchingUsers.add(search);
         model.onMarkAll(true);
-        //var markedUsers = model.markedUsers;
-        //expect(markedUsers.length, 3);
         expect(model.allMarked, true);
       });
     });
