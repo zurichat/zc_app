@@ -6,7 +6,8 @@ enum DialogType {
   feedback,
   themeMode,
   deleteChannel,
-  deleteMessage
+  deleteMessage,
+  signOut
 }
 
 enum ChannelType { private, public, personal }
@@ -20,6 +21,7 @@ enum BottomSheetType {
   emojiPicker,
   floatingBox,
   threadOptions,
+  signOut
 }
 
 enum HomeListType {
