@@ -1,23 +1,34 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hng/ui/view/dm_chat_view/dm_jump_to_viewmodel.dart';
-import 'package:mockito/mockito.dart';
 import '../helpers/test_helpers.dart';
 
-// This is a test setup
 void main() {
   group('dmJumpToViewModelTest -', () {
     setUp(() => registerServices());
     tearDown(() => unregisterServices());
     group('initialise -', () {
-      test('When called, check if userList is not empty', () async {
+      test('users list initializes with empty', () async {
         final model = DmJumpToViewModel();
-        await model.fetchUsers();
-        verify(model.userSearch.isEmpty);
+        expect(model.userSearch.isEmpty, true);
       });
-      test('When called, check if channelsList is not empty', () async {
+
+      test('channels list initializes with empty', () async {
         final model = DmJumpToViewModel();
-        await model.fetchChannels();
-        verify(model.allChannelsSearch.isNotEmpty);
+        expect(model.allChannelsSearch.isEmpty, true);
+      });
+    });
+
+    group('api calls -', () {
+      test('When called, check if users list is not empty', () async {
+        final model = DmJumpToViewModel();
+        var list = await model.fetchUsers();
+        expect(list!.isNotEmpty, true);
+      });
+
+      test('When called, check if channels list is not empty', () async {
+        final model = DmJumpToViewModel();
+        var list = await model.fetchChannels();
+        expect(list!.isNotEmpty, true);
       });
     });
   });

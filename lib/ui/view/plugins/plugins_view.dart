@@ -38,7 +38,7 @@ class PluginView extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    model.nToAdd();
+                    model.navigateToAdd();
                   },
                   child: CustomPluginPageListTile(
                     leadingIcon: const Icon(

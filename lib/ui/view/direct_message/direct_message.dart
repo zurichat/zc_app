@@ -9,7 +9,8 @@ import 'direct_message_viewmodel.dart';
 
 class DirectMessage extends StatelessWidget {
   final username;
-  const DirectMessage({Key? key, this.username}) : super(key: key);
+  final TextEditingController controller = TextEditingController();
+  DirectMessage({Key? key, this.username}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -167,13 +168,13 @@ class DirectMessage extends StatelessWidget {
                         children: <Widget>[
                           Expanded(
                             child: TextField(
-                              controller: model.controller,
+                              controller: controller,
                               decoration: const InputDecoration(
                                 hintText: 'Write message...',
                                 hintStyle: TextStyle(color: Colors.black54),
                               ),
                               onEditingComplete: () =>
-                                  model.controller.clearComposing(),
+                                  controller.clearComposing(),
                             ),
                           ),
                           const SizedBox(
