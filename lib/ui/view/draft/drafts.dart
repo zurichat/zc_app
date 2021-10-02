@@ -1,46 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 
 final drafts = [
   ListTile(
     title: Text(
-      'OyinkanUA',
+      OyinkanUA,
       style: AppTextStyles.heading6,
     ),
     subtitle: Text(
-      'Why',
+      Why,
       style: AppTextStyles.body1Bold,
     ),
     trailing: Text(
-      'August 31 at 9:09 PM',
+      SampleDate,
       style: AppTextStyles.body2Bold,
     ),
   ),
   ListTile(
     title: Text(
-      'Abd_salam',
+      AbdSalam,
       style: AppTextStyles.heading6,
     ),
     subtitle: Text(
-      'No wahala',
+      NoWahala,
       style: AppTextStyles.body1Bold,
     ),
     trailing: Text(
-      'August 31 at 9:09 PM',
+      SampleDate,
       style: AppTextStyles.body2Bold,
     ),
   ),
   ListTile(
     title: Text(
-      '#random chat',
+      TeamSocrates,
       style: AppTextStyles.heading6,
     ),
     subtitle: Text(
-      'My oga',
+      Yeah,
       style: AppTextStyles.body1Bold,
     ),
     trailing: Text(
-      'August 31 at 9:09 PM',
+      SampleDate,
       style: AppTextStyles.body2Bold,
     ),
   ),
