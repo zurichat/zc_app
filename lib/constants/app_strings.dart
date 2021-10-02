@@ -295,6 +295,20 @@ const String FileImage = 'assets/images/file_image.png';
 const String ImageFileName = 'image.png';
 const String ImageDetails = '550KB png';
 
+//Languages and region
+const String LangAndRegion = 'Languages & Region';
+const String Language = 'Language';
+const String SetTimezone = 'Set time zone automatically';
+const String Deutsch = 'Deutsch (Deutschland)';
+const String EnglishUK = 'English (UK)';
+const String EnglishUS = 'English (US)';
+const String Espanol = 'Espanol (Espana)';
+const String Francais = 'Francais (France)';
+const String Italiano = 'Italiano (Italy)';
+const String Portugues = 'Portugues (Brazil)';
+const String Chinese = '陈摩托何';
+const String Mandarin = '来 本 嗄';
+
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
