@@ -5,7 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ChannelMembersModel extends BaseViewModel {
-  final navigator = locator<NavigationService>();
+  final _navigationService = locator<NavigationService>();
 
   bool get allMarked =>
       markedUsers.length == matchingUsers.length && matchingUsers.isNotEmpty;
@@ -67,7 +67,7 @@ class ChannelMembersModel extends BaseViewModel {
   }
 
   void goBack() {
-    navigator.back();
+    _navigationService.back();
     /*
     navigator = locator<NavigationService>();
     It's still navigation service that was used.
