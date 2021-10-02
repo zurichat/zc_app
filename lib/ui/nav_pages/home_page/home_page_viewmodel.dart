@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/app/app.router.dart';
@@ -227,9 +226,10 @@ class HomePageViewModel extends StreamViewModel {
 
   //Used for handling notification
   _moderateNavigation() {
-    if (_navigationService.previousRoute != Routes.navBarView)
+    if (_navigationService.previousRoute != Routes.navBarView) {
       _navigationService
           .popUntil((route) => route.settings.name == Routes.navBarView);
+    }
   }
 
   void listenToNotificationTap() {

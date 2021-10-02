@@ -8,7 +8,7 @@ import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 
 class CentrifugeService with ReactiveServiceMixin {
-  static Client _client = centrifuge.createClient(
+  static final Client _client = centrifuge.createClient(
     '$websocketUrl?format=protobuf',
   );
   StreamController messageStreamController = StreamController.broadcast();

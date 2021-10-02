@@ -7,12 +7,12 @@ import 'package:hng/app/app.locator.dart';
 import 'package:hng/ui/shared/colors.dart';
 
 class NotificationService {
-  String messsageChannelKey = 'message';
+  final String messsageChannelKey = 'message';
 
-  StreamController<NotificationPayload> _notificationControl =
+  final StreamController<NotificationPayload> _notificationControl =
       StreamController.broadcast();
 
-  Random rand = Random();
+  final Random rand = Random();
 
   ///Listen to notification click by listening to stream and navigate to the
   ///respective screen by using the payload returned
