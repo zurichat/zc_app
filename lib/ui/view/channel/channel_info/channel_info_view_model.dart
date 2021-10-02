@@ -100,6 +100,10 @@ class ChannelInfoViewModel extends BaseViewModel {
     }
   }
 
+  navigateToAddMembers() {
+    _navigationService.navigateTo(Routes.addPeopleView);
+  }
+
   Future<void> deleteChannel(ChannelModel channel) async {
     try {
       bool res = await _channelApi.deleteChannel(
