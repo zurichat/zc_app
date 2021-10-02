@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';

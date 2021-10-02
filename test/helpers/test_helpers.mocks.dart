@@ -1068,8 +1068,6 @@ class MockZuriApi extends _i1.Mock implements _i18.ZuriApi {
               {#token: token, #memberId: memberId, #orgId: orgId}),
           returnValue: Future<String>.value('')) as _i2.Future<String>);
   @override
-  String toString() => super.toString();
-  @override
   _i2.Future<void> addMemberToChannel(
           String? channelId, String? orgId, String? userId, dynamic token) =>
       (super.noSuchMethod(
@@ -1077,6 +1075,8 @@ class MockZuriApi extends _i1.Mock implements _i18.ZuriApi {
               #addMemberToChannel, [channelId, orgId, userId, token]),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i2.Future<void>);
+  @override
+  String toString() => super.toString();
 }
 
 /// A class which mocks [ConnectivityService].
