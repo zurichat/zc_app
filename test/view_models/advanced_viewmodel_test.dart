@@ -18,12 +18,6 @@ void main() {
         await model.changeSkinTone();
         verify(dialogService.showCustomDialog(variant: DialogType.skinTone));
       });
-      test('when called and dialog result is not null set the current emoji',
-          () async {
-        var model = _getModel();
-        await model.changeSkinTone();
-        expect(model.currentEmoji, 'laughing face');
-      });
     });
 
     group('toggleShowImagePreviews -', () {
