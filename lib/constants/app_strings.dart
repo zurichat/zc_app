@@ -238,6 +238,7 @@ const String ChannelCreationWarningMsg =
 const String MakeChannelPrivate = 'Make channel private';
 const String PrivateChannelDescription =
     'A private channel can only be viewed or joined';
+const String YouAreAMember = 'You are a member';
 
 //----------------
 //Images and Logos
@@ -292,3 +293,4 @@ const String MarkCreatedChannel = 'Mark created this channel on August 13.';
 const String CreatingZuri = 'Creating the zuri main app';
 const String OnePinnedMessage = 'Pinned messages (1)';
 const String OnePlugin = 'Plugins (1)';
+const String MembersCount = '128 members';
