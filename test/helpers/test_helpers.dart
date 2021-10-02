@@ -4,11 +4,13 @@ import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -33,6 +35,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<ZuriApi>(returnNullOnMissingStub: true),
   MockSpec<ConnectivityService>(returnNullOnMissingStub: true),
   MockSpec<JumpToApi>(returnNullOnMissingStub: true),
+  MockSpec<OrganizationApiService>(returnNullOnMissingStub: true),
 ])
 MockUserService getAndRegisterUserServiceMock({
   bool hasUser = false,
@@ -45,11 +48,14 @@ MockUserService getAndRegisterUserServiceMock({
 }
 
 MockSharedPreferenceLocalStorage
-    getAndRegisterSharedPreferencesLocalStorageMock() {
+    getAndRegisterSharedPreferencesLocalStorageMock(
+        {String? token, String orgId = 'org_id'}) {
   _removeRegistrationIfExists<SharedPreferenceLocalStorage>();
   final service = MockSharedPreferenceLocalStorage();
+  when(service.getString(StorageKeys.currentSessionToken))
+      .thenReturn(token ?? 'token');
+  when(service.getString(StorageKeys.currentOrgId)).thenReturn(orgId);
   locator.registerSingleton<SharedPreferenceLocalStorage>(service);
-
   return service;
 }
 
@@ -84,11 +90,18 @@ MockThemeService getAndRegisterThemeServiceMock() {
   return service;
 }
 
-MockDialogService getAndRegisterDialogServiceMock() {
+MockDialogService getAndRegisterDialogServiceMock(
+    {DialogResponse<dynamic>? dialogResult}) {
   _removeRegistrationIfExists<DialogService>();
   final service = MockDialogService();
+  when(service.showCustomDialog(
+    variant: DialogType.skinTone,
+  )).thenAnswer((realInvocation) =>
+      Future<DialogResponse<dynamic>>.value(DialogResponse<dynamic>(
+        confirmed: false,
+        data: 'laughing face',
+      )));
   locator.registerSingleton<DialogService>(service);
-
   return service;
 }
 
@@ -152,6 +165,15 @@ MockJumpToApi getAndRegisterJumpToApiMock() {
   _removeRegistrationIfExists<JumpToApi>();
   final service = MockJumpToApi();
   locator.registerSingleton<JumpToApi>(service);
+
+  return service;
+}
+
+MockOrganizationApiService getAndRegisterOrganizationApiService() {
+  _removeRegistrationIfExists<OrganizationApiService>();
+  final service = MockOrganizationApiService();
+
+  locator.registerSingleton<OrganizationApiService>(service);
 
   return service;
 }
