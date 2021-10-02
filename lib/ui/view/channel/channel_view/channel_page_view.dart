@@ -29,11 +29,17 @@ class ChannelPageView extends StatelessWidget {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
         model.initialise('$channelId');
+        model.showNotificationForOtherChannels('$channelId', '$channelname');
       },
       //this parameter allows us to reuse the view model to persist the state
 
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, model, child) {
+        if (model.scrollController.hasClients) {
+          model.scrollController
+              .jumpTo(model.scrollController.position.maxScrollExtent);
+        }
+
         return Scaffold(
           appBar: AppBar(
             leading: Padding(
