@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
@@ -10,7 +9,6 @@ import 'package:stacked/stacked.dart';
 import '../../shared/colors.dart';
 import 'dm_user_viewmodel.dart';
 import 'dummy_data/models/message.dart';
-import 'icons/zap_icon.dart';
 import 'widgets/message_view.dart';
 import 'widgets/online_indicator.dart';
 
