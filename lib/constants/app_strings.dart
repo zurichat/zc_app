@@ -271,7 +271,8 @@ const String CustomStartMsg1 =
     'This is the very beginning of your direct message history with ';
 const String CustomStartMsgTwo =
     'Only the two of you are in this conversation, and no one else can join it.';
-
+//Draft
+AddDraft = 'Add draft';
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
@@ -347,3 +348,5 @@ const String Cool = 'Cool...';
 const String Nice = 'Nice...';
 const String Yeah = 'Yeah';
 const String Nope = 'Nope';
+const String Why = 'Why';
+
