@@ -105,7 +105,6 @@ class ChannelPageViewModel extends BaseViewModel {
       );
     });
     isLoading = false;
-    scrollController.jumpTo(scrollController.position.maxScrollExtent);
 
     notifyListeners();
   }

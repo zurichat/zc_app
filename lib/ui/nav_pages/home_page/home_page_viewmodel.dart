@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
@@ -10,6 +11,7 @@ import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/services/notification_service.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
@@ -30,6 +32,7 @@ class HomePageViewModel extends StreamViewModel {
   final channelsApiService = locator<ChannelsApiService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _centrifugeService = locator<CentrifugeService>();
+  final _notificationService = locator<NotificationService>();
 
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
@@ -54,6 +57,8 @@ class HomePageViewModel extends StreamViewModel {
 
   String get orgName => userService.currentOrgName;
   String get orgId => userService.currentOrgId;
+
+  StreamSubscription? notificationSub;
 
   @override
   Stream get stream => checkConnectivity();
@@ -199,6 +204,8 @@ class HomePageViewModel extends StreamViewModel {
       // _channel= await api.getChannelPage(id);
       // _membersList= await api.getChannelMembers(id);
       setBusy(false);
+
+      _moderateNavigation();
       navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
             channelname: channelname,
@@ -216,12 +223,36 @@ class HomePageViewModel extends StreamViewModel {
     }
   }
 
+  //Used for handling notification
+  _moderateNavigation() {
+    if (_navigationService.previousRoute != Routes.navBarView)
+      _navigationService
+          .popUntil((route) => route.settings.name == Routes.navBarView);
+  }
+
+  void listenToNotificationTap() {
+    notificationSub = _notificationService.onNotificationTap.listen((payload) {
+      navigateToChannelPage(
+        payload.name,
+        payload.roomId,
+        payload.membersCount,
+        payload.public,
+      );
+    });
+  }
+
   void navigateToAllChannelsScreen() {
     NavigationService().navigateTo(Routes.channelList);
   }
 
   void onJumpToScreen() {
     navigationService.navigateTo(Routes.dmJumpToView);
+  }
+
+  @override
+  void dispose() {
+    notificationSub?.cancel();
+    super.dispose();
   }
 
   // void navigateToDmUser() {
