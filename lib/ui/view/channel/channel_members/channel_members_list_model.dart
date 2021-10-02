@@ -67,6 +67,6 @@ class ChannelMembersModel extends BaseViewModel {
   }
 
   void goBack() {
-    NavigationService().back();
+    navigator.back();
   }
 }
