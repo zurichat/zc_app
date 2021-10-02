@@ -258,7 +258,9 @@ const String ChannelSettings = 'Channel Settings';
 const String MakePrivate = 'Make Private';
 const String PrivateDescription =
     'When channel is set to private, members of your organization can only view or join by invitation';
-//.
+
+//DM
+const String ViewDetails = 'View details';
 
 //----------------
 //Images and Logos
@@ -314,3 +316,6 @@ const String CreatingZuri = 'Creating the zuri main app';
 const String OnePinnedMessage = 'Pinned messages (1)';
 const String OnePlugin = 'Plugins (1)';
 const String MembersCount = '128 members';
+const String SoftwareDev = 'Software Development';
+const String PromotedPlaceholder = 'Have you been Promoted?';
+const String WriteMsgHint = 'Write message...';
