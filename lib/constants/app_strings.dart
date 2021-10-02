@@ -275,6 +275,7 @@ const String Chimamanda = 'assets/images/chimamanda.png';
 const String UserImage = 'assets/images/user.png';
 const String EditLogo = 'assets/channel_page/edit.png';
 const String ArrowIcon = 'assets/icons/back_arrow_icon.png';
+const String Avatar = 'assets/images/avatar.png';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
@@ -308,7 +309,6 @@ const String PaulImoke = 'Paul Imoke Eke';
 const String Okay = 'Okay';
 const String SampleDate = 'August 31 at 9:09 PM';
 const String AbdSalam = 'Abd_salam';
-const String Random = 'Abd_salam';
 const String NoWahala = 'No Wahala';
 const String sampleNumber = '+2347023456789';
 const String EmailPlaceholder = 'myemail@mail.com';
@@ -331,3 +331,5 @@ const String maxiron = 'maxiron';
 const String Engr_Jimmy = 'Engr_Jimmy';
 const String Detective_Khalifah = 'Detective_Khalifah';
 const String ChristieDesign = 'ChristieDesign';
+const String Jaytek = 'Jaytek';
+const String ProductDesigner = 'Product designer';
