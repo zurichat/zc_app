@@ -1,5 +1,6 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
@@ -32,7 +33,7 @@ class ChannelListViewModel extends BaseViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: 'Check your internet connection',
+          message: noInternet,
         );
 
         return;
@@ -44,7 +45,7 @@ class ChannelListViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Error Occured',
+        message: errorOccurred,
       );
     }
   }
@@ -56,7 +57,7 @@ class ChannelListViewModel extends BaseViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: 'Check your internet connection',
+          message: noInternet,
         );
 
         return;
@@ -76,7 +77,7 @@ class ChannelListViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Error Occured',
+        message: errorOccurred,
       );
     }
   }
