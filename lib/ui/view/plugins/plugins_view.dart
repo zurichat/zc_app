@@ -40,8 +40,8 @@ class PluginView extends StatelessWidget {
                   onTap: () {
                     model.navigateToAdd();
                   },
-                  child: CustomPluginPageListTile(
-                    leadingIcon: const Icon(
+                  child: const CustomPluginPageListTile(
+                    leadingIcon: Icon(
                       Icons.add,
                       color: AppColors.zuriPrimaryColor,
                     ),

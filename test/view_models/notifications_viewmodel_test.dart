@@ -6,6 +6,7 @@ void main() {
   group('notificationsViewModelTest -', () {
     setUp(() => registerServices());
     tearDown(() => unregisterServices());
+
     group('initialise -', () {
       test('When constructed, checks if all the fields have a default state of true', () {
         final model = NotificationsViewModel();

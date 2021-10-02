@@ -1,6 +1,6 @@
 //keep Hng Project
 import 'package:flutter/material.dart';
-import '../../../utilities/constants.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 
@@ -9,12 +9,13 @@ import 'direct_message_viewmodel.dart';
 
 class DirectMessage extends StatelessWidget {
   final username;
-  final TextEditingController controller = TextEditingController();
+
   DirectMessage({Key? key, this.username}) : super(key: key);
+  var controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return ViewModelBuilder<DirectMessageViewModel>.reactive(
         viewModelBuilder: () => DirectMessageViewModel(),
         builder: (context, model, child) {
@@ -22,7 +23,7 @@ class DirectMessage extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: Colors.white,
               leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+                icon: Icon(Icons.arrow_back_ios, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
               ),
               title: Column(
@@ -32,16 +33,16 @@ class DirectMessage extends StatelessWidget {
                     children: [
                       CustomText(
                           text: username.toString(), color: Colors.black),
-                      const SizedBox(width: 20),
+                      SizedBox(width: 20),
                       Container(
                         width: 10,
                         height: 10,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.green),
                       )
                     ],
                   ),
-                  const CustomText(
+                  CustomText(
                     color: Colors.black,
                     text: 'View details',
                   ),
@@ -49,7 +50,7 @@ class DirectMessage extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                  icon: const Icon(Icons.info, color: Colors.black),
+                  icon: Icon(Icons.info, color: Colors.black),
                   onPressed: () {},
                 )
               ],
@@ -69,14 +70,13 @@ class DirectMessage extends StatelessWidget {
                             Container(
                               height: size.height * 0.15,
                               width: size.height * 0.15,
-                              decoration:
-                                  const BoxDecoration(color: Colors.grey),
+                              decoration: BoxDecoration(color: Colors.grey),
                               child: Image.asset(
                                 dummyUserImage,
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            const SizedBox(height: 10),
+                            SizedBox(height: 10),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -85,36 +85,34 @@ class DirectMessage extends StatelessWidget {
                                     Container(
                                       width: 10,
                                       height: 10,
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           color: Colors.green),
                                     ),
-                                    const SizedBox(width: 20),
+                                    SizedBox(width: 20),
                                     CustomText(
-                                      text: username.toString(),
-                                      color: Colors.black,
-                                    ),
+                                        text: this.username.toString(),
+                                        color: Colors.black),
                                   ],
                                 ),
-                                const CustomText(
-                                  text: 'Software Development',
+                                CustomText(
+                                  text: "Software Development",
                                   color: Colors.black,
                                 ),
-                                const SizedBox(height: 10),
+                                SizedBox(height: 10),
                                 CustomText(
-                                  text: '''This is the very beginning of your'''
-                                      ''' direct message history with @${username.toString()}. '''
-                                      '''Only the two of you are in this conversation, and no one else can join it.''',
+                                  text:
+                                      "This is the very beginning of your direct message history with @${this.username.toString()}. Only the two of you are in this conversation, and no one else can join it.",
                                   color: Colors.black,
                                   fontSize: 15,
                                 ),
-                                const SizedBox(height: 10),
+                                SizedBox(height: 10),
                                 for (var i = 0; i < 7; i++)
                                   Column(
                                     children: [
                                       Row(
                                         children: [
-                                          SizedBox(
+                                          Container(
                                             height: size.height * 0.08,
                                             width: size.height * 0.08,
                                             child: Image.asset(
@@ -122,7 +120,7 @@ class DirectMessage extends StatelessWidget {
                                               fit: BoxFit.cover,
                                             ),
                                           ),
-                                          const SizedBox(width: 10),
+                                          SizedBox(width: 10),
                                           Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -130,25 +128,27 @@ class DirectMessage extends StatelessWidget {
                                               Row(
                                                 children: [
                                                   CustomText(
-                                                      text: username.toString(),
+                                                      text: this
+                                                          .username
+                                                          .toString(),
                                                       color: Colors.black),
-                                                  const SizedBox(width: 10),
+                                                  SizedBox(width: 10),
                                                   CustomText(
                                                       text: DateFormat('hh:mm')
                                                           .format(
                                                               DateTime.now()))
                                                 ],
                                               ),
-                                              const CustomText(
+                                              CustomText(
                                                   text:
-                                                      'Have you been Promtoed?')
+                                                      "Have you been Promtoed?")
                                             ],
                                           ),
                                         ],
                                       ),
-                                      const SizedBox(
+                                      SizedBox(
                                         height: 10,
-                                      ),
+                                      )
                                     ],
                                   )
                               ],
@@ -169,28 +169,24 @@ class DirectMessage extends StatelessWidget {
                           Expanded(
                             child: TextField(
                               controller: controller,
-                              decoration: const InputDecoration(
-                                hintText: 'Write message...',
+                              decoration: InputDecoration(
+                                hintText: "Write message...",
                                 hintStyle: TextStyle(color: Colors.black54),
                               ),
                               onEditingComplete: () =>
                                   controller.clearComposing(),
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             width: 15,
                           ),
                           IconButton(
-                            icon: const Icon(Icons.camera, color: Colors.black),
-                            onPressed: () {},
-                          ),
+                              icon: Icon(Icons.camera, color: Colors.black),
+                              onPressed: () {}),
                           IconButton(
-                            icon: const Icon(
-                              Icons.file_upload,
-                              color: Colors.black,
-                            ),
-                            onPressed: () {},
-                          )
+                              icon:
+                                  Icon(Icons.file_upload, color: Colors.black),
+                              onPressed: () {})
                         ],
                       ),
                     ),
