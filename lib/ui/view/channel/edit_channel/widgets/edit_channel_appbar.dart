@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import '../edit_channel_view_model.dart';
 
@@ -34,13 +35,13 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
           GestureDetector(
             onTap: () {
               switch (appbarAction) {
-                case 'Save':
+                case Save:
                   model.editChannel(context);
                   break;
-                case 'Done':
+                case Done:
                   //model.nToPlugins();
                   break;
-                case 'Add':
+                case Add:
                 //model.nToPlugins();
               }
             },

@@ -68,25 +68,29 @@ class UserPost extends UserThreadPost {
   String? channelName;
   ChannelType? channelType;
 
+  String channelId;
+
   @override
   String postDate;
 
   List<UserThreadPost>? userThreadPosts;
 
-  UserPost(
-      {required this.id,
-      this.userID,
-      required this.displayName,
-      this.userImage,
-      required this.message,
-      this.statusIcon,
-      this.lastSeen,
-      this.postEmojis,
-      this.userThreadPosts,
-      this.channelName,
-      this.channelType,
-      this.postDate = ''})
-      : super(
+
+  UserPost({
+    required this.id,
+    this.userID,
+    required this.displayName,
+    this.userImage,
+    required this.message,
+    this.statusIcon,
+    this.lastSeen,
+    this.postEmojis,
+    this.userThreadPosts,
+    this.channelName,
+    this.channelType,
+    this.postDate = "",
+    required this.channelId,
+  }) : super(
           id: id,
           displayName: displayName,
           message: message,

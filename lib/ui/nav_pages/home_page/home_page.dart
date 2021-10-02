@@ -18,6 +18,7 @@ class HomePage extends StatelessWidget {
       onModelReady: (model) {
         model.getDmAndChannelsList();
         model.getNewChannelStream();
+        model.listenToNotificationTap();
       },
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, vmodel, child) => SafeArea(
