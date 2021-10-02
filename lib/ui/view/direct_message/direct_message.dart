@@ -1,6 +1,7 @@
 //keep Hng Project
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
+import 'package:hng/constants/app_strings.dart';
 import '../../../utilities/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
@@ -43,7 +44,7 @@ class DirectMessage extends StatelessWidget {
                   ),
                   const CustomText(
                     color: Colors.black,
-                    text: 'View details',
+                    text: ViewDetails,
                   ),
                 ],
               ),
@@ -97,7 +98,7 @@ class DirectMessage extends StatelessWidget {
                                   ],
                                 ),
                                 const CustomText(
-                                  text: 'Software Development',
+                                  text: SoftwareDev,
                                   color: Colors.black,
                                 ),
                                 const SizedBox(height: 10),
@@ -140,8 +141,7 @@ class DirectMessage extends StatelessWidget {
                                                 ],
                                               ),
                                               const CustomText(
-                                                  text:
-                                                      'Have you been Promtoed?')
+                                                  text: PromotedPlaceholder)
                                             ],
                                           ),
                                         ],

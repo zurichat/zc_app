@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import '../../../../shared/colors.dart';
 
@@ -15,16 +16,17 @@ class SecondSection extends StatelessWidget {
       alignment: Alignment.center,
       padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 26.h, 16.37.w),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6.r),
-          border: Border.all(width: 1.w, color: AppColors.borderColor),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5.r,
-              blurRadius: 6.r,
-              offset: Offset(0, 3.h), // changes position of shadow
-            ),
-          ]),
+        borderRadius: BorderRadius.circular(6.r),
+        border: Border.all(width: 1.w, color: AppColors.borderColor),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5.r,
+            blurRadius: 6.r,
+            offset: Offset(0, 3.h), // changes position of shadow
+          ),
+        ],
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -45,7 +47,7 @@ class SecondSection extends StatelessWidget {
                     InkWell(
                       onTap: () {},
                       child: Text(
-                        'Notification',
+                        Notifications,
                         style:
                             AppTextStyles.namesStyle.copyWith(fontSize: 14.sp),
                       ),
@@ -54,7 +56,7 @@ class SecondSection extends StatelessWidget {
                     InkWell(
                       onTap: () {},
                       child: Text(
-                        'Every New Message',
+                        EveryNewMessage,
                         style:
                             AppTextStyles.body1Grey.copyWith(fontSize: 14.sp),
                       ),
@@ -63,7 +65,7 @@ class SecondSection extends StatelessWidget {
                     InkWell(
                       onTap: () {},
                       child: Text(
-                        'Mute Channel',
+                        MuteChannel,
                         style: AppTextStyles.descriptionStyle
                           ..copyWith(fontSize: 14.sp),
                       ),

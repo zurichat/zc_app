@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+<<<<<<< HEAD
 import 'package:hng/general_widgets/custom_textfield.dart';
+=======
+import 'package:hng/constants/app_strings.dart';
+>>>>>>> 27b220edd02f02675705eb2ffddcc00c105a592a
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -28,7 +32,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
           elevation: 2.0,
           leading: IconButton(
             icon: const ImageIcon(
-              AssetImage('assets/icons/back_arrow_icon.png'),
+              AssetImage(ArrowIcon),
               size: 12.0,
             ),
             onPressed: () {},
@@ -45,7 +49,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                 model.createChannel();
               },
               child: Text(
-                'Create',
+                Create,
                 style: AppTextStyles.heading8.copyWith(
                   letterSpacing: 0.5,
                   fontWeight: FontWeight.w400,
@@ -65,7 +69,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                     child: Row(
                       children: [
                         Text(
-                          ' Channel Name',
+                          ChannelName,
                           style: AppTextStyles.heading9,
                         ),
                       ],
@@ -88,7 +92,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                     child: Row(
                       children: [
                         Text(
-                          '# ',
+                          hash,
                           style: AppTextStyles.body2Medium.copyWith(
                             color: AppColors.darkGreyColor,
                           ),
@@ -107,6 +111,22 @@ class NewChannel extends StatelessWidget with $NewChannel {
                             style: AppTextStyles.body2Medium.copyWith(
                               color: AppColors.blackColor,
                             ),
+<<<<<<< HEAD
+=======
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(80)
+                            ],
+                            cursorColor: AppColors.zuriPrimaryColor,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: ChannelTextFieldHint,
+                              hintStyle: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFFA1A9B2),
+                              ),
+                            ),
+                            onChanged: model.onChangeChannelNameField,
+>>>>>>> 27b220edd02f02675705eb2ffddcc00c105a592a
                           ),
 
    
@@ -131,7 +151,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                         children: [
                           UIHelper.verticalSpaceSmall,
                           Text(
-                            'Error message',
+                            ErrorMsg,
                             style: AppTextStyles.body2Medium.copyWith(
                               color: AppColors.redColor,
                             ),
@@ -144,7 +164,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Text(
-                      'Channel names must be lowercase, without spaces or\nperiods, and can\'t be longer than 80 characters',
+                      ChannelCreationWarningMsg,
                       style: AppTextStyles.body2Medium,
                     ),
                   ),
@@ -157,7 +177,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                     padding:
                         const EdgeInsets.only(left: 16, top: 13, bottom: 10),
                     child: Text(
-                      'Channel Description',
+                      ChannelDescription,
                       style: AppTextStyles.heading9,
                     ),
                   ),
@@ -175,7 +195,18 @@ class NewChannel extends StatelessWidget with $NewChannel {
                       style: AppTextStyles.body2Medium.copyWith(
                         color: AppColors.blackColor,
                       ),
+<<<<<<< HEAD
                       isCollapsed: true,
+=======
+                      cursorColor: AppColors.zuriPrimaryColor,
+                      keyboardType: TextInputType.multiline,
+                      decoration: InputDecoration.collapsed(
+                        hintText: AddDescription,
+                        hintStyle: AppTextStyles.body2Medium.copyWith(
+                          color: AppColors.zuriDarkGrey,
+                        ),
+                      ),
+>>>>>>> 27b220edd02f02675705eb2ffddcc00c105a592a
                     ),
 
                     // TextField(
@@ -209,7 +240,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Make channel private',
+                          MakeChannelPrivate,
                           style: AppTextStyles.heading9.copyWith(
                             letterSpacing: 0.5,
                             fontWeight: FontWeight.w400,
@@ -220,7 +251,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'A private channel can only be viewed or joined',
+                              PrivateChannelDescription,
                               style: AppTextStyles.body2Medium,
                             ),
                             SizedBox(

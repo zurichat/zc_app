@@ -16,6 +16,9 @@ const String passwordNotUpdated = 'Password could not be updated';
 const String errorOccurred = 'An Error Occurred';
 const String errorOTP = 'OTP could not be validated';
 const String wrongOTP = 'Wrong OTP, please check again';
+const String UpdateSuccessful = 'Update successful';
+const String ChannelUpdateError = 'Error encountered during channel update';
+const String DeleteOrgError = 'Delete organization failed';
 
 //API Endpoints
 const String loginEndpoint = '/auth/login';
@@ -24,6 +27,7 @@ const String resetPasswordEndpoint = '/account/update-password/';
 const String requestOTPEndpoint = 'account/request-password-reset-code';
 const String verifyOTPEndpoint = '/account/verify-reset-password';
 const String verifyAcctEndpoint = 'account/verify-account';
+const String ChannelInfoEndpoint = 'v1/1/channels/';
 
 /// Full endpoint is users/{userID}
 const String userDataEndpoint = 'users/';
@@ -145,20 +149,148 @@ const String Number = 'Mobile Number';
 const String Status = 'Status';
 const String DisplayName = 'Display Name';
 
-//----------------
+//Add People
+const String AddEveryone = 'Add Everyone';
+const String SearchPeople = 'Search people to add';
+const String AddPeople = 'Add People';
+const String Add = 'Add';
+const String EveryoneWillBeAdded = 'Everyone will be added to channel';
+
+//Advanced
+const String Advanced = 'Advanced';
+const String EmojiDeluxe = 'Emoji Deluxe';
+const String EmojiDeluxeSubititle = 'Choose your default skin tone';
+const String ShowPreviewsSubtitle = 'Image previews not displayed';
+const String ShowPreviews = 'Show image previews';
+const String OpenWebPages = 'Open web pages in app';
+const String OpenWebPagesSubtitle = 'Link will open in Zuri Chat';
+const String TypingIndicator = 'Display typing indicators';
+const String TypingIndicatorSubtitle = 'Typing indicators will be displayed';
+const String AnimateEmoji = 'Allow animated image and emoji';
+const String AnimateEmojiSubtitle = 'Images and emoji can be animated';
+const String OptimiseImage = 'Optimize image uploads';
+const String OptimiseImageSubtitle =
+    'Images are optimized for upload performance';
+const String ResetCache = 'Reset Cache';
+const String ForceStop = 'Force Stop';
+const String UnsavedDataWarning = 'Unsaved data may be lost';
+
+//Channel View
+const String UnnamedChannel = 'Unnamed Channel';
+const String NoDescription = 'No description Added';
+
+//Channel Info
+const String Bookmarks = 'Bookmarks';
+const String MuteChannelWarning =
+    'You wont\'t recieve any messages from a muted channel';
+const String ChannelInfo = 'Channel Info';
+const String Edit = 'Edit';
+const String Leave = 'Leave';
+const String Description = 'Description';
+const String Topic = 'Topic';
+const String Notifications = 'Notification';
+const String EveryNewMessage = 'Every New Message';
+const String MuteChannel = 'Mute Channel';
+const String DeleteChannel = 'Delete Channel';
+const String DeleteChannelWarning =
+    'All messages from this channel will be removed from Zuri Chat. Any files uploaded to this channel would not be removed.';
+const String StartCall = 'Start a call';
+
+//Channels View
+const String ChannelBrowser = 'Channel Browser';
+const String SearchChannel = 'Search for channel...';
+//Channel Notif
+const String New = 'new';
+const String ChannelNotifSubtitle = 'Settings for #teamsocrates';
+const String ChannelNotifSettings =
+    'This setting only applies to #teamsocrates channel.';
+const String JustMentions = 'Just @mentions';
+const String Mentions = 'mentions';
+const String None = 'none';
+const String Nothing = 'Nothing';
+
+//Channel Search
+const String TeamSocrates = '#teamsocrates';
+
+//Channel View
+const String AddDescription = 'Add Description';
+const String Today = 'today';
+const String AddReply = 'Add a Reply';
+
+//Edit Channel
+const String Save = 'Save';
+const String EditChannel = 'Edit Channel';
+const String ChannelName = 'Channel Name';
+const String ChannelCreationWarning =
+    'Channel names must be lowercase, without spaces or periods, and can\'t be longer than 80 characters';
+const String ChannelTopic = 'Channel Topic';
+const String AddTopic = 'Add a Topic';
+const String ChannelDescription = 'Channel Description';
+const String ChannelCreationHint = 'Set a description';
+
+//New Channel
+const String ErrorOccurredCreation = 'An error occured while creating channel';
+const String Create = 'Create';
+const String ErrorMsg = 'Error Message';
+const String ChannelTextFieldHint = 'e.g team-uchiha';
+const String ChannelCreationWarningMsg =
+    'Channel names must be lowercase, without spaces or\nperiods, and can\'t be longer than 80 characters';
+const String MakeChannelPrivate = 'Make channel private';
+const String PrivateChannelDescription =
+    'A private channel can only be viewed or joined';
+const String YouAreAMember = 'You are a member';
+
+//Clear After
+const String DontClear = 'Don’t clear';
+const String ThirtyMins = '30 minutes';
+const String OneHour = '1 hour';
+const String FourHours = '4 hours';
+const String ThisWeek = 'This week';
+const String ChooseDate = 'Choose date and time';
+const String ClearAfter = 'Clear after...';
+const String DateText = 'Date';
+const String Time = 'Time';
+
+//Create Channel
+const String Name = 'Name';
+const String AboutChannel = 'What\'s this channel about?';
+const String ChannelSettings = 'Channel Settings';
+const String MakePrivate = 'Make Private';
+const String PrivateDescription =
+    'When channel is set to private, members of your organization can only view or join by invitation';
+
+//DM dirs
+const String ViewDetails = 'View details';
+const String Recent = 'Recent';
+const String DMHint = 'To: Type the name of a channel or person';
+const String Yesterday = 'Yesterday';
+const String CustomStartMsg1 =
+    'This is the very beginning of your direct message history with ';
+const String CustomStartMsgTwo =
+    'Only the two of you are in this conversation, and no one else can join it.';
+
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
 const String GoogleLogo = 'assets/logo/Google_logo.png';
 const String statusBackground = 'assets/background/status.png';
+const String FemaleUser = 'assets/channel_page/femaleuser.png';
+const String Female = 'assets/channel_page/female.png';
+const String Chimamanda = 'assets/images/chimamanda.png';
+const String UserImage = 'assets/images/user.png';
+const String EditLogo = 'assets/channel_page/edit.png';
+const String ArrowIcon = 'assets/icons/back_arrow_icon.png';
+const String Avatar = 'assets/images/avatar.png';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
     'https://th.bing.com/th/id/OIP.QHG-JO3iI1u8VQjSkpO0HwHaLH?pid=ImgDet&rs=1';
 const String DmReadAvatar =
     'https://th.bing.com/th/id/OIP.Obw6BUTUPdQGToOSCz5t8QHaHC?pid=ImgDet&w=549&h=522&rs=1';
+const String DMSearchAvatar =
+    'https://images.unsplash.com/photo-1520583457224-aee11bad5112?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=401&q=80';
 const String UserAvatar = 'assets/background/bga.png';
-
+const String AvatarTwo = 'assets/avatar.png';
 const String Mark = 'Mark';
 const String Naza = 'Naza';
 const String OyinkanUA = 'OyinkanUA';
@@ -168,6 +300,7 @@ const String BlazeBrain = 'BlazeBrain';
 const String FreshFish = 'FreshFish';
 const String Ekpess = 'Ekpess';
 const String Protector = 'Protector';
+const String Quwaysim = 'Quwaysim';
 const String BusyBee = 'BusyBee';
 const String Abroad = 'Abroad';
 const String Kristie = 'Kristie';
@@ -180,11 +313,34 @@ const String BSheetMainBtn = 'Awesome!';
 const String BSheetSecBtn = 'This is cool';
 const String PaulImoke = 'Paul Imoke Eke';
 const String Okay = 'Okay';
-const String Date = 'August 31 at 9:09 PM';
+const String SampleDate = 'August 31 at 9:09 PM';
 const String AbdSalam = 'Abd_salam';
-const String Random = 'Abd_salam';
 const String NoWahala = 'No Wahala';
 const String sampleNumber = '+2347023456789';
 const String EmailPlaceholder = 'myemail@mail.com';
 const String Track = 'What I do';
 const String MobileDev = 'Mobile Dev';
+const String MarkCreatedChannel = 'Mark created this channel on August 13.';
+const String CreatingZuri = 'Creating the zuri main app';
+const String OnePinnedMessage = 'Pinned messages (1)';
+const String OnePlugin = 'Plugins (1)';
+const String MembersCount = '128 members';
+const String SoftwareDev = 'Software Development';
+const String PromotedPlaceholder = 'Have you been Promoted?';
+const String WriteMsgHint = 'Write message...';
+const String Dee = 'Dee';
+const String ASAP = 'ASAP';
+const String Happix = 'Happix';
+const String ChiSarah = 'ChiSarah';
+const String damiAaron = 'damiAaron';
+const String maxiron = 'maxiron';
+const String Engr_Jimmy = 'Engr_Jimmy';
+const String Detective_Khalifah = 'Detective_Khalifah';
+const String ChristieDesign = 'ChristieDesign';
+const String Jaytek = 'Jaytek';
+const String ProductDesigner = 'Product designer';
+const String Hello = 'Hello...';
+const String Cool = 'Cool...';
+const String Nice = 'Nice...';
+const String Yeah = 'Yeah';
+const String Nope = 'Nope';

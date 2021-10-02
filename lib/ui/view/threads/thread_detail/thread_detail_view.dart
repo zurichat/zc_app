@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 
-//Gives details of what was clicked from
-// the threads screen linked to the homepage
-// Home -> THreads -> Details Screen
 import '../../../../general_widgets/channel_icon.dart';
 import '../../../../general_widgets/custom_text.dart';
 import '../../../../models/user_post.dart';
@@ -20,241 +16,235 @@ class ThreadDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // var _messageController = useTextEditingController();
+    final _scrollController = ScrollController();
     final _messageController = TextEditingController();
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
-      viewModelBuilder: () => ThreadDetailViewModel(),
-      onModelReady: (model) {
-        model.getRepliesToMessages(userPost);
-        model.listenForChanges(userPost);
-      },
+      onModelReady: (model) => model.initialise(userPost!.id!),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: const CustomText(text: 'Threads', fontWeight: FontWeight.bold),
-          leading: IconButton(
-              onPressed: model.exitPage,
-              icon: const Icon(
-                Icons.arrow_back_ios,
-              )),
-        ),
-        body: ModalProgressHUD(
-          inAsyncCall: model.isLoading,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
-                        child: Row(
-                          children: [
-                            const Text('Message in'),
-                            TextButton.icon(
-                                onPressed: () {},
-                                icon: ChannelIcon(
-                                    channelType: userPost!.channelType!),
-                                label: Text(
-                                  '${userPost!.channelName}',
-                                ),
-                                style: TextButton.styleFrom(
-                                  padding: const EdgeInsets.all(0),
-                                )),
-                          ],
+          appBar: AppBar(
+            elevation: 0,
+            title:
+                const CustomText(text: 'Threads', fontWeight: FontWeight.bold),
+            leading: IconButton(
+                onPressed: model.exitPage,
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                )),
+          ),
+          body: model.isBusy
+              ? const Center(child: CircularProgressIndicator())
+              : Column(children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      child: Column(children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: Row(
+                            children: [
+                              const Text('Message in'),
+                              TextButton.icon(
+                                  onPressed: () {},
+                                  icon: ChannelIcon(
+                                      channelType: userPost!.channelType!),
+                                  label: Text(
+                                    '${userPost!.channelName}',
+                                  ),
+                                  style: TextButton.styleFrom(
+                                    padding: const EdgeInsets.all(0),
+                                  )),
+                            ],
+                          ),
                         ),
-                      ),
-                      ThreadCardView.detail(userPost!),
-                      const Divider(
-                        color: AppColors.borderColor,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('${userPost!.userThreadPosts!.length} Replies',
-                                style: AppTextStyles.body2Bold),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.forward_outlined,
-                                      color: AppColors.greyishColor,
-                                    )),
-                                IconButton(
-                                    onPressed: model.showThreadOptions,
-                                    icon: const Icon(Icons.more_vert_rounded,
-                                        color: AppColors.greyishColor)),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 5),
-                        child: Divider(
+                        ThreadCardView.detail(userPost),
+                        const Divider(
                           color: AppColors.borderColor,
                         ),
-                      ),
-                      SingleChildScrollView(
-                        controller: model.scrollController,
-                        child: Column(
-                          children: <Widget>[
-                            ...model.messsageRepliesList!.map((item) {
-                              return ThreadCardView.threadPost(
-                                item,
-                              );
-                            }).toList(),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              //message starts here
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Material(
-                  color: Colors.white,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      //TODO Change to brand colors
-                      const Divider(height: 0, color: Color(0xFF999999)),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: 56,
-                              margin: const EdgeInsets.only(left: 13.0),
-                              alignment: Alignment.centerLeft,
-                              child: FocusScope(
-                                child: Focus(
-                                  onFocusChange: (focus) {
-                                    if (focus) {
-                                      model.onMessageFieldTap();
-                                    } else {
-                                      model.onMessageFocusChanged();
-                                    }
-                                  },
-                                  child: TextField(
-                                    controller: _messageController,
-                                    expands: true,
-                                    maxLines: null,
-                                    textAlignVertical: TextAlignVertical.center,
-                                    decoration: InputDecoration.collapsed(
-                                        hintText: 'Add a Reply',
-                                        hintStyle: AppTextStyles.faintBodyText),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Visibility(
-                            visible: !model.isVisible,
-                            child: Row(
-                              children: [
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.camera_alt_outlined,
-                                    color: AppColors.darkGreyColor,
-                                  ),
-                                  onPressed: () {},
-                                ),
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.attach_file_outlined,
-                                    color: AppColors.darkGreyColor,
-                                  ),
-                                  onPressed: () {},
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Visibility(
-                          visible: model.isVisible,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              Text(
+                                  '${model.channelThreadMessages.length} '
+                                      '${model.channelThreadMessages.length == 1? "Reply": "Replies"}',
+                                  style: AppTextStyles.body2Bold),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      AppIcons.shapezap,
-                                      color: AppColors.darkGreyColor,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.alternate_email_outlined,
-                                      color: AppColors.darkGreyColor,
-                                    ),
-                                  ),
                                   IconButton(
                                       onPressed: () {},
                                       icon: const Icon(
-                                        Icons.tag_faces_sharp,
-                                        color: AppColors.darkGreyColor,
+                                        Icons.forward_outlined,
+                                        color: AppColors.greyishColor,
                                       )),
                                   IconButton(
-                                      onPressed: () {},
+                                      onPressed: model.showThreadOptions,
+                                      icon: const Icon(Icons.more_vert_rounded,
+                                          color: AppColors.greyishColor)),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 5),
+                          child: Divider(
+                            color: AppColors.borderColor,
+                          ),
+                        ),
+                        model.channelThreadMessages.isNotEmpty
+                            ? ListView.builder(
+                                itemCount: model.channelThreadMessages.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) =>
+                                    ThreadCardView.threadPost(
+                                        model.channelThreadMessages[index]),
+                              )
+                            : Container()
+                      ]),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Material(
+                      color: Colors.white,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          // ignore: todo
+                          //TODO Change to brand colors
+                          const Divider(height: 0, color: Color(0xFF999999)),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  height: 56,
+                                  margin: const EdgeInsets.only(left: 13.0),
+                                  alignment: Alignment.centerLeft,
+                                  child: FocusScope(
+                                    child: Focus(
+                                      onFocusChange: (focus) {
+                                        if (focus) {
+                                          model.onMessageFieldTap();
+                                        } else {
+                                          model.onMessageFocusChanged();
+                                        }
+                                      },
+                                      child: TextField(
+                                        controller: _messageController,
+                                        expands: true,
+                                        maxLines: null,
+                                        textAlignVertical:
+                                            TextAlignVertical.center,
+                                        decoration: InputDecoration.collapsed(
+                                            hintText: 'Add a Reply',
+                                            hintStyle:
+                                                AppTextStyles.faintBodyText),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Visibility(
+                                visible: !model.isVisible,
+                                child: Row(
+                                  children: [
+                                    IconButton(
                                       icon: const Icon(
                                         Icons.camera_alt_outlined,
                                         color: AppColors.darkGreyColor,
-                                      )),
-                                  IconButton(
+                                      ),
                                       onPressed: () {},
+                                    ),
+                                    IconButton(
                                       icon: const Icon(
                                         Icons.attach_file_outlined,
                                         color: AppColors.darkGreyColor,
-                                      )),
-                                ],
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    if (_messageController.text
-                                        .toString()
-                                        .isNotEmpty) {
-                                      model.addReply(
-                                        channelMessageId: userPost?.id,
-                                        reply: _messageController.text,
-                                      );
-
-                                      _messageController.text = '';
-                                      FocusScope.of(context)
-                                          .requestFocus(FocusNode());
-                                      model.scrollController.jumpTo(model
-                                          .scrollController
-                                          .position
-                                          .maxScrollExtent);
-                                    }
-                                  },
-                                  icon: const Icon(
-                                    Icons.send,
-                                    color: AppColors.darkGreyColor,
-                                  ))
+                                      ),
+                                      onPressed: () {},
+                                    )
+                                  ],
+                                ),
+                              )
                             ],
-                          ))
-                    ],
-                  ),
-                ),
-              )
+                          ),
+                          Visibility(
+                              visible: model.isVisible,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: const Icon(
+                                          AppIcons.shapezap,
+                                          color: AppColors.darkGreyColor,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: const Icon(
+                                          Icons.alternate_email_outlined,
+                                          color: AppColors.darkGreyColor,
+                                        ),
+                                      ),
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.tag_faces_sharp,
+                                            color: AppColors.darkGreyColor,
+                                          )),
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.camera_alt_outlined,
+                                            color: AppColors.darkGreyColor,
+                                          )),
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.attach_file_outlined,
+                                            color: AppColors.darkGreyColor,
+                                          )),
+                                    ],
+                                  ),
+                                  IconButton(
+                                      onPressed: () async {
+                                        if (_messageController.text
+                                            .toString()
+                                            .isNotEmpty) {
 
-              //message starts here
-            ],
-          ),
-        ),
-      ),
+                                          final message = _messageController.text;
+                                          _messageController.text = "";
+                                          FocusScope.of(context)
+                                              .requestFocus(FocusNode());
+
+                                          await model.sendThreadMessage(
+                                              message,
+                                              userPost!.channelId);
+                                          _scrollController.jumpTo(
+                                              _scrollController
+                                                  .position.maxScrollExtent);
+                                        }
+                                      },
+                                      icon: const Icon(
+                                        Icons.send,
+                                        color: AppColors.darkGreyColor,
+                                      ))
+                                ],
+                              ))
+                        ],
+                      ),
+                    ),
+                  )
+                ])),
+      viewModelBuilder: () => ThreadDetailViewModel(),
     );
   }
 }
