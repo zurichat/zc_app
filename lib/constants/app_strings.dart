@@ -16,6 +16,9 @@ const String passwordNotUpdated = 'Password could not be updated';
 const String errorOccurred = 'An Error Occurred';
 const String errorOTP = 'OTP could not be validated';
 const String wrongOTP = 'Wrong OTP, please check again';
+const String UpdateSuccessful = 'Update successful';
+const String ChannelUpdateError = 'Error encountered during channel update';
+const String DeleteOrgError = 'Delete organization failed';
 
 //API Endpoints
 const String loginEndpoint = '/auth/login';
@@ -24,6 +27,7 @@ const String resetPasswordEndpoint = '/account/update-password/';
 const String requestOTPEndpoint = 'account/request-password-reset-code';
 const String verifyOTPEndpoint = '/account/verify-reset-password';
 const String verifyAcctEndpoint = 'account/verify-account';
+const String ChannelInfoEndpoint = 'v1/1/channels/';
 
 /// Full endpoint is users/{userID}
 const String userDataEndpoint = 'users/';
@@ -171,6 +175,26 @@ const String ResetCache = 'Reset Cache';
 const String ForceStop = 'Force Stop';
 const String UnsavedDataWarning = 'Unsaved data may be lost';
 
+//Channel View
+const String UnnamedChannel = 'Unnamed Channel';
+const String NoDescription = 'No description Added';
+
+//Channel Info
+const String Bookmarks = 'Bookmarks';
+const String MuteChannelWarning =
+    'You wont\'t recieve any messages from a muted channel';
+const String ChannelInfo = 'Channel Info';
+const String Edit = 'Edit';
+const String Leave = 'Leave';
+const String Description = 'Description';
+const String Topic = 'Topic';
+const String Notifications = 'Notification';
+const String EveryNewMessage = 'Every New Message';
+const String MuteChannel = 'Mute Channel';
+const String DeleteChannel = 'Delete Channel';
+const String DeleteChannelWarning =
+    'All messages from this channel will be removed from Zuri Chat. Any files uploaded to this channel would not be removed.';
+const String StartCall = 'Start a call';
 //----------------
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
@@ -217,3 +241,7 @@ const String sampleNumber = '+2347023456789';
 const String EmailPlaceholder = 'myemail@mail.com';
 const String Track = 'What I do';
 const String MobileDev = 'Mobile Dev';
+const String MarkCreatedChannel = 'Mark created this channel on August 13.';
+const String CreatingZuri = 'Creating the zuri main app';
+const String OnePinnedMessage = 'Pinned messages (1)';
+const String OnePlugin = 'Plugins (1)';
