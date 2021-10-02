@@ -199,6 +199,15 @@ const String StartCall = 'Start a call';
 //CHannels View
 const String ChannelBrowser = 'Channel Browser';
 const String SearchChannel = 'Search for channel...';
+//Channel Notif
+const String New = 'new';
+const String ChannelNotifSubtitle = 'Settings for #teamsocrates';
+const String ChannelNotifSettings =
+    'This setting only applies to #teamsocrates channel.';
+const String JustMentions = 'Just @mentions';
+const String Mentions = 'mentions';
+const String None = 'none';
+const String Nothing = 'Nothing';
 
 //----------------
 //Images and Logos

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
@@ -16,8 +17,8 @@ class ChannelNotificationView extends StatelessWidget {
           child: Scaffold(
             appBar: const ZuriAppBar(
               60,
-              'Notifications',
-              subtitle: 'Settings for #teamsocrates',
+              Notifications,
+              subtitle: ChannelNotifSubtitle,
               icon: Icons.chevron_left,
             ),
             body: Column(
@@ -38,21 +39,21 @@ class ChannelNotificationView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       _buildOption(
-                        'Every new message',
-                        'new',
+                        EveryNewMessage,
+                        New,
                         '${model.value}',
                         (val) => model.toggleOptions(val),
                         false,
                       ),
                       _buildOption(
-                        'Just @mentions',
-                        'mentions',
+                        JustMentions,
+                        Mentions,
                         '${model.value}',
                         (val) => model.toggleOptions(val),
                       ),
                       _buildOption(
-                        'Nothing',
-                        'none',
+                        Nothing,
+                        None,
                         '${model.value}',
                         (val) => model.toggleOptions(val),
                       ),
@@ -63,7 +64,7 @@ class ChannelNotificationView extends StatelessWidget {
                   margin: const EdgeInsets.only(left: 16),
                   width: double.infinity,
                   child: Text(
-                    'This setting only applies to #teamsocrates channel.',
+                    ChannelNotifSettings,
                     style: AppTextStyles.body2Medium,
                   ),
                 )
