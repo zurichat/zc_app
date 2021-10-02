@@ -11,7 +11,7 @@ class CentrifugeService with ReactiveServiceMixin {
   static Client _client = centrifuge.createClient(
     '$websocketUrl?format=protobuf',
   );
-  StreamController<Map> messageStreamController = StreamController.broadcast();
+  StreamController messageStreamController = StreamController.broadcast();
 
   static CentrifugeService? _instance;
   static final log = getLogger('CentrifugeService');
@@ -85,9 +85,9 @@ class CentrifugeService with ReactiveServiceMixin {
       if (eventType != 'create:message') {
         return;
       }
-      // if (message['channel_id'] == channelId) {
-      //   return;
-      // }
+      if (message['channel_id'] == channelId) {
+        return;
+      }
 
       onData(message);
     });
@@ -136,17 +136,6 @@ class CentrifugeService with ReactiveServiceMixin {
   void dispose() {
     messageStreamController.close();
   }
-}
-
-class _CentrifugeSubEvent {
-  Subscription subscription;
-  StreamController controller;
-
-  get stream => controller.stream;
-  _CentrifugeSubEvent({
-    required this.subscription,
-    required this.controller,
-  });
 }
 // 0:"user_id" -> "6146430f1a5607b13c00bc13"
 // 1:"channel_id" -> "61526afe361598d72bed874a"

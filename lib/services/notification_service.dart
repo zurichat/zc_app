@@ -105,7 +105,7 @@ class NotificationPayload {
   ///
   ///For dms = `other user name`,
   String name = '';
-  String? membersCount;
+  int? membersCount;
   bool? public;
 
   NotificationPayload({
@@ -121,7 +121,7 @@ class NotificationPayload {
     messageId = map['messageId'] ?? '';
     roomId = map['roomId'] ?? '';
     name = map['name'] ?? '';
-    membersCount = map['membersCount'];
+    membersCount = int.tryParse(map['membersCount'] ?? '0');
     public = map['public'] == 'T';
   }
 
@@ -130,7 +130,7 @@ class NotificationPayload {
       'messageId': messageId,
       'roomId': roomId,
       'name': name,
-      'membersCount': membersCount ?? '',
+      'membersCount': '$membersCount',
       'public': public == true ? 'T' : 'F',
     };
   }

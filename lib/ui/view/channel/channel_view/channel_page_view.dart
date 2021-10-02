@@ -32,6 +32,11 @@ class ChannelPageView extends StatelessWidget {
 
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, model, child) {
+        if (model.scrollController.hasClients) {
+          model.scrollController
+              .jumpTo(model.scrollController.position.maxScrollExtent);
+        }
+
         return Scaffold(
           appBar: AppBar(
             leading: Padding(
