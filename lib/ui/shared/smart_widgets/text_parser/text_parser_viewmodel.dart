@@ -43,18 +43,20 @@ class TextParserViewModel extends BaseViewModel {
 
 // To call channels using the hashtag
     MatchText(
+        type: ParsedType.CUSTOM,
         pattern: r'\B#+([\w]+)\b',
         style: AppTextStyles.messageTextButton,
         onTap: ((_) {})),
     //To alert user of words set as key words
     MatchText(
         //TODO change keyword to variable set by user
-
+        type: ParsedType.CUSTOM,
         pattern: 'keyword',
         style: AppTextStyles.messageTextButton,
         onTap: ((_) {})),
     //gets '@' mentions
     MatchText(
+        type: ParsedType.CUSTOM,
         pattern: r'\B@+([\w]+)\b',
         style: AppTextStyles.messageTextButton,
         onTap: ((_) {})),

@@ -16,10 +16,10 @@ void main() {
     test("Returns true if it contains '@'mentions", () async {
       expect(RegExp(r'\B@+([\w]+)\b').hasMatch(sample1), true);
     });
-    test("Returns true if it contains hashtag", () async {
+    test("Returns true if it contains keyword", () async {
       expect(RegExp(r'keyword').hasMatch(sample5), true);
     });
-    test("Returns true if it contains hashtag", () async {
+    test("Returns true if a word is between two asterisks", () async {
       expect(RegExp(r'(?<=\*)(.*)(\*)').hasMatch(sample2), true);
     });
     test("Returns true if it contains Url", () async {
@@ -27,6 +27,9 @@ void main() {
           RegExp(r'(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})')
               .hasMatch(sample4),
           true);
+    });
+    test("Returns true if it contains Hashtag", () async {
+      expect(RegExp(r'\B#+([\w]+)\b').hasMatch(sample4), false);
     });
   });
 }
