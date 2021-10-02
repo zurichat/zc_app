@@ -160,7 +160,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
       ),
       trailing: GestureDetector(onTap: () {
 
-      }, child: Icon(Icons.more_vert)),
+      }, child: const Icon(Icons.more_vert)),
 
     );
   }
