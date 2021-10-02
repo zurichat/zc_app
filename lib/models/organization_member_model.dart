@@ -7,12 +7,7 @@ class OrganizationMemberModelList {
       {required this.data, required this.status, required this.message});
 
   factory OrganizationMemberModelList.fromJson(Map<String, dynamic> json) {
-    // List<OrganizationMemberModel> organizationMembersList =
-    //     List<OrganizationMemberModel>.empty(growable: true);
-    // organizationMembersList =
-    //     json['data'].map((i) => OrganizationMemberModel.fromJson(i)).toList();
     var list = json['data'] as List;
-    // print('Our parsed list ${list}');
     List<OrganizationMemberModel> memberList =
         list.map((member) => OrganizationMemberModel.fromJson(member)).toList();
     return OrganizationMemberModelList(
@@ -29,9 +24,7 @@ class OrganizationMemberModel {
   final String? deletedAt;
   final String? displayName;
   final String? email;
-  // final List files;
   final String? firstName;
-  // final GlobalSettings? globalSettings;
   final String? imageUrl;
   final String? joinedAt;
   final String? language;
@@ -39,12 +32,9 @@ class OrganizationMemberModel {
   final String? name;
   final String? orgId;
   final String? phone;
-  // final PluginSettings? pluginSettings;
   final String? presence;
   final String? pronouns;
   final String? role;
-  // final Settings? settings;
-  // final Sidebars? sidebars;
   final String? socials;
   final String? status;
   final String? timeZone;
@@ -59,21 +49,16 @@ class OrganizationMemberModel {
     required this.deleted,
     required this.deletedAt,
     required this.displayName,
-    // required this.files,
     required this.firstName,
-    // required this.globalSettings,
     required this.imageUrl,
     required this.joinedAt,
     required this.language,
     required this.lastName,
     required this.name,
     required this.orgId,
-    // required this.pluginSettings,
     required this.presence,
     required this.pronouns,
     required this.role,
-    // required this.settings,
-    // required this.sidebars,
     required this.socials,
     required this.timeZone,
     required this.userName,
@@ -89,21 +74,16 @@ class OrganizationMemberModel {
         deleted: json['deleted'] as bool?,
         deletedAt: json['deleted_at'] as String?,
         displayName: json['display_name'] as String?,
-        // files: json['files'],
         firstName: json['first_name'] as String?,
-        // globalSettings: GlobalSettings.fromJson(json['global_settings']),
         imageUrl: json['image_url'] as String?,
         joinedAt: json['joined_at'] as String?,
         language: json['language'] as String?,
         lastName: json['last_name'] as String?,
         name: json['name'] as String?,
         orgId: json['org_id'] as String?,
-        // pluginSettings: PluginSettings.fromJson(json['plugin_settings']),
         presence: json['presence'] as String?,
         pronouns: json['pronouns'] as String?,
         role: json['role'] as String?,
-        // settings: Settings.fromJson(json['settings']),
-        // sidebars: Sidebars.fromJson(json['sidebars']),
         socials: json['socials'] as String?,
         timeZone: json['time_zone'] as String?,
         userName: json['user_name'] as String?);
