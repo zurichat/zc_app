@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/no_connection_widget.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
@@ -84,6 +85,7 @@ class ChannelPageView extends StatelessWidget {
                   ChannelChat(
                     channelId: channelId,
                   ),
+                  const NoConnectionWidget(Icons.wifi),
                 ],
               ),
             ),
