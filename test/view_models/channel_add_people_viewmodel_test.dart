@@ -1,0 +1,170 @@
+import 'package:hng/models/user_search_model.dart';
+import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/ui/view/channel/add_people/channel_add_people_viewmodel.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:hng/utilities/storage_keys.dart';
+import 'package:mockito/mockito.dart';
+
+import '../helpers/test_helpers.dart';
+
+ChannelAddPeopleViewModel _getModel() => ChannelAddPeopleViewModel();
+
+void main() {
+  group('ChannelAddPeopleViewmodelTest -', () {
+    setUp(() => registerServices());
+    tearDown(() => unregisterServices());
+
+    group('allMarked -', () {
+      test('When constructed, allMarked should be false', () {
+        var model = _getModel();
+        expect(model.allMarked, false);
+      });
+      test(
+          'When onMarkAll is true and matchingUsers is not empty, should be true',
+          () {
+        var model = _getModel();
+        UserSearch search = UserSearch(id: 'id');
+        model.matchingUsers.add(search);
+        model.onMarkAll(true);
+        expect(model.allMarked, true);
+      });
+      test('When called and marked is false, markedUsers should empty', () {
+        var model = _getModel();
+        model.onMarkAll(false);
+        expect(model.markedUsers, []);
+      });
+    });
+
+    group('token -', () {
+      test('When constructed should check the token in shared preferences', () {
+        final storageService =
+            getAndRegisterSharedPreferencesLocalStorageMock();
+        var model = _getModel();
+        model.token;
+        verify(storageService.getString(StorageKeys.currentSessionToken));
+      });
+      test('when called should return token from shared preferences', () {
+        var model = _getModel();
+        expect(model.token, 'token');
+      });
+    });
+
+    group('navigateBack -', () {
+      test('When called pops the back stack the one time', () {
+        final _navigationService = getAndRegisterNavigationServiceMock();
+        var model = _getModel();
+        model.navigateBack();
+        verify(_navigationService.popRepeated(1));
+      });
+    });
+
+    group('onSearchUser -', () {
+      test(
+          'When onSearchUser is called and an input is set, should return a list of users with usernames containing that input',
+          () {
+        var model = _getModel();
+        model.users.add(UserSearch(userName: 'zurimain'));
+        model.users.add(UserSearch(userName: 'zuricore'));
+        model.users.add(UserSearch(userName: 'hng'));
+        var searchWord = 'zuri';
+        model.onSearchUser(searchWord);
+        expect(
+            model.matchingUsers
+                .every((user) => user.userName!.contains(searchWord)),
+            true);
+      });
+    });
+
+    /*group('onFetchedUser -', () {
+      test('When called fetch members', () {
+        final organizationApiService = getAndRegisterOrganizationApiService();
+        var model = _getModel();
+        model.onFetchMembers();
+        verify(organizationApiService.fetchMembersInOrganization('orgId'));
+        //expect(model.markedUsers, 'matcher');
+      });
+    });*/
+    /* group('onAddButtonTap -', () {
+      test('lol', () {
+        final api = getAndRegisterZuriApiMock();
+        var model = _getModel();
+        model.onAddButtonTap();
+        var channelId = 'channel_id';
+        var userId = 'user_id';
+        var orgId = 'org_id';
+        var token = 'token';
+      });
+    });
+
+    group('addMemberToChannel -', () {
+      test('When call add a member to channel', () async {
+        final api = getAndRegisterZuriApiMock();
+        var model = _getModel();
+        var channelId = 'channel_id';
+        var userId = 'user_id';
+        var orgId = 'org_id';
+        var token = 'token';
+        await model.addMemberToChannel(channelId, userId);
+        verify(api.addMemberToChannel(channelId, orgId, userId, token));
+      });
+    });*/
+
+    group('onMarkOne -', () {
+      test('When called and marked is true, add user to marked users list', () {
+        var model = _getModel();
+        var markedUsers = model.markedUsers;
+        UserSearch search = UserSearch(id: 'id');
+        model.matchingUsers.add(search);
+        model.onMarkOne(true, 0);
+        expect(markedUsers.length, 1);
+      });
+      test(
+          'When called and marked is false, remove user from marked users list',
+          () {
+        var model = _getModel();
+        var markedUsers = model.markedUsers;
+        UserSearch search = UserSearch(id: 'id');
+        model.matchingUsers.add(search);
+        model.onMarkOne(false, 0);
+        expect(markedUsers.length, 0);
+      });
+    });
+
+    group('onMarkAll -', () {
+      test('When called and marked is false, no user is marked', () {
+        var model = _getModel();
+        var markedUsers = model.markedUsers;
+        model.onMarkAll(false);
+        expect(markedUsers, []);
+      });
+      test('When called marked is true, all available users are marked', () {
+        var model = _getModel();
+        UserSearch search = UserSearch(id: 'id');
+        model.matchingUsers.add(search);
+        model.matchingUsers.add(search);
+        model.matchingUsers.add(search);
+        model.onMarkAll(true);
+        //var markedUsers = model.markedUsers;
+        //expect(markedUsers.length, 3);
+        expect(model.allMarked, true);
+      });
+    });
+
+    group('orgId -', () {
+      setUp(() async {
+        await SharedPreferenceLocalStorage.getInstance();
+      });
+      test('When called should return org id', () {
+        var model = _getModel();
+        expect(model.orgId, 'org_id');
+      });
+      test('When constructed should check the orgId in shared preferences', () {
+        final storageService =
+            getAndRegisterSharedPreferencesLocalStorageMock();
+        var model = _getModel();
+        model.orgId;
+        verify(storageService.getString(StorageKeys.currentOrgId));
+      });
+    });
+  });
+}
