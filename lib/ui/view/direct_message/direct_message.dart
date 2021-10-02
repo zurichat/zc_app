@@ -11,7 +11,7 @@ import 'direct_message_viewmodel.dart';
 class DirectMessage extends StatelessWidget {
   final String? username;
   DirectMessage({Key? key, this.username}) : super(key: key);
-  var controller = TextEditingController();
+  final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
