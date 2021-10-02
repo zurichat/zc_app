@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/organization_model.dart';
 import 'package:stacked/stacked.dart';
+import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
 import 'organization_viewmodel.dart';
 
@@ -111,57 +112,59 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
   @override
   Widget build(BuildContext context, OrganizationViewModel viewModel) {
     return ListTile(
-      onTap: () => viewModel.onTap(org.id, org.name, org.organizationUrl),
-      leading: Container(
-        height: MediaQuery.of(context).size.height * 0.06,
-        width: MediaQuery.of(context).size.height * 0.06,
-        padding: const EdgeInsets.all(2),
-        decoration: BoxDecoration(
-          color: viewModel.currentOrgId == org.id
-              ? AppColors.blackColor
-              : AppColors.whiteColor,
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: Container(
-          height: MediaQuery.of(context).size.height * 0.05,
-          width: MediaQuery.of(context).size.height * 0.05,
+        onTap: () => viewModel.onTap(org.id, org.name, org.organizationUrl),
+        leading: Container(
+          height: MediaQuery.of(context).size.height * 0.06,
+          width: MediaQuery.of(context).size.height * 0.06,
+          padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
-            border: Border.all(
-              color: AppColors.whiteColor,
-              width: 2,
-              style: BorderStyle.solid,
-            ),
-            color: AppColors.greyishColor,
+            color: viewModel.currentOrgId == org.id
+                ? AppColors.blackColor
+                : AppColors.whiteColor,
             borderRadius: BorderRadius.circular(5),
           ),
-          clipBehavior: Clip.antiAlias,
-          //TODO : Add the org image here
           child: Container(
             height: MediaQuery.of(context).size.height * 0.05,
-            width: MediaQuery.of(context).size.width * 0.5,
-            color: Colors.grey,
+            width: MediaQuery.of(context).size.height * 0.05,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: AppColors.whiteColor,
+                width: 2,
+                style: BorderStyle.solid,
+              ),
+              color: AppColors.greyishColor,
+              borderRadius: BorderRadius.circular(5),
+            ),
+            clipBehavior: Clip.antiAlias,
+            //TODO : Add the org image here
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.05,
+              width: MediaQuery.of(context).size.width * 0.5,
+              color: Colors.grey,
+            ),
           ),
         ),
-      ),
-      //TODO : Add the org name here
-      title: Text(
-        org.name ?? '',
-        overflow: TextOverflow.ellipsis,
-        softWrap: false,
-        maxLines: 2,
-        style: AppTextStyles.heading7.copyWith(
-          fontSize: MediaQuery.of(context).size.height * 0.02,
+        //TODO : Add the org name here
+        title: Text(
+          org.name ?? '',
+          overflow: TextOverflow.ellipsis,
+          softWrap: false,
+          maxLines: 2,
+          style: AppTextStyles.heading7.copyWith(
+            fontSize: MediaQuery.of(context).size.height * 0.02,
+          ),
         ),
-      ),
-      subtitle: Container(
-        padding: const EdgeInsets.only(top: 5.0),
-        child: Text(
-          org.organizationUrl ?? '',
-          style: AppTextStyles.body3Medium,
+        subtitle: Container(
+          padding: const EdgeInsets.only(top: 5.0),
+          child: Text(
+            org.organizationUrl ?? '',
+            style: AppTextStyles.body3Medium,
+          ),
         ),
-      ),
-      trailing:
-          GestureDetector(onTap: () {}, child: const Icon(Icons.more_vert)),
-    );
+        trailing: GestureDetector(
+            onTap: () {
+              viewModel.showSignOutBottomSheet(org);
+            },
+            child: const Icon(Icons.more_vert)));
   }
 }
