@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 
 import 'package:hng/ui/shared/shared.dart';
 
@@ -18,15 +19,16 @@ class EditProfileView extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
-              onPressed: viewModel.exitPage, icon:const  Icon(Icons.close_rounded)),
-          title:const  Text("Edit Profile"),
+              onPressed: viewModel.exitPage,
+              icon: const Icon(Icons.close_rounded)),
+          title: const Text(EditProfile),
           actions: [
             TextButton(
               onPressed: () async {
                 await viewModel.updateProfile();
               },
-              child:const  Text(
-                "Save",
+              child: const Text(
+                Save,
                 style: TextStyle(color: AppColors.zuriTextBodyColor),
               ),
             )
@@ -39,7 +41,7 @@ class EditProfileView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('Getting Your data...'),
+                Text(GettingYourData),
                 CircularProgressIndicator(
                   color: AppColors.zuriPrimaryColor,
                 ),
@@ -75,9 +77,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   Container(
                     width: _size.height * 0.14,
                     height: double.maxFinite,
-                    decoration:const  BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage("assets/background/appBarLogo.png"),
+                        image: AssetImage(ZuriAppbarLogo),
                         fit: BoxFit.contain,
                       ),
                       borderRadius: BorderRadius.all(
@@ -95,7 +97,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                           )),
                     ),
                   ),
-                const   Spacer(),
+                  const Spacer(),
                   SizedBox(
                     width: _size.width * 0.55,
                     child: TextFormField(
@@ -103,8 +105,8 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                       onChanged: (value) {
                         viewModel.updateString(value, '', '', '');
                       },
-                      decoration:const  InputDecoration(
-                        labelText: "Full Name",
+                      decoration: const InputDecoration(
+                        labelText: FullName,
                       ),
                     ),
                   )
@@ -116,10 +118,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               onChanged: (value) {
                 viewModel.updateString('', value, '', '');
               },
-              decoration:const  InputDecoration(
-                labelText: "Display Name",
-                helperText:
-                    "This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.",
+              decoration: const InputDecoration(
+                labelText: DisplayName,
+                helperText: DisplayNameDescription,
                 helperMaxLines: 3,
               ),
             ),
@@ -128,16 +129,16 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               onChanged: (value) {
                 viewModel.updateString('', '', value, '');
               },
-              decoration:const  InputDecoration(
-                  labelText: "What I do", helperText: "HNGi9 X I4G"),
+              decoration: const InputDecoration(
+                  labelText: Track, helperText: TrackDescription),
             ),
             TextFormField(
               initialValue: viewModel.userData.phoneNum,
               onChanged: (value) {
                 viewModel.updateString('', '', '', value);
               },
-              decoration:const  InputDecoration(
-                  labelText: "Phone", helperText: "Enter your phone number"),
+              decoration: const InputDecoration(
+                  labelText: Phone, helperText: PhoneDescription),
             ),
           ],
         ),

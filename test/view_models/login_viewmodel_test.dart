@@ -8,12 +8,31 @@ void main() {
   group('loginViewModelTest -', () {
     setUp(() => registerServices());
     tearDown(() => unregisterServices());
-    group('initialise -', () {
+    group('initialise/navigation -', () {
+      test('when called, load progressindicator if there is no user', () async {
+        final userService = getAndRegisterUserServiceMock();
+        final model = LoginViewModel();
+        var load = model.isLoading;
+        expect(load, userService.hasUser);
+      });
+
       test('When called, check if user is registered on the system', () async {
         final userService = getAndRegisterUserServiceMock();
         final model = LoginViewModel();
         await model.initialise();
-        verify(userService.hasUser);
+        var userRegistered = userService.hasUser;
+        expect(userRegistered, false);
+      });
+
+      test('when called, check if user navigates to signup screen', () {
+        final model = LoginViewModel();
+        verify(model.navigateToSignUpScreen()).called(1);
+      });
+
+      test('when called, check if user navigates to forgot password screen',
+          () {
+        final model = LoginViewModel();
+        verify(model.navigateToForgotPasswordScreen()).called(1);
       });
     });
   });

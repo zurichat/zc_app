@@ -12,7 +12,8 @@ import 'package:hng/models/api_response.dart' as _i20;
 import 'package:hng/models/channel_members.dart' as _i16;
 import 'package:hng/models/channel_model.dart' as _i15;
 import 'package:hng/models/channels_search_model.dart' as _i25;
-import 'package:hng/models/organization_model.dart' as _i6;
+import 'package:hng/models/organization_member_model.dart' as _i27;
+import 'package:hng/models/organization_model.dart' as _i5;
 import 'package:hng/models/user_search_model.dart' as _i21;
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart' as _i24;
 import 'package:hng/package/base/server-request/api/zuri_api.dart' as _i19;
@@ -20,10 +21,12 @@ import 'package:hng/package/base/server-request/channels/channels_api_service.da
     as _i14;
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart'
     as _i13;
+import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart'
+    as _i26;
 import 'package:hng/services/centrifuge_service.dart' as _i17;
 import 'package:hng/services/connectivity_service.dart' as _i22;
 import 'package:hng/services/local_storage_services.dart' as _i7;
-import 'package:hng/services/user_service.dart' as _i5;
+import 'package:hng/services/user_service.dart' as _i6;
 import 'package:hng/utilities/enums.dart' as _i23;
 import 'package:hng/utilities/failures.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
@@ -49,12 +52,15 @@ class _FakeDio_2 extends _i1.Fake implements _i3.Dio {}
 
 class _FakeFailure_3 extends _i1.Fake implements _i4.Failure {}
 
+class _FakeOrganizationModel_4 extends _i1.Fake
+    implements _i5.OrganizationModel {}
+
 /// A class which mocks [UserService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserService extends _i1.Mock implements _i5.UserService {
+class MockUserService extends _i1.Mock implements _i6.UserService {
   @override
-  set organizationModel(_i6.OrganizationModel? _organizationModel) => super
+  set organizationModel(_i5.OrganizationModel? _organizationModel) => super
       .noSuchMethod(Invocation.setter(#organizationModel, _organizationModel),
           returnValueForMissingStub: null);
   @override
@@ -906,20 +912,20 @@ class MockZuriApi extends _i1.Mock implements _i19.ZuriApi {
           }),
           returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
   @override
-  _i2.Future<List<_i6.OrganizationModel>> fetchListOfOrganizations(
+  _i2.Future<List<_i5.OrganizationModel>> fetchListOfOrganizations(
           dynamic token) =>
       (super.noSuchMethod(Invocation.method(#fetchListOfOrganizations, [token]),
-              returnValue: Future<List<_i6.OrganizationModel>>.value(
-                  <_i6.OrganizationModel>[]))
-          as _i2.Future<List<_i6.OrganizationModel>>);
+              returnValue: Future<List<_i5.OrganizationModel>>.value(
+                  <_i5.OrganizationModel>[]))
+          as _i2.Future<List<_i5.OrganizationModel>>);
   @override
-  _i2.Future<List<_i6.OrganizationModel>> getJoinedOrganizations(
+  _i2.Future<List<_i5.OrganizationModel>> getJoinedOrganizations(
           dynamic token, String? email) =>
       (super.noSuchMethod(
               Invocation.method(#getJoinedOrganizations, [token, email]),
-              returnValue: Future<List<_i6.OrganizationModel>>.value(
-                  <_i6.OrganizationModel>[]))
-          as _i2.Future<List<_i6.OrganizationModel>>);
+              returnValue: Future<List<_i5.OrganizationModel>>.value(
+                  <_i5.OrganizationModel>[]))
+          as _i2.Future<List<_i5.OrganizationModel>>);
   @override
   _i2.Future<dynamic> fetchOrganizationInfo(String? id, dynamic token) => (super
       .noSuchMethod(Invocation.method(#fetchOrganizationInfo, [id, token]),
@@ -1225,6 +1231,83 @@ class MockJumpToApi extends _i1.Mock implements _i24.JumpToApi {
       (super.noSuchMethod(Invocation.method(#fetchList, []),
               returnValue: Future<List<_i21.NewUser>>.value(<_i21.NewUser>[]))
           as _i2.Future<List<_i21.NewUser>>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [OrganizationApiService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockOrganizationApiService extends _i1.Mock
+    implements _i26.OrganizationApiService {
+  @override
+  _i2.Future<List<_i5.OrganizationModel>> fetchListOfOrganizations() =>
+      (super.noSuchMethod(Invocation.method(#fetchListOfOrganizations, []),
+              returnValue: Future<List<_i5.OrganizationModel>>.value(
+                  <_i5.OrganizationModel>[]))
+          as _i2.Future<List<_i5.OrganizationModel>>);
+  @override
+  _i2.Future<List<_i5.OrganizationModel>> getJoinedOrganizations() =>
+      (super.noSuchMethod(Invocation.method(#getJoinedOrganizations, []),
+              returnValue: Future<List<_i5.OrganizationModel>>.value(
+                  <_i5.OrganizationModel>[]))
+          as _i2.Future<List<_i5.OrganizationModel>>);
+  @override
+  _i2.Future<_i5.OrganizationModel> fetchOrganizationInfo(String? id) =>
+      (super.noSuchMethod(Invocation.method(#fetchOrganizationInfo, [id]),
+              returnValue: Future<_i5.OrganizationModel>.value(
+                  _FakeOrganizationModel_4()))
+          as _i2.Future<_i5.OrganizationModel>);
+  @override
+  _i2.Future<_i5.OrganizationModel> fetchOrganizationByUrl(String? url) =>
+      (super.noSuchMethod(Invocation.method(#fetchOrganizationByUrl, [url]),
+              returnValue: Future<_i5.OrganizationModel>.value(
+                  _FakeOrganizationModel_4()))
+          as _i2.Future<_i5.OrganizationModel>);
+  @override
+  _i2.Future<bool> joinOrganization(String? orgId) =>
+      (super.noSuchMethod(Invocation.method(#joinOrganization, [orgId]),
+          returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
+  @override
+  _i2.Future<String> createOrganization(String? email) =>
+      (super.noSuchMethod(Invocation.method(#createOrganization, [email]),
+          returnValue: Future<String>.value('')) as _i2.Future<String>);
+  @override
+  _i2.Future<void> updateOrgUrl(String? orgId, String? url) =>
+      (super.noSuchMethod(Invocation.method(#updateOrgUrl, [orgId, url]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i2.Future<void>);
+  @override
+  _i2.Future<void> updateOrgName(String? orgId, String? name) =>
+      (super.noSuchMethod(Invocation.method(#updateOrgName, [orgId, name]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i2.Future<void>);
+  @override
+  _i2.Future<void> updateOrgLogo(String? orgId, String? url) =>
+      (super.noSuchMethod(Invocation.method(#updateOrgLogo, [orgId, url]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i2.Future<void>);
+  @override
+  _i2.Future<void> addMemberToOrganization(String? orgId, String? email) =>
+      (super.noSuchMethod(
+          Invocation.method(#addMemberToOrganization, [orgId, email]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i2.Future<void>);
+  @override
+  _i2.Future<List<_i21.UserSearch>> fetchMembersInOrganization(String? orgId) =>
+      (super.noSuchMethod(
+              Invocation.method(#fetchMembersInOrganization, [orgId]),
+              returnValue:
+                  Future<List<_i21.UserSearch>>.value(<_i21.UserSearch>[]))
+          as _i2.Future<List<_i21.UserSearch>>);
+  @override
+  _i2.Future<List<_i27.OrganizationMemberModel>> getOrganizationMemberList(
+          String? orgId) =>
+      (super.noSuchMethod(
+              Invocation.method(#getOrganizationMemberList, [orgId]),
+              returnValue: Future<List<_i27.OrganizationMemberModel>>.value(
+                  <_i27.OrganizationMemberModel>[]))
+          as _i2.Future<List<_i27.OrganizationMemberModel>>);
   @override
   String toString() => super.toString();
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -36,7 +37,7 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       child: const Text(
-                        'Who else is working with you?',
+                        TeammateNames,
                         style: TextStyle(
                           letterSpacing: 0.5,
                           color: AppColors.blackColor,
@@ -53,13 +54,13 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           SvgPicture.asset(
-                            'assets/icons/svg_icons/link.svg',
+                            LinkLogo,
                             width: 18,
                             // color: AppColors.zuriPrimaryColor,
                           ),
                           const SizedBox(width: 10),
                           const Text(
-                            'Copy and share your invite link',
+                            ShareInviteLink,
                             style: TextStyle(
                               letterSpacing: 0.5,
                               color: AppColors.zuriPrimaryColor,
@@ -74,13 +75,13 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                     ),
                     BorderTextField(
                       controller: viewModel.inviteController,
-                      hint: 'name@example.com',
+                      hint: SampleEmail,
                     ),
                     const InviteButton(),
                     UIHelper.verticalSpaceMedium,
                     LongButton(
                         onPressed: () => viewModel.addTeammates(),
-                        label: 'Add Teammates'),
+                        label: AddTeammates),
                     const Spacer(flex: 3),
                   ],
                 ),

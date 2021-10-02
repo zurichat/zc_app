@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
@@ -33,7 +34,7 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       child: const Text(
-                        "What's a project your team is working on?",
+                        ProjectName,
                         style: TextStyle(
                           letterSpacing: 0.5,
                           color: AppColors.blackColor,
@@ -44,11 +45,12 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
                       ),
                     ),
                     const TextForm(
-                      hintText: 'Eg.  Q4 Budget, Website Update',
+                      hintText: ProjectHint,
                       wordCount: 80,
                     ),
                     UIHelper.verticalSpaceMedium,
-                    LongButton(onPressed: () => viewModel.next(), label: 'Next'),
+                    LongButton(
+                        onPressed: () => viewModel.next(), label: 'Next'),
                     const Spacer(flex: 3),
                   ],
                 ),

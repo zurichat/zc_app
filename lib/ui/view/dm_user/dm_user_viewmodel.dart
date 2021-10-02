@@ -29,6 +29,8 @@ class DmUserViewModel extends FormViewModel {
 
   List<Message> chatMessages = List.empty(growable: true);
 
+  get messageController => null;
+
   showButtonSheet(Message message) async {
     await bottomSheet.showCustomSheet(
         variant: BottomSheetType.floatingBox,
