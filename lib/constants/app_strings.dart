@@ -251,10 +251,14 @@ const String ClearAfter = 'Clear after...';
 const String DateText = 'Date';
 const String Time = 'Time';
 
-// .
-// .
-// .
-// .
+//Create Channel
+const String Name = 'Name';
+const String AboutChannel = 'What\'s this channel about?';
+const String ChannelSettings = 'Channel Settings';
+const String MakePrivate = 'Make Private';
+const String PrivateDescription =
+    'When channel is set to private, members of your organization can only view or join by invitation';
+//.
 
 //----------------
 //Images and Logos
