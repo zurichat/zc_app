@@ -17,7 +17,7 @@ void main() {
         verify(service.navigateTo(Routes.loginView));
       });
 
-      test('when called, verify otp value is true,hence loading indicator is false',
+      test('when called, loading indicator is disabled',
           () {
         final model = OTPViewModel();
         var load = model.isLoading;

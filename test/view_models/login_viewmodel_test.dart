@@ -20,7 +20,8 @@ void main() {
         final userService = getAndRegisterUserServiceMock();
         final model = LoginViewModel();
         await model.initialise();
-        verify(userService.hasUser);
+        var userRegistered = userService.hasUser;
+        expect(userRegistered, false);
       });
 
       test('when called, check if user navigates to signup screen', () {
