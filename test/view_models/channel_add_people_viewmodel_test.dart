@@ -1,5 +1,4 @@
 import 'package:hng/models/user_search_model.dart';
-import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/view/channel/add_people/channel_add_people_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hng/utilities/storage_keys.dart';
@@ -41,10 +40,6 @@ void main() {
         var model = _getModel();
         model.token;
         verify(storageService.getString(StorageKeys.currentSessionToken));
-      });
-      test('when called should return token from shared preferences', () {
-        var model = _getModel();
-        expect(model.token, 'token');
       });
     });
 
@@ -110,23 +105,6 @@ void main() {
         model.matchingUsers.add(search);
         model.onMarkAll(true);
         expect(model.allMarked, true);
-      });
-    });
-
-    group('orgId -', () {
-      setUp(() async {
-        await SharedPreferenceLocalStorage.getInstance();
-      });
-      test('When called should return org id', () {
-        var model = _getModel();
-        expect(model.orgId, 'org_id');
-      });
-      test('When constructed should check the orgId in shared preferences', () {
-        final storageService =
-            getAndRegisterSharedPreferencesLocalStorageMock();
-        var model = _getModel();
-        model.orgId;
-        verify(storageService.getString(StorageKeys.currentOrgId));
       });
     });
   });
