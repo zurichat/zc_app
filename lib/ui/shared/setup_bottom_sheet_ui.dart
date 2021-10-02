@@ -1,4 +1,3 @@
-import 'package:hng/models/app_model.dart';
 import 'package:hng/ui/shared/bottom_sheets/emoji_picker_bottomsheet/emoji_picker_bottomsheet_view.dart';
 import 'package:hng/ui/shared/bottom_sheets/sign_out_bottomsheet/sign_out_bottom_sheet_view.dart';
 import 'package:hng/ui/shared/bottom_sheets/thread_options_bottomsheet/thread_options_bottomsheet_view.dart';
