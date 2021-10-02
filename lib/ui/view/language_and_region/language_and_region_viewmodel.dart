@@ -1,3 +1,4 @@
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -14,15 +15,15 @@ class LanguageAndRegionModelViewModel extends BaseViewModel {
   int currentValue = 1;
 
   List languages = [
-    'Deutsch (Deutschland)',
-    'English (UK)',
-    'English (US)',
-    'Espanol (Espana)',
-    'Francais (France)',
-    'Italiano (Italy)',
-    'Portugues (Brazil)',
-    '陈摩托何',
-    '来 本 嗄',
+    Deutsch,
+    EnglishUK,
+    EnglishUS,
+    Espanol,
+    Francais,
+    Italiano,
+    Portugues,
+    Chinese,
+    Mandarin,
   ];
 
   Future changeLanguage() async {

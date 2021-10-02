@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/long_button.dart';
 import '../../../shared/text_field.dart';
@@ -35,7 +36,7 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       child: const Text(
-                        "What's the name of the\ncompany or team?",
+                        CompanyName,
                         style: TextStyle(
                           letterSpacing: 0.5,
                           color: AppColors.blackColor,
@@ -47,7 +48,7 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                     ),
                     BorderTextField(
                       controller: viewModel.companyController,
-                      hint: 'Eg.  HNG I8 / Team Socrates',
+                      hint: CompanyNameHint,
                     ),
                     UIHelper.verticalSpaceMedium,
                     LongButton(
@@ -58,14 +59,14 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: 'By continuing, you are agreeing to our ',
+                            text: TnC1,
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                             ),
                           ),
                           TextSpan(
-                            text: 'Customer’s Term of Service, Privacy Policy',
+                            text: TnC2,
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
@@ -80,7 +81,7 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                             ),
                           ),
                           TextSpan(
-                            text: 'Cookie Policy',
+                            text: CookiePolicy,
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
@@ -99,8 +100,7 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                         onChanged: viewModel.onCheckBoxChanged,
                         controlAffinity: ListTileControlAffinity.leading,
                         title: const Text(
-                          '''It’s okay to send me email '''
-                          '''with slack app, news and offer''',
+                          CustomerAgreementText,
                           style: TextStyle(
                             fontSize: 15,
                           ),
