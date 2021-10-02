@@ -4,7 +4,6 @@ import 'package:hng/ui/view/channel/add_people/channel_add_people_viewmodel.dart
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:mockito/mockito.dart';
-
 import '../helpers/test_helpers.dart';
 
 ChannelAddPeopleViewModel _getModel() => ChannelAddPeopleViewModel();
@@ -115,7 +114,7 @@ void main() {
         var markedUsers = model.markedUsers;
         UserSearch search = UserSearch(id: 'id');
         model.matchingUsers.add(search);
-        model.onMarkOne(true, 0);
+        model.markOne(true, 0);
         expect(markedUsers.length, 1);
       });
       test(
@@ -125,7 +124,7 @@ void main() {
         var markedUsers = model.markedUsers;
         UserSearch search = UserSearch(id: 'id');
         model.matchingUsers.add(search);
-        model.onMarkOne(false, 0);
+        model.markOne(false, 0);
         expect(markedUsers.length, 0);
       });
     });

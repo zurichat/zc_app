@@ -53,7 +53,7 @@ class _FakeDio_2 extends _i1.Fake implements _i3.Dio {}
 class _FakeFailure_3 extends _i1.Fake implements _i4.Failure {}
 
 class _FakeOrganizationModel_4 extends _i1.Fake
-    implements _i5.OrganizationModel {
+    implements _i5.OrganizationModel {}
 
 /// A class which mocks [UserService].
 ///
@@ -1231,7 +1231,6 @@ class MockJumpToApi extends _i1.Mock implements _i24.JumpToApi {
       (super.noSuchMethod(Invocation.method(#fetchList, []),
               returnValue: Future<List<_i21.NewUser>>.value(<_i21.NewUser>[]))
           as _i2.Future<List<_i21.NewUser>>);
-
   @override
   String toString() => super.toString();
 }
@@ -1309,7 +1308,6 @@ class MockOrganizationApiService extends _i1.Mock
               returnValue: Future<List<_i27.OrganizationMemberModel>>.value(
                   <_i27.OrganizationMemberModel>[]))
           as _i2.Future<List<_i27.OrganizationMemberModel>>);
-
   @override
   String toString() => super.toString();
 }

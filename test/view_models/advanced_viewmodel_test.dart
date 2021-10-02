@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hng/ui/view/advanced/advanced_viewmodel.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:mockito/mockito.dart';
-import 'package:stacked_services/stacked_services.dart';
 import '../helpers/test_helpers.dart';
 
 AdvancedViewModel _getModel() => AdvancedViewModel();
