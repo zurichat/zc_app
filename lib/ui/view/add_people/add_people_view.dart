@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -18,21 +19,21 @@ class AddPeopleView extends StatelessWidget {
             onPressed: model.goBack,
             icon: const Icon(Icons.close, color: Colors.black),
           ),
-          title: const Text('Add People',
+          title: const Text(AddPeople,
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 color: Color(0xFF333333),
                 fontSize: 16,
-              )),
+              ),),
           actions: [
             TextButton(
               onPressed: () {},
-              child: const Text('Add',
+              child: const Text(Add,
                   style: TextStyle(
                     fontWeight: FontWeight.w300,
                     color: Color(0xFF00B87C),
                     fontSize: 14,
-                  )),
+                  ),),
             ),
           ],
         ),
@@ -50,7 +51,7 @@ class AddPeopleView extends StatelessWidget {
                   child: TextField(
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(15),
-                      hintText: 'Search people to add',
+                      hintText: SearchPeople,
                       hintStyle: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
@@ -72,13 +73,13 @@ class AddPeopleView extends StatelessWidget {
               const SizedBox(height: 16),
               const Divider(),
               ListTile(
-                title: const Text('Add Everyone',
+                title: const Text(AddEveryone,
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: Color(0xFF333333),
                       fontSize: 16,
                     )),
-                subtitle: const Text('Everyone will be added to channel'),
+                subtitle: const Text(EveryoneWillBeAdded),
                 trailing: Checkbox(
                     checkColor: Colors.white,
                     value: true,
@@ -86,26 +87,26 @@ class AddPeopleView extends StatelessWidget {
               ),
               const Divider(),
               const CustomPeopleListTile(
-                imagelink: 'assets/channel_page/femaleuser.png',
-                userName: 'Caleb',
+                imagelink: FemaleUser,
+                userName: PaulEke,
                 isOnline: true,
               ),
               const SizedBox(height: 16),
               const CustomPeopleListTile(
-                imagelink: 'assets/channel_page/female.png',
-                userName: 'Lisa',
+                imagelink: Female,
+                userName: Quwaysim,
                 isOnline: false,
               ),
               const SizedBox(height: 16),
               const CustomPeopleListTile(
-                imagelink: 'assets/channel_page/femaleuser.png',
-                userName: 'Jennie',
+                imagelink: FemaleUser,
+                userName: BlazeBrain,
                 isOnline: false,
               ),
               const SizedBox(height: 16),
               const CustomPeopleListTile(
-                imagelink: 'assets/channel_page/female.png',
-                userName: 'Zigga',
+                imagelink: Female,
+                userName: FreshFish,
                 isOnline: true,
               ),
               const SizedBox(height: 20),

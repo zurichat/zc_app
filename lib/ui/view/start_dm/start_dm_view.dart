@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/constants/app_strings.dart';
 
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -29,7 +30,7 @@ class StartDmView extends StatelessWidget with $StartDmView {
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text('Direct Message',
+          title: Text(DM,
               style: GoogleFonts.lato(
                   fontWeight: FontWeight.w700,
                   fontSize: 20,
@@ -43,8 +44,8 @@ class StartDmView extends StatelessWidget with $StartDmView {
           ),
           actions: [
             TextButton(
-              onPressed: (){},
-              child: const Text('Done'),
+              onPressed: () {},
+              child: const Text(Done),
             )
           ],
         ),

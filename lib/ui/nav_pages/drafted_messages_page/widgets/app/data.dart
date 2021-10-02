@@ -17,16 +17,16 @@ List<DraftedItem> draftedList = [
   DraftedItem(
     username: OyinkanUA,
     message: Okay,
-    time: Date,
+    time: SampleDate,
   ),
   DraftedItem(
     username: AbdSalam,
     message: Okay,
-    time: Date,
+    time: SampleDate,
   ),
   DraftedItem(
-    username: Random,
+    username: Quwaysim,
     message: NoWahala,
-    time: Date,
+    time: SampleDate,
   ),
 ];

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/view/dm_search/dm_search_widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'dm_search_viewmodel.dart';
@@ -41,7 +42,7 @@ class _DmSearchState extends State<DmSearch> {
                             Navigator.pop(context);
                           },
                         ),
-                        Text('Direct Message',
+                        Text(DM,
                             style: GoogleFonts.lato(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
@@ -50,7 +51,7 @@ class _DmSearchState extends State<DmSearch> {
                         Spacer(),
                         GestureDetector(
                           onTap: () {},
-                          child: Text('Done',
+                          child: Text(Done,
                               style: GoogleFonts.lato(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
@@ -66,7 +67,7 @@ class _DmSearchState extends State<DmSearch> {
                     child: TextField(
                       controller: searchCon,
                       decoration: InputDecoration(
-                        hintText: 'To: Type the name of a channel or person',
+                        hintText: DMHint,
                         hintStyle: GoogleFonts.lato(
                           color: Color(0xFF999999),
                         ),
