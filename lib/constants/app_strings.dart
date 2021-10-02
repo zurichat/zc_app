@@ -283,6 +283,18 @@ const String Phone = 'Phone';
 const String PhoneDescription = 'Enter your phone number';
 const String TrackDescription = 'HNGi9 X I4G';
 
+//Feedback
+const String Alert = 'Alert';
+
+//File Search
+const String Messages = 'Messages';
+const String Files = 'Files';
+const String Designers = 'designers';
+const String Newest = 'Newest';
+const String FileImage = 'assets/images/file_image.png';
+const String ImageFileName = 'image.png';
+const String ImageDetails = '550KB png';
+
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
@@ -295,6 +307,10 @@ const String UserImage = 'assets/images/user.png';
 const String EditLogo = 'assets/channel_page/edit.png';
 const String ArrowIcon = 'assets/icons/back_arrow_icon.png';
 const String Avatar = 'assets/images/avatar.png';
+const String FileLogo = 'assets/images/file_image.png';
+const String Arrows = 'assets/images/arrows.png';
+const String CloseSearch = 'assets/images/close_search.png';
+const String VoiceSearch = 'assets/images/voice_search.png';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
@@ -359,3 +375,4 @@ const String Nice = 'Nice...';
 const String Yeah = 'Yeah';
 const String Nope = 'Nope';
 const String Why = 'Why';
+const String FiftyResults = '50 Results';
