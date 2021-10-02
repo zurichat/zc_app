@@ -145,12 +145,21 @@ const String Number = 'Mobile Number';
 const String Status = 'Status';
 const String DisplayName = 'Display Name';
 
+//Add People
+const String AddEveryone = 'Add Everyone';
+const String SearchPeople = 'Search people to add';
+const String AddPeople = 'Add People';
+const String Add = 'Add';
+const String EveryoneWillBeAdded = 'Everyone will be added to channel';
+
 //----------------
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
 const String GoogleLogo = 'assets/logo/Google_logo.png';
 const String statusBackground = 'assets/background/status.png';
+const String FemaleUser = 'assets/channel_page/femaleuser.png';
+const String Female = 'assets/channel_page/female.png';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
@@ -168,6 +177,7 @@ const String BlazeBrain = 'BlazeBrain';
 const String FreshFish = 'FreshFish';
 const String Ekpess = 'Ekpess';
 const String Protector = 'Protector';
+const String Quwaysim = 'Quwaysim';
 const String BusyBee = 'BusyBee';
 const String Abroad = 'Abroad';
 const String Kristie = 'Kristie';
