@@ -5,9 +5,11 @@ import 'package:stacked/stacked.dart';
 import '../../shared.dart';
 import '../../styles.dart';
 
+//To receive keywords
+String keyword = '';
+
 class TextParserViewModel extends BaseViewModel {
 // To handle keywords a user would want to get notified about
-  String keyword = '';
 
   final parse = <MatchText>[
     //opens the mail app
@@ -44,14 +46,14 @@ class TextParserViewModel extends BaseViewModel {
 // To call channels using the hashtag
     MatchText(
         type: ParsedType.CUSTOM,
-        pattern: r'\B#+([\w]+)\b',
+        pattern: r'\B#+([\w-]+)\b',
         style: AppTextStyles.messageTextButton,
         onTap: ((_) {})),
     //To alert user of words set as key words
     MatchText(
         //TODO change keyword to variable set by user
         type: ParsedType.CUSTOM,
-        pattern: 'keyword',
+        pattern: keyword,
         style: AppTextStyles.messageTextButton,
         onTap: ((_) {})),
     //gets '@' mentions

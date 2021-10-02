@@ -6,6 +6,9 @@ void main() {
   String sample3 = 'let us test for a keyword';
   String sample4 = 'www.facebook.com';
   String sample5 = 'keyword k5yk5yk';
+  String sample6 = 'this is a channel called @#channel-name-here and fine';
+  String sample7 = '#@channel';
+  String keyword = 'keyword';
   group('RegEx Tests', () {
     test("Returns true if it contains a Url", () async {
       expect(
@@ -17,7 +20,7 @@ void main() {
       expect(RegExp(r'\B@+([\w]+)\b').hasMatch(sample1), true);
     });
     test("Returns true if it contains keyword", () async {
-      expect(RegExp(r'keyword').hasMatch(sample5), true);
+      expect(RegExp(keyword).hasMatch(sample5), true);
     });
     test("Returns true if a word is between two asterisks", () async {
       expect(RegExp(r'(?<=\*)(.*)(\*)').hasMatch(sample2), true);
@@ -29,7 +32,15 @@ void main() {
           true);
     });
     test("Returns true if it contains Hashtag", () async {
-      expect(RegExp(r'\B#+([\w]+)\b').hasMatch(sample4), false);
+      expect(RegExp(r'\B#+([\w-]+)\b').hasMatch(sample6), true);
+    });
+    test("Returns true if it contains Hashtags with hiphenated words",
+        () async {
+      expect(RegExp(r'\B#+([\w-]+)\b').hasMatch(sample6), true);
+    });
+    test("Returns false if it contains Hashtags with hiphenated words",
+        () async {
+      expect(RegExp(r'\B#+([\w-]+)\b').hasMatch(sample7), false);
     });
   });
 }
