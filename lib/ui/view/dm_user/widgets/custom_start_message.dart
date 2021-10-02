@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 
 class StartMessage extends StatelessWidget {
@@ -14,8 +15,7 @@ class StartMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        text: 'This is the very beginning of your '
-            'direct message history with ',
+        text: CustomStartMsg1,
         style: const TextStyle(
           color: Color(0xFF808080),
           fontSize: 13.0,
@@ -27,8 +27,7 @@ class StartMessage extends StatelessWidget {
             style: const TextStyle(color: AppColors.zuriPrimaryColor),
           ),
           const TextSpan(
-            text: 'Only the two of you are in this conversation, '
-                'and no one else can join it.',
+            text: CustomStartMsgTwo,
           )
         ],
       ),
