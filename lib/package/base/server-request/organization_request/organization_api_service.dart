@@ -176,10 +176,10 @@ class OrganizationApiService {
         .toList();
   }
 
-  Future<List<OrganizationMemberModel>> getOrganizationMemberList(
+  Future<OrganizationMemberModelList> getOrganizationMemberList(
       String orgId) async {
     final response = await _api.get('/organizations/$orgId/members');
-    return response?.data?['data'];
+    return OrganizationMemberModelList.fromJson(response?.data);
   }
 
   String? get token =>

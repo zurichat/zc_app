@@ -19,17 +19,17 @@ class OrganizationViewModel extends BaseViewModel {
   final storageService = locator<SharedPreferenceLocalStorage>();
   final api = OrganizationApiService();
   List<OrganizationModel> organizations = [];
+  final _bottomSheetService = locator<BottomSheetService>();
 
   void initViewModel() {
     fetchOrganizations();
-    fetchOrganizationMemberList();
+    getOrganizationMemberList();
   }
 
   Future<void> navigateToNewOrganization() async {
     try {
       await navigation.navigateTo(Routes.addOrganizationView);
       organizations = await api.getJoinedOrganizations();
-      // filterOrganization();
       notifyListeners();
     } catch (e) {
       snackbar.showCustomSnackBar(
@@ -60,7 +60,6 @@ class OrganizationViewModel extends BaseViewModel {
       } else {
         organizations = resFromApi;
       }
-      //filterOrganization();
 
       setBusy(false);
     } catch (e) {
@@ -120,7 +119,7 @@ class OrganizationViewModel extends BaseViewModel {
   }
 
   //Returns the list of members of an Organization
-  Future fetchOrganizationMemberList() async {
+  Future getOrganizationMemberList() async {
     if (!await connectivityService.checkConnection()) {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -132,14 +131,14 @@ class OrganizationViewModel extends BaseViewModel {
 
     try {
       setBusy(true);
-      var orgId = currentOrgId ?? '';
+      var orgId = currentOrgId ?? '61459d8e62688da5302acdb1';
 
       if (orgId.isNotEmpty) {
         final orgMemberList = await api.getOrganizationMemberList(orgId);
 
-        if (orgMemberList.isNotEmpty) {
-          storageService.setString(
-              StorageKeys.organizationMemberList, jsonEncode(orgMemberList));
+        if (orgMemberList.data.isNotEmpty) {
+          storageService.setString(StorageKeys.organizationMemberList,
+              jsonEncode(orgMemberList.data));
         }
       }
       setBusy(false);
@@ -158,5 +157,10 @@ class OrganizationViewModel extends BaseViewModel {
 
   Future<void> viewPreferences() async {
     await navigation.navigateTo(Routes.preferenceView);
+  }
+
+  void showSignOutBottomSheet(OrganizationModel org) {
+    _bottomSheetService.showCustomSheet(
+        variant: BottomSheetType.signOut, isScrollControlled: true, data: org);
   }
 }
