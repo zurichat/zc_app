@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/models/organization_model.dart';
 import 'package:stacked/stacked.dart';
+import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
 import 'organization_viewmodel.dart';
 
@@ -76,9 +76,10 @@ class OrganizationView extends StatelessWidget {
                           leading: const Icon(Icons.add_box_outlined),
                           title: const Text('Add an organization'),
                         ),
-                        const ListTile(
-                          leading: Icon(Icons.settings),
-                          title: Text('Preferences'),
+                        ListTile(
+                          onTap: () => viewModel.viewPreferences(),
+                          leading: const Icon(Icons.settings),
+                          title: const Text('Preferences'),
                         ),
                         const ListTile(
                           leading: Icon(Icons.help_outline),
@@ -159,9 +160,9 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
         ),
       ),
       trailing: GestureDetector(onTap: () {
-
-      }, child: const Icon(Icons.more_vert)),
-
+        viewModel.showSignOutBottomSheet(org);
+      },
+    child: const Icon(Icons.more_vert))
     );
   }
 }

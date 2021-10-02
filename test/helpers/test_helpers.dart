@@ -3,11 +3,14 @@ import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/media_service.dart';
 import 'package:hng/services/user_service.dart';
+import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -34,6 +37,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<ConnectivityService>(returnNullOnMissingStub: true),
   MockSpec<JumpToApi>(returnNullOnMissingStub: true),
   MockSpec<MediaService>(returnNullOnMissingStub: true),
+  MockSpec<OrganizationApiService>(returnNullOnMissingStub: true),
 ])
 MockUserService getAndRegisterUserServiceMock({
   bool hasUser = false,
@@ -46,17 +50,21 @@ MockUserService getAndRegisterUserServiceMock({
 }
 
 MockSharedPreferenceLocalStorage
-    getAndRegisterSharedPreferencesLocalStorageMock() {
+    getAndRegisterSharedPreferencesLocalStorageMock(
+        {String? token, String orgId = 'org_id'}) {
   _removeRegistrationIfExists<SharedPreferenceLocalStorage>();
   final service = MockSharedPreferenceLocalStorage();
+  when(service.getString(StorageKeys.currentSessionToken))
+      .thenReturn(token ?? 'token');
+  when(service.getString(StorageKeys.currentOrgId)).thenReturn(orgId);
   locator.registerSingleton<SharedPreferenceLocalStorage>(service);
-
   return service;
 }
 
 MockNavigationService getAndRegisterNavigationServiceMock() {
   _removeRegistrationIfExists<NavigationService>();
   final service = MockNavigationService();
+  when(service.back()).thenAnswer((realInvocation) => true);
   locator.registerSingleton<NavigationService>(service);
 
   return service;
@@ -78,11 +86,18 @@ MockThemeService getAndRegisterThemeServiceMock() {
   return service;
 }
 
-MockDialogService getAndRegisterDialogServiceMock() {
+MockDialogService getAndRegisterDialogServiceMock(
+    {DialogResponse<dynamic>? dialogResult}) {
   _removeRegistrationIfExists<DialogService>();
   final service = MockDialogService();
+  when(service.showCustomDialog(
+    variant: DialogType.skinTone,
+  )).thenAnswer((realInvocation) =>
+      Future<DialogResponse<dynamic>>.value(DialogResponse<dynamic>(
+        confirmed: false,
+        data: 'laughing face',
+      )));
   locator.registerSingleton<DialogService>(service);
-
   return service;
 }
 
@@ -141,6 +156,9 @@ MockZuriApi getAndRegisterZuriApiMock() {
 MockConnectivityService getAndRegisterConnectivityServiceMock() {
   _removeRegistrationIfExists<ConnectivityService>();
   final service = MockConnectivityService();
+  var result =
+      Future.value(const bool.fromEnvironment("network status") ? true : false);
+  when(service.checkConnection()).thenAnswer((realInvocation) => result);
   locator.registerSingleton<ConnectivityService>(service);
 
   return service;
@@ -157,19 +175,18 @@ MockJumpToApi getAndRegisterJumpToApiMock() {
 MockMediaService getAndRegisterMediaServiceMock() {
   _removeRegistrationIfExists<MediaService>();
 
-  final service = MockMediaService();
-
   Future<String> response = Future<String>.value("Image Address");
 
   when(service.uploadImage(fileMock)).thenAnswer((_) async => response);
 
   locator.registerSingleton<MediaService>(service);
 
-  return service;
-}
+MockOrganizationApiService getAndRegisterOrganizationApiService() {
 
-void registerServices() {
-  getAndRegisterUserServiceMock();
+
+
+  return service;
+
   getAndRegisterSharedPreferencesLocalStorageMock();
   getAndRegisterNavigationServiceMock();
   getAndRegisterSnackbarServiceMock();

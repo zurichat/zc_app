@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/view/channel/channel_list/channels_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
@@ -22,7 +23,7 @@ class ChannelBrowserContainer extends ViewModelWidget<ChannelListViewModel> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text('#',
+              const Text(hash,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               Padding(
                 padding: const EdgeInsets.only(left: 18.0),
@@ -39,14 +40,14 @@ class ChannelBrowserContainer extends ViewModelWidget<ChannelListViewModel> {
                     const SizedBox(height: 7),
                     Row(
                       children: const [
-                        Text('You are a member',
+                        Text(YouAreAMember,
                             style: TextStyle(
                                 color: Color(0xff00B87C), fontSize: 14)),
                         SizedBox(width: 5),
                         Icon(Icons.circle, color: Color(0xffbebebe), size: 10),
                         SizedBox(width: 5),
                         Text(
-                          '128 members',
+                          MembersCount,
                           style:
                               TextStyle(color: Color(0xffbebebe), fontSize: 15),
                         )

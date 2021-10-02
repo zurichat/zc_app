@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 
 import '../../../../shared/styles.dart';
 import '../channel_info_view_model.dart';
@@ -21,7 +22,7 @@ class EditButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Text(
-          'Edit',
+          Edit,
           style: AppTextStyles.bodyBig,
         ),
       ),

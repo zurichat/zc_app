@@ -329,6 +329,27 @@ class ZuriApi implements Api {
     }
   }
 
+  @override
+  Future<void> addMemberToChannel(
+      String channelId, String orgId, String userId, token) async {
+    await post(
+      "$channelsBaseUrl/v1/$orgId/channels/$channelId/members/",
+      //  "/614679ee1a5607b13c00bcb7/channels/$channelId/members/",
+      token: token,
+      body: {
+        "_id": userId,
+        "role_id": "",
+        "is_admin": false,
+        "notifications": {
+          "web": "nothing",
+          "mobile": "mentions",
+          "same_for_mobile": true,
+          "mute": false
+        }
+      },
+    );
+  }
+
   /// Add members to an organization either through invite
   /// or by calls
   @override
@@ -361,8 +382,8 @@ class ZuriApi implements Api {
 
   /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
   /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
-// ignore: todo
-//TODO CONFIRM websocketUrl
+  // ignore: todo
+  //TODO CONFIRM websocketUrl
   @override
   Future getChannelSocketId(String channelId, String orgId, token) async {
     try {
@@ -655,7 +676,7 @@ class ZuriApi implements Api {
     }
   }
 
-//!Adjust the patch function as needed
+  //!Adjust the patch function as needed
   @override
   Future sendPatchRequest(body, endpoint, userId) async {
     try {

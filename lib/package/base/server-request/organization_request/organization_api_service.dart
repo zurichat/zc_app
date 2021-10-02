@@ -1,6 +1,6 @@
+import 'package:hng/models/organization_member_model.dart';
 import 'package:hng/models/user_search_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
-
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
 import '../../../../models/organization_model.dart';
@@ -135,6 +135,12 @@ class OrganizationApiService {
     return (res?.data?['data'] as List)
         .map((e) => UserSearch.fromJson(e))
         .toList();
+  }
+
+  Future<OrganizationMemberModelList> getOrganizationMemberList(
+      String orgId) async {
+    final response = await _api.get('/organizations/$orgId/members');
+    return OrganizationMemberModelList.fromJson(response?.data);
   }
 
   String? get token =>

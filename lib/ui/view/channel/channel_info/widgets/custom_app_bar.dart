@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 
@@ -8,7 +9,7 @@ Widget customAppBar(model) {
   return AppBar(
     leading: IconButton(
       icon: Icon(
-          Icons.clear,
+        Icons.clear,
         size: 24.sp,
       ),
       onPressed: () => model.navigateBack(),
@@ -22,7 +23,7 @@ Widget customAppBar(model) {
     ],
     backgroundColor: Colors.white,
     title: Text(
-      'Channel Info',
+      ChannelInfo,
       style: AppTextStyles.appBarTextStyle,
     ),
   );
