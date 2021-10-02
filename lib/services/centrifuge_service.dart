@@ -136,17 +136,3 @@ class CentrifugeService with ReactiveServiceMixin {
     messageStreamController.close();
   }
 }
-// 0:"user_id" -> "6146430f1a5607b13c00bc13"
-// 1:"channel_id" -> "61526afe361598d72bed874a"
-// 2:"content" -> "yo"
-// 3:"emojis" -> List (0 items)
-// 4:"has_files" -> false
-// 5:"files" -> List (0 items)
-// 6:"pinned" -> false
-// 7:"edited" -> false
-// 8:"type" -> "message"
-// 9:"event" -> Map (1 item)
-// 10:"replies" -> 0
-// 11:"can_reply" -> true
-// 12:"timestamp" -> "2021-10-01T11:42:26.955579+00:00"
-// 13:"_id" -> "6156fafbd56dd3c4d8a963f4"
