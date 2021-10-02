@@ -17,6 +17,7 @@ const String errorOccurred = 'An Error Occurred';
 const String errorOTP = 'OTP could not be validated';
 const String wrongOTP = 'Wrong OTP, please check again';
 const String UpdateSuccessful = 'Update successful';
+const String UpdateFailed = 'Update failed';
 const String ChannelUpdateError = 'Error encountered during channel update';
 const String DeleteOrgError = 'Delete organization failed';
 
@@ -272,7 +273,16 @@ const String CustomStartMsg1 =
 const String CustomStartMsgTwo =
     'Only the two of you are in this conversation, and no one else can join it.';
 //Draft
-AddDraft = 'Add draft';
+const String AddDraft = 'Add draft';
+//EditProfile
+const String FullName = 'Full Name';
+const String GettingYourData = 'Getting Your data...';
+const String DisplayNameDescription =
+    'This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.';
+const String Phone = 'Phone';
+const String PhoneDescription = 'Enter your phone number';
+const String TrackDescription = 'HNGi9 X I4G';
+
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
@@ -349,4 +359,3 @@ const String Nice = 'Nice...';
 const String Yeah = 'Yeah';
 const String Nope = 'Nope';
 const String Why = 'Why';
-
