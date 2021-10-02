@@ -29,7 +29,6 @@ dependencies:
   grouped_list: ^4.1.0
   hexcolor: ^2.0.5
   image_picker: ^0.8.4+1
-  injectable: ^1.5.0
   intl: ^0.17.0
   introduction_screen: ^2.1.0
   json_annotation: ^4.0.1

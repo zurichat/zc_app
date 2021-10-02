@@ -88,7 +88,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            model.uploadImage,
+                          },
                           icon: Icon(
                             Icons.add_a_photo,
                             size: _size.width * 0.06,

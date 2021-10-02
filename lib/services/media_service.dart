@@ -4,9 +4,8 @@ import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:injectable/injectable.dart';
 
-@lazySingleton
+
 class MediaService {
   final _picker = ImagePicker();
   final zuriApi = locator<ZuriApi>();
