@@ -390,6 +390,17 @@ const String PinnedMsgs = 'Pinned Messages';
 //View Profile
 const String Message = 'Message';
 
+//User
+const String People = 'People';
+const String PeopleCount = '2552 members';
+const String SearchHint = 'Search for members';
+const String NoResult = 'No result found';
+const String StartNewSearch = 'Start new search';
+const String MsgIn = 'Message In';
+const String YouAndOthers = 'You, Jane and 2 others';
+const String Reply = 'Reply';
+const String NoNewReplies = 'No new replies';
+
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
