@@ -216,6 +216,16 @@ const String TeamSocrates = '#teamsocrates';
 const String AddDescription = 'Add Description';
 const String Today = 'today';
 const String AddReply = 'Add a Reply';
+//Edit Channel
+const String Save = 'Save';
+const String EditChannel = 'Edit Channel';
+const String ChannelName = 'Channel Name';
+const String ChannelCreationWarning =
+    'Channel names must be lowercase, without spaces or periods, and can\'t be longer than 80 characters';
+const String ChannelTopic = 'Channel Topic';
+const String AddTopic = 'Add a Topic';
+const String ChannelDescription = 'Channel Description';
+const String ChannelCreationHint = 'Set a description';
 
 //----------------
 //Images and Logos
