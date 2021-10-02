@@ -244,12 +244,15 @@ const String YouAreAMember = 'You are a member';
 const String DontClear = 'Don’t clear';
 const String ThirtyMins = '30 minutes';
 const String OneHour = '1 hour';
+const String TwoHours = '2 hours';
 const String FourHours = '4 hours';
 const String ThisWeek = 'This week';
+const String UntilTomorrow = 'Until Tomorrow';
 const String ChooseDate = 'Choose date and time';
 const String ClearAfter = 'Clear after...';
 const String DateText = 'Date';
 const String Time = 'Time';
+const String Custom = 'Custom';
 
 //Create Channel
 const String Name = 'Name';
