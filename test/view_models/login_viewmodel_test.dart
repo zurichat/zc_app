@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hng/app/app.router.dart';
 import 'package:hng/ui/view/login/login_viewmodel.dart';
 import 'package:mockito/mockito.dart';
 import '../helpers/test_helpers.dart';
@@ -25,14 +24,12 @@ void main() {
       });
 
       test('when called, check if user navigates to signup screen', () {
-        final service = getAndRegisterNavigationServiceMock();
         final model = LoginViewModel();
         verify(model.navigateToSignUpScreen()).called(1);
       });
 
       test('when called, check if user navigates to forgot password screen',
           () {
-        final service = getAndRegisterNavigationServiceMock();
         final model = LoginViewModel();
         verify(model.navigateToForgotPasswordScreen()).called(1);
       });

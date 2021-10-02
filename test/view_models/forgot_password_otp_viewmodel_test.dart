@@ -12,7 +12,6 @@ void main() {
     group('initialise/navigation -', () {
       test('when called, verify navigate to Forgot password new ', () {
         final service = getAndRegisterNavigationServiceMock();
-        final model = ForgotPasswordOtpViewModel();
         verify(service.navigateTo(Routes.forgotPasswordNewView));
       });
 

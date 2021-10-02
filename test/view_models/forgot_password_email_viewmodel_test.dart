@@ -15,7 +15,6 @@ void main() {
       });
 
       test('when called,check if navigates to otp view', () {
-        final service = getAndRegisterNavigationServiceMock();
         final model = ForgotPasswordEmailViewModel();
         verify(model.navigateToForgotPasswordOtpView());
       });
