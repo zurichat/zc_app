@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< HEAD
 import 'package:hng/general_widgets/custom_textfield.dart';
-=======
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/constants/app_strings.dart';
->>>>>>> 27b220edd02f02675705eb2ffddcc00c105a592a
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -79,52 +76,15 @@ class ChannelAddPeopleView extends StatelessWidget {
           ),
           body: Column(
             children: [
-<<<<<<< HEAD
-              const SizedBox(height: 24.0),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: CustomTextField(
-                  keyboardType: TextInputType.text,
-                  maxlines: null,
-                  inputAction: TextInputAction.search,
-                  autoCorrect: false,
-                  obscureText: false,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xFF7B8794),
-                      width: 0.2,
-                    ),
-                  ),
-                  onChanged:viewModel.onSearchUser,
-                  contentPadding: const EdgeInsets.fromLTRB(12.0, 16.0, 12.0, 16.0),
-                  labelText: 'Search people to add',
-                  labelStyle: GoogleFonts.lato(color: const Color(0xFF727272)),
-                  style: GoogleFonts.lato(
-                    color: const Color(0xFF7B8794),
-                    fontSize: 16.0,
-                  ),
-                ),
-
-              ),
-              const SizedBox(height: 16.0),
-              const Divider(thickness: 2.0),
-              const SizedBox(height: 16.0),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 12.0, 0.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-=======
               if (viewModel.users.isNotEmpty && !viewModel.isBusy) ...[
                 const SizedBox(height: 24.0),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: SearchField(
-                    onChanged: viewModel.onSearchUser,
-                    labelText: SearchPeople,
-                  ),
+                const Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 20.0),
+                  child:Text("this page is not in use"), 
+                  // SearchField(
+                  //   onChanged: viewModel.onSearchUser,
+                  //   labelText: SearchPeople,
+                  // ),
                 ),
                 if (viewModel.matchingUsers.isNotEmpty &&
                     !viewModel.isBusy) ...[
@@ -135,7 +95,6 @@ class ChannelAddPeopleView extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(20.0, 0.0, 12.0, 0.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
->>>>>>> 27b220edd02f02675705eb2ffddcc00c105a592a
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

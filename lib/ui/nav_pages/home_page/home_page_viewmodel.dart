@@ -209,7 +209,7 @@ class HomePageViewModel extends StreamViewModel {
       _moderateNavigation();
       navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
-            channelname: channelName,
+            channelName: channelName,
             channelId: channelId,
             membersCount: membersCount,
             public: public,

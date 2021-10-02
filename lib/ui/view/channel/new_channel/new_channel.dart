@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-<<<<<<< HEAD
 import 'package:hng/general_widgets/custom_textfield.dart';
-=======
 import 'package:hng/constants/app_strings.dart';
->>>>>>> 27b220edd02f02675705eb2ffddcc00c105a592a
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -105,28 +102,12 @@ class NewChannel extends StatelessWidget with $NewChannel {
                             obscureText: false,
                             onChanged: model.onChangeChannelNameField,
                             controller: channelNameController,
-                            hintText: 'e.g team-uchiha',
+                            hintText: ChannelTextFieldHint,
                             border: InputBorder.none,
                             formatter: [LengthLimitingTextInputFormatter(80)],
                             style: AppTextStyles.body2Medium.copyWith(
                               color: AppColors.blackColor,
                             ),
-<<<<<<< HEAD
-=======
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(80)
-                            ],
-                            cursorColor: AppColors.zuriPrimaryColor,
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: ChannelTextFieldHint,
-                              hintStyle: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFFA1A9B2),
-                              ),
-                            ),
-                            onChanged: model.onChangeChannelNameField,
->>>>>>> 27b220edd02f02675705eb2ffddcc00c105a592a
                           ),
 
    
@@ -191,22 +172,11 @@ class NewChannel extends StatelessWidget with $NewChannel {
                       autoCorrect: false,
                       obscureText: false,
                       controller: channelDescriptionController,
-                      hintText: 'Add a Desription',
+                      hintText: AddDescription,
                       style: AppTextStyles.body2Medium.copyWith(
                         color: AppColors.blackColor,
                       ),
-<<<<<<< HEAD
                       isCollapsed: true,
-=======
-                      cursorColor: AppColors.zuriPrimaryColor,
-                      keyboardType: TextInputType.multiline,
-                      decoration: InputDecoration.collapsed(
-                        hintText: AddDescription,
-                        hintStyle: AppTextStyles.body2Medium.copyWith(
-                          color: AppColors.zuriDarkGrey,
-                        ),
-                      ),
->>>>>>> 27b220edd02f02675705eb2ffddcc00c105a592a
                     ),
 
                     // TextField(
