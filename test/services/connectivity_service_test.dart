@@ -8,15 +8,19 @@ void main() {
     setUp(() => registerServices());
     tearDown(() => unregisterServices());
 
-    group('Connection Test', () {
-      test(' if connection is online', () async {
+    group('Online Connection Test', () {
+      test(' if wifi or mobile hotspot is on, then connection comes online',
+          () async {
         var connectivity = getAndRegisterConnectivityServiceMock();
         connectivity.initialize();
         await connectivity.checkConnection().whenComplete(() => true);
         verify(connectivity.checkConnection().whenComplete(() => true));
       });
+    });
 
-      test(' if connection is offline', () async {
+    group('Offline Connection Test', () {
+      test(' if wifi or mobile hotspot is off, then connection goes offline',
+          () async {
         var connectivity = getAndRegisterConnectivityServiceMock();
         connectivity.initialize();
         await connectivity.checkConnection().whenComplete(() => false);
