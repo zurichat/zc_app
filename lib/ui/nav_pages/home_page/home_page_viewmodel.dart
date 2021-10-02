@@ -1,5 +1,5 @@
-import 'dart:developer';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/app/app.router.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
@@ -8,10 +8,13 @@ import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/services/connectivity_service.dart';
+import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -22,19 +25,24 @@ class HomePageViewModel extends StreamViewModel {
   final userService = locator<UserService>();
   final connectivityService = locator<ConnectivityService>();
   final dmApiService = locator<DMApiService>();
-  final zuriApi = locator<ZuriApi>();
+  final zuriApi = ZuriApi(channelsBaseUrl);
   final channelsApiService = locator<ChannelsApiService>();
+  final storageService = locator<SharedPreferenceLocalStorage>();
+
+  String? get token =>
+      storageService.getString(StorageKeys.currentSessionToken);
 
   final navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
+  final log = getLogger("Home Page View Model");
   // final _channelsApiService = locator<ChannelsApiService>();
   bool connectionStatus = false;
 
-  List<ChannelModel> _channelsList = [];
+  final List<ChannelModel> _channelsList = [];
   ChannelModel? _channel;
   List<ChannelModel> get channelsList => _channelsList;
   ChannelModel get channel => _channel!;
-  List<ChannelMembermodel> _membersList = [];
+  final List<ChannelMembermodel> _membersList = [];
   List get membersList => _membersList;
 
   ///This contains the list of data for both the channels and dms
@@ -44,6 +52,7 @@ class HomePageViewModel extends StreamViewModel {
   List<HomeItemModel> directMessages = [];
 
   String get orgName => userService.currentOrgName;
+  String get orgId => userService.currentOrgId;
 
   @override
   Stream get stream => checkConnectivity();
@@ -78,14 +87,14 @@ class HomePageViewModel extends StreamViewModel {
 
   @override
   void onError(error) {
-    log('Error: $error');
+    log.e('Error: $error');
   }
 
   @override
   void onSubscribed() {}
 
   getNewChannelStream() {
-    zuriApi.controller.stream.listen((event) {
+    channelsApiService.controller.stream.listen((event) {
       getDmAndChannelsList();
     });
   }
@@ -147,7 +156,6 @@ class HomePageViewModel extends StreamViewModel {
       },
     );
 
-
     //Todo: add channels implementation
 
     unreads.clear();
@@ -156,7 +164,7 @@ class HomePageViewModel extends StreamViewModel {
 
     setAllList();
     notifyListeners();
-    print('All channels $homePageList');
+    log.i('All channels $homePageList');
 
     setBusy(false);
   }
@@ -166,8 +174,6 @@ class HomePageViewModel extends StreamViewModel {
   //   getDmAndChannelsList();
   // });
 
- 
-
   navigateToChannelPage(String? channelname, String? channelId,
       int? membersCount, bool? public) async {
     try {
@@ -175,7 +181,7 @@ class HomePageViewModel extends StreamViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: NoInternet,
+          message: noInternet,
         );
 
         return;
@@ -192,11 +198,11 @@ class HomePageViewModel extends StreamViewModel {
             public: public,
           ));
     } catch (e) {
-      print(e.toString());
+      log.e(e.toString());
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: ErrorOccurred,
+        message: errorOccurred,
       );
     }
   }
@@ -207,6 +213,10 @@ class HomePageViewModel extends StreamViewModel {
 
   void onJumpToScreen() {
     navigationService.navigateTo(Routes.dmJumpToView);
+  }
+
+  void navigateToCreateChannel() {
+    _navigationService.navigateTo(Routes.newChannel);
   }
 
   // void navigateToDmUser() {

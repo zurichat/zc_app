@@ -8,7 +8,7 @@ import '../../../general_widgets/custom_text.dart';
 import 'direct_message_viewmodel.dart';
 
 class DirectMessage extends StatelessWidget {
-  final username;
+  final String? username;
   const DirectMessage({Key? key, this.username}) : super(key: key);
 
   @override
@@ -113,7 +113,7 @@ class DirectMessage extends StatelessWidget {
                                     children: [
                                       Row(
                                         children: [
-                                          Container(
+                                          SizedBox(
                                             height: size.height * 0.08,
                                             width: size.height * 0.08,
                                             child: Image.asset(

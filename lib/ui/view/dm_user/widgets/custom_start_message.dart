@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class StartMessage extends StatelessWidget {
-  final userName;
+  final String? userName;
 
   const StartMessage({
     Key? key,
-    this.userName: 'OyinkanUA',
+    //TODO assign to app_strings.dart
+    this.userName = 'OyinkanUA',
   }) : super(key: key);
 
   @override

@@ -1,18 +1,19 @@
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../models/start_dm_models.dart';
 import '../../../services/local_storage_services.dart';
-import '../../../utilities/constants.dart';
 import '../../../utilities/storage_keys.dart';
 
 class StartDmViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();
-  final _api = ZuriApi(baseUrl: coreBaseUrl);
+  final zuriApi = ZuriApi(coreBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
-   String? get token => storageService.getString(StorageKeys.currentSessionToken);
+  String? get token =>
+      storageService.getString(StorageKeys.currentSessionToken);
 
   // bool _hasClickedMessageField = false;
   // bool get hasClickedMessageField => _hasClickedMessageField;
@@ -27,12 +28,12 @@ class StartDmViewModel extends FormViewModel {
     // getString(StorageKeys.currentSessionToken)}");
     // print("token $token");
     final endpoint =
-        '/organizations/${storageService.getString(StorageKeys.currentOrgId)}/members/';
+        '/organizations/${storageService.getString(StorageKeys.currentUserId)}/members/';
     try {
       if (_currentOrgId == null || token == null) {
         return [];
       }
-      final response = await _api.get(
+      final response = await zuriApi.get(
         endpoint,
         token: token,
       );

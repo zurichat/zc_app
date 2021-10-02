@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/models/channel_model.dart';
+import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
-import 'package:hng/ui/view/channel/channel_view/widgets/channel_reply_box.dart';
 import 'package:stacked/stacked.dart';
 import '../../../shared/shared.dart';
 
@@ -9,7 +10,7 @@ import 'channel_page_viewmodel.dart';
 import 'widgets/channel_chat.dart';
 
 class ChannelPageView extends StatelessWidget {
-  ChannelPageView({
+  const ChannelPageView({
     Key? key,
     required this.channelname,
     required this.channelId,
@@ -36,7 +37,8 @@ class ChannelPageView extends StatelessWidget {
             leading: Padding(
               padding: const EdgeInsets.only(left: 5),
               child: IconButton(
-                  onPressed: model.goBack, icon: Icon(Icons.arrow_back_ios)),
+                  onPressed: model.goBack,
+                  icon: const Icon(Icons.arrow_back_ios)),
             ),
             centerTitle: false,
             leadingWidth: 20,
@@ -54,45 +56,40 @@ class ChannelPageView extends StatelessWidget {
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.search),
+                icon: const Icon(Icons.search),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 5),
                 child: IconButton(
-                    onPressed: () {}, icon: Icon(Icons.info_outlined)),
+                  onPressed: () => model.navigateToChannelInfoScreen(
+                    membersCount!,
+                    ChannelModel(id: channelId!, name: channelname!),
+                  ),
+                  icon: const Icon(Icons.info_outlined),
+                ),
               ),
             ],
           ),
-          body:
-              // body: model.isLoading
-              //     ? Center(
-              //         child: CircularProgressIndicator(),
-              //       )
-              //     :
-              Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  reverse: true,
-                  controller: model.scrollController,
-                  child: Column(
-                    children: [
-                      ChannelIntro(
-                        channelName: channelname,
-                      ),
-                      ChannelChat(
-                        channelId: channelId,
-                      ),
-                    ],
+          body: ExpandableTextFieldScreen(
+            hintText: 'Add a Reply',
+            sendMessage: (val) => model.sendMessage(val, channelId!),
+            widget: SingleChildScrollView(
+              reverse: true,
+              controller: model.scrollController,
+              child: Column(
+                children: [
+                  ChannelIntro(
+                    channelName: channelname,
                   ),
-                ),
+                  ChannelChat(
+                    channelId: channelId,
+                  ),
+                ],
               ),
-              ChannelReplyBox(channelId: channelId),
-            ],
+            ),
           ),
         );
       },
     );
   }
 }
-

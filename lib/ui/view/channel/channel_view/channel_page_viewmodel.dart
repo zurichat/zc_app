@@ -15,21 +15,21 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ChannelPageViewModel extends BaseViewModel {
-  bool isVisible = false;
-
   final _navigationService = locator<NavigationService>();
   final _channelsApiService = locator<ChannelsApiService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _centrifugeService = locator<CentrifugeService>();
-
   final _bottomSheetService = locator<BottomSheetService>();
 
+// ignore: todo
 //TODO refactor this
   ScrollController scrollController = ScrollController();
+  bool isVisible = false;
+  bool isExpanded = false;
 
   bool isLoading = true;
   List<UserSearch> usersInOrg = [];
-
+  List<ChannelMembermodel> channelMembers = [];
   List<UserPost>? channelUserMessages = [];
 
   void onMessageFieldTap() {
@@ -37,13 +37,13 @@ class ChannelPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void initialise(String channelId) {
-    joinChannel("$channelId");
-    fetchMessages("$channelId");
+  void initialise(String channelId) async {
+    await joinChannel('$channelId');
+    fetchMessages('$channelId');
 
-    getChannelSocketId("$channelId");
+    getChannelSocketId('$channelId');
 
-    listenToNewMessages("$channelId");
+    listenToNewMessages('$channelId');
   }
 
   void showThreadOptions() async {
@@ -58,14 +58,13 @@ class ChannelPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void joinChannel(String channelId) async {
-    var joinedChannel = await _channelsApiService.joinChannel(channelId);
-    print(joinedChannel);
+  Future<void> joinChannel(String channelId) async {
+    await _channelsApiService.joinChannel(channelId);
   }
 
   void getChannelSocketId(String channelId) async {
-    String channelSockId =
-    await _channelsApiService.getChannelSocketId(channelId);
+    final channelSockId =
+        await _channelsApiService.getChannelSocketId(channelId);
 
     websocketConnect(channelSockId);
   }
@@ -74,42 +73,39 @@ class ChannelPageViewModel extends BaseViewModel {
     //setBusy(true);
 
     List? channelMessages =
-    await _channelsApiService.getChannelMessages(channelId);
-    print(channelMessages);
+        await _channelsApiService.getChannelMessages(channelId);
     channelUserMessages = [];
 
     channelMessages.forEach((data) async {
-      String userid = data["user_id"];
+      final String userid = data['user_id'];
 
       channelUserMessages!.add(
         UserPost(
-            id: data["_id"],
-            displayName: userid,
-            statusIcon: "7️⃣",
-            lastSeen: "4 hours ago",
-            message: data["content"],
-            channelType: ChannelType.public,
-            postEmojis: <PostEmojis>[],
-            userThreadPosts: <UserThreadPost>[],
-            channelName: channelId,
-            userImage: "assets/images/chimamanda.png",
-            userID: userid),
+          id: data['_id'],
+          displayName: userid,
+          statusIcon: '7️⃣',
+          lastSeen: '4 hours ago',
+          message: data['content'],
+          channelType: ChannelType.public,
+          postEmojis: <PostEmojis>[],
+          userThreadPosts: <UserThreadPost>[],
+          channelName: channelId,
+          userImage: 'assets/images/chimamanda.png',
+          userID: userid,
+        ),
       );
     });
     isLoading = false;
-    scrollController.jumpTo(scrollController.position.maxScrollExtent);
+    //scrollController.jumpTo(scrollController.position.maxScrollExtent);
 
     notifyListeners();
   }
 
-  void sendMessage(
-      String message,
-      String channelId,
-      ) async {
-    String? userId = storage.getString(StorageKeys.currentUserId);
+  void sendMessage(String message, String channelId) async {
+    final userId = storage.getString(StorageKeys.currentUserId);
     await _channelsApiService.sendChannelMessages(
         channelId, "$userId", message);
-
+    scrollController.jumpTo(scrollController.position.minScrollExtent);
     notifyListeners();
   }
 
@@ -118,16 +114,17 @@ class ChannelPageViewModel extends BaseViewModel {
   }
 
   String time() {
-    return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
+    return '''
+${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}''';
   }
 
-  navigateToChannelInfoScreen(int numberOfMembers,
-      List<ChannelMembermodel> channelMembers, ChannelModel channelDetail) {
+  navigateToChannelInfoScreen(int numberOfMembers, ChannelModel channelDetail) {
     NavigationService().navigateTo(Routes.channelInfoView,
         arguments: ChannelInfoViewArguments(
-            numberOfMembers: numberOfMembers,
-            channelMembers: channelMembers,
-            channelDetail: channelDetail));
+          numberOfMembers: numberOfMembers,
+          channelMembers: channelMembers,
+          channelDetail: channelDetail,
+        ));
   }
 
   Future navigateToAddPeople() async {
@@ -138,19 +135,26 @@ class ChannelPageViewModel extends BaseViewModel {
     _navigationService.back();
   }
 
+  // ignore: always_declare_return_types
   navigateToChannelEdit() {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
   void websocketConnect(String channelSocketId) async {
-    await _centrifugeService.connect();
     await _centrifugeService.subscribe(channelSocketId);
   }
 
   void listenToNewMessages(String channelId) {
     _centrifugeService.messageStreamController.stream.listen((event) {
-      fetchMessages(channelId);
+      String? eventType = event['event']['action'];
+      if (eventType == 'create:message') fetchMessages(channelId);
+
       notifyListeners();
     });
+  }
+
+  void toggleExpanded() {
+    isExpanded = !isExpanded;
+    notifyListeners();
   }
 }

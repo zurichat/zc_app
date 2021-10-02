@@ -32,35 +32,35 @@ class PopUpNotificationsView extends StatelessWidget {
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const ListTile(
+                            children: const [
+                              ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Chess Room'),
                                 leading: Icon(Icons.games_sharp),
                               ),
-                              const ListTile(
+                              ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Meeting Room'),
                                 leading:
                                     Icon(Icons.perm_contact_calendar_outlined),
                               ),
-                              const ListTile(
+                              ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Notice Board'),
                                 leading:
                                     Icon(Icons.notifications_paused_rounded),
                               ),
-                              const ListTile(
+                              ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Music Room'),
                                 leading: Icon(Icons.music_note),
                               ),
-                              const ListTile(
+                              ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Duty Shift'),
                                 leading: Icon(Icons.calendar_today_rounded),
                               ),
-                              const ListTile(
+                              ListTile(
                                 contentPadding: EdgeInsets.all(0),
                                 title: Text('Important Deadlines'),
                                 leading: Icon(Icons.timelapse_outlined),
@@ -91,37 +91,35 @@ class PopUpNotificationsView extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(height: 20),
-                                    Container(
-                                      height: 40,
-                                      width: 60,
-                                      alignment: Alignment.centerLeft,
-                                      child: Image.asset(
-                                        model.profileImage,
-                                        fit: BoxFit.contain,
-                                      ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(height: 20),
+                                  Container(
+                                    height: 40,
+                                    width: 60,
+                                    alignment: Alignment.centerLeft,
+                                    child: Image.asset(
+                                      model.profileImage,
+                                      fit: BoxFit.contain,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 180, top: 8.0),
-                                      child: SizedBox(
-                                        height: 40,
-                                        child: Text(
-                                          model.notiText,
-                                          style: const TextStyle(
-                                            color: AppColors.deepBlackColor,
-                                            fontSize: 12.0,
-                                          ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 180, top: 8.0),
+                                    child: SizedBox(
+                                      height: 40,
+                                      child: Text(
+                                        model.notiText,
+                                        style: const TextStyle(
+                                          color: AppColors.deepBlackColor,
+                                          fontSize: 12.0,
                                         ),
                                       ),
-                                    )
-                                  ],
-                                ),
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
                             const SizedBox(height: 10),

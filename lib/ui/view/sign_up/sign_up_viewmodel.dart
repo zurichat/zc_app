@@ -1,14 +1,13 @@
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
 import '../../../services/local_storage_services.dart';
 import '../../../utilities/enums.dart';
 import '../../../utilities/storage_keys.dart';
-import '../../shared/shared.dart';
 import 'sign_up_view.form.dart';
 
 class SignUpViewModel extends FormViewModel {
@@ -16,7 +15,8 @@ class SignUpViewModel extends FormViewModel {
   final storage = locator<SharedPreferenceLocalStorage>();
   final navigator = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
-  final apiService = ZuriApi(baseUrl: coreBaseUrl);
+  final zuriApi = ZuriApi(coreBaseUrl);
+
   String? get token => storage.getString(StorageKeys.currentSessionToken);
 
   bool isLoading = false;
@@ -52,16 +52,15 @@ class SignUpViewModel extends FormViewModel {
         'password': passwordValue,
         'phone': phoneNumberValue,
       };
-      final response = await apiService.post(
-        SignUpEndpoint,
-        body: signUpData,
-      );
+
+      final response =
+          await zuriApi.post(signUpEndpoint, body: signUpData, token: token);
       loading(false);
       if (response?.statusCode == 200) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.success,
-          message: CheckEmailForOTP,
+          message: checkEmailForOTP,
         );
 
         storage.setString(
@@ -73,14 +72,14 @@ class SignUpViewModel extends FormViewModel {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
-          message: response?.data['message'] ?? ErrorEncounteredSignUp,
+          message: response?.data['message'] ?? errorEncounteredSignUp,
         );
       }
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: AcceptTnC,
+        message: acceptTnC,
       );
     }
   }

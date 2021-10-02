@@ -18,9 +18,10 @@ class EditProfileViewModel extends FutureViewModel {
   final snackbar = locator<SnackbarService>();
   final navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
-  final _api = ZuriApi(baseUrl: coreBaseUrl);
+  final _api = ZuriApi(coreBaseUrl);
   final api = ApiService();
-  String? get token => storageService.getString(StorageKeys.currentSessionToken);
+    String? get token => storageService.getString(StorageKeys.currentSessionToken);
+  
 
   void updateString(String name, String display, String status, String phone) {
     if (name.trim().isNotEmpty) {

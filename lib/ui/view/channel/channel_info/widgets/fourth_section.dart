@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/newRowTile.dart';
+import 'package:hng/ui/view/channel/channel_info/widgets/new_row_tile.dart';
 import '../../../../shared/colors.dart';
 
 class FourthSection extends StatelessWidget {
+  const FourthSection({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class FourthSection extends StatelessWidget {
                 offset: Offset(0, 3.h), // changes position of shadow
               ),
             ]),
-        child: NewRowTile(
+        child: const NewRowTile(
             icon:Icons.push_pin_outlined,
             text: 'Pinned messages (1)'
         )

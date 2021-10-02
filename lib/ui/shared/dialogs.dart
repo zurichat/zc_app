@@ -4,7 +4,7 @@ import 'package:hng/constants/app_strings.dart';
 
 import 'shared.dart';
 
-enum DialogAction { Cancel, Accept }
+enum DialogAction { cancel, accept }
 
 class Dialogs {
   static Future<DialogAction> showArchiveChannelAlertDialog(
@@ -22,7 +22,7 @@ class Dialogs {
         style: actionsTextStyle,
       ),
       onPressed: () {
-        Navigator.of(context).pop(DialogAction.Cancel);
+        Navigator.of(context).pop(DialogAction.cancel);
       },
     );
     final continueButton = TextButton(
@@ -31,7 +31,7 @@ class Dialogs {
         style: actionsTextStyle,
       ),
       onPressed: () {
-        Navigator.of(context).pop(DialogAction.Accept);
+        Navigator.of(context).pop(DialogAction.accept);
       },
     );
 
@@ -52,6 +52,7 @@ class Dialogs {
             content: Text(
               CloseChannelWarning,
               style: GoogleFonts.roboto(
+                // ignore: todo
                 //TODO Change to Brand color
                 color: const Color(0xff000000).withOpacity(0.54),
                 fontSize: 16.0,
@@ -64,6 +65,6 @@ class Dialogs {
             ],
           );
         });
-    return (action != null) ? action : DialogAction.Cancel;
+    return (action != null) ? action : DialogAction.cancel;
   }
 }

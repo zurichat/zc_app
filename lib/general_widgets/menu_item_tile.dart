@@ -63,8 +63,9 @@ class MenuItemTile extends StatelessWidget {
       return null;
     } else if (icon != null) {
       return Icon(icon);
-    } else
+    } else {
       return Image.asset('$imageIcon');
+    }
   }
 
   @override
@@ -79,7 +80,7 @@ class MenuItemTile extends StatelessWidget {
           //   horizontal: 0.0,
           //   vertical: 0.0,
           // ),
-          visualDensity: VisualDensity(horizontal: 0.0, vertical: -4.0),
+          visualDensity: const VisualDensity(horizontal: 0.0, vertical: -4.0),
           onTap: onPressed,
           shape: Border(
             top: BorderSide(

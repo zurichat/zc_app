@@ -72,6 +72,7 @@ class OrganizationViewModel extends BaseViewModel {
     }
   }
 
+// ignore: todo
 //TODO change this to fetch the list of organizations the user is part of alone
   void filterOrganization() {
     final ids = storageService.getStringList(StorageKeys.organizationIds) ?? [];
@@ -119,4 +120,8 @@ class OrganizationViewModel extends BaseViewModel {
 
   String? get currentOrgId =>
       storageService.getString(StorageKeys.currentOrgId);
+
+  Future<void> viewPreferences() async {
+    await navigation.navigateTo(Routes.preferenceView);
+  }
 }

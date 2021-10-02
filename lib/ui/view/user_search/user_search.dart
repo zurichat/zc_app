@@ -36,10 +36,10 @@ class UserSearch extends StatelessWidget {
                   Row(
                     children: [
                       const Icon(Icons.arrow_back_ios),
-                      Column(
-                        children: [
-                          const Text('People'),
-                          const Text('2552 members'),
+                    Column(
+                        children: const [
+                          Text('People'),
+                          Text('2552 members'),
                         ],
                       )
                     ],
@@ -53,6 +53,7 @@ class UserSearch extends StatelessWidget {
                         border: const OutlineInputBorder(),
                         hintText: 'Search for members',
                         hintStyle: GoogleFonts.lato(
+                          // ignore: todo
                           //TODO Change to brand colors
                           color: Colors.grey,
                         ),

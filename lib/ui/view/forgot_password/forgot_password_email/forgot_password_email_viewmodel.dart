@@ -15,9 +15,9 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
   bool inputError = false;
   final _navigationService = locator<NavigationService>();
   final _snackbarService = locator<SnackbarService>();
-  final _apiService = ZuriApi(baseUrl: coreBaseUrl);
-  final storageService = locator<SharedPreferenceLocalStorage>();
+  final _apiService = ZuriApi(coreBaseUrl);
   bool isLoading = false;
+  final storageService = locator<SharedPreferenceLocalStorage>();
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
 
@@ -34,7 +34,7 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(seconds: 2),
         variant: SnackbarType.failure,
-        message: FillAllFields,
+        message: fillAllFields,
       );
       return;
     } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_"
@@ -46,22 +46,21 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(seconds: 2),
         variant: SnackbarType.failure,
-        message: InvalidEmailFormat,
+        message: invalidEmailFormat,
       );
       return;
     }
 
     final validationData = {'email': forgotEmailValue};
-    final response = await _apiService.post(RequestOTPEndpoint,
+    final response = await _apiService.post(requestOTPEndpoint,
         body: validationData, token: token);
-
     response != null ? loading(false) : loading(true);
 
     if (response?.statusCode == 200) {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(seconds: 2),
         variant: SnackbarType.success,
-        message: CheckEmailForOTP,
+        message: checkEmailForOTP,
       );
 
       navigateToForgotPasswordOtpView();
@@ -69,7 +68,7 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
       _snackbarService.showCustomSnackBar(
         duration: const Duration(seconds: 2),
         variant: SnackbarType.failure,
-        message: response?.data['message'] ?? ErrorOccurred,
+        message: response?.data['message'] ?? errorOccurred,
       );
     }
   }
