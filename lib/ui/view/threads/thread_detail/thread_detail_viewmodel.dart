@@ -4,7 +4,6 @@ import 'package:hng/utilities/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../models/user_post.dart';

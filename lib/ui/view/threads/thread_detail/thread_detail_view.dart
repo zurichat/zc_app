@@ -98,7 +98,7 @@ class ThreadDetailView extends StatelessWidget {
                         model.channelThreadMessages.isNotEmpty
                             ? ListView.builder(
                                 itemCount: model.channelThreadMessages.length,
-                                physics: NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) =>
                                     ThreadCardView.threadPost(
