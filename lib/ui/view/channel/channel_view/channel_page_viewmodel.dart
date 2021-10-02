@@ -60,8 +60,8 @@ class ChannelPageViewModel extends BaseViewModel {
   }
 
   void getChannelSocketId(String channelId) async {
-    String channelSockId =
-        await _channelsApiService.getChannelSocketId(channelId);
+    final channelSockId =
+    await _channelsApiService.getChannelSocketId(channelId);
 
     websocketConnect(channelSockId);
   }
@@ -75,8 +75,7 @@ class ChannelPageViewModel extends BaseViewModel {
   void fetchMessages(String channelId) async {
     //setBusy(true);
     List? channelMessages =
-        await _channelsApiService.getChannelMessages(channelId);
-
+    await _channelsApiService.getChannelMessages(channelId);
     channelUserMessages = [];
 
     channelMessages.forEach((data) async {
@@ -84,17 +83,19 @@ class ChannelPageViewModel extends BaseViewModel {
 
       channelUserMessages?.add(
         UserPost(
-            id: data["_id"],
-            displayName: userid,
-            statusIcon: "7️⃣",
-            lastSeen: "4 hours ago",
-            message: data["content"],
-            channelType: ChannelType.public,
-            postEmojis: <PostEmojis>[],
-            userThreadPosts: <UserThreadPost>[],
-            channelName: channelId,
-            userImage: "assets/images/chimamanda.png",
-            userID: userid),
+          id: data['_id'],
+          displayName: userid,
+          statusIcon: '7️⃣',
+          lastSeen: '4 hours ago',
+          message: data['content'],
+          channelType: ChannelType.public,
+          postEmojis: <PostEmojis>[],
+          userThreadPosts: <UserThreadPost>[],
+          channelName: channelId,
+          userImage: 'assets/images/chimamanda.png',
+          userID: userid,
+          channelId: channelId
+        ),
       );
     });
     isLoading = false;
