@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import '../../../general_widgets/custom_text.dart';
 import '../../shared/shared.dart';
 import 'package:stacked/stacked.dart';
@@ -17,7 +18,7 @@ class ClearAfterView extends StatelessWidget {
           elevation: 0,
           leading: IconButton(
               onPressed: model.exitPage, icon: const Icon(Icons.close_rounded)),
-          title: const Text('Clear after...'),
+          title: const Text(ClearAfter),
         ),
         body: Column(
           children: [

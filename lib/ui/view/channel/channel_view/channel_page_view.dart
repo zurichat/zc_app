@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/no_connection_widget.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
@@ -28,11 +29,17 @@ class ChannelPageView extends StatelessWidget {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
         model.initialise('$channelId');
+        model.showNotificationForOtherChannels('$channelId', '$channelname');
       },
       //this parameter allows us to reuse the view model to persist the state
 
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, model, child) {
+        if (model.scrollController.hasClients) {
+          model.scrollController
+              .jumpTo(model.scrollController.position.maxScrollExtent);
+        }
+
         return Scaffold(
           appBar: AppBar(
             leading: Padding(
@@ -72,7 +79,7 @@ class ChannelPageView extends StatelessWidget {
             ],
           ),
           body: ExpandableTextFieldScreen(
-            hintText: 'Add a Reply',
+            hintText: AddReply,
             sendMessage: (val) => model.sendMessage(val, channelId!),
             widget: SingleChildScrollView(
               reverse: true,

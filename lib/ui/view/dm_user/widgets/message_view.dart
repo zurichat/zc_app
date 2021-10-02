@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:intl/intl.dart';
 
 import '../dummy_data/models/message.dart';
@@ -12,7 +13,7 @@ class MessageView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, top: 16),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Image.asset('assets/images/avatar.png', width: 40.0, height: 40.0),
+        Image.asset(Avatar, width: 40.0, height: 40.0),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
@@ -20,9 +21,11 @@ class MessageView extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text(_message.sender.username,
-                      style: const TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.w700)),
+                  Text(
+                    _message.sender.username,
+                    style: const TextStyle(
+                        fontSize: 16.0, fontWeight: FontWeight.w700),
+                  ),
                   const SizedBox(width: 4.35),
                   Text(
                     _formatTime(_message.time),

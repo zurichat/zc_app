@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/no_connection_widget.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
@@ -64,7 +65,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                   ],
                 ),
                 const Text(
-                  'View Details',
+                  ViewDetails,
                   style:
                       TextStyle(color: AppColors.greyishColor, fontSize: 12.0),
                 )
@@ -114,9 +115,8 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                     child: SizedBox(
                                       width: 50,
                                       height: 50,
-                                      child: Image.asset(
-                                          'assets/images/avatar.png',
-                                          fit: BoxFit.fill),
+                                      child:
+                                          Image.asset(Avatar, fit: BoxFit.fill),
                                     ),
                                   ),
                                   const SizedBox(height: 15.0),
