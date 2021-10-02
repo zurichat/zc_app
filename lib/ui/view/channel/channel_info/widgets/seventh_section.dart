@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../shared/colors.dart';
@@ -10,10 +11,8 @@ import '../channel_info_view_model.dart';
 class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
   const SeventhSection({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context, ChannelInfoViewModel viewModel) {
-  
     return Container(
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.center,
@@ -45,7 +44,7 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
                 child: TextButton(
                   onPressed: viewModel.showDialog,
                   child: Text(
-                    'Delete Channel',
+                    DeleteChannel,
                     style: AppTextStyles.heading7,
                   ),
                 ),
@@ -53,13 +52,13 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
             ],
           ),
           Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 45, bottom: 10),
-              child: Text(
-                'All messages from this channel will be removed from Zuri Chat. Any files uploaded to this channel'
-                'would not be removed.',
-                style: AppTextStyles.normalGrey,
-              )),
+            alignment: Alignment.center,
+            margin: const EdgeInsets.only(left: 45, bottom: 10),
+            child: Text(
+              DeleteChannelWarning,
+              style: AppTextStyles.normalGrey,
+            ),
+          ),
         ],
       ),
     );

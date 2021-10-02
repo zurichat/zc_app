@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/shared.dart';
@@ -57,7 +58,20 @@ class ThirdSection extends StatelessWidget {
           InkWell(
               onTap: () {},
               child: const NewRowTile(
-                  icon: Icons.person_add_alt_1_outlined, text: 'Add People')),
+                  icon: Icons.person_add_alt_1_outlined, text: AddPeople)),
+          SizedBox(height: 10.h),
+          Divider(
+            thickness: 0.5.h,
+            color: AppColors.deepBlackColor.withOpacity(0.5),
+            indent: 66.6.w,
+            // endIndent: 33,
+          ),
+          SizedBox(height: 18.h),
+          InkWell(
+            onTap: () {},
+            child: const NewRowTile(
+                icon: Icons.dashboard_outlined, text: OnePlugin),
+          ),
           SizedBox(height: 10.h),
           Divider(
             thickness: 0.5.h,
@@ -69,19 +83,7 @@ class ThirdSection extends StatelessWidget {
           InkWell(
               onTap: () {},
               child: const NewRowTile(
-                  icon: Icons.dashboard_outlined, text: 'Plugins (1)')),
-          SizedBox(height: 10.h),
-          Divider(
-            thickness: 0.5.h,
-            color: AppColors.deepBlackColor.withOpacity(0.5),
-            indent: 66.6.w,
-            // endIndent: 33,
-          ),
-          SizedBox(height: 18.h),
-          InkWell(
-              onTap: () {},
-              child: const NewRowTile(
-                  icon: Icons.phone_outlined, text: 'Start a call')),
+                  icon: Icons.phone_outlined, text: StartCall)),
         ],
       ),
     );
