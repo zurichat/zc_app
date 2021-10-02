@@ -17,8 +17,8 @@ class DmPageViewModel extends BaseViewModel {
   }
 
   Future<List<DmListItem>> getDmList() async {
-    final res = 
-    List.generate(7, (index) => index);
+    await Future.delayed(const Duration(seconds: 2));
+    final res = List.generate(20, (index) => index);
     //  await apiService.getActiveRooms(
     //     userService.currentOrgId, userService.userId, userService.authToken);
     // res.forEach((el) async {
@@ -35,14 +35,14 @@ class DmPageViewModel extends BaseViewModel {
     //       .toList();
     // });
     dmPageList = res
-          .map((e) => DmListItem(
-                id: 'e["_id"]',
-                name: 'e["room_name"]',
-                userIds: [],//e["room_user_ids"],
-                unread: 0,
-                lastMessage: 'data?.data?[""]',
-              ))
-          .toList();
+        .map((e) => DmListItem(
+              id: 'e["_id"]',
+              name: 'e["room_name"]',
+              userIds: [], //e["room_user_ids"],
+              unread: 0,
+              lastMessage: 'data?.data?[""]',
+            ))
+        .toList();
     notifyListeners();
     return dmPageList;
   }

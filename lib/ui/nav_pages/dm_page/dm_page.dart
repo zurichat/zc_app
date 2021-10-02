@@ -13,7 +13,7 @@ class DmPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmPageViewModel>.reactive(
-      onModelReady:(model) => model.init(),
+      onModelReady: (model) => model.init(),
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
@@ -49,23 +49,29 @@ class DmPage extends StatelessWidget {
                       right: 6),
                   const SizedBox(height: 30),
                   StreamBuilder<List<DmListItem>>(
-                    stream: model.dmListStream(),
-                    builder: (context, snapshot) {
-                      return ListView.separated(
-                        shrinkWrap: true,
-                        itemCount: snapshot.data?.length??0,
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(height: 20),
-                        itemBuilder: (context, index) {
-                          final dm = snapshot.data?[index];
-                          return GestureDetector(
-                            onTap: () => model.navigateToDmUserView(),
-                            child:  DMMessageUnread(dm!),
+                      stream: model.dmListStream(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(
+                                color: AppColors.zuriPrimaryColor),
                           );
-                        },
-                      );
-                    }
-                  ),
+                        }
+                        return ListView.separated(
+                          shrinkWrap: true,
+                          itemCount: snapshot.data?.length ?? 0,
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: 20),
+                          itemBuilder: (context, index) {
+                            final dm = snapshot.data?[index];
+                            return GestureDetector(
+                              onTap: () => model.navigateToDmUserView(),
+                              child: DMMessageUnread(dm!),
+                            );
+                          },
+                        );
+                      }),
                   const SizedBox(height: 30),
                 ],
               ),
