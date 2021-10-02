@@ -1,7 +1,9 @@
 PODS:
-  - connectivity (0.0.1):
+  - connectivity_plus (0.0.1):
     - Flutter
     - Reachability
+  - emoji_picker_flutter (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - flutter_appavailability (0.0.1):
     - Flutter
@@ -15,13 +17,9 @@ PODS:
   - FMDB/standard (2.7.5)
   - hexcolor (0.0.1):
     - Flutter
-  - image_gallery_saver (1.5.0):
-    - Flutter
   - modal_progress_hud_nsn (0.0.1):
     - Flutter
   - path_provider (0.0.1):
-    - Flutter
-  - "permission_handler (5.1.0+2)":
     - Flutter
   - Reachability (3.2)
   - shared_preferences (0.0.1):
@@ -34,16 +32,15 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - connectivity (from `.symlinks/plugins/connectivity/ios`)
+  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
+  - emoji_picker_flutter (from `.symlinks/plugins/emoji_picker_flutter/ios`)
   - Flutter (from `Flutter`)
   - flutter_appavailability (from `.symlinks/plugins/flutter_appavailability/ios`)
   - flutter_statusbarcolor_ns (from `.symlinks/plugins/flutter_statusbarcolor_ns/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - hexcolor (from `.symlinks/plugins/hexcolor/ios`)
-  - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
   - modal_progress_hud_nsn (from `.symlinks/plugins/modal_progress_hud_nsn/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
-  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
@@ -55,8 +52,10 @@ SPEC REPOS:
     - Toast
 
 EXTERNAL SOURCES:
-  connectivity:
-    :path: ".symlinks/plugins/connectivity/ios"
+  connectivity_plus:
+    :path: ".symlinks/plugins/connectivity_plus/ios"
+  emoji_picker_flutter:
+    :path: ".symlinks/plugins/emoji_picker_flutter/ios"
   Flutter:
     :path: Flutter
   flutter_appavailability:
@@ -67,14 +66,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/fluttertoast/ios"
   hexcolor:
     :path: ".symlinks/plugins/hexcolor/ios"
-  image_gallery_saver:
-    :path: ".symlinks/plugins/image_gallery_saver/ios"
   modal_progress_hud_nsn:
     :path: ".symlinks/plugins/modal_progress_hud_nsn/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
-  permission_handler:
-    :path: ".symlinks/plugins/permission_handler/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
   sqflite:
@@ -83,17 +78,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
-  connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
+  connectivity_plus: 5f0eb61093bec56935f21a1699dd2758bc895587
+  emoji_picker_flutter: 4f9a1ac31d355e1bf9622a1e821a809149130127
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_appavailability: ebf8f85abea44436d1262fcde8a4e64b2534b01a
   flutter_statusbarcolor_ns: 68a360889d88d7915ae524e422aeab62e4063804
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   hexcolor: fdfb9c4258ad96e949c2dbcdf790a62194b8aa89
-  image_gallery_saver: 259eab68fb271cfd57d599904f7acdc7832e7ef2
   modal_progress_hud_nsn: f6fb744cd060653d66ed8f325360ef3650eb2fde
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
-  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
@@ -102,4 +96,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.0
