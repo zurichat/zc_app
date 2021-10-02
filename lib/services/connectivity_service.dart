@@ -21,7 +21,8 @@ class ConnectivityService with ReactiveServiceMixin {
   ConnectivityStatus networkStatus = ConnectivityStatus.offline;
 
   // Allow subscription to connection changes.
-  StreamController connectionChangeController = StreamController.broadcast();
+  StreamController<ConnectivityStatus> connectionChangeController =
+      StreamController<ConnectivityStatus>.broadcast();
 
   final Connectivity _connectivity = Connectivity();
 
@@ -31,7 +32,8 @@ class ConnectivityService with ReactiveServiceMixin {
     checkConnection();
   }
 
-  Stream get connectionChange => connectionChangeController.stream;
+  Stream<ConnectivityStatus> get connectionChange =>
+      connectionChangeController.stream;
 
   void _connectionChange(ConnectivityResult result) {
     checkConnection();

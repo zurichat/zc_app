@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:stacked/stacked.dart';
@@ -8,10 +9,12 @@ import '../channel_page_viewmodel.dart';
 class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
   const ChannelIntro({
     Key? key,
-    this.channelName,
+    required this.channelName,
+    required this.channelId,
   }) : super(key: key);
 
-  final String? channelName;
+  final String channelName;
+  final String channelId;
   @override
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
     return Container(
@@ -31,18 +34,18 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
               Column(
                 children: [
                   MaterialButton(
-                    onPressed: () {},
+                    onPressed: () => viewModel.navigateToChannelEdit(),
                     padding: const EdgeInsets.all(15),
                     shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
-                    child: const ImageIcon(
-                      AssetImage('assets/channel_page/edit.png'),
+                    child: const Icon(
+                      Icons.edit_outlined,
                       color: AppColors.zuriPrimaryColor,
                     ),
                   ),
                   const SizedBox(height: 5),
                   const Text(
-                    'Add Description',
+                    AddDescription,
                     style: TextStyle(
                       color: AppColors.greyishColor,
                       fontSize: 14,
@@ -54,7 +57,8 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
               Column(
                 children: [
                   MaterialButton(
-                    onPressed: () {},
+                    onPressed: () =>
+                        viewModel.navigateToAddPeople(channelName, channelId),
                     padding: const EdgeInsets.all(15),
                     shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
@@ -65,7 +69,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                   ),
                   const SizedBox(height: 5),
                   const Text(
-                    'Add People .',
+                    AddPeople,
                     style: TextStyle(
                       color: AppColors.greyishColor,
                       fontSize: 14,
