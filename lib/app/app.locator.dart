@@ -17,6 +17,7 @@ import '../package/base/server-request/dms/dms_api_service.dart';
 import '../services/centrifuge_service.dart';
 import '../services/connectivity_service.dart';
 import '../services/local_storage_services.dart';
+import '../services/notification_service.dart';
 import '../services/user_service.dart';
 
 final locator = StackedLocator.instance;
@@ -44,6 +45,7 @@ Future setupLocator(
   locator.registerLazySingleton(() => DMApiService());
   locator.registerLazySingleton(() => ChannelsApiService());
   locator.registerLazySingleton(() => JumpToApi());
+  locator.registerLazySingleton(() => NotificationService());
   final centrifugeService = await CentrifugeService.getInstance();
   locator.registerSingleton(centrifugeService);
 }

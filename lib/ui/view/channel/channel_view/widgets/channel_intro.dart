@@ -9,10 +9,12 @@ import '../channel_page_viewmodel.dart';
 class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
   const ChannelIntro({
     Key? key,
-    this.channelName,
+    required this.channelName,
+    required this.channelId,
   }) : super(key: key);
 
-  final String? channelName;
+  final String channelName;
+  final String channelId;
   @override
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
     return Container(
@@ -32,12 +34,12 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
               Column(
                 children: [
                   MaterialButton(
-                    onPressed: () {},
+                    onPressed: () => viewModel.navigateToChannelEdit(),
                     padding: const EdgeInsets.all(15),
                     shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
-                    child: const ImageIcon(
-                      AssetImage(EditLogo),
+                    child: const Icon(
+                      Icons.edit_outlined,
                       color: AppColors.zuriPrimaryColor,
                     ),
                   ),
@@ -55,7 +57,8 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
               Column(
                 children: [
                   MaterialButton(
-                    onPressed: () {},
+                    onPressed: () =>
+                        viewModel.navigateToAddPeople(channelName, channelId),
                     padding: const EdgeInsets.all(15),
                     shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
