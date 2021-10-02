@@ -195,6 +195,11 @@ const String DeleteChannel = 'Delete Channel';
 const String DeleteChannelWarning =
     'All messages from this channel will be removed from Zuri Chat. Any files uploaded to this channel would not be removed.';
 const String StartCall = 'Start a call';
+
+//CHannels View
+const String ChannelBrowser = 'Channel Browser';
+const String SearchChannel = 'Search for channel...';
+
 //----------------
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
