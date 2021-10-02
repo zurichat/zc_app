@@ -102,6 +102,7 @@ class ChannelsApiService {
         token: token,
       );
       channelMessages = res?.data ?? [];
+
       log.i(channelMessages);
     } on Exception catch (e) {
       log.e(e.toString());

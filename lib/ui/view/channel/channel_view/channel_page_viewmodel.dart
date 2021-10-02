@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
@@ -7,6 +9,7 @@ import 'package:hng/models/user_post.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/services/notification_service.dart';
 
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
@@ -18,6 +21,8 @@ class ChannelPageViewModel extends BaseViewModel {
   final _channelsApiService = locator<ChannelsApiService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _centrifugeService = locator<CentrifugeService>();
+  final _notificationService = locator<NotificationService>();
+
   final _bottomSheetService = locator<BottomSheetService>();
   final _snackbarService = locator<SnackbarService>();
 
@@ -30,18 +35,21 @@ class ChannelPageViewModel extends BaseViewModel {
 
   List<ChannelMembermodel> channelMembers = [];
   List<UserPost>? channelUserMessages = [];
+  StreamSubscription? messageSubscription;
+  StreamSubscription? notificationSubscription;
 
   void onMessageFieldTap() {
     isVisible = true;
     notifyListeners();
   }
 
-  void initialise(String channelId) {
-    joinChannel(channelId);
+  void initialise(String channelId) async {
+    await joinChannel(channelId);
     fetchMessages(channelId);
-    getChannelSocketId(channelId);
+    // getChannelSocketId("$channelId");
     fetchChannelMembers(channelId);
-    listenToNewMessages(channelId);
+    listenToNewMessage(channelId);
+    // listenToNewMessages("$channelId");
   }
 
   void showThreadOptions() async {
@@ -56,7 +64,7 @@ class ChannelPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void joinChannel(String channelId) async {
+  Future joinChannel(String channelId) async {
     await _channelsApiService.joinChannel(channelId);
   }
 
@@ -150,13 +158,44 @@ class ChannelPageViewModel extends BaseViewModel {
     await _centrifugeService.subscribe(channelSocketId);
   }
 
-  void listenToNewMessages(String channelId) {
-    _centrifugeService.messageStreamController.stream.listen((event) {
-      String? eventType = event['event']['action'];
-      if (eventType == 'create:message') fetchMessages(channelId);
+  void listenToNewMessage(String channelId) async {
+    String channelSockId =
+        await _channelsApiService.getChannelSocketId(channelId);
 
-      notifyListeners();
-    });
+    messageSubscription = _centrifugeService.listen(
+      socketId: channelSockId,
+      channelId: channelId,
+      onData: (message) {
+        fetchMessages(channelId);
+        notifyListeners();
+      },
+    );
+  }
+
+  void showNotificationForOtherChannels(
+      String channelId, String channelName) async {
+    notificationSubscription = _centrifugeService.onNotificationReceived(
+      channelId: channelId,
+      onData: (message) {
+        _notificationService.show(
+          title: '#$channelName',
+          body: message['content'],
+          payload: NotificationPayload(
+            messageId: message['_id'],
+            roomId: message['channel_id'],
+            name: channelName,
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    // this fixes the scroll controller error
+    messageSubscription?.cancel();
+    notificationSubscription?.cancel();
+    super.dispose();
   }
 
   void toggleExpanded() {

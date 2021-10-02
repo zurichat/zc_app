@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -28,7 +29,7 @@ class ChannelAddPeopleView extends StatelessWidget {
             title: Text(
               viewModel.markedUsers.isNotEmpty
                   ? '${viewModel.markedUsers.length} selected'
-                  : 'Add People',
+                  : AddPeople,
               style: GoogleFonts.lato(
                   color: AppColors.zuriTextColorHeader,
                   fontWeight: FontWeight.bold,
@@ -60,7 +61,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 0.0),
                       child: InkWell(
                         child: Text(
-                          'Add',
+                          Add,
                           style: GoogleFonts.lato(
                               color: AppColors.zuriPrimaryColor,
                               fontSize: 16.0),
@@ -81,7 +82,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: SearchField(
                     onChanged: viewModel.onSearchUser,
-                    labelText: 'Search people to add',
+                    labelText: SearchPeople,
                   ),
                 ),
                 if (viewModel.matchingUsers.isNotEmpty &&
@@ -98,7 +99,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Add Everyone',
+                              AddEveryone,
                               style: GoogleFonts.lato(
                                 color: AppColors.deepBlackColor,
                                 fontWeight: FontWeight.bold,
@@ -106,7 +107,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                             ),
                             const SizedBox(height: 4.0),
                             Text(
-                              'Everyone will be added to this channel',
+                              EveryoneWillBeAdded,
                               style: GoogleFonts.lato(
                                 color: AppColors.greyishColor,
                                 fontWeight: FontWeight.bold,
