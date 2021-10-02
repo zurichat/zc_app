@@ -240,6 +240,22 @@ const String PrivateChannelDescription =
     'A private channel can only be viewed or joined';
 const String YouAreAMember = 'You are a member';
 
+//Clear After
+const String DontClear = 'Don’t clear';
+const String ThirtyMins = '30 minutes';
+const String OneHour = '1 hour';
+const String FourHours = '4 hours';
+const String ThisWeek = 'This week';
+const String ChooseDate = 'Choose date and time';
+const String ClearAfter = 'Clear after...';
+const String DateText = 'Date';
+const String Time = 'Time';
+
+// .
+// .
+// .
+// .
+
 //----------------
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
@@ -281,7 +297,7 @@ const String BSheetMainBtn = 'Awesome!';
 const String BSheetSecBtn = 'This is cool';
 const String PaulImoke = 'Paul Imoke Eke';
 const String Okay = 'Okay';
-const String Date = 'August 31 at 9:09 PM';
+const String SampleDate = 'August 31 at 9:09 PM';
 const String AbdSalam = 'Abd_salam';
 const String Random = 'Abd_salam';
 const String NoWahala = 'No Wahala';
