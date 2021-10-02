@@ -59,7 +59,7 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
             ),
              const SizedBox(width: 150),
              IconButton(
-               color: Colors.white,
+               color: AppColors.whiteColor,
                onPressed: (){
                  viewModel.navigateToUserSearchView();
                }, icon:  Icon(Icons.search))
