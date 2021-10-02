@@ -70,6 +70,9 @@ MockNavigationService getAndRegisterNavigationServiceMock() {
 MockSnackbarService getAndRegisterSnackbarServiceMock() {
   _removeRegistrationIfExists<SnackbarService>();
   final service = MockSnackbarService();
+  when(service.showSnackbar()).thenAnswer((realInvocation) {
+    true;
+  });
   locator.registerSingleton<SnackbarService>(service);
 
   return service;
