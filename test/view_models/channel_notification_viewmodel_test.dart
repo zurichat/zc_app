@@ -13,7 +13,7 @@ void main() {
           () {
         final model = ChannelNotificationViewModel();
         model.toggleOptions('val');
-        //verify(toggleOptions was called);
+        expect(model.value, 'val');
       });
     });
   });

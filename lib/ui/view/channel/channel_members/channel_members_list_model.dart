@@ -68,5 +68,10 @@ class ChannelMembersModel extends BaseViewModel {
 
   void goBack() {
     navigator.back();
+    /*
+    navigator = locator<NavigationService>();
+    It's still navigation service that was used.
+    The test kills returning a null value if NavigationService is used directly inside of 
+    */
   }
 }
