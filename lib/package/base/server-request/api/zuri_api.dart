@@ -763,10 +763,10 @@ class ZuriApi implements Api {
   }) async {
     var formData = FormData.fromMap({
       "image": MultipartFile(
-            image!.openRead(),
-            await image.length(),
-            filename: image.path.split(Platform.pathSeparator).last,
-          ),
+        image!.openRead(),
+        await image.length(),
+        filename: image.path.split(Platform.pathSeparator).last,
+      ),
     });
     try {
       final res = await dio.post(
@@ -783,11 +783,5 @@ class ZuriApi implements Api {
       handleApiError(e);
       return "error uploading the image";
     }
-  }
-
-  @override
-  Future<void> addMemberToChannel(String channelId, String orgId, String userId, token) {
-    // TODO: implement addMemberToChannel
-    throw UnimplementedError();
   }
 }

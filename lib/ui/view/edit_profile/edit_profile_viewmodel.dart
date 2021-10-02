@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/profile_model.dart';
@@ -46,7 +44,7 @@ class EditProfileViewModel extends FutureViewModel {
   }
 
   void uploadImage() async {
-    mediaService.getImage(fromGallery: true );
+    mediaService.getImage(fromGallery: true);
   }
 
   void exitPage() {
