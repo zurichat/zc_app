@@ -61,24 +61,6 @@ class ChannelAddPeopleViewModel extends BaseViewModel {
     setBusy(false);
   }
 
-  /* Future<void> addMemberToChannel(String channelId, String userId) async {
-    await api.post(
-      "/$orgId/channels/$channelId/members/",
-      //  "/614679ee1a5607b13c00bcb7/channels/$channelId/members/",
-      token: token,
-      body: {
-        "_id": userId,
-        "role_id": "",
-        "is_admin": false,
-        "notifications": {
-          "additionalProp1": "",
-          "additionalProp2": "",
-          "additionalProp3": ""
-        }
-      },
-    );
-  } */
-
   void markOne(bool? marked, int i) {
     if (marked!) {
       markedUsers.add(matchingUsers[i]);

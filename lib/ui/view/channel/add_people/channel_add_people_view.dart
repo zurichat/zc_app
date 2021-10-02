@@ -67,14 +67,15 @@ class ChannelAddPeopleView extends StatelessWidget {
                         ),
                         highlightColor: Colors.transparent,
                         splashColor: Colors.transparent,
-                        onTap: () => viewModel.addMarkedUsersToChannel(channelId),
+                        onTap: () =>
+                            viewModel.addMarkedUsersToChannel(channelId),
                       ),
                     ),
             ],
           ),
           body: Column(
             children: [
-              if (viewModel.users.isNotEmpty) ...[
+              if (viewModel.users.isNotEmpty && !viewModel.isBusy) ...[
                 const SizedBox(height: 24.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -83,7 +84,8 @@ class ChannelAddPeopleView extends StatelessWidget {
                     labelText: 'Search people to add',
                   ),
                 ),
-                if (viewModel.matchingUsers.isNotEmpty) ...[
+                if (viewModel.matchingUsers.isNotEmpty &&
+                    !viewModel.isBusy) ...[
                   const SizedBox(height: 16.0),
                   const Divider(thickness: 2.0),
                   const SizedBox(height: 16.0),
@@ -98,9 +100,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                             Text(
                               'Add Everyone',
                               style: GoogleFonts.lato(
-                                // ignore: todo
-                                //TODO change color to brand
-                                color: const Color(0xFF242424),
+                                color: AppColors.deepBlackColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -137,48 +137,60 @@ class ChannelAddPeopleView extends StatelessWidget {
                             valueColor: AlwaysStoppedAnimation(
                                 AppColors.zuriPrimaryColor)),
                       )
-                    : ListView.separated(
-                        physics: const BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        padding:
-                            const EdgeInsets.fromLTRB(20.0, 25.0, 12.0, 25.0),
-                        itemCount: viewModel.matchingUsers.length,
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(height: 24.0),
-                        itemBuilder: (context, index) => ListTile(
-                          onTap: () => viewModel.markOne(
-                              !viewModel.markedUsers
-                                  .contains(viewModel.matchingUsers[index]),
-                              index),
-                          contentPadding: EdgeInsets.zero,
-                          leading: CircleAvatar(
-                            backgroundColor: AppColors.whiteColor,
-                            backgroundImage: viewModel
-                                    .matchingUsers[index].imageUrl!
-                                    .startsWith("http")
-                                ? NetworkImage(
-                                    '${viewModel.matchingUsers[index].imageUrl}',
-                                  ) as dynamic
-                                : const AssetImage("assets/images/user.png"),
-                            radius: 20.0,
-                          ),
-                          trailing: Transform.scale(
-                            child: Checkbox(
-                              value: viewModel.markedUsers
-                                  .contains(viewModel.matchingUsers[index]),
-                              onChanged: (marked) =>
-                                  viewModel.markOne(marked, index),
-                              side: const BorderSide(width: 0.96),
+                    : viewModel.isBusy
+                        ? Center(
+                            child: Text(
+                              'Adding Marked Users...',
+                              style: GoogleFonts.lato(
+                                color: AppColors.deepBlackColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16.0,
+                              ),
                             ),
-                            scale: 1.512,
+                          )
+                        : ListView.separated(
+                            physics: const BouncingScrollPhysics(),
+                            shrinkWrap: true,
+                            padding: const EdgeInsets.fromLTRB(
+                                20.0, 25.0, 12.0, 25.0),
+                            itemCount: viewModel.matchingUsers.length,
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(height: 24.0),
+                            itemBuilder: (context, index) => ListTile(
+                              onTap: () => viewModel.markOne(
+                                  !viewModel.markedUsers
+                                      .contains(viewModel.matchingUsers[index]),
+                                  index),
+                              contentPadding: EdgeInsets.zero,
+                              leading: CircleAvatar(
+                                backgroundColor: AppColors.whiteColor,
+                                backgroundImage: viewModel
+                                        .matchingUsers[index].imageUrl!
+                                        .startsWith("http")
+                                    ? NetworkImage(
+                                        '${viewModel.matchingUsers[index].imageUrl}',
+                                      ) as dynamic
+                                    : const AssetImage(
+                                        "assets/images/user.png"),
+                                radius: 20.0,
+                              ),
+                              trailing: Transform.scale(
+                                child: Checkbox(
+                                  value: viewModel.markedUsers
+                                      .contains(viewModel.matchingUsers[index]),
+                                  onChanged: (marked) =>
+                                      viewModel.markOne(marked, index),
+                                  side: const BorderSide(width: 0.96),
+                                ),
+                                scale: 1.512,
+                              ),
+                              title: Text(
+                                "${viewModel.matchingUsers[index].userName}",
+                                style: GoogleFonts.lato(
+                                    color: AppColors.zuriTextBodyColor),
+                              ),
+                            ),
                           ),
-                          title: Text(
-                            "${viewModel.matchingUsers[index].userName}",
-                            style: GoogleFonts.lato(
-                                color: AppColors.zuriTextBodyColor),
-                          ),
-                        ),
-                      ),
               ),
             ],
           ),
