@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:hng/general_widgets/no_connection_widget.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/ui/view/dm_user/dm_user_viewmodel.dart';
@@ -52,11 +53,14 @@ class DmUserView extends StatelessWidget with $DmUserView {
                   children: [
                     const OnlineIndicator(),
                     const SizedBox(width: 4.0),
-                    Text(model.receiver.username,
-                        style: const TextStyle(
-                            color: AppColors.deepBlackColor,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w400)),
+                    Text(
+                      model.receiver.username,
+                      style: const TextStyle(
+                        color: AppColors.deepBlackColor,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                   ],
                 ),
                 const Text(
@@ -85,123 +89,96 @@ class DmUserView extends StatelessWidget with $DmUserView {
               // duration: Duration(milliseconds: 500),
               // curve: Curves.fastOutSlowIn);
             },
-            widget: SingleChildScrollView(
-              controller: scrollController,
-              physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10, left: 5, right: 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.only(bottom: 20.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20.0, top: 24.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(3),
-                                      child: SizedBox(
-                                        width: 50,
-                                        height: 50,
-                                        child: Image.asset(
-                                            'assets/images/avatar.png',
-                                            fit: BoxFit.fill),
+            widget: Column(
+              children: [
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SingleChildScrollView(
+                      controller: scrollController,
+                      physics: const BouncingScrollPhysics(),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 10, left: 5, right: 10, bottom: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 20.0, top: 24.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(3),
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: Image.asset(
+                                          'assets/images/avatar.png',
+                                          fit: BoxFit.fill),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 15.0),
+                                  Row(
+                                    children: [
+                                      const OnlineIndicator(),
+                                      const SizedBox(width: 7.0),
+                                      Text(model.receiver.username,
+                                          style: const TextStyle(
+                                              fontSize: 16.0,
+                                              fontWeight: FontWeight.w700)),
+                                      const SizedBox(width: 7.0),
+                                      const CustomStatus(
+                                        isActive: true,
+                                        data: '5',
                                       ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    model.bio,
+                                    style: const TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.darkGreyColor,
                                     ),
-                                    const SizedBox(height: 20.0),
-                                    Row(
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(3),
-                                          child: SizedBox(
-                                            width: 50,
-                                            height: 50,
-                                            child: Image.asset(
-                                                'assets/images/avatar.png',
-                                                fit: BoxFit.fill),
-                                          ),
-                                        ),
-                                        const SizedBox(height: 20.0),
-                                        Row(
-                                          children: [
-                                         const    OnlineIndicator(),
-                                            const SizedBox(width: 7.0),
-                                            Text(model.receiver.username,
-                                                style: const TextStyle(
-                                                    fontSize: 16.0,
-                                                    fontWeight:
-                                                        FontWeight.w700)),
-                                            const SizedBox(width: 7.0),
-                                            const CustomStatus(
-                                              isActive: true,
-                                              data: '5',
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(height: 5),
-                                        Text(model.bio,
-                                            style: const TextStyle(
-                                                fontSize: 16.0,
-                                                fontWeight: FontWeight.w700)),
-                                        const SizedBox(width: 7.0),
-                                        const CustomStatus(
-                                          isActive: true,
-                                          data: '5',
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Text(model.bio,
-                                        style: const TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColors.greyColor)),
-                                    const SizedBox(height: 10),
-                                    const StartMessage(),
-                                    const SizedBox(height: 20)
-                                  ],
-                                ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  const StartMessage(),
+                                  const SizedBox(height: 20)
+                                ],
                               ),
-                              GroupedListView<Message, String>(
-                                controller: scrollController,
-                                shrinkWrap: true,
-                                elements: model.chatMessages,
-                                groupBy: (message) {
-                                  return message.getRelativeTime();
-                                },
-                                groupSeparatorBuilder: (value) {
-                                  return GroupSeparator(value);
-                                },
-                                itemBuilder: (context, msg) {
-                                  return InkWell(
-                                      onLongPress: () =>
-                                          model.showButtonSheet(msg),
-                                      child: MessageView(msg));
-                                },
-                                groupComparator: (groupOne, groupTwo) =>
-                                    groupOne.compareTo(groupTwo),
-                                itemComparator: (itemOne, itemTwo) =>
-                                    itemOne.id.compareTo(itemTwo.id),
-                              ),
-                              const SizedBox(height: 40)
-                            ],
-                          ),
+                            ),
+                            GroupedListView<Message, String>(
+                              controller: scrollController,
+                              shrinkWrap: true,
+                              elements: model.chatMessages,
+                              groupBy: (message) {
+                                return message.getRelativeTime();
+                              },
+                              groupSeparatorBuilder: (value) {
+                                return GroupSeparator(value);
+                              },
+                              itemBuilder: (context, msg) {
+                                return InkWell(
+                                    onLongPress: () =>
+                                        model.showButtonSheet(msg),
+                                    child: MessageView(msg));
+                              },
+                              groupComparator: (groupOne, groupTwo) =>
+                                  groupOne.compareTo(groupTwo),
+                              itemComparator: (itemOne, itemTwo) =>
+                                  itemOne.id.compareTo(itemTwo.id),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
+                const NoConnectionWidget(Icons.cloud_off),
+              ],
             ),
           ),
 
