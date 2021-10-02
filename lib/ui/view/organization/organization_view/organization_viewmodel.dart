@@ -1,4 +1,4 @@
-import 'package:hng/services/user_service.dart';
+// import 'package:hng/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'dart:convert';
@@ -18,7 +18,7 @@ class OrganizationViewModel extends BaseViewModel {
   final snackbar = locator<SnackbarService>();
   final connectivityService = locator<ConnectivityService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
-  final _userService = locator<UserService>();
+  // final _userService = locator<UserService>();
   final api = OrganizationApiService();
   List<OrganizationModel> organizations = [];
 
@@ -135,21 +135,21 @@ class OrganizationViewModel extends BaseViewModel {
     try {
       setBusy(true);
       var orgId = currentOrgId ?? '61459d8e62688da5302acdb1';
-      print('${currentOrgId} currentOrgId');
+      // print('${currentOrgId} currentOrgId');
 
-      print('Organization id from user service ${_userService.currentOrgId}');
+      // print('Organization id from user service ${_userService.currentOrgId}');
 
       if (orgId.isNotEmpty) {
         final orgMemberList = await api.getOrganizationMemberList(orgId);
 
-        print('Organization member list length ${orgMemberList.data.length}');
+        // print('Organization member list length ${orgMemberList.data.length}');
 
         if (orgMemberList.data.isNotEmpty) {
           storageService.setString(StorageKeys.organizationMemberList,
               jsonEncode(orgMemberList.data));
         }
-        print(
-            'Stored Organization Member list ${storageService.getString(StorageKeys.organizationMemberList)}');
+        // print(
+        //     'Stored Organization Member list ${storageService.getString(StorageKeys.organizationMemberList)}');
       }
       setBusy(false);
     } catch (e) {

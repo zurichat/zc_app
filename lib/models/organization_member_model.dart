@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class OrganizationMemberModelList {
   final List<OrganizationMemberModel> data;
   final int? status;
@@ -14,7 +12,7 @@ class OrganizationMemberModelList {
     // organizationMembersList =
     //     json['data'].map((i) => OrganizationMemberModel.fromJson(i)).toList();
     var list = json['data'] as List;
-    print('Our parsed list ${list}');
+    // print('Our parsed list ${list}');
     List<OrganizationMemberModel> memberList =
         list.map((member) => OrganizationMemberModel.fromJson(member)).toList();
     return OrganizationMemberModelList(
