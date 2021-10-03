@@ -40,7 +40,9 @@ mixin $ForgotPasswordNewView on StatelessWidget {
     // The dispose function for a TextEditingController sets all listeners to null
 
     newPasswordController.dispose();
+    newPasswordFocusNode.dispose();
     confirmPasswordController.dispose();
+    confirmPasswordFocusNode.dispose();
   }
 }
 

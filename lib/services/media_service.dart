@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 
 
 class MediaService {
-  final _picker = ImagePicker();
+  final ImagePicker _picker = ImagePicker();
   final zuriApi = locator<ZuriApi>();
   final storageService = locator<SharedPreferenceLocalStorage>();
   final userService = locator<UserService>();
