@@ -38,5 +38,15 @@ void main() {
         });
       });
     });
+
+     group('Enable Internet Connection', () {
+      test(' if internet connection is disabled, internet enabled!', () async {
+        var connectivity = getAndRegisterConnectivityServiceMock();
+        connectivity.initialize();
+        await connectivity.checkConnection().whenComplete(() {
+          onlineStatus(isOnline: true);
+        });
+      });
+    });
   });
 }
