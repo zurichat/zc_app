@@ -133,11 +133,11 @@ MockChannelsApiService getAndRegisterChannelsApiServiceMock() {
 }
 
 MockCentrifugeService getAndRegisterCentrifugeServiceMock() {
+  final service = MockCentrifugeService();
   _removeRegistrationIfExists<CentrifugeService>();
   Map eventData = {"some_key": "some_returned_string"};
   final Future<Stream?> streamtoReturn =
       Future.value(Stream.fromIterable([eventData]));
-  final service = MockCentrifugeService();
   when(service.subscribe("channelSocketID"))
       .thenAnswer((_) async => streamtoReturn);
 
