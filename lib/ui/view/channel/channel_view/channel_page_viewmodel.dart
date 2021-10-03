@@ -45,7 +45,7 @@ class ChannelPageViewModel extends BaseViewModel {
   }
 
   void initialise(String channelId) async {
-    channelId = channelId;
+    channelID = channelId;
     await joinChannel(channelId);
     fetchMessages(channelId);
     // getChannelSocketId("$channelId");
