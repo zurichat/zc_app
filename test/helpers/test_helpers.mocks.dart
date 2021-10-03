@@ -7,6 +7,7 @@ import 'dart:ui' as _i13;
 
 import 'package:centrifuge/centrifuge.dart' as _i19;
 import 'package:dio/dio.dart' as _i3;
+
 import 'package:flutter/material.dart' as _i10;
 import 'package:hng/models/api_response.dart' as _i21;
 import 'package:hng/models/channel_members.dart' as _i17;
@@ -17,6 +18,7 @@ import 'package:hng/models/organization_model.dart' as _i5;
 import 'package:hng/models/user_search_model.dart' as _i22;
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart' as _i25;
 import 'package:hng/package/base/server-request/api/zuri_api.dart' as _i20;
+
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart'
     as _i15;
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart'
@@ -743,6 +745,7 @@ class MockChannelsApiService extends _i1.Mock
       (super.noSuchMethod(Invocation.method(#deleteChannel, [orgId, channelId]),
           returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
   @override
+
   _i2.Future<List<_i17.ChannelMembermodel>?> getChannelMembers(dynamic id) =>
       (super.noSuchMethod(Invocation.method(#getChannelMembers, [id]),
               returnValue: Future<List<_i17.ChannelMembermodel>?>.value())
@@ -758,6 +761,7 @@ class MockChannelsApiService extends _i1.Mock
 /// A class which mocks [CentrifugeService].
 ///
 /// See the documentation for Mockito's code generation for more information.
+
 class MockCentrifugeService extends _i1.Mock implements _i18.CentrifugeService {
   @override
   _i2.StreamController<dynamic> get messageStreamController =>
@@ -840,6 +844,7 @@ class MockCentrifugeService extends _i1.Mock implements _i18.CentrifugeService {
 /// A class which mocks [ZuriApi].
 ///
 /// See the documentation for Mockito's code generation for more information.
+
 class MockZuriApi extends _i1.Mock implements _i20.ZuriApi {
   @override
   _i3.Dio get dio =>
@@ -874,6 +879,7 @@ class MockZuriApi extends _i1.Mock implements _i20.ZuriApi {
           Invocation.method(#put, [string], {#body: body, #token: token}),
           returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
   @override
+
   _i2.Future<_i21.ApiResponse?> patch(String? path,
           {Map<String, dynamic>? body, String? token}) =>
       (super.noSuchMethod(
@@ -888,6 +894,7 @@ class MockZuriApi extends _i1.Mock implements _i20.ZuriApi {
           returnValue:
               Future<_i21.ApiResponse?>.value()) as _i2
           .Future<_i21.ApiResponse?>);
+
   @override
   _i2.Future<dynamic> login({String? email, String? password, dynamic token}) =>
       (super.noSuchMethod(
@@ -979,6 +986,7 @@ class MockZuriApi extends _i1.Mock implements _i20.ZuriApi {
           Invocation.method(#addMemberToOrganization, [orgId, email, token]),
           returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
   @override
+
   _i2.Future<List<_i22.UserSearch>> fetchMembersInOrganization(
           String? orgId, dynamic token) =>
       (super.noSuchMethod(
@@ -1041,6 +1049,7 @@ class MockZuriApi extends _i1.Mock implements _i20.ZuriApi {
               [channelMessageId, content, files, orgId, userId, channelId]),
           returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
   @override
+
   _i2.Future<List<_i16.ChannelModel>> fetchChannel(
           String? orgId, dynamic token) =>
       (super.noSuchMethod(Invocation.method(#fetchChannel, [orgId, token]),
@@ -1122,6 +1131,7 @@ class MockZuriApi extends _i1.Mock implements _i20.ZuriApi {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockConnectivityService extends _i1.Mock
+
     implements _i23.ConnectivityService {
   @override
   bool get hasConnection =>
@@ -1132,6 +1142,7 @@ class MockConnectivityService extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#hasConnection, _hasConnection),
           returnValueForMissingStub: null);
   @override
+
   _i24.ConnectivityStatus get networkStatus => (super.noSuchMethod(
       Invocation.getter(#networkStatus),
       returnValue: _i24.ConnectivityStatus.wifi) as _i24.ConnectivityStatus);
@@ -1195,6 +1206,7 @@ class MockConnectivityService extends _i1.Mock
 /// A class which mocks [JumpToApi].
 ///
 /// See the documentation for Mockito's code generation for more information.
+
 class MockJumpToApi extends _i1.Mock implements _i25.JumpToApi {
   @override
   String get allChannelsPath =>
