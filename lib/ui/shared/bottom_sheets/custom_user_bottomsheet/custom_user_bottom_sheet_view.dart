@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/ui/shared/colors.dart';
@@ -22,8 +23,15 @@ class CustomUserBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height,
+          maxWidth: MediaQuery.of(context).size.width),
+      designSize: const Size(411, 823),
+    );
     final height = MediaQuery.of(context).size.height;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
+      onModelReady: (model) => model.futureToRun(),
       builder: (context, model, child) => model.isBusy
           ? const Center(child: CircularProgressIndicator())
           : DraggableScrollableSheet(
@@ -42,31 +50,64 @@ class CustomUserBottomSheetView extends StatelessWidget {
                       children: [
                         SizedBox(
                           height: height * .3,
-                          child: const ProfileHead(),
+                          child: ProfileHead(),
                         ),
                         SizedBox(
-                          height: height * .1,
+                          height: 65.h,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              CustomButton(text: Msg, onPressed: () {}),
-                              CustomButton(
-                                text: EditProfile,
-                                onPressed: () => model.navigateToEditProfile(),
+                              SizedBox(
+                                width: 24.5.w,
                               ),
-                              CustomButton.icon(
-                                  icon: Icons.more_horiz_rounded,
-                                  onPressed: () {}),
+                              SizedBox(
+                                  width: 123.w,
+                                  height: 40.h,
+                                  child: CustomButton(
+                                      text: Msg, onPressed: () {})),
+                              SizedBox(width: 20.h),
+                              SizedBox(
+                                width: 123.w,
+                                height: 40.h,
+                                child: CustomButton(
+                                  text: EditProfile,
+                                  onPressed: () =>
+                                      model.navigateToEditProfile(),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20.w,
+                              ),
+                              SizedBox(
+                                height: 40.h,
+                                width: 75.w,
+                                child: CustomButton.icon(
+                                    icon: Icons.more_horiz_rounded,
+                                    onPressed: () {}),
+                              ),
                             ],
                           ),
                         ),
-                        const Divider(),
-                        const CustomProfileTile(
-                            title: Track, subtitle: MobileDev),
-                        const Divider(),
-                        const CustomProfileTile(
-                            title: DisplayName, subtitle: PaulEke),
-                        const Divider(),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 18),
+                          child: Divider(),
+                        ),
+                        CustomProfileTile(
+                          title: Track,
+                          subtitle: model.currentUserData.status.toString(),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 18),
+                          child: Divider(),
+                        ),
+                        CustomProfileTile(
+                          title: DisplayName,
+                          subtitle:
+                              model.currentUserData.displayName.toString(),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 18),
+                          child: Divider(),
+                        ),
                         ListTile(
                           title: const CustomText(
                               text: StatusText, fontWeight: FontWeight.w300),
@@ -82,12 +123,21 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           trailing: IconButton(
                               onPressed: () {}, icon: const Icon(Icons.cancel)),
                         ),
-                        const Divider(),
-                        const CustomProfileTile(
-                            title: Number, subtitle: sampleNumber),
-                        const Divider(),
-                        const CustomProfileTile(
-                            title: EmailAddress, subtitle: EmailPlaceholder),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 18),
+                          child: Divider(),
+                        ),
+                        CustomProfileTile(
+                            title: Number,
+                            subtitle:
+                                model.currentUserData.phoneNum.toString()),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 18),
+                          child: Divider(),
+                        ),
+                        CustomProfileTile(
+                            title: EmailAddress,
+                            subtitle: model.currentUserData.email.toString()),
                       ],
                     ),
                   ),

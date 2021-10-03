@@ -3,7 +3,7 @@ import 'package:hng/ui/shared/shared.dart';
 import '../../../../general_widgets/custom_text.dart';
 import '../../../shared/colors.dart';
 
-class ProfilePageHead extends StatelessWidget {
+class   ProfilePageHead extends StatelessWidget {
   const ProfilePageHead({Key? key, this.image, this.name, this.currentStatus})
       : super(key: key);
 

@@ -29,7 +29,7 @@ class SharedPreferenceLocalStorage {
     return _preferences?.getBool(key);
   }
 
-  String? getString(String key) {
+  String? getString(String key, [data]) {
     return _preferences?.getString(key);
   }
 

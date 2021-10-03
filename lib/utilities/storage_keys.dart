@@ -12,6 +12,7 @@ class StorageKeys {
   static const currentMemberID = 'member_Id';
   static const displayName = 'display_name';
   static const firstName = 'first_name';
+  static const email = 'email';
   static const status = 'status';
   static const phoneNum = 'phoneNum';
   static const currentUserImageUrl = 'current_url';

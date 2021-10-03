@@ -55,7 +55,14 @@ class OrganizationView extends StatelessWidget {
                                     shrinkWrap: true,
                                     itemBuilder: (context, i) {
                                       final org = viewModel.organizations[i];
-
+                                      // ignore: avoid_print
+                                      print(org.memberId);
+                                      // ignore: avoid_print
+                                      print(org.id);
+                                      // ignore: avoid_print
+                                      print(org.organizationUrl);
+                                      // ignore: avoid_print
+                                      print(org.name);
                                       return OrganizationTile(org: org);
                                     },
                                   ),

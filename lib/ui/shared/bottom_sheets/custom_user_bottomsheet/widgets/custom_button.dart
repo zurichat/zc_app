@@ -24,7 +24,6 @@ class CustomButton extends StatelessWidget {
     return _customButtonType == CustomUserProfileButtonType.normal
         ? MaterialButton(
             onPressed: onPressed,
-            padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.02),
             shape: Border.all(color: AppColors.greyishColor),
             child: Text(
               " $text",

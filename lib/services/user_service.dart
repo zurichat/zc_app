@@ -15,6 +15,7 @@ class UserService {
   String _currentOrgId = '';
   String _currentOrgUrl = '';
   String _currentOrgName = '';
+  String _memberId = '';
   String _authToken = '';
   String _userId = '';
   String _userEmail = '';
@@ -36,6 +37,13 @@ class UserService {
     return _currentOrgName;
   }
 
+  String get currentMemberId {
+    _memberId =
+        _sharedPrefs.getString(StorageKeys.currentMemberID) ?? '';
+    //You can perform other function before returning
+    return _memberId;
+  }
+
   String get currentOrgUrl {
     _currentOrgUrl = _sharedPrefs.getString(StorageKeys.currentOrgUrl) ?? '';
     //You can perform other function before returning
@@ -50,6 +58,11 @@ class UserService {
   void setCurrentOrganizationId(String currentOrgId) {
     _currentOrgId = currentOrgId;
     _sharedPrefs.setString(StorageKeys.currentOrgId, _currentOrgId);
+  }
+
+  void setCurrentMemberId(String currentMemberId) {
+    _memberId = currentMemberId;
+    _sharedPrefs.setString(StorageKeys.currentMemberID, _memberId);
   }
 
   ///Get the token on app launch and to know if the user has

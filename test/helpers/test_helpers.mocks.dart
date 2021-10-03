@@ -136,8 +136,9 @@ class MockSharedPreferenceLocalStorage extends _i1.Mock
   bool? getBool(String? key) =>
       (super.noSuchMethod(Invocation.method(#getBool, [key])) as bool?);
   @override
-  String? getString(String? key) =>
-      (super.noSuchMethod(Invocation.method(#getString, [key])) as String?);
+  String? getString(String? key, [data]) =>
+      (super.noSuchMethod(Invocation.method(#getString, [key]))
+          as String?);
   @override
   double? getDouble(String? key) =>
       (super.noSuchMethod(Invocation.method(#getDouble, [key])) as double?);

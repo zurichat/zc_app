@@ -43,6 +43,7 @@ class HomePageViewModel extends StreamViewModel {
   // final _channelsApiService = locator<ChannelsApiService>();
   bool connectionStatus = false;
 
+
   final List<ChannelModel> _channelsList = [];
   ChannelModel? _channel;
   List<ChannelModel> get channelsList => _channelsList;
@@ -56,7 +57,8 @@ class HomePageViewModel extends StreamViewModel {
   List<HomeItemModel> joinedChannels = [];
   List<HomeItemModel> directMessages = [];
 
-  String get orgName => userService.currentOrgName;
+  String get orgName =>
+      storageService.getString(StorageKeys.currentOrgName).toString();
   String get orgId => userService.currentOrgId;
 
   StreamSubscription? notificationSub;

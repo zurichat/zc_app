@@ -15,9 +15,9 @@ class ViewProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ViewProfileViewModel>.reactive(
       viewModelBuilder: () => ViewProfileViewModel(),
-      builder: (context, model, child) => Scaffold(
-        body: SafeArea(
-          child: DraggableScrollableSheet(
+      builder: (context, model, child) => model.isBusy ? 
+      const Center(child: CircularProgressIndicator()) : 
+      DraggableScrollableSheet(
             initialChildSize: 0.9,
             minChildSize: 0.8,
             maxChildSize: 1.0,
@@ -141,8 +141,6 @@ class ViewProfile extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
     );
   }
 }

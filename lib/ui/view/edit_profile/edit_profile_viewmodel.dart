@@ -12,13 +12,14 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-String _name = '', _display = '', _status = '', _phone = '';
+String _fullName = '', _displayName = '', _status = '', _phoneNum = '';
 
 class EditProfileViewModel extends FutureViewModel {
-  ProfileModel userData = ProfileModel();
+  ProfileModel currentUserData = ProfileModel();
   final snackbar = locator<SnackbarService>();
   final navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
+  final storageService = locator<SharedPreferenceLocalStorage>();
   final _api = ZuriApi(coreBaseUrl);
   final api = ApiService();
   String? get token =>
@@ -26,16 +27,16 @@ class EditProfileViewModel extends FutureViewModel {
 
   void updateString(String name, String display, String status, String phone) {
     if (name.trim().isNotEmpty) {
-      _name = name;
+      _fullName = name;
     }
     if (display.trim().isNotEmpty) {
-      _display = display;
+      _displayName = display;
     }
     if (status.trim().isNotEmpty) {
       _status = status;
     }
     if (phone.trim().isNotEmpty) {
-      _phone = phone;
+      _phoneNum = phone;
     }
   }
 
@@ -45,31 +46,27 @@ class EditProfileViewModel extends FutureViewModel {
     _navigationService.back();
   }
 
-  final storageService = locator<SharedPreferenceLocalStorage>();
   Future updateProfile() async {
     String? orgId = storageService.getString(StorageKeys.currentOrgId);
     String? memId = storageService.getString(StorageKeys.currentMemberID);
-    //TODO CHange these links to there rightful values once they can be updated
 
-    String profileEndPoint = 'organizations/$orgId/members/$memId/profile';
-
+    final profileEndPoint = 'organizations/$orgId/members/$memId/profile';
+// 614f093de35bb73a77bc2bc4
     final profileData = {
       'bio': _status,
-      'first_name': _name,
-      'display_name': _display,
-      'phone': _phone
+      'first_name': _fullName,
+      'display_name': _displayName,
+      'phone': _phoneNum,
     };
     final editResponse =
         await _api.patch(profileEndPoint, body: profileData, token: token);
-    final snackbar = locator<SnackbarService>();
-
-    if (editResponse!.statusCode == 200) {
+       
+    if (editResponse?.statusCode == 200) {
       snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 5),
           variant: SnackbarType.success,
           message: UpdateSuccessful);
       await GetUserProfile().currentUser();
-      _navigationService.back();
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -82,7 +79,7 @@ class EditProfileViewModel extends FutureViewModel {
   @override
   Future futureToRun() async {
     setBusy(true);
-    userData = await GetUserProfile().currentUser();
+    currentUserData = await GetUserProfile().currentUser();
     setBusy(false);
   }
 }

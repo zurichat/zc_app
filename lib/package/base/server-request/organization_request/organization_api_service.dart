@@ -31,7 +31,9 @@ class OrganizationApiService {
     final email = _userService.userEmail;
 
     final res = await _api.get('/users/$email/organizations', token: token);
-    log.i(res?.data);
+
+    log.i(res?.data?['data']);
+    // print(res?.data);
     if (res?.data['data'] == null) {
       return [];
     }

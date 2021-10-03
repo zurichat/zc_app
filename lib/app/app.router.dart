@@ -460,7 +460,7 @@ class StackedRouter extends RouterBase {
     },
     EditProfileView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const EditProfileView(),
+        builder: (context) => EditProfileView(),
         settings: data,
       );
     },

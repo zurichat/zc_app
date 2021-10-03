@@ -40,7 +40,6 @@ class OrganizationViewModel extends BaseViewModel {
       );
     }
   }
-
   //Returns the list of Organization the user is part of
   Future fetchOrganizations() async {
     if (!await connectivityService.checkConnection()) {
@@ -155,6 +154,9 @@ class OrganizationViewModel extends BaseViewModel {
 
   String? get currentOrgId =>
       storageService.getString(StorageKeys.currentOrgId);
+
+  String? get currentMemberId =>
+      storageService.getString(StorageKeys.currentMemberID);
 
   Future<void> viewPreferences() async {
     await navigation.navigateTo(Routes.preferenceView);

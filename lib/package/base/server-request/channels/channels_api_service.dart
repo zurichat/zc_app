@@ -136,10 +136,11 @@ class ChannelsApiService {
   }
 
   Future<List<ChannelModel>> fetchChannel() async {
+    final orgId = _userService.currentOrgId;
     var channels = <ChannelModel>[];
     try {
       final res = await _api.get(
-        '/v1/61459d8e62688da5302acdb1/channels/',
+        '/v1/$orgId/channels/',
         //token: token,
       );
       channels =
