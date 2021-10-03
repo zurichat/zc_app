@@ -9,6 +9,7 @@ import 'package:centrifuge/centrifuge.dart' as _i19;
 import 'package:dio/dio.dart' as _i3;
 import 'package:flutter/material.dart' as _i10;
 import 'package:hng/models/api_response.dart' as _i21;
+import 'package:hng/models/channel_members.dart' as _i17;
 import 'package:hng/models/channel_model.dart' as _i16;
 import 'package:hng/models/channels_search_model.dart' as _i26;
 import 'package:hng/models/organization_member_model.dart' as _i6;
@@ -170,7 +171,7 @@ class MockNavigationService extends _i1.Mock implements _i9.NavigationService {
   @override
   _i10.GlobalKey<_i10.NavigatorState>? nestedNavigationKey(int? index) =>
       (super.noSuchMethod(Invocation.method(#nestedNavigationKey, [index]))
-          as _i10.GlobalKey<_i10.NavigatorState>?);
+          as _i9.GlobalKey<_i10.NavigatorState>?);
   @override
   void config(
           {bool? enableLog,

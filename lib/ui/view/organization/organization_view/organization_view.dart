@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+// import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../models/organization_model.dart';
