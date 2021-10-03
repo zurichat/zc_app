@@ -62,7 +62,7 @@ class DmJumpToViewModel extends FormViewModel {
     }
   }
 
-  Future<List<NewUser>?>? fetchUsers() async {
+  Future<List<NewUser>> fetchUsers() async {
     try {
       setBusy(true);
       userSearch = (await api.fetchList());
@@ -73,5 +73,8 @@ class DmJumpToViewModel extends FormViewModel {
       log.e("Model users Error - ${e.toString()}");
       AppToast.instance.error(null, errorOccurred);
     }
+    // ignore: unused_local_variable
+    Future<List?> fetchUsers = userSearch as Future<List?>;
+    return userSearch;
   }
 }
