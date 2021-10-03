@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 
 import '../../../shared/shared.dart';
 
 // search bar
-final Image closeIcon = Image.asset('assets/images/close_search.png');
-final Image voiceSearch = Image.asset('assets/images/voice_search.png');
+final Image closeIcon = Image.asset(CloseSearch);
+final Image voiceSearch = Image.asset(VoiceSearch);
 
 class CustomSearchBar extends StatelessWidget {
   final String? searchFilter;
@@ -31,7 +32,7 @@ class CustomSearchBar extends StatelessWidget {
                 leading: closeIcon,
                 title: TextField(
                   decoration: InputDecoration(
-                    hintText: 'designers',
+                    hintText: Designers,
                     hintStyle: AppTextStyles.unreadText,
                   ),
                 ),
