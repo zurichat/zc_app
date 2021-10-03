@@ -171,7 +171,7 @@ class MockNavigationService extends _i1.Mock implements _i9.NavigationService {
   @override
   _i10.GlobalKey<_i10.NavigatorState>? nestedNavigationKey(int? index) =>
       (super.noSuchMethod(Invocation.method(#nestedNavigationKey, [index]))
-          as _i9.GlobalKey<_i10.NavigatorState>?);
+          as _i10.GlobalKey<_i10.NavigatorState>?);
   @override
   void config(
           {bool? enableLog,
