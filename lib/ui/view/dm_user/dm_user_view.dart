@@ -30,9 +30,9 @@ class DmUserView extends StatelessWidget with $DmUserView {
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmUserViewModel>.reactive(
       onModelReady: (model) {
-        model.getDraft(receiverId, messageController.text);
-        if(model.draft != null){
-          messageController.text = model.draft;
+        model.getDraft(receiverId);
+        if(model.storedDraft.isNotEmpty ){
+          messageController.text = model.storedDraft;
         }
         return listenToFormUpdated(model);
       },

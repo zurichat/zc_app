@@ -13,7 +13,6 @@ import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'channel_page_view.form.dart';
 
 
 class ChannelPageViewModel extends FormViewModel {
@@ -26,11 +25,11 @@ class ChannelPageViewModel extends FormViewModel {
 
 
   //draft implementations
-  var draft;
-  void getDraft(channelId, value){
-      draft = _storageService.getString(channelId);
+  var storedDraft = '';
+  void getDraft(channelId){
+      var draft = _storageService.getString(channelId);
       if(draft != null){
-        value = draft ;
+        storedDraft = draft ;
         _storageService.clearData(channelId);
       }
   }

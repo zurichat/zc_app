@@ -15,9 +15,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomePageViewModel>.reactive(
-      onModelReady: (model) {
-        model.getDmAndChannelsList();
-        model.getNewChannelStream();
+      onModelReady: (vmodel) {
+        vmodel.getDmAndChannelsList();
+        vmodel.getNewChannelStream();
+        vmodel.hasDrafts();
       },
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, vmodel, child) => SafeArea(
@@ -64,10 +65,11 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
           ),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 3),
-            child: DraftTextAndIcon(),
-          ),
+          vmodel.hasDrafts()
+              ? const Padding(
+                  padding: EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 3),
+                  child: DraftTextAndIcon())
+              : Container(),
           const Divider(),
           HomeExpandedList(
             title: Unreads,

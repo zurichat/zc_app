@@ -48,7 +48,7 @@ class CustomListTile extends StatelessWidget {
     return ListTile(
       title: Text(
         text,
-        style: AppTextStyles.heading6,
+        style: AppTextStyles.heading6.copyWith(fontSize: 18),
       ),
       subtitle: Text(
         subtitle,

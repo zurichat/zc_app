@@ -130,12 +130,12 @@ class ThreadDetailViewModel extends BaseViewModel {
   //Note that the receiverID has to be unique to a dm_user_view
   //instance, attached to a particular user.
 
-  var draft;
-  void getDraft(UserPost? userPost, value){
+  var storedDraft='';
+  void getDraft(UserPost? userPost){
     if(userPost != null){
-      draft = storageService.getString(userPost.id.toString());
+      var draft = storageService.getString(userPost.id.toString());
       if (draft != null) {
-        value = draft;
+        storedDraft = draft;
         storageService.clearData(userPost.id.toString());
       }
     }

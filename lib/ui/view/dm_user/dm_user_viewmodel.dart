@@ -18,11 +18,11 @@ class DmUserViewModel extends FormViewModel {
   //Note that the receiverID has to be unique to a dm_user_view
   //instance, attached to a particular user.
 
-  var draft;
-  void getDraft(receiverId, value){
-    draft = _storageService.getString(receiverId);
+  var storedDraft='';
+  void getDraft(receiverId){
+    var draft = _storageService.getString(receiverId);
     if(draft != null){
-      value = draft ;
+      storedDraft = draft ;
       _storageService.clearData(receiverId);
     }
   }

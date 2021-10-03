@@ -34,10 +34,10 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
-        model.getDraft(channelId, channelMessagesController.text);
+        model.getDraft(channelId);
         model.initialise('$channelId');
-        if(model.draft != null){
-          channelMessagesController.text = model.draft;
+        if(model.storedDraft.isNotEmpty){
+          channelMessagesController.text = model.storedDraft;
         }
       },
       //this parameter allows us to reuse the view model to persist the state
@@ -70,8 +70,6 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
             actions: [
               IconButton(
                 onPressed: () {
-                  print('${channelMessagesController.text}yesss');
-                  // model.storeDraft();
                   },
                 icon: const Icon(Icons.search),
               ),

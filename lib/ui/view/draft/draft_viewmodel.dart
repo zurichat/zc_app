@@ -24,25 +24,31 @@ class DraftViewModel extends BaseViewModel {
 
     if(dmStoredKeys != null ){
       dmStoredKeys.forEach((element) {
-        widgets.add(CustomListTile(
-            text: 'element.receiverID.name //Todo ',
-            subtitle: '${_storageService.getString(element)}'));
+        if(_storageService.getString(element) != null ){
+          widgets.add(CustomListTile(
+              text: 'element.receiverID.name //Todo ',
+              subtitle: '${_storageService.getString(element)}'));
+        }
       });
     }
 
     if(channelStoredKeys != null){
       channelStoredKeys.forEach((element) {
-        widgets.add(CustomListTile(
-            text: 'element.channelID.name //Todo ',
-            subtitle: '${_storageService.getString(element)}'));
+        if(_storageService.getString(element) != null ){
+          widgets.add(CustomListTile(
+              text: 'element.channelID.name //Todo ',
+              subtitle: '${_storageService.getString(element)}'));
+        }
       });
     }
 
     if(threadStoredKeys != null ){
       threadStoredKeys.forEach((element) {
-        widgets.add(CustomListTile(
-            text: 'element.userPost.ID.name //Todo ',
-            subtitle: '${_storageService.getString(element)}'));
+        if(_storageService.getString(element) != null ){
+          widgets.add(CustomListTile(
+              text: 'element.userPost.ID.name //Todo ',
+              subtitle: '${_storageService.getString(element)}'));
+        }
       });
     }
   }

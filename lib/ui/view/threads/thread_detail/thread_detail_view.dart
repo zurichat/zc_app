@@ -32,9 +32,9 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
       viewModelBuilder: () => ThreadDetailViewModel(),
       onModelReady: (model) {
-        model.getDraft(userPost, threadMessagesController.text);
-        if(model.draft != null){
-          threadMessagesController.text = model.draft;
+        model.getDraft(userPost);
+        if(model.storedDraft.isNotEmpty){
+          threadMessagesController.text = model.storedDraft;
         }
         model.getRepliesToMessages(userPost);
         model.listenForChanges(userPost);
