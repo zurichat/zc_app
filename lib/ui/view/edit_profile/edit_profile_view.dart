@@ -9,7 +9,6 @@ import 'edit_profile_viewmodel.dart';
 
 // ignore: use_key_in_widget_constructors
 class EditProfileView extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;

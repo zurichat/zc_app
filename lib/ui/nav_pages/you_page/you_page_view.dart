@@ -26,8 +26,8 @@ class YouPage extends StatelessWidget {
       designSize: const Size(411, 823),
     );
     return ViewModelBuilder<YouPageViewModel>.reactive(
-      viewModelBuilder: () => YouPageViewModel(),
       onModelReady: (model) => model.futureToRun(),
+      viewModelBuilder: () => YouPageViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
