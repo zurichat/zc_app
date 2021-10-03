@@ -34,7 +34,8 @@ class ZuriApi implements Api {
   Future<dynamic> get(
     String string, {
     Map<String, dynamic>? queryParameters,
-    String? token,
+    String? token, 
+    headers,
   }) async {
     log.i('Making request to $string');
     try {

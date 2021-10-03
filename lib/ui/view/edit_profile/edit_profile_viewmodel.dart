@@ -4,7 +4,6 @@ import 'package:hng/models/profile_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/api_service.dart';
 import 'package:hng/services/connectivity_service.dart';
-import 'package:hng/services/current_user_profile.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
@@ -84,7 +83,6 @@ class EditProfileViewModel extends FutureViewModel {
     setBusy(false);
   }
 
-  @override
   void setFormStatus() {
     // TODO: implement setFormStatus
   }
@@ -92,7 +90,7 @@ class EditProfileViewModel extends FutureViewModel {
 
 //I didn't put this in a service because the backend doesn't have calls for many of the elements here
 class GetUserProfile {
-  final _api = HttpApiService('https://api.zuri.chat/');
+  final _api = ZuriApi(coreBaseUrl);
 
   final storageService = locator<SharedPreferenceLocalStorage>();
 
