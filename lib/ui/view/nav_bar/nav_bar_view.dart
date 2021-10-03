@@ -112,7 +112,7 @@ class NavBarView extends StatelessWidget {
       // case 2:
       //   return const IntegratePage();
       case 2:
-        return  YouPage();
+        return  const YouPage();
       default:
         return Container();
     }

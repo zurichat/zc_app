@@ -96,8 +96,8 @@ class GetUserProfile {
 
   /// Fetches info of the current user
   Future<ProfileModel> currentUser() async {
-    String? orgId = storageService.getString(StorageKeys.currentOrgId);
-    String? userId = storageService.getString(StorageKeys.currentUserId);
+    // String? orgId = storageService.getString(StorageKeys.currentOrgId);
+    // String? userId = storageService.getString(StorageKeys.currentUserId);
     String link =
         'organizations/61459d8e62688da5302acdb1/members/614729a2f41cb684cc531ac7';
 
