@@ -24,11 +24,18 @@ class DmUserView extends StatelessWidget with $DmUserView {
   DmUserView({Key? key}) : super(key: key);
 
   final scrollController = ScrollController();
+  final String receiverId = 'receiverId';
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmUserViewModel>.reactive(
-      onModelReady: (model) => listenToFormUpdated(model),
+      onModelReady: (model) {
+        model.getDraft(receiverId, messageController.text);
+        if(model.draft != null){
+          messageController.text = model.draft;
+        }
+        return listenToFormUpdated(model);
+      },
       viewModelBuilder: () => DmUserViewModel(),
       builder: (context, model, child) {
         debugPrint(model.hasClickedMessageField.toString());
@@ -41,7 +48,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
               iconSize: 18.0,
               color: AppColors.deepBlackColor,
               onPressed: () {
-                model.popScreen();
+                model.popScreens(receiverId, messageController.text);
               },
             ),
             titleSpacing: 0.0,
@@ -76,6 +83,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
             elevation: 1.0,
           ),
           body: ExpandableTextFieldScreen(
+            textController: messageController,
             hintText: 'Message ${model.receiver.username}',
             sendMessage: (String message) {
               model.sendMessage(message);

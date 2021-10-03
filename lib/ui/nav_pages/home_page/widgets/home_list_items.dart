@@ -32,6 +32,23 @@ class ThreadTextAndIcon extends StatelessWidget {
   }
 }
 
+class DraftTextAndIcon extends StatelessWidget {
+  const DraftTextAndIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return _TextAndIcon(
+      text: Drafts,
+      unread: true,
+      onTap: () {
+        // Navigate to draft screen
+        navigationService.navigateTo(Routes.draftView);
+      },
+      icon: SvgIcon(svgIcon: SvgAssets.threads),
+    );
+  }
+}
+
 class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   const AddChannelsTextAndIcon({Key? key}) : super(key: key);
 

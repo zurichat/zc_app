@@ -4,13 +4,21 @@ import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 import '../../../shared/shared.dart';
 
 import 'channel_page_viewmodel.dart';
 import 'widgets/channel_chat.dart';
+import 'channel_page_view.form.dart';
 
-class ChannelPageView extends StatelessWidget {
-  const ChannelPageView({
+@FormView(
+  fields: [
+    FormTextField(name: 'channelMessages'),
+  ],
+)
+
+class ChannelPageView extends StatelessWidget with $ChannelPageView {
+  ChannelPageView({
     Key? key,
     required this.channelname,
     required this.channelId,
@@ -26,7 +34,11 @@ class ChannelPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
+        model.getDraft(channelId, channelMessagesController.text);
         model.initialise('$channelId');
+        if(model.draft != null){
+          channelMessagesController.text = model.draft;
+        }
       },
       //this parameter allows us to reuse the view model to persist the state
 
@@ -37,7 +49,9 @@ class ChannelPageView extends StatelessWidget {
             leading: Padding(
               padding: const EdgeInsets.only(left: 5),
               child: IconButton(
-                  onPressed: model.goBack,
+                  onPressed: (){
+                    model.goBack(channelId, channelMessagesController.text);
+                    },
                   icon: const Icon(Icons.arrow_back_ios)),
             ),
             centerTitle: false,
@@ -55,7 +69,10 @@ class ChannelPageView extends StatelessWidget {
             ),
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  print('${channelMessagesController.text}yesss');
+                  // model.storeDraft();
+                  },
                 icon: const Icon(Icons.search),
               ),
               Padding(
@@ -71,6 +88,7 @@ class ChannelPageView extends StatelessWidget {
             ],
           ),
           body: ExpandableTextFieldScreen(
+            textController: channelMessagesController,
             hintText: 'Add a Reply',
             sendMessage: (val) => model.sendMessage(val, channelId!),
             widget: SingleChildScrollView(

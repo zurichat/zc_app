@@ -13,13 +13,34 @@ import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'channel_page_view.form.dart';
 
-class ChannelPageViewModel extends BaseViewModel {
+
+class ChannelPageViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _channelsApiService = locator<ChannelsApiService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _centrifugeService = locator<CentrifugeService>();
   final _bottomSheetService = locator<BottomSheetService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
+
+
+  //draft implementations
+  var draft;
+  void getDraft(channelId, value){
+      draft = _storageService.getString(channelId);
+      if(draft != null){
+        value = draft ;
+        _storageService.clearData(channelId);
+      }
+  }
+
+  void storeDraft(channelId, value){
+    if(value.length > 0){
+      _storageService.setStringList(StorageKeys.currentUserChannelDrafts, [channelId]);
+      _storageService.setString(channelId, value);
+    }
+  }
 
 // ignore: todo
 //TODO refactor this
@@ -131,7 +152,8 @@ ${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}''';
     await _navigationService.navigateTo(Routes.channelAddPeopleView);
   }
 
-  void goBack() {
+  void goBack(channelId, value) {
+    storeDraft(channelId, value);
     _navigationService.back();
   }
 
@@ -156,5 +178,10 @@ ${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}''';
   void toggleExpanded() {
     isExpanded = !isExpanded;
     notifyListeners();
+  }
+
+  @override
+  void setFormStatus() {
+    // TODO: implement setFormStatus
   }
 }

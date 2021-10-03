@@ -1,14 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import '../../../../app/app.locator.dart';
 import '../../../../models/user_post.dart';
 import '../../../../package/base/server-request/api/zuri_api.dart';
 import '../../../../services/local_storage_services.dart';
 import '../../../../services/user_service.dart';
 import '../../../../utilities/constants.dart';
-
 import 'package:hng/app/app.logger.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/storage_keys.dart';
@@ -108,7 +106,8 @@ class ThreadDetailViewModel extends BaseViewModel {
     );
   }
 
-  void exitPage() {
+  void exitPage(userPost, value) {
+    storeDraft(userPost, value);
     _navigationService.back();
   }
 
@@ -125,4 +124,34 @@ class ThreadDetailViewModel extends BaseViewModel {
   void shouldLoadd(status) {
     notifyListeners();
   }
+
+  //draft implementations
+
+  //Note that the receiverID has to be unique to a dm_user_view
+  //instance, attached to a particular user.
+
+  var draft;
+  void getDraft(UserPost? userPost, value){
+    if(userPost != null){
+      draft = storageService.getString(userPost.id.toString());
+      if (draft != null) {
+        value = draft;
+        storageService.clearData(userPost.id.toString());
+      }
+    }
+  }
+
+  void storeDraft(UserPost? userPost, value){
+    if(value.length > 0){
+      if(userPost != null){
+        storageService.setStringList(
+            StorageKeys.currentUserThreadDrafts, [userPost.id.toString()]);
+        storageService.setString(userPost.id.toString(), value);
+      }
+    }
+  }
+//draft implementation ends here
+
+
+
 }

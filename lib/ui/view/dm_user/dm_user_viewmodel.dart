@@ -1,13 +1,41 @@
 import 'dart:math';
 
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class DmUserViewModel extends FormViewModel {
+  final navigationService = locator<NavigationService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
+
+  //draft implementations
+
+  //Note that the receiverID has to be unique to a dm_user_view
+  //instance, attached to a particular user.
+
+  var draft;
+  void getDraft(receiverId, value){
+    draft = _storageService.getString(receiverId);
+    if(draft != null){
+      value = draft ;
+      _storageService.clearData(receiverId);
+    }
+  }
+
+  void storeDraft(receiverId, value){
+    if(value.length > 0){
+      _storageService.setStringList(StorageKeys.currentUserDmDrafts, [receiverId]);
+      _storageService.setString(receiverId, value);
+    }
+  }
+  //draft implementation ends here
+
+
   final _username = '';
   String get username => _username;
 
@@ -71,10 +99,14 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  void popScreen() {
-    final navigationService = locator<NavigationService>();
+  void popScreens(receiverId, value) {
+    storeDraft(receiverId, value);
     navigationService.back();
   }
+  void popScreen() {
+    navigationService.back();
+  }
+
 
   void sendResponse() async {
     await Future.delayed(const Duration(seconds: 0));

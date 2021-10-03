@@ -10,15 +10,17 @@ class ExpandableTextFieldScreen extends HookWidget {
     required this.widget,
     required this.sendMessage,
     required this.hintText,
+    required this.textController
   }) : super(key: key);
   final Widget widget;
   final Function(String message) sendMessage;
   final String hintText;
   final focusNode = FocusNode();
+  final textController;
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController textController = useTextEditingController();
+    // TextEditingController textController = useTextEditingController();
     return ViewModelBuilder<ExpandableTextFieldScreenViewModel>.reactive(
       viewModelBuilder: () => ExpandableTextFieldScreenViewModel(),
       builder: (__, model, _) {

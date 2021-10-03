@@ -64,6 +64,10 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
           ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 3),
+            child: DraftTextAndIcon(),
+          ),
           const Divider(),
           HomeExpandedList(
             title: Unreads,

@@ -1,20 +1,32 @@
 //keep Hng Project
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked_annotations.dart';
 import '../../../utilities/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../general_widgets/custom_text.dart';
 import 'direct_message_viewmodel.dart';
+import 'direct_message.form.dart';
 
-class DirectMessage extends StatelessWidget {
+
+@FormView(
+  fields: [
+    FormTextField(name: 'directMessages'),
+  ],
+)
+
+class DirectMessage extends StatelessWidget with $DirectMessage {
   final String? username;
-  const DirectMessage({Key? key, this.username}) : super(key: key);
+  DirectMessage({Key? key, this.username}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ViewModelBuilder<DirectMessageViewModel>.reactive(
+        onModelReady: (model)async{
+          model.getDraft();
+          return listenToFormUpdated(model);
+        },
         viewModelBuilder: () => DirectMessageViewModel(),
         builder: (context, model, child) {
           return Scaffold(
@@ -22,7 +34,9 @@ class DirectMessage extends StatelessWidget {
               backgroundColor: Colors.white,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {
+                  return Navigator.pop(context);
+                },
               ),
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,13 +181,12 @@ class DirectMessage extends StatelessWidget {
                         children: <Widget>[
                           Expanded(
                             child: TextField(
-                              controller: model.controller,
+                              controller: directMessagesController,
                               decoration: const InputDecoration(
                                 hintText: 'Write message...',
-                                hintStyle: TextStyle(color: Colors.black54),
-                              ),
-                              onEditingComplete: () =>
-                                  model.controller.clearComposing(),
+                                hintStyle: TextStyle(color: Colors.black54),),
+                              onEditingComplete: () => directMessagesController.clearComposing(),
+                              restorationId: model.dmDraft,
                             ),
                           ),
                           const SizedBox(
