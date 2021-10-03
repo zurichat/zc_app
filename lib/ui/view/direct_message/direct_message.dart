@@ -6,10 +6,12 @@ import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/custom_text.dart';
+import 'direct_message_text_field_hook.dart';
 import 'direct_message_viewmodel.dart';
 
 class DirectMessage extends StatelessWidget {
   final String? username;
+
   const DirectMessage({Key? key, this.username}) : super(key: key);
 
   @override
@@ -165,16 +167,8 @@ class DirectMessage extends StatelessWidget {
                       color: Colors.white,
                       child: Row(
                         children: <Widget>[
-                          Expanded(
-                            child: TextField(
-                              controller: model.controller,
-                              decoration: const InputDecoration(
-                                hintText: WriteMsgHint,
-                                hintStyle: TextStyle(color: Colors.black54),
-                              ),
-                              onEditingComplete: () =>
-                                  model.controller.clearComposing(),
-                            ),
+                          const Expanded(
+                            child: TextFieldHook(),
                           ),
                           const SizedBox(
                             width: 15,

@@ -38,13 +38,13 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
             onTap: () {
               switch (appbarAction) {
                 case 'Edit':
-                  model.nToEdit();
+                  model.navigateToEdit();
                   break;
                 case 'Done':
-                  model.nToPlugins();
+                  model.navigateToPlugins();
                   break;
                 case 'Add':
-                  model.nToPlugins();
+                  model.navigateToPlugins();
               }
             },
             child: Text(
@@ -66,7 +66,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
               icon: const Icon(Icons.arrow_back_ios, size: 16.0),
               onPressed: () {
                 if (appbarAction == 'Edit') {
-                  model.nToHome();
+                  model.navigateToHome();
                 } else {
                   Navigator.of(context).pop();
                 }
