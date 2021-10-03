@@ -591,7 +591,7 @@ class StackedRouter extends RouterBase {
     },
     YouPage: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const YouPage(),
+        builder: (context) => YouPage(),
         settings: data,
       );
     },

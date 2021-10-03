@@ -50,7 +50,7 @@ class DmJumpToViewModel extends FormViewModel {
     yield await connectivityService.checkConnection();
   }
 
-  Future<List<ChannelsSearch>?> ?fetchChannels() async {
+  Future<List<ChannelsSearch>?> fetchChannels() async {
     try {
       setBusy(true);
       allChannelsSearch = await api.allChannelsList();
