@@ -87,4 +87,9 @@ class ChannelMembersListModel extends BaseViewModel {
   void onSelectUser(String namePattern) {}
 
   void goBack() => NavigationService().back();
+  /*
+    navigator = locator<NavigationService>();
+    It's still navigation service that was used.
+    The test kills returning a null value if NavigationService is used directly inside of
+    */
 }
