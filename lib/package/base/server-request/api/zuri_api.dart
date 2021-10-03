@@ -529,7 +529,6 @@ class ZuriApi implements Api {
 
   /// Fetches channels from an organization
   /// Org ID must not be null
-
   @override
   Future<List<ChannelModel>> fetchChannel(String orgId, token) async {
     try {

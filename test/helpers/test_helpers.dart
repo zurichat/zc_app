@@ -22,7 +22,6 @@ import 'test_helpers.mocks.dart';
 
 ///SUPPLY THE MOCKS FOR ANY SERVICE YOU WANT TO AUTO-GENERATE.
 ///ONCE YOU SUPPLY BELOW AUTO GENERATE BY RUNNING ""
-
 @GenerateMocks([], customMocks: [
   MockSpec<UserService>(returnNullOnMissingStub: true),
   MockSpec<SharedPreferenceLocalStorage>(returnNullOnMissingStub: true),
@@ -134,11 +133,11 @@ MockChannelsApiService getAndRegisterChannelsApiServiceMock() {
 }
 
 MockCentrifugeService getAndRegisterCentrifugeServiceMock() {
+  final service = MockCentrifugeService();
   _removeRegistrationIfExists<CentrifugeService>();
   Map eventData = {"some_key": "some_returned_string"};
   final Future<Stream?> streamtoReturn =
       Future.value(Stream.fromIterable([eventData]));
-  final service = MockCentrifugeService();
   when(service.subscribe("channelSocketID"))
       .thenAnswer((_) async => streamtoReturn);
 
@@ -182,19 +181,17 @@ MockJumpToApi getAndRegisterJumpToApiMock() {
 
 MockMediaService getAndRegisterMediaServiceMock() {
   _removeRegistrationIfExists<MediaService>();
-
+  final service = MockMediaService();
   Future<String> response = Future<String>.value("Image Address");
 
   when(service.uploadImage(fileMock)).thenAnswer((_) async => response);
 
   locator.registerSingleton<MediaService>(service);
-
-MockOrganizationApiService getAndRegisterOrganizationApiService() {
-
-
-
   return service;
+}
 
+void registerServices() {
+  getAndRegisterUserServiceMock();
   getAndRegisterSharedPreferencesLocalStorageMock();
   getAndRegisterNavigationServiceMock();
   getAndRegisterSnackbarServiceMock();
@@ -235,3 +232,12 @@ void _removeRegistrationIfExists<T extends Object>() {
     locator.unregister<T>();
   }
 }
+
+
+
+
+
+
+
+
+
