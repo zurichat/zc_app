@@ -12,7 +12,7 @@ void main() {
           'When called, it verifies if the current route is popped back to the previous screen',
           () async {
         var navigationService = getAndRegisterNavigationServiceMock();
-        var model = ChannelMembersModel();
+        var model = ChannelMembersListModel();
         model.goBack();
         verify(navigationService.back());
       });

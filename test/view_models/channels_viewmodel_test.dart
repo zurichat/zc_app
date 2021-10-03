@@ -21,7 +21,7 @@ void main() {
       test('Check ChannelMembermodel List is empty', () {
         final model = ChannelListViewModel();
         model.membersList;
-        expect(model.membersList, <ChannelMembermodel>[]);
+        expect(model.membersList, <ChannelMemberModel>[]);
       });
     });
   });
