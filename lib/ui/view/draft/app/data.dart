@@ -1,3 +1,5 @@
+import 'package:hng/constants/app_strings.dart';
+
 class DraftedItem {
   final String? username, message, time;
 
@@ -13,18 +15,18 @@ double kPadding = mySize * 0.025;
 
 List<DraftedItem> draftedList = [
   DraftedItem(
-    username: 'OyinkanUA',
-    message: 'Okay',
-    time: 'August 31 at 9:09 PM',
+    username: OyinkanUA,
+    message: Okay,
+    time: SampleDate,
   ),
   DraftedItem(
-    username: 'Abd_salam',
-    message: 'No wahala',
-    time: 'August 31 at 9:09 PM',
+    username: AbdSalam,
+    message: NoWahala,
+    time: SampleDate,
   ),
   DraftedItem(
-    username: '#random chat',
-    message: 'My Oga',
-    time: 'August 31 at 9:09 PM',
+    username: TeamSocrates,
+    message: Cool,
+    time: SampleDate,
   ),
 ];

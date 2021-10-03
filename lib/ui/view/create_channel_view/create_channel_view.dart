@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -23,12 +24,12 @@ class CreateChannelView extends StatelessWidget {
                   child: CustomTextWidget(
                       padding: 17,
                       fontWeight: FontWeight.bold,
-                      text: 'Cancel',
+                      text: Cancel,
                       color: AppColors.zuriPrimaryColor,
                       decoration: TextDecoration.underline),
                 ),
                 title: Text(
-                  'Channels',
+                  Channels,
                   style: AppTextStyles.heading5.copyWith(
                       fontSize: 20,
                       color: AppColors.deepBlackColor,
@@ -39,7 +40,7 @@ class CreateChannelView extends StatelessWidget {
                     child: CustomTextWidget(
                         padding: 17,
                         fontWeight: FontWeight.bold,
-                        text: 'Create',
+                        text: Create,
                         color: AppColors.zuriPrimaryColor,
                         decoration: TextDecoration.underline),
                   ),
@@ -56,7 +57,7 @@ class CreateChannelView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const CustomTextWidget(
-                            text: 'Name',
+                            text: Name,
                             fontWeight: FontWeight.w500,
                           ),
                           UIHelper.verticalSpaceMedium,
@@ -68,7 +69,7 @@ class CreateChannelView extends StatelessWidget {
                         ],
                       ),
                     ),
-                  const   CustomTextField(),
+                    const CustomTextField(),
                     UIHelper.verticalSpaceMedium,
                     const Divider(
                       color: AppColors.greyishColor,
@@ -81,19 +82,19 @@ class CreateChannelView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const CustomTextWidget(
-                            text: 'Description',
+                            text: Description,
                             fontWeight: FontWeight.w500,
                           ),
                           UIHelper.verticalSpaceMedium,
                           const CustomTextWidget(
-                            text: "What's this channel about?",
+                            text: AboutChannel,
                             color: AppColors.greyishColor,
                             fontSize: 14,
                           )
                         ],
                       ),
                     ),
-                 const    CustomTextField(),
+                    const CustomTextField(),
                     UIHelper.verticalSpaceMedium,
                     const Divider(
                       color: AppColors.greyishColor,
@@ -106,7 +107,7 @@ class CreateChannelView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const CustomTextWidget(
-                            text: 'Channel Settings',
+                            text: ChannelSettings,
                           ),
                           UIHelper.verticalSpaceMedium,
                           SwitchListTile(
@@ -115,14 +116,13 @@ class CreateChannelView extends StatelessWidget {
                             value: true,
                             onChanged: (_) {},
                             title: const CustomTextWidget(
-                              text: 'Make Private',
+                              text: MakePrivate,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           UIHelper.verticalSpaceMedium,
                           const CustomTextWidget(
-                            text: '''
-When channel is set to private, members of your organization can only view or join by invitation''',
+                            text: PrivateDescription,
                             color: AppColors.greyishColor,
                             fontSize: 14,
                           )
