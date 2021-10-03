@@ -22,7 +22,7 @@ void main() {
       test('When called, check if users list is not empty', () async {
         final model = DmJumpToViewModel();
         var list = await model.fetchUsers();
-        expect(list!.isNotEmpty, true);
+        expect(list?.isNotEmpty, true);
       });
 
       test('When called, check if channels list is not empty', () async {

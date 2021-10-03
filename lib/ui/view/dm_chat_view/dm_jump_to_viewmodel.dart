@@ -71,7 +71,7 @@ class DmJumpToViewModel extends FormViewModel {
       return userSearch;
     } catch (e) {
       log.e("Model users Error - ${e.toString()}");
-      AppToast.instance.error('', errorOccurred);
+      AppToast.instance.error(null, errorOccurred);
     }
   }
 }
