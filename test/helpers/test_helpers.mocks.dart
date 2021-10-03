@@ -3,10 +3,16 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i2;
+<<<<<<< HEAD
 import 'dart:ui' as _i12;
+=======
+import 'dart:io' as _i23;
+import 'dart:ui' as _i13;
+>>>>>>> 537f2ff33fb92570ba0856e9f8f3d590b6852899
 
 import 'package:centrifuge/centrifuge.dart' as _i18;
 import 'package:dio/dio.dart' as _i3;
+<<<<<<< HEAD
 import 'package:flutter/material.dart' as _i9;
 import 'package:hng/models/api_response.dart' as _i20;
 import 'package:hng/models/channel_members.dart' as _i16;
@@ -16,8 +22,21 @@ import 'package:hng/models/organization_model.dart' as _i6;
 import 'package:hng/models/user_search_model.dart' as _i21;
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart' as _i24;
 import 'package:hng/package/base/server-request/api/zuri_api.dart' as _i19;
+=======
+import 'package:flutter/material.dart' as _i10;
+import 'package:hng/models/api_response.dart' as _i21;
+import 'package:hng/models/channel_members.dart' as _i17;
+import 'package:hng/models/channel_model.dart' as _i16;
+import 'package:hng/models/channels_search_model.dart' as _i27;
+import 'package:hng/models/organization_member_model.dart' as _i6;
+import 'package:hng/models/organization_model.dart' as _i5;
+import 'package:hng/models/user_search_model.dart' as _i22;
+import 'package:hng/package/base/jump_to_request/jump_to_api.dart' as _i26;
+import 'package:hng/package/base/server-request/api/zuri_api.dart' as _i20;
+>>>>>>> 537f2ff33fb92570ba0856e9f8f3d590b6852899
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart'
     as _i14;
+<<<<<<< HEAD
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart'
     as _i13;
 import 'package:hng/services/centrifuge_service.dart' as _i17;
@@ -25,6 +44,16 @@ import 'package:hng/services/connectivity_service.dart' as _i22;
 import 'package:hng/services/local_storage_services.dart' as _i7;
 import 'package:hng/services/user_service.dart' as _i5;
 import 'package:hng/utilities/enums.dart' as _i23;
+=======
+import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart'
+    as _i29;
+import 'package:hng/services/centrifuge_service.dart' as _i18;
+import 'package:hng/services/connectivity_service.dart' as _i24;
+import 'package:hng/services/local_storage_services.dart' as _i8;
+import 'package:hng/services/media_service.dart' as _i28;
+import 'package:hng/services/user_service.dart' as _i7;
+import 'package:hng/utilities/enums.dart' as _i25;
+>>>>>>> 537f2ff33fb92570ba0856e9f8f3d590b6852899
 import 'package:hng/utilities/failures.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i8;
@@ -1106,6 +1135,13 @@ class MockZuriApi extends _i1.Mock implements _i19.ZuriApi {
       (super.noSuchMethod(Invocation.method(#handleApiError, [e]),
           returnValue: _FakeFailure_3()) as _i4.Failure);
   @override
+  _i2.Future<String> uploadImage(_i23.File? image,
+          {String? token, String? memberId, String? orgId}) =>
+      (super.noSuchMethod(
+          Invocation.method(#uploadImage, [image],
+              {#token: token, #memberId: memberId, #orgId: orgId}),
+          returnValue: Future<String>.value('')) as _i2.Future<String>);
+  @override
   String toString() => super.toString();
 }
 
@@ -1113,7 +1149,11 @@ class MockZuriApi extends _i1.Mock implements _i19.ZuriApi {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockConnectivityService extends _i1.Mock
+<<<<<<< HEAD
     implements _i22.ConnectivityService {
+=======
+    implements _i24.ConnectivityService {
+>>>>>>> 537f2ff33fb92570ba0856e9f8f3d590b6852899
   @override
   bool get hasConnection =>
       (super.noSuchMethod(Invocation.getter(#hasConnection), returnValue: false)
@@ -1123,6 +1163,7 @@ class MockConnectivityService extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#hasConnection, _hasConnection),
           returnValueForMissingStub: null);
   @override
+<<<<<<< HEAD
   _i23.ConnectivityStatus get networkStatus => (super.noSuchMethod(
       Invocation.getter(#networkStatus),
       returnValue: _i23.ConnectivityStatus.wifi) as _i23.ConnectivityStatus);
@@ -1139,16 +1180,41 @@ class MockConnectivityService extends _i1.Mock
   @override
   set connectionChangeController(
           _i2.StreamController<_i23.ConnectivityStatus>?
+=======
+  _i25.ConnectivityStatus get networkStatus => (super.noSuchMethod(
+      Invocation.getter(#networkStatus),
+      returnValue: _i25.ConnectivityStatus.wifi) as _i25.ConnectivityStatus);
+  @override
+  set networkStatus(_i25.ConnectivityStatus? _networkStatus) =>
+      super.noSuchMethod(Invocation.setter(#networkStatus, _networkStatus),
+          returnValueForMissingStub: null);
+  @override
+  _i2.StreamController<_i25.ConnectivityStatus>
+      get connectionChangeController => (super.noSuchMethod(
+              Invocation.getter(#connectionChangeController),
+              returnValue: _FakeStreamController_0<_i25.ConnectivityStatus>())
+          as _i2.StreamController<_i25.ConnectivityStatus>);
+  @override
+  set connectionChangeController(
+          _i2.StreamController<_i25.ConnectivityStatus>?
+>>>>>>> 537f2ff33fb92570ba0856e9f8f3d590b6852899
               _connectionChangeController) =>
       super.noSuchMethod(
           Invocation.setter(
               #connectionChangeController, _connectionChangeController),
           returnValueForMissingStub: null);
   @override
+<<<<<<< HEAD
   _i2.Stream<_i23.ConnectivityStatus> get connectionChange =>
       (super.noSuchMethod(Invocation.getter(#connectionChange),
               returnValue: Stream<_i23.ConnectivityStatus>.empty())
           as _i2.Stream<_i23.ConnectivityStatus>);
+=======
+  _i2.Stream<_i25.ConnectivityStatus> get connectionChange =>
+      (super.noSuchMethod(Invocation.getter(#connectionChange),
+              returnValue: Stream<_i25.ConnectivityStatus>.empty())
+          as _i2.Stream<_i25.ConnectivityStatus>);
+>>>>>>> 537f2ff33fb92570ba0856e9f8f3d590b6852899
   @override
   void initialize() => super.noSuchMethod(Invocation.method(#initialize, []),
       returnValueForMissingStub: null);
@@ -1186,7 +1252,11 @@ class MockConnectivityService extends _i1.Mock
 /// A class which mocks [JumpToApi].
 ///
 /// See the documentation for Mockito's code generation for more information.
+<<<<<<< HEAD
 class MockJumpToApi extends _i1.Mock implements _i24.JumpToApi {
+=======
+class MockJumpToApi extends _i1.Mock implements _i26.JumpToApi {
+>>>>>>> 537f2ff33fb92570ba0856e9f8f3d590b6852899
   @override
   String get allChannelsPath =>
       (super.noSuchMethod(Invocation.getter(#allChannelsPath), returnValue: '')
@@ -1204,6 +1274,7 @@ class MockJumpToApi extends _i1.Mock implements _i24.JumpToApi {
       super.noSuchMethod(Invocation.setter(#headers, _headers),
           returnValueForMissingStub: null);
   @override
+<<<<<<< HEAD
   _i2.Future<List<_i25.ChannelsSearch>> allChannelsList() =>
       (super.noSuchMethod(Invocation.method(#allChannelsList, []),
               returnValue: Future<List<_i25.ChannelsSearch>>.value(
@@ -1215,6 +1286,19 @@ class MockJumpToApi extends _i1.Mock implements _i24.JumpToApi {
               returnValue: Future<List<_i25.ChannelsSearch>>.value(
                   <_i25.ChannelsSearch>[]))
           as _i2.Future<List<_i25.ChannelsSearch>>);
+=======
+  _i2.Future<List<_i27.ChannelsSearch>> allChannelsList() =>
+      (super.noSuchMethod(Invocation.method(#allChannelsList, []),
+              returnValue: Future<List<_i27.ChannelsSearch>>.value(
+                  <_i27.ChannelsSearch>[]))
+          as _i2.Future<List<_i27.ChannelsSearch>>);
+  @override
+  _i2.Future<List<_i27.ChannelsSearch>> joinedChannelsList() =>
+      (super.noSuchMethod(Invocation.method(#joinedChannelsList, []),
+              returnValue: Future<List<_i27.ChannelsSearch>>.value(
+                  <_i27.ChannelsSearch>[]))
+          as _i2.Future<List<_i27.ChannelsSearch>>);
+>>>>>>> 537f2ff33fb92570ba0856e9f8f3d590b6852899
   @override
   _i2.Future<List<_i21.UserSearch>> fetchListOfMembers() => (super.noSuchMethod(
           Invocation.method(#fetchListOfMembers, []),
@@ -1223,8 +1307,106 @@ class MockJumpToApi extends _i1.Mock implements _i24.JumpToApi {
   @override
   _i2.Future<List<_i21.NewUser>> fetchList() =>
       (super.noSuchMethod(Invocation.method(#fetchList, []),
+<<<<<<< HEAD
               returnValue: Future<List<_i21.NewUser>>.value(<_i21.NewUser>[]))
           as _i2.Future<List<_i21.NewUser>>);
+=======
+              returnValue: Future<List<_i22.NewUser>>.value(<_i22.NewUser>[]))
+          as _i2.Future<List<_i22.NewUser>>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [MediaService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockMediaService extends _i1.Mock implements _i28.MediaService {
+  @override
+  _i2.Future<String?> getImage({bool? fromGallery}) => (super.noSuchMethod(
+      Invocation.method(#getImage, [], {#fromGallery: fromGallery}),
+      returnValue: Future<String?>.value()) as _i2.Future<String?>);
+  @override
+  _i2.Future<String?> uploadImage(_i23.File? file) =>
+      (super.noSuchMethod(Invocation.method(#uploadImage, [file]),
+          returnValue: Future<String?>.value()) as _i2.Future<String?>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [OrganizationApiService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockOrganizationApiService extends _i1.Mock
+    implements _i29.OrganizationApiService {
+  @override
+  _i2.Future<List<_i5.OrganizationModel>> fetchListOfOrganizations() =>
+      (super.noSuchMethod(Invocation.method(#fetchListOfOrganizations, []),
+              returnValue: Future<List<_i5.OrganizationModel>>.value(
+                  <_i5.OrganizationModel>[]))
+          as _i2.Future<List<_i5.OrganizationModel>>);
+  @override
+  _i2.Future<List<_i5.OrganizationModel>> getJoinedOrganizations() =>
+      (super.noSuchMethod(Invocation.method(#getJoinedOrganizations, []),
+              returnValue: Future<List<_i5.OrganizationModel>>.value(
+                  <_i5.OrganizationModel>[]))
+          as _i2.Future<List<_i5.OrganizationModel>>);
+  @override
+  _i2.Future<_i5.OrganizationModel> fetchOrganizationInfo(String? id) =>
+      (super.noSuchMethod(Invocation.method(#fetchOrganizationInfo, [id]),
+              returnValue: Future<_i5.OrganizationModel>.value(
+                  _FakeOrganizationModel_4()))
+          as _i2.Future<_i5.OrganizationModel>);
+  @override
+  _i2.Future<_i5.OrganizationModel> fetchOrganizationByUrl(String? url) =>
+      (super.noSuchMethod(Invocation.method(#fetchOrganizationByUrl, [url]),
+              returnValue: Future<_i5.OrganizationModel>.value(
+                  _FakeOrganizationModel_4()))
+          as _i2.Future<_i5.OrganizationModel>);
+  @override
+  _i2.Future<bool> joinOrganization(String? orgId) =>
+      (super.noSuchMethod(Invocation.method(#joinOrganization, [orgId]),
+          returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
+  @override
+  _i2.Future<String> createOrganization(String? email) =>
+      (super.noSuchMethod(Invocation.method(#createOrganization, [email]),
+          returnValue: Future<String>.value('')) as _i2.Future<String>);
+  @override
+  _i2.Future<void> updateOrgUrl(String? orgId, String? url) =>
+      (super.noSuchMethod(Invocation.method(#updateOrgUrl, [orgId, url]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i2.Future<void>);
+  @override
+  _i2.Future<void> updateOrgName(String? orgId, String? name) =>
+      (super.noSuchMethod(Invocation.method(#updateOrgName, [orgId, name]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i2.Future<void>);
+  @override
+  _i2.Future<void> updateOrgLogo(String? orgId, String? url) =>
+      (super.noSuchMethod(Invocation.method(#updateOrgLogo, [orgId, url]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i2.Future<void>);
+  @override
+  _i2.Future<void> addMemberToOrganization(String? orgId, String? email) =>
+      (super.noSuchMethod(
+          Invocation.method(#addMemberToOrganization, [orgId, email]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i2.Future<void>);
+  @override
+  _i2.Future<List<_i22.UserSearch>> fetchMembersInOrganization(String? orgId) =>
+      (super.noSuchMethod(
+              Invocation.method(#fetchMembersInOrganization, [orgId]),
+              returnValue:
+                  Future<List<_i22.UserSearch>>.value(<_i22.UserSearch>[]))
+          as _i2.Future<List<_i22.UserSearch>>);
+  @override
+  _i2.Future<_i6.OrganizationMemberModelList> getOrganizationMemberList(
+          String? orgId) =>
+      (super.noSuchMethod(
+              Invocation.method(#getOrganizationMemberList, [orgId]),
+              returnValue: Future<_i6.OrganizationMemberModelList>.value(
+                  _FakeOrganizationMemberModelList_5()))
+          as _i2.Future<_i6.OrganizationMemberModelList>);
+>>>>>>> 537f2ff33fb92570ba0856e9f8f3d590b6852899
   @override
   String toString() => super.toString();
 }

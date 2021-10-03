@@ -88,8 +88,8 @@ const String DM = 'Direct Message';
 const String Done = 'Done';
 const String UserSearchHint = 'To: Type the name of a person or channel';
 
-//Integrate
-const String Integrate = 'Integrate';
+//Plugins
+const String Plugins = 'Plugins';
 const String Calendar = 'Holiday-Calender';
 const String Todo = 'To-do';
 const String Chess = 'Chess Room';

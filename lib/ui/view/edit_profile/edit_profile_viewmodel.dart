@@ -6,6 +6,7 @@ import 'package:hng/services/api_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/current_user_profile.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/services/media_service.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
@@ -18,7 +19,10 @@ class EditProfileViewModel extends FutureViewModel {
   ProfileModel userData = ProfileModel();
   final snackbar = locator<SnackbarService>();
   final navigationService = locator<NavigationService>();
+  final _navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
+  final mediaService = locator<MediaService>();
+  final dialogService = locator<DialogService>();
   final _api = ZuriApi(coreBaseUrl);
   final api = ApiService();
   String? get token =>
@@ -39,7 +43,9 @@ class EditProfileViewModel extends FutureViewModel {
     }
   }
 
-  final _navigationService = locator<NavigationService>();
+  void uploadImage() async {
+    mediaService.getImage(fromGallery: true);
+  }
 
   void exitPage() {
     _navigationService.back();
