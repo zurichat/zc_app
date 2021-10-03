@@ -50,7 +50,7 @@ class DmJumpToViewModel extends FormViewModel {
     yield await connectivityService.checkConnection();
   }
 
-  Future<List<ChannelsSearch>?>? fetchChannels() async {
+  Future<List<ChannelsSearch>> fetchChannels() async {
     try {
       setBusy(true);
       allChannelsSearch = await api.allChannelsList();
@@ -60,6 +60,9 @@ class DmJumpToViewModel extends FormViewModel {
     } catch (e) {
       log.e("Model channels error - $e");
     }
+    // ignore: unused_local_variable
+    Future<List?> fetchChannels = allChannelsSearch as Future<List?>;
+    return allChannelsSearch;
   }
 
   Future<List<NewUser>> fetchUsers() async {
