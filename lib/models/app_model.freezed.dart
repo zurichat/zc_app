@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'app_model.dart';
 
@@ -143,7 +142,7 @@ class _$_AddPeopleToChannel implements _AddPeopleToChannel {
       {required this.id, required this.roleId, required this.isAdmin});
 
   factory _$_AddPeopleToChannel.fromJson(Map<String, dynamic> json) =>
-      _$$_AddPeopleToChannelFromJson(json);
+      _$_$_AddPeopleToChannelFromJson(json);
 
   @override
   final String? id;
@@ -183,7 +182,7 @@ class _$_AddPeopleToChannel implements _AddPeopleToChannel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AddPeopleToChannelToJson(this);
+    return _$_$_AddPeopleToChannelToJson(this);
   }
 }
 
@@ -338,7 +337,7 @@ class _$_ApiResponse implements _ApiResponse {
       required this.data});
 
   factory _$_ApiResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiResponseFromJson(json);
+      _$_$_ApiResponseFromJson(json);
 
   @override
   final int? statusCode;
@@ -380,7 +379,7 @@ class _$_ApiResponse implements _ApiResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApiResponseToJson(this);
+    return _$_$_ApiResponseToJson(this);
   }
 }
 
@@ -519,7 +518,7 @@ class _$_ChannelMembersModel implements _ChannelMembersModel {
   _$_ChannelMembersModel({required this.name, required this.isAdmin});
 
   factory _$_ChannelMembersModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ChannelMembersModelFromJson(json);
+      _$_$_ChannelMembersModelFromJson(json);
 
   @override
   final String? name;
@@ -555,7 +554,7 @@ class _$_ChannelMembersModel implements _ChannelMembersModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChannelMembersModelToJson(this);
+    return _$_$_ChannelMembersModelToJson(this);
   }
 }
 
@@ -688,7 +687,7 @@ class _$_ChannelModel implements _ChannelModel {
   _$_ChannelModel({required this.id, required this.name});
 
   factory _$_ChannelModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ChannelModelFromJson(json);
+      _$_$_ChannelModelFromJson(json);
 
   @override
   final int? id;
@@ -723,7 +722,7 @@ class _$_ChannelModel implements _ChannelModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChannelModelToJson(this);
+    return _$_$_ChannelModelToJson(this);
   }
 }
 
@@ -871,7 +870,7 @@ class _$_ChannelsSearch implements _ChannelsSearch {
   _$_ChannelsSearch({required this.id, required this.slug, required this.name});
 
   factory _$_ChannelsSearch.fromJson(Map<String, dynamic> json) =>
-      _$$_ChannelsSearchFromJson(json);
+      _$_$_ChannelsSearchFromJson(json);
 
   @override
   final int? id;
@@ -911,7 +910,7 @@ class _$_ChannelsSearch implements _ChannelsSearch {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChannelsSearchToJson(this);
+    return _$_$_ChannelsSearchToJson(this);
   }
 }
 
@@ -1138,7 +1137,7 @@ class _$_OrganizationModel implements _OrganizationModel {
       required this.noOfMembers});
 
   factory _$_OrganizationModel.fromJson(Map<String, dynamic> json) =>
-      _$$_OrganizationModelFromJson(json);
+      _$_$_OrganizationModelFromJson(json);
 
   @override
   final int? id;
@@ -1202,7 +1201,7 @@ class _$_OrganizationModel implements _OrganizationModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrganizationModelToJson(this);
+    return _$_$_OrganizationModelToJson(this);
   }
 }
 
@@ -1455,7 +1454,7 @@ class _$_ProfileModel implements _ProfileModel {
       required this.bio});
 
   factory _$_ProfileModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ProfileModelFromJson(json);
+      _$_$_ProfileModelFromJson(json);
 
   @override
   final bool? userId;
@@ -1524,7 +1523,7 @@ class _$_ProfileModel implements _ProfileModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProfileModelToJson(this);
+    return _$_$_ProfileModelToJson(this);
   }
 }
 
@@ -1766,7 +1765,7 @@ class _$_SignUpDataModel implements _SignUpDataModel {
       required this.phoneNumber});
 
   factory _$_SignUpDataModel.fromJson(Map<String, dynamic> json) =>
-      _$$_SignUpDataModelFromJson(json);
+      _$_$_SignUpDataModelFromJson(json);
 
   @override
   final String? firstName;
@@ -1832,7 +1831,7 @@ class _$_SignUpDataModel implements _SignUpDataModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SignUpDataModelToJson(this);
+    return _$_$_SignUpDataModelToJson(this);
   }
 }
 
@@ -2197,7 +2196,7 @@ class _$_StartDmModel implements _StartDmModel {
       required this.isChecked});
 
   factory _$_StartDmModel.fromJson(Map<String, dynamic> json) =>
-      _$$_StartDmModelFromJson(json);
+      _$_$_StartDmModelFromJson(json);
 
   @override
   final int? id;
@@ -2305,7 +2304,7 @@ class _$_StartDmModel implements _StartDmModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StartDmModelToJson(this);
+    return _$_$_StartDmModelToJson(this);
   }
 }
 
@@ -2536,7 +2535,7 @@ class _$_StaticUserModel implements _StaticUserModel {
       required this.online});
 
   factory _$_StaticUserModel.fromJson(Map<String, dynamic> json) =>
-      _$$_StaticUserModelFromJson(json);
+      _$_$_StaticUserModelFromJson(json);
 
   @override
   final String? userName;
@@ -2589,7 +2588,7 @@ class _$_StaticUserModel implements _StaticUserModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StaticUserModelToJson(this);
+    return _$_$_StaticUserModelToJson(this);
   }
 }
 
@@ -2761,7 +2760,7 @@ class _$_TodoModel implements _TodoModel {
       required this.status});
 
   factory _$_TodoModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TodoModelFromJson(json);
+      _$_$_TodoModelFromJson(json);
 
   @override
   final int? userId;
@@ -2806,7 +2805,7 @@ class _$_TodoModel implements _TodoModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TodoModelToJson(this);
+    return _$_$_TodoModelToJson(this);
   }
 }
 
@@ -3079,7 +3078,7 @@ class _$_UserModel implements _UserModel {
       required this.updatedAt});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
-      _$$_UserModelFromJson(json);
+      _$_$_UserModelFromJson(json);
 
   @override
   final String? userId;
@@ -3161,7 +3160,7 @@ class _$_UserModel implements _UserModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserModelToJson(this);
+    return _$_$_UserModelToJson(this);
   }
 }
 
@@ -3441,7 +3440,7 @@ class _$_UserThreadPost implements _UserThreadPost {
       required this.postDate});
 
   factory _$_UserThreadPost.fromJson(Map<String, dynamic> json) =>
-      _$$_UserThreadPostFromJson(json);
+      _$_$_UserThreadPostFromJson(json);
 
   @override
   final int? id;
@@ -3517,7 +3516,7 @@ class _$_UserThreadPost implements _UserThreadPost {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserThreadPostToJson(this);
+    return _$_$_UserThreadPostToJson(this);
   }
 }
 
@@ -3705,7 +3704,7 @@ class _$_PostEmojis implements _PostEmojis {
       required this.hasReacted});
 
   factory _$_PostEmojis.fromJson(Map<String, dynamic> json) =>
-      _$$_PostEmojisFromJson(json);
+      _$_$_PostEmojisFromJson(json);
 
   @override
   final int? id;
@@ -3753,7 +3752,7 @@ class _$_PostEmojis implements _PostEmojis {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PostEmojisToJson(this);
+    return _$_$_PostEmojisToJson(this);
   }
 }
 
@@ -4058,7 +4057,7 @@ class _$_UserPost implements _UserPost {
       required this.postDate});
 
   factory _$_UserPost.fromJson(Map<String, dynamic> json) =>
-      _$$_UserPostFromJson(json);
+      _$_$_UserPostFromJson(json);
 
   @override
   final int? id;
@@ -4153,7 +4152,7 @@ class _$_UserPost implements _UserPost {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserPostToJson(this);
+    return _$_$_UserPostToJson(this);
   }
 }
 
@@ -4312,7 +4311,7 @@ class _$_NewUser implements _NewUser {
   _$_NewUser({required this.id, required this.username});
 
   factory _$_NewUser.fromJson(Map<String, dynamic> json) =>
-      _$$_NewUserFromJson(json);
+      _$_$_NewUserFromJson(json);
 
   @override
   final int? id;
@@ -4348,7 +4347,7 @@ class _$_NewUser implements _NewUser {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NewUserToJson(this);
+    return _$_$_NewUserToJson(this);
   }
 }
 
@@ -4790,7 +4789,7 @@ class _$_UserSearch implements _UserSearch {
       required this.userName});
 
   factory _$_UserSearch.fromJson(Map<String, dynamic> json) =>
-      _$$_UserSearchFromJson(json);
+      _$_$_UserSearchFromJson(json);
 
   @override
   final int? id;
@@ -4933,7 +4932,7 @@ class _$_UserSearch implements _UserSearch {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserSearchToJson(this);
+    return _$_$_UserSearchToJson(this);
   }
 }
 
@@ -5137,7 +5136,7 @@ class _$_MainMembeers implements _MainMembeers {
   _$_MainMembeers({required this.id, required this.name, this.data});
 
   factory _$_MainMembeers.fromJson(Map<String, dynamic> json) =>
-      _$$_MainMembeersFromJson(json);
+      _$_$_MainMembeersFromJson(json);
 
   @override
   final int? id;
@@ -5177,7 +5176,7 @@ class _$_MainMembeers implements _MainMembeers {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MainMembeersToJson(this);
+    return _$_$_MainMembeersToJson(this);
   }
 }
 
