@@ -3,6 +3,7 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i2;
+import 'dart:io' as _i23;
 import 'dart:ui' as _i13;
 
 import 'package:centrifuge/centrifuge.dart' as _i19;
@@ -11,24 +12,25 @@ import 'package:flutter/material.dart' as _i10;
 import 'package:hng/models/api_response.dart' as _i21;
 import 'package:hng/models/channel_members.dart' as _i17;
 import 'package:hng/models/channel_model.dart' as _i16;
-import 'package:hng/models/channels_search_model.dart' as _i26;
+import 'package:hng/models/channels_search_model.dart' as _i27;
 import 'package:hng/models/organization_member_model.dart' as _i6;
 import 'package:hng/models/organization_model.dart' as _i5;
 import 'package:hng/models/search_result_model.dart' as _i17;
 import 'package:hng/models/user_search_model.dart' as _i22;
-import 'package:hng/package/base/jump_to_request/jump_to_api.dart' as _i25;
+import 'package:hng/package/base/jump_to_request/jump_to_api.dart' as _i26;
 import 'package:hng/package/base/server-request/api/zuri_api.dart' as _i20;
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart'
     as _i15;
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart'
     as _i14;
 import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart'
-    as _i27;
+    as _i29;
 import 'package:hng/services/centrifuge_service.dart' as _i18;
-import 'package:hng/services/connectivity_service.dart' as _i23;
+import 'package:hng/services/connectivity_service.dart' as _i24;
 import 'package:hng/services/local_storage_services.dart' as _i8;
+import 'package:hng/services/media_service.dart' as _i28;
 import 'package:hng/services/user_service.dart' as _i7;
-import 'package:hng/utilities/enums.dart' as _i24;
+import 'package:hng/utilities/enums.dart' as _i25;
 import 'package:hng/utilities/failures.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i9;
@@ -1134,6 +1136,13 @@ class MockZuriApi extends _i1.Mock implements _i20.ZuriApi {
       (super.noSuchMethod(Invocation.method(#handleApiError, [e]),
           returnValue: _FakeFailure_3()) as _i4.Failure);
   @override
+  _i2.Future<String> uploadImage(_i23.File? image,
+          {String? token, String? memberId, String? orgId}) =>
+      (super.noSuchMethod(
+          Invocation.method(#uploadImage, [image],
+              {#token: token, #memberId: memberId, #orgId: orgId}),
+          returnValue: Future<String>.value('')) as _i2.Future<String>);
+  @override
   String toString() => super.toString();
 }
 
@@ -1141,7 +1150,7 @@ class MockZuriApi extends _i1.Mock implements _i20.ZuriApi {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockConnectivityService extends _i1.Mock
-    implements _i23.ConnectivityService {
+    implements _i24.ConnectivityService {
   @override
   bool get hasConnection =>
       (super.noSuchMethod(Invocation.getter(#hasConnection), returnValue: false)
@@ -1151,32 +1160,32 @@ class MockConnectivityService extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#hasConnection, _hasConnection),
           returnValueForMissingStub: null);
   @override
-  _i24.ConnectivityStatus get networkStatus => (super.noSuchMethod(
+  _i25.ConnectivityStatus get networkStatus => (super.noSuchMethod(
       Invocation.getter(#networkStatus),
-      returnValue: _i24.ConnectivityStatus.wifi) as _i24.ConnectivityStatus);
+      returnValue: _i25.ConnectivityStatus.wifi) as _i25.ConnectivityStatus);
   @override
-  set networkStatus(_i24.ConnectivityStatus? _networkStatus) =>
+  set networkStatus(_i25.ConnectivityStatus? _networkStatus) =>
       super.noSuchMethod(Invocation.setter(#networkStatus, _networkStatus),
           returnValueForMissingStub: null);
   @override
-  _i2.StreamController<_i24.ConnectivityStatus>
+  _i2.StreamController<_i25.ConnectivityStatus>
       get connectionChangeController => (super.noSuchMethod(
               Invocation.getter(#connectionChangeController),
-              returnValue: _FakeStreamController_0<_i24.ConnectivityStatus>())
-          as _i2.StreamController<_i24.ConnectivityStatus>);
+              returnValue: _FakeStreamController_0<_i25.ConnectivityStatus>())
+          as _i2.StreamController<_i25.ConnectivityStatus>);
   @override
   set connectionChangeController(
-          _i2.StreamController<_i24.ConnectivityStatus>?
+          _i2.StreamController<_i25.ConnectivityStatus>?
               _connectionChangeController) =>
       super.noSuchMethod(
           Invocation.setter(
               #connectionChangeController, _connectionChangeController),
           returnValueForMissingStub: null);
   @override
-  _i2.Stream<_i24.ConnectivityStatus> get connectionChange =>
+  _i2.Stream<_i25.ConnectivityStatus> get connectionChange =>
       (super.noSuchMethod(Invocation.getter(#connectionChange),
-              returnValue: Stream<_i24.ConnectivityStatus>.empty())
-          as _i2.Stream<_i24.ConnectivityStatus>);
+              returnValue: Stream<_i25.ConnectivityStatus>.empty())
+          as _i2.Stream<_i25.ConnectivityStatus>);
   @override
   void initialize() => super.noSuchMethod(Invocation.method(#initialize, []),
       returnValueForMissingStub: null);
@@ -1214,7 +1223,7 @@ class MockConnectivityService extends _i1.Mock
 /// A class which mocks [JumpToApi].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockJumpToApi extends _i1.Mock implements _i25.JumpToApi {
+class MockJumpToApi extends _i1.Mock implements _i26.JumpToApi {
   @override
   String get allChannelsPath =>
       (super.noSuchMethod(Invocation.getter(#allChannelsPath), returnValue: '')
@@ -1232,17 +1241,17 @@ class MockJumpToApi extends _i1.Mock implements _i25.JumpToApi {
       super.noSuchMethod(Invocation.setter(#headers, _headers),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<List<_i26.ChannelsSearch>> allChannelsList() =>
+  _i2.Future<List<_i27.ChannelsSearch>> allChannelsList() =>
       (super.noSuchMethod(Invocation.method(#allChannelsList, []),
-              returnValue: Future<List<_i26.ChannelsSearch>>.value(
-                  <_i26.ChannelsSearch>[]))
-          as _i2.Future<List<_i26.ChannelsSearch>>);
+              returnValue: Future<List<_i27.ChannelsSearch>>.value(
+                  <_i27.ChannelsSearch>[]))
+          as _i2.Future<List<_i27.ChannelsSearch>>);
   @override
-  _i2.Future<List<_i26.ChannelsSearch>> joinedChannelsList() =>
+  _i2.Future<List<_i27.ChannelsSearch>> joinedChannelsList() =>
       (super.noSuchMethod(Invocation.method(#joinedChannelsList, []),
-              returnValue: Future<List<_i26.ChannelsSearch>>.value(
-                  <_i26.ChannelsSearch>[]))
-          as _i2.Future<List<_i26.ChannelsSearch>>);
+              returnValue: Future<List<_i27.ChannelsSearch>>.value(
+                  <_i27.ChannelsSearch>[]))
+          as _i2.Future<List<_i27.ChannelsSearch>>);
   @override
   _i2.Future<List<_i22.UserSearch>> fetchListOfMembers() => (super.noSuchMethod(
           Invocation.method(#fetchListOfMembers, []),
@@ -1257,11 +1266,27 @@ class MockJumpToApi extends _i1.Mock implements _i25.JumpToApi {
   String toString() => super.toString();
 }
 
+/// A class which mocks [MediaService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockMediaService extends _i1.Mock implements _i28.MediaService {
+  @override
+  _i2.Future<String?> getImage({bool? fromGallery}) => (super.noSuchMethod(
+      Invocation.method(#getImage, [], {#fromGallery: fromGallery}),
+      returnValue: Future<String?>.value()) as _i2.Future<String?>);
+  @override
+  _i2.Future<String?> uploadImage(_i23.File? file) =>
+      (super.noSuchMethod(Invocation.method(#uploadImage, [file]),
+          returnValue: Future<String?>.value()) as _i2.Future<String?>);
+  @override
+  String toString() => super.toString();
+}
+
 /// A class which mocks [OrganizationApiService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockOrganizationApiService extends _i1.Mock
-    implements _i27.OrganizationApiService {
+    implements _i29.OrganizationApiService {
   @override
   _i2.Future<List<_i5.OrganizationModel>> fetchListOfOrganizations() =>
       (super.noSuchMethod(Invocation.method(#fetchListOfOrganizations, []),
