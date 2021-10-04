@@ -1,6 +1,7 @@
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/utilities/storage_keys.dart';
+import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -44,8 +45,8 @@ class EditChannelViewModel extends FormViewModel {
     String _channelId = id;
     String orgId = storage.getString(StorageKeys.currentOrgId).toString();
     String endpoint = '/v1/'+orgId+'/channels/'+_channelId;
-    print(endpoint);
-    print(_channelId);
+    log.i(endpoint);
+    log.i(_channelId);
     final des = {/*'topic': topic.text, */ 'description': descriptionValue};
     final response = await _apiService.put(endpoint, body: des, token: token);
     if (response?.statusCode == 200) {
