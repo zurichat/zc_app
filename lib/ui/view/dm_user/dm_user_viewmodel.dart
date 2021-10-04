@@ -104,7 +104,7 @@ class DmUserViewModel extends FormViewModel {
 
   void popScreens(receiverId, value) {
     storeDraft(receiverId, value);
-    navigationService.back();
+    // navigationService.back();
     navigationService.popRepeated(1);
 
   }
