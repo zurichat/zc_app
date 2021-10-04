@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 
 import '../../../general_widgets/app_alert_dialog.dart';
 
@@ -10,10 +11,10 @@ class FeedBackDialogCall extends StatelessWidget {
       body: ElevatedButton(
         onPressed: () => AppAlertDialog().appDialog(
           context,
-          'Compose feedback',
-          "e.g i found a bug in the DM's",
+          ComposeFeedback,
+          FeedbackHint,
         ),
-        child: const Text('Alert'),
+        child: const Text(Alert),
       ),
     );
   }

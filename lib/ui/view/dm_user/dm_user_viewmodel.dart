@@ -51,7 +51,7 @@ class DmUserViewModel extends FormViewModel {
   }
 
   Future <void> sendMessage() async{
-    if(messageController.text!=null){
+   // if(messageController.text!=null){
     final message = messageController.text;
     if (message.trim().isNotEmpty) {
     chatMessages.add(
@@ -69,7 +69,7 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
     }
       //await sendResponse();
-    }
+    //}
   }
 
   void deleteMessage(Message message) {
