@@ -7,10 +7,12 @@ import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/custom_text.dart';
+import 'direct_message_text_field_hook.dart';
 import 'direct_message_viewmodel.dart';
 
 class DirectMessage extends StatelessWidget {
   final String? username;
+
   const DirectMessage({Key? key, this.username}) : super(key: key);
 
   @override

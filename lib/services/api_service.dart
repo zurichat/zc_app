@@ -26,6 +26,20 @@ class ApiService {
     }
   }
 
+  Future sendMultiPartRequest(body, endpoint) async {
+    try {
+      final response = await _dio.post(
+        apiBaseUrl + endpoint,
+        data: body,
+      );
+
+      final result = response.data;
+      return result;
+    } on DioError catch (e) {
+      convertException(e);
+    }
+  }
+
 //!Adjust the patch function as needed
   Future sendPatchRequest(body, endpoint, userId) async {
     try {

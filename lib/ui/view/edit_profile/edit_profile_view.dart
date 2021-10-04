@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_textfield.dart';
+import 'package:hng/constants/app_strings.dart';
 
 import 'package:hng/ui/shared/shared.dart';
 
@@ -19,15 +20,16 @@ class EditProfileView extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
-              onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
-          title: Text("Edit Profile"),
+              onPressed: viewModel.exitPage,
+              icon: const Icon(Icons.close_rounded)),
+          title: const Text(EditProfile),
           actions: [
             TextButton(
               onPressed: () async {
                 await model.updateProfile();
               },
-              child: Text(
-                "Save",
+              child: const Text(
+                Save,
                 style: TextStyle(color: AppColors.zuriTextBodyColor),
               ),
             )
@@ -40,7 +42,7 @@ class EditProfileView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('Getting Your data...'),
+                Text(GettingYourData),
                 CircularProgressIndicator(
                   color: AppColors.zuriPrimaryColor,
                 ),
@@ -76,9 +78,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   Container(
                     width: _size.height * 0.14,
                     height: double.maxFinite,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage("assets/background/appBarLogo.png"),
+                        image: AssetImage(ZuriAppbarLogo),
                         fit: BoxFit.contain,
                       ),
                       borderRadius: BorderRadius.all(
@@ -89,14 +91,16 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            viewModel.uploadImage;
+                          },
                           icon: Icon(
                             Icons.add_a_photo,
                             size: _size.width * 0.06,
                           )),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   SizedBox(
                     width: _size.width * 0.55,
                     child: CustomTextField(
@@ -109,6 +113,9 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                         model.updateString(value, '', '', '');
                       },
                       initialValue: model.userData.firstName,
+                      decoration: const InputDecoration(
+                        labelText: FullName,
+                      ),
                     ),
                   )
                 ],
@@ -122,7 +129,10 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               inputAction: TextInputAction.next,
               autoCorrect: false,
               obscureText: false,
-              labelText: 'Display Name',
+                 labelText: DisplayName,
+                helperText: DisplayNameDescription,
+                helperMaxLines: 3,
+                initialValue: model.userData.displayName,
               onChanged: (value) {
                 model.updateString('', value, '', '');
               },
@@ -142,12 +152,12 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               inputAction: TextInputAction.next,
               autoCorrect: false,
               obscureText: false,
-             labelText: 'What I do',
+             labelText: Track,
               onChanged: (value) {
                 model.updateString('', '', value, '');
               },
               initialValue: model.userData.status,
-           helperText: 'HNGi9 X I4G'
+           helperText: TrackDescription
               
             ),
 
@@ -159,17 +169,12 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               inputAction: TextInputAction.next,
               autoCorrect: false,
               obscureText: false,
-              labelText: 'Phone',
-              
-               helperText: 'Enter your phone number',
+           labelText: Phone, helperText: PhoneDescription,
          onChanged: (value) {
                 model.updateString('', '', '', value);
               },
              initialValue: model.userData.phoneNum,
             ),
-
-
-
           ],
         ),
       ),

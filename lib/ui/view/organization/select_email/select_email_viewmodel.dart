@@ -1,3 +1,4 @@
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -12,7 +13,7 @@ class SelectEmailViewModel extends BaseViewModel {
   final snackbar = locator<SnackbarService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
   // final _api = WorkSpaceApiService();
-  final _anotherEmail = 'Use another email address';
+  final _anotherEmail = UseAnotherEmail;
 
   String? get userEmail => _storage.getString(StorageKeys.currentUserEmail);
   String get anotherEmail => _anotherEmail;
@@ -64,11 +65,11 @@ class SelectEmailViewModel extends BaseViewModel {
   String getScreenTitle(OrganizationSwitchMethod method) {
     switch (method) {
       case OrganizationSwitchMethod.create:
-        return 'Create a workspace';
+        return CreateWorkspace;
       case OrganizationSwitchMethod.signIn:
-        return 'Sign in to a workspace';
+        return SignInWorkspace;
       case OrganizationSwitchMethod.join:
-        return 'Join a workspace';
+        return JoinWorkspace;
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'draft_viewmodel.dart';
 
@@ -9,7 +10,6 @@ class DraftView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DraftViewModel>.reactive(
-
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           title: Text(model.title),
@@ -24,7 +24,7 @@ class DraftView extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
-          tooltip: 'Add draft',
+          tooltip: AddDraft,
           child: const Icon(Icons.notes),
         ),
       ),
