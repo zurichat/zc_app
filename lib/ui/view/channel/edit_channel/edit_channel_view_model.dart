@@ -2,6 +2,7 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/utilities/storage_keys.dart';
 // import 'package:hng/utilities/utilities.dart';
+// import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -27,6 +28,11 @@ class EditChannelViewModel extends FormViewModel {
     notifyListeners();
   }
 
+  onChanged(String val) {
+    // log.i(val);
+    notifyListeners();
+  }
+
   editChannel() async {
     loading(true);
     // print(DescriptionValueKey);
@@ -44,13 +50,23 @@ class EditChannelViewModel extends FormViewModel {
     }
     String _channelId = id;
     String orgId = storage.getString(StorageKeys.currentOrgId).toString();
-    String endpoint = '/v1/'+orgId+'/channels/'+_channelId;
+    String endpoint = 'v1/$orgId/channels/$_channelId/';
     // log.i(endpoint);
     // log.i(_channelId);
-    final des = {/*'topic': topic.text, */ 'description': descriptionValue};
+    final des = {
+      /*'topic': topic.text, */
+      'description': descriptionValue,
+      "name": "True ==================",
+      "private": false,
+      "archived": false,
+      'topic': topicValue,
+      "starred": false
+    };
     final response = await _apiService.put(endpoint, body: des, token: token);
     // log.i('token is $token =====================');
     // log.i('des is $des =====================');
+    // log.i('channel id is $_channelId');
+    // log.i('org id is $orgId');
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
