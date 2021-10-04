@@ -20,7 +20,7 @@ class EditProfileView extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
-              onPressed: viewModel.exitPage,
+              onPressed: model.exitPage,
               icon: const Icon(Icons.close_rounded)),
           title: const Text(EditProfile),
           actions: [
@@ -92,7 +92,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                       alignment: Alignment.bottomRight,
                       child: IconButton(
                           onPressed: () {
-                            viewModel.uploadImage;
+                            model.uploadImage;
                           },
                           icon: Icon(
                             Icons.add_a_photo,
@@ -108,14 +108,12 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                       inputAction: TextInputAction.next,
                       autoCorrect: false,
                       obscureText: false,
-                      labelText: 'Full Name',
+                      labelText: FullName,
                       onChanged: (value) {
                         model.updateString(value, '', '', '');
                       },
                       initialValue: model.userData.firstName,
-                      decoration: const InputDecoration(
-                        labelText: FullName,
-                      ),
+
                     ),
                   )
                 ],
@@ -136,10 +134,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               onChanged: (value) {
                 model.updateString('', value, '', '');
               },
-              initialValue: model.userData.displayName,
-                            helperText:
-                    "This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.",
-              helperMaxLines: 3,
+
             ),
 
             SizedBox(
