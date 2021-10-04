@@ -29,7 +29,7 @@ class EditChannelViewModel extends FormViewModel {
 
   editChannel() async {
     loading(true);
-    print(DescriptionValueKey);
+    // print(DescriptionValueKey);
     if (topicValue == '' || descriptionValue == '') {
       loading(false);
       //Hides the keyboard for the failure snackbar to be visible
