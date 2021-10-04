@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/storage_keys.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'drafts.dart';
@@ -58,7 +59,8 @@ class DraftViewModel extends BaseViewModel {
   }
 
 
-  final _title = 'Draft';
+  final _title = Draft;
+
   String get title => _title;
 
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import '../../../shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
@@ -38,8 +39,7 @@ class OrganizationUrlView extends StatelessWidget {
                             TextSpan(
                               children: [
                                 const TextSpan(
-                                  text: '''
-If you don't know your Organization URL, we have sent an email to ''',
+                                  text: OrgDesc1,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
@@ -53,7 +53,7 @@ If you don't know your Organization URL, we have sent an email to ''',
                                   ),
                                 ),
                                 const TextSpan(
-                                  text: ' to help you sign in easily.',
+                                  text: OrgDesc2,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
@@ -88,8 +88,8 @@ class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
     return Center(
       child: TextField(
         decoration: const InputDecoration(
-          labelText: 'Enter Organization URL',
-          hintText: 'https://organization.zuri.com',
+          labelText: EnterOrgUrl,
+          hintText: EnterOrgUrlHint,
           hintStyle: TextStyle(
             color: Color(0xffBEBEBE),
             fontSize: 16,
@@ -125,7 +125,7 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
             width: 300,
             child: Center(
               child: Text(
-                'Next',
+                Next,
                 style: AppTextStyles.buttonText,
               ),
             ),

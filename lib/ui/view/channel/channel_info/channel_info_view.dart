@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:stacked/stacked.dart';
@@ -58,7 +59,7 @@ class ChannelInfoView extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
-                          'You wont\'t recieve any messages from a muted channel',
+                          MuteChannelWarning,
                           style: AppTextStyles.body1Grey,
                         ),
                       ),
@@ -68,7 +69,7 @@ class ChannelInfoView extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
-                          'Bookmarks',
+                          Bookmarks,
                           style: AppTextStyles.body1Grey,
                         ),
                       ),
@@ -80,7 +81,7 @@ class ChannelInfoView extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
-                          'Advanced',
+                          Advanced,
                           style: AppTextStyles.body1Grey,
                         ),
                       ),

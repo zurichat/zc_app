@@ -1,10 +1,12 @@
 //keep Hng Project
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked_annotations.dart';
+import 'package:hng/constants/app_strings.dart';
 import '../../../utilities/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import '../../../general_widgets/custom_text.dart';
+import 'direct_message_text_field_hook.dart';
 import 'direct_message_viewmodel.dart';
 import 'direct_message.form.dart';
 
@@ -56,7 +58,7 @@ class DirectMessage extends StatelessWidget with $DirectMessage {
                   ),
                   const CustomText(
                     color: Colors.black,
-                    text: 'View details',
+                    text: ViewDetails,
                   ),
                 ],
               ),
@@ -110,7 +112,7 @@ class DirectMessage extends StatelessWidget with $DirectMessage {
                                   ],
                                 ),
                                 const CustomText(
-                                  text: 'Software Development',
+                                  text: SoftwareDev,
                                   color: Colors.black,
                                 ),
                                 const SizedBox(height: 10),
@@ -153,8 +155,7 @@ class DirectMessage extends StatelessWidget with $DirectMessage {
                                                 ],
                                               ),
                                               const CustomText(
-                                                  text:
-                                                      'Have you been Promtoed?')
+                                                  text: PromotedPlaceholder)
                                             ],
                                           ),
                                         ],
@@ -179,15 +180,9 @@ class DirectMessage extends StatelessWidget with $DirectMessage {
                       color: Colors.white,
                       child: Row(
                         children: <Widget>[
-                          Expanded(
-                            child: TextField(
-                              controller: directMessagesController,
-                              decoration: const InputDecoration(
-                                hintText: 'Write message...',
-                                hintStyle: TextStyle(color: Colors.black54),),
-                              onEditingComplete: () => directMessagesController.clearComposing(),
-                              restorationId: model.dmDraft,
-                            ),
+
+                          const Expanded(
+                            child: TextFieldHook(),
                           ),
                           const SizedBox(
                             width: 15,

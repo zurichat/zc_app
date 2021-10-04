@@ -15,10 +15,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomePageViewModel>.reactive(
-      onModelReady: (vmodel) {
-        vmodel.getDmAndChannelsList();
-        vmodel.getNewChannelStream();
-        vmodel.hasDrafts();
+      onModelReady: (model) {
+        model.getDmAndChannelsList();
+        model.getNewChannelStream();
+        model.hasDrafts();
+        model.listenToNotificationTap();
       },
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, vmodel, child) => SafeArea(

@@ -8,7 +8,6 @@ import 'direct_message.form.dart';
 
 class DirectMessageViewModel extends FormViewModel {
   final _storageService = locator<SharedPreferenceLocalStorage>();
-  var draft;
   String dmDraft ='';
 
   String? get drafts =>
@@ -16,9 +15,8 @@ class DirectMessageViewModel extends FormViewModel {
 
 
   void getDraft() async{
-    // drafts = _storageService.getStringList(StorageKeys.currentUserDmDrafts);
     if(drafts != null){
-      draft = dmDraft;
+      dmDraft = drafts.toString();
       _storageService.clearData(StorageKeys.currentUserDmDrafts);
       // print('$draft hhhhh');
     }

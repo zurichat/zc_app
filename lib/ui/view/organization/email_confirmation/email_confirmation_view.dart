@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import 'email_confirmation_viewmodel.dart';
@@ -18,7 +19,7 @@ class EmailConfirmationView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text('Check your mail',
+                    const Text(CheckYourMail,
                         style: TextStyle(
                             fontFamily: 'Lato',
                             fontWeight: FontWeight.w700,
@@ -26,8 +27,7 @@ class EmailConfirmationView extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text('''
-To confirm your email address, tap the button in the email we sent to lukeskylwalker@gmail.com''',
+                    const Text(ToConfirmEmailAdd,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: 'Lato',
@@ -37,7 +37,7 @@ To confirm your email address, tap the button in the email we sent to lukeskylwa
                       height: 10,
                     ),
                     TextButton(
-                      child: const Text('Open email app',
+                      child: const Text(OpenEmail,
                           style: TextStyle(
                               fontFamily: 'Lato',
                               fontWeight: FontWeight.w700,

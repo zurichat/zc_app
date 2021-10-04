@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/general_widgets/no_connection_widget.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
@@ -20,12 +22,12 @@ import 'channel_page_view.form.dart';
 class ChannelPageView extends StatelessWidget with $ChannelPageView {
   ChannelPageView({
     Key? key,
-    required this.channelname,
+    required this.channelName,
     required this.channelId,
     required this.membersCount,
     required this.public,
   }) : super(key: key);
-  final String? channelname;
+  final String? channelName;
   final String? channelId;
   final int? membersCount;
   final bool? public;
@@ -39,15 +41,20 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
         if(model.storedDraft.isNotEmpty){
           channelMessagesController.text = model.storedDraft;
         }
+        model.showNotificationForOtherChannels('$channelId', '$channelName');
       },
       //this parameter allows us to reuse the view model to persist the state
-
       viewModelBuilder: () => ChannelPageViewModel(),
       builder: (context, model, child) {
+        if (model.scrollController.hasClients) {
+          model.scrollController
+              .jumpTo(model.scrollController.position.maxScrollExtent);
+        }
+
         return Scaffold(
           appBar: AppBar(
             leading: Padding(
-              padding: const EdgeInsets.only(left: 5),
+              padding: const EdgeInsets.only(left: 5.0, right: 20.0),
               child: IconButton(
                   onPressed: (){
                     model.goBack(channelId, channelMessagesController.text);
@@ -60,9 +67,9 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("#$channelname", style: AppTextStyles.body1Bold),
+                Text("#$channelName", style: AppTextStyles.body1Bold),
                 Text(
-                  "$membersCount members",
+                  "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
                   style: AppTextStyles.body2Medium,
                 ),
               ],
@@ -78,7 +85,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 child: IconButton(
                   onPressed: () => model.navigateToChannelInfoScreen(
                     membersCount!,
-                    ChannelModel(id: channelId!, name: channelname!),
+                    ChannelModel(id: channelId!, name: channelName!),
                   ),
                   icon: const Icon(Icons.info_outlined),
                 ),
@@ -87,19 +94,22 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
           ),
           body: ExpandableTextFieldScreen(
             textController: channelMessagesController,
-            hintText: 'Add a Reply',
+            hintText: AddReply,
             sendMessage: (val) => model.sendMessage(val, channelId!),
             widget: SingleChildScrollView(
-              reverse: true,
+              physics: const BouncingScrollPhysics(),
               controller: model.scrollController,
+              reverse: true,
               child: Column(
                 children: [
                   ChannelIntro(
-                    channelName: channelname,
+                    channelName: channelName!,
+                    channelId: channelId!,
                   ),
                   ChannelChat(
                     channelId: channelId,
                   ),
+                  const NoConnectionWidget(Icons.wifi),
                 ],
               ),
             ),

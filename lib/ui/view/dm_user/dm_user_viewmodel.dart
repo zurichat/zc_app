@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
 import 'package:hng/utilities/enums.dart';
@@ -44,17 +45,19 @@ class DmUserViewModel extends FormViewModel {
   final _isOnline = true;
   bool get isOnline => _isOnline;
 
-  final _bio = 'Product designer';
+  final _bio = ProductDesigner;
   String get bio => _bio;
 
   bool _hasClickedMessageField = false;
   bool get hasClickedMessageField => _hasClickedMessageField;
 
-  User receiver = User('OyinkanUA', 'OyinkanUA');
-  User sender = User('Jaytek', 'Jaytek');
+  User receiver = User(OyinkanUA, OyinkanUA);
+  User sender = User(Jaytek, Jaytek);
   bool isSendButtonEnabled = false;
 
   List<Message> chatMessages = List.empty(growable: true);
+
+  get messageController => null;
 
   showButtonSheet(Message message) async {
     await bottomSheet.showCustomSheet(
@@ -102,9 +105,12 @@ class DmUserViewModel extends FormViewModel {
   void popScreens(receiverId, value) {
     storeDraft(receiverId, value);
     navigationService.back();
+    navigationService.popRepeated(1);
+
   }
   void popScreen() {
-    navigationService.back();
+    final navigationService = locator<NavigationService>();
+    navigationService.popRepeated(1);
   }
 
 
