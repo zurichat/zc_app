@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
 
@@ -23,7 +24,7 @@ class CreateOrganization extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Image.asset('assets/icons/cancel.png'),
+            child: Image.asset(CancelLogo),
           ),
         ),
         body: Stack(

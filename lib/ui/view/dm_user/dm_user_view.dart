@@ -257,8 +257,8 @@ class DmUserView extends StatelessWidget {
                                   ],
                                 ),
                                 IconButton(
-                                    onPressed: () {
-                                      //model.sendMessage();
+                                    onPressed: ()async {
+                                      await model.sendMessage();
                                       FocusScope.of(context)
                                           .requestFocus(FocusNode());
                                       _scrollController.jumpTo(_scrollController

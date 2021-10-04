@@ -36,7 +36,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
             onTap: () {
               switch (appbarAction) {
                 case Save:
-                  model.editChannel(context);
+                  model.editChannel();
                   break;
                 case Done:
                   //model.nToPlugins();

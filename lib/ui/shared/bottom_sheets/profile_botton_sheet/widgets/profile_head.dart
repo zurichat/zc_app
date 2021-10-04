@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../../general_widgets/custom_text.dart';
-import '../../../../../models/user_model.dart';
 import '../../../colors.dart';
 import '../custom_user_bottom_sheet_viewmodel.dart';
 
@@ -15,11 +14,6 @@ class ProfileHead extends StatelessWidget {
 
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) {
-        UserModel? user = model.userModel;
-        String? firstname = user?.firstName ?? '';
-        String? lastname = user?.lastName ?? '';
-        String? name = firstname + ' ' + lastname;
-
         return Stack(
           alignment: AlignmentDirectional.center,
           children: [
@@ -47,7 +41,8 @@ class ProfileHead extends StatelessWidget {
                         Flexible(
                           fit: FlexFit.loose,
                           child: CustomText(
-                            text: name,
+                            text:
+                                '${model.userModel!.firstName} ${model.userModel!.lastName}',
                             color: AppColors.whiteColor,
                             fontWeight: FontWeight.bold,
                             fontSize: height * 0.025,

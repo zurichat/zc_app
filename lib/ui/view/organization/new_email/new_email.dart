@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
@@ -26,8 +27,7 @@ class NewEmailView extends StatelessWidget {
                         TextForm(),
                         SizedBox(height: 12),
                         Text(
-                          '''We’ll send you an email that will '''
-                          '''instantly sign you in''',
+                          WillSendEmail,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 16,
@@ -57,8 +57,8 @@ class TextForm extends HookViewModelWidget<NewEmailViewModel> {
     return Center(
       child: TextField(
         decoration: const InputDecoration(
-          labelText: 'Your email address',
-          hintText: 'Your email address',
+          labelText: YourEmail,
+          hintText: YourEmail,
           hintStyle: TextStyle(
             color: Color(0xffBEBEBE),
             fontSize: 16,
@@ -98,7 +98,7 @@ class NextButton extends ViewModelWidget<NewEmailViewModel> {
             width: 300,
             child: Center(
               child: Text(
-                'Next',
+                Next,
                 style: AppTextStyles.buttonText,
               ),
             ),
