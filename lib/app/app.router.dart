@@ -541,7 +541,11 @@ class StackedRouter extends RouterBase {
         orElse: () => EditChannelPageViewArguments(),
       );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => EditChannelPageView(key: args.key),
+        builder: (context) => EditChannelPageView(
+          key: args.key,
+          channelName: args.channelName,
+          channelId: args.channelId,
+        ),
         settings: data,
       );
     },
@@ -685,7 +689,9 @@ class ThreadDetailViewArguments {
 /// EditChannelPageView arguments holder class
 class EditChannelPageViewArguments {
   final Key? key;
-  EditChannelPageViewArguments({this.key});
+  final String? channelName;
+  final String? channelId;
+  EditChannelPageViewArguments({this.key, this.channelName, this.channelId});
 }
 
 /// StartDmView arguments holder class

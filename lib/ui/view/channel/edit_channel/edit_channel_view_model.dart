@@ -18,6 +18,7 @@ class EditChannelViewModel extends FormViewModel {
   final storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
   final _apiService = ZuriApi(channelsBaseUrl);
+  String id = '';
   String? get token => storage.getString(StorageKeys.currentSessionToken);
   bool isLoading = false;
   loading(status) {
@@ -27,6 +28,7 @@ class EditChannelViewModel extends FormViewModel {
 
   editChannel(context) async {
     loading(true);
+    print(DescriptionValueKey);
     if (topicValue == '' || descriptionValue == '') {
       loading(false);
       //Hides the keyboard for the failure snackbar to be visible
@@ -39,8 +41,11 @@ class EditChannelViewModel extends FormViewModel {
 
       return;
     }
-    const channel_id = '613f70bd6173056af01b4aba';
-    const endpoint = '$ChannelInfoEndpoint$channel_id/';
+    String _channelId = id;
+    String orgId = storage.getString(StorageKeys.currentOrgId).toString();
+    String endpoint = '/v1/'+orgId+'/channels/'+_channelId;
+    print(endpoint);
+    print(_channelId);
     final des = {/*'topic': topic.text, */ 'description': descriptionValue};
     final response = await _apiService.put(endpoint, body: des, token: token);
     if (response?.statusCode == 200) {
@@ -91,6 +96,10 @@ class EditChannelViewModel extends FormViewModel {
   @override
   void setFormStatus() {
     // TODO: implement setFormStatus
+  }
+
+  void setChannelID(String channelId) {
+    id = channelId;
   }
   // ignore: always_declare_return_types
   /*Future logInUser(context) async {

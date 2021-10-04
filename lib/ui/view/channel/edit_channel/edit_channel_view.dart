@@ -20,12 +20,15 @@ import 'widgets/edit_channel_text_field.dart';
 )
 class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
   final _padding = const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0);
-  EditChannelPageView({Key? key}) : super(key: key);
-
+  EditChannelPageView({Key? key, this.channelName, this.channelId}) : super(key: key);
+  final String? channelName;
+  final String? channelId;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<EditChannelViewModel>.reactive(
-      onModelReady: (model) => listenToFormUpdated(model),
+      onModelReady: (model) { listenToFormUpdated(model);
+      model.setChannelID(channelId.toString());
+      },
       viewModelBuilder: () => EditChannelViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: CustomAppBars(
@@ -46,7 +49,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
               Container(
                 margin: _padding,
                 child: Text(
-                  TeamSocrates,
+                  channelName!,
                   style: AppTextStyles.body1Light,
                 ),
               ),

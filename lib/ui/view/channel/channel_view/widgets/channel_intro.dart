@@ -34,7 +34,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
               Column(
                 children: [
                   MaterialButton(
-                    onPressed: () => viewModel.navigateToChannelEdit(),
+                    onPressed: () => viewModel.navigateToChannelEdit(channelName, channelId),
                     padding: const EdgeInsets.all(15),
                     shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
