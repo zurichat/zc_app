@@ -68,13 +68,13 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
               ),
               const TextHeader(headerText: ChannelTopic),
               TextBox(
-                // onChanged: model.onChanged,
+                onChanged: model.onChanged,
                 hint: AddTopic,
                 controller: topicController,
               ),
               const TextHeader(headerText: ChannelDescription),
               TextBox(
-                  // onChanged: model.onChanged,
+                  onChanged: model.onChanged,
                   hint: ChannelCreationHint, controller: descriptionController),
               const SizedBox(
                 height: 30,
