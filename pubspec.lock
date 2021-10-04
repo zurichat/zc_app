@@ -554,7 +554,11 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "3.0.8"
+=======
+    version: "3.0.7"
+>>>>>>> f0c633d98f27f736e62af88732760ba4a8620c8c
   image_picker:
     dependency: "direct main"
     description:
