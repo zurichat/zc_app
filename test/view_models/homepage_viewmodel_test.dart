@@ -28,25 +28,6 @@ void main() {
         await model.getDmAndChannelsList();
         verify(service.getActiveDms());
       });
-
-   
-
-      test("Navigate to channel page", ()async{
-        var service= getAndRegisterNavigationServiceMock();
-        var connectivityService= getAndRegisterConnectivityServiceMock();
-        var model=HomePageViewModel();
-        await model.navigateToChannelPage("channelname", "channelId", 5, true);
-        verify(connectivityService.hasConnection);
-        // verify(service.navigateTo(Routes.channelPageView,
-        // arguments: ChannelPageViewArguments(
-        //     channelname: "channelname",
-        //     channelId: "channelId",
-        //     membersCount:5,
-        //     public: true,
-        //   ),
-        //   ));
-      });
-
     });
   });
 }
