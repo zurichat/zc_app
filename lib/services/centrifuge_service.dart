@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:centrifuge/centrifuge.dart' as centrifuge;
 import 'package:centrifuge/centrifuge.dart';
+
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
@@ -11,14 +12,16 @@ class CentrifugeService with ReactiveServiceMixin {
   static final Client _client = centrifuge.createClient(
     '$websocketUrl?format=protobuf',
   );
+
   StreamController messageStreamController = StreamController.broadcast();
 
   static CentrifugeService? _instance;
   static final log = getLogger('CentrifugeService');
 
+  Map<String, Subscription> subList = {};
+
   ///This contains the `socketId` mapped to the stream or contoller
   ///so user dont subscribe to the same event twice
-  Map<String, Subscription> subList = {};
 
   static Future<CentrifugeService> getInstance() async {
     _instance ??= CentrifugeService();

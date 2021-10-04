@@ -61,7 +61,6 @@ import '../ui/view/start_dm/start_dm_view.dart';
 import '../ui/view/threads/all_threads/threads_view.dart';
 import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 import '../ui/view/user_search/user_search_view.dart';
-import '../ui/view/view_profile_page/view_profile.dart';
 import '../utilities/enums.dart';
 
 class Routes {
@@ -88,7 +87,6 @@ class Routes {
   static const String addPluginView = '/add-plugin-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String editPluginView = '/edit-plugin-view';
-  static const String viewProfile = '/view-profile';
   static const String setStatusView = '/set-status-view';
   static const String profilePageView = '/profile-page-view';
   static const String preferenceView = '/preference-view';
@@ -140,7 +138,6 @@ class Routes {
     addPluginView,
     useDifferentEmailView,
     editPluginView,
-    viewProfile,
     setStatusView,
     profilePageView,
     preferenceView,
@@ -197,7 +194,6 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.addPluginView, page: AddPluginView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.editPluginView, page: EditPluginView),
-    RouteDef(Routes.viewProfile, page: ViewProfile),
     RouteDef(Routes.setStatusView, page: SetStatusView),
     RouteDef(Routes.profilePageView, page: ProfilePageView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
@@ -399,12 +395,6 @@ class StackedRouter extends RouterBase {
     EditPluginView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const EditPluginView(),
-        settings: data,
-      );
-    },
-    ViewProfile: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const ViewProfile(),
         settings: data,
       );
     },
