@@ -29,10 +29,10 @@ class EditChannelViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  onChanged(String val) {
-    // log.i(val);
-    notifyListeners();
-  }
+  // onChanged(String val) {
+  //   // log.i(val);
+  //   notifyListeners();
+  // }
 
   editChannel() async {
     loading(true);
