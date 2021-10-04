@@ -20,6 +20,7 @@ class EditChannelViewModel extends FormViewModel {
   final storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
   final _apiService = ZuriApi(channelsBaseUrl);
+  final _navigationService = locator<NavigationService>();
   String id = '';
   String? get token => storage.getString(StorageKeys.currentSessionToken);
   bool isLoading = false;
@@ -56,7 +57,7 @@ class EditChannelViewModel extends FormViewModel {
     final des = {
       /*'topic': topic.text, */
       'description': descriptionValue,
-      "name": "True ==================",
+      "name": "NewTest",
       "private": false,
       "archived": false,
       'topic': topicValue,
@@ -74,7 +75,7 @@ class EditChannelViewModel extends FormViewModel {
         message: response?.data['message'] ?? UpdateSuccessful,
       );
       // Return to channel info
-      nToChannelInfo();
+      navigateBack();
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -110,6 +111,9 @@ class EditChannelViewModel extends FormViewModel {
   // Navigate to channel info view
   nToChannelInfo() {
     NavigationService().navigateTo(Routes.channelInfoView);
+  }
+  navigateBack() {
+    _navigationService.back();
   }
 
   @override
