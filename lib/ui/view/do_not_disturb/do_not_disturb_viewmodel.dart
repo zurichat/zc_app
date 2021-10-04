@@ -1,3 +1,4 @@
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -6,11 +7,11 @@ import '../../../app/app.locator.dart';
 class DoNotDisturbViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   List doNotDisturbTimes = [
-    '30 minutes',
-    '1 hour',
-    '2 hours',
-    'Until tomorrow',
-    'Custom',
+    ThirtyMins,
+    OneHour,
+    TwoHours,
+    UntilTomorrow,
+    Custom,
   ];
   int? currentValue = 0;
 

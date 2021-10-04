@@ -2,33 +2,40 @@
 // in hng/test/helpers/test_helpers.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i2;
-import 'dart:ui' as _i12;
+import 'dart:async' as _i4;
+import 'dart:io' as _i24;
+import 'dart:ui' as _i15;
 
-import 'package:dio/dio.dart' as _i3;
-import 'package:flutter/material.dart' as _i9;
-import 'package:hng/models/api_response.dart' as _i19;
-import 'package:hng/models/channel_members.dart' as _i16;
-import 'package:hng/models/channel_model.dart' as _i15;
-import 'package:hng/models/channels_search_model.dart' as _i24;
-import 'package:hng/models/organization_model.dart' as _i6;
-import 'package:hng/models/user_search_model.dart' as _i20;
-import 'package:hng/package/base/jump_to_request/jump_to_api.dart' as _i23;
-import 'package:hng/package/base/server-request/api/zuri_api.dart' as _i18;
+import 'package:centrifuge/centrifuge.dart' as _i21;
+import 'package:dio/dio.dart' as _i5;
+import 'package:flutter/material.dart' as _i12;
+import 'package:hng/models/api_response.dart' as _i22;
+import 'package:hng/models/channel_members.dart' as _i19;
+import 'package:hng/models/channel_model.dart' as _i18;
+import 'package:hng/models/channels_search_model.dart' as _i28;
+import 'package:hng/models/organization_member_model.dart' as _i10;
+import 'package:hng/models/organization_model.dart' as _i9;
+import 'package:hng/models/user_search_model.dart' as _i23;
+import 'package:hng/package/base/jump_to_request/jump_to_api.dart' as _i27;
+import 'package:hng/package/base/server-request/api/zuri_api.dart' as _i7;
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart'
-    as _i14;
+    as _i17;
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart'
-    as _i13;
-import 'package:hng/services/centrifuge_service.dart' as _i17;
-import 'package:hng/services/connectivity_service.dart' as _i21;
-import 'package:hng/services/local_storage_services.dart' as _i7;
-import 'package:hng/services/user_service.dart' as _i5;
-import 'package:hng/utilities/enums.dart' as _i22;
-import 'package:hng/utilities/failures.dart' as _i4;
+    as _i16;
+import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart'
+    as _i30;
+import 'package:hng/services/centrifuge_service.dart' as _i20;
+import 'package:hng/services/connectivity_service.dart' as _i25;
+import 'package:hng/services/local_storage_services.dart' as _i3;
+import 'package:hng/services/media_service.dart' as _i29;
+import 'package:hng/services/user_service.dart' as _i8;
+import 'package:hng/utilities/enums.dart' as _i26;
+import 'package:hng/utilities/failures.dart' as _i6;
+import 'package:logger/src/logger.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i8;
-import 'package:stacked_themes/src/theme_manager.dart' as _i11;
-import 'package:stacked_themes/src/theme_service.dart' as _i10;
+import 'package:stacked_services/stacked_services.dart' as _i11;
+import 'package:stacked_themes/src/theme_manager.dart' as _i14;
+import 'package:stacked_themes/src/theme_service.dart' as _i13;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -38,19 +45,37 @@ import 'package:stacked_themes/src/theme_service.dart' as _i10;
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeStreamController_0<T> extends _i1.Fake
-    implements _i2.StreamController<T> {}
+class _FakeLogger_0 extends _i1.Fake implements _i2.Logger {}
 
-class _FakeDio_1 extends _i1.Fake implements _i3.Dio {}
+class _FakeSharedPreferenceLocalStorage_1 extends _i1.Fake
+    implements _i3.SharedPreferenceLocalStorage {}
 
-class _FakeFailure_2 extends _i1.Fake implements _i4.Failure {}
+class _FakeStreamController_2<T> extends _i1.Fake
+    implements _i4.StreamController<T> {}
+
+class _FakeStreamSubscription_3<T> extends _i1.Fake
+    implements _i4.StreamSubscription<T> {}
+
+class _FakeDio_4 extends _i1.Fake implements _i5.Dio {}
+
+class _FakeFailure_5 extends _i1.Fake implements _i6.Failure {}
+
+class _FakeZuriApi_6 extends _i1.Fake implements _i7.ZuriApi {}
+
+class _FakeUserService_7 extends _i1.Fake implements _i8.UserService {}
+
+class _FakeOrganizationModel_8 extends _i1.Fake
+    implements _i9.OrganizationModel {}
+
+class _FakeOrganizationMemberModelList_9 extends _i1.Fake
+    implements _i10.OrganizationMemberModelList {}
 
 /// A class which mocks [UserService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserService extends _i1.Mock implements _i5.UserService {
+class MockUserService extends _i1.Mock implements _i8.UserService {
   @override
-  set organizationModel(_i6.OrganizationModel? _organizationModel) => super
+  set organizationModel(_i9.OrganizationModel? _organizationModel) => super
       .noSuchMethod(Invocation.setter(#organizationModel, _organizationModel),
           returnValueForMissingStub: null);
   @override
@@ -100,23 +125,23 @@ class MockUserService extends _i1.Mock implements _i5.UserService {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSharedPreferenceLocalStorage extends _i1.Mock
-    implements _i7.SharedPreferenceLocalStorage {
+    implements _i3.SharedPreferenceLocalStorage {
   @override
-  _i2.Future<dynamic> setBool(String? key, bool? value) =>
+  _i4.Future<dynamic> setBool(String? key, bool? value) =>
       (super.noSuchMethod(Invocation.method(#setBool, [key, value]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> setString(String? key, String? value) =>
+  _i4.Future<dynamic> setString(String? key, String? value) =>
       (super.noSuchMethod(Invocation.method(#setString, [key, value]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> setDouble(String? key, num? value) =>
+  _i4.Future<dynamic> setDouble(String? key, num? value) =>
       (super.noSuchMethod(Invocation.method(#setDouble, [key, value]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> setStringList(String? key, List<String>? value) =>
+  _i4.Future<dynamic> setStringList(String? key, List<String>? value) =>
       (super.noSuchMethod(Invocation.method(#setStringList, [key, value]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
   bool? getBool(String? key) =>
       (super.noSuchMethod(Invocation.method(#getBool, [key])) as bool?);
@@ -131,13 +156,13 @@ class MockSharedPreferenceLocalStorage extends _i1.Mock
       (super.noSuchMethod(Invocation.method(#getStringList, [key]))
           as List<String>?);
   @override
-  _i2.Future<bool?> clearData(String? key) =>
+  _i4.Future<bool?> clearData(String? key) =>
       (super.noSuchMethod(Invocation.method(#clearData, [key]),
-          returnValue: Future<bool?>.value()) as _i2.Future<bool?>);
+          returnValue: Future<bool?>.value()) as _i4.Future<bool?>);
   @override
-  _i2.Future<bool?> clearStorage() =>
+  _i4.Future<bool?> clearStorage() =>
       (super.noSuchMethod(Invocation.method(#clearStorage, []),
-          returnValue: Future<bool?>.value()) as _i2.Future<bool?>);
+          returnValue: Future<bool?>.value()) as _i4.Future<bool?>);
   @override
   String toString() => super.toString();
 }
@@ -145,7 +170,7 @@ class MockSharedPreferenceLocalStorage extends _i1.Mock
 /// A class which mocks [NavigationService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNavigationService extends _i1.Mock implements _i8.NavigationService {
+class MockNavigationService extends _i1.Mock implements _i11.NavigationService {
   @override
   String get previousRoute =>
       (super.noSuchMethod(Invocation.getter(#previousRoute), returnValue: '')
@@ -155,9 +180,9 @@ class MockNavigationService extends _i1.Mock implements _i8.NavigationService {
       (super.noSuchMethod(Invocation.getter(#currentRoute), returnValue: '')
           as String);
   @override
-  _i9.GlobalKey<_i9.NavigatorState>? nestedNavigationKey(int? index) =>
+  _i12.GlobalKey<_i12.NavigatorState>? nestedNavigationKey(int? index) =>
       (super.noSuchMethod(Invocation.method(#nestedNavigationKey, [index]))
-          as _i9.GlobalKey<_i9.NavigatorState>?);
+          as _i12.GlobalKey<_i12.NavigatorState>?);
   @override
   void config(
           {bool? enableLog,
@@ -177,17 +202,17 @@ class MockNavigationService extends _i1.Mock implements _i8.NavigationService {
           }),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<T?>? navigateWithTransition<T>(_i9.Widget? page,
+  _i4.Future<T?>? navigateWithTransition<T>(_i12.Widget? page,
           {bool? opaque,
           String? transition = r'',
           Duration? duration,
           bool? popGesture,
           int? id,
-          _i9.Curve? curve,
-          _i8.Bindings? binding,
+          _i12.Curve? curve,
+          _i11.Bindings? binding,
           bool? fullscreenDialog = false,
           bool? preventDuplicates = true,
-          _i8.Transition? transitionClass}) =>
+          _i11.Transition? transitionClass}) =>
       (super.noSuchMethod(Invocation.method(#navigateWithTransition, [
         page
       ], {
@@ -201,19 +226,19 @@ class MockNavigationService extends _i1.Mock implements _i8.NavigationService {
         #fullscreenDialog: fullscreenDialog,
         #preventDuplicates: preventDuplicates,
         #transitionClass: transitionClass
-      })) as _i2.Future<T?>?);
+      })) as _i4.Future<T?>?);
   @override
-  _i2.Future<T?>? replaceWithTransition<T>(_i9.Widget? page,
+  _i4.Future<T?>? replaceWithTransition<T>(_i12.Widget? page,
           {bool? opaque,
           String? transition = r'',
           Duration? duration,
           bool? popGesture,
           int? id,
-          _i9.Curve? curve,
-          _i8.Bindings? binding,
+          _i12.Curve? curve,
+          _i11.Bindings? binding,
           bool? fullscreenDialog = false,
           bool? preventDuplicates = true,
-          _i8.Transition? transitionClass}) =>
+          _i11.Transition? transitionClass}) =>
       (super.noSuchMethod(Invocation.method(#replaceWithTransition, [
         page
       ], {
@@ -227,13 +252,13 @@ class MockNavigationService extends _i1.Mock implements _i8.NavigationService {
         #fullscreenDialog: fullscreenDialog,
         #preventDuplicates: preventDuplicates,
         #transitionClass: transitionClass
-      })) as _i2.Future<T?>?);
+      })) as _i4.Future<T?>?);
   @override
   bool back<T>({T? result, int? id}) => (super.noSuchMethod(
       Invocation.method(#back, [], {#result: result, #id: id}),
       returnValue: false) as bool);
   @override
-  void popUntil(_i9.RoutePredicate? predicate) =>
+  void popUntil(_i12.RoutePredicate? predicate) =>
       super.noSuchMethod(Invocation.method(#popUntil, [predicate]),
           returnValueForMissingStub: null);
   @override
@@ -241,7 +266,7 @@ class MockNavigationService extends _i1.Mock implements _i8.NavigationService {
       super.noSuchMethod(Invocation.method(#popRepeated, [popTimes]),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<T?>? navigateTo<T>(String? routeName,
+  _i4.Future<T?>? navigateTo<T>(String? routeName,
           {dynamic arguments,
           int? id,
           bool? preventDuplicates = true,
@@ -253,19 +278,19 @@ class MockNavigationService extends _i1.Mock implements _i8.NavigationService {
         #id: id,
         #preventDuplicates: preventDuplicates,
         #parameters: parameters
-      })) as _i2.Future<T?>?);
+      })) as _i4.Future<T?>?);
   @override
-  _i2.Future<T?>? navigateToView<T>(_i9.Widget? view,
+  _i4.Future<T?>? navigateToView<T>(_i12.Widget? view,
           {dynamic arguments,
           int? id,
           bool? opaque,
-          _i9.Curve? curve,
-          _i8.Bindings? binding,
+          _i12.Curve? curve,
+          _i11.Bindings? binding,
           Duration? duration,
           bool? fullscreenDialog = false,
           bool? popGesture,
           bool? preventDuplicates = true,
-          _i8.Transition? transition}) =>
+          _i11.Transition? transition}) =>
       (super.noSuchMethod(Invocation.method(#navigateToView, [
         view
       ], {
@@ -279,9 +304,9 @@ class MockNavigationService extends _i1.Mock implements _i8.NavigationService {
         #popGesture: popGesture,
         #preventDuplicates: preventDuplicates,
         #transition: transition
-      })) as _i2.Future<T?>?);
+      })) as _i4.Future<T?>?);
   @override
-  _i2.Future<T?>? replaceWith<T>(String? routeName,
+  _i4.Future<T?>? replaceWith<T>(String? routeName,
           {dynamic arguments,
           int? id,
           bool? preventDuplicates = true,
@@ -293,9 +318,9 @@ class MockNavigationService extends _i1.Mock implements _i8.NavigationService {
         #id: id,
         #preventDuplicates: preventDuplicates,
         #parameters: parameters
-      })) as _i2.Future<T?>?);
+      })) as _i4.Future<T?>?);
   @override
-  _i2.Future<T?>? clearStackAndShow<T>(String? routeName,
+  _i4.Future<T?>? clearStackAndShow<T>(String? routeName,
           {dynamic arguments, int? id, Map<String, String>? parameters}) =>
       (super.noSuchMethod(Invocation.method(#clearStackAndShow, [
         routeName
@@ -303,9 +328,9 @@ class MockNavigationService extends _i1.Mock implements _i8.NavigationService {
         #arguments: arguments,
         #id: id,
         #parameters: parameters
-      })) as _i2.Future<T?>?);
+      })) as _i4.Future<T?>?);
   @override
-  _i2.Future<T?>? clearTillFirstAndShow<T>(String? routeName,
+  _i4.Future<T?>? clearTillFirstAndShow<T>(String? routeName,
           {dynamic arguments,
           int? id,
           bool? preventDuplicates = true,
@@ -317,22 +342,22 @@ class MockNavigationService extends _i1.Mock implements _i8.NavigationService {
         #id: id,
         #preventDuplicates: preventDuplicates,
         #parameters: parameters
-      })) as _i2.Future<T?>?);
+      })) as _i4.Future<T?>?);
   @override
-  _i2.Future<T?>? clearTillFirstAndShowView<T>(_i9.Widget? view,
+  _i4.Future<T?>? clearTillFirstAndShowView<T>(_i12.Widget? view,
           {dynamic arguments, int? id}) =>
       (super.noSuchMethod(Invocation.method(#clearTillFirstAndShowView, [view],
-          {#arguments: arguments, #id: id})) as _i2.Future<T?>?);
+          {#arguments: arguments, #id: id})) as _i4.Future<T?>?);
   @override
-  _i2.Future<T?>? pushNamedAndRemoveUntil<T>(String? routeName,
-          {_i9.RoutePredicate? predicate, dynamic arguments, int? id}) =>
+  _i4.Future<T?>? pushNamedAndRemoveUntil<T>(String? routeName,
+          {_i12.RoutePredicate? predicate, dynamic arguments, int? id}) =>
       (super.noSuchMethod(Invocation.method(#pushNamedAndRemoveUntil, [
         routeName
       ], {
         #predicate: predicate,
         #arguments: arguments,
         #id: id
-      })) as _i2.Future<T?>?);
+      })) as _i4.Future<T?>?);
   @override
   String toString() => super.toString();
 }
@@ -340,14 +365,14 @@ class MockNavigationService extends _i1.Mock implements _i8.NavigationService {
 /// A class which mocks [SnackbarService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSnackbarService extends _i1.Mock implements _i8.SnackbarService {
+class MockSnackbarService extends _i1.Mock implements _i11.SnackbarService {
   @override
-  void registerSnackbarConfig(_i8.SnackbarConfig? config) =>
+  void registerSnackbarConfig(_i11.SnackbarConfig? config) =>
       super.noSuchMethod(Invocation.method(#registerSnackbarConfig, [config]),
           returnValueForMissingStub: null);
   @override
   void registerCustomSnackbarconfig(
-          {dynamic customData, _i8.SnackbarConfig? config}) =>
+          {dynamic customData, _i11.SnackbarConfig? config}) =>
       super.noSuchMethod(
           Invocation.method(#registerCustomSnackbarconfig, [],
               {#customData: customData, #config: config}),
@@ -355,7 +380,7 @@ class MockSnackbarService extends _i1.Mock implements _i8.SnackbarService {
   @override
   void registerCustomMainButtonBuilder(
           {dynamic variant,
-          _i9.Widget Function(String?, Function?)? builder}) =>
+          _i12.Widget Function(String?, Function?)? builder}) =>
       super.noSuchMethod(
           Invocation.method(#registerCustomMainButtonBuilder, [],
               {#variant: variant, #builder: builder}),
@@ -363,8 +388,8 @@ class MockSnackbarService extends _i1.Mock implements _i8.SnackbarService {
   @override
   void registerCustomSnackbarConfig(
           {dynamic variant,
-          _i8.SnackbarConfig? config,
-          _i8.SnackbarConfig Function()? configBuilder}) =>
+          _i11.SnackbarConfig? config,
+          _i11.SnackbarConfig Function()? configBuilder}) =>
       super.noSuchMethod(
           Invocation.method(#registerCustomSnackbarConfig, [], {
             #variant: variant,
@@ -391,7 +416,7 @@ class MockSnackbarService extends _i1.Mock implements _i8.SnackbarService {
           }),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<dynamic>? showCustomSnackBar(
+  _i4.Future<dynamic>? showCustomSnackBar(
           {String? message,
           dynamic customData,
           dynamic variant,
@@ -409,7 +434,7 @@ class MockSnackbarService extends _i1.Mock implements _i8.SnackbarService {
         #onMainButtonTapped: onMainButtonTapped,
         #onTap: onTap,
         #duration: duration
-      })) as _i2.Future<dynamic>?);
+      })) as _i4.Future<dynamic>?);
   @override
   String toString() => super.toString();
 }
@@ -417,7 +442,7 @@ class MockSnackbarService extends _i1.Mock implements _i8.SnackbarService {
 /// A class which mocks [ThemeService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockThemeService extends _i1.Mock implements _i10.ThemeService {
+class MockThemeService extends _i1.Mock implements _i13.ThemeService {
   @override
   int get themeCount =>
       (super.noSuchMethod(Invocation.getter(#themeCount), returnValue: 0)
@@ -427,23 +452,23 @@ class MockThemeService extends _i1.Mock implements _i10.ThemeService {
       (super.noSuchMethod(Invocation.getter(#isDarkMode), returnValue: false)
           as bool);
   @override
-  _i10.ThemeManagerMode get selectedThemeMode =>
+  _i13.ThemeManagerMode get selectedThemeMode =>
       (super.noSuchMethod(Invocation.getter(#selectedThemeMode),
-          returnValue: _i10.ThemeManagerMode.light) as _i10.ThemeManagerMode);
+          returnValue: _i13.ThemeManagerMode.light) as _i13.ThemeManagerMode);
   @override
-  void setThemeManager(_i11.ThemeManager? manager) =>
+  void setThemeManager(_i14.ThemeManager? manager) =>
       super.noSuchMethod(Invocation.method(#setThemeManager, [manager]),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<dynamic> selectThemeAtIndex(int? themeIndex) =>
+  _i4.Future<dynamic> selectThemeAtIndex(int? themeIndex) =>
       (super.noSuchMethod(Invocation.method(#selectThemeAtIndex, [themeIndex]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
   void toggleDarkLightTheme() =>
       super.noSuchMethod(Invocation.method(#toggleDarkLightTheme, []),
           returnValueForMissingStub: null);
   @override
-  void setThemeMode(_i10.ThemeManagerMode? themeManagerMode) =>
+  void setThemeMode(_i13.ThemeManagerMode? themeManagerMode) =>
       super.noSuchMethod(Invocation.method(#setThemeMode, [themeManagerMode]),
           returnValueForMissingStub: null);
   @override
@@ -453,33 +478,33 @@ class MockThemeService extends _i1.Mock implements _i10.ThemeService {
 /// A class which mocks [DialogService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDialogService extends _i1.Mock implements _i8.DialogService {
+class MockDialogService extends _i1.Mock implements _i11.DialogService {
   @override
   void registerCustomDialogBuilders(
-          Map<dynamic, _i8.DialogBuilder>? builders) =>
+          Map<dynamic, _i11.DialogBuilder>? builders) =>
       super.noSuchMethod(
           Invocation.method(#registerCustomDialogBuilders, [builders]),
           returnValueForMissingStub: null);
   @override
   void registerCustomDialogBuilder(
           {dynamic variant,
-          _i9.Widget Function(_i9.BuildContext, _i8.DialogRequest<dynamic>,
-                  dynamic Function(_i8.DialogResponse<dynamic>))?
+          _i12.Widget Function(_i12.BuildContext, _i11.DialogRequest<dynamic>,
+                  dynamic Function(_i11.DialogResponse<dynamic>))?
               builder}) =>
       super.noSuchMethod(
           Invocation.method(#registerCustomDialogBuilder, [],
               {#variant: variant, #builder: builder}),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<_i8.DialogResponse<dynamic>?> showDialog(
+  _i4.Future<_i11.DialogResponse<dynamic>?> showDialog(
           {String? title,
           String? description,
           String? cancelTitle,
-          _i12.Color? cancelTitleColor,
+          _i15.Color? cancelTitleColor,
           String? buttonTitle = r'Ok',
-          _i12.Color? buttonTitleColor,
+          _i15.Color? buttonTitleColor,
           bool? barrierDismissible = false,
-          _i8.DialogPlatform? dialogPlatform}) =>
+          _i11.DialogPlatform? dialogPlatform}) =>
       (super.noSuchMethod(
               Invocation.method(#showDialog, [], {
                 #title: title,
@@ -491,10 +516,10 @@ class MockDialogService extends _i1.Mock implements _i8.DialogService {
                 #barrierDismissible: barrierDismissible,
                 #dialogPlatform: dialogPlatform
               }),
-              returnValue: Future<_i8.DialogResponse<dynamic>?>.value())
-          as _i2.Future<_i8.DialogResponse<dynamic>?>);
+              returnValue: Future<_i11.DialogResponse<dynamic>?>.value())
+          as _i4.Future<_i11.DialogResponse<dynamic>?>);
   @override
-  _i2.Future<_i8.DialogResponse<T>?> showCustomDialog<T, R>(
+  _i4.Future<_i11.DialogResponse<T>?> showCustomDialog<T, R>(
           {dynamic variant,
           String? title,
           String? description,
@@ -507,7 +532,7 @@ class MockDialogService extends _i1.Mock implements _i8.DialogService {
           bool? showIconInAdditionalButton = false,
           String? additionalButtonTitle,
           bool? takesInput = false,
-          _i12.Color? barrierColor = const _i12.Color(2315255808),
+          _i15.Color? barrierColor = const _i15.Color(2315255808),
           bool? barrierDismissible = false,
           String? barrierLabel = r'',
           dynamic customData,
@@ -532,16 +557,16 @@ class MockDialogService extends _i1.Mock implements _i8.DialogService {
                 #customData: customData,
                 #data: data
               }),
-              returnValue: Future<_i8.DialogResponse<T>?>.value())
-          as _i2.Future<_i8.DialogResponse<T>?>);
+              returnValue: Future<_i11.DialogResponse<T>?>.value())
+          as _i4.Future<_i11.DialogResponse<T>?>);
   @override
-  _i2.Future<_i8.DialogResponse<dynamic>?> showConfirmationDialog(
+  _i4.Future<_i11.DialogResponse<dynamic>?> showConfirmationDialog(
           {String? title,
           String? description,
           String? cancelTitle = r'Cancel',
           String? confirmationTitle = r'Ok',
           bool? barrierDismissible = false,
-          _i8.DialogPlatform? dialogPlatform}) =>
+          _i11.DialogPlatform? dialogPlatform}) =>
       (super.noSuchMethod(
               Invocation.method(#showConfirmationDialog, [], {
                 #title: title,
@@ -551,10 +576,10 @@ class MockDialogService extends _i1.Mock implements _i8.DialogService {
                 #barrierDismissible: barrierDismissible,
                 #dialogPlatform: dialogPlatform
               }),
-              returnValue: Future<_i8.DialogResponse<dynamic>?>.value())
-          as _i2.Future<_i8.DialogResponse<dynamic>?>);
+              returnValue: Future<_i11.DialogResponse<dynamic>?>.value())
+          as _i4.Future<_i11.DialogResponse<dynamic>?>);
   @override
-  void completeDialog(_i8.DialogResponse<dynamic>? response) =>
+  void completeDialog(_i11.DialogResponse<dynamic>? response) =>
       super.noSuchMethod(Invocation.method(#completeDialog, [response]),
           returnValueForMissingStub: null);
   @override
@@ -565,13 +590,13 @@ class MockDialogService extends _i1.Mock implements _i8.DialogService {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockBottomSheetService extends _i1.Mock
-    implements _i8.BottomSheetService {
+    implements _i11.BottomSheetService {
   @override
-  void setCustomSheetBuilders(Map<dynamic, _i8.SheetBuilder>? builders) =>
+  void setCustomSheetBuilders(Map<dynamic, _i11.SheetBuilder>? builders) =>
       super.noSuchMethod(Invocation.method(#setCustomSheetBuilders, [builders]),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<_i8.SheetResponse<dynamic>?> showBottomSheet(
+  _i4.Future<_i11.SheetResponse<dynamic>?> showBottomSheet(
           {String? title,
           String? description,
           String? confirmButtonTitle = r'Ok',
@@ -595,10 +620,10 @@ class MockBottomSheetService extends _i1.Mock
                 #enterBottomSheetDuration: enterBottomSheetDuration,
                 #ignoreSafeArea: ignoreSafeArea
               }),
-              returnValue: Future<_i8.SheetResponse<dynamic>?>.value())
-          as _i2.Future<_i8.SheetResponse<dynamic>?>);
+              returnValue: Future<_i11.SheetResponse<dynamic>?>.value())
+          as _i4.Future<_i11.SheetResponse<dynamic>?>);
   @override
-  _i2.Future<_i8.SheetResponse<T>?> showCustomSheet<T, R>(
+  _i4.Future<_i11.SheetResponse<T>?> showCustomSheet<T, R>(
           {dynamic variant,
           String? title,
           String? description,
@@ -611,7 +636,7 @@ class MockBottomSheetService extends _i1.Mock
           bool? showIconInAdditionalButton = false,
           String? additionalButtonTitle,
           bool? takesInput = false,
-          _i12.Color? barrierColor = const _i12.Color(2315255808),
+          _i15.Color? barrierColor = const _i15.Color(2315255808),
           bool? barrierDismissible = true,
           bool? isScrollControlled = false,
           String? barrierLabel = r'',
@@ -646,10 +671,10 @@ class MockBottomSheetService extends _i1.Mock
                 #enterBottomSheetDuration: enterBottomSheetDuration,
                 #ignoreSafeArea: ignoreSafeArea
               }),
-              returnValue: Future<_i8.SheetResponse<T>?>.value())
-          as _i2.Future<_i8.SheetResponse<T>?>);
+              returnValue: Future<_i11.SheetResponse<T>?>.value())
+          as _i4.Future<_i11.SheetResponse<T>?>);
   @override
-  void completeSheet(_i8.SheetResponse<dynamic>? response) =>
+  void completeSheet(_i11.SheetResponse<dynamic>? response) =>
       super.noSuchMethod(Invocation.method(#completeSheet, [response]),
           returnValueForMissingStub: null);
   @override
@@ -659,16 +684,33 @@ class MockBottomSheetService extends _i1.Mock
 /// A class which mocks [DMApiService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDMApiService extends _i1.Mock implements _i13.DMApiService {
+class MockDMApiService extends _i1.Mock implements _i16.DMApiService {
   @override
-  _i2.Future<List<dynamic>> getActiveDms() =>
+  _i2.Logger get log =>
+      (super.noSuchMethod(Invocation.getter(#log), returnValue: _FakeLogger_0())
+          as _i2.Logger);
+  @override
+  _i3.SharedPreferenceLocalStorage get storageService =>
+      (super.noSuchMethod(Invocation.getter(#storageService),
+              returnValue: _FakeSharedPreferenceLocalStorage_1())
+          as _i3.SharedPreferenceLocalStorage);
+  @override
+  String get userId =>
+      (super.noSuchMethod(Invocation.getter(#userId), returnValue: '')
+          as String);
+  @override
+  String get orgId =>
+      (super.noSuchMethod(Invocation.getter(#orgId), returnValue: '')
+          as String);
+  @override
+  _i4.Future<List<dynamic>> getActiveDms() =>
       (super.noSuchMethod(Invocation.method(#getActiveDms, []),
               returnValue: Future<List<dynamic>>.value(<dynamic>[]))
-          as _i2.Future<List<dynamic>>);
+          as _i4.Future<List<dynamic>>);
   @override
-  _i2.Future<String?> getUser(dynamic ids) =>
+  _i4.Future<String?> getUser(dynamic ids) =>
       (super.noSuchMethod(Invocation.method(#getUser, [ids]),
-          returnValue: Future<String?>.value()) as _i2.Future<String?>);
+          returnValue: Future<String?>.value()) as _i4.Future<String?>);
   @override
   String toString() => super.toString();
 }
@@ -677,67 +719,76 @@ class MockDMApiService extends _i1.Mock implements _i13.DMApiService {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockChannelsApiService extends _i1.Mock
-    implements _i14.ChannelsApiService {
+    implements _i17.ChannelsApiService {
   @override
-  _i2.StreamController<String> get controller =>
+  _i2.Logger get log =>
+      (super.noSuchMethod(Invocation.getter(#log), returnValue: _FakeLogger_0())
+          as _i2.Logger);
+  @override
+  _i3.SharedPreferenceLocalStorage get storageService =>
+      (super.noSuchMethod(Invocation.getter(#storageService),
+              returnValue: _FakeSharedPreferenceLocalStorage_1())
+          as _i3.SharedPreferenceLocalStorage);
+  @override
+  _i4.StreamController<String> get controller =>
       (super.noSuchMethod(Invocation.getter(#controller),
-              returnValue: _FakeStreamController_0<String>())
-          as _i2.StreamController<String>);
+              returnValue: _FakeStreamController_2<String>())
+          as _i4.StreamController<String>);
   @override
-  set controller(_i2.StreamController<String>? _controller) =>
+  set controller(_i4.StreamController<String>? _controller) =>
       super.noSuchMethod(Invocation.setter(#controller, _controller),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<List<dynamic>> getActiveDms() =>
+  _i4.Future<List<dynamic>> getActiveDms() =>
       (super.noSuchMethod(Invocation.method(#getActiveDms, []),
               returnValue: Future<List<dynamic>>.value(<dynamic>[]))
-          as _i2.Future<List<dynamic>>);
+          as _i4.Future<List<dynamic>>);
   @override
-  _i2.Future<String> getChannelSocketId(String? channelId) =>
+  _i4.Future<String> getChannelSocketId(String? channelId) =>
       (super.noSuchMethod(Invocation.method(#getChannelSocketId, [channelId]),
-          returnValue: Future<String>.value('')) as _i2.Future<String>);
+          returnValue: Future<String>.value('')) as _i4.Future<String>);
   @override
-  _i2.Future<Map<dynamic, dynamic>?> joinChannel(String? channelId) =>
+  _i4.Future<Map<dynamic, dynamic>?> joinChannel(String? channelId) =>
       (super.noSuchMethod(Invocation.method(#joinChannel, [channelId]),
               returnValue: Future<Map<dynamic, dynamic>?>.value())
-          as _i2.Future<Map<dynamic, dynamic>?>);
+          as _i4.Future<Map<dynamic, dynamic>?>);
   @override
-  _i2.Future<List<dynamic>> getChannelMessages(String? channelId) =>
+  _i4.Future<List<dynamic>> getChannelMessages(String? channelId) =>
       (super.noSuchMethod(Invocation.method(#getChannelMessages, [channelId]),
               returnValue: Future<List<dynamic>>.value(<dynamic>[]))
-          as _i2.Future<List<dynamic>>);
+          as _i4.Future<List<dynamic>>);
   @override
-  _i2.Future<dynamic> sendChannelMessages(
+  _i4.Future<dynamic> sendChannelMessages(
           String? channelId, String? userId, String? message) =>
       (super.noSuchMethod(
           Invocation.method(#sendChannelMessages, [channelId, userId, message]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<List<_i15.ChannelModel>> fetchChannel() =>
+  _i4.Future<List<_i18.ChannelModel>> fetchChannel() =>
       (super.noSuchMethod(Invocation.method(#fetchChannel, []),
               returnValue:
-                  Future<List<_i15.ChannelModel>>.value(<_i15.ChannelModel>[]))
-          as _i2.Future<List<_i15.ChannelModel>>);
+                  Future<List<_i18.ChannelModel>>.value(<_i18.ChannelModel>[]))
+          as _i4.Future<List<_i18.ChannelModel>>);
   @override
-  _i2.Future<bool> createChannels(
+  _i4.Future<bool> createChannels(
           {String? name, String? description, bool? private}) =>
       (super.noSuchMethod(
           Invocation.method(#createChannels, [],
               {#name: name, #description: description, #private: private}),
-          returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i2.Future<bool> deleteChannel(String? orgId, String? channelId) =>
+  _i4.Future<bool> deleteChannel(String? orgId, String? channelId) =>
       (super.noSuchMethod(Invocation.method(#deleteChannel, [orgId, channelId]),
-          returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i2.Future<List<_i16.ChannelMembermodel>?> getChannelMembers(dynamic id) =>
+  _i4.Future<List<_i19.ChannelMembermodel>?> getChannelMembers(dynamic id) =>
       (super.noSuchMethod(Invocation.method(#getChannelMembers, [id]),
-              returnValue: Future<List<_i16.ChannelMembermodel>?>.value())
-          as _i2.Future<List<_i16.ChannelMembermodel>?>);
+              returnValue: Future<List<_i19.ChannelMembermodel>?>.value())
+          as _i4.Future<List<_i19.ChannelMembermodel>?>);
   @override
-  _i2.Future<void>? dispose() => (super.noSuchMethod(
+  _i4.Future<void>? dispose() => (super.noSuchMethod(
       Invocation.method(#dispose, []),
-      returnValueForMissingStub: Future<void>.value()) as _i2.Future<void>?);
+      returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>?);
   @override
   String toString() => super.toString();
 }
@@ -745,26 +796,61 @@ class MockChannelsApiService extends _i1.Mock
 /// A class which mocks [CentrifugeService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCentrifugeService extends _i1.Mock implements _i17.CentrifugeService {
+class MockCentrifugeService extends _i1.Mock implements _i20.CentrifugeService {
   @override
-  _i2.StreamController<dynamic> get messageStreamController =>
+  _i4.StreamController<dynamic> get messageStreamController =>
       (super.noSuchMethod(Invocation.getter(#messageStreamController),
-              returnValue: _FakeStreamController_0<dynamic>())
-          as _i2.StreamController<dynamic>);
+              returnValue: _FakeStreamController_2<dynamic>())
+          as _i4.StreamController<dynamic>);
   @override
   set messageStreamController(
-          _i2.StreamController<dynamic>? _messageStreamController) =>
+          _i4.StreamController<dynamic>? _messageStreamController) =>
       super.noSuchMethod(
           Invocation.setter(#messageStreamController, _messageStreamController),
+          returnValueForMissingStub: null);
+  @override
+  Map<String, _i21.Subscription> get subList =>
+      (super.noSuchMethod(Invocation.getter(#subList),
+              returnValue: <String, _i21.Subscription>{})
+          as Map<String, _i21.Subscription>);
+  @override
+  set subList(Map<String, _i21.Subscription>? _subList) =>
+      super.noSuchMethod(Invocation.setter(#subList, _subList),
           returnValueForMissingStub: null);
   @override
   void disconnect() => super.noSuchMethod(Invocation.method(#disconnect, []),
       returnValueForMissingStub: null);
   @override
-  _i2.Future<_i2.Stream<dynamic>?> subscribe(String? channelSocketId) =>
+  _i4.StreamSubscription<dynamic> listen(
+          {String? socketId,
+          dynamic channelId,
+          dynamic Function(Map<dynamic, dynamic>)? onData}) =>
+      (super.noSuchMethod(
+              Invocation.method(#listen, [], {
+                #socketId: socketId,
+                #channelId: channelId,
+                #onData: onData
+              }),
+              returnValue: _FakeStreamSubscription_3<dynamic>())
+          as _i4.StreamSubscription<dynamic>);
+  @override
+  _i4.StreamSubscription<dynamic> onNotificationReceived(
+          {String? channelId,
+          dynamic Function(Map<dynamic, dynamic>)? onData}) =>
+      (super.noSuchMethod(
+              Invocation.method(#onNotificationReceived, [],
+                  {#channelId: channelId, #onData: onData}),
+              returnValue: _FakeStreamSubscription_3<dynamic>())
+          as _i4.StreamSubscription<dynamic>);
+  @override
+  bool hasSubscribed(String? socketId) =>
+      (super.noSuchMethod(Invocation.method(#hasSubscribed, [socketId]),
+          returnValue: false) as bool);
+  @override
+  _i4.Future<_i4.Stream<dynamic>?> subscribe(String? channelSocketId) =>
       (super.noSuchMethod(Invocation.method(#subscribe, [channelSocketId]),
-              returnValue: Future<_i2.Stream<dynamic>?>.value())
-          as _i2.Future<_i2.Stream<dynamic>?>);
+              returnValue: Future<_i4.Stream<dynamic>?>.value())
+          as _i4.Future<_i4.Stream<dynamic>?>);
   @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
@@ -792,62 +878,66 @@ class MockCentrifugeService extends _i1.Mock implements _i17.CentrifugeService {
 /// A class which mocks [ZuriApi].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockZuriApi extends _i1.Mock implements _i18.ZuriApi {
+class MockZuriApi extends _i1.Mock implements _i7.ZuriApi {
   @override
-  _i3.Dio get dio =>
-      (super.noSuchMethod(Invocation.getter(#dio), returnValue: _FakeDio_1())
-          as _i3.Dio);
+  _i2.Logger get log =>
+      (super.noSuchMethod(Invocation.getter(#log), returnValue: _FakeLogger_0())
+          as _i2.Logger);
   @override
-  _i2.StreamController<String> get controller =>
+  _i5.Dio get dio =>
+      (super.noSuchMethod(Invocation.getter(#dio), returnValue: _FakeDio_4())
+          as _i5.Dio);
+  @override
+  _i4.StreamController<String> get controller =>
       (super.noSuchMethod(Invocation.getter(#controller),
-              returnValue: _FakeStreamController_0<String>())
-          as _i2.StreamController<String>);
+              returnValue: _FakeStreamController_2<String>())
+          as _i4.StreamController<String>);
   @override
-  set controller(_i2.StreamController<String>? _controller) =>
+  set controller(_i4.StreamController<String>? _controller) =>
       super.noSuchMethod(Invocation.setter(#controller, _controller),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<dynamic> get(String? string,
+  _i4.Future<dynamic> get(String? string,
           {Map<String, dynamic>? queryParameters, String? token}) =>
       (super.noSuchMethod(
           Invocation.method(#get, [string],
               {#queryParameters: queryParameters, #token: token}),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> post(String? string,
+  _i4.Future<dynamic> post(String? string,
           {Map<String, dynamic>? body, String? token}) =>
       (super.noSuchMethod(
           Invocation.method(#post, [string], {#body: body, #token: token}),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> put(String? string,
+  _i4.Future<dynamic> put(String? string,
           {Map<String, dynamic>? body, String? token}) =>
       (super.noSuchMethod(
           Invocation.method(#put, [string], {#body: body, #token: token}),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<_i19.ApiResponse?> patch(String? path,
+  _i4.Future<_i22.ApiResponse?> patch(String? path,
           {Map<String, dynamic>? body, String? token}) =>
       (super.noSuchMethod(
               Invocation.method(#patch, [path], {#body: body, #token: token}),
-              returnValue: Future<_i19.ApiResponse?>.value())
-          as _i2.Future<_i19.ApiResponse?>);
+              returnValue: Future<_i22.ApiResponse?>.value())
+          as _i4.Future<_i22.ApiResponse?>);
   @override
-  _i2.Future<_i19.ApiResponse?> delete(String? string,
+  _i4.Future<_i22.ApiResponse?> delete(String? string,
           {Map<String, dynamic>? body, String? token}) =>
       (super.noSuchMethod(
           Invocation.method(#delete, [string], {#body: body, #token: token}),
           returnValue:
-              Future<_i19.ApiResponse?>.value()) as _i2
-          .Future<_i19.ApiResponse?>);
+              Future<_i22.ApiResponse?>.value()) as _i4
+          .Future<_i22.ApiResponse?>);
   @override
-  _i2.Future<dynamic> login({String? email, String? password, dynamic token}) =>
+  _i4.Future<dynamic> login({String? email, String? password, dynamic token}) =>
       (super.noSuchMethod(
           Invocation.method(
               #login, [], {#email: email, #password: password, #token: token}),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> signUp(
+  _i4.Future<dynamic> signUp(
           {String? email,
           String? password,
           String? firstName,
@@ -865,142 +955,142 @@ class MockZuriApi extends _i1.Mock implements _i18.ZuriApi {
             #phoneNumber: phoneNumber,
             #token: token
           }),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<List<_i6.OrganizationModel>> fetchListOfOrganizations(
+  _i4.Future<List<_i9.OrganizationModel>> fetchListOfOrganizations(
           dynamic token) =>
       (super.noSuchMethod(Invocation.method(#fetchListOfOrganizations, [token]),
-              returnValue: Future<List<_i6.OrganizationModel>>.value(
-                  <_i6.OrganizationModel>[]))
-          as _i2.Future<List<_i6.OrganizationModel>>);
+              returnValue: Future<List<_i9.OrganizationModel>>.value(
+                  <_i9.OrganizationModel>[]))
+          as _i4.Future<List<_i9.OrganizationModel>>);
   @override
-  _i2.Future<List<_i6.OrganizationModel>> getJoinedOrganizations(
+  _i4.Future<List<_i9.OrganizationModel>> getJoinedOrganizations(
           dynamic token, String? email) =>
       (super.noSuchMethod(
               Invocation.method(#getJoinedOrganizations, [token, email]),
-              returnValue: Future<List<_i6.OrganizationModel>>.value(
-                  <_i6.OrganizationModel>[]))
-          as _i2.Future<List<_i6.OrganizationModel>>);
+              returnValue: Future<List<_i9.OrganizationModel>>.value(
+                  <_i9.OrganizationModel>[]))
+          as _i4.Future<List<_i9.OrganizationModel>>);
   @override
-  _i2.Future<dynamic> fetchOrganizationInfo(String? id, dynamic token) => (super
+  _i4.Future<dynamic> fetchOrganizationInfo(String? id, dynamic token) => (super
       .noSuchMethod(Invocation.method(#fetchOrganizationInfo, [id, token]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> fetchOrganizationByUrl(String? url, dynamic token) =>
+  _i4.Future<dynamic> fetchOrganizationByUrl(String? url, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(#fetchOrganizationByUrl, [url, token]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<bool> joinOrganization(
+  _i4.Future<bool> joinOrganization(
           String? orgId, String? email, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(#joinOrganization, [orgId, email, token]),
-          returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i2.Future<String> createOrganization(String? email, dynamic token) => (super
+  _i4.Future<String> createOrganization(String? email, dynamic token) => (super
       .noSuchMethod(Invocation.method(#createOrganization, [email, token]),
-          returnValue: Future<String>.value('')) as _i2.Future<String>);
+          returnValue: Future<String>.value('')) as _i4.Future<String>);
   @override
-  _i2.Future<dynamic> updateOrgUrl(String? orgId, String? url, dynamic token) =>
+  _i4.Future<dynamic> updateOrgUrl(String? orgId, String? url, dynamic token) =>
       (super.noSuchMethod(Invocation.method(#updateOrgUrl, [orgId, url, token]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> updateOrgName(
+  _i4.Future<dynamic> updateOrgName(
           String? orgId, String? name, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(#updateOrgName, [orgId, name, token]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> updateOrgLogo(
+  _i4.Future<dynamic> updateOrgLogo(
           String? orgId, String? url, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(#updateOrgLogo, [orgId, url, token]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<void> addMemberToChannel(
+  _i4.Future<void> addMemberToChannel(
           String? channelId, String? orgId, String? userId, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(
               #addMemberToChannel, [channelId, orgId, userId, token]),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i2.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
-  _i2.Future<dynamic> addMemberToOrganization(
+  _i4.Future<dynamic> addMemberToOrganization(
           String? orgId, String? email, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(#addMemberToOrganization, [orgId, email, token]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<List<_i20.UserSearch>> fetchMembersInOrganization(
+  _i4.Future<List<_i23.UserSearch>> fetchMembersInOrganization(
           String? orgId, dynamic token) =>
       (super.noSuchMethod(
               Invocation.method(#fetchMembersInOrganization, [orgId, token]),
               returnValue:
-                  Future<List<_i20.UserSearch>>.value(<_i20.UserSearch>[]))
-          as _i2.Future<List<_i20.UserSearch>>);
+                  Future<List<_i23.UserSearch>>.value(<_i23.UserSearch>[]))
+          as _i4.Future<List<_i23.UserSearch>>);
   @override
-  _i2.Future<dynamic> getChannelSocketId(
+  _i4.Future<dynamic> getChannelSocketId(
           String? channelId, String? orgId, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(#getChannelSocketId, [channelId, orgId, token]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<List<dynamic>> getActiveRooms(
+  _i4.Future<List<dynamic>> getActiveRooms(
           String? orgId, String? userId, dynamic token) =>
       (super.noSuchMethod(
               Invocation.method(#getActiveRooms, [orgId, userId, token]),
               returnValue: Future<List<dynamic>>.value(<dynamic>[]))
-          as _i2.Future<List<dynamic>>);
+          as _i4.Future<List<dynamic>>);
   @override
-  _i2.Future<List<dynamic>> getActiveDms(String? orgId, dynamic token) =>
+  _i4.Future<List<dynamic>> getActiveDms(String? orgId, dynamic token) =>
       (super.noSuchMethod(Invocation.method(#getActiveDms, [orgId, token]),
               returnValue: Future<List<dynamic>>.value(<dynamic>[]))
-          as _i2.Future<List<dynamic>>);
+          as _i4.Future<List<dynamic>>);
   @override
-  _i2.Future<Map<dynamic, dynamic>> joinChannel(
+  _i4.Future<Map<dynamic, dynamic>> joinChannel(
           String? channelId, String? userId, String? orgId, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(#joinChannel, [channelId, userId, orgId, token]),
           returnValue:
-              Future<Map<dynamic, dynamic>>.value(<dynamic, dynamic>{})) as _i2
+              Future<Map<dynamic, dynamic>>.value(<dynamic, dynamic>{})) as _i4
           .Future<Map<dynamic, dynamic>>);
   @override
-  _i2.Future<dynamic> getChannelMessages(
+  _i4.Future<dynamic> getChannelMessages(
           String? channelId, String? orgId, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(#getChannelMessages, [channelId, orgId, token]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> sendChannelMessages(String? channelId, String? userId,
+  _i4.Future<dynamic> sendChannelMessages(String? channelId, String? userId,
           String? orgId, String? message, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(
               #sendChannelMessages, [channelId, userId, orgId, message, token]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<List<dynamic>> getRepliesToMessages(
+  _i4.Future<List<dynamic>> getRepliesToMessages(
           dynamic channelMessageId, dynamic orgId) =>
       (super.noSuchMethod(
           Invocation.method(#getRepliesToMessages, [channelMessageId, orgId]),
           returnValue:
-              Future<List<dynamic>>.value(<dynamic>[])) as _i2
+              Future<List<dynamic>>.value(<dynamic>[])) as _i4
           .Future<List<dynamic>>);
   @override
-  _i2.Future<bool> addReplyToMessage(String? channelMessageId, dynamic content,
+  _i4.Future<bool> addReplyToMessage(String? channelMessageId, dynamic content,
           dynamic files, dynamic orgId, dynamic userId, dynamic channelId) =>
       (super.noSuchMethod(
           Invocation.method(#addReplyToMessage,
               [channelMessageId, content, files, orgId, userId, channelId]),
-          returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i2.Future<List<_i15.ChannelModel>> fetchChannel(
+  _i4.Future<List<_i18.ChannelModel>> fetchChannel(
           String? orgId, dynamic token) =>
       (super.noSuchMethod(Invocation.method(#fetchChannel, [orgId, token]),
               returnValue:
-                  Future<List<_i15.ChannelModel>>.value(<_i15.ChannelModel>[]))
-          as _i2.Future<List<_i15.ChannelModel>>);
+                  Future<List<_i18.ChannelModel>>.value(<_i18.ChannelModel>[]))
+          as _i4.Future<List<_i18.ChannelModel>>);
   @override
-  _i2.Future<bool> createChannels(
+  _i4.Future<bool> createChannels(
           {String? name,
           String? owner,
           String? email,
@@ -1018,7 +1108,7 @@ class MockZuriApi extends _i1.Mock implements _i18.ZuriApi {
             #private: private,
             #token: token
           }),
-          returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
   dynamic getChannelPage(String? id, String? orgId, dynamic token) => super
       .noSuchMethod(Invocation.method(#getChannelPage, [id, orgId, token]));
@@ -1026,46 +1116,53 @@ class MockZuriApi extends _i1.Mock implements _i18.ZuriApi {
   dynamic getChannelMembers(String? id, String? orgId, dynamic token) => super
       .noSuchMethod(Invocation.method(#getChannelMembers, [id, orgId, token]));
   @override
-  List<_i9.ThemeData> getThemes() =>
+  List<_i12.ThemeData> getThemes() =>
       (super.noSuchMethod(Invocation.method(#getThemes, []),
-          returnValue: <_i9.ThemeData>[]) as List<_i9.ThemeData>);
+          returnValue: <_i12.ThemeData>[]) as List<_i12.ThemeData>);
   @override
   void sendGetRequest(dynamic endpoint) =>
       super.noSuchMethod(Invocation.method(#sendGetRequest, [endpoint]),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<dynamic> sendPostRequest(dynamic body, dynamic endpoint) =>
+  _i4.Future<dynamic> sendPostRequest(dynamic body, dynamic endpoint) =>
       (super.noSuchMethod(Invocation.method(#sendPostRequest, [body, endpoint]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> sendPatchRequest(
+  _i4.Future<dynamic> sendPatchRequest(
           dynamic body, dynamic endpoint, dynamic userId) =>
       (super.noSuchMethod(
           Invocation.method(#sendPatchRequest, [body, endpoint, userId]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> allChannelsList(String? currentOrgId, dynamic token) =>
+  _i4.Future<dynamic> allChannelsList(String? currentOrgId, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(#allChannelsList, [currentOrgId, token]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> joinedChannelsList(
+  _i4.Future<dynamic> joinedChannelsList(
           String? currentOrgId, String? currentUserId, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(
               #joinedChannelsList, [currentOrgId, currentUserId, token]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i2.Future<dynamic> fetchListOfMembers(
+  _i4.Future<dynamic> fetchListOfMembers(
           String? currentOrgId, String? channelId, dynamic token) =>
       (super.noSuchMethod(
           Invocation.method(
               #fetchListOfMembers, [currentOrgId, channelId, token]),
-          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+          returnValue: Future<dynamic>.value()) as _i4.Future<dynamic>);
   @override
-  _i4.Failure handleApiError(_i3.DioError? e) =>
+  _i6.Failure handleApiError(_i5.DioError? e) =>
       (super.noSuchMethod(Invocation.method(#handleApiError, [e]),
-          returnValue: _FakeFailure_2()) as _i4.Failure);
+          returnValue: _FakeFailure_5()) as _i6.Failure);
+  @override
+  _i4.Future<String> uploadImage(_i24.File? image,
+          {String? token, String? memberId, String? orgId}) =>
+      (super.noSuchMethod(
+          Invocation.method(#uploadImage, [image],
+              {#token: token, #memberId: memberId, #orgId: orgId}),
+          returnValue: Future<String>.value('')) as _i4.Future<String>);
   @override
   String toString() => super.toString();
 }
@@ -1074,7 +1171,7 @@ class MockZuriApi extends _i1.Mock implements _i18.ZuriApi {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockConnectivityService extends _i1.Mock
-    implements _i21.ConnectivityService {
+    implements _i25.ConnectivityService {
   @override
   bool get hasConnection =>
       (super.noSuchMethod(Invocation.getter(#hasConnection), returnValue: false)
@@ -1084,36 +1181,39 @@ class MockConnectivityService extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#hasConnection, _hasConnection),
           returnValueForMissingStub: null);
   @override
-  _i22.ConnectivityStatus get networkStatus => (super.noSuchMethod(
+  _i26.ConnectivityStatus get networkStatus => (super.noSuchMethod(
       Invocation.getter(#networkStatus),
-      returnValue: _i22.ConnectivityStatus.wifi) as _i22.ConnectivityStatus);
+      returnValue: _i26.ConnectivityStatus.wifi) as _i26.ConnectivityStatus);
   @override
-  set networkStatus(_i22.ConnectivityStatus? _networkStatus) =>
+  set networkStatus(_i26.ConnectivityStatus? _networkStatus) =>
       super.noSuchMethod(Invocation.setter(#networkStatus, _networkStatus),
           returnValueForMissingStub: null);
   @override
-  _i2.StreamController<dynamic> get connectionChangeController =>
-      (super.noSuchMethod(Invocation.getter(#connectionChangeController),
-              returnValue: _FakeStreamController_0<dynamic>())
-          as _i2.StreamController<dynamic>);
+  _i4.StreamController<_i26.ConnectivityStatus>
+      get connectionChangeController => (super.noSuchMethod(
+              Invocation.getter(#connectionChangeController),
+              returnValue: _FakeStreamController_2<_i26.ConnectivityStatus>())
+          as _i4.StreamController<_i26.ConnectivityStatus>);
   @override
   set connectionChangeController(
-          _i2.StreamController<dynamic>? _connectionChangeController) =>
+          _i4.StreamController<_i26.ConnectivityStatus>?
+              _connectionChangeController) =>
       super.noSuchMethod(
           Invocation.setter(
               #connectionChangeController, _connectionChangeController),
           returnValueForMissingStub: null);
   @override
-  _i2.Stream<dynamic> get connectionChange =>
+  _i4.Stream<_i26.ConnectivityStatus> get connectionChange =>
       (super.noSuchMethod(Invocation.getter(#connectionChange),
-          returnValue: Stream<dynamic>.empty()) as _i2.Stream<dynamic>);
+              returnValue: Stream<_i26.ConnectivityStatus>.empty())
+          as _i4.Stream<_i26.ConnectivityStatus>);
   @override
   void initialize() => super.noSuchMethod(Invocation.method(#initialize, []),
       returnValueForMissingStub: null);
   @override
-  _i2.Future<bool> checkConnection() =>
+  _i4.Future<bool> checkConnection() =>
       (super.noSuchMethod(Invocation.method(#checkConnection, []),
-          returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
   void onChange() => super.noSuchMethod(Invocation.method(#onChange, []),
       returnValueForMissingStub: null);
@@ -1144,7 +1244,11 @@ class MockConnectivityService extends _i1.Mock
 /// A class which mocks [JumpToApi].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockJumpToApi extends _i1.Mock implements _i23.JumpToApi {
+class MockJumpToApi extends _i1.Mock implements _i27.JumpToApi {
+  @override
+  _i2.Logger get log =>
+      (super.noSuchMethod(Invocation.getter(#log), returnValue: _FakeLogger_0())
+          as _i2.Logger);
   @override
   String get allChannelsPath =>
       (super.noSuchMethod(Invocation.getter(#allChannelsPath), returnValue: '')
@@ -1162,27 +1266,141 @@ class MockJumpToApi extends _i1.Mock implements _i23.JumpToApi {
       super.noSuchMethod(Invocation.setter(#headers, _headers),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<List<_i24.ChannelsSearch>> allChannelsList() =>
+  _i4.Future<List<_i28.ChannelsSearch>> allChannelsList() =>
       (super.noSuchMethod(Invocation.method(#allChannelsList, []),
-              returnValue: Future<List<_i24.ChannelsSearch>>.value(
-                  <_i24.ChannelsSearch>[]))
-          as _i2.Future<List<_i24.ChannelsSearch>>);
+              returnValue: Future<List<_i28.ChannelsSearch>>.value(
+                  <_i28.ChannelsSearch>[]))
+          as _i4.Future<List<_i28.ChannelsSearch>>);
   @override
-  _i2.Future<List<_i24.ChannelsSearch>> joinedChannelsList() =>
+  _i4.Future<List<_i28.ChannelsSearch>> joinedChannelsList() =>
       (super.noSuchMethod(Invocation.method(#joinedChannelsList, []),
-              returnValue: Future<List<_i24.ChannelsSearch>>.value(
-                  <_i24.ChannelsSearch>[]))
-          as _i2.Future<List<_i24.ChannelsSearch>>);
+              returnValue: Future<List<_i28.ChannelsSearch>>.value(
+                  <_i28.ChannelsSearch>[]))
+          as _i4.Future<List<_i28.ChannelsSearch>>);
   @override
-  _i2.Future<List<_i20.UserSearch>> fetchListOfMembers() => (super.noSuchMethod(
+  _i4.Future<List<_i23.UserSearch>> fetchListOfMembers() => (super.noSuchMethod(
           Invocation.method(#fetchListOfMembers, []),
-          returnValue: Future<List<_i20.UserSearch>>.value(<_i20.UserSearch>[]))
-      as _i2.Future<List<_i20.UserSearch>>);
+          returnValue: Future<List<_i23.UserSearch>>.value(<_i23.UserSearch>[]))
+      as _i4.Future<List<_i23.UserSearch>>);
   @override
-  _i2.Future<List<_i20.NewUser>> fetchList() =>
+  _i4.Future<List<_i23.NewUser>> fetchList() =>
       (super.noSuchMethod(Invocation.method(#fetchList, []),
-              returnValue: Future<List<_i20.NewUser>>.value(<_i20.NewUser>[]))
-          as _i2.Future<List<_i20.NewUser>>);
+              returnValue: Future<List<_i23.NewUser>>.value(<_i23.NewUser>[]))
+          as _i4.Future<List<_i23.NewUser>>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [MediaService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockMediaService extends _i1.Mock implements _i29.MediaService {
+  @override
+  _i7.ZuriApi get zuriApi => (super.noSuchMethod(Invocation.getter(#zuriApi),
+      returnValue: _FakeZuriApi_6()) as _i7.ZuriApi);
+  @override
+  _i3.SharedPreferenceLocalStorage get storageService =>
+      (super.noSuchMethod(Invocation.getter(#storageService),
+              returnValue: _FakeSharedPreferenceLocalStorage_1())
+          as _i3.SharedPreferenceLocalStorage);
+  @override
+  _i8.UserService get userService =>
+      (super.noSuchMethod(Invocation.getter(#userService),
+          returnValue: _FakeUserService_7()) as _i8.UserService);
+  @override
+  _i4.Future<String?> getImage({bool? fromGallery}) => (super.noSuchMethod(
+      Invocation.method(#getImage, [], {#fromGallery: fromGallery}),
+      returnValue: Future<String?>.value()) as _i4.Future<String?>);
+  @override
+  _i4.Future<String?> uploadImage(_i24.File? file) =>
+      (super.noSuchMethod(Invocation.method(#uploadImage, [file]),
+          returnValue: Future<String?>.value()) as _i4.Future<String?>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [OrganizationApiService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockOrganizationApiService extends _i1.Mock
+    implements _i30.OrganizationApiService {
+  @override
+  _i2.Logger get log =>
+      (super.noSuchMethod(Invocation.getter(#log), returnValue: _FakeLogger_0())
+          as _i2.Logger);
+  @override
+  _i3.SharedPreferenceLocalStorage get storageService =>
+      (super.noSuchMethod(Invocation.getter(#storageService),
+              returnValue: _FakeSharedPreferenceLocalStorage_1())
+          as _i3.SharedPreferenceLocalStorage);
+  @override
+  _i4.Future<List<_i9.OrganizationModel>> fetchListOfOrganizations() =>
+      (super.noSuchMethod(Invocation.method(#fetchListOfOrganizations, []),
+              returnValue: Future<List<_i9.OrganizationModel>>.value(
+                  <_i9.OrganizationModel>[]))
+          as _i4.Future<List<_i9.OrganizationModel>>);
+  @override
+  _i4.Future<List<_i9.OrganizationModel>> getJoinedOrganizations() =>
+      (super.noSuchMethod(Invocation.method(#getJoinedOrganizations, []),
+              returnValue: Future<List<_i9.OrganizationModel>>.value(
+                  <_i9.OrganizationModel>[]))
+          as _i4.Future<List<_i9.OrganizationModel>>);
+  @override
+  _i4.Future<_i9.OrganizationModel> fetchOrganizationInfo(String? id) =>
+      (super.noSuchMethod(Invocation.method(#fetchOrganizationInfo, [id]),
+              returnValue: Future<_i9.OrganizationModel>.value(
+                  _FakeOrganizationModel_8()))
+          as _i4.Future<_i9.OrganizationModel>);
+  @override
+  _i4.Future<_i9.OrganizationModel> fetchOrganizationByUrl(String? url) =>
+      (super.noSuchMethod(Invocation.method(#fetchOrganizationByUrl, [url]),
+              returnValue: Future<_i9.OrganizationModel>.value(
+                  _FakeOrganizationModel_8()))
+          as _i4.Future<_i9.OrganizationModel>);
+  @override
+  _i4.Future<bool> joinOrganization(String? orgId) =>
+      (super.noSuchMethod(Invocation.method(#joinOrganization, [orgId]),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
+  _i4.Future<String> createOrganization(String? email) =>
+      (super.noSuchMethod(Invocation.method(#createOrganization, [email]),
+          returnValue: Future<String>.value('')) as _i4.Future<String>);
+  @override
+  _i4.Future<void> updateOrgUrl(String? orgId, String? url) =>
+      (super.noSuchMethod(Invocation.method(#updateOrgUrl, [orgId, url]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+  @override
+  _i4.Future<void> updateOrgName(String? orgId, String? name) =>
+      (super.noSuchMethod(Invocation.method(#updateOrgName, [orgId, name]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+  @override
+  _i4.Future<void> updateOrgLogo(String? orgId, String? url) =>
+      (super.noSuchMethod(Invocation.method(#updateOrgLogo, [orgId, url]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+  @override
+  _i4.Future<void> addMemberToOrganization(String? orgId, String? email) =>
+      (super.noSuchMethod(
+          Invocation.method(#addMemberToOrganization, [orgId, email]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+  @override
+  _i4.Future<List<_i23.UserSearch>> fetchMembersInOrganization(String? orgId) =>
+      (super.noSuchMethod(
+              Invocation.method(#fetchMembersInOrganization, [orgId]),
+              returnValue:
+                  Future<List<_i23.UserSearch>>.value(<_i23.UserSearch>[]))
+          as _i4.Future<List<_i23.UserSearch>>);
+  @override
+  _i4.Future<_i10.OrganizationMemberModelList> getOrganizationMemberList(
+          String? orgId) =>
+      (super.noSuchMethod(
+              Invocation.method(#getOrganizationMemberList, [orgId]),
+              returnValue: Future<_i10.OrganizationMemberModelList>.value(
+                  _FakeOrganizationMemberModelList_9()))
+          as _i4.Future<_i10.OrganizationMemberModelList>);
   @override
   String toString() => super.toString();
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -32,15 +33,16 @@ class ChannelList extends StatelessWidget {
           ),
           titleSpacing: 0,
           title: ListTile(
-              minLeadingWidth: 10,
-              title: const Text(
-                'Channel Browser',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-              subtitle: Text(
-                model.isBusy ? '0' : model.channelsList.length.toString(),
-                style: const TextStyle(fontSize: 13),
-              )),
+            minLeadingWidth: 10,
+            title: const Text(
+              ChannelBrowser,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            subtitle: Text(
+              model.isBusy ? '0' : model.channelsList.length.toString(),
+              style: const TextStyle(fontSize: 13),
+            ),
+          ),
         ),
         body: SafeArea(
           child: model.isBusy
@@ -58,7 +60,7 @@ class ChannelList extends StatelessWidget {
                             decoration: InputDecoration(
                                 isDense: true,
                                 contentPadding: const EdgeInsets.all(8.8),
-                                labelText: 'Search for channel...',
+                                labelText: SearchChannel,
                                 labelStyle:
                                     const TextStyle(color: Color(0xffA1A9B3)),
                                 border: OutlineInputBorder(

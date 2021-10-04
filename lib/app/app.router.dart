@@ -6,7 +6,6 @@
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -61,7 +60,6 @@ import '../ui/view/start_dm/start_dm_view.dart';
 import '../ui/view/threads/all_threads/threads_view.dart';
 import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 import '../ui/view/user_search/user_search_view.dart';
-import '../ui/view/view_profile_page/view_profile.dart';
 import '../utilities/enums.dart';
 
 class Routes {
@@ -88,7 +86,6 @@ class Routes {
   static const String addPluginView = '/add-plugin-view';
   static const String useDifferentEmailView = '/use-different-email-view';
   static const String editPluginView = '/edit-plugin-view';
-  static const String viewProfile = '/view-profile';
   static const String setStatusView = '/set-status-view';
   static const String profilePageView = '/profile-page-view';
   static const String preferenceView = '/preference-view';
@@ -139,7 +136,6 @@ class Routes {
     addPluginView,
     useDifferentEmailView,
     editPluginView,
-    viewProfile,
     setStatusView,
     profilePageView,
     preferenceView,
@@ -195,7 +191,6 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.addPluginView, page: AddPluginView),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
     RouteDef(Routes.editPluginView, page: EditPluginView),
-    RouteDef(Routes.viewProfile, page: ViewProfile),
     RouteDef(Routes.setStatusView, page: SetStatusView),
     RouteDef(Routes.profilePageView, page: ProfilePageView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
@@ -227,8 +222,13 @@ class StackedRouter extends RouterBase {
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
     ChannelAddPeopleView: (data) {
+      var args = data.getArgs<ChannelAddPeopleViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ChannelAddPeopleView(),
+        builder: (context) => ChannelAddPeopleView(
+          key: args.key,
+          channelId: args.channelId,
+          channelName: args.channelName,
+        ),
         settings: data,
       );
     },
@@ -394,12 +394,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    ViewProfile: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const ViewProfile(),
-        settings: data,
-      );
-    },
     SetStatusView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const SetStatusView(),
@@ -561,7 +555,7 @@ class StackedRouter extends RouterBase {
       return MaterialPageRoute<dynamic>(
         builder: (context) => ChannelPageView(
           key: args.key,
-          channelname: args.channelname,
+          channelName: args.channelName,
           channelId: args.channelId,
           membersCount: args.membersCount,
           public: args.public,
@@ -587,6 +581,15 @@ class StackedRouter extends RouterBase {
 /// ************************************************************************
 /// Arguments holder classes
 /// *************************************************************************
+
+/// ChannelAddPeopleView arguments holder class
+class ChannelAddPeopleViewArguments {
+  final Key? key;
+  final String channelId;
+  final String channelName;
+  ChannelAddPeopleViewArguments(
+      {this.key, required this.channelId, required this.channelName});
+}
 
 /// LoginView arguments holder class
 class LoginViewArguments {
@@ -684,13 +687,13 @@ class StartDmViewArguments {
 /// ChannelPageView arguments holder class
 class ChannelPageViewArguments {
   final Key? key;
-  final String? channelname;
+  final String? channelName;
   final String? channelId;
   final int? membersCount;
   final bool? public;
   ChannelPageViewArguments(
       {this.key,
-      required this.channelname,
+      required this.channelName,
       required this.channelId,
       required this.membersCount,
       required this.public});

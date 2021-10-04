@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hng/app/app.logger.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -78,13 +79,13 @@ class CreateOrganizationViewModel extends BaseViewModel {
 
   void onInviteTap() {
     snackbar.showCustomSnackBar(
-        message: 'Coming soon!!', variant: SnackbarType.failure);
+        message: ComingSoon, variant: SnackbarType.failure);
   }
 
   Future<void> onCompanyNext(String email) async {
     if (companyController.text.isEmpty) {
       return snackbar.showCustomSnackBar(
-          message: 'Must not be empty', variant: SnackbarType.failure);
+          message: fillAllFields, variant: SnackbarType.failure);
     }
     setBusy(true);
     org = await createOrganization(email, companyController.text);
@@ -102,12 +103,12 @@ class CreateOrganizationViewModel extends BaseViewModel {
   Future<void> addTeammates() async {
     if (inviteController.text.isEmpty) {
       return snackbar.showCustomSnackBar(
-          message: 'Must not be empty', variant: SnackbarType.failure);
+          message: fillAllFields, variant: SnackbarType.failure);
     }
     if (org == null) {
       log.i('org is null oooo');
       return snackbar.showCustomSnackBar(
-        message: 'Org is null oooo',
+        message: errorOccurred,
         variant: SnackbarType.failure,
       );
     }

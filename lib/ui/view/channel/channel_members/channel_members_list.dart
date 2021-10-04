@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
@@ -53,7 +54,7 @@ class ChannelMembersList extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0.0, 20.0, 25.0, 0.0),
                 child: InkWell(
                   child: Text(
-                    'Edit',
+                    Edit,
                     style: GoogleFonts.lato(
                         // ignore: todo
                         //TODO change to brand colors
@@ -76,7 +77,7 @@ class ChannelMembersList extends StatelessWidget {
                   elevation: 4,
                   child: SearchField(
                     onChanged: viewModel.onSearchUser,
-                    labelText: 'Search for people',
+                    labelText: SearchPeople,
                     // controller: viewModel.editor,
                   ),
                 ),
@@ -90,7 +91,7 @@ class ChannelMembersList extends StatelessWidget {
                       Icons.add,
                       color: AppColors.zuriPrimaryColor,
                     ),
-                    text: 'Add people',
+                    text: AddPeople,
                     textColor: AppColors.zuriPrimaryColor,
                   ),
                 ),
@@ -113,7 +114,7 @@ class ChannelMembersList extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.all(4.0),
                                   child: Image.asset(
-                                    'assets/images/chimamanda.png',
+                                    Chimamanda,
                                   ),
                                 ),
                                 //if (viewModel.matchingUsers[index].online)

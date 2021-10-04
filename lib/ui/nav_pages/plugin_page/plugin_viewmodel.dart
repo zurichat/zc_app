@@ -1,6 +1,6 @@
 import 'package:stacked/stacked.dart';
 
-class IntegrateViewModel extends BaseViewModel {
+class PluginViewModel extends BaseViewModel {
   nToDifferentEmail() {
     // NavigationService().navigateTo(Routes.useDifferentEmailView);
   }
