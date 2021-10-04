@@ -1,4 +1,5 @@
 import 'package:hng/services/centrifuge_service.dart';
+import 'package:hng/services/media_service.dart';
 import 'package:hng/services/notification_service.dart';
 import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
@@ -123,7 +124,7 @@ import '../ui/view/view_profile_page/view_profile.dart';
     MaterialRoute(page: StartDmView),
     MaterialRoute(page: OrganizationUrlView),
     MaterialRoute(page: ChannelPageView),
-    MaterialRoute(page: ChannelInfoView),
+    MaterialRoute(page: ChannelInfoView)
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
@@ -140,6 +141,7 @@ import '../ui/view/view_profile_page/view_profile.dart';
       presolveUsing: ConnectivityService.getInstance,
     ),
     LazySingleton(classType: UserService),
+    LazySingleton(classType: MediaService),
     LazySingleton(classType: DMApiService),
     LazySingleton(classType: ChannelsApiService),
     LazySingleton(classType: JumpToApi),

@@ -1,10 +1,12 @@
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/profile_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/api_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/current_user_profile.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/services/media_service.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
@@ -17,11 +19,14 @@ class EditProfileViewModel extends FutureViewModel {
   ProfileModel userData = ProfileModel();
   final snackbar = locator<SnackbarService>();
   final navigationService = locator<NavigationService>();
+  final _navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
+  final mediaService = locator<MediaService>();
+  final dialogService = locator<DialogService>();
   final _api = ZuriApi(coreBaseUrl);
   final api = ApiService();
-    String? get token => storageService.getString(StorageKeys.currentSessionToken);
-  
+  String? get token =>
+      storageService.getString(StorageKeys.currentSessionToken);
 
   void updateString(String name, String display, String status, String phone) {
     if (name.trim().isNotEmpty) {
@@ -38,7 +43,9 @@ class EditProfileViewModel extends FutureViewModel {
     }
   }
 
-  final _navigationService = locator<NavigationService>();
+  void uploadImage() async {
+    mediaService.getImage(fromGallery: true);
+  }
 
   void exitPage() {
     _navigationService.back();
@@ -66,14 +73,14 @@ class EditProfileViewModel extends FutureViewModel {
       snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 5),
           variant: SnackbarType.success,
-          message: ''' Profile Update Was Successful''');
+          message: UpdateSuccessful);
       await GetUserProfile().currentUser();
       _navigationService.back();
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: ''' Profile Update failed''',
+        message: UpdateFailed,
       );
     }
   }

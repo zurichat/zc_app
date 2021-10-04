@@ -26,7 +26,7 @@ class EditChannelViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  editChannel(context) async {
+  editChannel() async {
     loading(true);
     print(DescriptionValueKey);
     if (topicValue == '' || descriptionValue == '') {

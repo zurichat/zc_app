@@ -69,7 +69,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         const Divider(),
                         ListTile(
                           title: const CustomText(
-                              text: Status, fontWeight: FontWeight.w300),
+                              text: StatusText, fontWeight: FontWeight.w300),
                           subtitle: const Align(
                               alignment: Alignment.centerLeft,
                               child: Icon(Icons.looks_5,

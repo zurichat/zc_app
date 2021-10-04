@@ -1,22 +1,27 @@
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/services/media_service.dart';
 import 'package:hng/services/user_service.dart';
+import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
+import 'test_constants.dart';
 import 'test_helpers.mocks.dart';
 
 ///SUPPLY THE MOCKS FOR ANY SERVICE YOU WANT TO AUTO-GENERATE.
-///ONCE YOU SUPPLY BELOW AUTO GENERATE BY RUNNING "flutter pub run build_runner build --delete-conflicting-outputs"
-
+///ONCE YOU SUPPLY BELOW AUTO GENERATE BY RUNNING ""
 @GenerateMocks([], customMocks: [
   MockSpec<UserService>(returnNullOnMissingStub: true),
   MockSpec<SharedPreferenceLocalStorage>(returnNullOnMissingStub: true),
@@ -31,6 +36,8 @@ import 'test_helpers.mocks.dart';
   MockSpec<ZuriApi>(returnNullOnMissingStub: true),
   MockSpec<ConnectivityService>(returnNullOnMissingStub: true),
   MockSpec<JumpToApi>(returnNullOnMissingStub: true),
+  MockSpec<MediaService>(returnNullOnMissingStub: true),
+  MockSpec<OrganizationApiService>(returnNullOnMissingStub: true),
 ])
 MockUserService getAndRegisterUserServiceMock({
   bool hasUser = false,
@@ -43,27 +50,38 @@ MockUserService getAndRegisterUserServiceMock({
 }
 
 MockSharedPreferenceLocalStorage
-    getAndRegisterSharedPreferencesLocalStorageMock() {
+    getAndRegisterSharedPreferencesLocalStorageMock(
+        {String? token, String orgId = 'org_id'}) {
   _removeRegistrationIfExists<SharedPreferenceLocalStorage>();
   final service = MockSharedPreferenceLocalStorage();
+  when(service.getString(StorageKeys.currentSessionToken))
+      .thenReturn(token ?? 'token');
+  when(service.getString(StorageKeys.currentOrgId)).thenReturn(orgId);
   locator.registerSingleton<SharedPreferenceLocalStorage>(service);
-
   return service;
 }
 
 MockNavigationService getAndRegisterNavigationServiceMock() {
   _removeRegistrationIfExists<NavigationService>();
   final service = MockNavigationService();
+  when(service.back()).thenAnswer((realInvocation) => true);
   locator.registerSingleton<NavigationService>(service);
-
+  service.navigateTo(Routes.signUpView);
+  service.navigateTo(Routes.forgotPasswordEmailView);
+  service.navigateTo(Routes.forgotPasswordOtpView);
+  service.navigateTo(Routes.forgotPasswordNewView);
+  service.navigateTo(Routes.loginView);
   return service;
 }
 
-MockSnackbarService getAndRegisterSnackbarServiceMock() {
+MockSnackbarService getAndRegisterSnackbarServiceMock(
+    {bool userRegistered = false}) {
   _removeRegistrationIfExists<SnackbarService>();
   final service = MockSnackbarService();
+  when(service.showCustomSnackBar(
+    variant: SnackbarType.failure,
+  )).thenAnswer((_) => Future.value(userRegistered));
   locator.registerSingleton<SnackbarService>(service);
-
   return service;
 }
 
@@ -75,11 +93,18 @@ MockThemeService getAndRegisterThemeServiceMock() {
   return service;
 }
 
-MockDialogService getAndRegisterDialogServiceMock() {
+MockDialogService getAndRegisterDialogServiceMock(
+    {DialogResponse<dynamic>? dialogResult}) {
   _removeRegistrationIfExists<DialogService>();
   final service = MockDialogService();
+  when(service.showCustomDialog(
+    variant: DialogType.skinTone,
+  )).thenAnswer((realInvocation) =>
+      Future<DialogResponse<dynamic>>.value(DialogResponse<dynamic>(
+        confirmed: false,
+        data: 'laughing face',
+      )));
   locator.registerSingleton<DialogService>(service);
-
   return service;
 }
 
@@ -108,11 +133,11 @@ MockChannelsApiService getAndRegisterChannelsApiServiceMock() {
 }
 
 MockCentrifugeService getAndRegisterCentrifugeServiceMock() {
+  final service = MockCentrifugeService();
   _removeRegistrationIfExists<CentrifugeService>();
   Map eventData = {"some_key": "some_returned_string"};
   final Future<Stream?> streamtoReturn =
       Future.value(Stream.fromIterable([eventData]));
-  final service = MockCentrifugeService();
   when(service.subscribe("channelSocketID"))
       .thenAnswer((_) async => streamtoReturn);
 
@@ -129,6 +154,9 @@ MockZuriApi getAndRegisterZuriApiMock() {
   final service = MockZuriApi();
   locator.registerSingleton<ZuriApi>(service);
 
+  when(service.uploadImage(fileMock,
+          token: token_string, memberId: memberId_string, orgId: orgId_string))
+      .thenAnswer((_) async => Future.value("Image Address"));
   return service;
 }
 
@@ -151,6 +179,17 @@ MockJumpToApi getAndRegisterJumpToApiMock() {
   return service;
 }
 
+MockMediaService getAndRegisterMediaServiceMock() {
+  _removeRegistrationIfExists<MediaService>();
+  final service = MockMediaService();
+  Future<String> response = Future<String>.value("Image Address");
+
+  when(service.uploadImage(fileMock)).thenAnswer((_) async => response);
+
+  locator.registerSingleton<MediaService>(service);
+  return service;
+}
+
 void registerServices() {
   getAndRegisterUserServiceMock();
   getAndRegisterSharedPreferencesLocalStorageMock();
@@ -165,6 +204,7 @@ void registerServices() {
   getAndRegisterZuriApiMock();
   getAndRegisterConnectivityServiceMock();
   getAndRegisterJumpToApiMock();
+  getAndRegisterMediaServiceMock();
 }
 
 void unregisterServices() {
@@ -182,6 +222,7 @@ void unregisterServices() {
   _removeRegistrationIfExists<ZuriApi>();
   _removeRegistrationIfExists<ConnectivityService>();
   _removeRegistrationIfExists<JumpToApi>();
+  _removeRegistrationIfExists<MediaService>();
 }
 
 // Call this before any service registration helper. This is to ensure that if there
@@ -191,3 +232,12 @@ void _removeRegistrationIfExists<T extends Object>() {
     locator.unregister<T>();
   }
 }
+
+
+
+
+
+
+
+
+
