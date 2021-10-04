@@ -45,8 +45,8 @@ class EditChannelViewModel extends FormViewModel {
     String _channelId = id;
     String orgId = storage.getString(StorageKeys.currentOrgId).toString();
     String endpoint = '/v1/'+orgId+'/channels/'+_channelId;
-    log.i(endpoint);
-    log.i(_channelId);
+    // log.i(endpoint);
+    // log.i(_channelId);
     final des = {/*'topic': topic.text, */ 'description': descriptionValue};
     final response = await _apiService.put(endpoint, body: des, token: token);
     // log.i('token is $token =====================');
