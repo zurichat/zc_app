@@ -97,13 +97,11 @@ MockDialogService getAndRegisterDialogServiceMock(
     {DialogResponse<dynamic>? dialogResult}) {
   _removeRegistrationIfExists<DialogService>();
   final service = MockDialogService();
+  Future<DialogResponse<dynamic>?> response =
+      Future.value(DialogResponse(confirmed: true));
   when(service.showCustomDialog(
     variant: DialogType.skinTone,
-  )).thenAnswer((realInvocation) =>
-      Future<DialogResponse<dynamic>>.value(DialogResponse<dynamic>(
-        confirmed: false,
-        data: 'laughing face',
-      )));
+  )).thenAnswer((realInvocation) => response);
   locator.registerSingleton<DialogService>(service);
   return service;
 }
@@ -111,6 +109,12 @@ MockDialogService getAndRegisterDialogServiceMock(
 MockBottomSheetService getAndRegisterBottomSheetServiceMock() {
   _removeRegistrationIfExists<BottomSheetService>();
   final service = MockBottomSheetService();
+  Future<SheetResponse<dynamic>?> response =
+      Future.value(SheetResponse(confirmed: true));
+  when(service.showCustomSheet(
+    variant: BottomSheetType.user,
+    isScrollControlled: true,
+  )).thenAnswer((realInvocation) => response);
   locator.registerSingleton<BottomSheetService>(service);
 
   return service;
@@ -232,12 +236,3 @@ void _removeRegistrationIfExists<T extends Object>() {
     locator.unregister<T>();
   }
 }
-
-
-
-
-
-
-
-
-
