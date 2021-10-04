@@ -49,6 +49,8 @@ class EditChannelViewModel extends FormViewModel {
     log.i(_channelId);
     final des = {/*'topic': topic.text, */ 'description': descriptionValue};
     final response = await _apiService.put(endpoint, body: des, token: token);
+    // log.i('token is $token =====================');
+    // log.i('des is $des =====================');
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
