@@ -55,9 +55,7 @@ class DmJumpToViewModel extends FormViewModel {
       allChannelsSearch = await api.allChannelsList();
       setBusy(false);
       notifyListeners();
-      if(allChannelsSearch.isNotEmpty){
-        return allChannelsSearch;
-      }else{return []; }
+      return allChannelsSearch;
     } catch (e) {
       log.e("Model channels error - $e");
     }
