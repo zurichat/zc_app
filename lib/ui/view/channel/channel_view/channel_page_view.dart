@@ -57,12 +57,13 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
               padding: const EdgeInsets.only(left: 5.0, right: 20.0),
               child: IconButton(
                   onPressed: (){
-                    model.goBack(channelId, channelMessagesController.text);
+                    model.goBack(channelId, channelMessagesController.text,
+                        channelName, membersCount, public);
                     },
                   icon: const Icon(Icons.arrow_back_ios)),
             ),
             centerTitle: false,
-            leadingWidth: 20,
+            leadingWidth: 40,
             title: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,

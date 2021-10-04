@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
@@ -25,6 +26,8 @@ class ChannelPageViewModel extends FormViewModel {
   final _notificationService = locator<NotificationService>();
   final _bottomSheetService = locator<BottomSheetService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
+  final _snackbarService = locator<SnackbarService>();
+
 
 
   //draft implementations
@@ -32,18 +35,29 @@ class ChannelPageViewModel extends FormViewModel {
   void getDraft(channelId){
       var draft = _storageService.getString(channelId);
       if(draft != null){
-        storedDraft = draft ;
+        storedDraft = json.decode(draft)['draft'];
         _storageService.clearData(channelId);
       }
   }
 
-  void storeDraft(channelId, value){
+  void storeDraft(channelId, value, channelName, membersCount, public ){
+    var keyMap = {
+      'draft': value,
+      'time' : '${DateTime.now()}',
+      'channelName' : channelName,
+      'channelId' : channelId,
+      'membersCount' : membersCount,
+      'public' : public,
+    };
+
     if(value.length > 0){
       _storageService.setStringList(StorageKeys.currentUserChannelDrafts, [channelId]);
-      _storageService.setString(channelId, value);
+      _storageService.setString(channelId, json.encode(keyMap));
     }
   }
-  final _snackbarService = locator<SnackbarService>();
+  //**draft implementation ends here
+
+
 
   // ignore: todo
   //TODO refactor this
@@ -167,8 +181,8 @@ class ChannelPageViewModel extends FormViewModel {
     fetchChannelMembers(channelId);
   }
 
-  void goBack(channelId, value) {
-    storeDraft(channelId, value);
+  void goBack(channelId, value, channelName, membersCount, public) {
+    storeDraft(channelId, value, channelName, membersCount, public);
     _navigationService.back();
   }
 
