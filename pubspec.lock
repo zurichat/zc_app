@@ -196,7 +196,7 @@ packages:
       name: connectivity_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.4.0"
   connectivity_plus_linux:
     dependency: transitive
     description:
@@ -210,7 +210,7 @@ packages:
       name: connectivity_plus_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   connectivity_plus_platform_interface:
     dependency: transitive
     description:
@@ -231,7 +231,7 @@ packages:
       name: connectivity_plus_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   convert:
     dependency: transitive
     description:
@@ -554,11 +554,7 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "3.0.8"
-=======
-    version: "3.0.7"
->>>>>>> f0c633d98f27f736e62af88732760ba4a8620c8c
   image_picker:
     dependency: "direct main"
     description:
