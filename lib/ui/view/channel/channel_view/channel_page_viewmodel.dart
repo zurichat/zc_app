@@ -70,6 +70,7 @@ class ChannelPageViewModel extends FormViewModel {
   List<UserPost>? channelUserMessages = [];
   StreamSubscription? messageSubscription;
   StreamSubscription? notificationSubscription;
+  String channelID = '';
 
   void onMessageFieldTap() {
     isVisible = true;
@@ -77,6 +78,7 @@ class ChannelPageViewModel extends FormViewModel {
   }
 
   void initialise(String channelId) async {
+    channelID = channelId;
     await joinChannel(channelId);
     fetchMessages(channelId);
     // getChannelSocketId("$channelId");
@@ -144,11 +146,10 @@ class ChannelPageViewModel extends FormViewModel {
 
   void sendMessage(
     String message,
-    String channelId,
   ) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
     await _channelsApiService.sendChannelMessages(
-        channelId, "$userId", message);
+        channelID, "$userId", message);
     scrollController.jumpTo(scrollController.position.minScrollExtent);
     notifyListeners();
   }

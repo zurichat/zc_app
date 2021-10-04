@@ -1,8 +1,8 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
 import 'package:hng/utilities/enums.dart';
@@ -45,19 +45,19 @@ class DmUserViewModel extends FormViewModel {
   final _isOnline = true;
   bool get isOnline => _isOnline;
 
-  final _bio = ProductDesigner;
+  final _bio = 'Product designer';
   String get bio => _bio;
 
   bool _hasClickedMessageField = false;
   bool get hasClickedMessageField => _hasClickedMessageField;
 
-  User receiver = User(OyinkanUA, OyinkanUA);
-  User sender = User(Jaytek, Jaytek);
+  User receiver = User('OyinkanUA', 'OyinkanUA');
+  User sender = User('Jaytek', 'Jaytek');
   bool isSendButtonEnabled = false;
 
   List<Message> chatMessages = List.empty(growable: true);
 
-  get messageController => null;
+  final messageController = TextEditingController();
 
   showButtonSheet(Message message) async {
     await bottomSheet.showCustomSheet(
@@ -78,23 +78,26 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  void sendMessage(String? _message) {
-    final message = _message;
-    if (message!.trim().isNotEmpty) {
-      chatMessages.add(
-        Message(
-          id: chatMessages.length,
-          sender: sender,
-          message: message,
-          time: DateTime.now(),
-        ),
-      );
-      // ignore: todo
-      //TODO - fix autoclear
-      // clearText();
-      notifyListeners();
-      sendResponse();
+  Future <void> sendMessage() async{
+   // if(messageController.text!=null){
+    final message = messageController.text;
+    if (message.trim().isNotEmpty) {
+    chatMessages.add(
+    Message(
+    id: chatMessages.length,
+    sender: sender,
+    message: message,
+    time: DateTime.now(),
+    ),
+    );
+    // ignore: todo
+    //TODO - fix autoclear
+    messageController.clear();
+     //clearText();
+    notifyListeners();
     }
+      //await sendResponse();
+    //}
   }
 
   void deleteMessage(Message message) {
@@ -110,7 +113,7 @@ class DmUserViewModel extends FormViewModel {
   }
   void popScreen() {
     final navigationService = locator<NavigationService>();
-    navigationService.popRepeated(1);
+    navigationService.back();
   }
 
 

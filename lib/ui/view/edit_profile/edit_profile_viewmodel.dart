@@ -2,7 +2,6 @@ import 'package:hng/app/app.locator.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/profile_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/api_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/current_user_profile.dart';
 import 'package:hng/services/local_storage_services.dart';
@@ -13,6 +12,7 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+//TODO refactor entire View Model
 String _name = '', _display = '', _status = '', _phone = '';
 
 class EditProfileViewModel extends FutureViewModel {
@@ -24,7 +24,7 @@ class EditProfileViewModel extends FutureViewModel {
   final mediaService = locator<MediaService>();
   final dialogService = locator<DialogService>();
   final _api = ZuriApi(coreBaseUrl);
-  final api = ApiService();
+
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
 
@@ -67,7 +67,6 @@ class EditProfileViewModel extends FutureViewModel {
     };
     final editResponse =
         await _api.patch(profileEndPoint, body: profileData, token: token);
-    final snackbar = locator<SnackbarService>();
 
     if (editResponse!.statusCode == 200) {
       snackbar.showCustomSnackBar(

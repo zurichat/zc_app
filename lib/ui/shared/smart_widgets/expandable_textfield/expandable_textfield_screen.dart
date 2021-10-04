@@ -217,7 +217,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               if (textController.text
                                                   .toString()
                                                   .isNotEmpty) {
-                                                sendMessage;
+                                                sendMessage(
+                                                    textController.text);
                                                 textController.clear();
                                               }
                                             },
