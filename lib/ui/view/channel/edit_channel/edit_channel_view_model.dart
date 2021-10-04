@@ -29,14 +29,8 @@ class EditChannelViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  // onChanged(String val) {
-  //   // log.i(val);
-  //   notifyListeners();
-  // }
-
   editChannel() async {
     loading(true);
-    // print(DescriptionValueKey);
     if (topicValue == '' || descriptionValue == '') {
       loading(false);
       //Hides the keyboard for the failure snackbar to be visible
