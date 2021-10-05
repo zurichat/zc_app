@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -15,26 +16,7 @@ class CreateChannelView extends StatelessWidget {
     return ViewModelBuilder<CreateChannelViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
               backgroundColor: AppColors.whiteColor,
-              appBar: AppBar(
-                centerTitle: true,
-                backgroundColor: Colors.white,
-                leadingWidth: double.infinity,
-                leading: const Align(
-                  alignment: Alignment.centerLeft,
-                  child: CustomTextWidget(
-                      padding: 17,
-                      fontWeight: FontWeight.bold,
-                      text: Cancel,
-                      color: AppColors.zuriPrimaryColor,
-                      decoration: TextDecoration.underline),
-                ),
-                title: Text(
-                  Channels,
-                  style: AppTextStyles.heading5.copyWith(
-                      fontSize: 20,
-                      color: AppColors.deepBlackColor,
-                      fontWeight: FontWeight.bold),
-                ),
+              appBar: ZuriTopBar(
                 actions: const [
                   Center(
                     child: CustomTextWidget(
@@ -45,6 +27,13 @@ class CreateChannelView extends StatelessWidget {
                         decoration: TextDecoration.underline),
                   ),
                 ],
+                leading: Icons.arrow_back_ios,
+                leadingPress: () => model.navigateBack(),
+                whiteBackground: true,
+                orgTitle: Text(
+                  Channels,
+                  style: AppTextStyles.heading7,
+                ),
               ),
               body: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(vertical: 23),

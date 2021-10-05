@@ -18,7 +18,7 @@ class AddPeopleView extends StatelessWidget {
         ZuriTopBar(
                 leading: Icons.arrow_back_ios,
                 leadingPress: () => model.goBack(),
-                orgTitle: const Text(AddPeople),
+                orgTitle: Text(AddPeople, style: AppTextStyles.heading7,),
                 whiteBackground: true,
                    actions: [
             TextButton(

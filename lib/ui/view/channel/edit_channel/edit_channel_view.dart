@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -36,8 +37,9 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
       builder: (context, model, child) => Scaffold(
         appBar: ZuriTopBar(
           leading: Icons.arrow_back_ios,
-          orgTitle: const Text(
+          orgTitle: Text(
             EditChannel,
+            style: AppTextStyles.heading7,
           ),
           whiteBackground: true,
           actions: [

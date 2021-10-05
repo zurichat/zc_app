@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -14,7 +15,7 @@ class AdvancedView extends StatelessWidget {
     return ViewModelBuilder<AdvancedViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: ZuriTopBar(
-          orgTitle: const Text(Advanced),
+          orgTitle: Text(Advanced, style: AppTextStyles.heading7,),
           whiteBackground: true,
         ),
         body: SingleChildScrollView(

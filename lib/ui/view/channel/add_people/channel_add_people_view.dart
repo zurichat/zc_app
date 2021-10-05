@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -31,7 +32,7 @@ class ChannelAddPeopleView extends StatelessWidget {
               orgTitle: Text( 
                     viewModel.markedUsers.isNotEmpty
                   ? '${viewModel.markedUsers.length} selected'
-                  : AddPeople,),
+                  : AddPeople, style: AppTextStyles.heading7,),
           whiteBackground: true,
           leading: Icons.clear,
           leadingPress: () => viewModel.navigateBack(),

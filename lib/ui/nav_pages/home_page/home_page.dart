@@ -6,8 +6,10 @@ import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/view/create_channel_view/widgets/custom_text_widget.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 

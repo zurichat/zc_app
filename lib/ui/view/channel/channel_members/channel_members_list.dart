@@ -5,6 +5,7 @@ import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/plugins/widgets/custom_plugin_list_tile.dart';
 import '../../../shared/colors.dart';
@@ -26,12 +27,14 @@ class ChannelMembersList extends StatelessWidget {
       viewModelBuilder: () => ChannelMembersModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: 
-          ZuriTopBar(
+          appBar: ZuriTopBar(
             leading: Icons.clear,
             leadingPress: () => viewModel.goBack(),
-            orgTitle: Text(channelDetail.name),
-              actions: [
+            orgTitle: Text(
+              channelDetail.name,
+              style: AppTextStyles.heading7,
+            ),
+            actions: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0.0, 20.0, 25.0, 0.0),
                 child: InkWell(
@@ -57,7 +60,15 @@ class ChannelMembersList extends StatelessWidget {
                     onChanged: viewModel.onSearchUser,
                     labelText: SearchPeople,
                     // controller: viewModel.editor,
+                  ),
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25.0, 24.0, 16.0, 0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: const CustomPluginPageListTile(
+                    leadingIcon: Icon(
                       Icons.add,
                       color: AppColors.zuriPrimaryColor,
                     ),
