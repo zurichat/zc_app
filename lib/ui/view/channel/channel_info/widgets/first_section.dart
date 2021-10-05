@@ -12,58 +12,58 @@ class FirstSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 284.h,
-      width: 395.w,
+      height: 380,
+      width: double.infinity,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6.r),
-          border: Border.all(width: 1.w, color: AppColors.borderColor),
-          boxShadow: [
+          borderRadius: BorderRadius.circular(6),
+          boxShadow: const [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5.r,
-              blurRadius: 6.r,
-              offset: const Offset(0, 3), // changes position of shadow
+              color: Colors.white,
+              spreadRadius: 4,
+              blurRadius: 4,
+              offset: Offset(3, 3), // changes position of shadow
             ),
           ]),
-      padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 24.h, 16.37.w),
+      // margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            // "$channelName",
             "#${model.channelName}",
-            style: AppTextStyles.body1Light,
+            style: AppTextStyles.body1Bold,
           ),
+          const SizedBox(height: 25),
           Text(
             Description,
-            style: AppTextStyles.body1Light,
+            style: AppTextStyles.body1Bold,
           ),
-          SizedBox(height: 24.h),
+          const SizedBox(height: 10),
           Text(
             '${model.channelDescription}',
             style: AppTextStyles.body1Light.copyWith(letterSpacing: 0.005),
           ),
-          SizedBox(height: 6.h),
+          const SizedBox(height: 10),
           Text(
             MarkCreatedChannel,
             style: AppTextStyles.body1Regular.copyWith(letterSpacing: 0.005),
           ),
-          SizedBox(height: 18.h),
+          const SizedBox(height: 20),
           Text(
             Topic,
             style: AppTextStyles.headerStyle1.copyWith(fontSize: 16.sp),
           ),
-          SizedBox(height: 10.h),
+          const SizedBox(height: 10),
           Text(
             CreatingZuri,
             style: AppTextStyles.body1Light.copyWith(fontSize: 16.sp),
           ),
-          SizedBox(height: 26.h),
-          Divider(
-            thickness: 0.5.h,
+          const SizedBox(height: 25),
+          const Divider(
+            thickness: 0.5,
             color: AppColors.borderColor,
           ),
-          SizedBox(height: 16.h),
+          const SizedBox(height: 15),
           Center(
             child: InkWell(
               onTap: () {
