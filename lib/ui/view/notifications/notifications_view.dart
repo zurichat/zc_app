@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/menu_item_tile.dart';
 import 'package:stacked/stacked.dart';
 
@@ -12,7 +13,7 @@ class NotificationsView extends StatelessWidget {
     return ViewModelBuilder<NotificationsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          title: const Text('Notification'),
+          title: const Text(Notifications),
           elevation: 0,
         ),
         body: SingleChildScrollView(
@@ -20,57 +21,57 @@ class NotificationsView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const MenuItemTile(
-                text: Text('On mobile, notify me about...'),
-                subtitle: 'Direct messages, mentions & keywords',
+                text: Text(NotifyAbout),
+                subtitle: NotifyAboutSubtitle,
               ),
               const MenuItemTile(
-                text: Text('Notify me on mobile...'),
-                subtitle: "As soon as I'm active",
+                text: Text(NotifyOnMobile),
+                subtitle: NotifyOnMobileSubtitle,
               ),
               const MenuItemTile(
-                text: Text('Sound'),
-                subtitle: 'Ding',
+                text: Text(Sound),
+                subtitle: Ding,
               ),
               MenuItemTile.flipSwitch(
-                text: const Text('Vibrate'),
+                text: const Text(Vibrate),
                 value: model.vibrate,
                 onChanged: model.toggleVibrate,
               ),
               MenuItemTile.flipSwitch(
-                text: const Text('Light'),
+                text: const Text(Light),
                 value: model.light,
                 onChanged: model.toggleLight,
               ),
               const MenuItemTile(
-                text: Text('Troubleshoot notifications'),
+                text: Text(TroubleshootNotifs),
               ),
               const SizedBox(height: 10),
               const Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  'General Settings',
+                  GeneralSettings,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               const MenuItemTile(
-                text: Text('Notification Schedule'),
-                subtitle: 'Everyday',
+                text: Text(NotificationSchedule),
+                subtitle: Everyday,
                 topBorder: false,
               ),
               MenuItemTile.flipSwitch(
-                text: const Text('In-app notification'),
+                text: const Text(InAppNotif),
                 subtitle: 'In-app notifications appear while the app is open',
                 value: model.inAppNotification,
                 onChanged: model.toggleInAppNotification,
               ),
               MenuItemTile.flipSwitch(
-                text: const Text('My Keyword'),
-                subtitle: 'Get notified when people say...',
+                text: const Text(MyKeyword),
+                subtitle: MyKeywordSubtitle,
                 value: model.notifyOnKeyword,
                 onChanged: model.toggleNotifyOnKeyword,
               ),
               const MenuItemTile(
-                text: Text('Channel-specific notifications (0)'),
+                text: Text(ChannelSPecificNotif),
               ),
             ],
           ),

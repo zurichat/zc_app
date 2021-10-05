@@ -1,3 +1,4 @@
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -34,11 +35,11 @@ class DmJumpToViewModel extends FormViewModel {
   }
 
   void _onChanged() => (value) {
-          allChannelsSearch = allChannelsSearch
-              .where((channels) => (channels.name.toString().contains(
-                    value.toLowerCase(),
-                  )))
-              .toList();
+        allChannelsSearch = allChannelsSearch
+            .where((channels) => (channels.name.toString().contains(
+                  value.toLowerCase(),
+                )))
+            .toList();
         notifyListeners();
       };
 
@@ -49,7 +50,7 @@ class DmJumpToViewModel extends FormViewModel {
     yield await connectivityService.checkConnection();
   }
 
-  Future<List<ChannelsSearch>?>? fetchChannels() async {
+  Future<List<ChannelsSearch>?> ?fetchChannels() async {
     try {
       setBusy(true);
       allChannelsSearch = await api.allChannelsList();
@@ -61,7 +62,7 @@ class DmJumpToViewModel extends FormViewModel {
     }
   }
 
-  Future<List<NewUser>?>? fetchUsers() async {
+  Future<List<NewUser>?> ?fetchUsers() async {
     try {
       setBusy(true);
       userSearch = (await api.fetchList());
@@ -70,7 +71,7 @@ class DmJumpToViewModel extends FormViewModel {
       return userSearch;
     } catch (e) {
       log.e("Model users Error - ${e.toString()}");
-      AppToast.instance.error(null, 'Error Occured');
+      AppToast.instance.error(null, errorOccurred);
     }
   }
 }

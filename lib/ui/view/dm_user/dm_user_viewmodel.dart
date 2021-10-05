@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
@@ -28,6 +29,8 @@ class DmUserViewModel extends FormViewModel {
 
   List<Message> chatMessages = List.empty(growable: true);
 
+  final messageController = TextEditingController();
+
   showButtonSheet(Message message) async {
     await bottomSheet.showCustomSheet(
         variant: BottomSheetType.floatingBox,
@@ -47,23 +50,26 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  void sendMessage(String? _message) {
-    final message = _message;
-    if (message!.trim().isNotEmpty) {
-      chatMessages.add(
-        Message(
-          id: chatMessages.length,
-          sender: sender,
-          message: message,
-          time: DateTime.now(),
-        ),
-      );
-      // ignore: todo
-      //TODO - fix autoclear
-      // clearText();
-      notifyListeners();
-      sendResponse();
+  Future <void> sendMessage() async{
+   // if(messageController.text!=null){
+    final message = messageController.text;
+    if (message.trim().isNotEmpty) {
+    chatMessages.add(
+    Message(
+    id: chatMessages.length,
+    sender: sender,
+    message: message,
+    time: DateTime.now(),
+    ),
+    );
+    // ignore: todo
+    //TODO - fix autoclear
+    messageController.clear();
+     //clearText();
+    notifyListeners();
     }
+      //await sendResponse();
+    //}
   }
 
   void deleteMessage(Message message) {

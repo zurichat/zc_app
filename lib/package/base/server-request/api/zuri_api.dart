@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'dart:async';
+import 'dart:io';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class ZuriApi implements Api {
   }) async {
     log.i('Making request to $string');
     try {
-      final response = await dio.get(string,
+      final response = await dio.get(string.toString(),
           queryParameters: queryParameters,
           options: Options(headers: {'Authorization': 'Bearer $token'}));
 
@@ -76,7 +77,7 @@ class ZuriApi implements Api {
   }) async {
     log.i('Making request to $string');
     try {
-      final response = await dio.put(string,
+      final response = await dio.put(string.toString(),
           data: body,
           options: Options(headers: {'Authorization': 'Bearer $token'}));
 
@@ -340,9 +341,10 @@ class ZuriApi implements Api {
         "role_id": "",
         "is_admin": false,
         "notifications": {
-          "additionalProp1": "",
-          "additionalProp2": "",
-          "additionalProp3": ""
+          "web": "nothing",
+          "mobile": "mentions",
+          "same_for_mobile": true,
+          "mute": false
         }
       },
     );
@@ -380,8 +382,8 @@ class ZuriApi implements Api {
 
   /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
   /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
-// ignore: todo
-//TODO CONFIRM websocketUrl
+  // ignore: todo
+  //TODO CONFIRM websocketUrl
   @override
   Future getChannelSocketId(String channelId, String orgId, token) async {
     try {
@@ -527,7 +529,6 @@ class ZuriApi implements Api {
 
   /// Fetches channels from an organization
   /// Org ID must not be null
-
   @override
   Future<List<ChannelModel>> fetchChannel(String orgId, token) async {
     try {
@@ -674,7 +675,7 @@ class ZuriApi implements Api {
     }
   }
 
-//!Adjust the patch function as needed
+  //!Adjust the patch function as needed
   @override
   Future sendPatchRequest(body, endpoint, userId) async {
     try {
@@ -749,6 +750,37 @@ class ZuriApi implements Api {
       return UnknownFailure();
     } else {
       return UnknownFailure();
+    }
+  }
+
+  @override
+  Future<String> uploadImage(
+    File? image, {
+    required String token,
+    required String memberId,
+    required String orgId,
+  }) async {
+    var formData = FormData.fromMap({
+      "image": MultipartFile(
+        image!.openRead(),
+        await image.length(),
+        filename: image.path.split(Platform.pathSeparator).last,
+      ),
+    });
+    try {
+      final res = await dio.post(
+        'https://api.zuri.chat/organizations/$orgId/members/$memberId/photo',
+        options: Options(
+          headers: {'Authorization': 'Bearer $token'},
+        ),
+        data: formData,
+      );
+      log.i(res.data);
+      return res.data;
+    } on DioError catch (e) {
+      log.w(e.toString());
+      handleApiError(e);
+      return "error uploading the image";
     }
   }
 }
