@@ -5,22 +5,36 @@ import 'package:grouped_list/grouped_list.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
 import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
 import 'package:stacked/stacked.dart';
-
+import 'package:stacked/stacked_annotations.dart';
 import '../../shared/colors.dart';
 import 'dm_user_viewmodel.dart';
 import 'dummy_data/models/message.dart';
 import 'icons/zap_icon.dart';
 import 'widgets/message_view.dart';
 import 'widgets/online_indicator.dart';
+import 'dm_user_view.form.dart';
 
-class DmUserView extends StatelessWidget {
+@FormView(
+  fields: [
+    FormTextField(name: 'message'),
+  ],
+)
+class DmUserView extends StatelessWidget with $DmUserView {
   DmUserView({Key? key}) : super(key: key);
 
   final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+     dynamic receiverId = 'receiver';
     return ViewModelBuilder<DmUserViewModel>.reactive(
+        onModelReady: (model) {
+          model.getDraft(receiverId);
+          if (model.storedDraft.isNotEmpty) {
+            messageController.text = model.storedDraft;
+          }
+          return listenToFormUpdated(model);
+        },
         viewModelBuilder: () => DmUserViewModel(),
         builder: (context, model, child) {
 
@@ -33,7 +47,7 @@ class DmUserView extends StatelessWidget {
                 iconSize: 18.0,
                 color: AppColors.deepBlackColor,
                 onPressed: () {
-                  model.popScreen();
+                  model.popScreens(receiverId, messageController.text);
                 },
               ),
               titleSpacing: 0.0,
@@ -64,7 +78,6 @@ class DmUserView extends StatelessWidget {
                   onPressed: () {},
                 )
               ],
-              elevation: 0.0,
             ),
             body: Stack(
               children: [
@@ -169,7 +182,7 @@ class DmUserView extends StatelessWidget {
                                       }
                                     },
                                     child: TextField(
-                                      controller: model.messageController,
+                                      controller: messageController,
                                       expands: true,
                                       maxLines: null,
                                       textAlignVertical:
@@ -258,7 +271,7 @@ class DmUserView extends StatelessWidget {
                                 ),
                                 IconButton(
                                     onPressed: ()async {
-                                      await model.sendMessage();
+                                      await model.sendMessage(messageController);
                                       FocusScope.of(context)
                                           .requestFocus(FocusNode());
                                       _scrollController.jumpTo(_scrollController

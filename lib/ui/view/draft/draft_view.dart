@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/view/draft/drafts.dart';
 import 'package:stacked/stacked.dart';
 import 'draft_viewmodel.dart';
 
@@ -9,16 +11,33 @@ class DraftView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DraftViewModel>.reactive(
+      onModelReady: (model) {
+        model.drafts;
+      },
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          title: Text(model.title),
-          leading: const Icon(Icons.arrow_back_ios),
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 5),
+            child: IconButton(
+                onPressed: (){
+                  model.goBack();
+                },
+                icon: const Icon(Icons.arrow_back_ios)),
+          ),
+          centerTitle: false,
+          leadingWidth: 20,
+          title: Text("Drafts", style: AppTextStyles.body1Bold),
         ),
         body: ListView.builder(
-          itemCount: model.draft.length,
+          itemCount: model.widgetBuilderList.length,
           itemBuilder: (BuildContext context, int index) {
-            return model.draft[index];
-          },
+            return CustomListTile(
+              text: model.widgetBuilderList[index].text,
+              subtitle: model.widgetBuilderList[index].subtitle,
+              route: model.widgetBuilderList[index].route,
+              time: model.widgetBuilderList[index].time,
+              model: model,
+            );},
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},

@@ -14,11 +14,14 @@ class ExpandableTextFieldScreen extends HookWidget {
     required this.widget,
     required this.sendMessage,
     required this.hintText,
+    required this.textController
   }) : super(key: key);
   final Widget widget;
   final Function(String message) sendMessage;
   final String hintText;
   final focusNode = FocusNode();
+  final TextEditingController textController;
+
   final keyboardVisibilityController = KeyboardVisibilityController();
   Stream<bool> get stream =>
       keyboardVisibilityController.onChange.asBroadcastStream();
@@ -26,7 +29,6 @@ class ExpandableTextFieldScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     double maxSize = MediaQuery.of(context).size.height - kToolbarHeight - 30;
-    TextEditingController textController = useTextEditingController();
     return ViewModelBuilder<ExpandableTextFieldScreenViewModel>.reactive(
       viewModelBuilder: () => ExpandableTextFieldScreenViewModel(),
       onModelReady: (model) {

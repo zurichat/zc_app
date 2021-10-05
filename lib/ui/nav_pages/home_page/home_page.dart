@@ -18,6 +18,7 @@ class HomePage extends StatelessWidget {
       onModelReady: (model) {
         model.getDmAndChannelsList();
         model.getNewChannelStream();
+        model.hasDrafts();
         model.listenToNotificationTap();
       },
       viewModelBuilder: () => HomePageViewModel(),
@@ -65,6 +66,11 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
           ),
+          vmodel.hasDrafts()
+              ? const Padding(
+                  padding: EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 3),
+                  child: DraftTextAndIcon())
+              : Container(),
           const Divider(),
           HomeExpandedList(
             title: Unreads,

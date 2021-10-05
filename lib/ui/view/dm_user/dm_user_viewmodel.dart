@@ -1,14 +1,49 @@
+import 'dart:convert';
 import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'dm_user_view.form.dart';
+
 
 class DmUserViewModel extends FormViewModel {
+  final navigationService = locator<NavigationService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
+
+  //draft implementations
+
+  //Note that the receiverID has to be unique to a dm_user_view
+  //instance, attached to a particular user.
+  var storedDraft='';
+  void getDraft(receiverId){
+    var draft = _storageService.getString(receiverId);
+    if(draft != null){
+      storedDraft = json.decode(draft)['draft'];
+      _storageService.clearData(receiverId);
+    }
+  }
+
+  void storeDraft(receiverId, value){
+    var _keyMap = {
+      'draft': value,
+      'time' : '${DateTime.now()}',
+      'receiverName' : 'receiverName',
+      'receiverId' : receiverId,
+    };
+
+    if(value.length > 0){
+      _storageService.setStringList(StorageKeys.currentUserDmDrafts, [receiverId]);
+      _storageService.setString(receiverId, json.encode(_keyMap));
+    }
+  }
+  //draft implementation ends here
+
+
   final _username = '';
   String get username => _username;
 
@@ -29,7 +64,6 @@ class DmUserViewModel extends FormViewModel {
 
   List<Message> chatMessages = List.empty(growable: true);
 
-  final messageController = TextEditingController();
 
   showButtonSheet(Message message) async {
     await bottomSheet.showCustomSheet(
@@ -50,10 +84,9 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  Future <void> sendMessage() async{
-   // if(messageController.text!=null){
-    final message = messageController.text;
-    if (message.trim().isNotEmpty) {
+  Future <void> sendMessage(messageController) async{
+    final message = messageValue;
+    if (message!.trim().isNotEmpty) {
     chatMessages.add(
     Message(
     id: chatMessages.length,
@@ -64,8 +97,7 @@ class DmUserViewModel extends FormViewModel {
     );
     // ignore: todo
     //TODO - fix autoclear
-    messageController.clear();
-     //clearText();
+    messageController.disposeForm();
     notifyListeners();
     }
       //await sendResponse();
@@ -77,10 +109,16 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
+  void popScreens(receiverId, value) {
+    storeDraft(receiverId, value);
+    navigationService.popRepeated(1);
+
+  }
   void popScreen() {
     final navigationService = locator<NavigationService>();
     navigationService.back();
   }
+
 
   void sendResponse() async {
     await Future.delayed(const Duration(seconds: 0));
