@@ -39,7 +39,6 @@ class SignUpViewModel extends FormViewModel {
   void navigateToSignIn() => navigation.navigateTo(Routes.loginView);
   void navigateToOTPView() => navigation.navigateTo(Routes.oTPView);
 
-  // ignore: always_declare_return_types
   createUser(context) async {
     if (checkBoxValue == true) {
       loading(true);

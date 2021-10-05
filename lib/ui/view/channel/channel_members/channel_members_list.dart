@@ -13,7 +13,6 @@ import 'package:stacked/stacked.dart';
 import '../shared_widgets.dart';
 import 'channel_members_list_model.dart';
 
-// ignore: must_be_immutable
 class ChannelMembersList extends StatelessWidget {
   final List<ChannelMembermodel> channelMembers;
   final ChannelModel channelDetail;
@@ -58,15 +57,7 @@ class ChannelMembersList extends StatelessWidget {
                     onChanged: viewModel.onSearchUser,
                     labelText: SearchPeople,
                     // controller: viewModel.editor,
-                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25.0, 24.0, 16.0, 0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const CustomPluginPageListTile(
-                    leadingIcon: Icon(
                       Icons.add,
                       color: AppColors.zuriPrimaryColor,
                     ),
@@ -107,7 +98,6 @@ class ChannelMembersList extends StatelessWidget {
                             Text(
                               channelMembers[index].name,
                               style: GoogleFonts.lato(
-                                // ignore: todo
                                 //TODO change to brand colors
                                 color: const Color(0xFF424141),
                               ),

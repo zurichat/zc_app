@@ -28,36 +28,23 @@ class _ChannelSearchPageViewState extends State<ChannelSearchPageView> {
           /// KINDLY CHECK THROUGH AND USE.
         ),
         body: SafeArea(
-          // ignore: avoid_unnecessary_containers
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            // ignore: avoid_unnecessary_containers
-            child: Container(
-              child: Column(
-                children: [
-                  //TextFIeld
-                  Container(
-                    height: 40,
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 30),
-                    child: TextFormField(
-                        // style: textStyling(),
-                        decoration:
-                            textFormFields('Search people on #teamsocrates')),
-                  ),
+            child: Column(
+              children: [
+                //TextFIeld
+                Container(
+                  height: 40,
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 10, vertical: 30),
+                  child: TextFormField(
+                      // style: textStyling(),
+                      decoration:
+                          textFormFields('Search people on #teamsocrates')),
+                ),
 
-                  // ignore: avoid_unnecessary_containers
-                  Container(child: const SearchResults()),
-                  // ignore: avoid_unnecessary_containers
-                  Container(child: const SearchResults()),
-                  // ignore: avoid_unnecessary_containers
-                  Container(child: const SearchResults()),
-                  // ignore: avoid_unnecessary_containers
-                  Container(child: const SearchResults()),
-                  // ignore: avoid_unnecessary_containers
-                  Container(child: const SearchResults()),
-                ],
-              ),
+                const SizedBox(child: SearchResults()),
+              ],
             ),
           ),
         ),
