@@ -20,6 +20,7 @@ class YouPage extends StatelessWidget {
         appBar: ZuriTopBar(
           orgTitle: Text(You, style: ZuriTextStyle.organizationNameText()),
           bottomNavBarScreen: true,
+          leadingWidth: true,
         ),
         body: Padding(
           padding: const EdgeInsets.all(15),

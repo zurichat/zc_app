@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
-//import 'package:hng_task2/ui/views/clear_notification/widgets/clear_notification_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 import 'clear_notification_viewmodel.dart';

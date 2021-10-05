@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../general_widgets/channel_icon.dart';
@@ -23,16 +24,14 @@ class ThreadDetailView extends StatelessWidget {
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
       onModelReady: (model) => model.initialise(userPost!.id!),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: const CustomText(text: 'Threads', fontWeight: FontWeight.bold),
-          leading: IconButton(
-            onPressed: model.exitPage,
-            icon: const Icon(
-              Icons.arrow_back_ios,
+        appBar: ZuriTopBar(
+            orgTitle: Text(
+              Threads,
+              style: AppTextStyles.heading7,
             ),
-          ),
-        ),
+            leading: Icons.chevron_left,
+            leadingPress: () => model.exitPage(),
+            whiteBackground: true),
         body: model.isBusy
             ? const Center(child: CircularProgressIndicator())
             : Column(

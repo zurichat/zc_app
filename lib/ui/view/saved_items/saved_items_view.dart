@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/custom_text.dart';
@@ -13,13 +15,12 @@ class SavedItemsView extends StatelessWidget {
     final _size = MediaQuery.of(context).size;
     return ViewModelBuilder<SavedItemsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          leading: IconButton(
-            onPressed: model.exitPage,
-            icon: const Icon(Icons.close_rounded),
-          ),
-          title: const Text('Saved Items'),
+        appBar: ZuriTopBar(
+          leading:
+            Icons.close_rounded,
+            whiteBackground: true,
+            leadingPress: () => model.exitPage(),
+          orgTitle: Text('Saved Items', style: AppTextStyles.heading7),
         ),
         body: SizedBox(
           width: double.infinity,

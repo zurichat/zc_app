@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/menu_item_tile.dart';
+import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'notifications_viewmodel.dart';
@@ -12,9 +14,8 @@ class NotificationsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<NotificationsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          title: const Text(Notifications),
-          elevation: 0,
+        appBar: ZuriTopBar(
+          orgTitle: Text(Notifications, style: AppTextStyles.heading7,),
         ),
         body: SingleChildScrollView(
           child: Column(

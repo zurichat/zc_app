@@ -21,22 +21,9 @@ class EditProfileView extends StatelessWidget {
         appBar: 
         ZuriTopBar(
           leading: Icons.close_rounded,
+          leadingPress: () => viewModel.navigateBack(),
+          orgTitle: Text("Edit Profile", style: AppTextStyles.heading7,),
         ),
-        // AppBar(
-        //   elevation: 0,
-        //   leading: IconButton(
-        //       onPressed: () {}, icon: const Icon(Icons.close_rounded)),
-        //   title: const Text(EditProfile),
-        //   actions: [
-        //     TextButton(
-        //       onPressed: () {},
-        //       child: const Text(
-        //         Save,
-        //         style: TextStyle(color: AppColors.zuriTextBodyColor),
-        //       ),
-        //     )
-        //   ],
-        // ),
         body: Visibility(
           visible: !viewModel.isBusy,
           child: Body(size: _size),

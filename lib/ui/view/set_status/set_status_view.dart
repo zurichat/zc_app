@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -13,12 +14,10 @@ class SetStatusView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
-              appBar: AppBar(
-                elevation: 0,
-                leading: IconButton(
-                    onPressed: model.exitPage,
-                    icon: const Icon(Icons.close_rounded)),
-                title: const Text('Set a status'),
+              appBar: ZuriTopBar(
+                leading: Icons.close_rounded,
+                leadingPress: () => model.exitPage,
+                orgTitle: const Text('Set a status'),
                 actions: [
                   TextButton(
                     onPressed: () {},
@@ -28,6 +27,7 @@ class SetStatusView extends StatelessWidget {
                     ),
                   )
                 ],
+                whiteBackground: true
               ),
               body: SingleChildScrollView(
                 child: Column(
