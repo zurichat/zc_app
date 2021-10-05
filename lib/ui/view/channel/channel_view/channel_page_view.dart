@@ -6,13 +6,21 @@ import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 import '../../../shared/shared.dart';
 
 import 'channel_page_viewmodel.dart';
 import 'widgets/channel_chat.dart';
+import 'channel_page_view.form.dart';
 
-class ChannelPageView extends StatelessWidget {
-  const ChannelPageView({
+@FormView(
+  fields: [
+    FormTextField(name: 'channelMessages'),
+  ],
+)
+
+class ChannelPageView extends StatelessWidget with $ChannelPageView {
+  ChannelPageView({
     Key? key,
     required this.channelName,
     required this.channelId,
@@ -28,7 +36,11 @@ class ChannelPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
+        model.getDraft(channelId);
         model.initialise('$channelId');
+        if(model.storedDraft.isNotEmpty){
+          channelMessagesController.text = model.storedDraft;
+        }
         model.showNotificationForOtherChannels('$channelId', '$channelName');
       },
       //this parameter allows us to reuse the view model to persist the state
@@ -44,11 +56,14 @@ class ChannelPageView extends StatelessWidget {
             leading: Padding(
               padding: const EdgeInsets.only(left: 5.0, right: 20.0),
               child: IconButton(
-                  onPressed: model.goBack,
+                  onPressed: (){
+                    model.goBack(channelId, channelMessagesController.text,
+                        channelName, membersCount, public);
+                    },
                   icon: const Icon(Icons.arrow_back_ios)),
             ),
             centerTitle: false,
-            leadingWidth: 20,
+            leadingWidth: 40,
             title: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +77,8 @@ class ChannelPageView extends StatelessWidget {
             ),
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  },
                 icon: const Icon(Icons.search),
               ),
               Padding(
@@ -78,6 +94,7 @@ class ChannelPageView extends StatelessWidget {
             ],
           ),
           body: ExpandableTextFieldScreen(
+            textController: channelMessagesController,
             hintText: AddReply,
             sendMessage: model.sendMessage,
             widget: SingleChildScrollView(

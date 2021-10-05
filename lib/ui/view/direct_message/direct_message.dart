@@ -1,23 +1,34 @@
 //keep Hng Project
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked_annotations.dart';
 import 'package:hng/constants/app_strings.dart';
 import '../../../utilities/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../general_widgets/custom_text.dart';
 import 'direct_message_text_field_hook.dart';
 import 'direct_message_viewmodel.dart';
+import 'direct_message.form.dart';
 
-class DirectMessage extends StatelessWidget {
+
+@FormView(
+  fields: [
+    FormTextField(name: 'directMessages'),
+  ],
+)
+
+class DirectMessage extends StatelessWidget with $DirectMessage {
   final String? username;
-
-  const DirectMessage({Key? key, this.username}) : super(key: key);
+  DirectMessage({Key? key, this.username}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ViewModelBuilder<DirectMessageViewModel>.reactive(
+        onModelReady: (model)async{
+          model.getDraft();
+          return listenToFormUpdated(model);
+        },
         viewModelBuilder: () => DirectMessageViewModel(),
         builder: (context, model, child) {
           return Scaffold(
@@ -25,7 +36,9 @@ class DirectMessage extends StatelessWidget {
               backgroundColor: Colors.white,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {
+                  return model.goBack();
+                },
               ),
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,6 +180,7 @@ class DirectMessage extends StatelessWidget {
                       color: Colors.white,
                       child: Row(
                         children: <Widget>[
+
                           const Expanded(
                             child: TextFieldHook(),
                           ),

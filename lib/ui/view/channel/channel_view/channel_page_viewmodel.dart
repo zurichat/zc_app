@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
@@ -16,16 +17,45 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class ChannelPageViewModel extends BaseViewModel {
+class ChannelPageViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _channelsApiService = locator<ChannelsApiService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _centrifugeService = locator<CentrifugeService>();
   final _notificationService = locator<NotificationService>();
-
   final _bottomSheetService = locator<BottomSheetService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
 
+  //draft implementations
+  var storedDraft = '';
+  void getDraft(channelId) {
+    var draft = _storageService.getString(channelId);
+    if (draft != null) {
+      storedDraft = json.decode(draft)['draft'];
+      _storageService.clearData(channelId);
+    }
+  }
+
+  void storeDraft(channelId, value, channelName, membersCount, public) {
+    var keyMap = {
+      'draft': value,
+      'time': '${DateTime.now()}',
+      'channelName': channelName,
+      'channelId': channelId,
+      'membersCount': membersCount,
+      'public': public,
+    };
+
+    if (value.length > 0) {
+      _storageService
+          .setStringList(StorageKeys.currentUserChannelDrafts, [channelId]);
+      _storageService.setString(channelId, json.encode(keyMap));
+    }
+  }
+  //**draft implementation ends here
+
+  // ignore: todo
   //TODO refactor this
   ScrollController scrollController = ScrollController();
   bool isExpanded = false;
@@ -148,10 +178,17 @@ class ChannelPageViewModel extends BaseViewModel {
     fetchChannelMembers(channelId);
   }
 
-  void goBack() => _navigationService.back();
+  void goBack(channelId, value, channelName, membersCount, public) {
+    storeDraft(channelId, value, channelName, membersCount, public);
+    _navigationService.back();
+  }
 
-  Future? navigateToChannelEdit() async {
-    await _navigationService.navigateTo(Routes.editChannelPageView);
+  navigateToChannelEdit(String channelName, String channelId) {
+    _navigationService.navigateTo(Routes.editChannelPageView,
+        arguments: EditChannelPageViewArguments(
+          channelName: channelName,
+          channelId: channelId,
+        ));
   }
 
   void websocketConnect(String channelSocketId) async {
@@ -201,5 +238,10 @@ class ChannelPageViewModel extends BaseViewModel {
   void toggleExpanded() {
     isExpanded = !isExpanded;
     notifyListeners();
+  }
+
+  @override
+  void setFormStatus() {
+    // TODO: implement setFormStatus
   }
 }

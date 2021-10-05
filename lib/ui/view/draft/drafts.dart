@@ -1,48 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/draft/draft_viewmodel.dart';
 
-final drafts = [
-  ListTile(
-    title: Text(
-      OyinkanUA,
-      style: AppTextStyles.heading6,
-    ),
-    subtitle: Text(
-      Why,
-      style: AppTextStyles.body1Bold,
-    ),
-    trailing: Text(
-      SampleDate,
-      style: AppTextStyles.body2Bold,
-    ),
-  ),
-  ListTile(
-    title: Text(
-      AbdSalam,
-      style: AppTextStyles.heading6,
-    ),
-    subtitle: Text(
-      NoWahala,
-      style: AppTextStyles.body1Bold,
-    ),
-    trailing: Text(
-      SampleDate,
-      style: AppTextStyles.body2Bold,
-    ),
-  ),
-  ListTile(
-    title: Text(
-      TeamSocrates,
-      style: AppTextStyles.heading6,
-    ),
-    subtitle: Text(
-      Yeah,
-      style: AppTextStyles.body1Bold,
-    ),
-    trailing: Text(
-      SampleDate,
-      style: AppTextStyles.body2Bold,
-    ),
-  ),
-];
+class CustomListTile extends StatelessWidget {
+  const CustomListTile({
+    Key? key,
+    required this.text,
+    required this.subtitle,
+    required this.route,
+    required this.time,
+    required this.model,
+  }) : super(key: key);
+
+  final String text;
+  final String subtitle;
+  final String time;
+  final Map route;
+  final DraftViewModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: (){
+        if(route['receiverName'].length > 0){
+          model.navigateToDmUserView();
+        }else if(route['channelName'].length > 0){
+          model.navigateToChannelPage(
+              '${route['channelName']}',
+              '${route['channelId']}',
+              route['membersCount'],
+              route['public']
+          );
+        }else{
+          model.navigateToThread(route['userPost'].id);
+        }
+      },
+      child: ListTile(
+        title: Text(
+          text,
+          style: AppTextStyles.heading6.copyWith(fontSize: 18),
+        ),
+        subtitle: Text(
+          subtitle,
+          style: AppTextStyles.body1Bold,
+        ),
+        trailing: Text(
+          time,
+          style: AppTextStyles.body2Bold,
+        ),
+      ),
+    );
+  }
+}

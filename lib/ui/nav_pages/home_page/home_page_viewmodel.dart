@@ -264,4 +264,39 @@ class HomePageViewModel extends StreamViewModel {
   // void navigateToDmUser() {
   //   _navigationService.navigateTo(Routes.dmUserView);
   // }
+
+  bool hasDrafts (){
+    var dmStoredKeys = storageService.getStringList(StorageKeys.currentUserDmDrafts);
+    var channelStoredKeys = storageService.getStringList(StorageKeys.currentUserChannelDrafts);
+    var threadStoredKeys = storageService.getStringList(StorageKeys.currentUserThreadDrafts);
+    int counter = 0;
+
+    if(dmStoredKeys != null ){
+      dmStoredKeys.forEach((element) {
+        if(storageService.getString(element) != null ){
+          counter++;
+        }
+      });
+    }
+
+    if(channelStoredKeys != null){
+      channelStoredKeys.forEach((element) {
+        if(storageService.getString(element) != null ){
+          counter++;
+        }
+      });
+    }
+
+    if(threadStoredKeys != null ){
+      threadStoredKeys.forEach((element) {
+        if(storageService.getString(element) != null ){
+          counter++;
+        }
+      });
+    }
+    return counter > 0;
+  }
+
+
+
 }
