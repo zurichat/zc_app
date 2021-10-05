@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
 
 import '../../../../general_widgets/channel_icon.dart';
 import '../../../../general_widgets/custom_text.dart';
@@ -11,37 +10,24 @@ import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';
 import '../../../shared/styles.dart';
 import '../../dm_user/icons/zap_icon.dart';
 import 'thread_detail_viewmodel.dart';
-import 'thread_detail_view.form.dart';
 
-@FormView(
-  fields: [
-    FormTextField(name: 'threadMessages'),
-  ],
-)
-class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
-  ThreadDetailView(this.userPost, {Key? key}) : super(key: key);
+class ThreadDetailView extends StatelessWidget {
+  const ThreadDetailView(this.userPost, {Key? key}) : super(key: key);
   final UserPost? userPost;
 
   @override
   Widget build(BuildContext context) {
+    // var _messageController = useTextEditingController();
     final _scrollController = ScrollController();
+    final _messageController = TextEditingController();
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
-      // onModelReady: (model) => model.initialise(userPost!.id!),
-      onModelReady: (model) {
-        model.getDraft(userPost);
-        if(model.storedDraft.isNotEmpty){
-          threadMessagesController.text = model.storedDraft;
-        }
-        model.initialise(userPost!.id!);
-      },
+      onModelReady: (model) => model.initialise(userPost!.id!),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           elevation: 0,
           title: const CustomText(text: 'Threads', fontWeight: FontWeight.bold),
           leading: IconButton(
-            onPressed: () {
-              model.exitPage(userPost, threadMessagesController.text);
-            },
+            onPressed: model.exitPage,
             icon: const Icon(
               Icons.arrow_back_ios,
             ),
@@ -151,7 +137,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                         }
                                       },
                                       child: TextField(
-                                        controller: threadMessagesController,
+                                        controller: _messageController,
                                         expands: true,
                                         maxLines: null,
                                         textAlignVertical:
@@ -231,12 +217,11 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                 ),
                                 IconButton(
                                   onPressed: () async {
-                                    if (threadMessagesController.text
+                                    if (_messageController.text
                                         .toString()
                                         .isNotEmpty) {
-                                      final message =
-                                          threadMessagesController.text;
-                                      threadMessagesController.text = "";
+                                      final message = _messageController.text;
+                                      _messageController.text = "";
                                       FocusScope.of(context).requestFocus(
                                         FocusNode(),
                                       );
