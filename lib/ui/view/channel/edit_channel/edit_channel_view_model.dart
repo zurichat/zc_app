@@ -1,6 +1,8 @@
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/utilities/storage_keys.dart';
+// import 'package:hng/utilities/utilities.dart';
+// import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -18,11 +20,16 @@ class EditChannelViewModel extends FormViewModel {
   final storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
   final _apiService = ZuriApi(channelsBaseUrl);
+  final _navigationService = locator<NavigationService>();
+  String id = '';
   String? get token => storage.getString(StorageKeys.currentSessionToken);
   bool isLoading = false;
   loading(status) {
     isLoading = status;
     notifyListeners();
+  }
+
+  onChanged(String val) {
   }
 
   editChannel() async {
@@ -39,10 +46,25 @@ class EditChannelViewModel extends FormViewModel {
 
       return;
     }
-    const channel_id = '613f70bd6173056af01b4aba';
-    const endpoint = '$ChannelInfoEndpoint$channel_id/';
-    final des = {/*'topic': topic.text, */ 'description': descriptionValue};
+    String _channelId = id;
+    String orgId = storage.getString(StorageKeys.currentOrgId).toString();
+    String endpoint = 'v1/$orgId/channels/$_channelId/';
+    // log.i(endpoint);
+    // log.i(_channelId);
+    final des = {
+      /*'topic': topic.text, */
+      'description': descriptionValue,
+      "name": "NewTest",
+      "private": false,
+      "archived": false,
+      'topic': topicValue,
+      "starred": false
+    };
     final response = await _apiService.put(endpoint, body: des, token: token);
+    // log.i('token is $token =====================');
+    // log.i('des is $des =====================');
+    // log.i('channel id is $_channelId');
+    // log.i('org id is $orgId');
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -50,7 +72,7 @@ class EditChannelViewModel extends FormViewModel {
         message: response?.data['message'] ?? UpdateSuccessful,
       );
       // Return to channel info
-      nToChannelInfo();
+      navigateBack();
     } else {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -87,10 +109,17 @@ class EditChannelViewModel extends FormViewModel {
   nToChannelInfo() {
     NavigationService().navigateTo(Routes.channelInfoView);
   }
+  navigateBack() {
+    _navigationService.back();
+  }
 
   @override
   void setFormStatus() {
     // TODO: implement setFormStatus
+  }
+
+  void setChannelID(String channelId) {
+    id = channelId;
   }
   // ignore: always_declare_return_types
   /*Future logInUser(context) async {
