@@ -43,6 +43,10 @@ class SelectEmailViewModel extends BaseViewModel {
     );
   }
 
+  navigateToUseDifferentEmailView() {
+    _navigation.navigateTo(Routes.useDifferentEmailView);
+  }
+
   // Future<OrganizationModel?> createOrganization(
   //     String email, OrganizationModel org) async {
   //   try {

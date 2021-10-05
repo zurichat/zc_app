@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/long_button.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/shared.dart';
@@ -17,58 +18,46 @@ class UseDifferentEmailView extends StatelessWidget {
     return ViewModelBuilder<UseDifferentEmailViewModel>.reactive(
       viewModelBuilder: () => UseDifferentEmailViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.zuriPrimaryColor,
-          title: const Text(UseAnotherEmail),
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: AppColors.zuriPrimaryColor,
+        //   title: const Text(UseAnotherEmail),
+        // ),
         body: SafeArea(
-          child: Container(
-            margin: const EdgeInsets.all(19.8),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+          child: Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const Spacer(),
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      BorderTextField(
+                      BorderLessTextField(
+                        labelColor: AppColors.inactiveGreyColor,
                         onChanged: (String? value) {
+                          model.updateColor();
                           if (value!.isEmpty) {
                             return InputRequired;
                           }
                         },
                         controller: email,
-                        hint: EnterEmail,
-                        autofocus: true,
+                        label: YourEmail,
                       ),
+                      const SizedBox(height: 8),
                       const Text(
                         WillSendEmail,
                       ),
                     ],
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      TextButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                            // ignore: todo
-                            //TODO Change brand colors
-                            const Color(0xffBEBEBE),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            Next,
-                            style: AppTextStyles.buttonText,
-                          ),
-                        ),
-                      )
-                    ],
-                  )
+                  const Spacer(),
+                  LongButton(
+                    onPressed: () {},
+                    label: Next,
+                    labelColor: model.labelColor(),
+                    outlineColor: model.btnColor(),
+                  ),
                 ],
               ),
             ),
