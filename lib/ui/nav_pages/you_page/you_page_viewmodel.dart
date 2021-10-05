@@ -1,4 +1,5 @@
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -9,6 +10,7 @@ import '../../../app/app.router.dart';
 class YouPageViewModel extends BaseViewModel {
   final log = getLogger('YouPageViewModel');
   final _navigationService = locator<NavigationService>();
+  final _bottomSheetService = locator<BottomSheetService>();
 
   String username = PaulEke;
   String profileImage = ZuriAppbarLogo;
@@ -40,8 +42,14 @@ class YouPageViewModel extends BaseViewModel {
     await _navigationService.navigateTo(Routes.savedItemsView);
   }
 
-  Future viewProfile() async {
-    _navigationService.navigateTo(Routes.viewProfile);
+ Future<void> viewProfile() async {
+    var sheetResponse = await _bottomSheetService.showCustomSheet(
+      variant: BottomSheetType.user,
+      isScrollControlled: true,
+    
+    );
+
+    log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
   }
 
   Future viewNotifications() async {
