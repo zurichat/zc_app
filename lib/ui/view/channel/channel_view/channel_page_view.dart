@@ -18,7 +18,6 @@ import 'channel_page_view.form.dart';
     FormTextField(name: 'channelMessages'),
   ],
 )
-
 class ChannelPageView extends StatelessWidget with $ChannelPageView {
   ChannelPageView({
     Key? key,
@@ -38,7 +37,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
       onModelReady: (model) {
         model.getDraft(channelId);
         model.initialise('$channelId');
-        if(model.storedDraft.isNotEmpty){
+        if (model.storedDraft.isNotEmpty) {
           channelMessagesController.text = model.storedDraft;
         }
         model.showNotificationForOtherChannels('$channelId', '$channelName');
@@ -56,10 +55,10 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
             leading: Padding(
               padding: const EdgeInsets.only(left: 5.0, right: 20.0),
               child: IconButton(
-                  onPressed: (){
+                  onPressed: () {
                     model.goBack(channelId, channelMessagesController.text,
                         channelName, membersCount, public);
-                    },
+                  },
                   icon: const Icon(Icons.arrow_back_ios)),
             ),
             centerTitle: false,
@@ -77,8 +76,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
             ),
             actions: [
               IconButton(
-                onPressed: () {
-                  },
+                onPressed: () {},
                 icon: const Icon(Icons.search),
               ),
               Padding(

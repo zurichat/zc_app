@@ -116,7 +116,7 @@ class ChannelsApiService {
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
 
-    Future<dynamic> channelMessage;
+    dynamic channelMessage;
 
     try {
       final res = await _api.post('v1/$orgId/channels/$channelId/messages/',

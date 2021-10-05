@@ -54,7 +54,12 @@ class NavBarView extends StatelessWidget {
 
   List<BottomNavigationBarItem> getBottomIcons() {
     List<String> name = [Home, Plugins, DmTitle, You];
-    List<SvgData> icons = [SvgAssets.home, SvgAssets.plugin, SvgAssets.dm, SvgAssets.you];
+    List<SvgData> icons = [
+      SvgAssets.home,
+      SvgAssets.plugin,
+      SvgAssets.dm,
+      SvgAssets.you
+    ];
 
     List<BottomNavigationBarItem> bottomNavList = List.generate(4, (i) {
       var item = BottomNavigationBarItem(
@@ -109,9 +114,9 @@ class NavBarView extends StatelessWidget {
       case 0:
         return const HomePage();
       case 1:
-        return const DmPage();
-       case 2:
         return const PluginPage();
+      case 2:
+        return const DmPage();
       case 3:
         return const YouPage();
       default:
