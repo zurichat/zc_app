@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:hng/ui/shared/colors.dart';
 import '../../../shared/shared.dart';
@@ -42,9 +43,22 @@ class ChannelInfoView extends StatelessWidget {
           designSize: const Size(411, 823),
           builder: () {
             return Scaffold(
-              appBar: PreferredSize(
-                  preferredSize: const Size.fromHeight(56),
-                  child: customAppBar(model)),
+              appBar: ZuriTopBar(
+                leading: Icons.clear,
+                leadingPress: () => model.navigateBack(),
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.star),
+                    color: AppColors.zuriPrimaryColor,
+                  ),
+                ],
+                whiteBackground: true,
+                orgTitle: Text(
+                  ChannelInfo,
+                  style: AppTextStyles.heading7,
+                ),
+              ),
               body: SafeArea(
                 child: SingleChildScrollView(
                   padding: EdgeInsets.fromLTRB(8.w, 16.h, 8.w, 0),

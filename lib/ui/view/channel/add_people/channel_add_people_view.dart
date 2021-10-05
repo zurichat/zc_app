@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -25,28 +26,16 @@ class ChannelAddPeopleView extends StatelessWidget {
         disposeViewModel: false,
         builder: (context, viewModel, child) => Scaffold(
           resizeToAvoidBottomInset: false,
-          appBar: AppBar(
-            title: Text(
-              viewModel.markedUsers.isNotEmpty
+          appBar: 
+          ZuriTopBar(
+              orgTitle: Text( 
+                    viewModel.markedUsers.isNotEmpty
                   ? '${viewModel.markedUsers.length} selected'
-                  : AddPeople,
-              style: GoogleFonts.lato(
-                  color: AppColors.zuriTextColorHeader,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0),
-            ),
-            backgroundColor: Colors.white,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.clear,
-                color: AppColors.deepBlackColor,
-                size: 24.0,
-              ),
-              padding: EdgeInsets.zero,
-              onPressed: viewModel.navigateBack,
-              iconSize: 32.0,
-            ),
-            actions: [
+                  : AddPeople,),
+          whiteBackground: true,
+          leading: Icons.clear,
+          leadingPress: () => viewModel.navigateBack(),
+             actions: [
               viewModel.isBusy
                   ? Padding(
                       padding: const EdgeInsets.fromLTRB(0.0, 12.0, 20.0, 12.0),

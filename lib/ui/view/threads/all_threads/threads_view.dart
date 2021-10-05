@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../general_widgets/custom_text.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/shared.dart';
 import 'threads_viewmodel.dart';
@@ -15,17 +15,14 @@ class ThreadsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ThreadsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          title: const CustomText(
-            text: Threads,
-            fontWeight: FontWeight.bold,
-          ),
-          leading: IconButton(
-            icon: const Icon(Icons.chevron_left),
-            onPressed: model.exitPage,
-          ),
-          elevation: 1,
-        ),
+        appBar: ZuriTopBar(
+            orgTitle: Text(
+              Threads,
+              style: AppTextStyles.heading7,
+            ),
+            leading: Icons.chevron_left,
+            leadingPress: () => model.exitPage(),
+            whiteBackground: true),
         body: RefreshIndicator(
           color: AppColors.zuriPrimaryColor,
           onRefresh: model.refreshThreadsPage,

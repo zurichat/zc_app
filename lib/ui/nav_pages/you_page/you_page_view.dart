@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/menu_item_tile.dart';
@@ -17,17 +19,9 @@ class YouPage extends StatelessWidget {
     return ViewModelBuilder<YouPageViewModel>.reactive(
       viewModelBuilder: () => YouPageViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: AppColors.zuriPrimaryColor,
-          // Here we take the value from the
-          // MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: const Text(
-            You,
-            style: TextStyle(
-                fontWeight: FontWeight.bold, color: AppColors.whiteColor),
-          ),
+        appBar: ZuriTopBar(
+          orgTitle: Text(You, style: ZuriTextStyle.organizationNameText()),
+          bottomNavBarScreen: true,
         ),
         body: Padding(
           padding: const EdgeInsets.all(15),

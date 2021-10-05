@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'channel_search_view_model.dart';
@@ -18,9 +19,14 @@ class _ChannelSearchPageViewState extends State<ChannelSearchPageView> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelSearchViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(60), child: appBarMain()),
-        // ignore: avoid_unnecessary_containers
+        appBar: ZuriTopBar(
+          isSearchBar: true,
+          hintText: 'Search for people here',
+          searchBarIcon: Icons.arrow_back_ios,
+          leadingWidth: true,
+          /// THERE ARE OTHER SEARCH BAR OPTIONS IN THIS WIDGET
+          /// KINDLY CHECK THROUGH AND USE.
+        ),
         body: SafeArea(
           // ignore: avoid_unnecessary_containers
           child: SingleChildScrollView(

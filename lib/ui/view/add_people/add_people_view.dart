@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -13,19 +14,13 @@ class AddPeopleView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<AddPeopleViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: model.goBack,
-            icon: const Icon(Icons.close, color: Colors.black),
-          ),
-          title: const Text(AddPeople,
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                color: Color(0xFF333333),
-                fontSize: 16,
-              ),),
-          actions: [
+        appBar: 
+        ZuriTopBar(
+                leading: Icons.arrow_back_ios,
+                leadingPress: () => model.goBack(),
+                orgTitle: const Text(AddPeople),
+                whiteBackground: true,
+                   actions: [
             TextButton(
               onPressed: () {},
               child: const Text(Add,
@@ -36,7 +31,7 @@ class AddPeopleView extends StatelessWidget {
                   ),),
             ),
           ],
-        ),
+              ),
         backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(
           child: Column(

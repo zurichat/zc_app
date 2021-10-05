@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -20,22 +21,47 @@ import 'widgets/edit_channel_text_field.dart';
 )
 class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
   final _padding = const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0);
-  EditChannelPageView({Key? key, this.channelName, this.channelId}) : super(key: key);
+  EditChannelPageView({Key? key, this.channelName, this.channelId})
+      : super(key: key);
   final String? channelName;
   final String? channelId;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<EditChannelViewModel>.reactive(
-      onModelReady: (model) { listenToFormUpdated(model);
-      model.setChannelID(channelId.toString());
+      onModelReady: (model) {
+        listenToFormUpdated(model);
+        model.setChannelID(channelId.toString());
       },
       viewModelBuilder: () => EditChannelViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: CustomAppBars(
-          appbarTitle: EditChannel,
-          appbarAction: Save,
-          model: model,
+        appBar: ZuriTopBar(
+          leading: Icons.arrow_back_ios,
+          orgTitle: const Text(
+            EditChannel,
+          ),
+          whiteBackground: true,
+          actions: [
+            InkWell(
+              onTap: () {},
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    'Save',
+                    style: AppTextStyles.heading4.copyWith(
+                      color: AppColors.appBarGreen,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
         ),
+        // CustomAppBars(
+        //   appbarTitle: EditChannel,
+        //   appbarAction: Save,
+        //   model: model,
+        // ),
         backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(
           child: Column(
@@ -75,7 +101,8 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
               const TextHeader(headerText: ChannelDescription),
               TextBox(
                   onChanged: model.onChanged,
-                  hint: ChannelCreationHint, controller: descriptionController),
+                  hint: ChannelCreationHint,
+                  controller: descriptionController),
               const SizedBox(
                 height: 30,
               ),

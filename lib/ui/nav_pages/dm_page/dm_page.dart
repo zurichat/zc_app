@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -17,18 +19,10 @@ class DmPage extends StatelessWidget {
     return ViewModelBuilder<DmPageViewModel>.reactive(
       builder: (context, model, child) {
         return Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            elevation: 0,
-            backgroundColor: AppColors.zuriPrimaryColor,
-            title: Text(
-              DMs,
-              style: GoogleFonts.lato(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 20,
-                  color: AppColors.whiteColor),
-            ),
-            centerTitle: false,
+          appBar: ZuriTopBar(
+            leadingWidth: true,
+            orgTitle: Text(DMs, style: ZuriTextStyle.organizationNameText()),
+            bottomNavBarScreen: true,
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
