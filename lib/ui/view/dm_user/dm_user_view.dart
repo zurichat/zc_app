@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
+import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -8,6 +11,7 @@ import 'dm_user_viewmodel.dart';
 import 'dummy_data/models/message.dart';
 import 'icons/zap_icon.dart';
 import 'widgets/message_view.dart';
+import 'widgets/online_indicator.dart';
 
 class DmUserView extends StatelessWidget {
   DmUserView({Key? key}) : super(key: key);
@@ -19,7 +23,7 @@ class DmUserView extends StatelessWidget {
     return ViewModelBuilder<DmUserViewModel>.reactive(
         viewModelBuilder: () => DmUserViewModel(),
         builder: (context, model, child) {
-          debugPrint(model.hasClickedMessageField.toString());
+
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -44,7 +48,7 @@ class DmUserView extends StatelessWidget {
                               fontSize: 16.0,
                               fontWeight: FontWeight.w400)),
                       const SizedBox(width: 12.0),
-                      _onlineIndicator(0xFF007952),
+                      const OnlineIndicator(0xFF007952),
                     ],
                   ),
                   const Text(
@@ -77,13 +81,13 @@ class DmUserView extends StatelessWidget {
                           children: [
                             Padding(
                               padding:
-                                  const EdgeInsets.only(left: 16.0, top: 24.0),
+                              const EdgeInsets.only(left: 16.0, top: 555),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(3),
-                                    child: Container(
+                                    child: SizedBox(
                                       width: 70,
                                       height: 70,
                                       child: Image.asset(
@@ -94,7 +98,7 @@ class DmUserView extends StatelessWidget {
                                   const SizedBox(height: 20.0),
                                   Row(
                                     children: [
-                                      _onlineIndicator(0xFF00B87C),
+                                      const OnlineIndicator(0xFF00B87C),
                                       const SizedBox(width: 16.0),
                                       Text(model.receiver.username,
                                           style: const TextStyle(
@@ -112,7 +116,7 @@ class DmUserView extends StatelessWidget {
                                           fontWeight: FontWeight.w400,
                                           color: Color(0xFF3A3A3A))),
                                   const SizedBox(height: 15),
-                                  _startMessage(model.receiver.username)
+                                  StartMessage(model.receiver.username)
                                 ],
                               ),
                             ),
@@ -123,7 +127,7 @@ class DmUserView extends StatelessWidget {
                                 return message.getRelativeTime();
                               },
                               groupSeparatorBuilder: (value) {
-                                return _groupSeparator(value);
+                                return GroupSeparator(value);
                               },
                               itemBuilder: (context, message) {
                                 return MessageView(message);
@@ -147,13 +151,13 @@ class DmUserView extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Divider(height: 0, color: Color(0xFF999999)),
+                        const Divider(height: 0, color: Color(0xFF999999)),
                         Row(
                           children: [
                             Expanded(
                               child: Container(
                                 height: 56,
-                                margin: EdgeInsets.only(left: 13.0),
+                                margin: const EdgeInsets.only(left: 13.0),
                                 alignment: Alignment.centerLeft,
                                 child: FocusScope(
                                   child: Focus(
@@ -169,11 +173,11 @@ class DmUserView extends StatelessWidget {
                                       expands: true,
                                       maxLines: null,
                                       textAlignVertical:
-                                          TextAlignVertical.center,
+                                      TextAlignVertical.center,
                                       decoration: InputDecoration.collapsed(
                                           hintText:
-                                              'Message ${model.receiver.username}',
-                                          hintStyle: TextStyle(
+                                          'Message ${model.receiver.username}',
+                                          hintStyle: const TextStyle(
                                               color: Color(0xFFBEBEBE),
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.w400)),
@@ -187,19 +191,27 @@ class DmUserView extends StatelessWidget {
                               child: Row(
                                 children: [
                                   IconButton(
-                                    icon: Icon(
-                                      Icons.camera_alt_outlined,
-                                      color: Color(0xFF424141),
-                                    ),
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        AppIcons.shapezap,
+                                        color: Color(0xFF424141),
+                                      )),
+                                  IconButton(
                                     onPressed: () {},
+                                    icon: SvgPicture.asset(
+                                      "assets/icons/fluent_camera-16-regular.svg",
+                                      color: const Color(0xFF424141),
+                                    ),
+                                    //onPressed: () {},
                                   ),
                                   IconButton(
-                                    icon: Icon(
-                                      Icons.attach_file_outlined,
-                                      color: Color(0xFF424141),
-                                    ),
                                     onPressed: () {},
-                                  )
+                                    icon: SvgPicture.asset(
+                                      "assets/icons/Vector.svg",
+                                      color: const Color(0xFF424141),
+                                    ),
+                                    //onPressed: () {},
+                                  ),
                                 ],
                               ),
                             )
@@ -214,39 +226,39 @@ class DmUserView extends StatelessWidget {
                                   children: [
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           AppIcons.shapezap,
                                           color: Color(0xFF424141),
                                         )),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.alternate_email_outlined,
                                           color: Color(0xFF424141),
                                         )),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.tag_faces_sharp,
                                           color: Color(0xFF424141),
                                         )),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.camera_alt_outlined,
                                           color: Color(0xFF424141),
                                         )),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.attach_file_outlined,
                                           color: Color(0xFF424141),
                                         )),
                                   ],
                                 ),
                                 IconButton(
-                                    onPressed: () {
-                                      model.sendMessage();
+                                    onPressed: ()async {
+                                      await model.sendMessage();
                                       FocusScope.of(context)
                                           .requestFocus(FocusNode());
                                       _scrollController.jumpTo(_scrollController
@@ -254,7 +266,7 @@ class DmUserView extends StatelessWidget {
                                       // duration: Duration(milliseconds: 500),
                                       // curve: Curves.fastOutSlowIn);
                                     },
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.send,
                                       color: Color(0xFFBEBEBE),
                                     ))
@@ -270,57 +282,57 @@ class DmUserView extends StatelessWidget {
         });
   }
 
-  Widget _onlineIndicator(int color) {
-    return Icon(
-      Icons.circle,
-      color: Color(color),
-      size: 10,
-    );
-  }
+  // Widget _onlineIndicator(int color) {
+  //   return Icon(
+  //     Icons.circle,
+  //     color: Color(color),
+  //     size: 10,
+  //   );
+  // }
 
-  Widget _groupSeparator(String value) {
-    return Container(
-      margin: EdgeInsets.only(top: 16.0),
-      child: Row(
-        children: [
-          Expanded(
-              child: Divider(
-            color: Color(0xFF7B8794),
-          )),
-          Container(
-            child: Text(value,
-                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-            decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFF7B8794), width: 0.5),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-          ),
-          Expanded(
-              child: Divider(
-            color: Color(0xFF7B8794),
-          )),
-        ],
-      ),
-    );
-  }
+  // Widget _groupSeparator(String value) {
+  //   return Container(
+  //     margin: EdgeInsets.only(top: 16.0),
+  //     child: Row(
+  //       children: [
+  //         Expanded(
+  //             child: Divider(
+  //               color: Color(0xFF7B8794),
+  //             )),
+  //         Container(
+  //           child: Text(value,
+  //               style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
+  //           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+  //           decoration: BoxDecoration(
+  //               border: Border.all(color: Color(0xFF7B8794), width: 0.5),
+  //               borderRadius: BorderRadius.all(Radius.circular(10))),
+  //         ),
+  //         Expanded(
+  //             child: Divider(
+  //               color: Color(0xFF7B8794),
+  //             )),
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  Widget _startMessage(String username) {
-    return RichText(
-      text: TextSpan(
-          text: 'This is the very beginning of your '
-              'direct message \nhistory with ',
-          style: TextStyle(
-              color: Color(0xFF808080),
-              fontSize: 14.0,
-              fontWeight: FontWeight.w400),
-          children: [
-            TextSpan(
-                text: '@$username. ',
-                style: TextStyle(color: Color(0xFF8CDEC3))),
-            TextSpan(
-                text: 'Only the two of you are in \nthis conversation, '
-                    'and no one else can join it.')
-          ]),
-    );
-  }
+  // Widget _startMessage(String username) {
+  //   return RichText(
+  //     text: TextSpan(
+  //         text: 'This is the very beginning of your '
+  //             'direct message \history with ',
+  //         style: TextStyle(
+  //             color: Color(0xFF808080),
+  //             fontSize: 14.0,
+  //             fontWeight: FontWeight.w400),
+  //         children: [
+  //           TextSpan(
+  //               text: '@$username. ',
+  //               style: TextStyle(color: Color(0xFF8CDEC3))),
+  //           TextSpan(
+  //               text: 'Only the two of you are in \nthis conversation, '
+  //                   'and no one else can join it.')
+  //         ]),
+  //   );
+  // }
 }

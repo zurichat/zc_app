@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/app_alert_dialog.dart';
+import 'package:hng/constants/app_strings.dart';
+
+import '../../../general_widgets/app_alert_dialog.dart';
 
 class FeedBackDialogCall extends StatelessWidget {
+  const FeedBackDialogCall({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ElevatedButton(
         onPressed: () => AppAlertDialog().appDialog(
           context,
-          "Compose feedback",
-          "e.g i found a bug in the DM\'s",
+          ComposeFeedback,
+          FeedbackHint,
         ),
-        child: Text("Alert"),
+        child: const Text(Alert),
       ),
     );
   }

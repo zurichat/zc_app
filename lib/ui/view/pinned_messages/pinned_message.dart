@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:hng/constants/app_strings.dart';
 
 class SingleListItem {
   final String name;
@@ -40,7 +41,7 @@ class PinnedMessages extends StatelessWidget {
           ),
         ),
         title: const Text(
-          'Pinned Messages',
+          PinnedMsgs,
           style: TextStyle(
               color: Color(0xff242424),
               fontWeight: FontWeight.w700,
@@ -88,21 +89,21 @@ Widget _listTile() {
                                 fontWeight: FontWeight.w700,
                                 fontSize: 16,
                                 fontStyle: FontStyle.normal,
-                                color: Color(0Xff242424))),
+                                color: Color(0xff242424))),
                         TextSpan(
                             text: dummyData[position].time,
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
                                 fontStyle: FontStyle.normal,
-                                color: Color(0Xff999999))),
+                                color: Color(0xff999999))),
                         TextSpan(
                             text: dummyData[position].description,
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
                                 fontStyle: FontStyle.normal,
-                                color: Color(0Xff424141))),
+                                color: Color(0xff424141))),
                       ],
                     ),
                   ),

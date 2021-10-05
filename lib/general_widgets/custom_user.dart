@@ -1,33 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/ui/shared/shared.dart';
 
 class CustomUser extends StatelessWidget {
   const CustomUser({Key? key, this.image, this.text}) : super(key: key);
-  final text;
-  final image;
+  final String? text;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      child: Column(
-        children: [
-          Container(
-            height: 60,
-            width: 60,
-            // color: Color(0xFFC4C4C4),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                      image,
-                    ))),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Container(height: 17, child: Text(text))
-        ],
+      child: SizedBox(
+        width: 48.w,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              height: 48.h,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.r),
+                  image: const DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                          'https://www.nairaland.com/attachments/10525387_7523740813649122436786583150820259255025664o3_jpega51895fd0bf50cf5d5982826ac401627'))),
+            ),
+            SizedBox(
+              height: 8.h,
+            ),
+            SizedBox(
+                height: 32.h,
+                child: Text(
+                  '$text',
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyles.subtitle1.copyWith(fontSize: 12.sp),
+                ))
+          ],
+        ),
       ),
     );
   }

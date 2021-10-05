@@ -1,45 +1,38 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/textstyles.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/view/channel/channel_info/widgets/new_row_tile.dart';
+import '../../../../shared/colors.dart';
 
 class FifthSection extends StatelessWidget {
   const FifthSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      alignment: Alignment.center,
-      margin: const EdgeInsets.only(right: 5, left: 5, bottom: 15),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2),
-          border: Border.all(width: 1.0, color: AppColors.borderColor)),
-      child: Row(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(
-              left: 9,
-              top: 19,
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        height: 53.h,
+        width: 395.w,
+        alignment: Alignment.center,
+        padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6.r),
+          border: Border.all(width: 1.w, color: AppColors.borderColor),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5.r,
+              blurRadius: 6.r,
+              offset: Offset(0, 3.h), // changes position of shadow
             ),
-            child: const Icon(
-              Icons.exit_to_app,
-              color: AppColors.deepBlackColor,
-              size: 28,
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(
-              left: 11,
-              top: 19,
-              bottom: 10,
-            ),
-            child: Text(
-              'Leave',
-              style: descriptionStyle(),
-            ),
-          ),
-        ],
+          ],
+        ),
+        child: const NewRowTile(
+          icon: Icons.push_pin_outlined,
+          text: Leave,
+        ),
       ),
     );
   }

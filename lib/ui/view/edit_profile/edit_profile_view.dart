@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
+
 import 'package:hng/ui/shared/shared.dart';
+
 import 'package:stacked/stacked.dart';
 
 import 'edit_profile_viewmodel.dart';
+import 'widget/edit_profile_body.dart';
 
 class EditProfileView extends StatelessWidget {
   const EditProfileView({Key? key}) : super(key: key);
@@ -11,92 +15,39 @@ class EditProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     return ViewModelBuilder<EditProfileViewModel>.reactive(
-      builder: (context, model, child) => Scaffold(
+      viewModelBuilder: () => EditProfileViewModel(),
+      builder: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
-              onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
-          title: Text("Edit Profile"),
+              onPressed: () {}, icon: const Icon(Icons.close_rounded)),
+          title: const Text(EditProfile),
           actions: [
             TextButton(
               onPressed: () {},
-              child: Text(
-                "Save",
+              child: const Text(
+                Save,
                 style: TextStyle(color: AppColors.zuriTextBodyColor),
               ),
             )
           ],
         ),
-        body: Container(
-          padding: EdgeInsets.symmetric(
-              vertical: _size.height * 0.02, horizontal: _size.width * 0.05),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  height: _size.height * 0.14,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Container(
-                        width: _size.height * 0.14,
-                        height: double.maxFinite,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image:
-                                AssetImage("assets/background/appBarLogo.png"),
-                            fit: BoxFit.contain,
-                          ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          color: AppColors.greyishColor,
-                        ),
-                        child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.add_a_photo,
-                                size: _size.width * 0.06,
-                              )),
-                        ),
-                      ),
-                      Spacer(),
-                      Container(
-                        width: _size.width * 0.55,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            labelText: "Full Name",
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: "Display Name",
-                    helperText:
-                        "This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.",
-                    helperMaxLines: 3,
-                  ),
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                      labelText: "What I do", helperText: "HNGi9 X I4G"),
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                      labelText: "Phone",
-                      helperText: "Enter your phone number"),
+        body: Visibility(
+          visible: !viewModel.isBusy,
+          child: Body(size: _size),
+          replacement: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(GettingYourData),
+                CircularProgressIndicator(
+                  color: AppColors.zuriPrimaryColor,
                 ),
               ],
             ),
           ),
         ),
       ),
-      viewModelBuilder: () => EditProfileViewModel(),
     );
   }
 }

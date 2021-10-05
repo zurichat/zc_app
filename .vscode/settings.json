@@ -1,3 +1,12 @@
 {
-    "dart.flutterSdkPath": "C:\\Users\\chris\\fvm\\versions\\stable"
+    "dart.flutterSdkPath": "C:\\Users\\chris\\fvm\\versions\\2.2.2",
+    "yaml.customTags": [
+        "!upload scalar",
+        "!remove scalar",
+        "!keep scalar",
+        "!erase scalar"
+    ],
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/doanthuanthanh88/testapi6/main/schema.json": "*.yaml"
+    }
 }

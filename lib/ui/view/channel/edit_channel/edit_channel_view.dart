@@ -1,191 +1,91 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../shared/colors.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
-import './editChannelViewModel.dart';
+import '../../../shared/colors.dart';
+import '../../../shared/styles.dart';
+import 'edit_channel_view_model.dart';
+import 'edit_channel_view.form.dart';
+import 'widgets/edit_channel_appbar.dart';
+import 'widgets/edit_channel_headers.dart';
+import 'widgets/edit_channel_text_field.dart';
 
-class EditChannelPageView extends StatelessWidget {
-  const EditChannelPageView({Key? key}) : super(key: key);
-
+@FormView(
+  fields: [
+    FormTextField(name: 'description'),
+    FormTextField(name: 'topic'),
+  ],
+)
+class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
+  final _padding = const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0);
+  EditChannelPageView({Key? key, this.channelName, this.channelId}) : super(key: key);
+  final String? channelName;
+  final String? channelId;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<EditChannelViewModel>.reactive(
+      onModelReady: (model) { listenToFormUpdated(model);
+      model.setChannelID(channelId.toString());
+      },
       viewModelBuilder: () => EditChannelViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Row(children: [
-              InkWell(
-                child: Icon(Icons.arrow_back_ios, color: Colors.grey),
-                onTap: () {},
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              InkWell(
-                child: Text(
-                  'Edit Channel',
-                  style:
-                      TextStyle(color: AppColors.deepBlackColor, fontSize: 20),
-                ),
-                onTap: () {},
-              ),
-            ]),
-            InkWell(
-              child: Text(
-                'Save',
-                style:
-                    TextStyle(color: AppColors.zuriPrimaryColor, fontSize: 16),
-              ),
-              onTap: () {},
-            ),
-          ]),
+        appBar: CustomAppBars(
+          appbarTitle: EditChannel,
+          appbarAction: Save,
+          model: model,
         ),
         backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(
-          child: Column(children: [
-            SizedBox(height: 10),
-            Container(
-              height: 60,
-              width: double.infinity,
-              decoration: BoxDecoration(color: Color(0xffF6F6F6)),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 18.0, vertical: 10.0),
-                    child: Text(
-                      'Channel Name',
-                      style: TextStyle(color: Color(0xff727272), fontSize: 17),
-                    ),
-                  ),
-                ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              const TextHeader(headerText: ChannelName),
+              const SizedBox(
+                height: 16.0,
               ),
-            ),
-            Container(
-              height: 60,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 18.0, vertical: 10.0),
-                child: Center(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        '#teamsocrates',
-                        style: TextStyle(
-                            color: AppColors.deepBlackColor, fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Divider(
-              thickness: 1,
-              color: Color(0xffF6F6F6),
-            ),
-            Container(
-              height: 70,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 18.0, vertical: 10.0),
+              Container(
+                margin: _padding,
                 child: Text(
-                  "Channel names must be lowercase, without spaces or periods, and can't be longer than 80 characters",
-                  style: TextStyle(fontSize: 16),
+                  channelName!,
+                  style: AppTextStyles.body1Light,
                 ),
               ),
-            ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(color: Color(0xffF6F6F6)),
-              height: 50,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 18.0, vertical: 10.0),
-                child: Center(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Channel Topic',
-                        style:
-                            TextStyle(color: Color(0xff727272), fontSize: 17),
-                      ),
-                    ],
-                  ),
+              const SizedBox(
+                height: 25.0,
+              ),
+              Container(
+                margin: _padding,
+                child: Text(
+                  ChannelCreationWarning,
+                  style: AppTextStyles.body2_400,
                 ),
               ),
-            ),
-            Container(
-              height: 175,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 6.0,
-                  vertical: 0,
-                ),
-                child: TextField(
-                  maxLines: 9,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Add a topic",
-                    fillColor: Colors.white,
-                    filled: true,
-                  ),
-                ),
+              const SizedBox(
+                height: 36.0,
               ),
-            ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(0xffF6F6F6),
+              const TextHeader(headerText: ChannelTopic),
+              TextBox(
+                onChanged: model.onChanged,
+                hint: AddTopic,
+                controller: topicController,
               ),
-              height: 50,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 18.0, vertical: 10.0),
-                child: Center(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Channel Description',
-                        style:
-                            TextStyle(color: Color(0xff727272), fontSize: 17),
-                      ),
-                    ],
-                  ),
-                ),
+              const TextHeader(headerText: ChannelDescription),
+              TextBox(
+                  onChanged: model.onChanged,
+                  hint: ChannelCreationHint, controller: descriptionController),
+              const SizedBox(
+                height: 30,
               ),
-            ),
-            Container(
-              height: 150,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 6.0, vertical: 0),
-                child: TextField(
-                  maxLines: 9,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Set a description",
-                    fillColor: Colors.white,
-                    filled: true,
-                  ),
-                ),
+              Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(color: Color(0xffF6F6F6)),
+                height: 90,
               ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(color: Color(0xffF6F6F6)),
-              height: 90,
-            ),
-          ]),
+            ],
+          ),
         ),
       ),
     );

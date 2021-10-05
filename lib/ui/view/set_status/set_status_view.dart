@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/set_status/widgets/status.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../shared/shared.dart';
 import 'set_status_viewmodel.dart';
+import 'widgets/status.dart';
 import 'widgets/statuses.dart';
 
 class SetStatusView extends StatelessWidget {
+  const SetStatusView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
@@ -14,13 +16,14 @@ class SetStatusView extends StatelessWidget {
               appBar: AppBar(
                 elevation: 0,
                 leading: IconButton(
-                    onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
-                title: Text("Set a status"),
+                    onPressed: model.exitPage,
+                    icon: const Icon(Icons.close_rounded)),
+                title: const Text('Set a status'),
                 actions: [
                   TextButton(
                     onPressed: () {},
-                    child: Text(
-                      "Save",
+                    child: const Text(
+                      Save,
                       style: TextStyle(color: AppColors.zuriTextBodyColor),
                     ),
                   )
@@ -31,13 +34,14 @@ class SetStatusView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Divider(),
+                    const Divider(),
                     Row(
                       children: [
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.looks_5, color: Colors.blue)),
-                        Flexible(
+                            icon:
+                                const Icon(Icons.looks_5, color: Colors.blue)),
+                        const Flexible(
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -46,14 +50,15 @@ class SetStatusView extends StatelessWidget {
                           fit: FlexFit.loose,
                         ),
                         IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.cancel,
-                              color: AppColors.greyishColor,
-                            )),
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.cancel,
+                            color: AppColors.greyishColor,
+                          ),
+                        ),
                       ],
                     ),
-                    Divider(),
+                    const Divider(),
                     MaterialButton(
                       minWidth: double.infinity,
                       onPressed: model.clearAfter,
@@ -61,50 +66,50 @@ class SetStatusView extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Clear after..."),
-                            Text("Today"),
+                          children: const [
+                            Text(ClearAfter),
+                            Text(Today),
                           ],
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Statuses(
-                      title: "Recent",
+                    const SizedBox(height: 10),
+                    const Statuses(
+                      title: Recent,
                       children: [
                         Status(
-                            status: "Former Status",
-                            duration: "Don't clear",
+                            status: FormerStatus,
+                            duration: DontClear,
                             icon: Icons.biotech_rounded),
                         Status(
-                            status: "Former Former Status",
-                            duration: "Don't clear",
+                            status: FormerStatus,
+                            duration: DontClear,
                             icon: Icons.social_distance)
                       ],
                     ),
-                    SizedBox(height: 10),
-                    Statuses(
-                      title: "For HNGi8 x I4G",
+                    const SizedBox(height: 10),
+                    const Statuses(
+                      title: TrackDescription,
                       children: [
                         Status(
-                            status: "In a meeting",
-                            duration: "1 hour",
+                            status: InMeeting,
+                            duration: OneHour,
                             icon: Icons.calendar_today_rounded),
                         Status(
-                            status: "Commuting",
-                            duration: "30 minutes",
+                            status: Commuting,
+                            duration: ThirtyMins,
                             icon: Icons.train),
                         Status(
-                            status: "Off sick",
-                            duration: "Today",
+                            status: OffSick,
+                            duration: Today,
                             icon: Icons.sick_rounded),
                         Status(
-                            status: "On holiday",
-                            duration: "Don't clear",
+                            status: OnHoliday,
+                            duration: DontClear,
                             icon: Icons.hotel),
                         Status(
-                            status: "Working remotely",
-                            duration: "Today",
+                            status: WorkingRemotely,
+                            duration: Today,
                             icon: Icons.home),
                       ],
                     ),

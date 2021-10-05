@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -17,9 +18,9 @@ class Splashview extends StatelessWidget {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Image(
-                image: AssetImage('assets/logo/splash_image.png'),
+            children: const [
+              Image(
+                image: AssetImage(SplashScreen),
               ),
             ],
           ),

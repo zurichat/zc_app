@@ -1,27 +1,48 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:hng/ui/shared/styles.dart';
 
 class CustomChannel extends StatelessWidget {
-  final text;
-  const CustomChannel({Key? key, this.text}) : super(key: key);
+  final String? text;
+  final bool lock;
+  const CustomChannel({Key? key, this.text, this.lock = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      width: 379,
-      child: Row(
-        children: [
-          const Text('#',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              )),
-          const SizedBox(width: 20),
-          Text(
-            text,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    return InkWell(
+      onTap: () {},
+      child: SizedBox(
+        height: 24.h,
+        width: 211.w,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(5.w, 0, 0, 0),
+          child: Row(
+            children: [
+              SizedBox(
+                height: 16.r,
+                width: 16.r,
+                child: lock == true ?
+                SvgPicture.asset(
+                    'assets/icons/svg_icons/lock_outline.svg',
+                ) :
+                SvgPicture.asset(
+                  'assets/icons/svg_icons/hash_tag.svg',
+                )
+              ),
+              // Text(
+              //   '#',
+              //   style: AppTextStyles.hashtag.copyWith(fontSize: 20.sp)
+              // ),
+              SizedBox(width: 21.33.w),
+              Text(
+                '$text',
+                style: AppTextStyles.nameStyle1.copyWith(fontSize: 14.sp)
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

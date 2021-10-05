@@ -1,143 +1,88 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
+import 'package:hng/ui/view/channel/channel_info/widgets/new_row_tile.dart';
 import '../../../../shared/colors.dart';
-import 'textstyles.dart';
 
 class ThirdSection extends StatelessWidget {
-  const ThirdSection({Key? key}) : super(key: key);
+  const ThirdSection(
+      this.model, this.numberOfMembers, this.channelDetail, this.channelMembers,
+      {Key? key})
+      : super(key: key);
+  final int numberOfMembers;
+  final ChannelModel channelDetail;
+  final List<ChannelMembermodel> channelMembers;
+  final ChannelInfoViewModel model;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      height: 284.h,
+      width: 395.w,
       alignment: Alignment.center,
-      margin: const EdgeInsets.only(right: 5, left: 5, bottom: 15),
+      padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2),
-          border: Border.all(width: 1.0, color: AppColors.borderColor)),
+          borderRadius: BorderRadius.circular(6.r),
+          border: Border.all(width: 1.w, color: AppColors.borderColor),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5.r,
+              blurRadius: 6.r,
+              offset: Offset(0, 3.h), // changes position of shadow
+            ),
+          ]),
       child: Column(
         children: [
-          Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 9,
-                  top: 19,
-                ),
-                child: const Icon(
-                  Icons.group_outlined,
-                  color: AppColors.deepBlackColor,
-                  size: 28,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 11,
-                  top: 19,
-                ),
-                child: Text(
-                  'Members (5)',
-                  style: descriptionStyle(),
-                ),
-              ),
-            ],
-          ),
+          InkWell(
+              onTap: () {
+                model.navigateToMembersList(channelMembers, channelDetail);
+              },
+              child: NewRowTile(
+                  icon: Icons.group_outlined,
+                  text: "Members ($numberOfMembers)")),
+          SizedBox(height: 10.h),
           Divider(
-            thickness: 0.5,
+            thickness: 0.5.h,
             color: AppColors.deepBlackColor.withOpacity(0.5),
-            indent: 53,
-            endIndent: 33,
+            indent: 66.6.w,
+            // endIndent: 33,
           ),
-          Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 9,
-                  top: 13,
-                ),
-                child: const Icon(
-                  Icons.person_add_alt_1_outlined,
-                  color: AppColors.deepBlackColor,
-                  size: 28,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 11,
-                  top: 13,
-                ),
-                child: Text(
-                  'Add People',
-                  style: descriptionStyle(),
-                ),
-              ),
-            ],
-          ),
+          SizedBox(height: 18.h),
+          InkWell(
+              onTap: () {},
+              child: const NewRowTile(
+                  icon: Icons.person_add_alt_1_outlined, text: AddPeople)),
+          SizedBox(height: 10.h),
           Divider(
-            thickness: 0.5,
+            thickness: 0.5.h,
             color: AppColors.deepBlackColor.withOpacity(0.5),
-            indent: 53,
-            endIndent: 33,
+            indent: 66.6.w,
+            // endIndent: 33,
           ),
-          Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 9,
-                  top: 13,
-                ),
-                child: const Icon(
-                  Icons.dashboard_outlined,
-                  color: AppColors.deepBlackColor,
-                  size: 28,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 11,
-                  top: 13,
-                ),
-                child: Text(
-                  'Plugins (1)',
-                  style: descriptionStyle(),
-                ),
-              ),
-            ],
+          SizedBox(height: 18.h),
+          InkWell(
+            onTap: () {},
+            child: const NewRowTile(
+                icon: Icons.dashboard_outlined, text: OnePlugin),
           ),
+          SizedBox(height: 10.h),
           Divider(
-            thickness: 0.5,
+            thickness: 0.5.h,
             color: AppColors.deepBlackColor.withOpacity(0.5),
-            indent: 53,
-            endIndent: 33,
+            indent: 66.6.w,
+            // endIndent: 33,
           ),
-          Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 9,
-                  top: 13,
-                  bottom: 10,
-                ),
-                child: const Icon(
-                  Icons.phone_outlined,
-                  color: AppColors.deepBlackColor,
-                  size: 28,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 11,
-                  top: 19,
-                  bottom: 10,
-                ),
-                child: Text(
-                  'Start a call',
-                  style: descriptionStyle(),
-                ),
-              ),
-            ],
-          ),
+          SizedBox(height: 18.h),
+          InkWell(
+              onTap: () {},
+              child: const NewRowTile(
+                  icon: Icons.phone_outlined, text: StartCall)),
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
@@ -6,6 +7,7 @@ import 'package:stacked/stacked.dart';
 import 'channel_notification_viewmodel.dart';
 
 class ChannelNotificationView extends StatelessWidget {
+  const ChannelNotificationView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelNotificationViewModel>.reactive(
@@ -13,20 +15,20 @@ class ChannelNotificationView extends StatelessWidget {
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
-            appBar: ZuriAppBar(
+            appBar: const ZuriAppBar(
               60,
-              'Notifications',
-              subtitle: 'Settings for #teamsocrates',
+              Notifications,
+              subtitle: ChannelNotifSubtitle,
               icon: Icons.chevron_left,
             ),
             body: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.all(16),
+                  margin: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: AppColors.whiteColor,
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: AppColors.shadowColor,
                         blurRadius: 5,
@@ -37,21 +39,21 @@ class ChannelNotificationView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       _buildOption(
-                        'Every new message',
-                        'new',
+                        EveryNewMessage,
+                        New,
                         '${model.value}',
                         (val) => model.toggleOptions(val),
                         false,
                       ),
                       _buildOption(
-                        'Just @mentions',
-                        'mentions',
+                        JustMentions,
+                        Mentions,
                         '${model.value}',
                         (val) => model.toggleOptions(val),
                       ),
                       _buildOption(
-                        'Nothing',
-                        'none',
+                        Nothing,
+                        None,
                         '${model.value}',
                         (val) => model.toggleOptions(val),
                       ),
@@ -59,10 +61,10 @@ class ChannelNotificationView extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 16),
+                  margin: const EdgeInsets.only(left: 16),
                   width: double.infinity,
                   child: Text(
-                    'This setting only applies to #teamsocrates channel.',
+                    ChannelNotifSettings,
                     style: AppTextStyles.body2Medium,
                   ),
                 )
@@ -80,7 +82,7 @@ class ChannelNotificationView extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: border
-            ? Border(top: BorderSide(width: 1, color: Colors.grey))
+            ? const Border(top: BorderSide(width: 1, color: Colors.grey))
             : null,
       ),
       child: RadioListTile(
@@ -115,7 +117,8 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onIconTap,
     this.buttonText,
     this.onButtanTap,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -123,7 +126,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(
@@ -137,8 +140,8 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
-              icon: Icon(this.icon, size: 25, color: AppColors.deepBlackColor),
-              onPressed: this.onIconTap,
+              icon: Icon(icon, size: 25, color: AppColors.deepBlackColor),
+              onPressed: onIconTap,
             ),
           ),
           Expanded(
@@ -152,8 +155,8 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                     color: AppColors.deepBlackColor,
                   ),
                 ),
-                SizedBox(height: 4),
-                if (this.subtitle != null)
+                const SizedBox(height: 4),
+                if (subtitle != null)
                   Text(
                     '$subtitle',
                     style: AppTextStyles.body1Regular,
@@ -161,7 +164,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
               ],
             ),
           ),
-          if (this.buttonText != null)
+          if (buttonText != null)
             TextButton(
               onPressed: onButtanTap,
               child: Text(
