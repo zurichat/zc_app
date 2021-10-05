@@ -2,7 +2,6 @@ import 'package:hng/app/app.locator.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/profile_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/api_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/current_user_profile.dart';
 import 'package:hng/services/local_storage_services.dart';
