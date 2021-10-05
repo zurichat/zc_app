@@ -22,7 +22,7 @@ import 'dio_interceptors.dart';
 class ZuriApi implements Api {
   final log = getLogger('ZuriApi');
   final dio = Dio();
-  // ignore: close_sinks
+
   StreamController<String> controller = StreamController.broadcast();
   ZuriApi(baseUrl) {
     dio.interceptors.add(DioInterceptor());
@@ -239,7 +239,6 @@ class ZuriApi implements Api {
   ///This should be used to add users to an organization by the admin user alone
   /// takes in a `Organization id` and joins the Organization
   @override
-  //TODO FOR URL
   Future<bool> joinOrganization(String orgId, String email, token) async {
     final res = await dio.post('$channelsBaseUrl/organizations/$orgId/members',
         data: {'user_email': email},
@@ -273,7 +272,7 @@ class ZuriApi implements Api {
 
   /// Updates an organization's URL. The organization's id `orgId` must not be
   /// null or empty. Url must not begin with `https` or `http`
-  /// TODO CONFIRM URL
+
   @override
   Future updateOrgUrl(String orgId, String url, token) async {
     try {
@@ -382,8 +381,7 @@ class ZuriApi implements Api {
 
   /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
   /// THIS BASICALLY HANDLES CHANNEL SOCKETS FOR RTC
-  // ignore: todo
-  //TODO CONFIRM websocketUrl
+
   @override
   Future getChannelSocketId(String channelId, String orgId, token) async {
     try {

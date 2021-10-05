@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../../general_widgets/custom_text.dart';
 import '../../../../../models/user_post.dart';
 
-// ignore: must_be_immutable
 class Emojis extends StatefulWidget {
   Emojis(
     this.postEmoji, {

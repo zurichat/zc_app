@@ -22,7 +22,6 @@ class ForgotPasswordOtpViewModel extends FormViewModel {
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
 
-  // ignore: close_sinks
   StreamController<ErrorAnimationType>? errorController;
 
   loading(status) {
