@@ -79,7 +79,7 @@ class ChannelPageView extends StatelessWidget {
           ),
           body: ExpandableTextFieldScreen(
             hintText: AddReply,
-            sendMessage: (val) => model.sendMessage(val, channelId!),
+            sendMessage: model.sendMessage,
             widget: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               controller: model.scrollController,

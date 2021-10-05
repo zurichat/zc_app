@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/models/api_response.dart';
@@ -67,6 +69,14 @@ abstract class Api {
 
   // THE SERVICE TO UPDATE AN ORGANIZATION NAME
   Future updateOrgName(String orgId, String name, token);
+
+  // THE SERVICE TO UPDATE IMAGE OF A USER
+  Future uploadImage(
+    File image, {
+    required String token,
+    required String orgId,
+    required String memberId,
+  });
 
   // THE SERVICE TO UPDATE AN ORGANIZATION LOGO
   Future updateOrgLogo(String orgId, String url, token);

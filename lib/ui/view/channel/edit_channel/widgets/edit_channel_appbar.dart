@@ -36,9 +36,10 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
             onTap: () {
               switch (appbarAction) {
                 case Save:
-                  model.editChannel(context);
+                  model.editChannel();
                   break;
                 case Done:
+                  model.navigateBack();
                   //model.nToPlugins();
                   break;
                 case Add:
@@ -70,7 +71,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
                 if (appbarAction == 'Edit') {
                   model.nToChannelInfo();
                 } else {
-                  Navigator.of(context).pop();
+                  model.navigateBack();
                 }
               },
             )),

@@ -6,21 +6,26 @@ import 'package:hng/services/api_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/current_user_profile.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/services/media_service.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+//TODO refactor entire View Model
 String _name = '', _display = '', _status = '', _phone = '';
 
 class EditProfileViewModel extends FutureViewModel {
   ProfileModel userData = ProfileModel();
   final snackbar = locator<SnackbarService>();
   final navigationService = locator<NavigationService>();
+  final _navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
+  final mediaService = locator<MediaService>();
+  final dialogService = locator<DialogService>();
   final _api = ZuriApi(coreBaseUrl);
-  final api = ApiService();
+
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
 
@@ -39,7 +44,9 @@ class EditProfileViewModel extends FutureViewModel {
     }
   }
 
-  final _navigationService = locator<NavigationService>();
+  void uploadImage() async {
+    mediaService.getImage(fromGallery: true);
+  }
 
   void exitPage() {
     _navigationService.back();
@@ -61,7 +68,6 @@ class EditProfileViewModel extends FutureViewModel {
     };
     final editResponse =
         await _api.patch(profileEndPoint, body: profileData, token: token);
-    final snackbar = locator<SnackbarService>();
 
     if (editResponse!.statusCode == 200) {
       snackbar.showCustomSnackBar(
