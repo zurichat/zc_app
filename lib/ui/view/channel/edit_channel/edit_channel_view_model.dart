@@ -92,7 +92,7 @@ class EditChannelViewModel extends FormViewModel {
   void setFormStatus() {
     // TODO: implement setFormStatus
   }
-  // ignore: always_declare_return_types
+
   /*Future logInUser(context) async {
     loading(true);
     const endpoint = '/auth/login';

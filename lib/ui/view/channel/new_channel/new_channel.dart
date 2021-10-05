@@ -118,7 +118,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                           '${model.inputLength}',
                           style: const TextStyle(
                             fontWeight: FontWeight.w400,
-                            // ignore: todo
+
                             //TODO Change to brand colors
                             color: Color(0xFFA1A9B2),
                           ),
@@ -215,7 +215,6 @@ class NewChannel extends StatelessWidget with $NewChannel {
                             SizedBox(
                               height: 20,
                               child: Switch(
-                                // ignore: todo
                                 //TODO  Change to brand colors
                                 inactiveTrackColor: const Color(0xffebebeb),
                                 activeColor: AppColors.zuriPrimaryColor,

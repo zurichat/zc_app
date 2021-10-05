@@ -24,10 +24,8 @@ class _DmSearchState extends State<DmSearch> {
       viewModelBuilder: () => DmSearchViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          // ignore: sized_box_for_whitespace
           body: SafeArea(
-            // ignore: sized_box_for_whitespace
-            child: Container(
+            child: SizedBox(
               //height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: Column(

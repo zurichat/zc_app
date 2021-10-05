@@ -26,7 +26,6 @@ class ChannelPageViewModel extends BaseViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _snackbarService = locator<SnackbarService>();
 
-  // ignore: todo
   //TODO refactor this
   ScrollController scrollController = ScrollController();
   bool isExpanded = false;

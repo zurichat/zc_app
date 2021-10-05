@@ -50,25 +50,25 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  Future <void> sendMessage() async{
-   // if(messageController.text!=null){
+  Future<void> sendMessage() async {
+    // if(messageController.text!=null){
     final message = messageController.text;
     if (message.trim().isNotEmpty) {
-    chatMessages.add(
-    Message(
-    id: chatMessages.length,
-    sender: sender,
-    message: message,
-    time: DateTime.now(),
-    ),
-    );
-    // ignore: todo
-    //TODO - fix autoclear
-    messageController.clear();
-     //clearText();
-    notifyListeners();
+      chatMessages.add(
+        Message(
+          id: chatMessages.length,
+          sender: sender,
+          message: message,
+          time: DateTime.now(),
+        ),
+      );
+
+      //TODO - fix autoclear
+      messageController.clear();
+      //clearText();
+      notifyListeners();
     }
-      //await sendResponse();
+    //await sendResponse();
     //}
   }
 
