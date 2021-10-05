@@ -52,7 +52,6 @@ class Dialogs {
             content: Text(
               CloseChannelWarning,
               style: GoogleFonts.roboto(
-                // ignore: todo
                 //TODO Change to Brand color
                 color: const Color(0xff000000).withOpacity(0.54),
                 fontSize: 16.0,

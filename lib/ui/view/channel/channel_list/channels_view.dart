@@ -16,7 +16,6 @@ class ChannelList extends StatelessWidget {
       viewModelBuilder: () => ChannelListViewModel(),
       onModelReady: (model) => model.initViewModel(),
       builder: (context, model, child) => Scaffold(
-        // ignore: todo
         //TODO Change to brand Colors
         backgroundColor: const Color(0xfff4f4f4),
         appBar: AppBar(

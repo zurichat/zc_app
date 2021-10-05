@@ -46,7 +46,6 @@ class PluginPage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            // ignore: deprecated_member_use
             child: TextButton.icon(
               onPressed: () => {},
               icon: const Icon(Icons.calendar_today),

@@ -73,7 +73,6 @@ class OrganizationViewModel extends BaseViewModel {
     }
   }
 
-// ignore: todo
 //TODO change this to fetch the list of organizations the user is part of alone
   void filterOrganization() {
     final ids = storageService.getStringList(StorageKeys.organizationIds) ?? [];
@@ -162,8 +161,6 @@ class OrganizationViewModel extends BaseViewModel {
 
   void showSignOutBottomSheet(OrganizationModel org) {
     _bottomSheetService.showCustomSheet(
-        variant: BottomSheetType.signOut,
-        isScrollControlled: true,
-        data: org);
+        variant: BottomSheetType.signOut, isScrollControlled: true, data: org);
   }
 }

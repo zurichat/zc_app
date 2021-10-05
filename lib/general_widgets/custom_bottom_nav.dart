@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../ui/shared/colors.dart';
 
-// ignore: use_key_in_widget_constructors
 class CustomBottomNavBar extends StatelessWidget {
+  const CustomBottomNavBar({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(

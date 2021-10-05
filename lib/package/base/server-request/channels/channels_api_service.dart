@@ -22,7 +22,6 @@ class ChannelsApiService {
   // Your functions for api calls can go in here
   // https://channels.zuri.chat/api/v1/61459d8e62688da5302acdb1/channels/
   //TODo - fix
-  // ignore: always_declare_return_types
 
   onChange() {}
   Future<List> getActiveDms() async {
@@ -117,8 +116,7 @@ class ChannelsApiService {
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
 
-    // ignore: prefer_typing_uninitialized_variables
-    var channelMessage;
+    dynamic channelMessage;
 
     try {
       final res = await _api.post('v1/$orgId/channels/$channelId/messages/',
