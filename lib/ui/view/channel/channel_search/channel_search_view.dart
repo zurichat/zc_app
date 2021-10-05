@@ -3,7 +3,6 @@ import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'channel_search_view_model.dart';
-import 'widgets/app_bar_main.dart';
 import 'widgets/search_result.dart';
 import 'widgets/textfield_style.dart';
 
