@@ -37,7 +37,7 @@ class DirectMessage extends StatelessWidget with $DirectMessage {
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
                 onPressed: () {
-                  return Navigator.pop(context);
+                  return model.goBack();
                 },
               ),
               title: Column(

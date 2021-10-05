@@ -4,6 +4,7 @@ import 'package:hng/app/app.router.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/ui/view/draft/app/data_holder_class.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:hng/constants/app_strings.dart';
@@ -130,10 +131,3 @@ class DraftViewModel extends BaseViewModel {
 
 }
 
-class Objects {
-  Objects(this.text, this.subtitle, this.route, this.time);
-  String text;
-  String subtitle;
-  Map route;
-  String time;
-}
