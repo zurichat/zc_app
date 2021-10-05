@@ -1,6 +1,7 @@
-import 'package:flutter/widgets.dart';
+import 'dart:convert';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/models/user_post.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/enums.dart';
@@ -8,10 +9,7 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'drafts.dart';
 import 'package:hng/app/app.logger.dart';
-
-
 
 class DraftViewModel extends BaseViewModel {
 
@@ -20,10 +18,7 @@ class DraftViewModel extends BaseViewModel {
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final snackBar = locator<SnackbarService>();
   final log = getLogger("Draft Page View Model");
-
-
-
-  List <Widget> widgets = [];
+  List <Objects> widgetBuilderList = [];
 
   void get drafts{
     var dmStoredKeys = _storageService.getStringList(StorageKeys.currentUserDmDrafts);
@@ -35,9 +30,16 @@ class DraftViewModel extends BaseViewModel {
     if(dmStoredKeys != null ){
       dmStoredKeys.forEach((element) {
         if(_storageService.getString(element) != null ){
-          widgets.add(CustomListTile(
-              text: 'element.receiverID.name //Todo ',
-              subtitle: '${_storageService.getString(element)}'));
+          var mapKeyJson = _storageService.getString(element);
+          if(mapKeyJson != null){
+            var mapKey = jsonDecode(mapKeyJson);
+            widgetBuilderList.add(Objects(
+              '${mapKey['receiverName']}',
+              '${mapKey['draft']}',
+              mapKey,
+              '${mapKey['time']}',
+            ));
+          }
         }
       });
     }
@@ -45,9 +47,17 @@ class DraftViewModel extends BaseViewModel {
     if(channelStoredKeys != null){
       channelStoredKeys.forEach((element) {
         if(_storageService.getString(element) != null ){
-          widgets.add(CustomListTile(
-              text: 'element.channelID.name //Todo ',
-              subtitle: '${_storageService.getString(element)}'));
+          var mapKeyJson = _storageService.getString(element);
+          if(mapKeyJson != null){
+            var mapKey = jsonDecode(mapKeyJson);
+
+            widgetBuilderList.add(Objects(
+              '${mapKey['channelName']}',
+              '${mapKey['draft']}',
+              mapKey,
+              '${mapKey['time']}',
+            ));
+          }
         }
       });
     }
@@ -55,9 +65,17 @@ class DraftViewModel extends BaseViewModel {
     if(threadStoredKeys != null ){
       threadStoredKeys.forEach((element) {
         if(_storageService.getString(element) != null ){
-          widgets.add(CustomListTile(
-              text: 'element.userPost.ID.name //Todo ',
-              subtitle: '${_storageService.getString(element)}'));
+          var mapKeyJson = _storageService.getString(element);
+          if(mapKeyJson != null){
+            var mapKey = jsonDecode(mapKeyJson);
+
+            widgetBuilderList.add(Objects(
+              '${mapKey['userPost']}',
+              '${mapKey['draft']}',
+              mapKey,
+              '${mapKey['time']}',
+            ));
+          }
         }
       });
     }
@@ -68,7 +86,20 @@ class DraftViewModel extends BaseViewModel {
   }
 
 
+  //navigation for dmUserView
+  navigateToDmUserView() {
+     _navigationService.navigateTo(Routes.dmUserView);
+  }
 
+
+  //navigation for threads
+  navigateToThread(UserPost? userPost) {
+    _navigationService.navigateTo(Routes.threadDetailView,
+        arguments: ThreadDetailViewArguments(userPost: userPost));
+  }
+
+
+  //navigation for channel
   navigateToChannelPage(String? channelName, String? channelId,
       int? membersCount, bool? public) async {
     try {
@@ -78,14 +109,8 @@ class DraftViewModel extends BaseViewModel {
           variant: SnackbarType.failure,
           message: noInternet,
         );
-
         return;
       }
-      setBusy(true);
-      // _channel= await api.getChannelPage(id);
-      // _membersList= await api.getChannelMembers(id);
-      setBusy(false);
-
       _navigationService.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
             channelName: channelName,
@@ -103,9 +128,12 @@ class DraftViewModel extends BaseViewModel {
     }
   }
 
-  // final _title = Draft;
-  //
-  // String get title => _title;
+}
 
-
+class Objects {
+  Objects(this.text, this.subtitle, this.route, this.time);
+  String text;
+  String subtitle;
+  Map route;
+  String time;
 }

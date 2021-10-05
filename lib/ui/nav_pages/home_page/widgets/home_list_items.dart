@@ -41,7 +41,6 @@ class DraftTextAndIcon extends StatelessWidget {
       text: Drafts,
       unread: true,
       onTap: () {
-        // Navigate to draft screen
         navigationService.navigateTo(Routes.draftView);
       },
       icon: SvgIcon(svgIcon: SvgAssets.threads),

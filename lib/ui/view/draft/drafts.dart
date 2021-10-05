@@ -1,20 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/draft/draft_viewmodel.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({
     Key? key,
     required this.text,
     required this.subtitle,
+    required this.route,
+    required this.time,
+    required this.model,
   }) : super(key: key);
 
   final String text;
   final String subtitle;
+  final String time;
+  final Map route;
+  final DraftViewModel model;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: (){
+        if(route['receiverName'].length > 0){
+          model.navigateToDmUserView();
+        }else if(route['channelName'].length > 0){
+          model.navigateToChannelPage(
+              '${route['channelName']}',
+              '${route['channelId']}',
+              route['membersCount'],
+              route['public']
+          );
+        }else{
+          model.navigateToThread(route['userPost'].id);
+        }
+      },
       child: ListTile(
         title: Text(
           text,
@@ -25,7 +45,7 @@ class CustomListTile extends StatelessWidget {
           style: AppTextStyles.body1Bold,
         ),
         trailing: Text(
-          'August 31 at 9:09 PM',
+          time,
           style: AppTextStyles.body2Bold,
         ),
       ),

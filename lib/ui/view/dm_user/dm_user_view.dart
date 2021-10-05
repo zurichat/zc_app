@@ -6,7 +6,6 @@ import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
 import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
-
 import '../../shared/colors.dart';
 import 'dm_user_viewmodel.dart';
 import 'dummy_data/models/message.dart';
@@ -24,10 +23,10 @@ class DmUserView extends StatelessWidget with $DmUserView {
   DmUserView({Key? key}) : super(key: key);
 
   final _scrollController = ScrollController();
-  final String receiverId = 'receiverId';
 
   @override
   Widget build(BuildContext context) {
+     dynamic receiverId = 'receiver';
     return ViewModelBuilder<DmUserViewModel>.reactive(
         onModelReady: (model) {
           model.getDraft(receiverId);
@@ -183,7 +182,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                       }
                                     },
                                     child: TextField(
-                                      controller: model.messageController,
+                                      controller: messageController,
                                       expands: true,
                                       maxLines: null,
                                       textAlignVertical:
@@ -272,7 +271,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                 ),
                                 IconButton(
                                     onPressed: ()async {
-                                      await model.sendMessage();
+                                      await model.sendMessage(messageController);
                                       FocusScope.of(context)
                                           .requestFocus(FocusNode());
                                       _scrollController.jumpTo(_scrollController

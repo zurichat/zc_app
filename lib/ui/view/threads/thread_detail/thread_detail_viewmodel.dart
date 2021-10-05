@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/user_service.dart';
@@ -102,18 +104,25 @@ class ThreadDetailViewModel extends BaseViewModel {
     if(userPost != null){
       var draft = storageService.getString(userPost.id.toString());
       if (draft != null) {
-        storedDraft = draft;
+        storedDraft = json.decode(draft)['draft'];
         storageService.clearData(userPost.id.toString());
       }
     }
   }
 
   void storeDraft(UserPost? userPost, value){
+    var _keyMap = {
+      'draft': value,
+      'time' : '${DateTime.now()}',
+      'userPostName' : 'userPostName',
+      'userPost' : userPost,
+    };
+
     if(value.length > 0){
       if(userPost != null){
         storageService.setStringList(
             StorageKeys.currentUserThreadDrafts, [userPost.id.toString()]);
-        storageService.setString(userPost.id.toString(), value);
+        storageService.setString(userPost.id.toString(), json.encode(_keyMap));
       }
     }
   }
