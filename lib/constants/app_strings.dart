@@ -80,7 +80,6 @@ const String JumpTo = 'Jump to...';
 const String hash = ' # ';
 const String AddChannels = 'Add channels';
 const String Threads = 'Threads';
-const String Drafts = 'Drafts';
 
 //DM
 const String DmTitle = 'Dm';
