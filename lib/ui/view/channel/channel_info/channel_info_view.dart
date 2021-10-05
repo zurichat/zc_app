@@ -9,7 +9,6 @@ import 'package:stacked/stacked.dart';
 import 'package:hng/ui/shared/colors.dart';
 import '../../../shared/shared.dart';
 import 'channel_info_view_model.dart';
-import 'widgets/custom_app_bar.dart';
 import 'widgets/first_section.dart';
 import 'widgets/second_section.dart';
 import 'widgets/third_section.dart';

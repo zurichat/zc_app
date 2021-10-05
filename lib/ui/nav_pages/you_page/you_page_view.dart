@@ -5,8 +5,6 @@ import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/menu_item_tile.dart';
-import '../../shared/colors.dart';
-import '../../shared/shared.dart';
 import 'widgets/profile_page_head.dart';
 import 'widgets/status_form.dart';
 import 'you_page_viewmodel.dart';

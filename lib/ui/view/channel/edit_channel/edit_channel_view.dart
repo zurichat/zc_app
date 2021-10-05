@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -10,7 +9,6 @@ import '../../../shared/colors.dart';
 import '../../../shared/styles.dart';
 import 'edit_channel_view_model.dart';
 import 'edit_channel_view.form.dart';
-import 'widgets/edit_channel_appbar.dart';
 import 'widgets/edit_channel_headers.dart';
 import 'widgets/edit_channel_text_field.dart';
 

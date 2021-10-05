@@ -8,7 +8,6 @@ import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
 import 'plugin_viewmodel.dart';
-import 'widgets/custom_appbar.dart';
 import 'widgets/custom_plugin_list_tile.dart';
 import 'widgets/custom_search_field.dart';
 
