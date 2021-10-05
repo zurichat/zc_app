@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
@@ -17,47 +16,15 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-
-class ChannelPageViewModel extends FormViewModel {
+class ChannelPageViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _channelsApiService = locator<ChannelsApiService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _centrifugeService = locator<CentrifugeService>();
   final _notificationService = locator<NotificationService>();
+
   final _bottomSheetService = locator<BottomSheetService>();
-  final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
-
-
-
-  //draft implementations
-  var storedDraft = '';
-  void getDraft(channelId){
-      var draft = _storageService.getString(channelId);
-      if(draft != null){
-        storedDraft = json.decode(draft)['draft'];
-        _storageService.clearData(channelId);
-      }
-  }
-
-  void storeDraft(channelId, value, channelName, membersCount, public ){
-    var keyMap = {
-      'draft': value,
-      'time' : '${DateTime.now()}',
-      'channelName' : channelName,
-      'channelId' : channelId,
-      'membersCount' : membersCount,
-      'public' : public,
-    };
-
-    if(value.length > 0){
-      _storageService.setStringList(StorageKeys.currentUserChannelDrafts, [channelId]);
-      _storageService.setString(channelId, json.encode(keyMap));
-    }
-  }
-  //**draft implementation ends here
-
-
 
   // ignore: todo
   //TODO refactor this
@@ -182,11 +149,7 @@ class ChannelPageViewModel extends FormViewModel {
     fetchChannelMembers(channelId);
   }
 
-  void goBack(channelId, value, channelName, membersCount, public) {
-    storeDraft(channelId, value, channelName, membersCount, public);
-    _navigationService.back();
-  }
-
+  void goBack() => _navigationService.back();
 
   navigateToChannelEdit(String channelName, String channelId) {
     _navigationService.navigateTo(Routes.editChannelPageView, arguments: EditChannelPageViewArguments(
@@ -242,10 +205,5 @@ class ChannelPageViewModel extends FormViewModel {
   void toggleExpanded() {
     isExpanded = !isExpanded;
     notifyListeners();
-  }
-
-  @override
-  void setFormStatus() {
-    // TODO: implement setFormStatus
   }
 }
