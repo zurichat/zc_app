@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/menu_item_tile.dart';
@@ -13,7 +14,7 @@ class PreferenceView extends StatelessWidget {
     return ViewModelBuilder<PreferenceViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          title: const Text('Preferences'),
+          title: const Text(Preferences),
           leading: IconButton(
             icon: const Icon(Icons.close_outlined),
             onPressed: model.exitPage,
@@ -24,28 +25,28 @@ class PreferenceView extends StatelessWidget {
           child: Column(
             children: [
               MenuItemTile(
-                text: const Text('Language & Region'),
+                text: const Text(LangAndRegion),
                 onPressed: model.navigateLanguageAndRegion,
               ),
               MenuItemTile(
-                text: const Text('Dark mode'),
+                text: const Text(DarkMode),
                 subtitle: model.currentTheme,
                 onPressed: model.changeTheme,
               ),
               MenuItemTile(
-                text: const Text('Advanced'),
+                text: const Text(Advanced),
                 onPressed: model.navigateToAdvanced,
               ),
               MenuItemTile(
-                text: const Text('Send Feedback'),
+                text: const Text(SendFeedback),
                 onPressed: model.sendFeedback,
               ),
               MenuItemTile(
-                text: const Text('Help Center'),
+                text: const Text(HelpCenter),
                 onPressed: model.helpCentre,
               ),
               MenuItemTile(
-                text: const Text('Privacy & licences'),
+                text: const Text(PrivacyNLicenses),
                 onPressed: model.privacyAndLicences,
               ),
             ],

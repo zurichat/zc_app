@@ -413,6 +413,11 @@ const String OffSick = 'Off sick';
 const String InMeeting = 'In a meeting';
 const String Commuting = 'Commuting';
 
+//Preferences
+const String PrivacyNLicenses = 'Privacy & licences';
+const String HelpCenter = 'Help Center';
+const String SendFeedback = 'Send Feedback';
+
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
