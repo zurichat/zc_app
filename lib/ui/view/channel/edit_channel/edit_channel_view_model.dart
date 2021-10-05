@@ -14,8 +14,6 @@ import '../../../../utilities/enums.dart';
 import 'edit_channel_view.form.dart';
 
 class EditChannelViewModel extends FormViewModel {
-  //final _apiService = locator<ChannelApiService>();
-  //final storage = locator<SharedPreferenceLocalStorage>();
   final navigationService = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final snackbar = locator<SnackbarService>();
@@ -29,8 +27,7 @@ class EditChannelViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  onChanged(String val) {
-  }
+  onChanged(String val) {}
 
   editChannel() async {
     loading(true);
@@ -49,10 +46,8 @@ class EditChannelViewModel extends FormViewModel {
     String _channelId = id;
     String orgId = storage.getString(StorageKeys.currentOrgId).toString();
     String endpoint = 'v1/$orgId/channels/$_channelId/';
-    // log.i(endpoint);
-    // log.i(_channelId);
+
     final des = {
-      /*'topic': topic.text, */
       'description': descriptionValue,
       "name": "NewTest",
       "private": false,
@@ -61,10 +56,7 @@ class EditChannelViewModel extends FormViewModel {
       "starred": false
     };
     final response = await _apiService.put(endpoint, body: des, token: token);
-    // log.i('token is $token =====================');
-    // log.i('des is $des =====================');
-    // log.i('channel id is $_channelId');
-    // log.i('org id is $orgId');
+
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
@@ -80,35 +72,13 @@ class EditChannelViewModel extends FormViewModel {
         message: response?.data['message'] ?? ChannelUpdateError,
       );
     }
-    /*var token = storage.getString(StorageKeys.currentSessionToken);
-    print('dsv $token');
-    const channel_id = '613f70bd6173056af01b4aba';
-    const endpoint = '/v1/1/channels/$channel_id/';
-    // Called when save button in the edit channel view is pressed
-    final des = {/*'topic': topic.text, */ 'description': description.text};
-    final response = await _apiService.put(endpoint, data: des, headers: {
-      'Authorization': 'Bearer $token',
-    });
-    loading(false);
-    if (response?.statusCode == 200) {
-      AppSnackBar.success(
-        context,
-        response?.data['message'],
-      );
-      // Return to channel info
-      nToChannelInfo();
-    } else {
-      AppSnackBar.failure(
-          context,
-          response?.data['message'] ??
-              'Error encountered during channel update.');
-    }*/
   }
 
   // Navigate to channel info view
   nToChannelInfo() {
     NavigationService().navigateTo(Routes.channelInfoView);
   }
+
   navigateBack() {
     _navigationService.back();
   }
@@ -121,41 +91,4 @@ class EditChannelViewModel extends FormViewModel {
   void setChannelID(String channelId) {
     id = channelId;
   }
-  // ignore: always_declare_return_types
-  /*Future logInUser(context) async {
-    loading(true);
-    const endpoint = '/auth/login';
-    if (email.text == '' || password.text == '') {
-      loading(false);
-      AppSnackBar.failure(context, 'Please fill all fields.');
-      return;
-    }
-    final loginData = {'email': email.text, 'password': password.text};
-    final response = await _apiService.post(endpoint, data: loginData);
-    loading(false);
-    if (response?.statusCode == 200) {
-      storage.setString(
-        StorageKeys.currentSessionToken,
-        response?.data['data']['user']['token'],
-      );
-      storage.setString(
-        StorageKeys.currentUserId,
-        response?.data['data']['user']['id'],
-      );
-      storage.setString(
-        StorageKeys.currentUserEmail,
-        response?.data['data']['user']['email'],
-      );
-      // final userModel = UserModel.fromJson(response?.data['data']['user']);
-      AppSnackBar.success(
-        context,
-        ''' ${response?.data['message']} for '''
-        '''${response?.data['data']['user']['email']}''',
-      );
-      navigationService.navigateTo(Routes.navBarView);
-    } else {
-      AppSnackBar.failure(context,
-          response?.data['message'] ?? 'Error encountered during login.');
-    }
-  }*/
 }

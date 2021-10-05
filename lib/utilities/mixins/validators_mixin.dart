@@ -50,6 +50,7 @@ mixin ValidatorMixin {
 
   bool validateNewChannelName(String input) {
     // TODO review this
+
     // ignore: unnecessary_string_escapes
     final reg = RegExp('.*?[A-Z\\s\.].*');
     if (reg.hasMatch(input)) {

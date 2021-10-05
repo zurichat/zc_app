@@ -152,10 +152,11 @@ class ChannelPageViewModel extends BaseViewModel {
   void goBack() => _navigationService.back();
 
   navigateToChannelEdit(String channelName, String channelId) {
-    _navigationService.navigateTo(Routes.editChannelPageView, arguments: EditChannelPageViewArguments(
-      channelName: channelName,
-      channelId: channelId,
-    ));
+    _navigationService.navigateTo(Routes.editChannelPageView,
+        arguments: EditChannelPageViewArguments(
+          channelName: channelName,
+          channelId: channelId,
+        ));
   }
 
   void websocketConnect(String channelSocketId) async {

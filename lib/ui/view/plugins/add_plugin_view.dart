@@ -46,7 +46,7 @@ class AddPluginView extends StatelessWidget {
                           width: 20,
                         ),
                         text: 'Quick message plugin',
-                        // ignore: todo
+
                         //TODO change color to brand colors
                         textColor: const Color(0xFF242424),
                       ),

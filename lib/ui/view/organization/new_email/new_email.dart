@@ -87,7 +87,7 @@ class NextButton extends ViewModelWidget<NewEmailViewModel> {
         style: ButtonStyle(
             backgroundColor:
                 MaterialStateProperty.all<Color>(viewModel.text.isEmpty
-                    // ignore: todo
+
                     //TODO Change to brand colors
                     ? const Color(0xffBEBEBE)
                     : AppColors.appBarGreen)),
