@@ -7,6 +7,7 @@ import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/services/media_service.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:mockito/annotations.dart';
@@ -14,11 +15,11 @@ import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
+import 'test_constants.dart';
 import 'test_helpers.mocks.dart';
 
 ///SUPPLY THE MOCKS FOR ANY SERVICE YOU WANT TO AUTO-GENERATE.
 ///ONCE YOU SUPPLY BELOW AUTO GENERATE BY RUNNING ""
-
 @GenerateMocks([], customMocks: [
   MockSpec<UserService>(returnNullOnMissingStub: true),
   MockSpec<SharedPreferenceLocalStorage>(returnNullOnMissingStub: true),
@@ -33,6 +34,11 @@ import 'test_helpers.mocks.dart';
   MockSpec<ZuriApi>(returnNullOnMissingStub: true),
   MockSpec<ConnectivityService>(returnNullOnMissingStub: true),
   MockSpec<JumpToApi>(returnNullOnMissingStub: true),
+<<<<<<< HEAD
+=======
+  MockSpec<MediaService>(returnNullOnMissingStub: true),
+  MockSpec<OrganizationApiService>(returnNullOnMissingStub: true),
+>>>>>>> ca7d0036395b62a179e387bc8e8a66a9b2839728
 ])
 MockUserService getAndRegisterUserServiceMock({
   bool hasUser = false,
@@ -89,17 +95,11 @@ MockDialogService getAndRegisterDialogServiceMock(
     {DialogResponse<dynamic>? dialogResult /*,String? currentEmoji*/}) {
   _removeRegistrationIfExists<DialogService>();
   final service = MockDialogService();
+  Future<DialogResponse<dynamic>?> response =
+      Future.value(DialogResponse(confirmed: true));
   when(service.showCustomDialog(
     variant: DialogType.skinTone,
-  )).thenAnswer(
-      (realInvocation) => Future<DialogResponse<dynamic>>.value(dialogResult ??
-          DialogResponse<dynamic>(
-            confirmed: false,
-            data: 'lol',
-          )));
-  when(service.showCustomDialog(
-    variant: DialogType.deleteChannel,
-  )).thenAnswer((realInvocation) => Future.value(DialogResponse()));
+  )).thenAnswer((realInvocation) => response);
   locator.registerSingleton<DialogService>(service);
 
   return service;
@@ -108,10 +108,12 @@ MockDialogService getAndRegisterDialogServiceMock(
 MockBottomSheetService getAndRegisterBottomSheetServiceMock() {
   _removeRegistrationIfExists<BottomSheetService>();
   final service = MockBottomSheetService();
+  Future<SheetResponse<dynamic>?> response =
+      Future.value(SheetResponse(confirmed: true));
   when(service.showCustomSheet(
     variant: BottomSheetType.user,
     isScrollControlled: true,
-  )).thenAnswer((realInvocation) => Future.value(SheetResponse()));
+  )).thenAnswer((realInvocation) => response);
   locator.registerSingleton<BottomSheetService>(service);
 
   return service;
@@ -134,11 +136,11 @@ MockChannelsApiService getAndRegisterChannelsApiServiceMock() {
 }
 
 MockCentrifugeService getAndRegisterCentrifugeServiceMock() {
+  final service = MockCentrifugeService();
   _removeRegistrationIfExists<CentrifugeService>();
   Map eventData = {"some_key": "some_returned_string"};
   final Future<Stream?> streamtoReturn =
       Future.value(Stream.fromIterable([eventData]));
-  final service = MockCentrifugeService();
   when(service.subscribe("channelSocketID"))
       .thenAnswer((_) async => streamtoReturn);
 
@@ -155,6 +157,9 @@ MockZuriApi getAndRegisterZuriApiMock() {
   final service = MockZuriApi();
   locator.registerSingleton<ZuriApi>(service);
 
+  when(service.uploadImage(fileMock,
+          token: token_string, memberId: memberId_string, orgId: orgId_string))
+      .thenAnswer((_) async => Future.value("Image Address"));
   return service;
 }
 
@@ -176,6 +181,20 @@ MockJumpToApi getAndRegisterJumpToApiMock() {
   return service;
 }
 
+<<<<<<< HEAD
+=======
+MockMediaService getAndRegisterMediaServiceMock() {
+  _removeRegistrationIfExists<MediaService>();
+  final service = MockMediaService();
+  Future<String> response = Future<String>.value("Image Address");
+
+  when(service.uploadImage(fileMock)).thenAnswer((_) async => response);
+
+  locator.registerSingleton<MediaService>(service);
+  return service;
+}
+
+>>>>>>> ca7d0036395b62a179e387bc8e8a66a9b2839728
 void registerServices() {
   getAndRegisterUserServiceMock();
   getAndRegisterSharedPreferencesLocalStorageMock();
@@ -190,6 +209,7 @@ void registerServices() {
   getAndRegisterZuriApiMock();
   getAndRegisterConnectivityServiceMock();
   getAndRegisterJumpToApiMock();
+  getAndRegisterMediaServiceMock();
 }
 
 void unregisterServices() {
@@ -207,6 +227,7 @@ void unregisterServices() {
   _removeRegistrationIfExists<ZuriApi>();
   _removeRegistrationIfExists<ConnectivityService>();
   _removeRegistrationIfExists<JumpToApi>();
+  _removeRegistrationIfExists<MediaService>();
 }
 
 // Call this before any service registration helper. This is to ensure that if there
