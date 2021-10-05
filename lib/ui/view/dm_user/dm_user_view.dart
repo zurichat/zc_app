@@ -27,7 +27,7 @@ class DmUserView extends StatelessWidget {
         builder: (context, model, child) {
           return Scaffold(
             backgroundColor: Colors.white,
-            appBar: ZuriTopBar(
+            appBar: ZuriAppBar(
                 leading: Icons.arrow_back_ios,
                 leadingPress: () => model.popScreen(),
                 title: model.receiver.username,

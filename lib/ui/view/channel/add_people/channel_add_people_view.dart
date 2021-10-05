@@ -26,16 +26,17 @@ class ChannelAddPeopleView extends StatelessWidget {
         disposeViewModel: false,
         builder: (context, viewModel, child) => Scaffold(
           resizeToAvoidBottomInset: false,
-          appBar: 
-          ZuriTopBar(
-              orgTitle: Text( 
-                    viewModel.markedUsers.isNotEmpty
+          appBar: ZuriAppBar(
+            orgTitle: Text(
+              viewModel.markedUsers.isNotEmpty
                   ? '${viewModel.markedUsers.length} selected'
-                  : AddPeople, style: AppTextStyles.heading7,),
-          whiteBackground: true,
-          leading: Icons.clear,
-          leadingPress: () => viewModel.navigateBack(),
-             actions: [
+                  : AddPeople,
+              style: AppTextStyles.heading7,
+            ),
+            whiteBackground: true,
+            leading: Icons.clear,
+            leadingPress: () => viewModel.navigateBack(),
+            actions: [
               viewModel.isBusy
                   ? Padding(
                       padding: const EdgeInsets.fromLTRB(0.0, 12.0, 20.0, 12.0),

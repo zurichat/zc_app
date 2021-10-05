@@ -16,7 +16,7 @@ class UserSearch extends StatelessWidget {
     return ViewModelBuilder<UserSearchViewModel>.reactive(
       builder: (context, model, child) {
         return Scaffold(
-          appBar: ZuriTopBar(),
+          appBar: ZuriAppBar(),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
             child: const Icon(
@@ -33,7 +33,7 @@ class UserSearch extends StatelessWidget {
                   Row(
                     children: [
                       const Icon(Icons.arrow_back_ios),
-                    Column(
+                      Column(
                         children: const [
                           Text('People'),
                           Text('2552 members'),

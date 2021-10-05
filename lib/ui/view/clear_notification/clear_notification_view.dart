@@ -7,7 +7,7 @@ import 'package:stacked/stacked.dart';
 import 'clear_notification_viewmodel.dart';
 
 class ClearNotificationView extends StatelessWidget {
-   ClearNotificationView({Key? key}) : super(key: key);
+  ClearNotificationView({Key? key}) : super(key: key);
   static const values = <String>[
     DontClear,
     ThirtyMins,
@@ -28,14 +28,13 @@ class ClearNotificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ClearNotificationViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
-              appBar: 
-              ZuriTopBar(
+              appBar: ZuriAppBar(
                 leading: Icons.arrow_back_ios,
                 leadingPress: () => model.navigateBack(),
                 orgTitle: Text(
-            ClearAfter,
-            style: AppTextStyles.heading7,
-          ),
+                  ClearAfter,
+                  style: AppTextStyles.heading7,
+                ),
               ),
               body: Padding(
                 padding: const EdgeInsets.all(20.0),

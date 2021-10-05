@@ -14,8 +14,11 @@ class AdvancedView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<AdvancedViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: ZuriTopBar(
-          orgTitle: Text(Advanced, style: AppTextStyles.heading7,),
+        appBar: ZuriAppBar(
+          orgTitle: Text(
+            Advanced,
+            style: AppTextStyles.heading7,
+          ),
           whiteBackground: true,
         ),
         body: SingleChildScrollView(

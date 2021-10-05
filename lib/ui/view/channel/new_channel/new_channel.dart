@@ -24,15 +24,14 @@ class NewChannel extends StatelessWidget with $NewChannel {
       viewModelBuilder: () => NewChannelViewModel(),
       builder: (context, model, child) => Scaffold(
         backgroundColor: AppColors.whiteColor,
-        appBar: 
-        ZuriTopBar(
+        appBar: ZuriAppBar(
           leading: Icons.arrow_back_ios,
-          leadingPress: (){},
-           orgTitle: Text(
+          leadingPress: () {},
+          orgTitle: Text(
             "New Channel",
             style: AppTextStyles.heading7,
           ),
-             actions: [
+          actions: [
             TextButton(
               style: TextButton.styleFrom(
                   padding: const EdgeInsets.only(right: 16.0)),

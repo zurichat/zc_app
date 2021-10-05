@@ -26,7 +26,7 @@ class ChannelMembersList extends StatelessWidget {
       viewModelBuilder: () => ChannelMembersModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: ZuriTopBar(
+          appBar: ZuriAppBar(
             leading: Icons.clear,
             leadingPress: () => viewModel.goBack(),
             orgTitle: Text(

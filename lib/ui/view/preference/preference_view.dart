@@ -14,13 +14,11 @@ class PreferenceView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<PreferenceViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: ZuriTopBar(
-          orgTitle: Text('Preferences', style: AppTextStyles.heading7),
-          leading:
-            Icons.close_outlined,
+        appBar: ZuriAppBar(
+            orgTitle: Text('Preferences', style: AppTextStyles.heading7),
+            leading: Icons.close_outlined,
             leadingPress: () => model.exitPage(),
-            whiteBackground: true
-        ),
+            whiteBackground: true),
         body: SingleChildScrollView(
           child: Column(
             children: [

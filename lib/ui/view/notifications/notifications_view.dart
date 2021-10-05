@@ -14,8 +14,11 @@ class NotificationsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<NotificationsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: ZuriTopBar(
-          orgTitle: Text(Notifications, style: AppTextStyles.heading7,),
+        appBar: ZuriAppBar(
+          orgTitle: Text(
+            Notifications,
+            style: AppTextStyles.heading7,
+          ),
         ),
         body: SingleChildScrollView(
           child: Column(

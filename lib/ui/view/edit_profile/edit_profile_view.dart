@@ -18,11 +18,13 @@ class EditProfileView extends StatelessWidget {
     return ViewModelBuilder<EditProfileViewModel>.reactive(
       viewModelBuilder: () => EditProfileViewModel(),
       builder: (context, viewModel, child) => Scaffold(
-        appBar: 
-        ZuriTopBar(
+        appBar: ZuriAppBar(
           leading: Icons.close_rounded,
           leadingPress: () => viewModel.navigateBack(),
-          orgTitle: Text("Edit Profile", style: AppTextStyles.heading7,),
+          orgTitle: Text(
+            "Edit Profile",
+            style: AppTextStyles.heading7,
+          ),
         ),
         body: Visibility(
           visible: !viewModel.isBusy,

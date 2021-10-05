@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
@@ -31,12 +30,11 @@ class StartDmView extends StatelessWidget with $StartDmView {
       builder: (ctx, model, child) => Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
-        appBar: ZuriTopBar(
-          orgTitle: Text(DM,
-              style: AppTextStyles.heading7),
+        appBar: ZuriAppBar(
+          orgTitle: Text(DM, style: AppTextStyles.heading7),
           leading: Icons.arrow_back_ios,
           whiteBackground: true,
-            leadingPress: () => model.navigateBack(),
+          leadingPress: () => model.navigateBack(),
           actions: [
             TextButton(
               style: TextButton.styleFrom(

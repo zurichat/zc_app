@@ -14,24 +14,28 @@ class AddPeopleView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<AddPeopleViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: 
-        ZuriTopBar(
-                leading: Icons.arrow_back_ios,
-                leadingPress: () => model.goBack(),
-                orgTitle: Text(AddPeople, style: AppTextStyles.heading7,),
-                whiteBackground: true,
-                   actions: [
+        appBar: ZuriAppBar(
+          leading: Icons.arrow_back_ios,
+          leadingPress: () => model.goBack(),
+          orgTitle: Text(
+            AddPeople,
+            style: AppTextStyles.heading7,
+          ),
+          whiteBackground: true,
+          actions: [
             TextButton(
               onPressed: () {},
-              child: const Text(Add,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    color: Color(0xFF00B87C),
-                    fontSize: 14,
-                  ),),
+              child: const Text(
+                Add,
+                style: TextStyle(
+                  fontWeight: FontWeight.w300,
+                  color: Color(0xFF00B87C),
+                  fontSize: 14,
+                ),
+              ),
             ),
           ],
-              ),
+        ),
         backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(
           child: Column(

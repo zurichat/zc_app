@@ -4,7 +4,6 @@ import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../general_widgets/channel_icon.dart';
-import '../../../../general_widgets/custom_text.dart';
 import '../../../../models/user_post.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';
@@ -24,7 +23,7 @@ class ThreadDetailView extends StatelessWidget {
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
       onModelReady: (model) => model.initialise(userPost!.id!),
       builder: (context, model, child) => Scaffold(
-        appBar: ZuriTopBar(
+        appBar: ZuriAppBar(
             orgTitle: Text(
               Threads,
               style: AppTextStyles.heading7,

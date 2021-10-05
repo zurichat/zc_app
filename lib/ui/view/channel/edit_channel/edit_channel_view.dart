@@ -33,7 +33,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
       },
       viewModelBuilder: () => EditChannelViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: ZuriTopBar(
+        appBar: ZuriAppBar(
           leading: Icons.arrow_back_ios,
           orgTitle: Text(
             EditChannel,

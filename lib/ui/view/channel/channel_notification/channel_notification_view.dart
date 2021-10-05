@@ -16,7 +16,7 @@ class ChannelNotificationView extends StatelessWidget {
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
-            appBar: ZuriTopBar(
+            appBar: ZuriAppBar(
               title: Notifications,
               subtitle: ChannelNotifSubtitle,
               leading: Icons.chevron_left,
@@ -99,4 +99,3 @@ class ChannelNotificationView extends StatelessWidget {
     );
   }
 }
-

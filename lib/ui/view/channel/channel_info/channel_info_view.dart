@@ -42,7 +42,7 @@ class ChannelInfoView extends StatelessWidget {
           designSize: const Size(411, 823),
           builder: () {
             return Scaffold(
-              appBar: ZuriTopBar(
+              appBar: ZuriAppBar(
                 leading: Icons.clear,
                 leadingPress: () => model.navigateBack(),
                 actions: [

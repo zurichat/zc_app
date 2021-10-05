@@ -42,7 +42,7 @@ class ChannelPageView extends StatelessWidget {
 
         return Scaffold(
           backgroundColor: AppColors.whiteColor,
-          appBar: ZuriTopBar(
+          appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             leadingPress: () => model.goBack(),
             whiteBackground: true,

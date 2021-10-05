@@ -15,11 +15,10 @@ class SavedItemsView extends StatelessWidget {
     final _size = MediaQuery.of(context).size;
     return ViewModelBuilder<SavedItemsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: ZuriTopBar(
-          leading:
-            Icons.close_rounded,
-            whiteBackground: true,
-            leadingPress: () => model.exitPage(),
+        appBar: ZuriAppBar(
+          leading: Icons.close_rounded,
+          whiteBackground: true,
+          leadingPress: () => model.exitPage(),
           orgTitle: Text('Saved Items', style: AppTextStyles.heading7),
         ),
         body: SizedBox(

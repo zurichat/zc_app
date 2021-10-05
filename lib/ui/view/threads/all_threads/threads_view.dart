@@ -15,7 +15,7 @@ class ThreadsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ThreadsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: ZuriTopBar(
+        appBar: ZuriAppBar(
             orgTitle: Text(
               Threads,
               style: AppTextStyles.heading7,

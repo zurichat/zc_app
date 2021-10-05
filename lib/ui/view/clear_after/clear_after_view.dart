@@ -15,8 +15,7 @@ class ClearAfterView extends StatelessWidget {
     final width = MediaQuery.of(context).size.height;
     return ViewModelBuilder<ClearAfterViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: 
-        ZuriTopBar(
+        appBar: ZuriAppBar(
           leading: Icons.close_rounded,
           leadingPress: () => model.exitPage(),
           orgTitle: Text(

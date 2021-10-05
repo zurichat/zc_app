@@ -14,10 +14,13 @@ class DraftedMessagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<DraftedMessagePageModel>.reactive(
         builder: (context, model, child) => Scaffold(
-              appBar: ZuriTopBar(
+              appBar: ZuriAppBar(
                 leading: Icons.arrow_back_ios,
                 leadingPress: () => model.navigateBack(),
-                orgTitle: Text(Draft, style: AppTextStyles.heading7,),
+                orgTitle: Text(
+                  Draft,
+                  style: AppTextStyles.heading7,
+                ),
                 whiteBackground: true,
               ),
               body: ListView.builder(

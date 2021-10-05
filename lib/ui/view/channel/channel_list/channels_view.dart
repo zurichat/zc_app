@@ -18,12 +18,11 @@ class ChannelList extends StatelessWidget {
       onModelReady: (model) => model.initViewModel(),
       builder: (context, model, child) => Scaffold(
         backgroundColor: AppColors.whiteColor,
-        appBar: 
-        ZuriTopBar(
+        appBar: ZuriAppBar(
           leading: Icons.arrow_back_ios,
-          leadingPress: (){},
+          leadingPress: () {},
           title: ChannelBrowser,
-          subtitle:  model.isBusy ? '0' : model.channelsList.length.toString(),
+          subtitle: model.isBusy ? '0' : model.channelsList.length.toString(),
         ),
         body: SafeArea(
           child: model.isBusy

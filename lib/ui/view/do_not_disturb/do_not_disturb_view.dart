@@ -13,14 +13,14 @@ class DoNotDisturbView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<DoNotDisturbViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: ZuriTopBar(
+        appBar: ZuriAppBar(
           leading: Icons.close_rounded,
-          leadingPress: () =>model.exitPage(),
+          leadingPress: () => model.exitPage(),
           orgTitle: Text(
             'Do not disturb',
             style: AppTextStyles.heading7,
           ),
-             actions: [
+          actions: [
             TextButton(
               onPressed: () {},
               child: const Text(

@@ -17,7 +17,7 @@ class YouPage extends StatelessWidget {
     return ViewModelBuilder<YouPageViewModel>.reactive(
       viewModelBuilder: () => YouPageViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: ZuriTopBar(
+        appBar: ZuriAppBar(
           orgTitle: Text(You, style: ZuriTextStyle.organizationNameText()),
           bottomNavBarScreen: true,
           leadingWidth: true,

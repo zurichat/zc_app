@@ -18,7 +18,7 @@ class DmPage extends StatelessWidget {
     return ViewModelBuilder<DmPageViewModel>.reactive(
       builder: (context, model, child) {
         return Scaffold(
-          appBar: ZuriTopBar(
+          appBar: ZuriAppBar(
             leadingWidth: true,
             orgTitle: Text(DMs, style: ZuriTextStyle.organizationNameText()),
             bottomNavBarScreen: true,

@@ -4,8 +4,6 @@ import 'package:stacked/stacked.dart';
 
 import '../../nav_pages/home_page/widgets/custom_channel_list_tile.dart';
 import '../../nav_pages/home_page/widgets/custom_plugin_list_tile.dart';
-import '../../shared/colors.dart';
-import '../../shared/shared.dart';
 import 'user_search_viewmodel.dart';
 
 class UserSearchView extends StatelessWidget {
@@ -16,11 +14,12 @@ class UserSearchView extends StatelessWidget {
     return ViewModelBuilder<UserSearchViewModel>.reactive(
       viewModelBuilder: () => UserSearchViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: ZuriTopBar(
+        appBar: ZuriAppBar(
           isSearchBar: true,
           hintText: 'Search for people here',
           searchBarIcon: Icons.arrow_back_ios,
           leadingWidth: true,
+
           /// THERE ARE OTHER SEARCH BAR OPTIONS IN THIS WIDGET
           /// KINDLY CHECK THROUGH AND USE.
         ),
@@ -128,7 +127,7 @@ class UserSearchView extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:const [
+                    children: const [
                       CustomPluginListTile(
                         icon: Icons.add_box_outlined,
                         pluginName: 'to:',

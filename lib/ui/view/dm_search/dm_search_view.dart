@@ -10,7 +10,7 @@ import 'dm_search_viewmodel.dart';
 import 'dm_search_view.form.dart';
 
 @FormView(fields: [FormTextField(name: 'search')])
-class DmSearch extends StatelessWidget with $DmSearch{
+class DmSearch extends StatelessWidget with $DmSearch {
   DmSearch({Key? key}) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class DmSearch extends StatelessWidget with $DmSearch{
       viewModelBuilder: () => DmSearchViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: ZuriTopBar(
+          appBar: ZuriAppBar(
             leading: Icons.chevron_left,
             leadingPress: () => viewModel.navigateBack(),
           ),
@@ -47,7 +47,7 @@ class DmSearch extends StatelessWidget with $DmSearch{
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,
                             )),
-                       const Spacer(),
+                        const Spacer(),
                         GestureDetector(
                           onTap: () {},
                           child: Text(Done,
@@ -60,7 +60,7 @@ class DmSearch extends StatelessWidget with $DmSearch{
                       ],
                     ),
                   ),
-                const  Divider(),
+                  const Divider(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 17.0),
                     child: TextField(
@@ -72,7 +72,7 @@ class DmSearch extends StatelessWidget with $DmSearch{
                       ),
                     ),
                   ),
-                 const Divider(),
+                  const Divider(),
                   const ChannelorPerson(),
                 ],
               ),

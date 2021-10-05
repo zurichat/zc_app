@@ -1,4 +1,3 @@
-//keep Hng Project
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
@@ -22,7 +21,7 @@ class DirectMessage extends StatelessWidget {
         viewModelBuilder: () => DirectMessageViewModel(),
         builder: (context, model, child) {
           return Scaffold(
-            appBar: ZuriTopBar(
+            appBar: ZuriAppBar(
                 leading: Icons.arrow_back_ios,
                 leadingPress: () => model.navigateBack(),
                 title: username,

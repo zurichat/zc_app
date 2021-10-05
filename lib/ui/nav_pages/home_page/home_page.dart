@@ -23,8 +23,7 @@ class HomePage extends StatelessWidget {
       },
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, vmodel, child) => Scaffold(
-        appBar: 
-        ZuriTopBar(
+        appBar: ZuriAppBar(
           leadingWidth: true,
           orgTitle: Row(
             mainAxisAlignment: MainAxisAlignment.start,

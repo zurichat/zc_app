@@ -16,7 +16,7 @@ class CreateChannelView extends StatelessWidget {
     return ViewModelBuilder<CreateChannelViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
               backgroundColor: AppColors.whiteColor,
-              appBar: ZuriTopBar(
+              appBar: ZuriAppBar(
                 actions: const [
                   Center(
                     child: CustomTextWidget(

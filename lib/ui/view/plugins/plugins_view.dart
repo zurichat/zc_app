@@ -20,7 +20,7 @@ class PluginView extends StatelessWidget {
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         return Scaffold(
-          appBar: ZuriTopBar(
+          appBar: ZuriAppBar(
             orgTitle:
                 Text(Plugins, style: ZuriTextStyle.organizationNameText()),
           ),

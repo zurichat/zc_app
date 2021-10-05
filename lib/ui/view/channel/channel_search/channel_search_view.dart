@@ -18,11 +18,12 @@ class _ChannelSearchPageViewState extends State<ChannelSearchPageView> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelSearchViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: ZuriTopBar(
+        appBar: ZuriAppBar(
           isSearchBar: true,
           hintText: 'Search for people here',
           searchBarIcon: Icons.arrow_back_ios,
           leadingWidth: true,
+
           /// THERE ARE OTHER SEARCH BAR OPTIONS IN THIS WIDGET
           /// KINDLY CHECK THROUGH AND USE.
         ),
@@ -34,8 +35,8 @@ class _ChannelSearchPageViewState extends State<ChannelSearchPageView> {
                 //TextFIeld
                 Container(
                   height: 40,
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 30),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
                   child: TextFormField(
                       // style: textStyling(),
                       decoration:

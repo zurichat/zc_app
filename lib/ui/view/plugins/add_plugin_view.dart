@@ -20,7 +20,7 @@ class AddPluginView extends StatelessWidget {
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         return Scaffold(
-          appBar: ZuriTopBar(
+          appBar: ZuriAppBar(
             leading: Icons.close,
             whiteBackground: true,
             orgTitle: Text(
@@ -29,17 +29,16 @@ class AddPluginView extends StatelessWidget {
             ),
             actions: [
               Padding(
-                      padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 0.0),
-                      child: InkWell(
-                        child: Text(
-                          Add,
-                          style: AppTextStyles.body1Green,
-                        ),
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        onTap: () {}
-                      ),
+                padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 0.0),
+                child: InkWell(
+                    child: Text(
+                      Add,
+                      style: AppTextStyles.body1Green,
                     ),
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    onTap: () {}),
+              ),
             ],
           ),
           body: SingleChildScrollView(

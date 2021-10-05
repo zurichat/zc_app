@@ -6,7 +6,7 @@ import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 
 // ignore: must_be_immutable
-class ZuriTopBar extends StatelessWidget implements PreferredSizeWidget {
+class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   final IconData? leading;
   final IconData? searchBarIcon;
   final Widget? orgTitle;
@@ -24,7 +24,7 @@ class ZuriTopBar extends StatelessWidget implements PreferredSizeWidget {
   final String? subtitle;
   final List<Widget>? actions;
 
-  ZuriTopBar({
+  ZuriAppBar({
     this.leading,
     this.title,
     this.leadingWidth = false,
