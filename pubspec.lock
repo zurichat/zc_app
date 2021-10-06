@@ -219,7 +219,7 @@ packages:
     source: hosted
     version: "1.1.0"
   connectivity_plus_web:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: connectivity_plus_web
       url: "https://pub.dartlang.org"

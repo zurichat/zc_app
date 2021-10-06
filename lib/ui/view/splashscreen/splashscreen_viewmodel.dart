@@ -25,7 +25,7 @@ class SplashscreenViewModel extends BaseViewModel {
             true) {
           navigation.navigateTo(Routes.oTPView);
         } else if (storage.getString(StorageKeys.currentUserId) == null) {
-          navigation.navigateTo(Routes.signUpView);
+          navigation.navigateTo(Routes.loginView);
         } else {
           navigation.navigateTo(Routes.navBarView);
         }

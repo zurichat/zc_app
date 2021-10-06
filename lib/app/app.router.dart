@@ -330,8 +330,14 @@ class StackedRouter extends RouterBase {
       );
     },
     HomePage: (data) {
+      var args = data.getArgs<HomePageArguments>(
+        orElse: () => HomePageArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const HomePage(),
+        builder: (context) => HomePage(
+          key: args.key,
+          organizationLogo: args.organizationLogo,
+        ),
         settings: data,
       );
     },
@@ -342,8 +348,11 @@ class StackedRouter extends RouterBase {
       );
     },
     DmSearch: (data) {
+      var args = data.getArgs<DmSearchArguments>(
+        orElse: () => DmSearchArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const DmSearch(),
+        builder: (context) => DmSearch(key: args.key),
         settings: data,
       );
     },
@@ -659,6 +668,19 @@ class ForgotPasswordNewViewArguments {
 class NewChannelArguments {
   final Key? key;
   NewChannelArguments({this.key});
+}
+
+/// HomePage arguments holder class
+class HomePageArguments {
+  final Key? key;
+  final Widget? organizationLogo;
+  HomePageArguments({this.key, this.organizationLogo});
+}
+
+/// DmSearch arguments holder class
+class DmSearchArguments {
+  final Key? key;
+  DmSearchArguments({this.key});
 }
 
 /// DmJumpToView arguments holder class
