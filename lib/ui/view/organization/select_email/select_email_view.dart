@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../utilities/enums.dart';
@@ -16,21 +17,11 @@ class SelectEmail extends StatelessWidget {
     return ViewModelBuilder<SelectEmailViewModel>.nonReactive(
       viewModelBuilder: () => SelectEmailViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          title: Text(
-            model.getScreenTitle(method),
-            style: const TextStyle(
-              fontSize: 16,
-              color: AppColors.deepBlackColor,
-            ),
-          ),
-          backgroundColor: Colors.white,
-          leading: IconButton(
-            iconSize: 12,
-            onPressed: () => model.pop(),
-            icon: const Icon(Icons.arrow_back_ios_outlined),
-            color: Colors.black,
-          ),
+        appBar: ZuriAppBar(
+          title: model.getScreenTitle(method),
+          whiteBackground: true,
+          leading: Icons.arrow_back_ios_outlined,
+          leadingPress: () => model.pop()
         ),
         body: Container(
           margin: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
@@ -39,7 +30,7 @@ class SelectEmail extends StatelessWidget {
               borderRadius: BorderRadius.circular(2.0),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
+                  color: AppColors.greyColor.withOpacity(0.5),
                   spreadRadius: 1,
                   blurRadius: 5,
                 ),
