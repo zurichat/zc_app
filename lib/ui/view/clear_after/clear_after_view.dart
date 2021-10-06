@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import '../../../general_widgets/custom_text.dart';
 import '../../shared/shared.dart';
 import 'package:stacked/stacked.dart';
@@ -14,11 +15,13 @@ class ClearAfterView extends StatelessWidget {
     final width = MediaQuery.of(context).size.height;
     return ViewModelBuilder<ClearAfterViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          leading: IconButton(
-              onPressed: model.exitPage, icon: const Icon(Icons.close_rounded)),
-          title: const Text(ClearAfter),
+        appBar: ZuriAppBar(
+          leading: Icons.close_rounded,
+          leadingPress: () => model.exitPage(),
+          orgTitle: Text(
+            ClearAfter,
+            style: AppTextStyles.heading7,
+          ),
         ),
         body: Column(
           children: [
