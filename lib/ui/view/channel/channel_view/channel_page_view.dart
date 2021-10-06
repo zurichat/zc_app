@@ -66,43 +66,6 @@ class ChannelPageView extends StatelessWidget {
             subtitle:
                 "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
           ),
-          // AppBar(
-          //   leading: Padding(
-          //     padding: const EdgeInsets.only(left: 5.0, right: 20.0),
-          //     child: IconButton(
-          //         onPressed: model.goBack,
-          //         icon: const Icon(Icons.arrow_back_ios)),
-          //   ),
-          //   centerTitle: false,
-          //   leadingWidth: 20,
-          //   title: Column(
-          //     mainAxisSize: MainAxisSize.min,
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       Text("#$channelName", style: AppTextStyles.body1Bold),
-          //       Text(
-          //         "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
-          //         style: AppTextStyles.body2Medium,
-          //       ),
-          //     ],
-          //   ),
-          //   actions: [
-          // IconButton(
-          //   onPressed: () {},
-          //   icon: const Icon(Icons.search),
-          // ),
-          // Padding(
-          //   padding: const EdgeInsets.only(right: 5),
-          //   child: IconButton(
-          //     onPressed: () => model.navigateToChannelInfoScreen(
-          //       membersCount!,
-          //       ChannelModel(id: channelId!, name: channelName!),
-          //     ),
-          //     icon: const Icon(Icons.info_outlined),
-          //   ),
-          // ),
-          //   ],
-          // ),
           body: ExpandableTextFieldScreen(
             hintText: AddReply,
             sendMessage: model.sendMessage,

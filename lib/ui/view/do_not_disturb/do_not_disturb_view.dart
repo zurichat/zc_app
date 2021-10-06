@@ -30,23 +30,6 @@ class DoNotDisturbView extends StatelessWidget {
             )
           ],
         ),
-        // AppBar(
-        //   elevation: 0,
-        //   leading: IconButton(
-        //     onPressed: model.exitPage,
-        //     icon: const Icon(Icons.close_rounded),
-        //   ),
-        //   title: const Text('Do not disturb'),
-        //   actions: [
-        //     TextButton(
-        //       onPressed: () {},
-        //       child: const Text(
-        //         'Save',
-        //         style: TextStyle(color: AppColors.zuriPrimaryColor),
-        //       ),
-        //     )
-        //   ],
-        // ),
         body: Column(
           children: [
             Flexible(

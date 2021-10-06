@@ -18,7 +18,7 @@ class FirstSection extends StatelessWidget {
           borderRadius: BorderRadius.circular(6),
           boxShadow: const [
             BoxShadow(
-              color: Colors.white,
+              color: AppColors.whiteColor,
               spreadRadius: 4,
               blurRadius: 4,
               offset: Offset(3, 3), // changes position of shadow

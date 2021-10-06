@@ -57,11 +57,6 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
             )
           ],
         ),
-        // CustomAppBars(
-        //   appbarTitle: EditChannel,
-        //   appbarAction: Save,
-        //   model: model,
-        // ),
         backgroundColor: AppColors.whiteColor,
         body: SingleChildScrollView(
           child: Column(
