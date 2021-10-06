@@ -23,6 +23,7 @@ import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/clear_after/clear_after_view.dart';
+import '../ui/view/direct_message/direct_message.dart';
 import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
@@ -112,6 +113,7 @@ class Routes {
   static const String organizationUrlView = '/organization-url-view';
   static const String channelPageView = '/channel-page-view';
   static const String channelInfoView = '/channel-info-view';
+  static const String directMessage = '/direct-message';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -161,6 +163,7 @@ class Routes {
     organizationUrlView,
     channelPageView,
     channelInfoView,
+    directMessage,
   };
 }
 
@@ -217,6 +220,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.organizationUrlView, page: OrganizationUrlView),
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+    RouteDef(Routes.directMessage, page: DirectMessage),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -326,8 +330,14 @@ class StackedRouter extends RouterBase {
       );
     },
     HomePage: (data) {
+      var args = data.getArgs<HomePageArguments>(
+        orElse: () => HomePageArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const HomePage(),
+        builder: (context) => HomePage(
+          key: args.key,
+          organizationLogo: args.organizationLogo,
+        ),
         settings: data,
       );
     },
@@ -338,8 +348,11 @@ class StackedRouter extends RouterBase {
       );
     },
     DmSearch: (data) {
+      var args = data.getArgs<DmSearchArguments>(
+        orElse: () => DmSearchArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const DmSearch(),
+        builder: (context) => DmSearch(key: args.key),
         settings: data,
       );
     },
@@ -579,6 +592,18 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    DirectMessage: (data) {
+      var args = data.getArgs<DirectMessageArguments>(
+        orElse: () => DirectMessageArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => DirectMessage(
+          key: args.key,
+          username: args.username,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -635,6 +660,19 @@ class ForgotPasswordNewViewArguments {
 class NewChannelArguments {
   final Key? key;
   NewChannelArguments({this.key});
+}
+
+/// HomePage arguments holder class
+class HomePageArguments {
+  final Key? key;
+  final Widget? organizationLogo;
+  HomePageArguments({this.key, this.organizationLogo});
+}
+
+/// DmSearch arguments holder class
+class DmSearchArguments {
+  final Key? key;
+  DmSearchArguments({this.key});
 }
 
 /// DmJumpToView arguments holder class
@@ -716,4 +754,11 @@ class ChannelInfoViewArguments {
       required this.numberOfMembers,
       required this.channelMembers,
       required this.channelDetail});
+}
+
+/// DirectMessage arguments holder class
+class DirectMessageArguments {
+  final Key? key;
+  final String? username;
+  DirectMessageArguments({this.key, this.username});
 }

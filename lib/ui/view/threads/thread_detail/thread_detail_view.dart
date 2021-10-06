@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../general_widgets/channel_icon.dart';
-import '../../../../general_widgets/custom_text.dart';
 import '../../../../models/user_post.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';
@@ -23,16 +23,14 @@ class ThreadDetailView extends StatelessWidget {
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
       onModelReady: (model) => model.initialise(userPost!.id!),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: const CustomText(text: 'Threads', fontWeight: FontWeight.bold),
-          leading: IconButton(
-            onPressed: model.exitPage,
-            icon: const Icon(
-              Icons.arrow_back_ios,
+        appBar: ZuriAppBar(
+            orgTitle: Text(
+              Threads,
+              style: AppTextStyles.heading7,
             ),
-          ),
-        ),
+            leading: Icons.chevron_left,
+            leadingPress: () => model.exitPage(),
+            whiteBackground: true),
         body: model.isBusy
             ? const Center(child: CircularProgressIndicator())
             : Column(
@@ -117,7 +115,6 @@ class ThreadDetailView extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // ignore: todo
                           //TODO Change to brand colors
                           const Divider(height: 0, color: Color(0xFF999999)),
                           Row(

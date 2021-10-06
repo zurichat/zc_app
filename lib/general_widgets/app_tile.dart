@@ -29,8 +29,7 @@ class AppTile extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
-            // ignore: sized_box_for_whitespace
-            Container(
+          SizedBox(
               width: MediaQuery.of(context).size.width * 0.55,
               child: ListTile(
                 title: Text(
