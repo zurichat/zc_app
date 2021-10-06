@@ -82,6 +82,32 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       ),
                       UIHelper.customVerticalSpace(48),
                       Text(
+                        FirstName,
+                        style: AppTextStyles.body1Bold,
+                      ),
+                      UIHelper.customVerticalSpace(10),
+                      CustomTextField(
+                        keyboardType: TextInputType.name,
+                        inputAction: TextInputAction.next,
+                        autoCorrect: false,
+                        obscureText: false,
+                        controller: firstNameController,
+                        hintText: FirstNameHintText,
+                      ),
+                      UIHelper.verticalSpaceLarge, Text(
+                        LastName,
+                        style: AppTextStyles.body1Bold,
+                      ),
+                      UIHelper.customVerticalSpace(10),
+                      CustomTextField(
+                        keyboardType: TextInputType.name,
+                        inputAction: TextInputAction.next,
+                        autoCorrect: false,
+                        obscureText: false,
+                        controller: lastNameController,
+                        hintText: LastNameHintText,
+                      ),
+                      UIHelper.verticalSpaceLarge, Text(
                         EmailAddress,
                         style: AppTextStyles.body1Bold,
                       ),

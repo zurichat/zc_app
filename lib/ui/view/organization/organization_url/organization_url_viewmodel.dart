@@ -10,8 +10,8 @@ import '../../../../utilities/storage_keys.dart';
 import '../../../shared/colors.dart';
 
 class OrganizationUrlViewModel extends BaseViewModel {
-  final navigation = locator<NavigationService>();
-  final storage = locator<SharedPreferenceLocalStorage>();
+  final _navigationService = locator<NavigationService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
   bool isBusyy = false;
 
@@ -23,17 +23,19 @@ class OrganizationUrlViewModel extends BaseViewModel {
   final api = OrganizationApiService();
 
   bool isEmpty = true;
-  final _email = 'johndoe@gmail.com';
   String? url;
   var buttonColor = AppColors.greyishColor;
+  var buttonTextColor = AppColors.blackColor;
 
   void updateString(String value) {
     if (value.trim().isEmpty) {
       isEmpty = true;
       buttonColor = AppColors.greyishColor;
+      buttonTextColor = AppColors.blackColor;
     } else {
       isEmpty = false;
       buttonColor = AppColors.appBarGreen;
+      buttonTextColor = AppColors.whiteColor;
     }
     url = value.trim();
     notifyListeners();
@@ -52,7 +54,7 @@ class OrganizationUrlViewModel extends BaseViewModel {
       //Todo: storing should be implemented after stage 7
       // await storeOrganizationId(Organization.id);
       loading(false);
-      navigation.navigateTo(Routes.navBarView);
+      _navigationService.navigateTo(Routes.navBarView);
 
       // popUntil((route) => route.settings.name == Routes.navBarView);
       // popUntil(ModalRoute.withName(Routes.OrganizationView));
@@ -62,12 +64,15 @@ class OrganizationUrlViewModel extends BaseViewModel {
   }
 
   Future<void> storeOrganizationId(String id) async {
-    final ids = storage.getStringList(StorageKeys.organizationIds) ?? [];
+    final ids =
+        _storageService.getStringList(StorageKeys.organizationIds) ?? [];
     ids.add(id);
-    await storage.setStringList(StorageKeys.organizationIds, ids);
+    await _storageService.setStringList(StorageKeys.organizationIds, ids);
   }
 
   get buttonColors => buttonColor;
+
   bool get title => isEmpty;
-  String get email => _email;
+
+  String? get email => _storageService.getString(StorageKeys.currentUserEmail);
 }

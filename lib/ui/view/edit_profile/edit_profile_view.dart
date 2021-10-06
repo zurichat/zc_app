@@ -20,7 +20,8 @@ class EditProfileView extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
-              onPressed: () {}, icon: const Icon(Icons.close_rounded)),
+              onPressed: viewModel.close,
+              icon: const Icon(Icons.close_rounded)),
           title: const Text(EditProfile),
           actions: [
             TextButton(

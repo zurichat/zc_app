@@ -9,14 +9,18 @@ import '../../../../utilities/enums.dart';
 import '../../../../utilities/storage_keys.dart';
 
 class SelectEmailViewModel extends BaseViewModel {
-  final _navigation = locator<NavigationService>();
-  final snackbar = locator<SnackbarService>();
+  final _navigationService = locator<NavigationService>();
+//  final _snackbar = locator<SnackbarService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
+
   // final _api = WorkSpaceApiService();
   final _anotherEmail = UseAnotherEmail;
 
   String? get userEmail => _storage.getString(StorageKeys.currentUserEmail);
+
   String get anotherEmail => _anotherEmail;
+
+  void back() => _navigationService.back();
 
   void onEmailTap(OrganizationSwitchMethod method) {
     switch (method) {
@@ -33,11 +37,11 @@ class SelectEmailViewModel extends BaseViewModel {
   }
 
   void navigateToOrganizationUrl() {
-    _navigation.navigateTo(Routes.organizationUrlView);
+    _navigationService.navigateTo(Routes.organizationUrlView);
   }
 
   void navigateToCreateOrganization() {
-    _navigation.navigateTo(
+    _navigationService.navigateTo(
       Routes.createOrganization,
       arguments: CreateOrganizationArguments(email: userEmail!),
     );

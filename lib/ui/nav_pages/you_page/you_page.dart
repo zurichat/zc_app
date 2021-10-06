@@ -48,14 +48,19 @@ class YouPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 MenuItemTile(
                   icon: Icons.notifications_off_outlined,
-                  text: const Text(PauseNotifs),
+                  text: Text(
+                    PauseNotifs,
+                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                  ),
                   onPressed: model.pauseNotifications,
                   topBorder: false,
                 ),
+                const SizedBox(height: 16),
                 MenuItemTile(
                   text: Text.rich(
                     TextSpan(
                       text: SetStatusText,
+                      style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                       children: [
                         TextSpan(
                           text: model.otherStatus,
@@ -68,26 +73,42 @@ class YouPage extends StatelessWidget {
                   onPressed: model.toggleStatus,
                   topBorder: false,
                 ),
+                const SizedBox(height: 16),
                 MenuItemTile(
                   icon: Icons.bookmark_outline_outlined,
-                  text: const Text(SavedItems),
+                  text: Text(
+                    SavedItems,
+                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                  ),
                   onPressed: model.viewSavedItem,
                 ),
+                const SizedBox(height: 16),
                 MenuItemTile(
                   icon: Icons.account_circle_outlined,
-                  text: const Text(ViewProfile),
+                  text: Text(
+                    ViewProfile,
+                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                  ),
                   onPressed: model.viewProfile,
                   topBorder: false,
                 ),
+                const SizedBox(height: 16),
                 MenuItemTile(
                   icon: Icons.trip_origin,
-                  text: const Text(Notifs),
+                  text: Text(
+                    Notifs,
+                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                  ),
                   onPressed: model.viewNotifications,
                   topBorder: false,
                 ),
+                const SizedBox(height: 16),
                 MenuItemTile(
                   icon: Icons.settings,
-                  text: const Text(Preferences),
+                  text: Text(
+                    Preferences,
+                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                  ),
                   onPressed: model.viewPreferences,
                   topBorder: false,
                 ),

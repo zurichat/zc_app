@@ -37,8 +37,10 @@ class DMMessageUnread extends StatelessWidget {
                 style: AppTextStyles.body1Bold,
               ),
               const SizedBox(height: 5),
-              const Text(
+              Text(
                 'You: Have you been promoted?',
+                style: AppTextStyles.faintBodyText.copyWith(fontSize: 14),
+
                 // style: AppTextStyles.normalText
               ),
             ],

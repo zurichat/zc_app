@@ -38,6 +38,10 @@ const String userDataEndpoint = 'users/';
 //Auth Screens
 const String SignIn = 'Sign In';
 const String WelcomeSignIn = 'Welcome! Sign in to continue';
+const String FirstName = 'First Name';
+const String FirstNameHintText = 'John';
+const String LastName = 'Last Name';
+const String LastNameHintText = 'Doe';
 const String EmailAddress = 'Email Address';
 const String EmailHintText = 'Name@gmail.com';
 const String Password = 'Password';
@@ -105,7 +109,7 @@ const String Preferences = 'Preferences';
 const String Notifs = 'Notifications';
 const String ViewProfile = 'View Profile';
 const String SavedItems = 'Saved Items';
-const String SetStatusText = 'Set yourself as ';
+const String SetStatusText = 'Go ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
@@ -354,8 +358,8 @@ const String AddOrg = 'Add an organisation';
 const String EnterOrgUrl = 'Enter Organization URL';
 const String EnterOrgUrlHint = 'https://organization.zuri.com';
 const String OrgDesc1 =
-    'If you don\'t know your Organization URL, we have sent an email to ';
-const String OrgDesc2 = ' to help you sign in easily';
+    'If you don\'t know your organization URL, we have sent an email to ';
+const String OrgDesc2 = ' to help you sign in easily.';
 const String InputRequired = 'Input is required';
 const String EnterEmail = 'Enter Email Address';
 const String WillSendEmail =
