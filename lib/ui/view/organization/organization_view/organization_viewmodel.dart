@@ -1,3 +1,4 @@
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'dart:convert';
@@ -19,23 +20,23 @@ class OrganizationViewModel extends BaseViewModel {
   final storageService = locator<SharedPreferenceLocalStorage>();
   final api = OrganizationApiService();
   List<OrganizationModel> organizations = [];
+  final _bottomSheetService = locator<BottomSheetService>();
 
   void initViewModel() {
     fetchOrganizations();
-    fetchOrganizationMemberList();
+    getOrganizationMemberList();
   }
 
   Future<void> navigateToNewOrganization() async {
     try {
       await navigation.navigateTo(Routes.addOrganizationView);
       organizations = await api.getJoinedOrganizations();
-      // filterOrganization();
       notifyListeners();
     } catch (e) {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Error Updating Organizations',
+        message: UpdateFailed,
       );
     }
   }
@@ -46,7 +47,7 @@ class OrganizationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Check your internet connection',
+        message: noInternet,
       );
 
       return;
@@ -60,7 +61,6 @@ class OrganizationViewModel extends BaseViewModel {
       } else {
         organizations = resFromApi;
       }
-      //filterOrganization();
 
       setBusy(false);
     } catch (e) {
@@ -68,12 +68,11 @@ class OrganizationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Error Occured',
+        message: errorOccurred,
       );
     }
   }
 
-// ignore: todo
 //TODO change this to fetch the list of organizations the user is part of alone
   void filterOrganization() {
     final ids = storageService.getStringList(StorageKeys.organizationIds) ?? [];
@@ -103,7 +102,7 @@ class OrganizationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Error fetching Organization Info',
+        message: FetchError,
       );
     }
   }
@@ -113,33 +112,33 @@ class OrganizationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Check your internet connection',
+        message: noInternet,
       );
       return;
     }
   }
 
   //Returns the list of members of an Organization
-  Future fetchOrganizationMemberList() async {
+  Future getOrganizationMemberList() async {
     if (!await connectivityService.checkConnection()) {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'Check your internet connection',
+        message: noInternet,
       );
       return;
     }
 
     try {
       setBusy(true);
-      var orgId = currentOrgId ?? '';
+      var orgId = currentOrgId ?? '61459d8e62688da5302acdb1';
 
       if (orgId.isNotEmpty) {
         final orgMemberList = await api.getOrganizationMemberList(orgId);
 
-        if (orgMemberList.isNotEmpty) {
-          storageService.setString(
-              StorageKeys.organizationMemberList, jsonEncode(orgMemberList));
+        if (orgMemberList.data.isNotEmpty) {
+          storageService.setString(StorageKeys.organizationMemberList,
+              jsonEncode(orgMemberList.data));
         }
       }
       setBusy(false);
@@ -148,7 +147,7 @@ class OrganizationViewModel extends BaseViewModel {
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
-        message: 'An unexpected error occurred',
+        message: errorOccurred,
       );
     }
   }
@@ -158,5 +157,10 @@ class OrganizationViewModel extends BaseViewModel {
 
   Future<void> viewPreferences() async {
     await navigation.navigateTo(Routes.preferenceView);
+  }
+
+  void showSignOutBottomSheet(OrganizationModel org) {
+    _bottomSheetService.showCustomSheet(
+        variant: BottomSheetType.signOut, isScrollControlled: true, data: org);
   }
 }

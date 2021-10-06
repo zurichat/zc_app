@@ -1,5 +1,7 @@
 import 'package:hng/services/centrifuge_service.dart';
+import 'package:hng/services/media_service.dart';
 import 'package:hng/services/notification_service.dart';
+import 'package:hng/ui/view/direct_message/direct_message.dart';
 import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/ui/view/user_search/user_search_view.dart';
@@ -71,7 +73,6 @@ import '../ui/view/start_dm/start_dm_view.dart';
 import '../ui/view/threads/all_threads/threads_view.dart';
 import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 import '../ui/view/user_search/user_search_view.dart';
-import '../ui/view/view_profile_page/view_profile.dart';
 
 @StackedApp(
   routes: [
@@ -98,7 +99,6 @@ import '../ui/view/view_profile_page/view_profile.dart';
     MaterialRoute(page: AddPluginView),
     MaterialRoute(page: UseDifferentEmailView),
     MaterialRoute(page: EditPluginView),
-    MaterialRoute(page: ViewProfile),
     MaterialRoute(page: SetStatusView),
     MaterialRoute(page: ProfilePageView),
     MaterialRoute(page: PreferenceView),
@@ -124,6 +124,7 @@ import '../ui/view/view_profile_page/view_profile.dart';
     MaterialRoute(page: OrganizationUrlView),
     MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: ChannelInfoView),
+    MaterialRoute(page: DirectMessage),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
@@ -140,6 +141,7 @@ import '../ui/view/view_profile_page/view_profile.dart';
       presolveUsing: ConnectivityService.getInstance,
     ),
     LazySingleton(classType: UserService),
+    LazySingleton(classType: MediaService),
     LazySingleton(classType: DMApiService),
     LazySingleton(classType: ChannelsApiService),
     LazySingleton(classType: JumpToApi),

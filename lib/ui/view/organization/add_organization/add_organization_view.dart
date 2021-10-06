@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/utilities/enums.dart';
@@ -25,7 +26,7 @@ class AddOrganizationView extends StatelessWidget {
             elevation: 8,
             shadowColor: Colors.black38,
             title: Text(
-              'Add Organizations',
+              AddOrganisations,
               style: AppTextStyles.heading4,
             ),
           ),
@@ -39,9 +40,8 @@ class AddOrganizationView extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(3),
-                      // ignore: prefer_const_literals_to_create_immutables
-                      boxShadow: [
-                        const BoxShadow(
+                      boxShadow: const [
+                        BoxShadow(
                           color: Colors.black26,
                           blurRadius: 8,
                           offset: Offset(0, 2),
@@ -66,7 +66,7 @@ class AddOrganizationView extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 16),
                                 Text(
-                                  'Create a new organization',
+                                  CreateNewOrg,
                                   style: AppTextStyles.regular,
                                 ),
                               ],
@@ -96,7 +96,7 @@ class AddOrganizationView extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 16),
                                 Text(
-                                  'Sign in to another organization',
+                                  SignInNewOrg,
                                   style: AppTextStyles.regular,
                                 ),
                               ],
@@ -104,10 +104,9 @@ class AddOrganizationView extends StatelessWidget {
                           ),
                         ),
                         Row(
-                          // ignore: prefer_const_literals_to_create_immutables
-                          children: [
-                            const SizedBox(width: 48),
-                            const Expanded(
+                          children: const [
+                            SizedBox(width: 48),
+                            Expanded(
                               child: Divider(
                                 color: AppColors.dividerColor,
                               ),
@@ -127,7 +126,7 @@ class AddOrganizationView extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 16),
                                 Text(
-                                  'Join another organization',
+                                  JoinAnotherOrg,
                                   style: AppTextStyles.regular,
                                 ),
                               ],

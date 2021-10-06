@@ -115,14 +115,20 @@ class DmUserView extends StatelessWidget {
                                         width: 16.67, height: 16.0)
                                   ],
                                 ),
-                                const SizedBox(height: 5),
-                                Text(model.bio,
-                                    style: const TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xFF3A3A3A))),
-                                const SizedBox(height: 15),
-                                StartMessage(model.receiver.username)
+                                IconButton(
+                                    onPressed: ()async {
+                                      await model.sendMessage();
+                                      FocusScope.of(context)
+                                          .requestFocus(FocusNode());
+                                      _scrollController.jumpTo(_scrollController
+                                          .position.maxScrollExtent);
+                                      // duration: Duration(milliseconds: 500),
+                                      // curve: Curves.fastOutSlowIn);
+                                    },
+                                    icon: const Icon(
+                                      Icons.send,
+                                      color: Color(0xFFBEBEBE),
+                                    ))
                               ],
                             ),
                           ),

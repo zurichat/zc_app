@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../general_widgets/custom_text.dart';
@@ -16,7 +17,7 @@ class ThreadsView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           title: const CustomText(
-            text: 'Threads',
+            text: Threads,
             fontWeight: FontWeight.bold,
           ),
           leading: IconButton(
@@ -38,7 +39,7 @@ class ThreadsView extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Text(
-                    'No new replies',
+                    NoNewReplies,
                     style: AppTextStyles.body2Bold,
                   ),
                 ),

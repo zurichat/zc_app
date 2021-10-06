@@ -1,8 +1,6 @@
 class ChannelMembermodel {
   String name;
   bool isAdmin;
-  // bool archived;
-  // bool private;
   ChannelMembermodel({
     required this.name,
     required this.isAdmin,
