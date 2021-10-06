@@ -14,8 +14,9 @@ import 'widgets/message_view.dart';
 import 'widgets/online_indicator.dart';
 
 class DmUserView extends StatelessWidget {
+  String messageText = '';
   DmUserView({Key? key}) : super(key: key);
-
+  TextEditingController messageController = TextEditingController();
   final _scrollController = ScrollController();
 
   @override
@@ -23,7 +24,6 @@ class DmUserView extends StatelessWidget {
     return ViewModelBuilder<DmUserViewModel>.reactive(
         viewModelBuilder: () => DmUserViewModel(),
         builder: (context, model, child) {
-
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -81,7 +81,7 @@ class DmUserView extends StatelessWidget {
                           children: [
                             Padding(
                               padding:
-                              const EdgeInsets.only(left: 16.0, top: 555),
+                                  const EdgeInsets.only(left: 16.0, top: 555),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -146,83 +146,53 @@ class DmUserView extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: Material(
-                    color: Colors.white,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Divider(height: 0, color: Color(0xFF999999)),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                height: 56,
-                                margin: const EdgeInsets.only(left: 13.0),
-                                alignment: Alignment.centerLeft,
-                                child: FocusScope(
-                                  child: Focus(
-                                    onFocusChange: (focus) {
-                                      if (focus) {
-                                        model.onTapMessageField();
-                                      } else {
-                                        model.onUnfocusMessageField();
-                                      }
-                                    },
-                                    child: TextField(
-                                      controller: model.messageController,
-                                      expands: true,
-                                      maxLines: null,
-                                      textAlignVertical:
-                                      TextAlignVertical.center,
-                                      decoration: InputDecoration.collapsed(
-                                          hintText:
-                                          'Message ${model.receiver.username}',
-                                          hintStyle: const TextStyle(
-                                              color: Color(0xFFBEBEBE),
-                                              fontSize: 14.0,
-                                              fontWeight: FontWeight.w400)),
+                  child: Stack(children: [
+                    Material(
+                      color: Colors.white,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Divider(height: 0, color: Color(0xFF999999)),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  height: 56,
+                                  margin: const EdgeInsets.only(left: 13.0),
+                                  alignment: Alignment.centerLeft,
+                                  child: FocusScope(
+                                    child: Focus(
+                                      onFocusChange: (focus) {
+                                        if (focus) {
+                                          model.onTapMessageField();
+                                        } else {
+                                          model.onUnfocusMessageField();
+                                        }
+                                      },
+                                      child: TextFormField(
+                                        onChanged: (value) {
+                                          messageText = value;
+                                        },
+                                        controller: messageController,
+                                        expands: true,
+                                        maxLines: null,
+                                        textAlignVertical:
+                                            TextAlignVertical.center,
+                                        decoration: InputDecoration.collapsed(
+                                            hintText:
+                                                'Message ${model.receiver.username}',
+                                            hintStyle: const TextStyle(
+                                                color: Color(0xFFBEBEBE),
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w400)),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Visibility(
-                              visible: !model.hasClickedMessageField,
-                              child: Row(
-                                children: [
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        AppIcons.shapezap,
-                                        color: Color(0xFF424141),
-                                      )),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: SvgPicture.asset(
-                                      "assets/icons/fluent_camera-16-regular.svg",
-                                      color: const Color(0xFF424141),
-                                    ),
-                                    //onPressed: () {},
-                                  ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: SvgPicture.asset(
-                                      "assets/icons/Vector.svg",
-                                      color: const Color(0xFF424141),
-                                    ),
-                                    //onPressed: () {},
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        Visibility(
-                            visible: model.hasClickedMessageField,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
+                              Visibility(
+                                visible: !model.hasClickedMessageField,
+                                child: Row(
                                   children: [
                                     IconButton(
                                         onPressed: () {},
@@ -231,51 +201,169 @@ class DmUserView extends StatelessWidget {
                                           color: Color(0xFF424141),
                                         )),
                                     IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.alternate_email_outlined,
-                                          color: Color(0xFF424141),
-                                        )),
+                                      onPressed: () {},
+                                      icon: SvgPicture.asset(
+                                        "assets/icons/fluent_camera-16-regular.svg",
+                                        color: const Color(0xFF424141),
+                                      ),
+                                      //onPressed: () {},
+                                    ),
                                     IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.tag_faces_sharp,
-                                          color: Color(0xFF424141),
-                                        )),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.camera_alt_outlined,
-                                          color: Color(0xFF424141),
-                                        )),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.attach_file_outlined,
-                                          color: Color(0xFF424141),
-                                        )),
+                                      onPressed: () {},
+                                      icon: SvgPicture.asset(
+                                        "assets/icons/Vector.svg",
+                                        color: const Color(0xFF424141),
+                                      ),
+                                      //onPressed: () {},
+                                    ),
                                   ],
                                 ),
-                                IconButton(
-                                    onPressed: ()async {
-                                      await model.sendMessage();
-                                      FocusScope.of(context)
-                                          .requestFocus(FocusNode());
-                                      _scrollController.jumpTo(_scrollController
-                                          .position.maxScrollExtent);
-                                      // duration: Duration(milliseconds: 500),
-                                      // curve: Curves.fastOutSlowIn);
-                                    },
-                                    icon: const Icon(
-                                      Icons.send,
-                                      color: Color(0xFFBEBEBE),
-                                    ))
-                              ],
-                            ))
-                      ],
+                              )
+                            ],
+                          ),
+                          Visibility(
+                              visible: model.hasClickedMessageField,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            AppIcons.shapezap,
+                                            color: Color(0xFF424141),
+                                          )),
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.alternate_email_outlined,
+                                            color: Color(0xFF424141),
+                                          )),
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.tag_faces_sharp,
+                                            color: Color(0xFF424141),
+                                          )),
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.camera_alt_outlined,
+                                            color: Color(0xFF424141),
+                                          )),
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.attach_file_outlined,
+                                            color: Color(0xFF424141),
+                                          )),
+                                    ],
+                                  ),
+                                  GestureDetector(
+                                      onTap: () async {
+                                        await model.sendMessage(messageText);
+                                        FocusScope.of(context)
+                                            .requestFocus(FocusNode());
+                                        _scrollController.jumpTo(
+                                            _scrollController
+                                                .position.maxScrollExtent);
+                                        messageController.clear();
+                                        // duration: Duration(milliseconds: 500),
+                                        // curve: Curves.fastOutSlowIn);
+                                      },
+                                      onLongPress: () {
+                                        showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              AlertDialog(
+                                            title:
+                                                const Text('Schedule message'),
+                                            actions: <Widget>[
+                                              Center(
+                                                child: Column(children: [
+                                                  ScheduleOption(
+                                                    messageText: messageText,
+                                                    scrollController:
+                                                        _scrollController,
+                                                    messageController:
+                                                        messageController,
+                                                    model: model,
+                                                    time: 0.5,
+                                                    title:
+                                                        '30 minutes from now',
+                                                    context: context,
+                                                  ),
+                                                  ScheduleOption(
+                                                    messageText: messageText,
+                                                    scrollController:
+                                                        _scrollController,
+                                                    messageController:
+                                                        messageController,
+                                                    model: model,
+                                                    time: 1,
+                                                    title: '1 hour from now',
+                                                    context: context,
+                                                  ),
+                                                  ScheduleOption(
+                                                      messageText: messageText,
+                                                      scrollController:
+                                                          _scrollController,
+                                                      messageController:
+                                                          messageController,
+                                                      model: model,
+                                                      time: 2,
+                                                      title: '2 hours from now',
+                                                      context: context),
+                                                  ScheduleOption(
+                                                      messageText: messageText,
+                                                      scrollController:
+                                                          _scrollController,
+                                                      messageController:
+                                                          messageController,
+                                                      model: model,
+                                                      time: 6,
+                                                      title: '6 hours from now',
+                                                      context: context),
+                                                ]),
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Icon(
+                                          Icons.send,
+                                          color: Color(0xFFBEBEBE),
+                                        ),
+                                      )),
+                                ],
+                              ))
+                        ],
+                      ),
                     ),
-                  ),
-                )
+                  ]),
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.fromLTRB(0, 5, 7, 57),
+                //   child: Align(
+                //     alignment: Alignment.bottomRight,
+                //     child: Container(
+                //       height: 400,
+                //       width: 200,
+                //       color: Colors.blue,
+                //     ),
+                //   ),
+                // )
+                // Positioned(
+                //     right: 5,
+                //     child: Container(
+                //       height: 400,
+                //       width: 200,
+                //       color: Colors.blue,
+                //     ))
               ],
             ),
           );
@@ -335,4 +423,44 @@ class DmUserView extends StatelessWidget {
   //         ]),
   //   );
   // }
+
+}
+
+class ScheduleOption extends StatelessWidget {
+  const ScheduleOption(
+      {Key? key,
+      required this.messageText,
+      required ScrollController scrollController,
+      required this.messageController,
+      required this.model,
+      required this.time,
+      required this.title,
+      required this.context})
+      : _scrollController = scrollController,
+        super(key: key);
+
+  final String messageText;
+  final ScrollController _scrollController;
+  final TextEditingController messageController;
+  final double time;
+  final BuildContext context;
+  final DmUserViewModel model;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.pop(context, time.toString());
+        model.scheduleMessage(time, messageText);
+        FocusScope.of(context).requestFocus(FocusNode());
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+        messageController.clear();
+      },
+      child: Text(
+        title,
+        style: const TextStyle(color: Colors.black),
+      ),
+    );
+  }
 }

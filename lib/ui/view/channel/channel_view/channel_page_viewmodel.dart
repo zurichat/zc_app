@@ -207,4 +207,16 @@ class ChannelPageViewModel extends BaseViewModel {
     isExpanded = !isExpanded;
     notifyListeners();
   }
+
+  void scheduleMessage(double delay, String text, String channelID) async {
+    delay = delay * 60; //Converting from hour to minutes
+
+    int value = delay.toInt();
+    String? userId = storage.getString(StorageKeys.currentUserId);
+    Future.delayed(Duration(minutes: value), () async {
+      _channelsApiService.sendChannelMessages(channelID, "$userId", text);
+
+      notifyListeners();
+    });
+  }
 }

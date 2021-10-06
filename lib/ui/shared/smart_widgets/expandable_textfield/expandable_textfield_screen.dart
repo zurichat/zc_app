@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen_viewmodel.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../colors.dart';
@@ -14,8 +15,10 @@ class ExpandableTextFieldScreen extends HookWidget {
     required this.widget,
     required this.sendMessage,
     required this.hintText,
+    required this.channelID,
   }) : super(key: key);
   final Widget widget;
+  final String channelID;
   final Function(String message) sendMessage;
   final String hintText;
   final focusNode = FocusNode();
@@ -210,8 +213,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               ),
                                             ),
                                           ),
-                                          IconButton(
-                                            onPressed: () {
+                                          GestureDetector(
+                                            onTap: () {
                                               if (textController.text
                                                   .toString()
                                                   .isNotEmpty) {
@@ -220,11 +223,79 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                 textController.clear();
                                               }
                                             },
-                                            icon: const Icon(
-                                              Icons.send,
-                                              color: AppColors.darkGreyColor,
+                                            onLongPress: () {
+                                              showDialog<String>(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        AlertDialog(
+                                                  title: const Text(
+                                                      'Schedule message'),
+                                                  actions: <Widget>[
+                                                    Center(
+                                                      child: Column(children: [
+                                                        ScheduleOption(
+                                                          channelID: channelID,
+                                                          messageText:
+                                                              textController
+                                                                  .text,
+                                                          messageController:
+                                                              textController,
+                                                          time: 0.5,
+                                                          title:
+                                                              '30 minutes from now',
+                                                          context: context,
+                                                        ),
+                                                        ScheduleOption(
+                                                          channelID: channelID,
+                                                          messageText:
+                                                              textController
+                                                                  .text,
+                                                          messageController:
+                                                              textController,
+                                                          time: 1,
+                                                          title:
+                                                              '1 hour from now',
+                                                          context: context,
+                                                        ),
+                                                        ScheduleOption(
+                                                            channelID:
+                                                                channelID,
+                                                            messageText:
+                                                                textController
+                                                                    .text,
+                                                            messageController:
+                                                                textController,
+                                                            time: 2,
+                                                            title:
+                                                                '2 hours from now',
+                                                            context: context),
+                                                        ScheduleOption(
+                                                            channelID:
+                                                                channelID,
+                                                            messageText:
+                                                                textController
+                                                                    .text,
+                                                            messageController:
+                                                                textController,
+                                                            time: 6,
+                                                            title:
+                                                                '6 hours from now',
+                                                            context: context),
+                                                      ]),
+                                                    )
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(8.0),
+                                              child: Icon(
+                                                Icons.send,
+                                                color: Color(0xFFBEBEBE),
+                                              ),
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -343,6 +414,44 @@ class MyTextField extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+//
+class ScheduleOption extends StatelessWidget {
+  const ScheduleOption(
+      {Key? key,
+      required this.messageText,
+      required this.messageController,
+      required this.time,
+      required this.title,
+      required this.context,
+      required this.channelID})
+      : super(key: key);
+
+  final String messageText;
+  final TextEditingController messageController;
+  final double time;
+  final BuildContext context;
+
+  final String title, channelID;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        ChannelPageViewModel model = ChannelPageViewModel();
+        Navigator.pop(context, time.toString());
+        model.scheduleMessage(time, messageText, channelID);
+        FocusScope.of(context).requestFocus(FocusNode());
+
+        messageController.clear();
+      },
+      child: Text(
+        title,
+        style: const TextStyle(color: Colors.black),
       ),
     );
   }
