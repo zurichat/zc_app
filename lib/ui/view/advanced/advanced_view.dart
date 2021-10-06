@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/menu_item_tile.dart';
@@ -12,11 +14,12 @@ class AdvancedView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<AdvancedViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: const Text(
+        appBar: ZuriAppBar(
+          orgTitle: Text(
             Advanced,
+            style: AppTextStyles.heading7,
           ),
+          whiteBackground: true,
         ),
         body: SingleChildScrollView(
           child: Column(

@@ -27,9 +27,7 @@ class SelectEmail extends StatelessWidget {
           backgroundColor: Colors.white,
           leading: IconButton(
             iconSize: 12,
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            onPressed: () => model.pop(),
             icon: const Icon(Icons.arrow_back_ios_outlined),
             color: Colors.black,
           ),

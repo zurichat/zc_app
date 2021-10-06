@@ -82,4 +82,8 @@ class SelectEmailViewModel extends BaseViewModel {
         return JoinWorkspace;
     }
   }
+
+  void pop() {
+    _navigation.popRepeated(1);
+  }
 }
