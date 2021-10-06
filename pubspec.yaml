@@ -18,6 +18,8 @@ dependencies:
   emoji_picker_flutter: ^1.0.7
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_appavailability: ^0.0.21
   flutter_chips_input: ^1.10.0
   flutter_hooks: ^0.17.0
@@ -48,6 +50,7 @@ dependencies:
   stacked_themes: ^0.3.6
   url_launcher: ^6.0.9
   velocity_x: ^3.3.0
+  connectivity_plus_web:
 
 dev_dependencies:
   build_runner: ^2.1.2
@@ -77,6 +80,13 @@ flutter:
     - assets/plugin_icons/
     - assets/icons/emojiHands/
     - assets/icons/svg_icons/
+    - lib/utilities/internalization/language/en.json
+    - lib/utilities/internalization/language/es.json
+    - lib/utilities/internalization/language/fr.json
+    - lib/utilities/internalization/language/it.json
+    - lib/utilities/internalization/language/nl.json
+    - lib/utilities/internalization/language/pt.json
+    - lib/utilities/internalization/language/zh.json
 
   fonts:
     - family: ZapIcon
