@@ -62,8 +62,7 @@ const String PasswordLengthWarning = 'Password Must be at least 6 characters';
 const String Continue = 'Continue';
 const String InvalidEmail = 'invalid email address';
 const String BackTo = 'Back to ';
-// ignore: todo
-//TODO - appStr
+
 const String Header = 'Please enter the email used in registering this account';
 const String DidntRecieveOTP = 'Didn\'t receive any code? ';
 const String Resend = 'Resend';
@@ -88,8 +87,8 @@ const String DM = 'Direct Message';
 const String Done = 'Done';
 const String UserSearchHint = 'To: Type the name of a person or channel';
 
-//Integrate
-const String Integrate = 'Integrate';
+//Plugins
+const String Plugins = 'Plugins';
 const String Calendar = 'Holiday-Calender';
 const String Todo = 'To-do';
 const String Chess = 'Chess Room';

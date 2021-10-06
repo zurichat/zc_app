@@ -21,14 +21,14 @@ void main() {
     group('api calls -', () {
       test('When called, check if users list is not empty', () async {
         final model = DmJumpToViewModel();
-        var list = await model.fetchUsers();
-        expect(list!.isNotEmpty, true);
+        await model.fetchUsers();
+        expect(model.userSearch.isNotEmpty, true);
       });
 
       test('When called, check if channels list is not empty', () async {
         final model = DmJumpToViewModel();
-        var list = await model.fetchChannels();
-        expect(list!.isNotEmpty, true);
+        await model.fetchChannels();
+        expect(model.allChannelsSearch.isNotEmpty, true);
       });
     });
   });

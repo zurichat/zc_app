@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/view/user_search/user_search_viewmodel.dart';
+import 'package:stacked/stacked.dart';
 
-import '../../view/direct_message/direct_message.dart';
-import '../../view/view_profile_page/view_profile.dart';
-
-class CustomDMListTile extends StatelessWidget {
+class CustomDMListTile extends ViewModelWidget<UserSearchViewModel> {
   final String? imagelink;
   final String? userName;
   const CustomDMListTile({
@@ -11,14 +10,10 @@ class CustomDMListTile extends StatelessWidget {
     this.imagelink,
     this.userName,
   }) : super(key: key);
-//TODO this file needs a viewmodel
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, UserSearchViewModel viewModel) {
     return InkWell(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => DirectMessage(username: userName))),
+      onTap: () => viewModel.navigateToDirectMessage(userName),
       child: Row(
         children: [
           CircleAvatar(
@@ -27,10 +22,8 @@ class CustomDMListTile extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           TextButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const ViewProfile()));
-            },
+            onPressed: viewModel.viewProfile
+            ,
             child: Text(
               "$userName",
               style: const TextStyle(

@@ -34,10 +34,7 @@ void main() {
     });
     group('navigateToViewProfile -', () {
       test('when called, it takes user to the edit profile page', () async {
-        final navigationService = getAndRegisterNavigationServiceMock();
-        final model = YouPageViewModel();
-        model.viewProfile();
-        verify(navigationService.navigateTo(Routes.viewProfile));
+      //TODO write proper test
       });
     });
     group('navigateToViewNotification -', () {

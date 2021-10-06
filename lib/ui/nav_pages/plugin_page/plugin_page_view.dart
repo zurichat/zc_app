@@ -5,24 +5,24 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
 
-import 'integrate_viewmodel.dart';
+import 'plugin_viewmodel.dart';
 
-class IntegratePage extends StatelessWidget {
-  const IntegratePage({Key? key}) : super(key: key);
+class PluginPage extends StatelessWidget {
+  const PluginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<IntegrateViewModel>.reactive(
-      viewModelBuilder: () => IntegrateViewModel(),
+    return ViewModelBuilder<PluginViewModel>.reactive(
+      viewModelBuilder: () => PluginViewModel(),
       builder: (context, model, child) {
-        return const IntegratePage2();
+        return const PluginPage2();
       },
     ); //
   }
 }
 
-class IntegratePage2 extends StatelessWidget {
-  const IntegratePage2({Key? key}) : super(key: key);
+class PluginPage2 extends StatelessWidget {
+  const PluginPage2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class IntegratePage2 extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: AppColors.zuriPrimaryColor,
         title: Text(
-          Integrate,
+          Plugins,
           style: GoogleFonts.lato(
               fontWeight: FontWeight.w700,
               fontSize: 20,
@@ -46,7 +46,6 @@ class IntegratePage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            // ignore: deprecated_member_use
             child: TextButton.icon(
               onPressed: () => {},
               icon: const Icon(Icons.calendar_today),

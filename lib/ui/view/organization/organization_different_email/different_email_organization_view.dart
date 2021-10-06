@@ -53,7 +53,6 @@ class UseDifferentEmailView extends StatelessWidget {
                       TextButton(
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
-                            // ignore: todo
                             //TODO Change brand colors
                             const Color(0xffBEBEBE),
                           ),
