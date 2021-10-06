@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -29,24 +30,24 @@ class StartDmView extends StatelessWidget with $StartDmView {
       builder: (ctx, model, child) => Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: Text(DM,
-              style: GoogleFonts.lato(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 20,
-                  color: Colors.black)),
-          backgroundColor: Colors.white,
-          elevation: 1,
-          leading: IconButton(
-            icon:
-                const Icon(Icons.arrow_back_ios, size: 20, color: Colors.black),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
+        appBar: ZuriAppBar(
+          orgTitle: Text(DM, style: AppTextStyles.heading7),
+          leading: Icons.arrow_back_ios,
+          whiteBackground: true,
+          leadingPress: () => model.navigateBack(),
           actions: [
             TextButton(
+              style: TextButton.styleFrom(
+                  padding: const EdgeInsets.only(right: 16.0)),
               onPressed: () {},
-              child: const Text(Done),
-            )
+              child: Text(
+                Done,
+                style: AppTextStyles.heading8.copyWith(
+                  letterSpacing: 0.5,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
           ],
         ),
         body: Stack(

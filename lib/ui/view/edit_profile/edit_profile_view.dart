@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -17,21 +18,13 @@ class EditProfileView extends StatelessWidget {
     return ViewModelBuilder<EditProfileViewModel>.reactive(
       viewModelBuilder: () => EditProfileViewModel(),
       builder: (context, viewModel, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          leading: IconButton(
-              onPressed: viewModel.close,
-              icon: const Icon(Icons.close_rounded)),
-          title: const Text(EditProfile),
-          actions: [
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                Save,
-                style: TextStyle(color: AppColors.zuriTextBodyColor),
-              ),
-            )
-          ],
+        appBar: ZuriAppBar(
+          leading: Icons.close_rounded,
+          leadingPress: () => viewModel.close(),
+          orgTitle: Text(
+            "Edit Profile",
+            style: AppTextStyles.heading7,
+          ),
         ),
         body: Visibility(
           visible: !viewModel.isBusy,
