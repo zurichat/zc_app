@@ -109,10 +109,7 @@ class DmUserViewModel extends FormViewModel {
             time: DateTime.now(),
           ),
         );
-        // ignore: todo
-        //TODO - fix autoclear
 
-        //clearText();
         notifyListeners();
       }
     });
