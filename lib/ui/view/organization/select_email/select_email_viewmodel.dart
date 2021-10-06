@@ -33,13 +33,23 @@ class SelectEmailViewModel extends BaseViewModel {
   }
 
   void navigateToOrganizationUrl() {
-    _navigation.navigateTo(Routes.organizationUrlView);
+    _navigation.navigateTo(
+      Routes.organizationUrlView,
+      arguments: OrganizationUrlViewArguments(email: userEmail!),
+    );
   }
 
   void navigateToCreateOrganization() {
     _navigation.navigateTo(
       Routes.createOrganization,
       arguments: CreateOrganizationArguments(email: userEmail!),
+    );
+  }
+
+  void navigateToDifferentEmail(OrganizationSwitchMethod method) {
+    _navigation.navigateTo(
+      Routes.useDifferentEmailView,
+      arguments: UseDifferentEmailViewArguments(method: method),
     );
   }
 

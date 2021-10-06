@@ -23,7 +23,6 @@ class OrganizationUrlViewModel extends BaseViewModel {
   final api = OrganizationApiService();
 
   bool isEmpty = true;
-  final _email = 'johndoe@gmail.com';
   String? url;
   var buttonColor = AppColors.greyishColor;
 
@@ -69,5 +68,4 @@ class OrganizationUrlViewModel extends BaseViewModel {
 
   get buttonColors => buttonColor;
   bool get title => isEmpty;
-  String get email => _email;
 }

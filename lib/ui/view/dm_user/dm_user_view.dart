@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
-import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
 import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
 import 'package:stacked/stacked.dart';
 
@@ -67,7 +66,7 @@ class DmUserView extends StatelessWidget {
             body: ExpandableTextFieldScreen(
               hintText: 'Message ${model.receiver.username}',
               sendMessage: (String message) {
-                model.sendMessage(message);
+                model.sendMessage();
                 FocusScope.of(context).requestFocus(FocusNode());
                 _scrollController
                     .jumpTo(_scrollController.position.maxScrollExtent);
