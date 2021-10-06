@@ -28,8 +28,7 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   void showThreadOptions() async {
-    // ignore: unused_local_variable
-    final sheetResponse = await _bottomSheetService.showCustomSheet(
+    await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.threadOptions,
       isScrollControlled: true,
     );

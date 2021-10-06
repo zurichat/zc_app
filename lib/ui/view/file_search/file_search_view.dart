@@ -49,7 +49,6 @@ class _FileSearchViewState extends State<FileSearchView> {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                // ignore: sized_box_for_whitespace
                 Container(
                   height: 49,
                   padding: const EdgeInsets.symmetric(horizontal: 15),

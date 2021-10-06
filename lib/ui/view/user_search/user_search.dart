@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../utilities/constants.dart';
-import '../../home/widgets/custom_dm_list_tile.dart';
 import '../../shared/colors.dart';
 import 'user_search_viewmodel.dart';
+import 'widget/custom_dm_list_tile.dart';
 
 class UserSearch extends StatelessWidget {
   const UserSearch({Key? key}) : super(key: key);

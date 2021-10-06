@@ -16,16 +16,15 @@ void main() {
     group('api calls -', () {
       test('When called, check if users list is not empty', () async {
         final model = DmJumpToViewModel();
-        // ignore: unused_local_variable
-        var list = await model.fetchUsers();
+
+        await model.fetchUsers();
         //TODO write test properly
       });
 
       test('When called, check if channels list is not empty', () async {
         final model = DmJumpToViewModel();
 
-        // ignore: unused_local_variable
-        var list = await model.fetchChannels();
+        await model.fetchChannels();
         //TODO write test properly
       });
     });

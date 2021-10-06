@@ -1,5 +1,5 @@
-// ignore: file_names
 import 'dart:io';
+
 
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_appavailability/flutter_appavailability.dart';
@@ -22,7 +22,6 @@ class EmailConfirmationViewModel extends BaseViewModel {
           .then((_) {
         log.i('App Email launched!');
       }).catchError((err) {
-        // ignore: deprecated_member_use
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
@@ -31,7 +30,6 @@ class EmailConfirmationViewModel extends BaseViewModel {
         log.i(err);
       });
     } catch (e) {
-      // ignore: deprecated_member_use
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
