@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -16,32 +17,12 @@ class ChannelList extends StatelessWidget {
       viewModelBuilder: () => ChannelListViewModel(),
       onModelReady: (model) => model.initViewModel(),
       builder: (context, model, child) => Scaffold(
-        //TODO Change to brand Colors
-        backgroundColor: const Color(0xfff4f4f4),
-        appBar: AppBar(
-          leadingWidth: 16,
-          centerTitle: false,
-          backgroundColor: AppColors.whiteColor,
-          leading: const Padding(
-            padding: EdgeInsets.only(left: 10.0),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 15,
-            ),
-          ),
-          titleSpacing: 0,
-          title: ListTile(
-            minLeadingWidth: 10,
-            title: const Text(
-              ChannelBrowser,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            ),
-            subtitle: Text(
-              model.isBusy ? '0' : model.channelsList.length.toString(),
-              style: const TextStyle(fontSize: 13),
-            ),
-          ),
+        backgroundColor: AppColors.whiteColor,
+        appBar: ZuriAppBar(
+          leading: Icons.arrow_back_ios,
+          leadingPress: () {},
+          title: ChannelBrowser,
+          subtitle: model.isBusy ? '0' : model.channelsList.length.toString(),
         ),
         body: SafeArea(
           child: model.isBusy
