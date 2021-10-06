@@ -37,18 +37,6 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: body(vmodel),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Align(
-            //     alignment: Alignment.bottomRight,
-            //     child: FloatingActionButton(
-            //         onPressed: vmodel.navigateToStartDMScreen,
-            //         child: const Icon(
-            //           Icons.open_in_new_outlined,
-            //           color: AppColors.whiteColor,
-            //         )),
-            //   ),
-            // )
           ],
         ),
       ),
@@ -82,6 +70,18 @@ class HomePage extends StatelessWidget {
             data: vmodel.directMessages,
           ),
           const Divider(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                  onPressed: vmodel.navigateToStartDMScreen,
+                  child: const Icon(
+                    Icons.open_in_new_outlined,
+                    color: AppColors.whiteColor,
+                  )),
+            ),
+          )
         ],
       ),
     );
