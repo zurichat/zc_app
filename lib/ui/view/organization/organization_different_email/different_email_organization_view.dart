@@ -27,15 +27,23 @@ class UseDifferentEmailView extends HookWidget {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const Spacer(flex: 3),
                   TextField(
                     controller: emailController,
+                    cursorColor: AppColors.zuriPrimaryColor,
+                    keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       labelText: YourEmail,
                       hintText: SampleEmail,
                       hintStyle: TextStyle(
+                        color: Color(0xffBEBEBE),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      labelStyle: TextStyle(
                         color: Color(0xffBEBEBE),
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
@@ -46,21 +54,20 @@ class UseDifferentEmailView extends HookWidget {
                       errorBorder: InputBorder.none,
                       disabledBorder: InputBorder.none,
                     ),
-                    onChanged: (value) {
-                      model.isEmpty = value.isEmpty;
-                      model.email = value.trim();
-                    },
+                    onChanged: model.updateScreen,
                   ),
                   const SizedBox(height: 12),
                   const Text(
                     WillSendEmail,
                     style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 25),
+                  const Spacer(flex: 3),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: NextButton(method: method),
                   ),
+                  const Spacer(),
                 ],
               ),
             ),
@@ -81,13 +88,13 @@ class NextButton extends ViewModelWidget<UseDifferentEmailViewModel> {
     return TextButton(
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(
-        viewModel.isBusy ? AppColors.greyishColor : AppColors.appBarGreen,
+        viewModel.isEmpty ? AppColors.greyishColor : AppColors.appBarGreen,
       )),
       onPressed: () => viewModel.onNextTap(method),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
         child: SizedBox(
-          width: 300,
+          width: double.infinity,
           child: Center(
             child: Text(
               Next,

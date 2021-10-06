@@ -36,8 +36,6 @@ class SelectEmail extends StatelessWidget {
         ),
         body: Container(
           margin: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
-          height: 137.0,
-          width: 395.0,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(2.0),
@@ -49,67 +47,66 @@ class SelectEmail extends StatelessWidget {
                 ),
               ]),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              GestureDetector(
+              InkWell(
                 onTap: () {
                   model.onEmailTap(method);
                 },
-                child: Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 17.5, top: 24),
-                      child: Icon(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+                  child: Row(
+                    children: [
+                      const Icon(
                         Icons.email_outlined,
                         size: 20,
                         color: AppColors.deepBlackColor,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25.5, top: 24),
-                      child: Text(
-                        model.userEmail ?? '',
-                        style: const TextStyle(
-                            color: AppColors.deepBlackColor, fontSize: 14),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25.5),
+                        child: Text(
+                          model.userEmail ?? '',
+                          style: const TextStyle(
+                              color: AppColors.deepBlackColor, fontSize: 14),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.only(left: 57.0, top: 24, bottom: 24),
+                padding: EdgeInsets.only(left: 57.0),
                 child: Divider(
                   thickness: 1,
                   height: 9,
                   color: AppColors.greyishColor,
                 ),
               ),
-              GestureDetector(
+              InkWell(
                 onTap: () => model.navigateToDifferentEmail(method),
-                child: Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(
-                        left: 17.5,
-                      ),
-                      child: Icon(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+                  child: Row(
+                    children: [
+                      const Icon(
                         Icons.email_outlined,
                         size: 20,
                         color: AppColors.deepBlackColor,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 25.5,
-                      ),
-                      child: Text(
-                        model.anotherEmail,
-                        style: const TextStyle(
-                          color: AppColors.deepBlackColor,
-                          fontSize: 14,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25.5),
+                        child: Text(
+                          model.anotherEmail,
+                          style: const TextStyle(
+                            color: AppColors.deepBlackColor,
+                            fontSize: 14,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
