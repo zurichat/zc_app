@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../utilities/constants.dart';
@@ -15,11 +16,7 @@ class UserSearch extends StatelessWidget {
     return ViewModelBuilder<UserSearchViewModel>.reactive(
       builder: (context, model, child) {
         return Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            elevation: 0,
-            backgroundColor: AppColors.zuriPrimaryColor,
-          ),
+          appBar: ZuriAppBar(),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
             child: const Icon(
@@ -36,7 +33,7 @@ class UserSearch extends StatelessWidget {
                   Row(
                     children: [
                       const Icon(Icons.arrow_back_ios),
-                    Column(
+                      Column(
                         children: const [
                           Text('People'),
                           Text('2552 members'),

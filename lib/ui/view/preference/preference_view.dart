@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/menu_item_tile.dart';
@@ -12,14 +14,11 @@ class PreferenceView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<PreferenceViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          title: const Text('Preferences'),
-          leading: IconButton(
-            icon: const Icon(Icons.close_outlined),
-            onPressed: model.exitPage,
-          ),
-          elevation: 0,
-        ),
+        appBar: ZuriAppBar(
+            orgTitle: Text('Preferences', style: AppTextStyles.heading7),
+            leading: Icons.close_outlined,
+            leadingPress: () => model.exitPage(),
+            whiteBackground: true),
         body: SingleChildScrollView(
           child: Column(
             children: [
