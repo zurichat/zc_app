@@ -120,7 +120,7 @@ class NavBarView extends StatelessWidget {
       case 3:
         return const YouPage();
       default:
-        return Container();
+        return const HomePage();
     }
   }
 }
