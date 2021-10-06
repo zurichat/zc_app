@@ -9,17 +9,16 @@ import '../../../../ui/shared/shared.dart';
 
 class DMApiService {
   final log = getLogger('DMApiService');
-  //Todo: implement this in another service
-
+  //TODO Use correct endpoints
   final storageService = locator<SharedPreferenceLocalStorage>();
   static final _userService = locator<UserService>();
   final userId = _userService.userId;
-    final _userApi = ZuriApi(coreBaseUrl);
+  final _userApi = ZuriApi(coreBaseUrl);
   final orgId = _userService.currentOrgId;
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
 
-   Future<List> getActiveDms() async {
+  Future<List> getActiveDms() async {
     // final userId = _userService.userId;
     // final orgId = _userService.currentOrgId;
 
@@ -28,7 +27,7 @@ class DMApiService {
     try {
       final res = await _userApi.get(
         /*'v1/sidebar?org=$orgId&user=$userId'*/
-        'https://dm.zuri.chat/api/v1/sidebar?org=614679ee1a5607b13c00bcb7&user=6146ce37845b436ea04d102d',
+        'v1/sidebar?org=614679ee1a5607b13c00bcb7&user=6146ce37845b436ea04d102d',
         token: token,
       );
       joinedRooms = res?.data?['joined_rooms'];
@@ -41,7 +40,7 @@ class DMApiService {
     return joinedRooms;
   }
 
-  //Todo: this method does not belong here
+  //TODO: this method does not belong here
   Future<String?> getUser(ids) async {
     String id = ids[0];
     try {

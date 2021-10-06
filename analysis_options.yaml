@@ -11,4 +11,4 @@ analyzer:
     avoid_function_literals_in_foreach_calls: ignore
     todo: ignore
     constant_identifier_names: ignore
-    #avoid_renaming_method_parameters: ignore
+    must_be_immutable: ignore

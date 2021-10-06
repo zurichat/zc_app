@@ -13,7 +13,7 @@ class MediaService {
 
   Future<String?> getImage({required bool fromGallery}) async {
     /// Pick an image/capture a photo
-    // ignore: unused_local_variable
+
     final XFile? image = await _picker.pickImage(
         source: fromGallery ? ImageSource.gallery : ImageSource.camera);
 

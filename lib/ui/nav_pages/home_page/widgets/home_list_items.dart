@@ -110,6 +110,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 ///
 //Expanded tile don't allow sizing so we have to decrease
 //the top pad of the first child to make it look visually ok
+
 // ignore: must_be_immutable
 class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   final HomeItemModel data;

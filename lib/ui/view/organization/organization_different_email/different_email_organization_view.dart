@@ -51,13 +51,27 @@ class UseDifferentEmailView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Spacer(),
-                  LongButton(
-                    onPressed: () {},
-                    label: Next,
-                    labelColor: model.labelColor(),
-                    outlineColor: model.btnColor(),
-                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            //TODO Change brand colors
+                            const Color(0xffBEBEBE),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            Next,
+                            style: AppTextStyles.buttonText,
+                          ),
+                        ),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../nav_pages/home_page/widgets/custom_channel_list_tile.dart';
 import '../../nav_pages/home_page/widgets/custom_plugin_list_tile.dart';
-import '../../shared/colors.dart';
-import '../../shared/shared.dart';
 import 'user_search_viewmodel.dart';
 
 class UserSearchView extends StatelessWidget {
@@ -15,30 +14,14 @@ class UserSearchView extends StatelessWidget {
     return ViewModelBuilder<UserSearchViewModel>.reactive(
       viewModelBuilder: () => UserSearchViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.zuriPrimaryColor,
-          automaticallyImplyLeading: false,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    border:
-                        Border.all(width: 0.5, color: AppColors.greyishColor),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const TextField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Search messages, files and users',
-                        prefixIcon: Icon(Icons.search),
-                        suffixIcon: Icon(Icons.mic_none_outlined)),
-                  ),
-                ),
-              ),
-            ],
-          ),
+        appBar: ZuriAppBar(
+          isSearchBar: true,
+          hintText: 'Search for people here',
+          searchBarIcon: Icons.arrow_back_ios,
+          leadingWidth: true,
+
+          /// THERE ARE OTHER SEARCH BAR OPTIONS IN THIS WIDGET
+          /// KINDLY CHECK THROUGH AND USE.
         ),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -144,7 +127,7 @@ class UserSearchView extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:const [
+                    children: const [
                       CustomPluginListTile(
                         icon: Icons.add_box_outlined,
                         pluginName: 'to:',
