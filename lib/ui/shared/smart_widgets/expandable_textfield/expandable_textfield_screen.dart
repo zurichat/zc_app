@@ -292,7 +292,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               padding: EdgeInsets.all(8.0),
                                               child: Icon(
                                                 Icons.send,
-                                                color: Color(0xFFBEBEBE),
+                                                color: AppColors.greyColor,
                                               ),
                                             ),
                                           ),
@@ -443,7 +443,7 @@ class ScheduleOption extends StatelessWidget {
     return TextButton(
       onPressed: () {
         ChannelPageViewModel model = ChannelPageViewModel();
-        Navigator.pop(context, time.toString());
+        model.goBack();
         model.scheduleMessage(time, messageText, channelID);
         FocusScope.of(context).requestFocus(FocusNode());
 
@@ -451,7 +451,7 @@ class ScheduleOption extends StatelessWidget {
       },
       child: Text(
         title,
-        style: const TextStyle(color: Colors.black),
+        style: const TextStyle(color: AppColors.blackColor),
       ),
     );
   }

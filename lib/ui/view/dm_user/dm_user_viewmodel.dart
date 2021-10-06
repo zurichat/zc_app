@@ -25,6 +25,7 @@ class DmUserViewModel extends FormViewModel {
   User sender = User('Jaytek', 'Jaytek');
   bool isSendButtonEnabled = false;
 
+  final _navigationService = locator<NavigationService>();
   List<Message> chatMessages = List.empty(growable: true);
   showButtonSheet(Message message) async {
     await bottomSheet.showCustomSheet(
@@ -115,5 +116,9 @@ class DmUserViewModel extends FormViewModel {
         notifyListeners();
       }
     });
+  }
+
+  void exit() {
+    _navigationService.back();
   }
 }

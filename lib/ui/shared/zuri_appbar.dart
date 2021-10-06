@@ -23,6 +23,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   bool isSearchBar;
   final String? subtitle;
   final List<Widget>? actions;
+  final double elevation;
 
   ZuriAppBar({
     this.leading,
@@ -42,6 +43,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onChanged,
     this.orgTitle,
     this.onEditingComplete,
+    this.elevation = 2,
   }) : super(key: key);
 
   @override
@@ -51,7 +53,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      elevation: 2,
+      elevation: elevation,
       leadingWidth: leadingWidth ? 10 : null,
       leading: InkWell(child: Icon(leading), onTap: leadingPress),
       title: isSearchBar

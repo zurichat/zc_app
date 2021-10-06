@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
 import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
 import 'package:stacked/stacked.dart';
@@ -25,46 +27,37 @@ class DmUserView extends StatelessWidget {
         viewModelBuilder: () => DmUserViewModel(),
         builder: (context, model, child) {
           return Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios_sharp),
-                iconSize: 18.0,
-                color: AppColors.deepBlackColor,
-                onPressed: () {
-                  model.popScreen();
-                },
-              ),
-              titleSpacing: 0.0,
-              title: Column(
+            backgroundColor: AppColors.whiteColor,
+            appBar: ZuriAppBar(
+              elevation: 0,
+              whiteBackground: true,
+              leading: Icons.arrow_back_ios_sharp,
+              leadingPress: () => model.popScreen(),
+              orgTitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Row(
                     children: [
                       Text(model.receiver.username,
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400)),
+                          style: AppTextStyles.heading7),
                       const SizedBox(width: 12.0),
-                      const OnlineIndicator(0xFF007952),
                     ],
                   ),
-                  const Text(
-                    'View Details',
-                    style: TextStyle(color: Color(0xFF999999), fontSize: 12.0),
-                  )
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Text('View Details', style: AppTextStyles.subtitle)
                 ],
               ),
               actions: [
                 IconButton(
                   icon: const Icon(Icons.info_outline),
-                  color: const Color(0xFF4D4D4D),
+                  color: AppColors.darkGreyColor,
                   onPressed: () {},
                 )
               ],
-              elevation: 0.0,
+              onlineIndicator: true,
             ),
             body: Stack(
               children: [
@@ -114,7 +107,7 @@ class DmUserView extends StatelessWidget {
                                       style: const TextStyle(
                                           fontSize: 14.0,
                                           fontWeight: FontWeight.w400,
-                                          color: Color(0xFF3A3A3A))),
+                                          color: AppColors.darkGreyColor)),
                                   const SizedBox(height: 15),
                                   StartMessage(model.receiver.username)
                                 ],
@@ -148,11 +141,11 @@ class DmUserView extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: Stack(children: [
                     Material(
-                      color: Colors.white,
+                      color: AppColors.whiteColor,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Divider(height: 0, color: Color(0xFF999999)),
+                          const Divider(height: 0, color: AppColors.greyColor),
                           Row(
                             children: [
                               Expanded(
@@ -182,7 +175,7 @@ class DmUserView extends StatelessWidget {
                                             hintText:
                                                 'Message ${model.receiver.username}',
                                             hintStyle: const TextStyle(
-                                                color: Color(0xFFBEBEBE),
+                                                color: AppColors.greyColor,
                                                 fontSize: 14.0,
                                                 fontWeight: FontWeight.w400)),
                                       ),
@@ -198,13 +191,13 @@ class DmUserView extends StatelessWidget {
                                         onPressed: () {},
                                         icon: const Icon(
                                           AppIcons.shapezap,
-                                          color: Color(0xFF424141),
+                                          color: AppColors.greyColor,
                                         )),
                                     IconButton(
                                       onPressed: () {},
                                       icon: SvgPicture.asset(
                                         "assets/icons/fluent_camera-16-regular.svg",
-                                        color: const Color(0xFF424141),
+                                        color: AppColors.greyColor,
                                       ),
                                       //onPressed: () {},
                                     ),
@@ -212,7 +205,7 @@ class DmUserView extends StatelessWidget {
                                       onPressed: () {},
                                       icon: SvgPicture.asset(
                                         "assets/icons/Vector.svg",
-                                        color: const Color(0xFF424141),
+                                        color: AppColors.greyColor,
                                       ),
                                       //onPressed: () {},
                                     ),
@@ -233,31 +226,31 @@ class DmUserView extends StatelessWidget {
                                           onPressed: () {},
                                           icon: const Icon(
                                             AppIcons.shapezap,
-                                            color: Color(0xFF424141),
+                                            color: AppColors.greyColor,
                                           )),
                                       IconButton(
                                           onPressed: () {},
                                           icon: const Icon(
                                             Icons.alternate_email_outlined,
-                                            color: Color(0xFF424141),
+                                            color: AppColors.greyColor,
                                           )),
                                       IconButton(
                                           onPressed: () {},
                                           icon: const Icon(
                                             Icons.tag_faces_sharp,
-                                            color: Color(0xFF424141),
+                                            color: AppColors.greyColor,
                                           )),
                                       IconButton(
                                           onPressed: () {},
                                           icon: const Icon(
                                             Icons.camera_alt_outlined,
-                                            color: Color(0xFF424141),
+                                            color: AppColors.greyColor,
                                           )),
                                       IconButton(
                                           onPressed: () {},
                                           icon: const Icon(
                                             Icons.attach_file_outlined,
-                                            color: Color(0xFF424141),
+                                            color: AppColors.greyColor,
                                           )),
                                     ],
                                   ),
@@ -270,8 +263,6 @@ class DmUserView extends StatelessWidget {
                                             _scrollController
                                                 .position.maxScrollExtent);
                                         messageController.clear();
-                                        // duration: Duration(milliseconds: 500),
-                                        // curve: Curves.fastOutSlowIn);
                                       },
                                       onLongPress: () {
                                         showDialog<String>(
@@ -336,7 +327,7 @@ class DmUserView extends StatelessWidget {
                                         padding: EdgeInsets.all(8.0),
                                         child: Icon(
                                           Icons.send,
-                                          color: Color(0xFFBEBEBE),
+                                          color: AppColors.greyColor,
                                         ),
                                       )),
                                 ],
@@ -346,84 +337,11 @@ class DmUserView extends StatelessWidget {
                     ),
                   ]),
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.fromLTRB(0, 5, 7, 57),
-                //   child: Align(
-                //     alignment: Alignment.bottomRight,
-                //     child: Container(
-                //       height: 400,
-                //       width: 200,
-                //       color: Colors.blue,
-                //     ),
-                //   ),
-                // )
-                // Positioned(
-                //     right: 5,
-                //     child: Container(
-                //       height: 400,
-                //       width: 200,
-                //       color: Colors.blue,
-                //     ))
               ],
             ),
           );
         });
   }
-
-  // Widget _onlineIndicator(int color) {
-  //   return Icon(
-  //     Icons.circle,
-  //     color: Color(color),
-  //     size: 10,
-  //   );
-  // }
-
-  // Widget _groupSeparator(String value) {
-  //   return Container(
-  //     margin: EdgeInsets.only(top: 16.0),
-  //     child: Row(
-  //       children: [
-  //         Expanded(
-  //             child: Divider(
-  //               color: Color(0xFF7B8794),
-  //             )),
-  //         Container(
-  //           child: Text(value,
-  //               style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
-  //           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-  //           decoration: BoxDecoration(
-  //               border: Border.all(color: Color(0xFF7B8794), width: 0.5),
-  //               borderRadius: BorderRadius.all(Radius.circular(10))),
-  //         ),
-  //         Expanded(
-  //             child: Divider(
-  //               color: Color(0xFF7B8794),
-  //             )),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Widget _startMessage(String username) {
-  //   return RichText(
-  //     text: TextSpan(
-  //         text: 'This is the very beginning of your '
-  //             'direct message \history with ',
-  //         style: TextStyle(
-  //             color: Color(0xFF808080),
-  //             fontSize: 14.0,
-  //             fontWeight: FontWeight.w400),
-  //         children: [
-  //           TextSpan(
-  //               text: '@$username. ',
-  //               style: TextStyle(color: Color(0xFF8CDEC3))),
-  //           TextSpan(
-  //               text: 'Only the two of you are in \nthis conversation, '
-  //                   'and no one else can join it.')
-  //         ]),
-  //   );
-  // }
-
 }
 
 class ScheduleOption extends StatelessWidget {
@@ -451,7 +369,7 @@ class ScheduleOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.pop(context, time.toString());
+        model.exit();
         model.scheduleMessage(time, messageText);
         FocusScope.of(context).requestFocus(FocusNode());
         _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
@@ -459,7 +377,7 @@ class ScheduleOption extends StatelessWidget {
       },
       child: Text(
         title,
-        style: const TextStyle(color: Colors.black),
+        style: const TextStyle(color: AppColors.blackColor),
       ),
     );
   }
