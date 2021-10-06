@@ -266,9 +266,9 @@ class HomePageViewModel extends StreamViewModel {
   // }
 
   bool hasDrafts (){
-    var dmStoredKeys = storageService.getStringList(StorageKeys.currentUserDmDrafts);
-    var channelStoredKeys = storageService.getStringList(StorageKeys.currentUserChannelDrafts);
-    var threadStoredKeys = storageService.getStringList(StorageKeys.currentUserThreadDrafts);
+    var dmStoredKeys = storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    var channelStoredKeys = storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    var threadStoredKeys = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
     int counter = 0;
 
     if(dmStoredKeys != null ){

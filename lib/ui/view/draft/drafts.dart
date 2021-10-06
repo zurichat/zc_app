@@ -21,19 +21,24 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        if(route['receiverName'].length > 0){
-          model.navigateToDmUserView();
-        }else if(route['channelName'].length > 0){
-          model.navigateToChannelPage(
-              '${route['channelName']}',
-              '${route['channelId']}',
-              route['membersCount'],
-              route['public']
-          );
-        }else{
-          model.navigateToThread(route['userPost'].id);
-        }
+      onTap:  () async{
+
+          if(route['receiverName'] != null ){
+            await model.navigateToDmUserView();
+          } else if(route['channelId'] != null){
+            await model.navigateToChannelPage(
+                '${route['channelName']}',
+                '${route['channelId']}',
+                route['membersCount'],
+                route['public']
+            );
+          } else{
+            await model.navigateToThread(route['userPost'].id);
+          }
+
+          model.widgetBuilderList.clear();
+          model.drafts;
+          model.rebuild();
       },
       child: ListTile(
         title: Text(

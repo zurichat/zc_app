@@ -22,11 +22,9 @@ class DraftViewModel extends BaseViewModel {
   List <Objects> widgetBuilderList = [];
 
   void get drafts{
-    var dmStoredKeys = _storageService.getStringList(StorageKeys.currentUserDmDrafts);
-
-    var channelStoredKeys = _storageService.getStringList(StorageKeys.currentUserChannelDrafts);
-
-    var threadStoredKeys = _storageService.getStringList(StorageKeys.currentUserThreadDrafts);
+    var dmStoredKeys = _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    var channelStoredKeys = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    var threadStoredKeys = _storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
 
     if(dmStoredKeys != null ){
       dmStoredKeys.forEach((element) {
@@ -86,16 +84,19 @@ class DraftViewModel extends BaseViewModel {
     _navigationService.back();
   }
 
+ void rebuild(){
+   notifyListeners();
+ }
 
   //navigation for dmUserView
-  navigateToDmUserView() {
-     _navigationService.navigateTo(Routes.dmUserView);
+  navigateToDmUserView() async{
+     await _navigationService.navigateTo(Routes.dmUserView);
   }
 
 
   //navigation for threads
-  navigateToThread(UserPost? userPost) {
-    _navigationService.navigateTo(Routes.threadDetailView,
+  navigateToThread(UserPost? userPost) async {
+    await _navigationService.navigateTo(Routes.threadDetailView,
         arguments: ThreadDetailViewArguments(userPost: userPost));
   }
 
@@ -103,6 +104,12 @@ class DraftViewModel extends BaseViewModel {
   //navigation for channel
   navigateToChannelPage(String? channelName, String? channelId,
       int? membersCount, bool? public) async {
+
+    List<String>? channelIds = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    if(channelIds != null){
+      channelIds.remove(channelId!);
+    }
+
     try {
       if (!await connectivityService.checkConnection()) {
         snackBar.showCustomSnackBar(
@@ -112,7 +119,7 @@ class DraftViewModel extends BaseViewModel {
         );
         return;
       }
-      _navigationService.navigateTo(Routes.channelPageView,
+      await _navigationService.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
             channelName: channelName,
             channelId: channelId,
@@ -131,3 +138,16 @@ class DraftViewModel extends BaseViewModel {
 
 }
 
+// class Objects {
+//   Objects(
+//       this.text,
+//       this.subtitle,
+//       this.route,
+//       this.time
+//       );
+//
+//   String text;
+//   String subtitle;
+//   Map route;
+//   String time;
+// }

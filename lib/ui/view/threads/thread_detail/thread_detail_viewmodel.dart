@@ -101,6 +101,12 @@ class ThreadDetailViewModel extends BaseViewModel {
 
   var storedDraft='';
   void getDraft(UserPost? userPost){
+
+    List<String>? threadIds = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    if(threadIds != null){
+      // threadIds.remove(threadIds); Todo: (remove each instance of saved thread id )
+    }else{storageService.clearStorage();}
+
     if(userPost != null){
       var draft = storageService.getString(userPost.id.toString());
       if (draft != null) {
@@ -121,7 +127,7 @@ class ThreadDetailViewModel extends BaseViewModel {
     if(value.length > 0){
       if(userPost != null){
         storageService.setStringList(
-            StorageKeys.currentUserThreadDrafts, [userPost.id.toString()]);
+            StorageKeys.currentUserThreadIdDrafts, [userPost.id.toString()]);
         storageService.setString(userPost.id.toString(), json.encode(_keyMap));
       }
     }

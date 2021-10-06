@@ -29,10 +29,15 @@ class ChannelPageViewModel extends FormViewModel {
   final _snackbarService = locator<SnackbarService>();
 
 
-
   //draft implementations
   var storedDraft = '';
   void getDraft(channelId){
+
+    List<String>? channelIds = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    if(channelIds != null){
+      channelIds.remove(channelId);
+    }else{_storageService.clearStorage();}
+
       var draft = _storageService.getString(channelId);
       if(draft != null){
         storedDraft = json.decode(draft)['draft'];
@@ -41,6 +46,14 @@ class ChannelPageViewModel extends FormViewModel {
   }
 
   void storeDraft(channelId, value, channelName, membersCount, public ){
+
+    List<String>? channelIds = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    if(channelIds != null){
+      channelIds.add(channelId);
+    }else{
+      channelIds = [channelId];
+    }
+
     var keyMap = {
       'draft': value,
       'time' : '${DateTime.now()}',
@@ -50,8 +63,8 @@ class ChannelPageViewModel extends FormViewModel {
       'public' : public,
     };
 
-    if(value.length > 0){
-      _storageService.setStringList(StorageKeys.currentUserChannelDrafts, [channelId]);
+    if(value.length > 0 ){
+      _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, channelIds);
       _storageService.setString(channelId, json.encode(keyMap));
     }
   }

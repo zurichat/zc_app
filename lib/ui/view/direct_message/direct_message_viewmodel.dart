@@ -14,13 +14,13 @@ class DirectMessageViewModel extends FormViewModel {
   String dmDraft ='';
 
   String? get drafts =>
-      _storageService.getString(StorageKeys.currentUserDmDrafts);
+      _storageService.getString(StorageKeys.currentUserDmIdDrafts);
 
 
   void getDraft() async{
     if(drafts != null){
       dmDraft = drafts.toString();
-      _storageService.clearData(StorageKeys.currentUserDmDrafts);
+      _storageService.clearData(StorageKeys.currentUserDmIdDrafts);
     }
   }
 
@@ -29,7 +29,7 @@ class DirectMessageViewModel extends FormViewModel {
   void storeDraft(){
     if(directMessagesValue != null){
       dmDraft = directMessagesValue!;
-      _storageService.setString(StorageKeys.currentUserDmDrafts, dmDraft);
+      _storageService.setString(StorageKeys.currentUserDmIdDrafts, dmDraft);
     }
   }
 

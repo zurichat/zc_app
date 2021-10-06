@@ -21,6 +21,12 @@ class DmUserViewModel extends FormViewModel {
   //instance, attached to a particular user.
   var storedDraft='';
   void getDraft(receiverId){
+
+    List<String>? receiverIds = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    if(receiverIds != null){
+      receiverIds.remove(receiverId);
+    }else{_storageService.clearStorage();}
+
     var draft = _storageService.getString(receiverId);
     if(draft != null){
       storedDraft = json.decode(draft)['draft'];
@@ -29,6 +35,14 @@ class DmUserViewModel extends FormViewModel {
   }
 
   void storeDraft(receiverId, value){
+
+    List<String>? receiverIds = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    if(receiverIds != null){
+      receiverIds.add(receiverId);
+    }else{
+      receiverIds = [receiverId];
+    }
+
     var _keyMap = {
       'draft': value,
       'time' : '${DateTime.now()}',
@@ -37,7 +51,7 @@ class DmUserViewModel extends FormViewModel {
     };
 
     if(value.length > 0){
-      _storageService.setStringList(StorageKeys.currentUserDmDrafts, [receiverId]);
+      _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, [receiverId]);
       _storageService.setString(receiverId, json.encode(_keyMap));
     }
   }
@@ -115,7 +129,6 @@ class DmUserViewModel extends FormViewModel {
 
   }
   void popScreen() {
-    final navigationService = locator<NavigationService>();
     navigationService.back();
   }
 
