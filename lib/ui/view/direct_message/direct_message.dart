@@ -1,6 +1,6 @@
-//keep Hng Project
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import '../../../utilities/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
@@ -21,42 +21,19 @@ class DirectMessage extends StatelessWidget {
         viewModelBuilder: () => DirectMessageViewModel(),
         builder: (context, model, child) {
           return Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-                onPressed: () => Navigator.pop(context),
-              ),
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      CustomText(
-                          text: username.toString(), color: Colors.black),
-                      const SizedBox(width: 20),
-                      Container(
-                        width: 10,
-                        height: 10,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.green),
-                      )
-                    ],
-                  ),
-                  const CustomText(
-                    color: Colors.black,
-                    text: ViewDetails,
+            appBar: ZuriAppBar(
+                leading: Icons.arrow_back_ios,
+                leadingPress: () => model.navigateBack(),
+                title: username,
+                subtitle: ViewDetails,
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.info_outline),
+                    onPressed: () {},
                   ),
                 ],
-              ),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.info, color: Colors.black),
-                  onPressed: () {},
-                )
-              ],
-              elevation: 0,
-            ),
+                onlineIndicator: true,
+                whiteBackground: true),
             body: Padding(
               padding: EdgeInsets.all(size.height * 0.02),
               child: Stack(

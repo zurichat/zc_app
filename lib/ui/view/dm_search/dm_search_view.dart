@@ -1,21 +1,18 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/dm_search/dm_search_widgets.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 import 'dm_search_viewmodel.dart';
+import 'dm_search_view.form.dart';
 
-class DmSearch extends StatefulWidget {
-  const DmSearch({Key? key}) : super(key: key);
+@FormView(fields: [FormTextField(name: 'search')])
+class DmSearch extends StatelessWidget with $DmSearch {
+  DmSearch({Key? key}) : super(key: key);
 
-  @override
-  _DmSearchState createState() => _DmSearchState();
-}
-
-class _DmSearchState extends State<DmSearch> {
-  TextEditingController searchCon = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmSearchViewModel>.reactive(
@@ -24,6 +21,10 @@ class _DmSearchState extends State<DmSearch> {
       viewModelBuilder: () => DmSearchViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
+          appBar: ZuriAppBar(
+            leading: Icons.chevron_left,
+            leadingPress: () => viewModel.navigateBack(),
+          ),
           body: SafeArea(
             child: SizedBox(
               //height: MediaQuery.of(context).size.height,
@@ -35,7 +36,7 @@ class _DmSearchState extends State<DmSearch> {
                     child: Row(
                       children: <Widget>[
                         IconButton(
-                          icon: Icon(Icons.chevron_left),
+                          icon: const Icon(Icons.chevron_left),
                           onPressed: () {
                             Navigator.pop(context);
                           },
@@ -46,7 +47,7 @@ class _DmSearchState extends State<DmSearch> {
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,
                             )),
-                        Spacer(),
+                        const Spacer(),
                         GestureDetector(
                           onTap: () {},
                           child: Text(Done,
@@ -59,22 +60,20 @@ class _DmSearchState extends State<DmSearch> {
                       ],
                     ),
                   ),
-                  Divider(),
+                  const Divider(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 17.0),
                     child: TextField(
-                      controller: searchCon,
+                      controller: searchController,
                       decoration: InputDecoration(
                         hintText: DMHint,
-                        hintStyle: GoogleFonts.lato(
-                          color: Color(0xFF999999),
-                        ),
+                        hintStyle: AppTextStyles.body3Medium,
                         border: InputBorder.none,
                       ),
                     ),
                   ),
-                  Divider(),
-                  ChannelorPerson(),
+                  const Divider(),
+                  const ChannelorPerson(),
                 ],
               ),
             ),
