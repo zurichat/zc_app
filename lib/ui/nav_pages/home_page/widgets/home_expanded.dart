@@ -51,6 +51,8 @@ class HomeExpandedList extends StatelessWidget {
 
     if (title == 'Channels') {
       expansionList.add(const AddChannelsTextAndIcon());
+    } else if (title == 'Direct Messages') {
+      expansionList.add(const AddTeammatesTextAndIcon());
     }
 
     return expansionList;
