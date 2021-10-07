@@ -52,7 +52,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                   SizedBox(
                     width: _size.width * 0.55,
                     child: TextFormField(
-                      initialValue: "viewModel.userData.firstNam",
+                      initialValue: '',
                       onChanged: (value) {},
                       decoration: const InputDecoration(
                         labelText: FullName,
@@ -63,7 +63,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue: " viewModel.userData.displayName",
+              initialValue: '',
               onChanged: (value) {},
               decoration: const InputDecoration(
                 labelText: DisplayName,
@@ -72,13 +72,13 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue: "viewModel.userData.status",
+              initialValue: '',
               onChanged: (value) {},
               decoration: const InputDecoration(
                   labelText: Track, helperText: TrackDescription),
             ),
             TextFormField(
-              initialValue: " viewModel.userData.phoneNum,",
+              initialValue: '',
               onChanged: (value) {},
               decoration: const InputDecoration(
                   labelText: Phone, helperText: PhoneDescription),

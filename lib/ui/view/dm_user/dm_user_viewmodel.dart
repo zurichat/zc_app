@@ -172,7 +172,8 @@ class DmUserViewModel extends FormViewModel {
   }
 
   void popScreen() {
-    navigationService.back();
+    final navigationService = locator<NavigationService>();
+    navigationService.popRepeated(1);
   }
 
 
