@@ -1,4 +1,5 @@
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
@@ -23,8 +24,9 @@ class PreferenceViewModel extends BaseViewModel {
   ];
 
   init() {
-    currentTheme = _storageService.getString('currentTheme') ?? 'Off';
-    currentThemeValue = _storageService.getInt('currentThemeValue') ?? 0;
+    currentTheme = _storageService.getString(StorageKeys.currentTheme) ?? 'Off';
+    currentThemeValue =
+        _storageService.getInt(StorageKeys.currentThemeValue) ?? 0;
   }
 
   Future changeTheme() async {
