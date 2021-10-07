@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 
 class CustomUser extends StatelessWidget {
@@ -21,7 +22,7 @@ class CustomUser extends StatelessWidget {
                 image: const DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                        'https://www.nairaland.com/attachments/10525387_7523740813649122436786583150820259255025664o3_jpega51895fd0bf50cf5d5982826ac401627'))),
+                        DummyAvatar))),
           ),
           SizedBox(
             height: 8.h,
