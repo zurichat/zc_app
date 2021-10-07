@@ -25,35 +25,58 @@ class SavedItemsView extends StatelessWidget {
             : ListView.separated(
                 itemCount: model.savedBuilderList.length,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(model.savedBuilderList[index].channelName!,
-                            style: AppTextStyles.heading4),
-                        const SizedBox(height: 20),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundImage: AssetImage(
-                                  model.savedBuilderList[index].userImage!),
-                            ),
-                            const SizedBox(width: 15),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                      model.savedBuilderList[index]
-                                              .displayName ??
-                                          model.savedBuilderList[index].userID!,
-                                      style: AppTextStyles.heading7),
-                                  const SizedBox(height: 10),
-                                  Text(model.savedBuilderList[index].message!)
-                                ]),
-                          ],
-                        ),
-                      ],
+                  return InkWell(
+                    onLongPress: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              actions: [
+                                ElevatedButton(
+                                  child: const Text("Yes"),
+                                  onPressed: () => model.deleteItem(index)
+                                ),
+                                TextButton(
+                                  child: const Text("No"),
+                                  onPressed: () => model.goBack(),
+                                ),
+                              ],
+                              content: const Text(
+                                  "Do you want to delete this message?"),
+                            );
+                          });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(model.savedBuilderList[index].channelName!,
+                              style: AppTextStyles.heading4),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundImage: AssetImage(
+                                    model.savedBuilderList[index].userImage!),
+                              ),
+                              const SizedBox(width: 15),
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        model.savedBuilderList[index]
+                                                .displayName ??
+                                            model.savedBuilderList[index]
+                                                .userID!,
+                                        style: AppTextStyles.heading7),
+                                    const SizedBox(height: 10),
+                                    Text(model.savedBuilderList[index].message!)
+                                  ]),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -71,4 +94,3 @@ class SavedItemsView extends StatelessWidget {
     );
   }
 }
-

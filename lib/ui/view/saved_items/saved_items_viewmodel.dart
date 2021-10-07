@@ -14,6 +14,14 @@ class SavedItemsViewModel extends BaseViewModel {
   List<SavedItemModel> savedBuilderList = [];
   final log = getLogger('SavedItemsViewModel');
 
+  goBack() => _navigationService.back();
+
+  deleteItem(int index) {
+    savedBuilderList.removeAt(index);
+    goBack();
+    notifyListeners();
+  }
+
   get savedItems {
     var channelStorageKeys =
         storageService.getStringList(StorageKeys.savedItem);
@@ -26,14 +34,14 @@ class SavedItemsViewModel extends BaseViewModel {
             var savedMap = jsonDecode(savedItemMap);
             log.w(savedMap);
             savedBuilderList.add(SavedItemModel(
-                savedMap['channel_name'],
-                savedMap['user_id'],
-                savedMap['user_image'],
-                savedMap['last_seen'],
-                savedMap['message'],
-                savedMap['channel_id'],
-                savedMap['display_name'],
-                ));
+              savedMap['channel_name'],
+              savedMap['user_id'],
+              savedMap['user_image'],
+              savedMap['last_seen'],
+              savedMap['message'],
+              savedMap['channel_id'],
+              savedMap['display_name'],
+            ));
           }
         }
       });
