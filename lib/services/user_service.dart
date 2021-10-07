@@ -43,7 +43,7 @@ class UserService {
   }
 
   void setOrganization() {
-    // Todo implement Organization setter
+    // TODO implement Organization setter
   }
 
   ///From the organization side bar set the current organissation Id
@@ -77,7 +77,7 @@ class UserService {
     required String? userId,
     required String? userEmail,
   }) {
-    //Todo: throw error for null parameters
+    //TODO: throw error for null parameters
     _authToken = authToken ?? '';
     _userId = userId ?? '';
     _userEmail = userEmail ?? '';

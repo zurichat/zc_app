@@ -4,14 +4,15 @@ import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/home_topbar.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final Widget? organizationLogo;
+  const HomePage({Key? key, this.organizationLogo}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomePageViewModel>.reactive(
@@ -22,35 +23,55 @@ class HomePage extends StatelessWidget {
         model.listenToNotificationTap();
       },
       viewModelBuilder: () => HomePageViewModel(),
-      builder: (context, vmodel, child) => SafeArea(
-        child: Column(
-          children: [
-            HomePageTopBar(
-              organizationName: vmodel.orgName,
-            ),
-            vmodel.isBusy
-                ? LinearProgressIndicator(
-                    backgroundColor: Colors.grey[400],
-                    valueColor: const AlwaysStoppedAnimation(
-                        AppColors.zuriPrimaryColor),
-                  )
-                : Container(),
-            Expanded(
-              child: body(vmodel),
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Align(
-            //     alignment: Alignment.bottomRight,
-            //     child: FloatingActionButton(
-            //         onPressed: vmodel.navigateToStartDMScreen,
-            //         child: const Icon(
-            //           Icons.open_in_new_outlined,
-            //           color: AppColors.whiteColor,
-            //         )),
-            //   ),
-            // )
-          ],
+      builder: (context, vmodel, child) => Scaffold(
+        appBar: ZuriAppBar(
+          leadingWidth: true,
+          orgTitle: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              InkWell(
+                onTap: () => vmodel.navigateToOrganization(),
+                child: const Image(
+                  image: appBarLogo,
+                  fit: BoxFit.cover,
+                  height: 25,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Text(
+                vmodel.orgName,
+                style: ZuriTextStyle.organizationNameText(),
+              ),
+            ],
+          ),
+        ),
+        body: SafeArea(
+          child: Column(
+            children: [
+              vmodel.isBusy
+                  ? LinearProgressIndicator(
+                      backgroundColor: Colors.grey[400],
+                      valueColor: const AlwaysStoppedAnimation(
+                          AppColors.zuriPrimaryColor),
+                    )
+                  : Container(),
+              Expanded(
+                child: body(vmodel),
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Align(
+              //     alignment: Alignment.bottomRight,
+              //     child: FloatingActionButton(
+              //         onPressed: vmodel.navigateToStartDMScreen,
+              //         child: const Icon(
+              //           Icons.open_in_new_outlined,
+              //           color: AppColors.whiteColor,
+              //         )),
+              //   ),
+              // )
+            ],
+          ),
         ),
       ),
     );

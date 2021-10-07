@@ -114,7 +114,7 @@ class DmUserViewModel extends FormViewModel {
     messageController.disposeForm();
     notifyListeners();
     }
-      //await sendResponse();
+    //await sendResponse();
     //}
   }
 
@@ -123,11 +123,12 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
+
   void popScreens(receiverId, value) {
     storeDraft(receiverId, value);
-    navigationService.popRepeated(1);
-
+    navigationService.back();
   }
+
   void popScreen() {
     navigationService.back();
   }
@@ -147,6 +148,7 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
+//TODO implement setFormStatus
   @override
   void setFormStatus() {}
 }

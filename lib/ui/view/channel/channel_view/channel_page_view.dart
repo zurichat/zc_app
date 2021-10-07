@@ -4,6 +4,7 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/no_connection_widget.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -52,29 +53,14 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
         }
 
         return Scaffold(
-          appBar: AppBar(
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 5.0, right: 20.0),
-              child: IconButton(
-                  onPressed: (){
-                    model.goBack(channelId, channelMessagesController.text,
-                        channelName, membersCount, public);
-                    },
-                  icon: const Icon(Icons.arrow_back_ios)),
+          backgroundColor: AppColors.whiteColor,
+          appBar: ZuriAppBar(
+            leading: Icons.arrow_back_ios,
+            leadingPress: () => model.goBack(
+                channelId, channelMessagesController.text,
+                channelName, membersCount, public
             ),
-            centerTitle: false,
-            leadingWidth: 40,
-            title: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("#$channelName", style: AppTextStyles.body1Bold),
-                Text(
-                  "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
-                  style: AppTextStyles.body2Medium,
-                ),
-              ],
-            ),
+            whiteBackground: true,
             actions: [
               IconButton(
                 onPressed: () {
@@ -92,6 +78,9 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 ),
               ),
             ],
+            title: "#$channelName",
+            subtitle:
+                "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
           ),
           body: ExpandableTextFieldScreen(
             textController: channelMessagesController,

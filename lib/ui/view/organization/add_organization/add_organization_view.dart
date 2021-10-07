@@ -40,9 +40,8 @@ class AddOrganizationView extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(3),
-                      // ignore: prefer_const_literals_to_create_immutables
-                      boxShadow: [
-                        const BoxShadow(
+                      boxShadow: const [
+                        BoxShadow(
                           color: Colors.black26,
                           blurRadius: 8,
                           offset: Offset(0, 2),
@@ -105,10 +104,9 @@ class AddOrganizationView extends StatelessWidget {
                           ),
                         ),
                         Row(
-                          // ignore: prefer_const_literals_to_create_immutables
-                          children: [
-                            const SizedBox(width: 48),
-                            const Expanded(
+                          children: const [
+                            SizedBox(width: 48),
+                            Expanded(
                               child: Divider(
                                 color: AppColors.dividerColor,
                               ),

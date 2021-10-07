@@ -34,7 +34,7 @@ class CreateOrganizationViewModel extends BaseViewModel {
   //       navigateToWorkSpaceUrl();
   //       break;
   //     case WorkspaceSwitchMethod.Create:
-  // ignore: todo
+
   //       // TODO: Handle this case.
   //       break;
   //     case WorkspaceSwitchMethod.Join:

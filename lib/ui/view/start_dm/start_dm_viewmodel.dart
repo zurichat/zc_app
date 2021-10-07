@@ -15,6 +15,10 @@ class StartDmViewModel extends FormViewModel {
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
 
+  navigateBack() {
+    navigationService.back();
+  }
+
   // bool _hasClickedMessageField = false;
   // bool get hasClickedMessageField => _hasClickedMessageField;
 
