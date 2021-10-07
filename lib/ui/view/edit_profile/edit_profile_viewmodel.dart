@@ -7,7 +7,5 @@ import 'package:stacked_services/stacked_services.dart';
 class EditProfileViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
-  navigateBack() {
-    _navigationService.back();
-  }
+  void close() => _navigationService.back();
 }
