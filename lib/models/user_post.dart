@@ -9,8 +9,14 @@ class UserThreadPost {
 
   String? lastSeen;
   String? message;
-  List<dynamic>? postEmojis;
+  List<PostEmojis>? postEmojis;
   String postDate;
+
+  List<PostFiles>? postFiles;
+  List<PostFiles>? postMediaFiles;
+  List<PostFiles>? postAudioFiles;
+  List<UserThreadPost>? postQuotedReplies;
+  List<PostSnapshotLinks>? postSnapshotLinks;
 
   UserThreadPost({
     required this.id,
@@ -22,11 +28,50 @@ class UserThreadPost {
     required this.message,
     this.postEmojis,
     this.postDate = '',
+    this.postFiles = const <PostFiles>[],
+    this.postMediaFiles = const <PostFiles>[],
+    this.postAudioFiles = const <PostFiles>[],
+    this.postQuotedReplies = const <UserThreadPost>[],
+    this.postSnapshotLinks = const <PostSnapshotLinks>[],
   });
 
   void addReaction(PostEmojis postEmoji) {
     postEmojis!.add(postEmoji);
   }
+}
+
+class PostSnapshotLinks {
+  String? srcLink;
+  String? logo;
+  String? title;
+  String? linkTitleText;
+  String? siteDescription;
+  String? siteImageLink;
+
+  PostSnapshotLinks({
+    required this.srcLink,
+    required this.logo,
+    required this.title,
+    required this.linkTitleText,
+    required this.siteDescription,
+    required this.siteImageLink,
+  });
+}
+
+class PostFiles {
+  String? id;
+  String? srcLink;
+  PostFileType type;
+  String? size;
+  String? fileName;
+
+  PostFiles({
+    required this.id,
+    required this.srcLink,
+    required this.type,
+    required this.size,
+    required this.fileName,
+  });
 }
 
 class PostEmojis {
@@ -46,7 +91,8 @@ class UserPost extends UserThreadPost {
   @override
   String? id;
 
-  String? userID;
+  @override
+  String? userId;
 
   @override
   String? userImage;
@@ -64,7 +110,7 @@ class UserPost extends UserThreadPost {
   String? message;
 
   @override
-  List<dynamic>? postEmojis;
+  List<PostEmojis>? postEmojis;
   String? channelName;
   ChannelType? channelType;
 
@@ -74,21 +120,39 @@ class UserPost extends UserThreadPost {
   String postDate;
 
   List<UserThreadPost>? userThreadPosts;
+  @override
+  List<PostFiles>? postFiles;
 
+  @override
+  List<PostFiles>? postMediaFiles;
+
+  @override
+  List<PostFiles>? postAudioFiles;
+
+  @override
+  List<UserThreadPost>? postQuotedReplies;
+
+  @override
+  List<PostSnapshotLinks>? postSnapshotLinks;
 
   UserPost({
     required this.id,
-    this.userID,
+    this.userId,
     required this.displayName,
     this.userImage,
     required this.message,
     this.statusIcon,
     this.lastSeen,
     this.postEmojis,
-    this.userThreadPosts,
+    this.userThreadPosts = const <UserThreadPost>[],
     this.channelName,
     this.channelType,
     this.postDate = "",
+    this.postFiles = const <PostFiles>[],
+    this.postMediaFiles = const <PostFiles>[],
+    this.postAudioFiles = const <PostFiles>[],
+    this.postQuotedReplies = const <UserThreadPost>[],
+    this.postSnapshotLinks = const <PostSnapshotLinks>[],
     required this.channelId,
   }) : super(
           id: id,
