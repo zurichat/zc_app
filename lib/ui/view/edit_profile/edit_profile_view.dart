@@ -20,7 +20,7 @@ class EditProfileView extends StatelessWidget {
       builder: (context, viewModel, child) => Scaffold(
         appBar: ZuriAppBar(
           leading: Icons.close_rounded,
-          leadingPress: () => viewModel.navigateBack(),
+          leadingPress: () => viewModel.close(),
           orgTitle: Text(
             "Edit Profile",
             style: AppTextStyles.heading7,
