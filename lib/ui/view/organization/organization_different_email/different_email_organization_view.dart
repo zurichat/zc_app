@@ -17,31 +17,30 @@ class UseDifferentEmailView extends StatelessWidget {
     return ViewModelBuilder<UseDifferentEmailViewModel>.reactive(
       viewModelBuilder: () => UseDifferentEmailViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.zuriPrimaryColor,
-          title: const Text(UseAnotherEmail),
-        ),
         body: SafeArea(
-          child: Container(
-            margin: const EdgeInsets.all(19.8),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+          child: Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const Spacer(),
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      BorderTextField(
+                      BorderLessTextField(
+                        labelColor: AppColors.inactiveGreyColor,
                         onChanged: (String? value) {
+                          model.updateColor();
                           if (value!.isEmpty) {
                             return InputRequired;
                           }
                         },
                         controller: email,
-                        hint: EnterEmail,
-                        autofocus: true,
+                        label: YourEmail,
                       ),
+                      const SizedBox(height: 8),
                       const Text(
                         WillSendEmail,
                       ),
