@@ -92,7 +92,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                               width: 16.h,
                             ),
                             itemBuilder: (context, i) {
-                              return GestureDetector(
+                              return InkWell(
                                 child: CustomUser(
                                   text: model.userSearch[i].username!,
                                 ),
