@@ -40,7 +40,6 @@ dependencies:
   overlay_support: ^1.2.1
   page_view_dot_indicator: ^1.0.0
   pin_code_fields: ^7.3.0
-  pref_dessert: ^0.6.0
   shared_preferences: ^2.0.7
   stacked: ^2.1.8
   stacked_hooks: ^0.2.1

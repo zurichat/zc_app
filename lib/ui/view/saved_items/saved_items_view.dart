@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
