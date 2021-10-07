@@ -63,7 +63,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                                     message: message[index].message,
                                     lastSeen: message[index].lastSeen,
                                     messageID: message[index].id,
-                                    userID: message[index].userID,
+                                    userID: message[index].userId,
                                     userImage: message[index].userImage);
                                 log.i("Saved");
                                 viewModel.exitPage();
