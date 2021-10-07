@@ -21,11 +21,16 @@ List<ThemeData> getThemes() {
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: AppColors.zuriPrimaryColor,
-      ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: AppColors.zuriPrimaryColor),
+      ),
+      colorScheme: ColorScheme.fromSwatch()
+          .copyWith(secondary: AppColors.zuriPrimaryColor),
     ),
-    ThemeData.light(),
-    ThemeData.dark(),
-    ThemeData.dark().copyWith(
+    ThemeData.dark().copyWith(dialogBackgroundColor: Colors.black87),
+  ];
+
+  //Kimbie Dark
+  /*
+  ThemeData.dark().copyWith(
       appBarTheme: const AppBarTheme(
         color: AppColors.kimbieAccent,
         iconTheme: IconThemeData(color: AppColors.blackColor),
@@ -38,7 +43,10 @@ List<ThemeData> getThemes() {
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: AppColors.kimbieAccent,
-      ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: AppColors.kimbieAccent),
+      ),
+      colorScheme:
+          ColorScheme.fromSwatch().copyWith(secondary: AppColors.kimbieAccent),
     ),
-  ];
+  
+  */
 }

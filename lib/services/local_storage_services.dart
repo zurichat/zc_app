@@ -48,4 +48,12 @@ class SharedPreferenceLocalStorage {
   Future<bool?> clearStorage() async {
     return await _preferences?.clear();
   }
+
+  Future setInt(String key, int value) async {
+    return await _preferences?.setInt(key, value);
+  }
+
+  int? getInt(String key) {
+    return _preferences?.getInt(key);
+  }
 }

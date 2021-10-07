@@ -12,6 +12,8 @@ class PreferenceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PreferenceViewModel>.reactive(
+      viewModelBuilder: () => PreferenceViewModel(),
+      onModelReady: PreferenceViewModel().init(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           title: const Text(Preferences),
@@ -53,7 +55,6 @@ class PreferenceView extends StatelessWidget {
           ),
         ),
       ),
-      viewModelBuilder: () => PreferenceViewModel(),
     );
   }
 }
