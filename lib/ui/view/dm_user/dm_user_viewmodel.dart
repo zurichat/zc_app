@@ -5,11 +5,13 @@ import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import '../../../app/app.logger.dart';
 
 class DmUserViewModel extends FormViewModel {
   final _username = '';
   String get username => _username;
 
+  final log = getLogger('DM User');
   final bottomSheet = locator<BottomSheetService>();
 
   final _isOnline = true;
@@ -56,14 +58,9 @@ class DmUserViewModel extends FormViewModel {
           time: DateTime.now(),
         ),
       );
-      // ignore: todo
-      //TODO - fix autoclear
 
-      //clearText();
       notifyListeners();
     }
-    //await sendResponse();
-    //}
   }
 
   void deleteMessage(Message message) {
@@ -117,5 +114,15 @@ class DmUserViewModel extends FormViewModel {
 
   void exit() {
     _navigationService.back();
+  }
+
+//Dialog box for schedulling
+  final _dialogService = locator<DialogService>();
+  showPop() {
+    _dialogService.showCustomDialog(
+      variant: DialogType.scheduleMessageDm,
+    );
+
+    notifyListeners();
   }
 }
