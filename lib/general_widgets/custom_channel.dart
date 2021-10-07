@@ -29,10 +29,6 @@ class CustomChannel extends StatelessWidget {
                 'assets/icons/svg_icons/hash_tag.svg',
               )
             ),
-            // Text(
-            //   '#',
-            //   style: AppTextStyles.hashtag.copyWith(fontSize: 20.sp)
-            // ),
             SizedBox(width: 21.33.w),
             Text(
               '$text',
