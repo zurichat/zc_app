@@ -18,6 +18,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 
+
 class ChannelPageViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _channelsApiService = locator<ChannelsApiService>();
@@ -31,28 +32,50 @@ class ChannelPageViewModel extends FormViewModel {
 
   //draft implementations
   var storedDraft = '';
+
   void getDraft(channelId){
 
-    List<String>? channelIds = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
-    if(channelIds != null){
-      channelIds.remove(channelId);
-    }else{_storageService.clearStorage();}
+    // List<String>? channelIds = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    // if(channelIds != null){
+    //   channelIds.remove(channelId);
+    // }else{_storageService.clearStorage();}
+    //
+    //   var draft = _storageService.getString(channelId);
+    //   if(draft != null){
+    //     storedDraft = json.decode(draft)['draft'];
+    //     _storageService.clearData(channelId);
+    //   }
 
-      var draft = _storageService.getString(channelId);
-      if(draft != null){
-        storedDraft = json.decode(draft)['draft'];
-        _storageService.clearData(channelId);
+    List<String>? spList = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    print(spList);
+    print('hello world');
+    // if(_storageService.getStringList(StorageKeys.currentUserChannelIdDrafts)!.length > 1){
+      print('yeeeeeeeeeeeeeeeees');
+
+      if (spList != null){
+        for ( String e in spList) {
+          print('yes');
+          if(jsonDecode(e)['channelId'] == channelId ){
+            storedDraft = jsonDecode(e)['draft'];
+            spList.remove(e);
+            print('$e trtrtrtrtrtrtrtrtrtrt');
+            _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, spList);
+            return;
+          }
+        }
       }
+
+
   }
 
   void storeDraft(channelId, value, channelName, membersCount, public ){
 
-    List<String>? channelIds = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
-    if(channelIds != null){
-      channelIds.add(channelId);
-    }else{
-      channelIds = [channelId];
-    }
+    // List<String>? channelIds = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    // if(channelIds != null){
+    //   channelIds.add(channelId);
+    // }else{
+    //   channelIds = [channelId];
+    // }
 
     var keyMap = {
       'draft': value,
@@ -63,9 +86,20 @@ class ChannelPageViewModel extends FormViewModel {
       'public' : public,
     };
 
-    if(value.length > 0 ){
-      _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, channelIds);
-      _storageService.setString(channelId, json.encode(keyMap));
+    List<String>? spList = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+
+    if(value.length > 0 && spList != null){
+      spList.add(json.encode(keyMap));
+      _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, spList);
+      print('${_storageService.getStringList(StorageKeys.currentUserChannelIdDrafts)}');
+      _storageService.clearStorage();
+      print('${_storageService.getStringList(StorageKeys.currentUserChannelIdDrafts)} cleared ');
+
+    }else if (value.length > 0 && spList == null){
+      spList = [json.encode(keyMap)];
+      _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, spList);
+      print('${_storageService.getStringList(StorageKeys.currentUserChannelIdDrafts)} new');
+
     }
   }
   //**draft implementation ends here
