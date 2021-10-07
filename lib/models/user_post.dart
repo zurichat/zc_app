@@ -11,6 +11,10 @@ class UserThreadPost {
   String? message;
   List<PostEmojis>? postEmojis;
   String postDate;
+  String? channelName;
+  ChannelType? channelType;
+
+  String channelId;
 
   List<PostFiles>? postFiles;
   List<PostFiles>? postMediaFiles;
@@ -21,6 +25,9 @@ class UserThreadPost {
   UserThreadPost({
     required this.id,
     this.userId,
+    required this.channelId,
+    this.channelName,
+    this.channelType,
     this.userImage,
     required this.displayName,
     this.statusIcon,
@@ -111,9 +118,13 @@ class UserPost extends UserThreadPost {
 
   @override
   List<PostEmojis>? postEmojis;
+
+  @override
   String? channelName;
+  @override
   ChannelType? channelType;
 
+  @override
   String channelId;
 
   @override
@@ -161,6 +172,7 @@ class UserPost extends UserThreadPost {
           statusIcon: statusIcon,
           lastSeen: lastSeen,
           postEmojis: postEmojis,
+          channelId: channelId,
         );
 
   void addReply(UserThreadPost userThreadPost) {

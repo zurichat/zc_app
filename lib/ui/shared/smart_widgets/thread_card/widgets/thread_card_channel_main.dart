@@ -76,37 +76,30 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                       TextParser(userPost!.message),
                     ],
                   ),
-                  const SizedBox(height: 10),
                   userPost!.postSnapshotLinks!.isNotEmpty
                       ? SnapshotLinks(
                           postSnapshotLinks: userPost!.postSnapshotLinks)
                       : Container(),
-                  const SizedBox(height: 10),
                   userPost!.postAudioFiles!.isNotEmpty
                       ? AudioMessage(postAudioFiles: userPost!.postAudioFiles)
                       : Container(),
-                  const SizedBox(height: 10),
                   userPost!.postFiles!.isNotEmpty
                       ? PostFilesDisplay(postFiles: userPost!.postFiles)
                       : Container(),
-                  const SizedBox(height: 10),
                   userPost!.postQuotedReplies!.isNotEmpty
                       ? QuotedReplies(
                           postQuotedReplies: userPost!.postQuotedReplies)
                       : Container(),
-                  const SizedBox(height: 10),
                   userPost!.postMediaFiles!.isNotEmpty
                       ? MediaFiles(postMediaFiles: userPost!.postMediaFiles)
                       : Container(),
-                  const SizedBox(height: 10),
                   userPost!.postEmojis!.isNotEmpty
                       ? EmojisList(userPost: userPost)
                       : Container(),
-                  const SizedBox(height: 10),
                   userPost!.userThreadPosts!.isNotEmpty
-                      ? PostReplies(userThreadPosts: userPost!.userThreadPosts)
+                      ? PostReplies(userPost: userPost)
                       : Container(),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 20),
                 ],
               ),
             )

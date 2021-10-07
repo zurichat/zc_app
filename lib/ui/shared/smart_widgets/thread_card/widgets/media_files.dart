@@ -8,13 +8,18 @@ class MediaFiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 5,
-      runSpacing: 5,
-      children: [
-        for (PostFiles postMediaFile in postMediaFiles!)
-          CachedNetworkImage(imageUrl: "${postMediaFile.srcLink}")
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Wrap(
+        spacing: 5,
+        runSpacing: 5,
+        children: [
+          for (PostFiles postMediaFile in postMediaFiles!)
+            InkWell(
+                onTap: () {},
+                child: CachedNetworkImage(imageUrl: "${postMediaFile.srcLink}"))
+        ],
+      ),
     );
   }
 }
