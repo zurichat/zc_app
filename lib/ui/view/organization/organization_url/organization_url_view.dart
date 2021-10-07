@@ -39,25 +39,21 @@ class OrganizationUrlView extends StatelessWidget {
                           Text.rich(
                             TextSpan(
                               children: [
-                                const TextSpan(
+                                TextSpan(
                                   text: OrgDesc1,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16),
+                                  style: AppTextStyles.body3Medium.copyWith(
+                                      fontSize: 16, color: AppColors.greyColor),
                                 ),
                                 TextSpan(
                                   text: '$email',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 16,
-                                    color: AppColors.appBarGreen,
-                                  ),
+                                  style: AppTextStyles.body3Medium.copyWith(
+                                      fontSize: 16,
+                                      color: AppColors.appBarGreen),
                                 ),
-                                const TextSpan(
+                                TextSpan(
                                   text: OrgDesc2,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16),
+                                  style: AppTextStyles.body3Medium.copyWith(
+                                      fontSize: 16, color: AppColors.greyColor),
                                 ),
                               ],
                             ),
@@ -83,19 +79,28 @@ class OrganizationUrlView extends StatelessWidget {
 
 class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
   const TextForm({Key? key}) : super(key: key, reactive: false);
+
   @override
   Widget buildViewModelWidget(
       BuildContext context, OrganizationUrlViewModel viewModel) {
     return Center(
       child: TextField(
-        decoration: const InputDecoration(
-          labelText: EnterOrgUrl,
-          hintText: EnterOrgUrlHint,
-          hintStyle: TextStyle(
-            color: Color(0xffBEBEBE),
+        cursorColor: AppColors.appBarGreen,
+        style: AppTextStyles.body3Medium.copyWith(
             fontSize: 16,
-            fontWeight: FontWeight.w700,
-          ),
+            fontWeight: FontWeight.bold,
+            color: AppColors.blackColor),
+        decoration: InputDecoration(
+          labelText: EnterOrgUrl,
+          labelStyle: AppTextStyles.body3Medium.copyWith(
+              fontSize: 16,
+              color: AppColors.zuriTextBodyColor,
+              fontWeight: FontWeight.bold),
+          hintText: EnterOrgUrlHint,
+          hintStyle: AppTextStyles.body3Medium.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: AppColors.zuriGrey),
           border: InputBorder.none,
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
@@ -116,21 +121,24 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
   @override
   Widget build(BuildContext context, OrganizationUrlViewModel viewModel) {
     return TextButton(
-        style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.all<Color>(viewModel.buttonColors)),
-        onPressed: () => viewModel.signInToOrganization(),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-          child: SizedBox(
-            width: 300,
-            child: Center(
-              child: Text(
-                Next,
-                style: AppTextStyles.buttonText,
-              ),
+      style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all<Color>(viewModel.buttonColors)),
+      onPressed: () => viewModel.signInToOrganization(),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Center(
+            child: Text(
+              Next,
+              style: AppTextStyles.buttonText.copyWith(
+                  color: viewModel.buttonTextColor,
+                  fontWeight: FontWeight.bold),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

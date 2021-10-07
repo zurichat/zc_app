@@ -82,6 +82,32 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       ),
                       UIHelper.customVerticalSpace(48),
                       Text(
+                        FirstName,
+                        style: AppTextStyles.body1Bold,
+                      ),
+                      UIHelper.customVerticalSpace(10),
+                      CustomTextField(
+                        keyboardType: TextInputType.name,
+                        inputAction: TextInputAction.next,
+                        autoCorrect: false,
+                        obscureText: false,
+                        controller: firstNameController,
+                        hintText: FirstNameHintText,
+                      ),
+                      UIHelper.verticalSpaceLarge, Text(
+                        LastName,
+                        style: AppTextStyles.body1Bold,
+                      ),
+                      UIHelper.customVerticalSpace(10),
+                      CustomTextField(
+                        keyboardType: TextInputType.name,
+                        inputAction: TextInputAction.next,
+                        autoCorrect: false,
+                        obscureText: false,
+                        controller: lastNameController,
+                        hintText: LastNameHintText,
+                      ),
+                      UIHelper.verticalSpaceLarge, Text(
                         EmailAddress,
                         style: AppTextStyles.body1Bold,
                       ),
@@ -133,21 +159,25 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              CustomText(
+                            children: [
+                              const CustomText(
                                 text: TnC1,
                                 fontSize: 14,
                               ),
-                              Text(
-                                TnC2,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: AppColors.zuriPrimaryColor,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: AppColors.zuriPrimaryColor,
-                                  decorationStyle: TextDecorationStyle.solid,
-                                  decorationThickness: 2,
+                              GestureDetector(
+                                onTap: () =>
+                                    model.navigateToTermsAndConditions(),
+                                child: const Text(
+                                  TnC2,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: AppColors.zuriPrimaryColor,
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: AppColors.zuriPrimaryColor,
+                                    decorationStyle: TextDecorationStyle.solid,
+                                    decorationThickness: 2,
+                                  ),
                                 ),
                               ),
                             ],

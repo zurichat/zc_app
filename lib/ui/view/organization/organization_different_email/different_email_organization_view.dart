@@ -22,10 +22,9 @@ class UseDifferentEmailView extends HookWidget {
       viewModelBuilder: () => UseDifferentEmailViewModel(),
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
-          child: Container(
-            margin: const EdgeInsets.all(19.8),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+          child: Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
