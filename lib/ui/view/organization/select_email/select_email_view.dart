@@ -107,9 +107,8 @@ class SelectEmail extends StatelessWidget {
                                   color: AppColors.deepBlackColor,
                                   fontSize: 14),
                             ),
-                            onTap: () {
-                              // Open Use another email screen
-                            },
+                            onTap: () =>
+                                model.navigateToUseDifferentEmailView(),
                           ),
                         ),
                       ],
