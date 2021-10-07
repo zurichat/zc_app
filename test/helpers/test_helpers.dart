@@ -4,6 +4,7 @@ import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
@@ -34,11 +35,8 @@ import 'test_helpers.mocks.dart';
   MockSpec<ZuriApi>(returnNullOnMissingStub: true),
   MockSpec<ConnectivityService>(returnNullOnMissingStub: true),
   MockSpec<JumpToApi>(returnNullOnMissingStub: true),
-<<<<<<< HEAD
-=======
   MockSpec<MediaService>(returnNullOnMissingStub: true),
   MockSpec<OrganizationApiService>(returnNullOnMissingStub: true),
->>>>>>> ca7d0036395b62a179e387bc8e8a66a9b2839728
 ])
 MockUserService getAndRegisterUserServiceMock({
   bool hasUser = false,
@@ -181,8 +179,6 @@ MockJumpToApi getAndRegisterJumpToApiMock() {
   return service;
 }
 
-<<<<<<< HEAD
-=======
 MockMediaService getAndRegisterMediaServiceMock() {
   _removeRegistrationIfExists<MediaService>();
   final service = MockMediaService();
@@ -194,7 +190,6 @@ MockMediaService getAndRegisterMediaServiceMock() {
   return service;
 }
 
->>>>>>> ca7d0036395b62a179e387bc8e8a66a9b2839728
 void registerServices() {
   getAndRegisterUserServiceMock();
   getAndRegisterSharedPreferencesLocalStorageMock();
