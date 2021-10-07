@@ -25,6 +25,7 @@ class EditProfileView extends StatelessWidget {
             "Edit Profile",
             style: AppTextStyles.heading7,
           ),
+          whiteBackground: true,
         ),
         body: Visibility(
           visible: !viewModel.isBusy,
