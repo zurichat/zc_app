@@ -159,21 +159,25 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              CustomText(
+                            children: [
+                              const CustomText(
                                 text: TnC1,
                                 fontSize: 14,
                               ),
-                              Text(
-                                TnC2,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: AppColors.zuriPrimaryColor,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: AppColors.zuriPrimaryColor,
-                                  decorationStyle: TextDecorationStyle.solid,
-                                  decorationThickness: 2,
+                              GestureDetector(
+                                onTap: () =>
+                                    model.navigateToTermsAndConditions(),
+                                child: const Text(
+                                  TnC2,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: AppColors.zuriPrimaryColor,
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: AppColors.zuriPrimaryColor,
+                                    decorationStyle: TextDecorationStyle.solid,
+                                    decorationThickness: 2,
+                                  ),
                                 ),
                               ),
                             ],

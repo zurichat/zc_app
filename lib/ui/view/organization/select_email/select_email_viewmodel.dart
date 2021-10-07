@@ -10,10 +10,7 @@ import '../../../../utilities/storage_keys.dart';
 
 class SelectEmailViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
-//  final _snackbar = locator<SnackbarService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
-
-  // final _api = WorkSpaceApiService();
   final _anotherEmail = UseAnotherEmail;
 
   String? get userEmail => _storage.getString(StorageKeys.currentUserEmail);
@@ -47,24 +44,9 @@ class SelectEmailViewModel extends BaseViewModel {
     );
   }
 
-  // Future<OrganizationModel?> createOrganization(
-  //     String email, OrganizationModel org) async {
-  //   try {
-  //     final id = await _api.createOrganization(email);
-  //     await _api.updateOrgName(id, org.name!);
-  //     await _api.updateOrgUrl(id, org.organizationUrl!);
-  //     await _api.updateOrgLogo(id, org.logoUrl!);
-  //     // return WorkspaceModel(
-  //     //   id: id,
-  //     //   name: org.name,
-  //     //   workSpaceUrl: org.workSpaceUrl,
-  //     //   logoUrl: org.logoUrl,
-  //     //   time: null,
-  //     // );
-  //   } catch (e) {
-  //     snackbar.showSnackbar(message: e.toString());
-  //   }
-  // }
+  navigateToUseDifferentEmailView() {
+    _navigationService.navigateTo(Routes.useDifferentEmailView);
+  }
 
   String getScreenTitle(OrganizationSwitchMethod method) {
     switch (method) {

@@ -92,15 +92,12 @@ class SelectEmail extends StatelessWidget {
                     ),
                     const SizedBox(width: 16),
                     GestureDetector(
-                      child: Text(
-                        model.anotherEmail,
-                        style: AppTextStyles.body3Medium.copyWith(
-                            fontSize: 16, color: AppColors.zuriTextBodyColor),
-                      ),
-                      onTap: () {
-                        // Open Use another email screen
-                      },
-                    ),
+                        child: Text(
+                          model.anotherEmail,
+                          style: AppTextStyles.body3Medium.copyWith(
+                              fontSize: 16, color: AppColors.zuriTextBodyColor),
+                        ),
+                        onTap: () => model.navigateToUseDifferentEmailView())
                   ],
                 ),
               ),
