@@ -29,7 +29,6 @@ class ForgotPasswordEmailView extends StatelessWidget
         ),
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppColors.whiteColor,
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
@@ -37,36 +36,36 @@ class ForgotPasswordEmailView extends StatelessWidget
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                const   SizedBox(
+                  const SizedBox(
                     height: 6.0,
                   ),
                   Container(
                     alignment: Alignment.center,
                     child: Image.asset(ZuriLogo),
                   ),
-                const   SizedBox(
+                  const SizedBox(
                     height: 24.0,
                   ),
                   Center(
                     child: Text(
                       ForgotPassword,
-                      style: AppTextStyles.heading9,
+                      style: AppTextStyles.body1Bold,
                     ),
                   ),
-              const     SizedBox(
+                  const SizedBox(
                     height: 6.0,
                   ),
-               const    Center(
+                  const Center(
                     child: Text(
                       Header,
                       textAlign: TextAlign.center,
                     ),
                   ),
-               const    SizedBox(
+                  const SizedBox(
                     height: 49.0,
                   ),
                   Container(
-                    margin:const  EdgeInsets.symmetric(vertical: 8.0),
+                    margin: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       EmailAddress,
                       style: AppTextStyles.body1Bold,
@@ -82,7 +81,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                           obscureText: false,
                           textInputAction: TextInputAction.done,
                           autocorrect: true,
-                          decoration:const  InputDecoration(
+                          decoration: const InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(3.0),
@@ -123,7 +122,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                     ],
                   ),
                   //Changes  ss
-               const    SizedBox(
+                  const SizedBox(
                     height: 30.0,
                   ),
                   Center(
@@ -140,13 +139,14 @@ class ForgotPasswordEmailView extends StatelessWidget
                           style: AppTextStyles.buttonText,
                         ),
                         style: ElevatedButton.styleFrom(
-                          padding:const  EdgeInsets.only(top: 15.0, bottom: 15.0),
+                          padding:
+                              const EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: AppColors.zuriPrimaryColor,
                         ),
                       ),
                     ),
                   ),
-              const     SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Center(
                     child: GestureDetector(
                       onTap: () {
@@ -156,11 +156,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: BackTo,
-                              style: AppTextStyles.normalText.copyWith(
-                                color: AppColors.blackColor,
-                              ),
-                            ),
+                                text: BackTo, style: AppTextStyles.normalText),
                             TextSpan(
                               text: SignIn,
                               style: AppTextStyles.body2Bold.copyWith(

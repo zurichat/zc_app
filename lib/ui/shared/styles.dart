@@ -7,7 +7,7 @@ import 'colors.dart';
 class AppTextStyles {
   static TextStyle heading9 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
-    color: AppColors.blackColor,
+    // color: AppColors.blackColor,
     fontSize: 16,
   );
   static TextStyle heading8 = GoogleFonts.lato(
@@ -17,7 +17,7 @@ class AppTextStyles {
   );
   static TextStyle heading7 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
-    color: AppColors.blackColor,
+    // color: AppColors.blackColor,
     fontSize: 20,
   );
   static TextStyle hashtag = GoogleFonts.lato(
@@ -77,7 +77,7 @@ class AppTextStyles {
   );
   static TextStyle faintBodyText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
-    color: AppColors.greyColor,
+    // color: AppColors.greyColor,
     fontSize: 14,
   );
   static TextStyle body2Medium = GoogleFonts.lato(
