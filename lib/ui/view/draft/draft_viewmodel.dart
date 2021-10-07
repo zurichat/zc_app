@@ -13,103 +13,85 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:hng/app/app.logger.dart';
 
 class DraftViewModel extends BaseViewModel {
-
   final _navigationService = locator<NavigationService>();
   final connectivityService = locator<ConnectivityService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final snackBar = locator<SnackbarService>();
   final log = getLogger("Draft Page View Model");
-  List <Objects> widgetBuilderList = [];
+  List<Objects> widgetBuilderList = [];
 
-  void get drafts{
-    var dmStoredKeys = _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
-    var channelStoredKeys = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
-    var threadStoredKeys = _storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+  void get drafts {
+    var dmStoredDrafts =
+        _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    var channelStoredDrafts =
+        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    var threadStoredDrafts =
+        _storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
 
-    if(dmStoredKeys != null ){
-      dmStoredKeys.forEach((element) {
-        if(_storageService.getString(element) != null ){
-          var mapKeyJson = _storageService.getString(element);
-          if(mapKeyJson != null){
-            var mapKey = jsonDecode(mapKeyJson);
-            widgetBuilderList.add(Objects(
-              '${mapKey['receiverName']}',
-              '${mapKey['draft']}',
-              mapKey,
-              '${mapKey['time']}',
-            ));
-          }
-        }
+    if (dmStoredDrafts != null) {
+      dmStoredDrafts.forEach((element) {
+        var mapKey = jsonDecode(element);
+
+        widgetBuilderList.add(Objects(
+          '${mapKey['receiverName']}',
+          '${mapKey['draft']}',
+          mapKey,
+          '${mapKey['time']}',
+        ));
       });
     }
 
-    if(channelStoredKeys != null){
-      channelStoredKeys.forEach((element) {
-        if(_storageService.getString(element) != null ){
-          var mapKeyJson = _storageService.getString(element);
-          if(mapKeyJson != null){
-            var mapKey = jsonDecode(mapKeyJson);
+    if (channelStoredDrafts != null) {
+      channelStoredDrafts.forEach((element) {
+        var mapKey = jsonDecode(element);
 
-            widgetBuilderList.add(Objects(
-              '${mapKey['channelName']}',
-              '${mapKey['draft']}',
-              mapKey,
-              '${mapKey['time']}',
-            ));
-          }
-        }
+        widgetBuilderList.add(Objects(
+          '${mapKey['channelName']}',
+          '${mapKey['draft']}',
+          mapKey,
+          '${mapKey['time']}',
+        ));
       });
     }
 
-    if(threadStoredKeys != null ){
-      threadStoredKeys.forEach((element) {
-        if(_storageService.getString(element) != null ){
-          var mapKeyJson = _storageService.getString(element);
-          if(mapKeyJson != null){
-            var mapKey = jsonDecode(mapKeyJson);
+    if (threadStoredDrafts != null) {
+      threadStoredDrafts.forEach((element) {
+        var mapKey = jsonDecode(element);
 
-            widgetBuilderList.add(Objects(
-              '${mapKey['userPost']}',
-              '${mapKey['draft']}',
-              mapKey,
-              '${mapKey['time']}',
-            ));
-          }
-        }
+        widgetBuilderList.add(Objects(
+          '${mapKey['userPost']}',
+          '${mapKey['draft']}',
+          mapKey,
+          '${mapKey['time']}',
+        ));
       });
     }
   }
 
-  void goBack(){
+  void goBack() {
     _navigationService.back();
   }
 
- void rebuild(){
-   notifyListeners();
- }
-
-  //navigation for dmUserView
-  navigateToDmUserView() async{
-     await _navigationService.navigateTo(Routes.dmUserView);
+  void rebuild() {
+    notifyListeners();
   }
 
+  //navigation for dmUserView
+  //TODO - pass in a unique id for each instance of dm view
+  navigateToDmUserView() async {
+    await _navigationService.navigateTo(Routes.dmUserView);
+  }
 
   //navigation for threads
+  //TODO - pass in a unique id for each instance of thread view as userPost might be too complex to save through shared prefs
   navigateToThread(UserPost? userPost) async {
     await _navigationService.navigateTo(Routes.threadDetailView,
         arguments: ThreadDetailViewArguments(userPost: userPost));
   }
 
-
   //navigation for channel
   navigateToChannelPage(String? channelName, String? channelId,
       int? membersCount, bool? public) async {
-
-    List<String>? channelIds = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
-    if(channelIds != null){
-      channelIds.remove(channelId!);
-    }
-
     try {
       if (!await connectivityService.checkConnection()) {
         snackBar.showCustomSnackBar(
@@ -135,7 +117,6 @@ class DraftViewModel extends BaseViewModel {
       );
     }
   }
-
 }
 
 // class Objects {

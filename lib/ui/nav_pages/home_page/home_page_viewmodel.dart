@@ -261,42 +261,36 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.newChannel);
   }
 
-  // void navigateToDmUser() {
-  //   _navigationService.navigateTo(Routes.dmUserView);
-  // }
-
-  bool hasDrafts (){
-    var dmStoredKeys = storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
-    var channelStoredKeys = storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
-    var threadStoredKeys = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+  bool hasDrafts() {
+    var dmStoredDrafts =
+        storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    var channelStoredDrafts =
+        storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    var threadStoredDrafts =
+        storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
     int counter = 0;
 
-    if(dmStoredKeys != null ){
-      dmStoredKeys.forEach((element) {
-        if(storageService.getString(element) != null ){
-          counter++;
-        }
+    if (dmStoredDrafts != null) {
+      dmStoredDrafts.forEach((element) {
+        counter++;
       });
     }
 
-    if(channelStoredKeys != null){
-      channelStoredKeys.forEach((element) {
-        if(storageService.getString(element) != null ){
-          counter++;
-        }
+    if (channelStoredDrafts != null) {
+      channelStoredDrafts.forEach((element) {
+        counter++;
       });
     }
 
-    if(threadStoredKeys != null ){
-      threadStoredKeys.forEach((element) {
-        if(storageService.getString(element) != null ){
-          counter++;
-        }
+    if (threadStoredDrafts != null) {
+      threadStoredDrafts.forEach((element) {
+        counter++;
       });
     }
     return counter > 0;
   }
 
-
-
+  void draftChecker(){
+    notifyListeners();
+  }
 }

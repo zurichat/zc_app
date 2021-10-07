@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/models/app_model.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
@@ -18,48 +19,49 @@ class DmUserViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
 
-  //draft implementations
+  //**Draft implementations
 
   //Note that the receiverID has to be unique to a dm_user_view
-  //instance, attached to a particular user.
+  //instance, which is attached to a particular user to make the draft implementation
+  // unique to a particular user dm.
+
   var storedDraft='';
+
   void getDraft(receiverId){
-
-    List<String>? receiverIds = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
-    if(receiverIds != null){
-      receiverIds.remove(receiverId);
-    }else{_storageService.clearStorage();}
-
-    var draft = _storageService.getString(receiverId);
-    if(draft != null){
-      storedDraft = json.decode(draft)['draft'];
-      _storageService.clearData(receiverId);
+    List<String>? spList = _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    if (spList != null){
+      for ( String e in spList) {
+        if(jsonDecode(e)['receiverId'] == receiverId ){
+          storedDraft = jsonDecode(e)['draft'];
+          spList.remove(e);
+          _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, spList);
+          return;
+        }
+      }
     }
+
+
   }
 
   void storeDraft(receiverId, value){
-
-    List<String>? receiverIds = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
-    if(receiverIds != null){
-      receiverIds.add(receiverId);
-    }else{
-      receiverIds = [receiverId];
-    }
-
-    var _keyMap = {
+    var keyMap = {
       'draft': value,
       'time' : '${DateTime.now()}',
       'receiverName' : 'receiverName',
       'receiverId' : receiverId,
     };
 
-    if(value.length > 0){
-      _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, [receiverId]);
-      _storageService.setString(receiverId, json.encode(_keyMap));
+    List<String>? spList = _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+
+    if(value.length > 0 && spList != null){
+      spList.add(json.encode(keyMap));
+      _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, spList);
+    }else if (value.length > 0 && spList == null){
+      spList = [json.encode(keyMap)];
+      _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, spList);
     }
   }
-  //draft implementation ends here
-
+  //**draft implementation ends here
 
   final _username = '';
   String get username => _username;
@@ -67,7 +69,6 @@ class DmUserViewModel extends FormViewModel {
   final bottomSheet = locator<BottomSheetService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final log = getLogger("DmUserViewModel");
-    List<UserPost>? dmMessages = [];
 
   final _isOnline = true;
   bool get isOnline => _isOnline;

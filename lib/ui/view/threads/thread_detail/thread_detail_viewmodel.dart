@@ -95,45 +95,42 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   //draft implementations
+  //TODO - save each draft with a unique user and channel id and replace the userPost parameter currently being used
 
-  //Note that the receiverID has to be unique to a dm_user_view
-  //instance, attached to a particular user.
+  var storedDraft = '';
 
-  var storedDraft='';
-  void getDraft(UserPost? userPost){
-
-    List<String>? threadIds = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
-    if(threadIds != null){
-      // threadIds.remove(threadIds); Todo: (remove each instance of saved thread id )
-    }else{storageService.clearStorage();}
-
-    if(userPost != null){
-      var draft = storageService.getString(userPost.id.toString());
-      if (draft != null) {
-        storedDraft = json.decode(draft)['draft'];
-        storageService.clearData(userPost.id.toString());
+  void getDraft(userPost){
+    List<String>? spList = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    if (spList != null){
+      for ( String e in spList) {
+        if(jsonDecode(e)['userPost'] == userPost ){
+          storedDraft = jsonDecode(e)['draft'];
+          spList.remove(e);
+          storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, spList);
+          return;
+        }
       }
     }
   }
 
-  void storeDraft(UserPost? userPost, value){
-    var _keyMap = {
+  void storeDraft(userPost, value){
+    var keyMap = {
       'draft': value,
       'time' : '${DateTime.now()}',
       'userPostName' : 'userPostName',
       'userPost' : userPost,
     };
 
-    if(value.length > 0){
-      if(userPost != null){
-        storageService.setStringList(
-            StorageKeys.currentUserThreadIdDrafts, [userPost.id.toString()]);
-        storageService.setString(userPost.id.toString(), json.encode(_keyMap));
-      }
+    List<String>? spList = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+
+    if(value.length > 0 && spList != null){
+      spList.add(json.encode(keyMap));
+      storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, spList);
+    }else if (value.length > 0 && spList == null){
+      spList = [json.encode(keyMap)];
+      storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, spList);
     }
   }
-//draft implementation ends here
-
-
+  //**draft implementation ends here
 
 }

@@ -32,16 +32,18 @@ class ThreadTextAndIcon extends StatelessWidget {
   }
 }
 
-class DraftTextAndIcon extends StatelessWidget {
+class DraftTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+
   const DraftTextAndIcon({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, viewModel) {
     return _TextAndIcon(
       text: Drafts,
       unread: true,
-      onTap: () {
-        navigationService.navigateTo(Routes.draftView);
+      onTap: () async{
+        await navigationService.navigateTo(Routes.draftView);
+        viewModel.draftChecker();
       },
       icon: SvgIcon(svgIcon: SvgAssets.threads),
     );
