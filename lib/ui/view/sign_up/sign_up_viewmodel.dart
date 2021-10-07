@@ -38,6 +38,8 @@ class SignUpViewModel extends FormViewModel {
   void navigateToHome() => navigator.navigateTo(Routes.navBarView);
   void navigateToSignIn() => navigation.navigateTo(Routes.loginView);
   void navigateToOTPView() => navigation.navigateTo(Routes.oTPView);
+  void navigateToTermsAndConditions() =>
+      navigator.navigateTo(Routes.termsAndConditionsView);
 
   createUser(context) async {
     if (checkBoxValue == true) {

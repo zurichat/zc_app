@@ -22,25 +22,6 @@ class HomePage extends StatelessWidget {
         model.listenToNotificationTap();
       },
       viewModelBuilder: () => HomePageViewModel(),
-<<<<<<< HEAD
-      builder: (context, vmodel, child) => SafeArea(
-        child: Column(
-          children: [
-            HomePageTopBar(
-              organizationName: vmodel.orgName,
-            ),
-            vmodel.isBusy
-                ? LinearProgressIndicator(
-                    backgroundColor: Colors.grey[400],
-                    valueColor: const AlwaysStoppedAnimation(
-                        AppColors.zuriPrimaryColor),
-                  )
-                : Container(),
-            Expanded(
-              child: body(vmodel),
-            ),
-          ],
-=======
       builder: (context, vmodel, child) => Scaffold(
         appBar: ZuriAppBar(
           leadingWidth: true,
@@ -90,7 +71,6 @@ class HomePage extends StatelessWidget {
               // )
             ],
           ),
->>>>>>> e9aacf9db4866305bd8140cbe52800d8e4859f04
         ),
       ),
     );
