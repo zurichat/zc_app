@@ -47,25 +47,6 @@ class SelectEmailViewModel extends BaseViewModel {
     _navigation.navigateTo(Routes.useDifferentEmailView);
   }
 
-  // Future<OrganizationModel?> createOrganization(
-  //     String email, OrganizationModel org) async {
-  //   try {
-  //     final id = await _api.createOrganization(email);
-  //     await _api.updateOrgName(id, org.name!);
-  //     await _api.updateOrgUrl(id, org.organizationUrl!);
-  //     await _api.updateOrgLogo(id, org.logoUrl!);
-  //     // return WorkspaceModel(
-  //     //   id: id,
-  //     //   name: org.name,
-  //     //   workSpaceUrl: org.workSpaceUrl,
-  //     //   logoUrl: org.logoUrl,
-  //     //   time: null,
-  //     // );
-  //   } catch (e) {
-  //     snackbar.showSnackbar(message: e.toString());
-  //   }
-  // }
-
   String getScreenTitle(OrganizationSwitchMethod method) {
     switch (method) {
       case OrganizationSwitchMethod.create:
