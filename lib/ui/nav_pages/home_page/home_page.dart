@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
                   child: DraftTextAndIcon())
               : Container(),
           const Divider(),
-          HomeExpandedList( 
+          HomeExpandedList(
             title: Unreads,
             canExpand: false,
             data: vmodel.unreads,
