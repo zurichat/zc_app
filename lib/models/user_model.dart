@@ -5,7 +5,7 @@ class UserModel {
   String? displayName;
   String? email;
   String? phoneNumber;
-  String? status;
+  UserStatus? status;
   String? timezone;
   String? createdAt;
   String? updatedAt;
@@ -33,7 +33,7 @@ class UserModel {
       'display_name': displayName,
       'email': email,
       'phone': phoneNumber,
-      'status': status,
+      'status': status?.toMap(),
       'time_zone': timezone,
       'created_at': createdAt,
       'updated_at': updatedAt,
@@ -48,7 +48,7 @@ class UserModel {
       displayName: map['display_name'],
       email: map['email'],
       phoneNumber: map['phone'],
-      status: map['status'],
+      status: UserStatus.fromMap(map['status']),
       timezone: map['time_zone'],
       createdAt: map['created_at'],
       updatedAt: map['updated_at'],
@@ -59,4 +59,25 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> source) =>
       UserModel.fromMap(source);
+}
+
+class UserStatus {
+  String? text;
+  String? tag;
+
+  UserStatus({this.text, this.tag});
+
+  factory UserStatus.fromMap(Map<String, dynamic> map) {
+    return UserStatus(
+      text: map['text'],
+      tag: map['tag'],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'text': text,
+      'tag': tag,
+    };
+  }
 }

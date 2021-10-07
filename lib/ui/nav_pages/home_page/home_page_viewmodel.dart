@@ -188,8 +188,8 @@ class HomePageViewModel extends StreamViewModel {
 
   void fetchUserDetails() async {
     try {
-      final response = await zuriApi.get('organizations/$orgId/members',
-          queryParameters: {'query': email}, token: token);
+      final response = await zuriApi
+          .get('organizations/$orgId/members?query=$email', token: token);
       final _userModel =
           UserModel.fromJson((response!.data['data'] as List).first);
       userService.setUserDetails(_userModel);

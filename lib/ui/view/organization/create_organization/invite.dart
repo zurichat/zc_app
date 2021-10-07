@@ -74,8 +74,8 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                       ),
                     ),
                     BorderTextField(
-                      controller: viewModel.inviteController,
                       hint: SampleEmail,
+                      onChanged: (val) => viewModel.invite = val,
                     ),
                     const InviteButton(),
                     UIHelper.verticalSpaceMedium,

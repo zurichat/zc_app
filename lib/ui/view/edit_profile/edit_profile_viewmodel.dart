@@ -42,11 +42,11 @@ class EditProfileViewModel extends BaseViewModel {
 
   Future<void> onSave() async {
     updateData();
-    // await _zuriApi.patch(
-    //   'organizations/$orgId/members/profile',
-    //   body: userModel.toMap(),
-    //   token: token,
-    // );
+    await _zuriApi.patch(
+      'organizations/$orgId/members/$userId/profile',
+      body: userModel.toMap(),
+      token: token,
+    );
     _userService.setUserDetails(userModel);
     _navigationService.back();
   }

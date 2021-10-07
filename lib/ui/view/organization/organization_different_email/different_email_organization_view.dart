@@ -66,7 +66,8 @@ class UseDifferentEmailView extends StatelessWidget {
                         ),
                       )
                     ],
-                  )
+                  ),
+                  const Spacer(),
                 ],
               ),
             ),

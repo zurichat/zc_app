@@ -131,7 +131,7 @@ class OrganizationViewModel extends BaseViewModel {
 
     try {
       setBusy(true);
-      var orgId = currentOrgId ?? '61459d8e62688da5302acdb1';
+      var orgId = currentOrgId ?? ''; // ?? '61459d8e62688da5302acdb1';
 
       if (orgId.isNotEmpty) {
         final orgMemberList = await api.getOrganizationMemberList(orgId);

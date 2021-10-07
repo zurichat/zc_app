@@ -47,8 +47,8 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                       ),
                     ),
                     BorderTextField(
-                      controller: viewModel.companyController,
                       hint: CompanyNameHint,
+                      onChanged: (val) => viewModel.company = val,
                     ),
                     UIHelper.verticalSpaceMedium,
                     LongButton(

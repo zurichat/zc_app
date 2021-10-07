@@ -30,8 +30,9 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
   @override
   Future<void> futureToRun() async {
     try {
-      final response = await _zuriApi.get('organizations/$orgId/members',
-          queryParameters: {'query': email}, token: token);
+      final response =
+          await _zuriApi.get('organizations/$orgId/members?query=$email',
+              token: token);
       _userModel = UserModel.fromJson((response!.data['data'] as List).first);
       _userService.setUserDetails(_userModel!);
     } catch (e) {

@@ -30,8 +30,8 @@ class SelectEmail extends StatelessWidget {
         ),
         body: Container(
           margin: const EdgeInsets.all(16),
-          height: 172.0,
-          width: 395.0,
+          // height: 172.0,
+          // width: 395.0,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(2.0),
@@ -44,6 +44,7 @@ class SelectEmail extends StatelessWidget {
               ]),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
                 padding:

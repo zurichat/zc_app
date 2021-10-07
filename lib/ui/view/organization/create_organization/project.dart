@@ -50,7 +50,7 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
                     ),
                     UIHelper.verticalSpaceMedium,
                     LongButton(
-                        onPressed: () => viewModel.next(), label: 'Next'),
+                        onPressed: () => viewModel.addProject(), label: 'Next'),
                     const Spacer(flex: 3),
                   ],
                 ),
@@ -73,7 +73,7 @@ class TextForm extends HookViewModelWidget<CreateOrganizationViewModel> {
       BuildContext context, CreateOrganizationViewModel viewModel) {
     return Center(
       child: TextField(
-        controller: viewModel.projectController,
+        // controller: viewModel.projectController,
         maxLength: wordCount,
         decoration: InputDecoration(
           hintText: hintText,
@@ -105,7 +105,7 @@ class TextForm extends HookViewModelWidget<CreateOrganizationViewModel> {
           ),
           errorBorder: InputBorder.none,
         ),
-        onChanged: (value) {},
+        onChanged: (val) => viewModel.project = val,
       ),
     );
   }
