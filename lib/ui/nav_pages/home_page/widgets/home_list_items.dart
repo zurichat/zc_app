@@ -48,6 +48,22 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   }
 }
 
+class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+  const AddTeammatesTextAndIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, viewModel) {
+    return _TextAndIcon(
+      text: AddTeammates,
+      unread: false,
+      onTap: () => viewModel.navigateToCreateChannel(),
+      icon: SvgIcon(
+        svgIcon: SvgAssets.addChannels,
+      ),
+    );
+  }
+}
+
 ///Specify the noTopPad as true for all the first child
 ///
 //Expanded tile don't allow sizing so we have to decrease
@@ -94,6 +110,7 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 ///
 //Expanded tile don't allow sizing so we have to decrease
 //the top pad of the first child to make it look visually ok
+
 // ignore: must_be_immutable
 class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   final HomeItemModel data;

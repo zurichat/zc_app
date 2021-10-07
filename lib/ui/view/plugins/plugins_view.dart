@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
 import 'plugin_viewmodel.dart';
-import 'widgets/custom_appbar.dart';
 import 'widgets/custom_plugin_list_tile.dart';
 import 'widgets/custom_search_field.dart';
 
@@ -18,10 +20,10 @@ class PluginView extends StatelessWidget {
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         return Scaffold(
-          appBar: CustomAppBars(
-            appbarTitle: 'Plugins',
-            appbarAction: 'Edit',
-            model: model,
+          appBar: ZuriAppBar(
+            orgTitle:
+                Text(Plugins, style: AppTextStyles.heading7),
+                whiteBackground: true,
           ),
           body: SingleChildScrollView(
               child: Padding(
