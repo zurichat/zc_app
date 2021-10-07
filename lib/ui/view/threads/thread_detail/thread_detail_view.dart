@@ -238,8 +238,10 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
 
                                       await model.sendThreadMessage(
                                           message, userPost!.channelId);
-                                      _scrollController.jumpTo(_scrollController
-                                          .position.maxScrollExtent);
+                                      _scrollController.jumpTo(
+                                        _scrollController
+                                            .position.maxScrollExtent,
+                                      );
                                     }
                                   },
                                   icon: const Icon(

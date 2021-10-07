@@ -65,7 +65,7 @@ class _$AddPeopleToChannelCopyWithImpl<$Res>
   _$AddPeopleToChannelCopyWithImpl(this._value, this._then);
 
   final AddPeopleToChannel _value;
-  // ignore: unused_field
+
   final $Res Function(AddPeopleToChannel) _then;
 
   @override
@@ -75,18 +75,9 @@ class _$AddPeopleToChannelCopyWithImpl<$Res>
     Object? isAdmin = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      roleId: roleId == freezed
-          ? _value.roleId
-          : roleId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isAdmin: isAdmin == freezed
-          ? _value.isAdmin
-          : isAdmin // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as String?,
+      roleId: roleId == freezed ? _value.roleId : roleId as String?,
+      isAdmin: isAdmin == freezed ? _value.isAdmin : isAdmin as String?,
     ));
   }
 }
@@ -119,18 +110,9 @@ class __$AddPeopleToChannelCopyWithImpl<$Res>
     Object? isAdmin = freezed,
   }) {
     return _then(_AddPeopleToChannel(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      roleId: roleId == freezed
-          ? _value.roleId
-          : roleId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isAdmin: isAdmin == freezed
-          ? _value.isAdmin
-          : isAdmin // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as String?,
+      roleId: roleId == freezed ? _value.roleId : roleId as String?,
+      isAdmin: isAdmin == freezed ? _value.isAdmin : isAdmin as String?,
     ));
   }
 }
@@ -259,7 +241,7 @@ class _$ApiResponseCopyWithImpl<$Res> implements $ApiResponseCopyWith<$Res> {
   _$ApiResponseCopyWithImpl(this._value, this._then);
 
   final ApiResponse _value;
-  // ignore: unused_field
+
   final $Res Function(ApiResponse) _then;
 
   @override
@@ -269,18 +251,12 @@ class _$ApiResponseCopyWithImpl<$Res> implements $ApiResponseCopyWith<$Res> {
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      statusCode: statusCode == freezed
-          ? _value.statusCode
-          : statusCode // ignore: cast_nullable_to_non_nullable
-              as int?,
+      statusCode:
+          statusCode == freezed ? _value.statusCode : statusCode as int?,
       statusMessage: statusMessage == freezed
           ? _value.statusMessage
-          : statusMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+          : statusMessage as String?,
+      data: data == freezed ? _value.data : data as dynamic,
     ));
   }
 }
@@ -312,18 +288,12 @@ class __$ApiResponseCopyWithImpl<$Res> extends _$ApiResponseCopyWithImpl<$Res>
     Object? data = freezed,
   }) {
     return _then(_ApiResponse(
-      statusCode: statusCode == freezed
-          ? _value.statusCode
-          : statusCode // ignore: cast_nullable_to_non_nullable
-              as int?,
+      statusCode:
+          statusCode == freezed ? _value.statusCode : statusCode as int?,
       statusMessage: statusMessage == freezed
           ? _value.statusMessage
-          : statusMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+          : statusMessage as String?,
+      data: data == freezed ? _value.data : data as dynamic,
     ));
   }
 }
@@ -452,7 +422,7 @@ class _$ChannelMembersModelCopyWithImpl<$Res>
   _$ChannelMembersModelCopyWithImpl(this._value, this._then);
 
   final ChannelMembersModel _value;
-  // ignore: unused_field
+
   final $Res Function(ChannelMembersModel) _then;
 
   @override
@@ -461,14 +431,8 @@ class _$ChannelMembersModelCopyWithImpl<$Res>
     Object? isAdmin = freezed,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isAdmin: isAdmin == freezed
-          ? _value.isAdmin
-          : isAdmin // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      name: name == freezed ? _value.name : name as String?,
+      isAdmin: isAdmin == freezed ? _value.isAdmin : isAdmin as bool?,
     ));
   }
 }
@@ -500,14 +464,8 @@ class __$ChannelMembersModelCopyWithImpl<$Res>
     Object? isAdmin = freezed,
   }) {
     return _then(_ChannelMembersModel(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isAdmin: isAdmin == freezed
-          ? _value.isAdmin
-          : isAdmin // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      name: name == freezed ? _value.name : name as String?,
+      isAdmin: isAdmin == freezed ? _value.isAdmin : isAdmin as bool?,
     ));
   }
 }
@@ -622,7 +580,7 @@ class _$ChannelModelCopyWithImpl<$Res> implements $ChannelModelCopyWith<$Res> {
   _$ChannelModelCopyWithImpl(this._value, this._then);
 
   final ChannelModel _value;
-  // ignore: unused_field
+
   final $Res Function(ChannelModel) _then;
 
   @override
@@ -631,14 +589,8 @@ class _$ChannelModelCopyWithImpl<$Res> implements $ChannelModelCopyWith<$Res> {
     Object? name = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      name: name == freezed ? _value.name : name as String?,
     ));
   }
 }
@@ -669,14 +621,8 @@ class __$ChannelModelCopyWithImpl<$Res> extends _$ChannelModelCopyWithImpl<$Res>
     Object? name = freezed,
   }) {
     return _then(_ChannelModel(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      name: name == freezed ? _value.name : name as String?,
     ));
   }
 }
@@ -794,7 +740,7 @@ class _$ChannelsSearchCopyWithImpl<$Res>
   _$ChannelsSearchCopyWithImpl(this._value, this._then);
 
   final ChannelsSearch _value;
-  // ignore: unused_field
+
   final $Res Function(ChannelsSearch) _then;
 
   @override
@@ -804,18 +750,9 @@ class _$ChannelsSearchCopyWithImpl<$Res>
     Object? name = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      slug: slug == freezed
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      slug: slug == freezed ? _value.slug : slug as String?,
+      name: name == freezed ? _value.name : name as String?,
     ));
   }
 }
@@ -848,18 +785,9 @@ class __$ChannelsSearchCopyWithImpl<$Res>
     Object? name = freezed,
   }) {
     return _then(_ChannelsSearch(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      slug: slug == freezed
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      slug: slug == freezed ? _value.slug : slug as String?,
+      name: name == freezed ? _value.name : name as String?,
     ));
   }
 }
@@ -1007,7 +935,7 @@ class _$OrganizationModelCopyWithImpl<$Res>
   _$OrganizationModelCopyWithImpl(this._value, this._then);
 
   final OrganizationModel _value;
-  // ignore: unused_field
+
   final $Res Function(OrganizationModel) _then;
 
   @override
@@ -1021,34 +949,16 @@ class _$OrganizationModelCopyWithImpl<$Res>
     Object? noOfMembers = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      name: name == freezed ? _value.name : name as String?,
       organizationUrl: organizationUrl == freezed
           ? _value.organizationUrl
-          : organizationUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      time: time == freezed
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String?,
-      logoUrl: logoUrl == freezed
-          ? _value.logoUrl
-          : logoUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isOwner: isOwner == freezed
-          ? _value.isOwner
-          : isOwner // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      noOfMembers: noOfMembers == freezed
-          ? _value.noOfMembers
-          : noOfMembers // ignore: cast_nullable_to_non_nullable
-              as int?,
+          : organizationUrl as String?,
+      time: time == freezed ? _value.time : time as String?,
+      logoUrl: logoUrl == freezed ? _value.logoUrl : logoUrl as String?,
+      isOwner: isOwner == freezed ? _value.isOwner : isOwner as bool?,
+      noOfMembers:
+          noOfMembers == freezed ? _value.noOfMembers : noOfMembers as int?,
     ));
   }
 }
@@ -1092,34 +1002,16 @@ class __$OrganizationModelCopyWithImpl<$Res>
     Object? noOfMembers = freezed,
   }) {
     return _then(_OrganizationModel(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      name: name == freezed ? _value.name : name as String?,
       organizationUrl: organizationUrl == freezed
           ? _value.organizationUrl
-          : organizationUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      time: time == freezed
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String?,
-      logoUrl: logoUrl == freezed
-          ? _value.logoUrl
-          : logoUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isOwner: isOwner == freezed
-          ? _value.isOwner
-          : isOwner // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      noOfMembers: noOfMembers == freezed
-          ? _value.noOfMembers
-          : noOfMembers // ignore: cast_nullable_to_non_nullable
-              as int?,
+          : organizationUrl as String?,
+      time: time == freezed ? _value.time : time as String?,
+      logoUrl: logoUrl == freezed ? _value.logoUrl : logoUrl as String?,
+      isOwner: isOwner == freezed ? _value.isOwner : isOwner as bool?,
+      noOfMembers:
+          noOfMembers == freezed ? _value.noOfMembers : noOfMembers as int?,
     ));
   }
 }
@@ -1313,7 +1205,7 @@ class _$ProfileModelCopyWithImpl<$Res> implements $ProfileModelCopyWith<$Res> {
   _$ProfileModelCopyWithImpl(this._value, this._then);
 
   final ProfileModel _value;
-  // ignore: unused_field
+
   final $Res Function(ProfileModel) _then;
 
   @override
@@ -1328,38 +1220,16 @@ class _$ProfileModelCopyWithImpl<$Res> implements $ProfileModelCopyWith<$Res> {
     Object? bio = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      bio: bio == freezed
-          ? _value.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String?,
+      userId: userId == freezed ? _value.userId : userId as bool?,
+      firstName: firstName == freezed ? _value.firstName : firstName as String?,
+      lastName: lastName == freezed ? _value.lastName : lastName as String?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      email: email == freezed ? _value.email : email as String?,
+      phoneNumber:
+          phoneNumber == freezed ? _value.phoneNumber : phoneNumber as int?,
+      status: status == freezed ? _value.status : status as String?,
+      bio: bio == freezed ? _value.bio : bio as String?,
     ));
   }
 }
@@ -1404,38 +1274,16 @@ class __$ProfileModelCopyWithImpl<$Res> extends _$ProfileModelCopyWithImpl<$Res>
     Object? bio = freezed,
   }) {
     return _then(_ProfileModel(
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      bio: bio == freezed
-          ? _value.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String?,
+      userId: userId == freezed ? _value.userId : userId as bool?,
+      firstName: firstName == freezed ? _value.firstName : firstName as String?,
+      lastName: lastName == freezed ? _value.lastName : lastName as String?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      email: email == freezed ? _value.email : email as String?,
+      phoneNumber:
+          phoneNumber == freezed ? _value.phoneNumber : phoneNumber as int?,
+      status: status == freezed ? _value.status : status as String?,
+      bio: bio == freezed ? _value.bio : bio as String?,
     ));
   }
 }
@@ -1635,7 +1483,7 @@ class _$SignUpDataModelCopyWithImpl<$Res>
   _$SignUpDataModelCopyWithImpl(this._value, this._then);
 
   final SignUpDataModel _value;
-  // ignore: unused_field
+
   final $Res Function(SignUpDataModel) _then;
 
   @override
@@ -1649,34 +1497,17 @@ class _$SignUpDataModelCopyWithImpl<$Res>
     Object? phoneNumber = freezed,
   }) {
     return _then(_value.copyWith(
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
+      firstName: firstName == freezed ? _value.firstName : firstName as String?,
+      lastName: lastName == freezed ? _value.lastName : lastName as String?,
+      email: email == freezed ? _value.email : email as String?,
+      password: password == freezed ? _value.password : password as String?,
       confirmPassword: confirmPassword == freezed
           ? _value.confirmPassword
-          : confirmPassword // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
+          : confirmPassword as String?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      phoneNumber:
+          phoneNumber == freezed ? _value.phoneNumber : phoneNumber as String?,
     ));
   }
 }
@@ -1720,34 +1551,17 @@ class __$SignUpDataModelCopyWithImpl<$Res>
     Object? phoneNumber = freezed,
   }) {
     return _then(_SignUpDataModel(
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
+      firstName: firstName == freezed ? _value.firstName : firstName as String?,
+      lastName: lastName == freezed ? _value.lastName : lastName as String?,
+      email: email == freezed ? _value.email : email as String?,
+      password: password == freezed ? _value.password : password as String?,
       confirmPassword: confirmPassword == freezed
           ? _value.confirmPassword
-          : confirmPassword // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
+          : confirmPassword as String?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      phoneNumber:
+          phoneNumber == freezed ? _value.phoneNumber : phoneNumber as String?,
     ));
   }
 }
@@ -1971,7 +1785,7 @@ class _$StartDmModelCopyWithImpl<$Res> implements $StartDmModelCopyWith<$Res> {
   _$StartDmModelCopyWithImpl(this._value, this._then);
 
   final StartDmModel _value;
-  // ignore: unused_field
+
   final $Res Function(StartDmModel) _then;
 
   @override
@@ -1993,66 +1807,22 @@ class _$StartDmModelCopyWithImpl<$Res> implements $StartDmModelCopyWith<$Res> {
     Object? isChecked = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      orgId: orgId == freezed
-          ? _value.orgId
-          : orgId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isOnline: isOnline == freezed
-          ? _value.isOnline
-          : isOnline // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      imageUrl: imageUrl == freezed
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fullName: fullName == freezed
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      files: files == freezed
-          ? _value.files
-          : files // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      bio: bio == freezed
-          ? _value.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pronouns: pronouns == freezed
-          ? _value.pronouns
-          : pronouns // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: phone == freezed
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      timeZone: timeZone == freezed
-          ? _value.timeZone
-          : timeZone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      joinedAt: joinedAt == freezed
-          ? _value.joinedAt
-          : joinedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isChecked: isChecked == freezed
-          ? _value.isChecked
-          : isChecked // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      id: id == freezed ? _value.id : id as int?,
+      orgId: orgId == freezed ? _value.orgId : orgId as String?,
+      isOnline: isOnline == freezed ? _value.isOnline : isOnline as bool?,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String?,
+      fullName: fullName == freezed ? _value.fullName : fullName as String?,
+      files: files == freezed ? _value.files : files as String?,
+      status: status == freezed ? _value.status : status as String?,
+      email: email == freezed ? _value.email : email as String?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      bio: bio == freezed ? _value.bio : bio as String?,
+      pronouns: pronouns == freezed ? _value.pronouns : pronouns as String?,
+      phone: phone == freezed ? _value.phone : phone as String?,
+      timeZone: timeZone == freezed ? _value.timeZone : timeZone as String?,
+      joinedAt: joinedAt == freezed ? _value.joinedAt : joinedAt as String?,
+      isChecked: isChecked == freezed ? _value.isChecked : isChecked as bool?,
     ));
   }
 }
@@ -2111,66 +1881,22 @@ class __$StartDmModelCopyWithImpl<$Res> extends _$StartDmModelCopyWithImpl<$Res>
     Object? isChecked = freezed,
   }) {
     return _then(_StartDmModel(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      orgId: orgId == freezed
-          ? _value.orgId
-          : orgId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isOnline: isOnline == freezed
-          ? _value.isOnline
-          : isOnline // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      imageUrl: imageUrl == freezed
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fullName: fullName == freezed
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      files: files == freezed
-          ? _value.files
-          : files // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      bio: bio == freezed
-          ? _value.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pronouns: pronouns == freezed
-          ? _value.pronouns
-          : pronouns // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: phone == freezed
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      timeZone: timeZone == freezed
-          ? _value.timeZone
-          : timeZone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      joinedAt: joinedAt == freezed
-          ? _value.joinedAt
-          : joinedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isChecked: isChecked == freezed
-          ? _value.isChecked
-          : isChecked // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      id: id == freezed ? _value.id : id as int?,
+      orgId: orgId == freezed ? _value.orgId : orgId as String?,
+      isOnline: isOnline == freezed ? _value.isOnline : isOnline as bool?,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String?,
+      fullName: fullName == freezed ? _value.fullName : fullName as String?,
+      files: files == freezed ? _value.files : files as String?,
+      status: status == freezed ? _value.status : status as String?,
+      email: email == freezed ? _value.email : email as String?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      bio: bio == freezed ? _value.bio : bio as String?,
+      pronouns: pronouns == freezed ? _value.pronouns : pronouns as String?,
+      phone: phone == freezed ? _value.phone : phone as String?,
+      timeZone: timeZone == freezed ? _value.timeZone : timeZone as String?,
+      joinedAt: joinedAt == freezed ? _value.joinedAt : joinedAt as String?,
+      isChecked: isChecked == freezed ? _value.isChecked : isChecked as bool?,
     ));
   }
 }
@@ -2429,7 +2155,7 @@ class _$StaticUserModelCopyWithImpl<$Res>
   _$StaticUserModelCopyWithImpl(this._value, this._then);
 
   final StaticUserModel _value;
-  // ignore: unused_field
+
   final $Res Function(StaticUserModel) _then;
 
   @override
@@ -2441,26 +2167,11 @@ class _$StaticUserModelCopyWithImpl<$Res>
     Object? online = freezed,
   }) {
     return _then(_value.copyWith(
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userImg: userImg == freezed
-          ? _value.userImg
-          : userImg // ignore: cast_nullable_to_non_nullable
-              as String?,
-      joinInfo: joinInfo == freezed
-          ? _value.joinInfo
-          : joinInfo // ignore: cast_nullable_to_non_nullable
-              as String?,
-      time: time == freezed
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String?,
-      online: online == freezed
-          ? _value.online
-          : online // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      userName: userName == freezed ? _value.userName : userName as String?,
+      userImg: userImg == freezed ? _value.userImg : userImg as String?,
+      joinInfo: joinInfo == freezed ? _value.joinInfo : joinInfo as String?,
+      time: time == freezed ? _value.time : time as String?,
+      online: online == freezed ? _value.online : online as bool?,
     ));
   }
 }
@@ -2500,26 +2211,11 @@ class __$StaticUserModelCopyWithImpl<$Res>
     Object? online = freezed,
   }) {
     return _then(_StaticUserModel(
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userImg: userImg == freezed
-          ? _value.userImg
-          : userImg // ignore: cast_nullable_to_non_nullable
-              as String?,
-      joinInfo: joinInfo == freezed
-          ? _value.joinInfo
-          : joinInfo // ignore: cast_nullable_to_non_nullable
-              as String?,
-      time: time == freezed
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String?,
-      online: online == freezed
-          ? _value.online
-          : online // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      userName: userName == freezed ? _value.userName : userName as String?,
+      userImg: userImg == freezed ? _value.userImg : userImg as String?,
+      joinInfo: joinInfo == freezed ? _value.joinInfo : joinInfo as String?,
+      time: time == freezed ? _value.time : time as String?,
+      online: online == freezed ? _value.online : online as bool?,
     ));
   }
 }
@@ -2673,7 +2369,7 @@ class _$TodoModelCopyWithImpl<$Res> implements $TodoModelCopyWith<$Res> {
   _$TodoModelCopyWithImpl(this._value, this._then);
 
   final TodoModel _value;
-  // ignore: unused_field
+
   final $Res Function(TodoModel) _then;
 
   @override
@@ -2684,22 +2380,10 @@ class _$TodoModelCopyWithImpl<$Res> implements $TodoModelCopyWith<$Res> {
     Object? status = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      userId: userId == freezed ? _value.userId : userId as int?,
+      id: id == freezed ? _value.id : id as int?,
+      title: title == freezed ? _value.title : title as String?,
+      status: status == freezed ? _value.status : status as bool?,
     ));
   }
 }
@@ -2730,22 +2414,10 @@ class __$TodoModelCopyWithImpl<$Res> extends _$TodoModelCopyWithImpl<$Res>
     Object? status = freezed,
   }) {
     return _then(_TodoModel(
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      userId: userId == freezed ? _value.userId : userId as int?,
+      id: id == freezed ? _value.id : id as int?,
+      title: title == freezed ? _value.title : title as String?,
+      status: status == freezed ? _value.status : status as bool?,
     ));
   }
 }
@@ -2915,7 +2587,7 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
   _$UserModelCopyWithImpl(this._value, this._then);
 
   final UserModel _value;
-  // ignore: unused_field
+
   final $Res Function(UserModel) _then;
 
   @override
@@ -2932,46 +2604,18 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int?,
-      timezone: timezone == freezed
-          ? _value.timezone
-          : timezone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+      userId: userId == freezed ? _value.userId : userId as String?,
+      firstName: firstName == freezed ? _value.firstName : firstName as String?,
+      lastName: lastName == freezed ? _value.lastName : lastName as String?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      email: email == freezed ? _value.email : email as String?,
+      phoneNumber:
+          phoneNumber == freezed ? _value.phoneNumber : phoneNumber as String?,
+      status: status == freezed ? _value.status : status as int?,
+      timezone: timezone == freezed ? _value.timezone : timezone as String?,
+      createdAt: createdAt == freezed ? _value.createdAt : createdAt as String?,
+      updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as String?,
     ));
   }
 }
@@ -3018,46 +2662,18 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
     Object? updatedAt = freezed,
   }) {
     return _then(_UserModel(
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int?,
-      timezone: timezone == freezed
-          ? _value.timezone
-          : timezone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+      userId: userId == freezed ? _value.userId : userId as String?,
+      firstName: firstName == freezed ? _value.firstName : firstName as String?,
+      lastName: lastName == freezed ? _value.lastName : lastName as String?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      email: email == freezed ? _value.email : email as String?,
+      phoneNumber:
+          phoneNumber == freezed ? _value.phoneNumber : phoneNumber as String?,
+      status: status == freezed ? _value.status : status as int?,
+      timezone: timezone == freezed ? _value.timezone : timezone as String?,
+      createdAt: createdAt == freezed ? _value.createdAt : createdAt as String?,
+      updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as String?,
     ));
   }
 }
@@ -3286,7 +2902,7 @@ class _$UserThreadPostCopyWithImpl<$Res>
   _$UserThreadPostCopyWithImpl(this._value, this._then);
 
   final UserThreadPost _value;
-  // ignore: unused_field
+
   final $Res Function(UserThreadPost) _then;
 
   @override
@@ -3302,42 +2918,19 @@ class _$UserThreadPostCopyWithImpl<$Res>
     Object? postDate = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      statusIcon: statusIcon == freezed
-          ? _value.statusIcon
-          : statusIcon // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastSeen: lastSeen == freezed
-          ? _value.lastSeen
-          : lastSeen // ignore: cast_nullable_to_non_nullable
-              as String?,
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      userId: userId == freezed ? _value.userId : userId as String?,
+      image: image == freezed ? _value.image : image as String?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      statusIcon:
+          statusIcon == freezed ? _value.statusIcon : statusIcon as String?,
+      lastSeen: lastSeen == freezed ? _value.lastSeen : lastSeen as String?,
+      message: message == freezed ? _value.message : message as String?,
       postEmojis: postEmojis == freezed
           ? _value.postEmojis
-          : postEmojis // ignore: cast_nullable_to_non_nullable
-              as List<PostEmojis>?,
-      postDate: postDate == freezed
-          ? _value.postDate
-          : postDate // ignore: cast_nullable_to_non_nullable
-              as String?,
+          : postEmojis as List<PostEmojis>?,
+      postDate: postDate == freezed ? _value.postDate : postDate as String?,
     ));
   }
 }
@@ -3385,42 +2978,19 @@ class __$UserThreadPostCopyWithImpl<$Res>
     Object? postDate = freezed,
   }) {
     return _then(_UserThreadPost(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      statusIcon: statusIcon == freezed
-          ? _value.statusIcon
-          : statusIcon // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastSeen: lastSeen == freezed
-          ? _value.lastSeen
-          : lastSeen // ignore: cast_nullable_to_non_nullable
-              as String?,
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      userId: userId == freezed ? _value.userId : userId as String?,
+      image: image == freezed ? _value.image : image as String?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      statusIcon:
+          statusIcon == freezed ? _value.statusIcon : statusIcon as String?,
+      lastSeen: lastSeen == freezed ? _value.lastSeen : lastSeen as String?,
+      message: message == freezed ? _value.message : message as String?,
       postEmojis: postEmojis == freezed
           ? _value.postEmojis
-          : postEmojis // ignore: cast_nullable_to_non_nullable
-              as List<PostEmojis>?,
-      postDate: postDate == freezed
-          ? _value.postDate
-          : postDate // ignore: cast_nullable_to_non_nullable
-              as String?,
+          : postEmojis as List<PostEmojis>?,
+      postDate: postDate == freezed ? _value.postDate : postDate as String?,
     ));
   }
 }
@@ -3615,7 +3185,7 @@ class _$PostEmojisCopyWithImpl<$Res> implements $PostEmojisCopyWith<$Res> {
   _$PostEmojisCopyWithImpl(this._value, this._then);
 
   final PostEmojis _value;
-  // ignore: unused_field
+
   final $Res Function(PostEmojis) _then;
 
   @override
@@ -3626,22 +3196,13 @@ class _$PostEmojisCopyWithImpl<$Res> implements $PostEmojisCopyWith<$Res> {
     Object? hasReacted = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      postEmoji: postEmoji == freezed
-          ? _value.postEmoji
-          : postEmoji // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      postEmoji: postEmoji == freezed ? _value.postEmoji : postEmoji as String?,
       postEmojiCount: postEmojiCount == freezed
           ? _value.postEmojiCount
-          : postEmojiCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      hasReacted: hasReacted == freezed
-          ? _value.hasReacted
-          : hasReacted // ignore: cast_nullable_to_non_nullable
-              as bool?,
+          : postEmojiCount as int?,
+      hasReacted:
+          hasReacted == freezed ? _value.hasReacted : hasReacted as bool?,
     ));
   }
 }
@@ -3674,22 +3235,13 @@ class __$PostEmojisCopyWithImpl<$Res> extends _$PostEmojisCopyWithImpl<$Res>
     Object? hasReacted = freezed,
   }) {
     return _then(_PostEmojis(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      postEmoji: postEmoji == freezed
-          ? _value.postEmoji
-          : postEmoji // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      postEmoji: postEmoji == freezed ? _value.postEmoji : postEmoji as String?,
       postEmojiCount: postEmojiCount == freezed
           ? _value.postEmojiCount
-          : postEmojiCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      hasReacted: hasReacted == freezed
-          ? _value.hasReacted
-          : hasReacted // ignore: cast_nullable_to_non_nullable
-              as bool?,
+          : postEmojiCount as int?,
+      hasReacted:
+          hasReacted == freezed ? _value.hasReacted : hasReacted as bool?,
     ));
   }
 }
@@ -3871,7 +3423,7 @@ class _$UserPostCopyWithImpl<$Res> implements $UserPostCopyWith<$Res> {
   _$UserPostCopyWithImpl(this._value, this._then);
 
   final UserPost _value;
-  // ignore: unused_field
+
   final $Res Function(UserPost) _then;
 
   @override
@@ -3890,54 +3442,26 @@ class _$UserPostCopyWithImpl<$Res> implements $UserPostCopyWith<$Res> {
     Object? postDate = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userImage: userImage == freezed
-          ? _value.userImage
-          : userImage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      statusIcon: statusIcon == freezed
-          ? _value.statusIcon
-          : statusIcon // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastSeen: lastSeen == freezed
-          ? _value.lastSeen
-          : lastSeen // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      userId: userId == freezed ? _value.userId : userId as String?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      userImage: userImage == freezed ? _value.userImage : userImage as String?,
+      message: message == freezed ? _value.message : message as String?,
+      statusIcon:
+          statusIcon == freezed ? _value.statusIcon : statusIcon as String?,
+      lastSeen: lastSeen == freezed ? _value.lastSeen : lastSeen as String?,
       postEmojis: postEmojis == freezed
           ? _value.postEmojis
-          : postEmojis // ignore: cast_nullable_to_non_nullable
-              as List<PostEmojis>?,
+          : postEmojis as List<PostEmojis>?,
       userThreadPosts: userThreadPosts == freezed
           ? _value.userThreadPosts
-          : userThreadPosts // ignore: cast_nullable_to_non_nullable
-              as List<UserThreadPost>?,
-      channelName: channelName == freezed
-          ? _value.channelName
-          : channelName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      channelType: channelType == freezed
-          ? _value.channelType
-          : channelType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      postDate: postDate == freezed
-          ? _value.postDate
-          : postDate // ignore: cast_nullable_to_non_nullable
-              as String?,
+          : userThreadPosts as List<UserThreadPost>?,
+      channelName:
+          channelName == freezed ? _value.channelName : channelName as String?,
+      channelType:
+          channelType == freezed ? _value.channelType : channelType as String?,
+      postDate: postDate == freezed ? _value.postDate : postDate as String?,
     ));
   }
 }
@@ -3987,54 +3511,26 @@ class __$UserPostCopyWithImpl<$Res> extends _$UserPostCopyWithImpl<$Res>
     Object? postDate = freezed,
   }) {
     return _then(_UserPost(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userImage: userImage == freezed
-          ? _value.userImage
-          : userImage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      statusIcon: statusIcon == freezed
-          ? _value.statusIcon
-          : statusIcon // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastSeen: lastSeen == freezed
-          ? _value.lastSeen
-          : lastSeen // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      userId: userId == freezed ? _value.userId : userId as String?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      userImage: userImage == freezed ? _value.userImage : userImage as String?,
+      message: message == freezed ? _value.message : message as String?,
+      statusIcon:
+          statusIcon == freezed ? _value.statusIcon : statusIcon as String?,
+      lastSeen: lastSeen == freezed ? _value.lastSeen : lastSeen as String?,
       postEmojis: postEmojis == freezed
           ? _value.postEmojis
-          : postEmojis // ignore: cast_nullable_to_non_nullable
-              as List<PostEmojis>?,
+          : postEmojis as List<PostEmojis>?,
       userThreadPosts: userThreadPosts == freezed
           ? _value.userThreadPosts
-          : userThreadPosts // ignore: cast_nullable_to_non_nullable
-              as List<UserThreadPost>?,
-      channelName: channelName == freezed
-          ? _value.channelName
-          : channelName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      channelType: channelType == freezed
-          ? _value.channelType
-          : channelType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      postDate: postDate == freezed
-          ? _value.postDate
-          : postDate // ignore: cast_nullable_to_non_nullable
-              as String?,
+          : userThreadPosts as List<UserThreadPost>?,
+      channelName:
+          channelName == freezed ? _value.channelName : channelName as String?,
+      channelType:
+          channelType == freezed ? _value.channelType : channelType as String?,
+      postDate: postDate == freezed ? _value.postDate : postDate as String?,
     ));
   }
 }
@@ -4249,7 +3745,7 @@ class _$NewUserCopyWithImpl<$Res> implements $NewUserCopyWith<$Res> {
   _$NewUserCopyWithImpl(this._value, this._then);
 
   final NewUser _value;
-  // ignore: unused_field
+
   final $Res Function(NewUser) _then;
 
   @override
@@ -4258,14 +3754,8 @@ class _$NewUserCopyWithImpl<$Res> implements $NewUserCopyWith<$Res> {
     Object? username = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      username: username == freezed ? _value.username : username as String?,
     ));
   }
 }
@@ -4293,14 +3783,8 @@ class __$NewUserCopyWithImpl<$Res> extends _$NewUserCopyWithImpl<$Res>
     Object? username = freezed,
   }) {
     return _then(_NewUser(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      username: username == freezed ? _value.username : username as String?,
     ));
   }
 }
@@ -4493,7 +3977,7 @@ class _$UserSearchCopyWithImpl<$Res> implements $UserSearchCopyWith<$Res> {
   _$UserSearchCopyWithImpl(this._value, this._then);
 
   final UserSearch _value;
-  // ignore: unused_field
+
   final $Res Function(UserSearch) _then;
 
   @override
@@ -4521,90 +4005,29 @@ class _$UserSearchCopyWithImpl<$Res> implements $UserSearchCopyWith<$Res> {
     Object? userName = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      bio: bio == freezed
-          ? _value.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deleted: deleted == freezed
-          ? _value.deleted
-          : deleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      deletedAt: deletedAt == freezed
-          ? _value.deletedAt
-          : deletedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      files: files == freezed
-          ? _value.files
-          : files // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrl: imageUrl == freezed
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      joinedAt: joinedAt == freezed
-          ? _value.joinedAt
-          : joinedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      orgId: orgId == freezed
-          ? _value.orgId
-          : orgId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: phone == freezed
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      presence: presence == freezed
-          ? _value.presence
-          : presence // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pronouns: pronouns == freezed
-          ? _value.pronouns
-          : pronouns // ignore: cast_nullable_to_non_nullable
-              as String?,
-      role: role == freezed
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String?,
-      settings: settings == freezed
-          ? _value.settings
-          : settings // ignore: cast_nullable_to_non_nullable
-              as String?,
-      socials: socials == freezed
-          ? _value.socials
-          : socials // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      timeZone: timeZone == freezed
-          ? _value.timeZone
-          : timeZone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      bio: bio == freezed ? _value.bio : bio as String?,
+      deleted: deleted == freezed ? _value.deleted : deleted as bool?,
+      deletedAt:
+          deletedAt == freezed ? _value.deletedAt : deletedAt as DateTime?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      email: email == freezed ? _value.email : email as String?,
+      files: files == freezed ? _value.files : files as dynamic,
+      firstName: firstName == freezed ? _value.firstName : firstName as String?,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String?,
+      joinedAt: joinedAt == freezed ? _value.joinedAt : joinedAt as String?,
+      lastName: lastName == freezed ? _value.lastName : lastName as String?,
+      orgId: orgId == freezed ? _value.orgId : orgId as String?,
+      phone: phone == freezed ? _value.phone : phone as String?,
+      presence: presence == freezed ? _value.presence : presence as String?,
+      pronouns: pronouns == freezed ? _value.pronouns : pronouns as String?,
+      role: role == freezed ? _value.role : role as String?,
+      settings: settings == freezed ? _value.settings : settings as String?,
+      socials: socials == freezed ? _value.socials : socials as dynamic,
+      status: status == freezed ? _value.status : status as String?,
+      timeZone: timeZone == freezed ? _value.timeZone : timeZone as String?,
+      userName: userName == freezed ? _value.userName : userName as String?,
     ));
   }
 }
@@ -4674,90 +4097,29 @@ class __$UserSearchCopyWithImpl<$Res> extends _$UserSearchCopyWithImpl<$Res>
     Object? userName = freezed,
   }) {
     return _then(_UserSearch(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      bio: bio == freezed
-          ? _value.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deleted: deleted == freezed
-          ? _value.deleted
-          : deleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      deletedAt: deletedAt == freezed
-          ? _value.deletedAt
-          : deletedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      files: files == freezed
-          ? _value.files
-          : files // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrl: imageUrl == freezed
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      joinedAt: joinedAt == freezed
-          ? _value.joinedAt
-          : joinedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      orgId: orgId == freezed
-          ? _value.orgId
-          : orgId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: phone == freezed
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      presence: presence == freezed
-          ? _value.presence
-          : presence // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pronouns: pronouns == freezed
-          ? _value.pronouns
-          : pronouns // ignore: cast_nullable_to_non_nullable
-              as String?,
-      role: role == freezed
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String?,
-      settings: settings == freezed
-          ? _value.settings
-          : settings // ignore: cast_nullable_to_non_nullable
-              as String?,
-      socials: socials == freezed
-          ? _value.socials
-          : socials // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      timeZone: timeZone == freezed
-          ? _value.timeZone
-          : timeZone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: id == freezed ? _value.id : id as int?,
+      bio: bio == freezed ? _value.bio : bio as String?,
+      deleted: deleted == freezed ? _value.deleted : deleted as bool?,
+      deletedAt:
+          deletedAt == freezed ? _value.deletedAt : deletedAt as DateTime?,
+      displayName:
+          displayName == freezed ? _value.displayName : displayName as String?,
+      email: email == freezed ? _value.email : email as String?,
+      files: files == freezed ? _value.files : files as dynamic,
+      firstName: firstName == freezed ? _value.firstName : firstName as String?,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String?,
+      joinedAt: joinedAt == freezed ? _value.joinedAt : joinedAt as String?,
+      lastName: lastName == freezed ? _value.lastName : lastName as String?,
+      orgId: orgId == freezed ? _value.orgId : orgId as String?,
+      phone: phone == freezed ? _value.phone : phone as String?,
+      presence: presence == freezed ? _value.presence : presence as String?,
+      pronouns: pronouns == freezed ? _value.pronouns : pronouns as String?,
+      role: role == freezed ? _value.role : role as String?,
+      settings: settings == freezed ? _value.settings : settings as String?,
+      socials: socials == freezed ? _value.socials : socials as dynamic,
+      status: status == freezed ? _value.status : status as String?,
+      timeZone: timeZone == freezed ? _value.timeZone : timeZone as String?,
+      userName: userName == freezed ? _value.userName : userName as String?,
     ));
   }
 }
@@ -5061,7 +4423,7 @@ class _$MainMembersCopyWithImpl<$Res> implements $MainMembersCopyWith<$Res> {
   _$MainMembersCopyWithImpl(this._value, this._then);
 
   final MainMembers _value;
-  // ignore: unused_field
+
   final $Res Function(MainMembers) _then;
 
   @override
@@ -5071,18 +4433,9 @@ class _$MainMembersCopyWithImpl<$Res> implements $MainMembersCopyWith<$Res> {
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<UserSearch>?,
+      id: id == freezed ? _value.id : id as int?,
+      name: name == freezed ? _value.name : name as String?,
+      data: data == freezed ? _value.data : data as List<UserSearch>?,
     ));
   }
 }
@@ -5114,18 +4467,9 @@ class __$MainMembeersCopyWithImpl<$Res> extends _$MainMembersCopyWithImpl<$Res>
     Object? data = freezed,
   }) {
     return _then(_MainMembeers(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<UserSearch>?,
+      id: id == freezed ? _value.id : id as int?,
+      name: name == freezed ? _value.name : name as String?,
+      data: data == freezed ? _value.data : data as List<UserSearch>?,
     ));
   }
 }

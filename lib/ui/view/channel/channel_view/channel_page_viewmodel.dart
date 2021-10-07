@@ -11,7 +11,7 @@ import 'package:hng/package/base/server-request/channels/channels_api_service.da
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/notification_service.dart';
-
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
@@ -25,6 +25,7 @@ class ChannelPageViewModel extends FormViewModel {
   final storage = locator<SharedPreferenceLocalStorage>();
   final _centrifugeService = locator<CentrifugeService>();
   final _notificationService = locator<NotificationService>();
+  final log = getLogger("ChannelPageViewModel");
   final _bottomSheetService = locator<BottomSheetService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
@@ -119,6 +120,36 @@ class ChannelPageViewModel extends FormViewModel {
   StreamSubscription? notificationSubscription;
   String channelID = '';
 
+  saveItem(
+      {String? channelID,
+      String? channelName,
+      String? messageID,
+      String? message,
+      String? lastSeen,
+      String? userID,
+      String? userImage,
+      String? displayName}) async {
+    var savedMessageMap = {
+      'channel_id': channelID,
+      'channel_name': channelName,
+      'message_id': messageID,
+      'message': message,
+      'last_seen': lastSeen,
+      'user_id': userID,
+      'user_image': userImage,
+      'display_name': displayName
+    };
+    if (message!.isNotEmpty) {
+      var currentList = storage.getStringList(StorageKeys.savedItem) ?? [];
+      currentList.add(messageID!);
+      await storage.setStringList(StorageKeys.savedItem, currentList);
+      await storage.setString(messageID, json.encode(savedMessageMap));
+      log.i(savedMessageMap);
+      final len = storage.getStringList(StorageKeys.savedItem);
+      log.w(len!.length.toString());
+    }
+  }
+
   void onMessageFieldTap() {
     isVisible = true;
     notifyListeners();
@@ -128,10 +159,9 @@ class ChannelPageViewModel extends FormViewModel {
     channelID = channelId;
     await joinChannel(channelId);
     fetchMessages(channelId);
-    // getChannelSocketId("$channelId");
+    getChannelSocketId("$channelId");
     fetchChannelMembers(channelId);
     listenToNewMessage(channelId);
-    // listenToNewMessages("$channelId");
   }
 
   void showThreadOptions() async {
@@ -183,7 +213,7 @@ class ChannelPageViewModel extends FormViewModel {
             userThreadPosts: <UserThreadPost>[],
             channelName: channelId,
             userImage: 'assets/images/chimamanda.png',
-            userID: userid,
+            userId: userid,
             channelId: channelId),
       );
     });

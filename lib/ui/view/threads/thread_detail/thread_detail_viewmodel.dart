@@ -62,6 +62,7 @@ class ThreadDetailViewModel extends BaseViewModel {
       String userId = message["user_id"];
 
       channelThreadMessages.add(UserThreadPost(
+          channelId: "345",
           id: message["_id"],
           displayName: userId,
           message: message["content"],

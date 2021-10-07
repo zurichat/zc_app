@@ -20,4 +20,5 @@ class StorageKeys {
   static const currentUserThreadIdDrafts = 'current_user_thread_Id_drafts';
   static const currentChannelId = 'current_channel_id';
   static const organizationMemberList = 'organization_member_list';
+  static const savedItem = 'saved_item';
 }
