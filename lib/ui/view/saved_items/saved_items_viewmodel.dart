@@ -29,9 +29,11 @@ class SavedItemsViewModel extends BaseViewModel {
                 savedMap['channel_name'],
                 savedMap['user_id'],
                 savedMap['user_image'],
-                savedMap['channel_id'],
+                savedMap['last_seen'],
                 savedMap['message'],
-                savedMap['channel_id']));
+                savedMap['channel_id'],
+                savedMap['display_name'],
+                ));
           }
         }
       });

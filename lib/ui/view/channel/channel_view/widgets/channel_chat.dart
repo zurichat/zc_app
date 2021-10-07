@@ -58,24 +58,12 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                                         channelName: message[index].channelName,
                                         displayName: message[index].displayName,
                                         message: message[index].message,
+                                        lastSeen: message[index].lastSeen,
                                         messageID: message[index].id,
                                         userID: message[index].userID,
                                         userImage: message[index].userImage);
                                     log.i("Saved");
                                 viewModel.exitPage();
-                                log.d("Channel ID ${message[index].channelId}");
-                                log.d(
-                                    "Channel Name ${viewModel.channelUserMessages![index].channelName}");
-                                log.d(
-                                    "ID of the message ${viewModel.channelUserMessages![index].id}");
-                                log.d(viewModel
-                                    .channelUserMessages![index].message);
-                                log.d(viewModel
-                                    .channelUserMessages![index].postDate);
-                                log.d(viewModel
-                                    .channelUserMessages![index].userID);
-                                log.d(viewModel
-                                    .channelUserMessages![index].userImage);
                                 showSimpleNotification(
                                   const Text("Added successfully"),
                                   position: NotificationPosition.top,

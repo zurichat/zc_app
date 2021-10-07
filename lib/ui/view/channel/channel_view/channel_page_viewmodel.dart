@@ -45,6 +45,7 @@ class ChannelPageViewModel extends BaseViewModel {
       String? channelName,
       String? messageID,
       String? message,
+      String? lastSeen,
       String? userID,
       String? userImage,
       String? displayName}) async {
@@ -53,6 +54,7 @@ class ChannelPageViewModel extends BaseViewModel {
       'channel_name': channelName,
       'message_id': messageID,
       'message': message,
+      'last_seen': lastSeen,
       'user_id': userID,
       'user_image': userImage,
       'display_name': displayName
