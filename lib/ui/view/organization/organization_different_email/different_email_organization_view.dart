@@ -17,10 +17,6 @@ class UseDifferentEmailView extends StatelessWidget {
     return ViewModelBuilder<UseDifferentEmailViewModel>.reactive(
       viewModelBuilder: () => UseDifferentEmailViewModel(),
       builder: (context, model, child) => Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: AppColors.zuriPrimaryColor,
-        //   title: const Text(UseAnotherEmail),
-        // ),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(25.0),
