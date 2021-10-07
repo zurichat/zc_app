@@ -814,6 +814,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.0"
+  pref_dessert:
+    dependency: "direct main"
+    description:
+      name: pref_dessert
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.0"
   process:
     dependency: transitive
     description:
