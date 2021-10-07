@@ -45,19 +45,11 @@ class OrganizationUrlViewModel extends BaseViewModel {
     if (url != null && url!.isNotEmpty) {
       loading(true);
       final organization = await api.fetchOrganizationByUrl(url!);
-      // await api.joinOrganization(Organization.id!);
-
-      //Set the Organization id to the currently signed in
-      //This is the same has saving to the local storage
       _userService.setCurrentOrganizationId(organization.id!);
 
       //Todo: storing should be implemented after stage 7
-      // await storeOrganizationId(Organization.id);
       loading(false);
       _navigationService.navigateTo(Routes.navBarView);
-
-      // popUntil((route) => route.settings.name == Routes.navBarView);
-      // popUntil(ModalRoute.withName(Routes.OrganizationView));
     }
 
     //TODO: put the error text
