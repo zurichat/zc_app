@@ -35,6 +35,10 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         width: double.infinity,
                         height: MediaQuery.of(context).size.height * .75,
                         margin: const EdgeInsets.all(10),
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(5),
+                                topRight: Radius.circular(5))),
                         child: ListView(
                           children: [
                             ListTile(
@@ -52,17 +56,16 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                                   style: AppTextStyles.heading9),
                               leading: const Icon(Icons.save_outlined),
                               onTap: () {
-                                viewModel
-                                    .saveItem(
-                                        channelID: message![index].channelId,
-                                        channelName: message[index].channelName,
-                                        displayName: message[index].displayName,
-                                        message: message[index].message,
-                                        lastSeen: message[index].lastSeen,
-                                        messageID: message[index].id,
-                                        userID: message[index].userID,
-                                        userImage: message[index].userImage);
-                                    log.i("Saved");
+                                viewModel.saveItem(
+                                    channelID: message![index].channelId,
+                                    channelName: message[index].channelName,
+                                    displayName: message[index].displayName,
+                                    message: message[index].message,
+                                    lastSeen: message[index].lastSeen,
+                                    messageID: message[index].id,
+                                    userID: message[index].userID,
+                                    userImage: message[index].userImage);
+                                log.i("Saved");
                                 viewModel.exitPage();
                                 showSimpleNotification(
                                   const Text("Added successfully"),
