@@ -13,6 +13,7 @@ const String invalidEmailFormat = 'Invalid email format';
 const String passwordsMustMatch = 'Passwords do not match';
 const String passwordUpdated = 'Password Successfully Updated';
 const String passwordNotUpdated = 'Password could not be updated';
+const String profileUpdated = 'Profile Successfully Updated';
 const String errorOccurred = 'An Error Occurred';
 const String errorOTP = 'OTP could not be validated';
 const String wrongOTP = 'Wrong OTP, please check again';

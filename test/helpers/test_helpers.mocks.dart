@@ -90,6 +90,10 @@ class MockUserService extends _i1.Mock implements _i7.UserService {
       (super.noSuchMethod(Invocation.getter(#userId), returnValue: '')
           as String);
   @override
+  String get memberId =>
+      (super.noSuchMethod(Invocation.getter(#memberId), returnValue: '')
+          as String);
+  @override
   String get userEmail =>
       (super.noSuchMethod(Invocation.getter(#userEmail), returnValue: '')
           as String);
@@ -740,10 +744,19 @@ class MockChannelsApiService extends _i1.Mock
           as _i2.Future<List<_i17.ChannelModel>>);
   @override
   _i2.Future<bool> createChannels(
-          {String? name, String? description, bool? private}) =>
+          {String? name,
+          String? description,
+          bool? private,
+          String? email,
+          String? id}) =>
       (super.noSuchMethod(
-          Invocation.method(#createChannels, [],
-              {#name: name, #description: description, #private: private}),
+          Invocation.method(#createChannels, [], {
+            #name: name,
+            #description: description,
+            #private: private,
+            #email: email,
+            #id: id
+          }),
           returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
   @override
   _i2.Future<bool> deleteChannel(String? orgId, String? channelId) =>

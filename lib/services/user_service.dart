@@ -75,6 +75,12 @@ class UserService {
     return _userId;
   }
 
+    String get memberId {
+    _userId = _sharedPrefs.getString(StorageKeys.idInOrganization) ?? '';
+    //You can perform other function before returning
+    return _userId;
+  }
+
   String get userEmail {
     _userEmail = _sharedPrefs.getString(StorageKeys.currentUserEmail) ?? '';
     //You can perform other function before returning

@@ -74,6 +74,7 @@ class CreateOrganizationViewModel extends BaseViewModel {
         time: null,
         isOwner: true,
         noOfMembers: 0,
+        userIdInOrg: ''
       );
     } catch (e) {
       log.e(e.toString());

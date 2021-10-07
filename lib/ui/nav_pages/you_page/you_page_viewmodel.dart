@@ -14,13 +14,21 @@ class YouPageViewModel extends BaseViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _userService = locator<UserService>();
 
-  String get username => _userService.userDetails?.displayName ?? PaulEke;
+  String get username =>
+      (_userService.userDetails?.displayName?.isNotEmpty ?? false
+          ? _userService.userDetails?.displayName
+          : _userService.userDetails?.fullName) ??
+      PaulEke;
   String profileImage = ZuriAppbarLogo;
   String currentStatus = Active;
   String otherStatus = Away;
 
   Future editProfile() async {
-    await _navigationService.navigateTo(Routes.editProfileView);
+    await _navigationService.navigateTo(
+      Routes.editProfileView,
+      arguments: EditProfileViewArguments(user: _userService.userDetails!),
+    );
+    notifyListeners();
   }
 
   Future pauseNotifications() async {

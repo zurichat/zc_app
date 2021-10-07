@@ -45,6 +45,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                         icon: Icon(
                           Icons.add_a_photo,
                           size: _size.width * 0.06,
+                          color: AppColors.whiteColor,
                         ),
                       ),
                     ),
@@ -56,6 +57,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                       initialValue: viewModel.userModel.fullName,
                       onChanged: (value) {
                         viewModel.fullName = value;
+                        viewModel.setState();
                       },
                       decoration: const InputDecoration(
                         labelText: FullName,
@@ -69,6 +71,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               initialValue: viewModel.userModel.displayName,
               onChanged: (value) {
                 viewModel.displayName = value;
+                viewModel.setState();
               },
               decoration: const InputDecoration(
                 labelText: DisplayName,
@@ -77,11 +80,10 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue: viewModel.userModel.status == null
-                  ? ''
-                  : viewModel.userModel.status.toString(),
+              initialValue: viewModel.userModel.bio,
               onChanged: (value) {
-                viewModel.track = value;
+                viewModel.bio = value;
+                viewModel.setState();
               },
               decoration: const InputDecoration(
                   labelText: Track, helperText: TrackDescription),
@@ -90,6 +92,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               initialValue: viewModel.userModel.phoneNumber,
               onChanged: (value) {
                 viewModel.phone = value;
+                viewModel.setState();
               },
               decoration: const InputDecoration(
                   labelText: Phone, helperText: PhoneDescription),

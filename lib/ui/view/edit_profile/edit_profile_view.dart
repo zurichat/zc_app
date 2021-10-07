@@ -34,7 +34,10 @@ class EditProfileView extends StatelessWidget {
               onPressed: () => viewModel.onSave(),
               child: Text(
                 Save.toUpperCase(),
-                style: AppTextStyles.body1Bold,
+                style: AppTextStyles.body1Bold.copyWith(
+                    color: viewModel.hasDataChanged
+                        ? AppColors.deepBlackColor
+                        : AppColors.zuriGrey),
               ),
             ),
           ],

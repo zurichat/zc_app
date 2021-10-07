@@ -9,6 +9,8 @@ class UserModel {
   String? timezone;
   String? createdAt;
   String? updatedAt;
+  String? bio;
+  String? imageUrl;
 
   UserModel({
     this.userId,
@@ -21,6 +23,8 @@ class UserModel {
     this.timezone,
     this.createdAt,
     this.updatedAt,
+    this.bio,
+    this.imageUrl,
   });
 
   String? get fullName => '$firstName $lastName';
@@ -37,6 +41,7 @@ class UserModel {
       'time_zone': timezone,
       'created_at': createdAt,
       'updated_at': updatedAt,
+      'bio': bio,
     };
   }
 
@@ -52,6 +57,8 @@ class UserModel {
       timezone: map['time_zone'],
       createdAt: map['created_at'],
       updatedAt: map['updated_at'],
+      bio: map['bio'],
+      imageUrl: map['image_url'],
     );
   }
 

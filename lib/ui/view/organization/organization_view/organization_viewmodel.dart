@@ -79,7 +79,7 @@ class OrganizationViewModel extends BaseViewModel {
     organizations.retainWhere((e) => ids.any((id) => id == e.id));
   }
 
-  Future<void> onTap(String? id, String? name, String? url) async {
+  Future<void> onTap(String? id, String? name, String? url, String? memberId) async {
     try {
       if (id == currentOrgId) {
         navigation.replaceWith(Routes.navBarView);
@@ -88,6 +88,7 @@ class OrganizationViewModel extends BaseViewModel {
       await checkSnackBarConnectivity();
 
       await storageService.setString(StorageKeys.currentOrgId, id!);
+      await storageService.setString(StorageKeys.idInOrganization, memberId!);
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
