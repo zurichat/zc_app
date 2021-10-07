@@ -141,7 +141,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                               GestureDetector(
                                 onTap: () =>
                                     model.navigateToTermsAndConditions(),
-                                child: Text(
+                                child: const Text(
                                   TnC2,
                                   style: TextStyle(
                                     fontSize: 14,
