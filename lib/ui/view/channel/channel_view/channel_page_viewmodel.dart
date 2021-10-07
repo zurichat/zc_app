@@ -79,10 +79,9 @@ class ChannelPageViewModel extends BaseViewModel {
     channelID = channelId;
     await joinChannel(channelId);
     fetchMessages(channelId);
-    // getChannelSocketId("$channelId");
+    getChannelSocketId("$channelId");
     fetchChannelMembers(channelId);
     listenToNewMessage(channelId);
-    // listenToNewMessages("$channelId");
   }
 
   void showThreadOptions() async {
@@ -134,7 +133,7 @@ class ChannelPageViewModel extends BaseViewModel {
             userThreadPosts: <UserThreadPost>[],
             channelName: channelId,
             userImage: 'assets/images/chimamanda.png',
-            userID: userid,
+            userId: userid,
             channelId: channelId),
       );
     });
