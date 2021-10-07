@@ -7,7 +7,9 @@ enum DialogType {
   themeMode,
   deleteChannel,
   deleteMessage,
-  signOut
+  signOut,
+  scheduleMessageDm,
+  scheduleMessageChannel,
 }
 
 enum ChannelType { private, public, personal }
@@ -16,13 +18,7 @@ enum CustomUserProfileButtonType { normal, icon }
 
 enum ThreadCardType { threadMain, threadDetail, threadPost, threadChannelMain }
 
-enum BottomSheetType {
-  user,
-  emojiPicker,
-  floatingBox,
-  threadOptions,
-  signOut
-}
+enum BottomSheetType { user, emojiPicker, floatingBox, threadOptions, signOut }
 
 enum HomeListType {
   unreads,

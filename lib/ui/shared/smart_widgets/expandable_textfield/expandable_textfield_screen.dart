@@ -224,69 +224,10 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               }
                                             },
                                             onLongPress: () {
-                                              showDialog<String>(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        AlertDialog(
-                                                  title: const Text(
-                                                      'Schedule message'),
-                                                  actions: <Widget>[
-                                                    Center(
-                                                      child: Column(children: [
-                                                        ScheduleOption(
-                                                          channelID: channelID,
-                                                          messageText:
-                                                              textController
-                                                                  .text,
-                                                          messageController:
-                                                              textController,
-                                                          time: 0.5,
-                                                          title:
-                                                              '30 minutes from now',
-                                                          context: context,
-                                                        ),
-                                                        ScheduleOption(
-                                                          channelID: channelID,
-                                                          messageText:
-                                                              textController
-                                                                  .text,
-                                                          messageController:
-                                                              textController,
-                                                          time: 1,
-                                                          title:
-                                                              '1 hour from now',
-                                                          context: context,
-                                                        ),
-                                                        ScheduleOption(
-                                                            channelID:
-                                                                channelID,
-                                                            messageText:
-                                                                textController
-                                                                    .text,
-                                                            messageController:
-                                                                textController,
-                                                            time: 2,
-                                                            title:
-                                                                '2 hours from now',
-                                                            context: context),
-                                                        ScheduleOption(
-                                                            channelID:
-                                                                channelID,
-                                                            messageText:
-                                                                textController
-                                                                    .text,
-                                                            messageController:
-                                                                textController,
-                                                            time: 6,
-                                                            title:
-                                                                '6 hours from now',
-                                                            context: context),
-                                                      ]),
-                                                    )
-                                                  ],
-                                                ),
-                                              );
+                                              model.popDialog(
+                                                  textController.text,
+                                                  channelID);
+                                              textController.clear();
                                             },
                                             child: const Padding(
                                               padding: EdgeInsets.all(8.0),

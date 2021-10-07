@@ -264,63 +264,7 @@ class DmUserView extends StatelessWidget {
                                         messageController.clear();
                                       },
                                       onLongPress: () {
-                                        showDialog<String>(
-                                          context: context,
-                                          builder: (BuildContext context) =>
-                                              AlertDialog(
-                                            title:
-                                                const Text('Schedule message'),
-                                            actions: <Widget>[
-                                              Center(
-                                                child: Column(children: [
-                                                  ScheduleOption(
-                                                    messageText: messageText,
-                                                    scrollController:
-                                                        _scrollController,
-                                                    messageController:
-                                                        messageController,
-                                                    model: model,
-                                                    time: 0.5,
-                                                    title:
-                                                        '30 minutes from now',
-                                                    context: context,
-                                                  ),
-                                                  ScheduleOption(
-                                                    messageText: messageText,
-                                                    scrollController:
-                                                        _scrollController,
-                                                    messageController:
-                                                        messageController,
-                                                    model: model,
-                                                    time: 1,
-                                                    title: '1 hour from now',
-                                                    context: context,
-                                                  ),
-                                                  ScheduleOption(
-                                                      messageText: messageText,
-                                                      scrollController:
-                                                          _scrollController,
-                                                      messageController:
-                                                          messageController,
-                                                      model: model,
-                                                      time: 2,
-                                                      title: '2 hours from now',
-                                                      context: context),
-                                                  ScheduleOption(
-                                                      messageText: messageText,
-                                                      scrollController:
-                                                          _scrollController,
-                                                      messageController:
-                                                          messageController,
-                                                      model: model,
-                                                      time: 6,
-                                                      title: '6 hours from now',
-                                                      context: context),
-                                                ]),
-                                              )
-                                            ],
-                                          ),
-                                        );
+                                        model.showPop();
                                       },
                                       child: const Padding(
                                         padding: EdgeInsets.all(8.0),
