@@ -5,6 +5,7 @@ import 'package:hng/app/app.router.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/models/user_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
@@ -58,6 +59,7 @@ class HomePageViewModel extends StreamViewModel {
 
   String get orgName => userService.currentOrgName;
   String get orgId => userService.currentOrgId;
+  String get email => userService.userEmail;
 
   StreamSubscription? notificationSub;
 
@@ -184,6 +186,17 @@ class HomePageViewModel extends StreamViewModel {
     _centrifugeService.subscribe(channelSockId);
   }
 
+  void fetchUserDetails() async {
+    try {
+      final response = await zuriApi.get('organizations/$orgId/members',
+          queryParameters: {'query': email}, token: token);
+      final _userModel =
+          UserModel.fromJson((response!.data['data'] as List).first);
+      userService.setUserDetails(_userModel);
+    } catch (e) {
+      log.e(e.toString());
+    }
+  }
   // listenToChannelsChange() {
   // _channelsApiService.onChange.stream.listen((event) {
   //   getDmAndChannelsList();

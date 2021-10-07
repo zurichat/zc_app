@@ -20,6 +20,7 @@ class HomePage extends StatelessWidget {
         model.getDmAndChannelsList();
         model.getNewChannelStream();
         model.listenToNotificationTap();
+        model.fetchUserDetails();
       },
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, vmodel, child) => Scaffold(

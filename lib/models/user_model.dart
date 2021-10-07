@@ -5,7 +5,7 @@ class UserModel {
   String? displayName;
   String? email;
   String? phoneNumber;
-  int? status;
+  String? status;
   String? timezone;
   String? createdAt;
   String? updatedAt;
@@ -22,6 +22,8 @@ class UserModel {
     this.createdAt,
     this.updatedAt,
   });
+
+  String? get fullName => '$firstName $lastName';
 
   Map<String, dynamic> toMap() {
     return {
