@@ -13,6 +13,7 @@ class PreferenceView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<PreferenceViewModel>.reactive(
       viewModelBuilder: () => PreferenceViewModel(),
+      //TODO - PreferenceViewModel() == model
       onModelReady: PreferenceViewModel().init(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(

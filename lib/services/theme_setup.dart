@@ -25,7 +25,9 @@ List<ThemeData> getThemes() {
       colorScheme: ColorScheme.fromSwatch()
           .copyWith(secondary: AppColors.zuriPrimaryColor),
     ),
-    ThemeData.dark().copyWith(dialogBackgroundColor: Colors.black87),
+    ThemeData.dark().copyWith(
+      accentColor: AppColors.zuriPrimaryColor,
+    ),
   ];
 
   //Kimbie Dark

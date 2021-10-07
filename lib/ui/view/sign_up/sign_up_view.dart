@@ -126,6 +126,8 @@ class SignUpView extends StatelessWidget with $SignUpView {
                             value: model.checkBoxValue,
                             onChanged: (newValue) =>
                                 model.updateValue(newValue),
+                            fillColor: MaterialStateProperty.all(
+                                AppColors.zuriPrimaryColor),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -178,7 +180,6 @@ class SignUpView extends StatelessWidget with $SignUpView {
                         child: CustomText(
                           fontSize: 16,
                           text: Or,
-                          color: AppColors.zuriTextColorHeader,
                         ),
                       ),
                       UIHelper.verticalSpaceMedium,
@@ -187,7 +188,9 @@ class SignUpView extends StatelessWidget with $SignUpView {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(
-                            // color: AppColors.zuriTextColorHeader,
+                            color:
+                                Theme.of(context).textTheme.bodyText1!.color ??
+                                    AppColors.zuriPrimaryColor,
                             width: 1,
                           ),
                         ),
