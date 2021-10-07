@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -23,21 +24,14 @@ class NewChannel extends StatelessWidget with $NewChannel {
       viewModelBuilder: () => NewChannelViewModel(),
       builder: (context, model, child) => Scaffold(
         backgroundColor: AppColors.whiteColor,
-        appBar: AppBar(
-          backgroundColor: AppColors.whiteColor,
-          elevation: 2.0,
-          leading: IconButton(
-            icon: const ImageIcon(
-              AssetImage(ArrowIcon),
-              size: 12.0,
-            ),
-            onPressed: () {},
-          ),
-          title: Text(
-            'New Channel',
+        appBar: ZuriAppBar(
+          leading: Icons.arrow_back_ios,
+          leadingPress: () {},
+          orgTitle: Text(
+            "New Channel",
             style: AppTextStyles.heading7,
           ),
-          actions: <Widget>[
+          actions: [
             TextButton(
               style: TextButton.styleFrom(
                   padding: const EdgeInsets.only(right: 16.0)),

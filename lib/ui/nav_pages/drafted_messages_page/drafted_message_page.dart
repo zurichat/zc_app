@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/nav_pages/drafted_messages_page/widgets/app/data.dart';
 import 'package:hng/ui/nav_pages/drafted_messages_page/widgets/app/drafted_item_widget.dart';
+import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'drafted_message_page_viewmodel.dart';
@@ -12,17 +14,14 @@ class DraftedMessagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<DraftedMessagePageModel>.reactive(
         builder: (context, model, child) => Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.white,
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-                centerTitle: false,
-                title: const Text(
+              appBar: ZuriAppBar(
+                leading: Icons.arrow_back_ios,
+                leadingPress: () => model.navigateBack(),
+                orgTitle: Text(
                   Draft,
-                  style: TextStyle(color: Colors.black),
+                  style: AppTextStyles.heading7,
                 ),
+                whiteBackground: true,
               ),
               body: ListView.builder(
                   //physics: BouncingScrollPhysics(),
