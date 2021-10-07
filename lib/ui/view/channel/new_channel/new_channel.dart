@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -23,21 +24,14 @@ class NewChannel extends StatelessWidget with $NewChannel {
       viewModelBuilder: () => NewChannelViewModel(),
       builder: (context, model, child) => Scaffold(
         backgroundColor: AppColors.whiteColor,
-        appBar: AppBar(
-          backgroundColor: AppColors.whiteColor,
-          elevation: 2.0,
-          leading: IconButton(
-            icon: const ImageIcon(
-              AssetImage(ArrowIcon),
-              size: 12.0,
-            ),
-            onPressed: () {},
-          ),
-          title: Text(
-            'New Channel',
+        appBar: ZuriAppBar(
+          leading: Icons.arrow_back_ios,
+          leadingPress: () {},
+          orgTitle: Text(
+            "New Channel",
             style: AppTextStyles.heading7,
           ),
-          actions: <Widget>[
+          actions: [
             TextButton(
               style: TextButton.styleFrom(
                   padding: const EdgeInsets.only(right: 16.0)),
@@ -118,7 +112,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                           '${model.inputLength}',
                           style: const TextStyle(
                             fontWeight: FontWeight.w400,
-                            // ignore: todo
+
                             //TODO Change to brand colors
                             color: Color(0xFFA1A9B2),
                           ),
@@ -215,7 +209,6 @@ class NewChannel extends StatelessWidget with $NewChannel {
                             SizedBox(
                               height: 20,
                               child: Switch(
-                                // ignore: todo
                                 //TODO  Change to brand colors
                                 inactiveTrackColor: const Color(0xffebebeb),
                                 activeColor: AppColors.zuriPrimaryColor,

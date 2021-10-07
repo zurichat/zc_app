@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -12,22 +14,20 @@ class SetStatusView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
-              appBar: AppBar(
-                elevation: 0,
-                leading: IconButton(
-                    onPressed: model.exitPage,
-                    icon: const Icon(Icons.close_rounded)),
-                title: const Text('Set a status'),
-                actions: [
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Save',
-                      style: TextStyle(color: AppColors.zuriTextBodyColor),
-                    ),
-                  )
-                ],
-              ),
+              appBar: ZuriAppBar(
+                  leading: Icons.close_rounded,
+                  leadingPress: () => model.exitPage,
+                  orgTitle: const Text('Set a status'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        Save,
+                        style: TextStyle(color: AppColors.zuriTextBodyColor),
+                      ),
+                    )
+                  ],
+                  whiteBackground: true),
               body: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -49,11 +49,12 @@ class SetStatusView extends StatelessWidget {
                           fit: FlexFit.loose,
                         ),
                         IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.cancel,
-                              color: AppColors.greyishColor,
-                            )),
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.cancel,
+                            color: AppColors.greyishColor,
+                          ),
+                        ),
                       ],
                     ),
                     const Divider(),
@@ -65,49 +66,49 @@ class SetStatusView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
-                            Text('Clear after...'),
-                            Text('Today'),
+                            Text(ClearAfter),
+                            Text(Today),
                           ],
                         ),
                       ),
                     ),
                     const SizedBox(height: 10),
                     const Statuses(
-                      title: 'Recent',
+                      title: Recent,
                       children: [
                         Status(
-                            status: 'Former Status',
-                            duration: "Don't clear",
+                            status: FormerStatus,
+                            duration: DontClear,
                             icon: Icons.biotech_rounded),
                         Status(
-                            status: 'Former Former Status',
-                            duration: "Don't clear",
+                            status: FormerStatus,
+                            duration: DontClear,
                             icon: Icons.social_distance)
                       ],
                     ),
                     const SizedBox(height: 10),
                     const Statuses(
-                      title: 'For HNGi8 x I4G',
+                      title: TrackDescription,
                       children: [
                         Status(
-                            status: 'In a meeting',
-                            duration: '1 hour',
+                            status: InMeeting,
+                            duration: OneHour,
                             icon: Icons.calendar_today_rounded),
                         Status(
-                            status: 'Commuting',
-                            duration: '30 minutes',
+                            status: Commuting,
+                            duration: ThirtyMins,
                             icon: Icons.train),
                         Status(
-                            status: 'Off sick',
-                            duration: 'Today',
+                            status: OffSick,
+                            duration: Today,
                             icon: Icons.sick_rounded),
                         Status(
-                            status: 'On holiday',
-                            duration: "Don't clear",
+                            status: OnHoliday,
+                            duration: DontClear,
                             icon: Icons.hotel),
                         Status(
-                            status: 'Working remotely',
-                            duration: 'Today',
+                            status: WorkingRemotely,
+                            duration: Today,
                             icon: Icons.home),
                       ],
                     ),

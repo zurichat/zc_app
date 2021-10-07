@@ -52,14 +52,13 @@ class LoginViewModel extends FormViewModel {
     _navigationService.navigateTo(Routes.forgotPasswordEmailView);
   }
 
-  // ignore: always_declare_return_types
   Future logInUser() async {
     var connected = await _connectivityService.checkConnection();
     if (!connected) {
       _snackbarService.showCustomSnackBar(
         message: noInternet,
         variant: SnackbarType.failure,
-        duration:const  Duration(milliseconds: 1500),
+        duration: const Duration(milliseconds: 1500),
       );
       return;
     }
@@ -107,7 +106,7 @@ class LoginViewModel extends FormViewModel {
             ''' ${response?.data['data']['user']['email']}''',
       );
 
-      //Todo check if user has currently joined an Organization
+      //TODO check if user has currently joined an Organization
       _navigationService.pushNamedAndRemoveUntil(Routes.organizationView);
     } else {
       _snackbarService.showCustomSnackBar(

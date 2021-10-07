@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 //The screen shown in homepage -> Threads
 import '../../../../../general_widgets/channel_icon.dart';
@@ -40,7 +41,7 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
               ],
             ),
             subtitle: Text(
-              'You, Jane and 2 others',
+              YouAndOthers,
               style: AppTextStyles.subtitle,
             ),
           ),
@@ -62,7 +63,6 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
           Padding(
             padding: const EdgeInsets.only(left: 60),
             child: MaterialButton(
-              // ignore: todo
               //TODO navigate to details page and focus input
               onPressed: () => viewModel.navigateToThread(userPost),
               shape: const RoundedRectangleBorder(
@@ -72,7 +72,7 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
                 ),
               ),
               child: const CustomText(
-                text: 'Reply',
+                text: Reply,
                 fontWeight: FontWeight.w500,
               ),
             ),

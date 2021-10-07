@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/shared.dart';
@@ -18,7 +19,7 @@ class UseDifferentEmailView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.zuriPrimaryColor,
-          title: const Text('Use a different email'),
+          title: const Text(UseAnotherEmail),
         ),
         body: SafeArea(
           child: Container(
@@ -34,16 +35,15 @@ class UseDifferentEmailView extends StatelessWidget {
                       BorderTextField(
                         onChanged: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Input is required';
+                            return InputRequired;
                           }
                         },
                         controller: email,
-                        hint: 'Enter Email Address',
+                        hint: EnterEmail,
                         autofocus: true,
                       ),
                       const Text(
-                        '''We’ll send you an email '''
-                        '''that will instantly sign you in''',
+                        WillSendEmail,
                       ),
                     ],
                   ),
@@ -51,21 +51,21 @@ class UseDifferentEmailView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                              // ignore: todo
-                              //TODO Change brand colors
-                              const Color(0xffBEBEBE),
-                            ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            //TODO Change brand colors
+                            const Color(0xffBEBEBE),
                           ),
-                          onPressed: () {},
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Next',
-                              style: AppTextStyles.buttonText,
-                            ),
-                          ))
+                        ),
+                        onPressed: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            Next,
+                            style: AppTextStyles.buttonText,
+                          ),
+                        ),
+                      )
                     ],
                   )
                 ],
