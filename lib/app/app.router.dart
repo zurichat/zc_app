@@ -11,6 +11,7 @@ import 'package:stacked/stacked.dart';
 
 import '../models/channel_members.dart';
 import '../models/channel_model.dart';
+import '../models/user_model.dart';
 import '../models/user_post.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/view/add_people/add_people_view.dart';
@@ -470,8 +471,12 @@ class StackedRouter extends RouterBase {
       );
     },
     EditProfileView: (data) {
+      var args = data.getArgs<EditProfileViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const EditProfileView(),
+        builder: (context) => EditProfileView(
+          key: args.key,
+          user: args.user,
+        ),
         settings: data,
       );
     },
@@ -716,6 +721,13 @@ class UseDifferentEmailViewArguments {
   final Key? key;
   final OrganizationSwitchMethod method;
   UseDifferentEmailViewArguments({this.key, required this.method});
+}
+
+/// EditProfileView arguments holder class
+class EditProfileViewArguments {
+  final Key? key;
+  final UserModel user;
+  EditProfileViewArguments({this.key, required this.user});
 }
 
 /// SelectEmail arguments holder class
