@@ -162,8 +162,6 @@ class OrganizationViewModel extends BaseViewModel {
 
   void showSignOutBottomSheet(OrganizationModel org) {
     _bottomSheetService.showCustomSheet(
-        variant: BottomSheetType.signOut,
-        isScrollControlled: true,
-        data: org);
+        variant: BottomSheetType.signOut, isScrollControlled: true, data: org);
   }
 }

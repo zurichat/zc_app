@@ -156,7 +156,9 @@ class ForgotPasswordEmailView extends StatelessWidget
                         text: TextSpan(
                           children: [
                             TextSpan(
-                                text: BackTo, style: AppTextStyles.normalText),
+                              text: BackTo,
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
                             TextSpan(
                               text: SignIn,
                               style: AppTextStyles.body2Bold.copyWith(

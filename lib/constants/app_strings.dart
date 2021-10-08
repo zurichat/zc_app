@@ -129,6 +129,7 @@ const String Ok = 'Ok';
 const String SelectLang = 'Select Language';
 const String DarkMode = 'Dark mode';
 const String Set = 'Set';
+const String Apply = 'Apply';
 const String ComposeFeedback = 'Compose feedback';
 const String FeedbackHint = 'e.g I found a bug in the Dm’s';
 const String FeedbackHelperText =

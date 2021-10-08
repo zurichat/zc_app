@@ -27,7 +27,7 @@ class AppTextStyles {
   );
   static TextStyle heading6 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
-    color: AppColors.greyishColor,
+    // color: AppColors.greyishColor,
     fontSize: 24,
   );
   static TextStyle heading5 = GoogleFonts.lato(
@@ -107,7 +107,7 @@ class AppTextStyles {
   );
   static TextStyle body2Bold = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
-    color: AppColors.greyishColor,
+    // color: AppColors.greyishColor,
     fontSize: 14,
   );
   static TextStyle body2_400 = GoogleFonts.lato(

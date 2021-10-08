@@ -1,3 +1,4 @@
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
@@ -31,6 +32,8 @@ class PreferenceViewModel extends BaseViewModel {
 
   Future changeTheme() async {
     final dialogResult = await _dialogService.showCustomDialog(
+      title: DarkMode,
+      barrierDismissible: false,
       variant: DialogType.themeMode,
       data: {'themes': themes, 'currentThemeValue': currentThemeValue},
     );
@@ -40,6 +43,10 @@ class PreferenceViewModel extends BaseViewModel {
       currentThemeValue = dialogResult.data;
       _themeService.selectThemeAtIndex(currentThemeValue);
       currentTheme = themes[dialogResult.data];
+      _storageService.setString(
+          StorageKeys.currentTheme, themes[dialogResult.data]);
+
+      _storageService.setInt(StorageKeys.currentThemeValue, dialogResult.data);
 
       notifyListeners();
     }

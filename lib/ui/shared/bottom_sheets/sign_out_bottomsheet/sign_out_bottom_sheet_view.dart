@@ -21,6 +21,7 @@ class SignOutBottomSheet extends StatelessWidget {
     final OrganizationModel org = request.data;
     return ViewModelBuilder<SignOutBottomSheetViewModel>.nonReactive(
         builder: (context, model, child) => Container(
+              //TODO - fix color for dark theme
               color: AppColors.whiteColor,
               child: Column(
                 mainAxisSize: MainAxisSize.min,

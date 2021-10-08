@@ -131,8 +131,9 @@ class ForgotPasswordOtpView extends StatelessWidget
                     child: RichText(
                       text: TextSpan(
                         children: [
-                          const TextSpan(
+                          TextSpan(
                             text: DidntRecieveOTP,
+                            style: Theme.of(context).textTheme.bodyText1,
                           ),
                           TextSpan(
                             text: Resend,
