@@ -1,4 +1,3 @@
-import 'package:flutter/animation.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
@@ -10,14 +9,12 @@ import '../../../../app/app.router.dart';
 import '../../../../models/organization_model.dart';
 import '../../../../package/base/server-request/organization_request/organization_api_service.dart';
 import '../../../../utilities/enums.dart';
-// import '../../../../services/local_storage_services.dart';
 
 class CreateOrganizationViewModel extends BaseViewModel {
   final log = getLogger("CreateOrganizationViewModel");
   final _navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
   final _channelApiService = locator<ChannelsApiService>();
-  // final _storage = locator<SharedPreferenceLocalStorage>();
   final _api = OrganizationApiService();
   String company = '';
   String project = '';
@@ -25,23 +22,13 @@ class CreateOrganizationViewModel extends BaseViewModel {
   bool? _checkBoxVal = false;
   late OrganizationModel? org;
 
-  // ignore_for_file: prefer_typing_uninitialized_variables
-  late final pageController;
-  late final email;
+  late String email = '';
 
-  void init(dynamic val, String _email) {
-    pageController = val;
+  void init(String _email) {
     email = _email;
   }
 
   void back() => _navigation.back();
-
-  void next() {
-    pageController.nextPage(
-      duration: const Duration(seconds: 1),
-      curve: Curves.ease,
-    );
-  }
 
   void onCheckBoxChanged(bool? value) {
     _checkBoxVal = value;
@@ -51,6 +38,12 @@ class CreateOrganizationViewModel extends BaseViewModel {
   void onInviteTap() {
     snackbar.showCustomSnackBar(
         message: ComingSoon, variant: SnackbarType.failure);
+  }
+
+  void updateData({String? comp, String? proj, String? invi}) {
+    if (comp != null) company = comp;
+    if (proj != null) project = proj;
+    if (invi != null) invite = invi;
   }
 
   Future<OrganizationModel?> createOrganization(
@@ -67,36 +60,40 @@ class CreateOrganizationViewModel extends BaseViewModel {
         return null;
       }
       return OrganizationModel(
-        id: id,
-        name: name,
-        organizationUrl: '$organization.zurichat.com',
-        logoUrl: null,
-        time: null,
-        isOwner: true,
-        noOfMembers: 0,
-        userIdInOrg: ''
-      );
+          id: id,
+          name: name,
+          organizationUrl: '$organization.zurichat.com',
+          logoUrl: null,
+          time: null,
+          isOwner: true,
+          noOfMembers: 0,
+          userIdInOrg: '');
     } catch (e) {
       log.e(e.toString());
       snackbar.showSnackbar(message: e.toString());
     }
   }
 
-  Future<void> onCompanyNext(String email) async {
+  Future<bool> onCompanyNext() async {
     if (company.isEmpty) {
-      return snackbar.showCustomSnackBar(
+      snackbar.showCustomSnackBar(
           message: fillAllFields, variant: SnackbarType.failure);
+      return false;
     }
     setBusy(true);
     org = await createOrganization(email, company);
     setBusy(false);
-    if (org != null) next();
+    if (org != null) {
+      return true;
+    }
+    return false;
   }
 
-  Future<void> addProject() async {
+  Future<bool> addProject() async {
     if (project.isEmpty) {
-      return snackbar.showCustomSnackBar(
+      snackbar.showCustomSnackBar(
           message: fillAllFields, variant: SnackbarType.failure);
+      return false;
     }
     final res = await _channelApiService.createChannels(
       name: project,
@@ -107,10 +104,11 @@ class CreateOrganizationViewModel extends BaseViewModel {
     );
 
     if (res) {
-      next();
+      return true;
     } else {
-      return snackbar.showCustomSnackBar(
+      snackbar.showCustomSnackBar(
           message: errorOccurred, variant: SnackbarType.failure);
+      return false;
     }
   }
 

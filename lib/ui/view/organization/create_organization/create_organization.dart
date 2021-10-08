@@ -19,10 +19,10 @@ class CreateOrganization extends HookWidget {
     final pageController = usePageController();
     return ViewModelBuilder<CreateOrganizationViewModel>.reactive(
       viewModelBuilder: () => CreateOrganizationViewModel(),
-      onModelReady: (model) => model.init(pageController,email),
+      onModelReady: (model) => model.init(email),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.whiteColor,
           leading: TextButton(
             onPressed: () => model.back(),
             child: Image.asset(CancelLogo),
@@ -36,11 +36,11 @@ class CreateOrganization extends HookWidget {
               top: 0,
               bottom: 0,
               child: PageView(
-                controller: pageController,
+                controller: pageController, 
                 children: [
-                  CompanyPage(email: email),
-                  const ProjectPage(),
-                  const InvitePage(),
+                  CompanyPage(pageController: pageController),
+                  ProjectPage(pageController: pageController),
+                  InvitePage(pageController: pageController),
                 ],
               ),
             ),
