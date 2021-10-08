@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
-
-import '../../shared/colors.dart';
 import 'splashscreen_viewmodel.dart';
 
 class Splashview extends StatelessWidget {
