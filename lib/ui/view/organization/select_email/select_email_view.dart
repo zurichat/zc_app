@@ -26,7 +26,7 @@ class SelectEmail extends StatelessWidget {
         body: Container(
           margin: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(2.0),
               boxShadow: [
                 BoxShadow(
@@ -85,7 +85,7 @@ class SelectEmail extends StatelessWidget {
                 ),
               ),
               InkWell(
-                onTap: () => model.navigateToUseDifferentEmailView(),
+                onTap: () => model.navigateToDifferentEmail(method),
                 child: Padding(
                   padding:
                       const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),

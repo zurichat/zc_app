@@ -401,8 +401,12 @@ class StackedRouter extends RouterBase {
       );
     },
     UseDifferentEmailView: (data) {
+      var args = data.getArgs<UseDifferentEmailViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const UseDifferentEmailView(),
+        builder: (context) => UseDifferentEmailView(
+          key: args.key,
+          method: args.method,
+        ),
         settings: data,
       );
     },
@@ -571,8 +575,12 @@ class StackedRouter extends RouterBase {
       );
     },
     OrganizationUrlView: (data) {
+      var args = data.getArgs<OrganizationUrlViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const OrganizationUrlView(),
+        builder: (context) => OrganizationUrlView(
+          key: args.key,
+          email: args.email,
+        ),
         settings: data,
       );
     },
@@ -708,6 +716,13 @@ class AddPluginViewArguments {
   AddPluginViewArguments({this.key});
 }
 
+/// UseDifferentEmailView arguments holder class
+class UseDifferentEmailViewArguments {
+  final Key? key;
+  final OrganizationSwitchMethod method;
+  UseDifferentEmailViewArguments({this.key, required this.method});
+}
+
 /// EditProfileView arguments holder class
 class EditProfileViewArguments {
   final Key? key;
@@ -748,6 +763,13 @@ class EditChannelPageViewArguments {
 class StartDmViewArguments {
   final Key? key;
   StartDmViewArguments({this.key});
+}
+
+/// OrganizationUrlView arguments holder class
+class OrganizationUrlViewArguments {
+  final Key? key;
+  final String email;
+  OrganizationUrlViewArguments({this.key, required this.email});
 }
 
 /// ChannelPageView arguments holder class
