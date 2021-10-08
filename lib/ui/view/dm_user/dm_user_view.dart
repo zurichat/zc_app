@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
@@ -11,7 +11,6 @@ import 'package:stacked/stacked_annotations.dart';
 import '../../shared/colors.dart';
 import 'dm_user_viewmodel.dart';
 import 'dummy_data/models/message.dart';
-import 'icons/zap_icon.dart';
 import 'widgets/message_view.dart';
 import 'widgets/online_indicator.dart';
 import 'dm_user_view.form.dart';
@@ -28,6 +27,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
 
   @override
   Widget build(BuildContext context) {
+    //TODO remove the var below and replace with the actual id from the backend once dm's get linked to the backend
      dynamic receiverId = 'receiver';
     return ViewModelBuilder<DmUserViewModel>.reactive(
         onModelReady: (model) {
@@ -57,7 +57,16 @@ class DmUserView extends StatelessWidget with $DmUserView {
                 whiteBackground: true),
             body: Stack(
               children: [
-                SingleChildScrollView(
+              ExpandableTextFieldScreen(
+                hintText: 'Message ${model.receiver.username}',
+                textController: messageController,
+                sendMessage: (String message) {
+                  model.sendMessage();
+                  FocusScope.of(context).requestFocus(FocusNode());
+                  _scrollController
+                      .jumpTo(_scrollController.position.maxScrollExtent);
+                },
+                widget: SingleChildScrollView(
                   controller: _scrollController,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -133,142 +142,13 @@ class DmUserView extends StatelessWidget with $DmUserView {
                     ],
                   ),
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Material(
-                    color: Colors.white,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Divider(height: 0, color: Color(0xFF999999)),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                height: 56,
-                                margin: const EdgeInsets.only(left: 13.0),
-                                alignment: Alignment.centerLeft,
-                                child: FocusScope(
-                                  child: Focus(
-                                    onFocusChange: (focus) {
-                                      if (focus) {
-                                        model.onTapMessageField();
-                                      } else {
-                                        model.onUnfocusMessageField();
-                                      }
-                                    },
-                                    child: TextField(
-                                      controller: messageController,
-                                      expands: true,
-                                      maxLines: null,
-                                      textAlignVertical:
-                                          TextAlignVertical.center,
-                                      decoration: InputDecoration.collapsed(
-                                          hintText:
-                                              'Message ${model.receiver.username}',
-                                          hintStyle: const TextStyle(
-                                              color: Color(0xFFBEBEBE),
-                                              fontSize: 14.0,
-                                              fontWeight: FontWeight.w400)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Visibility(
-                              visible: !model.hasClickedMessageField,
-                              child: Row(
-                                children: [
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        AppIcons.shapezap,
-                                        color: Color(0xFF424141),
-                                      )),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: SvgPicture.asset(
-                                      "assets/icons/fluent_camera-16-regular.svg",
-                                      color: const Color(0xFF424141),
-                                    ),
-                                    //onPressed: () {},
-                                  ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: SvgPicture.asset(
-                                      "assets/icons/Vector.svg",
-                                      color: const Color(0xFF424141),
-                                    ),
-                                    //onPressed: () {},
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        Visibility(
-                            visible: model.hasClickedMessageField,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          AppIcons.shapezap,
-                                          color: Color(0xFF424141),
-                                        )),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.alternate_email_outlined,
-                                          color: Color(0xFF424141),
-                                        )),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.tag_faces_sharp,
-                                          color: Color(0xFF424141),
-                                        )),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.camera_alt_outlined,
-                                          color: Color(0xFF424141),
-                                        )),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.attach_file_outlined,
-                                          color: Color(0xFF424141),
-                                        )),
-                                  ],
-                                ),
-                                IconButton(
-                                    onPressed: () async {
-                                      await model.sendMessage();
-                                      FocusScope.of(context)
-                                          .requestFocus(FocusNode());
-                                      _scrollController.jumpTo(_scrollController
-                                          .position.maxScrollExtent);
-                                      // duration: Duration(milliseconds: 500),
-                                      // curve: Curves.fastOutSlowIn);
-                                    },
-                                    icon: const Icon(
-                                      Icons.send,
-                                      color: Color(0xFFBEBEBE),
-                                    ))
-                              ],
-                            ))
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          );
-        });
+
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   // Widget _onlineIndicator(int color) {

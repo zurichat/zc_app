@@ -1,3 +1,4 @@
+import 'package:hng/app/app.router.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -73,4 +74,20 @@ class DmJumpToViewModel extends FormViewModel {
       AppToast.instance.error(null, errorOccurred);
     }
   }
+
+  void navigateToChannel({String? name, String? id,
+      int? membersCount, bool? isPublic}) {
+    navigation.navigateTo(Routes.channelPageView,
+        arguments: ChannelPageViewArguments(
+            channelName: name,
+            channelId: id,
+            membersCount: membersCount,
+            public: isPublic));
+  }
+
+  void navigateToUserDm() {
+    navigation.navigateTo(Routes.dmUserView);
+  }
+
+
 }

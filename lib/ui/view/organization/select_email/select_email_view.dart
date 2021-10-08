@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../utilities/enums.dart';
@@ -17,33 +18,25 @@ class SelectEmail extends StatelessWidget {
     return ViewModelBuilder<SelectEmailViewModel>.nonReactive(
       viewModelBuilder: () => SelectEmailViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-              icon: const Icon(Icons.arrow_back_ios),
-              color: AppColors.deepBlackColor,
-              onPressed: model.back),
-          title: Text(
-            model.getScreenTitle(method),
-            style: AppTextStyles.heading4,
-          ),
-          backgroundColor: Colors.white,
-        ),
+        appBar: ZuriAppBar(
+            title: model.getScreenTitle(method),
+            whiteBackground: true,
+            leading: Icons.arrow_back_ios_outlined,
+            leadingPress: () => model.back()),
         body: Container(
-          margin: const EdgeInsets.all(16),
-          height: 172.0,
-          width: 395.0,
+          margin: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(2.0),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
+                  color: AppColors.greyColor.withOpacity(0.5),
                   spreadRadius: 1,
                   blurRadius: 5,
                 ),
               ]),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
                 padding:
@@ -56,49 +49,64 @@ class SelectEmail extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8, top: 24),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.email_outlined,
-                      size: 20,
-                      color: AppColors.deepBlackColor,
-                    ),
-                    const SizedBox(width: 16),
-                    GestureDetector(
-                      onTap: () => model.onEmailTap(method),
-                      child: Text(
-                        model.userEmail ?? '',
-                        style: AppTextStyles.body3Medium.copyWith(
-                            fontSize: 16, color: AppColors.zuriTextBodyColor),
+              InkWell(
+                onTap: () {
+                  model.onEmailTap(method);
+                },
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.email_outlined,
+                        size: 20,
+                        color: AppColors.deepBlackColor,
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25.5),
+                        child: Text(
+                          model.userEmail ?? '',
+                          style: const TextStyle(
+                              color: AppColors.deepBlackColor, fontSize: 14),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                child: Divider(color: AppColors.dividerColor),
+                padding: EdgeInsets.only(left: 57.0),
+                child: Divider(
+                  thickness: 1,
+                  height: 9,
+                  color: AppColors.greyishColor,
+                ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.email_outlined,
-                      size: 20,
-                      color: AppColors.deepBlackColor,
-                    ),
-                    const SizedBox(width: 16),
-                    GestureDetector(
+              InkWell(
+                onTap: () => model.navigateToDifferentEmail(method),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.email_outlined,
+                        size: 20,
+                        color: AppColors.deepBlackColor,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25.5),
                         child: Text(
                           model.anotherEmail,
-                          style: AppTextStyles.body3Medium.copyWith(
-                              fontSize: 16, color: AppColors.zuriTextBodyColor),
+                          style: const TextStyle(
+                            color: AppColors.deepBlackColor,
+                            fontSize: 14,
+                          ),
                         ),
-                        onTap: () => model.navigateToUseDifferentEmailView())
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
