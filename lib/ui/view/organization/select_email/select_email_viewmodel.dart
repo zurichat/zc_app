@@ -17,8 +17,6 @@ class SelectEmailViewModel extends BaseViewModel {
 
   String get anotherEmail => _anotherEmail;
 
-  void back() => _navigationService.back();
-
   void onEmailTap(OrganizationSwitchMethod method) {
     switch (method) {
       case OrganizationSwitchMethod.signIn:
@@ -34,7 +32,10 @@ class SelectEmailViewModel extends BaseViewModel {
   }
 
   void navigateToOrganizationUrl() {
-    _navigationService.navigateTo(Routes.organizationUrlView);
+    _navigationService.navigateTo(
+      Routes.organizationUrlView,
+      arguments: OrganizationUrlViewArguments(email: userEmail!),
+    );
   }
 
   void navigateToCreateOrganization() {
@@ -44,8 +45,11 @@ class SelectEmailViewModel extends BaseViewModel {
     );
   }
 
-  navigateToUseDifferentEmailView() {
-    _navigationService.navigateTo(Routes.useDifferentEmailView);
+  void navigateToDifferentEmail(OrganizationSwitchMethod method) {
+    _navigationService.navigateTo(
+      Routes.useDifferentEmailView,
+      arguments: UseDifferentEmailViewArguments(method: method),
+    );
   }
 
   String getScreenTitle(OrganizationSwitchMethod method) {
@@ -58,4 +62,6 @@ class SelectEmailViewModel extends BaseViewModel {
         return JoinWorkspace;
     }
   }
+
+  void back() => _navigationService.popRepeated(1);
 }
