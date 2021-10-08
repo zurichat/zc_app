@@ -21,4 +21,5 @@ class StorageKeys {
   static const currentChannelId = 'current_channel_id';
   static const organizationMemberList = 'organization_member_list';
   static const savedItem = 'saved_item';
+  static const idInOrganization = 'id_in_organization';
 }
