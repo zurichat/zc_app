@@ -34,7 +34,8 @@ class ThreadTextAndIcon extends StatelessWidget {
 
 class DraftTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 
-  const DraftTextAndIcon({Key? key}) : super(key: key);
+  const
+  DraftTextAndIcon({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, viewModel) {
