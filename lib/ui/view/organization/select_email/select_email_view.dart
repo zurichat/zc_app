@@ -19,15 +19,14 @@ class SelectEmail extends StatelessWidget {
       viewModelBuilder: () => SelectEmailViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-          title: model.getScreenTitle(method),
-          whiteBackground: true,
-          leading: Icons.arrow_back_ios_outlined,
-          leadingPress: () => model.back()
-        ),
+            title: model.getScreenTitle(method),
+            whiteBackground: true,
+            leading: Icons.arrow_back_ios_outlined,
+            leadingPress: () => model.back()),
         body: Container(
           margin: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(2.0),
               boxShadow: [
                 BoxShadow(

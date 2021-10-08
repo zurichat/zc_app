@@ -46,6 +46,7 @@ class OrganizationUrlViewModel extends BaseViewModel {
       loading(true);
       final organization = await api.fetchOrganizationByUrl(url!);
       _userService.setCurrentOrganizationId(organization.id!);
+      _storageService.setString(StorageKeys.currentOrgName, organization.name!);
 
       //Todo: storing should be implemented after stage 7
       loading(false);

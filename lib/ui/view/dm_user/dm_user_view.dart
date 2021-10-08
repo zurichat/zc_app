@@ -48,8 +48,6 @@ class DmUserView extends StatelessWidget {
                   FocusScope.of(context).requestFocus(FocusNode());
                   _scrollController
                       .jumpTo(_scrollController.position.maxScrollExtent);
-                  // duration: Duration(milliseconds: 500),
-                  // curve: Curves.fastOutSlowIn);
                 },
                 widget: SingleChildScrollView(
                   controller: _scrollController,
