@@ -142,7 +142,7 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.userSearchView);
   }
 
-    getDmAndChannelsList() async {
+  getDmAndChannelsList() async {
     homePageList = [];
     setBusy(true);
 
@@ -181,7 +181,11 @@ class HomePageViewModel extends StreamViewModel {
     String channelSockId =
         await channelsApiService.getChannelSocketId(channelId);
 
-    _centrifugeService.subscribe(channelSockId);
+    try {
+      await _centrifugeService.subscribe(channelSockId);
+    } catch (e) {
+      log.e(e.toString());
+    }
   }
 
   // listenToChannelsChange() {
