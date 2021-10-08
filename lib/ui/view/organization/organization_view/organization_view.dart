@@ -8,6 +8,7 @@ import 'organization_viewmodel.dart';
 
 class OrganizationView extends StatelessWidget {
   const OrganizationView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<OrganizationViewModel>.reactive(
@@ -19,13 +20,11 @@ class OrganizationView extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      Organizations,
-                      style: AppTextStyles.heading6,
-                    ),
+                  Text(
+                    Organizations,
+                    style: AppTextStyles.heading6,
                   ),
                   Expanded(
                     child: Visibility(
@@ -77,16 +76,29 @@ class OrganizationView extends StatelessWidget {
                         ListTile(
                           onTap: () => viewModel.navigateToNewOrganization(),
                           leading: const Icon(Icons.add_box_outlined),
-                          title: const Text(AddOrg),
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(
+                            AddOrg,
+                            style: AppTextStyles.faintBodyText
+                                .copyWith(fontSize: 16),
+                          ),
                         ),
                         ListTile(
                           onTap: () => viewModel.viewPreferences(),
                           leading: const Icon(Icons.settings),
-                          title: const Text(Preferences),
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(
+                            Preferences,
+                            style: AppTextStyles.faintBodyText
+                                .copyWith(fontSize: 16),
+                          ),
                         ),
-                        const ListTile(
-                          leading: Icon(Icons.help_outline),
-                          title: Text(Help),
+                        ListTile(
+                          leading: const Icon(Icons.help_outline),
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(Help,
+                              style: AppTextStyles.faintBodyText
+                                  .copyWith(fontSize: 16)),
                         ),
                       ],
                     ),
@@ -155,6 +167,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
             fontSize: MediaQuery.of(context).size.height * 0.02,
           ),
         ),
+        contentPadding: EdgeInsets.zero,
         subtitle: Container(
           padding: const EdgeInsets.only(top: 5.0),
           child: Text(

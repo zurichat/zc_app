@@ -19,4 +19,5 @@ class StorageKeys {
   static const organizationMemberList = 'organization_member_list';
   static const currentTheme = 'current_theme';
   static const currentThemeValue = 'current_theme_value';
+  static const savedItem = 'saved_item';
 }

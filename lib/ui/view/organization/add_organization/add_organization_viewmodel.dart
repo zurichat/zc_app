@@ -6,14 +6,12 @@ import '../../../../app/app.router.dart';
 import '../../../../utilities/enums.dart';
 
 class AddOrganizationViewModel extends BaseViewModel {
-  final navigation = locator<NavigationService>();
-
+  final _navigationService = locator<NavigationService>();
+  void back() => _navigationService.back();
   void navigateToSelectEmail(OrganizationSwitchMethod method) {
-    navigation.navigateTo(
+    _navigationService.navigateTo(
       Routes.selectEmail,
-      arguments: SelectEmailArguments(
-        method: method,
-      ),
+      arguments: SelectEmailArguments(method: method),
     );
   }
 }

@@ -130,7 +130,6 @@ class ForgotPasswordEmailView extends StatelessWidget
                       widthFactor: 1.0,
                       child: ElevatedButton(
                         onPressed: () {
-                          // ignore: unnecessary_statements
                           // model.submitEmail();
                           model.validateEmailIsRegistered();
                         },

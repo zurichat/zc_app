@@ -1,18 +1,26 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/models/user_post.dart';
+import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:hng/app/app.logger.dart';
 
 class DmUserViewModel extends FormViewModel {
   final _username = '';
   String get username => _username;
 
   final bottomSheet = locator<BottomSheetService>();
+  final storage = locator<SharedPreferenceLocalStorage>();
+  final log = getLogger("DmUserViewModel");
+    List<UserPost>? dmMessages = [];
 
   final _isOnline = true;
   bool get isOnline => _isOnline;
@@ -44,31 +52,63 @@ class DmUserViewModel extends FormViewModel {
     _hasClickedMessageField = true;
     notifyListeners();
   }
+/// THIS FUNCTION BELOW IS TO SAVE MESSAGES INTO SAVED Items
+/// PLESE LEAVE IT
+  saveItem(
+      {String? channelID,
+      String? channelName,
+      String? messageID,
+      String? message,
+      String? lastSeen,
+      String? userID,
+      String? userImage,
+      String? displayName}) async {
+    var savedMessageMap = {
+      'channel_id': channelID,
+      'channel_name': channelName,
+      'message_id': messageID,
+      'message': message,
+      'last_seen': lastSeen,
+      'user_id': userID,
+      'user_image': userImage,
+      'display_name': displayName
+    };
+    if (message!.isNotEmpty) {
+      var currentList = storage.getStringList(StorageKeys.savedItem) ?? [];
+      currentList.add(messageID!);
+      await storage.setStringList(StorageKeys.savedItem, currentList);
+      await storage.setString(messageID, json.encode(savedMessageMap));
+      log.i(savedMessageMap);
+      final len = storage.getStringList(StorageKeys.savedItem);
+      log.w(len!.length.toString());
+    }
+  }
+  /// IT ENDS HERE FOR SAVED ITEMS
 
   void onUnfocusMessageField() {
     _hasClickedMessageField = false;
     notifyListeners();
   }
 
-  Future <void> sendMessage() async{
-   // if(messageController.text!=null){
+  Future<void> sendMessage() async {
+    // if(messageController.text!=null){
     final message = messageController.text;
     if (message.trim().isNotEmpty) {
-    chatMessages.add(
-    Message(
-    id: chatMessages.length,
-    sender: sender,
-    message: message,
-    time: DateTime.now(),
-    ),
-    );
-    // ignore: todo
-    //TODO - fix autoclear
-    messageController.clear();
-     //clearText();
-    notifyListeners();
+      chatMessages.add(
+        Message(
+          id: chatMessages.length,
+          sender: sender,
+          message: message,
+          time: DateTime.now(),
+        ),
+      );
+      // ignore: todo
+      //TODO - fix autoclear
+      messageController.clear();
+      //clearText();
+      notifyListeners();
     }
-      //await sendResponse();
+    //await sendResponse();
     //}
   }
 
@@ -79,7 +119,7 @@ class DmUserViewModel extends FormViewModel {
 
   void popScreen() {
     final navigationService = locator<NavigationService>();
-    navigationService.back();
+    navigationService.popRepeated(1);
   }
 
   void sendResponse() async {
@@ -96,6 +136,7 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
+//TODO implement setFormStatus
   @override
   void setFormStatus() {}
 }

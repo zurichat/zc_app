@@ -4,6 +4,8 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/plugins/widgets/custom_plugin_list_tile.dart';
 import '../../../shared/colors.dart';
 import '../../plugins/widgets/custom_plugin_list_tile.dart';
@@ -11,7 +13,6 @@ import 'package:stacked/stacked.dart';
 import '../shared_widgets.dart';
 import 'channel_members_list_model.dart';
 
-// ignore: must_be_immutable
 class ChannelMembersList extends StatelessWidget {
   final List<ChannelMembermodel> channelMembers;
   final ChannelModel channelDetail;
@@ -25,29 +26,13 @@ class ChannelMembersList extends StatelessWidget {
       viewModelBuilder: () => ChannelMembersModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              '${channelDetail.name}',
-              style: GoogleFonts.lato(
-                  // ignore: todo
-                  //TODO change to brand colors
-                  color: const Color(0xFF242424),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0),
-            ),
-            backgroundColor: Colors.white,
-            elevation: 1.5,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.clear,
-                color: Color(0xFF333333),
-                // size: 24,
-              ),
-              padding: const EdgeInsets.only(left: 18),
-              onPressed: () {
-                viewModel.goBack();
-              },
-              iconSize: 25.0,
+          appBar: ZuriAppBar(
+            leading: Icons.clear,
+            whiteBackground: true,
+            leadingPress: () => viewModel.goBack(),
+            orgTitle: Text(
+              channelDetail.name,
+              style: AppTextStyles.heading7,
             ),
             actions: [
               Padding(
@@ -55,11 +40,7 @@ class ChannelMembersList extends StatelessWidget {
                 child: InkWell(
                   child: Text(
                     Edit,
-                    style: GoogleFonts.lato(
-                        // ignore: todo
-                        //TODO change to brand colors
-                        color: const Color(0xFF00B87C),
-                        fontSize: 16.0),
+                    style: AppTextStyles.heading5,
                   ),
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
@@ -128,7 +109,6 @@ class ChannelMembersList extends StatelessWidget {
                             Text(
                               channelMembers[index].name,
                               style: GoogleFonts.lato(
-                                // ignore: todo
                                 //TODO change to brand colors
                                 color: const Color(0xFF424141),
                               ),

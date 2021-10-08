@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
 import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
 import 'package:stacked/stacked.dart';
@@ -23,49 +25,21 @@ class DmUserView extends StatelessWidget {
     return ViewModelBuilder<DmUserViewModel>.reactive(
         viewModelBuilder: () => DmUserViewModel(),
         builder: (context, model, child) {
-
           return Scaffold(
             backgroundColor: Colors.white,
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios_sharp),
-                iconSize: 18.0,
-                color: AppColors.deepBlackColor,
-                onPressed: () {
-                  model.popScreen();
-                },
-              ),
-              titleSpacing: 0.0,
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(model.receiver.username,
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400)),
-                      const SizedBox(width: 12.0),
-                      const OnlineIndicator(0xFF007952),
-                    ],
+            appBar: ZuriAppBar(
+                leading: Icons.arrow_back_ios,
+                leadingPress: () => model.popScreen(),
+                title: model.receiver.username,
+                subtitle: ViewDetails,
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.info_outline),
+                    onPressed: () {},
                   ),
-                  const Text(
-                    'View Details',
-                    style: TextStyle(color: Color(0xFF999999), fontSize: 12.0),
-                  )
                 ],
-              ),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.info_outline),
-                  color: const Color(0xFF4D4D4D),
-                  onPressed: () {},
-                )
-              ],
-              elevation: 0.0,
-            ),
+                onlineIndicator: true,
+                whiteBackground: true),
             body: Stack(
               children: [
                 SingleChildScrollView(
@@ -81,7 +55,7 @@ class DmUserView extends StatelessWidget {
                           children: [
                             Padding(
                               padding:
-                              const EdgeInsets.only(left: 16.0, top: 555),
+                                  const EdgeInsets.only(left: 16.0, top: 555),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -173,10 +147,10 @@ class DmUserView extends StatelessWidget {
                                       expands: true,
                                       maxLines: null,
                                       textAlignVertical:
-                                      TextAlignVertical.center,
+                                          TextAlignVertical.center,
                                       decoration: InputDecoration.collapsed(
                                           hintText:
-                                          'Message ${model.receiver.username}',
+                                              'Message ${model.receiver.username}',
                                           hintStyle: const TextStyle(
                                               color: Color(0xFFBEBEBE),
                                               fontSize: 14.0,
@@ -257,7 +231,7 @@ class DmUserView extends StatelessWidget {
                                   ],
                                 ),
                                 IconButton(
-                                    onPressed: ()async {
+                                    onPressed: () async {
                                       await model.sendMessage();
                                       FocusScope.of(context)
                                           .requestFocus(FocusNode());

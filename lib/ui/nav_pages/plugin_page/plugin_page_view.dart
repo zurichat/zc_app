@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'plugin_viewmodel.dart';
@@ -27,16 +27,10 @@ class PluginPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: AppColors.zuriPrimaryColor,
-        title: Text(
-          Plugins,
-          style: GoogleFonts.lato(
-              fontWeight: FontWeight.w700,
-              fontSize: 20,
-              color: AppColors.whiteColor),
-        ),
+      appBar: ZuriAppBar(
+        orgTitle: Text(Plugins, style: ZuriTextStyle.organizationNameText()),
+        bottomNavBarScreen: true,
+        leadingWidth: true,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -46,7 +40,6 @@ class PluginPage2 extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            // ignore: deprecated_member_use
             child: TextButton.icon(
               onPressed: () => {},
               icon: const Icon(Icons.calendar_today),
