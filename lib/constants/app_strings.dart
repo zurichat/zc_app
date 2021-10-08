@@ -13,6 +13,7 @@ const String invalidEmailFormat = 'Invalid email format';
 const String passwordsMustMatch = 'Passwords do not match';
 const String passwordUpdated = 'Password Successfully Updated';
 const String passwordNotUpdated = 'Password could not be updated';
+const String profileUpdated = 'Profile Successfully Updated';
 const String errorOccurred = 'An Error Occurred';
 const String errorOTP = 'OTP could not be validated';
 const String wrongOTP = 'Wrong OTP, please check again';
@@ -502,6 +503,7 @@ const String Yeah = 'Yeah';
 const String Nope = 'Nope';
 const String Why = 'Why';
 const String FiftyResults = '50 Results';
+const String DummyAvatar = 'https://www.nairaland.com/attachments/10525387_7523740813649122436786583150820259255025664o3_jpega51895fd0bf50cf5d5982826ac401627';
 const String TermsAndConditions = '''Introduction\n\n'''
     '''We are a social network and online platform for professionals and beginners. '''
     '''People use our Services to find and be found for business opportunities, '''

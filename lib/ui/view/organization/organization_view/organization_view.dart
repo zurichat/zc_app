@@ -125,7 +125,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
   @override
   Widget build(BuildContext context, OrganizationViewModel viewModel) {
     return ListTile(
-        onTap: () => viewModel.onTap(org.id, org.name, org.organizationUrl),
+        onTap: () => viewModel.onTap(org.id, org.name, org.organizationUrl, org.userIdInOrg),
         leading: Container(
           height: MediaQuery.of(context).size.height * 0.06,
           width: MediaQuery.of(context).size.height * 0.06,

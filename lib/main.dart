@@ -43,7 +43,6 @@ Future main() async {
   initNotificationService();
   AppSnackBar.setupSnackbarUi();
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
