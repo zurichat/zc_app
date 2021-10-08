@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen_viewmodel.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
+
 import 'package:stacked/stacked.dart';
 
 import '../../colors.dart';
@@ -355,44 +355,6 @@ class MyTextField extends StatelessWidget {
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-//
-class ScheduleOption extends StatelessWidget {
-  const ScheduleOption(
-      {Key? key,
-      required this.messageText,
-      required this.messageController,
-      required this.time,
-      required this.title,
-      required this.context,
-      required this.channelID})
-      : super(key: key);
-
-  final String messageText;
-  final TextEditingController messageController;
-  final double time;
-  final BuildContext context;
-
-  final String title, channelID;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        ChannelPageViewModel model = ChannelPageViewModel();
-        model.goBack();
-        model.scheduleMessage(time, messageText, channelID);
-        FocusScope.of(context).requestFocus(FocusNode());
-
-        messageController.clear();
-      },
-      child: Text(
-        title,
-        style: const TextStyle(color: AppColors.blackColor),
       ),
     );
   }

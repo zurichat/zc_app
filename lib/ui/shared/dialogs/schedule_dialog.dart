@@ -12,7 +12,7 @@ class ScheduleMess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final String orgName = request.data!;
+    DmUserViewModel model = DmUserViewModel();
     return AlertDialog(
       title: const Text('Schedule message'),
       actions: <Widget>[
@@ -20,8 +20,6 @@ class ScheduleMess extends StatelessWidget {
           child: Column(children: [
             TextButton(
               onPressed: () async {
-                DmUserViewModel model = DmUserViewModel();
-
                 await model.scheduleMessage(5, '30 minutes from now');
                 model.exit();
                 FocusScope.of(context).requestFocus(FocusNode());
@@ -35,7 +33,6 @@ class ScheduleMess extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                DmUserViewModel model = DmUserViewModel();
                 model.exit();
                 model.scheduleMessage(0.5, '1 hour from now');
                 FocusScope.of(context).requestFocus(FocusNode());
@@ -47,7 +44,6 @@ class ScheduleMess extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                DmUserViewModel model = DmUserViewModel();
                 model.exit();
                 model.scheduleMessage(0.5, 'messageText');
                 FocusScope.of(context).requestFocus(FocusNode());
@@ -59,7 +55,6 @@ class ScheduleMess extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                DmUserViewModel model = DmUserViewModel();
                 model.exit();
                 model.scheduleMessage(0.5, 'messageText');
                 FocusScope.of(context).requestFocus(FocusNode());
