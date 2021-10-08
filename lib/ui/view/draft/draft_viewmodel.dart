@@ -76,6 +76,59 @@ class DraftViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  void onDismissed(index){
+    var removeDmDraft = '';
+    var removeChannelDraft = '';
+    var removeThreadDraft = '';
+
+
+    var dmStoredDrafts =
+    _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    var channelStoredDrafts =
+    _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    var threadStoredDrafts =
+    _storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+
+    if(dmStoredDrafts != null){
+      dmStoredDrafts.forEach((element) {
+        if(jsonDecode(element)['time'] == widgetBuilderList[index].time ){
+          removeDmDraft = element;
+        }
+      });
+    }
+
+    if(channelStoredDrafts != null){
+      channelStoredDrafts.forEach((element) {
+        if(jsonDecode(element)['time'] == widgetBuilderList[index].time ){
+          removeChannelDraft = element ;
+        }
+      });
+    }
+
+    if( threadStoredDrafts != null){
+      threadStoredDrafts.forEach((element) {
+        if(jsonDecode(element)['time'] == widgetBuilderList[index].time ){
+          removeThreadDraft = element ;
+        }
+      });
+    }
+
+    if(removeDmDraft.isNotEmpty && dmStoredDrafts != null ){
+      dmStoredDrafts.remove(removeDmDraft);
+      _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, dmStoredDrafts);
+    }else if(removeChannelDraft.isNotEmpty && channelStoredDrafts != null ){
+      channelStoredDrafts.remove(removeChannelDraft);
+      _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, channelStoredDrafts);
+    }else if(removeThreadDraft.isNotEmpty && threadStoredDrafts != null ){
+      threadStoredDrafts.remove(removeThreadDraft);
+      _storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, threadStoredDrafts);
+    }
+
+    widgetBuilderList.removeAt(index);
+
+    notifyListeners();
+  }
+
   //navigation for dmUserView
   //TODO - pass in a unique id for each instance of dm view
   navigateToDmUserView() async {
@@ -118,17 +171,3 @@ class DraftViewModel extends BaseViewModel {
     }
   }
 }
-
-// class Objects {
-//   Objects(
-//       this.text,
-//       this.subtitle,
-//       this.route,
-//       this.time
-//       );
-//
-//   String text;
-//   String subtitle;
-//   Map route;
-//   String time;
-// }

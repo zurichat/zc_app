@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/draft/draft_viewmodel.dart';
+import 'package:intl/intl.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({
@@ -20,6 +21,8 @@ class CustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO : convert the string 'time' to a usuable datetime type
+    // var dateFormat = DateFormat('yyyy/MM/dd HH:MM:ss').parse('$time');
     return InkWell(
       onTap:  () async{
 
@@ -50,6 +53,7 @@ class CustomListTile extends StatelessWidget {
           style: AppTextStyles.body1Bold,
         ),
         trailing: Text(
+          // '$dateFormat',
           time,
           style: AppTextStyles.body2Bold,
         ),

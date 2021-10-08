@@ -23,6 +23,7 @@ dependencies:
   flutter_keyboard_visibility: ^5.0.3
   flutter_parsed_text: ^2.2.1
   flutter_screenutil: ^5.0.0+2
+  flutter_slidable: ^0.6.0
   flutter_svg: ^0.22.0
   fluttertoast: ^8.0.8
   font_awesome_flutter: ^9.1.0

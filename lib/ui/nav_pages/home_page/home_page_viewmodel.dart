@@ -204,16 +204,18 @@ class HomePageViewModel extends StreamViewModel {
       setBusy(true);
       // _channel= await api.getChannelPage(id);
       // _membersList= await api.getChannelMembers(id);
-      setBusy(false);
+
 
       _moderateNavigation();
-      navigation.navigateTo(Routes.channelPageView,
+      await navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
             channelName: channelName,
             channelId: channelId,
             membersCount: membersCount,
             public: public,
           ));
+      setBusy(false);
+
     } catch (e) {
       log.e(e.toString());
       snackbar.showCustomSnackBar(
