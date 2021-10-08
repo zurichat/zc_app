@@ -55,10 +55,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                     width: _size.width * 0.55,
                     child: TextFormField(
                       initialValue: viewModel.userModel.fullName,
-                      onChanged: (value) {
-                        viewModel.fullName = value;
-                        viewModel.setState();
-                      },
+                      onChanged: (value) => viewModel.onChanged(name: value),
                       decoration: const InputDecoration(
                         labelText: FullName,
                       ),
@@ -69,10 +66,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
             ),
             TextFormField(
               initialValue: viewModel.userModel.displayName,
-              onChanged: (value) {
-                viewModel.displayName = value;
-                viewModel.setState();
-              },
+              onChanged: (value) => viewModel.onChanged(disp: value),
               decoration: const InputDecoration(
                 labelText: DisplayName,
                 helperText: DisplayNameDescription,
@@ -81,19 +75,13 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
             ),
             TextFormField(
               initialValue: viewModel.userModel.bio,
-              onChanged: (value) {
-                viewModel.bio = value;
-                viewModel.setState();
-              },
+              onChanged: (value) => viewModel.onChanged(bo: value),
               decoration: const InputDecoration(
                   labelText: Track, helperText: TrackDescription),
             ),
             TextFormField(
               initialValue: viewModel.userModel.phoneNumber,
-              onChanged: (value) {
-                viewModel.phone = value;
-                viewModel.setState();
-              },
+              onChanged: (value) => viewModel.onChanged(phn: value),
               decoration: const InputDecoration(
                   labelText: Phone, helperText: PhoneDescription),
             ),

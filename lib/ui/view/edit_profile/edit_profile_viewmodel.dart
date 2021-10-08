@@ -37,6 +37,16 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
 
   void setState() => notifyListeners();
 
+  void onChanged({String? disp, String? bo, String? phn, String? name}) {
+    {
+      if (disp != null) displayName = disp;
+      if (bo != null) bio = bo;
+      if (phn != null) phone = phn;
+      if (name != null) fullName = name;
+      setState();
+    }
+  }
+
   UserModel updateData() {
     if (validateNotEmptyField(fullName) != null) {
       _snackbarService.showCustomSnackBar(
@@ -88,8 +98,7 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
         phone != userModel.phoneNumber ||
         (fullName.isNotEmpty && fullName != userModel.fullName)) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }

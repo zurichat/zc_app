@@ -180,5 +180,6 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
               viewModel.showSignOutBottomSheet(org);
             },
             child: const Icon(Icons.more_vert)));
+
   }
 }

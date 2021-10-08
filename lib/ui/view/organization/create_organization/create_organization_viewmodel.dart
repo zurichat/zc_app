@@ -99,7 +99,7 @@ class CreateOrganizationViewModel extends BaseViewModel {
       name: project,
       description: 'First channel for your organization',
       private: false,
-      email: email!,
+      email: email,
       id: org!.id!,
     );
 
