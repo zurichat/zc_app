@@ -53,7 +53,7 @@ class NavBarView extends StatelessWidget {
 
   List<BottomNavigationBarItem> getBottomIcons(context) {
     final local = AppLocalization.of(context);
-
+    //TODO - local!.homeNavBar crashed app [Null check operator used on a null value]
     List<String> name = [
       local!.homeNavBar,
       local.pluginsNavBar,
