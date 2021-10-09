@@ -25,7 +25,6 @@ class ScheduleMessChannel extends StatelessWidget {
           child: Column(children: [
             TextButton(
               onPressed: () {
-                ChannelPageViewModel model = ChannelPageViewModel();
                 model.scheduleMessage(0.5, message, channelID);
                 model.goBack();
                 FocusScope.of(context).requestFocus(FocusNode());
