@@ -18,16 +18,17 @@ class DoNotDisturbView extends StatelessWidget {
           leadingPress: () => model.exitPage(),
           orgTitle: Text(
             'Do not disturb',
-            style: AppTextStyles.heading7,
+            style: AppTextStyles.heading4,
           ),
+          whiteBackground: true,
           actions: [
             TextButton(
               onPressed: () {},
-              child: const Text(
+              child: Text(
                 'Save',
-                style: TextStyle(color: AppColors.zuriPrimaryColor),
+                style: AppTextStyles.heading8,
               ),
-            )
+            ),
           ],
         ),
         body: Column(
