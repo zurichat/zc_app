@@ -95,17 +95,21 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   //draft implementations
-  //TODO - save each draft with a unique user and channel id and replace the userPost parameter currently being used
+  //TODO - routing to ThreadDetails needs more fixing, the required parameter userPost of class UserPost proves to difficult access from the draft view.
+  //TODO - resolve image
 
   var storedDraft = '';
 
   void getDraft(userPost){
     List<String>? spList = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
     if (spList != null){
-      for ( String e in spList) {
-        if(jsonDecode(e)['userPost'] == userPost ){
-          storedDraft = jsonDecode(e)['draft'];
-          spList.remove(e);
+      for ( String encodedStoredDraft in spList) {
+        if(jsonDecode(encodedStoredDraft)['userPostId'] == userPost.id &&
+            jsonDecode(encodedStoredDraft)['userPostChannelName'] == userPost.channelName &&
+            jsonDecode(encodedStoredDraft)['userPostChannelId'] == userPost.channelId
+    ){
+          storedDraft = jsonDecode(encodedStoredDraft)['draft'];
+          spList.remove(encodedStoredDraft);
           storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, spList);
           return;
         }
@@ -114,11 +118,31 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   void storeDraft(userPost, value){
+    List<List<String>> emojis = [];
+    List<String> emoji;
+
+    if(userPost.postEmojis != null){
+      for(PostEmojis postEmoji in userPost.postEmojis ){
+        emoji = [
+          postEmoji.id.toString(),
+          postEmoji.postEmoji!,
+          postEmoji.postEmojiCount.toString(),
+          postEmoji.hasReacted.toString()
+        ];
+        emojis.add(emoji);
+      }
+    }
+
     var keyMap = {
       'draft': value,
       'time' : '${DateTime.now()}',
-      'userPostName' : 'userPostName',
-      'userPost' : userPost,
+      'userPostId' : userPost.id,
+      'userPostChannelName' : userPost.channelName,
+      'userPostMessage' : userPost.message,
+      'userPostDisplayName' : userPost.displayName,
+      'userPostChannelId' : userPost.channelId,
+      'userPostChannelType': userPost.channelType.toString(),
+      'userPostPostEmojis' : emojis
     };
 
     List<String>? spList = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
