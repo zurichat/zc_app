@@ -15,6 +15,7 @@ import 'package:hng/services/notification_service.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:hng/ui/view/dm_chat_view/dm_jump_to_view.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
@@ -252,7 +253,9 @@ class HomePageViewModel extends StreamViewModel {
   }
 
   void onJumpToScreen() {
-    navigationService.navigateTo(Routes.dmJumpToView);
+    navigation.navigateWithTransition(DmJumpToView(),
+        transition: NavigationTransition.DownToUp);
+    // navigationService.navigateTo(Routes.dmJumpToView);
   }
 
   @override
