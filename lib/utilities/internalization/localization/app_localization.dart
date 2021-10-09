@@ -27,11 +27,6 @@ class AppLocalization {
       _sentences[key] = value.toString();
     });
 
-    // String jsonStringValues = await rootBundle
-    //     .loadString('assets/language/${locale.languageCode}.json');
-    // Map<String, dynamic> mappedJson = json.decode(jsonStringValues);
-    // _localizedValues =
-    //     mappedJson.map((key, value) => MapEntry(key, value.toString()));
     return true;
   }
 
@@ -39,12 +34,12 @@ class AppLocalization {
     return _sentences[key]!;
   }
 
-  // static member to have simple access to the delegate from Material App
+  /// static member to have simple access to the delegate from Material App
   static const LocalizationsDelegate<AppLocalization> delegate =
       AppLocalizationDelegate();
 
-  // List of available local strings that the app can use
-  // translated from the corresponding .json language files
+  /// List of available local strings that the app can use
+  /// translated from the corresponding .json language files
   String get threads => translate(LocalKeys.Threads);
   String get unreads => translate(LocalKeys.Unreads);
   String get channels => translate(LocalKeys.Channels);

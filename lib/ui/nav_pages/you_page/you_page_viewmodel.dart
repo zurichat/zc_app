@@ -80,8 +80,8 @@ class YouPageViewModel extends BaseViewModel {
     await _navigationService.navigateTo(Routes.preferenceView);
   }
 
-  void navigateToSignIn() =>
-      navigationService.pushNamedAndRemoveUntil(Routes.loginView);
+  void navigateToOrgView() =>
+      navigationService.clearStackAndShow(Routes.organizationView);
 
   String? get token => _storage.getString(StorageKeys.currentSessionToken);
 
@@ -103,7 +103,7 @@ class YouPageViewModel extends BaseViewModel {
       _storage.clearData(StorageKeys.currentUserId);
       _storage.clearData(StorageKeys.currentUserEmail);
 
-      navigateToSignIn();
+      navigateToOrgView();
     }
   }
 
