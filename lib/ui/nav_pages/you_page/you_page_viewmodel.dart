@@ -104,12 +104,6 @@ class YouPageViewModel extends BaseViewModel {
       _storage.clearData(StorageKeys.currentUserEmail);
 
       navigateToSignIn();
-    } else {
-      _snackBar.showCustomSnackBar(
-          message:
-              response?.data["message"] ?? "Error occurred while Signing out",
-          variant: SnackbarType.failure,
-          duration: const Duration(milliseconds: 1500));
     }
   }
 
