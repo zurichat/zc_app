@@ -17,13 +17,16 @@ class SetStatusView extends StatelessWidget {
               appBar: ZuriAppBar(
                   leading: Icons.close_rounded,
                   leadingPress: () => model.exitPage,
-                  orgTitle: const Text('Set a status'),
+                  orgTitle: Text(
+                    'Set a status',
+                    style: AppTextStyles.heading7,
+                  ),
                   actions: [
                     TextButton(
                       onPressed: () {},
-                      child: const Text(
+                      child: Text(
                         Save,
-                        style: TextStyle(color: AppColors.zuriTextBodyColor),
+                        style: AppTextStyles.heading8,
                       ),
                     )
                   ],

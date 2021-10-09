@@ -56,4 +56,9 @@ class SharedPreferenceLocalStorage {
   int? getInt(String key) {
     return _preferences?.getInt(key);
   }
+
+  // static int get localeVal =>
+  //     _preferences!.getInt(LOCALE_VAL) ?? DEFAULT_LOCALE_VAL;
+  //
+  // static set localeVal(int val) => _preferences?.setInt(LOCALE_VAL, val);
 }

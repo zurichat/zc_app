@@ -18,7 +18,7 @@ class PreferenceView extends StatelessWidget {
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-          orgTitle: Text(Preferences, style: AppTextStyles.heading7),
+          orgTitle: Text(Preferences, style: AppTextStyles.heading4),
           leading: Icons.close_outlined,
           leadingPress: () => model.exitPage(),
         ),
@@ -58,10 +58,12 @@ class PreferenceView extends StatelessWidget {
                 const Divider(color: AppColors.dividerColor),
                 const SizedBox(height: 16),
                 MenuItemTile(
-                  text: Text(Advanced,
-                      style: AppTextStyles.faintBodyText.copyWith(
-                        fontSize: 16,
-                      )),
+                  text: Text(
+                    Advanced,
+                    style: AppTextStyles.faintBodyText.copyWith(
+                      fontSize: 16,
+                    ),
+                  ),
                   onPressed: model.navigateToAdvanced,
                 ),
                 const SizedBox(height: 16),
