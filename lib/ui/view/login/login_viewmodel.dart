@@ -108,12 +108,6 @@ class LoginViewModel extends FormViewModel {
 
       //TODO check if user has currently joined an Organization
       _navigationService.pushNamedAndRemoveUntil(Routes.organizationView);
-    } else {
-      _snackbarService.showCustomSnackBar(
-        duration: const Duration(milliseconds: 1500),
-        variant: SnackbarType.failure,
-        message: response?.data['message'] ?? errorEncounteredLogin,
-      );
     }
   }
 
