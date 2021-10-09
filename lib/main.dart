@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:hng/services/notification_service.dart';
 import 'package:hng/ui/shared/setup_bottom_sheet_ui.dart';
 import 'package:hng/ui/shared/setup_dialog_ui.dart';
-import 'package:hng/utilities/internalization/localization/main_localization.dart';
+import 'package:hng/ui/view/language_and_region/language_and_region_viewmodel.dart';
+import 'package:hng/utilities/internalization/local_setup.dart';
+import 'package:intl/intl.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
@@ -42,30 +43,32 @@ class MyApp extends StatelessWidget {
           darkTheme: darkTheme,
           themeMode: themeMode,
           initialRoute: Routes.splashview,
+         // locale: Locale(LanguageAndRegionModelViewModel.localeString, ''),
+          localizationsDelegates: localizationsDelegates,
           supportedLocales: const [
             Locale('nl', 'NL'),
-            Locale('en', 'GB'),
+            Locale('en', 'US'),
             Locale('es', 'ES'),
             Locale('fr', 'FR'),
             Locale('it', 'IT'),
             Locale('pt', 'BR'),
             Locale('zh', 'HK'),
           ],
-          localizationsDelegates: const [
-            MainLocalization.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
           localeResolutionCallback: (locale, supportedLocales) {
+            if (locale == null) {
+              Intl.defaultLocale = supportedLocales.first.languageCode;
+              return supportedLocales.first;
+            }
             for (var supportedLocale in supportedLocales) {
-              if (supportedLocale.languageCode == locale?.languageCode &&
-                  supportedLocale.countryCode == locale?.countryCode) {
+              if (supportedLocale.languageCode == locale.languageCode &&
+                  supportedLocale.countryCode == locale.countryCode) {
                 return supportedLocale;
+      
               }
             }
+            Intl.defaultLocale = supportedLocales.first.languageCode;
             return supportedLocales.first;
-          },
+        },
         ),
       ),
     );

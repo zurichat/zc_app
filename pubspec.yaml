@@ -80,13 +80,8 @@ flutter:
     - assets/plugin_icons/
     - assets/icons/emojiHands/
     - assets/icons/svg_icons/
-    - lib/utilities/internalization/language/en.json
-    - lib/utilities/internalization/language/es.json
-    - lib/utilities/internalization/language/fr.json
-    - lib/utilities/internalization/language/it.json
-    - lib/utilities/internalization/language/nl.json
-    - lib/utilities/internalization/language/pt.json
-    - lib/utilities/internalization/language/zh.json
+    - assets/language/
+ 
 
   fonts:
     - family: ZapIcon

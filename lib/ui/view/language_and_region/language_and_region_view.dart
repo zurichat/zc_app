@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import '../../../general_widgets/menu_item_tile.dart';
 import 'language_and_region_viewmodel.dart';
@@ -22,6 +23,7 @@ class LanguageAndRegionModelView extends StatelessWidget {
               text: const Text(Language),
               subtitle: model.currentLanguage,
               onPressed: model.changeLanguage,
+             // onChanged: model.setLanguage(Value),
             ),
             MenuItemTile.flipSwitch(
               text: const Text(SetTimezone),

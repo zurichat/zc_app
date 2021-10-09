@@ -8,6 +8,7 @@ import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/constants.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 class HomePage extends StatelessWidget {
@@ -55,7 +56,7 @@ class HomePage extends StatelessWidget {
                     )
                   : Container(),
               Expanded(
-                child: body(vmodel),
+                child: body(context, vmodel),
               ),
               // Padding(
               //   padding: const EdgeInsets.all(8.0),
@@ -76,7 +77,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget body(HomePageViewModel vmodel) {
+  Widget body(BuildContext context, HomePageViewModel vmodel) {
+    final local = AppLocalization.of(context);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -88,18 +90,18 @@ class HomePage extends StatelessWidget {
           ),
           const Divider(),
           HomeExpandedList(
-            title: Unreads,
+            title: local!.unreads,
             canExpand: false,
             data: vmodel.unreads,
           ),
           const Divider(),
           HomeExpandedList(
-            title: Channels,
+            title: local.channels,
             data: vmodel.joinedChannels,
           ),
           const Divider(),
           HomeExpandedList(
-            title: DMs,
+            title: local.directMessages,
             data: vmodel.directMessages,
           ),
           const Divider(),
