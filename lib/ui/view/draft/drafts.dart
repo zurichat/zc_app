@@ -3,7 +3,6 @@ import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/draft/draft_viewmodel.dart';
 import 'package:hng/utilities/enums.dart';
-import 'package:intl/intl.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({
