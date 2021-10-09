@@ -7,6 +7,7 @@ import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
 import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import '../../shared/colors.dart';
 import 'dm_user_viewmodel.dart';
@@ -14,16 +15,24 @@ import 'dummy_data/models/message.dart';
 import 'icons/zap_icon.dart';
 import 'widgets/message_view.dart';
 import 'widgets/online_indicator.dart';
+import 'dm_user_view.form.dart';
 
-class DmUserView extends StatelessWidget {
-  String messageText = '';
+//stacked forms handling
+@FormView(
+  fields: [
+    FormTextField(name: 'messageBox'),
+  ],
+)
+class DmUserView extends StatelessWidget with $DmUserView {
   DmUserView({Key? key}) : super(key: key);
-  TextEditingController messageController = TextEditingController();
   final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmUserViewModel>.reactive(
+        //listenToFormUpdated automatically
+        //syncs text from TextFields to the viewmodel
+        onModelReady: (model) => listenToFormUpdated(model),
         viewModelBuilder: () => DmUserViewModel(),
         builder: (context, model, child) {
           return Scaffold(
@@ -162,10 +171,7 @@ class DmUserView extends StatelessWidget {
                                         }
                                       },
                                       child: TextFormField(
-                                        onChanged: (value) {
-                                          messageText = value;
-                                        },
-                                        controller: messageController,
+                                        controller: messageBoxController,
                                         expands: true,
                                         maxLines: null,
                                         textAlignVertical:
@@ -255,13 +261,14 @@ class DmUserView extends StatelessWidget {
                                   ),
                                   GestureDetector(
                                       onTap: () async {
-                                        await model.sendMessage(messageText);
+                                        await model.sendMessage(
+                                            messageBoxController.text);
                                         FocusScope.of(context)
                                             .requestFocus(FocusNode());
                                         _scrollController.jumpTo(
                                             _scrollController
                                                 .position.maxScrollExtent);
-                                        messageController.clear();
+                                        messageBoxController.clear();
                                       },
                                       onLongPress: () {
                                         model.showPop();
