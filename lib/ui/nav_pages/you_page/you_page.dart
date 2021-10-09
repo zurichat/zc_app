@@ -106,6 +106,16 @@ class YouPage extends StatelessWidget {
                   onPressed: model.viewPreferences,
                   topBorder: false,
                 ),
+                const SizedBox(height: 16),
+                MenuItemTile(
+                  icon: Icons.logout_sharp,
+                  text: Text(
+                   SignOut,
+                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                  ),
+                  onPressed: model.signOutAccount,
+                  topBorder: false,
+                ),
               ],
             ),
           ),
