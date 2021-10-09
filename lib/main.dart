@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
           darkTheme: darkTheme,
           themeMode: themeMode,
           initialRoute: Routes.splashview,
-         // locale: Locale(LanguageAndRegionModelViewModel.localeString, ''),
           localizationsDelegates: localizationsDelegates,
           supportedLocales: const [
             Locale('nl', 'NL'),
