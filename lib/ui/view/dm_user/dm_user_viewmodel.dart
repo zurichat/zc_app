@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/models/app_model.dart';
-import 'package:hng/models/user_post.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
