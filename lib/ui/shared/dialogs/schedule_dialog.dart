@@ -23,8 +23,6 @@ class ScheduleMess extends StatelessWidget {
                 await model.scheduleMessage(5, '30 minutes from now');
                 model.exit();
                 FocusScope.of(context).requestFocus(FocusNode());
-
-                // messageController.clear();
               },
               child: const Text(
                 '30 minutes from now',
