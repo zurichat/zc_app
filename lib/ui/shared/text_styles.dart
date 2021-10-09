@@ -31,7 +31,7 @@ class ZuriTextStyle {
   }
 
   static TextStyle mediumNormal({Color? color}) {
-    return _base(_mediumSize, _normal, color ?? AppColors.darkGreyColor);
+    return _base(_mediumSize, _normal, color);
   }
 
   static TextStyle mediumBold() {
@@ -89,7 +89,7 @@ class ZuriTextStyle {
     return TextStyle(
       fontSize: fontSize,
       fontWeight: fontWeight ?? FontWeight.w500,
-      color: color ?? Colors.grey[600],
+      // color: color ?? Colors.grey[600],
     );
   }
 }

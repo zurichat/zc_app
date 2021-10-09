@@ -37,7 +37,7 @@ class AppTextStyles {
   );
   static TextStyle heading4 = GoogleFonts.lato(
     fontWeight: FontWeight.w600,
-    color: AppColors.blackColor,
+    // color: AppColors.blackColor,
     fontSize: 18,
   );
   static TextStyle body1Regular = GoogleFonts.lato(
@@ -47,7 +47,7 @@ class AppTextStyles {
   );
   static TextStyle bodyRegular = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
-    color: AppColors.blackColor,
+    // color: AppColors.blackColor,
     fontSize: 20,
   );
   static TextStyle normalText = GoogleFonts.lato(
@@ -72,7 +72,7 @@ class AppTextStyles {
   );
   static TextStyle body3Medium = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
-    color: AppColors.greyishColor,
+    // color: AppColors.greyishColor,
     fontSize: 14,
   );
   static TextStyle faintBodyText = GoogleFonts.lato(
