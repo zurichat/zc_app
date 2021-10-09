@@ -82,7 +82,7 @@ class ReminderDialog extends StatelessWidget {
                 ),
               ),
               ListTile(
-                onTap: model.customReminder,
+                onTap: () => model.customReminder(context),
                 title: const CustomText(
                   text: 'Custom',
                   color: AppColors.zuriTextBodyColor,

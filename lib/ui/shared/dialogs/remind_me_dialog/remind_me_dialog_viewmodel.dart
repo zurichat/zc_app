@@ -145,22 +145,25 @@ class RemindMeDialogViewModel extends BaseViewModel {
   }
 
   //custom
-  customReminder({context}) async {
-    Future<dynamic> _selectTime({context}) {
+  Future<void>? customReminder(BuildContext? context) async {
+    Future<dynamic>? _selectDateTime() {
+      return showDatePicker(
+        context: context!,
+        initialDate: DateTime.now().add(const Duration(seconds: 1)),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2100),
+      );
+    }
+
+    Future<dynamic> _selectTime() {
       final now = DateTime.now();
 
       return showTimePicker(
-        context: context,
+        context: context!,
         initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
       );
     }
 
-    Future<dynamic> _selectDateTime({context}) => showDatePicker(
-          context: context,
-          initialDate: DateTime.now().add(const Duration(seconds: 1)),
-          firstDate: DateTime.now(),
-          lastDate: DateTime(2100),
-        );
     var selectedDate = await _selectDateTime();
     var selectedTime = await _selectTime();
 
@@ -171,6 +174,10 @@ class RemindMeDialogViewModel extends BaseViewModel {
       selectedTime.hour,
       selectedTime.minute,
     );
+    log.i(selectedDate.year);
+    log.i(selectedDate);
+
+    notifyListeners();
 
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
       'Zuri chat',
@@ -191,6 +198,6 @@ class RemindMeDialogViewModel extends BaseViewModel {
         platformChannelSpecifics,
         androidAllowWhileIdle: true);
 
-    navigationService.popRepeated(1);
+    navigationService.popRepeated(2);
   }
 }
