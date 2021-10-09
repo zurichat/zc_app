@@ -36,8 +36,9 @@ class DMMessageRead extends StatelessWidget {
                 style: AppTextStyles.body1Bold,
               ),
               const SizedBox(height: 5),
-              const Text(
+              Text(
                 'Can i have your number?',
+                style: AppTextStyles.faintBodyText.copyWith(fontSize: 14),
                 // style: AppTextStyles.normalText,
               ),
             ],
@@ -46,8 +47,8 @@ class DMMessageRead extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const[
-               Text(
+            children: const [
+              Text(
                 '1d',
                 // style: AppTextStyles.timestamp,
               ),

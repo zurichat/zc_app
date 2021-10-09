@@ -43,6 +43,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                     height: 50.h,
                     width: 361.w,
                     child: TextField(
+                      textAlignVertical: TextAlignVertical.center,
                       controller: searchController,
                       keyboardType: TextInputType.text,
                       maxLines: 1,
@@ -90,8 +91,13 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                               width: 16.h,
                             ),
                             itemBuilder: (context, i) {
-                              return CustomUser(
-                                text: model.userSearch[i].username!,
+                              return InkWell(
+                                child: CustomUser(
+                                  text: model.userSearch[i].username!,
+                                ),
+                                onTap: () {
+                                  model.navigateToUserDm();
+                                },
                               );
                             },
                             scrollDirection: Axis.horizontal,
@@ -116,10 +122,18 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                 (BuildContext context, int index) =>
                                     SizedBox(height: 24.h),
                             itemBuilder: (context, i) {
-                              return CustomChannel(
-                                text: model.allChannelsSearch[i].name ??
-                                    ChannelName,
-                                // lock: model.allChannelsSearch[i].private== "True",
+                              final channel = model.allChannelsSearch[i];
+                              return InkWell(
+                                child: CustomChannel(
+                                  text: channel.name ?? ChannelName,
+                                ),
+                                onTap: () {
+                                  model.navigateToChannel(
+                                      name: channel.name,
+                                      id: channel.id,
+                                      membersCount: channel.membersCount,
+                                      isPublic: channel.isPublic);
+                                },
                               );
                             },
                             scrollDirection: Axis.vertical,
