@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'dart:convert';
+
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
 import '../../../../app/app.router.dart';
@@ -79,7 +82,8 @@ class OrganizationViewModel extends BaseViewModel {
     organizations.retainWhere((e) => ids.any((id) => id == e.id));
   }
 
-  Future<void> onTap(String? id, String? name, String? url, String? memberId) async {
+  Future<void> onTap(
+      String? id, String? name, String? url, String? memberId) async {
     try {
       if (id == currentOrgId) {
         navigation.replaceWith(Routes.navBarView);
@@ -162,6 +166,10 @@ class OrganizationViewModel extends BaseViewModel {
 
   void showSignOutBottomSheet(OrganizationModel org) {
     _bottomSheetService.showCustomSheet(
-        variant: BottomSheetType.signOut, isScrollControlled: true, data: org);
+      barrierColor: AppColors.blackColor,
+      variant: BottomSheetType.signOut,
+      isScrollControlled: true,
+      data: org,
+    );
   }
 }
