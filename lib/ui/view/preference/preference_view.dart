@@ -15,7 +15,7 @@ class PreferenceView extends StatelessWidget {
     return ViewModelBuilder<PreferenceViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-            orgTitle: Text('Preferences', style: AppTextStyles.heading7),
+            orgTitle: Text('Preferences', style: AppTextStyles.heading4),
             leading: Icons.close_outlined,
             leadingPress: () => model.exitPage(),
             whiteBackground: true),

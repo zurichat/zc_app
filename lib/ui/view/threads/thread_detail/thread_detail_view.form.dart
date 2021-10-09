@@ -9,24 +9,23 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-const String ThreadMessagesValueKey = 'threadMessages';
+const String MessageValueKey = 'message';
 
 mixin $ThreadDetailView on StatelessWidget {
-  final TextEditingController threadMessagesController =
-      TextEditingController();
-  final FocusNode threadMessagesFocusNode = FocusNode();
+  final TextEditingController messageController = TextEditingController();
+  final FocusNode messageFocusNode = FocusNode();
 
   /// Registers a listener on every generated controller that calls [model.setData()]
   /// with the latest textController values
   void listenToFormUpdated(FormViewModel model) {
-    threadMessagesController.addListener(() => _updateFormData(model));
+    messageController.addListener(() => _updateFormData(model));
   }
 
   /// Updates the formData on the FormViewModel
   void _updateFormData(FormViewModel model) => model.setData(
         model.formValueMap
           ..addAll({
-            ThreadMessagesValueKey: threadMessagesController.text,
+            MessageValueKey: messageController.text,
           }),
       );
 
@@ -34,15 +33,14 @@ mixin $ThreadDetailView on StatelessWidget {
   void disposeForm() {
     // The dispose function for a TextEditingController sets all listeners to null
 
-    threadMessagesController.dispose();
+    messageController.dispose();
   }
 }
 
 extension ValueProperties on FormViewModel {
-  String? get threadMessagesValue => this.formValueMap[ThreadMessagesValueKey];
+  String? get messageValue => this.formValueMap[MessageValueKey];
 
-  bool get hasThreadMessages =>
-      this.formValueMap.containsKey(ThreadMessagesValueKey);
+  bool get hasMessage => this.formValueMap.containsKey(MessageValueKey);
 }
 
 extension Methods on FormViewModel {}
