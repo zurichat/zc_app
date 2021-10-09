@@ -5,7 +5,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '/../../app/app.logger.dart';
 
-class ExpandableTextFieldScreenViewModel extends BaseViewModel {
+class ExpandableTextFieldScreenViewModel extends FormViewModel {
   final _dialogService = locator<DialogService>();
   final log = getLogger('Expandable Textfield');
   bool isVisible = false;
@@ -54,5 +54,10 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
 
       notifyListeners();
     }
+  }
+
+  @override
+  void setFormStatus() {
+    // TODO: implement setFormStatus
   }
 }

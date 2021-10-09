@@ -5,11 +5,20 @@ import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_text
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import '../../colors.dart';
 import '../../styles.dart';
+import 'expandable_textfield_screen.form.dart';
 
-class ExpandableTextFieldScreen extends HookWidget {
+//stacked forms handling
+@FormView(
+  fields: [
+    FormTextField(name: 'text'),
+  ],
+)
+class ExpandableTextFieldScreen extends HookWidget
+    with $ExpandableTextFieldScreen {
   ExpandableTextFieldScreen({
     Key? key,
     required this.widget,
@@ -29,10 +38,13 @@ class ExpandableTextFieldScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     double maxSize = MediaQuery.of(context).size.height - kToolbarHeight - 30;
-    TextEditingController textController = useTextEditingController();
+
     return ViewModelBuilder<ExpandableTextFieldScreenViewModel>.reactive(
       viewModelBuilder: () => ExpandableTextFieldScreenViewModel(),
       onModelReady: (model) {
+        //listenToFormUpdated automatically
+        //syncs text from TextFields to the viewmodel
+        listenToFormUpdated(model);
         model.init(maxSize);
         keyboardVisibilityController.onChange.listen((bool visible) {
           model.notifyListeners();
