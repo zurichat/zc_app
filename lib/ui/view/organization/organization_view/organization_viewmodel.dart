@@ -65,11 +65,6 @@ class OrganizationViewModel extends BaseViewModel {
       setBusy(false);
     } catch (e) {
       log.i(e.toString());
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
-        variant: SnackbarType.failure,
-        message: errorOccurred,
-      );
     }
   }
 
@@ -145,11 +140,6 @@ class OrganizationViewModel extends BaseViewModel {
       setBusy(false);
     } catch (e) {
       log.i(e.toString());
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
-        variant: SnackbarType.failure,
-        message: errorOccurred,
-      );
     }
   }
 
