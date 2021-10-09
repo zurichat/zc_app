@@ -18,30 +18,26 @@ class PreferenceView extends StatelessWidget {
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-            orgTitle: Text(Preferences, style: AppTextStyles.heading7),
-            leading: Icons.close_outlined,
-            leadingPress: () => model.exitPage(),
-            whiteBackground: true),
+          orgTitle: Text(Preferences, style: AppTextStyles.heading7),
+          leading: Icons.close_outlined,
+          leadingPress: () => model.exitPage(),
+        ),
         body: SingleChildScrollView(
-          child: Container(
+          child: Card(
+            elevation: 8,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(3),
+            ),
             margin: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(3),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 2,
-                    offset: Offset(0, 2),
-                  ),
-                ]),
             child: Column(
               children: [
+                UIHelper.verticalSpaceMedium,
                 MenuItemTile(
                   text: Text(
                     LangAndRegion,
                     style: AppTextStyles.faintBodyText.copyWith(
-                        fontSize: 16, color: AppColors.zuriTextColorHeader),
+                      fontSize: 16,
+                    ),
                   ),
                   onPressed: model.navigateLanguageAndRegion,
                 ),
@@ -49,9 +45,12 @@ class PreferenceView extends StatelessWidget {
                 const Divider(color: AppColors.dividerColor),
                 const SizedBox(height: 16),
                 MenuItemTile(
-                  text: Text(DarkMode,
-                      style: AppTextStyles.faintBodyText.copyWith(
-                          fontSize: 16, color: AppColors.zuriTextColorHeader)),
+                  text: Text(
+                    DarkMode,
+                    style: AppTextStyles.faintBodyText.copyWith(
+                      fontSize: 16,
+                    ),
+                  ),
                   subtitle: model.currentTheme,
                   onPressed: model.changeTheme,
                 ),
@@ -61,7 +60,8 @@ class PreferenceView extends StatelessWidget {
                 MenuItemTile(
                   text: Text(Advanced,
                       style: AppTextStyles.faintBodyText.copyWith(
-                          fontSize: 16, color: AppColors.zuriTextColorHeader)),
+                        fontSize: 16,
+                      )),
                   onPressed: model.navigateToAdvanced,
                 ),
                 const SizedBox(height: 16),
@@ -71,7 +71,8 @@ class PreferenceView extends StatelessWidget {
                   text: Text(
                     SendFeedback,
                     style: AppTextStyles.faintBodyText.copyWith(
-                        fontSize: 16, color: AppColors.zuriTextColorHeader),
+                      fontSize: 16,
+                    ),
                   ),
                   onPressed: model.sendFeedback,
                 ),
@@ -82,7 +83,8 @@ class PreferenceView extends StatelessWidget {
                   text: Text(
                     HelpCenter,
                     style: AppTextStyles.faintBodyText.copyWith(
-                        fontSize: 16, color: AppColors.zuriTextColorHeader),
+                      fontSize: 16,
+                    ),
                   ),
                   onPressed: model.helpCentre,
                 ),
@@ -93,10 +95,12 @@ class PreferenceView extends StatelessWidget {
                   text: Text(
                     PrivacyNLicenses,
                     style: AppTextStyles.faintBodyText.copyWith(
-                        fontSize: 16, color: AppColors.zuriTextColorHeader),
+                      fontSize: 16,
+                    ),
                   ),
                   onPressed: model.privacyAndLicences,
                 ),
+                UIHelper.verticalSpaceMedium,
               ],
             ),
           ),
