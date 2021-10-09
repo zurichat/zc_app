@@ -62,7 +62,9 @@ class SavedItemsView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(model.savedBuilderList[index].channelName!,
+                          Text(
+                              model.savedBuilderList[index].channelName ??
+                                  model.savedBuilderList[index].channelId!,
                               style: AppTextStyles.heading4),
                           const SizedBox(height: 20),
                           Row(
