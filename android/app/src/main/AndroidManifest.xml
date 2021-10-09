@@ -7,7 +7,7 @@
 
 
     <application
-        android:label="ZuriChat App"
+        android:label="ZuriChat"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
