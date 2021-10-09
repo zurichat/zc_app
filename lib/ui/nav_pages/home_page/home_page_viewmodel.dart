@@ -255,7 +255,6 @@ class HomePageViewModel extends StreamViewModel {
   void onJumpToScreen() {
     navigation.navigateWithTransition(DmJumpToView(),
         transition: NavigationTransition.DownToUp);
-    // navigationService.navigateTo(Routes.dmJumpToView);
   }
 
   @override
