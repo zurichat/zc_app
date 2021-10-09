@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/models/draft_data_holder_model.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/ui/view/draft/app/data_holder_class.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:hng/constants/app_strings.dart';
@@ -18,7 +18,7 @@ class DraftViewModel extends BaseViewModel {
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final snackBar = locator<SnackbarService>();
   final log = getLogger("Draft Page View Model");
-  List<Objects> widgetBuilderList = [];
+  List<DraftDataHolder> widgetBuilderList = [];
 
   void get drafts {
     var dmStoredDrafts =
@@ -32,7 +32,7 @@ class DraftViewModel extends BaseViewModel {
       dmStoredDrafts.forEach((element) {
         var mapKey = jsonDecode(element);
 
-        widgetBuilderList.add(Objects(
+        widgetBuilderList.add(DraftDataHolder(
           '${mapKey['receiverName']}',
           '${mapKey['draft']}',
           mapKey,
@@ -45,7 +45,7 @@ class DraftViewModel extends BaseViewModel {
       channelStoredDrafts.forEach((element) {
         var mapKey = jsonDecode(element);
 
-        widgetBuilderList.add(Objects(
+        widgetBuilderList.add(DraftDataHolder(
           '${mapKey['channelName']}',
           '${mapKey['draft']}',
           mapKey,
@@ -58,7 +58,7 @@ class DraftViewModel extends BaseViewModel {
       threadStoredDrafts.forEach((element) {
         var mapKey = jsonDecode(element);
 
-        widgetBuilderList.add(Objects(
+        widgetBuilderList.add(DraftDataHolder(
           '${mapKey['userPost']}',
           '${mapKey['draft']}',
           mapKey,
