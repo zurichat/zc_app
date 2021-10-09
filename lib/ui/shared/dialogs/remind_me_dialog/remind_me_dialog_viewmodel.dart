@@ -25,7 +25,7 @@ class RemindMeDialogViewModel extends BaseViewModel {
   void messageRemindertwentyMinutes() async {
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
       'Zuri chat',
-      'Channel for Alarm notification',
+      'Zuri Chat Message Notification',
       icon: 'zuri_chat_logo',
       largeIcon: DrawableResourceAndroidBitmap('zuri_chat_logo'),
     );
@@ -33,14 +33,13 @@ class RemindMeDialogViewModel extends BaseViewModel {
     var platformChannelSpecifics =
         NotificationDetails(android: androidPlatformChannelSpecifics);
 
-    log.i("10 secs count ");
 
     // ignore: deprecated_member_use
     await flutterLocalNotificationsPlugin.schedule(
         0,
         'Message Reminder',
         "Your Message Reminder has arrived",
-        DateTime.now().add(const Duration(seconds: 10)),
+        DateTime.now().add(const Duration(minutes: 20)),
         platformChannelSpecifics,
         androidAllowWhileIdle: true);
 
@@ -51,7 +50,7 @@ class RemindMeDialogViewModel extends BaseViewModel {
   void messageReminderOneHour() async {
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
       'Zuri chat',
-      'Channel for Alarm notification',
+      'Zuri Chat Message Notification',
       icon: 'zuri_chat_logo',
       largeIcon: DrawableResourceAndroidBitmap('zuri_chat_logo'),
     );
@@ -75,7 +74,7 @@ class RemindMeDialogViewModel extends BaseViewModel {
   void messageReminderThreeHours() async {
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
       'Zuri chat',
-      'Channel for Alarm notification',
+      'Zuri Chat Message Notification',
       icon: 'zuri_chat_logo',
       largeIcon: DrawableResourceAndroidBitmap('zuri_chat_logo'),
     );
@@ -100,7 +99,7 @@ class RemindMeDialogViewModel extends BaseViewModel {
   void messageReminderTomorrow() async {
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
       'Zuri chat',
-      'Channel for Alarm notification',
+      'Zuri Chat Message Notification',
       icon: 'zuri_chat_logo',
       largeIcon: DrawableResourceAndroidBitmap('zuri_chat_logo'),
     );
@@ -124,7 +123,7 @@ class RemindMeDialogViewModel extends BaseViewModel {
   void messageReminderNextWeek() async {
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
       'Zuri chat',
-      'Channel for Alarm notification',
+      'Zuri Chat Message Notification',
       icon: 'zuri_chat_logo',
       largeIcon: DrawableResourceAndroidBitmap('zuri_chat_logo'),
     );
@@ -181,7 +180,7 @@ class RemindMeDialogViewModel extends BaseViewModel {
 
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
       'Zuri chat',
-      'Channel for Alarm notification',
+      'Zuri Chat Message Notification',
       icon: 'zuri_chat_logo',
       largeIcon: DrawableResourceAndroidBitmap('zuri_chat_logo'),
     );
