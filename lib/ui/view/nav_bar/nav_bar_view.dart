@@ -36,7 +36,6 @@ class NavBarView extends StatelessWidget {
           body: getViewForIndex(vModel.currentIndex),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            backgroundColor: AppColors.whiteColor,
             selectedItemColor: AppColors.zuriPrimaryColor,
             unselectedItemColor: AppColors.navBarItemColor,
             selectedFontSize: 14,

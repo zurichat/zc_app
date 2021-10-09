@@ -26,7 +26,17 @@ List<ThemeData> getThemes() {
           .copyWith(secondary: AppColors.zuriPrimaryColor),
     ),
     ThemeData.dark().copyWith(
+      primaryColor: AppColors.zuriPrimaryColor,
       accentColor: AppColors.zuriPrimaryColor,
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: AppColors.zuriPrimaryColor,
+        foregroundColor: Color(0xFF424242),
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        selectedItemColor: AppColors.zuriPrimaryColor,
+        backgroundColor: Color(0xFF424242),
+        elevation: 8,
+      ),
     ),
   ];
 
