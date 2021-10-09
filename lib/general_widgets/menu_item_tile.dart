@@ -129,6 +129,7 @@ class MenuItemTile extends StatelessWidget {
               color: bottomBorder ? AppColors.greyishColor : Colors.transparent,
             ),
           ),
+          activeColor: AppColors.paleGreen,
           title: text,
           subtitle: subtitle != null ? Text(subtitle ?? '') : null,
         );

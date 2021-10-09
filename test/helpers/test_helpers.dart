@@ -1,5 +1,7 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/models/channels_search_model.dart';
+import 'package:hng/models/user_search_model.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
@@ -179,7 +181,10 @@ MockJumpToApi getAndRegisterJumpToApiMock() {
   _removeRegistrationIfExists<JumpToApi>();
   final service = MockJumpToApi();
   locator.registerSingleton<JumpToApi>(service);
-
+  when(service.allChannelsList())
+      .thenAnswer((realInvocation) => Future.value([ChannelsSearch()]));
+  when(service.fetchList())
+      .thenAnswer((realInvocation) => Future.value([NewUser()]));
   return service;
 }
 
