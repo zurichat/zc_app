@@ -86,12 +86,6 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
         message: passwordUpdated,
       );
       navigateToLogin();
-    } else {
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
-        variant: SnackbarType.success,
-        message: response?.data['message'] ?? passwordNotUpdated,
-      );
     }
   }
 
