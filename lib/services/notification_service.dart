@@ -4,15 +4,42 @@ import 'dart:math';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/utilities/storage_keys.dart';
 
 class NotificationService {
   final String messsageChannelKey = 'message';
-
+  bool _canShowNotification = true;
   final StreamController<NotificationPayload> _notificationControl =
       StreamController.broadcast();
+  final _sharedPreference = locator<SharedPreferenceLocalStorage>();
 
   final Random rand = Random();
+
+
+/// It update notification status
+  void setCanShowNotification(int time) async {
+    _canShowNotification = false;
+    final duration = DateTime.now().millisecondsSinceEpoch - time;
+    if (duration <= 0) {
+      _canShowNotification = true;
+      return;
+    }
+    Timer(Duration(milliseconds: duration), () => _canShowNotification = true);
+  }
+
+  /// Getting DND time to update notification
+  void updateCanShowNotification() {
+    try {
+      final time = _sharedPreference.getDouble(
+        StorageKeys.doNotDisturb,
+      );
+      setCanShowNotification(time! as int);
+    } catch (e) {
+      setCanShowNotification(DateTime.now().millisecondsSinceEpoch);
+    }
+  }
 
   ///Listen to notification click by listening to stream and navigate to the
   ///respective screen by using the payload returned
@@ -41,8 +68,10 @@ class NotificationService {
           )
         ]);
 
-    AwesomeNotifications().actionStream.listen((receivedNotifiction) {
-      var payload = NotificationPayload._fromMap(receivedNotifiction.payload);
+    AwesomeNotifications().actionStream.listen((receivedNotification) {
+      var payload = NotificationPayload._fromMap(receivedNotification.payload);
+      //check do not disturb
+      //return
       _notificationControl.sink.add(payload);
     });
   }
@@ -52,15 +81,17 @@ class NotificationService {
     required String body,
     required NotificationPayload payload,
   }) {
-    AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: rand.nextInt(999999999),
-        channelKey: messsageChannelKey,
-        title: title,
-        body: body,
-        payload: payload.convertToMap(),
-      ),
-    );
+    if (_canShowNotification) {
+      AwesomeNotifications().createNotification(
+        content: NotificationContent(
+          id: rand.nextInt(999999999),
+          channelKey: messsageChannelKey,
+          title: title,
+          body: body,
+          payload: payload.convertToMap(),
+        ),
+      );
+    }
   }
 
   void showWithImage({
@@ -69,17 +100,19 @@ class NotificationService {
     required String image,
     required NotificationPayload payload,
   }) {
-    AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: rand.nextInt(999999999),
-        channelKey: messsageChannelKey,
-        title: title,
-        body: body,
-        payload: payload.convertToMap(),
-        bigPicture: image,
-        notificationLayout: NotificationLayout.BigPicture,
-      ),
-    );
+    if (_canShowNotification) {
+      AwesomeNotifications().createNotification(
+        content: NotificationContent(
+          id: rand.nextInt(999999999),
+          channelKey: messsageChannelKey,
+          title: title,
+          body: body,
+          payload: payload.convertToMap(),
+          bigPicture: image,
+          notificationLayout: NotificationLayout.BigPicture,
+        ),
+      );
+    }
   }
 
   dispose() {

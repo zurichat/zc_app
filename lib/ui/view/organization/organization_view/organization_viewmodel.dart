@@ -1,4 +1,5 @@
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/services/notification_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'dart:convert';
@@ -21,10 +22,12 @@ class OrganizationViewModel extends BaseViewModel {
   final api = OrganizationApiService();
   List<OrganizationModel> organizations = [];
   final _bottomSheetService = locator<BottomSheetService>();
+  final _notificationService = locator<NotificationService>();
 
   void initViewModel() {
     fetchOrganizations();
     getOrganizationMemberList();
+    _notificationService.updateCanShowNotification();
   }
 
   Future<void> navigateToNewOrganization() async {

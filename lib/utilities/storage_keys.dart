@@ -17,4 +17,5 @@ class StorageKeys {
   static const currentUserImageUrl = 'current_url';
   static const currentChannelId = 'current_channel_id';
   static const organizationMemberList = 'organization_member_list';
+  static const doNotDisturb = 'do_not_disturb';
 }
