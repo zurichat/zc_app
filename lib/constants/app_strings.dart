@@ -13,6 +13,7 @@ const String invalidEmailFormat = 'Invalid email format';
 const String passwordsMustMatch = 'Passwords do not match';
 const String passwordUpdated = 'Password Successfully Updated';
 const String passwordNotUpdated = 'Password could not be updated';
+const String profileUpdated = 'Profile Successfully Updated';
 const String errorOccurred = 'An Error Occurred';
 const String errorOTP = 'OTP could not be validated';
 const String wrongOTP = 'Wrong OTP, please check again';
@@ -113,6 +114,7 @@ const String SetStatusText = 'Go ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
+const String SignOut = 'Sign Out';
 
 //Drafts
 const String Draft = 'Draft';
@@ -354,6 +356,7 @@ const String JoinWorkspace = 'Join a workspace';
 const String Organizations = 'Organizations';
 const String NotJoinedOrgYet = 'You have not joined any organization yet!';
 const String Help = 'Help';
+const String SignOutAccount = 'Sign Out From All Organizations';
 const String AddOrg = 'Add an organisation';
 const String EnterOrgUrl = 'Enter Organization URL';
 const String EnterOrgUrlHint = 'https://organization.zuri.com';
@@ -502,6 +505,7 @@ const String Yeah = 'Yeah';
 const String Nope = 'Nope';
 const String Why = 'Why';
 const String FiftyResults = '50 Results';
+const String DummyAvatar = 'https://www.nairaland.com/attachments/10525387_7523740813649122436786583150820259255025664o3_jpega51895fd0bf50cf5d5982826ac401627';
 const String TermsAndConditions = '''Introduction\n\n'''
     '''We are a social network and online platform for professionals and beginners. '''
     '''People use our Services to find and be found for business opportunities, '''
