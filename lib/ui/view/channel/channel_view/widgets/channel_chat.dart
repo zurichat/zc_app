@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
@@ -29,27 +30,19 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                 },
                 onLongPress: () => zuriChatBottomSheet(
                     context: context,
-                    addToSavedItems: () {
-                      viewModel.saveItem(
-                          channelID: message![index].channelId,
-                          channelName: message[index].channelName,
-                          displayName: message[index].displayName,
-                          message: message[index].message,
-                          lastSeen: message[index].lastSeen,
-                          messageID: message[index].id,
-                          userID: message[index].userId,
-                          userImage: message[index].userImage);
-                      log.i("Saved");
+                    copyText: () {
+                      Clipboard.setData(
+                        ClipboardData(text: message![index].message),
+                      );
                       viewModel.exitPage();
                       showSimpleNotification(
-                        const Text("Added successfully"),
+                        const Text("Copied!"),
                         position: NotificationPosition.top,
                         background: AppColors.appBarGreen,
-                        trailing: const Icon(Icons.mark_chat_read_outlined),
+                        trailing: const Icon(Icons.copy_outlined),
                         duration: const Duration(seconds: 3),
                       );
-                    },
-                  ),
+                    }),
                 child: ThreadCardView.threadChannelMain(
                     viewModel.channelUserMessages![index]),
               ),
@@ -57,6 +50,4 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
           : Container(),
     );
   }
-
-  
 }
