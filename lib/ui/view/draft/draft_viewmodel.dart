@@ -17,7 +17,7 @@ class DraftViewModel extends BaseViewModel {
   final connectivityService = locator<ConnectivityService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final snackBar = locator<SnackbarService>();
-  final log = getLogger("Draft Page View Model");
+  final log = getLogger("DraftPageViewModel");
   final _dialogService = locator<DialogService>();
   List<DraftDataHolder> widgetBuilderList = [];
 
