@@ -8,7 +8,6 @@ import 'select_email_viewmodel.dart';
 
 class SelectEmail extends StatelessWidget {
   final OrganizationSwitchMethod method;
-
   //The users email address can be passed in here from the api or database
 
   const SelectEmail({Key? key, required this.method}) : super(key: key);
@@ -19,10 +18,11 @@ class SelectEmail extends StatelessWidget {
       viewModelBuilder: () => SelectEmailViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-            title: model.getScreenTitle(method),
-            whiteBackground: true,
-            leading: Icons.arrow_back_ios_outlined,
-            leadingPress: () => model.back()),
+          title: model.getScreenTitle(method),
+          whiteBackground: true,
+          leading: Icons.arrow_back_ios_outlined,
+          leadingPress: () => model.back(),
+        ),
         body: Container(
           margin: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
           decoration: BoxDecoration(
@@ -37,6 +37,7 @@ class SelectEmail extends StatelessWidget {
               ]),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding:

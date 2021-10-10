@@ -13,7 +13,6 @@ import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/media_service.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/storage_keys.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -52,14 +51,11 @@ MockUserService getAndRegisterUserServiceMock({
 }
 
 MockSharedPreferenceLocalStorage
-    getAndRegisterSharedPreferencesLocalStorageMock(
-        {String? token, String orgId = 'org_id'}) {
+    getAndRegisterSharedPreferencesLocalStorageMock() {
   _removeRegistrationIfExists<SharedPreferenceLocalStorage>();
   final service = MockSharedPreferenceLocalStorage();
-  when(service.getString(StorageKeys.currentSessionToken))
-      .thenReturn(token ?? 'token');
-  when(service.getString(StorageKeys.currentOrgId)).thenReturn(orgId);
   locator.registerSingleton<SharedPreferenceLocalStorage>(service);
+
   return service;
 }
 
@@ -96,7 +92,7 @@ MockThemeService getAndRegisterThemeServiceMock() {
 }
 
 MockDialogService getAndRegisterDialogServiceMock(
-    {DialogResponse<dynamic>? dialogResult}) {
+    {DialogResponse<dynamic>? dialogResult /*,String? currentEmoji*/}) {
   _removeRegistrationIfExists<DialogService>();
   final service = MockDialogService();
   Future<DialogResponse<dynamic>?> response =
@@ -105,6 +101,7 @@ MockDialogService getAndRegisterDialogServiceMock(
     variant: DialogType.skinTone,
   )).thenAnswer((realInvocation) => response);
   locator.registerSingleton<DialogService>(service);
+
   return service;
 }
 
@@ -169,8 +166,7 @@ MockZuriApi getAndRegisterZuriApiMock() {
 MockConnectivityService getAndRegisterConnectivityServiceMock() {
   _removeRegistrationIfExists<ConnectivityService>();
   final service = MockConnectivityService();
-  var result =
-      Future.value(const bool.fromEnvironment("network status") ? true : false);
+  var result = Future.value(const bool.fromEnvironment('network status'));
   when(service.checkConnection()).thenAnswer((realInvocation) => result);
   locator.registerSingleton<ConnectivityService>(service);
 
