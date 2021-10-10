@@ -18,6 +18,7 @@ class DraftViewModel extends BaseViewModel {
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final snackBar = locator<SnackbarService>();
   final log = getLogger("Draft Page View Model");
+  final _dialogService = locator<DialogService>();
   List<DraftDataHolder> widgetBuilderList = [];
 
   void get drafts {
@@ -168,6 +169,21 @@ class DraftViewModel extends BaseViewModel {
         variant: SnackbarType.failure,
         message: errorOccurred,
       );
+    }
+  }
+
+  void showDeleteDraftDialog(index) async {
+    final result = await _dialogService.showCustomDialog(
+        variant: DialogType.deleteDraft,
+      title: "Delete Draft",
+      description: "Are you sure you want to delete this draft?",
+      mainButtonTitle: 'Ok',
+      secondaryButtonTitle: 'Cancel',
+      barrierDismissible: true,
+    );
+
+    if(result!.confirmed){
+      onDismissed(index);
     }
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/draft/app/show_alert_dialog_widget.dart';
 import 'package:hng/ui/view/draft/drafts.dart';
 import 'package:stacked/stacked.dart';
 import 'draft_viewmodel.dart';
@@ -26,21 +25,6 @@ class DraftView extends StatelessWidget {
           },
           orgTitle: const Text("Drafts"),
         ),
-
-
-        // AppBar(
-        //   leading: Padding(
-        //     padding: const EdgeInsets.only(left: 5),
-        //     child: IconButton(
-        //         onPressed: () {
-        //           model.goBack();
-        //         },
-        //         icon: const Icon(Icons.arrow_back_ios)),
-        //   ),
-        //   centerTitle: false,
-        //   leadingWidth: 20,
-        //   title: Text("Drafts", style: AppTextStyles.body1Bold),
-        // ),
         body: model.widgetBuilderList.isNotEmpty
             ? ListView.separated(
                 itemCount: model.widgetBuilderList.length,
@@ -53,7 +37,7 @@ class DraftView extends StatelessWidget {
                     dismissal: SlidableDismissal(
                         child: const SlidableDrawerDismissal(),
                         onDismissed: (type) {
-                          model.onDismissed(index);
+                          model.showDeleteDraftDialog(index);
                         }),
                     actionPane: const SlidableDrawerActionPane(),
                     actionExtentRatio: 0.35,
@@ -63,7 +47,7 @@ class DraftView extends StatelessWidget {
                         color: Colors.red,
                         icon: Icons.delete,
                         onTap: () {
-                          showAlertDialog(context, model, index);
+                          model.showDeleteDraftDialog(index);
                         },
                         closeOnTap: true,
                       )
