@@ -11,10 +11,23 @@ class MediaService {
   final storageService = locator<SharedPreferenceLocalStorage>();
   final userService = locator<UserService>();
 
-  Future<String?> getImage({required bool fromGallery}) async {
+  Future<String?> getImage(
+      {required bool fromGallery}) async {
     /// Pick an image/capture a photo
 
     final XFile? image = await _picker.pickImage(
+        source: fromGallery ? ImageSource.gallery : ImageSource.camera);
+
+    final File? file = File(image!.path);
+    Future<String?> imageAddress = uploadImage(file);
+    return imageAddress;
+  }
+
+  Future<String?> getVideo(
+      {required bool fromGallery}) async {
+    /// Pick a video/capture a video
+
+    final XFile? image = await _picker.pickVideo(
         source: fromGallery ? ImageSource.gallery : ImageSource.camera);
 
     final File? file = File(image!.path);

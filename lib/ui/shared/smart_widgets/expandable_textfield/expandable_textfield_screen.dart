@@ -16,7 +16,7 @@ class ExpandableTextFieldScreen extends HookWidget {
     required this.hintText,
   }) : super(key: key);
   final Widget widget;
-  final Function(String message) sendMessage;
+  final Function(String message, List<String>media) sendMessage;
   final String hintText;
   final focusNode = FocusNode();
   final keyboardVisibilityController = KeyboardVisibilityController();
@@ -189,7 +189,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                           ),
                                           const Spacer(),
                                           GestureDetector(
-                                            onTap: () {},
+                                            onTap: () =>model.onCameraTap("roomId") ,
                                             child: Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
@@ -216,7 +216,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   .toString()
                                                   .isNotEmpty) {
                                                 sendMessage(
-                                                    textController.text);
+                                                    textController.text, model.mediaList);
                                                 textController.clear();
                                               }
                                             },

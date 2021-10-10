@@ -113,10 +113,11 @@ class ChannelPageViewModel extends BaseViewModel {
 
   void sendMessage(
     String message,
+    List<String>media,
   ) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
     await _channelsApiService.sendChannelMessages(
-        channelID, "$userId", message);
+        channelID, "$userId", message, media);
     scrollController.jumpTo(scrollController.position.minScrollExtent);
     notifyListeners();
   }

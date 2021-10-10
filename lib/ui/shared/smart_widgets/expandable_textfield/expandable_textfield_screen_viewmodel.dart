@@ -1,6 +1,10 @@
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/services/media_service.dart';
 import 'package:stacked/stacked.dart';
 
 class ExpandableTextFieldScreenViewModel extends BaseViewModel {
+  final _mediaService = locator<MediaService>();
+  final List<String> _mediaList = [];
   bool isVisible = false;
   bool isExpanded = false;
   double maxSize = 0;
@@ -35,4 +39,12 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
     }
     notifyListeners();
   }
+
+  Future<void> onCameraTap(String roomId) async {
+    final media = await _mediaService.getImage(fromGallery: true);
+    _mediaList.add(media!);
+    notifyListeners();
+  }
+
+  List<String> get mediaList => _mediaList;
 }
