@@ -39,5 +39,5 @@ class AppColors {
   static const kimbieAccent = Color(0xFF6E9B3B);
 
   //Dark Theme
-  static const dTBottomNavColour = Color(0xFF1C1B1B);
+  static const darkThemePrimaryColor = Color(0xFF1C1B1B);
 }

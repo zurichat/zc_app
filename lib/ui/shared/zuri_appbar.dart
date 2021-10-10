@@ -20,6 +20,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? leadingColor;
   bool bottomNavBarScreen;
   bool whiteBackground;
+  bool isDarkMode;
   final Function()? onEditingComplete;
   bool isSearchBar;
   final String? subtitle;
@@ -34,6 +35,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.bottomNavBarScreen = false,
     this.whiteBackground = false,
+    this.isDarkMode = false,
     this.onlineIndicator = false,
     Key? key,
     this.leadingPress,
@@ -123,8 +125,11 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
       titleTextStyle: ZuriTextStyle.organizationNameText(),
       centerTitle: false,
       actions: actions,
-      backgroundColor:
-          !whiteBackground ? AppColors.zuriPrimaryColor : AppColors.whiteColor,
+      backgroundColor: !whiteBackground
+          ? AppColors.zuriPrimaryColor
+          : isDarkMode
+              ? AppColors.darkThemePrimaryColor
+              : AppColors.whiteColor,
     );
   }
 }

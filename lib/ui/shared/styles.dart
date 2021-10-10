@@ -57,7 +57,7 @@ class AppTextStyles {
   static TextStyle messageText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     fontSize: 14,
-    color: AppColors.blackColor,
+    // color: AppColors.blackColor,
   );
 
   static TextStyle textButton1 = GoogleFonts.lato(

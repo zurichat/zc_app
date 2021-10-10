@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
+
 //The screen shown in homepage -> Threads
 import '../../../../../general_widgets/channel_icon.dart';
 import '../../../../../general_widgets/custom_text.dart';
@@ -21,7 +22,6 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
   Widget build(BuildContext context, ThreadsViewModel viewModel) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
-      color: AppColors.whiteColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
