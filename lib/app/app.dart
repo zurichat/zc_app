@@ -59,7 +59,7 @@ import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
-import '../ui/view/pinned_messages/pinned_message.dart';
+import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
 import '../ui/view/plugins/add_plugin_view.dart';
 import '../ui/view/plugins/edit_plugin_view.dart';
 import '../ui/view/plugins/plugins_view.dart';
@@ -111,7 +111,7 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: DoNotDisturbView),
     MaterialRoute(page: EditProfileView),
     MaterialRoute(page: PopUpNotificationsView),
-    MaterialRoute(page: PinnedMessages),
+    MaterialRoute(page: PinnedMessagesView),
     MaterialRoute(page: SelectEmail),
     MaterialRoute(page: AddOrganizationView),
     MaterialRoute(page: CreateOrganization),

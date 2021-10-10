@@ -41,6 +41,7 @@ dependencies:
   page_view_dot_indicator: ^1.0.0
   pin_code_fields: ^7.3.0
   shared_preferences: ^2.0.7
+  simple_moment: ^1.1.1
   stacked: ^2.1.8
   stacked_hooks: ^0.2.1
   stacked_services: ^0.8.6
