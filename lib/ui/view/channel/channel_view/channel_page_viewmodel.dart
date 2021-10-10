@@ -127,7 +127,7 @@ class ChannelPageViewModel extends BaseViewModel {
             displayName: userid,
             statusIcon: '7️⃣',
             lastSeen: '4 hours ago',
-            message: data['content'],
+            message: replaceEmoji(data['content']),
             channelType: ChannelType.public,
             postEmojis: <PostEmojis>[],
             userThreadPosts: <UserThreadPost>[],
@@ -223,6 +223,13 @@ class ChannelPageViewModel extends BaseViewModel {
         );
       },
     );
+  }
+
+  //ignore_for_file: valid_regexps
+  String replaceEmoji(String text) {
+    RegExp emojiRx = RegExp(r'[\p{Extended_Pictographic}\u{1F3FB}-\u{1F3FF}\u{1F9B0}-\u{1F9B3}]', unicode: true);
+    return text.replaceAll(emojiRx, "");
+
   }
 
   @override
