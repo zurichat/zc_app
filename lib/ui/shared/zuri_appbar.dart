@@ -17,7 +17,6 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TextEditingController? searchController;
   final String? title;
   final String? hintText;
-  final Color? leadingColor;
   bool bottomNavBarScreen;
   bool whiteBackground;
   final Function()? onEditingComplete;
@@ -30,7 +29,6 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.title,
     this.leadingWidth = false,
     this.subtitle,
-    this.leadingColor,
     this.actions,
     this.bottomNavBarScreen = false,
     this.whiteBackground = false,
@@ -53,12 +51,12 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      elevation: 2,
+      elevation: 1,
       leadingWidth: leadingWidth ? 10 : null,
       leading: InkWell(
           child: Icon(
             leading,
-            color: leadingColor,
+            color: Colors.black,
           ),
           onTap: leadingPress),
       title: isSearchBar
@@ -101,7 +99,9 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(title!, style: AppTextStyles.heading7),
+                        Text(title!,
+                            style: AppTextStyles.heading7
+                                .copyWith(color: AppColors.blackColor)),
                         Text(
                           subtitle!,
                           style: AppTextStyles.messageText
@@ -120,7 +120,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                         : const SizedBox()
                   ],
                 ),
-      titleTextStyle: ZuriTextStyle.organizationNameText(),
+      titleTextStyle: AppTextStyles.heading4,
       centerTitle: false,
       actions: actions,
       backgroundColor:

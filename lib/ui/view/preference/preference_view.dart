@@ -18,7 +18,7 @@ class PreferenceView extends StatelessWidget {
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-            orgTitle: Text('Preferences', style: AppTextStyles.heading4),
+            orgTitle: Text('Preferences', style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor)),
             leading: Icons.close_outlined,
             leadingPress: () => model.exitPage(),
             whiteBackground: true),
