@@ -9,10 +9,14 @@ class StatusForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       textColor: AppColors.greyishColor,
-      color: AppColors.whiteColor,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-          side: const BorderSide(width: 1, color: AppColors.shadowColor)),
+        borderRadius: BorderRadius.circular(5),
+        side: BorderSide(
+          width: 1,
+          color: ThemeData.dark().textTheme.bodyText1!.color ??
+              AppColors.zuriPrimaryColor,
+        ),
+      ),
       padding: const EdgeInsets.all(12),
       elevation: 3,
       onPressed: onPressed,
