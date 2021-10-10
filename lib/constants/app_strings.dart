@@ -114,6 +114,7 @@ const String SetStatusText = 'Go ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
+const String SignOut = 'Sign Out';
 
 //Drafts
 const String Draft = 'Draft';
@@ -133,6 +134,7 @@ const String Ok = 'Ok';
 const String SelectLang = 'Select Language';
 const String DarkMode = 'Dark mode';
 const String Set = 'Set';
+const String Apply = 'Apply';
 const String ComposeFeedback = 'Compose feedback';
 const String FeedbackHint = 'e.g I found a bug in the Dm’s';
 const String FeedbackHelperText =
@@ -355,6 +357,7 @@ const String JoinWorkspace = 'Join a workspace';
 const String Organizations = 'Organizations';
 const String NotJoinedOrgYet = 'You have not joined any organization yet!';
 const String Help = 'Help';
+const String SignOutAccount = 'Sign Out From All Organizations';
 const String AddOrg = 'Add an organisation';
 const String EnterOrgUrl = 'Enter Organization URL';
 const String EnterOrgUrlHint = 'https://organization.zuri.com';
@@ -417,6 +420,11 @@ const String OnHoliday = 'On holiday';
 const String OffSick = 'Off sick';
 const String InMeeting = 'In a meeting';
 const String Commuting = 'Commuting';
+
+//Preferences
+const String PrivacyNLicenses = 'Privacy & licences';
+const String HelpCenter = 'Help Center';
+const String SendFeedback = 'Send Feedback';
 
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
