@@ -27,7 +27,7 @@ class EditProfileView extends StatelessWidget {
           leadingPress: () => viewModel.close(),
           orgTitle: Text(
             "Edit Profile",
-            style: AppTextStyles.heading7,
+            style: AppTextStyles.heading4,
           ),
           actions: [
             TextButton(

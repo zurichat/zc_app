@@ -69,12 +69,6 @@ class SignUpViewModel extends FormViewModel {
         storage.setString(StorageKeys.currentUserEmail, emailValue!);
         storage.setBool(StorageKeys.registeredNotverifiedOTP, true);
         navigateToOTPView();
-      } else {
-        snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.failure,
-          message: response?.data['message'] ?? errorEncounteredSignUp,
-        );
       }
     } else {
       snackbar.showCustomSnackBar(
