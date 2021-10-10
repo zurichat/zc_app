@@ -446,6 +446,8 @@ const String OnboardingTwo = 'assets/images/onboarding_screen_1.png';
 const String OnboardingThree = 'assets/images/onboarding_screen_2.png';
 const String LinkLogo = 'assets/icons/svg_icons/link.svg';
 const String CancelLogo = 'assets/icons/cancel.png';
+const String ChannelMessageSentSuccess = "Message Sent Successfully";
+const String ChannelMessageSentFailure = "Error Sending Message...";
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =

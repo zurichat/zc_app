@@ -4,11 +4,13 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
+import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/notification_service.dart';
 import 'package:hng/app/app.logger.dart';
@@ -26,6 +28,7 @@ class ChannelPageViewModel extends BaseViewModel {
   final log = getLogger("ChannelPageViewModel");
   final _bottomSheetService = locator<BottomSheetService>();
   final _snackbarService = locator<SnackbarService>();
+  final _connectivityService = locator<ConnectivityService>();
 
   // ignore: todo
   //TODO refactor this
@@ -144,11 +147,39 @@ class ChannelPageViewModel extends BaseViewModel {
   void sendMessage(
     String message,
   ) async {
+    bool connected = await _connectivityService.checkConnection();
+    if(!connected) {
+      _snackbarService.showCustomSnackBar(
+        message: noInternet,
+        variant: SnackbarType.failure,
+        duration: const Duration(milliseconds: 1500),
+      );
+      return;
+    }
     String? userId = storage.getString(StorageKeys.currentUserId);
-    await _channelsApiService.sendChannelMessages(
-        channelID, "$userId", message);
-    scrollController.jumpTo(scrollController.position.minScrollExtent);
-    notifyListeners();
+    Map result =
+        await _channelsApiService.sendChannelMessages(channelID, "$userId", message);
+
+    if (result.isNotEmpty) {
+      scrollController.jumpTo(scrollController.position.maxScrollExtent);
+
+      _snackbarService.showCustomSnackBar(
+          message: ChannelMessageSentSuccess,
+          variant: SnackbarType.success,
+          duration: const Duration(seconds: 2));
+
+      fetchMessages(channelID);
+      notifyListeners();
+    } else {
+      _snackbarService.showCustomSnackBar(
+          message: ChannelMessageSentFailure,
+          variant: SnackbarType.failure,
+          mainButtonTitle: "RETRY",
+          duration: const Duration(seconds: 5),
+          onMainButtonTapped: () {
+            sendMessage(message);
+          });
+    }
   }
 
   void exitPage() {
@@ -227,9 +258,10 @@ class ChannelPageViewModel extends BaseViewModel {
 
   //ignore_for_file: valid_regexps
   String replaceEmoji(String text) {
-    RegExp emojiRx = RegExp(r'[\p{Extended_Pictographic}\u{1F3FB}-\u{1F3FF}\u{1F9B0}-\u{1F9B3}]', unicode: true);
+    RegExp emojiRx = RegExp(
+        r'[\p{Extended_Pictographic}\u{1F3FB}-\u{1F3FF}\u{1F9B0}-\u{1F9B3}]',
+        unicode: true);
     return text.replaceAll(emojiRx, "");
-
   }
 
   @override

@@ -122,12 +122,12 @@ class ChannelsApiService {
       final res = await _api.post('v1/$orgId/channels/$channelId/messages/',
           token: token, body: {'user_id': userId, 'content': message});
 
-      channelMessage = res?.data['data'] ?? {};
+      channelMessage = res?.data ?? {};
 
       log.i(channelMessage);
     } on Exception catch (e) {
       log.e(e.toString());
-      return [];
+      return {};
     }
 
     return channelMessage;
