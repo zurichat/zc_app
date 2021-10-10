@@ -12,7 +12,12 @@ import 'package:stacked/stacked.dart';
 import '../models/channel_members.dart';
 import '../models/channel_model.dart';
 import '../models/user_post.dart';
+import '../ui/nav_pages/dm_page/dm_search_find_page.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
+import '../ui/nav_pages/plugin_page/add_plugin_view.dart';
+import '../ui/nav_pages/plugin_page/edit_plugin_view.dart';
+import '../ui/nav_pages/plugin_page/plugin_page_view.dart';
+import '../ui/nav_pages/plugin_page/plugins_view.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
 import '../ui/view/channel/add_people/channel_add_people_view.dart';
@@ -47,9 +52,6 @@ import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
 import '../ui/view/pinned_messages/pinned_message.dart';
-import '../ui/view/plugins/add_plugin_view.dart';
-import '../ui/view/plugins/edit_plugin_view.dart';
-import '../ui/view/plugins/plugins_view.dart';
 import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/profile_page/profile_page_view.dart';
@@ -82,6 +84,7 @@ class Routes {
   static const String dmSearch = '/dm-search';
   static const String dmJumpToView = '/dm-jump-to-view';
   static const String dmUserView = '/dm-user-view';
+  static const String dmScreen = '/dm-screen';
   static const String splashview = '/';
   static const String pluginView = '/plugin-view';
   static const String addPluginView = '/add-plugin-view';
@@ -113,6 +116,7 @@ class Routes {
   static const String organizationUrlView = '/organization-url-view';
   static const String channelPageView = '/channel-page-view';
   static const String channelInfoView = '/channel-info-view';
+  static const String pluginPage = '/plugin-page';
   static const String directMessage = '/direct-message';
   static const all = <String>{
     channelAddPeopleView,
@@ -133,6 +137,7 @@ class Routes {
     dmSearch,
     dmJumpToView,
     dmUserView,
+    dmScreen,
     splashview,
     pluginView,
     addPluginView,
@@ -163,6 +168,7 @@ class Routes {
     organizationUrlView,
     channelPageView,
     channelInfoView,
+    pluginPage,
     directMessage,
   };
 }
@@ -189,6 +195,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.dmSearch, page: DmSearch),
     RouteDef(Routes.dmJumpToView, page: DmJumpToView),
     RouteDef(Routes.dmUserView, page: DmUserView),
+    RouteDef(Routes.dmScreen, page: DmScreen),
     RouteDef(Routes.splashview, page: Splashview),
     RouteDef(Routes.pluginView, page: PluginView),
     RouteDef(Routes.addPluginView, page: AddPluginView),
@@ -220,6 +227,10 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.organizationUrlView, page: OrganizationUrlView),
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+    RouteDef(Routes.pluginPage, page: PluginPage),
+    RouteDef(Routes.addPluginView, page: AddPluginView),
+    RouteDef(Routes.pluginView, page: PluginView),
+    RouteDef(Routes.editPluginView, page: EditPluginView),
     RouteDef(Routes.directMessage, page: DirectMessage),
   ];
   @override
@@ -371,6 +382,12 @@ class StackedRouter extends RouterBase {
       );
       return MaterialPageRoute<dynamic>(
         builder: (context) => DmUserView(key: args.key),
+        settings: data,
+      );
+    },
+    DmScreen: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const DmScreen(),
         settings: data,
       );
     },
@@ -589,6 +606,12 @@ class StackedRouter extends RouterBase {
           channelMembers: args.channelMembers,
           channelDetail: args.channelDetail,
         ),
+        settings: data,
+      );
+    },
+    PluginPage: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PluginPage(),
         settings: data,
       );
     },

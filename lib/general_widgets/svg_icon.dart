@@ -18,7 +18,7 @@ class SvgAssets {
 
 class SvgData {
   final String data;
-  SvgData(this.data);
+  SvgData(this.data, {icon});
 }
 
 ///Use SvgAsset.iconName to specify the svg icon

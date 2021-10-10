@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
@@ -24,10 +25,15 @@ class DmPage extends StatelessWidget {
             bottomNavBarScreen: true,
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(
-              Icons.add,
-              color: AppColors.whiteColor,
+            onPressed: () {
+              model.navigateToDmScreen();
+            },
+            child: IconButton(
+              onPressed: (){
+                model.navigateToDmScreen();
+              },
+              icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
+            color: AppColors.whiteColor,
             ),
             backgroundColor: AppColors.zuriPrimaryColor,
           ),
