@@ -63,17 +63,10 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
                         topBorder: false,
                         icon: Icons.message,
                         text: Text('Mark unread')),
-                    MenuItemTile(
-                        onPressed: () async {
-                          await showDialog(
-                              context: context,
-                              builder: (context) {
-                                return const ReminderDialog();
-                              });
-                        },
+                   const MenuItemTile(
                         topBorder: false,
                         icon: Icons.access_time_rounded,
-                        text: const Text('Remind me')),
+                        text:  Text('Remind me')),
                     const MenuItemTile(
                         topBorder: false,
                         icon: Icons.bookmark_border_outlined,

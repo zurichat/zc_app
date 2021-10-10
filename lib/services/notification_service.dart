@@ -14,6 +14,9 @@ class NotificationService {
 
   final Random rand = Random();
 
+    final now = DateTime.now();
+
+
   ///Listen to notification click by listening to stream and navigate to the
   ///respective screen by using the payload returned
   ///```
@@ -84,6 +87,64 @@ class NotificationService {
 
   dispose() {
     _notificationControl.close();
+  }
+
+     //Message Reminer Twenty Minutes
+    Future<void> messageReminderTwentyMinutes() async {
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 1,
+            channelKey: 'message',
+            title: 'Message Reminder',
+            body: 'Your Message Reminder has arrived'),
+        schedule: NotificationInterval(interval: 1200, timeZone: "+01:00"));
+  }
+
+      //Message Reminer One Hour
+    Future<void> messageReminderOneHour() async {
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 1,
+            channelKey: 'message',
+            title: 'Message Reminder',
+            body: 'Your Message Reminder has arrived'),
+        schedule: NotificationInterval(interval: 3600, timeZone: "+01:00"));
+  }
+
+  //Message Reminer Three Hours
+  Future<void> messageReminderThreeHours() async {
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 1,
+            channelKey: 'message',
+            title: 'Message Reminder',
+            body: 'Your Message Reminder has arrived'),
+        schedule: NotificationCalendar.fromDate(
+            date: now.add(const Duration(hours: 3))));
+  }
+
+  //Message Reminer Tomorrow
+  Future<void> messageReminderTomorrow() async {
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 1,
+            channelKey: 'message',
+            title: 'Message Reminder',
+            body: 'Your Message Reminder has arrived'),
+        schedule: NotificationCalendar.fromDate(
+            date: now.add(const Duration(days: 1))));
+  }
+
+  //Message Reminer Next week
+  Future<void> messageReminderNextWeek() async {
+       await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 1,
+            channelKey: 'message',
+            title: 'Message Reminder',
+            body: 'Your Message Reminder has arrived'),
+        schedule: NotificationCalendar.fromDate(
+            date: now.add(const Duration(days: 7))));
   }
 
   //Message remind me function

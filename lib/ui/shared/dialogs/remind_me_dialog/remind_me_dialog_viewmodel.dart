@@ -1,4 +1,3 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/services/notification_service.dart';
 import 'package:intl/intl.dart';
@@ -8,7 +7,6 @@ import 'package:stacked_services/stacked_services.dart';
 class RemindMeDialogViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
   final notificationService = locator<NotificationService>();
-  final now = DateTime.now();
 
   String twentyMinutes = DateFormat('h:mm a')
       .format(DateTime.now().add(const Duration(seconds: 10)));
@@ -23,66 +21,32 @@ class RemindMeDialogViewModel extends BaseViewModel {
 
 //twenty minutes
   void messageRemindertwentyMinutes() async {
-    await AwesomeNotifications().createNotification(
-        content: NotificationContent(
-            id: 1,
-            channelKey: 'message',
-            title: 'Message Reminder',
-            body: 'Your Message Reminder has arrived'),
-        schedule: NotificationInterval(interval: 1200, timeZone: "+01:00"));
-
+   await notificationService.messageReminderTwentyMinutes();
     navigationService.popRepeated(1);
   }
 
 //1 hour
   void messageReminderOneHour() async {
-    await AwesomeNotifications().createNotification(
-        content: NotificationContent(
-            id: 1,
-            channelKey: 'message',
-            title: 'Message Reminder',
-            body: 'Your Message Reminder has arrived'),
-        schedule: NotificationInterval(interval: 3600, timeZone: "+01:00"));
-    navigationService.popRepeated(1);
+  await notificationService.messageReminderOneHour();
+   navigationService.popRepeated(1);
   }
 
   //3 hours
   void messageReminderThreeHours() async {
-    await AwesomeNotifications().createNotification(
-        content: NotificationContent(
-            id: 1,
-            channelKey: 'message',
-            title: 'Message Reminder',
-            body: 'Your Message Reminder has arrived'),
-        schedule: NotificationCalendar.fromDate(
-            date: now.add(const Duration(hours: 3))));
-    navigationService.popRepeated(1);
+  await notificationService.messageReminderThreeHours();
+  navigationService.popRepeated(1);
   }
 
   //tomorrow
 
   void messageReminderTomorrow() async {
-    await AwesomeNotifications().createNotification(
-        content: NotificationContent(
-            id: 1,
-            channelKey: 'message',
-            title: 'Message Reminder',
-            body: 'Your Message Reminder has arrived'),
-        schedule: NotificationCalendar.fromDate(
-            date: now.add(const Duration(days: 1))));
+     await notificationService.messageReminderTomorrow();
     navigationService.popRepeated(1);
   }
 
   //next week
   void messageReminderNextWeek() async {
-    await AwesomeNotifications().createNotification(
-        content: NotificationContent(
-            id: 1,
-            channelKey: 'message',
-            title: 'Message Reminder',
-            body: 'Your Message Reminder has arrived'),
-        schedule: NotificationCalendar.fromDate(
-            date: now.add(const Duration(days: 7))));
+     await notificationService.messageReminderNextWeek();
     navigationService.popRepeated(1);
   }
 

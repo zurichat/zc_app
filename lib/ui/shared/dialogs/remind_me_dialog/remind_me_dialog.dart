@@ -83,31 +83,9 @@ class ReminderDialog extends StatelessWidget {
               ),
               ListTile(
                 onTap: () async {
-                  Future<dynamic> selectDateTime() {
-                    var selectedDate = showDatePicker(
-                      context: context,
-                      initialDate:
-                          DateTime.now().add(const Duration(seconds: 1)),
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime(2100),
-                    );
-                    return selectedDate;
-                  }
-
-                  Future<dynamic> selectTime() {
-                    final now = DateTime.now();
-                    var selectedTime = showTimePicker(
-                      context: context,
-                      initialTime:
-                          TimeOfDay(hour: now.hour, minute: now.minute),
-                    );
-                    return selectedTime;
-                  }
-
-                  var selectedDate = await selectDateTime();
-                  var selectedTime = await selectTime();
-
-                  model.customReminder(selectedDate, selectedTime);
+                  var selectedDate = await selectDateTime(context);
+                  var selectedTime = await selectTime(context);
+                model.customReminder(selectedDate, selectedTime);
                 },
                 title: const CustomText(
                   text: 'Custom',
@@ -121,4 +99,23 @@ class ReminderDialog extends StatelessWidget {
       viewModelBuilder: () => RemindMeDialogViewModel(),
     );
   }
+  Future<dynamic> selectDateTime(context) {
+  var selectedDate = showDatePicker(
+    context: context,
+    initialDate: DateTime.now().add(const Duration(seconds: 1)),
+    firstDate: DateTime.now(),
+    lastDate: DateTime(2100),
+  );
+  return selectedDate;
+}
+
+Future<dynamic> selectTime(context) {
+  final now = DateTime.now();
+  var selectedTime = showTimePicker(
+    context: context,
+    initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
+  );
+  return selectedTime;
+}
+
 }
