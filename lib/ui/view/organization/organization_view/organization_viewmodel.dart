@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'dart:convert';
+
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
 import '../../../../app/app.router.dart';
@@ -162,7 +165,11 @@ class OrganizationViewModel extends BaseViewModel {
 
   void showSignOutBottomSheet(OrganizationModel org) {
     _bottomSheetService.showCustomSheet(
-        variant: BottomSheetType.signOut, isScrollControlled: true, data: org);
+      barrierColor: AppColors.blackColor,
+      variant: BottomSheetType.signOut,
+      isScrollControlled: true,
+      data: org,
+    );
   }
 
   void navigateToSignIn() =>

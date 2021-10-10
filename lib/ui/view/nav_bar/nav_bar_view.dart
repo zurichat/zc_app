@@ -36,7 +36,6 @@ class NavBarView extends StatelessWidget {
           body: getViewForIndex(vModel.currentIndex),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            backgroundColor: AppColors.whiteColor,
             selectedItemColor: AppColors.zuriPrimaryColor,
             unselectedItemColor: AppColors.navBarItemColor,
             selectedFontSize: 14,
@@ -54,7 +53,13 @@ class NavBarView extends StatelessWidget {
 
   List<BottomNavigationBarItem> getBottomIcons(context) {
     final local = AppLocalization.of(context);
-    List<String> name = [local!.homeNavBar, local.pluginsNavBar, local.dmNavBar, local.youNavBar];
+    //TODO - local!.homeNavBar crashed app [Null check operator used on a null value]
+    List<String> name = [
+      local!.homeNavBar,
+      local.pluginsNavBar,
+      local.dmNavBar,
+      local.youNavBar
+    ];
     List<SvgData> icons = [
       SvgAssets.home,
       SvgAssets.plugin,

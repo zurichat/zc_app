@@ -110,11 +110,11 @@ class HomePage extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomRight,
               child: FloatingActionButton(
-                  onPressed: vmodel.navigateToStartDMScreen,
-                  child: const Icon(
-                    Icons.open_in_new_outlined,
-                    color: AppColors.whiteColor,
-                  )),
+                onPressed: vmodel.navigateToStartDMScreen,
+                child: const Icon(
+                  Icons.open_in_new_outlined,
+                ),
+              ),
             ),
           )
         ],
