@@ -14,6 +14,7 @@ class SavedItemsView extends StatelessWidget {
     return ViewModelBuilder<SavedItemsViewModel>.reactive(
       onModelReady: (model) => model.savedItems,
       builder: (context, model, child) => Scaffold(
+        backgroundColor: AppColors.whiteColor,
         appBar: ZuriAppBar(
           leading: Icons.close_rounded,
           whiteBackground: true,
@@ -23,9 +24,13 @@ class SavedItemsView extends StatelessWidget {
         body: model.savedBuilderList.isEmpty
             ? const SavedItemBackground()
             : ListView.separated(
+                shrinkWrap: true,
+                physics: const AlwaysScrollableScrollPhysics(),
                 itemCount: model.savedBuilderList.length,
                 itemBuilder: (context, index) {
                   return InkWell(
+                    onTap: () =>
+                        model.navigateToMessage(model.savedBuilderList[index]),
                     onLongPress: () {
                       showDialog(
                           context: context,
@@ -33,11 +38,16 @@ class SavedItemsView extends StatelessWidget {
                             return AlertDialog(
                               actions: [
                                 ElevatedButton(
-                                  child: const Text("Yes"),
-                                  onPressed: () => model.deleteItem(index)
-                                ),
+                                    child: const Text("Yes"),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: AppColors.redColor,
+                                    ),
+                                    onPressed: () => model.deleteItem(index)),
                                 TextButton(
-                                  child: const Text("No"),
+                                  child: Text(
+                                    "No",
+                                    style: AppTextStyles.bodySmall,
+                                  ),
                                   onPressed: () => model.goBack(),
                                 ),
                               ],
@@ -50,29 +60,39 @@ class SavedItemsView extends StatelessWidget {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(model.savedBuilderList[index].channelName!,
+                          Text(
+                              model.savedBuilderList[index].channelName ??
+                                  model.savedBuilderList[index].channelId!,
                               style: AppTextStyles.heading4),
                           const SizedBox(height: 20),
                           Row(
                             children: [
-                              CircleAvatar(
-                                backgroundImage: AssetImage(
-                                    model.savedBuilderList[index].userImage!),
+                              Flexible(
+                                child: CircleAvatar(
+                                  backgroundImage: AssetImage(
+                                      model.savedBuilderList[index].userImage!),
+                                ),
                               ),
                               const SizedBox(width: 15),
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                        model.savedBuilderList[index]
-                                                .displayName ??
-                                            model.savedBuilderList[index]
-                                                .userID!,
-                                        style: AppTextStyles.heading7),
-                                    const SizedBox(height: 10),
-                                    Text(model.savedBuilderList[index].message!)
-                                  ]),
+                              Expanded(
+                                flex: 4,
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          model.savedBuilderList[index]
+                                                  .displayName ??
+                                              model.savedBuilderList[index]
+                                                  .userID!,
+                                          style: AppTextStyles.heading7),
+                                      const SizedBox(height: 10),
+                                      Text(model
+                                          .savedBuilderList[index].message!)
+                                    ]),
+                              ),
                             ],
                           ),
                         ],
