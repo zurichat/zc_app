@@ -40,6 +40,11 @@ class AppTextStyles {
     // color: AppColors.blackColor,
     fontSize: 18,
   );
+  static TextStyle heading3 = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.whiteColor,
+    fontSize: 20,
+  );
   static TextStyle body1Regular = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     color: AppColors.greyishColor,
