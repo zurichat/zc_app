@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_page_view.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/svg_icon.dart';
@@ -45,15 +45,16 @@ class NavBarView extends StatelessWidget {
             unselectedLabelStyle: AppTextStyles.normalText,
             currentIndex: vModel.currentIndex,
             onTap: vModel.setIndex,
-            items: getBottomIcons(),
+            items: getBottomIcons(context),
           ),
         );
       },
     );
   }
 
-  List<BottomNavigationBarItem> getBottomIcons() {
-    List<String> name = [Home, Plugins, DmTitle, You];
+  List<BottomNavigationBarItem> getBottomIcons(context) {
+    final local = AppLocalization.of(context);
+    List<String> name = [local!.homeNavBar, local.pluginsNavBar, local.dmNavBar, local.youNavBar];
     List<SvgData> icons = [
       SvgAssets.home,
       SvgAssets.plugin,
