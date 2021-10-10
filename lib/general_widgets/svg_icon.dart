@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class SvgAssets {
   static final SvgData threads = SvgData('assets/icons/svg_icons/threads.svg');
   static final SvgData dm = SvgData('assets/icons/svg_icons/dm.svg');
-  static final SvgData plugin= SvgData('assets/icons/svg_icons/plugin.svg');
+  static final SvgData plugin = SvgData('assets/icons/svg_icons/plugin.svg');
   static final SvgData home = SvgData('assets/icons/svg_icons/home.svg');
   static final SvgData you = SvgData('assets/icons/svg_icons/you.svg');
   static final SvgData hashTag = SvgData('assets/icons/svg_icons/hash_tag.svg');
@@ -37,7 +37,7 @@ class SvgIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       svgIcon.data,
-      color: color,
+      color: color ?? Theme.of(context).textTheme.bodyText1!.color,
       height: size,
     );
   }

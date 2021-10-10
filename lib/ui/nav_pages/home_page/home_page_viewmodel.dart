@@ -58,6 +58,7 @@ class HomePageViewModel extends StreamViewModel {
 
   String get orgName => userService.currentOrgName;
   String get orgId => userService.currentOrgId;
+  String get email => userService.userEmail;
 
   StreamSubscription? notificationSub;
 
@@ -142,7 +143,7 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.userSearchView);
   }
 
-    getDmAndChannelsList() async {
+  getDmAndChannelsList() async {
     homePageList = [];
     setBusy(true);
 

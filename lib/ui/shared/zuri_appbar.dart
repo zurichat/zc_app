@@ -17,6 +17,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TextEditingController? searchController;
   final String? title;
   final String? hintText;
+  final Color? leadingColor;
   bool bottomNavBarScreen;
   bool whiteBackground;
   final Function()? onEditingComplete;
@@ -29,6 +30,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.title,
     this.leadingWidth = false,
     this.subtitle,
+    this.leadingColor,
     this.actions,
     this.bottomNavBarScreen = false,
     this.whiteBackground = false,
@@ -45,7 +47,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   }) : super(key: key);
 
   @override
-  Size get preferredSize => const Size.fromHeight(65);
+  Size get preferredSize => const Size.fromHeight(60);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,12 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       elevation: 2,
       leadingWidth: leadingWidth ? 10 : null,
-      leading: InkWell(child: Icon(leading), onTap: leadingPress),
+      leading: InkWell(
+          child: Icon(
+            leading,
+            color: leadingColor,
+          ),
+          onTap: leadingPress),
       title: isSearchBar
           ? Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
