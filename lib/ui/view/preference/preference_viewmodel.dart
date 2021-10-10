@@ -1,3 +1,6 @@
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
@@ -12,19 +15,25 @@ class PreferenceViewModel extends BaseViewModel {
   final ThemeService _themeService = locator<ThemeService>();
   final _dialogService = locator<DialogService>();
   final _navigationService = locator<NavigationService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
 
-  String currentTheme = 'System Default';
-  int currentThemeValue = 1;
-
+  String? currentTheme = 'Off';
+  int currentThemeValue = 0;
   List themes = [
-    'System Default',
     'Off',
     'On',
-    'Kimbie Dark',
   ];
+
+  init() {
+    currentTheme = _storageService.getString(StorageKeys.currentTheme) ?? 'Off';
+    currentThemeValue =
+        _storageService.getInt(StorageKeys.currentThemeValue) ?? 0;
+  }
 
   Future changeTheme() async {
     final dialogResult = await _dialogService.showCustomDialog(
+      title: DarkMode,
+      barrierDismissible: false,
       variant: DialogType.themeMode,
       data: {'themes': themes, 'currentThemeValue': currentThemeValue},
     );
@@ -34,6 +43,10 @@ class PreferenceViewModel extends BaseViewModel {
       currentThemeValue = dialogResult.data;
       _themeService.selectThemeAtIndex(currentThemeValue);
       currentTheme = themes[dialogResult.data];
+      _storageService.setString(
+          StorageKeys.currentTheme, themes[dialogResult.data]);
+
+      _storageService.setInt(StorageKeys.currentThemeValue, dialogResult.data);
 
       notifyListeners();
     }

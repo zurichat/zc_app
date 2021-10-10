@@ -11,37 +11,30 @@ class CustomChannel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: SizedBox(
-        height: 24.h,
-        width: 211.w,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(5.w, 0, 0, 0),
-          child: Row(
-            children: [
-              SizedBox(
-                height: 16.r,
-                width: 16.r,
-                child: lock == true ?
-                SvgPicture.asset(
-                    'assets/icons/svg_icons/lock_outline.svg',
-                ) :
-                SvgPicture.asset(
-                  'assets/icons/svg_icons/hash_tag.svg',
-                )
-              ),
-              // Text(
-              //   '#',
-              //   style: AppTextStyles.hashtag.copyWith(fontSize: 20.sp)
-              // ),
-              SizedBox(width: 21.33.w),
-              Text(
-                '$text',
-                style: AppTextStyles.nameStyle1.copyWith(fontSize: 14.sp)
-              ),
-            ],
-          ),
+    return SizedBox(
+      height: 24.h,
+      width: 211.w,
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(5.w, 0, 0, 0),
+        child: Row(
+          children: [
+            SizedBox(
+              height: 16.r,
+              width: 16.r,
+              child: lock == true ?
+              SvgPicture.asset(
+                  'assets/icons/svg_icons/lock_outline.svg',
+              ) :
+              SvgPicture.asset(
+                'assets/icons/svg_icons/hash_tag.svg',
+              )
+            ),
+            SizedBox(width: 21.33.w),
+            Text(
+              '$text',
+              style: AppTextStyles.nameStyle1.copyWith(fontSize: 14.sp)
+            ),
+          ],
         ),
       ),
     );

@@ -32,3 +32,6 @@ const channelsBaseUrl = 'https://channels.zuri.chat/api/';
 const dmsBaseUrl = 'https://dm.zuri.chat/api/';
 const coreBaseUrl = 'https://api.zuri.chat/';
 const websocketUrl = 'wss://realtime.zuri.chat/connection/websocket';
+
+const String LOCALE_VAL = 'localeVal';
+const int DEFAULT_LOCALE_VAL = 0; 

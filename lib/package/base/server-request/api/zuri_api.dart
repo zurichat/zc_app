@@ -5,7 +5,9 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.logger.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/api_response.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
@@ -14,7 +16,10 @@ import 'package:hng/models/organization_model.dart';
 import 'package:hng/models/user_search_model.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/api_utils.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/failures.dart';
+import 'package:stacked_services/stacked_services.dart'
+    hide FormData, MultipartFile;
 
 import 'api.dart';
 import 'dio_interceptors.dart';
@@ -22,6 +27,7 @@ import 'dio_interceptors.dart';
 class ZuriApi implements Api {
   final log = getLogger('ZuriApi');
   final dio = Dio();
+  final snackbar = locator<SnackbarService>();
 
   StreamController<String> controller = StreamController.broadcast();
   ZuriApi(baseUrl) {
@@ -48,6 +54,11 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.response!.data!['message'] ?? errorOccurred,
+      );
       log.w(e.toString());
       handleApiError(e);
     }
@@ -67,6 +78,11 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.response!.data!['message'] ?? errorOccurred,
+      );
       log.w(e.toString());
       handleApiError(e);
     }
@@ -86,6 +102,11 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.response!.data!['message'] ?? errorOccurred,
+      );
       log.w(e.toString());
       handleApiError(e);
     }
@@ -100,6 +121,11 @@ class ZuriApi implements Api {
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return ApiUtils.toApiResponse(res);
     } on DioError catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.response!.data!['message'] ?? errorOccurred,
+      );
       log.w(e.toString());
       handleApiError(e);
     }
@@ -119,6 +145,11 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.response!.data!['message'] ?? errorOccurred,
+      );
       log.w(e.toString());
       handleApiError(e);
     }
