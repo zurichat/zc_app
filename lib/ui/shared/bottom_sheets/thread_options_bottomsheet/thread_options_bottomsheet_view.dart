@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/bottom_sheets/thread_options_bottomsheet/thread_option_bottomsheet_viewmodel.dart';
+import 'package:hng/ui/shared/dialogs/remind_me_dialog/remind_me_dialog.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -64,7 +65,11 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
                         text: Text('Mark unread')),
                     MenuItemTile(
                         onPressed: () async {
-                          await model.remindMe(context);
+                          await showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const ReminderDialog();
+                              });
                         },
                         topBorder: false,
                         icon: Icons.access_time_rounded,

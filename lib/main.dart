@@ -13,7 +13,6 @@ import 'constants/app_strings.dart';
 import 'general_widgets/app_snackbar.dart';
 import 'services/theme_setup.dart';
 
-FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,25 +20,6 @@ Future main() async {
   await setupLocator();
   setupBottomSheetUi();
   setupDialogUi();
-
-   var initializationSettingsAndroid =
-      const AndroidInitializationSettings('zuri_chat_logo');
-  var initializationSettingsIOS = IOSInitializationSettings(
-      requestAlertPermission: true,
-      requestBadgePermission: true,
-      requestSoundPermission: true,
-      onDidReceiveLocalNotification:
-          (int id, String? title, String? body, String? payload) async {});
-
-  var initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-
- await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-      onSelectNotification: (String? payload) async {
-    if (payload != null) {
-      debugPrint('notification payload: ' + payload);
-    }
-  });
   initNotificationService();
   AppSnackBar.setupSnackbarUi();
   runApp(const MyApp());
