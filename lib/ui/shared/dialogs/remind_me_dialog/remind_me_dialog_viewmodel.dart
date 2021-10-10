@@ -1,13 +1,13 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/utilities/utilities.dart';
+import 'package:hng/services/notification_service.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class RemindMeDialogViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
+  final notificationService = locator<NotificationService>();
   final now = DateTime.now();
 
   String twentyMinutes = DateFormat('h:mm a')
@@ -48,7 +48,7 @@ class RemindMeDialogViewModel extends BaseViewModel {
 
   //3 hours
   void messageReminderThreeHours() async {
-       await AwesomeNotifications().createNotification(
+    await AwesomeNotifications().createNotification(
         content: NotificationContent(
             id: 1,
             channelKey: 'message',
@@ -75,7 +75,7 @@ class RemindMeDialogViewModel extends BaseViewModel {
 
   //next week
   void messageReminderNextWeek() async {
-       await AwesomeNotifications().createNotification(
+    await AwesomeNotifications().createNotification(
         content: NotificationContent(
             id: 1,
             channelKey: 'message',
@@ -87,49 +87,9 @@ class RemindMeDialogViewModel extends BaseViewModel {
   }
 
   //custom
-  Future<void>? customReminder(BuildContext? context) async {
-    Future<dynamic>? _selectDateTime() {
-      return showDatePicker(
-        context: context!,
-        initialDate: DateTime.now().add(const Duration(seconds: 1)),
-        firstDate: DateTime.now(),
-        lastDate: DateTime(2100),
-      );
-    }
-
-    Future<dynamic> _selectTime() {
-      final now = DateTime.now();
-
-      return showTimePicker(
-        context: context!,
-        initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
-      );
-    }
-
-    var selectedDate = await _selectDateTime();
-    var selectedTime = await _selectTime();
-
-    selectedDate = DateTime(
-      selectedDate.year,
-      selectedDate.month,
-      selectedDate.day,
-      selectedTime.hour,
-      selectedTime.minute,
-    );
-    log.i(selectedDate.year);
-    log.i(selectedDate);
-
+  void customReminder(selectedDate, selectedTime) async {                 
+    await notificationService.customReminder(selectedDate, selectedTime);
+      navigationService.popRepeated(1);
     notifyListeners();
-
-       await AwesomeNotifications().createNotification(
-        content: NotificationContent(
-            id: 1,
-            channelKey: 'message',
-            title: 'Message Reminder',
-            body: 'Your Message Reminder has arrived'),
-        schedule: NotificationCalendar.fromDate(
-            date: selectedDate));
-
-    navigationService.popRepeated(1);
   }
 }

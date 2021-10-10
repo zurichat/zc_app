@@ -82,7 +82,33 @@ class ReminderDialog extends StatelessWidget {
                 ),
               ),
               ListTile(
-                onTap: () => model.customReminder(context),
+                onTap: () async {
+                  Future<dynamic> selectDateTime() {
+                    var selectedDate = showDatePicker(
+                      context: context,
+                      initialDate:
+                          DateTime.now().add(const Duration(seconds: 1)),
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime(2100),
+                    );
+                    return selectedDate;
+                  }
+
+                  Future<dynamic> selectTime() {
+                    final now = DateTime.now();
+                    var selectedTime = showTimePicker(
+                      context: context,
+                      initialTime:
+                          TimeOfDay(hour: now.hour, minute: now.minute),
+                    );
+                    return selectedTime;
+                  }
+
+                  var selectedDate = await selectDateTime();
+                  var selectedTime = await selectTime();
+
+                  model.customReminder(selectedDate, selectedTime);
+                },
                 title: const CustomText(
                   text: 'Custom',
                   color: AppColors.zuriTextBodyColor,

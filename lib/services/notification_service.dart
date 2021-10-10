@@ -85,6 +85,25 @@ class NotificationService {
   dispose() {
     _notificationControl.close();
   }
+
+  //Message remind me function
+  Future<void> customReminder(var selectedDate, var selectedTime) async {
+    selectedDate = DateTime(
+      selectedDate.year,
+      selectedDate.month,
+      selectedDate.day,
+      selectedTime.hour,
+      selectedTime.minute,
+    );
+ 
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 1,
+            channelKey: 'message',
+            title: 'Message Reminder',
+            body: 'Your Message Reminder has arrived'),
+        schedule: NotificationCalendar.fromDate(date: selectedDate));
+  }
 }
 
 ///This payload gives a pattern for saving notification data and retreiving it

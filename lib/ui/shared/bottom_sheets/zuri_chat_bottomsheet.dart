@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/dialogs/remind_me_dialog/remind_me_dialog.dart';
 import 'package:hng/ui/shared/styles.dart';
 
 import 'thread_options_bottomsheet/widget/recent_emojis.dart';
@@ -65,7 +66,13 @@ Future<dynamic> zuriChatBottomSheet(
               ListTile(
                 title: Text("Remind Me", style: AppTextStyles.heading9),
                 leading: const Icon(Icons.timer_10_outlined),
-                onTap: remindMe
+                onTap: () async {
+                          await showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const ReminderDialog();
+                              });
+                        },
               ),
               ListTile(
                 title:
