@@ -120,7 +120,6 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                         : const SizedBox()
                   ],
                 ),
-      titleTextStyle: AppTextStyles.heading4,
       centerTitle: false,
       actions: actions,
       backgroundColor:
