@@ -37,6 +37,7 @@ mixin $ExpandableTextFieldScreen on StatelessWidget {
   }
 }
 
+//Removed unnecessary 'this'
 extension ValueProperties on FormViewModel {
   String? get textValue => formValueMap[TextValueKey];
 
