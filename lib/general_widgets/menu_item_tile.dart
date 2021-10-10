@@ -87,7 +87,7 @@ class MenuItemTile extends StatelessWidget {
           //   horizontal: 0.0,
           //   vertical: 0.0,
           // ),
-          visualDensity: const VisualDensity(horizontal: 0.0, vertical: -4.0),
+          visualDensity: const VisualDensity(horizontal: 0.0, vertical: 0),
           onTap: onPressed,
           shape: Border(
             top: BorderSide(
