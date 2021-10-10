@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/utilities/constants.dart';
@@ -22,6 +23,8 @@ class ThreadDetailViewModel extends BaseViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _apiService = ZuriApi(channelsBaseUrl);
   final _userService = locator<UserService>();
+  final _snackBarService = locator<SnackbarService>();
+  final _connectivityService = locator<ConnectivityService>();
 
   List<UserThreadPost> channelThreadMessages = [];
   late String channelMessageId;
@@ -106,9 +109,34 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   Future<void> sendThreadMessage(String message, String channelId) async {
-    await _apiService.addReplyToMessage(
+    bool connected = await _connectivityService.checkConnection();
+    if(!connected) {
+      _snackBarService.showCustomSnackBar(
+        message: noInternet,
+        variant: SnackbarType.failure,
+        duration: const Duration(milliseconds: 1500),
+      );
+      return;
+    }
+    Map result = await _apiService.addReplyToMessage(
         channelMessageId, message, null, currentOrg, userId, channelId);
-    fetchThreadMessages();
+    if(result.isNotEmpty) {
+      _snackBarService.showCustomSnackBar(
+          message: ChannelMessageSentSuccess,
+          variant: SnackbarType.success,
+          duration: const Duration(seconds: 2));
+      fetchThreadMessages();
+    } else {
+      _snackBarService.showCustomSnackBar(
+          message: ChannelMessageSentFailure,
+          variant: SnackbarType.failure,
+          mainButtonTitle: "RETRY",
+          duration: const Duration(seconds: 5),
+          onMainButtonTapped: () {
+            sendThreadMessage(message, channelId);
+          });
+    }
+
   }
 
   String get currentOrg => _userService.currentOrgId;
