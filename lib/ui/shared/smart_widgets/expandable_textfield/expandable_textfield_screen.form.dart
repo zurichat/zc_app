@@ -38,9 +38,9 @@ mixin $ExpandableTextFieldScreen on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get textValue => this.formValueMap[TextValueKey];
+  String? get textValue => formValueMap[TextValueKey];
 
-  bool get hasText => this.formValueMap.containsKey(TextValueKey);
+  bool get hasText => formValueMap.containsKey(TextValueKey);
 }
 
 extension Methods on FormViewModel {}
