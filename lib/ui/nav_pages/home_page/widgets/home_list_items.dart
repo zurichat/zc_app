@@ -47,7 +47,10 @@ class DraftTextAndIcon extends ViewModelWidget<HomePageViewModel> {
         await navigationService.navigateTo(Routes.draftView);
         viewModel.draftChecker();
       },
-      icon: SvgIcon(svgIcon: SvgAssets.threads),
+      icon: SvgIcon(
+        svgIcon: SvgAssets.threads,
+        color: Theme.of(context).textTheme.bodyText1!.color,
+      ),
     );
   }
 }
@@ -150,26 +153,22 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       if (isUnread) {
         return SvgIcon(
           svgIcon: SvgAssets.hashTag,
-          color: Colors.grey[800],
         );
       }
 
       return SvgIcon(
         svgIcon: SvgAssets.hashTag,
-        color: Colors.grey[600],
       );
     }
 
     if (isUnread) {
       return SvgIcon(
         svgIcon: SvgAssets.locked,
-        color: Colors.grey[800],
       );
     }
 
     return SvgIcon(
       svgIcon: SvgAssets.lockedOutline,
-      color: Colors.grey[600],
     );
   }
 
@@ -239,8 +238,8 @@ class _TextAndIcon extends StatelessWidget {
               style: unread
                   ? ZuriTextStyle.unreadText()
                   : ZuriTextStyle.mediumNormal(
-                      color: Colors.grey[600],
-                    ),
+                      // color: Colors.grey[600],
+                      ),
             )
           ],
         ),

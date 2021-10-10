@@ -58,7 +58,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                       children: [
                         Text(
                           ChannelName,
-                          style: AppTextStyles.heading9,
+                          style: AppTextStyles.heading9.copyWith(fontSize: 17),
                         ),
                       ],
                     ),
@@ -140,7 +140,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Text(
                       ChannelCreationWarningMsg,
-                      style: AppTextStyles.body2Medium,
+                      style: AppTextStyles.body2Medium.copyWith(fontSize: 15),
                     ),
                   ),
                   UIHelper.verticalSpaceMedium,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 import '../ui/shared/colors.dart';
 
@@ -74,7 +75,13 @@ class MenuItemTile extends StatelessWidget {
       case _TileType.normal:
         return ListTile(
           title: text,
-          subtitle: subtitle != null ? Text(subtitle ?? '') : null,
+
+          subtitle: subtitle != null
+              ? Text(
+                  subtitle ?? '',
+                  style: ZuriTextStyle.mediumNormal(),
+                )
+              : null,
           dense: true,
           // contentPadding: EdgeInsets.symmetric(
           //   horizontal: 0.0,
@@ -101,7 +108,12 @@ class MenuItemTile extends StatelessWidget {
         return ListTile(
           onTap: onPressed,
           title: text,
-          subtitle: subtitle != null ? Text(subtitle ?? '') : null,
+          subtitle: subtitle != null
+              ? Text(
+                  subtitle ?? '',
+                  style: ZuriTextStyle.mediumNormal(),
+                )
+              : null,
           trailing: selectIcon(),
           shape: Border(
             top: BorderSide(
