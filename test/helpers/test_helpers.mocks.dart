@@ -718,8 +718,8 @@ class MockChannelsApiService extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#controller, _controller),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<List<dynamic>> getActiveDms() =>
-      (super.noSuchMethod(Invocation.method(#getActiveDms, []),
+  _i2.Future<List<dynamic>> getActiveChannels() =>
+      (super.noSuchMethod(Invocation.method(#getActiveChannels, []),
               returnValue: Future<List<dynamic>>.value(<dynamic>[]))
           as _i2.Future<List<dynamic>>);
   @override
