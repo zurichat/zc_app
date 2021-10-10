@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
 import 'package:hng/ui/shared/styles.dart';
@@ -104,6 +105,19 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                               title: Text("Copy Text",
                                   style: AppTextStyles.heading9),
                               leading: const Icon(Icons.copy),
+                              onTap: () {
+                                Clipboard.setData(
+                                  ClipboardData(text: message![index].message),
+                                );
+                                viewModel.exitPage();
+                                showSimpleNotification(
+                                  const Text("Copied!"),
+                                  position: NotificationPosition.top,
+                                  background: AppColors.appBarGreen,
+                                  trailing: const Icon(Icons.copy_outlined),
+                                  duration: const Duration(seconds: 3),
+                                );
+                              },
                             ),
                             const Divider(),
                             ListTile(
