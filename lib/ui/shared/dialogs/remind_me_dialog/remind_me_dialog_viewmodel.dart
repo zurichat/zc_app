@@ -9,7 +9,7 @@ class RemindMeDialogViewModel extends BaseViewModel {
   final notificationService = locator<NotificationService>();
 
   String twentyMinutes = DateFormat('h:mm a')
-      .format(DateTime.now().add(const Duration(seconds: 10)));
+      .format(DateTime.now().add(const Duration(minutes: 20)));
   var oneHour =
       DateFormat('h:mm a').format(DateTime.now().add(const Duration(hours: 1)));
   var threeHours =
