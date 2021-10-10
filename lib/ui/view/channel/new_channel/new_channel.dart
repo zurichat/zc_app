@@ -31,6 +31,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
             "New Channel",
             style: AppTextStyles.heading7,
           ),
+          whiteBackground: true,
           actions: [
             TextButton(
               style: TextButton.styleFrom(
@@ -40,10 +41,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
               },
               child: Text(
                 Create,
-                style: AppTextStyles.heading8.copyWith(
-                  letterSpacing: 0.5,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: AppTextStyles.heading8,
               ),
             ),
           ],

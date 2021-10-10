@@ -114,6 +114,7 @@ const String SetStatusText = 'Go ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
+const String SignOut = 'Sign Out';
 
 //Drafts
 const String Draft = 'Draft';
@@ -355,6 +356,7 @@ const String JoinWorkspace = 'Join a workspace';
 const String Organizations = 'Organizations';
 const String NotJoinedOrgYet = 'You have not joined any organization yet!';
 const String Help = 'Help';
+const String SignOutAccount = 'Sign Out From All Organizations';
 const String AddOrg = 'Add an organisation';
 const String EnterOrgUrl = 'Enter Organization URL';
 const String EnterOrgUrlHint = 'https://organization.zuri.com';
