@@ -29,7 +29,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                 return InkWell(
                   child: ThreadCardView.threadChannelMain(userPost),
                   onLongPress: () => zuriChatBottomSheet(
-                    onChangePinnedState: () async {
+                    changePinnedState: () async {
                       final didChange =
                           await viewModel.changePinnedState(userPost);
                       if (didChange) userPost.pinned = !userPost.pinned;
@@ -46,7 +46,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         duration: const Duration(seconds: 2),
                       );
                     },
-                    onAddToSavedItems: () {
+                    addToSavedItems: () {
                       viewModel.saveItem(
                           channelID: message![index].channelId,
                           channelName: message[index].channelName,
@@ -66,7 +66,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         duration: const Duration(seconds: 3),
                       );
                     },
-                    onCopyText: () {
+                    copyText: () {
                       Clipboard.setData(
                         ClipboardData(text: message![index].message),
                       );

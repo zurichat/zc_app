@@ -96,7 +96,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                   IconButton(
                                       onPressed: () => zuriChatBottomSheet(
                                             context: context,
-                                            onAddToSavedItems: () {
+                                            addToSavedItems: () {
                                               model.saveItem(
                                                   channelID:
                                                       userPost!.channelId,

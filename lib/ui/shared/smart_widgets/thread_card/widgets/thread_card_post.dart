@@ -33,7 +33,7 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
                   onTap: viewModel.viewProfile,
                    onLongPress: () => zuriChatBottomSheet(
                 context: context,
-                onAddToSavedItems: () {
+                addToSavedItems: () {
                   viewModel.saveItem(
                       channelID: userThreadPost!.channelId,
                       channelName: userThreadPost!.channelName,

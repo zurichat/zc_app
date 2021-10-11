@@ -36,7 +36,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
             InkWell(
               onTap: viewModel.viewProfile,
               onLongPress: () => zuriChatBottomSheet(
-                onChangePinnedState: () async {
+                changePinnedState: () async {
                   final didChange = await viewModel.changePinnedState(userPost);
                   if (didChange) userPost.pinned = !userPost.pinned;
                   viewModel.goBack();
@@ -51,7 +51,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                     duration: const Duration(seconds: 2),
                   );
                 },
-                onAddToSavedItems: () {
+                addToSavedItems: () {
                   viewModel.saveItem(
                       channelID: userPost.channelId,
                       channelName: userPost.channelName,
