@@ -73,6 +73,12 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: vmodel.navigateToStartDMScreen,
+          child: const Icon(
+            Icons.open_in_new_outlined,
+          ),
+        ),
       ),
     );
   }
@@ -104,19 +110,6 @@ class HomePage extends StatelessWidget {
             title: local.directMessages,
             data: vmodel.directMessages,
           ),
-          const Divider(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                onPressed: vmodel.navigateToStartDMScreen,
-                child: const Icon(
-                  Icons.open_in_new_outlined,
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );

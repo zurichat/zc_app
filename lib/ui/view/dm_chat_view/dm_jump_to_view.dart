@@ -40,7 +40,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 50.h,
+                    height: 60.h,
                     width: 361.w,
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
