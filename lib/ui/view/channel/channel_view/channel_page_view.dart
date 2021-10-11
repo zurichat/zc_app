@@ -7,13 +7,21 @@ import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_text
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 import '../../../shared/shared.dart';
 
 import 'channel_page_viewmodel.dart';
 import 'widgets/channel_chat.dart';
+import 'channel_page_view.form.dart';
 
-class ChannelPageView extends StatelessWidget {
-  const ChannelPageView({
+@FormView(
+  fields: [
+    FormTextField(name: 'channelMessages'),
+  ],
+)
+
+class ChannelPageView extends StatelessWidget with $ChannelPageView {
+  ChannelPageView({
     Key? key,
     required this.channelName,
     required this.channelId,
@@ -29,7 +37,11 @@ class ChannelPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
+        model.getDraft(channelId);
         model.initialise('$channelId');
+        if(model.storedDraft.isNotEmpty){
+          channelMessagesController.text = model.storedDraft;
+        }
         model.showNotificationForOtherChannels('$channelId', '$channelName');
       },
       //this parameter allows us to reuse the view model to persist the state
@@ -44,7 +56,10 @@ class ChannelPageView extends StatelessWidget {
           backgroundColor: AppColors.whiteColor,
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
-            leadingPress: () => model.goBack(),
+            leadingPress: () => model.goBack(
+                channelId, channelMessagesController.text,
+                channelName, membersCount, public
+            ),
             whiteBackground: true,
             actions: [
               IconButton(
@@ -73,6 +88,7 @@ class ChannelPageView extends StatelessWidget {
                 "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
           ),
           body: ExpandableTextFieldScreen(
+            textController: channelMessagesController,
             hintText: AddReply,
             sendMessage: model.sendMessage,
             widget: SingleChildScrollView(
