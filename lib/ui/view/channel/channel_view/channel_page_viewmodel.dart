@@ -39,6 +39,7 @@ class ChannelPageViewModel extends BaseViewModel {
   StreamSubscription? messageSubscription;
   StreamSubscription? notificationSubscription;
   String channelID = '';
+  String channelCreator= '';
 
   saveItem(
       {String? channelID,
@@ -75,6 +76,13 @@ class ChannelPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  getChannelCreator(String channelId)async{
+   var response= await _channelsApiService.getChanelCreator(channelId);
+   channelCreator=response['owner'];
+   print("owner is ${response['owner']}");
+   notifyListeners();
+  }
+
   void initialise(String channelId) async {
     channelID = channelId;
     await joinChannel(channelId);
@@ -82,6 +90,7 @@ class ChannelPageViewModel extends BaseViewModel {
     getChannelSocketId("$channelId");
     fetchChannelMembers(channelId);
     listenToNewMessage(channelId);
+    getChannelCreator(channelId);
   }
 
   void showThreadOptions() async {

@@ -89,6 +89,18 @@ class ChannelsApiService {
     }
   }
 
+  getChanelCreator(String channelId)async{
+    final orgId = _userService.currentOrgId;
+    try{
+      final res=await _api.get('v1/$orgId/channels/$channelId/',token: token);
+      return res.data;
+    }on Exception catch(e){
+      log.e(e.toString());
+    }
+  }
+
+
+
   Future<List> getChannelMessages(String channelId) async {
     // final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
