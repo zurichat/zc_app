@@ -14,7 +14,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:hng/app/app.logger.dart';
 
 class DmUserViewModel extends FormViewModel {
-  final _username = '';
+  final _username = "";
   String get username => _username;
 
   final bottomSheet = locator<BottomSheetService>();
@@ -119,7 +119,7 @@ class DmUserViewModel extends FormViewModel {
 
   void popScreen() {
     final navigationService = locator<NavigationService>();
-    navigationService.back();
+    navigationService.popRepeated(1);
   }
 
   void sendResponse() async {

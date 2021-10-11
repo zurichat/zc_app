@@ -4,7 +4,6 @@ import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../shared/colors.dart';
 import '../../shared/search_bar.dart';
 import 'dm_page_viewmodel.dart';
 import 'widgets/dmmessage_unread.dart';
@@ -24,12 +23,11 @@ class DmPage extends StatelessWidget {
             bottomNavBarScreen: true,
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
+            onPressed: model.navigateToDmScreen,
             child: const Icon(
               Icons.add,
-              color: AppColors.whiteColor,
             ),
-            backgroundColor: AppColors.zuriPrimaryColor,
+            // backgroundColor: AppColors.zuriPrimaryColor,
           ),
           body: model.isBusy
               ? const Center(

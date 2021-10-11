@@ -37,9 +37,7 @@ class DmSearch extends StatelessWidget with $DmSearch {
                       children: <Widget>[
                         IconButton(
                           icon: const Icon(Icons.chevron_left),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+                          onPressed: () => viewModel.navigateBack(),
                         ),
                         Text(DM,
                             style: GoogleFonts.lato(

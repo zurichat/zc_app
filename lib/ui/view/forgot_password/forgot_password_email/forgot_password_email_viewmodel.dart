@@ -64,12 +64,6 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
       );
 
       navigateToForgotPasswordOtpView();
-    } else {
-      _snackbarService.showCustomSnackBar(
-        duration: const Duration(seconds: 2),
-        variant: SnackbarType.failure,
-        message: response?.data['message'] ?? errorOccurred,
-      );
     }
   }
 

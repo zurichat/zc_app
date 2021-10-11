@@ -18,6 +18,9 @@ class StorageKeys {
   static const currentUserImageUrl = 'current_url';
   static const currentChannelId = 'current_channel_id';
   static const organizationMemberList = 'organization_member_list';
+  static const currentTheme = 'current_theme';
+  static const currentThemeValue = 'current_theme_value';
   static const savedItem = 'saved_item';
   static const allMembersinOrganization = 'all_members_in_organization';
+  static const idInOrganization = 'id_in_organization';
 }
