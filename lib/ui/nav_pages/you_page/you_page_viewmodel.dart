@@ -1,4 +1,5 @@
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
@@ -13,6 +14,11 @@ class YouPageViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
   final _userService = locator<UserService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
+  String notificationStatus = 'off';
+  init(){notificationStatus = _storageService.getString('notification_status')?? 'off';
+  notifyListeners();
+  }
 
   String get username =>
       (_userService.userDetails?.displayName?.isNotEmpty ?? false
@@ -23,6 +29,7 @@ class YouPageViewModel extends BaseViewModel {
   String currentStatus = Active;
   String otherStatus = Away;
 
+
   Future editProfile() async {
     await _navigationService.navigateTo(
       Routes.editProfileView,
@@ -32,7 +39,9 @@ class YouPageViewModel extends BaseViewModel {
   }
 
   Future pauseNotifications() async {
+    //dispose();
     await _navigationService.navigateTo(Routes.doNotDisturbView);
+
   }
 
   void toggleStatus() {

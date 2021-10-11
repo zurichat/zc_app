@@ -15,6 +15,7 @@ class DoNotDisturbView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DoNotDisturbViewModel>.reactive(
+      onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           leading: Icons.close_rounded,
@@ -31,10 +32,14 @@ class DoNotDisturbView extends StatelessWidget {
                 style: TextStyle(color: AppColors.zuriPrimaryColor),
               ),
             )
+
           ],
         ),
         body: Column(
           children: [
+            Visibility(child: InkWell(child: const Text('Turn off',
+              style: TextStyle(color: AppColors.numberContainerColor),),
+             onTap: (){model.resumeNotification();},), visible: model.notifsOn),
             Flexible(
               fit: FlexFit.loose,
               child: ListView.builder(
@@ -50,6 +55,10 @@ class DoNotDisturbView extends StatelessWidget {
                 ),
               ),
             ),
+             Visibility(
+                child:  const Text('Paused Notification until',
+                  style: TextStyle(color: AppColors.zuriPrimaryColor)),
+              visible: model.notifsOn,)
           ],
         ),
       ),

@@ -35,7 +35,7 @@ class NotificationService {
       final time = _sharedPreference.getDouble(
         StorageKeys.doNotDisturb,
       );
-      setCanShowNotification(time! as int);
+      setCanShowNotification(time!.toInt());
     } catch (e) {
       setCanShowNotification(DateTime.now().millisecondsSinceEpoch);
     }
@@ -71,9 +71,18 @@ class NotificationService {
     AwesomeNotifications().actionStream.listen((receivedNotification) {
       var payload = NotificationPayload._fromMap(receivedNotification.payload);
       //check do not disturb
-      //return
-      _notificationControl.sink.add(payload);
+      if(isNotificationAllowed()){
+        _notificationControl.sink.add(payload);
+      }
     });
+  }
+
+  bool isNotificationAllowed(){
+    final futureTime = _sharedPreference.getDouble(
+      StorageKeys.doNotDisturb,
+    ) ?? 0;
+    DateTime now = DateTime.now();
+    return now.millisecondsSinceEpoch > futureTime;
   }
 
   void show({

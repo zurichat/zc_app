@@ -22,12 +22,14 @@ class OrganizationViewModel extends BaseViewModel {
   final api = OrganizationApiService();
   List<OrganizationModel> organizations = [];
   final _bottomSheetService = locator<BottomSheetService>();
-  final _notificationService = locator<NotificationService>();
+    final _notificationService = locator<NotificationService>();
 
   void initViewModel() {
     fetchOrganizations();
     getOrganizationMemberList();
-    _notificationService.updateCanShowNotification();
+     try{
+       _notificationService.updateCanShowNotification();
+     }catch(e){log.i(e.toString());}
   }
 
   Future<void> navigateToNewOrganization() async {
