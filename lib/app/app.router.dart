@@ -17,6 +17,7 @@ import '../ui/nav_pages/dm_page/dm_search_find_page.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
 import '../ui/nav_pages/plugin_page/add_plugin_view.dart';
 import '../ui/nav_pages/plugin_page/edit_plugin_view.dart';
+import '../ui/nav_pages/plugin_page/plugin_intro_page.dart';
 import '../ui/nav_pages/plugin_page/plugin_page_view.dart';
 import '../ui/nav_pages/plugin_page/plugins_view.dart';
 import '../ui/view/add_people/add_people_view.dart';
@@ -123,6 +124,7 @@ class Routes {
   static const String directMessage = '/direct-message';
   static const String termsAndConditionsView = '/terms-and-conditions-view';
   static const String webViewPage = '/web-view-page';
+  static const String pluginPageIntro = '/plugin-page-intro';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -177,6 +179,7 @@ class Routes {
     directMessage,
     termsAndConditionsView,
     webViewPage,
+    pluginPageIntro,
   };
 }
 
@@ -238,6 +241,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.directMessage, page: DirectMessage),
     RouteDef(Routes.termsAndConditionsView, page: TermsAndConditionsView),
     RouteDef(Routes.webViewPage, page: WebViewPage),
+    RouteDef(Routes.pluginPageIntro, page: PluginPageIntro),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -659,6 +663,12 @@ class StackedRouter extends RouterBase {
           url: args.url,
           key: args.key,
         ),
+        settings: data,
+      );
+    },
+    PluginPageIntro: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PluginPageIntro(),
         settings: data,
       );
     },

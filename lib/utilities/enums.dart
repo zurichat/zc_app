@@ -7,7 +7,8 @@ enum DialogType {
   themeMode,
   deleteChannel,
   deleteMessage,
-  signOut
+  signOut,
+  deleteDraft
 }
 
 enum ChannelType { private, public, personal }
