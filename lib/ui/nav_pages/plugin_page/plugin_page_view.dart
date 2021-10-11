@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/menu_item_tile.dart';
 import 'package:hng/models/plugin_model.dart';
-import 'package:hng/ui/nav_pages/plugin_page/add_plugin_view.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
 import 'package:hng/ui/shared/colors.dart';

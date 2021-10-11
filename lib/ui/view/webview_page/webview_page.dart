@@ -1,26 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:stacked/stacked.dart';
+import 'web_view_model.dart';
 
 class WebViewPage extends StatelessWidget {
   const WebViewPage({required this.name, required this.url, Key? key})
       : super(key: key);
-
   final String name, url;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ZuriAppBar(
-        leading: Icons.arrow_back,
-        orgTitle: Text(name, style: ZuriTextStyle.organizationNameText()),
-        bottomNavBarScreen: true,
-        leadingWidth: true,
-      ),
-      body: WebView(
-        initialUrl: url,
-        javascriptMode: JavascriptMode.unrestricted,
-      ),
-    );
+    return ViewModelBuilder<WebViewModel>.reactive(
+        viewModelBuilder: () => WebViewModel(),
+        builder: (context, model, child) {
+          return Scaffold(
+            appBar: ZuriAppBar(
+                leading: Icons.arrow_back_ios,
+                leadingPress: () => model.goBack(),
+                orgTitle: Text(name, style: AppTextStyles.heading4),
+                bottomNavBarScreen: true,
+                whiteBackground: true,
+                actions: [
+                  model.isLoading
+                      ? SizedBox(
+                          height: 30,
+                          width: 30,
+                          child: const CircularProgressIndicator(
+                            color: AppColors.zuriPrimaryColor,
+                          ),
+                        )
+                      : const SizedBox(),
+                ]),
+            body: WebView(
+              initialUrl: url,
+              onPageStarted: (url) {
+                model.startLoading();
+              },
+              onPageFinished: (url) {
+                model.stopLoading();
+              },
+              onProgress: (progress) {
+                print("Progress $progress");
+              },
+              javascriptMode: JavascriptMode.unrestricted,
+            ),
+          );
+        });
   }
 }
