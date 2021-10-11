@@ -131,11 +131,6 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: ChannelInfoView),
     MaterialRoute(page: PluginPage),
-    MaterialRoute(page: AddPluginView),
-    MaterialRoute(page: PluginView),
-    MaterialRoute(page: EditPluginView),
-
-
     MaterialRoute(page: DirectMessage),
     MaterialRoute(page: TermsAndConditionsView),
     MaterialRoute(page: WebViewPage),
