@@ -8,7 +8,7 @@ enum DialogType {
   deleteChannel,
   deleteMessage,
   signOut,
-  remindMe
+  remindMe,
   deleteDraft
 }
 

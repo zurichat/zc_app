@@ -29,7 +29,7 @@ void setupDialogUi() {
     DialogType.signOut: (context, request, completer) =>
         SignOutDialog(request: request, completer: completer),
     DialogType.remindMe: (context, request, completer) =>
-        ReminderDialog(request: request, completer: completer)
+        ReminderDialog(request: request, completer: completer),
     DialogType.deleteDraft: (BuildContext context, DialogRequest request,
         Function(DialogResponse) completer) =>
         ShowAlertDialog(request: request, completer: completer)
