@@ -3,6 +3,8 @@ import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/draft/draft_viewmodel.dart';
 import 'package:hng/ui/view/threads/test_data.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({
@@ -22,11 +24,10 @@ class CustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO : convert the string 'time' to a usuable datetime type
-    // var dateFormat = DateFormat('yyyy/MM/dd HH:MM:ss').parse('$time');
+    var date =DateTime.parse(time);
+    String dateTime = '${DateFormat.MMMd().format(date)} at ${DateFormat.jm().format(date)}';
     return InkWell(
       onTap:  () async{
-
           if(route['receiverName'] != null ){
             await model.navigateToDmUserView();
           } else if(route['channelId'] != null){
@@ -52,16 +53,16 @@ class CustomListTile extends StatelessWidget {
       child: ListTile(
         title: Text(
           text,
-          style: AppTextStyles.heading6.copyWith(fontSize: 18),
+          style: AppTextStyles.body1Bold.copyWith(fontSize: 16.sp),
         ),
         subtitle: Text(
           subtitle,
-          style: AppTextStyles.body1Bold,
+          style: AppTextStyles.faintBodyText.copyWith(fontSize: 14.sp),
         ),
         trailing: Text(
           // '$dateFormat',
-          time,
-          style: AppTextStyles.body2Bold,
+          dateTime,
+          style: AppTextStyles.bodySmall2.copyWith(fontSize: 14.sp),
         ),
       ),
     );
