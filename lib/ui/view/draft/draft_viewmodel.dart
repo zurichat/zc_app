@@ -172,7 +172,7 @@ class DraftViewModel extends BaseViewModel {
     }
   }
 
-  void showDeleteDraftDialog(index) async {
+  showDeleteDraftDialog(index) async {
     final result = await _dialogService.showCustomDialog(
         variant: DialogType.deleteDraft,
       title: "Delete Draft",
@@ -184,6 +184,7 @@ class DraftViewModel extends BaseViewModel {
 
     if(result!.confirmed){
       onDismissed(index);
+      return result.confirmed;
     }
   }
 }

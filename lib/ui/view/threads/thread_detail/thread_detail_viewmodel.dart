@@ -143,7 +143,10 @@ class ThreadDetailViewModel extends BaseViewModel {
             jsonDecode(encodedStoredDraft)['userPostChannelName'] == userPost.channelName
     ){
           storedDraft = jsonDecode(encodedStoredDraft)['draft'];
+          print('before removal ${spList}');
           spList.remove(encodedStoredDraft);
+          print('After rrr removal ${spList}');
+
           storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, spList);
           return;
         }

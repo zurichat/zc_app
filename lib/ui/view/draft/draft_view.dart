@@ -12,6 +12,7 @@ class DraftView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = SlidableController();
     return ViewModelBuilder<DraftViewModel>.reactive(
       onModelReady: (model) {
         model.drafts;
@@ -19,7 +20,7 @@ class DraftView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           leading: Icons.arrow_back_ios,
-          leadingWidth: true,
+          leadingWidth: false,
           leadingPress: () {
             model.goBack();
           },
@@ -33,12 +34,18 @@ class DraftView extends StatelessWidget {
                     parent: AlwaysScrollableScrollPhysics()),
                 itemBuilder: (BuildContext context, int index) {
                   return Slidable(
+                    controller: controller,
+                    closeOnScroll: true,
                     key: Key(model.widgetBuilderList[index].subtitle),
                     dismissal: SlidableDismissal(
                         child: const SlidableDrawerDismissal(),
-                        onDismissed: (type) {
-                          model.showDeleteDraftDialog(index);
-                        }),
+                        key: Key(model.widgetBuilderList[index].subtitle),
+                        closeOnCanceled: true,
+                        onWillDismiss:(type){ return
+                           model.showDeleteDraftDialog(index).then((onValue){
+                             controller.activeState!.close();
+                           });},
+                        ),
                     actionPane: const SlidableDrawerActionPane(),
                     actionExtentRatio: 0.35,
                     secondaryActions: [
@@ -117,7 +124,7 @@ class DraftView extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           tooltip: AddDraft,
-          child: const Icon(Icons.notes),
+          child: const Icon(Icons.open_in_new_outlined,),
         ),
       ),
       viewModelBuilder: () => DraftViewModel(),
