@@ -33,7 +33,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                       final didChange =
                           await viewModel.changePinnedState(userPost);
                       if (didChange) userPost.pinned = !userPost.pinned;
-                      viewModel.goBack();
+                      Navigator.of(context).pop();
                       showSimpleNotification(
                         Text(didChange
                             ? "${userPost.pinned ? "Pinned" : "Unpinned"} successfully"

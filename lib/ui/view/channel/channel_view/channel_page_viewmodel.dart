@@ -18,8 +18,6 @@ import 'package:simple_moment/simple_moment.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-
-
 class ChannelPageViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _channelsApiService = locator<ChannelsApiService>();
