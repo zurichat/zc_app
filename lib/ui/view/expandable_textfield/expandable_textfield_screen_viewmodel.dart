@@ -7,7 +7,7 @@ import '/../../app/app.logger.dart';
 
 class ExpandableTextFieldScreenViewModel extends FormViewModel {
   final _dialogService = locator<DialogService>();
-  final log = getLogger('Expandable Textfield');
+  final log = getLogger('ExpandableTextFieldScreenViewModel');
   bool isVisible = false;
   bool isExpanded = false;
   double maxSize = 0;

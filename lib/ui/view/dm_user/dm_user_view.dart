@@ -60,10 +60,8 @@ class DmUserView extends StatelessWidget with $DmUserView {
               ),
               actions: [
                 IconButton(
-
                   icon: const Icon(Icons.info_outline,
                       color: AppColors.greyColor),
-
                   onPressed: () {},
                 )
               ],
@@ -206,7 +204,6 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                         "assets/icons/fluent_camera-16-regular.svg",
                                         color: AppColors.greyColor,
                                       ),
-                                      //onPressed: () {},
                                     ),
                                     IconButton(
                                       onPressed: () {},
@@ -214,7 +211,6 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                         "assets/icons/Vector.svg",
                                         color: AppColors.greyColor,
                                       ),
-                                      //onPressed: () {},
                                     ),
                                   ],
                                 ),
