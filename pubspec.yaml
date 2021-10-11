@@ -51,6 +51,7 @@ dependencies:
   url_launcher: ^6.0.9
   velocity_x: ^3.3.0
   connectivity_plus_web:
+  webview_flutter: ^2.0.13
 
 dev_dependencies:
   build_runner: ^2.1.2

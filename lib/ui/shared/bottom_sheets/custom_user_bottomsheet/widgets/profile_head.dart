@@ -38,7 +38,7 @@ class ProfileHead extends ViewModelWidget<CustomUserBottomSheetViewModel> {
                     Flexible(
                       fit: FlexFit.loose,
                       child: CustomText(
-                        text: viewModel.userModel!.fullName!,
+                        text: viewModel.email!,
                         color: AppColors.whiteColor,
                         fontWeight: FontWeight.bold,
                         fontSize: height * 0.025,

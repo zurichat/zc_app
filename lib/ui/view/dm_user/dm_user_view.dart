@@ -30,33 +30,33 @@ class DmUserView extends StatelessWidget with $DmUserView {
     //TODO remove the var below and replace with the actual id from the backend once dm's get linked to the backend
      dynamic receiverId = 'receiver';
     return ViewModelBuilder<DmUserViewModel>.reactive(
-        onModelReady: (model) {
-          model.getDraft(receiverId);
-          if (model.storedDraft.isNotEmpty) {
-            messageController.text = model.storedDraft;
-          }
-          return listenToFormUpdated(model);
-        },
-        viewModelBuilder: () => DmUserViewModel(),
-        builder: (context, model, child) {
-          return Scaffold(
-            backgroundColor: Colors.white,
-            appBar: ZuriAppBar(
-                leading: Icons.arrow_back_ios,
-                leadingPress: () => model.popScreens(receiverId, messageController.text),
-                title: model.receiver.username,
-                subtitle: ViewDetails,
-                actions: [
-                  IconButton(
-                    icon: const Icon(Icons.info_outline),
-                    onPressed: () {},
-                  ),
-                ],
-
-                onlineIndicator: true,
-                whiteBackground: true),
-            body: Stack(
-              children: [
+      onModelReady: (model) {
+        model.getDraft(receiverId);
+        if (model.storedDraft.isNotEmpty) {
+          messageController.text = model.storedDraft;
+        }
+        return listenToFormUpdated(model);
+      },
+      viewModelBuilder: () => DmUserViewModel(),
+      builder: (context, model, child) {
+        return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: ZuriAppBar(
+              leading: Icons.arrow_back_ios,
+              leadingPress: () => model.popScreens(receiverId, messageController.text),
+              title: model.receiver.username,
+              subtitle: ViewDetails,
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.info_outline,
+                      color: AppColors.greyColor),
+                  onPressed: () {},
+                ),
+              ],
+              onlineIndicator: true,
+              whiteBackground: true),
+          body: Stack(
+            children: [
               ExpandableTextFieldScreen(
                 hintText: 'Message ${model.receiver.username}',
                 textController: messageController,
@@ -150,58 +150,4 @@ class DmUserView extends StatelessWidget with $DmUserView {
       },
     );
   }
-
-  // Widget _onlineIndicator(int color) {
-  //   return Icon(
-  //     Icons.circle,
-  //     color: Color(color),
-  //     size: 10,
-  //   );
-  // }
-
-  // Widget _groupSeparator(String value) {
-  //   return Container(
-  //     margin: EdgeInsets.only(top: 16.0),
-  //     child: Row(
-  //       children: [
-  //         Expanded(
-  //             child: Divider(
-  //               color: Color(0xFF7B8794),
-  //             )),
-  //         Container(
-  //           child: Text(value,
-  //               style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
-  //           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-  //           decoration: BoxDecoration(
-  //               border: Border.all(color: Color(0xFF7B8794), width: 0.5),
-  //               borderRadius: BorderRadius.all(Radius.circular(10))),
-  //         ),
-  //         Expanded(
-  //             child: Divider(
-  //               color: Color(0xFF7B8794),
-  //             )),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Widget _startMessage(String username) {
-  //   return RichText(
-  //     text: TextSpan(
-  //         text: 'This is the very beginning of your '
-  //             'direct message \history with ',
-  //         style: TextStyle(
-  //             color: Color(0xFF808080),
-  //             fontSize: 14.0,
-  //             fontWeight: FontWeight.w400),
-  //         children: [
-  //           TextSpan(
-  //               text: '@$username. ',
-  //               style: TextStyle(color: Color(0xFF8CDEC3))),
-  //           TextSpan(
-  //               text: 'Only the two of you are in \nthis conversation, '
-  //                   'and no one else can join it.')
-  //         ]),
-  //   );
-  // }
 }

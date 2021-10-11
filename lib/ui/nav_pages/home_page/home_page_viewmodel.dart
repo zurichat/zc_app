@@ -147,7 +147,7 @@ class HomePageViewModel extends StreamViewModel {
     homePageList = [];
     setBusy(true);
 
-    List? channelsList = await channelsApiService.getActiveDms();
+    List? channelsList = await channelsApiService.getActiveChannels();
 
     channelsList.forEach(
       (data) {

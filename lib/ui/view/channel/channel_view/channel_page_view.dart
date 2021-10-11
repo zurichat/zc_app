@@ -63,9 +63,11 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
             whiteBackground: true,
             actions: [
               IconButton(
-                onPressed: () {
-                  },
-                icon: const Icon(Icons.search),
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.search,
+                  color: AppColors.greyColor,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 5),
@@ -74,7 +76,10 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                     membersCount!,
                     ChannelModel(id: channelId!, name: channelName!),
                   ),
-                  icon: const Icon(Icons.info_outlined),
+                  icon: const Icon(
+                    Icons.info_outlined,
+                    color: AppColors.greyColor,
+                  ),
                 ),
               ),
             ],
