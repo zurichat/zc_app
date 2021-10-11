@@ -9,6 +9,7 @@ enum DialogType {
   deleteMessage,
   signOut,
   remindMe
+  deleteDraft
 }
 
 enum ChannelType { private, public, personal }
