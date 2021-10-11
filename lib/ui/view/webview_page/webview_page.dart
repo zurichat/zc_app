@@ -23,10 +23,10 @@ class WebViewPage extends StatelessWidget {
                 whiteBackground: true,
                 actions: [
                   model.isLoading
-                      ? SizedBox(
+                      ? const SizedBox(
                           height: 30,
                           width: 30,
-                          child: const CircularProgressIndicator(
+                          child: CircularProgressIndicator(
                             color: AppColors.zuriPrimaryColor,
                           ),
                         )
