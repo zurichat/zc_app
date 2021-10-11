@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/view/plugins/plugin_viewmodel.dart';
 
 class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
   final String appbarTitle;

@@ -163,6 +163,13 @@ class MockSharedPreferenceLocalStorage extends _i1.Mock
       (super.noSuchMethod(Invocation.method(#clearStorage, []),
           returnValue: Future<bool?>.value()) as _i2.Future<bool?>);
   @override
+  _i2.Future<dynamic> setInt(String? key, int? value) =>
+      (super.noSuchMethod(Invocation.method(#setInt, [key, value]),
+          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+  @override
+  int? getInt(String? key) =>
+      (super.noSuchMethod(Invocation.method(#getInt, [key])) as int?);
+  @override
   String toString() => super.toString();
 }
 
@@ -685,14 +692,13 @@ class MockBottomSheetService extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockDMApiService extends _i1.Mock implements _i15.DMApiService {
   @override
-  _i2.Future<List<dynamic>> getActiveDms() =>
+  _i2.Future<dynamic> getActiveDms() =>
       (super.noSuchMethod(Invocation.method(#getActiveDms, []),
-              returnValue: Future<List<dynamic>>.value(<dynamic>[]))
-          as _i2.Future<List<dynamic>>);
+          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
   @override
-  _i2.Future<String?> getUser(dynamic ids) =>
-      (super.noSuchMethod(Invocation.method(#getUser, [ids]),
-          returnValue: Future<String?>.value()) as _i2.Future<String?>);
+  _i2.Future<dynamic> getAllUsersInOrg() =>
+      (super.noSuchMethod(Invocation.method(#getAllUsersInOrg, []),
+          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
   @override
   String toString() => super.toString();
 }
@@ -712,8 +718,8 @@ class MockChannelsApiService extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#controller, _controller),
           returnValueForMissingStub: null);
   @override
-  _i2.Future<List<dynamic>> getActiveDms() =>
-      (super.noSuchMethod(Invocation.method(#getActiveDms, []),
+  _i2.Future<List<dynamic>> getActiveChannels() =>
+      (super.noSuchMethod(Invocation.method(#getActiveChannels, []),
               returnValue: Future<List<dynamic>>.value(<dynamic>[]))
           as _i2.Future<List<dynamic>>);
   @override
