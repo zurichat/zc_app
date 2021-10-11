@@ -18,35 +18,36 @@ class RemindMeDialogViewModel extends BaseViewModel {
       .format(DateTime.now().add(const Duration(days: 1)));
   var nextWeek = DateFormat("EEEE 'at' h:mm a")
       .format(DateTime.now().add(const Duration(days: 7)));
+  var now = DateTime.now();
 
 //twenty minutes
   void messageRemindertwentyMinutes() async {
-   await notificationService.messageReminderTwentyMinutes();
+  await notificationService.messageReminder(dateTime: now.add(const Duration(minutes: 20)));
     navigationService.popRepeated(1);
   }
 
 //1 hour
   void messageReminderOneHour() async {
-  await notificationService.messageReminderOneHour();
+  await notificationService.messageReminder(dateTime: now.add(const Duration(hours: 1)));
    navigationService.popRepeated(1);
   }
 
   //3 hours
   void messageReminderThreeHours() async {
-  await notificationService.messageReminderThreeHours();
+  await notificationService.messageReminder(dateTime: now.add(const Duration(hours:  3)));
   navigationService.popRepeated(1);
   }
 
   //tomorrow
 
   void messageReminderTomorrow() async {
-     await notificationService.messageReminderTomorrow();
+  await notificationService.messageReminder(dateTime: now.add(const Duration(days: 1)));
     navigationService.popRepeated(1);
   }
 
   //next week
   void messageReminderNextWeek() async {
-     await notificationService.messageReminderNextWeek();
+  await notificationService.messageReminder(dateTime: now.add(const Duration(days: 7)));
     navigationService.popRepeated(1);
   }
 
