@@ -60,7 +60,7 @@ class DraftViewModel extends BaseViewModel {
         var mapKey = jsonDecode(element);
 
         widgetBuilderList.add(DraftDataHolder(
-          '${mapKey['userPost']}',
+          '# ${mapKey['userPostChannelName']}',
           '${mapKey['draft']}',
           mapKey,
           '${mapKey['time']}',

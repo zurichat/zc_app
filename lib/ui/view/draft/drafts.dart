@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/draft/draft_viewmodel.dart';
-import 'package:hng/utilities/enums.dart';
+import 'package:hng/ui/view/threads/test_data.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({
@@ -37,36 +37,13 @@ class CustomListTile extends StatelessWidget {
                 route['public']
             );
           } else{
-            ChannelType channelType;
-            if(route['userPostChannelType'] == 'private'){
-              channelType = ChannelType.private;
-            }else if(route['userPostChannelType'] == 'public'){
-              channelType = ChannelType.public;
-            }else {
-              channelType = ChannelType.personal;
+            List<UserPost> userPosts = userPost;
+            for(UserPost item in userPosts){
+              if(route['userPostId'] == item.id){
+                UserPost currentUserPost = item ;
+                await model.navigateToThread(currentUserPost);
+              }
             }
-
-            List<PostEmojis> postEmojis = [];
-            for(List<String> emoji in route['userPostPostEmojis'] ){
-              postEmojis.add(PostEmojis(
-                id: int.parse(emoji[1]),
-                postEmoji: emoji[2],
-                postEmojiCount: int.parse(emoji[3]),
-                hasReacted: emoji[3] == 'true' ? true : false
-              ));
-            }
-
-            UserPost userPost = UserPost(
-                id: '${route['userPostId']}',
-                channelId: '${route['userPostChannelId']}',
-                displayName: '${route['userPostDisplayName']}',
-                channelType: channelType,
-              channelName: '${route['userPostChannelName']}',
-              message: '${route['userPostMessage']}',
-              postEmojis: postEmojis
-
-            );
-            await model.navigateToThread(userPost);
           }
           model.widgetBuilderList.clear();
           model.drafts;

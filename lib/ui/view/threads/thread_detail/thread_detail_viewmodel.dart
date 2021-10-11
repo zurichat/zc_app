@@ -140,8 +140,7 @@ class ThreadDetailViewModel extends BaseViewModel {
     if (spList != null){
       for ( String encodedStoredDraft in spList) {
         if(jsonDecode(encodedStoredDraft)['userPostId'] == userPost.id &&
-            jsonDecode(encodedStoredDraft)['userPostChannelName'] == userPost.channelName &&
-            jsonDecode(encodedStoredDraft)['userPostChannelId'] == userPost.channelId
+            jsonDecode(encodedStoredDraft)['userPostChannelName'] == userPost.channelName
     ){
           storedDraft = jsonDecode(encodedStoredDraft)['draft'];
           spList.remove(encodedStoredDraft);
@@ -153,21 +152,6 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   void storeDraft(userPost, value){
-    List<List<String>> emojis = [];
-    List<String> emoji;
-
-    if(userPost.postEmojis != null){
-      for(PostEmojis postEmoji in userPost.postEmojis ){
-        emoji = [
-          postEmoji.id.toString(),
-          postEmoji.postEmoji!,
-          postEmoji.postEmojiCount.toString(),
-          postEmoji.hasReacted.toString()
-        ];
-        emojis.add(emoji);
-      }
-    }
-
     var keyMap = {
       'draft': value,
       'time' : '${DateTime.now()}',
@@ -175,9 +159,6 @@ class ThreadDetailViewModel extends BaseViewModel {
       'userPostChannelName' : userPost.channelName,
       'userPostMessage' : userPost.message,
       'userPostDisplayName' : userPost.displayName,
-      'userPostChannelId' : userPost.channelId,
-      'userPostChannelType': userPost.channelType.toString(),
-      'userPostPostEmojis' : emojis
     };
 
     List<String>? spList = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
