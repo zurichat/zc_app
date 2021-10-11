@@ -14,6 +14,8 @@ class NotificationService {
 
   final Random rand = Random();
 
+  final now = DateTime.now();
+
   ///Listen to notification click by listening to stream and navigate to the
   ///respective screen by using the payload returned
   ///```
@@ -84,6 +86,38 @@ class NotificationService {
 
   dispose() {
     _notificationControl.close();
+  }
+
+  //Message Reminer
+  Future<void> messageReminder({required DateTime dateTime}) async {
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 1,
+            channelKey: 'message',
+            title: 'Message Reminder',
+            body:
+                "You set a notification for a message for ${dateTime.toString().substring(0, 5)}"),
+        schedule: NotificationCalendar.fromDate(date: dateTime));
+  }
+
+  //Message Custom reminder function
+  Future<void> customReminder(var selectedDate, var selectedTime) async {
+    selectedDate = DateTime(
+      selectedDate.year,
+      selectedDate.month,
+      selectedDate.day,
+      selectedTime.hour,
+      selectedTime.minute,
+    );
+
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 1,
+            channelKey: 'message',
+            title: 'Message Reminder',
+            body:
+                "You set a notification for a message for ${selectedDate.toString().substring(0, 16)}"),
+        schedule: NotificationCalendar.fromDate(date: selectedDate));
   }
 }
 

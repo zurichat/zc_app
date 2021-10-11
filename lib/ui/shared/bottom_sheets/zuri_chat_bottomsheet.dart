@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hng/models/user_post.dart';
+import 'package:hng/app/app.locator.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/utilities/enums.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import 'thread_options_bottomsheet/widget/recent_emojis.dart';
 
@@ -19,6 +22,7 @@ Future<dynamic> zuriChatBottomSheet({
   Function()? onTurnQuestionToPoll,
   UserPost? post,
 }) {
+  final _dialogService = locator<DialogService>();
   return showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -66,9 +70,13 @@ Future<dynamic> zuriChatBottomSheet({
               onTap: onMarkUnread,
             ),
             ListTile(
-                title: Text("Remind Me", style: AppTextStyles.heading9),
-                leading: const Icon(Icons.timer_10_outlined),
-                onTap: onRemindMe),
+              title: Text("Remind Me", style: AppTextStyles.heading9),
+              leading: const Icon(Icons.timer_10_outlined),
+              onTap: () async {
+                await _dialogService.showCustomDialog(
+                    variant: DialogType.remindMe);
+              },
+            ),
             ListTile(
               title: Text("Add to Saved Items", style: AppTextStyles.heading9),
               leading: const Icon(Icons.save_outlined),
