@@ -33,7 +33,8 @@ class DmUserView extends StatelessWidget {
               subtitle: ViewDetails,
               actions: [
                 IconButton(
-                  icon: const Icon(Icons.info_outline),
+                  icon: const Icon(Icons.info_outline,
+                      color: AppColors.greyColor),
                   onPressed: () {},
                 ),
               ],

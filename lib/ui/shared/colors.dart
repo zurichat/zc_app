@@ -30,7 +30,7 @@ class AppColors {
   static const Color faintTextColor = Color(0xFFC7C3C3);
   static const Color zuriDarkGrey = Color(0xFF727272);
   static const Color numberContainerColor = Color(0xFFB8003C);
-  static const Color appBarGreen = Color(0xFF2A7B60);
+  static const Color appBarGreen = Color(0xFF009B69);
   static const Color zuriBGLightgrey = Color(0xFFF7F7F7);
   static const Color zuriGrey = Color(0xFFBEBEBE);
   static const Color searchHintColor = Color(0xffA1A9B3);

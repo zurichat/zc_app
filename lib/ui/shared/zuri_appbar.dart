@@ -45,7 +45,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   }) : super(key: key);
 
   @override
-  Size get preferredSize => const Size.fromHeight(60);
+  Size get preferredSize => Size.fromHeight(isSearchBar ? 70 : 60);
 
   @override
   Widget build(BuildContext context) {
@@ -53,22 +53,25 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       elevation: 1,
       leadingWidth: leadingWidth ? 10 : null,
-      leading: InkWell(
-          child: Icon(
-            leading,
-            color: Colors.black,
-          ),
-          onTap: leadingPress),
+      leading: isSearchBar
+          ? null
+          : InkWell(
+              child: Icon(
+                leading,
+                color: Colors.black,
+              ),
+              onTap: leadingPress),
       title: isSearchBar
-          ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          ? Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              height: 50,
+              alignment: Alignment.center,
               child: TextField(
                 autofocus: false,
                 controller: searchController,
                 keyboardType: TextInputType.text,
                 onChanged: onChanged,
                 style: AppTextStyles.buttonText,
-                maxLines: 1,
                 onEditingComplete: onEditingComplete,
                 decoration: InputDecoration(
                     hintStyle: AppTextStyles.buttonText
@@ -121,7 +124,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ],
                 ),
       centerTitle: false,
-      actions: actions,
+      actions: isSearchBar ? null : actions,
       backgroundColor:
           !whiteBackground ? AppColors.zuriPrimaryColor : AppColors.whiteColor,
     );
