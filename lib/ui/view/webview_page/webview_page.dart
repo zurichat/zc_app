@@ -41,7 +41,6 @@ class WebViewPage extends StatelessWidget {
                 model.stopLoading();
               },
               onProgress: (progress) {
-                print("Progress $progress");
               },
               javascriptMode: JavascriptMode.unrestricted,
             ),

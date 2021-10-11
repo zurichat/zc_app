@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/text_styles.dart';
 
 // ignore: must_be_immutable
 class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
