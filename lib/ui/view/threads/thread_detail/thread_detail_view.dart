@@ -17,7 +17,7 @@ import 'package:hng/app/app.logger.dart';
 import 'thread_detail_view.form.dart';
 
 @FormView(fields: [FormTextField(name: 'message')])
-class ThreadDetailView extends StatelessWidget with $ThreadDetailView{
+class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
   ThreadDetailView(this.userPost, {Key? key}) : super(key: key);
   final UserPost? userPost;
 
@@ -31,7 +31,8 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView{
         appBar: ZuriAppBar(
             orgTitle: Text(
               Threads,
-              style: AppTextStyles.heading7,
+              style:
+                  AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
             ),
             leading: Icons.chevron_left,
             leadingPress: () => model.exitPage(),

@@ -31,7 +31,7 @@ class SecondSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: 78.h,
+            height: 88.h,
             width: 279.03.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -67,7 +67,7 @@ class SecondSection extends StatelessWidget {
                       child: Text(
                         MuteChannel,
                         style: AppTextStyles.descriptionStyle
-                          ..copyWith(fontSize: 14.sp),
+                          .copyWith(fontSize: 14.sp),
                       ),
                     ),
                   ],
