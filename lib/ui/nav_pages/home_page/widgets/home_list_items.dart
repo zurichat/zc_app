@@ -27,7 +27,10 @@ class ThreadTextAndIcon extends StatelessWidget {
         // Navigate to threads screen
         navigationService.navigateTo(Routes.threadsView);
       },
-      icon: SvgIcon(svgIcon: SvgAssets.threads),
+      icon: SvgIcon(
+        svgIcon: SvgAssets.threads,
+        color: Theme.of(context).textTheme.bodyText1!.color,
+      ),
     );
   }
 }
@@ -39,6 +42,22 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   Widget build(BuildContext context, viewModel) {
     return _TextAndIcon(
       text: AddChannels,
+      unread: false,
+      onTap: () => viewModel.navigateToCreateChannel(),
+      icon: SvgIcon(
+        svgIcon: SvgAssets.addChannels,
+      ),
+    );
+  }
+}
+
+class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+  const AddTeammatesTextAndIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, viewModel) {
+    return _TextAndIcon(
+      text: AddTeammates,
       unread: false,
       onTap: () => viewModel.navigateToCreateChannel(),
       icon: SvgIcon(
@@ -114,26 +133,22 @@ class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       if (isUnread) {
         return SvgIcon(
           svgIcon: SvgAssets.hashTag,
-          color: Colors.grey[800],
         );
       }
 
       return SvgIcon(
         svgIcon: SvgAssets.hashTag,
-        color: Colors.grey[600],
       );
     }
 
     if (isUnread) {
       return SvgIcon(
         svgIcon: SvgAssets.locked,
-        color: Colors.grey[800],
       );
     }
 
     return SvgIcon(
       svgIcon: SvgAssets.lockedOutline,
-      color: Colors.grey[600],
     );
   }
 
@@ -203,8 +218,8 @@ class _TextAndIcon extends StatelessWidget {
               style: unread
                   ? ZuriTextStyle.unreadText()
                   : ZuriTextStyle.mediumNormal(
-                      color: Colors.grey[600],
-                    ),
+                      // color: Colors.grey[600],
+                      ),
             )
           ],
         ),

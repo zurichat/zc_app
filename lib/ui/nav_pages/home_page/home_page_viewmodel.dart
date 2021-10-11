@@ -14,7 +14,7 @@ import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/notification_service.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:hng/ui/view/dm_chat_view/dm_jump_to_view.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
@@ -58,6 +58,7 @@ class HomePageViewModel extends StreamViewModel {
 
   String get orgName => userService.currentOrgName;
   String get orgId => userService.currentOrgId;
+  String get email => userService.userEmail;
 
   StreamSubscription? notificationSub;
 
@@ -142,11 +143,11 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.userSearchView);
   }
 
-    getDmAndChannelsList() async {
+  getDmAndChannelsList() async {
     homePageList = [];
     setBusy(true);
 
-    List? channelsList = await channelsApiService.getActiveDms();
+    List? channelsList = await channelsApiService.getActiveChannels();
 
     channelsList.forEach(
       (data) {
@@ -181,7 +182,11 @@ class HomePageViewModel extends StreamViewModel {
     String channelSockId =
         await channelsApiService.getChannelSocketId(channelId);
 
-    _centrifugeService.subscribe(channelSockId);
+    try {
+      await _centrifugeService.subscribe(channelSockId);
+    } catch (e) {
+      log.e(e.toString());
+    }
   }
 
   // listenToChannelsChange() {
@@ -248,7 +253,8 @@ class HomePageViewModel extends StreamViewModel {
   }
 
   void onJumpToScreen() {
-    navigationService.navigateTo(Routes.dmJumpToView);
+    navigation.navigateWithTransition(DmJumpToView(),
+        transition: NavigationTransition.DownToUp);
   }
 
   @override

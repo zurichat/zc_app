@@ -98,3 +98,50 @@ class LabelTextField extends StatelessWidget {
     );
   }
 }
+
+///This is the text field without border
+///
+///Auto focus is automatically set to false to override this
+///change set auto focus to true
+///
+///This is primarily used in the login screen
+class BorderLessTextField extends StatelessWidget {
+  final Function(String) onChanged;
+  final TextEditingController controller;
+  final String label;
+  final Color? labelColor;
+
+  const BorderLessTextField({
+    Key? key,
+    required this.onChanged,
+    required this.controller,
+    required this.label,
+    this.labelColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(
+          color: labelColor ?? const Color(0xffBEBEBE),
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+        ),
+        hintText: label,
+        hintStyle: const TextStyle(
+          color: Color(0xffBEBEBE),
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+        ),
+        border: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        errorBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+      ),
+      onChanged: onChanged,
+    );
+  }
+}

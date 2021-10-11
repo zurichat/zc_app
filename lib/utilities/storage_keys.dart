@@ -2,6 +2,7 @@ class StorageKeys {
   static const currentOrgId = 'current_organization_id';
   static const currentSessionToken = 'current_session_token';
   static const currentUserId = 'current_user_id';
+  static const currentMemberId = 'current_member_id';
   static const currentUserModel = 'current_user_model';
   static const currentUserEmail = 'current_user_email';
   static const otp = 'current_user_otp';
@@ -17,4 +18,9 @@ class StorageKeys {
   static const currentUserImageUrl = 'current_url';
   static const currentChannelId = 'current_channel_id';
   static const organizationMemberList = 'organization_member_list';
+  static const currentTheme = 'current_theme';
+  static const currentThemeValue = 'current_theme_value';
+  static const savedItem = 'saved_item';
+  static const allMembersinOrganization = 'all_members_in_organization';
+  static const idInOrganization = 'id_in_organization';
 }

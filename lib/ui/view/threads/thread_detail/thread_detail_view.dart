@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import '../../../../general_widgets/channel_icon.dart';
 import '../../../../models/user_post.dart';
@@ -10,23 +13,26 @@ import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';
 import '../../../shared/styles.dart';
 import '../../dm_user/icons/zap_icon.dart';
 import 'thread_detail_viewmodel.dart';
+import 'package:hng/app/app.logger.dart';
+import 'thread_detail_view.form.dart';
 
-class ThreadDetailView extends StatelessWidget {
-  const ThreadDetailView(this.userPost, {Key? key}) : super(key: key);
+@FormView(fields: [FormTextField(name: 'message')])
+class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
+  ThreadDetailView(this.userPost, {Key? key}) : super(key: key);
   final UserPost? userPost;
 
   @override
   Widget build(BuildContext context) {
-    // var _messageController = useTextEditingController();
+    final log = getLogger("ThreadDetailView");
     final _scrollController = ScrollController();
-    final _messageController = TextEditingController();
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
       onModelReady: (model) => model.initialise(userPost!.id!),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
             orgTitle: Text(
               Threads,
-              style: AppTextStyles.heading7,
+              style:
+                  AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
             ),
             leading: Icons.chevron_left,
             leadingPress: () => model.exitPage(),
@@ -81,11 +87,42 @@ class ThreadDetailView extends StatelessWidget {
                                         color: AppColors.greyishColor,
                                       )),
                                   IconButton(
-                                      onPressed: model.showThreadOptions,
+                                      onPressed: () => zuriChatBottomSheet(
+                                            context: context,
+                                            addToSavedItems: () {
+                                              model.saveItem(
+                                                  channelID:
+                                                      userPost!.channelId,
+                                                  channelName:
+                                                      userPost!.channelName,
+                                                  displayName:
+                                                      userPost!.displayName,
+                                                  message: userPost!.message,
+                                                  lastSeen: userPost!.lastSeen,
+                                                  messageID: userPost!.id,
+                                                  userID: userPost!.userId,
+                                                  userImage:
+                                                      userPost!.userImage);
+                                              log.i("Saved");
+                                              model.exitPage();
+                                              showSimpleNotification(
+                                                const Text(
+                                                    "Added successfully"),
+                                                position:
+                                                    NotificationPosition.top,
+                                                background:
+                                                    AppColors.appBarGreen,
+                                                trailing: const Icon(Icons
+                                                    .mark_chat_read_outlined),
+                                                duration:
+                                                    const Duration(seconds: 3),
+                                              );
+                                            },
+                                          ),
                                       icon: const Icon(Icons.more_vert_rounded,
                                           color: AppColors.greyishColor)),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -134,7 +171,7 @@ class ThreadDetailView extends StatelessWidget {
                                         }
                                       },
                                       child: TextField(
-                                        controller: _messageController,
+                                        controller: messageController,
                                         expands: true,
                                         maxLines: null,
                                         textAlignVertical:
@@ -214,19 +251,21 @@ class ThreadDetailView extends StatelessWidget {
                                 ),
                                 IconButton(
                                   onPressed: () async {
-                                    if (_messageController.text
+                                    if (messageController.text
                                         .toString()
                                         .isNotEmpty) {
-                                      final message = _messageController.text;
-                                      _messageController.text = "";
+                                      final message = messageController.text;
+                                      messageController.text = "";
                                       FocusScope.of(context).requestFocus(
                                         FocusNode(),
                                       );
 
                                       await model.sendThreadMessage(
                                           message, userPost!.channelId);
-                                      _scrollController.jumpTo(_scrollController
-                                          .position.maxScrollExtent);
+                                      _scrollController.jumpTo(
+                                        _scrollController
+                                            .position.maxScrollExtent,
+                                      );
                                     }
                                   },
                                   icon: const Icon(

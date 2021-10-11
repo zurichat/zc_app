@@ -11,6 +11,7 @@ import 'package:stacked/stacked.dart';
 
 import '../models/channel_members.dart';
 import '../models/channel_model.dart';
+import '../models/user_model.dart';
 import '../models/user_post.dart';
 import '../ui/nav_pages/dm_page/dm_search_find_page.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
@@ -60,9 +61,11 @@ import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
 import '../ui/view/start_dm/start_dm_view.dart';
+import '../ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';
 import '../ui/view/threads/all_threads/threads_view.dart';
 import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 import '../ui/view/user_search/user_search_view.dart';
+import '../ui/view/webview_page/webview_page.dart';
 import '../utilities/enums.dart';
 
 class Routes {
@@ -118,6 +121,8 @@ class Routes {
   static const String channelInfoView = '/channel-info-view';
   static const String pluginPage = '/plugin-page';
   static const String directMessage = '/direct-message';
+  static const String termsAndConditionsView = '/terms-and-conditions-view';
+  static const String webViewPage = '/web-view-page';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -170,6 +175,8 @@ class Routes {
     channelInfoView,
     pluginPage,
     directMessage,
+    termsAndConditionsView,
+    webViewPage,
   };
 }
 
@@ -232,6 +239,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.pluginView, page: PluginView),
     RouteDef(Routes.editPluginView, page: EditPluginView),
     RouteDef(Routes.directMessage, page: DirectMessage),
+    RouteDef(Routes.termsAndConditionsView, page: TermsAndConditionsView),
+    RouteDef(Routes.webViewPage, page: WebViewPage),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -413,8 +422,12 @@ class StackedRouter extends RouterBase {
       );
     },
     UseDifferentEmailView: (data) {
+      var args = data.getArgs<UseDifferentEmailViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const UseDifferentEmailView(),
+        builder: (context) => UseDifferentEmailView(
+          key: args.key,
+          method: args.method,
+        ),
         settings: data,
       );
     },
@@ -479,8 +492,12 @@ class StackedRouter extends RouterBase {
       );
     },
     EditProfileView: (data) {
+      var args = data.getArgs<EditProfileViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const EditProfileView(),
+        builder: (context) => EditProfileView(
+          key: args.key,
+          user: args.user,
+        ),
         settings: data,
       );
     },
@@ -579,8 +596,12 @@ class StackedRouter extends RouterBase {
       );
     },
     OrganizationUrlView: (data) {
+      var args = data.getArgs<OrganizationUrlViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const OrganizationUrlView(),
+        builder: (context) => OrganizationUrlView(
+          key: args.key,
+          email: args.email,
+        ),
         settings: data,
       );
     },
@@ -623,6 +644,23 @@ class StackedRouter extends RouterBase {
         builder: (context) => DirectMessage(
           key: args.key,
           username: args.username,
+        ),
+        settings: data,
+      );
+    },
+    TermsAndConditionsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const TermsAndConditionsView(),
+        settings: data,
+      );
+    },
+    WebViewPage: (data) {
+      var args = data.getArgs<WebViewPageArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => WebViewPage(
+          name: args.name,
+          url: args.url,
+          key: args.key,
         ),
         settings: data,
       );
@@ -716,6 +754,20 @@ class AddPluginViewArguments {
   AddPluginViewArguments({this.key});
 }
 
+/// UseDifferentEmailView arguments holder class
+class UseDifferentEmailViewArguments {
+  final Key? key;
+  final OrganizationSwitchMethod method;
+  UseDifferentEmailViewArguments({this.key, required this.method});
+}
+
+/// EditProfileView arguments holder class
+class EditProfileViewArguments {
+  final Key? key;
+  final UserModel user;
+  EditProfileViewArguments({this.key, required this.user});
+}
+
 /// SelectEmail arguments holder class
 class SelectEmailArguments {
   final Key? key;
@@ -751,6 +803,13 @@ class StartDmViewArguments {
   StartDmViewArguments({this.key});
 }
 
+/// OrganizationUrlView arguments holder class
+class OrganizationUrlViewArguments {
+  final Key? key;
+  final String email;
+  OrganizationUrlViewArguments({this.key, required this.email});
+}
+
 /// ChannelPageView arguments holder class
 class ChannelPageViewArguments {
   final Key? key;
@@ -784,4 +843,12 @@ class DirectMessageArguments {
   final Key? key;
   final String? username;
   DirectMessageArguments({this.key, this.username});
+}
+
+/// WebViewPage arguments holder class
+class WebViewPageArguments {
+  final String name;
+  final String url;
+  final Key? key;
+  WebViewPageArguments({required this.name, required this.url, this.key});
 }
