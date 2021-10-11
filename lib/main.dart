@@ -44,8 +44,8 @@ class MyApp extends StatelessWidget {
           initialRoute: Routes.splashview,
           localizationsDelegates: localizationsDelegates,
           supportedLocales: const [
-            Locale('nl', 'NL'),
             Locale('en', 'US'),
+            Locale('nl', 'NL'),
             Locale('es', 'ES'),
             Locale('fr', 'FR'),
             Locale('it', 'IT'),
@@ -61,12 +61,11 @@ class MyApp extends StatelessWidget {
               if (supportedLocale.languageCode == locale.languageCode &&
                   supportedLocale.countryCode == locale.countryCode) {
                 return supportedLocale;
-      
               }
             }
             Intl.defaultLocale = supportedLocales.first.languageCode;
             return supportedLocales.first;
-        },
+          },
         ),
       ),
     );

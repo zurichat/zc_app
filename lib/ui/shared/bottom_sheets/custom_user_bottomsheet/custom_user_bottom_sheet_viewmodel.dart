@@ -14,7 +14,7 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
   final _userService = locator<UserService>();
   final _zuriApi = ZuriApi(coreBaseUrl);
 
-  UserModel? _userModel;
+  //UserModel? _userModel;
 
   void navigateToSetStatus() =>
       _navigationService.navigateTo(Routes.setStatusView);
@@ -29,14 +29,15 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
 
   @override
   Future<void> futureToRun() async {
-    try {
-      final response = await _zuriApi
-          .get('organizations/$orgId/members/$userID', token: token);
-      _userModel = UserModel.fromJson(response!.data['data']);
-      _userService.setUserDetails(_userModel!);
-    } catch (e) {
-      _log.e(e.toString());
-    }
+    // try {
+    //   final response = await _zuriApi
+    //       .get('organizations/$orgId/members/$userID', token: token);
+    //   _userModel = UserModel.fromJson(response!.data['data']);
+    //    _userService.setUserDetails(_userModel!);
+    // } catch (e) {
+    //   _log.e(e.toString());
+    // }
+    Future.delayed(const Duration(seconds: 2));
   }
 
   String? get userID => _userService.memberId;
