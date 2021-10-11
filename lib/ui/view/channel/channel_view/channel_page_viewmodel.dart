@@ -124,7 +124,6 @@ class ChannelPageViewModel extends FormViewModel {
   getChannelCreator(String channelId)async{
    var response= await _channelsApiService.getChanelCreator(channelId);
    channelCreator=response['owner'];
-   print("owner is ${response['owner']}");
    notifyListeners();
   }
 
