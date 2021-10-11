@@ -25,4 +25,7 @@ class PinnedMessage {
         content: json['content'],
         id: json['_id'],
       );
+
+  @override
+  String toString() => content!;
 }

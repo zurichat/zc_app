@@ -89,7 +89,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                   IconButton(
                                       onPressed: () => zuriChatBottomSheet(
                                             context: context,
-                                            addToSavedItems: () {
+                                            onAddToSavedItems: () {
                                               model.saveItem(
                                                   channelID:
                                                       userPost!.channelId,
@@ -98,7 +98,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                                   displayName:
                                                       userPost!.displayName,
                                                   message: userPost!.message,
-                                                  lastSeen: userPost!.lastSeen,
+                                                  lastSeen: userPost!.moment,
                                                   messageID: userPost!.id,
                                                   userID: userPost!.userId,
                                                   userImage:

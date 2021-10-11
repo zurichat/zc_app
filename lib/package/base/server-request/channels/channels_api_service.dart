@@ -121,8 +121,9 @@ class ChannelsApiService {
           body: {"pinned": true},
           token: token);
 
-      pinnedMessages =
-          [...res.data["result"].map((json) => PinnedMessage.fromJson(json))];
+      pinnedMessages = [
+        ...res.data["result"].map((json) => PinnedMessage.fromJson(json))
+      ];
 
       log.i(pinnedMessages);
     } on Exception catch (e) {
@@ -131,6 +132,28 @@ class ChannelsApiService {
     }
 
     return pinnedMessages;
+  }
+
+  Future<bool> changeChannelMessagePinnedState(
+      String channelId, String messageId, String userId, bool pinned) async {
+    final orgId = _userService.currentOrgId;
+    bool successful;
+
+    try {
+      final res = await _api.put(
+          'v1/$orgId/messages/$messageId/?user_id=$userId&channel_id=$channelId',
+          body: {"pinned": pinned},
+          token: token);
+
+      successful = res.data["pinned"] == pinned;
+
+      log.i(successful);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return false;
+    }
+
+    return successful;
   }
 
   Future sendChannelMessages(

@@ -48,8 +48,8 @@ class PinnedMessagesView extends StatelessWidget {
                       physics: const BouncingScrollPhysics(),
                       padding: const EdgeInsets.all(20.0),
                       itemCount: model.pinnedMessages.length,
-                      separatorBuilder: (context, index) =>
-                          const Divider(height: 24.0, indent: 56.0, thickness: 1.28),
+                      separatorBuilder: (context, index) => const Divider(
+                          height: 24.0, indent: 56.0, thickness: 1.28),
                       itemBuilder: (context, index) => ListTile(
                         leading:
                             const ImageIcon(AssetImage(PinIcon), size: 24.0),
