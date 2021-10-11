@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/ui/shared/dialogs/delete_draft_alert_dialog.dart';
 import 'package:hng/ui/shared/dialogs/sign_out_dialog.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -25,7 +26,10 @@ void setupDialogUi() {
         Function(DialogResponse) completer) =>
         SelectThemeDialog(request: request, completer: completer),
     DialogType.signOut: (context, request, completer) =>
-        SignOutDialog(request: request, completer: completer)
+        SignOutDialog(request: request, completer: completer),
+    DialogType.deleteDraft: (BuildContext context, DialogRequest request,
+        Function(DialogResponse) completer) =>
+        ShowAlertDialog(request: request, completer: completer)
   };
 
   dialogService.registerCustomDialogBuilders(builders);
