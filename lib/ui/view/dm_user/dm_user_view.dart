@@ -33,7 +33,8 @@ class DmUserView extends StatelessWidget {
               subtitle: ViewDetails,
               actions: [
                 IconButton(
-                  icon: const Icon(Icons.info_outline),
+                  icon: const Icon(Icons.info_outline,
+                      color: AppColors.greyColor),
                   onPressed: () {},
                 ),
               ],
@@ -132,58 +133,4 @@ class DmUserView extends StatelessWidget {
       },
     );
   }
-
-  // Widget _onlineIndicator(int color) {
-  //   return Icon(
-  //     Icons.circle,
-  //     color: Color(color),
-  //     size: 10,
-  //   );
-  // }
-
-  // Widget _groupSeparator(String value) {
-  //   return Container(
-  //     margin: EdgeInsets.only(top: 16.0),
-  //     child: Row(
-  //       children: [
-  //         Expanded(
-  //             child: Divider(
-  //               color: Color(0xFF7B8794),
-  //             )),
-  //         Container(
-  //           child: Text(value,
-  //               style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
-  //           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-  //           decoration: BoxDecoration(
-  //               border: Border.all(color: Color(0xFF7B8794), width: 0.5),
-  //               borderRadius: BorderRadius.all(Radius.circular(10))),
-  //         ),
-  //         Expanded(
-  //             child: Divider(
-  //               color: Color(0xFF7B8794),
-  //             )),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Widget _startMessage(String username) {
-  //   return RichText(
-  //     text: TextSpan(
-  //         text: 'This is the very beginning of your '
-  //             'direct message \history with ',
-  //         style: TextStyle(
-  //             color: Color(0xFF808080),
-  //             fontSize: 14.0,
-  //             fontWeight: FontWeight.w400),
-  //         children: [
-  //           TextSpan(
-  //               text: '@$username. ',
-  //               style: TextStyle(color: Color(0xFF8CDEC3))),
-  //           TextSpan(
-  //               text: 'Only the two of you are in \nthis conversation, '
-  //                   'and no one else can join it.')
-  //         ]),
-  //   );
-  // }
 }

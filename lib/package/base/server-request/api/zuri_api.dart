@@ -49,7 +49,7 @@ class ZuriApi implements Api {
           queryParameters: queryParameters,
           options: Options(headers: {'Authorization': 'Bearer $token'}));
 
-      //log.i('Response from $string \n${response.data}');
+      log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
       snackbar.showCustomSnackBar(

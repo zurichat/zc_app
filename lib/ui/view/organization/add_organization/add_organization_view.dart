@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 
@@ -23,15 +24,15 @@ class AddOrganizationView extends StatelessWidget {
       viewModelBuilder: () => AddOrganizationViewModel(),
       builder: (context, model, child) {
         return Scaffold(
-          appBar: AppBar(
-            elevation: 8,
-            shadowColor: Colors.black38,
-            leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios), onPressed: model.back),
-            title: Text(
+          appBar: ZuriAppBar(
+            leading: Icons.arrow_back_ios,
+            orgTitle: Text(
               AddOrganisations,
-              style: AppTextStyles.heading4,
+              style:
+                  AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
             ),
+            whiteBackground: true,
+            leadingPress: model.back,
           ),
           body: GestureDetector(
             onTap: () => FocusScope.of(context).unfocus(),
