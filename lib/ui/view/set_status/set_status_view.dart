@@ -16,10 +16,11 @@ class SetStatusView extends StatelessWidget {
         builder: (context, model, child) => Scaffold(
               appBar: ZuriAppBar(
                   leading: Icons.close_rounded,
-                  leadingPress: () => model.exitPage,
+                  leadingPress: () => model.exitPage(),
                   orgTitle: Text(
                     'Set a status',
-                    style: AppTextStyles.heading7,
+                    style: AppTextStyles.heading4
+                        .copyWith(color: AppColors.blackColor),
                   ),
                   actions: [
                     TextButton(

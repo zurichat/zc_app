@@ -60,8 +60,10 @@ class DmUserView extends StatelessWidget with $DmUserView {
               ),
               actions: [
                 IconButton(
-                  icon: const Icon(Icons.info_outline),
-                  color: AppColors.darkGreyColor,
+
+                  icon: const Icon(Icons.info_outline,
+                      color: AppColors.greyColor),
+
                   onPressed: () {},
                 )
               ],
