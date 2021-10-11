@@ -24,7 +24,7 @@ class ChannelsApiService {
   //TODo - fix
 
   onChange() {}
-  Future<List> getActiveDms() async {
+  Future<List> getActiveChannels() async {
     final orgId = _userService.currentOrgId;
 
     var joinedChannels = [];
@@ -155,9 +155,11 @@ class ChannelsApiService {
     required String name,
     required String description,
     required bool private,
+    String? email,
+    String? id,
   }) async {
-    final owner = _userService.userEmail;
-    final orgId = _userService.currentOrgId;
+    final owner = email ?? _userService.userEmail;
+    final orgId = id ?? _userService.currentOrgId;
 
     try {
       final res = await _api.post(

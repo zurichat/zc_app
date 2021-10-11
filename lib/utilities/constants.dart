@@ -22,13 +22,16 @@ const youIcon = 'assets/icons/user.png';
 const lockIconShaded = 'assets/icons/lock_icon_shaded.png';
 const lockIcon = 'assets/icons/lock_icon.png';
 
-const appBarLogo = AssetImage('assets/logo/zuri_chat_logo.png');
+const appBarLogo = AssetImage('assets/logo/zuri_main_logo.png');
 const zuriWordLogo = AssetImage('assets/logo/Zuri_word_logo.png');
 const dummyUserImage = 'assets/background/bga.png';
 
 const double zSideMargin = 16;
 
 const channelsBaseUrl = 'https://channels.zuri.chat/api/';
-const dmsBaseUrl = 'https://dm.zuri.chat/';
+const dmsBaseUrl = 'https://dm.zuri.chat/api/';
 const coreBaseUrl = 'https://api.zuri.chat/';
 const websocketUrl = 'wss://realtime.zuri.chat/connection/websocket';
+
+const String LOCALE_VAL = 'localeVal';
+const int DEFAULT_LOCALE_VAL = 0; 

@@ -46,7 +46,6 @@ class SignUpView extends StatelessWidget with $SignUpView {
             color: AppColors.zuriPrimaryColor,
           ),
           child: Scaffold(
-            backgroundColor: AppColors.whiteColor,
             body: Center(
               child: SingleChildScrollView(
                 child: Padding(
@@ -67,7 +66,6 @@ class SignUpView extends StatelessWidget with $SignUpView {
                         child: CustomText(
                           text: SignUp,
                           fontSize: 20.0,
-                          color: AppColors.zuriTextBodyColor,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -77,13 +75,38 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           text: PleaseSignUp,
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          color: AppColors.zuriDarkGrey,
                         ),
                       ),
                       UIHelper.customVerticalSpace(48),
                       Text(
-                        EmailAddress,
+                        FirstName,
                         style: AppTextStyles.body1Bold,
+                      ),
+                      UIHelper.customVerticalSpace(10),
+                      CustomTextField(
+                        keyboardType: TextInputType.name,
+                        inputAction: TextInputAction.next,
+                        autoCorrect: false,
+                        obscureText: false,
+                        controller: firstNameController,
+                        hintText: FirstNameHintText,
+                      ),
+                      UIHelper.verticalSpaceLarge, Text(
+                        LastName,
+                        style: AppTextStyles.body1Bold,
+                      ),
+                      UIHelper.customVerticalSpace(10),
+                      CustomTextField(
+                        keyboardType: TextInputType.name,
+                        inputAction: TextInputAction.next,
+                        autoCorrect: false,
+                        obscureText: false,
+                        controller: lastNameController,
+                        hintText: LastNameHintText,
+                      ),
+                      UIHelper.verticalSpaceLarge, Text(
+                        EmailAddress,
+                        style: AppTextStyles.body1,
                       ),
                       UIHelper.customVerticalSpace(10),
                       CustomTextField(
@@ -97,7 +120,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       UIHelper.verticalSpaceLarge,
                       Text(
                         Password,
-                        style: AppTextStyles.body1Bold,
+                        style: AppTextStyles.body1,
                       ),
                       UIHelper.customVerticalSpace(10),
                       CustomTextField(
@@ -111,7 +134,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       UIHelper.verticalSpaceLarge,
                       Text(
                         ConfirmPassword,
-                        style: AppTextStyles.body1Bold,
+                        style: AppTextStyles.body1,
                       ),
                       UIHelper.customVerticalSpace(10),
                       CustomTextField(
@@ -129,6 +152,8 @@ class SignUpView extends StatelessWidget with $SignUpView {
                             value: model.checkBoxValue,
                             onChanged: (newValue) =>
                                 model.updateValue(newValue),
+                            fillColor: MaterialStateProperty.all(
+                                AppColors.zuriPrimaryColor),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,7 +210,6 @@ class SignUpView extends StatelessWidget with $SignUpView {
                         child: CustomText(
                           fontSize: 16,
                           text: Or,
-                          color: AppColors.zuriTextColorHeader,
                         ),
                       ),
                       UIHelper.verticalSpaceMedium,
@@ -194,7 +218,9 @@ class SignUpView extends StatelessWidget with $SignUpView {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(
-                            color: AppColors.zuriTextColorHeader,
+                            color:
+                                Theme.of(context).textTheme.bodyText1!.color ??
+                                    AppColors.zuriPrimaryColor,
                             width: 1,
                           ),
                         ),
@@ -211,7 +237,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                               UIHelper.customHorizontalSpace(12.0),
                               Text(
                                 SignUpGoogle,
-                                style: AppTextStyles.body1Bold,
+                                style: AppTextStyles.body1,
                               ),
                             ],
                           ),

@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/text_styles.dart';
 
 // ignore: must_be_immutable
 class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -47,13 +46,13 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   }) : super(key: key);
 
   @override
-  Size get preferredSize => const Size.fromHeight(65);
+  Size get preferredSize => Size.fromHeight(isSearchBar ? 70 : 60);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      elevation: 2,
+      elevation: 1,
       leadingWidth: leadingWidth ? 10 : null,
       leading: InkWell(
           child: Icon(
@@ -62,15 +61,16 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           onTap: leadingPress),
       title: isSearchBar
-          ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          ? Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              height: 50,
+              alignment: Alignment.center,
               child: TextField(
                 autofocus: false,
                 controller: searchController,
                 keyboardType: TextInputType.text,
                 onChanged: onChanged,
                 style: AppTextStyles.buttonText,
-                maxLines: 1,
                 onEditingComplete: onEditingComplete,
                 decoration: InputDecoration(
                     hintStyle: AppTextStyles.buttonText
@@ -101,7 +101,9 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(title!, style: AppTextStyles.heading7),
+                        Text(title!,
+                            style: AppTextStyles.heading7
+                                .copyWith(color: AppColors.blackColor)),
                         Text(
                           subtitle!,
                           style: AppTextStyles.messageText
@@ -120,9 +122,8 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                         : const SizedBox()
                   ],
                 ),
-      titleTextStyle: ZuriTextStyle.organizationNameText(),
       centerTitle: false,
-      actions: actions,
+      actions: isSearchBar ? null : actions,
       backgroundColor:
           !whiteBackground ? AppColors.zuriPrimaryColor : AppColors.whiteColor,
     );

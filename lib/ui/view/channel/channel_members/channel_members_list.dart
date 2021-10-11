@@ -3,12 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/ui/nav_pages/plugin_page/widgets/custom_plugin_list_tile.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/plugins/widgets/custom_plugin_list_tile.dart';
 import '../../../shared/colors.dart';
-import '../../plugins/widgets/custom_plugin_list_tile.dart';
 import 'package:stacked/stacked.dart';
 import '../shared_widgets.dart';
 import 'channel_members_list_model.dart';
@@ -28,6 +27,7 @@ class ChannelMembersList extends StatelessWidget {
         return Scaffold(
           appBar: ZuriAppBar(
             leading: Icons.clear,
+            whiteBackground: true,
             leadingPress: () => viewModel.goBack(),
             orgTitle: Text(
               channelDetail.name,
