@@ -47,9 +47,7 @@ class ZuriApi implements Api {
     try {
       final response = await dio.get(string.toString(),
           queryParameters: queryParameters,
-          options: token == null
-              ? null
-              : Options(headers: {'Authorization': 'Bearer $token'}));
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
 
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
