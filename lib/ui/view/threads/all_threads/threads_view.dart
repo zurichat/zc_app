@@ -18,7 +18,7 @@ class ThreadsView extends StatelessWidget {
         appBar: ZuriAppBar(
             orgTitle: Text(
               Threads,
-              style: AppTextStyles.heading7,
+              style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
             ),
             leading: Icons.chevron_left,
             leadingPress: () => model.exitPage(),

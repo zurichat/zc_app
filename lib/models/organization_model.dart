@@ -6,6 +6,7 @@ class OrganizationModel {
   final String? logoUrl;
   final bool? isOwner;
   final int? noOfMembers;
+  final String? userIdInOrg;
 
   OrganizationModel({
     required this.id,
@@ -15,6 +16,7 @@ class OrganizationModel {
     required this.logoUrl,
     required this.isOwner,
     required this.noOfMembers,
+    required this.userIdInOrg,
   });
 
   factory OrganizationModel.fromJson(Map<String, dynamic> json) {
@@ -25,7 +27,8 @@ class OrganizationModel {
         time: json['created_at'],
         organizationUrl: json['workspace_url'],
         noOfMembers: json['no_of_members'],
-        isOwner: json['isOwner']);
+        isOwner: json['isOwner'],
+        userIdInOrg: json['member_id'],);
   }
 
   String get initials {

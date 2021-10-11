@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
@@ -15,9 +16,13 @@ class AdvancedView extends StatelessWidget {
     return ViewModelBuilder<AdvancedViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
+          leading: Icons.close_rounded,
+          leadingPress: () => model.exitPage(),
           orgTitle: Text(
             Advanced,
-            style: AppTextStyles.heading7,
+            style: AppTextStyles.heading4.copyWith(
+              color: AppColors.blackColor,
+            ),
           ),
           whiteBackground: true,
         ),
@@ -65,6 +70,7 @@ class AdvancedView extends StatelessWidget {
                   style: TextStyle(color: Colors.red),
                 ),
               ),
+              const SizedBox(height: 10),
               const MenuItemTile(
                 text: Text(
                   ForceStop,
