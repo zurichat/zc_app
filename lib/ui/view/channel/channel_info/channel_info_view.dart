@@ -55,7 +55,8 @@ class ChannelInfoView extends StatelessWidget {
                 whiteBackground: true,
                 orgTitle: Text(
                   ChannelInfo,
-                  style: AppTextStyles.heading7,
+                  style: AppTextStyles.heading4
+                      .copyWith(color: AppColors.blackColor),
                 ),
               ),
               body: SafeArea(
@@ -66,9 +67,9 @@ class ChannelInfoView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       FirstSection(model),
-                      SizedBox(height: 16.h),
+                      SizedBox(height: 12.h),
                       const SecondSection(),
-                      SizedBox(height: 8.h),
+                      SizedBox(height: 14.h),
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
@@ -100,6 +101,7 @@ class ChannelInfoView extends StatelessWidget {
                       ),
                       SizedBox(height: 8.h),
                       SixthSection(channelDetail),
+                      SizedBox(height: 12.h),
                     ],
                   ),
                 ),

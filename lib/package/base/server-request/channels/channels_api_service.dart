@@ -25,7 +25,7 @@ class ChannelsApiService {
   //TODo - fix
 
   onChange() {}
-  Future<List> getActiveDms() async {
+  Future<List> getActiveChannels() async {
     final orgId = _userService.currentOrgId;
 
     var joinedChannels = [];
