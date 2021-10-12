@@ -42,8 +42,8 @@ class SignUpViewModel extends FormViewModel {
   void navigateToHome() => navigator.navigateTo(Routes.navBarView);
   void navigateToSignIn() => navigation.navigateTo(Routes.loginView);
   void navigateToOTPView() => navigation.navigateTo(Routes.oTPView);
-  // void navigateToOrganizationView(GoogleSignInAccount user) =>
-  //     navigation.navigateTo(Routes.organizationView);
+  void navigateToOrgView(GoogleSignInAccount user) =>
+      navigation.navigateToView(OrganizationView(user: user));
   void navigateToTermsAndConditions() =>
       navigator.navigateTo(Routes.termsAndConditionsView);
 
@@ -85,17 +85,35 @@ class SignUpViewModel extends FormViewModel {
     }
   }
 
-  Future signIn(context) async {
+  Future signUpGoogle(context) async {
     final user = await GoogleSignInApi.login();
 
     if (user == null) {
+      loading(true);
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.failure,
         message: FailedGoogleSignIn,
       );
     } else {
-      navigation.navigateToView(OrganizationView(user: user));
+      final signUpGoogleData = {
+        'email': user.email,
+        'photo': user.photoUrl,
+        'display_name': user.displayName,
+      };
+
+      final response = await zuriApi.post(signUpEndpoint,
+          body: signUpGoogleData, token: token);
+      loading(false);
+
+      if (response?.statusCode == 200) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.success,
+          message: successfulSignUp,
+        );
+        navigation.navigateToView(OrganizationView(user: user));
+      }
     }
   }
 }
