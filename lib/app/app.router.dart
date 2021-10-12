@@ -48,6 +48,11 @@ import '../ui/view/notifications/notifications_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/organization/add_organization/add_organization_view.dart';
 import '../ui/view/organization/create_organization/create_organization.dart';
+import '../ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
+import '../ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
+import '../ui/view/organization/invite_to_organization/import_contact.dart';
+import '../ui/view/organization/invite_to_organization/invitation_sent.dart';
+import '../ui/view/organization/invite_to_organization/invite_via_email.dart';
 import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
 import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
@@ -125,6 +130,11 @@ class Routes {
   static const String termsAndConditionsView = '/terms-and-conditions-view';
   static const String webViewPage = '/web-view-page';
   static const String pluginPageIntro = '/plugin-page-intro';
+  static const String inviteViaEmail = '/invite-via-email';
+  static const String inviteViaEmailAdmin = '/invite-via-email-admin';
+  static const String importContacts = '/import-contacts';
+  static const String createInviteLink = '/create-invite-link';
+  static const String invitationSent = '/invitation-sent';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -180,6 +190,11 @@ class Routes {
     termsAndConditionsView,
     webViewPage,
     pluginPageIntro,
+    inviteViaEmail,
+    inviteViaEmailAdmin,
+    importContacts,
+    createInviteLink,
+    invitationSent,
   };
 }
 
@@ -242,6 +257,11 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.termsAndConditionsView, page: TermsAndConditionsView),
     RouteDef(Routes.webViewPage, page: WebViewPage),
     RouteDef(Routes.pluginPageIntro, page: PluginPageIntro),
+    RouteDef(Routes.inviteViaEmail, page: InviteViaEmail),
+    RouteDef(Routes.inviteViaEmailAdmin, page: InviteViaEmailAdmin),
+    RouteDef(Routes.importContacts, page: ImportContacts),
+    RouteDef(Routes.createInviteLink, page: CreateInviteLink),
+    RouteDef(Routes.invitationSent, page: InvitationSent),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -669,6 +689,36 @@ class StackedRouter extends RouterBase {
     PluginPageIntro: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const PluginPageIntro(),
+        settings: data,
+      );
+    },
+    InviteViaEmail: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const InviteViaEmail(),
+        settings: data,
+      );
+    },
+    InviteViaEmailAdmin: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const InviteViaEmailAdmin(),
+        settings: data,
+      );
+    },
+    ImportContacts: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ImportContacts(),
+        settings: data,
+      );
+    },
+    CreateInviteLink: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const CreateInviteLink(),
+        settings: data,
+      );
+    },
+    InvitationSent: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const InvitationSent(),
         settings: data,
       );
     },
