@@ -12,6 +12,8 @@ import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
+import 'widgets/home_list_items.dart';
+
 class HomePage extends StatelessWidget {
   final Widget? organizationLogo;
   const HomePage({Key? key, this.organizationLogo}) : super(key: key);
