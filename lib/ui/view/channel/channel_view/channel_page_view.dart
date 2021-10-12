@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/no_connection_widget.dart';
 import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
+import 'package:hng/ui/view/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../../shared/shared.dart';
@@ -89,6 +89,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
           ),
           body: ExpandableTextFieldScreen(
+            channelID: channelId.toString(),
             textController: channelMessagesController,
             hintText: AddReply,
             sendMessage: model.sendMessage,
