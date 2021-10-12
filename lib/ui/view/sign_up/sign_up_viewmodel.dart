@@ -1,6 +1,6 @@
-
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/google_signin_api.dart';
 import 'package:hng/ui/view/organization/organization_view/organization_view.dart';
 import 'package:hng/utilities/constants.dart';
@@ -17,6 +17,7 @@ class SignUpViewModel extends FormViewModel {
   final navigation = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final navigator = locator<NavigationService>();
+  final _connectivityService = locator<ConnectivityService>();
   final snackbar = locator<SnackbarService>();
   final zuriApi = ZuriApi(coreBaseUrl);
 
@@ -85,6 +86,17 @@ class SignUpViewModel extends FormViewModel {
   Future signUpGoogle(context) async {
     final user = await GoogleSignInApi.login();
 
+    var connected = await _connectivityService.checkConnection();
+    if (!connected) {
+      snackbar.showCustomSnackBar(
+        message: noInternet,
+        variant: SnackbarType.failure,
+        duration: const Duration(milliseconds: 1500),
+      );
+      return;
+    }
+    loading(true);
+
     if (user == null) {
       loading(true);
       snackbar.showCustomSnackBar(
@@ -104,11 +116,27 @@ class SignUpViewModel extends FormViewModel {
       loading(false);
 
       if (response?.statusCode == 200) {
-        snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.success,
-          message: successfulSignUp,
+        storage.setString(
+          StorageKeys.currentSessionToken,
+          response?.data['data']['user']['token'],
         );
+        storage.setString(
+          StorageKeys.currentUserId,
+          response?.data['data']['user']['id'],
+        );
+        storage.setString(
+          StorageKeys.currentUserEmail,
+          response?.data['data']['user']['email'],
+        );
+        storage.clearData(StorageKeys.currentOrgId);
+
+        snackbar.showCustomSnackBar(
+          duration: const Duration(milliseconds: 1500),
+          variant: SnackbarType.success,
+          message: ''' ${response?.data['message']} for'''
+              ''' ${response?.data['data']['user']['email']}''',
+        );
+
         navigation.navigateToView(OrganizationView(user: user));
       }
     }

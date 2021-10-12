@@ -11,8 +11,8 @@ class OrganizationView extends StatelessWidget {
   final GoogleSignInAccount user;
   OrganizationView({Key? key, required this.user}) : super(key: key);
 
-  bool isLoading = false;
   String? photoUrl, displayName;
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<OrganizationViewModel>.reactive(
@@ -20,11 +20,7 @@ class OrganizationView extends StatelessWidget {
       disposeViewModel: false,
       builder: (context, viewModel, child) {
         return Scaffold(
-          body: isLoading
-              ? const CircularProgressIndicator(
-                  backgroundColor: AppColors.zuriPrimaryColor,
-                )
-              : SafeArea(
+          body: SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
