@@ -356,15 +356,6 @@ class MyTextField extends StatelessWidget {
   final bool isVisible;
   final void Function() toggleExpanded;
 
-  // Handles the key events from the RawKeyboardListener and update the
-// _message.
-  void _handleKeyEvent(RawKeyEvent event) {
-    if (event.logicalKey == LogicalKeyboardKey.space ||
-        event.logicalKey == LogicalKeyboardKey.enter) {
-      toggleMembersList(false);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     int startIndexOfTag = 0;
