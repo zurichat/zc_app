@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
@@ -31,11 +32,13 @@ class DmPage extends StatelessWidget {
           ),
           body: model.isBusy
               ? const Center(
-                  child: CircularProgressIndicator.adaptive(),
+                  child: CircularProgressIndicator(
+                      color: AppColors.zuriPrimaryColor),
                 )
               : !model.data!
-                  ? const Center(
-                      child: Text("No Messages Yet"),
+                  ? Center(
+                      child: Text("Temporarily Unavailable",
+                          style: AppTextStyles.heading6),
                     )
                   : SingleChildScrollView(
                       child: Padding(
