@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/menu_item_tile.dart';
@@ -12,9 +15,13 @@ class LanguageAndRegionModelView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<LanguageAndRegionModelViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          title: const Text(LangAndRegion),
-          elevation: 0,
+        appBar: ZuriAppBar(
+          leading: Icons.close_rounded,
+          whiteBackground: true,
+          leadingPress: () => model.goBack(),
+          orgTitle: Text('Language and Region',
+              style:
+                  AppTextStyles.heading4.copyWith(color: AppColors.blackColor)),
         ),
         body: Column(
           children: [

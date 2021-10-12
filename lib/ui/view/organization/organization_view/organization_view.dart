@@ -22,9 +22,10 @@ class OrganizationView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(Organizations,
-                      style: AppTextStyles.heading6
-                          .copyWith(color: AppColors.blackColor)),
+                  Text(
+                    Organizations,
+                    style: AppTextStyles.heading6,
+                  ),
                   Expanded(
                     child: Visibility(
                       visible: !viewModel.isBusy,

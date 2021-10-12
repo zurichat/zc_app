@@ -36,7 +36,6 @@ class LoginView extends StatelessWidget with $LoginView {
         ),
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppColors.whiteColor,
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 0),
