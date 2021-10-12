@@ -65,9 +65,14 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
             child: MaterialButton(
               //TODO navigate to details page and focus input
               onPressed: () => viewModel.navigateToThread(userPost),
-              shape: const RoundedRectangleBorder(
-                side: BorderSide(width: 1),
-                borderRadius: BorderRadius.all(
+
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  width: 1,
+                  color: Theme.of(context).textTheme.bodyText1!.color ??
+                      AppColors.zuriPrimaryColor,
+                ),
+                borderRadius: const BorderRadius.all(
                   Radius.circular(5),
                 ),
               ),
