@@ -18,8 +18,14 @@ class WebViewPage extends StatelessWidget {
             appBar: ZuriAppBar(
                 leading: Icons.arrow_back_ios,
                 leadingPress: () => model.goBack(),
-                orgTitle: Text(name, style: AppTextStyles.heading4),
+                orgTitle: Text(
+                  name,
+                  style: AppTextStyles.heading4.copyWith(
+                    color: Theme.of(context).textTheme.bodyText1!.color,
+                  ),
+                ),
                 bottomNavBarScreen: true,
+                isDarkMode: Theme.of(context).brightness == Brightness.dark,
                 whiteBackground: true,
                 actions: [
                   model.isLoading
@@ -40,8 +46,7 @@ class WebViewPage extends StatelessWidget {
               onPageFinished: (url) {
                 model.stopLoading();
               },
-              onProgress: (progress) {
-              },
+              onProgress: (progress) {},
               javascriptMode: JavascriptMode.unrestricted,
             ),
           );

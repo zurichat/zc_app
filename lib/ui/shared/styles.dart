@@ -214,7 +214,7 @@ class AppTextStyles {
   );
   static TextStyle header6 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
-    color: AppColors.zuriTextColorHeader,
+    // color: AppColors.zuriTextColorHeader,
     fontSize: 20,
   );
   static TextStyle body1Light = GoogleFonts.lato(
