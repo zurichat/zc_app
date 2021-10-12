@@ -3,36 +3,24 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen_viewmodel.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
 
-import 'expandable_textfield_screen_viewmodel.dart';
+import '../../colors.dart';
+import '../../styles.dart';
 
-//stacked forms handling
-@FormView(
-  fields: [
-    FormTextField(name: 'text'),
-  ],
-)
 class ExpandableTextFieldScreen extends HookWidget {
-  ExpandableTextFieldScreen(
-      {Key? key,
-      required this.widget,
-      required this.sendMessage,
-      required this.hintText,
-      required this.textController,
-      required this.channelID})
-      : super(key: key);
+  ExpandableTextFieldScreen({
+    Key? key,
+    required this.widget,
+    required this.sendMessage,
+    required this.hintText,
+  }) : super(key: key);
   final Widget widget;
-  final Function(String message, List<File> media) sendMessage;
+  final Function(String message, List<File>media) sendMessage;
   final String hintText;
   final focusNode = FocusNode();
-  final TextEditingController textController;
-
-  final String channelID;
-
   final keyboardVisibilityController = KeyboardVisibilityController();
   Stream<bool> get stream =>
       keyboardVisibilityController.onChange.asBroadcastStream();
@@ -40,6 +28,7 @@ class ExpandableTextFieldScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     double maxSize = MediaQuery.of(context).size.height - kToolbarHeight - 30;
+    TextEditingController textController = useTextEditingController();
     return ViewModelBuilder<ExpandableTextFieldScreenViewModel>.reactive(
       viewModelBuilder: () => ExpandableTextFieldScreenViewModel(),
       onModelReady: (model) {
@@ -150,8 +139,10 @@ class ExpandableTextFieldScreen extends HookWidget {
                                       isVisible: model.isVisible,
                                       toggleExpanded: () {
                                         if (!model.isExpanded) {
+                                          // size = maxSize;
                                           model.toggleExpanded(true);
                                         } else {
+                                          // size = minSize;
                                           model.toggleExpanded(false);
                                         }
                                       },
@@ -200,8 +191,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                           ),
                                           const Spacer(),
                                           GestureDetector(
-                                            onTap: () =>
-                                                model.onCameraTap("roomId"),
+                                            onTap: () =>model.onCameraTap("roomId") ,
                                             child: Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
@@ -222,50 +212,25 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               ),
                                             ),
                                           ),
-                                          GestureDetector(
-                                            onTap: () {
+                                          IconButton(
+                                            onPressed: () {
                                               if (textController.text
                                                   .toString()
                                                   .isNotEmpty) {
-                                                sendMessage(textController.text,
-                                                    model.mediaList);
+                                                sendMessage(
+                                                    textController.text, model.mediaList);
                                                 textController.clear();
                                               }
                                             },
-                                            onLongPress: () {
-                                              model.popDialog(
-                                                  textController.text,
-                                                  channelID);
-                                              textController.clear();
-                                            },
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(8.0),
-                                              child: Icon(
-                                                Icons.send,
-                                                color: AppColors.greyColor,
-                                              ),
+                                            icon: const Icon(
+                                              Icons.send,
+                                              color: AppColors.darkGreyColor,
                                             ),
-                                          ),
+                                          )
                                         ],
                                       ),
                                     ),
                                   ),
-                                  Visibility(
-                                    visible: model.mediaList.isNotEmpty,
-                                    child: SizedBox(
-                                        height: 70,
-                                        width: double.infinity,
-                                        child: ListView.builder(
-                                          itemCount: model.mediaList.length,
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: (__, index) {
-                                            final media =
-                                                model.mediaList[index];
-                                            return Image.file(media);
-                                          },
-                                        ),
-                                      ),
-                                  )
                                 ],
                               ),
                             ),

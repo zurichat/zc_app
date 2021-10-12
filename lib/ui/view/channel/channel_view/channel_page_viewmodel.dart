@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
@@ -10,6 +11,7 @@ import 'package:hng/models/user_post.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/services/media_service.dart';
 import 'package:hng/services/notification_service.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/utilities/enums.dart';
@@ -27,6 +29,7 @@ class ChannelPageViewModel extends FormViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
+  final _mediaService = locator<MediaService>();
 
   //Draft implementations
   var storedDraft = '';
@@ -188,11 +191,17 @@ class ChannelPageViewModel extends FormViewModel {
 
   void sendMessage(
     String message,
-    List<String>media,
+    List<File> media,
   ) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
+    List<String> urls = [];
+    for (File file in media) {
+      var url = await _mediaService.uploadImage(file);
+      urls.add(url!);
+    }
     await _channelsApiService.sendChannelMessages(
-        channelID, "$userId", message, media);
+        channelID, "$userId", message, urls);
+
     scrollController.jumpTo(scrollController.position.minScrollExtent);
     notifyListeners();
   }

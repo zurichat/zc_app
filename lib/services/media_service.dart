@@ -3,15 +3,16 @@ import 'package:hng/app/app.locator.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/user_service.dart';
+import 'package:hng/utilities/constants.dart';
 import 'package:image_picker/image_picker.dart';
 
 class MediaService {
   final ImagePicker _picker = ImagePicker();
-  final zuriApi = locator<ZuriApi>();
+  final zuriApi = ZuriApi(coreBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
   final userService = locator<UserService>();
 
-  Future<String?> getImage(
+  Future<File?> getImage(
       {required bool fromGallery}) async {
     /// Pick an image/capture a photo
 
@@ -19,11 +20,10 @@ class MediaService {
         source: fromGallery ? ImageSource.gallery : ImageSource.camera);
 
     final File? file = File(image!.path);
-    Future<String?> imageAddress = uploadImage(file);
-    return imageAddress;
+    return file;
   }
 
-  Future<String?> getVideo(
+  Future<File?> getVideo(
       {required bool fromGallery}) async {
     /// Pick a video/capture a video
 
@@ -31,8 +31,7 @@ class MediaService {
         source: fromGallery ? ImageSource.gallery : ImageSource.camera);
 
     final File? file = File(image!.path);
-    Future<String?> imageAddress = uploadImage(file);
-    return imageAddress;
+        return file;
   }
 
   Future<String?> uploadImage(File? file) async {
