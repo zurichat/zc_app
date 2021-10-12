@@ -360,6 +360,7 @@ const String NotJoinedOrgYet = 'You have not joined any workspace yet!';
 const String Help = 'Help';
 const String SignOutAccount = 'Sign Out From All workspaces';
 const String AddOrg = 'Add a workspace';
+const String AddOrganisations = 'Add Organisations';
 const String EnterOrgUrl = 'Enter Workspace URL';
 const String EnterOrgUrlHint = 'https://workspace.zuri.com';
 const String OrgDesc1 =
