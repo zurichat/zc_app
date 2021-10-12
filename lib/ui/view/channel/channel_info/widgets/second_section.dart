@@ -2,91 +2,142 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/general_widgets/menu_item_tile.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:stacked/stacked.dart';
 import '../../../../shared/colors.dart';
+import '../channel_info_view_model.dart';
 
 class SecondSection extends StatelessWidget {
   const SecondSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 128.h,
-      width: 395.w,
-      alignment: Alignment.center,
-      padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 26.h, 16.37.w),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6.r),
-        border: Border.all(width: 1.w, color: AppColors.borderColor),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5.r,
-            blurRadius: 6.r,
-            offset: Offset(0, 3.h), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 78.h,
-            width: 279.03.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.notifications_none_outlined,
-                  color: AppColors.deepBlackColor,
-                  size: 24.sp,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Text(
-                        Notifications,
-                        style:
-                            AppTextStyles.namesStyle.copyWith(fontSize: 14.sp),
-                      ),
-                    ),
-                    SizedBox(height: 6.h),
-                    InkWell(
-                      onTap: () {},
-                      child: Text(
-                        EveryNewMessage,
-                        style:
-                            AppTextStyles.body1Grey.copyWith(fontSize: 14.sp),
-                      ),
-                    ),
-                    SizedBox(height: 18.h),
-                    InkWell(
-                      onTap: () {},
-                      child: Text(
-                        MuteChannel,
-                        style: AppTextStyles.descriptionStyle
-                          ..copyWith(fontSize: 14.sp),
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.toggle_off_sharp,
-                      color: AppColors.faintTextColor,
-                      size: 40.sp,
-                    ),
-                  ],
-                )
-              ],
+
+    return ViewModelBuilder<ChannelInfoViewModel>.reactive(
+    fireOnModelReadyOnce: true,
+    onModelReady: (model) {
+    model.getChannelInfo();
+    },
+    disposeViewModel: false,
+    builder: (context, model, child) => Card(
+      elevation: 2,
+      child: Container(
+        height: 128.h,
+        width: 395.w,
+        alignment: Alignment.center,
+        // padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 26.h, 16.37.w),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6.r),
+          // border: Border.all(width: 1.w, color: AppColors.borderColor),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.whiteColor,
+              // spreadRadius: 5.r,
+              blurRadius: 6.r,
+              offset: Offset(0, 3.h), // changes position of shadow
             ),
-          ),
-        ],
+          ],
+        ),
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.topRight,
+              child: MenuItemTile.flipSwitch(value: model.notification, onChanged: model.toggleNotification,),
+            ),
+            ListTile(
+              leading: const Icon(Icons.notifications_outlined),
+              title: Text('Notification', style: AppTextStyles.labelText,),
+              subtitle: Text('Every new message', style: AppTextStyles.subtitle,),
+            ),
+            ListTile(title: Text('Mute channel', style: AppTextStyles.messageText,),)
+          ],
+        ),
       ),
-    );
-  }
+    ),
+      viewModelBuilder: () => ChannelInfoViewModel(),);
+      }
 }
+
+
+
+// Row(
+// mainAxisAlignment: MainAxisAlignment.start,
+// children: [
+// SizedBox(
+// // height: 78.h,
+// // width: 279.03.w,
+// child: Row(
+// mainAxisAlignment: MainAxisAlignment.start,
+// children: [
+// Icon(
+// Icons.notifications_none_outlined,
+// color: AppColors.deepBlackColor,
+// size: 24.sp,
+// ),
+// Column(
+// mainAxisAlignment: MainAxisAlignment.start,
+// children: [
+// InkWell(
+// onTap: () {},
+// child: Text(
+// Notifications,
+// style:
+// AppTextStyles.namesStyle.copyWith(fontSize: 14.sp),
+// ),
+// ),
+// SizedBox(height: 6.h),
+// InkWell(
+// onTap: () {},
+// child: Text(
+// EveryNewMessage,
+// style:
+// AppTextStyles.body1Grey.copyWith(fontSize: 14.sp),
+// ),
+// ),
+// SizedBox(height: 18.h),
+// InkWell(
+// onTap: () {},
+// child: Text(
+// MuteChannel,
+// style: AppTextStyles.descriptionStyle
+// ..copyWith(fontSize: 14.sp),
+// ),
+// ),
+// ],
+// ),
+// Column(
+// mainAxisAlignment: MainAxisAlignment.end,
+// children: [
+// Icon(
+// Icons.toggle_off_sharp,
+// color: AppColors.faintTextColor,
+// size: 40.sp,
+// ),
+// ],
+// )
+// ],
+// ),
+// ),
+// ],
+// ),
+
+
+//
+// Card(
+// elevation: 1,
+// child: Column(
+// children: [
+// Container(
+// alignment: Alignment.topRight,
+// child: MenuItemTile.flipSwitch(value: model.notification, onChanged: model.toggleNotification,),
+// ),
+// ListTile(
+// leading: const Icon(Icons.notifications_outlined),
+// title: Text('Notification', style: AppTextStyles.labelText,),
+// subtitle: Text('Every new message', style: AppTextStyles.subtitle,),
+// ),
+// ListTile(title: Text('Mute channel', style: AppTextStyles.messageText,),)
+// ],
+// ),
+// ),

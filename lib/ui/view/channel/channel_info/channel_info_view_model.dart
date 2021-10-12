@@ -24,6 +24,11 @@ class ChannelInfoViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
   final log = getLogger('ChannelInfoViewModel');
 
+
+
+  bool notification = true;
+
+
   String? _channelName;
 
   String? _channelDescription;
@@ -35,6 +40,11 @@ class ChannelInfoViewModel extends BaseViewModel {
   void setChannelDescription(String channelDescription) {
     _channelDescription = channelDescription;
     log.i('pppp $channelDescription');
+    notifyListeners();
+  }
+
+  void toggleNotification(bool value) {
+    notification = value;
     notifyListeners();
   }
 
