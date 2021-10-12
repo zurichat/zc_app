@@ -14,7 +14,9 @@ class TextParser extends StatelessWidget {
     return ViewModelBuilder<TextParserViewModel>.reactive(
       builder: (context, model, child) => ParsedText(
         text: "$text",
-        style: AppTextStyles.messageText,
+        style: AppTextStyles.messageText.copyWith(
+          color: Theme.of(context).textTheme.bodyText1!.color,
+        ),
         parse: model.parse,
       ),
       viewModelBuilder: () => TextParserViewModel(),

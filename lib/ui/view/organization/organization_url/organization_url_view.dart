@@ -41,7 +41,8 @@ class OrganizationUrlView extends StatelessWidget {
                                 TextSpan(
                                   text: OrgDesc1,
                                   style: AppTextStyles.body3Medium.copyWith(
-                                      fontSize: 16, color: AppColors.greyColor),
+                                    fontSize: 16,
+                                  ),
                                 ),
                                 TextSpan(
                                   text: '$email',
@@ -52,7 +53,8 @@ class OrganizationUrlView extends StatelessWidget {
                                 TextSpan(
                                   text: OrgDesc2,
                                   style: AppTextStyles.body3Medium.copyWith(
-                                      fontSize: 16, color: AppColors.greyColor),
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ],
                             ),
@@ -86,15 +88,16 @@ class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
       child: TextField(
         cursorColor: AppColors.appBarGreen,
         style: AppTextStyles.body3Medium.copyWith(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: AppColors.blackColor),
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
         decoration: InputDecoration(
           labelText: EnterOrgUrl,
           labelStyle: AppTextStyles.body3Medium.copyWith(
-              fontSize: 16,
-              color: AppColors.zuriTextBodyColor,
-              fontWeight: FontWeight.bold),
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: AppColors.zuriPrimaryColor,
+          ),
           hintText: EnterOrgUrlHint,
           hintStyle: AppTextStyles.body3Medium.copyWith(
               fontSize: 16,

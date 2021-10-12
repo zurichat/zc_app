@@ -37,17 +37,20 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
       },
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-            orgTitle: Text(
-              Threads,
-              style:
-                  AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
-            ),
-            leading: Icons.chevron_left,
-            leadingPress: () =>
-                model.exitPage(userPost, messageController.text),
-            whiteBackground: true),
+          orgTitle: Text(
+            Threads,
+            style: AppTextStyles.heading4.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+    
+          ),
+          leading: Icons.chevron_left,
+          leadingPress: () => model.exitPage(userPost, messageController.text),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
+        ),
         body: model.isBusy
             ? const ZuriLoader()
+
             : Column(
                 children: [
                   Expanded(
@@ -107,7 +110,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                                   displayName:
                                                       userPost!.displayName,
                                                   message: userPost!.message,
-                                                  lastSeen: userPost!.lastSeen,
+                                                  lastSeen: userPost!.moment,
                                                   messageID: userPost!.id,
                                                   userID: userPost!.userId,
                                                   userImage:

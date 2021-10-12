@@ -36,7 +36,7 @@ class DmPage extends StatelessWidget {
               icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
               color: AppColors.whiteColor,
             ),
-            backgroundColor: AppColors.zuriPrimaryColor,
+            // backgroundColor: AppColors.zuriPrimaryColor,
           ),
           body: model.isBusy
               ? const ZuriLoader()

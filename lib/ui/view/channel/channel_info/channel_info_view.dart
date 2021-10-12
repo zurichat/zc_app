@@ -17,9 +17,9 @@ import 'widgets/fifth_section.dart';
 import 'widgets/sixth_section.dart';
 
 class ChannelInfoView extends StatelessWidget {
-  final int numberOfMembers;
   final List<ChannelMembermodel> channelMembers;
   final ChannelModel channelDetail;
+  final int numberOfMembers;
 
   const ChannelInfoView(
       {Key? key,
@@ -53,10 +53,12 @@ class ChannelInfoView extends StatelessWidget {
                   ),
                 ],
                 whiteBackground: true,
+                isDarkMode: Theme.of(context).brightness == Brightness.dark,
                 orgTitle: Text(
                   ChannelInfo,
-                  style: AppTextStyles.heading4
-                      .copyWith(color: AppColors.blackColor),
+                  style: AppTextStyles.heading4.copyWith(
+                    color: Theme.of(context).textTheme.bodyText1!.color,
+                  ),
                 ),
               ),
               body: SafeArea(
@@ -88,7 +90,7 @@ class ChannelInfoView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 8.h),
-                      const FourthSection(),
+                      FourthSection(model),
                       SizedBox(height: 16.h),
                       const FifthSection(),
                       SizedBox(height: 16.h),
