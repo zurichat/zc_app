@@ -79,7 +79,7 @@ class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
     return _TextAndIcon(
       text: AddTeammates,
       unread: false,
-      onTap: () => viewModel.navigateToCreateChannel(),
+      onTap: () => viewModel.navigateInviteMembers(),
       icon: SvgIcon(
         svgIcon: SvgAssets.addChannels,
       ),

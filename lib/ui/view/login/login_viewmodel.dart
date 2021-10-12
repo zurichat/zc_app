@@ -76,7 +76,6 @@ class LoginViewModel extends FormViewModel {
         variant: SnackbarType.failure,
         message: fillAllFields,
       );
-
       return;
     }
     final response = await zuriApi.login(

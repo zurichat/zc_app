@@ -55,10 +55,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: isSearchBar
           ? null
           : InkWell(
-              child: Icon(
-                leading,
-                color: Colors.black,
-              ),
+              child: Icon(leading, color: Colors.black, size: 16),
               onTap: leadingPress),
       title: isSearchBar
           ? Container(
@@ -101,9 +98,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(title!,
-                            style: AppTextStyles.heading7
-                                .copyWith(color: AppColors.blackColor)),
+                        Text(title!, style: AppTextStyles.body1Bold),
                         Text(
                           subtitle!,
                           style: AppTextStyles.messageText
