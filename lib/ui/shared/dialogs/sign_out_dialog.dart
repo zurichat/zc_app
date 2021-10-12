@@ -26,7 +26,7 @@ class SignOutDialog extends StatelessWidget {
         fontWeight: FontWeight.w400,
         fontSize: 14,
       ),
-      actions: <Widget>[
+      actions: [
         TextButton(
           child: const CustomText(
             text: 'Cancel',

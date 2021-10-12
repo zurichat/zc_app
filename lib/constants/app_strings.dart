@@ -21,7 +21,7 @@ const String UpdateSuccessful = 'Update successful';
 const String UpdateFailed = 'Update failed';
 const String FetchError = 'Error fetching info';
 const String ChannelUpdateError = 'Error encountered during channel update';
-const String DeleteOrgError = 'Delete organization failed';
+const String DeleteOrgError = 'Delete workspace failed';
 const String ComingSoon = 'Coming soon!!';
 
 //API Endpoints
@@ -85,6 +85,7 @@ const String JumpTo = 'Jump to...';
 const String hash = ' # ';
 const String AddChannels = 'Add channels';
 const String Threads = 'Threads';
+const String Drafts = 'Drafts';
 
 //DM
 const String DmTitle = 'Dm';
@@ -110,7 +111,7 @@ const String Preferences = 'Preferences';
 const String Notifs = 'Notifications';
 const String ViewProfile = 'View Profile';
 const String SavedItems = 'Saved Items';
-const String SetStatusText = 'Go ';
+const String SetStatusText = 'Set yourself as ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
@@ -269,7 +270,7 @@ const String AboutChannel = 'What\'s this channel about?';
 const String ChannelSettings = 'Channel Settings';
 const String MakePrivate = 'Make Private';
 const String PrivateDescription =
-    'When channel is set to private, members of your organization can only view or join by invitation';
+    'When channel is set to private, members of your workspace can only view or join by invitation';
 
 //DM dirs
 const String ViewDetails = 'View details';
@@ -354,15 +355,15 @@ const String UseAnotherEmail = 'Use another email address';
 const String CreateWorkspace = 'Create a workspace';
 const String SignInWorkspace = 'Sign in to a workspace';
 const String JoinWorkspace = 'Join a workspace';
-const String Organizations = 'Organizations';
-const String NotJoinedOrgYet = 'You have not joined any organization yet!';
+const String Workspaces = 'Workspaces';
+const String NotJoinedOrgYet = 'You have not joined any workspace yet!';
 const String Help = 'Help';
-const String SignOutAccount = 'Sign Out From All Organizations';
-const String AddOrg = 'Add an organisation';
-const String EnterOrgUrl = 'Enter Organization URL';
-const String EnterOrgUrlHint = 'https://organization.zuri.com';
+const String SignOutAccount = 'Sign Out From All workspaces';
+const String AddOrg = 'Add a workspace';
+const String EnterOrgUrl = 'Enter Workspace URL';
+const String EnterOrgUrlHint = 'https://workspace.zuri.com';
 const String OrgDesc1 =
-    'If you don\'t know your organization URL, we have sent an email to ';
+    'If you don\'t know your workspace URL, we have sent an email to ';
 const String OrgDesc2 = ' to help you sign in easily.';
 const String InputRequired = 'Input is required';
 const String EnterEmail = 'Enter Email Address';
@@ -385,10 +386,10 @@ const String CompanyNameHint = 'Eg.  HNG I8 / Team Socrates';
 const String CookiePolicy = 'Cookie Policy';
 const String CustomerAgreementText =
     'It’s okay to send me email with Zuri Chat app, news and offer';
-const String AddOrganisations = 'Add Organisations';
-const String CreateNewOrg = 'Create a new organization';
-const String SignInNewOrg = 'Sign in to another organization';
-const String JoinAnotherOrg = 'Join another organization';
+const String AddWorkspaces = 'Add Workspaces';
+const String CreateNewOrg = 'Create a new workspace';
+const String SignInNewOrg = 'Sign in to another workspace';
+const String JoinAnotherOrg = 'Join another workspace';
 const String SplashScreen = 'assets/logo/splash_image.png';
 
 //Pinned Messages
@@ -511,7 +512,8 @@ const String Yeah = 'Yeah';
 const String Nope = 'Nope';
 const String Why = 'Why';
 const String FiftyResults = '50 Results';
-const String DummyAvatar = 'https://www.nairaland.com/attachments/10525387_7523740813649122436786583150820259255025664o3_jpega51895fd0bf50cf5d5982826ac401627';
+const String DummyAvatar =
+    'https://www.nairaland.com/attachments/10525387_7523740813649122436786583150820259255025664o3_jpega51895fd0bf50cf5d5982826ac401627';
 const String TermsAndConditions = '''Introduction\n\n'''
     '''We are a social network and online platform for professionals and beginners. '''
     '''People use our Services to find and be found for business opportunities, '''
@@ -559,7 +561,7 @@ const String TermsAndConditions = '''Introduction\n\n'''
     '''businesses. In addition, a separate agreement governs delivery, access and '''
     '''use of the Services (the “Customer Agreement”), including the processing of '''
     '''any messages, files or other content submitted through Services accounts '''
-    '''(collectively, “Customer Data”). The organization (e.g., your employer or another'''
+    '''(collectively, “Customer Data”). The workspace (e.g., your employer or another'''
     '''entity or person) that entered into the Customer Agreement (“Customer”) controls '''
     '''its instance of the Services (its “Workspace”) and any associated Customer Data. '''
     '''If you have any questions about specific Workspace settings and privacy practices, '''

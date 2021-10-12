@@ -7,7 +7,7 @@ import 'colors.dart';
 class AppTextStyles {
   static TextStyle heading9 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
-    // color: AppColors.blackColor,
+    color: AppColors.blackColor,
     fontSize: 16,
   );
   static TextStyle heading8 = GoogleFonts.lato(
@@ -17,7 +17,7 @@ class AppTextStyles {
   );
   static TextStyle heading7 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
-    // color: AppColors.blackColor,
+    color: AppColors.blackColor,
     fontSize: 20,
   );
   static TextStyle hashtag = GoogleFonts.lato(
@@ -27,7 +27,7 @@ class AppTextStyles {
   );
   static TextStyle heading6 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
-    // color: AppColors.greyishColor,
+    color: AppColors.greyishColor,
     fontSize: 24,
   );
   static TextStyle heading5 = GoogleFonts.lato(
@@ -37,8 +37,13 @@ class AppTextStyles {
   );
   static TextStyle heading4 = GoogleFonts.lato(
     fontWeight: FontWeight.w600,
-    // color: AppColors.blackColor,
+    color: AppColors.blackColor,
     fontSize: 18,
+  );
+  static TextStyle heading3 = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.whiteColor,
+    fontSize: 20,
   );
   static TextStyle body1Regular = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
@@ -47,7 +52,7 @@ class AppTextStyles {
   );
   static TextStyle bodyRegular = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
-    // color: AppColors.blackColor,
+    color: AppColors.blackColor,
     fontSize: 20,
   );
   static TextStyle normalText = GoogleFonts.lato(
@@ -72,12 +77,12 @@ class AppTextStyles {
   );
   static TextStyle body3Medium = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
-    // color: AppColors.greyishColor,
+    color: AppColors.greyishColor,
     fontSize: 14,
   );
   static TextStyle faintBodyText = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
-    // color: AppColors.greyColor,
+    color: AppColors.greyColor,
     fontSize: 14,
   );
   static TextStyle body2Medium = GoogleFonts.lato(
@@ -86,10 +91,9 @@ class AppTextStyles {
     fontSize: 14,
   );
   static TextStyle body1Bold = GoogleFonts.lato(
-    fontWeight: FontWeight.w700,
-    fontSize: 16,
-    // color: AppColors.deepBlackColor
-  );
+      fontWeight: FontWeight.w700,
+      fontSize: 16,
+      color: AppColors.deepBlackColor);
 
   static TextStyle body1 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
@@ -107,7 +111,7 @@ class AppTextStyles {
   );
   static TextStyle body2Bold = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
-    // color: AppColors.greyishColor,
+    color: AppColors.greyishColor,
     fontSize: 14,
   );
   static TextStyle body2_400 = GoogleFonts.lato(
@@ -256,6 +260,11 @@ class AppTextStyles {
   static TextStyle bodySmall = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
     color: AppColors.zuriPrimaryColor,
+    fontSize: 14,
+  );
+  static TextStyle bodySmall2 = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.zuriTextBodyColor,
     fontSize: 14,
   );
   static TextStyle bodyBig = GoogleFonts.lato(

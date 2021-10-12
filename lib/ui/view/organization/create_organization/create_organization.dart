@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'create_organization_viewmodel.dart';
@@ -21,12 +21,10 @@ class CreateOrganization extends HookWidget {
       viewModelBuilder: () => CreateOrganizationViewModel(),
       onModelReady: (model) => model.init(email),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.whiteColor,
-          leading: TextButton(
-            onPressed: () => model.back(),
-            child: Image.asset(CancelLogo),
-          ),
+        appBar: ZuriAppBar(
+         whiteBackground: true,
+          leading: Icons.close,
+            leadingPress: () => model.back(),
         ),
         body: Stack(
           children: [

@@ -48,7 +48,9 @@ class _DmScreenState extends State<DmScreen> {
           ),
           actions: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                model.navigateToDmUserView();
+              },
               child: const Text(
                 Done,
                 style: TextStyle(color: AppColors.borderColor),

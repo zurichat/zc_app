@@ -8,6 +8,7 @@ import 'select_email_viewmodel.dart';
 
 class SelectEmail extends StatelessWidget {
   final OrganizationSwitchMethod method;
+
   //The users email address can be passed in here from the api or database
 
   const SelectEmail({Key? key, required this.method}) : super(key: key);
@@ -18,7 +19,8 @@ class SelectEmail extends StatelessWidget {
       viewModelBuilder: () => SelectEmailViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-          title: model.getScreenTitle(method),
+          orgTitle:
+              Text(model.getScreenTitle(method), style: AppTextStyles.heading4),
           whiteBackground: true,
           leading: Icons.arrow_back_ios_outlined,
           leadingPress: () => model.back(),
@@ -28,11 +30,11 @@ class SelectEmail extends StatelessWidget {
           decoration: BoxDecoration(
               color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(2.0),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
-                  color: AppColors.greyColor.withOpacity(0.5),
-                  spreadRadius: 1,
-                  blurRadius: 5,
+                  color: Color(0xff4F4F4F),
+                  blurRadius: 1,
+                  offset: Offset(0, 1),
                 ),
               ]),
           child: Column(
@@ -42,13 +44,8 @@ class SelectEmail extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-                child: Text(
-                  'Select an email address to use:',
-                  style: AppTextStyles.body3Medium.copyWith(
-                      color: AppColors.zuriTextBodyColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
-                ),
+                child: Text('Select an email address to use:',
+                    style: AppTextStyles.body1Bold),
               ),
               InkWell(
                 onTap: () {
