@@ -48,14 +48,15 @@ class AppLocalization {
   String get pluginsNavBar => translate(LocalKeys.PluginsNavBar);
   String get dmNavBar => translate(LocalKeys.DmNavBar);
   String get youNavBar => translate(LocalKeys.YouNavBar);
-  String get onboardingOneTitle =>
-      translate(LocalKeys.PerfectCollaborationAppForTeams);
-  String get onboardingTwoTitle => translate(LocalKeys.MusicRoom);
-  String get onboardingTwoSubtitle =>
-      translate(LocalKeys.NowyoucanlistentoyourfavouritetracksrightintheApp);
-  String get onboardingThreeTitle => translate(LocalKeys.ChessRoom);
-  String get onboardingThreeSubtitle =>
-      translate(LocalKeys.Youcanalsoplaygameswithfriendsanddootheramazingstuff);
+  String get onboardingTitleOne => translate(LocalKeys.OnboardingTitleOne);
+  String get onboardingSubtitleOne =>
+      translate(LocalKeys.OnboardingSubtitleOne);
+  String get onboardingTitleTwo => translate(LocalKeys.OnboardingTitleTwo);
+  String get onboardingSubtitleTwo =>
+      translate(LocalKeys.OnboardingSubtitleTwo);
+  String get onboardingTitleThree => translate(LocalKeys.OnboardingTitleThree);
+  String get onboardingSubtitleThree =>
+      translate(LocalKeys.OnboardingSubtitleThree);
   String get getstarted => translate(LocalKeys.Getstarted);
   String get skip => translate(LocalKeys.Skip);
   String get next => translate(LocalKeys.Next);
