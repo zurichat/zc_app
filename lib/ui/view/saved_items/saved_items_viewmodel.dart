@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:hng/models/saved_item_model.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/storage_keys.dart';
@@ -20,6 +21,10 @@ class SavedItemsViewModel extends BaseViewModel {
     savedBuilderList.removeAt(index);
     goBack();
     notifyListeners();
+  }
+
+  navigateToMessage(userPost) {
+    _navigationService.navigateTo(Routes.threadDetailView,arguments: ThreadDetailViewArguments(userPost: userPost));
   }
 
   get savedItems {

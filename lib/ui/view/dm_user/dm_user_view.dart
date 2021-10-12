@@ -7,33 +7,49 @@ import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
 import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
 import 'package:stacked/stacked.dart';
-
+import 'package:stacked/stacked_annotations.dart';
 import '../../shared/colors.dart';
 import 'dm_user_viewmodel.dart';
 import 'dummy_data/models/message.dart';
 import 'widgets/message_view.dart';
 import 'widgets/online_indicator.dart';
+import 'dm_user_view.form.dart';
 
-class DmUserView extends StatelessWidget {
+@FormView(
+  fields: [
+    FormTextField(name: 'message'),
+  ],
+)
+class DmUserView extends StatelessWidget with $DmUserView {
   DmUserView({Key? key}) : super(key: key);
 
   final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+    //TODO remove the var below and replace with the actual id from the backend once dm's get linked to the backend
+     dynamic receiverId = 'receiver';
     return ViewModelBuilder<DmUserViewModel>.reactive(
+      onModelReady: (model) {
+        model.getDraft(receiverId);
+        if (model.storedDraft.isNotEmpty) {
+          messageController.text = model.storedDraft;
+        }
+        return listenToFormUpdated(model);
+      },
       viewModelBuilder: () => DmUserViewModel(),
       builder: (context, model, child) {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: ZuriAppBar(
               leading: Icons.arrow_back_ios,
-              leadingPress: () => model.popScreen(),
+              leadingPress: () => model.popScreens(receiverId, messageController.text),
               title: model.receiver.username,
               subtitle: ViewDetails,
               actions: [
                 IconButton(
-                  icon: const Icon(Icons.info_outline),
+                  icon: const Icon(Icons.info_outline,
+                      color: AppColors.greyColor),
                   onPressed: () {},
                 ),
               ],
@@ -43,6 +59,7 @@ class DmUserView extends StatelessWidget {
             children: [
               ExpandableTextFieldScreen(
                 hintText: 'Message ${model.receiver.username}',
+                textController: messageController,
                 sendMessage: (String message) {
                   model.sendMessage();
                   FocusScope.of(context).requestFocus(FocusNode());
@@ -125,6 +142,7 @@ class DmUserView extends StatelessWidget {
                     ],
                   ),
                 ),
+
               ),
             ],
           ),
@@ -132,58 +150,4 @@ class DmUserView extends StatelessWidget {
       },
     );
   }
-
-  // Widget _onlineIndicator(int color) {
-  //   return Icon(
-  //     Icons.circle,
-  //     color: Color(color),
-  //     size: 10,
-  //   );
-  // }
-
-  // Widget _groupSeparator(String value) {
-  //   return Container(
-  //     margin: EdgeInsets.only(top: 16.0),
-  //     child: Row(
-  //       children: [
-  //         Expanded(
-  //             child: Divider(
-  //               color: Color(0xFF7B8794),
-  //             )),
-  //         Container(
-  //           child: Text(value,
-  //               style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
-  //           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-  //           decoration: BoxDecoration(
-  //               border: Border.all(color: Color(0xFF7B8794), width: 0.5),
-  //               borderRadius: BorderRadius.all(Radius.circular(10))),
-  //         ),
-  //         Expanded(
-  //             child: Divider(
-  //               color: Color(0xFF7B8794),
-  //             )),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Widget _startMessage(String username) {
-  //   return RichText(
-  //     text: TextSpan(
-  //         text: 'This is the very beginning of your '
-  //             'direct message \history with ',
-  //         style: TextStyle(
-  //             color: Color(0xFF808080),
-  //             fontSize: 14.0,
-  //             fontWeight: FontWeight.w400),
-  //         children: [
-  //           TextSpan(
-  //               text: '@$username. ',
-  //               style: TextStyle(color: Color(0xFF8CDEC3))),
-  //           TextSpan(
-  //               text: 'Only the two of you are in \nthis conversation, '
-  //                   'and no one else can join it.')
-  //         ]),
-  //   );
-  // }
 }
