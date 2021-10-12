@@ -57,10 +57,10 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: isSearchBar
           ? null
           : InkWell(
-              child: Icon(
-                leading,
-                color: isDarkMode ? AppColors.whiteColor : AppColors.blackColor,
-              ),
+              child: Icon(leading,
+                  color:
+                      isDarkMode ? AppColors.whiteColor : AppColors.blackColor,
+                  size: 16),
               onTap: leadingPress),
       title: isSearchBar
           ? Container(
