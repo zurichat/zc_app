@@ -28,9 +28,10 @@ class AddOrganizationView extends StatelessWidget {
             leading: Icons.arrow_back_ios,
             orgTitle: Text(
               AddOrganisations,
-              style:
-                  AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
+              style: AppTextStyles.heading4.copyWith(
+                  color: Theme.of(context).textTheme.bodyText1!.color),
             ),
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             whiteBackground: true,
             leadingPress: model.back,
           ),
@@ -41,6 +42,9 @@ class AddOrganizationView extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? AppColors.darkThemePrimaryColor
+                        : AppColors.whiteColor,
                     borderRadius: BorderRadius.circular(3),
                     boxShadow: const [
                       BoxShadow(

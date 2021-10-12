@@ -92,6 +92,8 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             )
           : subtitle == null
+              //TODO - bug: condition doesn't accomodate supplying a string title (!widget) && null subtitle
+              //sample on select_email_view.dart
               ? orgTitle
               : Row(
                   mainAxisSize: MainAxisSize.min,

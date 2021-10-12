@@ -58,7 +58,7 @@ const String CreateAccount = 'Create Account';
 const String AlreadyHaveAcct = 'Already  have an Account?';
 const String Or = 'or';
 const String SignUpGoogle = 'Sign Up with Google';
-const String TnC1 = 'By selecting this box, you agreed to our';
+const String TnC1 = 'By selecting this box, you agreed to our ';
 const String TnC2 = 'terms and conditions';
 const String NewPasswordHeader =
     'Your new password must be different from the previously used password';

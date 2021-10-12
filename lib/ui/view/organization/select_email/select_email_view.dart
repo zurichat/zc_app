@@ -19,15 +19,23 @@ class SelectEmail extends StatelessWidget {
       viewModelBuilder: () => SelectEmailViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-          title: model.getScreenTitle(method),
+          orgTitle: Text(
+            model.getScreenTitle(method),
+            style: AppTextStyles.heading4.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
+          ),
           whiteBackground: true,
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           leading: Icons.arrow_back_ios_outlined,
           leadingPress: () => model.back(),
         ),
         body: Container(
           margin: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
           decoration: BoxDecoration(
-              color: AppColors.whiteColor,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? AppColors.darkThemePrimaryColor
+                  : AppColors.whiteColor,
               borderRadius: BorderRadius.circular(2.0),
               boxShadow: [
                 BoxShadow(
@@ -45,10 +53,8 @@ class SelectEmail extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                 child: Text(
                   'Select an email address to use:',
-                  style: AppTextStyles.body3Medium.copyWith(
-                      color: AppColors.zuriTextBodyColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
+                  style: AppTextStyles.body3Medium
+                      .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
               InkWell(
@@ -63,14 +69,14 @@ class SelectEmail extends StatelessWidget {
                       const Icon(
                         Icons.email_outlined,
                         size: 20,
-                        color: AppColors.deepBlackColor,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 25.5),
                         child: Text(
                           model.userEmail ?? '',
                           style: const TextStyle(
-                              color: AppColors.deepBlackColor, fontSize: 14),
+                            fontSize: 14,
+                          ),
                         ),
                       ),
                     ],
@@ -95,14 +101,12 @@ class SelectEmail extends StatelessWidget {
                       const Icon(
                         Icons.email_outlined,
                         size: 20,
-                        color: AppColors.deepBlackColor,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 25.5),
                         child: Text(
                           model.anotherEmail,
                           style: const TextStyle(
-                            color: AppColors.deepBlackColor,
                             fontSize: 14,
                           ),
                         ),
