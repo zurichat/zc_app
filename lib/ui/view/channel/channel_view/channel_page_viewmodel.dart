@@ -85,6 +85,7 @@ class ChannelPageViewModel extends FormViewModel {
   StreamSubscription? messageSubscription;
   StreamSubscription? notificationSubscription;
   String channelID = '';
+  String channelCreator= '';
 
   saveItem(
       {String? channelID,
@@ -121,6 +122,12 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
+  getChannelCreator(String channelId)async{
+   var response= await _channelsApiService.getChanelCreator(channelId);
+   channelCreator=response['owner'];
+   notifyListeners();
+  }
+
   void initialise(String channelId) async {
     channelID = channelId;
     await joinChannel(channelId);
@@ -128,6 +135,7 @@ class ChannelPageViewModel extends FormViewModel {
     getChannelSocketId(channelId);
     fetchChannelMembers(channelId);
     listenToNewMessage(channelId);
+    getChannelCreator(channelId);
   }
 
   void showThreadOptions() async {
