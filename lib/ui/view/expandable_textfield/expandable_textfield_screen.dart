@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen_viewmodel.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
-import '../../colors.dart';
-import '../../styles.dart';
+import 'expandable_textfield_screen_viewmodel.dart';
 
+//stacked forms handling
+@FormView(
+  fields: [
+    FormTextField(name: 'text'),
+  ],
+)
 class ExpandableTextFieldScreen extends HookWidget {
-  ExpandableTextFieldScreen({
-    Key? key,
-    required this.widget,
-    required this.sendMessage,
-    required this.hintText,
-    required this.textController
-  }) : super(key: key);
+  ExpandableTextFieldScreen(
+      {Key? key,
+      required this.widget,
+      required this.sendMessage,
+      required this.hintText,
+      required this.textController,
+      required this.channelID})
+      : super(key: key);
   final Widget widget;
   final Function(String message) sendMessage;
   final String hintText;
   final focusNode = FocusNode();
   final TextEditingController textController;
+
+  final String channelID;
 
   final keyboardVisibilityController = KeyboardVisibilityController();
   Stream<bool> get stream =>
@@ -102,7 +111,10 @@ class ExpandableTextFieldScreen extends HookWidget {
                             }
                           },
                           child: Container(
-                            color: AppColors.whiteColor,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? AppColors.darkThemePrimaryColor
+                                    : AppColors.whiteColor,
                             child: SizedBox.fromSize(
                               size: Size.fromHeight(model.size),
                               child: Column(
@@ -139,10 +151,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                                       isVisible: model.isVisible,
                                       toggleExpanded: () {
                                         if (!model.isExpanded) {
-                                          // size = maxSize;
                                           model.toggleExpanded(true);
                                         } else {
-                                          // size = minSize;
                                           model.toggleExpanded(false);
                                         }
                                       },
@@ -163,7 +173,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/zap.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
@@ -174,7 +183,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/at_sign.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
@@ -185,7 +193,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/smile.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
@@ -208,12 +215,11 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/paperclip.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
-                                          IconButton(
-                                            onPressed: () {
+                                          GestureDetector(
+                                            onTap: () {
                                               if (textController.text
                                                   .toString()
                                                   .isNotEmpty) {
@@ -222,11 +228,20 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                 textController.clear();
                                               }
                                             },
-                                            icon: const Icon(
-                                              Icons.send,
-                                              color: AppColors.darkGreyColor,
+                                            onLongPress: () {
+                                              model.popDialog(
+                                                  textController.text,
+                                                  channelID);
+                                              textController.clear();
+                                            },
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(8.0),
+                                              child: Icon(
+                                                Icons.send,
+                                                color: AppColors.greyColor,
+                                              ),
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ),

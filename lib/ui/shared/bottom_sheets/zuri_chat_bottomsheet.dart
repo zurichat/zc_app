@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/models/user_post.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
@@ -7,19 +8,20 @@ import 'package:stacked_services/stacked_services.dart';
 
 import 'thread_options_bottomsheet/widget/recent_emojis.dart';
 
-Future<dynamic> zuriChatBottomSheet(
-    {required BuildContext context,
-    Function()? markUnread,
-    Function()? remindMe,
-    var message,
-    Function()? addToSavedItems,
-    Function()? replyInThread,
-    Function()? followThread,
-    Function()? shareMessage,
-    Function()? copyLinkToMessage,
-    Function()? copyText,
-    Function()? unPinFromConversation,
-    Function()? turnQuestionToPoll}) {
+Future<dynamic> zuriChatBottomSheet({
+  required BuildContext context,
+  Function()? markUnread,
+  Function()? remindMe,
+  Function()? addToSavedItems,
+  Function()? replyInThread,
+  Function()? followThread,
+  Function()? shareMessage,
+  Function()? copyLinkToMessage,
+  Function()? copyText,
+  Function()? changePinnedState,
+  Function()? turnQuestionToPoll,
+  UserPost? post,
+}) {
   final _dialogService = locator<DialogService>();
   return showModalBottomSheet(
     context: context,
@@ -105,10 +107,11 @@ Future<dynamic> zuriChatBottomSheet(
                 onTap: copyText),
             const Divider(),
             ListTile(
-                title: Text("Unpin from Conversation",
+                title: Text(
+                    "${post?.pinned == true ? "Unpin from" : "Pin to"} Conversation",
                     style: AppTextStyles.heading9),
-                onTap: unPinFromConversation,
-                leading: const Icon(Icons.location_pin)),
+                leading: const Icon(Icons.push_pin),
+                onTap: changePinnedState),
             ListTile(
               title: Text("Turn question into poll",
                   style: AppTextStyles.heading9),

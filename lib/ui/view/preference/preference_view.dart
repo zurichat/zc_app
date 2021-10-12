@@ -18,10 +18,17 @@ class PreferenceView extends StatelessWidget {
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-            orgTitle: Text('Preferences', style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor)),
-            leading: Icons.close_outlined,
-            leadingPress: () => model.exitPage(),
-            whiteBackground: true),
+          orgTitle: Text(
+            'Preferences',
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
+          ),
+          leading: Icons.close_outlined,
+          leadingPress: () => model.exitPage(),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [

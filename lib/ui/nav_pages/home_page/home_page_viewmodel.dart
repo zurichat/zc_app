@@ -269,6 +269,10 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.newChannel);
   }
 
+  void navigateInviteMembers() {
+    _navigationService.navigateTo(Routes.inviteViaEmail);
+  }
+
   bool hasDrafts() {
     var dmStoredDrafts =
         storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
