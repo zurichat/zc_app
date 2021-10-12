@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/models/user_post.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
@@ -13,14 +11,62 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:hng/app/app.logger.dart';
 
+
+
 class DmUserViewModel extends FormViewModel {
-  final _username = "";
+  final navigationService = locator<NavigationService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
+
+  //**Draft implementations
+
+  //Note that the receiverID has to be unique to a dm_user_view
+  //instance, which is attached to a particular user to make the draft implementation
+  // unique to a particular user dm.
+
+  var storedDraft='';
+
+  void getDraft(receiverId){
+    List<String>? spList = _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    if (spList != null){
+      for ( String e in spList) {
+        if(jsonDecode(e)['receiverId'] == receiverId ){
+          storedDraft = jsonDecode(e)['draft'];
+          spList.remove(e);
+          _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, spList);
+          return;
+        }
+      }
+    }
+
+
+  }
+
+  void storeDraft(receiverId, value){
+    var keyMap = {
+      'draft': value,
+      'time' : '${DateTime.now()}',
+      'receiverName' : 'receiverName',
+      'receiverId' : receiverId,
+    };
+
+    List<String>? spList = _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+
+    if(value.length > 0 && spList != null){
+      spList.add(json.encode(keyMap));
+      _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, spList);
+    }else if (value.length > 0 && spList == null){
+      spList = [json.encode(keyMap)];
+      _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, spList);
+    }
+  }
+  //**draft implementation ends here
+
+  final _username = '';
   String get username => _username;
 
   final bottomSheet = locator<BottomSheetService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final log = getLogger("DmUserViewModel");
-    List<UserPost>? dmMessages = [];
 
   final _isOnline = true;
   bool get isOnline => _isOnline;
@@ -90,6 +136,7 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
+
   Future<void> sendMessage() async {
     // if(messageController.text!=null){
     final message = messageController.text;
@@ -117,10 +164,17 @@ class DmUserViewModel extends FormViewModel {
     notifyListeners();
   }
 
+
+  void popScreens(receiverId, value) {
+    storeDraft(receiverId, value);
+    navigationService.back();
+  }
+
   void popScreen() {
     final navigationService = locator<NavigationService>();
     navigationService.popRepeated(1);
   }
+
 
   void sendResponse() async {
     await Future.delayed(const Duration(seconds: 0));
