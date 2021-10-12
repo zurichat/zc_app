@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 import '../ui/shared/colors.dart';
 
@@ -7,6 +8,7 @@ enum _TileType { normal, icon, flipSwitch }
 class MenuItemTile extends StatelessWidget {
   const MenuItemTile({
     this.onPressed,
+    this.iconColor,
     this.text,
     this.icon,
     this.imageIcon,
@@ -21,6 +23,7 @@ class MenuItemTile extends StatelessWidget {
 
   const MenuItemTile.icon({
     this.onPressed,
+    this.iconColor,
     this.text,
     this.icon,
     this.imageIcon,
@@ -35,6 +38,7 @@ class MenuItemTile extends StatelessWidget {
 
   const MenuItemTile.flipSwitch({
     this.onPressed,
+    this.iconColor,
     this.text,
     this.subtitle,
     this.icon,
@@ -57,12 +61,16 @@ class MenuItemTile extends StatelessWidget {
   final bool bottomBorder;
   final bool topBorder;
   final bool value;
+  final Color? iconColor;
 
   Widget? selectIcon() {
     if (icon == null && imageIcon == null) {
       return null;
     } else if (icon != null) {
-      return Icon(icon);
+      return Icon(
+        icon,
+        color: iconColor,
+      );
     } else {
       return Image.asset('$imageIcon');
     }
@@ -74,13 +82,19 @@ class MenuItemTile extends StatelessWidget {
       case _TileType.normal:
         return ListTile(
           title: text,
-          subtitle: subtitle != null ? Text(subtitle ?? '') : null,
+
+          subtitle: subtitle != null
+              ? Text(
+                  subtitle ?? '',
+                  style: ZuriTextStyle.mediumNormal(),
+                )
+              : null,
           dense: true,
           // contentPadding: EdgeInsets.symmetric(
           //   horizontal: 0.0,
           //   vertical: 0.0,
           // ),
-          visualDensity: const VisualDensity(horizontal: 0.0, vertical: -4.0),
+          visualDensity: const VisualDensity(horizontal: 0.0, vertical: 0),
           onTap: onPressed,
           shape: Border(
             top: BorderSide(
@@ -101,7 +115,12 @@ class MenuItemTile extends StatelessWidget {
         return ListTile(
           onTap: onPressed,
           title: text,
-          subtitle: subtitle != null ? Text(subtitle ?? '') : null,
+          subtitle: subtitle != null
+              ? Text(
+                  subtitle ?? '',
+                  style: ZuriTextStyle.mediumNormal(),
+                )
+              : null,
           trailing: selectIcon(),
           shape: Border(
             top: BorderSide(
