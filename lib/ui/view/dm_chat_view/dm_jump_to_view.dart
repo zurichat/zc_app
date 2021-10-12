@@ -40,7 +40,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 45.h,
+                    height: 60.h,
                     width: 361.w,
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
@@ -49,30 +49,28 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                       maxLines: 1,
                       onChanged: model.onChanged,
                       decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.r)),
-                            borderSide: BorderSide(
-                                color: AppColors.borderColor,
-                                width: 0.5.w,
-                                style: BorderStyle.solid),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.r)),
-                            borderSide: BorderSide(
-                                color: AppColors.borderColor,
-                                width: 0.5.w,
-                                style: BorderStyle.solid),
-                          ),
-                          prefixIcon: IconButton(
-                            icon: const Icon(Icons.arrow_back_ios_outlined),
-                            iconSize: 18.sp,
-                            onPressed: () => model.navigateBack(),
-                          ),
-                          hintText: 'Jump to...',
-                          hintStyle:
-                              AppTextStyles.hintStyle.copyWith(height: 3)),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.r)),
+                          borderSide: BorderSide(
+                              color: AppColors.darkGreyColor,
+                              width: 0.5.w,
+                              style: BorderStyle.solid),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.r)),
+                          borderSide: BorderSide(
+                              color: AppColors.borderColor,
+                              width: 0.5.w,
+                              style: BorderStyle.solid),
+                        ),
+                        prefixIcon: IconButton(
+                          icon: const Icon(Icons.arrow_back_ios_outlined),
+                          iconSize: 18.sp,
+                          onPressed: () => model.navigateBack(),
+                        ),
+                        hintText: 'Jump to...',
+                        hintStyle: AppTextStyles.hintStyle.copyWith(),
+                      ),
                     ),
                   ),
                   Expanded(

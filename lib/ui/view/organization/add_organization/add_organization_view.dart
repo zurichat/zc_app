@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
+
 import 'add_organization_viewmodel.dart';
 
 //The Add Organization page, where user can add a new organization
@@ -22,16 +24,15 @@ class AddOrganizationView extends StatelessWidget {
       viewModelBuilder: () => AddOrganizationViewModel(),
       builder: (context, model, child) {
         return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 8,
-            shadowColor: Colors.black38,
-            leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios), onPressed: model.back),
-            title: Text(
+          appBar: ZuriAppBar(
+            leading: Icons.arrow_back_ios,
+            orgTitle: Text(
               AddOrganisations,
-              style: AppTextStyles.heading4,
+              style:
+                  AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
             ),
+            whiteBackground: true,
+            leadingPress: model.back,
           ),
           body: GestureDetector(
             onTap: () => FocusScope.of(context).unfocus(),
@@ -40,7 +41,6 @@ class AddOrganizationView extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                    color: Colors.white,
                     borderRadius: BorderRadius.circular(3),
                     boxShadow: const [
                       BoxShadow(
@@ -63,14 +63,13 @@ class AddOrganizationView extends StatelessWidget {
                             children: [
                               const Icon(
                                 Icons.grid_view,
-                                color: AppColors.blackColor,
                               ),
                               const SizedBox(width: 16),
                               Text(
                                 SignInNewOrg,
                                 style: AppTextStyles.body3Medium.copyWith(
-                                    fontSize: 16,
-                                    color: AppColors.zuriTextBodyColor),
+                                  fontSize: 16,
+                                ),
                               ),
                             ],
                           ),
@@ -86,14 +85,13 @@ class AddOrganizationView extends StatelessWidget {
                             children: [
                               const Icon(
                                 Icons.add_box_outlined,
-                                color: AppColors.blackColor,
                               ),
                               const SizedBox(width: 16),
                               Text(
                                 JoinAnotherOrg,
                                 style: AppTextStyles.body3Medium.copyWith(
-                                    fontSize: 16,
-                                    color: AppColors.zuriTextBodyColor),
+                                  fontSize: 16,
+                                ),
                               ),
                             ],
                           ),
@@ -109,14 +107,13 @@ class AddOrganizationView extends StatelessWidget {
                             children: [
                               const Icon(
                                 Icons.edit_outlined,
-                                color: AppColors.blackColor,
                               ),
                               const SizedBox(width: 16),
                               Text(
                                 CreateNewOrg,
                                 style: AppTextStyles.body3Medium.copyWith(
-                                    fontSize: 16,
-                                    color: AppColors.zuriTextBodyColor),
+                                  fontSize: 16,
+                                ),
                               ),
                             ],
                           ),

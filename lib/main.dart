@@ -61,12 +61,11 @@ class MyApp extends StatelessWidget {
               if (supportedLocale.languageCode == locale.languageCode &&
                   supportedLocale.countryCode == locale.countryCode) {
                 return supportedLocale;
-      
               }
             }
             Intl.defaultLocale = supportedLocales.first.languageCode;
             return supportedLocales.first;
-        },
+          },
         ),
       ),
     );

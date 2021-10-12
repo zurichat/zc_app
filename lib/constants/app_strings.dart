@@ -110,7 +110,7 @@ const String Preferences = 'Preferences';
 const String Notifs = 'Notifications';
 const String ViewProfile = 'View Profile';
 const String SavedItems = 'Saved Items';
-const String SetStatusText = 'Go ';
+const String SetStatusText = 'Set yourself as ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
@@ -134,6 +134,7 @@ const String Ok = 'Ok';
 const String SelectLang = 'Select Language';
 const String DarkMode = 'Dark mode';
 const String Set = 'Set';
+const String Apply = 'Apply';
 const String ComposeFeedback = 'Compose feedback';
 const String FeedbackHint = 'e.g I found a bug in the Dm’s';
 const String FeedbackHelperText =
@@ -419,6 +420,11 @@ const String OffSick = 'Off sick';
 const String InMeeting = 'In a meeting';
 const String Commuting = 'Commuting';
 
+//Preferences
+const String PrivacyNLicenses = 'Privacy & licences';
+const String HelpCenter = 'Help Center';
+const String SendFeedback = 'Send Feedback';
+
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
@@ -505,7 +511,8 @@ const String Yeah = 'Yeah';
 const String Nope = 'Nope';
 const String Why = 'Why';
 const String FiftyResults = '50 Results';
-const String DummyAvatar = 'https://www.nairaland.com/attachments/10525387_7523740813649122436786583150820259255025664o3_jpega51895fd0bf50cf5d5982826ac401627';
+const String DummyAvatar =
+    'https://www.nairaland.com/attachments/10525387_7523740813649122436786583150820259255025664o3_jpega51895fd0bf50cf5d5982826ac401627';
 const String TermsAndConditions = '''Introduction\n\n'''
     '''We are a social network and online platform for professionals and beginners. '''
     '''People use our Services to find and be found for business opportunities, '''

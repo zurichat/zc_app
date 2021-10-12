@@ -19,13 +19,16 @@ class SavedItemsView extends StatelessWidget {
           leading: Icons.close_rounded,
           whiteBackground: true,
           leadingPress: () => model.exitPage(),
-          orgTitle: Text('Saved Items', style: AppTextStyles.heading4),
+          orgTitle: Text(
+            'Saved Items',
+            style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
+          ),
         ),
         body: model.savedBuilderList.isEmpty
             ? const SavedItemBackground()
             : ListView.separated(
                 shrinkWrap: true,
-                physics: const AlwaysScrollableScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 itemCount: model.savedBuilderList.length,
                 itemBuilder: (context, index) {
                   return InkWell(
@@ -95,6 +98,7 @@ class SavedItemsView extends StatelessWidget {
                               ),
                             ],
                           ),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),

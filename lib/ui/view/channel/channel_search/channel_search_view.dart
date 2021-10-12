@@ -6,14 +6,9 @@ import 'channel_search_view_model.dart';
 import 'widgets/search_result.dart';
 import 'widgets/textfield_style.dart';
 
-class ChannelSearchPageView extends StatefulWidget {
+class ChannelSearchPageView extends StatelessWidget {
   const ChannelSearchPageView({Key? key}) : super(key: key);
 
-  @override
-  _ChannelSearchPageViewState createState() => _ChannelSearchPageViewState();
-}
-
-class _ChannelSearchPageViewState extends State<ChannelSearchPageView> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChannelSearchViewModel>.reactive(
