@@ -35,9 +35,15 @@ List<ThemeData> getThemes() {
     ThemeData.dark().copyWith(
       primaryColor: AppColors.zuriPrimaryColor,
       accentColor: AppColors.zuriPrimaryColor,
+<<<<<<< HEAD
       // appBarTheme: const AppBarTheme(
       //   titleTextStyle: TextStyle(color: AppColors.blackColor),
       // ),
+=======
+      appBarTheme: const AppBarTheme(
+        titleTextStyle: TextStyle(color: AppColors.blackColor),
+      ),
+>>>>>>> 0724263e179536f59836a0733be51adeb8212af8
       iconTheme: const IconThemeData(
         color: AppColors.whiteColor,
       ),

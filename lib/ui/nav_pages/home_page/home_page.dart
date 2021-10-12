@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
@@ -20,6 +21,7 @@ class HomePage extends StatelessWidget {
       onModelReady: (model) {
         model.getDmAndChannelsList();
         model.getNewChannelStream();
+        model.hasDrafts();
         model.listenToNotificationTap();
       },
       viewModelBuilder: () => HomePageViewModel(),
@@ -73,6 +75,15 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: vmodel.navigateToStartDMScreen,
+          child: IconButton(
+            onPressed: vmodel.navigateToStartDMScreen,
+            icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
+            color: AppColors.whiteColor,
+          ),
+          backgroundColor: AppColors.zuriPrimaryColor,
+        ),
       ),
     );
   }
@@ -88,6 +99,11 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
           ),
+          vmodel.hasDrafts()
+              ? const Padding(
+                  padding: EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 3),
+                  child: DraftTextAndIcon())
+              : Container(),
           const Divider(),
           HomeExpandedList(
             title: local!.unreads,
@@ -104,19 +120,6 @@ class HomePage extends StatelessWidget {
             title: local.directMessages,
             data: vmodel.directMessages,
           ),
-          const Divider(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                onPressed: vmodel.navigateToStartDMScreen,
-                child: const Icon(
-                  Icons.open_in_new_outlined,
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );

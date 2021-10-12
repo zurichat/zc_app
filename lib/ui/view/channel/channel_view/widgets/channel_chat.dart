@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
@@ -29,9 +30,10 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                 },
                 onLongPress: () => zuriChatBottomSheet(
                     context: context,
+                    message: message![index].message,
                     addToSavedItems: () {
                       viewModel.saveItem(
-                          channelID: message![index].channelId,
+                          channelID: message[index].channelId,
                           channelName: message[index].channelName,
                           displayName: message[index].displayName,
                           message: message[index].message,
@@ -49,7 +51,19 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         duration: const Duration(seconds: 3),
                       );
                     },
-                  ),
+                    copyText: () {
+                      Clipboard.setData(
+                        ClipboardData(text: message[index].message),
+                      );
+                      viewModel.exitPage();
+                      showSimpleNotification(
+                        const Text("Copied!"),
+                        position: NotificationPosition.top,
+                        background: AppColors.appBarGreen,
+                        trailing: const Icon(Icons.copy_outlined),
+                        duration: const Duration(seconds: 3),
+                      );
+                    }),
                 child: ThreadCardView.threadChannelMain(
                     viewModel.channelUserMessages![index]),
               ),

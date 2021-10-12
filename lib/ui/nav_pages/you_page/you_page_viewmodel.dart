@@ -99,10 +99,9 @@ class YouPageViewModel extends BaseViewModel {
     final response = await _apiService.post(endpoint, body: {}, token: token);
 
     if (response?.statusCode == 200) {
-      _storage.clearData(StorageKeys.currentSessionToken);
-      _storage.clearData(StorageKeys.currentUserId);
-      _storage.clearData(StorageKeys.currentUserEmail);
-
+      _storage.clearData(StorageKeys.currentOrgId);
+      _storage.clearData(StorageKeys.currentOrgUrl);
+      _storage.clearData(StorageKeys.currentOrgName);
       navigateToOrgView();
     }
   }

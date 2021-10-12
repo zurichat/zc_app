@@ -18,93 +18,74 @@ class PreferenceView extends StatelessWidget {
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-          orgTitle: Text(Preferences, style: AppTextStyles.heading4),
-          leading: Icons.close_outlined,
-          leadingPress: () => model.exitPage(),
-        ),
+            orgTitle: Text('Preferences',
+                style: AppTextStyles.heading4
+                    .copyWith(color: AppColors.blackColor)),
+            leading: Icons.close_outlined,
+            leadingPress: () => model.exitPage(),
+            whiteBackground: true),
         body: SingleChildScrollView(
-          child: Card(
-            elevation: 8,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(3),
-            ),
-            margin: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                UIHelper.verticalSpaceMedium,
-                MenuItemTile(
-                  text: Text(
-                    LangAndRegion,
-                    style: AppTextStyles.faintBodyText.copyWith(
-                      fontSize: 16,
-                    ),
+          child: Column(
+            children: [
+              UIHelper.verticalSpaceMedium,
+              MenuItemTile(
+                topBorder: false,
+                text: Text(
+                  LangAndRegion,
+                  style: AppTextStyles.faintBodyText.copyWith(
+                    fontSize: 16,
                   ),
-                  onPressed: model.navigateLanguageAndRegion,
                 ),
-                const SizedBox(height: 16),
-                const Divider(color: AppColors.dividerColor),
-                const SizedBox(height: 16),
-                MenuItemTile(
-                  text: Text(
-                    DarkMode,
-                    style: AppTextStyles.faintBodyText.copyWith(
-                      fontSize: 16,
-                    ),
+                onPressed: model.navigateLanguageAndRegion,
+              ),
+              MenuItemTile(
+                text: Text(
+                  DarkMode,
+                  style: AppTextStyles.faintBodyText.copyWith(
+                    fontSize: 16,
                   ),
-                  subtitle: model.currentTheme,
-                  onPressed: model.changeTheme,
                 ),
-                const SizedBox(height: 16),
-                const Divider(color: AppColors.dividerColor),
-                const SizedBox(height: 16),
-                MenuItemTile(
-                  text: Text(
-                    Advanced,
-                    style: AppTextStyles.faintBodyText.copyWith(
-                      fontSize: 16,
-                    ),
+                subtitle: model.currentTheme,
+                onPressed: model.changeTheme,
+              ),
+              MenuItemTile(
+                text: Text(
+                  Advanced,
+                  style: AppTextStyles.faintBodyText.copyWith(
+                    fontSize: 16,
                   ),
-                  onPressed: model.navigateToAdvanced,
                 ),
-                const SizedBox(height: 16),
-                const Divider(color: AppColors.dividerColor),
-                const SizedBox(height: 16),
-                MenuItemTile(
-                  text: Text(
-                    SendFeedback,
-                    style: AppTextStyles.faintBodyText.copyWith(
-                      fontSize: 16,
-                    ),
+                onPressed: model.navigateToAdvanced,
+              ),
+              MenuItemTile(
+                text: Text(
+                  SendFeedback,
+                  style: AppTextStyles.faintBodyText.copyWith(
+                    fontSize: 16,
                   ),
-                  onPressed: model.sendFeedback,
                 ),
-                const SizedBox(height: 16),
-                const Divider(color: AppColors.dividerColor),
-                const SizedBox(height: 16),
-                MenuItemTile(
-                  text: Text(
-                    HelpCenter,
-                    style: AppTextStyles.faintBodyText.copyWith(
-                      fontSize: 16,
-                    ),
+                onPressed: model.sendFeedback,
+              ),
+              MenuItemTile(
+                text: Text(
+                  HelpCenter,
+                  style: AppTextStyles.faintBodyText.copyWith(
+                    fontSize: 16,
                   ),
-                  onPressed: model.helpCentre,
                 ),
-                const SizedBox(height: 16),
-                const Divider(color: AppColors.dividerColor),
-                const SizedBox(height: 16),
-                MenuItemTile(
-                  text: Text(
-                    PrivacyNLicenses,
-                    style: AppTextStyles.faintBodyText.copyWith(
-                      fontSize: 16,
-                    ),
+                onPressed: model.helpCentre,
+              ),
+              MenuItemTile(
+                text: Text(
+                  PrivacyNLicenses,
+                  style: AppTextStyles.faintBodyText.copyWith(
+                    fontSize: 16,
                   ),
-                  onPressed: model.privacyAndLicences,
                 ),
-                UIHelper.verticalSpaceMedium,
-              ],
-            ),
+                onPressed: model.privacyAndLicences,
+              ),
+              UIHelper.verticalSpaceMedium,
+            ],
           ),
         ),
       ),
