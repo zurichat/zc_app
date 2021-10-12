@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/plugin_page/plugin_page_view.dart';
+import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
@@ -120,7 +120,7 @@ class NavBarView extends StatelessWidget {
       case 0:
         return const HomePage();
       case 1:
-        return const PluginPage();
+        return const PluginPageIntro();
       case 2:
         return const DmPage();
       case 3:

@@ -30,9 +30,10 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                 },
                 onLongPress: () => zuriChatBottomSheet(
                     context: context,
+                    message: message![index].message,
                     addToSavedItems: () {
                       viewModel.saveItem(
-                          channelID: message![index].channelId,
+                          channelID: message[index].channelId,
                           channelName: message[index].channelName,
                           displayName: message[index].displayName,
                           message: message[index].message,
@@ -52,7 +53,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                     },
                     copyText: () {
                       Clipboard.setData(
-                        ClipboardData(text: message![index].message),
+                        ClipboardData(text: message[index].message),
                       );
                       viewModel.exitPage();
                       showSimpleNotification(

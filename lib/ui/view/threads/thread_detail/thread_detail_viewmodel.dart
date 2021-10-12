@@ -12,6 +12,10 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:hng/app/app.logger.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../models/user_post.dart';
+import '../../../../package/base/server-request/api/zuri_api.dart';
+import '../../../../services/local_storage_services.dart';
+import '../../../../services/user_service.dart';
+import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 
 class ThreadDetailViewModel extends BaseViewModel {
@@ -22,6 +26,8 @@ class ThreadDetailViewModel extends BaseViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _apiService = ZuriApi(channelsBaseUrl);
   final _userService = locator<UserService>();
+  final storageService = locator<SharedPreferenceLocalStorage>();
+
 
   List<UserThreadPost> channelThreadMessages = [];
   late String channelMessageId;
@@ -105,6 +111,10 @@ class ThreadDetailViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  void exitPage(userPost, value) {
+    storeDraft(userPost, value);
+    _navigationService.back();
+  }
   Future<void> sendThreadMessage(String message, String channelId) async {
     await _apiService.addReplyToMessage(
         channelMessageId, message, null, currentOrg, userId, channelId);
@@ -115,11 +125,52 @@ class ThreadDetailViewModel extends BaseViewModel {
 
   String get userId => _userService.userId;
 
-  void exitPage() {
-    _navigationService.back();
-  }
-
   String time(String timeStamp) {
     return DateFormat.Hm().format(DateTime.parse(timeStamp));
   }
+
+  //draft implementations
+  //TODO - routing to ThreadDetails needs more fixing, the required parameter userPost of class UserPost proves to difficult access from the draft view.
+  //TODO - resolve image
+
+  var storedDraft = '';
+
+  void getDraft(userPost){
+    List<String>? spList = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    if (spList != null){
+      for ( String encodedStoredDraft in spList) {
+        if(jsonDecode(encodedStoredDraft)['userPostId'] == userPost.id &&
+            jsonDecode(encodedStoredDraft)['userPostChannelName'] == userPost.channelName
+    ){
+          storedDraft = jsonDecode(encodedStoredDraft)['draft'];
+          spList.remove(encodedStoredDraft);
+          storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, spList);
+          return;
+        }
+      }
+    }
+  }
+
+  void storeDraft(userPost, value){
+    var keyMap = {
+      'draft': value,
+      'time' : '${DateTime.now()}',
+      'userPostId' : userPost.id,
+      'userPostChannelName' : userPost.channelName,
+      'userPostMessage' : userPost.message,
+      'userPostDisplayName' : userPost.displayName,
+    };
+
+    List<String>? spList = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+
+    if(value.length > 0 && spList != null){
+      spList.add(json.encode(keyMap));
+      storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, spList);
+    }else if (value.length > 0 && spList == null){
+      spList = [json.encode(keyMap)];
+      storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, spList);
+    }
+  }
+  //**draft implementation ends here
+
 }

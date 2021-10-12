@@ -16,6 +16,9 @@ class StorageKeys {
   static const status = 'status';
   static const phoneNum = 'phoneNum';
   static const currentUserImageUrl = 'current_url';
+  static const currentUserDmIdDrafts = 'current_user_dm_id_drafts';
+  static const currentUserChannelIdDrafts = 'current_user_channel_id_drafts';
+  static const currentUserThreadIdDrafts = 'current_user_thread_Id_drafts';
   static const currentChannelId = 'current_channel_id';
   static const organizationMemberList = 'organization_member_list';
   static const currentTheme = 'current_theme';
