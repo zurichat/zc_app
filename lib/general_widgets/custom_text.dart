@@ -5,7 +5,7 @@ class CustomText extends StatelessWidget {
   final String text;
   final double fontSize;
   final FontWeight fontWeight;
-  final Color color;
+  final Color? color;
   final double lineHeight;
   final TextOverflow overflow;
   final int maxLines;
@@ -15,7 +15,7 @@ class CustomText extends StatelessWidget {
     required this.text,
     this.fontSize = 16.0,
     this.fontWeight = FontWeight.normal,
-    this.color = Colors.black,
+    this.color,
     this.lineHeight = 1,
     this.overflow = TextOverflow.ellipsis,
     this.maxLines = 1,

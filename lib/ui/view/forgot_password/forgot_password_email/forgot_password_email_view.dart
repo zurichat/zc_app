@@ -29,7 +29,6 @@ class ForgotPasswordEmailView extends StatelessWidget
         ),
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppColors.whiteColor,
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
@@ -50,7 +49,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                   Center(
                     child: Text(
                       ForgotPassword,
-                      style: AppTextStyles.heading9,
+                      style: AppTextStyles.body1Bold,
                     ),
                   ),
                   const SizedBox(
@@ -157,9 +156,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                           children: [
                             TextSpan(
                               text: BackTo,
-                              style: AppTextStyles.normalText.copyWith(
-                                color: AppColors.blackColor,
-                              ),
+                              style: Theme.of(context).textTheme.bodyText1,
                             ),
                             TextSpan(
                               text: SignIn,

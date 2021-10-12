@@ -38,6 +38,8 @@ class SignUpViewModel extends FormViewModel {
   void navigateToHome() => navigator.navigateTo(Routes.navBarView);
   void navigateToSignIn() => navigation.navigateTo(Routes.loginView);
   void navigateToOTPView() => navigation.navigateTo(Routes.oTPView);
+  void navigateToTermsAndConditions() =>
+      navigator.navigateTo(Routes.termsAndConditionsView);
 
   createUser(context) async {
     if (checkBoxValue == true) {
@@ -67,12 +69,6 @@ class SignUpViewModel extends FormViewModel {
         storage.setString(StorageKeys.currentUserEmail, emailValue!);
         storage.setBool(StorageKeys.registeredNotverifiedOTP, true);
         navigateToOTPView();
-      } else {
-        snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.failure,
-          message: response?.data['message'] ?? errorEncounteredSignUp,
-        );
       }
     } else {
       snackbar.showCustomSnackBar(

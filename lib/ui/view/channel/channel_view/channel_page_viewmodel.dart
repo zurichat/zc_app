@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:hng/app/app.locator.dart';
@@ -10,21 +11,66 @@ import 'package:hng/package/base/server-request/channels/channels_api_service.da
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/notification_service.dart';
-
+import 'package:hng/app/app.logger.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class ChannelPageViewModel extends BaseViewModel {
+class ChannelPageViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _channelsApiService = locator<ChannelsApiService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final _centrifugeService = locator<CentrifugeService>();
   final _notificationService = locator<NotificationService>();
-
+  final log = getLogger("ChannelPageViewModel");
   final _bottomSheetService = locator<BottomSheetService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
+
+  //Draft implementations
+  var storedDraft = '';
+
+  void getDraft(channelId) {
+    List<String>? spList =
+        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    if (spList != null) {
+      for (String e in spList) {
+        if (jsonDecode(e)['channelId'] == channelId) {
+          storedDraft = jsonDecode(e)['draft'];
+          spList.remove(e);
+          _storageService.setStringList(
+              StorageKeys.currentUserChannelIdDrafts, spList);
+          return;
+        }
+      }
+    }
+  }
+
+  void storeDraft(channelId, value, channelName, membersCount, public) {
+    var keyMap = {
+      'draft': value,
+      'time': '${DateTime.now()}',
+      'channelName': channelName,
+      'channelId': channelId,
+      'membersCount': membersCount,
+      'public': public,
+    };
+
+    List<String>? spList =
+        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+
+    if (value.length > 0 && spList != null) {
+      spList.add(json.encode(keyMap));
+      _storageService.setStringList(
+          StorageKeys.currentUserChannelIdDrafts, spList);
+    } else if (value.length > 0 && spList == null) {
+      spList = [json.encode(keyMap)];
+      _storageService.setStringList(
+          StorageKeys.currentUserChannelIdDrafts, spList);
+    }
+  }
+  //**draft implementation ends here
 
   // ignore: todo
   //TODO refactor this
@@ -39,6 +85,36 @@ class ChannelPageViewModel extends BaseViewModel {
   StreamSubscription? notificationSubscription;
   String channelID = '';
 
+  saveItem(
+      {String? channelID,
+      String? channelName,
+      String? messageID,
+      String? message,
+      String? lastSeen,
+      String? userID,
+      String? userImage,
+      String? displayName}) async {
+    var savedMessageMap = {
+      'channel_id': channelID,
+      'channel_name': channelName,
+      'message_id': messageID,
+      'message': message,
+      'last_seen': lastSeen,
+      'user_id': userID,
+      'user_image': userImage,
+      'display_name': displayName
+    };
+    if (message!.isNotEmpty) {
+      var currentList = storage.getStringList(StorageKeys.savedItem) ?? [];
+      currentList.add(messageID!);
+      await storage.setStringList(StorageKeys.savedItem, currentList);
+      await storage.setString(messageID, json.encode(savedMessageMap));
+      log.i(savedMessageMap);
+      final len = storage.getStringList(StorageKeys.savedItem);
+      log.w(len!.length.toString());
+    }
+  }
+
   void onMessageFieldTap() {
     isVisible = true;
     notifyListeners();
@@ -48,10 +124,9 @@ class ChannelPageViewModel extends BaseViewModel {
     channelID = channelId;
     await joinChannel(channelId);
     fetchMessages(channelId);
-    // getChannelSocketId("$channelId");
+    getChannelSocketId("$channelId");
     fetchChannelMembers(channelId);
     listenToNewMessage(channelId);
-    // listenToNewMessages("$channelId");
   }
 
   void showThreadOptions() async {
@@ -103,7 +178,7 @@ class ChannelPageViewModel extends BaseViewModel {
             userThreadPosts: <UserThreadPost>[],
             channelName: channelId,
             userImage: 'assets/images/chimamanda.png',
-            userID: userid,
+            userId: userid,
             channelId: channelId),
       );
     });
@@ -150,7 +225,12 @@ class ChannelPageViewModel extends BaseViewModel {
     fetchChannelMembers(channelId);
   }
 
-  void goBack() => _navigationService.back();
+  void goBack(channelId, value, channelName, membersCount, public) {
+    storeDraft(channelId, value, channelName, membersCount, public);
+    _navigationService.back();
+  }
+
+  void exit() => _navigationService.back();
 
   navigateToChannelEdit(String channelName, String channelId) {
     _navigationService.navigateTo(Routes.editChannelPageView,
@@ -207,5 +287,22 @@ class ChannelPageViewModel extends BaseViewModel {
   void toggleExpanded() {
     isExpanded = !isExpanded;
     notifyListeners();
+  }
+
+  @override
+  void setFormStatus() {
+    // TODO: implement setFormStatus
+  }
+
+  void scheduleMessage(double delay, String text, String channelID) async {
+    delay = delay * 60; //Converting from hour to minutes
+
+    int value = delay.toInt();
+    String? userId = storage.getString(StorageKeys.currentUserId);
+    Future.delayed(Duration(minutes: value), () async {
+      _channelsApiService.sendChannelMessages(channelID, "$userId", text);
+
+      notifyListeners();
+    });
   }
 }

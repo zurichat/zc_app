@@ -1,7 +1,11 @@
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/media_service.dart';
 import 'package:hng/services/notification_service.dart';
+import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
+import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
+import 'package:hng/ui/nav_pages/plugin_page/plugin_page_view.dart';
 import 'package:hng/ui/view/direct_message/direct_message.dart';
+import 'package:hng/ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';
 import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
 import 'package:hng/ui/view/user_search/user_search_view.dart';
@@ -15,6 +19,7 @@ import 'package:hng/ui/view/channel/add_people/channel_add_people_view.dart';
 import 'package:hng/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
 import 'package:hng/ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
 import 'package:hng/ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
+import 'package:hng/ui/view/webview_page/webview_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -59,9 +64,9 @@ import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
 import '../ui/view/pinned_messages/pinned_message.dart';
-import '../ui/view/plugins/add_plugin_view.dart';
-import '../ui/view/plugins/edit_plugin_view.dart';
-import '../ui/view/plugins/plugins_view.dart';
+import '../ui/nav_pages/plugin_page/add_plugin_view.dart';
+import '../ui/nav_pages/plugin_page/edit_plugin_view.dart';
+import '../ui/nav_pages/plugin_page/plugins_view.dart';
 import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/profile_page/profile_page_view.dart';
@@ -94,6 +99,7 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: DmSearch),
     MaterialRoute(page: DmJumpToView),
     MaterialRoute(page: DmUserView),
+    MaterialRoute(page: DmScreen),
     MaterialRoute(page: Splashview, initial: true),
     MaterialRoute(page: PluginView),
     MaterialRoute(page: AddPluginView),
@@ -124,7 +130,12 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: OrganizationUrlView),
     MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: ChannelInfoView),
+    MaterialRoute(page: PluginPage),
     MaterialRoute(page: DirectMessage),
+    MaterialRoute(page: TermsAndConditionsView),
+    MaterialRoute(page: WebViewPage),
+    MaterialRoute(page: PluginPageIntro),
+
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

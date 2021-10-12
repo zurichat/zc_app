@@ -82,7 +82,7 @@ class OrganizationApiService {
       token: token,
       body: {'creator_email': email},
     );
-    return res?.data?['data']['InsertedID'];
+    return res?.data?['data']['organization_id'];
   }
 
   /// Updates an organization's URL. The organization's id `orgId` must not be
