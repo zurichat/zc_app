@@ -111,7 +111,10 @@ class ExpandableTextFieldScreen extends HookWidget {
                             }
                           },
                           child: Container(
-                            color: AppColors.whiteColor,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? AppColors.darkThemePrimaryColor
+                                    : AppColors.whiteColor,
                             child: SizedBox.fromSize(
                               size: Size.fromHeight(model.size),
                               child: Column(
@@ -170,7 +173,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/zap.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
@@ -181,7 +183,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/at_sign.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
@@ -192,7 +193,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/smile.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
@@ -215,7 +215,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/paperclip.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),

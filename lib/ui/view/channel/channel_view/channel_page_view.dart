@@ -52,7 +52,6 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
         }
 
         return Scaffold(
-          backgroundColor: AppColors.whiteColor,
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             leadingPress: () => model.goBack(
@@ -62,6 +61,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 membersCount,
                 public),
             whiteBackground: true,
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             actions: [
               IconButton(
                 onPressed: () {},

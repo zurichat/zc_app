@@ -22,10 +22,10 @@ class CreateOrganization extends HookWidget {
       onModelReady: (model) => model.init(email),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-         whiteBackground: true,
-          leading: Icons.close,
+            whiteBackground: true,
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             leadingPress: () => model.back(),
-        ),
+            leading: Icons.close_outlined),
         body: Stack(
           children: [
             Positioned(
@@ -34,7 +34,7 @@ class CreateOrganization extends HookWidget {
               top: 0,
               bottom: 0,
               child: PageView(
-                controller: pageController, 
+                controller: pageController,
                 children: [
                   CompanyPage(pageController: pageController),
                   ProjectPage(pageController: pageController),
