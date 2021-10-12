@@ -2,17 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
-import '../../shared/shared.dart';
-import 'set_status_viewmodel.dart';
-import 'widgets/status.dart';
-import 'widgets/statuses.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/set_status/set_status_viewmodel.dart';
+import 'package:hng/ui/view/set_status/widgets/status.dart';
+import 'package:hng/ui/view/set_status/widgets/statuses.dart';
 
-class SetStatusView extends StatelessWidget {
+@FormView(
+  fields: [
+    FormTextField(name: 'status'),
+  ],
+)
+class SetStatusView extends StatelessWidget with $SetStatusView {
   const SetStatusView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
+        onModelReady: (model) => listenToFormUpdated(model),
         builder: (context, model, child) => Scaffold(
               appBar: ZuriAppBar(
                 leading: Icons.close_rounded,
@@ -23,7 +30,9 @@ class SetStatusView extends StatelessWidget {
                 ),
                 actions: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      model.saveStatus;
+                    },
                     child: Text(
                       Save,
                       style: AppTextStyles.heading8,
@@ -50,6 +59,7 @@ class SetStatusView extends StatelessWidget {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                             ),
+                            controller: statusController,
                           ),
                           fit: FlexFit.loose,
                         ),
