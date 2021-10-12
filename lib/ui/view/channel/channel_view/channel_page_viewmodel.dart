@@ -17,8 +17,6 @@ import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-
-
 class ChannelPageViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _channelsApiService = locator<ChannelsApiService>();
@@ -30,47 +28,49 @@ class ChannelPageViewModel extends FormViewModel {
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
 
-
   //Draft implementations
   var storedDraft = '';
 
-  void getDraft(channelId){
-    List<String>? spList = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
-      if (spList != null){
-        for ( String e in spList) {
-          if(jsonDecode(e)['channelId'] == channelId ){
-            storedDraft = jsonDecode(e)['draft'];
-            spList.remove(e);
-            _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, spList);
-            return;
-          }
+  void getDraft(channelId) {
+    List<String>? spList =
+        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    if (spList != null) {
+      for (String e in spList) {
+        if (jsonDecode(e)['channelId'] == channelId) {
+          storedDraft = jsonDecode(e)['draft'];
+          spList.remove(e);
+          _storageService.setStringList(
+              StorageKeys.currentUserChannelIdDrafts, spList);
+          return;
         }
       }
+    }
   }
 
-  void storeDraft(channelId, value, channelName, membersCount, public ){
+  void storeDraft(channelId, value, channelName, membersCount, public) {
     var keyMap = {
       'draft': value,
-      'time' : '${DateTime.now()}',
-      'channelName' : channelName,
-      'channelId' : channelId,
-      'membersCount' : membersCount,
-      'public' : public,
+      'time': '${DateTime.now()}',
+      'channelName': channelName,
+      'channelId': channelId,
+      'membersCount': membersCount,
+      'public': public,
     };
 
-    List<String>? spList = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    List<String>? spList =
+        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
 
-    if(value.length > 0 && spList != null){
+    if (value.length > 0 && spList != null) {
       spList.add(json.encode(keyMap));
-      _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, spList);
-    }else if (value.length > 0 && spList == null){
+      _storageService.setStringList(
+          StorageKeys.currentUserChannelIdDrafts, spList);
+    } else if (value.length > 0 && spList == null) {
       spList = [json.encode(keyMap)];
-      _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, spList);
+      _storageService.setStringList(
+          StorageKeys.currentUserChannelIdDrafts, spList);
     }
   }
   //**draft implementation ends here
-
-
 
   // ignore: todo
   //TODO refactor this
@@ -143,6 +143,10 @@ class ChannelPageViewModel extends FormViewModel {
 
   Future joinChannel(String channelId) async {
     await _channelsApiService.joinChannel(channelId);
+  }
+
+  Future navigateToQuestionPollScreen() async {
+    await _navigationService.navigateTo(Routes.questionIntoPollView);
   }
 
   void getChannelSocketId(String channelId) async {
@@ -228,7 +232,6 @@ class ChannelPageViewModel extends FormViewModel {
     storeDraft(channelId, value, channelName, membersCount, public);
     _navigationService.back();
   }
-
 
   navigateToChannelEdit(String channelName, String channelId) {
     _navigationService.navigateTo(Routes.editChannelPageView,

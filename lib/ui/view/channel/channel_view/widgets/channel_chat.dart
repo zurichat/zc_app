@@ -63,6 +63,9 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         trailing: const Icon(Icons.copy_outlined),
                         duration: const Duration(seconds: 3),
                       );
+                    },
+                    turnQuestionToPoll: () {
+                      viewModel.navigateToQuestionPollScreen();
                     }),
                 child: ThreadCardView.threadChannelMain(
                     viewModel.channelUserMessages![index]),

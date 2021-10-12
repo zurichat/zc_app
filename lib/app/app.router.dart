@@ -27,6 +27,7 @@ import '../ui/view/channel/channel_info/channel_info_view.dart';
 import '../ui/view/channel/channel_list/channels_view.dart';
 import '../ui/view/channel/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel/channel_view/channel_page_view.dart';
+import '../ui/view/channel/channel_view/question_into_poll/question_into_poll_view.dart';
 import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/clear_after/clear_after_view.dart';
@@ -125,6 +126,7 @@ class Routes {
   static const String termsAndConditionsView = '/terms-and-conditions-view';
   static const String webViewPage = '/web-view-page';
   static const String pluginPageIntro = '/plugin-page-intro';
+  static const String questionIntoPollView = '/question-into-poll-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -180,6 +182,7 @@ class Routes {
     termsAndConditionsView,
     webViewPage,
     pluginPageIntro,
+    questionIntoPollView,
   };
 }
 
@@ -242,6 +245,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.termsAndConditionsView, page: TermsAndConditionsView),
     RouteDef(Routes.webViewPage, page: WebViewPage),
     RouteDef(Routes.pluginPageIntro, page: PluginPageIntro),
+    RouteDef(Routes.questionIntoPollView, page: QuestionIntoPollView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -672,6 +676,18 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    QuestionIntoPollView: (data) {
+      var args = data.getArgs<QuestionIntoPollViewArguments>(
+        orElse: () => QuestionIntoPollViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => QuestionIntoPollView(
+          key: args.key,
+          channelUserMessages: args.channelUserMessages,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -858,4 +874,11 @@ class WebViewPageArguments {
   final String url;
   final Key? key;
   WebViewPageArguments({required this.name, required this.url, this.key});
+}
+
+/// QuestionIntoPollView arguments holder class
+class QuestionIntoPollViewArguments {
+  final Key? key;
+  final List<UserPost>? channelUserMessages;
+  QuestionIntoPollViewArguments({this.key, this.channelUserMessages});
 }
