@@ -15,17 +15,40 @@ import '../home_page_viewmodel.dart';
 
 final navigationService = locator<NavigationService>();
 
-class ThreadTextAndIcon extends StatelessWidget {
+class ThreadTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   const ThreadTextAndIcon({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, viewModel) {
     return _TextAndIcon(
       text: Threads,
       unread: true,
-      onTap: () {
+      onTap: () async{
         // Navigate to threads screen
-        navigationService.navigateTo(Routes.threadsView);
+        await navigationService.navigateTo(Routes.threadsView);
+        viewModel.draftChecker();
+      },
+      icon: SvgIcon(
+        svgIcon: SvgAssets.threads,
+        color: Theme.of(context).textTheme.bodyText1!.color,
+      ),
+    );
+  }
+}
+
+class DraftTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+
+  const
+  DraftTextAndIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, viewModel) {
+    return _TextAndIcon(
+      text: Drafts,
+      unread: true,
+      onTap: () async{
+        await navigationService.navigateTo(Routes.draftView);
+        viewModel.draftChecker();
       },
       icon: SvgIcon(
         svgIcon: SvgAssets.threads,
@@ -59,7 +82,7 @@ class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
     return _TextAndIcon(
       text: AddTeammates,
       unread: false,
-      onTap: () => viewModel.navigateToCreateChannel(),
+      onTap: () => viewModel.navigateInviteMembers(),
       icon: SvgIcon(
         svgIcon: SvgAssets.addChannels,
       ),

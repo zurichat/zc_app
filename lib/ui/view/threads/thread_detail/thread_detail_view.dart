@@ -26,19 +26,33 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
     final log = getLogger("ThreadDetailView");
     final _scrollController = ScrollController();
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
-      onModelReady: (model) => model.initialise(userPost!.id!),
+      // onModelReady: (model) => model.initialise(userPost!.id!),
+      onModelReady: (model) {
+        model.getDraft(userPost);
+        if (model.storedDraft.isNotEmpty) {
+          messageController.text = model.storedDraft;
+        }
+        model.initialise(userPost!.id!);
+      },
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-            orgTitle: Text(
-              Threads,
-              style:
-                  AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
+          orgTitle: Text(
+            Threads,
+            style: AppTextStyles.heading4.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
             ),
-            leading: Icons.chevron_left,
-            leadingPress: () => model.exitPage(),
-            whiteBackground: true),
+          ),
+          leading: Icons.chevron_left,
+          leadingPress: () => model.exitPage(userPost, messageController.text),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
+        ),
         body: model.isBusy
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.zuriPrimaryColor,
+                ),
+              )
             : Column(
                 children: [
                   Expanded(
@@ -98,13 +112,14 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                                   displayName:
                                                       userPost!.displayName,
                                                   message: userPost!.message,
-                                                  lastSeen: userPost!.lastSeen,
+                                                  lastSeen: userPost!.moment,
                                                   messageID: userPost!.id,
                                                   userID: userPost!.userId,
                                                   userImage:
                                                       userPost!.userImage);
                                               log.i("Saved");
-                                              model.exitPage();
+                                              model.exitPage(userPost,
+                                                  messageController.text);
                                               showSimpleNotification(
                                                 const Text(
                                                     "Added successfully"),
