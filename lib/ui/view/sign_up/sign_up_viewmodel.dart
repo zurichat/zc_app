@@ -95,8 +95,7 @@ class SignUpViewModel extends FormViewModel {
         message: FailedGoogleSignIn,
       );
     } else {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => OrganizationView(user: user)));
+      navigation.navigateToView(OrganizationView(user: user));
     }
   }
 }
