@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
 import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
+import 'package:hng/ui/view/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../shared/colors.dart';
@@ -28,7 +28,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
   @override
   Widget build(BuildContext context) {
     //TODO remove the var below and replace with the actual id from the backend once dm's get linked to the backend
-     dynamic receiverId = 'receiver';
+    dynamic receiverId = 'receiver';
     return ViewModelBuilder<DmUserViewModel>.reactive(
       onModelReady: (model) {
         model.getDraft(receiverId);
@@ -43,7 +43,8 @@ class DmUserView extends StatelessWidget with $DmUserView {
           backgroundColor: Colors.white,
           appBar: ZuriAppBar(
               leading: Icons.arrow_back_ios,
-              leadingPress: () => model.popScreens(receiverId, messageController.text),
+              leadingPress: () =>
+                  model.popScreens(receiverId, messageController.text),
               title: model.receiver.username,
               subtitle: ViewDetails,
               actions: [
@@ -58,6 +59,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
           body: Stack(
             children: [
               ExpandableTextFieldScreen(
+                channelID: '',
                 hintText: 'Message ${model.receiver.username}',
                 textController: messageController,
                 sendMessage: (String message) {
@@ -142,7 +144,6 @@ class DmUserView extends StatelessWidget with $DmUserView {
                     ],
                   ),
                 ),
-
               ),
             ],
           ),

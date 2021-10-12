@@ -11,8 +11,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:hng/app/app.logger.dart';
 
-
-
 class DmUserViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
@@ -23,38 +21,39 @@ class DmUserViewModel extends FormViewModel {
   //instance, which is attached to a particular user to make the draft implementation
   // unique to a particular user dm.
 
-  var storedDraft='';
+  var storedDraft = '';
 
-  void getDraft(receiverId){
-    List<String>? spList = _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
-    if (spList != null){
-      for ( String e in spList) {
-        if(jsonDecode(e)['receiverId'] == receiverId ){
+  void getDraft(receiverId) {
+    List<String>? spList =
+        _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    if (spList != null) {
+      for (String e in spList) {
+        if (jsonDecode(e)['receiverId'] == receiverId) {
           storedDraft = jsonDecode(e)['draft'];
           spList.remove(e);
-          _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, spList);
+          _storageService.setStringList(
+              StorageKeys.currentUserDmIdDrafts, spList);
           return;
         }
       }
     }
-
-
   }
 
-  void storeDraft(receiverId, value){
+  void storeDraft(receiverId, value) {
     var keyMap = {
       'draft': value,
-      'time' : '${DateTime.now()}',
-      'receiverName' : 'receiverName',
-      'receiverId' : receiverId,
+      'time': '${DateTime.now()}',
+      'receiverName': 'receiverName',
+      'receiverId': receiverId,
     };
 
-    List<String>? spList = _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    List<String>? spList =
+        _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
 
-    if(value.length > 0 && spList != null){
+    if (value.length > 0 && spList != null) {
       spList.add(json.encode(keyMap));
       _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, spList);
-    }else if (value.length > 0 && spList == null){
+    } else if (value.length > 0 && spList == null) {
       spList = [json.encode(keyMap)];
       _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, spList);
     }
@@ -98,8 +97,9 @@ class DmUserViewModel extends FormViewModel {
     _hasClickedMessageField = true;
     notifyListeners();
   }
-/// THIS FUNCTION BELOW IS TO SAVE MESSAGES INTO SAVED Items
-/// PLESE LEAVE IT
+
+  /// THIS FUNCTION BELOW IS TO SAVE MESSAGES INTO SAVED Items
+  /// PLESE LEAVE IT
   saveItem(
       {String? channelID,
       String? channelName,
@@ -129,13 +129,13 @@ class DmUserViewModel extends FormViewModel {
       log.w(len!.length.toString());
     }
   }
+
   /// IT ENDS HERE FOR SAVED ITEMS
 
   void onUnfocusMessageField() {
     _hasClickedMessageField = false;
     notifyListeners();
   }
-
 
   Future<void> sendMessage() async {
     // if(messageController.text!=null){
@@ -149,21 +149,17 @@ class DmUserViewModel extends FormViewModel {
           time: DateTime.now(),
         ),
       );
-      // ignore: todo
-      //TODO - fix autoclear
+
       messageController.clear();
-      //clearText();
+
       notifyListeners();
     }
-    //await sendResponse();
-    //}
   }
 
   void deleteMessage(Message message) {
     chatMessages.remove(message);
     notifyListeners();
   }
-
 
   void popScreens(receiverId, value) {
     storeDraft(receiverId, value);
@@ -174,7 +170,6 @@ class DmUserViewModel extends FormViewModel {
     final navigationService = locator<NavigationService>();
     navigationService.popRepeated(1);
   }
-
 
   void sendResponse() async {
     await Future.delayed(const Duration(seconds: 0));
@@ -193,4 +188,38 @@ class DmUserViewModel extends FormViewModel {
 //TODO implement setFormStatus
   @override
   void setFormStatus() {}
+
+  scheduleMessage(double delay, String text) {
+    delay = delay * 60; //Converting from hour to minutes
+
+    int value = delay.toInt();
+    Future.delayed(Duration(minutes: value), () {
+      if (text.trim().isNotEmpty) {
+        chatMessages.add(
+          Message(
+            id: chatMessages.length,
+            sender: sender,
+            message: text,
+            time: DateTime.now(),
+          ),
+        );
+
+        notifyListeners();
+      }
+    });
+  }
+
+//Dialog box for schedulling
+  final _dialogService = locator<DialogService>();
+  showPop() {
+    _dialogService.showCustomDialog(
+      variant: DialogType.scheduleMessageDm,
+    );
+
+    notifyListeners();
+  }
+
+  void exit() {
+    navigationService.back();
+  }
 }
