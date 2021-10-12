@@ -47,11 +47,12 @@ class AddOrganizationView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(3),
                     boxShadow: const [
                       BoxShadow(
-                        color: Color(0xff4F4F4F),
+                        color: AppColors.whiteColor,
                         blurRadius: 1,
                         offset: Offset(0, 1),
                       ),
-                    ]),
+                   ],
+                    ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Column(

@@ -5,6 +5,11 @@ import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_page_view.dart';
 import 'package:hng/ui/view/direct_message/direct_message.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/import_contact.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/invitation_sent.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email.dart';
 import 'package:hng/ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';
 import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
@@ -135,6 +140,13 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: TermsAndConditionsView),
     MaterialRoute(page: WebViewPage),
     MaterialRoute(page: PluginPageIntro),
+    MaterialRoute(page: InviteViaEmail),
+    MaterialRoute(page: InviteViaEmailAdmin),
+    MaterialRoute(page: ImportContacts),
+    MaterialRoute(page: CreateInviteLink),
+    MaterialRoute(page: InvitationSent),
+
+
 
   ],
   dependencies: [
