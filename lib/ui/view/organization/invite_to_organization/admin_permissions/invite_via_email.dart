@@ -79,7 +79,7 @@ class InviteViaEmailAdmin extends StatelessWidget {
                   ),
                 ),
                 UIHelper.verticalSpaceLarge,
-                Container(
+                SizedBox(
                   child: Column(
                     children: [
                       const ListTile(
@@ -91,9 +91,9 @@ class InviteViaEmailAdmin extends StatelessWidget {
                       UIHelper.horizontalSpaceSmall,
                       const Text(
                           "To change the expiry date, deactivate your link and \n choose a new duration."),
-                      Divider(),
+                      const Divider(),
                       GestureDetector(
-                          onTap: () {}, child: Text("Deactivate link")),
+                          onTap: () {}, child: const Text("Deactivate link")),
                     ],
                   ),
                 ),

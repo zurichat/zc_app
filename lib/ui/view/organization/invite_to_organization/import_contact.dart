@@ -85,7 +85,7 @@ class ImportContacts extends StatelessWidget {
                   leading: CircleAvatar(
                     child: Image.asset("assets/images/avatar.png"),
                   ),
-                  title: Text("BrodaDemi"),
+                  title: const Text("BrodaDemi"),
                 ),
               ],
             ),

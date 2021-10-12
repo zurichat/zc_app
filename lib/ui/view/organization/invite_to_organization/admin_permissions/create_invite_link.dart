@@ -76,17 +76,17 @@ class CreateInviteLink extends StatelessWidget {
                     title: Text("Invite from contacts"),
                   ),
                 ),
-                Container(
+                SizedBox(
                   child: Column(
                     children: [
-                      ListTile(
+                     const ListTile(
                         leading: Icon(
                           Icons.link_sharp,
                         ),
                         title: Text("Share your invite link"),
                       ),
                       UIHelper.horizontalSpaceSmall,
-                      Text(
+                     const Text(
                           "Create a link to share with your teammates. \n Anyone can use this link to join your zuri chat workspace"),
                     ],
                   ),

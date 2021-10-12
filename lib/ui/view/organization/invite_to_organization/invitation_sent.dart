@@ -42,8 +42,8 @@ class InvitationSent extends StatelessWidget {
                   title: Text("thepump@gmail.com"),
                 ),
                 UIHelper.verticalSpaceLarge,
-                Center(
-                  child: const Text(
+               const Center(
+                  child: Text(
                       "Has been invited as a member of zuri chat. \n They’ll be able to receive and reply in messages by email until they join."),
                 ),
                 UIHelper.customVerticalSpace(560),
