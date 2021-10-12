@@ -8,7 +8,8 @@ import 'package:stacked_hooks/stacked_hooks.dart';
 import 'organization_url_viewmodel.dart';
 
 class OrganizationUrlView extends StatelessWidget {
-  const OrganizationUrlView({Key? key}) : super(key: key);
+  final String email;
+  const OrganizationUrlView({Key? key, required this.email}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class OrganizationUrlView extends StatelessWidget {
                                       fontSize: 16, color: AppColors.greyColor),
                                 ),
                                 TextSpan(
-                                  text: '${viewModel.email}',
+                                  text: '$email',
                                   style: AppTextStyles.body3Medium.copyWith(
                                       fontSize: 16,
                                       color: AppColors.appBarGreen),
@@ -122,7 +123,7 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
     return TextButton(
       style: ButtonStyle(
           backgroundColor:
-              MaterialStateProperty.all<Color>(viewModel.buttonColors)),
+          MaterialStateProperty.all<Color>(viewModel.buttonColors)),
       onPressed: () => viewModel.signInToOrganization(),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),

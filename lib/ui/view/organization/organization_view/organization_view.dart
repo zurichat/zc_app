@@ -16,16 +16,16 @@ class OrganizationView extends StatelessWidget {
       disposeViewModel: false,
       builder: (context, viewModel, child) {
         return Scaffold(
-
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(Organizations,
-                      style: AppTextStyles.heading6
-                          .copyWith(color: AppColors.blackColor)),
+                  Text(
+                    Organizations,
+                    style: AppTextStyles.heading6,
+                  ),
                   Expanded(
                     child: Visibility(
                       visible: !viewModel.isBusy,
@@ -33,34 +33,34 @@ class OrganizationView extends StatelessWidget {
                         physics: const ScrollPhysics(),
                         child: viewModel.organizations.isEmpty
                             ? Center(
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  padding: const EdgeInsets.only(top: 50.0),
-                                  child: Text(
-                                    NotJoinedOrgYet,
-                                    style: AppTextStyles.bodyRegular,
-                                  ),
-                                ),
-                              )
+                          child: Container(
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.only(top: 50.0),
+                            child: Text(
+                              NotJoinedOrgYet,
+                              style: AppTextStyles.bodyRegular,
+                            ),
+                          ),
+                        )
                             : Column(
-                                children: [
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.005,
-                                  ),
-                                  ListView.builder(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemCount: viewModel.organizations.length,
-                                    shrinkWrap: true,
-                                    itemBuilder: (context, i) {
-                                      final org = viewModel.organizations[i];
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height *
+                                  0.005,
+                            ),
+                            ListView.builder(
+                              physics:
+                              const NeverScrollableScrollPhysics(),
+                              itemCount: viewModel.organizations.length,
+                              shrinkWrap: true,
+                              itemBuilder: (context, i) {
+                                final org = viewModel.organizations[i];
 
-                                      return OrganizationTile(org: org);
-                                    },
-                                  ),
-                                ],
-                              ),
+                                return OrganizationTile(org: org);
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                       replacement: const Center(
                         child: CircularProgressIndicator(
@@ -100,6 +100,14 @@ class OrganizationView extends StatelessWidget {
                               style: AppTextStyles.faintBodyText
                                   .copyWith(fontSize: 16)),
                         ),
+                        ListTile(
+                          onTap: () => viewModel.signOutAllOrg(),
+                          leading: const Icon(Icons.logout_sharp),
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(SignOutAccount,
+                              style: AppTextStyles.faintBodyText
+                                  .copyWith(fontSize: 16)),
+                        ),
                       ],
                     ),
                   ),
@@ -125,7 +133,8 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
   @override
   Widget build(BuildContext context, OrganizationViewModel viewModel) {
     return ListTile(
-        onTap: () => viewModel.onTap(org.id, org.name, org.organizationUrl),
+        onTap: () => viewModel.onTap(
+            org.id, org.name, org.organizationUrl, org.userIdInOrg),
         leading: Container(
           height: MediaQuery.of(context).size.height * 0.06,
           width: MediaQuery.of(context).size.height * 0.06,

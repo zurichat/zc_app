@@ -14,7 +14,7 @@ import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/notification_service.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:hng/ui/view/dm_chat_view/dm_jump_to_view.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
@@ -58,6 +58,7 @@ class HomePageViewModel extends StreamViewModel {
 
   String get orgName => userService.currentOrgName;
   String get orgId => userService.currentOrgId;
+  String get email => userService.userEmail;
 
   StreamSubscription? notificationSub;
 
@@ -146,7 +147,7 @@ class HomePageViewModel extends StreamViewModel {
     homePageList = [];
     setBusy(true);
 
-    List? channelsList = await channelsApiService.getActiveDms();
+    List? channelsList = await channelsApiService.getActiveChannels();
 
     channelsList.forEach(
       (data) {
@@ -181,7 +182,11 @@ class HomePageViewModel extends StreamViewModel {
     String channelSockId =
         await channelsApiService.getChannelSocketId(channelId);
 
-    _centrifugeService.subscribe(channelSockId);
+    try {
+      await _centrifugeService.subscribe(channelSockId);
+    } catch (e) {
+      log.e(e.toString());
+    }
   }
 
   // listenToChannelsChange() {
@@ -204,16 +209,18 @@ class HomePageViewModel extends StreamViewModel {
       setBusy(true);
       // _channel= await api.getChannelPage(id);
       // _membersList= await api.getChannelMembers(id);
-      setBusy(false);
+
 
       _moderateNavigation();
-      navigation.navigateTo(Routes.channelPageView,
+      await navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
             channelName: channelName,
             channelId: channelId,
             membersCount: membersCount,
             public: public,
           ));
+      setBusy(false);
+
     } catch (e) {
       log.e(e.toString());
       snackbar.showCustomSnackBar(
@@ -248,7 +255,8 @@ class HomePageViewModel extends StreamViewModel {
   }
 
   void onJumpToScreen() {
-    navigationService.navigateTo(Routes.dmJumpToView);
+    navigation.navigateWithTransition(DmJumpToView(),
+        transition: NavigationTransition.DownToUp);
   }
 
   @override
@@ -261,7 +269,36 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.newChannel);
   }
 
-  // void navigateToDmUser() {
-  //   _navigationService.navigateTo(Routes.dmUserView);
-  // }
+  bool hasDrafts() {
+    var dmStoredDrafts =
+        storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    var channelStoredDrafts =
+        storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    var threadStoredDrafts =
+        storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    int counter = 0;
+
+    if (dmStoredDrafts != null) {
+      dmStoredDrafts.forEach((element) {
+        counter++;
+      });
+    }
+
+    if (channelStoredDrafts != null) {
+      channelStoredDrafts.forEach((element) {
+        counter++;
+      });
+    }
+
+    if (threadStoredDrafts != null) {
+      threadStoredDrafts.forEach((element) {
+        counter++;
+      });
+    }
+    return counter > 0;
+  }
+
+  void draftChecker(){
+    notifyListeners();
+  }
 }

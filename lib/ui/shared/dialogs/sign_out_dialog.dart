@@ -7,10 +7,9 @@ class SignOutDialog extends StatelessWidget {
   final DialogRequest request;
   final Function(DialogResponse) completer;
 
-  const SignOutDialog({
-    Key? key,
-    required this.request,
-    required this.completer}) : super(key: key);
+  const SignOutDialog(
+      {Key? key, required this.request, required this.completer})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +19,14 @@ class SignOutDialog extends StatelessWidget {
         text: 'Sign out of $orgName?',
         fontWeight: FontWeight.w700,
         fontSize: 20,
-        color: AppColors.zuriTextBodyColor,
       ),
       content: const CustomText(
         text: "You can sign back in anytime by tapping \n\"Add a workspace\"",
         maxLines: 2,
         fontWeight: FontWeight.w400,
         fontSize: 14,
-        color: AppColors.zuriDarkGrey,
       ),
-      actions: <Widget>[
+      actions: [
         TextButton(
           child: const CustomText(
             text: 'Cancel',

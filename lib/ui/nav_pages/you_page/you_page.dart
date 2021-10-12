@@ -30,7 +30,7 @@ class YouPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: model.editProfile,
+                  onTap: () => model.editProfile(),
                   child: ProfilePageHead(
                     name: model.username,
                     currentStatus: model.currentStatus,
@@ -51,6 +51,7 @@ class YouPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
+                  topBorder: false,
                   text: Text.rich(
                     TextSpan(
                       text: SetStatusText,
@@ -65,7 +66,6 @@ class YouPage extends StatelessWidget {
                   ),
                   icon: Icons.circle_outlined,
                   onPressed: model.toggleStatus,
-                  topBorder: false,
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
@@ -106,6 +106,17 @@ class YouPage extends StatelessWidget {
                   onPressed: model.viewPreferences,
                   topBorder: false,
                 ),
+                const SizedBox(height: 16),
+                MenuItemTile(
+                  icon: Icons.logout_sharp,
+                  text: Text(
+                    SignOut,
+                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                  ),
+                  onPressed: model.signOutAccount,
+                  topBorder: false,
+                ),
+                const SizedBox(height: 10)
               ],
             ),
           ),

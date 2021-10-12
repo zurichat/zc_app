@@ -34,7 +34,10 @@ class SelectEmailViewModel extends BaseViewModel {
   }
 
   void navigateToOrganizationUrl() {
-    _navigationService.navigateTo(Routes.organizationUrlView);
+    _navigationService.navigateTo(
+      Routes.organizationUrlView,
+      arguments: OrganizationUrlViewArguments(email: userEmail!),
+    );
   }
 
   void navigateToCreateOrganization() {
@@ -44,8 +47,11 @@ class SelectEmailViewModel extends BaseViewModel {
     );
   }
 
-  navigateToUseDifferentEmailView() {
-    _navigationService.navigateTo(Routes.useDifferentEmailView);
+  void navigateToDifferentEmail(OrganizationSwitchMethod method) {
+    _navigationService.navigateTo(
+      Routes.useDifferentEmailView,
+      arguments: UseDifferentEmailViewArguments(method: method),
+    );
   }
 
   String getScreenTitle(OrganizationSwitchMethod method) {
