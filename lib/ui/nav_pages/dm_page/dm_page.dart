@@ -25,11 +25,6 @@ class DmPage extends StatelessWidget {
             bottomNavBarScreen: true,
           ),
           floatingActionButton: FloatingActionButton(
-<<<<<<< HEAD
-            onPressed: () {},
-            child: const Icon(
-              Icons.add,
-=======
             onPressed: () {
               model.navigateToDmScreen();
             },
@@ -39,7 +34,6 @@ class DmPage extends StatelessWidget {
               },
               icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
               color: AppColors.whiteColor,
->>>>>>> 0724263e179536f59836a0733be51adeb8212af8
             ),
             // backgroundColor: AppColors.zuriPrimaryColor,
           ),
