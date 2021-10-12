@@ -20,7 +20,7 @@ class InviteEmailViewModel extends BaseViewModel with ValidatorMixin {
       };
       final res =
           _zuriApi.inviteToOrganizationWithNormalMail(orgId, body, token);
-      log.i('>>>>>>>>>>>>>>>>> invite response : $res');
+      log.i('>>>>>>>>> invite response : $res');
     }
   }
 }
