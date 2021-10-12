@@ -23,9 +23,8 @@ class WebViewPage extends StatelessWidget {
                 whiteBackground: true,
                 actions: [
                   model.isLoading
-                      ? const SizedBox(
-                          height: 30,
-                          width: 30,
+                      ? const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: CircularProgressIndicator(
                             color: AppColors.zuriPrimaryColor,
                           ),
@@ -40,8 +39,7 @@ class WebViewPage extends StatelessWidget {
               onPageFinished: (url) {
                 model.stopLoading();
               },
-              onProgress: (progress) {
-              },
+              onProgress: (progress) {},
               javascriptMode: JavascriptMode.unrestricted,
             ),
           );
