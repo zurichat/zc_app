@@ -18,7 +18,6 @@ class SelectLanguageDialog extends StatefulWidget {
 class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     int? _currentValue = widget.request.data['currentValue'];
 
     return StatefulBuilder(builder: (context, setState) {

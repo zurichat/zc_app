@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
 
 class CustomUser extends StatelessWidget {
   const CustomUser({Key? key, this.image, this.text}) : super(key: key);

@@ -93,11 +93,11 @@ class EmojiPickerBottomSheetView extends StatelessWidget {
                           showRecentsTab: true,
                           recentsLimit: 28,
                           noRecentsText: 'No Recents',
-                          noRecentsStyle: TextStyle(
+                          noRecentsStyle: const TextStyle(
                             fontSize: 20,
                           ),
                           tabIndicatorAnimDuration: kTabScrollDuration,
-                          categoryIcons: CategoryIcons(),
+                          categoryIcons: const CategoryIcons(),
                           buttonMode: ButtonMode.MATERIAL,
                         ),
                       ),
