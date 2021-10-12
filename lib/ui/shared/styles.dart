@@ -262,6 +262,11 @@ class AppTextStyles {
     color: AppColors.zuriPrimaryColor,
     fontSize: 14,
   );
+  static TextStyle bodySmall2 = GoogleFonts.lato(
+    fontWeight: FontWeight.w400,
+    color: AppColors.zuriTextBodyColor,
+    fontSize: 14,
+  );
   static TextStyle bodyBig = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
     color: AppColors.zuriPrimaryColor,

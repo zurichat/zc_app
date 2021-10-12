@@ -62,10 +62,10 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
                         topBorder: false,
                         icon: Icons.message,
                         text: Text('Mark unread')),
-                    const MenuItemTile(
+                   const MenuItemTile(
                         topBorder: false,
                         icon: Icons.access_time_rounded,
-                        text: Text('Remind me')),
+                        text:  Text('Remind me')),
                     const MenuItemTile(
                         topBorder: false,
                         icon: Icons.bookmark_border_outlined,

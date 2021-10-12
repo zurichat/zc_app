@@ -17,6 +17,8 @@ class SelectEmailViewModel extends BaseViewModel {
 
   String get anotherEmail => _anotherEmail;
 
+  void back() => _navigationService.back();
+
   void onEmailTap(OrganizationSwitchMethod method) {
     switch (method) {
       case OrganizationSwitchMethod.signIn:
@@ -66,6 +68,4 @@ class SelectEmailViewModel extends BaseViewModel {
         return JoinWorkspace;
     }
   }
-
-  void back() => _navigationService.popRepeated(1);
 }

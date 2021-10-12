@@ -26,7 +26,14 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
     final log = getLogger("ThreadDetailView");
     final _scrollController = ScrollController();
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
-      onModelReady: (model) => model.initialise(userPost!.id!),
+      // onModelReady: (model) => model.initialise(userPost!.id!),
+      onModelReady: (model) {
+        model.getDraft(userPost);
+        if(model.storedDraft.isNotEmpty){
+          messageController.text = model.storedDraft;
+        }
+        model.initialise(userPost!.id!);
+      },
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
             orgTitle: Text(
@@ -35,7 +42,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                   AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
             ),
             leading: Icons.chevron_left,
-            leadingPress: () => model.exitPage(),
+            leadingPress: () => model.exitPage(userPost, messageController.text),
             whiteBackground: true),
         body: model.isBusy
             ? const Center(child: CircularProgressIndicator())
@@ -104,7 +111,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                                   userImage:
                                                       userPost!.userImage);
                                               log.i("Saved");
-                                              model.exitPage();
+                                              model.exitPage(userPost, messageController.text);
                                               showSimpleNotification(
                                                 const Text(
                                                     "Added successfully"),

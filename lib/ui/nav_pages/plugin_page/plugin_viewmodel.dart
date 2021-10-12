@@ -50,7 +50,7 @@ class PluginViewModel extends BaseViewModel {
 
   navigateToEdit() => navigationService.navigateTo(Routes.editPluginView);
 
-  navigateToPlugins() => navigationService.navigateTo(Routes.pluginView);
+  navigateToPlugins() => navigationService.navigateTo(Routes.pluginPage);
 
   navigateToHome() => navigationService.navigateTo(Routes.navBarView);
 }
