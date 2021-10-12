@@ -644,7 +644,7 @@ class ZuriApi implements Api {
   ) async {
     try {
       final res = await post(
-        'https://api.zuri.chat/organizations/{$organizationId}/members',
+        'organizations/$organizationId/members',
         body: body,
         token: token,
       );

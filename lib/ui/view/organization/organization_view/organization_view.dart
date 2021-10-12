@@ -23,7 +23,7 @@ class OrganizationView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    Organizations,
+                    Workspaces,
                     style: AppTextStyles.heading6,
                   ),
                   Expanded(

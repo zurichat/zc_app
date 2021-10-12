@@ -14,10 +14,9 @@ import 'package:hng/services/notification_service.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
+import 'package:simple_moment/simple_moment.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-
 
 class ChannelPageViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
@@ -30,47 +29,49 @@ class ChannelPageViewModel extends FormViewModel {
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
 
-
   //Draft implementations
   var storedDraft = '';
 
-  void getDraft(channelId){
-    List<String>? spList = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
-      if (spList != null){
-        for ( String e in spList) {
-          if(jsonDecode(e)['channelId'] == channelId ){
-            storedDraft = jsonDecode(e)['draft'];
-            spList.remove(e);
-            _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, spList);
-            return;
-          }
+  void getDraft(channelId) {
+    List<String>? spList =
+        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    if (spList != null) {
+      for (String e in spList) {
+        if (jsonDecode(e)['channelId'] == channelId) {
+          storedDraft = jsonDecode(e)['draft'];
+          spList.remove(e);
+          _storageService.setStringList(
+              StorageKeys.currentUserChannelIdDrafts, spList);
+          return;
         }
       }
+    }
   }
 
-  void storeDraft(channelId, value, channelName, membersCount, public ){
+  void storeDraft(channelId, value, channelName, membersCount, public) {
     var keyMap = {
       'draft': value,
-      'time' : '${DateTime.now()}',
-      'channelName' : channelName,
-      'channelId' : channelId,
-      'membersCount' : membersCount,
-      'public' : public,
+      'time': '${DateTime.now()}',
+      'channelName': channelName,
+      'channelId': channelId,
+      'membersCount': membersCount,
+      'public': public,
     };
 
-    List<String>? spList = _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    List<String>? spList =
+        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
 
-    if(value.length > 0 && spList != null){
+    if (value.length > 0 && spList != null) {
       spList.add(json.encode(keyMap));
-      _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, spList);
-    }else if (value.length > 0 && spList == null){
+      _storageService.setStringList(
+          StorageKeys.currentUserChannelIdDrafts, spList);
+    } else if (value.length > 0 && spList == null) {
       spList = [json.encode(keyMap)];
-      _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, spList);
+      _storageService.setStringList(
+          StorageKeys.currentUserChannelIdDrafts, spList);
     }
   }
   //**draft implementation ends here
-
-
 
   // ignore: todo
   //TODO refactor this
@@ -84,6 +85,7 @@ class ChannelPageViewModel extends FormViewModel {
   StreamSubscription? messageSubscription;
   StreamSubscription? notificationSubscription;
   String channelID = '';
+  String channelCreator = '';
 
   saveItem(
       {String? channelID,
@@ -120,13 +122,20 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
+  getChannelCreator(String channelId) async {
+    var response = await _channelsApiService.getChanelCreator(channelId);
+    channelCreator = response['owner'];
+    notifyListeners();
+  }
+
   void initialise(String channelId) async {
     channelID = channelId;
     await joinChannel(channelId);
     fetchMessages(channelId);
-    getChannelSocketId("$channelId");
+    getChannelSocketId(channelId);
     fetchChannelMembers(channelId);
     listenToNewMessage(channelId);
+    getChannelCreator(channelId);
   }
 
   void showThreadOptions() async {
@@ -140,6 +149,10 @@ class ChannelPageViewModel extends FormViewModel {
     isVisible = false;
     notifyListeners();
   }
+
+  Future<bool> changePinnedState(UserPost? userPost) =>
+      _channelsApiService.changeChannelMessagePinnedState(userPost!.channelId,
+          userPost.id!, userPost.userId!, !userPost.pinned);
 
   Future joinChannel(String channelId) async {
     await _channelsApiService.joinChannel(channelId);
@@ -168,18 +181,20 @@ class ChannelPageViewModel extends FormViewModel {
 
       channelUserMessages?.add(
         UserPost(
-            id: data['_id'],
-            displayName: userid,
-            statusIcon: '7️⃣',
-            lastSeen: '4 hours ago',
-            message: data['content'],
-            channelType: ChannelType.public,
-            postEmojis: <PostEmojis>[],
-            userThreadPosts: <UserThreadPost>[],
-            channelName: channelId,
-            userImage: 'assets/images/chimamanda.png',
-            userId: userid,
-            channelId: channelId),
+          id: data['_id'],
+          displayName: userid,
+          statusIcon: '7️⃣',
+          moment: Moment.now().from(DateTime.parse(data['timestamp'])),
+          message: data['content'],
+          channelType: ChannelType.public,
+          postEmojis: <PostEmojis>[],
+          userThreadPosts: <UserThreadPost>[],
+          channelName: channelId,
+          userImage: 'assets/images/chimamanda.png',
+          userId: userid,
+          channelId: channelId,
+          pinned: data['pinned'],
+        ),
       );
     });
     isLoading = false;
@@ -229,6 +244,7 @@ class ChannelPageViewModel extends FormViewModel {
     _navigationService.back();
   }
 
+  void exit() => _navigationService.back();
 
   navigateToChannelEdit(String channelName, String channelId) {
     _navigationService.navigateTo(Routes.editChannelPageView,
@@ -290,5 +306,17 @@ class ChannelPageViewModel extends FormViewModel {
   @override
   void setFormStatus() {
     // TODO: implement setFormStatus
+  }
+
+  void scheduleMessage(double delay, String text, String channelID) async {
+    delay = delay * 60; //Converting from hour to minutes
+
+    int value = delay.toInt();
+    String? userId = storage.getString(StorageKeys.currentUserId);
+    Future.delayed(Duration(minutes: value), () async {
+      _channelsApiService.sendChannelMessages(channelID, "$userId", text);
+
+      notifyListeners();
+    });
   }
 }

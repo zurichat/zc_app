@@ -28,7 +28,10 @@ class ThreadTextAndIcon extends ViewModelWidget<HomePageViewModel> {
         await navigationService.navigateTo(Routes.threadsView);
         viewModel.draftChecker();
       },
-      icon: SvgIcon(svgIcon: SvgAssets.threads),
+      icon: SvgIcon(
+        svgIcon: SvgAssets.threads,
+        color: Theme.of(context).textTheme.bodyText1!.color,
+      ),
     );
   }
 }
@@ -79,7 +82,7 @@ class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
     return _TextAndIcon(
       text: AddTeammates,
       unread: false,
-      onTap: () => viewModel.navigateToCreateChannel(),
+      onTap: () => viewModel.navigateInviteMembers(),
       icon: SvgIcon(
         svgIcon: SvgAssets.addChannels,
       ),
