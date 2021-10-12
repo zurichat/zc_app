@@ -225,7 +225,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           ),
                         ),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () => model.signIn(context),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

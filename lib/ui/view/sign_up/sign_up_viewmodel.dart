@@ -1,5 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/services/google_signin_api.dart';
+import 'package:hng/ui/view/organization/organization_view/organization_view.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -38,6 +42,8 @@ class SignUpViewModel extends FormViewModel {
   void navigateToHome() => navigator.navigateTo(Routes.navBarView);
   void navigateToSignIn() => navigation.navigateTo(Routes.loginView);
   void navigateToOTPView() => navigation.navigateTo(Routes.oTPView);
+  // void navigateToOrganizationView(GoogleSignInAccount user) =>
+  //     navigation.navigateTo(Routes.organizationView);
   void navigateToTermsAndConditions() =>
       navigator.navigateTo(Routes.termsAndConditionsView);
 
@@ -76,6 +82,21 @@ class SignUpViewModel extends FormViewModel {
         variant: SnackbarType.failure,
         message: acceptTnC,
       );
+    }
+  }
+
+  Future signIn(context) async {
+    final user = await GoogleSignInApi.login();
+
+    if (user == null) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: FailedGoogleSignIn,
+      );
+    } else {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => OrganizationView(user: user)));
     }
   }
 }

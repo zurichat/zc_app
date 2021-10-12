@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/organization_model.dart';
 import 'package:stacked/stacked.dart';
@@ -7,7 +8,8 @@ import '../../../shared/shared.dart';
 import 'organization_viewmodel.dart';
 
 class OrganizationView extends StatelessWidget {
-  const OrganizationView({Key? key}) : super(key: key);
+  final GoogleSignInAccount user;
+  const OrganizationView({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,23 @@ class OrganizationView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(Organizations,
-                      style: AppTextStyles.heading6
-                          .copyWith(color: AppColors.blackColor)),
+                  Row(
+                    children: [
+                      Text(Organizations,
+                          style: AppTextStyles.heading6
+                              .copyWith(color: AppColors.blackColor)),
+                      IconButton(
+                          onPressed: () => viewModel.signOut(),
+                          icon: const Icon(Icons.logout)),
+                      const SizedBox(
+                        width: 90,
+                      ),
+                      CircleAvatar(
+                        radius: 20,
+                        child: Image.network(user.photoUrl!),
+                      )
+                    ],
+                  ),
                   Expanded(
                     child: Visibility(
                       visible: !viewModel.isBusy,

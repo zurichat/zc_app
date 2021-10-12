@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:stacked/stacked.dart';
 
 import '../models/channel_members.dart';
@@ -281,8 +282,9 @@ class StackedRouter extends RouterBase {
       );
     },
     OrganizationView: (data) {
+      var args = data.getArgs<OrganizationViewArguments>(nullOk: true);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const OrganizationView(),
+        builder: (context) => OrganizationView(key: args.key, user: args.user),
         settings: data,
       );
     },
@@ -763,6 +765,13 @@ class EditChannelPageViewArguments {
 class StartDmViewArguments {
   final Key? key;
   StartDmViewArguments({this.key});
+}
+
+/// OrganizationView arguments holder class
+class OrganizationViewArguments {
+  final Key? key;
+  final GoogleSignInAccount user;
+  OrganizationViewArguments({this.key, required this.user});
 }
 
 /// OrganizationUrlView arguments holder class
