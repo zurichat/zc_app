@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/enums.dart';
@@ -24,29 +25,31 @@ class AddOrganizationView extends StatelessWidget {
       viewModelBuilder: () => AddOrganizationViewModel(),
       builder: (context, model, child) {
         return Scaffold(
+          backgroundColor: AppColors.whiteColor,
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             orgTitle: Text(
-              AddOrganisations,
+              AddWorkspaces,
               style:
-                  AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
+                  AppTextStyles.heading4,
             ),
             whiteBackground: true,
             leadingPress: model.back,
           ),
-          body: GestureDetector(
+          body: InkWell(
             onTap: () => FocusScope.of(context).unfocus(),
             child: Column(children: [
               const SizedBox(height: 16),
               Container(
                 margin: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
+                    color: AppColors.whiteColor,
                     borderRadius: BorderRadius.circular(3),
                     boxShadow: const [
                       BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 2,
-                        offset: Offset(0, 2),
+                        color: Color(0xff4F4F4F),
+                        blurRadius: 1,
+                        offset: Offset(0, 1),
                       ),
                     ]),
                 child: Padding(
@@ -54,7 +57,7 @@ class AddOrganizationView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GestureDetector(
+                      InkWell(
                         onTap: () => model.navigateToSelectEmail(
                             OrganizationSwitchMethod.signIn),
                         child: Padding(
@@ -65,18 +68,13 @@ class AddOrganizationView extends StatelessWidget {
                                 Icons.grid_view,
                               ),
                               const SizedBox(width: 16),
-                              Text(
-                                SignInNewOrg,
-                                style: AppTextStyles.body3Medium.copyWith(
-                                  fontSize: 16,
-                                ),
-                              ),
+                              Text(SignInNewOrg, style: AppTextStyles.heading9),
                             ],
                           ),
                         ),
                       ),
                       const Divider(color: AppColors.dividerColor),
-                      GestureDetector(
+                      InkWell(
                         onTap: () => model.navigateToSelectEmail(
                             OrganizationSwitchMethod.join),
                         child: Padding(
@@ -87,18 +85,14 @@ class AddOrganizationView extends StatelessWidget {
                                 Icons.add_box_outlined,
                               ),
                               const SizedBox(width: 16),
-                              Text(
-                                JoinAnotherOrg,
-                                style: AppTextStyles.body3Medium.copyWith(
-                                  fontSize: 16,
-                                ),
-                              ),
+                              Text(JoinAnotherOrg,
+                                  style: AppTextStyles.heading9),
                             ],
                           ),
                         ),
                       ),
                       const Divider(color: AppColors.dividerColor),
-                      GestureDetector(
+                      InkWell(
                         onTap: () => model.navigateToSelectEmail(
                             OrganizationSwitchMethod.create),
                         child: Padding(
@@ -109,12 +103,7 @@ class AddOrganizationView extends StatelessWidget {
                                 Icons.edit_outlined,
                               ),
                               const SizedBox(width: 16),
-                              Text(
-                                CreateNewOrg,
-                                style: AppTextStyles.body3Medium.copyWith(
-                                  fontSize: 16,
-                                ),
-                              ),
+                              Text(CreateNewOrg, style: AppTextStyles.heading9),
                             ],
                           ),
                         ),
