@@ -41,7 +41,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
             Threads,
             style: AppTextStyles.heading4.copyWith(
               color: Theme.of(context).textTheme.bodyText1!.color,
-    
+            ),
           ),
           leading: Icons.chevron_left,
           leadingPress: () => model.exitPage(userPost, messageController.text),
@@ -50,7 +50,6 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
         ),
         body: model.isBusy
             ? const ZuriLoader()
-
             : Column(
                 children: [
                   Expanded(
