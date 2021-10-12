@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -38,15 +39,7 @@ class ChannelAddPeopleView extends StatelessWidget {
             leadingPress: () => viewModel.navigateBack(),
             actions: [
               viewModel.isBusy
-                  ? Padding(
-                      padding: const EdgeInsets.fromLTRB(0.0, 12.0, 20.0, 12.0),
-                      child: Transform.scale(
-                        child: const CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation(
-                                AppColors.zuriPrimaryColor)),
-                        scale: 0.512,
-                      ),
-                    )
+                  ? const ZuriLoader()
                   : Padding(
                       padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 0.0),
                       child: InkWell(
@@ -123,11 +116,7 @@ class ChannelAddPeopleView extends StatelessWidget {
               ],
               Expanded(
                 child: viewModel.users.isEmpty
-                    ? const Center(
-                        child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation(
-                                AppColors.zuriPrimaryColor)),
-                      )
+                    ? const Center(child: ZuriLoader())
                     : viewModel.isBusy
                         ? Center(
                             child: Text(
