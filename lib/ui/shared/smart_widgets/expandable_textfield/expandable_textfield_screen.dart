@@ -9,13 +9,13 @@ import '../../colors.dart';
 import '../../styles.dart';
 
 class ExpandableTextFieldScreen extends HookWidget {
-  ExpandableTextFieldScreen({
-    Key? key,
-    required this.widget,
-    required this.sendMessage,
-    required this.hintText,
-    required this.textController
-  }) : super(key: key);
+  ExpandableTextFieldScreen(
+      {Key? key,
+      required this.widget,
+      required this.sendMessage,
+      required this.hintText,
+      required this.textController})
+      : super(key: key);
   final Widget widget;
   final Function(String message) sendMessage;
   final String hintText;
@@ -102,7 +102,10 @@ class ExpandableTextFieldScreen extends HookWidget {
                             }
                           },
                           child: Container(
-                            color: AppColors.whiteColor,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? AppColors.darkThemePrimaryColor
+                                    : AppColors.whiteColor,
                             child: SizedBox.fromSize(
                               size: Size.fromHeight(model.size),
                               child: Column(
@@ -163,7 +166,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/zap.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
@@ -174,7 +176,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/at_sign.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
@@ -185,7 +186,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/smile.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
@@ -208,7 +208,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/paperclip.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
@@ -224,7 +223,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                             },
                                             icon: const Icon(
                                               Icons.send,
-                                              color: AppColors.darkGreyColor,
                                             ),
                                           )
                                         ],

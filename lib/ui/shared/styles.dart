@@ -91,9 +91,10 @@ class AppTextStyles {
     fontSize: 14,
   );
   static TextStyle body1Bold = GoogleFonts.lato(
-      fontWeight: FontWeight.w700,
-      fontSize: 16,
-      color: AppColors.deepBlackColor);
+    fontWeight: FontWeight.w700,
+    fontSize: 16,
+    // color: AppColors.deepBlackColor,
+  );
 
   static TextStyle body1 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
@@ -116,7 +117,7 @@ class AppTextStyles {
   );
   static TextStyle body2_400 = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
-    color: AppColors.zuriDarkGrey,
+    // color: AppColors.zuriDarkGrey,
     fontSize: 14,
   );
   static TextStyle timestamp = GoogleFonts.lato(
@@ -154,7 +155,7 @@ class AppTextStyles {
   );
   static TextStyle normalGrey = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
-    color: AppColors.greyColor,
+    // color: AppColors.greyColor,
     fontSize: 14,
   );
   static TextStyle normal = GoogleFonts.lato(
@@ -219,12 +220,12 @@ class AppTextStyles {
   );
   static TextStyle body1Light = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
-    color: AppColors.zuriTextColorHeader,
+    // color: AppColors.zuriTextColorHeader,
     fontSize: 16,
   );
   static TextStyle body1Grey = GoogleFonts.lato(
     fontWeight: FontWeight.w400,
-    color: AppColors.greyishColor,
+    // colo`r: AppColors.greyishColor,
     fontSize: 14,
   );
   static TextStyle nameStyle = GoogleFonts.lato(
@@ -234,7 +235,7 @@ class AppTextStyles {
   );
   static TextStyle nameStyle1 = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
-    color: AppColors.deepGreyColor,
+    // color: AppColors.deepGreyColor,
     fontSize: 14,
   );
   static TextStyle hintStyle = GoogleFonts.lato(
@@ -289,14 +290,16 @@ class AppTextStyles {
       color: AppColors.zuriTextColorHeader);
 
   static TextStyle namesStyle = GoogleFonts.lato(
-      fontSize: 14,
-      fontWeight: FontWeight.w700,
-      color: AppColors.zuriTextColorHeader);
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    // color: AppColors.zuriTextColorHeader,
+  );
 
   static TextStyle descriptionStyle = GoogleFonts.lato(
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      color: AppColors.zuriTextColorHeader);
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    // color: AppColors.zuriTextColorHeader,
+  );
 
   static TextStyle archiveTextStyle = GoogleFonts.lato(
       fontSize: 15,

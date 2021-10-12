@@ -19,7 +19,6 @@ import 'channel_page_view.form.dart';
     FormTextField(name: 'channelMessages'),
   ],
 )
-
 class ChannelPageView extends StatelessWidget with $ChannelPageView {
   ChannelPageView({
     Key? key,
@@ -39,7 +38,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
       onModelReady: (model) {
         model.getDraft(channelId);
         model.initialise('$channelId');
-        if(model.storedDraft.isNotEmpty){
+        if (model.storedDraft.isNotEmpty) {
           channelMessagesController.text = model.storedDraft;
         }
         model.showNotificationForOtherChannels('$channelId', '$channelName');
@@ -53,14 +52,16 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
         }
 
         return Scaffold(
-          backgroundColor: AppColors.whiteColor,
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             leadingPress: () => model.goBack(
-                channelId, channelMessagesController.text,
-                channelName, membersCount, public
-            ),
+                channelId,
+                channelMessagesController.text,
+                channelName,
+                membersCount,
+                public),
             whiteBackground: true,
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             actions: [
               IconButton(
                 onPressed: () {},

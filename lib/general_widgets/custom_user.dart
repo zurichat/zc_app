@@ -20,9 +20,7 @@ class CustomUser extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.r),
                 image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        DummyAvatar))),
+                    fit: BoxFit.cover, image: NetworkImage(DummyAvatar))),
           ),
           SizedBox(
             height: 8.h,
@@ -34,7 +32,7 @@ class CustomUser extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.subtitle1.copyWith(fontSize: 12.sp),
+                // style: AppTextStyles.subtitle1.copyWith(fontSize: 12.sp),
               ))
         ],
       ),
