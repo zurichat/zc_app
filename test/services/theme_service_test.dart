@@ -1,14 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:stacked_themes/stacked_themes.dart';
 
 import '../helpers/test_helpers.dart';
 
-class MockThemeServices extends Mock implements ThemeService {}
-
-//modified
-@GenerateMocks([MockThemeServices])
 void main() {
   group('ThemeServiceTest -', () {
     setUp(() => registerServices());
