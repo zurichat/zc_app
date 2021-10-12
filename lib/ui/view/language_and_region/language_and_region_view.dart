@@ -18,10 +18,14 @@ class LanguageAndRegionModelView extends StatelessWidget {
         appBar: ZuriAppBar(
           leading: Icons.close_rounded,
           whiteBackground: true,
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           leadingPress: () => model.goBack(),
-          orgTitle: Text('Language and Region',
-              style:
-                  AppTextStyles.heading4.copyWith(color: AppColors.blackColor)),
+          orgTitle: Text(
+            LangAndRegion,
+            style: AppTextStyles.heading4.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
+          ),
         ),
         body: Column(
           children: [

@@ -21,9 +21,10 @@ class AdvancedView extends StatelessWidget {
           orgTitle: Text(
             Advanced,
             style: AppTextStyles.heading4.copyWith(
-              color: AppColors.blackColor,
+              color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           whiteBackground: true,
         ),
         body: SingleChildScrollView(
