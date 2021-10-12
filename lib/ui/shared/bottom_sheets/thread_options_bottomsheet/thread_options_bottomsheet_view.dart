@@ -5,7 +5,6 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../general_widgets/menu_item_tile.dart';
 import '../../shared.dart';
-//import 'thread_options_bottomsheet_viewmodel.dart';
 import 'widget/recent_emojis.dart';
 
 class ThreadOptionsBottomSheetView extends StatelessWidget {
@@ -62,10 +61,10 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
                         topBorder: false,
                         icon: Icons.message,
                         text: Text('Mark unread')),
-                   const MenuItemTile(
+                    const MenuItemTile(
                         topBorder: false,
                         icon: Icons.access_time_rounded,
-                        text:  Text('Remind me')),
+                        text: Text('Remind me')),
                     const MenuItemTile(
                         topBorder: false,
                         icon: Icons.bookmark_border_outlined,
@@ -78,10 +77,12 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
                         topBorder: false,
                         icon: Icons.message,
                         text: Text('Unfollow thread')),
-                    const MenuItemTile(
+                    MenuItemTile(
+                        onPressed: () =>
+                            model.navigateToShareMessage(request.data),
                         topBorder: false,
                         icon: Icons.forward_outlined,
-                        text: Text('Share message')),
+                        text: const Text('Share message')),
                     const MenuItemTile(
                         topBorder: false,
                         icon: Icons.message,

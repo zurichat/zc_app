@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/bottom_sheets/thread_options_bottomsheet/widget/share_message.dart';
 import 'package:stacked/stacked.dart';
 
 import '../models/channel_members.dart';
@@ -125,6 +126,7 @@ class Routes {
   static const String termsAndConditionsView = '/terms-and-conditions-view';
   static const String webViewPage = '/web-view-page';
   static const String pluginPageIntro = '/plugin-page-intro';
+  static const String shareMessage = '/share-message';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -180,6 +182,7 @@ class Routes {
     termsAndConditionsView,
     webViewPage,
     pluginPageIntro,
+    shareMessage,
   };
 }
 
@@ -242,6 +245,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.termsAndConditionsView, page: TermsAndConditionsView),
     RouteDef(Routes.webViewPage, page: WebViewPage),
     RouteDef(Routes.pluginPageIntro, page: PluginPageIntro),
+    RouteDef(Routes.shareMessage, page: ShareMessage),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -672,6 +676,16 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    ShareMessage: (data) {
+      var args = data.getArgs<ShareMessageArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ShareMessage(
+          args.userPost,
+          key: args.key,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -858,4 +872,11 @@ class WebViewPageArguments {
   final String url;
   final Key? key;
   WebViewPageArguments({required this.name, required this.url, this.key});
+}
+
+/// SharedMessage arguments holder class
+class ShareMessageArguments {
+  final UserPost? userPost;
+  final Key? key;
+  ShareMessageArguments({required this.userPost, this.key});
 }

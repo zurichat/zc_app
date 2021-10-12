@@ -4,6 +4,7 @@ import 'package:hng/services/notification_service.dart';
 import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_page_view.dart';
+import 'package:hng/ui/shared/bottom_sheets/thread_options_bottomsheet/widget/share_message.dart';
 import 'package:hng/ui/view/direct_message/direct_message.dart';
 import 'package:hng/ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';
 import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
@@ -135,7 +136,7 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: TermsAndConditionsView),
     MaterialRoute(page: WebViewPage),
     MaterialRoute(page: PluginPageIntro),
-
+    MaterialRoute(page: ShareMessage),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

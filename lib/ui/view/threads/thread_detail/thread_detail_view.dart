@@ -29,7 +29,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
       // onModelReady: (model) => model.initialise(userPost!.id!),
       onModelReady: (model) {
         model.getDraft(userPost);
-        if(model.storedDraft.isNotEmpty){
+        if (model.storedDraft.isNotEmpty) {
           messageController.text = model.storedDraft;
         }
         model.initialise(userPost!.id!);
@@ -42,7 +42,8 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                   AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
             ),
             leading: Icons.chevron_left,
-            leadingPress: () => model.exitPage(userPost, messageController.text),
+            leadingPress: () =>
+                model.exitPage(userPost, messageController.text),
             whiteBackground: true),
         body: model.isBusy
             ? const Center(child: CircularProgressIndicator())
@@ -96,6 +97,10 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                   IconButton(
                                       onPressed: () => zuriChatBottomSheet(
                                             context: context,
+                                            shareMessage: () {
+                                              model.navigateToShareMessage(
+                                                  userPost);
+                                            },
                                             addToSavedItems: () {
                                               model.saveItem(
                                                   channelID:
@@ -111,7 +116,8 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                                   userImage:
                                                       userPost!.userImage);
                                               log.i("Saved");
-                                              model.exitPage(userPost, messageController.text);
+                                              model.exitPage(userPost,
+                                                  messageController.text);
                                               showSimpleNotification(
                                                 const Text(
                                                     "Added successfully"),
