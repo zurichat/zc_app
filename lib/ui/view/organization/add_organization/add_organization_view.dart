@@ -29,10 +29,11 @@ class AddOrganizationView extends StatelessWidget {
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             orgTitle: Text(
-              AddWorkspaces,
-              style:
-                  AppTextStyles.heading4,
+              AddOrganisations,
+              style: AppTextStyles.heading4.copyWith(
+                  color: Theme.of(context).textTheme.bodyText1!.color),
             ),
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             whiteBackground: true,
             leadingPress: model.back,
           ),
@@ -43,16 +44,18 @@ class AddOrganizationView extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
-                    borderRadius: BorderRadius.circular(3),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: AppColors.whiteColor,
-                        blurRadius: 1,
-                        offset: Offset(0, 1),
-                      ),
-                   ],
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? AppColors.darkThemePrimaryColor
+                      : AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(3),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: AppColors.whiteColor,
+                      blurRadius: 1,
+                      offset: Offset(0, 1),
                     ),
+                  ],
+                ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Column(

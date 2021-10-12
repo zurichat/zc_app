@@ -35,7 +35,7 @@ class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
                       channelName: userPost!.channelName,
                       displayName: userPost!.displayName,
                       message: userPost!.message,
-                      lastSeen: userPost!.lastSeen,
+                      lastSeen: userPost!.moment,
                       messageID: userPost!.id,
                       userID: userPost!.userId,
                       userImage: userPost!.userImage);
@@ -90,7 +90,7 @@ class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
                               Padding(
                                 padding: const EdgeInsets.only(right: 18),
                                 child: CustomText(
-                                  text: '${userPost!.lastSeen}',
+                                  text: '${userPost!.moment}',
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                 ),
