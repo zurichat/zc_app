@@ -4,9 +4,13 @@ import 'dart:math';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class NotificationService {
+  final _navigationService = locator<NavigationService>();
+
   final String messsageChannelKey = 'message';
 
   final StreamController<NotificationPayload> _notificationControl =
@@ -44,8 +48,9 @@ class NotificationService {
         ]);
 
     AwesomeNotifications().actionStream.listen((receivedNotifiction) {
-      var payload = NotificationPayload._fromMap(receivedNotifiction.payload);
-      _notificationControl.sink.add(payload);
+      //var payload = NotificationPayload._fromMap(receivedNotifiction.payload);
+      //_notificationControl.sink.add(payload);
+      _navigationService.navigateTo(Routes.homePage);
     });
   }
 
@@ -150,6 +155,7 @@ class NotificationPayload {
     this.public,
   });
 
+  // ignore: unused_element
   NotificationPayload._fromMap(Map<String, String>? map) {
     map = map ?? {};
     messageId = map['messageId'] ?? '';
