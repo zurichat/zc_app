@@ -58,7 +58,7 @@ import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
-import '../ui/view/pinned_messages/pinned_message.dart';
+import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
 import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/profile_page/profile_page_view.dart';
@@ -111,7 +111,7 @@ class Routes {
   static const String doNotDisturbView = '/do-not-disturb-view';
   static const String editProfileView = '/edit-profile-view';
   static const String popUpNotificationsView = '/pop-up-notifications-view';
-  static const String pinnedMessages = '/pinned-messages';
+  static const String pinnedMessagesView = '/pinned-messages-view';
   static const String selectEmail = '/select-email';
   static const String addOrganizationView = '/add-organization-view';
   static const String createOrganization = '/create-organization';
@@ -171,7 +171,7 @@ class Routes {
     doNotDisturbView,
     editProfileView,
     popUpNotificationsView,
-    pinnedMessages,
+    pinnedMessagesView,
     selectEmail,
     addOrganizationView,
     createOrganization,
@@ -238,7 +238,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.doNotDisturbView, page: DoNotDisturbView),
     RouteDef(Routes.editProfileView, page: EditProfileView),
     RouteDef(Routes.popUpNotificationsView, page: PopUpNotificationsView),
-    RouteDef(Routes.pinnedMessages, page: PinnedMessages),
+    RouteDef(Routes.pinnedMessagesView, page: PinnedMessagesView),
     RouteDef(Routes.selectEmail, page: SelectEmail),
     RouteDef(Routes.addOrganizationView, page: AddOrganizationView),
     RouteDef(Routes.createOrganization, page: CreateOrganization),
@@ -528,9 +528,9 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    PinnedMessages: (data) {
+    PinnedMessagesView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const PinnedMessages(),
+        builder: (context) => const PinnedMessagesView(),
         settings: data,
       );
     },
