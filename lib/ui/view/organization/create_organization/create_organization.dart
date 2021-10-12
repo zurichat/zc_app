@@ -4,7 +4,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
-
 import 'create_organization_viewmodel.dart';
 import 'company.dart';
 import 'invite.dart';
