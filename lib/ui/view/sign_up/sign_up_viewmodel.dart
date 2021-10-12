@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/google_signin_api.dart';
@@ -42,8 +41,6 @@ class SignUpViewModel extends FormViewModel {
   void navigateToHome() => navigator.navigateTo(Routes.navBarView);
   void navigateToSignIn() => navigation.navigateTo(Routes.loginView);
   void navigateToOTPView() => navigation.navigateTo(Routes.oTPView);
-  // void navigateToOrgView(GoogleSignInAccount user) =>
-  //     navigation.navigateToView(OrganizationView(user: user));
   void navigateToTermsAndConditions() =>
       navigator.navigateTo(Routes.termsAndConditionsView);
 
