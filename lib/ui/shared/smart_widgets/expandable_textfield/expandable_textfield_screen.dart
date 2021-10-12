@@ -18,7 +18,7 @@ class ExpandableTextFieldScreen extends HookWidget {
     required this.hintText,
   }) : super(key: key);
   final Widget widget;
-  final Function(String message, [List<File>media]) sendMessage;
+  final Function(String message, {List<File>media}) sendMessage;
   final String hintText;
   final focusNode = FocusNode();
   final keyboardVisibilityController = KeyboardVisibilityController();
@@ -218,7 +218,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   .toString()
                                                   .isNotEmpty) {
                                                 sendMessage(
-                                                    textController.text, model.mediaList);
+                                                    textController.text, media:model.mediaList);
                                                 textController.clear();
                                               }
                                             },
