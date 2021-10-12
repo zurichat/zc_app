@@ -7,7 +7,7 @@ class UserThreadPost {
   String? userImage;
   String? statusIcon;
 
-  String? lastSeen;
+  String? moment;
   String? message;
   List<PostEmojis>? postEmojis;
   String postDate;
@@ -31,7 +31,7 @@ class UserThreadPost {
     this.userImage,
     required this.displayName,
     this.statusIcon,
-    this.lastSeen,
+    this.moment,
     required this.message,
     this.postEmojis,
     this.postDate = '',
@@ -111,7 +111,7 @@ class UserPost extends UserThreadPost {
   String? statusIcon;
 
   @override
-  String? lastSeen;
+  String? moment;
 
   @override
   String? message;
@@ -121,6 +121,7 @@ class UserPost extends UserThreadPost {
 
   @override
   String? channelName;
+
   @override
   ChannelType? channelType;
 
@@ -130,7 +131,6 @@ class UserPost extends UserThreadPost {
   @override
   String postDate;
 
-  List<UserThreadPost>? userThreadPosts;
   @override
   List<PostFiles>? postFiles;
 
@@ -146,14 +146,19 @@ class UserPost extends UserThreadPost {
   @override
   List<PostSnapshotLinks>? postSnapshotLinks;
 
+  List<UserThreadPost>? userThreadPosts;
+
+  bool pinned;
+
   UserPost({
     required this.id,
-    this.userId,
+    required this.channelId,
     required this.displayName,
-    this.userImage,
     required this.message,
+    this.userId,
+    this.userImage,
     this.statusIcon,
-    this.lastSeen,
+    this.moment,
     this.postEmojis,
     this.userThreadPosts = const <UserThreadPost>[],
     this.channelName,
@@ -164,13 +169,13 @@ class UserPost extends UserThreadPost {
     this.postAudioFiles = const <PostFiles>[],
     this.postQuotedReplies = const <UserThreadPost>[],
     this.postSnapshotLinks = const <PostSnapshotLinks>[],
-    required this.channelId,
+    this.pinned = false,
   }) : super(
           id: id,
           displayName: displayName,
           message: message,
           statusIcon: statusIcon,
-          lastSeen: lastSeen,
+          moment: moment,
           postEmojis: postEmojis,
           channelId: channelId,
         );

@@ -14,6 +14,7 @@ import 'package:hng/services/notification_service.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
+import 'package:simple_moment/simple_moment.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -124,7 +125,7 @@ class ChannelPageViewModel extends FormViewModel {
     channelID = channelId;
     await joinChannel(channelId);
     fetchMessages(channelId);
-    getChannelSocketId("$channelId");
+    getChannelSocketId(channelId);
     fetchChannelMembers(channelId);
     listenToNewMessage(channelId);
   }
@@ -140,6 +141,10 @@ class ChannelPageViewModel extends FormViewModel {
     isVisible = false;
     notifyListeners();
   }
+
+  Future<bool> changePinnedState(UserPost? userPost) =>
+      _channelsApiService.changeChannelMessagePinnedState(userPost!.channelId,
+          userPost.id!, userPost.userId!, !userPost.pinned);
 
   Future joinChannel(String channelId) async {
     await _channelsApiService.joinChannel(channelId);
@@ -171,7 +176,7 @@ class ChannelPageViewModel extends FormViewModel {
             id: data['_id'],
             displayName: userid,
             statusIcon: '7️⃣',
-            lastSeen: '4 hours ago',
+            moment: Moment.now().from(DateTime.parse(data['timestamp'])),
             message: data['content'],
             channelType: ChannelType.public,
             postEmojis: <PostEmojis>[],
@@ -179,7 +184,8 @@ class ChannelPageViewModel extends FormViewModel {
             channelName: channelId,
             userImage: 'assets/images/chimamanda.png',
             userId: userid,
-            channelId: channelId),
+            channelId: channelId,
+            pinned: data['pinned']),
       );
     });
     isLoading = false;
