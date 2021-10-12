@@ -9,8 +9,10 @@ import 'organization_viewmodel.dart';
 
 class OrganizationView extends StatelessWidget {
   final GoogleSignInAccount user;
-  const OrganizationView({Key? key, required this.user}) : super(key: key);
+  OrganizationView({Key? key, required this.user}) : super(key: key);
 
+  bool isLoading = false;
+  String? photoUrl, displayName;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<OrganizationViewModel>.reactive(
@@ -18,118 +20,128 @@ class OrganizationView extends StatelessWidget {
       disposeViewModel: false,
       builder: (context, viewModel, child) {
         return Scaffold(
-          body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(Organizations,
-                          style: AppTextStyles.heading6
-                              .copyWith(color: AppColors.blackColor)),
-                      IconButton(
-                          onPressed: () => viewModel.signOut(),
-                          icon: const Icon(Icons.logout)),
-                      const SizedBox(
-                        width: 90,
-                      ),
-                      CircleAvatar(
-                        radius: 20,
-                        child: Image.network(user.photoUrl!),
-                      )
-                    ],
-                  ),
-                  Expanded(
-                    child: Visibility(
-                      visible: !viewModel.isBusy,
-                      child: SingleChildScrollView(
-                        physics: const ScrollPhysics(),
-                        child: viewModel.organizations.isEmpty
-                            ? Center(
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  padding: const EdgeInsets.only(top: 50.0),
-                                  child: Text(
-                                    NotJoinedOrgYet,
-                                    style: AppTextStyles.bodyRegular,
-                                  ),
-                                ),
-                              )
-                            : Column(
-                                children: [
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.005,
-                                  ),
-                                  ListView.builder(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemCount: viewModel.organizations.length,
-                                    shrinkWrap: true,
-                                    itemBuilder: (context, i) {
-                                      final org = viewModel.organizations[i];
-
-                                      return OrganizationTile(org: org);
-                                    },
-                                  ),
-                                ],
-                              ),
-                      ),
-                      replacement: const Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.zuriPrimaryColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
+          body: isLoading
+              ? const CircularProgressIndicator(
+                  backgroundColor: AppColors.zuriPrimaryColor,
+                )
+              : SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ListTile(
-                          onTap: () => viewModel.navigateToNewOrganization(),
-                          leading: const Icon(Icons.add_box_outlined),
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(
-                            AddOrg,
-                            style: AppTextStyles.faintBodyText
-                                .copyWith(fontSize: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(Organizations,
+                                style: AppTextStyles.heading6
+                                    .copyWith(color: AppColors.blackColor)),
+                            Column(
+                              children: [
+                                CircleAvatar(
+                                  radius: 20,
+                                  child: Image.network(user.photoUrl!),
+                                ),
+                                Text(user.displayName!),
+                              ],
+                            )
+                          ],
+                        ),
+                        Expanded(
+                          child: Visibility(
+                            visible: !viewModel.isBusy,
+                            child: SingleChildScrollView(
+                              physics: const ScrollPhysics(),
+                              child: viewModel.organizations.isEmpty
+                                  ? Center(
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        padding:
+                                            const EdgeInsets.only(top: 50.0),
+                                        child: Text(
+                                          NotJoinedOrgYet,
+                                          style: AppTextStyles.bodyRegular,
+                                        ),
+                                      ),
+                                    )
+                                  : Column(
+                                      children: [
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.005,
+                                        ),
+                                        ListView.builder(
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          itemCount:
+                                              viewModel.organizations.length,
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, i) {
+                                            final org =
+                                                viewModel.organizations[i];
+
+                                            return OrganizationTile(org: org);
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                            ),
+                            replacement: const Center(
+                              child: CircularProgressIndicator(
+                                color: AppColors.zuriPrimaryColor,
+                              ),
+                            ),
                           ),
                         ),
-                        ListTile(
-                          onTap: () => viewModel.viewPreferences(),
-                          leading: const Icon(Icons.settings),
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(
-                            Preferences,
-                            style: AppTextStyles.faintBodyText
-                                .copyWith(fontSize: 16),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Column(
+                            children: [
+                              ListTile(
+                                onTap: () =>
+                                    viewModel.navigateToNewOrganization(),
+                                leading: const Icon(Icons.add_box_outlined),
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(
+                                  AddOrg,
+                                  style: AppTextStyles.faintBodyText
+                                      .copyWith(fontSize: 16),
+                                ),
+                              ),
+                              ListTile(
+                                onTap: () => viewModel.viewPreferences(),
+                                leading: const Icon(Icons.settings),
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(
+                                  Preferences,
+                                  style: AppTextStyles.faintBodyText
+                                      .copyWith(fontSize: 16),
+                                ),
+                              ),
+                              ListTile(
+                                leading: const Icon(Icons.help_outline),
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(Help,
+                                    style: AppTextStyles.faintBodyText
+                                        .copyWith(fontSize: 16)),
+                              ),
+                              ListTile(
+                                onTap: () => viewModel.signOutAllOrg(),
+                                leading: const Icon(Icons.logout_sharp),
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(SignOutAccount,
+                                    style: AppTextStyles.faintBodyText
+                                        .copyWith(fontSize: 16)),
+                              ),
+                            ],
                           ),
-                        ),
-                        ListTile(
-                          leading: const Icon(Icons.help_outline),
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(Help,
-                              style: AppTextStyles.faintBodyText
-                                  .copyWith(fontSize: 16)),
-                        ),
-                        ListTile(
-                          onTap: () => viewModel.signOutAllOrg(),
-                          leading: const Icon(Icons.logout_sharp),
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(SignOutAccount,
-                              style: AppTextStyles.faintBodyText
-                                  .copyWith(fontSize: 16)),
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
+                ),
         );
       },
       viewModelBuilder: () => OrganizationViewModel(),
