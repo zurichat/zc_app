@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/organization_model.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';

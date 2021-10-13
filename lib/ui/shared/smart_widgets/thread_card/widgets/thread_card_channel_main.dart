@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/audio_message.dart';
 import 'package:hng/ui/shared/styles.dart';
-import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 
 import '../thread_card_viewmodel.dart';
