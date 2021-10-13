@@ -33,7 +33,9 @@ class _SendFeedbackDialogContent extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * .05, vertical: size.height * .02),
-      color: Colors.white,
+      color: Theme.of(context).brightness == Brightness.dark
+          ? AppColors.darkThemePrimaryColor
+          : AppColors.whiteColor,
       width: size.width * .9,
       height: size.height * .3,
       child: Column(
@@ -63,11 +65,13 @@ class _SendFeedbackDialogContent extends StatelessWidget {
             children: [
               MaterialButton(
                   onPressed: () => completer(DialogResponse(confirmed: false)),
-                  child: const Text(Cancel,style: TextStyle(color: AppColors.paleGreen))),
+                  child: const Text(Cancel,
+                      style: TextStyle(color: AppColors.paleGreen))),
               MaterialButton(
                   onPressed: () => completer(
                       DialogResponse(data: controller.text, confirmed: true)),
-                  child: const Text(Ok, style: TextStyle(color: AppColors.paleGreen))),
+                  child: const Text(Ok,
+                      style: TextStyle(color: AppColors.paleGreen))),
             ],
           )
         ],

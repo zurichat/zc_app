@@ -24,20 +24,35 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: viewModel.channelUserMessages!.length,
-        itemBuilder: (context, index) => InkWell(
-          onTap: () {
-            log.i('Tap');
-          },
-          onLongPress: () => zuriChatBottomSheet(
-              context: context,
-              message: message![index].message,
+        itemBuilder: (context, index) {
+          final userPost = viewModel.channelUserMessages![index];
+          return InkWell(
+            child: ThreadCardView.threadChannelMain(userPost),
+            onLongPress: () => zuriChatBottomSheet(
+              changePinnedState: () async {
+                final didChange =
+                await viewModel.changePinnedState(userPost);
+                if (didChange) userPost.pinned = !userPost.pinned;
+                Navigator.of(context).pop();
+                showSimpleNotification(
+                  Text(didChange
+                      ? "${userPost.pinned ? "Pinned" : "Unpinned"} successfully"
+                      : "Could not ${userPost.pinned ? "unpin" : "pin"} post"),
+                  position: NotificationPosition.top,
+                  background: didChange
+                      ? AppColors.appBarGreen
+                      : AppColors.redColor,
+                  trailing: const Icon(Icons.push_pin_outlined),
+                  duration: const Duration(seconds: 2),
+                );
+              },
               addToSavedItems: () {
                 viewModel.saveItem(
-                    channelID: message[index].channelId,
+                    channelID: message![index].channelId,
                     channelName: message[index].channelName,
                     displayName: message[index].displayName,
                     message: message[index].message,
-                    lastSeen: message[index].lastSeen,
+                    lastSeen: message[index].moment,
                     messageID: message[index].id,
                     userID: message[index].userId,
                     userImage: message[index].userImage);
@@ -53,7 +68,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
               },
               copyText: () {
                 Clipboard.setData(
-                  ClipboardData(text: message[index].message),
+                  ClipboardData(text: message![index].message),
                 );
                 viewModel.exitPage();
                 showSimpleNotification(
@@ -63,14 +78,17 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                   trailing: const Icon(Icons.copy_outlined),
                   duration: const Duration(seconds: 3),
                 );
-              }),
-          child: ThreadCardView.threadChannelMain(
-              viewModel.channelUserMessages![index]),
-        ),
+              },
+              context: context,
+              post: userPost,
+            ),
+            onTap: () {
+              log.i('Tap');
+            },
+          );
+        },
       )
           : Container(),
     );
   }
-
-
 }
