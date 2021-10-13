@@ -192,7 +192,7 @@ const String NoDescription = 'No description Added';
 //Channel Info
 const String Bookmarks = 'Bookmarks';
 const String MuteChannelWarning =
-    'You wont\'t recieve any messages from a muted channel';
+    'You won\'t receive any messages from a muted channel';
 const String ChannelInfo = 'Channel Info';
 const String Edit = 'Edit';
 const String Leave = 'Leave';

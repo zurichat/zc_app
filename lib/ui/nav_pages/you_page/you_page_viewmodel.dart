@@ -23,6 +23,8 @@ class YouPageViewModel extends BaseViewModel {
   final _snackBar = locator<SnackbarService>();
   final _connectivityService = locator<ConnectivityService>();
   final _apiService = ZuriApi(coreBaseUrl);
+  // final _storageServe = locator<StorageService>
+
 
   String get username =>
       (_userService.userDetails?.displayName?.isNotEmpty ?? false
@@ -32,6 +34,22 @@ class YouPageViewModel extends BaseViewModel {
   String profileImage = ZuriAppbarLogo;
   String currentStatus = Active;
   String otherStatus = Away;
+
+  getUserStatus() async {
+    try{
+
+      final memberId = _storage.getString(StorageKeys.idInOrganization);
+      String orgId = _storage.getString(StorageKeys.currentOrgId).toString();
+      var presence = await _apiService.get(
+          '/organizations/$orgId/members/$memberId/presence/'
+      );
+      log.i(presence);
+      log.i(presence.response?.statusCode);
+    } catch(e) {
+     log.i (e.toString());
+    }
+  }
+
 
   Future editProfile() async {
     await _navigationService.navigateTo(

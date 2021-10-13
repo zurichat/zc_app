@@ -15,50 +15,47 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
   Widget build(BuildContext context, ChannelInfoViewModel viewModel) {
     return GestureDetector(
       onTap: () => viewModel.deleteChannel(channelDetail),
-      child: Container(
-        height: 136,
-        width: 395,
-        alignment: Alignment.center,
-        padding: const EdgeInsets.fromLTRB(16, 18, 0, 0),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-            border: Border.all(width: 1, color: AppColors.borderColor),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 6,
-                offset: const Offset(0, 3), // changes position of shadow
+      child: Card(
+        elevation: 2,
+        child: Container(
+          height: 136,
+          width: 395,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.fromLTRB(18, 18, 0, 42),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Icon(
+                Icons.archive_rounded,
+                color: AppColors.deepBlackColor,
+                size: 28,
               ),
-            ]),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Icon(
-              Icons.archive_rounded,
-              color: AppColors.deepBlackColor,
-              size: 28,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Archive Channel',
-                    style:
-                        AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
-                  ),
-                  Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Archiving the channel will remover it from the channel list, and close it from all members.'
-                        'All chats and filse will still be stored and searchable',
-                        style: AppTextStyles.body2_400.copyWith(fontSize: 14),
-                      )),
-                ],
-              ),
-            )
-          ],
+              const SizedBox(width: 26,),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Archive Channel',
+                      style:
+                          AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
+                    ),
+                    const SizedBox(height: 6,),
+                    Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Archiving the channel will remover it from the channel list, and close it from all members.'
+                          'All chats and files will still be stored and searchable',
+                          style: AppTextStyles.body2_400.copyWith(fontSize: 14),
+                        )),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

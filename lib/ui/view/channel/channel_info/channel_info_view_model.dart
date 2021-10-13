@@ -29,7 +29,7 @@ class ChannelInfoViewModel extends BaseViewModel {
   bool notification = true;
 
 
-  String? _channelName;
+  String? channelName;
 
   String? _channelDescription;
 
@@ -45,16 +45,6 @@ class ChannelInfoViewModel extends BaseViewModel {
 
   void toggleNotification(bool value) {
     notification = value;
-    notifyListeners();
-  }
-
-  String get channelName {
-    return _channelName ?? UnnamedChannel;
-  }
-
-  void setChannelName(String channelName) {
-    _channelName = channelName;
-    log.i('pppp $channelDescription');
     notifyListeners();
   }
 
@@ -94,7 +84,6 @@ class ChannelInfoViewModel extends BaseViewModel {
       log.i(response?.data);
       String des = response?.data['description'];
       setChannelDescription(des);
-      setChannelName(channelName);
 
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),

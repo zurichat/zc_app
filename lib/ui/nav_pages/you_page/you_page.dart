@@ -30,7 +30,7 @@ class YouPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: () => model.editProfile(),
+                  onTap: () => model.getUserStatus(),
                   child: ProfilePageHead(
                     name: model.username,
                     currentStatus: model.currentStatus,

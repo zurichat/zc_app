@@ -12,24 +12,19 @@ class FourthSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      child: Container(
-          height: 53.h,
-          width: 395.w,
-          alignment: Alignment.center,
-          padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6.r),
-              border: Border.all(width: 1.w, color: AppColors.borderColor),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5.r,
-                  blurRadius: 6.r,
-                  offset: Offset(0, 3.h), // changes position of shadow
-                ),
-              ]),
-          child: const NewRowTile(
-              icon: Icons.push_pin_outlined, text: OnePinnedMessage)),
+      child: Card(
+        elevation: 2,
+        child: Container(
+            height: 53.h,
+            width: 395.w,
+            alignment: Alignment.center,
+            padding: EdgeInsets.fromLTRB(18.w, 16.h, 0, 16),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6.r),
+            ),
+            child: const NewRowTile(
+                icon: Icons.push_pin_outlined, text: OnePinnedMessage)),
+      ),
     );
   }
 }
