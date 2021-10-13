@@ -59,18 +59,6 @@ class HomePage extends StatelessWidget {
               Expanded(
                 child: body(context, vmodel),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Align(
-              //     alignment: Alignment.bottomRight,
-              //     child: FloatingActionButton(
-              //         onPressed: vmodel.navigateToStartDMScreen,
-              //         child: const Icon(
-              //           Icons.open_in_new_outlined,
-              //           color: AppColors.whiteColor,
-              //         )),
-              //   ),
-              // )
             ],
           ),
         ),
@@ -126,7 +114,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget searchBar(context, vmodel) {
-        final local = AppLocalization.of(context);
+    final local = AppLocalization.of(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
       child: GestureDetector(

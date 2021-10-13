@@ -62,13 +62,10 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   @override
   Widget build(BuildContext context, viewModel) {
     return _TextAndIcon(
-      text: AddChannels,
-      unread: false,
-      onTap: () => viewModel.navigateToCreateChannel(),
-      icon: SvgIcon(
-        svgIcon: SvgAssets.addChannels,
-      ),
-    );
+        text: AddChannels,
+        unread: false,
+        onTap: () => viewModel.navigateToCreateChannel(),
+        icon: Image.asset(AddLogo));
   }
 }
 
@@ -78,13 +75,10 @@ class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   @override
   Widget build(BuildContext context, viewModel) {
     return _TextAndIcon(
-      text: AddTeammates,
-      unread: false,
-      onTap: () => viewModel.navigateInviteMembers(),
-      icon: SvgIcon(
-        svgIcon: SvgAssets.addChannels,
-      ),
-    );
+        text: AddTeammates,
+        unread: false,
+        onTap: () => viewModel.navigateInviteMembers(),
+        icon: Image.asset(AddLogo));
   }
 }
 
