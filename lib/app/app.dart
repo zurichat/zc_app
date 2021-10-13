@@ -4,6 +4,7 @@ import 'package:hng/services/notification_service.dart';
 import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_page_view.dart';
+import 'package:hng/ui/view/channel/share_message/share_message_view.dart';
 import 'package:hng/ui/view/direct_message/direct_message.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
@@ -145,6 +146,7 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: ImportContacts),
     MaterialRoute(page: CreateInviteLink),
     MaterialRoute(page: InvitationSent),
+    MaterialRoute(page: ShareMessageView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

@@ -34,7 +34,7 @@ Future setupLocator(
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => ThemeService());
   final sharedPreferenceLocalStorage =
-  await SharedPreferenceLocalStorage.getInstance();
+      await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);
 
   locator.registerLazySingleton(() => DialogService());

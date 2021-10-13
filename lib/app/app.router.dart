@@ -6,6 +6,7 @@
 
 // ignore_for_file: public_member_api_docs
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -30,6 +31,7 @@ import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
+import '../ui/view/channel/share_message/share_message_view.dart';
 import '../ui/view/clear_after/clear_after_view.dart';
 import '../ui/view/direct_message/direct_message.dart';
 import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
@@ -51,8 +53,8 @@ import '../ui/view/organization/add_organization/add_organization_view.dart';
 import '../ui/view/organization/create_organization/create_organization.dart';
 import '../ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
 import '../ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
-import '../ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
 import '../ui/view/organization/invite_to_organization/invitation_sent.dart';
+import '../ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
 import '../ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
 import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
 import '../ui/view/organization/organization_url/organization_url_view.dart';
@@ -135,6 +137,7 @@ class Routes {
   static const String importContacts = '/import-contacts';
   static const String createInviteLink = '/create-invite-link';
   static const String invitationSent = '/invitation-sent';
+  static const String shareMessageView = '/share-message-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -195,6 +198,7 @@ class Routes {
     importContacts,
     createInviteLink,
     invitationSent,
+    shareMessageView,
   };
 }
 
@@ -262,6 +266,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.importContacts, page: ImportContacts),
     RouteDef(Routes.createInviteLink, page: CreateInviteLink),
     RouteDef(Routes.invitationSent, page: InvitationSent),
+    RouteDef(Routes.shareMessageView, page: ShareMessageView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -727,6 +732,16 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    ShareMessageView: (data) {
+      var args = data.getArgs<ShareMessageViewArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ShareMessageView(
+          userPost: args.userPost,
+          key: args.key,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -881,10 +896,10 @@ class ChannelPageViewArguments {
   final bool? public;
   ChannelPageViewArguments(
       {this.key,
-        required this.channelName,
-        required this.channelId,
-        required this.membersCount,
-        required this.public});
+      required this.channelName,
+      required this.channelId,
+      required this.membersCount,
+      required this.public});
 }
 
 /// ChannelInfoView arguments holder class
@@ -897,11 +912,11 @@ class ChannelInfoViewArguments {
   final String? channelID;
   ChannelInfoViewArguments(
       {this.key,
-        required this.numberOfMembers,
-        required this.channelMembers,
-        required this.channelDetail,
-        this.channelName,
-        this.channelID});
+      required this.numberOfMembers,
+      required this.channelMembers,
+      required this.channelDetail,
+      this.channelName,
+      this.channelID});
 }
 
 /// DirectMessage arguments holder class
@@ -923,4 +938,11 @@ class WebViewPageArguments {
 class InviteViaEmailArguments {
   final Key? key;
   InviteViaEmailArguments({this.key});
+}
+
+/// ShareMessageView arguments holder class
+class ShareMessageViewArguments {
+  final UserPost userPost;
+  final Key? key;
+  ShareMessageViewArguments({required this.userPost, this.key});
 }
