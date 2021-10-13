@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/utilities/storage_keys.dart';
 
 void main() {
   group('LocalStorageServiceTest -', () {

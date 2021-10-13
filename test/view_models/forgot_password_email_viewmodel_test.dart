@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zurichat/ui/view/forgot_password/forgot_password_email/forgot_password_email_viewmodel.dart';
+import 'package:hng/ui/view/forgot_password/forgot_password_email/forgot_password_email_viewmodel.dart';
 import 'package:mockito/mockito.dart';
 import '../helpers/test_helpers.dart';
 

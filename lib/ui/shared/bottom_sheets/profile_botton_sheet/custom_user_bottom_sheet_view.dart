@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

@@ -1,6 +1,6 @@
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';

@@ -1,24 +1,23 @@
 import 'dart:async';
-import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/app/app.logger.dart';
-import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/models/channel_members.dart';
-import 'package:zurichat/models/channel_model.dart';
-import 'package:zurichat/models/user_model.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
-import 'package:zurichat/package/base/server-request/dms/dms_api_service.dart';
-import 'package:zurichat/services/centrifuge_service.dart';
-import 'package:zurichat/services/connectivity_service.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/services/notification_service.dart';
-import 'package:zurichat/services/user_service.dart';
-import 'package:zurichat/ui/nav_pages/home_page/home_item_model.dart';
-import 'package:zurichat/ui/view/dm_chat_view/dm_jump_to_view.dart';
-import 'package:zurichat/utilities/constants.dart';
-import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.logger.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
+import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
+import 'package:hng/services/centrifuge_service.dart';
+import 'package:hng/services/connectivity_service.dart';
+import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/services/notification_service.dart';
+import 'package:hng/services/user_service.dart';
+import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
+import 'package:hng/ui/view/dm_chat_view/dm_jump_to_view.dart';
+import 'package:hng/utilities/constants.dart';
+import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -120,20 +119,6 @@ class HomePageViewModel extends StreamViewModel {
     return connectionStatus;
   }
 
-  Future<void> getUserInfo() async {
-    try {
-      final _zuriApi = ZuriApi(coreBaseUrl);
-      String? userID = userService.memberId;
-
-      final response = await _zuriApi
-          .get('organizations/$orgId/members/$userID', token: token);
-      final _userModel = UserModel.fromJson(response!.data['data']);
-      userService.setUserDetails(_userModel);
-    } catch (e) {
-      log.e(e.toString());
-    }
-  }
-
   ///This sets all the expanded list items
   ///into unreads, channels and dms
   setAllList() {
@@ -225,6 +210,7 @@ class HomePageViewModel extends StreamViewModel {
       // _channel= await api.getChannelPage(id);
       // _membersList= await api.getChannelMembers(id);
 
+
       _moderateNavigation();
       await navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
@@ -234,6 +220,7 @@ class HomePageViewModel extends StreamViewModel {
             public: public,
           ));
       setBusy(false);
+
     } catch (e) {
       log.e(e.toString());
       snackbar.showCustomSnackBar(
@@ -315,7 +302,7 @@ class HomePageViewModel extends StreamViewModel {
     return counter > 0;
   }
 
-  void draftChecker() {
+  void draftChecker(){
     notifyListeners();
   }
 }

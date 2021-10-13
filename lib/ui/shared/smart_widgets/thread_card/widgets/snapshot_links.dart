@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:zurichat/models/user_post.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/utilities/utilities.dart';
+import 'package:hng/models/user_post.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/utilities/utilities.dart';
 
 class SnapshotLinks extends StatelessWidget {
   const SnapshotLinks({Key? key, required this.postSnapshotLinks})

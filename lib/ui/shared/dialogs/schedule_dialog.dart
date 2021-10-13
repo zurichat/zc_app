@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/view/dm_user/dm_user_viewmodel.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/view/dm_user/dm_user_viewmodel.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ScheduleMess extends StatelessWidget {

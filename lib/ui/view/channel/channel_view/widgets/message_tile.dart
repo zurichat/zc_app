@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/styles.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/styles.dart';
 
 class MessageTile extends StatelessWidget {
   final String message, avatar, name, time;

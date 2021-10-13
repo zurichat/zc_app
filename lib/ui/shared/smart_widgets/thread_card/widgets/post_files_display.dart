@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/models/user_post.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/utilities.dart';
+import 'package:hng/models/user_post.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/utilities.dart';
 
 class PostFilesDisplay extends StatelessWidget {
   const PostFilesDisplay({Key? key, required this.postFiles}) : super(key: key);

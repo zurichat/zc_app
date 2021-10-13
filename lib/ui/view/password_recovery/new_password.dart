@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/general_widgets/custom_textfield.dart';
-import 'package:zurichat/ui/view/password_recovery/recovery_viewmodel.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
+import 'package:hng/ui/view/password_recovery/recovery_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class NewPassView extends StatelessWidget {

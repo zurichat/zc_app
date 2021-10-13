@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
-import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:stacked/stacked.dart';
 import 'web_view_model.dart';

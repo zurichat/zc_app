@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/shared.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 
 class CustomPluginListTile extends StatelessWidget {
   final String? assetName;
@@ -27,23 +27,25 @@ class CustomPluginListTile extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(children: [
-            icon != null
-                ? Icon(
-                    icon,
-                    color: isActive ? Colors.black : AppColors.greyishColor,
-                    size: 16,
-                  )
-                : Image.asset(
-                    assetName!,
-                    width: 18,
-                  ),
-            const SizedBox(width: 8),
-            Text(pluginName,
-                style: isActive
-                    ? AppTextStyles.unreadText
-                    : AppTextStyles.normalText),
-          ]),
+          Row(
+            children: [
+              icon != null ? 
+                Icon(
+                  icon,
+                  color: isActive ? Colors.black : AppColors.greyishColor,
+                  size: 16,
+                ) : 
+                 Image.asset(
+                  assetName!,
+                  width: 18,
+                ),
+              const SizedBox(width: 8),
+              Text(
+                pluginName,
+                style: isActive ? AppTextStyles.unreadText : AppTextStyles.normalText
+              ),
+            ]
+          ),
           isActive
               ? AppTextStyles.unreadCount(
                   int.parse(data!),
