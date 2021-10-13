@@ -50,13 +50,6 @@ class AddOrganizationView extends StatelessWidget {
                       ? AppColors.darkThemePrimaryColor
                       : AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(3),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: AppColors.darkGreyColor,
-                      blurRadius: 1,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
