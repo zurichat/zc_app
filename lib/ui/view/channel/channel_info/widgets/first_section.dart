@@ -9,7 +9,7 @@ import '../../../../shared/colors.dart';
 class FirstSection extends StatelessWidget {
   const FirstSection(this.model, {Key? key, required this.channelName}) : super(key: key);
   final ChannelInfoViewModel model;
-  final channelName;
+  final String channelName;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
