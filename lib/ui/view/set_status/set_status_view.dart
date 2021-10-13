@@ -8,6 +8,7 @@ import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/set_status/set_status_viewmodel.dart';
 import 'package:hng/ui/view/set_status/widgets/status.dart';
 import 'package:hng/ui/view/set_status/widgets/statuses.dart';
+import 'package:hng/ui/view/set_status/set_status_view.form.dart';
 
 @FormView(
   fields: [
@@ -15,7 +16,7 @@ import 'package:hng/ui/view/set_status/widgets/statuses.dart';
   ],
 )
 class SetStatusView extends StatelessWidget with $SetStatusView {
-  const SetStatusView({Key? key}) : super(key: key);
+  SetStatusView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
@@ -31,7 +32,7 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                 actions: [
                   TextButton(
                     onPressed: () {
-                      model.saveStatus;
+                      model.saveStatus();
                     },
                     child: Text(
                       Save,
@@ -54,9 +55,9 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                             onPressed: () {},
                             icon:
                                 const Icon(Icons.looks_5, color: Colors.blue)),
-                        const Flexible(
+                        Flexible(
                           child: TextField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: InputBorder.none,
                             ),
                             controller: statusController,
