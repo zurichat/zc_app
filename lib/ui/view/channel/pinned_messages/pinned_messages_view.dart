@@ -51,8 +51,7 @@ class PinnedMessagesView extends StatelessWidget {
                       separatorBuilder: (context, index) => const Divider(
                           height: 24.0, indent: 56.0, thickness: 1.28),
                       itemBuilder: (context, index) => ListTile(
-                        leading:
-                            const ImageIcon(AssetImage(PinIcon), size: 24.0),
+                        leading: const ImageIcon(AssetImage(PinIcon)),
                         contentPadding: EdgeInsets.zero,
                         subtitle: Text(
                           model.pinnedMessages[index].content!,
@@ -60,19 +59,22 @@ class PinnedMessagesView extends StatelessWidget {
                               color: AppColors.zuriTextColorHeader,
                               fontSize: 14.0),
                         ),
-                        title: SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
+                        title: Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
                           child: Row(
                             children: [
-                              Text(
-                                model.pinnedMessages[index].displayName!,
-                                style: GoogleFonts.lato(
-                                    color: AppColors.deepGreyColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16.0),
+                              Flexible(
+                                fit: FlexFit.loose,
+                                child: Text(
+                                  model.pinnedMessages[index].displayName!,
+                                  maxLines: 1,
+                                  style: GoogleFonts.lato(
+                                      color: AppColors.deepGreyColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16.0),
+                                ),
                               ),
-                              const SizedBox(width: 24.0),
+                              const SizedBox(width: 16.0),
                               Text(
                                 model.pinnedMessages[index].moment!,
                                 style: GoogleFonts.lato(

@@ -37,6 +37,7 @@ Future<dynamic> zuriChatBottomSheet({
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(5), topRight: Radius.circular(5))),
         child: ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

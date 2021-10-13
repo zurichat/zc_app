@@ -175,7 +175,7 @@ class ChannelPageViewModel extends FormViewModel {
         UserPost(
             id: data['_id'],
             displayName: userid,
-            statusIcon: '7️⃣',
+            statusIcon: '⭐',
             moment: Moment.now().from(DateTime.parse(data['timestamp'])),
             message: data['content'],
             channelType: ChannelType.public,
