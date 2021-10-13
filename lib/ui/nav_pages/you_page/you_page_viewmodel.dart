@@ -2,6 +2,7 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/services/status_service.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/utilities/constants.dart';
@@ -12,7 +13,6 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/app/app.router.dart';
-import 'package:hng/ui/view/set_status/set_status_view.form.dart';
 
 class YouPageViewModel extends ReactiveViewModel {
   final log = getLogger('YouPageViewModel');
@@ -154,14 +154,4 @@ class YouPageViewModel extends ReactiveViewModel {
   Future clearAfter() async {
     await _navigationService.navigateTo(Routes.clearAfterView);
   }
-}
-
-class StatusService with ReactiveServiceMixin {
-  StatusService() {
-    listenToReactiveValues([_statusText]);
-  }
-  final _statusText = ReactiveValue<String>('What\'s your status');
-  String get statusText => _statusText.value;
-
-  void updateStatusText(statusText) => _statusText.value = statusText;
 }

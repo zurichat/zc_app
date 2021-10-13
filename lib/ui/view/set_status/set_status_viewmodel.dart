@@ -1,7 +1,7 @@
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/ui/nav_pages/you_page/you_page_viewmodel.dart';
+import 'package:hng/services/status_service.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';

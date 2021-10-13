@@ -1,10 +1,10 @@
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/media_service.dart';
 import 'package:hng/services/notification_service.dart';
+import 'package:hng/services/status_service.dart';
 import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_page_view.dart';
-import 'package:hng/ui/nav_pages/you_page/you_page_viewmodel.dart';
 import 'package:hng/ui/view/direct_message/direct_message.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';

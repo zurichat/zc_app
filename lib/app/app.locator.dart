@@ -6,7 +6,7 @@
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:hng/ui/nav_pages/you_page/you_page_viewmodel.dart';
+import 'package:hng/services/status_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
