@@ -14,6 +14,13 @@ TextStyle nameStyle() {
       color: AppColors.deepBlackColor);
 
 }
+TextStyle containerTextStyle() {
+  return const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: AppColors.whiteColor,
+  );
+}
 
 TextStyle descriptionStyle() {
   return const TextStyle(

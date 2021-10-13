@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/channel/channel_view/widgets/check_user.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -20,15 +21,20 @@ class ExpandableTextFieldScreen extends HookWidget {
       required this.widget,
       required this.sendMessage,
       required this.hintText,
+      this.usercheck = true,
+    this.channelName,
+    this.channelId,
       required this.textController,
       required this.channelID})
       : super(key: key);
   final Widget widget;
   final Function(String message) sendMessage;
   final String hintText;
+   final bool usercheck;
   final focusNode = FocusNode();
   final TextEditingController textController;
-
+ final String? channelName;
+  final String? channelId;
   final String channelID;
 
   final keyboardVisibilityController = KeyboardVisibilityController();
@@ -142,7 +148,10 @@ class ExpandableTextFieldScreen extends HookWidget {
                                   Expanded(
                                     // height:
                                     //     size,
-                                    child: MyTextField(
+                                    
+                                    child:  !usercheck
+                                        ? CheckUser(channelId, channelName)
+                                        : MyTextField(
                                       toggleVisibility: model.toggleVisibility,
                                       isExpanded: model.isExpanded,
                                       controller: textController,

@@ -17,5 +17,5 @@ class ChannelsSearch {
       slug: json["slug"],
       name: json["name"],
       membersCount: json["members"],
-      isPublic: json["private"]);
+      isPublic: !json["private"]);
 }

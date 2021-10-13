@@ -111,7 +111,7 @@ const String Preferences = 'Preferences';
 const String Notifs = 'Notifications';
 const String ViewProfile = 'View Profile';
 const String SavedItems = 'Saved Items';
-const String SetStatusText = 'Set yourself as ';
+const String SetStatusText = 'Go ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
@@ -429,7 +429,9 @@ const String HelpCenter = 'Help Center';
 const String SendFeedback = 'Send Feedback';
 
 //Images and Logos
+const String AddLogo = 'assets/logo/add_logo.png';
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
+const String NewZuriLogo = 'assets/logo/new_zuri_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
 const String GoogleLogo = 'assets/logo/Google_logo.png';
 const String statusBackground = 'assets/background/status.png';

@@ -29,6 +29,8 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                 return InkWell(
                   child: ThreadCardView.threadChannelMain(userPost),
                   onLongPress: () => zuriChatBottomSheet(
+                    shareMessage: () =>
+                        viewModel.navigateToShareMessage(userPost),
                     changePinnedState: () async {
                       final didChange =
                           await viewModel.changePinnedState(userPost);

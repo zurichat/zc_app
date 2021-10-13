@@ -5,13 +5,22 @@ import 'package:stacked_services/stacked_services.dart';
 class WebViewModel extends BaseViewModel {
   final navigation = locator<NavigationService>();
   bool isLoading = false;
+
+  int progressValue = 0;
+
   goBack() => navigation.back();
 
-  startLoading() {
+  void updateValue(int progress) {
+    progressValue = progress;
+    notifyListeners();
+  }
+
+  void startLoading() {
     isLoading = true;
     notifyListeners();
   }
-  stopLoading() {
+
+  void stopLoading() {
     isLoading = false;
     notifyListeners();
   }

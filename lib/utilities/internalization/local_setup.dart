@@ -5,7 +5,7 @@ import 'localization/app_localization.dart';
 
 /// List of languages codes that the app will support
 /// https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
-const supportedLocalCodes = ['en', 'nl', 'pt', 'zh'];
+const supportedLocalCodes = ['en', 'de','ar', 'zh'];
 
 final supportedLocales = supportedLocalCodes
     .map<Locale>((code) => Locale.fromSubtags(languageCode: code))

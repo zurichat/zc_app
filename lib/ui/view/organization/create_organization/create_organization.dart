@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
-
 import 'create_organization_viewmodel.dart';
 import 'company.dart';
 import 'invite.dart';
@@ -50,9 +50,7 @@ class CreateOrganization extends HookWidget {
               child: Visibility(
                 visible: model.isBusy,
                 child: const Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.zuriPrimaryColor,
-                  ),
+                  child: ZuriLoader(),
                 ),
                 replacement: Container(),
               ),

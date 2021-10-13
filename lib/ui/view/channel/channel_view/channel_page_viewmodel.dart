@@ -7,11 +7,14 @@ import 'package:hng/app/app.router.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/models/user_post.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/notification_service.dart';
 import 'package:hng/app/app.logger.dart';
+import 'package:hng/services/user_service.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:simple_moment/simple_moment.dart';
@@ -28,6 +31,11 @@ class ChannelPageViewModel extends FormViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
+  final _userService = locator<UserService>();
+  bool _checkUser = true;
+
+  get checkUser => _checkUser;
+  final _api = ZuriApi(channelsBaseUrl);
 
   //Draft implementations
   var storedDraft = '';
@@ -71,6 +79,7 @@ class ChannelPageViewModel extends FormViewModel {
           StorageKeys.currentUserChannelIdDrafts, spList);
     }
   }
+
   //**draft implementation ends here
 
   // ignore: todo
@@ -85,7 +94,7 @@ class ChannelPageViewModel extends FormViewModel {
   StreamSubscription? messageSubscription;
   StreamSubscription? notificationSubscription;
   String channelID = '';
-  String channelCreator= '';
+  String channelCreator = '';
 
   saveItem(
       {String? channelID,
@@ -122,10 +131,15 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  getChannelCreator(String channelId)async{
-   var response= await _channelsApiService.getChanelCreator(channelId);
-   channelCreator=response['owner'];
-   notifyListeners();
+  getChannelCreator(String channelId) async {
+    var response = await _channelsApiService.getChanelCreator(channelId);
+    channelCreator = response['owner'];
+    notifyListeners();
+  }
+
+  void updateCheckUser() {
+    _checkUser = false;
+    notifyListeners();
   }
 
   void initialise(String channelId) async {
@@ -155,7 +169,34 @@ class ChannelPageViewModel extends FormViewModel {
           userPost.id!, userPost.userId!, !userPost.pinned);
 
   Future joinChannel(String channelId) async {
-    await _channelsApiService.joinChannel(channelId);
+    String? userId = storage.getString(StorageKeys.currentUserId);
+    String? orgId = storage.getString(StorageKeys.currentOrgId);
+    String? token = storage.getString(StorageKeys.currentSessionToken);
+    // await _channelsApiService.joinChannel(channelId);
+    try {
+      final res = await _api
+          .post('v1/$orgId/channels/$channelId/members/', token: token, body: {
+        '_id': userId,
+      });
+
+      log.i(res?.data);
+      //  channelMessages = res?.data["data"] ?? [];
+
+      //  log.i(channelMessages);
+      return res?.data ?? {};
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return {};
+    }
+  }
+
+  void checkUserId() async {
+    await Future.delayed(const Duration(milliseconds: 10));
+    _checkUser =
+        channelMembers.any((member) => member.name == _userService.userId);
+
+    log.i(_checkUser);
+    notifyListeners();
   }
 
   Future navigateToQuestionPollScreen() async {
@@ -185,19 +226,20 @@ class ChannelPageViewModel extends FormViewModel {
 
       channelUserMessages?.add(
         UserPost(
-            id: data['_id'],
-            displayName: userid,
-            statusIcon: '7️⃣',
-            moment: Moment.now().from(DateTime.parse(data['timestamp'])),
-            message: data['content'],
-            channelType: ChannelType.public,
-            postEmojis: <PostEmojis>[],
-            userThreadPosts: <UserThreadPost>[],
-            channelName: channelId,
-            userImage: 'assets/images/chimamanda.png',
-            userId: userid,
-            channelId: channelId,
-            pinned: data['pinned']),
+          id: data['_id'],
+          displayName: userid,
+          statusIcon: '7️⃣',
+          moment: Moment.now().from(DateTime.parse(data['timestamp'])),
+          message: data['content'],
+          channelType: ChannelType.public,
+          postEmojis: <PostEmojis>[],
+          userThreadPosts: <UserThreadPost>[],
+          channelName: channelId,
+          userImage: 'assets/images/chimamanda.png',
+          userId: userid,
+          channelId: channelId,
+          pinned: data['pinned'],
+        ),
       );
     });
     isLoading = false;
@@ -214,6 +256,17 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
+  void navigateToShareMessage(UserPost userPost) async {
+    var result = await _navigationService.navigateTo(Routes.shareMessageView,
+        arguments: ShareMessageViewArguments(userPost: userPost));
+
+    var newMessage = result['message'];
+    var sharedMessage = result['sharedMessage'];
+    var message = '$newMessage: $sharedMessage';
+    sendMessage(message);
+    _navigationService.back();
+  }
+
   void exitPage() {
     _navigationService.back();
   }
@@ -222,11 +275,13 @@ class ChannelPageViewModel extends FormViewModel {
     return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
   }
 
-  Future? navigateToChannelInfoScreen(
-      int numberOfMembers, ChannelModel channelDetail) async {
+  Future? navigateToChannelInfoScreen(int numberOfMembers,
+      ChannelModel channelDetail, String channelName, String channelId) async {
     await NavigationService().navigateTo(Routes.channelInfoView,
         arguments: ChannelInfoViewArguments(
             numberOfMembers: numberOfMembers,
+            channelName: channelName,
+            channelID: channelId,
             channelMembers: channelMembers,
             channelDetail: channelDetail));
   }

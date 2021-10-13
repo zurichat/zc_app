@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/organization/invite_to_organization/invite_viewmodel.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class InviteViaEmailAdmin extends StatelessWidget {
