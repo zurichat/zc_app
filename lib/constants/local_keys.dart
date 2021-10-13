@@ -7,16 +7,12 @@ class LocalKeys {
   static const PluginsNavBar = "plugins_nav_bar";
   static const DmNavBar = "dm_nav_bar";
   static const YouNavBar = "you_nav_bar";
-  static const PerfectCollaborationAppForTeams = "onboarding_title_one";
-
-  static const Chatwithotherteammemberswithoutanydistractionsfromtheworld =
-      "onboarding_subtitle_one";
-  static const MusicRoom = "onboarding_title_two";
-  static const NowyoucanlistentoyourfavouritetracksrightintheApp =
-      "onboarding_subtitle_two";
-  static const ChessRoom = "onboarding_title_three";
-  static const Youcanalsoplaygameswithfriendsanddootheramazingstuff =
-      "onboarding_subtitle_three";
+  static const OnboardingTitleOne = "onboarding_title_one";
+  static const OnboardingSubtitleOne = "onboarding_subtitle_one";
+  static const OnboardingTitleTwo = "onboarding_title_two";
+  static const OnboardingSubtitleTwo = "onboarding_subtitle_two";
+  static const OnboardingTitleThree = "onboarding_title_three";
+  static const OnboardingSubtitleThree = "onboarding_subtitle_three";
   static const Getstarted = "get_started_button";
   static const Skip = "skip_button";
   static const Next = "next_button";

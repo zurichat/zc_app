@@ -23,7 +23,7 @@ class ThreadTextAndIcon extends ViewModelWidget<HomePageViewModel> {
     return _TextAndIcon(
       text: Threads,
       unread: true,
-      onTap: () async{
+      onTap: () async {
         // Navigate to threads screen
         await navigationService.navigateTo(Routes.threadsView);
         viewModel.draftChecker();
@@ -37,16 +37,14 @@ class ThreadTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 }
 
 class DraftTextAndIcon extends ViewModelWidget<HomePageViewModel> {
-
-  const
-  DraftTextAndIcon({Key? key}) : super(key: key);
+  const DraftTextAndIcon({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, viewModel) {
     return _TextAndIcon(
       text: Drafts,
       unread: true,
-      onTap: () async{
+      onTap: () async {
         await navigationService.navigateTo(Routes.draftView);
         viewModel.draftChecker();
       },

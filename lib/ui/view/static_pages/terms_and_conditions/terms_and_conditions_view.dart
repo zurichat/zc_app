@@ -17,10 +17,9 @@ class TermsAndConditionsView extends StatelessWidget {
           return Scaffold(
             appBar: ZuriAppBar(
               leading: Icons.arrow_back,
-              whiteBackground: true,
               orgTitle: Text(
                 TnC2.toUpperCase(),
-                style: AppTextStyles.heading4,
+                style: const TextStyle(color: AppColors.whiteColor),
               ),
               leadingPress: () => model.popNavigation(),
             ),

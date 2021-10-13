@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hng/ui/shared/long_button.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/organization/invite_to_organization/invite_viewmodel.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class InvitationSent extends StatelessWidget {
@@ -24,31 +25,51 @@ class InvitationSent extends StatelessWidget {
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: 8.0, vertical: 64.0,
+              horizontal: 25.0,
+              vertical: 24.0,
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SvgPicture.asset(
                   'assets/icons/svg_icons/invite.svg',
-                  width: 50,
+                  width: 64,
+                  height: 64,
                 ),
                 UIHelper.verticalSpaceLarge,
-                const Text("Invitation sent"),
+                Text(
+                  "Invitation sent",
+                  style: AppTextStyles.body1Bold.copyWith(fontSize: 20),
+                ),
                 UIHelper.verticalSpaceLarge,
-                const ListTile(
-                  leading: Icon(
-                    Icons.email_outlined,
+                Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.email_outlined,
+                      ),
+                      const SizedBox(width: 16),
+                      Text(
+                        model.getInvitedMail() ?? '',
+                        style: AppTextStyles.body2Bold,
+                      ),
+                    ],
                   ),
-                  title: Text("thepump@gmail.com"),
                 ),
                 UIHelper.verticalSpaceLarge,
-               const Center(
+                Center(
                   child: Text(
-                      "Has been invited as a member of zuri chat. \n They’ll be able to receive and reply in messages by email until they join."),
+                      "Has been invited as a member of zuri chat. They’ll be able to receive and reply in messages by email until they join.",
+                      style: AppTextStyles.descriptionStyle
+                          .copyWith(color: AppColors.zuriDarkGrey)),
+                  // textAlign: TextAlign.center,
                 ),
-                UIHelper.customVerticalSpace(560),
+                const Spacer(),
                 LongButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    model.navigateToHome();
+                  },
                   label: "Done",
                 ),
               ],
