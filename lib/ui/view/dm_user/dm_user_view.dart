@@ -40,7 +40,6 @@ class DmUserView extends StatelessWidget with $DmUserView {
       viewModelBuilder: () => DmUserViewModel(),
       builder: (context, model, child) {
         return Scaffold(
-          backgroundColor: Colors.white,
           appBar: ZuriAppBar(
               leading: Icons.arrow_back_ios,
               leadingPress: () =>
@@ -54,6 +53,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                   onPressed: () {},
                 ),
               ],
+              isDarkMode: Theme.of(context).brightness == Brightness.dark,
               onlineIndicator: true,
               whiteBackground: true),
           body: Stack(

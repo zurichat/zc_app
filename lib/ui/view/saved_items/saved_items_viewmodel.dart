@@ -24,7 +24,8 @@ class SavedItemsViewModel extends BaseViewModel {
   }
 
   navigateToMessage(userPost) {
-    _navigationService.navigateTo(Routes.threadDetailView,arguments: ThreadDetailViewArguments(userPost: userPost));
+    _navigationService.navigateTo(Routes.threadDetailView,
+        arguments: ThreadDetailViewArguments(userPost: userPost));
   }
 
   get savedItems {

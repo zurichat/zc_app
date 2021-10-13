@@ -8,14 +8,18 @@ import 'package:hng/app/app.router.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/models/user_post.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/services/media_service.dart';
 import 'package:hng/services/notification_service.dart';
 import 'package:hng/app/app.logger.dart';
+import 'package:hng/services/user_service.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
+import 'package:simple_moment/simple_moment.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -30,6 +34,11 @@ class ChannelPageViewModel extends FormViewModel {
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
   final _mediaService = locator<MediaService>();
+ final _userService = locator<UserService>();
+  bool _checkUser = true;
+  get checkUser => _checkUser;
+  final _api = ZuriApi(channelsBaseUrl);
+
 
   //Draft implementations
   var storedDraft = '';
@@ -87,6 +96,7 @@ class ChannelPageViewModel extends FormViewModel {
   StreamSubscription? messageSubscription;
   StreamSubscription? notificationSubscription;
   String channelID = '';
+  String channelCreator= '';
 
   saveItem(
       {String? channelID,
@@ -123,13 +133,25 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
+  getChannelCreator(String channelId)async{
+   var response= await _channelsApiService.getChanelCreator(channelId);
+   channelCreator=response['owner'];
+   notifyListeners();
+  }
+
+ void updateCheckUser() {
+    _checkUser = false;
+    notifyListeners();
+  }
+
   void initialise(String channelId) async {
     channelID = channelId;
     await joinChannel(channelId);
     fetchMessages(channelId);
-    getChannelSocketId("$channelId");
+    getChannelSocketId(channelId);
     fetchChannelMembers(channelId);
     listenToNewMessage(channelId);
+    getChannelCreator(channelId);
   }
 
   void showThreadOptions() async {
@@ -144,10 +166,40 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  Future joinChannel(String channelId) async {
-    await _channelsApiService.joinChannel(channelId);
+  Future<bool> changePinnedState(UserPost? userPost) =>
+      _channelsApiService.changeChannelMessagePinnedState(userPost!.channelId,
+          userPost.id!, userPost.userId!, !userPost.pinned);
+
+   Future joinChannel(String channelId) async {
+    String? userId = storage.getString(StorageKeys.currentUserId);
+    String? orgId = storage.getString(StorageKeys.currentOrgId);
+    String? token = storage.getString(StorageKeys.currentSessionToken);
+    // await _channelsApiService.joinChannel(channelId);
+    try {
+      final res = await _api
+          .post('v1/$orgId/channels/$channelId/members/', token: token, body: {
+        '_id': userId,
+      });
+
+      log.i(res?.data);
+      //  channelMessages = res?.data["data"] ?? [];
+
+      //  log.i(channelMessages);
+      return res?.data ?? {};
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return {};
+    }
   }
 
+ void checkUserId() async {
+    await Future.delayed(const Duration(milliseconds: 10));
+    _checkUser =
+        channelMembers.any((member) => member.name == _userService.userId);
+
+    log.i(_checkUser);
+    notifyListeners();
+  }
   void getChannelSocketId(String channelId) async {
     final channelSockId =
         await _channelsApiService.getChannelSocketId(channelId);
@@ -174,7 +226,7 @@ class ChannelPageViewModel extends FormViewModel {
             id: data['_id'],
             displayName: userid,
             statusIcon: '7️⃣',
-            lastSeen: '4 hours ago',
+            moment: Moment.now().from(DateTime.parse(data['timestamp'])),
             message: data['content'],
             channelType: ChannelType.public,
             postEmojis: <PostEmojis>[],
@@ -182,7 +234,8 @@ class ChannelPageViewModel extends FormViewModel {
             channelName: channelId,
             userImage: 'assets/images/chimamanda.png',
             userId: userid,
-            channelId: channelId),
+            channelId: channelId,
+            pinned: data['pinned']),
       );
     });
     isLoading = false;

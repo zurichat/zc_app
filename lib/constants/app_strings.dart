@@ -58,7 +58,7 @@ const String CreateAccount = 'Create Account';
 const String AlreadyHaveAcct = 'Already  have an Account?';
 const String Or = 'or';
 const String SignUpGoogle = 'Sign Up with Google';
-const String TnC1 = 'By selecting this box, you agreed to our';
+const String TnC1 = 'By selecting this box, you agreed to our ';
 const String TnC2 = 'terms and conditions';
 const String NewPasswordHeader =
     'Your new password must be different from the previously used password';
@@ -360,6 +360,7 @@ const String NotJoinedOrgYet = 'You have not joined any workspace yet!';
 const String Help = 'Help';
 const String SignOutAccount = 'Sign Out From All workspaces';
 const String AddOrg = 'Add a workspace';
+const String AddOrganisations = 'Add Organisations';
 const String EnterOrgUrl = 'Enter Workspace URL';
 const String EnterOrgUrlHint = 'https://workspace.zuri.com';
 const String OrgDesc1 =
@@ -393,7 +394,8 @@ const String JoinAnotherOrg = 'Join another workspace';
 const String SplashScreen = 'assets/logo/splash_image.png';
 
 //Pinned Messages
-const String PinnedMsgs = 'Pinned Messages';
+const String NoPinnedMessagesYet = 'No Pinned Messages Yet';
+const String PinnedMessages = 'Pinned Messages';
 
 //View Profile
 const String MessageText = 'Message';
@@ -447,6 +449,7 @@ const String OnboardingTwo = 'assets/images/onboarding_screen_1.png';
 const String OnboardingThree = 'assets/images/onboarding_screen_2.png';
 const String LinkLogo = 'assets/icons/svg_icons/link.svg';
 const String CancelLogo = 'assets/icons/cancel.png';
+const String PinIcon = 'assets/icons/pin.png';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =

@@ -18,13 +18,16 @@ class NewRowTile extends StatelessWidget {
       children: [
         Icon(
           icon,
-          color: AppColors.deepBlackColor,
+          color: Theme.of(context).textTheme.bodyText1!.color,
           size: 24.sp,
         ),
         SizedBox(width: 24.23.w),
         Text(
           "$text",
-          style: AppTextStyles.namesStyle.copyWith(fontSize: 14.sp),
+          style: AppTextStyles.namesStyle.copyWith(
+            fontSize: 14.sp,
+            color: Theme.of(context).textTheme.bodyText1!.color,
+          ),
         ),
       ],
     );
