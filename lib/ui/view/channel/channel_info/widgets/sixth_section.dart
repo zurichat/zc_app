@@ -25,7 +25,7 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
             border: Border.all(width: 1, color: AppColors.borderColor),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
+                color: AppColors.whiteColor.withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 6,
                 offset: const Offset(0, 3), // changes position of shadow

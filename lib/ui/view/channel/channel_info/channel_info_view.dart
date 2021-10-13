@@ -59,51 +59,51 @@ class ChannelInfoView extends StatelessWidget {
                       .copyWith(color: AppColors.blackColor),
                 ),
               ),
-              body: SafeArea(
-                child: SingleChildScrollView(
-                  padding: EdgeInsets.fromLTRB(8.w, 16.h, 8.w, 0),
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FirstSection(model),
-                      SizedBox(height: 12.h),
-                      const SecondSection(),
-                      SizedBox(height: 14.h),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8.w),
-                        child: Text(
-                          MuteChannelWarning,
-                          style: AppTextStyles.body1Grey,
-                        ),
+              body: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                padding: EdgeInsets.fromLTRB(8.w, 16.h, 8.w, 0),
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FirstSection(model),
+                    SizedBox(height: 12.h),
+                    const SecondSection(),
+                    SizedBox(height: 14.h),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.w),
+                      child: Text(
+                        MuteChannelWarning,
+                        style: AppTextStyles.body1Grey,
                       ),
-                      ThirdSection(model, numberOfMembers, channelDetail,
-                          channelMembers),
-                      SizedBox(height: 16.h),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8.w),
-                        child: Text(
-                          Bookmarks,
-                          style: AppTextStyles.body1Grey,
-                        ),
+                    ),
+                    ThirdSection(model, numberOfMembers, channelDetail,
+                        channelMembers),
+                    SizedBox(height: 16.h),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.w),
+                      child: Text(
+                        Bookmarks,
+                        style: AppTextStyles.body1Grey,
                       ),
-                      SizedBox(height: 8.h),
-                      const FourthSection(),
-                      SizedBox(height: 16.h),
-                      const FifthSection(),
-                      SizedBox(height: 16.h),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8.w),
-                        child: Text(
-                          Advanced,
-                          style: AppTextStyles.body1Grey,
-                        ),
+                    ),
+                    SizedBox(height: 8.h),
+                    const FourthSection(),
+                    SizedBox(height: 16.h),
+                    const FifthSection(),
+                    SizedBox(height: 16.h),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.w),
+                      child: Text(
+                        Advanced,
+                        style: AppTextStyles.body1Grey,
                       ),
-                      SizedBox(height: 8.h),
-                      SixthSection(channelDetail),
-                      SizedBox(height: 12.h),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: 8.h),
+                    SixthSection(channelDetail),
+                    SizedBox(height: 12.h),
+                    SizedBox(height: 48.h)
+                  ],
                 ),
               ),
             );

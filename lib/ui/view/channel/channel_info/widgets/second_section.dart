@@ -20,7 +20,7 @@ class SecondSection extends StatelessWidget {
         border: Border.all(width: 1.w, color: AppColors.borderColor),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: AppColors.whiteColor.withOpacity(0.5),
             spreadRadius: 5.r,
             blurRadius: 6.r,
             offset: Offset(0, 3.h), // changes position of shadow
