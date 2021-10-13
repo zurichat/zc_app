@@ -68,6 +68,10 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                       decoration: InputDecoration(
                         prefixIcon: const Icon(
                           Icons.email_outlined,
+                          color: AppColors.zuriPrimaryColor,
+                        ),
+                        labelStyle: const TextStyle(
+                          color: AppColors.zuriPrimaryColor,
                         ),
                         labelText: "Add an Email Address",
                         border: border(),
