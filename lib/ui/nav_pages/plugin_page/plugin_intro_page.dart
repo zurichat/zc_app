@@ -5,6 +5,7 @@ import 'package:hng/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
 import 'package:hng/ui/shared/long_button.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 class PluginPageIntro extends StatelessWidget {
@@ -15,10 +16,12 @@ class PluginPageIntro extends StatelessWidget {
     return ViewModelBuilder<PluginViewModel>.reactive(
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
+  final local = AppLocalization.of(context);
         return Scaffold(
+          //TODO TRANSLATE WHOLE PAGE
           appBar: ZuriAppBar(
             orgTitle:
-                Text(Plugins, style: ZuriTextStyle.organizationNameText()),
+                Text(local!.plugins, style: ZuriTextStyle.organizationNameText()),
             bottomNavBarScreen: true,
             leadingWidth: true,
           ),
@@ -30,15 +33,12 @@ class PluginPageIntro extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Get serious and have fun here",
+                    PluginIntroHeader,
                     style: AppTextStyles.header6,
                   ),
                   UIHelper.verticalSpaceMedium,
                   Text(
-                    '''Access your oganization’s important stuff'''
-                    ''' like holiday-calendar, meeting room, notice'''
-                    ''' board etc. Have fun by joining the chess'''
-                    ''' room and music room.''',
+                    PluginIntroBody,
                     style: AppTextStyles.body1Grey,
                   ),
                   UIHelper.customVerticalSpace(56.0),

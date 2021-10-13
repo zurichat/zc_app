@@ -5,6 +5,7 @@ import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/search_bar.dart';
@@ -19,10 +20,12 @@ class DmPage extends StatelessWidget {
     return ViewModelBuilder<DmPageViewModel>.reactive(
       onModelReady: (model) => model.initialise(),
       builder: (context, model, child) {
+        final local = AppLocalization.of(context);
         return Scaffold(
           appBar: ZuriAppBar(
             leadingWidth: true,
-            orgTitle: Text(DMs, style: ZuriTextStyle.organizationNameText()),
+            orgTitle: Text(local!.directMessages,
+                style: ZuriTextStyle.organizationNameText()),
             bottomNavBarScreen: true,
           ),
           floatingActionButton: FloatingActionButton(

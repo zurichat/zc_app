@@ -69,6 +69,7 @@ class PluginPage extends StatelessWidget {
                         MenuItemTile(
                           icon: Icons.add,
                           topBorder: false,
+                         // TODO TRANSLATE THIS TEXT
                           text: Text(
                             "Add Plugin",
                             style: AppTextStyles.faintBodyText.copyWith(
