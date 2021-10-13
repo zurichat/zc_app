@@ -34,6 +34,42 @@ class SignOutBottomSheet extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
+                      // model.dismissDialog();
+                      // model.showSignOutDialog(org.name ?? "");
+                    },
+                    child: const ListTile(
+                      title: CustomText(
+                        text: 'Invite members',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                        color: AppColors.zuriPrimaryColor,
+                      ),
+                      leading: Icon(
+                        Icons.logout_sharp,
+                        color: AppColors.zuriPrimaryColor,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      model.dismissDialog();
+                      model.showSignOutDialog(org.name ?? "");
+                    },
+                    child: const ListTile(
+                      title: CustomText(
+                        text: 'Organization settings',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                        color: AppColors.zuriPrimaryColor,
+                      ),
+                      leading: Icon(
+                        Icons.settings,
+                        color: AppColors.zuriPrimaryColor,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
                       model.dismissDialog();
                       model.showSignOutDialog(org.name ?? "");
                     },

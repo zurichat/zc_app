@@ -1,5 +1,6 @@
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/organization_model.dart';
 import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
 import 'package:zurichat/services/connectivity_service.dart';
 import 'package:zurichat/services/local_storage_services.dart';
@@ -23,6 +24,10 @@ class SignOutBottomSheetViewModel extends BaseViewModel {
     if (result != null && result.confirmed) {
       signOut();
     }
+  }
+
+  void navigateToWorkSpaceSettings(OrganizationModel org) {
+    _navigator.navigateTo(Routes.startDmView);
   }
 
   void navigateToSignIn() =>
