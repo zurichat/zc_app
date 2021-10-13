@@ -4,7 +4,6 @@ import 'package:hng/ui/shared/setup_bottom_sheet_ui.dart';
 import 'package:hng/ui/shared/setup_dialog_ui.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/internalization/local_setup.dart';
-import 'package:intl/intl.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
@@ -34,31 +33,19 @@ class MyApp extends StatelessWidget {
       themes: getThemes(),
       builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(
         child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          navigatorKey: StackedService.navigatorKey,
-          onGenerateRoute: StackedRouter().onGenerateRoute,
-          title: appName,
-          theme: regularTheme,
-          darkTheme: darkTheme,
-          themeMode: themeMode,
-          initialRoute: Routes.splashview,
-          localizationsDelegates: localizationsDelegates,
-          supportedLocales: supportedLocalesList,
-          localeResolutionCallback: (locale, supportedLocales) {
-            if (locale == null) {
-              Intl.defaultLocale = supportedLocales.first.languageCode;
-              return supportedLocales.first;
-            }
-            for (var supportedLocale in supportedLocales) {
-              if (supportedLocale.languageCode == locale.languageCode &&
-                  supportedLocale.countryCode == locale.countryCode) {
-                return supportedLocale;
-              }
-            }
-            Intl.defaultLocale = supportedLocales.first.languageCode;
-            return supportedLocales.first;
-          },
-        ),
+            debugShowCheckedModeBanner: false,
+            navigatorKey: StackedService.navigatorKey,
+            onGenerateRoute: StackedRouter().onGenerateRoute,
+            title: appName,
+            theme: regularTheme,
+            darkTheme: darkTheme,
+            themeMode: themeMode,
+            initialRoute: Routes.splashview,
+            localizationsDelegates: localizationsDelegates,
+            locale: appLocale,
+            supportedLocales: supportedLocalesList,
+            localeResolutionCallback: (locale, supportedLocales) =>
+                loadSupportedLocals(locale, supportedLocales)),
       ),
     );
   }
