@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/organization_model.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
@@ -16,16 +17,16 @@ class OrganizationView extends StatelessWidget {
       disposeViewModel: false,
       builder: (context, viewModel, child) {
         return Scaffold(
-
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(Organizations,
-                      style: AppTextStyles.heading6
-                          .copyWith(color: AppColors.blackColor)),
+                  Text(
+                    Workspaces,
+                    style: AppTextStyles.heading6,
+                  ),
                   Expanded(
                     child: Visibility(
                       visible: !viewModel.isBusy,
@@ -62,11 +63,7 @@ class OrganizationView extends StatelessWidget {
                                 ],
                               ),
                       ),
-                      replacement: const Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.zuriPrimaryColor,
-                        ),
-                      ),
+                      replacement: const Center(child: ZuriLoader()),
                     ),
                   ),
                   SizedBox(
@@ -100,6 +97,14 @@ class OrganizationView extends StatelessWidget {
                               style: AppTextStyles.faintBodyText
                                   .copyWith(fontSize: 16)),
                         ),
+                        ListTile(
+                          onTap: () => viewModel.signOutAllOrg(),
+                          leading: const Icon(Icons.logout_sharp),
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(SignOutAccount,
+                              style: AppTextStyles.faintBodyText
+                                  .copyWith(fontSize: 16)),
+                        ),
                       ],
                     ),
                   ),
@@ -125,7 +130,8 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
   @override
   Widget build(BuildContext context, OrganizationViewModel viewModel) {
     return ListTile(
-        onTap: () => viewModel.onTap(org.id, org.name, org.organizationUrl, org.userIdInOrg),
+        onTap: () => viewModel.onTap(
+            org.id, org.name, org.organizationUrl, org.userIdInOrg),
         leading: Container(
           height: MediaQuery.of(context).size.height * 0.06,
           width: MediaQuery.of(context).size.height * 0.06,
@@ -180,6 +186,5 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
               viewModel.showSignOutBottomSheet(org);
             },
             child: const Icon(Icons.more_vert)));
-
   }
 }

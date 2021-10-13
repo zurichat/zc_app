@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hng/models/user_post.dart';
+import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:hng/ui/shared/styles.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../../general_widgets/custom_text.dart';
@@ -8,11 +10,13 @@ import '../../../colors.dart';
 import '../../text_parser/text_parser_view.dart';
 import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
+import 'package:hng/app/app.logger.dart';
 
 class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
-  const ThreadCardDetail(this.userPost, {Key? key}) : super(key: key);
+  ThreadCardDetail(this.userPost, {Key? key}) : super(key: key);
 
   final UserPost? userPost;
+      final log = getLogger("ThreadCardDetail");
 
   @override
   Widget build(BuildContext context, ThreadCardViewModel viewModel) {
@@ -23,6 +27,28 @@ class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
         children: [
           InkWell(
             onTap: viewModel.viewProfile,
+             onLongPress: () => zuriChatBottomSheet(
+                context: context,
+                addToSavedItems: () {
+                  viewModel.saveItem(
+                      channelID: userPost!.channelId,
+                      channelName: userPost!.channelName,
+                      displayName: userPost!.displayName,
+                      message: userPost!.message,
+                      lastSeen: userPost!.moment,
+                      messageID: userPost!.id,
+                      userID: userPost!.userId,
+                      userImage: userPost!.userImage);
+                  log.i("Saved");
+                  viewModel.goBack();
+                  showSimpleNotification(
+                    const Text("Added successfully"),
+                    position: NotificationPosition.top,
+                    background: AppColors.appBarGreen,
+                    trailing: const Icon(Icons.mark_chat_read_outlined),
+                    duration: const Duration(seconds: 3),
+                  );
+                }),
             child: Container(
                 width: 40,
                 height: 40,
@@ -64,7 +90,7 @@ class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
                               Padding(
                                 padding: const EdgeInsets.only(right: 18),
                                 child: CustomText(
-                                  text: '${userPost!.lastSeen}',
+                                  text: '${userPost!.moment}',
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                 ),

@@ -25,7 +25,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
-          ? const Center(child: CircularProgressIndicator())
+          ? Container()
           : DraggableScrollableSheet(
               maxChildSize: 0.97,
               initialChildSize: 0.7,

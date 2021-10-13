@@ -46,7 +46,6 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
                         ProjectName,
                         style: TextStyle(
                           letterSpacing: 0.5,
-                          color: AppColors.blackColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),
@@ -95,7 +94,6 @@ class TextForm extends HookViewModelWidget<CreateOrganizationViewModel> {
           hintText: hintText,
           hintStyle: const TextStyle(
             fontSize: 16,
-            color: Colors.black45,
             fontWeight: FontWeight.w300,
           ),
           border: OutlineInputBorder(

@@ -4,6 +4,7 @@ import 'package:hng/models/user_model.dart';
 
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -27,7 +28,7 @@ class EditProfileView extends StatelessWidget {
           leadingPress: () => viewModel.close(),
           orgTitle: Text(
             "Edit Profile",
-            style: AppTextStyles.heading7,
+            style: AppTextStyles.heading4,
           ),
           actions: [
             TextButton(
@@ -45,17 +46,7 @@ class EditProfileView extends StatelessWidget {
         body: Visibility(
           visible: !viewModel.isBusy,
           child: Body(size: _size),
-          replacement: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(GettingYourData),
-                CircularProgressIndicator(
-                  color: AppColors.zuriPrimaryColor,
-                ),
-              ],
-            ),
-          ),
+          replacement: const ZuriLoader(),
         ),
       ),
     );

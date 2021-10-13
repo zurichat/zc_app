@@ -21,39 +21,37 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
         alignment: Alignment.center,
         padding: const EdgeInsets.fromLTRB(16, 18, 0, 0),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-            border: Border.all(width: 1, color: AppColors.borderColor),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 6,
-                offset: const Offset(0, 3), // changes position of shadow
-              ),
-            ]),
+          borderRadius: BorderRadius.circular(6),
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.darkThemePrimaryColor
+              : AppColors.whiteColor,
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(
+            Icon(
               Icons.archive_rounded,
-              color: AppColors.deepBlackColor,
+              color: Theme.of(context).textTheme.bodyText1!.color,
               size: 28,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Archive Channel',
-                  style: AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
-                ),
-                Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Archiving the channel will remover it from the channel list, and close it from all members.'
-                      'All chats and filse will still be stored and searchable',
-                      style: AppTextStyles.body2_400.copyWith(fontSize: 14),
-                    )),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Archive Channel',
+                    style:
+                        AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
+                  ),
+                  Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Archiving the channel will remover it from the channel list, and close it from all members.'
+                        'All chats and filse will still be stored and searchable',
+                        style: AppTextStyles.body2_400.copyWith(fontSize: 14),
+                      )),
+                ],
+              ),
             )
           ],
         ),

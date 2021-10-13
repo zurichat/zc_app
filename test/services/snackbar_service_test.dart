@@ -12,10 +12,10 @@ void main() {
         var snackbar = getAndRegisterSnackbarServiceMock();
         await snackbar.showCustomSnackBar(
             message:
-                Error.custom(401, 'Could not create organisation').toString());
+                Error.custom(401, 'Could not create workspace').toString());
         verify(snackbar.showCustomSnackBar(
             message:
-                Error.custom(401, 'Could not create organisation').toString()));
+                Error.custom(401, 'Could not create workspace').toString()));
       });
     });
   });

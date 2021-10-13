@@ -1,5 +1,6 @@
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/models/user_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/utilities/constants.dart';
@@ -22,6 +23,7 @@ class LoginViewModel extends FormViewModel {
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
   final zuriApi = ZuriApi(coreBaseUrl);
+  late UserModel userModel;
 
   final log = getLogger('LogInViewModel');
 
@@ -74,7 +76,6 @@ class LoginViewModel extends FormViewModel {
         variant: SnackbarType.failure,
         message: fillAllFields,
       );
-
       return;
     }
     final response = await zuriApi.login(
@@ -84,6 +85,7 @@ class LoginViewModel extends FormViewModel {
 
     //saving user details to storage on request success
     if (response?.statusCode == 200) {
+     
       _storageService.setString(
         StorageKeys.currentSessionToken,
         response?.data['data']['user']['token'],
@@ -98,7 +100,16 @@ class LoginViewModel extends FormViewModel {
       );
       _storageService.clearData(StorageKeys.currentOrgId);
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
-
+ final res = await zuriApi.get(
+          "https://api.zuri.chat/users/${response?.data['data']['user']['id']}");
+      if (res?.statusCode == 200) {
+        _snackbarService.showCustomSnackBar(
+            message: profileUpdated, variant: SnackbarType.success);
+        _userService.setUserDetails(userModel);
+      } else {
+        _snackbarService.showCustomSnackBar(
+            message: errorOccurred, variant: SnackbarType.failure);
+      }
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.success,
@@ -108,12 +119,6 @@ class LoginViewModel extends FormViewModel {
 
       //TODO check if user has currently joined an Organization
       _navigationService.pushNamedAndRemoveUntil(Routes.organizationView);
-    } else {
-      _snackbarService.showCustomSnackBar(
-        duration: const Duration(milliseconds: 1500),
-        variant: SnackbarType.failure,
-        message: response?.data['message'] ?? errorEncounteredLogin,
-      );
     }
   }
 
