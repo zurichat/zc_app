@@ -5,8 +5,8 @@ import 'package:hng/ui/shared/styles.dart';
 
 class CustomChannel extends StatelessWidget {
   final String? text;
-  final bool lock;
-  const CustomChannel({Key? key, this.text, this.lock = false})
+  final bool? public;
+  const CustomChannel({Key? key, this.text, required this.public})
       : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class CustomChannel extends StatelessWidget {
             SizedBox(
               height: 16.r,
               width: 16.r,
-              child: lock == true
+              child: public == false
                   ? SvgPicture.asset(
                       'assets/icons/svg_icons/lock_outline.svg',
                       color: Theme.of(context).textTheme.bodyText1!.color,
