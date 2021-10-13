@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 const String appName = 'Zuri Chat';
 const String zuri = 'ZURI';
 
@@ -426,6 +428,10 @@ const String Commuting = 'Commuting';
 const String PrivacyNLicenses = 'Privacy & licences';
 const String HelpCenter = 'Help Center';
 const String SendFeedback = 'Send Feedback';
+
+//Status
+const String SetAStatus = 'Set a Status';
+const IconData bubble = Icons.chat_bubble_outline_rounded;
 
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 
 class StatusForm extends StatelessWidget {
-  const StatusForm({Key? key, this.onPressed}) : super(key: key);
+  const StatusForm({Key? key, this.onPressed, this.iconData, this.statusText})
+      : super(key: key);
   final void Function()? onPressed;
+  final IconData? iconData;
+  final String? statusText;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +17,7 @@ class StatusForm extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
         side: BorderSide(
           width: 1,
-          color: ThemeData.dark().textTheme.bodyText1!.color ??
+          color: Theme.of(context).textTheme.bodyText1!.color ??
               AppColors.zuriPrimaryColor,
         ),
       ),
@@ -21,14 +25,14 @@ class StatusForm extends StatelessWidget {
       elevation: 3,
       onPressed: onPressed,
       child: Row(
-        children: const [
-          Icon(Icons.chat_bubble_outline_rounded),
-          SizedBox(width: 7),
+        children: [
+          Icon(iconData ?? bubble),
+          const SizedBox(width: 7),
           Flexible(
-            child: Text("What's your status?"),
+            child: Text(statusText ?? 'What\'s your status'),
             fit: FlexFit.tight,
           ),
-          Icon(Icons.close_rounded),
+          const Icon(Icons.close_rounded),
         ],
       ),
     );

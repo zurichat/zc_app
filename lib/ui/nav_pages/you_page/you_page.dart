@@ -11,12 +11,15 @@ import 'widgets/status_form.dart';
 import 'you_page_viewmodel.dart';
 
 class YouPage extends StatelessWidget {
-  const YouPage({Key? key}) : super(key: key);
+  final String? statusText;
+
+  const YouPage({Key? key, this.statusText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<YouPageViewModel>.reactive(
       viewModelBuilder: () => YouPageViewModel(),
+      onModelReady: (model) => model.fetchStatus(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           orgTitle: Text(You, style: ZuriTextStyle.organizationNameText()),
@@ -38,7 +41,11 @@ class YouPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                StatusForm(onPressed: model.setStatus),
+                StatusForm(
+                  onPressed: model.setStatus,
+                  statusText: model.statusText,
+                  // iconData: model.tag,
+                ),
                 const SizedBox(height: 20),
                 MenuItemTile(
                   icon: Icons.notifications_off_outlined,

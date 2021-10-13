@@ -23,6 +23,8 @@ class YouPageViewModel extends BaseViewModel {
   final _snackBar = locator<SnackbarService>();
   final _connectivityService = locator<ConnectivityService>();
   final _apiService = ZuriApi(coreBaseUrl);
+  String statusText = 'What\'s your status';
+  var iconData = '';
 
   String get username =>
       (_userService.userDetails?.displayName?.isNotEmpty ?? false
@@ -108,5 +110,25 @@ class YouPageViewModel extends BaseViewModel {
 
   Future setStatus() async {
     await _navigationService.navigateTo(Routes.setStatusView);
+  }
+
+  fetchStatus() async {
+    String res = _navigationService.currentArguments;
+    statusText = res;
+    // _storage.getString(StorageKeys.statusText) ?? 'What\'s your status';
+    notifyListeners();
+    final orgId = _storage.getString(StorageKeys.currentOrgId);
+    final memberId = _storage.getString(StorageKeys.idInOrganization);
+
+    final endpoint = 'organizations/$orgId/members/$memberId';
+    final response =
+        await _apiService.get(endpoint, queryParameters: {}, token: token);
+
+    if (response != null && response.statusCode == 200) {
+      print('QQQ - ${response.data['data']['status'].toString()}');
+      statusText = response.data['data']['status']['text'];
+      iconData = response.data['data']['status']['tag'];
+      notifyListeners();
+    } else {}
   }
 }
