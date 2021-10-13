@@ -259,10 +259,12 @@ class ChannelPageViewModel extends FormViewModel {
   }
 
   Future? navigateToChannelInfoScreen(
-      int numberOfMembers, ChannelModel channelDetail) async {
+      int numberOfMembers, ChannelModel channelDetail, String channelName, String channelId) async {
     await NavigationService().navigateTo(Routes.channelInfoView,
         arguments: ChannelInfoViewArguments(
             numberOfMembers: numberOfMembers,
+            channelName: channelName,
+            channelID: channelId,
             channelMembers: channelMembers,
             channelDetail: channelDetail));
   }
