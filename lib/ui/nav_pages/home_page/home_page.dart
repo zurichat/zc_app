@@ -121,6 +121,7 @@ class HomePage extends StatelessWidget {
             title: local.directMessages,
             data: vmodel.directMessages,
           ),
+          const Divider(),
         ],
       ),
     );

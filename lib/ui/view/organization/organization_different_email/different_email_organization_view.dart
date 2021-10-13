@@ -19,61 +19,55 @@ class UseDifferentEmailView extends HookWidget {
     final emailController = useTextEditingController();
 
     return ViewModelBuilder<UseDifferentEmailViewModel>.nonReactive(
-      viewModelBuilder: () => UseDifferentEmailViewModel(),
-      builder: (context, model, child) => Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(25.0),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Spacer(flex: 3),
-                  TextField(
-                    controller: emailController,
-                    cursorColor: AppColors.zuriPrimaryColor,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      labelText: YourEmail,
-                      hintText: SampleEmail,
-                      hintStyle: TextStyle(
-                        color: Color(0xffBEBEBE),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      labelStyle: TextStyle(
-                        color: Color(0xffBEBEBE),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none,
-                    ),
-                    onChanged: model.updateScreen,
+        viewModelBuilder: () => UseDifferentEmailViewModel(),
+        builder: (context, model, child) => Scaffold(
+              body: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Spacer(),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              BorderLessTextField(
+                                labelColor: AppColors.inactiveGreyColor,
+                                onChanged: (String? value) {
+                                  model.updateColor();
+                                  if (value!.isEmpty) {
+                                    return InputRequired;
+                                  }
+                                },
+                                controller: emailController,
+                                label: YourEmail,
+                              ),
+                              const SizedBox(height: 8),
+                              const Text(
+                                WillSendEmail,
+                              ),
+                              const SizedBox(height: 12),
+                              const Text(
+                                WillSendEmail,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 16),
+                              ),
+                              const SizedBox(height: 25),
+                              const Spacer(flex: 3),
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: NextButton(method: method),
+                              ),
+                              const Spacer(),
+                            ],
+                          ),
+                        ]),
                   ),
-                  const SizedBox(height: 12),
-                  const Text(
-                    WillSendEmail,
-                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
-                  ),
-                  const SizedBox(height: 25),
-                  const Spacer(flex: 3),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: NextButton(method: method),
-                  ),
-                  const Spacer(),
-                ],
+                ),
               ),
-            ),
-          ),
-        ),
-      ),
-    );
+            ));
   }
 }
 

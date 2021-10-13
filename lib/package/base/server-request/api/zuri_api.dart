@@ -635,6 +635,26 @@ class ZuriApi implements Api {
     }
   }
 
+  /// Invites a user to the organzization
+  /// This endpoint would sent the user a mail with the UUID
+  inviteToOrganizationWithNormalMail(
+    String organizationId,
+    body,
+    token,
+  ) async {
+    try {
+      final res = await post(
+        'organizations/$organizationId/send-invite',
+        body: body,
+        token: token,
+      );
+      log.i(res);
+    } on DioError catch (e) {
+      log.w(e.toString());
+      handleApiError(e);
+    }
+  }
+
   /// Themes for the mobile app
   @override
   List<ThemeData> getThemes() {

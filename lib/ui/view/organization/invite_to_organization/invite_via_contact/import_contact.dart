@@ -4,7 +4,7 @@ import 'package:zurichat/ui/shared/styles.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
-import 'invite_viewmodel.dart';
+import '../invite_via_email/invite_viewmodel.dart';
 
 class ImportContacts extends StatelessWidget {
   const ImportContacts({Key? key}) : super(key: key);
