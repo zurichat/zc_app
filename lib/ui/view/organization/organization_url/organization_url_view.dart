@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import '../../../shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
@@ -17,9 +18,7 @@ class OrganizationUrlView extends StatelessWidget {
       builder: (context, viewModel, child) => ModalProgressHUD(
         inAsyncCall: viewModel.isBusy,
         color: AppColors.whiteColor,
-        progressIndicator: const CircularProgressIndicator(
-          color: AppColors.zuriPrimaryColor,
-        ),
+        progressIndicator: const ZuriLoader(),
         child: Scaffold(
           body: SafeArea(
             child: SingleChildScrollView(
@@ -126,7 +125,7 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
     return TextButton(
       style: ButtonStyle(
           backgroundColor:
-              MaterialStateProperty.all<Color>(viewModel.buttonColors)),
+          MaterialStateProperty.all<Color>(viewModel.buttonColors)),
       onPressed: () => viewModel.signInToOrganization(),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/services/notification_service.dart';
 import 'package:hng/ui/shared/setup_bottom_sheet_ui.dart';
 import 'package:hng/ui/shared/setup_dialog_ui.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/internalization/local_setup.dart';
 import 'package:intl/intl.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -42,15 +43,7 @@ class MyApp extends StatelessWidget {
           themeMode: themeMode,
           initialRoute: Routes.splashview,
           localizationsDelegates: localizationsDelegates,
-          supportedLocales: const [
-            Locale('en', 'US'),
-            Locale('nl', 'NL'),
-            Locale('es', 'ES'),
-            Locale('fr', 'FR'),
-            Locale('it', 'IT'),
-            Locale('pt', 'BR'),
-            Locale('zh', 'HK'),
-          ],
+          supportedLocales: supportedLocalesList,
           localeResolutionCallback: (locale, supportedLocales) {
             if (locale == null) {
               Intl.defaultLocale = supportedLocales.first.languageCode;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -48,11 +49,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
           whiteBackground: true,
         ),
         body: model.isBusy
-            ? const Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.zuriPrimaryColor,
-                ),
-              )
+            ? const ZuriLoader()
             : Column(
                 children: [
                   Expanded(
@@ -112,7 +109,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                                   displayName:
                                                       userPost!.displayName,
                                                   message: userPost!.message,
-                                                  lastSeen: userPost!.lastSeen,
+                                                  lastSeen: userPost!.moment,
                                                   messageID: userPost!.id,
                                                   userID: userPost!.userId,
                                                   userImage:

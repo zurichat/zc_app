@@ -113,7 +113,7 @@ const String Preferences = 'Preferences';
 const String Notifs = 'Notifications';
 const String ViewProfile = 'View Profile';
 const String SavedItems = 'Saved Items';
-const String SetStatusText = 'Set yourself as ';
+const String SetStatusText = 'Go ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
@@ -396,7 +396,8 @@ const String JoinAnotherOrg = 'Join another workspace';
 const String SplashScreen = 'assets/logo/splash_image.png';
 
 //Pinned Messages
-const String PinnedMsgs = 'Pinned Messages';
+const String NoPinnedMessagesYet = 'No Pinned Messages Yet';
+const String PinnedMessages = 'Pinned Messages';
 
 //View Profile
 const String MessageText = 'Message';
@@ -434,7 +435,9 @@ const String SetAStatus = 'Set a Status';
 const IconData bubble = Icons.chat_bubble_outline_rounded;
 
 //Images and Logos
+const String AddLogo = 'assets/logo/add_logo.png';
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
+const String NewZuriLogo = 'assets/logo/new_zuri_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
 const String GoogleLogo = 'assets/logo/Google_logo.png';
 const String statusBackground = 'assets/background/status.png';
@@ -454,6 +457,7 @@ const String OnboardingTwo = 'assets/images/onboarding_screen_1.png';
 const String OnboardingThree = 'assets/images/onboarding_screen_2.png';
 const String LinkLogo = 'assets/icons/svg_icons/link.svg';
 const String CancelLogo = 'assets/icons/cancel.png';
+const String PinIcon = 'assets/icons/pin.png';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =

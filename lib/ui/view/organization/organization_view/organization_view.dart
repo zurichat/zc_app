@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/organization_model.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
@@ -33,40 +34,36 @@ class OrganizationView extends StatelessWidget {
                         physics: const ScrollPhysics(),
                         child: viewModel.organizations.isEmpty
                             ? Center(
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  padding: const EdgeInsets.only(top: 50.0),
-                                  child: Text(
-                                    NotJoinedOrgYet,
-                                    style: AppTextStyles.bodyRegular,
-                                  ),
-                                ),
-                              )
+                          child: Container(
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.only(top: 50.0),
+                            child: Text(
+                              NotJoinedOrgYet,
+                              style: AppTextStyles.bodyRegular,
+                            ),
+                          ),
+                        )
                             : Column(
-                                children: [
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.005,
-                                  ),
-                                  ListView.builder(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemCount: viewModel.organizations.length,
-                                    shrinkWrap: true,
-                                    itemBuilder: (context, i) {
-                                      final org = viewModel.organizations[i];
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height *
+                                  0.005,
+                            ),
+                            ListView.builder(
+                              physics:
+                              const NeverScrollableScrollPhysics(),
+                              itemCount: viewModel.organizations.length,
+                              shrinkWrap: true,
+                              itemBuilder: (context, i) {
+                                final org = viewModel.organizations[i];
 
-                                      return OrganizationTile(org: org);
-                                    },
-                                  ),
-                                ],
-                              ),
-                      ),
-                      replacement: const Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.zuriPrimaryColor,
+                                return OrganizationTile(org: org);
+                              },
+                            ),
+                          ],
                         ),
                       ),
+                      replacement: const Center(child: ZuriLoader()),
                     ),
                   ),
                   SizedBox(

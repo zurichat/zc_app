@@ -17,15 +17,19 @@ import 'widgets/fifth_section.dart';
 import 'widgets/sixth_section.dart';
 
 class ChannelInfoView extends StatelessWidget {
-  final int numberOfMembers;
   final List<ChannelMembermodel> channelMembers;
+  final String? channelName;
+  final String? channelID;
   final ChannelModel channelDetail;
+  final int numberOfMembers;
 
   const ChannelInfoView(
       {Key? key,
       required this.numberOfMembers,
       required this.channelMembers,
-      required this.channelDetail})
+      required this.channelDetail,
+      this.channelName,
+      this.channelID})
       : super(key: key);
 
   @override
@@ -68,7 +72,11 @@ class ChannelInfoView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      FirstSection(model),
+                      FirstSection(
+                        model,
+                        channelID: channelID,
+                        channelName: channelName,
+                      ),
                       SizedBox(height: 12.h),
                       const SecondSection(),
                       SizedBox(height: 14.h),
@@ -90,7 +98,7 @@ class ChannelInfoView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 8.h),
-                      const FourthSection(),
+                      FourthSection(model),
                       SizedBox(height: 16.h),
                       const FifthSection(),
                       SizedBox(height: 16.h),

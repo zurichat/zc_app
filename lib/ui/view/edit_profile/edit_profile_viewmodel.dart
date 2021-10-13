@@ -55,9 +55,9 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
     fullName = fullName.trim();
     userModel
       ..firstName =
-          fullName.isNotEmpty ? fullName.split(" ").first : userModel.firstName
+      fullName.isNotEmpty ? fullName.split(" ").first : userModel.firstName
       ..lastName =
-          fullName.isNotEmpty ? fullName.split(" ").last : userModel.lastName
+      fullName.isNotEmpty ? fullName.split(" ").last : userModel.lastName
       ..displayName = displayName
       ..bio = bio
       ..phoneNumber = phone;
