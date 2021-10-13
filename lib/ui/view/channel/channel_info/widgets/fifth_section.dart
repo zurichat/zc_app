@@ -19,15 +19,11 @@ class FifthSection extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6.r),
-          border: Border.all(width: 1.w, color: AppColors.borderColor),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.whiteColor.withOpacity(0.5),
-              spreadRadius: 5.r,
-              blurRadius: 6.r,
-              offset: Offset(0, 3.h), // changes position of shadow
-            ),
-          ],
+
+          // border: Border.all(width: 1.w, color: AppColors.borderColor),
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.darkThemePrimaryColor
+              : AppColors.whiteColor,
         ),
         child: const NewRowTile(
           icon: Icons.push_pin_outlined,

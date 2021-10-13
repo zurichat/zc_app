@@ -15,15 +15,11 @@ class FirstSection extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          boxShadow: const [
-            BoxShadow(
-              color: AppColors.whiteColor,
-              spreadRadius: 4,
-              blurRadius: 4,
-              offset: Offset(3, 3), // changes position of shadow
-            ),
-          ]),
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.darkThemePrimaryColor
+            : AppColors.whiteColor,
+        borderRadius: BorderRadius.circular(6),
+      ),
       // margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

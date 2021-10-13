@@ -4,6 +4,7 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/search_bar.dart';
@@ -35,12 +36,10 @@ class DmPage extends StatelessWidget {
               icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
               color: AppColors.whiteColor,
             ),
-            backgroundColor: AppColors.zuriPrimaryColor,
+            // backgroundColor: AppColors.zuriPrimaryColor,
           ),
           body: model.isBusy
-              ? const Center(
-                  child: CircularProgressIndicator.adaptive(),
-                )
+              ? const ZuriLoader()
               : !model.data!
                   ? const Center(
                       child: Text("No Messages Yet"),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
+
 //The screen shown in homepage -> Threads
 import '../../../../../general_widgets/channel_icon.dart';
 import '../../../../../general_widgets/custom_text.dart';
@@ -21,7 +22,6 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
   Widget build(BuildContext context, ThreadsViewModel viewModel) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
-      color: AppColors.whiteColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
@@ -65,9 +65,14 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
             child: MaterialButton(
               //TODO navigate to details page and focus input
               onPressed: () => viewModel.navigateToThread(userPost),
-              shape: const RoundedRectangleBorder(
-                side: BorderSide(width: 1),
-                borderRadius: BorderRadius.all(
+
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  width: 1,
+                  color: Theme.of(context).textTheme.bodyText1!.color ??
+                      AppColors.zuriPrimaryColor,
+                ),
+                borderRadius: const BorderRadius.all(
                   Radius.circular(5),
                 ),
               ),

@@ -16,8 +16,10 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TextEditingController? searchController;
   final String? title;
   final String? hintText;
+
   bool bottomNavBarScreen;
   bool whiteBackground;
+  bool isDarkMode;
   final Function()? onEditingComplete;
   bool isSearchBar;
   final String? subtitle;
@@ -31,6 +33,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.bottomNavBarScreen = false,
     this.whiteBackground = false,
+    this.isDarkMode = false,
     this.onlineIndicator = false,
     Key? key,
     this.leadingPress,
@@ -55,10 +58,10 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: isSearchBar
           ? null
           : InkWell(
-              child: Icon(
-                leading,
-                color: Colors.black,
-              ),
+              child: Icon(leading,
+                  color:
+                      isDarkMode ? AppColors.whiteColor : AppColors.blackColor,
+                  size: 16),
               onTap: leadingPress),
       title: isSearchBar
           ? Container(
@@ -90,6 +93,8 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             )
           : subtitle == null
+              //TODO - bug: condition doesn't accomodate supplying a string title (!widget) && null subtitle
+              //sample on select_email_view.dart
               ? orgTitle
               : Row(
                   mainAxisSize: MainAxisSize.min,
@@ -101,9 +106,14 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(title!,
-                            style: AppTextStyles.heading7
-                                .copyWith(color: AppColors.blackColor)),
+                        Text(
+                          title!,
+                          style: AppTextStyles.heading7.copyWith(
+                            color: isDarkMode
+                                ? AppColors.whiteColor
+                                : AppColors.blackColor,
+                          ),
+                        ),
                         Text(
                           subtitle!,
                           style: AppTextStyles.messageText
@@ -123,9 +133,12 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ],
                 ),
       centerTitle: false,
+      backgroundColor: !whiteBackground
+          ? AppColors.zuriPrimaryColor
+          : isDarkMode
+              ? AppColors.darkThemePrimaryColor
+              : AppColors.whiteColor,
       actions: isSearchBar ? null : actions,
-      backgroundColor:
-          !whiteBackground ? AppColors.zuriPrimaryColor : AppColors.whiteColor,
     );
   }
 }

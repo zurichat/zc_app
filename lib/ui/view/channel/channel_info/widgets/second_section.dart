@@ -16,16 +16,10 @@ class SecondSection extends StatelessWidget {
       alignment: Alignment.center,
       padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 26.h, 16.37.w),
       decoration: BoxDecoration(
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.darkThemePrimaryColor
+            : AppColors.whiteColor,
         borderRadius: BorderRadius.circular(6.r),
-        border: Border.all(width: 1.w, color: AppColors.borderColor),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.whiteColor.withOpacity(0.5),
-            spreadRadius: 5.r,
-            blurRadius: 6.r,
-            offset: Offset(0, 3.h), // changes position of shadow
-          ),
-        ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -38,7 +32,6 @@ class SecondSection extends StatelessWidget {
               children: [
                 Icon(
                   Icons.notifications_none_outlined,
-                  color: AppColors.deepBlackColor,
                   size: 24.sp,
                 ),
                 Column(
@@ -67,7 +60,7 @@ class SecondSection extends StatelessWidget {
                       child: Text(
                         MuteChannel,
                         style: AppTextStyles.descriptionStyle
-                          .copyWith(fontSize: 14.sp),
+                            .copyWith(fontSize: 14.sp),
                       ),
                     ),
                   ],
