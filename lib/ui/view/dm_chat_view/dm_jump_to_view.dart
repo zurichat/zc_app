@@ -31,7 +31,6 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
           ScreenUtilInit(
         designSize: const Size(411, 823),
         builder: () => Scaffold(
-          backgroundColor: Colors.white,
           resizeToAvoidBottomInset: false,
           body: SafeArea(
             child: Padding(
@@ -47,6 +46,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                       controller: searchController,
                       keyboardType: TextInputType.text,
                       maxLines: 1,
+                      cursorColor: AppColors.zuriPrimaryColor,
                       onChanged: model.onChanged,
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
@@ -64,7 +64,10 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                               style: BorderStyle.solid),
                         ),
                         prefixIcon: IconButton(
-                          icon: const Icon(Icons.arrow_back_ios_outlined),
+                          icon: Icon(
+                            Icons.arrow_back_ios_outlined,
+                            color: Theme.of(context).textTheme.bodyText1!.color,
+                          ),
                           iconSize: 18.sp,
                           onPressed: () => model.navigateBack(),
                         ),
@@ -125,6 +128,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                               final channel = model.allChannelsSearch[i];
                               return InkWell(
                                 child: CustomChannel(
+                                  public: channel.isPublic,
                                   text: channel.name ?? ChannelName,
                                 ),
                                 onTap: () {

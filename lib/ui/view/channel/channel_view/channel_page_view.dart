@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/no_connection_widget.dart';
 import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
+import 'package:hng/ui/view/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../../shared/shared.dart';
@@ -19,7 +19,6 @@ import 'channel_page_view.form.dart';
     FormTextField(name: 'channelMessages'),
   ],
 )
-
 class ChannelPageView extends StatelessWidget with $ChannelPageView {
   ChannelPageView({
     Key? key,
@@ -39,7 +38,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
       onModelReady: (model) {
         model.getDraft(channelId);
         model.initialise('$channelId');
-        if(model.storedDraft.isNotEmpty){
+        if (model.storedDraft.isNotEmpty) {
           channelMessagesController.text = model.storedDraft;
         }
         model.showNotificationForOtherChannels('$channelId', '$channelName');
@@ -53,14 +52,16 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
         }
 
         return Scaffold(
-          backgroundColor: AppColors.whiteColor,
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             leadingPress: () => model.goBack(
-                channelId, channelMessagesController.text,
-                channelName, membersCount, public
-            ),
+                channelId,
+                channelMessagesController.text,
+                channelName,
+                membersCount,
+                public),
             whiteBackground: true,
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             actions: [
               IconButton(
                 onPressed: () {},
@@ -89,6 +90,10 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
           ),
           body: ExpandableTextFieldScreen(
+             usercheck: model.checkUser,
+            channelName: '$channelName',
+            channelId: '$channelId',
+            channelID: channelId.toString(),
             textController: channelMessagesController,
             hintText: AddReply,
             sendMessage: model.sendMessage,

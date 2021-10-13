@@ -52,6 +52,10 @@ class ChannelInfoViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.editChannelPageView);
   }
 
+  void navigateToPinnedMessages() {
+    _navigationService.navigateTo(Routes.pinnedMessagesView);
+  }
+
   navigateBack() {
     _navigationService.back();
   }

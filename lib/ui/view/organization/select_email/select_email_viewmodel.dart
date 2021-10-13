@@ -47,6 +47,10 @@ class SelectEmailViewModel extends BaseViewModel {
     );
   }
 
+  navigateToUseDifferentEmailView() {
+    _navigationService.navigateTo(Routes.useDifferentEmailView);
+  }
+
   void navigateToDifferentEmail(OrganizationSwitchMethod method) {
     _navigationService.navigateTo(
       Routes.useDifferentEmailView,

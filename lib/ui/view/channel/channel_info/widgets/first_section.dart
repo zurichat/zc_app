@@ -20,16 +20,7 @@ class FirstSection extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
-            // boxShadow: const [
-            //   BoxShadow(
-            //     color: AppColors.whiteColor,
-            //     // spreadRadius: 4,
-            //     // blurRadius: 4,
-            //     // offset: Offset(3, 3), // changes position of shadow
-            //   ),
-            // ]
         ),
-        // margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,

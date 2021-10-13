@@ -23,7 +23,7 @@ class PluginView extends StatelessWidget {
         return Scaffold(
           appBar: ZuriAppBar(
             orgTitle:
-                Text(Plugins, style: AppTextStyles.heading7),
+                Text(Plugins, style: AppTextStyles.heading4),
                 whiteBackground: true,
           ),
           body: SingleChildScrollView(
