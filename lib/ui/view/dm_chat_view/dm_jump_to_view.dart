@@ -128,6 +128,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                               final channel = model.allChannelsSearch[i];
                               return InkWell(
                                 child: CustomChannel(
+                                  public: channel.isPublic,
                                   text: channel.name ?? ChannelName,
                                 ),
                                 onTap: () {
