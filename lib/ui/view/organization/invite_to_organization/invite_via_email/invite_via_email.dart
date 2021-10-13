@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'invite_via_email.form.dart';
@@ -46,57 +46,57 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
               ),
             ],
           ),
-          body: ModalProgressHUD(
-            inAsyncCall: model.isLoading,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-              child: Column(
-                children: [
-                  const Center(
-                    child: Text(
-                      "Fill in who you'd like to invite. Your request will be sent to \n the admin for approval.",
-                      //style: AppTextStyles.body2_400,
-                    ),
-                  ),
-                  UIHelper.verticalSpaceLarge,
-                  Container(
-                    color: AppColors.whiteColor,
-                    child: TextField(
-                      controller: emailController,
-                      cursorColor: AppColors.zuriPrimaryColor,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(
-                          Icons.email_outlined,
-                          color: AppColors.zuriPrimaryColor,
+          body: model.isBusy == true
+              ? const ZuriLoader()
+              : Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                  child: Column(
+                    children: [
+                      const Center(
+                        child: Text(
+                          "Fill in who you'd like to invite. Your request will be sent to \n the admin for approval.",
+                          //style: AppTextStyles.body2_400,
                         ),
-                        labelStyle: const TextStyle(
-                          color: AppColors.zuriPrimaryColor,
-                        ),
-                        labelText: "Add an Email Address",
-                        border: border(),
-                        focusedBorder: border(),
-                        enabledBorder: border(),
                       ),
-                    ),
+                      UIHelper.verticalSpaceLarge,
+                      Container(
+                        color: AppColors.whiteColor,
+                        child: TextField(
+                          controller: emailController,
+                          cursorColor: AppColors.zuriPrimaryColor,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(
+                              Icons.email_outlined,
+                              color: AppColors.zuriPrimaryColor,
+                            ),
+                            labelStyle: const TextStyle(
+                              color: AppColors.zuriPrimaryColor,
+                            ),
+                            labelText: "Add an Email Address",
+                            border: border(),
+                            focusedBorder: border(),
+                            enabledBorder: border(),
+                          ),
+                        ),
+                      ),
+                      UIHelper.verticalSpaceLarge,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: AppColors.whiteColor,
+                        ),
+                        onPressed: () {
+                          model.navigateToContacts();
+                        },
+                        child: const ListTile(
+                          leading: Icon(Icons.person_sharp),
+                          title: Text("Invite from contacts"),
+                        ),
+                      ),
+                    ],
                   ),
-                  UIHelper.verticalSpaceLarge,
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: AppColors.whiteColor,
-                    ),
-                    onPressed: () {
-                      model.navigateToContacts();
-                    },
-                    child: const ListTile(
-                      leading: Icon(Icons.person_sharp),
-                      title: Text("Invite from contacts"),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+                ),
         );
       },
     );

@@ -18,15 +18,14 @@ class InviteViewModel extends FormViewModel with ValidatorMixin {
   final snackbar = locator<SnackbarService>();
   final log = getLogger('InviteEmailView');
   final _zuriApi = ZuriApi(coreBaseUrl);
-  bool isLoading = false;
 
   inviteWithMail(String email) async {
     final orgId = userService.currentOrgId;
     final token = userService.authToken;
     await storage.clearData(StorageKeys.invitedEmail);
     if (validateEmail(email) == null) {
-      isLoading = true;
-      notifyListeners();
+      setBusy(true);
+
       Map<String, dynamic> body = {
         "emails": [email],
       };
@@ -34,14 +33,13 @@ class InviteViewModel extends FormViewModel with ValidatorMixin {
         final res = await _zuriApi.inviteToOrganizationWithNormalMail(
             orgId, body, token);
         log.i('>>>>>>>>> invite response : $res');
-        isLoading = false;
-        notifyListeners();
+        setBusy(false);
+
         await storage.setString(StorageKeys.invitedEmail, email);
         navigateToInvitationSent();
       } on DioError catch (e) {
         log.w(e.toString());
-        isLoading = false;
-        notifyListeners();
+        setBusy(false);
       }
     }
   }
