@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
@@ -14,94 +15,57 @@ class PreferenceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PreferenceViewModel>.reactive(
+      viewModelBuilder: () => PreferenceViewModel(),
+      onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-            orgTitle: Text(
-              'Preferences',
-              style: AppTextStyle.darkGreySize18Bold,
+          orgTitle: Text(
+            'Preferences',
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1!.color,
             ),
-            leading: Icons.close_outlined,
-            leadingPress: () => model.exitPage(),
-            whiteBackground: true),
+          ),
+          leading: Icons.close_outlined,
+          leadingPress: () => model.exitPage(),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
+        ),
         body: SingleChildScrollView(
-          child: Container(
-            margin: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(3),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 2,
-                    offset: Offset(0, 2),
-                  ),
-                ]),
-            child: Column(
-              children: [
-                MenuItemTile(
-                  text: Text(
-                    'Language & Region',
-                    style: AppTextStyle.darkGreySize16,
-                  ),
-                  onPressed: model.navigateLanguageAndRegion,
-                ),
-                const SizedBox(height: 16),
-                const Divider(color: AppColors.dividerColor),
-                const SizedBox(height: 16),
-                MenuItemTile(
-                  text: Text(
-                    'Dark mode',
-                    style: AppTextStyle.darkGreySize16,
-                  ),
-                  subtitle: model.currentTheme,
-                  onPressed: model.changeTheme,
-                ),
-                const SizedBox(height: 16),
-                const Divider(color: AppColors.dividerColor),
-                const SizedBox(height: 16),
-                MenuItemTile(
-                  text: Text(
-                    'Advanced',
-                    style: AppTextStyle.darkGreySize16,
-                  ),
-                  onPressed: model.navigateToAdvanced,
-                ),
-                const SizedBox(height: 16),
-                const Divider(color: AppColors.dividerColor),
-                const SizedBox(height: 16),
-                MenuItemTile(
-                  text: Text(
-                    'Send Feedback',
-                    style: AppTextStyle.darkGreySize16,
-                  ),
-                  onPressed: model.sendFeedback,
-                ),
-                const SizedBox(height: 16),
-                const Divider(color: AppColors.dividerColor),
-                const SizedBox(height: 16),
-                MenuItemTile(
-                  text: Text(
-                    'Help Center',
-                    style: AppTextStyle.darkGreySize16,
-                  ),
-                  onPressed: model.helpCentre,
-                ),
-                const SizedBox(height: 16),
-                const Divider(color: AppColors.dividerColor),
-                const SizedBox(height: 16),
-                MenuItemTile(
-                  text: Text(
-                    'Privacy & licences',
-                    style: AppTextStyle.darkGreySize16,
-                  ),
-                  onPressed: model.privacyAndLicences,
-                ),
-              ],
-            ),
+          child: Column(
+            children: [
+              UIHelper.verticalSpaceMedium,
+              MenuItemTile(
+                topBorder: false,
+                text: Text(LangAndRegion, style: AppTextStyle.lightGreySize16),
+                onPressed: model.navigateLanguageAndRegion,
+              ),
+              MenuItemTile(
+                text: Text(DarkMode, style: AppTextStyle.lightGreySize16),
+                subtitle: model.currentTheme,
+                onPressed: model.changeTheme,
+              ),
+              MenuItemTile(
+                text: Text(Advanced, style: AppTextStyle.lightGreySize16),
+                onPressed: model.navigateToAdvanced,
+              ),
+              MenuItemTile(
+                text: Text(SendFeedback, style: AppTextStyle.lightGreySize16),
+                onPressed: model.sendFeedback,
+              ),
+              MenuItemTile(
+                text: Text(HelpCenter, style: AppTextStyle.lightGreySize16),
+                onPressed: model.helpCentre,
+              ),
+              MenuItemTile(
+                text:
+                    Text(PrivacyNLicenses, style: AppTextStyle.lightGreySize16),
+                onPressed: model.privacyAndLicences,
+              ),
+              UIHelper.verticalSpaceMedium,
+            ],
           ),
         ),
       ),
-      viewModelBuilder: () => PreferenceViewModel(),
     );
   }
 }

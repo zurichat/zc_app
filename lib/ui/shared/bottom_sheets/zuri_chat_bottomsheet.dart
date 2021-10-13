@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:hng/models/user_post.dart';
+import 'package:hng/app/app.locator.dart';
 import 'package:hng/ui/shared/colors.dart';
-
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/utilities/enums.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import 'thread_options_bottomsheet/widget/recent_emojis.dart';
 
-Future<dynamic> zuriChatBottomSheet(
-    {required BuildContext context,
-    Function()? markUnread,
-    Function()? remindMe,
-    Function()? addToSavedItems,
-    Function()? replyInThread,
-    Function()? followThread,
-    Function()? shareMessage,
-    Function()? copyLinkToMessage,
-    Function()? copyText,
-    Function()? unPinFromConversation,
-    Function()? turnQuestionToPoll}) {
+Future<dynamic> zuriChatBottomSheet({
+  required BuildContext context,
+  Function()? markUnread,
+  Function()? remindMe,
+  Function()? addToSavedItems,
+  Function()? replyInThread,
+  Function()? followThread,
+  Function()? shareMessage,
+  Function()? copyLinkToMessage,
+  Function()? copyText,
+  Function()? changePinnedState,
+  Function()? turnQuestionToPoll,
+  UserPost? post,
+}) {
+  final _dialogService = locator<DialogService>();
   return showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -67,12 +73,15 @@ Future<dynamic> zuriChatBottomSheet(
               onTap: markUnread,
             ),
             ListTile(
-                title: Text(
-                  "Remind Me",
-                  style: AppTextStyle.darkGreySize16,
-                ),
-                leading: const Icon(Icons.timer_10_outlined),
-                onTap: remindMe),
+              title: Text(
+                "Remind Me",
+                style: AppTextStyle.darkGreySize16,
+              ),
+              leading: const Icon(Icons.timer_10_outlined),
+              onTap: () async {
+                await _dialogService.showCustomDialog();
+              },
+            ),
             ListTile(
               title: Text(
                 "Add to Saved Items",
@@ -121,10 +130,10 @@ Future<dynamic> zuriChatBottomSheet(
             const Divider(),
             ListTile(
                 title: Text(
-                  "Unpin from Conversation",
+                  "${post?.pinned == true ? "Unpin from" : "Pin to"} Conversation",
                   style: AppTextStyle.darkGreySize16,
                 ),
-                onTap: unPinFromConversation,
+                onTap: changePinnedState,
                 leading: const Icon(Icons.location_pin)),
             ListTile(
               title: Text(

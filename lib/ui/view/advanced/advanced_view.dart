@@ -16,10 +16,15 @@ class AdvancedView extends StatelessWidget {
     return ViewModelBuilder<AdvancedViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
+          leading: Icons.close_rounded,
+          leadingPress: () => model.exitPage(),
           orgTitle: Text(
             Advanced,
-            style: AppTextStyle.darkGreySize20Bold,
+            style: AppTextStyle.darkGreySize20Bold.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           whiteBackground: true,
         ),
         body: SingleChildScrollView(
@@ -66,6 +71,7 @@ class AdvancedView extends StatelessWidget {
                   style: TextStyle(color: Colors.red),
                 ),
               ),
+              const SizedBox(height: 10),
               const MenuItemTile(
                 text: Text(
                   ForceStop,

@@ -17,13 +17,17 @@ class ThreadsView extends StatelessWidget {
     return ViewModelBuilder<ThreadsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-            orgTitle: Text(
-              Threads,
-              style: AppTextStyle.darkGreySize20Bold,
+          orgTitle: Text(
+            Threads,
+            style: AppTextStyle.darkGreySize20Bold.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
             ),
-            leading: Icons.chevron_left,
-            leadingPress: () => model.exitPage(),
-            whiteBackground: true),
+          ),
+          leading: Icons.chevron_left,
+          leadingPress: () => model.exitPage(),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
+        ),
         body: RefreshIndicator(
           color: AppColors.zuriPrimaryColor,
           onRefresh: model.refreshThreadsPage,

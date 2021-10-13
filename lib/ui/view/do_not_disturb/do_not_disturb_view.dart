@@ -13,6 +13,7 @@ class DoNotDisturbView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<DoNotDisturbViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
+        backgroundColor: AppColors.whiteColor,
         appBar: ZuriAppBar(
           leading: Icons.close_rounded,
           leadingPress: () => model.exitPage(),

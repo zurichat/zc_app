@@ -6,12 +6,18 @@ import '../../../utilities/enums.dart';
 
 class AdvancedViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
+  final _navigationService = locator<NavigationService>();
   String currentEmoji = "1";
   bool showImagePreviews = false;
   bool openWebPagesInApp = true;
   bool displayTypingIndicators = true;
   bool allowAnimatedImageAndEmoji = true;
   bool optimizeImageUploads = true;
+
+
+    void exitPage() {
+    _navigationService.back();
+  }
 
   Future changeSkinTone() async {
     final dialogResult =

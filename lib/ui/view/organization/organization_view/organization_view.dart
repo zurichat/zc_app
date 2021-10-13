@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/organization_model.dart';
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
@@ -24,7 +25,7 @@ class OrganizationView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    Organizations,
+                    Workspaces,
                     style: AppTextStyle.bigBlackText,
                   ),
                   Expanded(
@@ -63,11 +64,7 @@ class OrganizationView extends StatelessWidget {
                                 ],
                               ),
                       ),
-                      replacement: const Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.zuriPrimaryColor,
-                        ),
-                      ),
+                      replacement: const Center(child: ZuriLoader()),
                     ),
                   ),
                   SizedBox(

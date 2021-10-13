@@ -8,6 +8,7 @@ enum _TileType { normal, icon, flipSwitch }
 class MenuItemTile extends StatelessWidget {
   const MenuItemTile({
     this.onPressed,
+    this.iconColor,
     this.text,
     this.icon,
     this.imageIcon,
@@ -22,6 +23,7 @@ class MenuItemTile extends StatelessWidget {
 
   const MenuItemTile.icon({
     this.onPressed,
+    this.iconColor,
     this.text,
     this.icon,
     this.imageIcon,
@@ -36,6 +38,7 @@ class MenuItemTile extends StatelessWidget {
 
   const MenuItemTile.flipSwitch({
     this.onPressed,
+    this.iconColor,
     this.text,
     this.subtitle,
     this.icon,
@@ -58,12 +61,16 @@ class MenuItemTile extends StatelessWidget {
   final bool bottomBorder;
   final bool topBorder;
   final bool value;
+  final Color? iconColor;
 
   Widget? selectIcon() {
     if (icon == null && imageIcon == null) {
       return null;
     } else if (icon != null) {
-      return Icon(icon);
+      return Icon(
+        icon,
+        color: iconColor,
+      );
     } else {
       return Image.asset('$imageIcon');
     }
@@ -87,7 +94,7 @@ class MenuItemTile extends StatelessWidget {
           //   horizontal: 0.0,
           //   vertical: 0.0,
           // ),
-          visualDensity: const VisualDensity(horizontal: 0.0, vertical: -4.0),
+          visualDensity: const VisualDensity(horizontal: 0.0, vertical: 0),
           onTap: onPressed,
           shape: Border(
             top: BorderSide(

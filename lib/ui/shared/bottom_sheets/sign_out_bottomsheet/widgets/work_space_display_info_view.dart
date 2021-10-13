@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:hng/ui/shared/text_styles.dart';
 
 class WorkSpaceDisplayInfo extends StatelessWidget {

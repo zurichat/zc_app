@@ -38,7 +38,7 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
                             channelName: userThreadPost!.channelName,
                             displayName: userThreadPost!.displayName,
                             message: userThreadPost!.message,
-                            lastSeen: userThreadPost!.lastSeen,
+                            lastSeen: userThreadPost!.moment,
                             messageID: userThreadPost!.id,
                             userID: userThreadPost!.userId,
                             userImage: userThreadPost!.userImage);

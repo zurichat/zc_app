@@ -20,7 +20,6 @@ Future main() async {
   await setupLocator();
   setupBottomSheetUi();
   setupDialogUi();
-
   initNotificationService();
   AppSnackBar.setupSnackbarUi();
   runApp(const MyApp());
@@ -44,12 +43,10 @@ class MyApp extends StatelessWidget {
           initialRoute: Routes.splashview,
           localizationsDelegates: localizationsDelegates,
           supportedLocales: const [
-            Locale('nl', 'NL'),
             Locale('en', 'US'),
-            Locale('es', 'ES'),
-            Locale('fr', 'FR'),
-            Locale('it', 'IT'),
+            Locale('nl', 'NL'),
             Locale('pt', 'BR'),
+            Locale('ar', 'SA'),
             Locale('zh', 'HK'),
           ],
           localeResolutionCallback: (locale, supportedLocales) {
@@ -61,12 +58,11 @@ class MyApp extends StatelessWidget {
               if (supportedLocale.languageCode == locale.languageCode &&
                   supportedLocale.countryCode == locale.countryCode) {
                 return supportedLocale;
-      
               }
             }
             Intl.defaultLocale = supportedLocales.first.languageCode;
             return supportedLocales.first;
-        },
+          },
         ),
       ),
     );

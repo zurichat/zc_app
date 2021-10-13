@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -24,7 +25,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
-          ? const Center(child: CircularProgressIndicator())
+          ? const ZuriLoader()
           : DraggableScrollableSheet(
               maxChildSize: 0.97,
               initialChildSize: 0.7,

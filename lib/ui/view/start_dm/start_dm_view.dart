@@ -30,13 +30,15 @@ class StartDmView extends StatelessWidget with $StartDmView {
       viewModelBuilder: () => StartDmViewModel(),
       builder: (ctx, model, child) => Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: Colors.white,
         appBar: ZuriAppBar(
           orgTitle: Text(
             DM,
-            style: AppTextStyle.darkGreySize20Bold,
+            style: AppTextStyle.darkGreySize20Bold.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
           leading: Icons.arrow_back_ios,
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           whiteBackground: true,
           leadingPress: () => model.navigateBack(),
           actions: [

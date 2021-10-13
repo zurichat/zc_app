@@ -29,7 +29,7 @@ class SavedItemsView extends StatelessWidget {
             ? const SavedItemBackground()
             : ListView.separated(
                 shrinkWrap: true,
-                physics: const AlwaysScrollableScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 itemCount: model.savedBuilderList.length,
                 itemBuilder: (context, index) {
                   return InkWell(
@@ -99,6 +99,7 @@ class SavedItemsView extends StatelessWidget {
                               ),
                             ],
                           ),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),

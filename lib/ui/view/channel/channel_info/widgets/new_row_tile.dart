@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/ui/shared/shared.dart';
+
 import 'package:hng/ui/shared/text_styles.dart';
 
 class NewRowTile extends StatelessWidget {
@@ -19,13 +19,15 @@ class NewRowTile extends StatelessWidget {
       children: [
         Icon(
           icon,
-          color: AppColors.deepBlackColor,
+          color: Theme.of(context).textTheme.bodyText1!.color,
           size: 24.sp,
         ),
         SizedBox(width: 24.23.w),
         Text(
           "$text",
-          style: AppTextStyle.darkGreySize14Bold,
+          style: AppTextStyle.darkGreySize14Bold.copyWith(
+            color: Theme.of(context).textTheme.bodyText1!.color,
+          ),
         ),
       ],
     );

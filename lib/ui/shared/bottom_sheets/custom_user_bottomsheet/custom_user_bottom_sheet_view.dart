@@ -26,7 +26,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
-          ? const Center(child: CircularProgressIndicator())
+          ? Container()
           : DraggableScrollableSheet(
               maxChildSize: 0.97,
               initialChildSize: 0.7,
@@ -65,9 +65,9 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         const CustomProfileTile(
                             title: Track, subtitle: MobileDev),
                         const Divider(),
-                        CustomProfileTile(
+                        const CustomProfileTile(
                           title: DisplayName,
-                          subtitle: model.userModel!.displayName ?? '',
+                          subtitle: '',
                         ),
                         const Divider(),
                         ListTile(
@@ -90,14 +90,14 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           ),
                         ),
                         const Divider(),
-                        CustomProfileTile(
+                        const CustomProfileTile(
                           title: Number,
-                          subtitle: model.userModel!.phoneNumber ?? '',
+                          subtitle: '',
                         ),
                         const Divider(),
                         CustomProfileTile(
                           title: EmailAddress,
-                          subtitle: model.userModel!.email!,
+                          subtitle: model.email!,
                         ),
                       ],
                     ),

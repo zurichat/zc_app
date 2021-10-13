@@ -16,22 +16,24 @@ class SetStatusView extends StatelessWidget {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
               appBar: ZuriAppBar(
-                  leading: Icons.close_rounded,
-                  leadingPress: () => model.exitPage,
-                  orgTitle: Text(
-                    'Set a status',
-                    style: AppTextStyle.darkGreySize20Bold,
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        Save,
-                        style: AppTextStyle.greenSize16,
-                      ),
-                    )
-                  ],
-                  whiteBackground: true),
+                leading: Icons.close_rounded,
+                leadingPress: () => model.exitPage(),
+                orgTitle: Text(
+                  'Set a status',
+                  style: AppTextStyle.darkGreySize20Bold,
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      Save,
+                      style: AppTextStyle.greenSize16,
+                    ),
+                  )
+                ],
+                isDarkMode: Theme.of(context).brightness == Brightness.dark,
+                whiteBackground: true,
+              ),
               body: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,

@@ -150,7 +150,7 @@ class AppTextStyle {
     return GoogleFonts.lato(
       fontSize: fontSize,
       fontWeight: fontWeight ?? FontWeight.w500,
-      color: color ?? Colors.grey[600],
+      // color: color ?? Colors.grey[600],
     );
   }
 }

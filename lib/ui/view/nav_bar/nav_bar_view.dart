@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/plugin_page/plugin_page_view.dart';
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
@@ -37,7 +37,6 @@ class NavBarView extends StatelessWidget {
           body: getViewForIndex(vModel.currentIndex),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            backgroundColor: AppColors.whiteColor,
             selectedItemColor: AppColors.zuriPrimaryColor,
             unselectedItemColor: AppColors.navBarItemColor,
             selectedFontSize: 14,
@@ -55,6 +54,7 @@ class NavBarView extends StatelessWidget {
 
   List<BottomNavigationBarItem> getBottomIcons(context) {
     final local = AppLocalization.of(context);
+    //TODO - local!.homeNavBar crashed app [Null check operator used on a null value]
     List<String> name = [
       local!.homeNavBar,
       local.pluginsNavBar,
@@ -121,7 +121,7 @@ class NavBarView extends StatelessWidget {
       case 0:
         return const HomePage();
       case 1:
-        return const PluginPage();
+        return const PluginPageIntro();
       case 2:
         return const DmPage();
       case 3:

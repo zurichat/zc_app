@@ -5,6 +5,7 @@ import 'package:hng/models/user_model.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -43,20 +44,9 @@ class EditProfileView extends StatelessWidget {
           ],
         ),
         body: Visibility(
-          visible: !viewModel.isBusy,
-          child: Body(size: _size),
-          replacement: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(GettingYourData),
-                CircularProgressIndicator(
-                  color: AppColors.zuriPrimaryColor,
-                ),
-              ],
-            ),
-          ),
-        ),
+            visible: !viewModel.isBusy,
+            child: Body(size: _size),
+            replacement: const ZuriLoader()),
       ),
     );
   }

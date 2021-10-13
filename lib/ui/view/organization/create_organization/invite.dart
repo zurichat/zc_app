@@ -49,7 +49,6 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                         TeammateNames,
                         style: TextStyle(
                           letterSpacing: 0.5,
-                          color: AppColors.blackColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),

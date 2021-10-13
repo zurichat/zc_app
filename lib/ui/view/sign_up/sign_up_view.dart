@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
+import 'package:hng/ui/shared/long_button.dart';
 import 'package:hng/ui/shared/text_styles.dart';
+
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import '../../../general_widgets/custom_textfield.dart';
 import '../../shared/colors.dart';
-import '../../shared/long_button.dart';
+
 import '../../shared/shared.dart';
 
 import 'sign_up_view.form.dart';
@@ -42,11 +45,8 @@ class SignUpView extends StatelessWidget with $SignUpView {
         return ModalProgressHUD(
           inAsyncCall: model.isLoading,
           color: AppColors.whiteColor,
-          progressIndicator: const CircularProgressIndicator(
-            color: AppColors.zuriPrimaryColor,
-          ),
+          progressIndicator: const ZuriLoader(),
           child: Scaffold(
-            backgroundColor: AppColors.whiteColor,
             body: Center(
               child: SingleChildScrollView(
                 child: Padding(
@@ -155,6 +155,8 @@ class SignUpView extends StatelessWidget with $SignUpView {
                               value: model.checkBoxValue,
                               onChanged: (newValue) =>
                                   model.updateValue(newValue),
+                              fillColor: MaterialStateProperty.all(
+                                  AppColors.zuriPrimaryColor),
                             ),
                           ),
                           Column(
@@ -210,7 +212,9 @@ class SignUpView extends StatelessWidget with $SignUpView {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(
-                            color: AppColors.zuriTextColorHeader,
+                            color:
+                                Theme.of(context).textTheme.bodyText1!.color ??
+                                    AppColors.zuriPrimaryColor,
                             width: 1,
                           ),
                         ),

@@ -23,7 +23,7 @@ class SignOutDialog extends StatelessWidget {
         "You can sign back in anytime by tapping \n\"Add a workspace\"",
         style: AppTextStyle.darkGreySize14,
       ),
-      actions: <Widget>[
+      actions: [
         TextButton(
           child: Text(
             'Cancel',

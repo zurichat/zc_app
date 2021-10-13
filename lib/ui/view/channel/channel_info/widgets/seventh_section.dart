@@ -19,8 +19,11 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
       alignment: Alignment.center,
       margin: const EdgeInsets.only(right: 5, left: 5, bottom: 15),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2),
-          border: Border.all(width: 1.0, color: AppColors.borderColor)),
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.darkThemePrimaryColor
+            : AppColors.whiteColor,
+        borderRadius: BorderRadius.circular(2),
+      ),
       child: Column(
         children: [
           Row(
@@ -30,9 +33,9 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
                   left: 9,
                   top: 19,
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.lock_outline,
-                  color: AppColors.deepBlackColor,
+                  color: Theme.of(context).textTheme.bodyText1!.color,
                   size: 28,
                 ),
               ),

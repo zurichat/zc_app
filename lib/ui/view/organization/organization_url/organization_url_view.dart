@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import '../../../shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
@@ -18,9 +19,7 @@ class OrganizationUrlView extends StatelessWidget {
       builder: (context, viewModel, child) => ModalProgressHUD(
         inAsyncCall: viewModel.isBusy,
         color: AppColors.whiteColor,
-        progressIndicator: const CircularProgressIndicator(
-          color: AppColors.zuriPrimaryColor,
-        ),
+        progressIndicator: const ZuriLoader(),
         child: Scaffold(
           body: SafeArea(
             child: SingleChildScrollView(
@@ -86,7 +85,7 @@ class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
         style: AppTextStyle.darkGreySize16Bold,
         decoration: InputDecoration(
           labelText: EnterOrgUrl,
-          labelStyle: AppTextStyle.darkGreySize16Bold,
+          labelStyle: AppTextStyle.greenSize16,
           hintText: EnterOrgUrlHint,
           hintStyle: AppTextStyle.lightGreySize16,
           border: InputBorder.none,

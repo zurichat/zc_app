@@ -18,9 +18,9 @@ import 'widgets/fifth_section.dart';
 import 'widgets/sixth_section.dart';
 
 class ChannelInfoView extends StatelessWidget {
-  final int numberOfMembers;
   final List<ChannelMembermodel> channelMembers;
   final ChannelModel channelDetail;
+  final int numberOfMembers;
 
   const ChannelInfoView(
       {Key? key,
@@ -54,9 +54,12 @@ class ChannelInfoView extends StatelessWidget {
                   ),
                 ],
                 whiteBackground: true,
+                isDarkMode: Theme.of(context).brightness == Brightness.dark,
                 orgTitle: Text(
                   ChannelInfo,
-                  style: AppTextStyle.darkGreySize20Bold,
+                  style: AppTextStyle.darkGreySize20Bold.copyWith(
+                    color: Theme.of(context).textTheme.bodyText1!.color,
+                  ),
                 ),
               ),
               body: SafeArea(
@@ -67,9 +70,9 @@ class ChannelInfoView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       FirstSection(model),
-                      SizedBox(height: 16.h),
+                      SizedBox(height: 12.h),
                       const SecondSection(),
-                      SizedBox(height: 8.h),
+                      SizedBox(height: 14.h),
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
@@ -86,7 +89,7 @@ class ChannelInfoView extends StatelessWidget {
                             style: AppTextStyle.lightGreySize14),
                       ),
                       SizedBox(height: 8.h),
-                      const FourthSection(),
+                      FourthSection(model),
                       SizedBox(height: 16.h),
                       const FifthSection(),
                       SizedBox(height: 16.h),
@@ -99,6 +102,7 @@ class ChannelInfoView extends StatelessWidget {
                       ),
                       SizedBox(height: 8.h),
                       SixthSection(channelDetail),
+                      SizedBox(height: 12.h),
                     ],
                   ),
                 ),
