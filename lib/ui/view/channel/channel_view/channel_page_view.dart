@@ -89,6 +89,9 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
           ),
           body: ExpandableTextFieldScreen(
+             usercheck: model.checkUser,
+            channelName: '$channelName',
+            channelId: '$channelId',
             channelID: channelId.toString(),
             textController: channelMessagesController,
             hintText: AddReply,
