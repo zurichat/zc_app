@@ -12,17 +12,18 @@ dependencies:
   cached_network_image: ^3.1.0
   centrifuge: ^0.6.0
   connectivity_plus: ^1.1.0
+  connectivity_plus_web: null
   cupertino_icons: ^1.0.2
   dio: ^4.0.0
   emoji_picker_flutter: ^1.0.7
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
   flutter_appavailability: ^0.0.21
   flutter_chips_input: ^1.10.0
   flutter_hooks: ^0.17.0
   flutter_keyboard_visibility: ^5.0.3
+  flutter_localizations:
+    sdk: flutter
   flutter_parsed_text: ^2.2.1
   flutter_screenutil: ^5.0.0+2
   flutter_slidable: ^0.6.0
@@ -49,9 +50,9 @@ dependencies:
   stacked_hooks: ^0.2.1
   stacked_services: ^0.8.6
   stacked_themes: ^0.3.6
+  uni_links: ^0.5.1
   url_launcher: ^6.0.9
   velocity_x: ^3.3.0
-  connectivity_plus_web:
   webview_flutter: ^2.0.13
 
 dev_dependencies:
@@ -83,7 +84,6 @@ flutter:
     - assets/icons/emojiHands/
     - assets/icons/svg_icons/
     - assets/language/
- 
 
   fonts:
     - family: ZapIcon

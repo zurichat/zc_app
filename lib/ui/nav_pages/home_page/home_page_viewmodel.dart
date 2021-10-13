@@ -158,7 +158,7 @@ class HomePageViewModel extends StreamViewModel {
             unreadCount: 0,
             name: data['name'],
             id: data['_id'],
-            public: data['private'] != "True",
+            public: !data['private'],
             membersCount: data['members'],
           ),
         );
@@ -210,7 +210,6 @@ class HomePageViewModel extends StreamViewModel {
       // _channel= await api.getChannelPage(id);
       // _membersList= await api.getChannelMembers(id);
 
-
       _moderateNavigation();
       await navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
@@ -220,7 +219,6 @@ class HomePageViewModel extends StreamViewModel {
             public: public,
           ));
       setBusy(false);
-
     } catch (e) {
       log.e(e.toString());
       snackbar.showCustomSnackBar(
@@ -302,7 +300,7 @@ class HomePageViewModel extends StreamViewModel {
     return counter > 0;
   }
 
-  void draftChecker(){
+  void draftChecker() {
     notifyListeners();
   }
 }
