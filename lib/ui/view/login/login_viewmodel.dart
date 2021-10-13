@@ -99,17 +99,17 @@ class LoginViewModel extends FormViewModel {
         response?.data['data']['user']['email'],
       );
       _storageService.clearData(StorageKeys.currentOrgId);
-      // final userModel = UserModel.fromJson(response?.data['data']['user']);
- final res = await zuriApi.get(
-          "https://api.zuri.chat/users/${response?.data['data']['user']['id']}");
-      if (res?.statusCode == 200) {
+      final userModel = UserModel.fromJson(response?.data['data']['user']);
+ // final res = await zuriApi.get(
+ //          "https://api.zuri.chat/users/${response?.data['data']['user']['id']}");
+ //      if (res?.statusCode == 200) {
         _snackbarService.showCustomSnackBar(
             message: profileUpdated, variant: SnackbarType.success);
         _userService.setUserDetails(userModel);
-      } else {
-        _snackbarService.showCustomSnackBar(
-            message: errorOccurred, variant: SnackbarType.failure);
-      }
+      // } else {
+      //   _snackbarService.showCustomSnackBar(
+      //       message: errorOccurred, variant: SnackbarType.failure);
+      // }
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.success,
