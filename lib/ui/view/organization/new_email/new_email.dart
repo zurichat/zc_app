@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
@@ -11,8 +12,10 @@ class NewEmailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<NewEmailViewModel>.nonReactive(
       builder: (context, viewModel, child) => Scaffold(
+        
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -23,12 +26,12 @@ class NewEmailView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 300),
                     child: Column(
-                      children: const [
-                        TextForm(),
-                        SizedBox(height: 12),
+                      children: [
+                       const TextForm(),
+                       const SizedBox(height: 12),
                         Text(
-                          WillSendEmail,
-                          style: TextStyle(
+                          local!.sendEmailForSignin,
+                          style: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 16,
                           ),
@@ -54,12 +57,13 @@ class TextForm extends HookViewModelWidget<NewEmailViewModel> {
   @override
   Widget buildViewModelWidget(
       BuildContext context, NewEmailViewModel viewModel) {
+        final local = AppLocalization.of(context);
     return Center(
       child: TextField(
-        decoration: const InputDecoration(
-          labelText: YourEmail,
-          hintText: YourEmail,
-          hintStyle: TextStyle(
+        decoration:  InputDecoration(
+          labelText: local!.yourEmailAddress,
+          hintText: local.yourEmailAddress,
+          hintStyle: const TextStyle(
             color: Color(0xffBEBEBE),
             fontSize: 16,
             fontWeight: FontWeight.w700,
@@ -83,6 +87,7 @@ class NextButton extends ViewModelWidget<NewEmailViewModel> {
 
   @override
   Widget build(BuildContext context, NewEmailViewModel viewModel) {
+    final local = AppLocalization.of(context);
     return TextButton(
         style: ButtonStyle(
             backgroundColor:
@@ -98,7 +103,7 @@ class NextButton extends ViewModelWidget<NewEmailViewModel> {
             width: 300,
             child: Center(
               child: Text(
-                Next,
+                local!.next,
                 style: AppTextStyles.buttonText,
               ),
             ),

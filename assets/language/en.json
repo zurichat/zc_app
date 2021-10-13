@@ -132,5 +132,32 @@
     "in-app_notify": "In-app notification",
     "my_keyword": "My Keyword",
     "my_keyword_subtitle": "Get notified when people say...",
-    "channel_specific_notify": "Channel-specific notifications (0)"
+    "channel_specific_notify": "Channel-specific notifications (0)",
+
+    "mark_unread": "Mark Unread",
+    "remind_me": "Remind Me",
+    "add_to_saved_items": "Add to Saved Items",
+    "reply_in_thread": "Reply in Thread",
+    "follow_thread": "Follow Thread",
+    "share_message": "Share Message",
+    "copy_link_to_message": "Copy Link to Message",
+    "copy_text": "Copy Text",
+    "pin_to_conversation": "Pin to Conversation",
+    "turn_question_into_poll": "Turn question into poll",
+    "message_in": "Message in",
+    "add_a_reply": "Add a Reply",
+    "replies": "Replies",
+    "saved": "Saved",
+    "added_successfully": "Added successfully",
+    "no_new_replies": "No new replies",
+    "plugin_intro_header":  "Get serious and have fun here",
+    "plugin_intro_body": "Access your oganization’s important stuff like holiday-calendar, meeting room, notice board etc. Have fun by joining the chess room and music room.",
+
+    "not_joined_org": "You have not joined any workspace yet!",
+    "select_email_to_use": "Select an email address to use:",
+    "your_email_address": "Your email address",
+    "dont_know_workspace_url": "If you don't know your workspace URL, we have sent an email to ",
+    "help_sign_in_easily": " to help you sign in easily.",
+    "enter_workspaces_url": "Enter Workspace URL",
+    "send_email_for_signin": "We’ll send you an email that will instantly sign you in"
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
 import 'package:hng/ui/shared/long_button.dart';
@@ -18,7 +17,6 @@ class PluginPageIntro extends StatelessWidget {
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
   final local = AppLocalization.of(context);
         return Scaffold(
-          //TODO TRANSLATE WHOLE PAGE
           appBar: ZuriAppBar(
             orgTitle:
                 Text(local!.plugins, style: ZuriTextStyle.organizationNameText()),
@@ -33,12 +31,12 @@ class PluginPageIntro extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    PluginIntroHeader,
+                    local.pluginIntroHeader,
                     style: AppTextStyles.header6,
                   ),
                   UIHelper.verticalSpaceMedium,
                   Text(
-                    PluginIntroBody,
+                    local.pluginIntroBody,
                     style: AppTextStyles.body1Grey,
                   ),
                   UIHelper.customVerticalSpace(56.0),
@@ -48,7 +46,7 @@ class PluginPageIntro extends StatelessWidget {
                       onPressed: () {
                         model.navigateToPlugins();
                       },
-                      label: "Get Started",
+                      label: local.getstarted,
                     ),
                   ),
                 ],

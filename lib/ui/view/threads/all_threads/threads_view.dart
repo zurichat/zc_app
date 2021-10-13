@@ -43,8 +43,7 @@ class ThreadsView extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Text(
-                    //TODO TRANSLATE
-                    NoNewReplies,
+                    local.noNewReplies,
                     style: AppTextStyles.body2Bold,
                   ),
                 ),

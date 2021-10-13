@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/organization_model.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
@@ -12,6 +13,7 @@ class OrganizationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<OrganizationViewModel>.reactive(
       onModelReady: (viewModel) => viewModel.initViewModel(),
       disposeViewModel: false,
@@ -24,7 +26,7 @@ class OrganizationView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    Workspaces,
+                    local!.workspaces,
                     style: AppTextStyles.heading6,
                   ),
                   Expanded(
@@ -38,7 +40,7 @@ class OrganizationView extends StatelessWidget {
                                   alignment: Alignment.center,
                                   padding: const EdgeInsets.only(top: 50.0),
                                   child: Text(
-                                    NotJoinedOrgYet,
+                                    local.notJoinedOrg,
                                     style: AppTextStyles.bodyRegular,
                                   ),
                                 ),
@@ -75,7 +77,7 @@ class OrganizationView extends StatelessWidget {
                           leading: const Icon(Icons.add_box_outlined),
                           contentPadding: EdgeInsets.zero,
                           title: Text(
-                            AddOrg,
+                            local.addOrg,
                             style: AppTextStyles.faintBodyText
                                 .copyWith(fontSize: 16),
                           ),
@@ -85,7 +87,7 @@ class OrganizationView extends StatelessWidget {
                           leading: const Icon(Icons.settings),
                           contentPadding: EdgeInsets.zero,
                           title: Text(
-                            Preferences,
+                            local.preferences,
                             style: AppTextStyles.faintBodyText
                                 .copyWith(fontSize: 16),
                           ),
@@ -93,7 +95,7 @@ class OrganizationView extends StatelessWidget {
                         ListTile(
                           leading: const Icon(Icons.help_outline),
                           contentPadding: EdgeInsets.zero,
-                          title: Text(Help,
+                          title: Text(local.help,
                               style: AppTextStyles.faintBodyText
                                   .copyWith(fontSize: 16)),
                         ),
@@ -101,7 +103,7 @@ class OrganizationView extends StatelessWidget {
                           onTap: () => viewModel.signOutAllOrg(),
                           leading: const Icon(Icons.logout_sharp),
                           contentPadding: EdgeInsets.zero,
-                          title: Text(SignOutAccount,
+                          title: Text(local.signOutAccount,
                               style: AppTextStyles.faintBodyText
                                   .copyWith(fontSize: 16)),
                         ),

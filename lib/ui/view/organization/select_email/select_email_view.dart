@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../utilities/enums.dart';
@@ -15,6 +16,7 @@ class SelectEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<SelectEmailViewModel>.nonReactive(
       viewModelBuilder: () => SelectEmailViewModel(),
       builder: (context, model, child) => Scaffold(
@@ -54,7 +56,7 @@ class SelectEmail extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-                child: Text('Select an email address to use:',
+                child: Text(local!.selectEmailToUse,
                     style: AppTextStyles.body1Bold),
               ),
               InkWell(

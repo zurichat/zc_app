@@ -182,6 +182,32 @@ class AppLocalization {
   String get myKeywordSubtitle => translate(LocalKeys.MyKeywordSubtitle);
   String get channelSpecificNotify =>
       translate(LocalKeys.ChannelSpecificNotify);
+  String get markUnread => translate(LocalKeys.MarkUnread);
+  String get remindMe => translate(LocalKeys.RemindMe);
+  String get addSavedItems => translate(LocalKeys.AddSavedItems);
+  String get replyInThread => translate(LocalKeys.ReplyInThread);
+  String get followThread => translate(LocalKeys.FollowThread);
+  String get shareMessage => translate(LocalKeys.ShareMessage);
+  String get copyLinkToMessage => translate(LocalKeys.CopyLinkToMessage);
+  String get copyText => translate(LocalKeys.CopyText);
+  String get pinToConversation => translate(LocalKeys.PinToConversation);
+  String get questionIntoPoll => translate(LocalKeys.QuestionIntoPoll);
+  String get messageIn => translate(LocalKeys.MessageIn);
+  String get addAReply => translate(LocalKeys.AddAReply);
+  String get replies => translate(LocalKeys.Replies);
+  String get saved => translate(LocalKeys.Saved);
+  String get addedSuccessfully => translate(LocalKeys.AddedSuccessfully);
+  String get noNewReplies => translate(LocalKeys.NoNewReplies);
+  String get pluginIntroHeader => translate(LocalKeys.PluginIntroHeader);
+  String get pluginIntroBody => translate(LocalKeys.PluginIntroBody);
+  String get notJoinedOrg => translate(LocalKeys.NotJoinedOrg);
+  String get selectEmailToUse => translate(LocalKeys.SelectEmailToUse);
+  String get yourEmailAddress => translate(LocalKeys.YourEmailAddress);
+  String get dontKnowWorkspaceUrl => translate(LocalKeys.DontKnowWorkspaceUrl);
+  String get helpSignInEasily => translate(LocalKeys.HelpSignInEasily);
+  String get enterWorkSpacesUrl => translate(LocalKeys.EnterWorkSpacesUrl);
+  String get sendEmailForSignin => translate(LocalKeys.SendEmailForSignin);
+
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {

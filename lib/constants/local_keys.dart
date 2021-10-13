@@ -133,4 +133,30 @@ class LocalKeys {
   static const MyKeyword = "my_keyword";
   static const MyKeywordSubtitle = "my_keyword_subtitle";
   static const ChannelSpecificNotify = "channel_specific_notify";
+
+  static const MarkUnread = "mark_unread";
+  static const RemindMe = "remind_me";
+  static const AddSavedItems = "add_to_saved_items";
+  static const ReplyInThread = "reply_in_thread";
+  static const FollowThread = "follow_thread";
+  static const ShareMessage = "share_message";
+  static const CopyLinkToMessage = "copy_link_to_message";
+  static const CopyText = "copy_text";
+  static const PinToConversation = "pin_to_conversation";
+  static const QuestionIntoPoll = "turn_question_into_poll";
+  static const MessageIn = "message_in";
+  static const AddAReply = "add_a_reply";
+  static const Replies = "replies";
+  static const Saved = "saved";
+  static const AddedSuccessfully = "added_successfully";
+  static const NoNewReplies = "no_new_replies";
+  static const PluginIntroHeader = "plugin_intro_header";
+  static const PluginIntroBody = "plugin_intro_body";
+  static const NotJoinedOrg = "not-joined_org";
+  static const SelectEmailToUse = "select_email_to_use";
+  static const YourEmailAddress = "your_email_address";
+  static const DontKnowWorkspaceUrl = "dont_know_workspace_url";
+  static const HelpSignInEasily = "help_sign_in_easily";
+  static const EnterWorkSpacesUrl = "enter_workspaces_url";
+  static const SendEmailForSignin = "send_email_for_signin";
 }
