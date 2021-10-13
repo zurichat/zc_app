@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
-import '../../../../general_widgets/custom_text.dart';
+import 'package:hng/ui/shared/text_styles.dart';
+
 import '../../../shared/colors.dart';
 
 class ProfilePageHead extends StatelessWidget {
@@ -55,17 +56,13 @@ class ProfilePageHead extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomText(
-                text: '$name',
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                lineHeight: 1.5,
+              Text(
+                '$name',
+                style: AppTextStyle.darkGreySize16Bold,
               ),
-              CustomText(
-                text: '$currentStatus',
-                color: AppColors.greyishColor,
-                fontSize: 15,
-                lineHeight: 1.5,
+              Text(
+                '$currentStatus',
+                style: AppTextStyle.lightGreySize14,
               ),
             ],
           ),

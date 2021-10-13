@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import '../../../../shared/colors.dart';
 
 class SecondSection extends StatelessWidget {
@@ -48,26 +49,21 @@ class SecondSection extends StatelessWidget {
                       onTap: () {},
                       child: Text(
                         Notifications,
-                        style:
-                            AppTextStyles.namesStyle.copyWith(fontSize: 14.sp),
+                        style: AppTextStyle.darkGreySize14Bold,
                       ),
                     ),
                     SizedBox(height: 6.h),
                     InkWell(
                       onTap: () {},
-                      child: Text(
-                        EveryNewMessage,
-                        style:
-                            AppTextStyles.body1Grey.copyWith(fontSize: 14.sp),
-                      ),
+                      child: Text(EveryNewMessage,
+                          style: AppTextStyle.lightGreySize14),
                     ),
                     SizedBox(height: 18.h),
                     InkWell(
                       onTap: () {},
                       child: Text(
                         MuteChannel,
-                        style: AppTextStyles.descriptionStyle
-                          ..copyWith(fontSize: 14.sp),
+                        style: AppTextStyle.darkGreySize14,
                       ),
                     ),
                   ],

@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 
 class WorkSpaceDisplayInfo extends StatelessWidget {
   final String? imageUrl;
   final String? workSpaceTitle;
   final String? workSpaceSlackUrl;
 
-  const WorkSpaceDisplayInfo({
-    Key? key,
-    this.imageUrl,
-    this.workSpaceTitle,
-    this.workSpaceSlackUrl}): super(key: key);
+  const WorkSpaceDisplayInfo(
+      {Key? key, this.imageUrl, this.workSpaceTitle, this.workSpaceSlackUrl})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +31,13 @@ class WorkSpaceDisplayInfo extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(
-                    text: workSpaceTitle?.toUpperCase() ?? "",
-                    fontSize: 16.0,
-                    color: AppColors.zuriTextBodyColor,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    workSpaceTitle?.toUpperCase() ?? "",
+                    style: AppTextStyle.darkGreySize16,
                   ),
-                  CustomText(
-                    text: workSpaceSlackUrl?.toLowerCase() ?? "",
-                    fontSize: 14.0,
-                    color: AppColors.zuriTextBodyColor,
-                    fontWeight: FontWeight.w300,
+                  Text(
+                    workSpaceSlackUrl?.toLowerCase() ?? "",
+                    style: AppTextStyle.darkGreySize16,
                   ),
                 ],
               )

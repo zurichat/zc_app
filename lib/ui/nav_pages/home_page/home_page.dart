@@ -40,36 +40,42 @@ class HomePage extends StatelessWidget {
               const SizedBox(width: 16),
               Text(
                 vmodel.orgName,
-                style: ZuriTextStyle.organizationNameText(),
+                style: AppTextStyle.organizationNameText,
               ),
             ],
           ),
         ),
         body: SafeArea(
-          child: Column(
+          child: Stack(
             children: [
-              vmodel.isBusy
-                  ? LinearProgressIndicator(
-                      backgroundColor: Colors.grey[400],
-                      valueColor: const AlwaysStoppedAnimation(
-                          AppColors.zuriPrimaryColor),
-                    )
-                  : Container(),
-              Expanded(
-                child: body(context, vmodel),
+              Column(
+                children: [
+                  vmodel.isBusy
+                      ? LinearProgressIndicator(
+                          backgroundColor: Colors.grey[400],
+                          valueColor: const AlwaysStoppedAnimation(
+                              AppColors.zuriPrimaryColor),
+                        )
+                      : Container(),
+                  Expanded(
+                    child: body(context, vmodel),
+                  ),
+                ],
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Align(
-              //     alignment: Alignment.bottomRight,
-              //     child: FloatingActionButton(
-              //         onPressed: vmodel.navigateToStartDMScreen,
-              //         child: const Icon(
-              //           Icons.open_in_new_outlined,
-              //           color: AppColors.whiteColor,
-              //         )),
-              //   ),
-              // )
+              Positioned(
+                bottom: 17,
+                right: 17,
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                    onPressed: vmodel.navigateToStartDMScreen,
+                    child: const Icon(
+                      Icons.open_in_new_outlined,
+                      color: AppColors.whiteColor,
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -105,18 +111,6 @@ class HomePage extends StatelessWidget {
             data: vmodel.directMessages,
           ),
           const Divider(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                  onPressed: vmodel.navigateToStartDMScreen,
-                  child: const Icon(
-                    Icons.open_in_new_outlined,
-                    color: AppColors.whiteColor,
-                  )),
-            ),
-          )
         ],
       ),
     );
@@ -136,7 +130,7 @@ class HomePage extends StatelessWidget {
           borderColor: Colors.grey[300],
           child: Text(
             JumpTo,
-            style: ZuriTextStyle.mediumNormal(),
+            style: AppTextStyle.darkGreySize14,
           ),
         ),
       ),

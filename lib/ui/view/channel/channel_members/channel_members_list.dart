@@ -4,7 +4,8 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/plugins/widgets/custom_plugin_list_tile.dart';
 import '../../../shared/colors.dart';
@@ -32,7 +33,7 @@ class ChannelMembersList extends StatelessWidget {
             leadingPress: () => viewModel.goBack(),
             orgTitle: Text(
               channelDetail.name,
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize20Bold,
             ),
             actions: [
               Padding(
@@ -40,7 +41,7 @@ class ChannelMembersList extends StatelessWidget {
                 child: InkWell(
                   child: Text(
                     Edit,
-                    style: AppTextStyles.heading5,
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,

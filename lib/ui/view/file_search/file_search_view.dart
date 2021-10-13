@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -58,7 +59,7 @@ class _FileSearchViewState extends State<FileSearchView> {
                         left: 12,
                         child: Text(
                           FiftyResults,
-                          style: AppTextStyles.normalGrey,
+                          style: AppTextStyle.darkGreySize16,
                         ),
                       ),
                       const Expanded(
@@ -68,7 +69,10 @@ class _FileSearchViewState extends State<FileSearchView> {
                         right: 12,
                         child: Row(
                           children: [
-                            Text(Newest, style: AppTextStyles.normalGrey),
+                            Text(
+                              Newest,
+                              style: AppTextStyle.darkGreySize16,
+                            ),
                             Image.asset(Arrows),
                           ],
                         ),

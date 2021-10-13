@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../general_widgets/custom_text.dart';
 import '../colors.dart';
 
 class SelectThemeDialog extends StatefulWidget {
@@ -32,17 +32,22 @@ class _SelectThemeDialogState extends State<SelectThemeDialog> {
           height: size.height * .4,
           child: Column(
             children: [
-              const Align(
+              Align(
                 alignment: Alignment.topLeft,
-                child: CustomText(text: DarkMode, fontWeight: FontWeight.bold),
+                child: Text(
+                  DarkMode,
+                  style: AppTextStyle.darkGreySize16,
+                ),
               ),
               Flexible(
                 fit: FlexFit.loose,
                 child: ListView.builder(
                   itemCount: widget.request.data['themes'].length,
                   itemBuilder: (context, index) => ListTile(
-                    title:
-                        CustomText(text: widget.request.data['themes'][index]),
+                    title: Text(
+                      widget.request.data['themes'][index],
+                      style: AppTextStyle.darkGreySize16,
+                    ),
                     leading: Radio(
                       activeColor: AppColors.zuriPrimaryColor,
                       value: index,

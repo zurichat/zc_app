@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
@@ -10,14 +11,13 @@ import '../../../../general_widgets/channel_icon.dart';
 import '../../../../models/user_post.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';
-import '../../../shared/styles.dart';
 import '../../dm_user/icons/zap_icon.dart';
 import 'thread_detail_viewmodel.dart';
 import 'package:hng/app/app.logger.dart';
 import 'thread_detail_view.form.dart';
 
 @FormView(fields: [FormTextField(name: 'message')])
-class ThreadDetailView extends StatelessWidget with $ThreadDetailView{
+class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
   ThreadDetailView(this.userPost, {Key? key}) : super(key: key);
   final UserPost? userPost;
 
@@ -31,7 +31,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView{
         appBar: ZuriAppBar(
             orgTitle: Text(
               Threads,
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize20Bold,
             ),
             leading: Icons.chevron_left,
             leadingPress: () => model.exitPage(),
@@ -73,9 +73,10 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView{
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                  '${model.channelThreadMessages.length} '
-                                  '${model.channelThreadMessages.length == 1 ? "Reply" : "Replies"}',
-                                  style: AppTextStyles.body2Bold),
+                                '${model.channelThreadMessages.length} '
+                                '${model.channelThreadMessages.length == 1 ? "Reply" : "Replies"}',
+                                style: AppTextStyle.lightGreySize14,
+                              ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
@@ -176,9 +177,10 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView{
                                         textAlignVertical:
                                             TextAlignVertical.center,
                                         decoration: InputDecoration.collapsed(
-                                            hintText: 'Add a Reply',
-                                            hintStyle:
-                                                AppTextStyles.faintBodyText),
+                                          hintText: 'Add a Reply',
+                                          hintStyle:
+                                              AppTextStyle.darkGreySize14,
+                                        ),
                                       ),
                                     ),
                                   ),

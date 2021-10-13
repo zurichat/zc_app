@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
+
 import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/audio_message.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 
@@ -81,21 +82,20 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                         children: [
                           Flexible(
                             fit: FlexFit.loose,
-                            child: CustomText(
-                              text: '${userPost!.displayName}',
-                              fontWeight: FontWeight.bold,
+                            child: Text(
+                              '${userPost!.displayName}',
+                              style: AppTextStyle.darkGreySize16Bold,
                             ),
                           ),
                           const SizedBox(width: 4),
                           Text(
                             "${userPost!.statusIcon}",
-                            style: AppTextStyles.body2Medium,
+                            style: AppTextStyle.lightGreySize14,
                           ),
                           const SizedBox(width: 4),
-                          CustomText(
-                            text: '${userPost!.lastSeen}',
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
+                          Text(
+                            '${userPost!.lastSeen}',
+                            style: AppTextStyle.darkGreySize12,
                           ),
                         ],
                       ),

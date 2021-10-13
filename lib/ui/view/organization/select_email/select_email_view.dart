@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -44,10 +45,7 @@ class SelectEmail extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                 child: Text(
                   'Select an email address to use:',
-                  style: AppTextStyles.body3Medium.copyWith(
-                      color: AppColors.zuriTextBodyColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
+                  style: AppTextStyle.darkGreySize16Bold,
                 ),
               ),
               InkWell(

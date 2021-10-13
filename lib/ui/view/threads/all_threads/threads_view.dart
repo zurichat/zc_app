@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
-import '../../../shared/shared.dart';
+
 import 'threads_viewmodel.dart';
 import 'widgets/thread_card.dart';
 
@@ -18,7 +19,7 @@ class ThreadsView extends StatelessWidget {
         appBar: ZuriAppBar(
             orgTitle: Text(
               Threads,
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize20Bold,
             ),
             leading: Icons.chevron_left,
             leadingPress: () => model.exitPage(),
@@ -37,7 +38,7 @@ class ThreadsView extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Text(
                     NoNewReplies,
-                    style: AppTextStyles.body2Bold,
+                    style: AppTextStyle.lightGreySize14,
                   ),
                 ),
                 ListView.builder(

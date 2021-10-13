@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'add_organization_viewmodel.dart';
@@ -30,7 +31,7 @@ class AddOrganizationView extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back_ios), onPressed: model.back),
             title: Text(
               AddOrganisations,
-              style: AppTextStyles.heading4,
+              style: AppTextStyle.darkGreySize18Bold,
             ),
           ),
           body: GestureDetector(
@@ -68,9 +69,7 @@ class AddOrganizationView extends StatelessWidget {
                               const SizedBox(width: 16),
                               Text(
                                 SignInNewOrg,
-                                style: AppTextStyles.body3Medium.copyWith(
-                                    fontSize: 16,
-                                    color: AppColors.zuriTextBodyColor),
+                                style: AppTextStyle.darkGreySize16,
                               ),
                             ],
                           ),
@@ -89,12 +88,8 @@ class AddOrganizationView extends StatelessWidget {
                                 color: AppColors.blackColor,
                               ),
                               const SizedBox(width: 16),
-                              Text(
-                                JoinAnotherOrg,
-                                style: AppTextStyles.body3Medium.copyWith(
-                                    fontSize: 16,
-                                    color: AppColors.zuriTextBodyColor),
-                              ),
+                              Text(JoinAnotherOrg,
+                                  style: AppTextStyle.darkGreySize16),
                             ],
                           ),
                         ),
@@ -114,9 +109,7 @@ class AddOrganizationView extends StatelessWidget {
                               const SizedBox(width: 16),
                               Text(
                                 CreateNewOrg,
-                                style: AppTextStyles.body3Medium.copyWith(
-                                    fontSize: 16,
-                                    color: AppColors.zuriTextBodyColor),
+                                style: AppTextStyle.darkGreySize16,
                               ),
                             ],
                           ),

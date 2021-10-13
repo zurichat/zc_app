@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -32,7 +33,7 @@ class CreateChannelView extends StatelessWidget {
                 whiteBackground: true,
                 orgTitle: Text(
                   Channels,
-                  style: AppTextStyles.heading7,
+                  style: AppTextStyle.darkGreySize20Bold,
                 ),
               ),
               body: SingleChildScrollView(

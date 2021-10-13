@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:stacked/stacked.dart';
 
@@ -44,14 +45,14 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
               children: [
                 Text(
                   'Archive Channel',
-                  style: AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
+                  style: AppTextStyle.errorSize14,
                 ),
                 Container(
                     alignment: Alignment.center,
                     child: Text(
                       'Archiving the channel will remover it from the channel list, and close it from all members.'
                       'All chats and filse will still be stored and searchable',
-                      style: AppTextStyles.body2_400.copyWith(fontSize: 14),
+                      style: AppTextStyle.darkGreySize14,
                     )),
               ],
             )

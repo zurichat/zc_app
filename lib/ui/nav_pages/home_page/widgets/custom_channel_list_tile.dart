@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/general_widgets/unread_count.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 class CustomChannelListTile extends StatelessWidget {
   final String channelName;
@@ -18,14 +19,14 @@ class CustomChannelListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(hash + '   ' + channelName,
-            style:
-                isActive ? AppTextStyles.unreadText : AppTextStyles.normalText),
-        isActive ? AppTextStyles.unreadCount(int.parse(data!)) : Container()
-      ],
-    );
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      Text(
+        hash + '   ' + channelName,
+        style: isActive
+            ? AppTextStyle.darkGreySize12
+            : AppTextStyle.darkGreySize12,
+      ),
+      isActive ? UnreadCount(count: int.parse(data!)) : Container()
+    ]);
   }
 }

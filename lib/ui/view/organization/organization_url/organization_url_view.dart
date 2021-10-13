@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import '../../../shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
@@ -40,20 +41,16 @@ class OrganizationUrlView extends StatelessWidget {
                             TextSpan(
                               children: [
                                 TextSpan(
-                                  text: OrgDesc1,
-                                  style: AppTextStyles.body3Medium.copyWith(
-                                      fontSize: 16, color: AppColors.greyColor),
-                                ),
+                                    text: OrgDesc1,
+                                    style: AppTextStyle.lightGreySize16),
                                 TextSpan(
                                   text: '$email',
-                                  style: AppTextStyles.body3Medium.copyWith(
-                                      fontSize: 16,
-                                      color: AppColors.appBarGreen),
+                                  style: AppTextStyle.lightGreySize16
+                                      .copyWith(color: AppColors.appBarGreen),
                                 ),
                                 TextSpan(
                                   text: OrgDesc2,
-                                  style: AppTextStyles.body3Medium.copyWith(
-                                      fontSize: 16, color: AppColors.greyColor),
+                                  style: AppTextStyle.lightGreySize16,
                                 ),
                               ],
                             ),
@@ -86,21 +83,12 @@ class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
     return Center(
       child: TextField(
         cursorColor: AppColors.appBarGreen,
-        style: AppTextStyles.body3Medium.copyWith(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: AppColors.blackColor),
+        style: AppTextStyle.darkGreySize16Bold,
         decoration: InputDecoration(
           labelText: EnterOrgUrl,
-          labelStyle: AppTextStyles.body3Medium.copyWith(
-              fontSize: 16,
-              color: AppColors.zuriTextBodyColor,
-              fontWeight: FontWeight.bold),
+          labelStyle: AppTextStyle.darkGreySize16Bold,
           hintText: EnterOrgUrlHint,
-          hintStyle: AppTextStyles.body3Medium.copyWith(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: AppColors.zuriGrey),
+          hintStyle: AppTextStyle.lightGreySize16,
           border: InputBorder.none,
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
@@ -132,9 +120,7 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
           child: Center(
             child: Text(
               Next,
-              style: AppTextStyles.buttonText.copyWith(
-                  color: viewModel.buttonTextColor,
-                  fontWeight: FontWeight.bold),
+              style: AppTextStyle.darkGreySize16Bold,
             ),
           ),
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/styles.dart';
+
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
@@ -19,7 +19,7 @@ class YouPage extends StatelessWidget {
       viewModelBuilder: () => YouPageViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-          orgTitle: Text(You, style: ZuriTextStyle.organizationNameText()),
+          orgTitle: Text(You, style: AppTextStyle.organizationNameText),
           bottomNavBarScreen: true,
           leadingWidth: true,
         ),
@@ -44,7 +44,7 @@ class YouPage extends StatelessWidget {
                   icon: Icons.notifications_off_outlined,
                   text: Text(
                     PauseNotifs,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.pauseNotifications,
                   topBorder: false,
@@ -54,7 +54,7 @@ class YouPage extends StatelessWidget {
                   text: Text.rich(
                     TextSpan(
                       text: SetStatusText,
-                      style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                      style: AppTextStyle.lightGreySize16,
                       children: [
                         TextSpan(
                           text: model.otherStatus,
@@ -72,7 +72,7 @@ class YouPage extends StatelessWidget {
                   icon: Icons.bookmark_outline_outlined,
                   text: Text(
                     SavedItems,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.viewSavedItem,
                 ),
@@ -81,7 +81,7 @@ class YouPage extends StatelessWidget {
                   icon: Icons.account_circle_outlined,
                   text: Text(
                     ViewProfile,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.viewProfile,
                   topBorder: false,
@@ -91,7 +91,7 @@ class YouPage extends StatelessWidget {
                   icon: Icons.trip_origin,
                   text: Text(
                     Notifs,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.viewNotifications,
                   topBorder: false,
@@ -101,7 +101,7 @@ class YouPage extends StatelessWidget {
                   icon: Icons.settings,
                   text: Text(
                     Preferences,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.viewPreferences,
                   topBorder: false,
@@ -110,8 +110,8 @@ class YouPage extends StatelessWidget {
                 MenuItemTile(
                   icon: Icons.logout_sharp,
                   text: Text(
-                   SignOut,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    SignOut,
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.signOutAccount,
                   topBorder: false,

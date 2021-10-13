@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
@@ -134,16 +135,14 @@ class OTPView extends StatelessWidget with $OTPView {
                           children: [
                             TextSpan(
                               text: DidntRecieveOTP,
-                              style: AppTextStyles.normalText.copyWith(
-                                color: Colors.black,
-                              ),
+                              style: AppTextStyle.darkGreySize12,
                             ),
-                            TextSpan(
+                            const TextSpan(
                               text: Resend,
-                              style: AppTextStyles.body2Bold.copyWith(
-                                color: Colors.blue,
-                                decoration: TextDecoration.underline,
-                              ),
+                              // style: AppTextStyles.body2Bold.copyWith(
+                              //   color: Colors.blue,
+                              //   decoration: TextDecoration.underline,
+                              // ),
                             ),
                           ],
                         ),

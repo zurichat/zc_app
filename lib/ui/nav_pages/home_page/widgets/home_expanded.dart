@@ -83,7 +83,7 @@ class HomeExpansionTile extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: ZuriTextStyle.mediumBold(),
+                style: AppTextStyle.darkGreySize16Bold,
               ),
             ],
           ),
@@ -103,7 +103,7 @@ class HomeExpansionTile extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             title,
-            style: ZuriTextStyle.mediumBold(),
+            style: AppTextStyle.darkGreySize16Bold,
           ),
         ),
         Column(

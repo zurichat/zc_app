@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 
 class CustomUser extends StatelessWidget {
   const CustomUser({Key? key, this.image, this.text}) : super(key: key);
@@ -20,9 +21,7 @@ class CustomUser extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.r),
                 image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        DummyAvatar))),
+                    fit: BoxFit.cover, image: NetworkImage(DummyAvatar))),
           ),
           SizedBox(
             height: 8.h,
@@ -34,7 +33,7 @@ class CustomUser extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.subtitle1.copyWith(fontSize: 12.sp),
+                style: AppTextStyle.darkGreySize12,
               ))
         ],
       ),

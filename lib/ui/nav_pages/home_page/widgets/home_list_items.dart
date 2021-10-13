@@ -217,10 +217,8 @@ class _TextAndIcon extends StatelessWidget {
             Text(
               text,
               style: unread
-                  ? ZuriTextStyle.unreadText()
-                  : ZuriTextStyle.mediumNormal(
-                      color: Colors.grey[600],
-                    ),
+                  ? AppTextStyle.darkGreySize16Bold
+                  : AppTextStyle.lightGreySize16,
             )
           ],
         ),

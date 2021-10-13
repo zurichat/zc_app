@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
 import '../../../shared/long_button.dart';
-import '../../../shared/styles.dart';
 import '../../../shared/text_field.dart';
 import '../../../shared/ui_helpers.dart';
 import 'create_organization_viewmodel.dart';
@@ -144,8 +144,7 @@ class InviteButton extends ViewModelWidget<CreateOrganizationViewModel> {
                   const SizedBox(width: 10),
                   Text(
                     'Invite from Contacts',
-                    style: AppTextStyles.buttonText
-                        .copyWith(color: AppColors.zuriPrimaryColor),
+                    style: AppTextStyle.greenSize16,
                   ),
                 ],
               ),

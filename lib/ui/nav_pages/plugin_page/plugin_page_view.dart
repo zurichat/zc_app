@@ -28,7 +28,7 @@ class PluginPage2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ZuriAppBar(
-        orgTitle: Text(Plugins, style: ZuriTextStyle.organizationNameText()),
+        orgTitle: Text(Plugins, style: AppTextStyle.organizationNameText),
         bottomNavBarScreen: true,
         leadingWidth: true,
       ),

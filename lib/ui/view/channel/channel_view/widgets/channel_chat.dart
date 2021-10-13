@@ -28,28 +28,28 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                   log.i('Tap');
                 },
                 onLongPress: () => zuriChatBottomSheet(
-                    context: context,
-                    addToSavedItems: () {
-                      viewModel.saveItem(
-                          channelID: message![index].channelId,
-                          channelName: message[index].channelName,
-                          displayName: message[index].displayName,
-                          message: message[index].message,
-                          lastSeen: message[index].lastSeen,
-                          messageID: message[index].id,
-                          userID: message[index].userId,
-                          userImage: message[index].userImage);
-                      log.i("Saved");
-                      viewModel.exitPage();
-                      showSimpleNotification(
-                        const Text("Added successfully"),
-                        position: NotificationPosition.top,
-                        background: AppColors.appBarGreen,
-                        trailing: const Icon(Icons.mark_chat_read_outlined),
-                        duration: const Duration(seconds: 3),
-                      );
-                    },
-                  ),
+                  context: context,
+                  addToSavedItems: () {
+                    viewModel.saveItem(
+                        channelID: message![index].channelId,
+                        channelName: message[index].channelName,
+                        displayName: message[index].displayName,
+                        message: message[index].message,
+                        lastSeen: message[index].lastSeen,
+                        messageID: message[index].id,
+                        userID: message[index].userId,
+                        userImage: message[index].userImage);
+                    log.i("Saved");
+                    viewModel.exitPage();
+                    showSimpleNotification(
+                      const Text("Added successfully"),
+                      position: NotificationPosition.top,
+                      background: AppColors.appBarGreen,
+                      trailing: const Icon(Icons.mark_chat_read_outlined),
+                      duration: const Duration(seconds: 3),
+                    );
+                  },
+                ),
                 child: ThreadCardView.threadChannelMain(
                     viewModel.channelUserMessages![index]),
               ),
@@ -57,6 +57,4 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
           : Container(),
     );
   }
-
-  
 }

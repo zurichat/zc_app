@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
+
 import 'package:hng/ui/shared/text_styles.dart';
 
 // ignore: must_be_immutable
@@ -69,12 +68,11 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                 controller: searchController,
                 keyboardType: TextInputType.text,
                 onChanged: onChanged,
-                style: AppTextStyles.buttonText,
+                style: AppTextStyle.whiteSize16,
                 maxLines: 1,
                 onEditingComplete: onEditingComplete,
                 decoration: InputDecoration(
-                    hintStyle: AppTextStyles.buttonText
-                        .copyWith(color: Colors.white60),
+                    hintStyle: AppTextStyle.whiteSize16,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
                         borderSide: BorderSide.none),
@@ -101,11 +99,13 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(title!, style: AppTextStyles.heading7),
+                        Text(
+                          title!,
+                          style: AppTextStyle.darkGreySize16Bold,
+                        ),
                         Text(
                           subtitle!,
-                          style: AppTextStyles.messageText
-                              .copyWith(color: AppColors.greyColor),
+                          style: AppTextStyle.lightGreySize14,
                         ),
                       ],
                     ),
@@ -120,7 +120,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                         : const SizedBox()
                   ],
                 ),
-      titleTextStyle: ZuriTextStyle.organizationNameText(),
+      titleTextStyle: AppTextStyle.organizationNameText,
       centerTitle: false,
       actions: actions,
       backgroundColor:

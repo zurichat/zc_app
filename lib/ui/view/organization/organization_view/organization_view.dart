@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/organization_model.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
@@ -22,9 +23,10 @@ class OrganizationView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(Organizations,
-                      style: AppTextStyles.heading6
-                          .copyWith(color: AppColors.blackColor)),
+                  Text(
+                    Organizations,
+                    style: AppTextStyle.bigBlackText,
+                  ),
                   Expanded(
                     child: Visibility(
                       visible: !viewModel.isBusy,
@@ -37,7 +39,7 @@ class OrganizationView extends StatelessWidget {
                                   padding: const EdgeInsets.only(top: 50.0),
                                   child: Text(
                                     NotJoinedOrgYet,
-                                    style: AppTextStyles.bodyRegular,
+                                    style: AppTextStyle.darkGreySize14,
                                   ),
                                 ),
                               )
@@ -78,8 +80,7 @@ class OrganizationView extends StatelessWidget {
                           contentPadding: EdgeInsets.zero,
                           title: Text(
                             AddOrg,
-                            style: AppTextStyles.faintBodyText
-                                .copyWith(fontSize: 16),
+                            style: AppTextStyle.lightGreySize16,
                           ),
                         ),
                         ListTile(
@@ -88,24 +89,25 @@ class OrganizationView extends StatelessWidget {
                           contentPadding: EdgeInsets.zero,
                           title: Text(
                             Preferences,
-                            style: AppTextStyles.faintBodyText
-                                .copyWith(fontSize: 16),
+                            style: AppTextStyle.lightGreySize16,
                           ),
                         ),
                         ListTile(
                           leading: const Icon(Icons.help_outline),
                           contentPadding: EdgeInsets.zero,
-                          title: Text(Help,
-                              style: AppTextStyles.faintBodyText
-                                  .copyWith(fontSize: 16)),
+                          title: Text(
+                            Help,
+                            style: AppTextStyle.lightGreySize16,
+                          ),
                         ),
                         ListTile(
                           onTap: () => viewModel.signOutAllOrg(),
                           leading: const Icon(Icons.logout_sharp),
                           contentPadding: EdgeInsets.zero,
-                          title: Text(SignOutAccount,
-                              style: AppTextStyles.faintBodyText
-                                  .copyWith(fontSize: 16)),
+                          title: Text(
+                            SignOutAccount,
+                            style: AppTextStyle.lightGreySize16,
+                          ),
                         ),
                       ],
                     ),
@@ -171,16 +173,14 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
           overflow: TextOverflow.ellipsis,
           softWrap: false,
           maxLines: 2,
-          style: AppTextStyles.heading7.copyWith(
-            fontSize: MediaQuery.of(context).size.height * 0.02,
-          ),
+          style: AppTextStyle.darkGreySize16Bold,
         ),
         contentPadding: EdgeInsets.zero,
         subtitle: Container(
           padding: const EdgeInsets.only(top: 5.0),
           child: Text(
             org.organizationUrl ?? '',
-            style: AppTextStyles.body3Medium,
+            style: AppTextStyle.lightGreySize14,
           ),
         ),
         trailing: GestureDetector(

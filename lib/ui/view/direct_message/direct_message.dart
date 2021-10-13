@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import '../../../utilities/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../general_widgets/custom_text.dart';
 import 'direct_message_text_field_hook.dart';
 import 'direct_message_viewmodel.dart';
 
@@ -69,23 +69,22 @@ class DirectMessage extends StatelessWidget {
                                           color: Colors.green),
                                     ),
                                     const SizedBox(width: 20),
-                                    CustomText(
-                                      text: username.toString(),
-                                      color: Colors.black,
+                                    Text(
+                                      username.toString(),
+                                      style: AppTextStyle.darkGreySize16,
                                     ),
                                   ],
                                 ),
-                                const CustomText(
-                                  text: SoftwareDev,
-                                  color: Colors.black,
+                                Text(
+                                  SoftwareDev,
+                                  style: AppTextStyle.darkGreySize16,
                                 ),
                                 const SizedBox(height: 10),
-                                CustomText(
-                                  text: '''This is the very beginning of your'''
-                                      ''' direct message history with @${username.toString()}. '''
-                                      '''Only the two of you are in this conversation, and no one else can join it.''',
-                                  color: Colors.black,
-                                  fontSize: 15,
+                                Text(
+                                  '''This is the very beginning of your'''
+                                  ''' direct message history with @${username.toString()}. '''
+                                  '''Only the two of you are in this conversation, and no one else can join it.''',
+                                  style: AppTextStyle.darkGreySize14,
                                 ),
                                 const SizedBox(height: 10),
                                 for (var i = 0; i < 7; i++)
@@ -108,18 +107,26 @@ class DirectMessage extends StatelessWidget {
                                             children: [
                                               Row(
                                                 children: [
-                                                  CustomText(
-                                                      text: username.toString(),
-                                                      color: Colors.black),
+                                                  Text(
+                                                    username.toString(),
+                                                    style: AppTextStyle
+                                                        .darkGreySize16,
+                                                  ),
                                                   const SizedBox(width: 10),
-                                                  CustomText(
-                                                      text: DateFormat('hh:mm')
-                                                          .format(
-                                                              DateTime.now()))
+                                                  Text(
+                                                    DateFormat('hh:mm').format(
+                                                      DateTime.now(),
+                                                    ),
+                                                    style: AppTextStyle
+                                                        .darkGreySize16,
+                                                  )
                                                 ],
                                               ),
-                                              const CustomText(
-                                                  text: PromotedPlaceholder)
+                                              Text(
+                                                PromotedPlaceholder,
+                                                style:
+                                                    AppTextStyle.darkGreySize16,
+                                              ),
                                             ],
                                           ),
                                         ],

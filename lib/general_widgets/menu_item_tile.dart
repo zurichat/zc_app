@@ -79,7 +79,7 @@ class MenuItemTile extends StatelessWidget {
           subtitle: subtitle != null
               ? Text(
                   subtitle ?? '',
-                  style: ZuriTextStyle.mediumNormal(),
+                  style: AppTextStyle.darkGreySize14,
                 )
               : null,
           dense: true,
@@ -111,7 +111,7 @@ class MenuItemTile extends StatelessWidget {
           subtitle: subtitle != null
               ? Text(
                   subtitle ?? '',
-                  style: ZuriTextStyle.mediumNormal(),
+                  style: AppTextStyle.darkGreySize14,
                 )
               : null,
           trailing: selectIcon(),

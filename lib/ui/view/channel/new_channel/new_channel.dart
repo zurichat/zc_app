@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 import '../../../shared/colors.dart';
-import '../../../shared/styles.dart';
 import '../../../shared/ui_helpers.dart';
 import 'new_channel.form.dart';
 import 'new_channel_viewmodel.dart';
@@ -29,7 +29,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
           leadingPress: () {},
           orgTitle: Text(
             "New Channel",
-            style: AppTextStyles.heading7,
+            style: AppTextStyle.darkGreySize20Bold,
           ),
           whiteBackground: true,
           actions: [
@@ -41,7 +41,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
               },
               child: Text(
                 Create,
-                style: AppTextStyles.heading8,
+                style: AppTextStyle.greenSize16,
               ),
             ),
           ],
@@ -58,7 +58,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                       children: [
                         Text(
                           ChannelName,
-                          style: AppTextStyles.heading9.copyWith(fontSize: 17),
+                          style: AppTextStyle.darkGreySize16,
                         ),
                       ],
                     ),
@@ -81,16 +81,12 @@ class NewChannel extends StatelessWidget with $NewChannel {
                       children: [
                         Text(
                           hash,
-                          style: AppTextStyles.body2Medium.copyWith(
-                            color: AppColors.darkGreyColor,
-                          ),
+                          style: AppTextStyle.darkGreySize14,
                         ),
                         Expanded(
                           child: TextField(
                             controller: channelNameController,
-                            style: AppTextStyles.body2Medium.copyWith(
-                              color: AppColors.blackColor,
-                            ),
+                            style: AppTextStyle.darkGreySize14,
                             inputFormatters: [
                               LengthLimitingTextInputFormatter(80)
                             ],
@@ -127,9 +123,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                           UIHelper.verticalSpaceSmall,
                           Text(
                             ErrorMsg,
-                            style: AppTextStyles.body2Medium.copyWith(
-                              color: AppColors.redColor,
-                            ),
+                            style: AppTextStyle.errorSize14,
                           ),
                         ],
                       ),
@@ -140,7 +134,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Text(
                       ChannelCreationWarningMsg,
-                      style: AppTextStyles.body2Medium.copyWith(fontSize: 15),
+                      style: AppTextStyle.lightGreySize14,
                     ),
                   ),
                   UIHelper.verticalSpaceMedium,
@@ -153,7 +147,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                         const EdgeInsets.only(left: 16, top: 13, bottom: 10),
                     child: Text(
                       ChannelDescription,
-                      style: AppTextStyles.heading9,
+                      style: AppTextStyle.darkGreySize16,
                     ),
                   ),
                   Container(
@@ -162,16 +156,12 @@ class NewChannel extends StatelessWidget with $NewChannel {
                     child: TextField(
                       maxLines: null,
                       controller: channelDescriptionController,
-                      style: AppTextStyles.body2Medium.copyWith(
-                        color: AppColors.blackColor,
-                      ),
+                      style: AppTextStyle.darkGreySize14,
                       cursorColor: AppColors.zuriPrimaryColor,
                       keyboardType: TextInputType.multiline,
                       decoration: InputDecoration.collapsed(
                         hintText: AddDescription,
-                        hintStyle: AppTextStyles.body2Medium.copyWith(
-                          color: AppColors.zuriDarkGrey,
-                        ),
+                        hintStyle: AppTextStyle.darkGreySize14,
                       ),
                     ),
                   ),
@@ -191,18 +181,14 @@ class NewChannel extends StatelessWidget with $NewChannel {
                       children: [
                         Text(
                           MakeChannelPrivate,
-                          style: AppTextStyles.heading9.copyWith(
-                            letterSpacing: 0.5,
-                            fontWeight: FontWeight.w400,
-                            height: 2.0,
-                          ),
+                          style: AppTextStyle.darkGreySize16,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               PrivateChannelDescription,
-                              style: AppTextStyles.body2Medium,
+                              style: AppTextStyle.darkGreySize14,
                             ),
                             SizedBox(
                               height: 20,
@@ -221,7 +207,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                         //upper part of the text when there's a new line
                         Text(
                           'by invitation.',
-                          style: AppTextStyles.body2Medium,
+                          style: AppTextStyle.darkGreySize14,
                         )
                       ],
                     ),

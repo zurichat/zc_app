@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import '../../../../shared/colors.dart';
 
@@ -31,32 +32,32 @@ class FirstSection extends StatelessWidget {
         children: [
           Text(
             "#${model.channelName}",
-            style: AppTextStyles.body1Bold,
+            style: AppTextStyle.darkGreySize16Bold,
           ),
           const SizedBox(height: 25),
           Text(
             Description,
-            style: AppTextStyles.body1Bold,
+            style: AppTextStyle.darkGreySize16Bold,
           ),
           const SizedBox(height: 10),
           Text(
             '${model.channelDescription}',
-            style: AppTextStyles.body1Light.copyWith(letterSpacing: 0.005),
+            style: AppTextStyle.darkGreySize16.copyWith(letterSpacing: 0.005),
           ),
           const SizedBox(height: 10),
           Text(
             MarkCreatedChannel,
-            style: AppTextStyles.body1Regular.copyWith(letterSpacing: 0.005),
+            style: AppTextStyle.lightGreySize16.copyWith(letterSpacing: 0.005),
           ),
           const SizedBox(height: 20),
           Text(
             Topic,
-            style: AppTextStyles.headerStyle1.copyWith(fontSize: 16.sp),
+            style: AppTextStyle.darkGreySize16Bold,
           ),
           const SizedBox(height: 10),
           Text(
             CreatingZuri,
-            style: AppTextStyles.body1Light.copyWith(fontSize: 16.sp),
+            style: AppTextStyle.darkGreySize16.copyWith(fontSize: 16.sp),
           ),
           const SizedBox(height: 25),
           const Divider(
@@ -71,7 +72,7 @@ class FirstSection extends StatelessWidget {
               },
               child: Text(
                 Edit,
-                style: AppTextStyles.bodyBig..copyWith(fontSize: 16.sp),
+                style: AppTextStyle.darkGreySize16Bold,
               ),
             ),
           ),

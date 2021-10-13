@@ -3,7 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -134,16 +135,14 @@ class ForgotPasswordOtpView extends StatelessWidget
                         children: [
                           TextSpan(
                             text: DidntRecieveOTP,
-                            style: AppTextStyles.normalText.copyWith(
-                              color: Colors.black,
-                            ),
+                            style: AppTextStyle.darkGreySize12,
                           ),
-                          TextSpan(
+                          const TextSpan(
                             text: Resend,
-                            style: AppTextStyles.body2Bold.copyWith(
-                              color: Colors.blue,
-                              decoration: TextDecoration.underline,
-                            ),
+                            // style: AppTextStyles.body2Bold.copyWith(
+                            //   color: Colors.blue,
+                            //   decoration: TextDecoration.underline,
+                            // ),
                           ),
                         ],
                       ),
@@ -158,7 +157,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                       child: ElevatedButton(
                         // onPressed: () => model.navigateToNewPassword(),
                         onPressed: () {},
-                        child:const  Text(
+                        child: const Text(
                           Continue,
                           style: TextStyle(
                               fontSize: 16,

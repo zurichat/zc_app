@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -50,7 +51,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                   Center(
                     child: Text(
                       ForgotPassword,
-                      style: AppTextStyles.heading9,
+                      style: AppTextStyle.darkGreySize16,
                     ),
                   ),
                   const SizedBox(
@@ -69,7 +70,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                     margin: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       EmailAddress,
-                      style: AppTextStyles.body1Bold,
+                      style: AppTextStyle.darkGreySize16Bold,
                     ),
                   ),
                   Column(
@@ -110,12 +111,8 @@ class ForgotPasswordEmailView extends StatelessWidget
                           child: Column(
                             children: [
                               UIHelper.verticalSpaceSmall,
-                              Text(
-                                InvalidEmail,
-                                style: AppTextStyles.body2Medium.copyWith(
-                                  color: AppColors.redColor,
-                                ),
-                              ),
+                              Text(InvalidEmail,
+                                  style: AppTextStyle.errorSize14),
                             ],
                           ),
                         ),
@@ -136,7 +133,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                         },
                         child: Text(
                           Continue,
-                          style: AppTextStyles.buttonText,
+                          style: AppTextStyle.whiteSize16,
                         ),
                         style: ElevatedButton.styleFrom(
                           padding:
@@ -157,15 +154,11 @@ class ForgotPasswordEmailView extends StatelessWidget
                           children: [
                             TextSpan(
                               text: BackTo,
-                              style: AppTextStyles.normalText.copyWith(
-                                color: AppColors.blackColor,
-                              ),
+                              style: AppTextStyle.darkGreySize12,
                             ),
                             TextSpan(
                               text: SignIn,
-                              style: AppTextStyles.body2Bold.copyWith(
-                                color: AppColors.zuriPrimaryColor,
-                              ),
+                              style: AppTextStyle.greenSize14,
                             ),
                           ],
                         ),

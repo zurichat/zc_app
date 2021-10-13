@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 
 class DMMessageRead extends StatelessWidget {
   const DMMessageRead({
@@ -12,9 +13,10 @@ class DMMessageRead extends StatelessWidget {
     return InkWell(
       child: Row(
         children: [
+          const SizedBox(width: 5),
           Container(
-            height: 40,
-            width: 40,
+            height: 37,
+            width: 34,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3),
               color: const Color(0xff1A61DB),
@@ -26,19 +28,19 @@ class DMMessageRead extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 20),
+          const SizedBox(width: 15),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Pappin 4️⃣',
-                style: AppTextStyles.body1Bold,
+                style: AppTextStyle.darkGreySize16Bold,
               ),
               const SizedBox(height: 5),
               Text(
                 'Can i have your number?',
-                style: AppTextStyles.faintBodyText.copyWith(fontSize: 14),
+                style: AppTextStyle.lightGreySize14,
                 // style: AppTextStyles.normalText,
               ),
             ],
@@ -47,10 +49,10 @@ class DMMessageRead extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
                 '1d',
-                // style: AppTextStyles.timestamp,
+                style: AppTextStyle.lightGreySize12,
               ),
             ],
           ),

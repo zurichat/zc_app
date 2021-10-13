@@ -4,10 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:hng/ui/shared/colors.dart';
-import '../../../shared/shared.dart';
+
 import 'channel_info_view_model.dart';
 import 'widgets/first_section.dart';
 import 'widgets/second_section.dart';
@@ -55,7 +56,7 @@ class ChannelInfoView extends StatelessWidget {
                 whiteBackground: true,
                 orgTitle: Text(
                   ChannelInfo,
-                  style: AppTextStyles.heading7,
+                  style: AppTextStyle.darkGreySize20Bold,
                 ),
               ),
               body: SafeArea(
@@ -73,7 +74,7 @@ class ChannelInfoView extends StatelessWidget {
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
                           MuteChannelWarning,
-                          style: AppTextStyles.body1Grey,
+                          style: AppTextStyle.lightGreySize14,
                         ),
                       ),
                       ThirdSection(model, numberOfMembers, channelDetail,
@@ -81,10 +82,8 @@ class ChannelInfoView extends StatelessWidget {
                       SizedBox(height: 16.h),
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
-                        child: Text(
-                          Bookmarks,
-                          style: AppTextStyles.body1Grey,
-                        ),
+                        child: Text(Bookmarks,
+                            style: AppTextStyle.lightGreySize14),
                       ),
                       SizedBox(height: 8.h),
                       const FourthSection(),
@@ -95,7 +94,7 @@ class ChannelInfoView extends StatelessWidget {
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
                           Advanced,
-                          style: AppTextStyles.body1Grey,
+                          style: AppTextStyle.lightGreySize14,
                         ),
                       ),
                       SizedBox(height: 8.h),

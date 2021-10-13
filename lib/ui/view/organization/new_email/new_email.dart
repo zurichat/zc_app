@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
@@ -99,7 +100,7 @@ class NextButton extends ViewModelWidget<NewEmailViewModel> {
             child: Center(
               child: Text(
                 Next,
-                style: AppTextStyles.buttonText,
+                style: AppTextStyle.whiteSize16,
               ),
             ),
           ),

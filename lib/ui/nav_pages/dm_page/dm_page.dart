@@ -20,7 +20,7 @@ class DmPage extends StatelessWidget {
         return Scaffold(
           appBar: ZuriAppBar(
             leadingWidth: true,
-            orgTitle: Text(DMs, style: ZuriTextStyle.organizationNameText()),
+            orgTitle: Text(DMs, style: AppTextStyle.organizationNameText),
             bottomNavBarScreen: true,
           ),
           floatingActionButton: FloatingActionButton(

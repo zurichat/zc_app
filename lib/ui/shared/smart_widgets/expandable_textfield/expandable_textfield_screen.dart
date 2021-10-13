@@ -3,10 +3,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen_viewmodel.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../colors.dart';
-import '../../styles.dart';
 
 class ExpandableTextFieldScreen extends HookWidget {
   ExpandableTextFieldScreen({
@@ -288,7 +288,7 @@ class MyTextField extends StatelessWidget {
                   isExpanded ? TextAlignVertical.top : TextAlignVertical.center,
               decoration: InputDecoration.collapsed(
                 hintText: hintText,
-                hintStyle: AppTextStyles.faintBodyText,
+                hintStyle: AppTextStyle.lightGreySize14,
               ).copyWith(contentPadding: const EdgeInsets.all(8)),
             ),
           ),

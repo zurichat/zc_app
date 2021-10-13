@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'plugin_viewmodel.dart';
@@ -25,7 +26,7 @@ class AddPluginView extends StatelessWidget {
             whiteBackground: true,
             orgTitle: Text(
               'Add Plugins',
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize20Bold,
             ),
             actions: [
               Padding(
@@ -33,7 +34,7 @@ class AddPluginView extends StatelessWidget {
                 child: InkWell(
                     child: Text(
                       Add,
-                      style: AppTextStyles.body1Green,
+                      style: AppTextStyle.greenSize16,
                     ),
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
