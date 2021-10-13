@@ -5,6 +5,7 @@ import 'package:hng/app/app.router.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/models/user_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
@@ -117,6 +118,20 @@ class HomePageViewModel extends StreamViewModel {
       notifyListeners();
     });
     return connectionStatus;
+  }
+
+  Future<void> getUserInfo() async {
+    try {
+      final _zuriApi = ZuriApi(coreBaseUrl);
+      String? userID = userService.memberId;
+
+      final response = await _zuriApi
+          .get('organizations/$orgId/members/$userID', token: token);
+      final _userModel = UserModel.fromJson(response!.data['data']);
+      userService.setUserDetails(_userModel);
+    } catch (e) {
+      log.e(e.toString());
+    }
   }
 
   ///This sets all the expanded list items
