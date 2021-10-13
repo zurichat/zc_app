@@ -29,6 +29,7 @@ import '../ui/view/channel/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
+import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
 import '../ui/view/clear_after/clear_after_view.dart';
 import '../ui/view/direct_message/direct_message.dart';
 import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
@@ -58,7 +59,6 @@ import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
-import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
 import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/profile_page/profile_page_view.dart';
@@ -647,6 +647,8 @@ class StackedRouter extends RouterBase {
           numberOfMembers: args.numberOfMembers,
           channelMembers: args.channelMembers,
           channelDetail: args.channelDetail,
+          channelName: args.channelName,
+          channelID: args.channelID,
         ),
         settings: data,
       );
@@ -888,11 +890,15 @@ class ChannelInfoViewArguments {
   final int numberOfMembers;
   final List<ChannelMembermodel> channelMembers;
   final ChannelModel channelDetail;
+  final String? channelName;
+  final String? channelID;
   ChannelInfoViewArguments(
       {this.key,
       required this.numberOfMembers,
       required this.channelMembers,
-      required this.channelDetail});
+      required this.channelDetail,
+      this.channelName,
+      this.channelID});
 }
 
 /// DirectMessage arguments holder class
