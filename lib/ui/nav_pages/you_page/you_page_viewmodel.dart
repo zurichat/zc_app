@@ -125,7 +125,6 @@ class YouPageViewModel extends BaseViewModel {
         await _apiService.get(endpoint, queryParameters: {}, token: token);
 
     if (response != null && response.statusCode == 200) {
-      print('QQQ - ${response.data['data']['status'].toString()}');
       statusText = response.data['data']['status']['text'];
       iconData = response.data['data']['status']['tag'];
       notifyListeners();

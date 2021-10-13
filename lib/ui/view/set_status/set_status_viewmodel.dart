@@ -1,7 +1,6 @@
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/nav_pages/you_page/you_page.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
@@ -16,7 +15,6 @@ import 'package:hng/ui/view/set_status/set_status_view.form.dart';
 class SetStatusViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
-  final _userService = locator<UserService>();
   final _zuriApi = ZuriApi(coreBaseUrl);
   final _snackbarService = locator<SnackbarService>();
   final String hintText = SetAStatus;
@@ -52,7 +50,7 @@ class SetStatusViewModel extends FormViewModel {
     try {
       final response = await _zuriApi.patch('$coreBaseUrl$endpoint',
           body: data, token: token);
-      print(response?.data.toString());
+
       if (response != null && response.statusCode == 200) {
         _storageService.setString(StorageKeys.statusText, statusValue!);
         // _storageService.setString('status_tag', tagValue!);
