@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/user_model.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/user_model.dart';
 
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -44,9 +44,10 @@ class EditProfileView extends StatelessWidget {
           ],
         ),
         body: Visibility(
-            visible: !viewModel.isBusy,
-            child: Body(size: _size),
-            replacement: const ZuriLoader()),
+          visible: !viewModel.isBusy,
+          child: Body(size: _size),
+          replacement: const ZuriLoader(),
+        ),
       ),
     );
   }

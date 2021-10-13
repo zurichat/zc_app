@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 import '../../../shared/shared.dart';
 import 'channel_info_view_model.dart';
 import 'widgets/first_section.dart';

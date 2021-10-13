@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:stacked/stacked.dart';
 
 class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
+import 'package:zurichat/general_widgets/custom_text.dart';
 
 class WorkSpaceDisplayInfo extends StatelessWidget {
   final String? imageUrl;

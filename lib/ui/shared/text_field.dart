@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 
 ///This is the text field with border
 ///Should accept only hint with no labels

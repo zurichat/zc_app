@@ -1,6 +1,5 @@
-import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
-import 'package:hng/services/local_storage_services.dart';
-
+import 'package:zurichat/package/base/server-request/dms/dms_api_service.dart';
+import 'package:zurichat/services/local_storage_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';

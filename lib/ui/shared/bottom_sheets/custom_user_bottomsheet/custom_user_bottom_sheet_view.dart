@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/general_widgets/custom_text.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -64,9 +64,9 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         const CustomProfileTile(
                             title: Track, subtitle: MobileDev),
                         const Divider(),
-                        const CustomProfileTile(
+                        CustomProfileTile(
                           title: DisplayName,
-                          subtitle: '',
+                          subtitle: model.userModel!.displayName ?? '',
                         ),
                         const Divider(),
                         ListTile(
@@ -87,14 +87,14 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           ),
                         ),
                         const Divider(),
-                        const CustomProfileTile(
+                        CustomProfileTile(
                           title: Number,
-                          subtitle: '',
+                          subtitle: model.userModel!.phoneNumber ?? '',
                         ),
                         const Divider(),
                         CustomProfileTile(
                           title: EmailAddress,
-                          subtitle: model.email!,
+                          subtitle: model.userModel!.email!,
                         ),
                       ],
                     ),

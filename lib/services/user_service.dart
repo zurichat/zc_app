@@ -1,7 +1,7 @@
 //On login or signup the user service is used to save all the user details
 import 'dart:convert';
 
-import 'package:hng/models/user_model.dart';
+import 'package:zurichat/models/user_model.dart';
 
 import '../app/app.locator.dart';
 import '../models/organization_model.dart';
@@ -75,7 +75,7 @@ class UserService {
     return _userId;
   }
 
-    String get memberId {
+  String get memberId {
     _userId = _sharedPrefs.getString(StorageKeys.idInOrganization) ?? '';
     //You can perform other function before returning
     return _userId;

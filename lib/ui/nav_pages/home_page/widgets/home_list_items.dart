@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -23,7 +23,7 @@ class ThreadTextAndIcon extends ViewModelWidget<HomePageViewModel> {
     return _TextAndIcon(
       text: Threads,
       unread: true,
-      onTap: () async{
+      onTap: () async {
         // Navigate to threads screen
         await navigationService.navigateTo(Routes.threadsView);
         viewModel.draftChecker();
@@ -37,16 +37,14 @@ class ThreadTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 }
 
 class DraftTextAndIcon extends ViewModelWidget<HomePageViewModel> {
-
-  const
-  DraftTextAndIcon({Key? key}) : super(key: key);
+  const DraftTextAndIcon({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, viewModel) {
     return _TextAndIcon(
       text: Drafts,
       unread: true,
-      onTap: () async{
+      onTap: () async {
         await navigationService.navigateTo(Routes.draftView);
         viewModel.draftChecker();
       },

@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/user_service.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/user_service.dart';
 import 'package:image_picker/image_picker.dart';
 
 class MediaService {
