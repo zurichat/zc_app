@@ -51,9 +51,9 @@ import '../ui/view/organization/add_organization/add_organization_view.dart';
 import '../ui/view/organization/create_organization/create_organization.dart';
 import '../ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
 import '../ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
-import '../ui/view/organization/invite_to_organization/import_contact.dart';
+import '../ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
 import '../ui/view/organization/invite_to_organization/invitation_sent.dart';
-import '../ui/view/organization/invite_to_organization/invite_via_email.dart';
+import '../ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
 import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
 import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
@@ -695,8 +695,11 @@ class StackedRouter extends RouterBase {
       );
     },
     InviteViaEmail: (data) {
+      var args = data.getArgs<InviteViaEmailArguments>(
+        orElse: () => InviteViaEmailArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const InviteViaEmail(),
+        builder: (context) => InviteViaEmail(key: args.key),
         settings: data,
       );
     },
@@ -914,4 +917,10 @@ class WebViewPageArguments {
   final String url;
   final Key? key;
   WebViewPageArguments({required this.name, required this.url, this.key});
+}
+
+/// InviteViaEmail arguments holder class
+class InviteViaEmailArguments {
+  final Key? key;
+  InviteViaEmailArguments({this.key});
 }

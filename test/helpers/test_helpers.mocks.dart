@@ -1118,6 +1118,11 @@ class MockZuriApi extends _i1.Mock implements _i22.ZuriApi {
   dynamic getChannelMembers(String? id, String? orgId, dynamic token) => super
       .noSuchMethod(Invocation.method(#getChannelMembers, [id, orgId, token]));
   @override
+  dynamic inviteToOrganizationWithNormalMail(
+          String? organizationId, dynamic body, dynamic token) =>
+      super.noSuchMethod(Invocation.method(
+          #inviteToOrganizationWithNormalMail, [organizationId, body, token]));
+  @override
   List<_i11.ThemeData> getThemes() =>
       (super.noSuchMethod(Invocation.method(#getThemes, []),
           returnValue: <_i11.ThemeData>[]) as List<_i11.ThemeData>);

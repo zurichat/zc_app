@@ -93,7 +93,7 @@ class ChannelPageViewModel extends FormViewModel {
   StreamSubscription? messageSubscription;
   StreamSubscription? notificationSubscription;
   String channelID = '';
-  String channelCreator= '';
+  String channelCreator = '';
 
   saveItem(
       {String? channelID,
@@ -130,10 +130,10 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  getChannelCreator(String channelId)async{
-   var response= await _channelsApiService.getChanelCreator(channelId);
-   channelCreator=response['owner'];
-   notifyListeners();
+  getChannelCreator(String channelId) async {
+    var response = await _channelsApiService.getChanelCreator(channelId);
+    channelCreator = response['owner'];
+    notifyListeners();
   }
 
  void updateCheckUser() {
@@ -220,19 +220,20 @@ class ChannelPageViewModel extends FormViewModel {
 
       channelUserMessages?.add(
         UserPost(
-            id: data['_id'],
-            displayName: userid,
-            statusIcon: '7️⃣',
-            moment: Moment.now().from(DateTime.parse(data['timestamp'])),
-            message: data['content'],
-            channelType: ChannelType.public,
-            postEmojis: <PostEmojis>[],
-            userThreadPosts: <UserThreadPost>[],
-            channelName: channelId,
-            userImage: 'assets/images/chimamanda.png',
-            userId: userid,
-            channelId: channelId,
-            pinned: data['pinned']),
+          id: data['_id'],
+          displayName: userid,
+          statusIcon: '7️⃣',
+          moment: Moment.now().from(DateTime.parse(data['timestamp'])),
+          message: data['content'],
+          channelType: ChannelType.public,
+          postEmojis: <PostEmojis>[],
+          userThreadPosts: <UserThreadPost>[],
+          channelName: channelId,
+          userImage: 'assets/images/chimamanda.png',
+          userId: userid,
+          channelId: channelId,
+          pinned: data['pinned'],
+        ),
       );
     });
     isLoading = false;
