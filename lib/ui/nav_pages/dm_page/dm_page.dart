@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
@@ -44,8 +44,9 @@ class DmPage extends StatelessWidget {
           body: model.isBusy
               ? const ZuriLoader()
               : !model.data!
-                  ? const Center(
-                      child: Text("No Messages Yet"),
+                  ? Center(
+                      child: Text("Temporarily Unavailable",
+                          style: AppTextStyles.heading6),
                     )
                   : SingleChildScrollView(
                       child: Padding(

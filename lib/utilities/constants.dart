@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 const apiBaseUrl = 'https://api.zuri.chat';
 //* Client data
-const appName = 'ZuriChat App';
+
 //* Messages
 const serverErrorMessage = 'An error occured. Please try again.';
 const networkErrorMessage = 'Please check your internet'
@@ -34,4 +34,11 @@ const coreBaseUrl = 'https://api.zuri.chat/';
 const websocketUrl = 'wss://realtime.zuri.chat/connection/websocket';
 
 const String LOCALE_VAL = 'localeVal';
-const int DEFAULT_LOCALE_VAL = 0; 
+const int DEFAULT_LOCALE_VAL = 0;
+
+Iterable<Locale> supportedLocalesList = const [
+  Locale('en', 'US'),
+  Locale('zh', 'HK'),
+  Locale('ar', 'SA'),
+  Locale('de', 'DE'),
+];

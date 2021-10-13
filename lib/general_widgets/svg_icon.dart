@@ -7,13 +7,13 @@ class SvgAssets {
   static final SvgData plugin = SvgData('assets/icons/svg_icons/plugin.svg');
   static final SvgData home = SvgData('assets/icons/svg_icons/home.svg');
   static final SvgData you = SvgData('assets/icons/svg_icons/you.svg');
-  static final SvgData createMsg = SvgData('assets/icons/svg_icons/create_msg.svg');
+  static final SvgData createMsg =
+      SvgData('assets/icons/svg_icons/create_msg.svg');
   static final SvgData hashTag = SvgData('assets/icons/svg_icons/hash_tag.svg');
   static final SvgData locked = SvgData('assets/icons/svg_icons/lock1.svg');
   static final SvgData lockedOutline =
       SvgData('assets/icons/svg_icons/lock_outline.svg');
-  static final SvgData addChannels =
-      SvgData('assets/icons/svg_icons/add_channel.svg');
+  static final SvgData addChannels = SvgData('assets/icons/svg_icons/add.svg');
 }
 
 class SvgData {
