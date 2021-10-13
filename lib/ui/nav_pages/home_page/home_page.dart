@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
@@ -94,7 +93,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 15),
-          searchBar(vmodel),
+          searchBar(context, vmodel),
           const Padding(
             padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
@@ -126,7 +125,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget searchBar(vmodel) {
+  Widget searchBar(context, vmodel) {
+        final local = AppLocalization.of(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
       child: GestureDetector(
@@ -139,7 +139,7 @@ class HomePage extends StatelessWidget {
           borderWidth: 1.5,
           borderColor: Colors.grey[300],
           child: Text(
-            JumpTo,
+            local!.jumpTo,
             style: ZuriTextStyle.mediumNormal(),
           ),
         ),
