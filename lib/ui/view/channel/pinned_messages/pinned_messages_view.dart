@@ -24,7 +24,7 @@ class PinnedMessagesView extends StatelessWidget {
             leading: Icons.arrow_back_ios,
             orgTitle: Text(
               PinnedMessages,
-              style: AppTextStyles.heading7,
+              style: AppTextStyles.heading10,
             ),
             whiteBackground: true,
           ),
@@ -55,9 +55,7 @@ class PinnedMessagesView extends StatelessWidget {
                         contentPadding: EdgeInsets.zero,
                         subtitle: Text(
                           model.pinnedMessages[index].content!,
-                          style: GoogleFonts.lato(
-                              color: AppColors.zuriTextColorHeader,
-                              fontSize: 14.0),
+                          style: AppTextStyles.pinnedMessageBodyStyle,
                         ),
                         title: Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
@@ -67,18 +65,14 @@ class PinnedMessagesView extends StatelessWidget {
                                 fit: FlexFit.loose,
                                 child: Text(
                                   model.pinnedMessages[index].displayName!,
+                                  style: AppTextStyles.pinnedMessageHeaderStyle,
                                   maxLines: 1,
-                                  style: GoogleFonts.lato(
-                                      color: AppColors.deepGreyColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16.0),
                                 ),
                               ),
                               const SizedBox(width: 16.0),
                               Text(
                                 model.pinnedMessages[index].moment!,
-                                style: GoogleFonts.lato(
-                                    color: AppColors.greyColor, fontSize: 12.0),
+                                style: AppTextStyles.lastSeen,
                               ),
                             ],
                           ),

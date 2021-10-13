@@ -5,6 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
 class AppTextStyles {
+  static TextStyle heading10 = GoogleFonts.lato(
+    fontWeight: FontWeight.w700,
+    color: AppColors.blackColor,
+    fontSize: 20,
+  );
   static TextStyle heading9 = GoogleFonts.lato(
     fontWeight: FontWeight.w500,
     // color: AppColors.blackColor,
@@ -278,6 +283,14 @@ class AppTextStyles {
       fontSize: 20,
       fontWeight: FontWeight.w700,
       color: AppColors.zuriTextColorHeader);
+
+  static TextStyle pinnedMessageBodyStyle =
+      GoogleFonts.lato(fontSize: 14, color: AppColors.zuriTextColorHeader);
+
+  static TextStyle pinnedMessageHeaderStyle = GoogleFonts.lato(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: AppColors.deepGreyColor);
 
   static TextStyle headerStyle = GoogleFonts.lato(
       fontSize: 16,

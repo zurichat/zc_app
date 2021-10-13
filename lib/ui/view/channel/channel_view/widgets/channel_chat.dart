@@ -74,8 +74,8 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                           duration: const Duration(seconds: 2),
                         );
                       }
-                      Navigator.of(context).pop();
                       viewModel.notifyListeners();
+                      viewModel.exitPage();
                     },
                     addToSavedItems: () {
                       viewModel.saveItem(
