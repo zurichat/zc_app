@@ -100,12 +100,16 @@ class SelectEmail extends StatelessWidget {
                         size: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 25.5),
-                        child: Text(
-                          model.anotherEmail,
-                          style: const TextStyle(
-                            fontSize: 14,
+                        padding: const EdgeInsets.only(
+                          left: 25.5,
+                        ),
+                        child: GestureDetector(
+                          child: Text(
+                            model.anotherEmail,
+                            style: const TextStyle(
+                                color: AppColors.deepBlackColor, fontSize: 14),
                           ),
+                          onTap: () => model.navigateToUseDifferentEmailView(),
                         ),
                       ),
                     ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:stacked/stacked.dart';
 import 'web_view_model.dart';
@@ -28,14 +29,7 @@ class WebViewPage extends StatelessWidget {
                 isDarkMode: Theme.of(context).brightness == Brightness.dark,
                 whiteBackground: true,
                 actions: [
-                  model.isLoading
-                      ? const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: CircularProgressIndicator(
-                            color: AppColors.zuriPrimaryColor,
-                          ),
-                        )
-                      : const SizedBox(),
+                  model.isLoading ? const ZuriLoader() : const SizedBox(),
                 ]),
             body: WebView(
               initialUrl: url,
