@@ -647,6 +647,8 @@ class StackedRouter extends RouterBase {
           numberOfMembers: args.numberOfMembers,
           channelMembers: args.channelMembers,
           channelDetail: args.channelDetail,
+          channelName: args.channelName,
+          channelID: args.channelID,
         ),
         settings: data,
       );
@@ -879,10 +881,10 @@ class ChannelPageViewArguments {
   final bool? public;
   ChannelPageViewArguments(
       {this.key,
-      required this.channelName,
-      required this.channelId,
-      required this.membersCount,
-      required this.public});
+        required this.channelName,
+        required this.channelId,
+        required this.membersCount,
+        required this.public});
 }
 
 /// ChannelInfoView arguments holder class
@@ -891,11 +893,15 @@ class ChannelInfoViewArguments {
   final int numberOfMembers;
   final List<ChannelMembermodel> channelMembers;
   final ChannelModel channelDetail;
+  final String? channelName;
+  final String? channelID;
   ChannelInfoViewArguments(
       {this.key,
-      required this.numberOfMembers,
-      required this.channelMembers,
-      required this.channelDetail});
+        required this.numberOfMembers,
+        required this.channelMembers,
+        required this.channelDetail,
+        this.channelName,
+        this.channelID});
 }
 
 /// DirectMessage arguments holder class
