@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/services/notification_service.dart';
-import 'package:hng/ui/shared/setup_bottom_sheet_ui.dart';
-import 'package:hng/ui/shared/setup_dialog_ui.dart';
+import 'package:zurichat/services/notification_service.dart';
+import 'package:zurichat/ui/shared/setup_bottom_sheet_ui.dart';
+import 'package:zurichat/ui/shared/setup_dialog_ui.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';

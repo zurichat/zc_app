@@ -1,5 +1,5 @@
-import 'package:hng/models/user_post.dart';
-import 'package:hng/utilities/enums.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/utilities/enums.dart';
 
 List<UserThreadPost> thread1 = [
   UserThreadPost(

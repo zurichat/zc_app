@@ -1,6 +1,6 @@
-import 'package:hng/models/organization_member_model.dart';
-import 'package:hng/models/user_search_model.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/models/organization_member_model.dart';
+import 'package:zurichat/models/user_search_model.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
 import '../../../../models/organization_model.dart';

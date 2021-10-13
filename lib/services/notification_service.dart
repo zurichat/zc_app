@@ -3,8 +3,8 @@ import 'dart:math';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 
 class NotificationService {
   final String messsageChannelKey = 'message';

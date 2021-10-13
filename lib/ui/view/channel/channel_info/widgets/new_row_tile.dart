@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 
 class NewRowTile extends StatelessWidget {
   const NewRowTile({

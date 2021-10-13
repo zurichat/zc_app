@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 import '../edit_channel_view_model.dart';
 
 class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {

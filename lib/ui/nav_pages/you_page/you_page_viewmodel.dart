@@ -1,5 +1,5 @@
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/utilities/enums.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -42,11 +42,10 @@ class YouPageViewModel extends BaseViewModel {
     await _navigationService.navigateTo(Routes.savedItemsView);
   }
 
- Future<void> viewProfile() async {
+  Future<void> viewProfile() async {
     var sheetResponse = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.user,
       isScrollControlled: true,
-    
     );
 
     log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');

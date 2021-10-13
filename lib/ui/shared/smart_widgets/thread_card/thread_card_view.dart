@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/thread_card_detail.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/thread_card_main.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/thread_card_channel_main.dart';
-import 'package:hng/utilities/enums.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/ui/shared/smart_widgets/thread_card/widgets/thread_card_detail.dart';
+import 'package:zurichat/ui/shared/smart_widgets/thread_card/widgets/thread_card_main.dart';
+import 'package:zurichat/ui/shared/smart_widgets/thread_card/widgets/thread_card_channel_main.dart';
+import 'package:zurichat/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 
 import 'thread_card_viewmodel.dart';

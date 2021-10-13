@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 import '../../../../general_widgets/custom_text.dart';
 import '../../../shared/colors.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -94,7 +94,8 @@ class SignUpView extends StatelessWidget with $SignUpView {
                         controller: firstNameController,
                         hintText: FirstNameHintText,
                       ),
-                      UIHelper.verticalSpaceLarge, Text(
+                      UIHelper.verticalSpaceLarge,
+                      Text(
                         LastName,
                         style: AppTextStyles.body1Bold,
                       ),
@@ -107,7 +108,8 @@ class SignUpView extends StatelessWidget with $SignUpView {
                         controller: lastNameController,
                         hintText: LastNameHintText,
                       ),
-                      UIHelper.verticalSpaceLarge, Text(
+                      UIHelper.verticalSpaceLarge,
+                      Text(
                         EmailAddress,
                         style: AppTextStyles.body1Bold,
                       ),

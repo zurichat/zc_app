@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 import 'email_confirmation_viewmodel.dart';

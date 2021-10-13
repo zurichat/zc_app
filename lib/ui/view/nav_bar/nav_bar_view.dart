@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/nav_pages/plugin_page/plugin_page_view.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/plugin_page_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/svg_icon.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SendFeedbackDialog extends StatelessWidget {
@@ -63,11 +63,13 @@ class _SendFeedbackDialogContent extends StatelessWidget {
             children: [
               MaterialButton(
                   onPressed: () => completer(DialogResponse(confirmed: false)),
-                  child: const Text(Cancel,style: TextStyle(color: AppColors.paleGreen))),
+                  child: const Text(Cancel,
+                      style: TextStyle(color: AppColors.paleGreen))),
               MaterialButton(
                   onPressed: () => completer(
                       DialogResponse(data: controller.text, confirmed: true)),
-                  child: const Text(Ok, style: TextStyle(color: AppColors.paleGreen))),
+                  child: const Text(Ok,
+                      style: TextStyle(color: AppColors.paleGreen))),
             ],
           )
         ],

@@ -1,8 +1,8 @@
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/utilities/constants.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:centrifuge/centrifuge.dart' as centrifuge;
 import 'package:centrifuge/centrifuge.dart';
 
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/utilities/constants.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 
 class CentrifugeService with ReactiveServiceMixin {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'saved_items_viewmodel.dart';
 import 'widgets/saved_item_background.dart';
@@ -33,9 +33,8 @@ class SavedItemsView extends StatelessWidget {
                             return AlertDialog(
                               actions: [
                                 ElevatedButton(
-                                  child: const Text("Yes"),
-                                  onPressed: () => model.deleteItem(index)
-                                ),
+                                    child: const Text("Yes"),
+                                    onPressed: () => model.deleteItem(index)),
                                 TextButton(
                                   child: const Text("No"),
                                   onPressed: () => model.goBack(),

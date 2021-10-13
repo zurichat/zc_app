@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/organization_model.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/organization_model.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
@@ -16,7 +16,6 @@ class OrganizationView extends StatelessWidget {
       disposeViewModel: false,
       builder: (context, viewModel, child) {
         return Scaffold(
-
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16.0),

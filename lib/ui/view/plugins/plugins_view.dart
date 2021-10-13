@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/colors.dart';
@@ -21,9 +21,8 @@ class PluginView extends StatelessWidget {
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         return Scaffold(
           appBar: ZuriAppBar(
-            orgTitle:
-                Text(Plugins, style: AppTextStyles.heading7),
-                whiteBackground: true,
+            orgTitle: Text(Plugins, style: AppTextStyles.heading7),
+            whiteBackground: true,
           ),
           body: SingleChildScrollView(
               child: Padding(

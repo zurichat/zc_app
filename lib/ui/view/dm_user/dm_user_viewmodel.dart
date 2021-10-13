@@ -2,16 +2,16 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
-import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/ui/view/dm_user/dummy_data/models/message.dart';
+import 'package:zurichat/ui/view/dm_user/dummy_data/models/user.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:hng/app/app.logger.dart';
+import 'package:zurichat/app/app.logger.dart';
 
 class DmUserViewModel extends FormViewModel {
   final _username = '';
@@ -20,7 +20,7 @@ class DmUserViewModel extends FormViewModel {
   final bottomSheet = locator<BottomSheetService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final log = getLogger("DmUserViewModel");
-    List<UserPost>? dmMessages = [];
+  List<UserPost>? dmMessages = [];
 
   final _isOnline = true;
   bool get isOnline => _isOnline;
@@ -52,8 +52,9 @@ class DmUserViewModel extends FormViewModel {
     _hasClickedMessageField = true;
     notifyListeners();
   }
-/// THIS FUNCTION BELOW IS TO SAVE MESSAGES INTO SAVED Items
-/// PLESE LEAVE IT
+
+  /// THIS FUNCTION BELOW IS TO SAVE MESSAGES INTO SAVED Items
+  /// PLESE LEAVE IT
   saveItem(
       {String? channelID,
       String? channelName,
@@ -83,6 +84,7 @@ class DmUserViewModel extends FormViewModel {
       log.w(len!.length.toString());
     }
   }
+
   /// IT ENDS HERE FOR SAVED ITEMS
 
   void onUnfocusMessageField() {

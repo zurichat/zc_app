@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hng/app/app.router.dart';
+import 'package:zurichat/app/app.router.dart';
 import 'package:mockito/mockito.dart';
 
 import '../helpers/test_helpers.dart';
@@ -13,7 +13,6 @@ void main() {
         final service = getAndRegisterNavigationServiceMock();
         verify(service.navigateTo(Routes.forgotPasswordNewView));
       });
-
     });
   });
 }

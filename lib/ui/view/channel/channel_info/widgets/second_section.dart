@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 import '../../../../shared/colors.dart';
 
 class SecondSection extends StatelessWidget {

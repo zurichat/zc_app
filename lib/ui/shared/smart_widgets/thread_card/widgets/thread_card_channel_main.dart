@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/audio_message.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:zurichat/general_widgets/custom_text.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
+import 'package:zurichat/ui/shared/smart_widgets/thread_card/widgets/audio_message.dart';
+import 'package:zurichat/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../thread_card_viewmodel.dart';
