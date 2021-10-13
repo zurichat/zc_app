@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/dialogs/remind_me_dialog/remind_me_dialog_viewmodel.dart';
+import 'package:zurichat/general_widgets/custom_text.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/dialogs/remind_me_dialog/remind_me_dialog_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -9,9 +9,7 @@ class ReminderDialog extends StatelessWidget {
   final DialogRequest request;
   final Function(DialogResponse) completer;
   const ReminderDialog(
-      {Key? key,
-      required this.request,
-      required this.completer})
+      {Key? key, required this.request, required this.completer})
       : super(key: key);
 
   @override

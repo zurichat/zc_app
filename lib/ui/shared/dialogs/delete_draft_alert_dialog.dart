@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ShowAlertDialog extends StatelessWidget {

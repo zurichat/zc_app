@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/utilities/constants.dart';
-import 'package:hng/utilities/enums.dart';
+import 'package:zurichat/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/enums.dart';
 
 import '../home_item_model.dart';
 

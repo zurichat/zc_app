@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:mockito/mockito.dart';
 import '../helpers/test_helpers.dart';
 

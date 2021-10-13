@@ -2,21 +2,21 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
-import 'package:hng/services/centrifuge_service.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/notification_service.dart';
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
+import 'package:zurichat/services/centrifuge_service.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/notification_service.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 import 'package:simple_moment/simple_moment.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -31,11 +31,10 @@ class ChannelPageViewModel extends FormViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
- final _userService = locator<UserService>();
+  final _userService = locator<UserService>();
   bool _checkUser = true;
   get checkUser => _checkUser;
   final _api = ZuriApi(channelsBaseUrl);
-
 
   //Draft implementations
   var storedDraft = '';
@@ -93,7 +92,7 @@ class ChannelPageViewModel extends FormViewModel {
   StreamSubscription? messageSubscription;
   StreamSubscription? notificationSubscription;
   String channelID = '';
-  String channelCreator= '';
+  String channelCreator = '';
 
   saveItem(
       {String? channelID,
@@ -130,13 +129,13 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  getChannelCreator(String channelId)async{
-   var response= await _channelsApiService.getChanelCreator(channelId);
-   channelCreator=response['owner'];
-   notifyListeners();
+  getChannelCreator(String channelId) async {
+    var response = await _channelsApiService.getChanelCreator(channelId);
+    channelCreator = response['owner'];
+    notifyListeners();
   }
 
- void updateCheckUser() {
+  void updateCheckUser() {
     _checkUser = false;
     notifyListeners();
   }
@@ -167,7 +166,7 @@ class ChannelPageViewModel extends FormViewModel {
       _channelsApiService.changeChannelMessagePinnedState(userPost!.channelId,
           userPost.id!, userPost.userId!, !userPost.pinned);
 
-   Future joinChannel(String channelId) async {
+  Future joinChannel(String channelId) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
     String? orgId = storage.getString(StorageKeys.currentOrgId);
     String? token = storage.getString(StorageKeys.currentSessionToken);
@@ -189,7 +188,7 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
- void checkUserId() async {
+  void checkUserId() async {
     await Future.delayed(const Duration(milliseconds: 10));
     _checkUser =
         channelMembers.any((member) => member.name == _userService.userId);
@@ -197,6 +196,7 @@ class ChannelPageViewModel extends FormViewModel {
     log.i(_checkUser);
     notifyListeners();
   }
+
   void getChannelSocketId(String channelId) async {
     final channelSockId =
         await _channelsApiService.getChannelSocketId(channelId);

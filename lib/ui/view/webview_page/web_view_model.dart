@@ -1,4 +1,4 @@
-import 'package:hng/app/app.locator.dart';
+import 'package:zurichat/app/app.locator.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -11,6 +11,7 @@ class WebViewModel extends BaseViewModel {
     isLoading = true;
     notifyListeners();
   }
+
   stopLoading() {
     isLoading = false;
     notifyListeners();

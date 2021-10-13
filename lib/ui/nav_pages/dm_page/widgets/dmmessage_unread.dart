@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
 
 import '../../../shared/shared.dart';
 
