@@ -17,7 +17,6 @@ class TermsAndConditionsView extends StatelessWidget {
           return Scaffold(
             appBar: ZuriAppBar(
               leading: Icons.arrow_back,
-              leadingColor: AppColors.whiteColor,
               orgTitle: Text(
                 TnC2.toUpperCase(),
                 style: const TextStyle(color: AppColors.whiteColor),

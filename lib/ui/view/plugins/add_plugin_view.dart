@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zurichat/app/app.logger.dart';
 import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/widgets/custom_plugin_list_tile.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/widgets/custom_search_field.dart';
 import 'package:zurichat/ui/shared/styles.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'plugin_viewmodel.dart';
-import 'widgets/custom_plugin_list_tile.dart';
-import 'widgets/custom_search_field.dart';
 
 class AddPluginView extends StatelessWidget {
   final log = getLogger('AddPluginView');

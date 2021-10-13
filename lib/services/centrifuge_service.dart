@@ -3,15 +3,20 @@ import 'dart:convert';
 
 import 'package:centrifuge/centrifuge.dart' as centrifuge;
 import 'package:centrifuge/centrifuge.dart';
+import 'package:zurichat/app/app.locator.dart';
 
 import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/services/local_storage_services.dart';
 import 'package:zurichat/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 
 class CentrifugeService with ReactiveServiceMixin {
-  static final Client _client = centrifuge.createClient(
-    '$websocketUrl?format=protobuf',
-  );
+  static final storageService = locator<SharedPreferenceLocalStorage>();
+  static String? get token =>
+      storageService.getString(StorageKeys.currentSessionToken);
+
+  static late Client _client;
 
   StreamController messageStreamController = StreamController.broadcast();
 
@@ -24,12 +29,27 @@ class CentrifugeService with ReactiveServiceMixin {
   ///so user dont subscribe to the same event twice
 
   static Future<CentrifugeService> getInstance() async {
+    _showLog("Starting Centrifuge Service");
     _instance ??= CentrifugeService();
 
+    _client = centrifuge.createClient('$websocketUrl?format=protobuf',
+        config: ClientConfig(
+          debug: true,
+          retry: (int rty) {
+            log.w("Retry Count - $rty");
+          },
+        ));
+
+    final connectData = utf8.encode(json.encode({"bearer": token}));
+
+    _client.setConnectData(connectData);
+
+// _client.setConnectData([2]);
     _client.connectStream.listen(_showLog);
     _client.disconnectStream.listen(_showLog);
 
     _client.connect();
+
     return _instance!;
   }
 
@@ -61,6 +81,7 @@ class CentrifugeService with ReactiveServiceMixin {
     required Function(Map userMessage) onData,
   }) {
     if (!hasSubscribed(socketId)) {
+      _showLog("subscribed $socketId");
       subscribe(socketId);
     }
 
@@ -119,10 +140,8 @@ class CentrifugeService with ReactiveServiceMixin {
     });
 
     subscription.publishStream.listen((event) {
-      log.i(
-          'CENTRIFUGE RTC EVENT OUTPUT ${json.decode(utf8.decode(event.data))}');
-
       Map userMessage = json.decode(utf8.decode(event.data));
+      _showLog("CENTRIFUGE RTC EVENT OUTPUT $userMessage");
 
       messageStreamController.sink.add(userMessage);
     });

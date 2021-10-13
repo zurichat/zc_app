@@ -31,7 +31,6 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
           ScreenUtilInit(
         designSize: const Size(411, 823),
         builder: () => Scaffold(
-          backgroundColor: Colors.white,
           resizeToAvoidBottomInset: false,
           body: SafeArea(
             child: Padding(
@@ -40,38 +39,41 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 40.h,
+                    height: 60.h,
                     width: 361.w,
                     child: TextField(
+                      textAlignVertical: TextAlignVertical.center,
                       controller: searchController,
                       keyboardType: TextInputType.text,
                       maxLines: 1,
+                      cursorColor: AppColors.zuriPrimaryColor,
                       onChanged: model.onChanged,
                       decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.r)),
-                            borderSide: BorderSide(
-                                color: AppColors.borderColor,
-                                width: 0.5.w,
-                                style: BorderStyle.solid),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.r)),
+                          borderSide: BorderSide(
+                              color: AppColors.darkGreyColor,
+                              width: 0.5.w,
+                              style: BorderStyle.solid),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.r)),
+                          borderSide: BorderSide(
+                              color: AppColors.borderColor,
+                              width: 0.5.w,
+                              style: BorderStyle.solid),
+                        ),
+                        prefixIcon: IconButton(
+                          icon: Icon(
+                            Icons.arrow_back_ios_outlined,
+                            color: Theme.of(context).textTheme.bodyText1!.color,
                           ),
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.r)),
-                            borderSide: BorderSide(
-                                color: AppColors.borderColor,
-                                width: 0.5.w,
-                                style: BorderStyle.solid),
-                          ),
-                          prefixIcon: IconButton(
-                            icon: const Icon(Icons.arrow_back_ios_outlined),
-                            iconSize: 18.sp,
-                            onPressed: () => model.navigateBack(),
-                          ),
-                          hintText: 'Jump to...',
-                          hintStyle:
-                              AppTextStyles.hintStyle.copyWith(height: 3)),
+                          iconSize: 18.sp,
+                          onPressed: () => model.navigateBack(),
+                        ),
+                        hintText: 'Jump to...',
+                        hintStyle: AppTextStyles.hintStyle.copyWith(),
+                      ),
                     ),
                   ),
                   Expanded(
@@ -92,8 +94,13 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                               width: 16.h,
                             ),
                             itemBuilder: (context, i) {
-                              return CustomUser(
-                                text: model.userSearch[i].username!,
+                              return InkWell(
+                                child: CustomUser(
+                                  text: model.userSearch[i].username!,
+                                ),
+                                onTap: () {
+                                  model.navigateToUserDm();
+                                },
                               );
                             },
                             scrollDirection: Axis.horizontal,
@@ -118,10 +125,18 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                                 (BuildContext context, int index) =>
                                     SizedBox(height: 24.h),
                             itemBuilder: (context, i) {
-                              return CustomChannel(
-                                text: model.allChannelsSearch[i].name ??
-                                    ChannelName,
-                                // lock: model.allChannelsSearch[i].private== "True",
+                              final channel = model.allChannelsSearch[i];
+                              return InkWell(
+                                child: CustomChannel(
+                                  text: channel.name ?? ChannelName,
+                                ),
+                                onTap: () {
+                                  model.navigateToChannel(
+                                      name: channel.name,
+                                      id: channel.id,
+                                      membersCount: channel.membersCount,
+                                      isPublic: channel.isPublic);
+                                },
                               );
                             },
                             scrollDirection: Axis.vertical,

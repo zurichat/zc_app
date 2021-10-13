@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/general_widgets/custom_text.dart';
-import 'package:zurichat/ui/shared/colors.dart';
 
 class WorkSpaceDisplayInfo extends StatelessWidget {
   final String? imageUrl;
@@ -34,13 +33,11 @@ class WorkSpaceDisplayInfo extends StatelessWidget {
                   CustomText(
                     text: workSpaceTitle?.toUpperCase() ?? "",
                     fontSize: 16.0,
-                    color: AppColors.zuriTextBodyColor,
                     fontWeight: FontWeight.bold,
                   ),
                   CustomText(
                     text: workSpaceSlackUrl?.toLowerCase() ?? "",
                     fontSize: 14.0,
-                    color: AppColors.zuriTextBodyColor,
                     fontWeight: FontWeight.w300,
                   ),
                 ],

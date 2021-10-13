@@ -19,16 +19,14 @@ class SignOutDialog extends StatelessWidget {
         text: 'Sign out of $orgName?',
         fontWeight: FontWeight.w700,
         fontSize: 20,
-        color: AppColors.zuriTextBodyColor,
       ),
       content: const CustomText(
         text: "You can sign back in anytime by tapping \n\"Add a workspace\"",
         maxLines: 2,
         fontWeight: FontWeight.w400,
         fontSize: 14,
-        color: AppColors.zuriDarkGrey,
       ),
-      actions: <Widget>[
+      actions: [
         TextButton(
           child: const CustomText(
             text: 'Cancel',

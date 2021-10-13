@@ -25,7 +25,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
-          ? const Center(child: CircularProgressIndicator())
+          ? Container()
           : DraggableScrollableSheet(
               maxChildSize: 0.97,
               initialChildSize: 0.7,
@@ -65,7 +65,9 @@ class CustomUserBottomSheetView extends StatelessWidget {
                             title: Track, subtitle: MobileDev),
                         const Divider(),
                         const CustomProfileTile(
-                            title: DisplayName, subtitle: PaulEke),
+                          title: DisplayName,
+                          subtitle: '',
+                        ),
                         const Divider(),
                         ListTile(
                           title: const CustomText(
@@ -80,14 +82,20 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           ),
                           onTap: () => model.navigateToSetStatus(),
                           trailing: IconButton(
-                              onPressed: () {}, icon: const Icon(Icons.cancel)),
+                            onPressed: () {},
+                            icon: const Icon(Icons.cancel),
+                          ),
                         ),
                         const Divider(),
                         const CustomProfileTile(
-                            title: Number, subtitle: sampleNumber),
+                          title: Number,
+                          subtitle: '',
+                        ),
                         const Divider(),
-                        const CustomProfileTile(
-                            title: EmailAddress, subtitle: EmailPlaceholder),
+                        CustomProfileTile(
+                          title: EmailAddress,
+                          subtitle: model.email!,
+                        ),
                       ],
                     ),
                   ),

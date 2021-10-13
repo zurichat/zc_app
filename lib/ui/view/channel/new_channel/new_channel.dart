@@ -31,6 +31,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
             "New Channel",
             style: AppTextStyles.heading7,
           ),
+          whiteBackground: true,
           actions: [
             TextButton(
               style: TextButton.styleFrom(
@@ -40,10 +41,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
               },
               child: Text(
                 Create,
-                style: AppTextStyles.heading8.copyWith(
-                  letterSpacing: 0.5,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: AppTextStyles.heading8,
               ),
             ),
           ],
@@ -60,7 +58,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                       children: [
                         Text(
                           ChannelName,
-                          style: AppTextStyles.heading9,
+                          style: AppTextStyles.heading9.copyWith(fontSize: 17),
                         ),
                       ],
                     ),
@@ -142,7 +140,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Text(
                       ChannelCreationWarningMsg,
-                      style: AppTextStyles.body2Medium,
+                      style: AppTextStyles.body2Medium.copyWith(fontSize: 15),
                     ),
                   ),
                   UIHelper.verticalSpaceMedium,

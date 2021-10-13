@@ -5,7 +5,10 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked_services/stacked_services.dart'as stacked;
+import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/models/api_response.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
@@ -14,6 +17,7 @@ import 'package:zurichat/models/organization_model.dart';
 import 'package:zurichat/models/user_search_model.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/api_utils.dart';
+import 'package:zurichat/utilities/enums.dart';
 import 'package:zurichat/utilities/failures.dart';
 
 import 'api.dart';
@@ -22,6 +26,7 @@ import 'dio_interceptors.dart';
 class ZuriApi implements Api {
   final log = getLogger('ZuriApi');
   final dio = Dio();
+  final snackbar = locator<stacked.SnackbarService>();
 
   StreamController<String> controller = StreamController.broadcast();
   ZuriApi(baseUrl) {
@@ -43,9 +48,14 @@ class ZuriApi implements Api {
           queryParameters: queryParameters,
           options: Options(headers: {'Authorization': 'Bearer $token'}));
 
-      //log.i('Response from $string \n${response.data}');
+      log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.response!.data!['message'] ?? errorOccurred,
+      );
       log.w(e.toString());
       handleApiError(e);
     }
@@ -65,6 +75,11 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.response!.data!['message'] ?? errorOccurred,
+      );
       log.w(e.toString());
       handleApiError(e);
     }
@@ -84,6 +99,11 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.response!.data!['message'] ?? errorOccurred,
+      );
       log.w(e.toString());
       handleApiError(e);
     }
@@ -98,6 +118,11 @@ class ZuriApi implements Api {
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return ApiUtils.toApiResponse(res);
     } on DioError catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.response!.data!['message'] ?? errorOccurred,
+      );
       log.w(e.toString());
       handleApiError(e);
     }
@@ -117,6 +142,11 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.response!.data!['message'] ?? errorOccurred,
+      );
       log.w(e.toString());
       handleApiError(e);
     }
@@ -598,6 +628,26 @@ class ZuriApi implements Api {
       return (res?.data as List)
           .map((e) => ChannelMembermodel.fromJson(e))
           .toList();
+    } on DioError catch (e) {
+      log.w(e.toString());
+      handleApiError(e);
+    }
+  }
+
+  /// Invites a user to the organzization
+  /// This endpoint would sent the user a mail with the UUID
+  inviteToOrganizationWithNormalMail(
+    String organizationId,
+    body,
+    token,
+  ) async {
+    try {
+      final res = await post(
+        'organizations/$organizationId/send-invite',
+        body: body,
+        token: token,
+      );
+      log.i(res);
     } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);

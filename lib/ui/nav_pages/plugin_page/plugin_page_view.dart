@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/general_widgets/menu_item_tile.dart';
+import 'package:zurichat/models/plugin_model.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/long_button.dart';
+import 'package:zurichat/ui/shared/styles.dart';
+import 'package:zurichat/ui/shared/ui_helpers.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -14,112 +18,85 @@ class PluginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<PluginViewModel>.reactive(
       viewModelBuilder: () => PluginViewModel(),
-      builder: (context, model, child) {
-        return const PluginPage2();
+      builder: (BuildContext context, PluginViewModel model, Widget? child) {
+        return Scaffold(
+          appBar: ZuriAppBar(
+            leading: Icons.arrow_back_ios,
+            leadingPress: model.navigateBack,
+            whiteBackground: true,
+            orgTitle: Text(Plugins, style: AppTextStyles.heading4),
+          ),
+          body: !model.hasplugins
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Get serious and have fun here",
+                          style: AppTextStyles.header6,
+                        ),
+                        UIHelper.verticalSpaceMedium,
+                        Text(
+                          '''Access your oganization’s important stuff'''
+                          ''' like holiday-calendar, meeting room, notice'''
+                          ''' board etc. Have fun by joining the chess'''
+                          ''' room and music room.''',
+                          style: AppTextStyles.body1Grey,
+                        ),
+                        UIHelper.customVerticalSpace(56.0),
+                        FractionallySizedBox(
+                          widthFactor: 0.5,
+                          child: LongButton(
+                            onPressed: () {
+                              model.navigateToAdd();
+                            },
+                            label: "Get Started",
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              : SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        MenuItemTile(
+                          icon: Icons.add,
+                          topBorder: false,
+                          text: Text(
+                            "Add Plugin",
+                            style: AppTextStyles.faintBodyText.copyWith(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        for (PluginModel plugin in model.plugins)
+                          MenuItemTile(
+                            onPressed: () => model.navigateToWebviewPage(
+                                plugin.name, plugin.url),
+                            icon: plugin.icon,
+                            iconColor: AppColors.zuriPrimaryColor,
+                            topBorder: false,
+                            text: Text(
+                              plugin.name,
+                              style: AppTextStyles.faintBodyText.copyWith(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+        );
       },
     ); //
-  }
-}
-
-class PluginPage2 extends StatelessWidget {
-  const PluginPage2({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ZuriAppBar(
-        orgTitle: Text(Plugins, style: ZuriTextStyle.organizationNameText()),
-        bottomNavBarScreen: true,
-        leadingWidth: true,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: TextButton.icon(
-              onPressed: () => {},
-              icon: const Icon(Icons.calendar_today),
-              label: const Text(
-                Calendar,
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: TextButton.icon(
-              onPressed: () => {},
-              icon: const Icon(Icons.today),
-              label: const Text(
-                Todo,
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: TextButton.icon(
-              onPressed: () => {},
-              icon: const Icon(FontAwesomeIcons.chessKnight),
-              label: const Text(
-                Chess,
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: TextButton.icon(
-              onPressed: () => {},
-              icon: const Icon(Icons.meeting_room),
-              label: const Text(
-                Meeting,
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: TextButton.icon(
-              onPressed: () => {},
-              icon: const Icon(Icons.notifications_none_sharp),
-              label: const Text(
-                Board,
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: TextButton.icon(
-              onPressed: () => {},
-              icon: const Icon(FontAwesomeIcons.music),
-              label: const Text(
-                Music,
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: TextButton.icon(
-              onPressed: () => {},
-              icon: const Icon(Icons.donut_small),
-              label: const Text(
-                Shifts,
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: TextButton.icon(
-              onPressed: () => {},
-              icon: const Icon(Icons.timer),
-              label: const Text(
-                Deadlines,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

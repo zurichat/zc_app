@@ -6,9 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class UseDifferentEmailViewModel extends BaseViewModel with ValidatorMixin {
-  final _navigation = locator<NavigationService>();
-  bool isEmpty = true;
-  String email = '';
+  bool? onClicked = false;
 
   void onNextTap(OrganizationSwitchMethod method) {
     if (validateEmail(email) != null) {
@@ -46,4 +44,9 @@ class UseDifferentEmailViewModel extends BaseViewModel with ValidatorMixin {
     email = value.trim();
     notifyListeners();
   }
-}
+
+  final _navigation = locator<NavigationService>();
+  bool isEmpty = true;
+  String email = '';
+
+ }

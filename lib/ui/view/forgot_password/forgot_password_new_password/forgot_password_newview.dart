@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/ui/shared/colors.dart';
 import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -25,12 +26,9 @@ class ForgotPasswordNewView extends StatelessWidget
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
         color: AppColors.whiteColor,
-        progressIndicator: const CircularProgressIndicator(
-          color: AppColors.zuriPrimaryColor,
-        ),
+        progressIndicator: const ZuriLoader(),
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppColors.whiteColor,
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),

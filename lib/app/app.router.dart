@@ -12,8 +12,15 @@ import 'package:stacked/stacked.dart';
 
 import '../models/channel_members.dart';
 import '../models/channel_model.dart';
+import '../models/user_model.dart';
 import '../models/user_post.dart';
+import '../ui/nav_pages/dm_page/dm_search_find_page.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
+import '../ui/nav_pages/plugin_page/add_plugin_view.dart';
+import '../ui/nav_pages/plugin_page/edit_plugin_view.dart';
+import '../ui/nav_pages/plugin_page/plugin_intro_page.dart';
+import '../ui/nav_pages/plugin_page/plugin_page_view.dart';
+import '../ui/nav_pages/plugin_page/plugins_view.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
 import '../ui/view/channel/add_people/channel_add_people_view.dart';
@@ -23,6 +30,7 @@ import '../ui/view/channel/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
+import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
 import '../ui/view/clear_after/clear_after_view.dart';
 import '../ui/view/direct_message/direct_message.dart';
 import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
@@ -42,15 +50,16 @@ import '../ui/view/notifications/notifications_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/organization/add_organization/add_organization_view.dart';
 import '../ui/view/organization/create_organization/create_organization.dart';
+import '../ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
+import '../ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
+import '../ui/view/organization/invite_to_organization/invitation_sent.dart';
+import '../ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
+import '../ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
 import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
 import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
-import '../ui/view/pinned_messages/pinned_message.dart';
-import '../ui/view/plugins/add_plugin_view.dart';
-import '../ui/view/plugins/edit_plugin_view.dart';
-import '../ui/view/plugins/plugins_view.dart';
 import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/profile_page/profile_page_view.dart';
@@ -63,6 +72,7 @@ import '../ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.d
 import '../ui/view/threads/all_threads/threads_view.dart';
 import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 import '../ui/view/user_search/user_search_view.dart';
+import '../ui/view/webview_page/webview_page.dart';
 import '../utilities/enums.dart';
 
 class Routes {
@@ -84,6 +94,7 @@ class Routes {
   static const String dmSearch = '/dm-search';
   static const String dmJumpToView = '/dm-jump-to-view';
   static const String dmUserView = '/dm-user-view';
+  static const String dmScreen = '/dm-screen';
   static const String splashview = '/';
   static const String pluginView = '/plugin-view';
   static const String addPluginView = '/add-plugin-view';
@@ -101,7 +112,7 @@ class Routes {
   static const String doNotDisturbView = '/do-not-disturb-view';
   static const String editProfileView = '/edit-profile-view';
   static const String popUpNotificationsView = '/pop-up-notifications-view';
-  static const String pinnedMessages = '/pinned-messages';
+  static const String pinnedMessagesView = '/pinned-messages-view';
   static const String selectEmail = '/select-email';
   static const String addOrganizationView = '/add-organization-view';
   static const String createOrganization = '/create-organization';
@@ -115,8 +126,16 @@ class Routes {
   static const String organizationUrlView = '/organization-url-view';
   static const String channelPageView = '/channel-page-view';
   static const String channelInfoView = '/channel-info-view';
+  static const String pluginPage = '/plugin-page';
   static const String directMessage = '/direct-message';
   static const String termsAndConditionsView = '/terms-and-conditions-view';
+  static const String webViewPage = '/web-view-page';
+  static const String pluginPageIntro = '/plugin-page-intro';
+  static const String inviteViaEmail = '/invite-via-email';
+  static const String inviteViaEmailAdmin = '/invite-via-email-admin';
+  static const String importContacts = '/import-contacts';
+  static const String createInviteLink = '/create-invite-link';
+  static const String invitationSent = '/invitation-sent';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -136,6 +155,7 @@ class Routes {
     dmSearch,
     dmJumpToView,
     dmUserView,
+    dmScreen,
     splashview,
     pluginView,
     addPluginView,
@@ -152,7 +172,7 @@ class Routes {
     doNotDisturbView,
     editProfileView,
     popUpNotificationsView,
-    pinnedMessages,
+    pinnedMessagesView,
     selectEmail,
     addOrganizationView,
     createOrganization,
@@ -166,8 +186,16 @@ class Routes {
     organizationUrlView,
     channelPageView,
     channelInfoView,
+    pluginPage,
     directMessage,
     termsAndConditionsView,
+    webViewPage,
+    pluginPageIntro,
+    inviteViaEmail,
+    inviteViaEmailAdmin,
+    importContacts,
+    createInviteLink,
+    invitationSent,
   };
 }
 
@@ -193,6 +221,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.dmSearch, page: DmSearch),
     RouteDef(Routes.dmJumpToView, page: DmJumpToView),
     RouteDef(Routes.dmUserView, page: DmUserView),
+    RouteDef(Routes.dmScreen, page: DmScreen),
     RouteDef(Routes.splashview, page: Splashview),
     RouteDef(Routes.pluginView, page: PluginView),
     RouteDef(Routes.addPluginView, page: AddPluginView),
@@ -210,7 +239,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.doNotDisturbView, page: DoNotDisturbView),
     RouteDef(Routes.editProfileView, page: EditProfileView),
     RouteDef(Routes.popUpNotificationsView, page: PopUpNotificationsView),
-    RouteDef(Routes.pinnedMessages, page: PinnedMessages),
+    RouteDef(Routes.pinnedMessagesView, page: PinnedMessagesView),
     RouteDef(Routes.selectEmail, page: SelectEmail),
     RouteDef(Routes.addOrganizationView, page: AddOrganizationView),
     RouteDef(Routes.createOrganization, page: CreateOrganization),
@@ -224,8 +253,16 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.organizationUrlView, page: OrganizationUrlView),
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+    RouteDef(Routes.pluginPage, page: PluginPage),
     RouteDef(Routes.directMessage, page: DirectMessage),
     RouteDef(Routes.termsAndConditionsView, page: TermsAndConditionsView),
+    RouteDef(Routes.webViewPage, page: WebViewPage),
+    RouteDef(Routes.pluginPageIntro, page: PluginPageIntro),
+    RouteDef(Routes.inviteViaEmail, page: InviteViaEmail),
+    RouteDef(Routes.inviteViaEmailAdmin, page: InviteViaEmailAdmin),
+    RouteDef(Routes.importContacts, page: ImportContacts),
+    RouteDef(Routes.createInviteLink, page: CreateInviteLink),
+    RouteDef(Routes.invitationSent, page: InvitationSent),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -379,6 +416,12 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    DmScreen: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const DmScreen(),
+        settings: data,
+      );
+    },
     Splashview: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const Splashview(),
@@ -471,8 +514,12 @@ class StackedRouter extends RouterBase {
       );
     },
     EditProfileView: (data) {
+      var args = data.getArgs<EditProfileViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const EditProfileView(),
+        builder: (context) => EditProfileView(
+          key: args.key,
+          user: args.user,
+        ),
         settings: data,
       );
     },
@@ -482,9 +529,9 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    PinnedMessages: (data) {
+    PinnedMessagesView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const PinnedMessages(),
+        builder: (context) => const PinnedMessagesView(),
         settings: data,
       );
     },
@@ -605,6 +652,12 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    PluginPage: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PluginPage(),
+        settings: data,
+      );
+    },
     DirectMessage: (data) {
       var args = data.getArgs<DirectMessageArguments>(
         orElse: () => DirectMessageArguments(),
@@ -620,6 +673,56 @@ class StackedRouter extends RouterBase {
     TermsAndConditionsView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const TermsAndConditionsView(),
+        settings: data,
+      );
+    },
+    WebViewPage: (data) {
+      var args = data.getArgs<WebViewPageArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => WebViewPage(
+          name: args.name,
+          url: args.url,
+          key: args.key,
+        ),
+        settings: data,
+      );
+    },
+    PluginPageIntro: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PluginPageIntro(),
+        settings: data,
+      );
+    },
+    InviteViaEmail: (data) {
+      var args = data.getArgs<InviteViaEmailArguments>(
+        orElse: () => InviteViaEmailArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => InviteViaEmail(key: args.key),
+        settings: data,
+      );
+    },
+    InviteViaEmailAdmin: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const InviteViaEmailAdmin(),
+        settings: data,
+      );
+    },
+    ImportContacts: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ImportContacts(),
+        settings: data,
+      );
+    },
+    CreateInviteLink: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const CreateInviteLink(),
+        settings: data,
+      );
+    },
+    InvitationSent: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const InvitationSent(),
         settings: data,
       );
     },
@@ -719,6 +822,13 @@ class UseDifferentEmailViewArguments {
   UseDifferentEmailViewArguments({this.key, required this.method});
 }
 
+/// EditProfileView arguments holder class
+class EditProfileViewArguments {
+  final Key? key;
+  final UserModel user;
+  EditProfileViewArguments({this.key, required this.user});
+}
+
 /// SelectEmail arguments holder class
 class SelectEmailArguments {
   final Key? key;
@@ -794,4 +904,18 @@ class DirectMessageArguments {
   final Key? key;
   final String? username;
   DirectMessageArguments({this.key, this.username});
+}
+
+/// WebViewPage arguments holder class
+class WebViewPageArguments {
+  final String name;
+  final String url;
+  final Key? key;
+  WebViewPageArguments({required this.name, required this.url, this.key});
+}
+
+/// InviteViaEmail arguments holder class
+class InviteViaEmailArguments {
+  final Key? key;
+  InviteViaEmailArguments({this.key});
 }

@@ -1,5 +1,6 @@
 import 'package:zurichat/app/app.logger.dart';
 import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/user_model.dart';
 import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
 import 'package:zurichat/services/user_service.dart';
 import 'package:zurichat/utilities/constants.dart';
@@ -22,6 +23,7 @@ class LoginViewModel extends FormViewModel {
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
   final zuriApi = ZuriApi(coreBaseUrl);
+  late UserModel userModel;
 
   final log = getLogger('LogInViewModel');
 
@@ -74,7 +76,6 @@ class LoginViewModel extends FormViewModel {
         variant: SnackbarType.failure,
         message: fillAllFields,
       );
-
       return;
     }
     final response = await zuriApi.login(
@@ -98,7 +99,16 @@ class LoginViewModel extends FormViewModel {
       );
       _storageService.clearData(StorageKeys.currentOrgId);
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
-
+      final res = await zuriApi.get(
+          "https://api.zuri.chat/users/${response?.data['data']['user']['id']}");
+      if (res?.statusCode == 200) {
+        _snackbarService.showCustomSnackBar(
+            message: profileUpdated, variant: SnackbarType.success);
+        _userService.setUserDetails(userModel);
+      } else {
+        _snackbarService.showCustomSnackBar(
+            message: errorOccurred, variant: SnackbarType.failure);
+      }
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.success,
@@ -108,12 +118,6 @@ class LoginViewModel extends FormViewModel {
 
       //TODO check if user has currently joined an Organization
       _navigationService.pushNamedAndRemoveUntil(Routes.organizationView);
-    } else {
-      _snackbarService.showCustomSnackBar(
-        duration: const Duration(milliseconds: 1500),
-        variant: SnackbarType.failure,
-        message: response?.data['message'] ?? errorEncounteredLogin,
-      );
     }
   }
 

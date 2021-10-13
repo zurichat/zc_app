@@ -1,6 +1,13 @@
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import '/../../app/app.logger.dart';
 
 class ExpandableTextFieldScreenViewModel extends BaseViewModel {
+  final _dialogService = locator<DialogService>();
+  final log = getLogger('ExpandableTextFieldScreenViewModel');
   bool isVisible = false;
   bool isExpanded = false;
   double maxSize = 0;
@@ -34,5 +41,18 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
       size = minSize + 50;
     }
     notifyListeners();
+  }
+
+  popDialog(String text, String channelID) async {
+    final dialogResult = await _dialogService.showCustomDialog(
+      variant: DialogType.scheduleMessageChannel,
+      data: {'channelID': channelID, 'message': text},
+    );
+
+    if (dialogResult != null) {
+      log.i(dialogResult.data);
+
+      notifyListeners();
+    }
   }
 }

@@ -2,10 +2,17 @@ import 'package:zurichat/app/app.locator.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class DirectMessageViewModel extends BaseViewModel {
+
+
+class DirectMessageViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
 
   navigateBack() {
     _navigationService.back();
+  }
+
+  @override
+  void setFormStatus() {
+    // TODO: implement setFormStatus
   }
 }

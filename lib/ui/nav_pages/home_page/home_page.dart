@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/general_widgets/easy_container.dart';
 import 'package:zurichat/ui/nav_pages/home_page/home_page_viewmodel.dart';
@@ -9,6 +10,7 @@ import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:zurichat/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 
 class HomePage extends StatelessWidget {
   final Widget? organizationLogo;
@@ -19,6 +21,7 @@ class HomePage extends StatelessWidget {
       onModelReady: (model) {
         model.getDmAndChannelsList();
         model.getNewChannelStream();
+        model.hasDrafts();
         model.listenToNotificationTap();
       },
       viewModelBuilder: () => HomePageViewModel(),
@@ -55,7 +58,7 @@ class HomePage extends StatelessWidget {
                     )
                   : Container(),
               Expanded(
-                child: body(vmodel),
+                child: body(context, vmodel),
               ),
               // Padding(
               //   padding: const EdgeInsets.all(8.0),
@@ -72,11 +75,21 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: vmodel.navigateToStartDMScreen,
+          child: IconButton(
+            onPressed: vmodel.navigateToStartDMScreen,
+            icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
+            color: AppColors.whiteColor,
+          ),
+          backgroundColor: AppColors.zuriPrimaryColor,
+        ),
       ),
     );
   }
 
-  Widget body(HomePageViewModel vmodel) {
+  Widget body(BuildContext context, HomePageViewModel vmodel) {
+    final local = AppLocalization.of(context);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -86,35 +99,28 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
           ),
+          vmodel.hasDrafts()
+              ? const Padding(
+                  padding: EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 3),
+                  child: DraftTextAndIcon())
+              : Container(),
           const Divider(),
           HomeExpandedList(
-            title: Unreads,
+            title: local!.unreads,
             canExpand: false,
             data: vmodel.unreads,
           ),
           const Divider(),
           HomeExpandedList(
-            title: Channels,
+            title: local.channels,
             data: vmodel.joinedChannels,
           ),
           const Divider(),
           HomeExpandedList(
-            title: DMs,
+            title: local.directMessages,
             data: vmodel.directMessages,
           ),
           const Divider(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                  onPressed: vmodel.navigateToStartDMScreen,
-                  child: const Icon(
-                    Icons.open_in_new_outlined,
-                    color: AppColors.whiteColor,
-                  )),
-            ),
-          )
         ],
       ),
     );

@@ -26,7 +26,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
           Text("#$channelName", style: AppTextStyles.heading7),
           const SizedBox(height: 10),
           TextParser(
-              '@mark created this channel on August 12, 2021. This is the very beginning of the #$channelName channel.'),
+              '@ ${viewModel.channelCreator} created this channel on August 12, 2021. This is the very beginning of the #$channelName channel.'),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

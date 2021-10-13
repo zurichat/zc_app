@@ -27,7 +27,12 @@ class SplashscreenViewModel extends BaseViewModel {
         } else if (storage.getString(StorageKeys.currentUserId) == null) {
           navigation.navigateTo(Routes.loginView);
         } else {
-          navigation.navigateTo(Routes.navBarView);
+          if (storage.getString(StorageKeys.currentOrgId) == null ||
+              storage.getString(StorageKeys.currentOrgId) == '') {
+            navigation.navigateTo(Routes.organizationView);
+          } else {
+            navigation.navigateTo(Routes.navBarView);
+          }
         }
         // navigation.navigateTo(Routes.onboardingView);
       },

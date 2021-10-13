@@ -12,9 +12,18 @@ import '../../../shared/ui_helpers.dart';
 import 'create_organization_viewmodel.dart';
 
 class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
+  final PageController pageController;
   const InvitePage({
     Key? key,
+    required this.pageController,
   }) : super(key: key);
+
+  void next() {
+    pageController.nextPage(
+      duration: const Duration(seconds: 1),
+      curve: Curves.ease,
+    );
+  }
 
   @override
   Widget build(BuildContext context, CreateOrganizationViewModel viewModel) {
@@ -40,7 +49,6 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                         TeammateNames,
                         style: TextStyle(
                           letterSpacing: 0.5,
-                          color: AppColors.blackColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),
@@ -74,8 +82,8 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                       ),
                     ),
                     BorderTextField(
-                      controller: viewModel.inviteController,
                       hint: SampleEmail,
+                      onChanged: (val) => viewModel.updateData(invi: val),
                     ),
                     const InviteButton(),
                     UIHelper.verticalSpaceMedium,

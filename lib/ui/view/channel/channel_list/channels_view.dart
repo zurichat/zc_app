@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -26,7 +27,7 @@ class ChannelList extends StatelessWidget {
         ),
         body: SafeArea(
           child: model.isBusy
-              ? const Center(child: CircularProgressIndicator())
+              ? const ZuriLoader()
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[

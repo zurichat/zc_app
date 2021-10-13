@@ -31,7 +31,7 @@ class ZuriTextStyle {
   }
 
   static TextStyle mediumNormal({Color? color}) {
-    return _base(_mediumSize, _normal, color ?? AppColors.darkGreyColor);
+    return _base(_mediumSize, _normal, color);
   }
 
   static TextStyle mediumBold() {
@@ -63,12 +63,10 @@ class ZuriTextStyle {
     );
   }
 
-  static TextStyle organizationNameText() {
-    return _base(
-      19,
-      FontWeight.w800,
-      AppColors.whiteColor.withOpacity(0.9),
-    );
+  static TextStyle organizationNameText({color}) {
+    return _base(19, FontWeight.w800, color
+        // AppColors.whiteColor.withOpacity(0.9),
+        );
   }
 
   ///This base class minimizes the amount of code and cannot
@@ -89,7 +87,7 @@ class ZuriTextStyle {
     return TextStyle(
       fontSize: fontSize,
       fontWeight: fontWeight ?? FontWeight.w500,
-      color: color ?? Colors.grey[600],
+      // color: color ?? Colors.grey[600],
     );
   }
 }

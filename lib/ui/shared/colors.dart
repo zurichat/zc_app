@@ -6,7 +6,7 @@ class AppColors {
   static const Color greyishColor = Color(0xFF999999);
   static const Color deepBlackColor = Color(0xFF333333);
   static const Color dividerColor = Color(0xFFD1D0D0);
-  static const Color zuriPrimaryColor = Color(0xFF2F8769);
+  static const Color zuriPrimaryColor = Color(0xFF00B87C);
   static const Color blueColor = Color(0xFF1554F6);
   static const Color iconBlueColor = Color(0xFF0091EA);
   static const Color navBarItemColor = Color(0xFF7B8794);
@@ -30,11 +30,14 @@ class AppColors {
   static const Color faintTextColor = Color(0xFFC7C3C3);
   static const Color zuriDarkGrey = Color(0xFF727272);
   static const Color numberContainerColor = Color(0xFFB8003C);
-  static const Color appBarGreen = Color(0xFF2A7B60);
+  static const Color appBarGreen = Color(0xFF009B69);
   static const Color zuriBGLightgrey = Color(0xFFF7F7F7);
   static const Color zuriGrey = Color(0xFFBEBEBE);
   static const Color searchHintColor = Color(0xffA1A9B3);
 
   ///Kimbie Dark Theme
   static const kimbieAccent = Color(0xFF6E9B3B);
+
+  //Dark Theme
+  static const darkThemePrimaryColor = Color(0xFF1C1B1B);
 }

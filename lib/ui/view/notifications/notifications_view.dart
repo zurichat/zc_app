@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/general_widgets/menu_item_tile.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 import 'package:zurichat/ui/shared/styles.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
@@ -14,11 +15,15 @@ class NotificationsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<NotificationsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
+        backgroundColor: AppColors.whiteColor,
         appBar: ZuriAppBar(
+          leading: Icons.close_rounded,
+          leadingPress: () => model.goBack(),
           orgTitle: Text(
             Notifications,
-            style: AppTextStyles.heading7,
+            style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
           ),
+          whiteBackground: true,
         ),
         body: SingleChildScrollView(
           child: Column(

@@ -30,7 +30,6 @@ class ForgotPasswordOtpView extends StatelessWidget
       onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.whiteColor,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
@@ -73,7 +72,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         vertical: 8.0,
-                        horizontal: 30,
+                        // horizontal: 20,
                       ),
                       child: PinCodeTextField(
                         appContext: context,
@@ -96,7 +95,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                           borderRadius: BorderRadius.circular(5),
                           fieldHeight: 50,
                           fieldWidth: 50,
-                          activeFillColor: Colors.white,
+                          activeFillColor: AppColors.zuriPrimaryColor,
                         ),
                         cursorColor: AppColors.zuriPrimaryColor,
                         animationDuration: const Duration(milliseconds: 300),
@@ -134,14 +133,12 @@ class ForgotPasswordOtpView extends StatelessWidget
                         children: [
                           TextSpan(
                             text: DidntRecieveOTP,
-                            style: AppTextStyles.normalText.copyWith(
-                              color: Colors.black,
-                            ),
+                            style: Theme.of(context).textTheme.bodyText1,
                           ),
                           TextSpan(
                             text: Resend,
                             style: AppTextStyles.body2Bold.copyWith(
-                              color: Colors.blue,
+                              color: AppColors.zuriPrimaryColor,
                               decoration: TextDecoration.underline,
                             ),
                           ),

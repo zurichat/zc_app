@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:zurichat/app/app.logger.dart';
 import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -9,43 +9,42 @@ import '../../../../app/app.router.dart';
 import '../../../../models/organization_model.dart';
 import '../../../../package/base/server-request/organization_request/organization_api_service.dart';
 import '../../../../utilities/enums.dart';
-// import '../../../../services/local_storage_services.dart';
 
 class CreateOrganizationViewModel extends BaseViewModel {
   final log = getLogger("CreateOrganizationViewModel");
   final _navigation = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
-  // final _storage = locator<SharedPreferenceLocalStorage>();
+  final _channelApiService = locator<ChannelsApiService>();
   final _api = OrganizationApiService();
-  final companyController = TextEditingController();
-  final projectController = TextEditingController();
-  final inviteController = TextEditingController();
+  String company = '';
+  String project = '';
+  String invite = '';
   bool? _checkBoxVal = false;
   late OrganizationModel? org;
 
-  final pageController = PageController();
+  late String email = '';
 
-  // String? get userEmail => _storage.getString(StorageKeys.currentUserEmail);
-  // String get anotherEmail => _anotherEmail;
+  void init(String _email) {
+    email = _email;
+  }
 
-  // void onEmailTap(WorkspaceSwitchMethod method) {
-  //   switch (method) {
-  //     case WorkspaceSwitchMethod.SignIn:
-  //       navigateToWorkSpaceUrl();
-  //       break;
-  //     case WorkspaceSwitchMethod.Create:
+  void back() => _navigation.back();
 
-  //       // TODO: Handle this case.
-  //       break;
-  //     case WorkspaceSwitchMethod.Join:
-  //       navigateToWorkSpaceUrl();
-  //       break;
-  //   }
-  // }
+  void onCheckBoxChanged(bool? value) {
+    _checkBoxVal = value;
+    notifyListeners();
+  }
 
-  // void navigateToWorkSpaceUrl() {
-  //   _navigation.navigateTo(Routes.workspaceUrlView);
-  // }
+  void onInviteTap() {
+    snackbar.showCustomSnackBar(
+        message: ComingSoon, variant: SnackbarType.failure);
+  }
+
+  void updateData({String? comp, String? proj, String? invi}) {
+    if (comp != null) company = comp;
+    if (proj != null) project = proj;
+    if (invi != null) invite = invi;
+  }
 
   Future<OrganizationModel?> createOrganization(
       String email, String name) async {
@@ -55,67 +54,82 @@ class CreateOrganizationViewModel extends BaseViewModel {
       await _api.updateOrgName(id, name);
       await _api.updateOrgUrl(id, '$organization.zurichat.com');
       // await _api.updateOrgLogo(id, org.logoUrl!);
+      if (id.isEmpty) {
+        snackbar.showCustomSnackBar(
+            message: errorOccurred, variant: SnackbarType.failure);
+        return null;
+      }
       return OrganizationModel(
-        id: id,
-        name: name,
-        organizationUrl: '$organization.zurichat.com',
-        logoUrl: null,
-        time: null,
-        isOwner: true,
-        noOfMembers: 0,
-      );
+          id: id,
+          name: name,
+          organizationUrl: '$organization.zurichat.com',
+          logoUrl: null,
+          time: null,
+          isOwner: true,
+          noOfMembers: 0,
+          userIdInOrg: '');
     } catch (e) {
       log.e(e.toString());
       snackbar.showSnackbar(message: e.toString());
     }
   }
 
-  void onCheckBoxChanged(bool? value) {
-    _checkBoxVal = value;
-    notifyListeners();
-  }
-
-  bool? get checkBoxVal => _checkBoxVal;
-
-  void onInviteTap() {
-    snackbar.showCustomSnackBar(
-        message: ComingSoon, variant: SnackbarType.failure);
-  }
-
-  Future<void> onCompanyNext(String email) async {
-    if (companyController.text.isEmpty) {
-      return snackbar.showCustomSnackBar(
+  Future<bool> onCompanyNext() async {
+    if (company.isEmpty) {
+      snackbar.showCustomSnackBar(
           message: fillAllFields, variant: SnackbarType.failure);
+      return false;
     }
     setBusy(true);
-    org = await createOrganization(email, companyController.text);
+    org = await createOrganization(email, company);
     setBusy(false);
-    next();
+    if (org != null) {
+      return true;
+    }
+    return false;
   }
 
-  void next() {
-    pageController.nextPage(
-      duration: const Duration(seconds: 1),
-      curve: Curves.ease,
+  Future<bool> addProject() async {
+    if (project.isEmpty) {
+      snackbar.showCustomSnackBar(
+          message: fillAllFields, variant: SnackbarType.failure);
+      return false;
+    }
+    final res = await _channelApiService.createChannels(
+      name: project,
+      description: 'First channel for your organization',
+      private: false,
+      email: email,
+      id: org!.id!,
     );
+
+    if (res) {
+      return true;
+    } else {
+      snackbar.showCustomSnackBar(
+          message: errorOccurred, variant: SnackbarType.failure);
+      return false;
+    }
   }
 
   Future<void> addTeammates() async {
-    if (inviteController.text.isEmpty) {
+    if (invite.isEmpty) {
       return snackbar.showCustomSnackBar(
           message: fillAllFields, variant: SnackbarType.failure);
     }
     if (org == null) {
-      log.i('org is null oooo');
+      log.e('Org is null');
       return snackbar.showCustomSnackBar(
         message: errorOccurred,
         variant: SnackbarType.failure,
       );
     }
     setBusy(true);
-    await _api.addMemberToOrganization(org!.id!, inviteController.text);
+    await _api.addMemberToOrganization(org!.id!, invite);
     setBusy(false);
     _navigation
         .popUntil((route) => route.settings.name == Routes.organizationView);
   }
+
+  bool? get checkBoxVal => _checkBoxVal;
 }

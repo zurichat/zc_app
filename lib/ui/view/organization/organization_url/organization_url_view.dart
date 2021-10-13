@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
 import '../../../shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
@@ -17,9 +18,7 @@ class OrganizationUrlView extends StatelessWidget {
       builder: (context, viewModel, child) => ModalProgressHUD(
         inAsyncCall: viewModel.isBusy,
         color: AppColors.whiteColor,
-        progressIndicator: const CircularProgressIndicator(
-          color: AppColors.zuriPrimaryColor,
-        ),
+        progressIndicator: const ZuriLoader(),
         child: Scaffold(
           body: SafeArea(
             child: SingleChildScrollView(
@@ -42,7 +41,8 @@ class OrganizationUrlView extends StatelessWidget {
                                 TextSpan(
                                   text: OrgDesc1,
                                   style: AppTextStyles.body3Medium.copyWith(
-                                      fontSize: 16, color: AppColors.greyColor),
+                                    fontSize: 16,
+                                  ),
                                 ),
                                 TextSpan(
                                   text: '$email',
@@ -53,7 +53,8 @@ class OrganizationUrlView extends StatelessWidget {
                                 TextSpan(
                                   text: OrgDesc2,
                                   style: AppTextStyles.body3Medium.copyWith(
-                                      fontSize: 16, color: AppColors.greyColor),
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ],
                             ),
@@ -87,15 +88,16 @@ class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
       child: TextField(
         cursorColor: AppColors.appBarGreen,
         style: AppTextStyles.body3Medium.copyWith(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: AppColors.blackColor),
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
         decoration: InputDecoration(
           labelText: EnterOrgUrl,
           labelStyle: AppTextStyles.body3Medium.copyWith(
-              fontSize: 16,
-              color: AppColors.zuriTextBodyColor,
-              fontWeight: FontWeight.bold),
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: AppColors.zuriPrimaryColor,
+          ),
           hintText: EnterOrgUrlHint,
           hintStyle: AppTextStyles.body3Medium.copyWith(
               fontSize: 16,

@@ -13,21 +13,23 @@ class DoNotDisturbView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<DoNotDisturbViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
+        backgroundColor: AppColors.whiteColor,
         appBar: ZuriAppBar(
           leading: Icons.close_rounded,
           leadingPress: () => model.exitPage(),
           orgTitle: Text(
             'Do not disturb',
-            style: AppTextStyles.heading7,
+            style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
           ),
+          whiteBackground: true,
           actions: [
             TextButton(
               onPressed: () {},
-              child: const Text(
+              child: Text(
                 'Save',
-                style: TextStyle(color: AppColors.zuriPrimaryColor),
+                style: AppTextStyles.heading8,
               ),
-            )
+            ),
           ],
         ),
         body: Column(

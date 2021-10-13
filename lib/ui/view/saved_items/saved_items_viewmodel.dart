@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
 import 'package:zurichat/models/saved_item_model.dart';
 import 'package:zurichat/services/local_storage_services.dart';
 import 'package:zurichat/utilities/storage_keys.dart';
@@ -20,6 +21,11 @@ class SavedItemsViewModel extends BaseViewModel {
     savedBuilderList.removeAt(index);
     goBack();
     notifyListeners();
+  }
+
+  navigateToMessage(userPost) {
+    _navigationService.navigateTo(Routes.threadDetailView,
+        arguments: ThreadDetailViewArguments(userPost: userPost));
   }
 
   get savedItems {

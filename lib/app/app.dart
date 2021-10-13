@@ -1,7 +1,15 @@
 import 'package:zurichat/services/centrifuge_service.dart';
 import 'package:zurichat/services/media_service.dart';
 import 'package:zurichat/services/notification_service.dart';
+import 'package:zurichat/ui/nav_pages/dm_page/dm_search_find_page.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/plugin_intro_page.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/plugin_page_view.dart';
 import 'package:zurichat/ui/view/direct_message/direct_message.dart';
+import 'package:zurichat/ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
+import 'package:zurichat/ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
+import 'package:zurichat/ui/view/organization/invite_to_organization/invitation_sent.dart';
+import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
+import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
 import 'package:zurichat/ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';
 import 'package:zurichat/ui/view/threads/all_threads/threads_view.dart';
 import 'package:zurichat/package/base/jump_to_request/jump_to_api.dart';
@@ -20,6 +28,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
+import 'package:zurichat/ui/view/webview_page/webview_page.dart';
 import '../package/base/jump_to_request/jump_to_api.dart';
 import '../package/base/server-request/channels/channels_api_service.dart';
 import '../package/base/server-request/dms/dms_api_service.dart';
@@ -59,10 +68,10 @@ import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
-import '../ui/view/pinned_messages/pinned_message.dart';
-import '../ui/view/plugins/add_plugin_view.dart';
-import '../ui/view/plugins/edit_plugin_view.dart';
-import '../ui/view/plugins/plugins_view.dart';
+import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
+import '../ui/nav_pages/plugin_page/add_plugin_view.dart';
+import '../ui/nav_pages/plugin_page/edit_plugin_view.dart';
+import '../ui/nav_pages/plugin_page/plugins_view.dart';
 import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/profile_page/profile_page_view.dart';
@@ -95,6 +104,7 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: DmSearch),
     MaterialRoute(page: DmJumpToView),
     MaterialRoute(page: DmUserView),
+    MaterialRoute(page: DmScreen),
     MaterialRoute(page: Splashview, initial: true),
     MaterialRoute(page: PluginView),
     MaterialRoute(page: AddPluginView),
@@ -111,7 +121,7 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: DoNotDisturbView),
     MaterialRoute(page: EditProfileView),
     MaterialRoute(page: PopUpNotificationsView),
-    MaterialRoute(page: PinnedMessages),
+    MaterialRoute(page: PinnedMessagesView),
     MaterialRoute(page: SelectEmail),
     MaterialRoute(page: AddOrganizationView),
     MaterialRoute(page: CreateOrganization),
@@ -125,8 +135,16 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: OrganizationUrlView),
     MaterialRoute(page: ChannelPageView),
     MaterialRoute(page: ChannelInfoView),
+    MaterialRoute(page: PluginPage),
     MaterialRoute(page: DirectMessage),
     MaterialRoute(page: TermsAndConditionsView),
+    MaterialRoute(page: WebViewPage),
+    MaterialRoute(page: PluginPageIntro),
+    MaterialRoute(page: InviteViaEmail),
+    MaterialRoute(page: InviteViaEmailAdmin),
+    MaterialRoute(page: ImportContacts),
+    MaterialRoute(page: CreateInviteLink),
+    MaterialRoute(page: InvitationSent),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

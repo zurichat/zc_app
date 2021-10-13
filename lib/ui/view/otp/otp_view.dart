@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
@@ -30,12 +31,9 @@ class OTPView extends StatelessWidget with $OTPView {
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
         color: AppColors.whiteColor,
-        progressIndicator: const CircularProgressIndicator(
-          color: AppColors.zuriPrimaryColor,
-        ),
+        progressIndicator: const ZuriLoader(),
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppColors.whiteColor,
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
@@ -74,7 +72,6 @@ class OTPView extends StatelessWidget with $OTPView {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           vertical: 8.0,
-                          horizontal: 30,
                         ),
                         child: PinCodeTextField(
                           appContext: context,
@@ -95,9 +92,9 @@ class OTPView extends StatelessWidget with $OTPView {
                             inactiveColor: Colors.white,
                             inactiveFillColor: AppColors.whiteColor,
                             borderRadius: BorderRadius.circular(5),
-                            fieldHeight: 40,
-                            fieldWidth: 40,
-                            activeFillColor: Colors.white,
+                            fieldHeight: 50,
+                            fieldWidth: 50,
+                            activeFillColor: AppColors.zuriPrimaryColor,
                           ),
                           cursorColor: AppColors.zuriPrimaryColor,
                           animationDuration: const Duration(milliseconds: 300),
@@ -132,16 +129,13 @@ class OTPView extends StatelessWidget with $OTPView {
                       child: RichText(
                         text: TextSpan(
                           children: [
-                            TextSpan(
+                            const TextSpan(
                               text: DidntRecieveOTP,
-                              style: AppTextStyles.normalText.copyWith(
-                                color: Colors.black,
-                              ),
                             ),
                             TextSpan(
                               text: Resend,
                               style: AppTextStyles.body2Bold.copyWith(
-                                color: Colors.blue,
+                                color: AppColors.zuriPrimaryColor,
                                 decoration: TextDecoration.underline,
                               ),
                             ),

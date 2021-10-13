@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:zurichat/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
 
 import '../../shared/shared.dart';
 import 'dm_page_viewmodel.dart';
@@ -38,17 +39,20 @@ class _DmScreenState extends State<DmScreen> {
     return ViewModelBuilder<DmPageViewModel>.reactive(
       viewModelBuilder: () => DmPageViewModel(),
       builder: (context, model, child) => Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          elevation: 1,
-          backgroundColor: Colors.white,
-          title: const Text(
+        appBar: ZuriAppBar(
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
+          orgTitle: Text(
             DM,
-            style: TextStyle(color: AppColors.deepBlackColor),
+            style: AppTextStyles.heading7.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
           actions: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                model.navigateToDmUserView();
+              },
               child: const Text(
                 Done,
                 style: TextStyle(color: AppColors.borderColor),

@@ -9,11 +9,18 @@ import 'package:stacked/stacked.dart';
 import 'create_organization_viewmodel.dart';
 
 class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
-  final String email;
+  final PageController pageController;
   const CompanyPage({
     Key? key,
-    required this.email,
+    required this.pageController,
   }) : super(key: key);
+
+  void next() {
+    pageController.nextPage(
+      duration: const Duration(seconds: 1),
+      curve: Curves.ease,
+    );
+  }
 
   @override
   Widget build(BuildContext context, CreateOrganizationViewModel viewModel) {
@@ -39,7 +46,6 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                         CompanyName,
                         style: TextStyle(
                           letterSpacing: 0.5,
-                          color: AppColors.blackColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),
@@ -47,12 +53,15 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                       ),
                     ),
                     BorderTextField(
-                      controller: viewModel.companyController,
                       hint: CompanyNameHint,
+                      onChanged: (val) => viewModel.updateData(comp: val),
                     ),
                     UIHelper.verticalSpaceMedium,
                     LongButton(
-                        onPressed: () => viewModel.onCompanyNext(email),
+                        onPressed: () async {
+                          final res = await viewModel.onCompanyNext();
+                          if (res) next();
+                        },
                         label: 'Next'),
                     const SizedBox(height: 15),
                     const Text.rich(

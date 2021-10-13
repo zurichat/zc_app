@@ -8,7 +8,7 @@ void main() {
       setupLocator();
     });
     group('User services', () {
-      test('When called, it sets value to the organisation Id', () {
+      test('When called, it sets value to the workspace Id', () {
         final userService = UserService();
         userService.setCurrentOrganizationId('currentOrgId');
         expect(userService.currentOrgId, 'currentOrgId');

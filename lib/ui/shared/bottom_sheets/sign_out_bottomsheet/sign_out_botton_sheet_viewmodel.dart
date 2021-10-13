@@ -21,7 +21,7 @@ class SignOutBottomSheetViewModel extends BaseViewModel {
     final result = await _dialogService.showCustomDialog(
         variant: DialogType.signOut, data: orgName);
     if (result != null && result.confirmed) {
-      signOutUser();
+      signOut();
     }
   }
 
@@ -30,7 +30,7 @@ class SignOutBottomSheetViewModel extends BaseViewModel {
 
   void dismissDialog() => _navigator.back();
 
-  Future<void> signOutUser() async {
+  Future<void> signOut() async {
     bool connected = await _connectivityService.checkConnection();
     const endpoint = "/auth/logout";
     if (!connected) {
@@ -48,12 +48,6 @@ class SignOutBottomSheetViewModel extends BaseViewModel {
       _storage.clearData(StorageKeys.currentUserId);
       _storage.clearData(StorageKeys.currentUserEmail);
       navigateToSignIn();
-    } else {
-      _snackBar.showCustomSnackBar(
-          message:
-              response?.data["message"] ?? "Error occurred while Signing out",
-          variant: SnackbarType.failure,
-          duration: const Duration(milliseconds: 1500));
     }
   }
 

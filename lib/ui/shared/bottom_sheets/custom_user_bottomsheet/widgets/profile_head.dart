@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/general_widgets/custom_text.dart';
 import 'package:zurichat/ui/shared/colors.dart';
+import 'package:stacked/stacked.dart';
 
-class ProfileHead extends StatelessWidget {
+import '../custom_user_bottom_sheet_viewmodel.dart';
+
+class ProfileHead extends ViewModelWidget<CustomUserBottomSheetViewModel> {
   const ProfileHead({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, CustomUserBottomSheetViewModel viewModel) {
     final height = MediaQuery.of(context).size.height;
     return Stack(
       alignment: AlignmentDirectional.center,
@@ -35,7 +38,7 @@ class ProfileHead extends StatelessWidget {
                     Flexible(
                       fit: FlexFit.loose,
                       child: CustomText(
-                        text: PaulImoke,
+                        text: viewModel.email!,
                         color: AppColors.whiteColor,
                         fontWeight: FontWeight.bold,
                         fontSize: height * 0.025,

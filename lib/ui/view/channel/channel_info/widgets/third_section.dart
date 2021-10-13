@@ -27,16 +27,11 @@ class ThirdSection extends StatelessWidget {
       alignment: Alignment.center,
       padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6.r),
-          border: Border.all(width: 1.w, color: AppColors.borderColor),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5.r,
-              blurRadius: 6.r,
-              offset: Offset(0, 3.h), // changes position of shadow
-            ),
-          ]),
+        borderRadius: BorderRadius.circular(6.r),
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.darkThemePrimaryColor
+            : AppColors.whiteColor,
+      ),
       child: Column(
         children: [
           InkWell(

@@ -44,6 +44,7 @@ class OrganizationApiService {
   /// `id` which is the id of the organization
   Future<OrganizationModel> fetchOrganizationInfo(String id) async {
     final res = await _api.get('/organizations/$id', token: token);
+    log.i('>>>>>>>>>>>>> Selected Orge $res');
     return OrganizationModel.fromJson(res?.data?['data']);
   }
 
@@ -82,7 +83,7 @@ class OrganizationApiService {
       token: token,
       body: {'creator_email': email},
     );
-    return res?.data?['data']['InsertedID'];
+    return res?.data?['data']['organization_id'];
   }
 
   /// Updates an organization's URL. The organization's id `orgId` must not be
