@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/menu_item_tile.dart';
 import 'package:hng/models/plugin_model.dart';
@@ -6,7 +7,7 @@ import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -20,10 +21,10 @@ class PluginPage extends StatelessWidget {
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         return Scaffold(
           appBar: ZuriAppBar(
-            orgTitle:
-                Text(Plugins, style: ZuriTextStyle.organizationNameText()),
-            bottomNavBarScreen: true,
-            leadingWidth: true,
+            leading: Icons.arrow_back_ios,
+            leadingPress: model.navigateBack,
+            whiteBackground: true,
+            orgTitle: Text(Plugins, style: AppTextStyles.heading4),
           ),
           body: !model.hasplugins
               ? Padding(
@@ -67,7 +68,12 @@ class PluginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         MenuItemTile(
-                          icon: Icons.add,
+                          icon: SvgPicture.asset(
+                            'assets/icons/svg_icons/plus.svg',
+                            color: AppColors.zuriPrimaryColor,
+                            width: 18,
+                            height: 18,
+                          ),
                           topBorder: false,
                           text: Text(
                             "Add Plugin",
@@ -80,7 +86,7 @@ class PluginPage extends StatelessWidget {
                           MenuItemTile(
                             onPressed: () => model.navigateToWebviewPage(
                                 plugin.name, plugin.url),
-                            icon: plugin.icon,
+                            ico: plugin.icon,
                             iconColor: AppColors.zuriPrimaryColor,
                             topBorder: false,
                             text: Text(

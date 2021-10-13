@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
@@ -41,7 +43,12 @@ class YouPage extends StatelessWidget {
                 StatusForm(onPressed: model.setStatus),
                 const SizedBox(height: 20),
                 MenuItemTile(
-                  icon: Icons.notifications_off_outlined,
+                  icon: SvgPicture.asset(
+                    'assets/icons/svg_icons/bell-off.svg',
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   text: Text(
                     PauseNotifs,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
@@ -64,12 +71,22 @@ class YouPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  icon: Icons.circle_outlined,
+                  icon: SvgPicture.asset(
+                    'assets/icons/svg_icons/circle.svg',
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   onPressed: model.toggleStatus,
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
-                  icon: Icons.bookmark_outline_outlined,
+                  icon: SvgPicture.asset(
+                    'assets/icons/svg_icons/bookmark.svg',
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   text: Text(
                     SavedItems,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
@@ -78,7 +95,12 @@ class YouPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
-                  icon: Icons.account_circle_outlined,
+                  icon: SvgPicture.asset(
+                    'assets/icons/svg_icons/active.svg',
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   text: Text(
                     ViewProfile,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
@@ -88,7 +110,12 @@ class YouPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
-                  icon: Icons.trip_origin,
+                  icon: SvgPicture.asset(
+                    'assets/icons/svg_icons/notification.svg',
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   text: Text(
                     Notifs,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
@@ -98,7 +125,12 @@ class YouPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
-                  icon: Icons.settings,
+                  icon: SvgPicture.asset(
+                    'assets/icons/svg_icons/preference.svg',
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   text: Text(
                     Preferences,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
@@ -108,7 +140,12 @@ class YouPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
-                  icon: Icons.logout_sharp,
+                  icon: SvgPicture.asset(
+                    'assets/icons/svg_icons/log-out.svg',
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   text: Text(
                     SignOut,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),

@@ -28,7 +28,7 @@ class QuestionIntoPollViewModel extends FormViewModel {
     return _option2;
   }
 
-  int number = 0;
+  int number = 1;
 
   onVote(choice) {
     if (choice == 1) {
@@ -38,6 +38,10 @@ class QuestionIntoPollViewModel extends FormViewModel {
       _option2 += 1.0;
     }
 
+    notifyListeners();
+  }
+
+  void reBuild() {
     notifyListeners();
   }
 }

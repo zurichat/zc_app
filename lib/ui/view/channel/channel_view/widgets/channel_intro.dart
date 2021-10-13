@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
@@ -26,7 +27,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
           Text("#$channelName", style: AppTextStyles.heading7),
           const SizedBox(height: 10),
           TextParser(
-              '@mark created this channel on August 12, 2021. This is the very beginning of the #$channelName channel.'),
+              '@ ${viewModel.channelCreator} created this channel on August 12, 2021. This is the very beginning of the #$channelName channel.'),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -34,13 +35,16 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
               Column(
                 children: [
                   MaterialButton(
-                    onPressed: () => viewModel.navigateToChannelEdit(channelName, channelId),
+                    onPressed: () =>
+                        viewModel.navigateToChannelEdit(channelName, channelId),
                     padding: const EdgeInsets.all(15),
                     shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
-                    child: const Icon(
-                      Icons.edit_outlined,
+                    child: SvgPicture.asset(
+                      'assets/icons/svg_icons/Shape.svg',
                       color: AppColors.zuriPrimaryColor,
+                      width: 18,
+                      height: 18,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -62,9 +66,11 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                     padding: const EdgeInsets.all(15),
                     shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
-                    child: const Icon(
-                      Icons.person_add_alt_1_outlined,
+                    child: SvgPicture.asset(
+                      'assets/icons/svg_icons/default.svg',
                       color: AppColors.zuriPrimaryColor,
+                      width: 18,
+                      height: 18,
                     ),
                   ),
                   const SizedBox(height: 5),

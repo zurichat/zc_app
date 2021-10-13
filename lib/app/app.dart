@@ -6,6 +6,11 @@ import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_page_view.dart';
 import 'package:hng/ui/view/channel/channel_view/question_into_poll/question_into_poll_view.dart';
 import 'package:hng/ui/view/direct_message/direct_message.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/import_contact.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/invitation_sent.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email.dart';
 import 'package:hng/ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';
 import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
@@ -64,7 +69,7 @@ import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
-import '../ui/view/pinned_messages/pinned_message.dart';
+import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
 import '../ui/nav_pages/plugin_page/add_plugin_view.dart';
 import '../ui/nav_pages/plugin_page/edit_plugin_view.dart';
 import '../ui/nav_pages/plugin_page/plugins_view.dart';
@@ -117,7 +122,7 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: DoNotDisturbView),
     MaterialRoute(page: EditProfileView),
     MaterialRoute(page: PopUpNotificationsView),
-    MaterialRoute(page: PinnedMessages),
+    MaterialRoute(page: PinnedMessagesView),
     MaterialRoute(page: SelectEmail),
     MaterialRoute(page: AddOrganizationView),
     MaterialRoute(page: CreateOrganization),
@@ -137,6 +142,14 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: WebViewPage),
     MaterialRoute(page: PluginPageIntro),
     MaterialRoute(page: QuestionIntoPollView),
+    MaterialRoute(page: InviteViaEmail),
+    MaterialRoute(page: InviteViaEmailAdmin),
+    MaterialRoute(page: ImportContacts),
+    MaterialRoute(page: CreateInviteLink),
+    MaterialRoute(page: InvitationSent),
+
+
+
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

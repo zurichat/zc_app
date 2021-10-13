@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/custom_textfield.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/channel/channel_view/question_into_poll/question_into_poll_viewmodel.dart';
@@ -31,7 +32,10 @@ class QuestionIntoPollView extends StatelessWidget with $QuestionIntoPollView {
     'gty@gmail.com': 3,
   };
 
+  double option1 = 1.0;
+  double option2 = 1.0;
 //this.usersWhoVoted[this.user] = choice;
+  String result = "";
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +62,42 @@ class QuestionIntoPollView extends StatelessWidget with $QuestionIntoPollView {
                   ),
                   const TextButton(onPressed: null, child: Text('Create Poll')),
                 ]),
-            body: Padding(
+            body: Column(
+              children: <Widget>[
+                UIHelper.customVerticalSpace(10.0),
+                CustomTextField(
+                  keyboardType: TextInputType.emailAddress,
+                  inputAction: TextInputAction.next,
+                  autoCorrect: true,
+                  obscureText: false,
+                  hintText: 'Ask your question',
+                  controller: questionController,
+                ),
+                UIHelper.customVerticalSpace(10.0),
+                CustomTextField(
+                  keyboardType: TextInputType.emailAddress,
+                  inputAction: TextInputAction.next,
+                  autoCorrect: true,
+                  obscureText: false,
+                  hintText: 'Option1',
+                  controller: optionOneController,
+                ),
+                UIHelper.customVerticalSpace(10.0),
+                CustomTextField(
+                    keyboardType: TextInputType.emailAddress,
+                    inputAction: TextInputAction.next,
+                    autoCorrect: true,
+                    obscureText: false,
+                    hintText: 'Option2',
+                    controller: optionTwoController),
+              ],
+            ));
+      },
+    );
+  }
+}
+/*
+ Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Polls(
                   children: [
@@ -66,7 +105,7 @@ class QuestionIntoPollView extends StatelessWidget with $QuestionIntoPollView {
                     Polls.options(title: 'Cairo', value: model.option1),
                     Polls.options(title: 'Mecca', value: model.option2),
                   ],
-                  question: const Text('message![index].message'),
+                  question: Text(questionValue),
                   currentUser: 'gggg',
                   allowCreatorVote: true,
                   creatorID: 'creator',
@@ -75,9 +114,13 @@ class QuestionIntoPollView extends StatelessWidget with $QuestionIntoPollView {
                   onVoteBackgroundColor: Colors.blue,
                   leadingBackgroundColor: Colors.blue,
                   backgroundColor: Colors.white,
-                  onVote: model.onVote(model.number),
-                )));
-      },
-    );
-  }
-}
+                  onVote: (choice) {
+                    if (choice == 1) {
+                      option1 += 1.0;
+                    }
+                    if (choice == 2) {
+                      option2 += 1.0;
+                    }
+                    model.reBuild();
+                  },
+                )) */

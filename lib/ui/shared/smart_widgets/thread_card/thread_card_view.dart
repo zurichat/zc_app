@@ -43,7 +43,7 @@ class ThreadCardView extends StatelessWidget {
           case ThreadCardType.threadPost:
             return ThreadCardPost(userThreadPost);
           case ThreadCardType.threadChannelMain:
-            return ThreadChannelMain(userPost);
+            return ThreadChannelMain(userPost!);
         }
       },
       viewModelBuilder: () => ThreadCardViewModel(),

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
@@ -27,16 +28,11 @@ class ThirdSection extends StatelessWidget {
       alignment: Alignment.center,
       padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6.r),
-          border: Border.all(width: 1.w, color: AppColors.borderColor),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5.r,
-              blurRadius: 6.r,
-              offset: Offset(0, 3.h), // changes position of shadow
-            ),
-          ]),
+        borderRadius: BorderRadius.circular(6.r),
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.darkThemePrimaryColor
+            : AppColors.whiteColor,
+      ),
       child: Column(
         children: [
           InkWell(
@@ -56,8 +52,24 @@ class ThirdSection extends StatelessWidget {
           SizedBox(height: 18.h),
           InkWell(
               onTap: () {},
-              child: const NewRowTile(
-                  icon: Icons.person_add_alt_1_outlined, text: AddPeople)),
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    'assets/icons/svg_icons/user.svg',
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
+                  SizedBox(width: 24.23.w),
+                  Text(
+                    AddPeople,
+                    style: AppTextStyles.namesStyle.copyWith(
+                      fontSize: 14.sp,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
+                    ),
+                  ),
+                ],
+              )),
           SizedBox(height: 10.h),
           Divider(
             thickness: 0.5.h,
@@ -81,8 +93,24 @@ class ThirdSection extends StatelessWidget {
           SizedBox(height: 18.h),
           InkWell(
               onTap: () {},
-              child: const NewRowTile(
-                  icon: Icons.phone_outlined, text: StartCall)),
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    'assets/icons/svg_icons/phone.svg',
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
+                  SizedBox(width: 24.23.w),
+                  Text(
+                    StartCall,
+                    style: AppTextStyles.namesStyle.copyWith(
+                      fontSize: 14.sp,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
+                    ),
+                  ),
+                ],
+              )),
         ],
       ),
     );
