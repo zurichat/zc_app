@@ -9,22 +9,30 @@ import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.logger.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/ui/view/set_status/set_status_view.form.dart';
 
-import '../../../app/app.locator.dart';
-import '../../../app/app.logger.dart';
-import '../../../app/app.router.dart';
-
-class YouPageViewModel extends BaseViewModel {
+class YouPageViewModel extends ReactiveViewModel {
   final log = getLogger('YouPageViewModel');
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
   final _userService = locator<UserService>();
-  final _storage = locator<SharedPreferenceLocalStorage>();
-  final _snackBar = locator<SnackbarService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
   final _connectivityService = locator<ConnectivityService>();
   final _apiService = ZuriApi(coreBaseUrl);
-  String statusText = 'What\'s your status';
-  var iconData = '';
+  final _snackbarService = locator<SnackbarService>();
+  final _statusService = locator<StatusService>();
+
+  @override
+  List<ReactiveServiceMixin> get reactiveServices => [_statusService];
+
+  String? get orgId => _storageService.getString(StorageKeys.currentOrgId);
+  String? get memberId =>
+      _storageService.getString(StorageKeys.idInOrganization);
+  String? get token =>
+      _storageService.getString(StorageKeys.currentSessionToken);
 
   String get username =>
       (_userService.userDetails?.displayName?.isNotEmpty ?? false
@@ -34,6 +42,33 @@ class YouPageViewModel extends BaseViewModel {
   String profileImage = ZuriAppbarLogo;
   String currentStatus = Active;
   String otherStatus = Away;
+
+  final String hintText = SetAStatus;
+  String _statusText = 'What\'s your status';
+  String get statusText => _statusText;
+  final tagIcon = bubble;
+  var iconData = '';
+  bool isLoading = false;
+
+  fetchStatus() async {
+    _statusText = _statusService.statusText;
+    final endpoint = 'organizations/$orgId/members/$memberId';
+    final response =
+        await _apiService.get(endpoint, queryParameters: {}, token: token);
+
+    if (response != null) {
+      _statusText = response.data['data']['status']['text'];
+      iconData = response.data['data']['status']['tag'];
+      notifyListeners();
+    } else {}
+  }
+
+  loading(status) {
+    isLoading = status;
+    notifyListeners();
+  }
+
+  clear() {}
 
   Future editProfile() async {
     await _navigationService.navigateTo(
@@ -85,13 +120,11 @@ class YouPageViewModel extends BaseViewModel {
   void navigateToOrgView() =>
       navigationService.clearStackAndShow(Routes.organizationView);
 
-  String? get token => _storage.getString(StorageKeys.currentSessionToken);
-
   Future<void> signOutAccount() async {
     bool connected = await _connectivityService.checkConnection();
     const endpoint = "/auth/logout";
     if (!connected) {
-      _snackBar.showCustomSnackBar(
+      _snackbarService.showCustomSnackBar(
           message: "No internet connection, connect and try again.",
           variant: SnackbarType.failure,
           duration: const Duration(milliseconds: 1500));
@@ -101,9 +134,9 @@ class YouPageViewModel extends BaseViewModel {
     final response = await _apiService.post(endpoint, body: {}, token: token);
 
     if (response?.statusCode == 200) {
-      _storage.clearData(StorageKeys.currentOrgId);
-      _storage.clearData(StorageKeys.currentOrgUrl);
-      _storage.clearData(StorageKeys.currentOrgName);
+      _storageService.clearData(StorageKeys.currentOrgId);
+      _storageService.clearData(StorageKeys.currentOrgUrl);
+      _storageService.clearData(StorageKeys.currentOrgName);
       navigateToOrgView();
     }
   }
@@ -112,22 +145,23 @@ class YouPageViewModel extends BaseViewModel {
     await _navigationService.navigateTo(Routes.setStatusView);
   }
 
-  fetchStatus() async {
-    String res = _navigationService.currentArguments;
-    statusText = res;
-    // _storage.getString(StorageKeys.statusText) ?? 'What\'s your status';
+  void exitPage() {
     notifyListeners();
-    final orgId = _storage.getString(StorageKeys.currentOrgId);
-    final memberId = _storage.getString(StorageKeys.idInOrganization);
-
-    final endpoint = 'organizations/$orgId/members/$memberId';
-    final response =
-        await _apiService.get(endpoint, queryParameters: {}, token: token);
-
-    if (response != null && response.statusCode == 200) {
-      statusText = response.data['data']['status']['text'];
-      iconData = response.data['data']['status']['tag'];
-      notifyListeners();
-    } else {}
+    _navigationService.back();
+    notifyListeners();
   }
+
+  Future clearAfter() async {
+    await _navigationService.navigateTo(Routes.clearAfterView);
+  }
+}
+
+class StatusService with ReactiveServiceMixin {
+  StatusService() {
+    listenToReactiveValues([_statusText]);
+  }
+  final _statusText = ReactiveValue<String>('What\'s your status');
+  String get statusText => _statusText.value;
+
+  void updateStatusText(statusText) => _statusText.value = statusText;
 }

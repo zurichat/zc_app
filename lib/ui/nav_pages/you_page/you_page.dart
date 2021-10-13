@@ -11,9 +11,7 @@ import 'widgets/status_form.dart';
 import 'you_page_viewmodel.dart';
 
 class YouPage extends StatelessWidget {
-  final String? statusText;
-
-  const YouPage({Key? key, this.statusText}) : super(key: key);
+  const YouPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

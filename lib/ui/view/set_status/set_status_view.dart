@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/nav_pages/you_page/you_page_viewmodel.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/view/set_status/set_status_viewmodel.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/set_status/set_status_viewmodel.dart';
 import 'package:hng/ui/view/set_status/widgets/status.dart';
 import 'package:hng/ui/view/set_status/widgets/statuses.dart';
 import 'package:hng/ui/view/set_status/set_status_view.form.dart';
@@ -21,7 +22,7 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
-      onModelReady: (model) => listenToFormUpdated(model),
+      // onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
         color: AppColors.whiteColor,
@@ -71,7 +72,7 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                           hintText: model.hintText,
                           border: InputBorder.none,
                         ),
-                        controller: statusController,
+                        onChanged: model.statusValueText,
                       ),
                       fit: FlexFit.loose,
                     ),

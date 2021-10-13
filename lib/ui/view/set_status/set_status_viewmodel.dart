@@ -1,18 +1,16 @@
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/ui/nav_pages/you_page/you_page.dart';
+import 'package:hng/ui/nav_pages/you_page/you_page_viewmodel.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
-import 'package:hng/ui/view/set_status/set_status_view.form.dart';
 
-class SetStatusViewModel extends FormViewModel {
+class SetStatusViewModel extends ReactiveViewModel {
   final _navigationService = locator<NavigationService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _zuriApi = ZuriApi(coreBaseUrl);
@@ -20,16 +18,24 @@ class SetStatusViewModel extends FormViewModel {
   final String hintText = SetAStatus;
   final tagIcon = bubble;
   bool isLoading = false;
+  String _statusText = '';
+  String get statusText => _statusText;
+  final _statusService = locator<StatusService>();
+
+  @override
+  List<ReactiveServiceMixin> get reactiveServices => [_statusService];
 
   loading(status) {
     isLoading = status;
     notifyListeners();
   }
 
-  void exitPage({statusText}) {
-    _navigationService.navigateToView(YouPage(
-      statusText: statusValue,
-    ));
+  statusValueText(value) {
+    _statusText = value;
+  }
+
+  void exitPage() {
+    _navigationService.back();
   }
 
   Future clearAfter() async {
@@ -44,7 +50,7 @@ class SetStatusViewModel extends FormViewModel {
     final endpoint = 'organizations/$orgId/members/$memberId/status';
     final data = {
       'tag': ':ten:',
-      'text': statusValue ?? '',
+      'text': _statusText,
       'expiry_time': 'dont_clear'
     };
     try {
@@ -52,15 +58,16 @@ class SetStatusViewModel extends FormViewModel {
           body: data, token: token);
 
       if (response != null && response.statusCode == 200) {
-        _storageService.setString(StorageKeys.statusText, statusValue!);
+        _storageService.setString(StorageKeys.statusText, _statusText);
         // _storageService.setString('status_tag', tagValue!);
+        _statusService.updateStatusText(_statusText);
       }
       loading(false);
-      exitPage(statusText: statusValue ?? '');
+      exitPage();
     } catch (e) {
       loading(false);
       _snackbarService.showCustomSnackBar(
-        message: 'message',
+        message: e.toString(),
         variant: SnackbarType.failure,
         duration: const Duration(seconds: 2),
       );
@@ -68,7 +75,4 @@ class SetStatusViewModel extends FormViewModel {
   }
 
   clear() {}
-
-  @override
-  void setFormStatus() {}
 }

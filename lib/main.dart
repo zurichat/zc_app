@@ -14,7 +14,6 @@ import 'constants/app_strings.dart';
 import 'general_widgets/app_snackbar.dart';
 import 'services/theme_setup.dart';
 
-
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ThemeManager.initialise();

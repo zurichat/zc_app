@@ -6,6 +6,7 @@
 
 // ignore_for_file: public_member_api_docs
 
+import 'package:hng/ui/nav_pages/you_page/you_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -50,4 +51,5 @@ Future setupLocator(
   locator.registerLazySingleton(() => NotificationService());
   final centrifugeService = await CentrifugeService.getInstance();
   locator.registerSingleton(centrifugeService);
+  locator.registerLazySingleton(() => StatusService());
 }
