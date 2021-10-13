@@ -18,6 +18,8 @@ import 'widgets/sixth_section.dart';
 
 class ChannelInfoView extends StatelessWidget {
   final List<ChannelMembermodel> channelMembers;
+  final String? channelName;
+  final String? channelID;
   final ChannelModel channelDetail;
   final int numberOfMembers;
 
@@ -25,7 +27,9 @@ class ChannelInfoView extends StatelessWidget {
       {Key? key,
       required this.numberOfMembers,
       required this.channelMembers,
-      required this.channelDetail})
+      required this.channelDetail,
+      this.channelName,
+      this.channelID})
       : super(key: key);
 
   @override
