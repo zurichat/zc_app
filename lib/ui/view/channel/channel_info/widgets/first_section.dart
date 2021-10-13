@@ -1,18 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.dart';
 import '../../../../shared/colors.dart';
 
 class FirstSection extends StatelessWidget {
-  const FirstSection(this.model, {Key? key}) : super(key: key);
+  const FirstSection(this.model, {Key? key, this.channelName, this.channelID})
+      : super(key: key);
   final ChannelInfoViewModel model;
+  final String? channelName;
+  final String? channelID;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 380,
+      height: 300,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Theme.of(context).brightness == Brightness.dark
@@ -26,7 +28,7 @@ class FirstSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "#${model.channelName}",
+            "#$channelName",
             style: AppTextStyles.body1Bold,
           ),
           const SizedBox(height: 25),
@@ -47,12 +49,12 @@ class FirstSection extends StatelessWidget {
           const SizedBox(height: 20),
           Text(
             Topic,
-            style: AppTextStyles.headerStyle1.copyWith(fontSize: 16.sp),
+            style: AppTextStyles.headerStyle1,
           ),
           const SizedBox(height: 10),
           Text(
             CreatingZuri,
-            style: AppTextStyles.body1Light.copyWith(fontSize: 16.sp),
+            style: AppTextStyles.body1Light,
           ),
           const SizedBox(height: 25),
           const Divider(
@@ -67,7 +69,7 @@ class FirstSection extends StatelessWidget {
               },
               child: Text(
                 Edit,
-                style: AppTextStyles.bodyBig..copyWith(fontSize: 16.sp),
+                style: AppTextStyles.bodyBig,
               ),
             ),
           ),

@@ -33,8 +33,8 @@ class _ZuriLoaderState extends State<ZuriLoader> with TickerProviderStateMixin {
           child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: 80,
-                width: 80,
+                height: 50,
+                width: 50,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.fill,
