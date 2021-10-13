@@ -18,6 +18,9 @@ class SelectEmail extends StatelessWidget {
     return ViewModelBuilder<SelectEmailViewModel>.nonReactive(
       viewModelBuilder: () => SelectEmailViewModel(),
       builder: (context, model, child) => Scaffold(
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.blackColor
+            : AppColors.whiteColor,
         appBar: ZuriAppBar(
           orgTitle: Text(
             model.getScreenTitle(method),
@@ -39,7 +42,7 @@ class SelectEmail extends StatelessWidget {
               borderRadius: BorderRadius.circular(2.0),
               boxShadow: const [
                 BoxShadow(
-                  color: Color(0xff4F4F4F),
+                  color: AppColors.darkGreyColor,
                   blurRadius: 1,
                   offset: Offset(0, 1),
                 ),
@@ -100,12 +103,16 @@ class SelectEmail extends StatelessWidget {
                         size: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 25.5),
-                        child: Text(
-                          model.anotherEmail,
-                          style: const TextStyle(
-                            fontSize: 14,
+                        padding: const EdgeInsets.only(
+                          left: 25.5,
+                        ),
+                        child: GestureDetector(
+                          child: Text(
+                            model.anotherEmail,
+                            style: const TextStyle(
+                                color: AppColors.deepBlackColor, fontSize: 14),
                           ),
+                          onTap: () => model.navigateToUseDifferentEmailView(),
                         ),
                       ),
                     ],
