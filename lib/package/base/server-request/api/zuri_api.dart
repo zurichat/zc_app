@@ -644,7 +644,7 @@ class ZuriApi implements Api {
   ) async {
     try {
       final res = await post(
-        'organizations/$organizationId/members',
+        'organizations/$organizationId/send-invite',
         body: body,
         token: token,
       );

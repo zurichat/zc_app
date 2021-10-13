@@ -24,11 +24,12 @@ class InviteViewModel extends FormViewModel with ValidatorMixin {
   inviteWithMail(String email) async {
     final orgId = userService.currentOrgId;
     final token = userService.authToken;
+    await storage.clearData(StorageKeys.invitedEmail);
     if (validateEmail(email) == null) {
       isLoading = true;
       notifyListeners();
       Map<String, dynamic> body = {
-        "user_id": email,
+        "emails": [email],
       };
       try {
         final res = await _zuriApi.inviteToOrganizationWithNormalMail(
@@ -36,18 +37,27 @@ class InviteViewModel extends FormViewModel with ValidatorMixin {
         log.i('>>>>>>>>> invite response : $res');
         isLoading = false;
         notifyListeners();
-        if (res != null) navigateToInvitationSent();
+        await storage.setString(StorageKeys.invitedEmail, email);
+        navigateToInvitationSent();
       } on DioError catch (e) {
         log.w(e.toString());
         isLoading = false;
         notifyListeners();
       }
-      await storage.setString(StorageKeys.invitedEmail, email);
     }
+  }
+
+// String get selectedEmail =>
+  String? getInvitedMail() {
+    return storage.getString(StorageKeys.invitedEmail) ?? '';
   }
 
   void navigateBack() {
     navigationService.back();
+  }
+
+  void navigateToHome() {
+    navigationService.popRepeated(2);
   }
 
   void navigateToContacts() {

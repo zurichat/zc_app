@@ -100,15 +100,6 @@ class SelectEmail extends StatelessWidget {
                         size: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 25.5),
-                        child: Text(
-                          model.anotherEmail,
-                          style: const TextStyle(
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                      Padding(
                         padding: const EdgeInsets.only(
                           left: 25.5,
                         ),
