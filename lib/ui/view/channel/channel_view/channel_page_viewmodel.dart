@@ -31,11 +31,11 @@ class ChannelPageViewModel extends FormViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
- final _userService = locator<UserService>();
+  final _userService = locator<UserService>();
   bool _checkUser = true;
+
   get checkUser => _checkUser;
   final _api = ZuriApi(channelsBaseUrl);
-
 
   //Draft implementations
   var storedDraft = '';
@@ -79,6 +79,7 @@ class ChannelPageViewModel extends FormViewModel {
           StorageKeys.currentUserChannelIdDrafts, spList);
     }
   }
+
   //**draft implementation ends here
 
   // ignore: todo
@@ -136,7 +137,7 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
- void updateCheckUser() {
+  void updateCheckUser() {
     _checkUser = false;
     notifyListeners();
   }
@@ -167,7 +168,7 @@ class ChannelPageViewModel extends FormViewModel {
       _channelsApiService.changeChannelMessagePinnedState(userPost!.channelId,
           userPost.id!, userPost.userId!, !userPost.pinned);
 
-   Future joinChannel(String channelId) async {
+  Future joinChannel(String channelId) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
     String? orgId = storage.getString(StorageKeys.currentOrgId);
     String? token = storage.getString(StorageKeys.currentSessionToken);
@@ -189,7 +190,7 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
- void checkUserId() async {
+  void checkUserId() async {
     await Future.delayed(const Duration(milliseconds: 10));
     _checkUser =
         channelMembers.any((member) => member.name == _userService.userId);
@@ -197,6 +198,7 @@ class ChannelPageViewModel extends FormViewModel {
     log.i(_checkUser);
     notifyListeners();
   }
+
   void getChannelSocketId(String channelId) async {
     final channelSockId =
         await _channelsApiService.getChannelSocketId(channelId);
@@ -250,6 +252,17 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
+  void navigateToShareMessage(UserPost userPost) async {
+    var result = await _navigationService.navigateTo(Routes.shareMessageView,
+        arguments: ShareMessageViewArguments(userPost: userPost));
+
+    var newMessage = result['message'];
+    var sharedMessage = result['sharedMessage'];
+    var message = '$newMessage: $sharedMessage';
+    sendMessage(message);
+    _navigationService.back();
+  }
+
   void exitPage() {
     _navigationService.back();
   }
@@ -258,8 +271,8 @@ class ChannelPageViewModel extends FormViewModel {
     return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
   }
 
-  Future? navigateToChannelInfoScreen(
-      int numberOfMembers, ChannelModel channelDetail, String channelName, String channelId) async {
+  Future? navigateToChannelInfoScreen(int numberOfMembers,
+      ChannelModel channelDetail, String channelName, String channelId) async {
     await NavigationService().navigateTo(Routes.channelInfoView,
         arguments: ChannelInfoViewArguments(
             numberOfMembers: numberOfMembers,

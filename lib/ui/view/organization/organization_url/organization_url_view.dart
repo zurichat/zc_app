@@ -125,7 +125,7 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
     return TextButton(
       style: ButtonStyle(
           backgroundColor:
-              MaterialStateProperty.all<Color>(viewModel.buttonColors)),
+          MaterialStateProperty.all<Color>(viewModel.buttonColors)),
       onPressed: () => viewModel.signInToOrganization(),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
