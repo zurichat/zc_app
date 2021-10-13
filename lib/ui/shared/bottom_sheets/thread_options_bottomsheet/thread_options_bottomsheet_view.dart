@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/bottom_sheets/thread_options_bottomsheet/thread_option_bottomsheet_viewmodel.dart';
+import 'package:hng/ui/shared/bottom_sheets/thread_options_bottomsheet/thread_option_bottomsheet_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -62,10 +62,10 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
                         topBorder: false,
                         icon: Icons.message,
                         text: Text('Mark unread')),
-                    const MenuItemTile(
+                   const MenuItemTile(
                         topBorder: false,
                         icon: Icons.access_time_rounded,
-                        text: Text('Remind me')),
+                        text:  Text('Remind me')),
                     const MenuItemTile(
                         topBorder: false,
                         icon: Icons.bookmark_border_outlined,

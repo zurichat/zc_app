@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
-import 'package:zurichat/app/app.logger.dart';
+import 'package:hng/app/app.logger.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 

@@ -1,5 +1,5 @@
-import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/services/notification_service.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/services/notification_service.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -22,44 +22,39 @@ class RemindMeDialogViewModel extends BaseViewModel {
 
 //twenty minutes
   void messageRemindertwentyMinutes() async {
-    await notificationService.messageReminder(
-        dateTime: now.add(const Duration(minutes: 20)));
+  await notificationService.messageReminder(dateTime: now.add(const Duration(minutes: 20)));
     navigationService.popRepeated(1);
   }
 
 //1 hour
   void messageReminderOneHour() async {
-    await notificationService.messageReminder(
-        dateTime: now.add(const Duration(hours: 1)));
-    navigationService.popRepeated(1);
+  await notificationService.messageReminder(dateTime: now.add(const Duration(hours: 1)));
+   navigationService.popRepeated(1);
   }
 
   //3 hours
   void messageReminderThreeHours() async {
-    await notificationService.messageReminder(
-        dateTime: now.add(const Duration(hours: 3)));
-    navigationService.popRepeated(1);
+  await notificationService.messageReminder(dateTime: now.add(const Duration(hours:  3)));
+  navigationService.popRepeated(1);
   }
 
   //tomorrow
 
   void messageReminderTomorrow() async {
-    await notificationService.messageReminder(
-        dateTime: now.add(const Duration(days: 1)));
+  await notificationService.messageReminder(dateTime: now.add(const Duration(days: 1)));
     navigationService.popRepeated(1);
   }
 
   //next week
   void messageReminderNextWeek() async {
-    await notificationService.messageReminder(
-        dateTime: now.add(const Duration(days: 7)));
+  await notificationService.messageReminder(dateTime: now.add(const Duration(days: 7)));
     navigationService.popRepeated(1);
   }
 
   //custom
-  void customReminder(selectedDate, selectedTime) async {
+  void customReminder(selectedDate, selectedTime) async {                 
     await notificationService.customReminder(selectedDate, selectedTime);
-    navigationService.popRepeated(1);
+      navigationService.popRepeated(1);
     notifyListeners();
   }
 }

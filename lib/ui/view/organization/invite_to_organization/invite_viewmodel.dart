@@ -1,5 +1,5 @@
-import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/app/app.router.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -11,11 +11,11 @@ class InviteViewModel extends BaseViewModel {
     navigationService.back();
   }
 
-  void navigateToContacts() {
+  void navigateToContacts(){
     navigationService.navigateTo(Routes.importContacts);
   }
 
-  void navigateToInvitationSent() {
+  void navigateToInvitationSent(){
     navigationService.navigateTo(Routes.invitationSent);
   }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/models/user_post.dart';
-import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/styles.dart';
-import 'package:zurichat/utilities/enums.dart';
+import 'package:hng/models/user_post.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'thread_options_bottomsheet/widget/recent_emojis.dart';

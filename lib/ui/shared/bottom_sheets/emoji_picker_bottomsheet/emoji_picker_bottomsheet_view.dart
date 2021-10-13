@@ -1,6 +1,6 @@
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/shared.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'package:stacked/stacked.dart';

@@ -1,5 +1,5 @@
-import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app.locator.dart';
@@ -50,7 +50,7 @@ class DmJumpToViewModel extends FormViewModel {
     yield await connectivityService.checkConnection();
   }
 
-  Future<List<ChannelsSearch>?>? fetchChannels() async {
+  Future<List<ChannelsSearch>?> ?fetchChannels() async {
     try {
       setBusy(true);
       allChannelsSearch = await api.allChannelsList();
@@ -62,7 +62,7 @@ class DmJumpToViewModel extends FormViewModel {
     }
   }
 
-  Future<List<NewUser>?>? fetchUsers() async {
+  Future<List<NewUser>?> ?fetchUsers() async {
     try {
       setBusy(true);
       userSearch = (await api.fetchList());
@@ -75,8 +75,8 @@ class DmJumpToViewModel extends FormViewModel {
     }
   }
 
-  void navigateToChannel(
-      {String? name, String? id, int? membersCount, bool? isPublic}) {
+  void navigateToChannel({String? name, String? id,
+      int? membersCount, bool? isPublic}) {
     navigation.navigateTo(Routes.channelPageView,
         arguments: ChannelPageViewArguments(
             channelName: name,
@@ -88,4 +88,6 @@ class DmJumpToViewModel extends FormViewModel {
   void navigateToUserDm() {
     navigation.navigateTo(Routes.dmUserView);
   }
+
+
 }

@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:zurichat/constants/local_keys.dart';
-import 'package:zurichat/utilities/internalization/local_setup.dart';
+import 'package:hng/constants/local_keys.dart';
+import 'package:hng/utilities/internalization/local_setup.dart';
 
 class AppLocalization {
   ///TODO: Remove late

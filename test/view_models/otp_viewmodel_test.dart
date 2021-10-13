@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/ui/view/otp/otp_viewmodel.dart';
+import 'package:hng/app/app.router.dart';
+import 'package:hng/ui/view/otp/otp_viewmodel.dart';
 import 'package:mockito/mockito.dart';
 
 import '../helpers/test_helpers.dart';
@@ -17,7 +17,8 @@ void main() {
         verify(service.navigateTo(Routes.loginView));
       });
 
-      test('when called, loading indicator is disabled', () {
+      test('when called, loading indicator is disabled',
+          () {
         final model = OTPViewModel();
         var load = model.isLoading;
         expect(load, false);

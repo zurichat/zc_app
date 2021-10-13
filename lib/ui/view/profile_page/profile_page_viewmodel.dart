@@ -3,7 +3,7 @@ this is the view model i created to run my test,
 the dev in charge can delete if he sees fit
  */
 
-import 'package:zurichat/app/app.logger.dart';
+import 'package:hng/app/app.logger.dart';
 // import 'package:image_gallery_saver/image_gallery_saver.dart';
 // import 'package:permission_handler/permission_handler.dart';
 import 'package:stacked/stacked.dart';

@@ -1,8 +1,8 @@
 // import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/view/popup_notification/popup_notification_viewmodel.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/view/popup_notification/popup_notification_viewmodel.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 

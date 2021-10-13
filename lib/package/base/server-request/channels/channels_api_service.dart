@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:zurichat/models/channel_members.dart';
-import 'package:zurichat/models/channel_model.dart';
-import 'package:zurichat/models/pinned_message_model.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
+import 'package:hng/models/pinned_message_model.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
@@ -90,16 +90,17 @@ class ChannelsApiService {
     }
   }
 
-  getChanelCreator(String channelId) async {
+  getChanelCreator(String channelId)async{
     final orgId = _userService.currentOrgId;
-    try {
-      final res =
-          await _api.get('v1/$orgId/channels/$channelId/', token: token);
+    try{
+      final res=await _api.get('v1/$orgId/channels/$channelId/',token: token);
       return res.data;
-    } on Exception catch (e) {
+    }on Exception catch(e){
       log.e(e.toString());
     }
   }
+
+
 
   Future<List> getChannelMessages(String channelId) async {
     final orgId = _userService.currentOrgId;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/styles.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/styles.dart';
 
 Widget customAppBar(model) {
   return AppBar(

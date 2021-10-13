@@ -1,4 +1,4 @@
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:hng/constants/app_strings.dart';
 
 class DraftedItem {
   final String? username, message, time;

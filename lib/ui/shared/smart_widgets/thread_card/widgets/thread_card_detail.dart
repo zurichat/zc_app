@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/models/user_post.dart';
-import 'package:zurichat/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
-import 'package:zurichat/ui/shared/styles.dart';
+import 'package:hng/models/user_post.dart';
+import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 
@@ -10,13 +10,13 @@ import '../../../colors.dart';
 import '../../text_parser/text_parser_view.dart';
 import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
-import 'package:zurichat/app/app.logger.dart';
+import 'package:hng/app/app.logger.dart';
 
 class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
   ThreadCardDetail(this.userPost, {Key? key}) : super(key: key);
 
   final UserPost? userPost;
-  final log = getLogger("ThreadCardDetail");
+      final log = getLogger("ThreadCardDetail");
 
   @override
   Widget build(BuildContext context, ThreadCardViewModel viewModel) {
@@ -27,7 +27,7 @@ class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
         children: [
           InkWell(
             onTap: viewModel.viewProfile,
-            onLongPress: () => zuriChatBottomSheet(
+             onLongPress: () => zuriChatBottomSheet(
                 context: context,
                 addToSavedItems: () {
                   viewModel.saveItem(

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zurichat/ui/shared/smart_widgets/thread_card/thread_card_viewmodel.dart';
-import 'package:zurichat/utilities/enums.dart';
+import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_viewmodel.dart';
+import 'package:hng/utilities/enums.dart';
 import 'package:mockito/mockito.dart';
 import '../helpers/test_helpers.dart';
 

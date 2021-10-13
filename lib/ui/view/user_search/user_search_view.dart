@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../nav_pages/home_page/widgets/custom_channel_list_tile.dart';

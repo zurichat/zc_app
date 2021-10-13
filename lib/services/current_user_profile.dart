@@ -1,10 +1,10 @@
-import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/app/app.logger.dart';
-import 'package:zurichat/models/profile_model.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/utilities/constants.dart';
-import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/app/app.logger.dart';
+import 'package:hng/models/profile_model.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/utilities/constants.dart';
+import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'local_storage_services.dart';
