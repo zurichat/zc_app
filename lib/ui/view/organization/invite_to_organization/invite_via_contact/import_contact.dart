@@ -4,7 +4,7 @@ import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
-import 'invite_viewmodel.dart';
+import '../invite_via_email/invite_viewmodel.dart';
 
 class ImportContacts extends StatelessWidget {
   const ImportContacts({Key? key}) : super(key: key);
@@ -47,7 +47,7 @@ class ImportContacts extends StatelessWidget {
               children: [
                 const SizedBox(
                   height: 40.0,
-                  child:  CustomSearchField(
+                  child: CustomSearchField(
                     searchHint: 'Select or type an email address',
                   ),
                 ),
