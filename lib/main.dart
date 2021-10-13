@@ -43,9 +43,10 @@ class MyApp extends StatelessWidget {
           initialRoute: Routes.splashview,
           localizationsDelegates: localizationsDelegates,
           supportedLocales: const [
-            Locale('nl', 'NL'),
             Locale('en', 'US'),
+            Locale('nl', 'NL'),
             Locale('pt', 'BR'),
+            Locale('ar', 'SA'),
             Locale('zh', 'HK'),
           ],
           localeResolutionCallback: (locale, supportedLocales) {

@@ -430,6 +430,7 @@ const String SendFeedback = 'Send Feedback';
 
 //Images and Logos
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
+const String NewZuriLogo = 'assets/logo/new_zuri_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
 const String GoogleLogo = 'assets/logo/Google_logo.png';
 const String statusBackground = 'assets/background/status.png';
