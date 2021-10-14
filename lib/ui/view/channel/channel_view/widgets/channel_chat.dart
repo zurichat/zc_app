@@ -41,11 +41,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                                 const Icon(Icons.push_pin,
                                     size: 16.0, color: Colors.orange),
                                 const SizedBox(width: 12.0),
-                                Text(Pinned,
-                                    style: GoogleFonts.lato(
-                                      color: AppColors.zuriTextBodyColor,
-                                      fontSize: 12.0,
-                                    )),
+                                Text(Pinned, style: AppTextStyles.bodySmall2),
                               ],
                             ),
                           ),

@@ -25,7 +25,7 @@ class PinnedMessagesView extends StatelessWidget {
             orgTitle: Text(
               PinnedMessages,
               style:
-                  AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
+                  AppTextStyles.heading4,
             ),
             whiteBackground: true,
           ),
