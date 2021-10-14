@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/styles.dart';
@@ -67,7 +66,7 @@ class AddOrganizationView extends StatelessWidget {
                               Icons.grid_view,
                             ),
                             const SizedBox(width: 16),
-                            Text(SignInNewOrg, style: AppTextStyles.heading9),
+                            Text(local.signInWorkspace, style: AppTextStyles.heading9),
                           ],
                         ),
                       ),
@@ -84,7 +83,7 @@ class AddOrganizationView extends StatelessWidget {
                               Icons.add_box_outlined,
                             ),
                             const SizedBox(width: 16),
-                            Text(JoinAnotherOrg, style: AppTextStyles.heading9),
+                            Text(local.joinWorkspace, style: AppTextStyles.heading9),
                           ],
                         ),
                       ),
@@ -101,7 +100,7 @@ class AddOrganizationView extends StatelessWidget {
                               Icons.edit_outlined,
                             ),
                             const SizedBox(width: 16),
-                            Text(CreateNewOrg, style: AppTextStyles.heading9),
+                            Text(local.createWorkspace, style: AppTextStyles.heading9),
                           ],
                         ),
                       ),

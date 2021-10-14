@@ -33,7 +33,7 @@ class YouPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: () => model.editProfile(),
+                  onTap: () => model.getUserStatus(),
                   child: ProfilePageHead(
                     name: model.username,
                     currentStatus: model.currentStatus,
@@ -87,7 +87,7 @@ class YouPage extends StatelessWidget {
                     local.viewProfile,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                   ),
-                  onPressed: model.viewProfile,
+                  onPressed: () => model.getUserStatus(),
                   topBorder: false,
                 ),
                 const SizedBox(height: 16),
