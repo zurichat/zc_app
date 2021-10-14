@@ -1,5 +1,6 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/widgets.dart';
@@ -37,14 +38,17 @@ class LocalizationService with ReactiveServiceMixin {
 
   final log = getLogger('Localizations Service');
   final _storageService = locator<SharedPreferenceLocalStorage>();
-  static const String localKey = StorageKeys.currentUserLocale;
+  static const String currentLanguageKey = StorageKeys.currentLanguageIndex;
+  List<Locale>? localesList = supportedLocalesList as List<Locale>;
 
   final supportedLocales = _supportedLocalCodes
       .map<Locale>((code) => Locale.fromSubtags(languageCode: code))
       .toList();
 
   void storeCurrentLocale(Locale locale) {
-    _storageService.setString(localKey, locale.toLanguageTag());
+    int x = localesList!.indexOf(locale);
+    _storageService.setInt(currentLanguageKey, x);
+
     _appLocale.value = locale;
   }
 
@@ -52,10 +56,11 @@ class LocalizationService with ReactiveServiceMixin {
   /// specify which locales you plan to support by returning them.
   Locale loadSupportedLocals(
       Locale? locale, Iterable<Locale> supportedLocales) {
-    String? storedLocaleString =
-        _storageService.getString(StorageKeys.currentUserLocale);
-    if (storedLocaleString != null) {
-      Locale? storedLocale = Locale(storedLocaleString);
+    int? curLangIndex =
+        _storageService.getInt(StorageKeys.currentLanguageIndex) ?? -1;
+
+    if (curLangIndex > 1) {
+      Locale? storedLocale = localesList![curLangIndex];
       storeCurrentLocale(storedLocale);
       return storedLocale;
     }

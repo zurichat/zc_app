@@ -10,7 +10,7 @@ class Splashview extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SplashscreenViewModel>.reactive(
       viewModelBuilder: () => SplashscreenViewModel(),
-      onModelReady: (model) => model.init(context),
+      onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
         body: Center(
           child: Column(
