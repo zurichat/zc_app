@@ -27,7 +27,10 @@ class SignOutBottomSheetViewModel extends BaseViewModel {
   }
 
   void navigateToWorkSpaceSettings(OrganizationModel org) {
-    _navigator.navigateTo(Routes.startDmView);
+    _navigator.navigateTo(
+      Routes.organizationSettingsView,
+      arguments: OrganizationSettingsViewArguments(org: org),
+    );
   }
 
   void navigateToSignIn() =>

@@ -806,11 +806,10 @@ class ZuriApi implements Api {
   Future<String> uploadImage(
     File? image, {
     required String token,
-    required String memberId,
-    required String orgId,
+    required String pluginId,
   }) async {
     var formData = FormData.fromMap({
-      "image": MultipartFile(
+      "file": MultipartFile(
         image!.openRead(),
         await image.length(),
         filename: image.path.split(Platform.pathSeparator).last,
@@ -818,7 +817,7 @@ class ZuriApi implements Api {
     });
     try {
       final res = await dio.post(
-        'https://api.zuri.chat/organizations/$orgId/members/$memberId/photo',
+        'https://api.zuri.chat/upload/file/$pluginId',
         options: Options(
           headers: {'Authorization': 'Bearer $token'},
         ),

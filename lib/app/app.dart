@@ -10,6 +10,9 @@ import 'package:zurichat/ui/view/organization/invite_to_organization/admin_permi
 import 'package:zurichat/ui/view/organization/invite_to_organization/invitation_sent.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
+import 'package:zurichat/ui/view/organization/organization_settings/organization_icon.dart';
+import 'package:zurichat/ui/view/organization/organization_settings/organization_name_url.dart';
+import 'package:zurichat/ui/view/organization/organization_settings/organization_settings_view.dart';
 import 'package:zurichat/ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';
 import 'package:zurichat/ui/view/threads/all_threads/threads_view.dart';
 import 'package:zurichat/package/base/jump_to_request/jump_to_api.dart';
@@ -145,6 +148,9 @@ import '../ui/view/user_search/user_search_view.dart';
     MaterialRoute(page: ImportContacts),
     MaterialRoute(page: CreateInviteLink),
     MaterialRoute(page: InvitationSent),
+    MaterialRoute(page: OrganizationSettingsView),
+    MaterialRoute(page: OrganizationNameUrl),
+    MaterialRoute(page: OrganizationLogo),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

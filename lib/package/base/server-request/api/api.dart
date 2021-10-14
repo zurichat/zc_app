@@ -74,8 +74,7 @@ abstract class Api {
   Future uploadImage(
     File image, {
     required String token,
-    required String orgId,
-    required String memberId,
+    required String pluginId,
   });
 
   // THE SERVICE TO UPDATE AN ORGANIZATION LOGO

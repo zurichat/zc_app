@@ -40,31 +40,30 @@ class SignOutBottomSheet extends StatelessWidget {
                     child: const ListTile(
                       title: CustomText(
                         text: 'Invite members',
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w500,
                         fontSize: 16,
-                        color: AppColors.zuriPrimaryColor,
+                        color: AppColors.greyColor,
                       ),
                       leading: Icon(
                         Icons.logout_sharp,
-                        color: AppColors.zuriPrimaryColor,
+                        color: AppColors.greyColor,
                       ),
                     ),
                   ),
                   GestureDetector(
                     onTap: () {
-                      model.dismissDialog();
-                      model.showSignOutDialog(org.name ?? "");
+                      model.navigateToWorkSpaceSettings(org);
                     },
                     child: const ListTile(
                       title: CustomText(
                         text: 'Organization settings',
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w500,
                         fontSize: 16,
-                        color: AppColors.zuriPrimaryColor,
+                        color: AppColors.greyColor,
                       ),
                       leading: Icon(
                         Icons.settings,
-                        color: AppColors.zuriPrimaryColor,
+                        color: AppColors.greyColor,
                       ),
                     ),
                   ),

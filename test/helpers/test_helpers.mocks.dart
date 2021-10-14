@@ -1165,10 +1165,10 @@ class MockZuriApi extends _i1.Mock implements _i22.ZuriApi {
           returnValue: _FakeFailure_3()) as _i4.Failure);
   @override
   _i2.Future<String> uploadImage(_i25.File? image,
-          {String? token, String? memberId, String? orgId}) =>
+          {String? token, String? pluginId}) =>
       (super.noSuchMethod(
-          Invocation.method(#uploadImage, [image],
-              {#token: token, #memberId: memberId, #orgId: orgId}),
+          Invocation.method(
+              #uploadImage, [image], {#token: token, #pluginId: pluginId}),
           returnValue: Future<String>.value('')) as _i2.Future<String>);
   @override
   String toString() => super.toString();
@@ -1299,12 +1299,12 @@ class MockJumpToApi extends _i1.Mock implements _i28.JumpToApi {
 /// See the documentation for Mockito's code generation for more information.
 class MockMediaService extends _i1.Mock implements _i30.MediaService {
   @override
-  _i2.Future<String?> getImage({bool? fromGallery}) => (super.noSuchMethod(
+  _i2.Future<_i25.File?> getImage({bool? fromGallery}) => (super.noSuchMethod(
       Invocation.method(#getImage, [], {#fromGallery: fromGallery}),
-      returnValue: Future<String?>.value()) as _i2.Future<String?>);
+      returnValue: Future<_i25.File?>.value()) as _i2.Future<_i25.File?>);
   @override
-  _i2.Future<String?> uploadImage(_i25.File? file) =>
-      (super.noSuchMethod(Invocation.method(#uploadImage, [file]),
+  _i2.Future<String?> uploadImage(_i25.File? file, String? pluginId) =>
+      (super.noSuchMethod(Invocation.method(#uploadImage, [file, pluginId]),
           returnValue: Future<String?>.value()) as _i2.Future<String?>);
   @override
   String toString() => super.toString();
