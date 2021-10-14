@@ -81,9 +81,6 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         duration: const Duration(seconds: 3),
                       );
                     },
-                    turnQuestionToPoll: () {
-                      viewModel.navigateToQuestionPollScreen();
-                    },
                     context: context,
                     post: userPost,
                   ),

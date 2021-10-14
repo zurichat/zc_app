@@ -137,7 +137,6 @@ class Routes {
   static const String createInviteLink = '/create-invite-link';
   static const String invitationSent = '/invitation-sent';
   static const String shareMessageView = '/share-message-view';
-  static const String questionIntoPollView = '/question-Into-PollView';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
