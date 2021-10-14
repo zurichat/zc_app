@@ -133,4 +133,6 @@ class LocalKeys {
   static const MyKeyword = "my_keyword";
   static const MyKeywordSubtitle = "my_keyword_subtitle";
   static const ChannelSpecificNotify = "channel_specific_notify";
+  static const Save = "save";
+  static const FullName = "full_name";
 }

@@ -132,5 +132,7 @@
     "in-app_notify": "In-app notification",
     "my_keyword": "My Keyword",
     "my_keyword_subtitle": "Get notified when people say...",
-    "channel_specific_notify": "Channel-specific notifications (0)"
+    "channel_specific_notify": "Channel-specific notifications (0)",
+    "save": "Save",
+    "full_name": "Full Name"
 }

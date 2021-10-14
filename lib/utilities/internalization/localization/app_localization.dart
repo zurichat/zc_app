@@ -182,6 +182,8 @@ class AppLocalization {
   String get myKeywordSubtitle => translate(LocalKeys.MyKeywordSubtitle);
   String get channelSpecificNotify =>
       translate(LocalKeys.ChannelSpecificNotify);
+  String get save => translate(LocalKeys.Save);
+  String get fullName => translate(LocalKeys.FullName);
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
