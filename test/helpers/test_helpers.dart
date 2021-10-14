@@ -86,6 +86,8 @@ MockSnackbarService getAndRegisterSnackbarServiceMock(
 MockThemeService getAndRegisterThemeServiceMock() {
   _removeRegistrationIfExists<ThemeService>();
   final service = MockThemeService();
+  var result = Future.value(const bool.fromEnvironment('Dark Mode'));
+  when(service.selectThemeAtIndex(0)).thenAnswer((realInvocation) => result);
   locator.registerSingleton<ThemeService>(service);
 
   return service;
