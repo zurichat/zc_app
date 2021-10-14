@@ -19,6 +19,7 @@ class UserService {
   String _currentOrgId = '';
   String _currentOrgUrl = '';
   String _currentOrgName = '';
+  String _currentOrgLogo = '';
   String _authToken = '';
   String _userId = '';
   String _userEmail = '';
@@ -38,6 +39,12 @@ class UserService {
     _currentOrgName = _sharedPrefs.getString(StorageKeys.currentOrgName) ?? '';
     //You can perform other function before returning
     return _currentOrgName;
+  }
+
+  String get currentOrgLogo {
+    _currentOrgLogo = _sharedPrefs.getString(StorageKeys.currentOrgLogo) ?? '';
+    //You can perform other function before returning
+    return _currentOrgLogo;
   }
 
   String get currentOrgUrl {

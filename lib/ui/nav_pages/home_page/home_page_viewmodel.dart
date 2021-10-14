@@ -60,6 +60,7 @@ class HomePageViewModel extends StreamViewModel {
   String get orgName => userService.currentOrgName;
   String get orgId => userService.currentOrgId;
   String get email => userService.userEmail;
+  String? get orgLogo => userService.currentOrgLogo;
 
   StreamSubscription? notificationSub;
 

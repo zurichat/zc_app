@@ -21,7 +21,10 @@ class OrganizationLogo extends StatelessWidget {
         return Scaffold(
           appBar: ZuriAppBar(
             whiteBackground: true,
-            title: 'Workspace Icon',
+            leading: Icons.chevron_left,
+            leadingPress: () => model.back(),
+            title: OrgIcon,
+            subtitle: '',
             actions: [
               TextButton(
                 onPressed: () => model.updateOrgLogo(org.id.toString()),
@@ -73,13 +76,13 @@ class OrganizationLogo extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     Text(
-                      'Workspace Icon guideline',
+                      OrgIconGuide,
                       style: AppTextStyles.heading4
                           .copyWith(color: AppColors.blackColor, fontSize: 20),
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      '''Your workspace icon is a way for you to visually identify the Clutch king workspace. It is used in the desktop and mobile apps, and on your workspace admin site. It's most helpful when you are on multiple ZuriChat workspaces.''',
+                      OrgIconGuideDesc,
                       style: AppTextStyles.bodyRegular.copyWith(
                           fontSize: 17, color: AppColors.greyishColor),
                     ),

@@ -131,8 +131,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
   @override
   Widget build(BuildContext context, OrganizationViewModel viewModel) {
     return ListTile(
-        onTap: () => viewModel.onTap(
-            org.id, org.name, org.organizationUrl, org.userIdInOrg),
+        onTap: () => viewModel.onTap(org),
         leading: Container(
           height: MediaQuery.of(context).size.height * 0.06,
           width: MediaQuery.of(context).size.height * 0.06,
@@ -147,15 +146,15 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
             height: MediaQuery.of(context).size.height * 0.05,
             width: MediaQuery.of(context).size.height * 0.05,
             decoration: BoxDecoration(
-              border: Border.all(
-                color: AppColors.whiteColor,
-                width: 2,
-                style: BorderStyle.solid,
-              ),
+              // border: Border.all(
+              //   color: AppColors.whiteColor,
+              //   width: 2,
+              //   style: BorderStyle.solid,
+              // ),
               color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(5),
             ),
-            clipBehavior: Clip.antiAlias,
+            clipBehavior: Clip.hardEdge,
             //TODO : Add the org image here
             child: org.logoUrl != null && org.logoUrl!.isNotEmpty
                 ? CachedNetworkImage(
@@ -163,7 +162,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
                     fit: BoxFit.cover,
                   )
                 : Image.asset(
-                    'assets/logo/new_zuri_logo.png',
+                    NewZuriLogo,
                     fit: BoxFit.cover,
                   ),
           ),

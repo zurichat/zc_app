@@ -10,6 +10,7 @@ class StorageKeys {
   static const registeredNotverifiedOTP = 'user_otp_verified';
   static const currentOrgName = 'current_org_name';
   static const currentOrgUrl = 'current_org_url';
+  static const currentOrgLogo = 'current_org_logo';
   static const currentMemberID = 'member_Id';
   static const displayName = 'display_name';
   static const firstName = 'first_name';

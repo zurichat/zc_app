@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/models/organization_model.dart';
 import 'package:zurichat/ui/shared/colors.dart';
 import 'package:zurichat/ui/shared/styles.dart';
@@ -48,13 +49,13 @@ class OrganizationSettingsView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Edit Workspace Icon',
+                          EditOrgIcon,
                           style: AppTextStyles.heading4
                               .copyWith(color: AppColors.blackColor),
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          'Workspace icon is used in the desktop and mobile apps where it\'s useful in helping to quickly identify this workspace.',
+                          EditOrgIconDesc,
                           style: AppTextStyles.bodyRegular.copyWith(
                               fontSize: 15, color: AppColors.greyColor),
                         ),
@@ -71,7 +72,7 @@ class OrganizationSettingsView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Edit Workspace Name & URL',
+                          EditOrgNameUrl,
                           style: AppTextStyles.heading4
                               .copyWith(color: AppColors.blackColor),
                         ),

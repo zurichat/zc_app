@@ -5,6 +5,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.logger.dart';
 import 'package:zurichat/constants/app_strings.dart';
@@ -349,6 +350,7 @@ class ZuriApi implements Api {
         "image": await MultipartFile.fromFile(
           image.path,
           filename: image.path.split(Platform.pathSeparator).last,
+          contentType: MediaType('image', 'jpeg'),
         ),
       });
       final res = await dio.patch(

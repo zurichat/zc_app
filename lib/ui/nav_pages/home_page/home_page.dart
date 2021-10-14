@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zurichat/constants/app_strings.dart';
@@ -34,10 +35,25 @@ class HomePage extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () => vmodel.navigateToOrganization(),
-                child: const Image(
-                  image: appBarLogo,
-                  fit: BoxFit.cover,
+                child: Container(
                   height: 25,
+                  width: 25,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  clipBehavior: Clip.hardEdge,
+                  //TODO : Add the org image here
+                  child: vmodel.orgLogo != null && vmodel.orgLogo!.isNotEmpty
+                      ? CachedNetworkImage(
+                          imageUrl: vmodel.orgLogo!,
+                          fit: BoxFit.cover,
+                        )
+                      : const Image(
+                          image: appBarLogo,
+                          fit: BoxFit.cover,
+                          height: 25,
+                        ),
                 ),
               ),
               const SizedBox(width: 16),
