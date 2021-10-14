@@ -36,6 +36,7 @@ class ChannelPageViewModel extends FormViewModel {
   final _mediaService = locator<MediaService>();
   final _userService = locator<UserService>();
   bool _checkUser = true;
+
   get checkUser => _checkUser;
   final _api = ZuriApi(channelsBaseUrl);
   String pluginId = '6165f520375a4616090b8275';
@@ -82,6 +83,7 @@ class ChannelPageViewModel extends FormViewModel {
           StorageKeys.currentUserChannelIdDrafts, spList);
     }
   }
+
   //**draft implementation ends here
 
   // ignore: todo
@@ -252,23 +254,39 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  void sendMessage(
-    String message,
-    List<File> media,
-  ) async {
-    String? userId = storage.getString(StorageKeys.currentUserId);
-    List<String> urls = [];
+  void sendMessage(String message, [List<File>? media]) async {
+    try {
+      String? userId = storage.getString(StorageKeys.currentUserId);
+      List<String> urls = [];
 
-    media.forEach((file) async {
-      var url = await _mediaService.uploadImage(file, pluginId);
-      urls.add(url!);
-    });
-    await _channelsApiService.sendChannelMessages(
-        channelID, "$userId", message, urls);
+      media?.forEach((file) async {
+        var url = await _mediaService.uploadImage(file, pluginId);
+        urls.add(url!);
+      });
+      await _channelsApiService.sendChannelMessages(
+          channelID, "$userId", message, urls);
 
-    scrollController.jumpTo(scrollController.position.maxScrollExtent);
+      scrollController.jumpTo(scrollController.position.maxScrollExtent);
 
-    notifyListeners();
+      notifyListeners();
+    } catch (e) {
+      _snackbarService.showCustomSnackBar(
+        duration: const Duration(seconds: 1),
+        message: "Could not send message, please check your internet",
+        variant: SnackbarType.failure,
+      );
+    }
+  }
+
+  void navigateToShareMessage(UserPost userPost) async {
+    var result = await _navigationService.navigateTo(Routes.shareMessageView,
+        arguments: ShareMessageViewArguments(userPost: userPost));
+
+    var newMessage = result['message'];
+    var sharedMessage = result['sharedMessage'];
+    var message = '$newMessage: $sharedMessage';
+    sendMessage(message);
+    _navigationService.back();
   }
 
   void exitPage() {
@@ -279,13 +297,15 @@ class ChannelPageViewModel extends FormViewModel {
     return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
   }
 
-  Future? navigateToChannelInfoScreen(
-      int numberOfMembers, ChannelModel channelDetail) async {
+  Future? navigateToChannelInfoScreen(int numberOfMembers,
+      ChannelModel channelDetail, String channelName) async {
     await NavigationService().navigateTo(Routes.channelInfoView,
         arguments: ChannelInfoViewArguments(
-            numberOfMembers: numberOfMembers,
-            channelMembers: channelMembers,
-            channelDetail: channelDetail));
+          numberOfMembers: numberOfMembers,
+          channelName: channelName,
+          channelMembers: channelMembers,
+          channelDetail: channelDetail,
+        ));
   }
 
   Future? navigateToAddPeople(String channelName, String channelId) async {

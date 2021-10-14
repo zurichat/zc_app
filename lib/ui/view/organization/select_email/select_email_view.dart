@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../utilities/enums.dart';
@@ -15,9 +16,13 @@ class SelectEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<SelectEmailViewModel>.nonReactive(
       viewModelBuilder: () => SelectEmailViewModel(),
       builder: (context, model, child) => Scaffold(
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.blackColor
+            : AppColors.whiteColor,
         appBar: ZuriAppBar(
           orgTitle: Text(
             model.getScreenTitle(method),
@@ -39,7 +44,7 @@ class SelectEmail extends StatelessWidget {
               borderRadius: BorderRadius.circular(2.0),
               boxShadow: const [
                 BoxShadow(
-                  color: Color(0xff4F4F4F),
+                  color: AppColors.darkGreyColor,
                   blurRadius: 1,
                   offset: Offset(0, 1),
                 ),
@@ -51,7 +56,7 @@ class SelectEmail extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-                child: Text('Select an email address to use:',
+                child: Text(local!.selectEmailToUse,
                     style: AppTextStyles.body1Bold),
               ),
               InkWell(
@@ -60,7 +65,7 @@ class SelectEmail extends StatelessWidget {
                 },
                 child: Padding(
                   padding:
-                      const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+                  const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
                   child: Row(
                     children: [
                       const Icon(
@@ -92,7 +97,7 @@ class SelectEmail extends StatelessWidget {
                 onTap: () => model.navigateToDifferentEmail(method),
                 child: Padding(
                   padding:
-                      const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+                  const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
                   child: Row(
                     children: [
                       const Icon(
@@ -100,12 +105,16 @@ class SelectEmail extends StatelessWidget {
                         size: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 25.5),
-                        child: Text(
-                          model.anotherEmail,
-                          style: const TextStyle(
-                            fontSize: 14,
+                        padding: const EdgeInsets.only(
+                          left: 25.5,
+                        ),
+                        child: GestureDetector(
+                          child: Text(
+                            model.anotherEmail,
+                            style: const TextStyle(
+                                color: AppColors.deepBlackColor, fontSize: 14),
                           ),
+                          onTap: () => model.navigateToUseDifferentEmailView(),
                         ),
                       ),
                     ],

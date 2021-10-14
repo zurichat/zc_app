@@ -48,7 +48,9 @@ class ZuriApi implements Api {
     try {
       final response = await dio.get(string.toString(),
           queryParameters: queryParameters,
-          options: Options(headers: {'Authorization': 'Bearer $token'}));
+          options: token == null
+              ? null
+              : Options(headers: {'Authorization': 'Bearer $token'}));
 
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
@@ -630,6 +632,26 @@ class ZuriApi implements Api {
       return (res?.data as List)
           .map((e) => ChannelMembermodel.fromJson(e))
           .toList();
+    } on DioError catch (e) {
+      log.w(e.toString());
+      handleApiError(e);
+    }
+  }
+
+  /// Invites a user to the organzization
+  /// This endpoint would sent the user a mail with the UUID
+  inviteToOrganizationWithNormalMail(
+    String organizationId,
+    body,
+    token,
+  ) async {
+    try {
+      final res = await post(
+        'organizations/$organizationId/send-invite',
+        body: body,
+        token: token,
+      );
+      log.i(res);
     } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
