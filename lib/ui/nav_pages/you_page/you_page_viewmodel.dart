@@ -23,7 +23,6 @@ class YouPageViewModel extends BaseViewModel {
   final _snackBar = locator<SnackbarService>();
   final _connectivityService = locator<ConnectivityService>();
   final _apiService = ZuriApi(coreBaseUrl);
-  // final _storageServe = locator<StorageService>
 
 
   String get username =>
@@ -35,9 +34,8 @@ class YouPageViewModel extends BaseViewModel {
   String currentStatus = Active;
   String otherStatus = Away;
 
-  getUserStatus() async {
+  Future getUserStatus() async {
     try{
-
       final memberId = _storage.getString(StorageKeys.idInOrganization);
       String orgId = _storage.getString(StorageKeys.currentOrgId).toString();
       var presence = await _apiService.get(

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:stacked/stacked.dart';
@@ -16,7 +17,6 @@ class SecondSection extends StatelessWidget {
         builder: (context, model, child) => Card(
               elevation: 2,
               child: Container(
-                height: 155.h,
                 width: double.infinity,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(16.37, 0, 26, 26.37),
@@ -44,25 +44,26 @@ class SecondSection extends StatelessWidget {
                           color: AppColors.deepBlackColor,
                           size: 28,
                         ),
-                        const SizedBox(width: 26,),
+                        UIHelper.horizontalSpaceMedium,
+                        UIHelper.horizontalSpaceSmall,
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Notification',
+                                Notifications,
                                 style:
                                 AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14, color: AppColors.blackColor),
                               ),
-                              const SizedBox(height: 6,),
+                              UIHelper.verticalSpaceExtraSmall,
                               Text(
-                                'Every new message',
+                                EveryNewMessage,
                                 style:
                                 AppTextStyles.body1Regular.copyWith(letterSpacing: 0.005, fontSize: 14),
                               ),
-                              const SizedBox(height: 18),
+                              UIHelper.verticalSpaceMedium,
                               Text(
-                                'Mute channel',
+                                MuteChannel,
                                 style:
                                 AppTextStyles.descriptionStyle,
                               ),

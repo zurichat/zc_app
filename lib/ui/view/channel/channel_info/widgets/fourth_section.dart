@@ -17,7 +17,7 @@ class FourthSection extends StatelessWidget {
         elevation: 2,
         child: Container(
             height: 53.h,
-            width: 395.w,
+            width: double.infinity,
             alignment: Alignment.center,
             padding: EdgeInsets.fromLTRB(18.w, 16.h, 0, 16),
             decoration: BoxDecoration(

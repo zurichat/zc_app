@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
@@ -19,7 +20,7 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
         elevation: 2,
         child: Container(
           height: 136,
-          width: 395,
+          width: double.infinity,
           alignment: Alignment.center,
           padding: const EdgeInsets.fromLTRB(18, 18, 0, 42),
           decoration: BoxDecoration(
@@ -33,22 +34,22 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
                 color: AppColors.deepBlackColor,
                 size: 28,
               ),
-              const SizedBox(width: 26,),
+              UIHelper.horizontalSpaceMedium,
+              UIHelper.horizontalSpaceSmall,
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Archive Channel',
+                      ArchiveChannel,
                       style:
                           AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
                     ),
-                    const SizedBox(height: 6,),
+                  UIHelper.verticalSpaceSmall,
                     Container(
                         alignment: Alignment.center,
                         child: Text(
-                          'Archiving the channel will remover it from the channel list, and close it from all members.'
-                          'All chats and files will still be stored and searchable',
+                            ArchiveChannelWarning,
                           style: AppTextStyles.body2_400.copyWith(fontSize: 14),
                         )),
                   ],

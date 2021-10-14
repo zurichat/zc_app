@@ -23,7 +23,6 @@ void main() {
           'When setChannelName is called and the channel name is set, should be true.',
           () async {
         final model = ChannelInfoViewModel();
-        // model.setChannelName('team-zuri-app');
         expect(model.channelName, 'team-zuri-app');
         //verify(setChannelName was called.);
       });

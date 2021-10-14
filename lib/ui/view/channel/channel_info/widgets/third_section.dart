@@ -40,26 +40,26 @@ class ThirdSection extends StatelessWidget {
                 child: NewRowTile(
                     icon: Icons.group_outlined,
                     text: "Members ($numberOfMembers)")),
-            SizedBox(height: 10.h),
+            UIHelper.verticalSpaceSmall,
             Divider(
               thickness: 0.5.h,
               color: AppColors.deepBlackColor.withOpacity(0.5),
               indent: 66.6.w,
               // endIndent: 33,
             ),
-            SizedBox(height: 18.h),
+            UIHelper.verticalSpaceMedium,
             InkWell(
                 onTap: () => model.navigateToAddMembers(),
                 child: const NewRowTile(
                     icon: Icons.person_add_alt_1_outlined, text: AddPeople)),
-            SizedBox(height: 10.h),
+            UIHelper.verticalSpaceSmall,
             Divider(
               thickness: 0.5.h,
               color: AppColors.deepBlackColor.withOpacity(0.5),
               indent: 66.6.w,
               // endIndent: 33,
             ),
-            SizedBox(height: 18.h),
+            UIHelper.verticalSpaceMedium,
             InkWell(
                 onTap: () {},
                 child: const NewRowTile(

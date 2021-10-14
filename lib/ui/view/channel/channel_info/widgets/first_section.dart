@@ -16,7 +16,6 @@ class FirstSection extends StatelessWidget {
     return Card(
       elevation: 2,
       child: Container(
-        // height: 284,
         width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
@@ -34,32 +33,34 @@ class FirstSection extends StatelessWidget {
                     "#$channelName",
                     style: AppTextStyles.body1Bold,
                   ),
-                  const SizedBox(height: 24),
+                  UIHelper.verticalSpaceSmall,
+                  UIHelper.verticalSpaceMedium,
                   Text(
                     Description,
                     style: AppTextStyles.body1Bold,
                   ),
-                  const SizedBox(height: 10),
+                  UIHelper.verticalSpaceSmall,
                   Text(
                     '${model.channelDescription}',
                     style: AppTextStyles.body1Light.copyWith(letterSpacing: 0.005),
                   ),
-                  const SizedBox(height: 6),
+                  UIHelper.verticalSpaceExtraSmall,
                   Text(
                     MarkCreatedChannel,
                     style: AppTextStyles.body1Regular.copyWith(letterSpacing: 0.005),
                   ),
-                  const SizedBox(height: 18),
+                  UIHelper.verticalSpaceMedium,
                   Text(
                     Topic,
                     style: AppTextStyles.headerStyle1.copyWith(fontSize: 16.sp),
                   ),
-                  const SizedBox(height: 10),
+                  UIHelper.verticalSpaceSmall,
                   Text(
                     CreatingZuri,
                     style: AppTextStyles.body1Light.copyWith(fontSize: 16.sp),
                   ),
-                  const SizedBox(height: 26),
+                  UIHelper.verticalSpaceSmall,
+                  UIHelper.verticalSpaceMedium,
                 ],
               ),
             ),
@@ -67,7 +68,7 @@ class FirstSection extends StatelessWidget {
               thickness: 0.5,
               color: AppColors.borderColor,
             ),
-            SizedBox(height: height*0.01),
+            UIHelper.verticalSpaceMedium,
             Center(
               child: InkWell(
                 onTap: () {
@@ -79,7 +80,7 @@ class FirstSection extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 16,)
+            UIHelper.verticalSpaceMedium,
           ],
         ),
       ),
