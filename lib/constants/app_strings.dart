@@ -58,7 +58,7 @@ const String CreateAccount = 'Create Account';
 const String AlreadyHaveAcct = 'Already  have an Account?';
 const String Or = 'or';
 const String SignUpGoogle = 'Sign Up with Google';
-const String TnC1 = 'By selecting this box, you agreed to our';
+const String TnC1 = 'By selecting this box, you agreed to our ';
 const String TnC2 = 'terms and conditions';
 const String NewPasswordHeader =
     'Your new password must be different from the previously used password';
@@ -111,7 +111,7 @@ const String Preferences = 'Preferences';
 const String Notifs = 'Notifications';
 const String ViewProfile = 'View Profile';
 const String SavedItems = 'Saved Items';
-const String SetStatusText = 'Set yourself as ';
+const String SetStatusText = 'Go ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
@@ -308,14 +308,9 @@ const String ImageDetails = '550KB png';
 const String LangAndRegion = 'Languages & Region';
 const String Language = 'Language';
 const String SetTimezone = 'Set time zone automatically';
-const String Deutsch = 'Deutsch (Deutschland)';
-const String EnglishUK = 'English (UK)';
 const String EnglishUS = 'English (US)';
-const String Espanol = 'Espanol (Espana)';
-const String Francais = 'Francais (France)';
-const String Italiano = 'Italiano (Italy)';
-const String Portugues = 'Portugues (Brazil)';
-const String Chinese = '陈摩托何';
+const String DeutschDE = 'Deutsch (Deutschland)';
+const String ArabicSA = 'اَلْعَرَبِيَّةُ';
 const String Mandarin = '来 本 嗄';
 
 //Notifications
@@ -360,6 +355,7 @@ const String NotJoinedOrgYet = 'You have not joined any workspace yet!';
 const String Help = 'Help';
 const String SignOutAccount = 'Sign Out From All workspaces';
 const String AddOrg = 'Add a workspace';
+const String AddOrganisations = 'Add Organisations';
 const String EnterOrgUrl = 'Enter Workspace URL';
 const String EnterOrgUrlHint = 'https://workspace.zuri.com';
 const String OrgDesc1 =
@@ -393,7 +389,8 @@ const String JoinAnotherOrg = 'Join another workspace';
 const String SplashScreen = 'assets/logo/splash_image.png';
 
 //Pinned Messages
-const String PinnedMsgs = 'Pinned Messages';
+const String NoPinnedMessagesYet = 'No Pinned Messages Yet';
+const String PinnedMessages = 'Pinned Messages';
 
 //View Profile
 const String MessageText = 'Message';
@@ -427,7 +424,9 @@ const String HelpCenter = 'Help Center';
 const String SendFeedback = 'Send Feedback';
 
 //Images and Logos
+const String AddLogo = 'assets/logo/add_logo.png';
 const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
+const String NewZuriLogo = 'assets/logo/new_zuri_logo.png';
 const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
 const String GoogleLogo = 'assets/logo/Google_logo.png';
 const String statusBackground = 'assets/background/status.png';
@@ -447,6 +446,7 @@ const String OnboardingTwo = 'assets/images/onboarding_screen_1.png';
 const String OnboardingThree = 'assets/images/onboarding_screen_2.png';
 const String LinkLogo = 'assets/icons/svg_icons/link.svg';
 const String CancelLogo = 'assets/icons/cancel.png';
+const String PinIcon = 'assets/icons/pin.png';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
@@ -490,6 +490,11 @@ const String MarkCreatedChannel = 'Mark created this channel on August 13.';
 const String CreatingZuri = 'Creating the zuri main app';
 const String OnePinnedMessage = 'Pinned messages (1)';
 const String OnePlugin = 'Plugins (1)';
+const String PluginIntroHeader = "Get serious and have fun here";
+const String PluginIntroBody = '''Access your oganization’s important stuff'''
+    ''' like holiday-calendar, meeting room, notice'''
+    ''' board etc. Have fun by joining the chess'''
+    ''' room and music room.''';
 const String MembersCount = '128 members';
 const String SoftwareDev = 'Software Development';
 const String PromotedPlaceholder = 'Have you been Promoted?';

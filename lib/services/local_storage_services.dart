@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hng/utilities/constants.dart';
 
 class SharedPreferenceLocalStorage {
   static SharedPreferenceLocalStorage? _instance;
@@ -57,8 +58,8 @@ class SharedPreferenceLocalStorage {
     return _preferences?.getInt(key);
   }
 
-  // static int get localeVal =>
-  //     _preferences!.getInt(LOCALE_VAL) ?? DEFAULT_LOCALE_VAL;
-  //
-  // static set localeVal(int val) => _preferences?.setInt(LOCALE_VAL, val);
+  static int get localeVal =>
+      _preferences!.getInt(LOCALE_VAL) ?? DEFAULT_LOCALE_VAL;
+  
+  static set localeVal(int val) => _preferences?.setInt(LOCALE_VAL, val);
 }

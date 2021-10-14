@@ -63,12 +63,10 @@ class ZuriTextStyle {
     );
   }
 
-  static TextStyle organizationNameText() {
-    return _base(
-      19,
-      FontWeight.w800,
-      AppColors.whiteColor.withOpacity(0.9),
-    );
+  static TextStyle organizationNameText({color}) {
+    return _base(19, FontWeight.w800, color
+        // AppColors.whiteColor.withOpacity(0.9),
+        );
   }
 
   ///This base class minimizes the amount of code and cannot

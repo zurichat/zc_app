@@ -6,6 +6,7 @@ import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'add_organization_viewmodel.dart';
@@ -17,6 +18,7 @@ class AddOrganizationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<AddOrganizationViewModel>.reactive(
       //this parameter allows us to reuse the view model to persist the state
       disposeViewModel: false,
@@ -25,34 +27,32 @@ class AddOrganizationView extends StatelessWidget {
       viewModelBuilder: () => AddOrganizationViewModel(),
       builder: (context, model, child) {
         return Scaffold(
-          backgroundColor: AppColors.whiteColor,
+          backgroundColor: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.blackColor
+              : AppColors.whiteColor,
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             orgTitle: Text(
-              AddWorkspaces,
-              style:
-                  AppTextStyles.heading4,
+              local!.addOrganizations,
+              style: AppTextStyles.heading4.copyWith(
+                  color: Theme.of(context).textTheme.bodyText1!.color),
             ),
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             whiteBackground: true,
             leadingPress: model.back,
           ),
           body: InkWell(
             onTap: () => FocusScope.of(context).unfocus(),
             child: Column(children: [
-              const SizedBox(height: 16),
+              const SizedBox(height: 5),
               Container(
                 margin: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
-                    borderRadius: BorderRadius.circular(3),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: AppColors.whiteColor,
-                        blurRadius: 1,
-                        offset: Offset(0, 1),
-                      ),
-                   ],
-                    ),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? AppColors.darkThemePrimaryColor
+                      : AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(3),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Column(

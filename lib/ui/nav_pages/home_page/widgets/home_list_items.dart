@@ -23,27 +23,28 @@ class ThreadTextAndIcon extends ViewModelWidget<HomePageViewModel> {
     return _TextAndIcon(
       text: Threads,
       unread: true,
-      onTap: () async{
+      onTap: () async {
         // Navigate to threads screen
         await navigationService.navigateTo(Routes.threadsView);
         viewModel.draftChecker();
       },
-      icon: SvgIcon(svgIcon: SvgAssets.threads),
+      icon: SvgIcon(
+        svgIcon: SvgAssets.threads,
+        color: Theme.of(context).textTheme.bodyText1!.color,
+      ),
     );
   }
 }
 
 class DraftTextAndIcon extends ViewModelWidget<HomePageViewModel> {
-
-  const
-  DraftTextAndIcon({Key? key}) : super(key: key);
+  const DraftTextAndIcon({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, viewModel) {
     return _TextAndIcon(
       text: Drafts,
       unread: true,
-      onTap: () async{
+      onTap: () async {
         await navigationService.navigateTo(Routes.draftView);
         viewModel.draftChecker();
       },
@@ -61,13 +62,10 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   @override
   Widget build(BuildContext context, viewModel) {
     return _TextAndIcon(
-      text: AddChannels,
-      unread: false,
-      onTap: () => viewModel.navigateToCreateChannel(),
-      icon: SvgIcon(
-        svgIcon: SvgAssets.addChannels,
-      ),
-    );
+        text: AddChannels,
+        unread: false,
+        onTap: () => viewModel.navigateToCreateChannel(),
+        icon: Image.asset(AddLogo));
   }
 }
 
@@ -77,13 +75,10 @@ class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   @override
   Widget build(BuildContext context, viewModel) {
     return _TextAndIcon(
-      text: AddTeammates,
-      unread: false,
-      onTap: () => viewModel.navigateInviteMembers(),
-      icon: SvgIcon(
-        svgIcon: SvgAssets.addChannels,
-      ),
-    );
+        text: AddTeammates,
+        unread: false,
+        onTap: () => viewModel.navigateInviteMembers(),
+        icon: Image.asset(AddLogo));
   }
 }
 

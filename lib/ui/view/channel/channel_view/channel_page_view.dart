@@ -52,7 +52,6 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
         }
 
         return Scaffold(
-          backgroundColor: AppColors.whiteColor,
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             leadingPress: () => model.goBack(
@@ -62,6 +61,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 membersCount,
                 public),
             whiteBackground: true,
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             actions: [
               IconButton(
                 onPressed: () {},
@@ -76,6 +76,8 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                   onPressed: () => model.navigateToChannelInfoScreen(
                     membersCount!,
                     ChannelModel(id: channelId!, name: channelName!),
+                    channelName!,
+                   channelId!,
                   ),
                   icon: const Icon(
                     Icons.info_outlined,
@@ -89,6 +91,9 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
           ),
           body: ExpandableTextFieldScreen(
+             usercheck: model.checkUser,
+            channelName: '$channelName',
+            channelId: '$channelId',
             channelID: channelId.toString(),
             textController: channelMessagesController,
             hintText: AddReply,

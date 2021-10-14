@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/organization/invite_to_organization/invite_viewmodel.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 class CreateInviteLink extends StatelessWidget {
@@ -10,6 +11,7 @@ class CreateInviteLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
@@ -21,7 +23,7 @@ class CreateInviteLink extends StatelessWidget {
             },
             whiteBackground: true,
             orgTitle: Text(
-              'Invite',
+              local!.invite,
               style: AppTextStyles.heading7,
             ),
             actions: [
@@ -29,7 +31,7 @@ class CreateInviteLink extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 0.0),
                 child: InkWell(
                     child: Text(
-                      "Send",
+                      local.send,
                       style: AppTextStyles.body1Green,
                     ),
                     highlightColor: Colors.transparent,
@@ -42,9 +44,9 @@ class CreateInviteLink extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             child: Column(
               children: [
-                const Center(
+                Center(
                   child: Text(
-                    "Know any coworkers who should join zuri chat?",
+                    local.coworkersToJoin,
                     //style: AppTextStyles.body2_400,
                   ),
                 ),
@@ -58,7 +60,7 @@ class CreateInviteLink extends StatelessWidget {
                       prefixIcon: const Icon(
                         Icons.email_outlined,
                       ),
-                      labelText: "Add an Email Address",
+                      labelText: local.addEmailAddress,
                       border: border(),
                       focusedBorder: border(),
                       enabledBorder: border(),
@@ -71,23 +73,23 @@ class CreateInviteLink extends StatelessWidget {
                     primary: AppColors.whiteColor,
                   ),
                   onPressed: () {},
-                  child: const ListTile(
-                    leading: Icon(Icons.person_sharp),
-                    title: Text("Invite from contacts"),
+                  child: ListTile(
+                    leading: const Icon(Icons.person_sharp),
+                    title: Text(local.inviteFromContacts),
                   ),
                 ),
                 SizedBox(
                   child: Column(
                     children: [
-                     const ListTile(
-                        leading: Icon(
+                      ListTile(
+                        leading: const Icon(
                           Icons.link_sharp,
                         ),
-                        title: Text("Share your invite link"),
+                        title: Text(local.shareInviteLink),
                       ),
                       UIHelper.horizontalSpaceSmall,
-                     const Text(
-                          "Create a link to share with your teammates. \n Anyone can use this link to join your zuri chat workspace"),
+                      Text(
+                          local.shareLinkText),
                     ],
                   ),
                 ),
