@@ -38,7 +38,7 @@ const int DEFAULT_LOCALE_VAL = 0;
 
 Iterable<Locale> supportedLocalesList = const [
   Locale('en', 'US'),
-  Locale('zh', 'HK'),
-  Locale('ar', 'SA'),
   Locale('de', 'DE'),
+  Locale('ar', 'SA'),
+  Locale('zh', 'HK'),
 ];
