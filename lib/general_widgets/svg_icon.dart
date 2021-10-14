@@ -7,7 +7,8 @@ class SvgAssets {
   static final SvgData plugin = SvgData('assets/icons/svg_icons/plugin.svg');
   static final SvgData home = SvgData('assets/icons/svg_icons/home.svg');
   static final SvgData you = SvgData('assets/icons/svg_icons/you.svg');
-  static final SvgData createMsg = SvgData('assets/icons/svg_icons/create_msg.svg');
+  static final SvgData createMsg =
+      SvgData('assets/icons/svg_icons/create_msg.svg');
   static final SvgData hashTag = SvgData('assets/icons/svg_icons/hash_tag.svg');
   static final SvgData locked = SvgData('assets/icons/svg_icons/lock1.svg');
   static final SvgData lockedOutline =
@@ -26,11 +27,13 @@ class SvgIcon extends StatelessWidget {
   final SvgData svgIcon;
   final Color? color;
   final double? size;
+  final bool? noColor;
 
   const SvgIcon({
     Key? key,
     required this.svgIcon,
     this.color,
+    this.noColor,
     this.size,
   }) : super(key: key);
 
@@ -38,7 +41,9 @@ class SvgIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       svgIcon.data,
-      color: color ?? Theme.of(context).textTheme.bodyText1!.color,
+      color: noColor == true
+          ? null
+          : color ?? Theme.of(context).textTheme.bodyText1!.color,
       height: size,
     );
   }

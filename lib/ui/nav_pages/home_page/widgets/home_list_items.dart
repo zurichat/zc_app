@@ -67,6 +67,7 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       onTap: () => viewModel.navigateToCreateChannel(),
       icon: SvgIcon(
         svgIcon: SvgAssets.addChannels,
+        noColor: true,
       ),
     );
   }
@@ -83,6 +84,7 @@ class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       onTap: () => viewModel.navigateInviteMembers(),
       icon: SvgIcon(
         svgIcon: SvgAssets.addChannels,
+        noColor: true,
       ),
     );
   }

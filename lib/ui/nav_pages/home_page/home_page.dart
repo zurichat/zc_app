@@ -48,36 +48,18 @@ class HomePage extends StatelessWidget {
           ),
         ),
         body: SafeArea(
-          child: Stack(
+          child: Column(
             children: [
-              Column(
-                children: [
-                  vmodel.isBusy
-                      ? LinearProgressIndicator(
-                          backgroundColor: Colors.grey[400],
-                          valueColor: const AlwaysStoppedAnimation(
-                              AppColors.zuriPrimaryColor),
-                        )
-                      : Container(),
-                  Expanded(
-                    child: body(context, vmodel),
-                  ),
-                ],
+              vmodel.isBusy
+                  ? LinearProgressIndicator(
+                      backgroundColor: Colors.grey[400],
+                      valueColor: const AlwaysStoppedAnimation(
+                          AppColors.zuriPrimaryColor),
+                    )
+                  : Container(),
+              Expanded(
+                child: body(context, vmodel),
               ),
-              Positioned(
-                bottom: 17,
-                right: 17,
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: FloatingActionButton(
-                    onPressed: vmodel.navigateToStartDMScreen,
-                    child: const Icon(
-                      Icons.open_in_new_outlined,
-                      color: AppColors.whiteColor,
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         ),
