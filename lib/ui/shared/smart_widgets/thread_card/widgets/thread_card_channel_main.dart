@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/models/user_post.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/audio_message.dart';
 import 'package:hng/ui/shared/styles.dart';
@@ -76,7 +77,14 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      TextParser(userPost.message),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextParser(userPost.message),
+                          const Icon(Icons.check,
+                              size: 12.0, color: AppColors.appBarGreen),
+                        ],
+                      ),
                     ],
                   ),
                   userPost.postSnapshotLinks!.isNotEmpty

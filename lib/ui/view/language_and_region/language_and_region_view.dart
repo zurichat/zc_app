@@ -12,7 +12,7 @@ class LanguageAndRegionModelView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final local = AppLocalization.of(context);
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<LanguageAndRegionModelViewModel>.reactive(
       onModelReady: (model) => model.initialise(),
       builder: (context, model, child) => Scaffold(
