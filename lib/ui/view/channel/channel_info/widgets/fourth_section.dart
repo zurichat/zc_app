@@ -14,35 +14,36 @@ class FourthSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: model.navigateToPinnedMessages,
-        child: Container(
-            height: 53.h,
-            width: 395.w,
-            alignment: Alignment.center,
-            padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6.r),
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? AppColors.darkThemePrimaryColor
-                  : AppColors.whiteColor,
-            ),
-            child: Row(
-              children: [
-                SvgPicture.asset(
-                  pinned_message,
-                  color: AppColors.darkGreyColor,
-                  width: 18,
-                  height: 18,
+      onTap: model.navigateToPinnedMessages,
+      child: Container(
+          height: 53.h,
+          width: 395.w,
+          alignment: Alignment.center,
+          padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6.r),
+            color: Theme.of(context).brightness == Brightness.dark
+                ? AppColors.darkThemePrimaryColor
+                : AppColors.whiteColor,
+          ),
+          child: Row(
+            children: [
+              SvgPicture.asset(
+                pinned_message,
+                color: AppColors.darkGreyColor,
+                width: 18,
+                height: 18,
+              ),
+              SizedBox(width: 24.23.w),
+              Text(
+                PinnedMessages,
+                style: AppTextStyles.namesStyle.copyWith(
+                  fontSize: 14.sp,
+                  color: Theme.of(context).textTheme.bodyText1!.color,
                 ),
-                SizedBox(width: 24.23.w),
-                Text(
-                  PinnedMessages,
-                  style: AppTextStyles.namesStyle.copyWith(
-                    fontSize: 14.sp,
-                    color: Theme.of(context).textTheme.bodyText1!.color,
-                  ),
-                ),
-              ],
-            )));
+              ),
+            ],
+          )),
+    );
   }
 }
