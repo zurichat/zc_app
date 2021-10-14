@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:zurichat/models/channel_members.dart';
-import 'package:zurichat/models/channel_model.dart';
-import 'package:zurichat/models/pinned_message_model.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/models/channel_members.dart';
+import 'package:hng/models/channel_model.dart';
+import 'package:hng/models/pinned_message_model.dart';
+import 'package:hng/package/base/server-request/api/zuri_api.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';

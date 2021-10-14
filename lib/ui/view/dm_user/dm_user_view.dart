@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
-import 'package:zurichat/ui/view/dm_user/widgets/custom_start_message.dart';
-import 'package:zurichat/ui/view/dm_user/widgets/group_separator.dart';
-import 'package:zurichat/ui/view/expandable_textfield/expandable_textfield_screen.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
+import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
+import 'package:hng/ui/view/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../shared/colors.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/styles.dart';
+import 'package:hng/ui/shared/styles.dart';
 
 class DraftedItemWidget extends StatelessWidget {
   const DraftedItemWidget({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:hng/app/app.locator.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

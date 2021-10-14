@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/general_widgets/custom_text.dart';
-import 'package:zurichat/ui/shared/colors.dart';
+import 'package:hng/general_widgets/custom_text.dart';
+import 'package:hng/ui/shared/colors.dart';
 
 class SavedItemBackground extends StatelessWidget {
   const SavedItemBackground({

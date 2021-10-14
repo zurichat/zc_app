@@ -1,7 +1,7 @@
 //On login or signup the user service is used to save all the user details
 import 'dart:convert';
 
-import 'package:zurichat/models/user_model.dart';
+import 'package:hng/models/user_model.dart';
 
 import '../app/app.locator.dart';
 import '../models/organization_model.dart';

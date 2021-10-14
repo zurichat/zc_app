@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/widgets.dart';
 
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/ui/view/channel/channel_info/widgets/textstyles.dart';
-import 'package:zurichat/ui/view/channel/channel_view/channel_page_viewmodel.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/channel/channel_info/widgets/textstyles.dart';
+import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class CheckUser extends ViewModelWidget<ChannelPageViewModel> {

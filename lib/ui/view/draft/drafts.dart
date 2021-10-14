@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/models/user_post.dart';
-import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/ui/view/draft/draft_viewmodel.dart';
-import 'package:zurichat/ui/view/threads/test_data.dart';
+import 'package:hng/models/user_post.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/draft/draft_viewmodel.dart';
+import 'package:hng/ui/view/threads/test_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/long_button.dart';
-import 'package:zurichat/ui/shared/styles.dart';
-import 'package:zurichat/ui/shared/ui_helpers.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/long_button.dart';
+import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/ui_helpers.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
-import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
 
 class InvitationSent extends StatelessWidget {
   const InvitationSent({Key? key}) : super(key: key);

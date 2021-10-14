@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zurichat/utilities/constants.dart';
+import 'package:hng/utilities/constants.dart';
 
 class SharedPreferenceLocalStorage {
   static SharedPreferenceLocalStorage? _instance;

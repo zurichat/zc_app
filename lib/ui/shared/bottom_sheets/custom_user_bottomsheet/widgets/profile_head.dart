@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/general_widgets/custom_text.dart';
-import 'package:zurichat/ui/shared/colors.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/general_widgets/custom_text.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
 
 import '../custom_user_bottom_sheet_viewmodel.dart';

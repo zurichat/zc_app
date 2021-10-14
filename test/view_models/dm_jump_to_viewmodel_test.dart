@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zurichat/ui/view/dm_chat_view/dm_jump_to_viewmodel.dart';
+import 'package:hng/ui/view/dm_chat_view/dm_jump_to_viewmodel.dart';
 import '../helpers/test_helpers.dart';
 
 void main() {

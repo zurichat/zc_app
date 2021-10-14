@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:hng/constants/app_strings.dart';
 
 class Users {
   String? userName;

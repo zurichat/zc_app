@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/nav_pages/plugin_page/widgets/custom_search_field.dart';
-import 'package:zurichat/ui/shared/styles.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/nav_pages/plugin_page/widgets/custom_search_field.dart';
+import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../invite_via_email/invite_viewmodel.dart';

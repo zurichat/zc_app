@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:hng/constants/app_strings.dart';
 
 class DateAndTime extends StatefulWidget {
   const DateAndTime({Key? key}) : super(key: key);

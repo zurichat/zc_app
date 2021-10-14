@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/models/organization_model.dart';
-import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:hng/constants/app_strings.dart';
+import 'package:hng/models/organization_model.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
