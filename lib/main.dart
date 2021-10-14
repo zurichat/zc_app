@@ -3,8 +3,8 @@ import 'package:hng/services/notification_service.dart';
 import 'package:hng/ui/shared/setup_bottom_sheet_ui.dart';
 import 'package:hng/ui/shared/setup_dialog_ui.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/internalization/local_setup.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
@@ -12,6 +12,7 @@ import 'app/app.locator.dart';
 import 'app/app.router.dart';
 import 'constants/app_strings.dart';
 import 'general_widgets/app_snackbar.dart';
+import 'main_app_view_model.dart';
 import 'services/theme_setup.dart';
 
 Future main() async {
@@ -27,12 +28,17 @@ Future main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return ThemeBuilder(
-      themes: getThemes(),
-      builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(
-        child: MaterialApp(
+    return ViewModelBuilder<MyAppModel>.reactive(
+      viewModelBuilder: () => MyAppModel(),
+      builder: (context, model, child) => 
+      ThemeBuilder(
+        themes: getThemes(),
+        builder: (context, regularTheme, darkTheme, themeMode) =>
+            OverlaySupport(
+          child: MaterialApp(
             debugShowCheckedModeBanner: false,
             navigatorKey: StackedService.navigatorKey,
             onGenerateRoute: StackedRouter().onGenerateRoute,
@@ -41,11 +47,12 @@ class MyApp extends StatelessWidget {
             darkTheme: darkTheme,
             themeMode: themeMode,
             initialRoute: Routes.splashview,
-            localizationsDelegates: localizationsDelegates,
-            locale: appLocale,
+            localizationsDelegates: model.localizationsDelegates,
+            locale: model.appLocale,
             supportedLocales: supportedLocalesList,
-            localeResolutionCallback: (locale, supportedLocales) =>
-                loadSupportedLocals(locale, supportedLocales)),
+            localeResolutionCallback: model.loadSupportedLocals,
+          ),
+        ),
       ),
     );
   }

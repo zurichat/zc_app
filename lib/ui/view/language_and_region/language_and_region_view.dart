@@ -13,6 +13,7 @@ class LanguageAndRegionModelView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<LanguageAndRegionModelViewModel>.reactive(
+      onModelReady: (model) => model.initialise(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           leading: Icons.close_rounded,
