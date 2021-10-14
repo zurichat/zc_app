@@ -38,24 +38,43 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
               height: 28,
             ),
             Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Archive Channel',
+                  style: AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
+                ),
+                Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Archiving the channel will remover it from the channel list, and close it from all members.'
+                      'All chats and filse will still be stored and searchable',
+                      style: AppTextStyles.body2_400.copyWith(fontSize: 14),
+                    )),
+              ],
+            )),
+            UIHelper.horizontalSpaceMedium,
+            UIHelper.horizontalSpaceSmall,
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Archive Channel',
+                    ArchiveChannel,
                     style:
                         AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
                   ),
+                  UIHelper.verticalSpaceSmall,
                   Container(
                       alignment: Alignment.center,
                       child: Text(
-                        'Archiving the channel will remover it from the channel list, and close it from all members.'
-                        'All chats and filse will still be stored and searchable',
+                        ArchiveChannelWarning,
                         style: AppTextStyles.body2_400.copyWith(fontSize: 14),
                       )),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

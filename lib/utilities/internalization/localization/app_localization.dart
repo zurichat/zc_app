@@ -229,6 +229,24 @@ class AppLocalization {
   String get confirmEmailText => translate(LocalKeys.ConfirmEmailText);
   String get openEmailApp => translate(LocalKeys.OpenEmailApp);
   String get companyName => translate(LocalKeys.CompanyName);
+  String get companyAnd => translate(LocalKeys.CompanyAnd);
+  String get cookiePolicy => translate(LocalKeys.CookiePolicy);
+  String get customerAgreementText =>
+      translate(LocalKeys.CustomerAgreementText);
+  String get projectName => translate(LocalKeys.ProjectName);
+  String get projectHint => translate(LocalKeys.ProjectHint);
+  String get teammateNames => translate(LocalKeys.TeammateNames);
+  String get addTeammates => translate(LocalKeys.AddTeammates);
+  String get inAppNotifySubtitle => translate(LocalKeys.InAppNotifySubtitle);
+  String get forgotPasswordHeader => translate(LocalKeys.ForgotPasswordHeader);
+  String get invalidEmail => translate(LocalKeys.InvalidEmail);
+  String get continueButton => translate(LocalKeys.Continue);
+  String get backTo => translate(LocalKeys.BackTo);
+  String get newPasswordHeader => translate(LocalKeys.NewPasswordHeader);
+  String get newPassword => translate(LocalKeys.NewPassword);
+  String get passwordLengthWarning => translate(LocalKeys.PasswordLengthWarning);
+  String get passwordMustMatch => translate(LocalKeys.PasswordMustMatch);
+  
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
