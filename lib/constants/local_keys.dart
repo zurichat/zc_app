@@ -262,4 +262,16 @@ class LocalKeys {
   static const UnpinFrom = "unpin_from";
   static const PinTo = "pin_to";
   static const Conversation = "conversation";
+  static const In20Minutes = "in_20_minutes";
+  static const In1Hour = "in_1_hour";
+  static const In3Hour = "in_3_hour";
+  static const Tomorrow = "tomorrow";
+  static const NextWeek = "next_week";
+  static const Custom = "custom";
+  static const CouldNot = "could_not";
+  static const Post = "post";
+  static const CreatedThisChannel = "created_this_channel";
+  static const ChannelIntroText = "channel_intro_text";
+  static const Channel = "channel";
+  static const Today = "today";
 }

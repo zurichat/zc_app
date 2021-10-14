@@ -296,23 +296,38 @@ class AppLocalization {
   String get newChannel => translate(LocalKeys.NewChannel);
   String get channelName => translate(LocalKeys.ChannelName);
   String get errorMessage => translate(LocalKeys.ErrorMessage);
-  String get channelCreationWarningMessage => translate(LocalKeys.ChannelCreationWarningMessage);
+  String get channelCreationWarningMessage =>
+      translate(LocalKeys.ChannelCreationWarningMessage);
   String get channelDescription => translate(LocalKeys.ChannelDescription);
   String get addDescription => translate(LocalKeys.AddDescription);
   String get makeChannelPrivate => translate(LocalKeys.MakeChannelPrivate);
-  String get privateChannelDescription => translate(LocalKeys.PrivateChannelDescription);
+  String get privateChannelDescription =>
+      translate(LocalKeys.PrivateChannelDescription);
   String get byInvitation => translate(LocalKeys.ByInvitation);
   String get pinnedMessages => translate(LocalKeys.PinnedMessages);
   String get noPinnedMessages => translate(LocalKeys.NoPinnedMessages);
   String get threadMessageIn => translate(LocalKeys.ThreadMessageIn);
   String get setStatusText => translate(LocalKeys.SetStatusText);
   String get whatIsYourStatus => translate(LocalKeys.WhatIsYourStatus);
-  String get temporarilyUnavailable => translate(LocalKeys.TemporarilyUnavailable);
+  String get temporarilyUnavailable =>
+      translate(LocalKeys.TemporarilyUnavailable);
   String get addChannel => translate(LocalKeys.AddChannel);
   String get useAnotherEmail => translate(LocalKeys.UseAnotherEmail);
   String get unPinFrom => translate(LocalKeys.UnpinFrom);
   String get pinTo => translate(LocalKeys.PinTo);
   String get conversation => translate(LocalKeys.Conversation);
+  String get in20Minutes => translate(LocalKeys.In20Minutes);
+  String get in1Hour => translate(LocalKeys.In1Hour);
+  String get in3Hour => translate(LocalKeys.In3Hour);
+  String get tomorrow => translate(LocalKeys.Tomorrow);
+  String get nextWeek => translate(LocalKeys.NextWeek);
+  String get custom => translate(LocalKeys.Custom);
+  String get couldNot => translate(LocalKeys.CouldNot);
+  String get post => translate(LocalKeys.Post);
+  String get createdThisChannel => translate(LocalKeys.CreatedThisChannel);
+  String get channelIntroText => translate(LocalKeys.ChannelIntroText);
+  String get channel => translate(LocalKeys.Channel);
+  String get today => translate(LocalKeys.Today);
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {

@@ -260,5 +260,17 @@
     "use_another_email": "Use another email address",
     "unpin_from": "Unpin from ",
     "pin_to": "Pin to ",
-    "conversation": "Conversation"
+    "conversation": "Conversation",
+    "in_20_minutes": "in 20 minutes",
+    "in_1_hour": "in 1 hour",
+    "in_3_hour": "in 3 hours",
+    "tomorrow": "Tomorrow",
+    "next_week": "Next week",
+    "custom": "Custom",
+    "could_not": "Could not",
+    "post": "post",
+    "created_this_channel": "created this channel",
+    "channel_intro_text": "This is the very beginning of the ",
+    "channel": "channel",
+    "today": "today"
 }
