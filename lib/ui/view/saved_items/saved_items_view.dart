@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
@@ -14,15 +15,17 @@ class SavedItemsView extends StatelessWidget {
     return ViewModelBuilder<SavedItemsViewModel>.reactive(
       onModelReady: (model) => model.savedItems,
       builder: (context, model, child) => Scaffold(
-        backgroundColor: AppColors.whiteColor,
         appBar: ZuriAppBar(
           leading: Icons.close_rounded,
-          whiteBackground: true,
-          leadingPress: () => model.exitPage(),
+          leadingPress: () => model.goBack(),
           orgTitle: Text(
-            'Saved Items',
-            style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
+            SavedItems,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
         ),
         body: model.savedBuilderList.isEmpty
             ? const SavedItemBackground()

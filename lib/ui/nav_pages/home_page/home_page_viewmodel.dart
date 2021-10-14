@@ -271,6 +271,10 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.inviteViaEmail);
   }
 
+  bool hasThreads() {
+    return false;
+  }
+
   bool hasDrafts() {
     var dmStoredDrafts =
         storageService.getStringList(StorageKeys.currentUserDmIdDrafts);

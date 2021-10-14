@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
@@ -15,14 +16,14 @@ class DoNotDisturbView extends StatelessWidget {
     final local = AppLocalization.of(context);
     return ViewModelBuilder<DoNotDisturbViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        backgroundColor: AppColors.whiteColor,
         appBar: ZuriAppBar(
-          leading: Icons.close_rounded,
-          leadingPress: () => model.exitPage(),
           orgTitle: Text(
             local!.doNotDisturb,
             style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
           ),
+          leading: Icons.close_outlined,
+          leadingPress: () => model.exitPage(),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           whiteBackground: true,
           actions: [
             TextButton(

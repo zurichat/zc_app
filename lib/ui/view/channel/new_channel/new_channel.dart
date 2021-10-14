@@ -25,22 +25,20 @@ class NewChannel extends StatelessWidget with $NewChannel {
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => NewChannelViewModel(),
       builder: (context, model, child) => Scaffold(
-        backgroundColor: AppColors.whiteColor,
         appBar: ZuriAppBar(
-          leading: Icons.arrow_back_ios,
-          leadingPress: () {},
           orgTitle: Text(
             local!.newChannel,
             style: AppTextStyles.heading7,
           ),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           whiteBackground: true,
+          leading: Icons.arrow_back_ios,
+          leadingPress: () => model.navigateBack(),
           actions: [
             TextButton(
               style: TextButton.styleFrom(
                   padding: const EdgeInsets.only(right: 16.0)),
-              onPressed: () {
-                model.createChannel();
-              },
+              onPressed: model.createChannel,
               child: Text(
                 local.create,
                 style: AppTextStyles.heading8,
@@ -80,6 +78,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                       ),
                     ),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           hash,
@@ -90,9 +89,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                         Expanded(
                           child: TextField(
                             controller: channelNameController,
-                            style: AppTextStyles.body2Medium.copyWith(
-                              color: AppColors.blackColor,
-                            ),
+                            style: AppTextStyles.body2Medium.copyWith(),
                             inputFormatters: [
                               LengthLimitingTextInputFormatter(80)
                             ],

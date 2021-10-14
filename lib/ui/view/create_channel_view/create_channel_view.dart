@@ -16,7 +16,6 @@ class CreateChannelView extends StatelessWidget {
     final local = AppLocalization.of(context);
     return ViewModelBuilder<CreateChannelViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
-              backgroundColor: AppColors.whiteColor,
               appBar: ZuriAppBar(
                 actions: [
                   Center(
