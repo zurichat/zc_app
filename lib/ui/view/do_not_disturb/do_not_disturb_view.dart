@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/custom_text.dart';
@@ -11,6 +12,7 @@ class DoNotDisturbView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<DoNotDisturbViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         backgroundColor: AppColors.whiteColor,
@@ -18,7 +20,7 @@ class DoNotDisturbView extends StatelessWidget {
           leading: Icons.close_rounded,
           leadingPress: () => model.exitPage(),
           orgTitle: Text(
-            'Do not disturb',
+            local!.doNotDisturb,
             style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
           ),
           whiteBackground: true,
@@ -26,7 +28,7 @@ class DoNotDisturbView extends StatelessWidget {
             TextButton(
               onPressed: () {},
               child: Text(
-                'Save',
+                local.save,
                 style: AppTextStyles.heading8,
               ),
             ),

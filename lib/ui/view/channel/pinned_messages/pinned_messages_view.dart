@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -12,8 +14,9 @@ class PinnedMessagesView extends StatelessWidget {
   const PinnedMessagesView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      ViewModelBuilder<PinnedMessagesViewModel>.reactive(
+  Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    return ViewModelBuilder<PinnedMessagesViewModel>.reactive(
         onModelReady: (model) => model.fetchPinnedMessages(),
         viewModelBuilder: () => PinnedMessagesViewModel(),
         initialiseSpecialViewModelsOnce: true,
@@ -23,7 +26,7 @@ class PinnedMessagesView extends StatelessWidget {
             leadingPress: model.navigateBack,
             leading: Icons.arrow_back_ios,
             orgTitle: Text(
-              PinnedMessages,
+              local!.pinnedMessages,
               style: AppTextStyles.heading7,
             ),
             whiteBackground: true,
@@ -37,11 +40,8 @@ class PinnedMessagesView extends StatelessWidget {
               : model.pinnedMessages.isEmpty
                   ? Center(
                       child: Text(
-                        NoPinnedMessagesYet,
-                        style: GoogleFonts.lato(
-                          color: AppColors.deepBlackColor,
-                          fontSize: 16.0,
-                        ),
+                        local.noPinnedMessages,
+                        style: AppTextStyles.heading5,
                       ),
                     )
                   : ListView.separated(
@@ -85,4 +85,5 @@ class PinnedMessagesView extends StatelessWidget {
                     ),
         ),
       );
+  }
 }

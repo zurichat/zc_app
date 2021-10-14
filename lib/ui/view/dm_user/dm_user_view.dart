@@ -6,6 +6,7 @@ import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
 import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
 import 'package:hng/ui/view/expandable_textfield/expandable_textfield_screen.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../shared/colors.dart';
@@ -27,6 +28,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     //TODO remove the var below and replace with the actual id from the backend once dm's get linked to the backend
     dynamic receiverId = 'receiver';
     return ViewModelBuilder<DmUserViewModel>.reactive(
@@ -60,7 +62,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
             children: [
               ExpandableTextFieldScreen(
                 channelID: '',
-                hintText: 'Message ${model.receiver.username}',
+                hintText: '${local!.messageButton} ${model.receiver.username}',
                 textController: messageController,
                 sendMessage: (String message) {
                   model.sendMessage();
