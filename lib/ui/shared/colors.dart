@@ -15,6 +15,7 @@ class AppColors {
   static const Color unreadMessageColor = Color(0xffB8003C);
   static const Color darkGreyColor = Color(0xFF424141);
   static const Color paleGreen = Color(0xFF89D3BB);
+  static const Color lightYellow = Color(0xFFFFFFE8);
   static const Color inactiveGreyColor = Color(0xFFB0AFB0);
   static const Color blueTextColor = Color(0xFF2573F6);
   static const Color greyBackgroundColor = Color(0xFFF4F4F4);
