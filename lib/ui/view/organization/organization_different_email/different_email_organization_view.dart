@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/text_field.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/shared.dart';
@@ -18,6 +19,7 @@ class UseDifferentEmailView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final emailController = useTextEditingController();
+    final local = AppLocalization.of(context);
 
     return ViewModelBuilder<UseDifferentEmailViewModel>.nonReactive(
         viewModelBuilder: () => UseDifferentEmailViewModel(),
@@ -43,16 +45,16 @@ class UseDifferentEmailView extends HookWidget {
                                   }
                                 },
                                 controller: emailController,
-                                label: YourEmail,
+                                label: local!.yourEmailAddress,
                               ),
                               const SizedBox(height: 8),
-                              const Text(
-                                WillSendEmail,
+                              Text(
+                                local.sendEmailForSignin,
                               ),
                               const SizedBox(height: 12),
-                              const Text(
-                                WillSendEmail,
-                                style: TextStyle(
+                              Text(
+                                local.sendEmailForSignin,
+                                style: const TextStyle(
                                     fontWeight: FontWeight.w400, fontSize: 16),
                               ),
                               const SizedBox(height: 25),
@@ -79,6 +81,7 @@ class NextButton extends ViewModelWidget<UseDifferentEmailViewModel> {
 
   @override
   Widget build(BuildContext context, UseDifferentEmailViewModel viewModel) {
+     final local = AppLocalization.of(context);
     return TextButton(
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(
@@ -91,7 +94,7 @@ class NextButton extends ViewModelWidget<UseDifferentEmailViewModel> {
           width: double.infinity,
           child: Center(
             child: Text(
-              Next,
+              local!.next,
               style: AppTextStyles.buttonText,
             ),
           ),

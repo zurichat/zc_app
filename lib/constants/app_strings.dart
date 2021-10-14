@@ -192,7 +192,7 @@ const String NoDescription = 'No description Added';
 //Channel Info
 const String Bookmarks = 'Bookmarks';
 const String MuteChannelWarning =
-    'You wont\'t recieve any messages from a muted channel';
+    'You won\'t receive any messages from a muted channel';
 const String ChannelInfo = 'Channel Info';
 const String Edit = 'Edit';
 const String Leave = 'Leave';
@@ -201,7 +201,11 @@ const String Topic = 'Topic';
 const String Notifications = 'Notification';
 const String EveryNewMessage = 'Every New Message';
 const String MuteChannel = 'Mute Channel';
+const String ArchiveChannel = 'Archive Channel';
 const String DeleteChannel = 'Delete Channel';
+const String ArchiveChannelWarning =
+    'Archiving the channel will remove it from the channel list, and close it from all members.'
+    'All chats and files will still be stored and searchable';
 const String DeleteChannelWarning =
     'All messages from this channel will be removed from Zuri Chat. Any files uploaded to this channel would not be removed.';
 const String StartCall = 'Start a call';
@@ -308,14 +312,9 @@ const String ImageDetails = '550KB png';
 const String LangAndRegion = 'Languages & Region';
 const String Language = 'Language';
 const String SetTimezone = 'Set time zone automatically';
-const String Deutsch = 'Deutsch (Deutschland)';
-const String EnglishUK = 'English (UK)';
 const String EnglishUS = 'English (US)';
-const String Espanol = 'Espanol (Espana)';
-const String Francais = 'Francais (France)';
-const String Italiano = 'Italiano (Italy)';
-const String Portugues = 'Portugues (Brazil)';
-const String Chinese = '陈摩托何';
+const String DeutschDE = 'Deutsch (Deutschland)';
+const String ArabicSA = 'اَلْعَرَبِيَّةُ';
 const String Mandarin = '来 本 嗄';
 
 //Notifications
@@ -495,6 +494,11 @@ const String MarkCreatedChannel = 'Mark created this channel on August 13.';
 const String CreatingZuri = 'Creating the zuri main app';
 const String Pinned = 'Pinned';
 const String OnePlugin = 'Plugins (1)';
+const String PluginIntroHeader = "Get serious and have fun here";
+const String PluginIntroBody = '''Access your oganization’s important stuff'''
+    ''' like holiday-calendar, meeting room, notice'''
+    ''' board etc. Have fun by joining the chess'''
+    ''' room and music room.''';
 const String MembersCount = '128 members';
 const String SoftwareDev = 'Software Development';
 const String PromotedPlaceholder = 'Have you been Promoted?';

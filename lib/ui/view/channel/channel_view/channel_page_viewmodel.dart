@@ -245,11 +245,19 @@ class ChannelPageViewModel extends FormViewModel {
   void sendMessage(
     String message,
   ) async {
-    String? userId = storage.getString(StorageKeys.currentUserId);
-    await _channelsApiService.sendChannelMessages(
-        channelID, "$userId", message);
-    scrollController.jumpTo(scrollController.position.minScrollExtent);
-    notifyListeners();
+    try {
+      String? userId = storage.getString(StorageKeys.currentUserId);
+      await _channelsApiService.sendChannelMessages(
+          channelID, "$userId", message);
+      scrollController.jumpTo(scrollController.position.minScrollExtent);
+      notifyListeners();
+    } catch (e) {
+      _snackbarService.showCustomSnackBar(
+        duration: const Duration(seconds: 1),
+        message: "Could not send message, please check your internet",
+        variant: SnackbarType.failure,
+      );
+    }
   }
 
   void navigateToShareMessage(UserPost userPost) async {
@@ -271,15 +279,15 @@ class ChannelPageViewModel extends FormViewModel {
     return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
   }
 
-  Future? navigateToChannelInfoScreen(int numberOfMembers,
-      ChannelModel channelDetail, String channelName, String channelId) async {
+  Future? navigateToChannelInfoScreen(
+      int numberOfMembers, ChannelModel channelDetail,String channelName) async {
     await NavigationService().navigateTo(Routes.channelInfoView,
         arguments: ChannelInfoViewArguments(
             numberOfMembers: numberOfMembers,
             channelName: channelName,
-            channelID: channelId,
             channelMembers: channelMembers,
-            channelDetail: channelDetail));
+            channelDetail: channelDetail,
+        ));
   }
 
   Future? navigateToAddPeople(String channelName, String channelId) async {
