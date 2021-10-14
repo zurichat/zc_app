@@ -17,6 +17,7 @@ import '../package/base/server-request/dms/dms_api_service.dart';
 import '../services/centrifuge_service.dart';
 import '../services/connectivity_service.dart';
 import '../services/local_storage_services.dart';
+import '../services/localization_service.dart';
 import '../services/media_service.dart';
 import '../services/notification_service.dart';
 import '../services/user_service.dart';
@@ -33,6 +34,7 @@ Future setupLocator(
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => ThemeService());
+  locator.registerLazySingleton(() => LocalizationService());
   final sharedPreferenceLocalStorage =
       await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);

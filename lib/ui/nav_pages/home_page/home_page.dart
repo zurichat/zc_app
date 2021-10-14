@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
@@ -12,6 +11,8 @@ import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
+
+import 'widgets/home_list_items.dart';
 
 class HomePage extends StatelessWidget {
   final Widget? organizationLogo;
@@ -77,18 +78,6 @@ class HomePage extends StatelessWidget {
               Expanded(
                 child: body(context, vmodel),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Align(
-              //     alignment: Alignment.bottomRight,
-              //     child: FloatingActionButton(
-              //         onPressed: vmodel.navigateToStartDMScreen,
-              //         child: const Icon(
-              //           Icons.open_in_new_outlined,
-              //           color: AppColors.whiteColor,
-              //         )),
-              //   ),
-              // )
             ],
           ),
         ),
@@ -111,7 +100,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 15),
-          searchBar(vmodel),
+          searchBar(context, vmodel),
           const Padding(
             padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
             child: ThreadTextAndIcon(),
@@ -143,7 +132,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget searchBar(vmodel) {
+  Widget searchBar(context, vmodel) {
+    final local = AppLocalization.of(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
       child: GestureDetector(
@@ -156,7 +146,7 @@ class HomePage extends StatelessWidget {
           borderWidth: 1.5,
           borderColor: Colors.grey[300],
           child: Text(
-            JumpTo,
+            local!.jumpTo,
             style: ZuriTextStyle.mediumNormal(),
           ),
         ),
