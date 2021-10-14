@@ -24,7 +24,8 @@ class PinnedMessagesView extends StatelessWidget {
             leading: Icons.arrow_back_ios,
             orgTitle: Text(
               PinnedMessages,
-              style: AppTextStyles.heading10,
+              style:
+                  AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
             ),
             whiteBackground: true,
           ),
