@@ -3,7 +3,6 @@ import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../constants/app_strings.dart';
-import '../../../shared/shared.dart';
 import '../../../shared/zuri_appbar.dart';
 import 'terms_and_conditions_view_model.dart';
 
