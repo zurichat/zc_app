@@ -192,4 +192,7 @@ class LocalKeys {
   static const Continue = "continue";
   static const BackTo = "back_to";
   static const NewPasswordHeader = "new_password_header";
+  static const NewPassword = "new_password";
+  static const PasswordLengthWarning = "password_length_warning";
+  static const PasswordMustMatch = "password_must_match";
 }

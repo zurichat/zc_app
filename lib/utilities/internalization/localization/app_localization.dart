@@ -243,6 +243,10 @@ class AppLocalization {
   String get continueButton => translate(LocalKeys.Continue);
   String get backTo => translate(LocalKeys.BackTo);
   String get newPasswordHeader => translate(LocalKeys.NewPasswordHeader);
+  String get newPassword => translate(LocalKeys.NewPassword);
+  String get passwordLengthWarning => translate(LocalKeys.PasswordLengthWarning);
+  String get passwordMustMatch => translate(LocalKeys.PasswordMustMatch);
+  
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {

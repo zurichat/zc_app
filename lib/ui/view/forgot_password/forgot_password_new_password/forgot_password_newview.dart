@@ -168,7 +168,7 @@ class ForgotPasswordNewView extends StatelessWidget
                                 children: [
                                   UIHelper.verticalSpaceSmall,
                                   Text(
-                                    local.passwordsMustMatch,
+                                    local.passwordMustMatch,
                                     style: AppTextStyles.body2Medium.copyWith(
                                       color: AppColors.redColor,
                                     ),
