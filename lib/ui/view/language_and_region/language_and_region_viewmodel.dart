@@ -1,6 +1,8 @@
 // ignore_for_file: avoid_print
 
+import 'package:flutter/widgets.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/main.dart';
 import 'package:hng/services/localization_service.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/extensions/locale_extension.dart';
@@ -34,7 +36,7 @@ class LanguageAndRegionModelViewModel extends BaseViewModel {
     Mandarin,
   ];
 
-  Future changeLanguage() async {
+  Future changeLanguage(BuildContext context) async {
     List locales = supportedLocalesList as List;
     currentValue = locales.indexOf(_localizationService.appLocale);
     final dialogResult = await _dialogService.showCustomDialog(
@@ -45,8 +47,9 @@ class LanguageAndRegionModelViewModel extends BaseViewModel {
     if (dialogResult != null && dialogResult.confirmed == true) {
       currentValue = dialogResult.data;
       currentLanguage = languages[currentValue];
-      _localizationService
-          .storeCurrentLocale(supportedLocalesList.elementAt(currentValue));
+      Locale? selectedLocale = supportedLocalesList.elementAt(currentValue);
+      _localizationService.storeCurrentLocale(selectedLocale);
+      MyApp.setLocale(context, selectedLocale);
 
       log.i(dialogResult.data);
       notifyListeners();

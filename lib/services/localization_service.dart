@@ -14,13 +14,13 @@ import 'package:observable_ish/observable_ish.dart';
 ///
 class LocalizationService with ReactiveServiceMixin {
   // ignore: prefer_final_fields
-  RxValue<String> _appLocale = RxValue<String>('');
+  RxValue<Locale> _appLocale = RxValue<Locale>(const Locale('en', 'GB'));
 
   LocalizationService() {
     listenToReactiveValues([_appLocale]);
   }
 
-  Locale? get appLocale => Locale(_appLocale.value);
+  Locale? get appLocale => _appLocale.value;
 
   static const _supportedLocalCodes = ['en', 'de', 'ar', 'zh'];
   get supportedLocalCodes => _supportedLocalCodes;
@@ -45,7 +45,7 @@ class LocalizationService with ReactiveServiceMixin {
 
   void storeCurrentLocale(Locale locale) {
     _storageService.setString(localKey, locale.toLanguageTag());
-    _appLocale.value = locale.toLanguageTag();
+    _appLocale.value = locale;
   }
 
   /// A callback provided by [MaterialApp] that lets you

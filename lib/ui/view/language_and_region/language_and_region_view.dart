@@ -32,7 +32,7 @@ class LanguageAndRegionModelView extends StatelessWidget {
             MenuItemTile(
               text: const Text(Language),
               subtitle: model.currentLanguage,
-              onPressed: model.changeLanguage,
+              onPressed: () => model.changeLanguage(context),
             ),
             MenuItemTile.flipSwitch(
               text: const Text(SetTimezone),
