@@ -258,15 +258,26 @@ class ChannelPageViewModel extends FormViewModel {
     try {
       String? userId = storage.getString(StorageKeys.currentUserId);
       List<String> urls = [];
+      if (media != null) {
+        for (int i = 0; i<media.length; i++){
+           var url = await _mediaService.uploadImage(media[i], pluginId);
+          urls.add(url!);
+        }
 
-      media?.forEach((file) async {
-        var url = await _mediaService.uploadImage(file, pluginId);
-        urls.add(url!);
-      });
+        // await Future.forEach<File>(media, (file) async {
+        //   var url = await _mediaService.uploadImage(file, pluginId);
+        //   urls.add(url!);
+        // });
+      }
+      // media?.forEach((file) async {
+      //   var url = await _mediaService.uploadImage(file, pluginId);
+      //   urls.add(url!);
+      // }
+
       await _channelsApiService.sendChannelMessages(
           channelID, "$userId", message, urls);
 
-      scrollController.jumpTo(scrollController.position.maxScrollExtent);
+      scrollController.jumpTo(scrollController.position.minScrollExtent);
 
       notifyListeners();
     } catch (e) {

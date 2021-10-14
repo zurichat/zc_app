@@ -233,9 +233,11 @@ class ExpandableTextFieldScreen extends HookWidget {
                                           ),
                                           GestureDetector(
                                             onTap: () {
-                                              if (textController.text
-                                                  .toString()
-                                                  .isNotEmpty) {
+                                              if (textController.text.isEmpty &&
+                                                  model.mediaList.isEmpty) {
+                                                return;
+                                              } else 
+                                              {
                                                 sendMessage(textController.text,
                                                     model.mediaList);
                                                 textController.clear();
