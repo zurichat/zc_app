@@ -2,12 +2,14 @@ import 'package:hng/app/app.locator.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/user_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:hng/services/media_service.dart';
 import 'package:hng/services/user_service.dart';
 import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/mixins/validators_mixin.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import '../../../app/app.logger.dart';
 
 //TODO refactor entire View Model, write as a Future View Model
 
@@ -16,6 +18,9 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
   final _userService = locator<UserService>();
   final _snackbarService = locator<SnackbarService>();
   final _zuriApi = ZuriApi(coreBaseUrl);
+  final _bottomSheetService = locator<BottomSheetService>();
+  final log = getLogger('EditProfileViewModel');
+  final mediaService = locator<MediaService>();
 
   late UserModel userModel;
   String fullName = '';
@@ -102,4 +107,18 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
       return false;
     }
   }
+
+  Future<String?> editProfilePic() async {
+    var sheetResponse = await _bottomSheetService.showCustomSheet(
+      variant: BottomSheetType.imagePicker,
+      isScrollControlled: true,
+    );
+
+    log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}uuuuu');
+    // notifyListeners();
+    if(sheetResponse != null){
+      return  mediaService.getImage(fromGallery: sheetResponse.confirmed);
+    }
+  }
+
 }
