@@ -30,40 +30,48 @@ class OrganizationView extends StatelessWidget {
                     local!.workspaces,
                     style: AppTextStyles.heading6,
                   ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
                   Expanded(
                     child: Visibility(
                       visible: !viewModel.isBusy,
-                      child: SingleChildScrollView(
-                        physics: const ScrollPhysics(),
-                        child: viewModel.organizations.isEmpty
-                            ? Center(
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  padding: const EdgeInsets.only(top: 50.0),
-                                  child: Text(
-                                    local.notJoinedOrg,
-                                    style: AppTextStyles.bodyRegular,
+                      child: RefreshIndicator(
+                        color: AppColors.zuriPrimaryColor,
+                        onRefresh: viewModel.initViewModel,
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: viewModel.organizations.isEmpty
+                              ? Center(
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    padding: const EdgeInsets.only(top: 50.0),
+                                    child: Text(
+                                      local.notJoinedOrg,
+                                      style: AppTextStyles.bodyRegular,
+                                    ),
                                   ),
-                                ),
-                              )
-                            : Column(
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height *
-                                  0.005,
-                            ),
-                            ListView.builder(
-                              physics:
-                              const NeverScrollableScrollPhysics(),
-                              itemCount: viewModel.organizations.length,
-                              shrinkWrap: true,
-                              itemBuilder: (context, i) {
-                                final org = viewModel.organizations[i];
+                                )
+                              : Column(
+                                  children: [
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.005,
+                                    ),
+                                    ListView.builder(
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount: viewModel.organizations.length,
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, i) {
+                                        final org = viewModel.organizations[i];
 
-                                return OrganizationTile(org: org);
-                              },
-                            ),
-                          ],
+                                        return OrganizationTile(org: org);
+                                      },
+                                    ),
+                                  ],
+                                ),
                         ),
                       ),
                       replacement: const Center(child: ZuriLoader()),
@@ -140,8 +148,12 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
           padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
             color: viewModel.currentOrgId == org.id
-                ? AppColors.blackColor
-                : AppColors.whiteColor,
+                ? Theme.of(context).brightness == Brightness.dark
+                    ? AppColors.whiteColor
+                    : AppColors.blackColor
+                : Theme.of(context).brightness == Brightness.dark
+                    ? AppColors.blackColor
+                    : AppColors.whiteColor,
             borderRadius: BorderRadius.circular(5),
           ),
           child: Container(

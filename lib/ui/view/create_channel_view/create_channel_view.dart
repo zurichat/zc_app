@@ -15,8 +15,15 @@ class CreateChannelView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<CreateChannelViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
-              backgroundColor: AppColors.whiteColor,
               appBar: ZuriAppBar(
+                orgTitle: Text(
+                  CreateChannel,
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyText1!.color,
+                  ),
+                ),
+                isDarkMode: Theme.of(context).brightness == Brightness.dark,
+                whiteBackground: true,
                 actions: const [
                   Center(
                     child: CustomTextWidget(
@@ -29,11 +36,6 @@ class CreateChannelView extends StatelessWidget {
                 ],
                 leading: Icons.arrow_back_ios,
                 leadingPress: () => model.navigateBack(),
-                whiteBackground: true,
-                orgTitle: Text(
-                  Channels,
-                  style: AppTextStyles.heading7,
-                ),
               ),
               body: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(vertical: 23),

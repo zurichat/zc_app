@@ -20,9 +20,9 @@ import 'widgets/edit_channel_text_field.dart';
 )
 class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
   final _padding = const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0);
-  EditChannelPageView({Key? key, this.channelName, this.channelId})
+  EditChannelPageView({Key? key, required this.channelName, this.channelId})
       : super(key: key);
-  final String? channelName;
+  final String channelName;
   final String? channelId;
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
               Container(
                 margin: _padding,
                 child: Text(
-                  channelName!,
+                  channelName,
                   style: AppTextStyles.body1Light,
                 ),
               ),

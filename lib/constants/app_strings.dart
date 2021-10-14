@@ -80,6 +80,7 @@ const String BackToLogin = 'Back to login';
 const String Home = 'Home';
 const String Unreads = 'Unreads';
 const String Channels = 'Channels';
+const String CreateChannel = 'Create a new channel';
 const String DMs = 'Direct Messages';
 const String JumpTo = 'Jump to...';
 const String hash = ' # ';
@@ -111,7 +112,8 @@ const String Preferences = 'Preferences';
 const String Notifs = 'Notifications';
 const String ViewProfile = 'View Profile';
 const String SavedItems = 'Saved Items';
-const String SetStatusText = 'Go ';
+const String DoNotDisturb = 'Do not disturb';
+const String SetStatusText = 'Set yourself as ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
@@ -192,7 +194,7 @@ const String NoDescription = 'No description Added';
 //Channel Info
 const String Bookmarks = 'Bookmarks';
 const String MuteChannelWarning =
-    'You wont\'t recieve any messages from a muted channel';
+    'You won\'t receive any messages from a muted channel';
 const String ChannelInfo = 'Channel Info';
 const String Edit = 'Edit';
 const String Leave = 'Leave';
@@ -201,7 +203,11 @@ const String Topic = 'Topic';
 const String Notifications = 'Notification';
 const String EveryNewMessage = 'Every New Message';
 const String MuteChannel = 'Mute Channel';
+const String ArchiveChannel = 'Archive Channel';
 const String DeleteChannel = 'Delete Channel';
+const String ArchiveChannelWarning =
+    'Archiving the channel will remove it from the channel list, and close it from all members.'
+    'All chats and files will still be stored and searchable';
 const String DeleteChannelWarning =
     'All messages from this channel will be removed from Zuri Chat. Any files uploaded to this channel would not be removed.';
 const String StartCall = 'Start a call';
@@ -499,7 +505,7 @@ const String Track = 'What I do';
 const String MobileDev = 'Mobile Dev';
 const String MarkCreatedChannel = 'Mark created this channel on August 13.';
 const String CreatingZuri = 'Creating the zuri main app';
-const String OnePinnedMessage = 'Pinned messages (1)';
+const String Pinned = 'Pinned';
 const String OnePlugin = 'Plugins (1)';
 const String PluginIntroHeader = "Get serious and have fun here";
 const String PluginIntroBody = '''Access your oganization’s important stuff'''

@@ -20,6 +20,7 @@ class InvitationSent extends StatelessWidget {
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
         return Scaffold(
           appBar: ZuriAppBar(
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             leading: Icons.close,
             leadingPress: () {
               model.navigateBack();
@@ -62,8 +63,7 @@ class InvitationSent extends StatelessWidget {
                 ),
                 UIHelper.verticalSpaceLarge,
                 Center(
-                  child: Text(
-                      local.invitedAsAZuriChatMember,
+                  child: Text(local.invitedAsAZuriChatMember,
                       style: AppTextStyles.descriptionStyle
                           .copyWith(color: AppColors.zuriDarkGrey)),
                   // textAlign: TextAlign.center,

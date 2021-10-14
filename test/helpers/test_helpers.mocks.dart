@@ -149,6 +149,14 @@ class MockSharedPreferenceLocalStorage extends _i1.Mock
       (super.noSuchMethod(Invocation.method(#setStringList, [key, value]),
           returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
   @override
+  _i2.Future<dynamic> setMap(String? key, Map<dynamic, dynamic>? map) =>
+      (super.noSuchMethod(Invocation.method(#setMap, [key, map]),
+          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+  @override
+  _i2.Future<dynamic> setList(String? key, List<dynamic>? map) =>
+      (super.noSuchMethod(Invocation.method(#setList, [key, map]),
+          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
+  @override
   bool? getBool(String? key) =>
       (super.noSuchMethod(Invocation.method(#getBool, [key])) as bool?);
   @override
@@ -161,6 +169,16 @@ class MockSharedPreferenceLocalStorage extends _i1.Mock
   List<String>? getStringList(String? key) =>
       (super.noSuchMethod(Invocation.method(#getStringList, [key]))
           as List<String>?);
+  @override
+  _i2.Future<Map<dynamic, dynamic>> getMap(String? key) =>
+      (super.noSuchMethod(Invocation.method(#getMap, [key]),
+              returnValue:
+                  Future<Map<dynamic, dynamic>>.value(<dynamic, dynamic>{}))
+          as _i2.Future<Map<dynamic, dynamic>>);
+  @override
+  List<dynamic> getList(String? key) =>
+      (super.noSuchMethod(Invocation.method(#getList, [key]),
+          returnValue: <dynamic>[]) as List<dynamic>);
   @override
   _i2.Future<bool?> clearData(String? key) =>
       (super.noSuchMethod(Invocation.method(#clearData, [key]),

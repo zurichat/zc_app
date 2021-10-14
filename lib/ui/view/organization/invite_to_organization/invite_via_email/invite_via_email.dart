@@ -29,9 +29,12 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
               model.navigateBack();
             },
             whiteBackground: true,
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             orgTitle: Text(
               local!.invite,
-              style: AppTextStyles.heading7,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
             ),
             actions: [
               Padding(
@@ -57,38 +60,35 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   child: Column(
                     children: [
-                       Center(
+                      Center(
                         child: Text(
-                         local.inviteForAdminApproval,
+                          local.inviteForAdminApproval,
                           //style: AppTextStyles.body2_400,
                         ),
                       ),
                       UIHelper.verticalSpaceLarge,
-                      Container(
-                        color: AppColors.whiteColor,
-                        child: TextField(
-                          controller: emailController,
-                          cursorColor: AppColors.zuriPrimaryColor,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(
-                              Icons.email_outlined,
-                              color: AppColors.zuriPrimaryColor,
-                            ),
-                            labelStyle: const TextStyle(
-                              color: AppColors.zuriPrimaryColor,
-                            ),
-                            labelText: "Add an Email Address",
-                            border: border(),
-                            focusedBorder: border(),
-                            enabledBorder: border(),
+                      TextField(
+                        controller: emailController,
+                        cursorColor: AppColors.zuriPrimaryColor,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.email_outlined,
+                            color: AppColors.zuriPrimaryColor,
                           ),
+                          labelStyle: const TextStyle(
+                            color: AppColors.zuriPrimaryColor,
+                          ),
+                          labelText: "Add an Email Address",
+                          border: border(),
+                          focusedBorder: border(),
+                          enabledBorder: border(),
                         ),
                       ),
                       UIHelper.verticalSpaceLarge,
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: AppColors.whiteColor,
+                          primary: AppColors.zuriPrimaryColor,
                         ),
                         onPressed: () {
                           model.navigateToContacts();

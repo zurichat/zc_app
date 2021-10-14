@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../models/channel_members.dart';
@@ -613,9 +614,9 @@ class StackedRouter extends RouterBase {
     },
     EditChannelPageView: (data) {
       var args = data.getArgs<EditChannelPageViewArguments>(
-        orElse: () => EditChannelPageViewArguments(),
+        orElse: () => EditChannelPageViewArguments(channelName: ''),
       );
-      return CupertinoPageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => EditChannelPageView(
           key: args.key,
           channelName: args.channelName,
@@ -665,7 +666,6 @@ class StackedRouter extends RouterBase {
           channelMembers: args.channelMembers,
           channelDetail: args.channelDetail,
           channelName: args.channelName,
-          channelID: args.channelID,
         ),
         settings: data,
       );
@@ -911,9 +911,10 @@ class ThreadDetailViewArguments {
 /// EditChannelPageView arguments holder class
 class EditChannelPageViewArguments {
   final Key? key;
-  final String? channelName;
+  final String channelName;
   final String? channelId;
-  EditChannelPageViewArguments({this.key, this.channelName, this.channelId});
+  EditChannelPageViewArguments(
+      {this.key, required this.channelName, this.channelId});
 }
 
 /// StartDmView arguments holder class
@@ -950,15 +951,13 @@ class ChannelInfoViewArguments {
   final int numberOfMembers;
   final List<ChannelMembermodel> channelMembers;
   final ChannelModel channelDetail;
-  final String? channelName;
-  final String? channelID;
+  final String channelName;
   ChannelInfoViewArguments(
       {this.key,
       required this.numberOfMembers,
       required this.channelMembers,
       required this.channelDetail,
-      this.channelName,
-      this.channelID});
+      required this.channelName});
 }
 
 /// DirectMessage arguments holder class

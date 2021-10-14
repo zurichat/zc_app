@@ -37,7 +37,7 @@ class AppTextStyles {
   );
   static TextStyle heading4 = GoogleFonts.lato(
     fontWeight: FontWeight.w600,
-    // color: AppColors.blackColor,
+    color: AppColors.blackColor,
     fontSize: 18,
   );
   static TextStyle heading3 = GoogleFonts.lato(
@@ -278,6 +278,14 @@ class AppTextStyles {
       fontSize: 20,
       fontWeight: FontWeight.w700,
       color: AppColors.zuriTextColorHeader);
+
+  static TextStyle pinnedMessageBodyStyle =
+      GoogleFonts.lato(fontSize: 14, color: AppColors.zuriTextColorHeader);
+
+  static TextStyle pinnedMessageHeaderStyle = GoogleFonts.lato(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: AppColors.deepGreyColor);
 
   static TextStyle headerStyle = GoogleFonts.lato(
       fontSize: 16,
