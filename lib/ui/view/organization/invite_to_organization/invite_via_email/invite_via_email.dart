@@ -4,6 +4,7 @@ import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'invite_via_email.form.dart';
@@ -15,6 +16,7 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
   InviteViaEmail({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
@@ -26,7 +28,7 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
             },
             whiteBackground: true,
             orgTitle: Text(
-              'Invite',
+              local!.invite,
               style: AppTextStyles.heading7,
             ),
             actions: [
@@ -34,7 +36,7 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                 padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 0.0),
                 child: InkWell(
                   child: Text(
-                    "Send Request",
+                    local.sendRequest,
                     style: AppTextStyles.body1Green,
                   ),
                   highlightColor: Colors.transparent,
@@ -53,9 +55,9 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   child: Column(
                     children: [
-                      const Center(
+                       Center(
                         child: Text(
-                          "Fill in who you'd like to invite. Your request will be sent to \n the admin for approval.",
+                         local.inviteForAdminApproval,
                           //style: AppTextStyles.body2_400,
                         ),
                       ),

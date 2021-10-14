@@ -1,4 +1,5 @@
 import 'package:hng/services/centrifuge_service.dart';
+import 'package:hng/services/localization_service.dart';
 import 'package:hng/services/media_service.dart';
 import 'package:hng/services/notification_service.dart';
 import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
@@ -152,6 +153,7 @@ import '../ui/view/user_search/user_search_view.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: SnackbarService),
     LazySingleton(classType: ThemeService),
+    LazySingleton(classType: LocalizationService),
     Presolve(
       classType: SharedPreferenceLocalStorage,
       presolveUsing: SharedPreferences.getInstance,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SendFeedbackDialog extends StatelessWidget {
@@ -28,6 +28,7 @@ class _SendFeedbackDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     final size = MediaQuery.of(context).size;
     final controller = TextEditingController();
     return Container(
@@ -40,11 +41,11 @@ class _SendFeedbackDialogContent extends StatelessWidget {
       height: size.height * .3,
       child: Column(
         children: [
-          const Align(
+           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              ComposeFeedback,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              local!.composeFeedback,
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           const Spacer(),
@@ -52,8 +53,8 @@ class _SendFeedbackDialogContent extends StatelessWidget {
             constraints: const BoxConstraints(maxWidth: double.infinity),
             child: TextField(
               controller: controller,
-              decoration: const InputDecoration(
-                  hintText: FeedbackHint, helperText: FeedbackHelperText),
+              decoration: InputDecoration(
+                  hintText: local.feedbackHint, helperText: local.feedbackHelperText),
               minLines: 1,
               maxLines: 5,
             ),
@@ -65,13 +66,13 @@ class _SendFeedbackDialogContent extends StatelessWidget {
             children: [
               MaterialButton(
                   onPressed: () => completer(DialogResponse(confirmed: false)),
-                  child: const Text(Cancel,
-                      style: TextStyle(color: AppColors.paleGreen))),
+                  child: Text(local.cancel,
+                      style: const TextStyle(color: AppColors.paleGreen))),
               MaterialButton(
                   onPressed: () => completer(
                       DialogResponse(data: controller.text, confirmed: true)),
-                  child: const Text(Ok,
-                      style: TextStyle(color: AppColors.paleGreen))),
+                  child: Text(local.ok,
+                      style: const TextStyle(color: AppColors.paleGreen))),
             ],
           )
         ],
