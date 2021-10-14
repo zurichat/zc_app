@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -21,7 +21,7 @@ class WebViewPage extends StatelessWidget {
                 leadingPress: () => model.goBack(),
                 orgTitle: Text(
                   name,
-                  style: AppTextStyles.heading4.copyWith(
+                  style: AppTextStyle.darkGreySize20Bold.copyWith(
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                 ),

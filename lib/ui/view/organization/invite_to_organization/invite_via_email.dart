@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_viewmodel.dart';
 import 'package:stacked/stacked.dart';
@@ -22,7 +22,7 @@ class InviteViaEmail extends StatelessWidget {
             whiteBackground: true,
             orgTitle: Text(
               'Invite',
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize18Bold,
             ),
             actions: [
               Padding(
@@ -30,7 +30,7 @@ class InviteViaEmail extends StatelessWidget {
                 child: InkWell(
                     child: Text(
                       "Send Request",
-                      style: AppTextStyles.body1Green,
+                      style: AppTextStyle.greenSize16,
                     ),
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -21,7 +21,7 @@ class LanguageAndRegionModelView extends StatelessWidget {
           leadingPress: () => model.goBack(),
           orgTitle: Text(
             LangAndRegion,
-            style: AppTextStyles.heading4.copyWith(
+            style: AppTextStyle.darkGreySize20Bold.copyWith(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),

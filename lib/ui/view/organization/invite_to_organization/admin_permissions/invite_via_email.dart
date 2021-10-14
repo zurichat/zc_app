@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_viewmodel.dart';
 import 'package:stacked/stacked.dart';
@@ -22,7 +22,7 @@ class InviteViaEmailAdmin extends StatelessWidget {
             whiteBackground: true,
             orgTitle: Text(
               'Invite',
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize18Bold,
             ),
             actions: [
               Padding(
@@ -30,7 +30,7 @@ class InviteViaEmailAdmin extends StatelessWidget {
                 child: InkWell(
                     child: Text(
                       "Send",
-                      style: AppTextStyles.body1Green,
+                      style: AppTextStyle.greenSize14,
                     ),
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
@@ -42,10 +42,10 @@ class InviteViaEmailAdmin extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             child: Column(
               children: [
-                const Center(
+                Center(
                   child: Text(
                     "Know any coworkers who should join zuri chat?",
-                    //style: AppTextStyles.body2_400,
+                    style: AppTextStyle.darkGreySize14,
                   ),
                 ),
                 UIHelper.verticalSpaceLarge,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -44,7 +45,7 @@ class _DmScreenState extends State<DmScreen> {
           whiteBackground: true,
           orgTitle: Text(
             DM,
-            style: AppTextStyles.heading7.copyWith(
+            style: AppTextStyle.blackSize18Bold.copyWith(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),

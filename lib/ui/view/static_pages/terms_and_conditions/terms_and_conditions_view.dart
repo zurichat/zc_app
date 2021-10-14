@@ -20,7 +20,7 @@ class TermsAndConditionsView extends StatelessWidget {
               whiteBackground: true,
               orgTitle: Text(
                 TnC2.toUpperCase(),
-                style: AppTextStyles.heading4,
+                style: AppTextStyle.darkGreySize20Bold,
               ),
               leadingPress: () => model.popNavigation(),
             ),

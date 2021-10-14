@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_viewmodel.dart';
 import 'package:stacked/stacked.dart';
@@ -22,7 +22,7 @@ class CreateInviteLink extends StatelessWidget {
             whiteBackground: true,
             orgTitle: Text(
               'Invite',
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize18Bold,
             ),
             actions: [
               Padding(
@@ -30,7 +30,7 @@ class CreateInviteLink extends StatelessWidget {
                 child: InkWell(
                     child: Text(
                       "Send",
-                      style: AppTextStyles.body1Green,
+                      style: AppTextStyle.greenSize14,
                     ),
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
@@ -79,14 +79,14 @@ class CreateInviteLink extends StatelessWidget {
                 SizedBox(
                   child: Column(
                     children: [
-                     const ListTile(
+                      const ListTile(
                         leading: Icon(
                           Icons.link_sharp,
                         ),
                         title: Text("Share your invite link"),
                       ),
                       UIHelper.horizontalSpaceSmall,
-                     const Text(
+                      const Text(
                           "Create a link to share with your teammates. \n Anyone can use this link to join your zuri chat workspace"),
                     ],
                   ),

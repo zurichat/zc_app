@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -24,7 +25,7 @@ class PinnedMessagesView extends StatelessWidget {
             leading: Icons.arrow_back_ios,
             orgTitle: Text(
               PinnedMessages,
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize18Bold,
             ),
             whiteBackground: true,
           ),

@@ -17,8 +17,7 @@ class PluginPageIntro extends StatelessWidget {
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         return Scaffold(
           appBar: ZuriAppBar(
-            orgTitle:
-                Text(Plugins, style: ZuriTextStyle.organizationNameText()),
+            orgTitle: Text(Plugins, style: AppTextStyle.organizationNameText),
             bottomNavBarScreen: true,
             leadingWidth: true,
           ),
@@ -31,7 +30,7 @@ class PluginPageIntro extends StatelessWidget {
                 children: [
                   Text(
                     "Get serious and have fun here",
-                    style: AppTextStyles.header6,
+                    style: AppTextStyle.darkGreySize20Bold,
                   ),
                   UIHelper.verticalSpaceMedium,
                   Text(
@@ -39,7 +38,7 @@ class PluginPageIntro extends StatelessWidget {
                     ''' like holiday-calendar, meeting room, notice'''
                     ''' board etc. Have fun by joining the chess'''
                     ''' room and music room.''',
-                    style: AppTextStyles.body1Grey,
+                    style: AppTextStyle.darkGreySize14,
                   ),
                   UIHelper.customVerticalSpace(56.0),
                   FractionallySizedBox(

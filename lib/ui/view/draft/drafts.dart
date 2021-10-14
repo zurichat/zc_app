@@ -3,7 +3,6 @@ import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/view/draft/draft_viewmodel.dart';
 import 'package:hng/ui/view/threads/test_data.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class CustomListTile extends StatelessWidget {
