@@ -152,7 +152,7 @@ class LocalKeys {
   static const NoNewReplies = "no_new_replies";
   static const PluginIntroHeader = "plugin_intro_header";
   static const PluginIntroBody = "plugin_intro_body";
-  static const NotJoinedOrg = "not-joined_org";
+  static const NotJoinedOrg = "not_joined_org";
   static const SelectEmailToUse = "select_email_to_use";
   static const YourEmailAddress = "your_email_address";
   static const DontKnowWorkspaceUrl = "dont_know_workspace_url";
