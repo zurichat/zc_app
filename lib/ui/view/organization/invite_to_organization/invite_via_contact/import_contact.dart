@@ -18,6 +18,7 @@ class ImportContacts extends StatelessWidget {
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
         return Scaffold(
           appBar: ZuriAppBar(
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             leading: Icons.close,
             leadingPress: () {
               model.navigateBack();
@@ -25,7 +26,9 @@ class ImportContacts extends StatelessWidget {
             whiteBackground: true,
             orgTitle: Text(
               local!.chooseContacts,
-              style: AppTextStyles.heading7,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
             ),
             actions: [
               Padding(

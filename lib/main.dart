@@ -13,7 +13,7 @@ import 'app/app.router.dart';
 import 'constants/app_strings.dart';
 import 'general_widgets/app_snackbar.dart';
 import 'main_app_view_model.dart';
-import 'services/theme_setup.dart';
+import 'services/zuri_theme_service.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     _locale = widget.model.appLocale;
     return ThemeBuilder(
-      themes: getThemes(),
+      themes: ZuriThemeService().getThemes(),
       builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

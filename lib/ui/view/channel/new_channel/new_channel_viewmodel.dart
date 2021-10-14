@@ -79,4 +79,8 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
 
   @override
   void setFormStatus() {}
+
+  void navigateBack() {
+    _navigationService.back();
+  }
 }
