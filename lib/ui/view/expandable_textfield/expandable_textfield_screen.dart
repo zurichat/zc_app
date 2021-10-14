@@ -24,18 +24,18 @@ class ExpandableTextFieldScreen extends HookWidget {
       required this.sendMessage,
       required this.hintText,
       this.usercheck = true,
-    this.channelName,
-    this.channelId,
+      this.channelName,
+      this.channelId,
       required this.textController,
       required this.channelID})
       : super(key: key);
   final Widget widget;
   final Function(String message, List<File> media) sendMessage;
   final String hintText;
-   final bool usercheck;
+  final bool usercheck;
   final focusNode = FocusNode();
   final TextEditingController textController;
- final String? channelName;
+  final String? channelName;
   final String? channelId;
   final String channelID;
 
@@ -150,24 +150,25 @@ class ExpandableTextFieldScreen extends HookWidget {
                                   Expanded(
                                     // height:
                                     //     size,
-                                    
-                                    child:  !usercheck
+
+                                    child: !usercheck
                                         ? CheckUser(channelId, channelName)
                                         : MyTextField(
-                                      toggleVisibility: model.toggleVisibility,
-                                      isExpanded: model.isExpanded,
-                                      controller: textController,
-                                      focus: focusNode,
-                                      hintText: hintText,
-                                      isVisible: model.isVisible,
-                                      toggleExpanded: () {
-                                        if (!model.isExpanded) {
-                                          model.toggleExpanded(true);
-                                        } else {
-                                          model.toggleExpanded(false);
-                                        }
-                                      },
-                                    ),
+                                            toggleVisibility:
+                                                model.toggleVisibility,
+                                            isExpanded: model.isExpanded,
+                                            controller: textController,
+                                            focus: focusNode,
+                                            hintText: hintText,
+                                            isVisible: model.isVisible,
+                                            toggleExpanded: () {
+                                              if (!model.isExpanded) {
+                                                model.toggleExpanded(true);
+                                              } else {
+                                                model.toggleExpanded(false);
+                                              }
+                                            },
+                                          ),
                                   ),
                                   Visibility(
                                     visible: model.isVisible,
@@ -238,6 +239,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                 sendMessage(textController.text,
                                                     model.mediaList);
                                                 textController.clear();
+                                                model.clearMediaList();
+                                                model.toggleExpanded(false);
                                               }
                                             },
                                             onLongPress: () {
@@ -261,18 +264,17 @@ class ExpandableTextFieldScreen extends HookWidget {
                                   Visibility(
                                     visible: model.mediaList.isNotEmpty,
                                     child: SizedBox(
-                                        height: 70,
-                                        width: double.infinity,
-                                        child: ListView.builder(
-                                          itemCount: model.mediaList.length,
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: (__, index) {
-                                            final media =
-                                                model.mediaList[index];
-                                            return Image.file(media);
-                                          },
-                                        ),
+                                      height: 70,
+                                      width: double.infinity,
+                                      child: ListView.builder(
+                                        itemCount: model.mediaList.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (__, index) {
+                                          final media = model.mediaList[index];
+                                          return Image.file(media);
+                                        },
                                       ),
+                                    ),
                                   )
                                 ],
                               ),

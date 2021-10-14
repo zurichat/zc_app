@@ -90,34 +90,36 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Flexible(
-                            fit: FlexFit.loose,
-                            child: CustomText(
-                              text: '${userPost.displayName}',
-                              fontWeight: FontWeight.bold,
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Flexible(
+                              fit: FlexFit.loose,
+                              child: CustomText(
+                                text: '${userPost.displayName}',
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            "${userPost.statusIcon}",
-                            style: AppTextStyles.body2Medium,
-                          ),
-                          const SizedBox(width: 4),
-                          CustomText(
-                            text: '${userPost.moment}',
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      TextParser(userPost.message),
-                    ],
+                            const SizedBox(width: 4),
+                            Text(
+                              "${userPost.statusIcon}",
+                              style: AppTextStyles.body2Medium,
+                            ),
+                            const SizedBox(width: 4),
+                            CustomText(
+                              text: '${userPost.moment}',
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        TextParser(userPost.message),
+                      ],
+                    ),
                   ),
                   userPost.postSnapshotLinks!.isNotEmpty
                       ? SnapshotLinks(

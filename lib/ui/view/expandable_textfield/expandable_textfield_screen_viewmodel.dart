@@ -51,6 +51,11 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
   Future<void> onCameraTap(String roomId) async {
     final media = await _mediaService.getImage(fromGallery: true);
     _mediaList.add(media!);
+    if (mediaList.isEmpty) {
+      size = isVisible ? minSize + 50 : minSize;
+    } else {
+      size = isVisible ? minSize + 120 : minSize + 70;
+    }
     notifyListeners();
   }
 
@@ -66,5 +71,10 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
 
       notifyListeners();
     }
+  }
+
+  void clearMediaList() {
+    _mediaList.clear();
+    notifyListeners();
   }
 }

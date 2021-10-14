@@ -18,6 +18,7 @@ import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/api_utils.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/failures.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:stacked_services/stacked_services.dart'
     hide FormData, MultipartFile;
 
@@ -53,7 +54,7 @@ class ZuriApi implements Api {
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
       snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 10),
         variant: SnackbarType.failure,
         message: e.response!.data!['message'] ?? errorOccurred,
       );
@@ -77,7 +78,7 @@ class ZuriApi implements Api {
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
       snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 10),
         variant: SnackbarType.failure,
         message: e.response!.data!['message'] ?? errorOccurred,
       );
@@ -786,26 +787,25 @@ class ZuriApi implements Api {
   Future<String> uploadImage(
     File? image, {
     required String token,
-    required String memberId,
-    required String orgId,
+    required String pluginId,
   }) async {
     var formData = FormData.fromMap({
-      "image": MultipartFile(
-        image!.openRead(),
-        await image.length(),
+      "file": await MultipartFile.fromFile(
+        image!.path,
         filename: image.path.split(Platform.pathSeparator).last,
+        contentType: MediaType("image", "jpeg"),
       ),
     });
     try {
       final res = await dio.post(
-        'https://api.zuri.chat/organizations/$orgId/members/$memberId/photo',
+        'https://api.zuri.chat/upload/file/$pluginId',
         options: Options(
-          headers: {'Authorization': 'Bearer $token'},
+          headers: {'Authorization': 'Bearer $token', 'token': 'Bearer $token'},
         ),
         data: formData,
       );
       log.i(res.data);
-      return res.data;
+      return res.data['data']['file_url'];
     } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
