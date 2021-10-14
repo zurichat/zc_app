@@ -6,7 +6,6 @@
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:hng/services/localization_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -18,6 +17,7 @@ import '../package/base/server-request/dms/dms_api_service.dart';
 import '../services/centrifuge_service.dart';
 import '../services/connectivity_service.dart';
 import '../services/local_storage_services.dart';
+import '../services/localization_service.dart';
 import '../services/media_service.dart';
 import '../services/notification_service.dart';
 import '../services/user_service.dart';
@@ -34,6 +34,7 @@ Future setupLocator(
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => ThemeService());
+  locator.registerLazySingleton(() => LocalizationService());
   final sharedPreferenceLocalStorage =
       await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);
@@ -44,7 +45,6 @@ Future setupLocator(
   locator.registerSingleton(connectivityService);
 
   locator.registerLazySingleton(() => UserService());
-  locator.registerLazySingleton(() => LocalizationService());
   locator.registerLazySingleton(() => MediaService());
   locator.registerLazySingleton(() => DMApiService());
   locator.registerLazySingleton(() => ChannelsApiService());
