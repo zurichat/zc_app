@@ -43,6 +43,7 @@ dependencies:
   meta: ^1.3.0
   modal_progress_hud_nsn: ^0.1.0-nullsafety-0
   overlay_support: ^1.2.1
+  observable_ish: ^3.0.0
   page_view_dot_indicator: ^1.0.0
   pin_code_fields: ^7.3.0
   shared_preferences: ^2.0.7
@@ -51,6 +52,7 @@ dependencies:
   stacked_hooks: ^0.2.1
   stacked_services: ^0.8.6
   stacked_themes: ^0.3.6
+  uni_links: ^0.5.1
   url_launcher: ^6.0.9
   velocity_x: ^3.3.0
   webview_flutter: ^2.0.13

@@ -174,7 +174,7 @@ class HomePageViewModel extends StreamViewModel {
             unreadCount: 0,
             name: data['name'],
             id: data['_id'],
-            public: data['private'] != "True",
+            public: !data['private'],
             membersCount: data['members'],
           ),
         );
