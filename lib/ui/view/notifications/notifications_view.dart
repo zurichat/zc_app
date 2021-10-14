@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/menu_item_tile.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -20,8 +18,11 @@ class NotificationsView extends StatelessWidget {
           leadingPress: () => model.goBack(),
           orgTitle: Text(
             Notifications,
-            style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           whiteBackground: true,
         ),
         body: SingleChildScrollView(

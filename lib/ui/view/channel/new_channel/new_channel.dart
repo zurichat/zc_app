@@ -23,22 +23,22 @@ class NewChannel extends StatelessWidget with $NewChannel {
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => NewChannelViewModel(),
       builder: (context, model, child) => Scaffold(
-        backgroundColor: AppColors.whiteColor,
         appBar: ZuriAppBar(
-          leading: Icons.arrow_back_ios,
-          leadingPress: () {},
           orgTitle: Text(
-            "New Channel",
-            style: AppTextStyles.heading7,
+            CreateChannel,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           whiteBackground: true,
+          leading: Icons.arrow_back_ios,
+          leadingPress: () => model.navigateBack(),
           actions: [
             TextButton(
               style: TextButton.styleFrom(
                   padding: const EdgeInsets.only(right: 16.0)),
-              onPressed: () {
-                model.createChannel();
-              },
+              onPressed: model.createChannel,
               child: Text(
                 Create,
                 style: AppTextStyles.heading8,

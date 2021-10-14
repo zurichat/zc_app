@@ -19,7 +19,7 @@ class PreferenceView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           orgTitle: Text(
-            'Preferences',
+            Preferences,
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),

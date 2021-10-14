@@ -35,6 +35,7 @@ List<ThemeData> getThemes() {
     ThemeData.dark().copyWith(
       primaryColor: AppColors.zuriPrimaryColor,
       accentColor: AppColors.zuriPrimaryColor,
+      scaffoldBackgroundColor: AppColors.darkModeColor,
       // appBarTheme: const AppBarTheme(
       //   titleTextStyle: TextStyle(color: AppColors.blackColor),
       // ),

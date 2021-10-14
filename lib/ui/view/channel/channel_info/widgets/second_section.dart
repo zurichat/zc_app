@@ -29,6 +29,7 @@ class SecondSection extends StatelessWidget {
             width: 279.03.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Icon(
                   Icons.notifications_none_outlined,

@@ -49,7 +49,7 @@ class FirstSection extends StatelessWidget {
           const SizedBox(height: 20),
           Text(
             Topic,
-            style: AppTextStyles.headerStyle1,
+            style: AppTextStyles.body1Bold,
           ),
           const SizedBox(height: 10),
           Text(
