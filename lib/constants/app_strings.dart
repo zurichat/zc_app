@@ -312,14 +312,9 @@ const String ImageDetails = '550KB png';
 const String LangAndRegion = 'Languages & Region';
 const String Language = 'Language';
 const String SetTimezone = 'Set time zone automatically';
-const String Deutsch = 'Deutsch (Deutschland)';
-const String EnglishUK = 'English (UK)';
 const String EnglishUS = 'English (US)';
-const String Espanol = 'Espanol (Espana)';
-const String Francais = 'Francais (France)';
-const String Italiano = 'Italiano (Italy)';
-const String Portugues = 'Portugues (Brazil)';
-const String Chinese = '陈摩托何';
+const String DeutschDE = 'Deutsch (Deutschland)';
+const String ArabicSA = 'اَلْعَرَبِيَّةُ';
 const String Mandarin = '来 本 嗄';
 
 //Notifications
@@ -499,6 +494,11 @@ const String MarkCreatedChannel = 'Mark created this channel on August 13.';
 const String CreatingZuri = 'Creating the zuri main app';
 const String OnePinnedMessage = 'Pinned messages (1)';
 const String OnePlugin = 'Plugins (1)';
+const String PluginIntroHeader = "Get serious and have fun here";
+const String PluginIntroBody = '''Access your oganization’s important stuff'''
+    ''' like holiday-calendar, meeting room, notice'''
+    ''' board etc. Have fun by joining the chess'''
+    ''' room and music room.''';
 const String MembersCount = '128 members';
 const String SoftwareDev = 'Software Development';
 const String PromotedPlaceholder = 'Have you been Promoted?';

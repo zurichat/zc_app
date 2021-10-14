@@ -15,7 +15,6 @@ class NotificationsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<NotificationsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        backgroundColor: AppColors.whiteColor,
         appBar: ZuriAppBar(
           leading: Icons.close_rounded,
           leadingPress: () => model.goBack(),

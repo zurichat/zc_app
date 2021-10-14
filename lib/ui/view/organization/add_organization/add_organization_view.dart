@@ -6,6 +6,7 @@ import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'add_organization_viewmodel.dart';
@@ -17,6 +18,7 @@ class AddOrganizationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<AddOrganizationViewModel>.reactive(
       //this parameter allows us to reuse the view model to persist the state
       disposeViewModel: false,
@@ -31,7 +33,7 @@ class AddOrganizationView extends StatelessWidget {
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             orgTitle: Text(
-              AddWorkspaces,
+              local!.addOrganizations,
               style: AppTextStyles.heading4.copyWith(
                   color: Theme.of(context).textTheme.bodyText1!.color),
             ),

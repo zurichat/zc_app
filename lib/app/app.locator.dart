@@ -6,6 +6,7 @@
 
 // ignore_for_file: public_member_api_docs
 
+import 'package:hng/services/localization_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -43,6 +44,7 @@ Future setupLocator(
   locator.registerSingleton(connectivityService);
 
   locator.registerLazySingleton(() => UserService());
+  locator.registerLazySingleton(() => LocalizationService());
   locator.registerLazySingleton(() => MediaService());
   locator.registerLazySingleton(() => DMApiService());
   locator.registerLazySingleton(() => ChannelsApiService());
