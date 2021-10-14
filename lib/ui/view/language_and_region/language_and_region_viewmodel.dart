@@ -12,12 +12,12 @@ class LanguageAndRegionModelViewModel extends BaseViewModel {
   final log = getLogger('LanguageAndRegionModelViewModel');
   final _dialogService = locator<DialogService>();
   final _navigationService = locator<NavigationService>();
-  String? currentLanguage = 'Espanol (Espana)';
+  String? currentLanguage = Deutsch;
   String? currentTimeZone = '(UTC+01:00) West Central Africa';
   bool automaticTimeZone = true;
   int currentValue = 1;
 
-    goBack() => _navigationService.back();
+  goBack() => _navigationService.back();
 
   List languages = [
     EnglishUS,

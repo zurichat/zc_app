@@ -59,6 +59,8 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         : Colors.transparent,
                   ),
                   onLongPress: () => zuriChatBottomSheet(
+                    shareMessage: () =>
+                        viewModel.navigateToShareMessage(userPost),
                     changePinnedState: () async {
                       final didChange =
                           await viewModel.changePinnedState(userPost);

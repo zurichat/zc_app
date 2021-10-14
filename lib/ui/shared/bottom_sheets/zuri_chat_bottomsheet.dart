@@ -42,24 +42,26 @@ Future<dynamic> zuriChatBottomSheet({
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const RecentEmojis('😘'),
-                const RecentEmojis('😳'),
-                const RecentEmojis('😭'),
-                const RecentEmojis('🤣'),
-                const RecentEmojis('🤔'),
-                const RecentEmojis('😏'),
-                Container(
-                  height: 50,
-                  width: 50,
-                  child: const Align(
-                      alignment: Alignment.center,
-                      child: Icon(
-                        Icons.add_reaction_outlined,
-                        size: 25,
-                      )),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.greyBackgroundColor,
+                const Expanded(child: RecentEmojis('😘')),
+                const Expanded(child: RecentEmojis('😳')),
+                const Expanded(child: RecentEmojis('😭')),
+                const Expanded(child: RecentEmojis('🤣')),
+                const Expanded(child: RecentEmojis('🤔')),
+                const Expanded(child: RecentEmojis('😏')),
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child: const Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.add_reaction_outlined,
+                          size: 25,
+                        )),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.greyBackgroundColor,
+                    ),
                   ),
                 )
               ],
