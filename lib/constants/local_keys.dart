@@ -179,4 +179,17 @@ class LocalKeys {
   static const ConfirmEmailText = "confirm_email_text";
   static const OpenEmailApp = "open_email_app";
   static const CompanyName = "company_name";
+  static const CompanyAnd = "company_and";
+  static const CookiePolicy = "cookie_policy";
+  static const CustomerAgreementText = "customer_agreement_text";
+  static const ProjectName = "project_name";
+  static const ProjectHint = "project_hint";
+  static const TeammateNames = "teammate_names";
+  static const AddTeammates = "add_teammates";
+  static const InAppNotifySubtitle = "in_app_notify_subtitle";
+  static const ForgotPasswordHeader = "forgot_password_header";
+  static const InvalidEmail = "invalid_email";
+  static const Continue = "continue";
+  static const BackTo = "back_to";
+  static const NewPasswordHeader = "new_password_header";
 }
