@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/long_button.dart';
 import '../../../shared/text_field.dart';
@@ -24,6 +25,7 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
 
   @override
   Widget build(BuildContext context, CreateOrganizationViewModel viewModel) {
+    final local = AppLocalization.of(context);
     return LayoutBuilder(
       builder: (context, constraint) {
         return SingleChildScrollView(
@@ -42,9 +44,9 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                     Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: const Text(
-                        CompanyName,
-                        style: TextStyle(
+                      child: Text(
+                        local!.companyName,
+                        style: const TextStyle(
                           letterSpacing: 0.5,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,

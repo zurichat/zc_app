@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
-import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/audio_message.dart';
 import 'package:hng/ui/shared/styles.dart';
-import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 
 import '../thread_card_viewmodel.dart';
@@ -28,6 +25,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
   Widget build(BuildContext context, ThreadCardViewModel viewModel) {
     return GestureDetector(
       onTap: () => viewModel.navigateToThread(userPost),
+      
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
@@ -35,45 +33,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
           children: [
             InkWell(
               onTap: viewModel.viewProfile,
-              onLongPress: () => zuriChatBottomSheet(
-                changePinnedState: () async {
-                  final didChange = await viewModel.changePinnedState(userPost);
-                  if (didChange) userPost.pinned = !userPost.pinned;
-                  viewModel.goBack();
-                  showSimpleNotification(
-                    Text(didChange
-                        ? "${userPost.pinned ? "Pinned" : "Unpinned"} successfully"
-                        : "Could not ${userPost.pinned ? "unpin" : "pin"} post"),
-                    position: NotificationPosition.top,
-                    background:
-                        didChange ? AppColors.appBarGreen : AppColors.redColor,
-                    trailing: const Icon(Icons.push_pin_outlined),
-                    duration: const Duration(seconds: 2),
-                  );
-                },
-                addToSavedItems: () {
-                  viewModel.saveItem(
-                      channelID: userPost.channelId,
-                      channelName: userPost.channelName,
-                      displayName: userPost.displayName,
-                      message: userPost.message,
-                      lastSeen: userPost.moment,
-                      messageID: userPost.id,
-                      userID: userPost.userId,
-                      userImage: userPost.userImage);
-                  log.i("Saved");
-                  viewModel.goBack();
-                  showSimpleNotification(
-                    const Text("Added successfully"),
-                    position: NotificationPosition.top,
-                    background: AppColors.appBarGreen,
-                    trailing: const Icon(Icons.mark_chat_read_outlined),
-                    duration: const Duration(seconds: 3),
-                  );
-                },
-                context: context,
-                post: userPost,
-              ),
+              
               child: Container(
                   width: 40,
                   height: 40,

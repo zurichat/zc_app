@@ -5,6 +5,7 @@ import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 class InvitationSent extends StatelessWidget {
@@ -12,6 +13,7 @@ class InvitationSent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
@@ -38,7 +40,7 @@ class InvitationSent extends StatelessWidget {
                 ),
                 UIHelper.verticalSpaceLarge,
                 Text(
-                  "Invitation sent",
+                  local!.invitationSent,
                   style: AppTextStyles.body1Bold.copyWith(fontSize: 20),
                 ),
                 UIHelper.verticalSpaceLarge,
@@ -60,7 +62,7 @@ class InvitationSent extends StatelessWidget {
                 UIHelper.verticalSpaceLarge,
                 Center(
                   child: Text(
-                      "Has been invited as a member of zuri chat. They’ll be able to receive and reply in messages by email until they join.",
+                      local.invitedAsAZuriChatMember,
                       style: AppTextStyles.descriptionStyle
                           .copyWith(color: AppColors.zuriDarkGrey)),
                   // textAlign: TextAlign.center,
@@ -70,7 +72,7 @@ class InvitationSent extends StatelessWidget {
                   onPressed: () {
                     model.navigateToHome();
                   },
-                  label: "Done",
+                  label: local.done,
                 ),
               ],
             ),
