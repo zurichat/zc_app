@@ -279,15 +279,15 @@ class ChannelPageViewModel extends FormViewModel {
     return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
   }
 
-  Future? navigateToChannelInfoScreen(int numberOfMembers,
-      ChannelModel channelDetail, String channelName, String channelId) async {
+  Future? navigateToChannelInfoScreen(
+      int numberOfMembers, ChannelModel channelDetail,String channelName) async {
     await NavigationService().navigateTo(Routes.channelInfoView,
         arguments: ChannelInfoViewArguments(
             numberOfMembers: numberOfMembers,
             channelName: channelName,
-            channelID: channelId,
             channelMembers: channelMembers,
-            channelDetail: channelDetail));
+            channelDetail: channelDetail,
+        ));
   }
 
   Future? navigateToAddPeople(String channelName, String channelId) async {
