@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
@@ -82,8 +83,11 @@ class AddOrganizationView extends StatelessWidget {
                           padding: const EdgeInsets.all(12.0),
                           child: Row(
                             children: [
-                              const Icon(
-                                Icons.add_box_outlined,
+                              SvgPicture.asset(
+                                Add_Organization,
+                                color: AppColors.darkGreyColor,
+                                width: 18,
+                                height: 18,
                               ),
                               const SizedBox(width: 16),
                               Text(JoinAnotherOrg,

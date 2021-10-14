@@ -41,7 +41,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                     shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
                     child: SvgPicture.asset(
-                      'assets/icons/svg_icons/Shape.svg',
+                      Add_Description,
                       color: AppColors.zuriPrimaryColor,
                       width: 18,
                       height: 18,
@@ -67,7 +67,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                     shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
                     child: SvgPicture.asset(
-                      'assets/icons/svg_icons/default.svg',
+                      add_people,
                       color: AppColors.zuriPrimaryColor,
                       width: 18,
                       height: 18,

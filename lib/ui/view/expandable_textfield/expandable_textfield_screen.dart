@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/check_user.dart';
 import 'package:stacked/stacked.dart';
@@ -22,18 +23,18 @@ class ExpandableTextFieldScreen extends HookWidget {
       required this.sendMessage,
       required this.hintText,
       this.usercheck = true,
-    this.channelName,
-    this.channelId,
+      this.channelName,
+      this.channelId,
       required this.textController,
       required this.channelID})
       : super(key: key);
   final Widget widget;
   final Function(String message) sendMessage;
   final String hintText;
-   final bool usercheck;
+  final bool usercheck;
   final focusNode = FocusNode();
   final TextEditingController textController;
- final String? channelName;
+  final String? channelName;
   final String? channelId;
   final String channelID;
 
@@ -138,7 +139,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: SvgPicture.asset(
-                                            'assets/icons/svg_icons/minimize.svg',
+                                            maximize,
                                             color: AppColors.darkGreyColor,
                                           ),
                                         ),
@@ -148,24 +149,25 @@ class ExpandableTextFieldScreen extends HookWidget {
                                   Expanded(
                                     // height:
                                     //     size,
-                                    
-                                    child:  !usercheck
+
+                                    child: !usercheck
                                         ? CheckUser(channelId, channelName)
                                         : MyTextField(
-                                      toggleVisibility: model.toggleVisibility,
-                                      isExpanded: model.isExpanded,
-                                      controller: textController,
-                                      focus: focusNode,
-                                      hintText: hintText,
-                                      isVisible: model.isVisible,
-                                      toggleExpanded: () {
-                                        if (!model.isExpanded) {
-                                          model.toggleExpanded(true);
-                                        } else {
-                                          model.toggleExpanded(false);
-                                        }
-                                      },
-                                    ),
+                                            toggleVisibility:
+                                                model.toggleVisibility,
+                                            isExpanded: model.isExpanded,
+                                            controller: textController,
+                                            focus: focusNode,
+                                            hintText: hintText,
+                                            isVisible: model.isVisible,
+                                            toggleExpanded: () {
+                                              if (!model.isExpanded) {
+                                                model.toggleExpanded(true);
+                                              } else {
+                                                model.toggleExpanded(false);
+                                              }
+                                            },
+                                          ),
                                   ),
                                   Visibility(
                                     visible: model.isVisible,
@@ -181,7 +183,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
-                                                'assets/icons/svg_icons/zap.svg',
+                                                zap,
                                               ),
                                             ),
                                           ),
@@ -191,7 +193,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
-                                                'assets/icons/svg_icons/at_sign.svg',
+                                                at_sign,
                                               ),
                                             ),
                                           ),
@@ -201,7 +203,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
-                                                'assets/icons/svg_icons/smile.svg',
+                                                Smile,
                                               ),
                                             ),
                                           ),
@@ -212,19 +214,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
-                                                'assets/icons/svg_icons/Vector.svg',
-                                                color:
-                                                    AppColors.zuriPrimaryColor,
-                                              ),
-                                            ),
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {},
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: SvgPicture.asset(
-                                                'assets/icons/svg_icons/fluent_camera-16-regular.svg',
+                                                Camera,
                                                 color: AppColors.darkGreyColor,
                                               ),
                                             ),
@@ -235,7 +225,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
-                                                'assets/icons/Vector.svg',
+                                                Channel_Page_Share,
                                               ),
                                             ),
                                           ),
@@ -255,11 +245,11 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   channelID);
                                               textController.clear();
                                             },
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(8.0),
-                                              child: Icon(
-                                                Icons.send,
-                                                color: AppColors.greyColor,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: SvgPicture.asset(
+                                                Send,
                                               ),
                                             ),
                                           ),
@@ -337,7 +327,7 @@ class MyTextField extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SvgPicture.asset(
-                  'assets/icons/svg_icons/maximize.svg',
+                  minimize,
                   color: AppColors.darkGreyColor,
                 ),
               ),
@@ -352,7 +342,7 @@ class MyTextField extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SvgPicture.asset(
-                      'assets/icons/svg_icons/zap.svg',
+                      zap,
                       color: AppColors.darkGreyColor,
                     ),
                   ),
@@ -362,7 +352,7 @@ class MyTextField extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SvgPicture.asset(
-                      'assets/icons/svg_icons/fluent_camera-16-regular.svg',
+                      Camera,
                       height: 24,
                       width: 24,
                       color: AppColors.darkGreyColor,
@@ -374,7 +364,7 @@ class MyTextField extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SvgPicture.asset(
-                      'assets/icons/Vector.svg',
+                      Send,
                       color: AppColors.darkGreyColor,
                       height: 17.2,
                       width: 15.42,

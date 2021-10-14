@@ -798,13 +798,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.11.1"
-  percent_indicator:
-    dependency: transitive
-    description:
-      name: percent_indicator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.4.0"
   petitparser:
     dependency: transitive
     description:
@@ -833,13 +826,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
-  polls:
-    dependency: "direct dev"
-    description:
-      name: polls
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   pool:
     dependency: transitive
     description:

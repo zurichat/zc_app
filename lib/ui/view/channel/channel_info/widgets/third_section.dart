@@ -55,7 +55,7 @@ class ThirdSection extends StatelessWidget {
               child: Row(
                 children: [
                   SvgPicture.asset(
-                    'assets/icons/svg_icons/user.svg',
+                    Channel_Info_Members,
                     color: AppColors.darkGreyColor,
                     width: 18,
                     height: 18,
@@ -96,7 +96,7 @@ class ThirdSection extends StatelessWidget {
               child: Row(
                 children: [
                   SvgPicture.asset(
-                    'assets/icons/svg_icons/phone.svg',
+                    Channel_Info_Phone,
                     color: AppColors.darkGreyColor,
                     width: 18,
                     height: 18,

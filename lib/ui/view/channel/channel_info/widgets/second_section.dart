@@ -32,7 +32,7 @@ class SecondSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SvgPicture.asset(
-                  'assets/icons/svg_icons/bell.svg',
+                  Channel_Info_Notification,
                   color: AppColors.darkGreyColor,
                   width: 20,
                   height: 15,
@@ -71,10 +71,11 @@ class SecondSection extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Icon(
-                      Icons.toggle_off_sharp,
+                    SvgPicture.asset(
+                      toggle_off_sharp,
                       color: AppColors.faintTextColor,
-                      size: 40.sp,
+                      width: 20,
+                      height: 15,
                     ),
                   ],
                 )

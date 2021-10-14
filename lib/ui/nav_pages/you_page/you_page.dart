@@ -46,7 +46,7 @@ class YouPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 MenuItemTile(
                   icon: SvgPicture.asset(
-                    'assets/icons/svg_icons/bell-off.svg',
+                    PauseNotification,
                     color: AppColors.darkGreyColor,
                     width: 18,
                     height: 18,
@@ -75,7 +75,7 @@ class YouPage extends StatelessWidget {
                     ),
                   ),
                   icon: SvgPicture.asset(
-                    'assets/icons/svg_icons/circle.svg',
+                    away,
                     color: AppColors.darkGreyColor,
                     width: 18,
                     height: 18,
@@ -85,7 +85,7 @@ class YouPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 MenuItemTile(
                   icon: SvgPicture.asset(
-                    'assets/icons/svg_icons/bookmark.svg',
+                    Saved_Items,
                     color: AppColors.darkGreyColor,
                     width: 18,
                     height: 18,
@@ -99,7 +99,7 @@ class YouPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 MenuItemTile(
                   icon: SvgPicture.asset(
-                    'assets/icons/svg_icons/active.svg',
+                    View_Profile,
                     color: AppColors.darkGreyColor,
                     width: 18,
                     height: 18,
@@ -114,7 +114,7 @@ class YouPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 MenuItemTile(
                   icon: SvgPicture.asset(
-                    'assets/icons/svg_icons/notification.svg',
+                    notification,
                     color: AppColors.darkGreyColor,
                     width: 18,
                     height: 18,
@@ -129,7 +129,7 @@ class YouPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 MenuItemTile(
                   icon: SvgPicture.asset(
-                    'assets/icons/svg_icons/preference.svg',
+                    preference,
                     color: AppColors.darkGreyColor,
                     width: 18,
                     height: 18,
@@ -144,7 +144,7 @@ class YouPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 MenuItemTile(
                   icon: SvgPicture.asset(
-                    'assets/icons/svg_icons/log-out.svg',
+                    Log_Out,
                     color: AppColors.darkGreyColor,
                     width: 18,
                     height: 18,

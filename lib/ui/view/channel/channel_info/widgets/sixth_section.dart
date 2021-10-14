@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
@@ -29,10 +31,11 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(
-              Icons.archive_rounded,
+            SvgPicture.asset(
+              archive,
               color: Theme.of(context).textTheme.bodyText1!.color,
-              size: 28,
+              width: 28,
+              height: 28,
             ),
             Expanded(
               child: Column(

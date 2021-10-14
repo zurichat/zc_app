@@ -28,7 +28,7 @@ class FifthSection extends StatelessWidget {
         child: Row(
           children: [
             SvgPicture.asset(
-              'assets/icons/svg_icons/log-out.svg',
+              Log_Out,
               color: Theme.of(context).textTheme.bodyText1!.color,
               width: 18,
               height: 18,
