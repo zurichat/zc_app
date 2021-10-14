@@ -1183,7 +1183,7 @@ class MockZuriApi extends _i1.Mock implements _i22.ZuriApi {
           returnValue: _FakeFailure_3()) as _i4.Failure);
   @override
   _i2.Future<String> uploadImage(_i25.File? image,
-          {String? token, String? memberId, String? orgId}) =>
+          {String? token, String? pluginId}) =>
       (super.noSuchMethod(
           Invocation.method(#uploadImage, [image],
               {#token: token, #memberId: memberId, #orgId: orgId}),
