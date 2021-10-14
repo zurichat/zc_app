@@ -7,6 +7,7 @@ import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/audio_message.da
 import 'package:hng/ui/shared/styles.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../colors.dart';
 import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
 import 'media_files.dart';
