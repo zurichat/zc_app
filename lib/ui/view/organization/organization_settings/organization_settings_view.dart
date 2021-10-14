@@ -17,6 +17,7 @@ class OrganizationSettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<OrganizationSettingsViewModel>.reactive(
       viewModelBuilder: () => OrganizationSettingsViewModel(),
+      onModelReady: (model) => model.init(org.name!, org.organizationUrl!),
       builder: (context, model, child) {
         return Scaffold(
           appBar: ZuriAppBar(

@@ -148,11 +148,6 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
             height: MediaQuery.of(context).size.height * 0.05,
             width: MediaQuery.of(context).size.height * 0.05,
             decoration: BoxDecoration(
-              // border: Border.all(
-              //   color: AppColors.whiteColor,
-              //   width: 2,
-              //   style: BorderStyle.solid,
-              // ),
               color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(5),
             ),

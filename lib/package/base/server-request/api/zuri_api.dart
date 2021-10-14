@@ -827,7 +827,7 @@ class ZuriApi implements Api {
     });
     try {
       final res = await dio.post(
-        'https://api.zuri.chat/upload/file/$pluginId',
+        '${coreBaseUrl}upload/file/$pluginId',
         options: Options(
           headers: {'Authorization': 'Bearer $token'},
         ),
