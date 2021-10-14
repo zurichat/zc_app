@@ -220,8 +220,8 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(
                             color:
-                                Theme.of(context).textTheme.bodyText1!.color ??
-                                    AppColors.zuriPrimaryColor,
+                            Theme.of(context).textTheme.bodyText1!.color ??
+                                AppColors.zuriPrimaryColor,
                             width: 1,
                           ),
                         ),

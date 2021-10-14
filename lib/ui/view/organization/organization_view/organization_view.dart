@@ -45,24 +45,24 @@ class OrganizationView extends StatelessWidget {
                                 ),
                               )
                             : Column(
-                                children: [
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.005,
-                                  ),
-                                  ListView.builder(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemCount: viewModel.organizations.length,
-                                    shrinkWrap: true,
-                                    itemBuilder: (context, i) {
-                                      final org = viewModel.organizations[i];
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height *
+                                  0.005,
+                            ),
+                            ListView.builder(
+                              physics:
+                              const NeverScrollableScrollPhysics(),
+                              itemCount: viewModel.organizations.length,
+                              shrinkWrap: true,
+                              itemBuilder: (context, i) {
+                                final org = viewModel.organizations[i];
 
-                                      return OrganizationTile(org: org);
-                                    },
-                                  ),
-                                ],
-                              ),
+                                return OrganizationTile(org: org);
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                       replacement: const Center(child: ZuriLoader()),
                     ),
