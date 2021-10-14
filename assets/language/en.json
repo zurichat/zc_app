@@ -252,5 +252,13 @@
     "by_invitation": "by invitation.",
     "pinned_messages": "Pinned Messages",
     "no_pinned_messages": "No Pinned Messages",
-    "thread_message_in": "Thread in "
+    "thread_message_in": "Thread in ",
+    "set_status_text": "Go ",
+    "what_is_your_status": "What's your status?",
+    "temporarily_unavailable": "Temporarily Unavailable",
+    "add_channel": "Add channel",
+    "use_another_email": "Use another email address",
+    "unpin_from": "Unpin from ",
+    "pin_to": "Pin to ",
+    "conversation": "Conversation"
 }

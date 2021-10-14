@@ -56,8 +56,7 @@ class YouPage extends StatelessWidget {
                   topBorder: false,
                   text: Text.rich(
                     TextSpan(
-                      //TODO TRANSLATE
-                      text: SetStatusText,
+                      text: local.setStatusText,
                       style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                       children: [
                         TextSpan(

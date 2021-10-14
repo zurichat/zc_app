@@ -254,4 +254,12 @@ class LocalKeys {
   static const PinnedMessages = "pinned_messages";
   static const NoPinnedMessages = "no_pinned_messages";
   static const ThreadMessageIn = "thread_message_in";
+  static const SetStatusText = "set_status_text";
+  static const WhatIsYourStatus = "what_is_your_status";
+  static const TemporarilyUnavailable = "temporarily_unavailable";
+  static const AddChannel = "add_channel";
+  static const UseAnotherEmail = "use_another_email";
+  static const UnpinFrom = "unpin_from";
+  static const PinTo = "pin_to";
+  static const Conversation = "conversation";
 }

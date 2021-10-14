@@ -305,6 +305,14 @@ class AppLocalization {
   String get pinnedMessages => translate(LocalKeys.PinnedMessages);
   String get noPinnedMessages => translate(LocalKeys.NoPinnedMessages);
   String get threadMessageIn => translate(LocalKeys.ThreadMessageIn);
+  String get setStatusText => translate(LocalKeys.SetStatusText);
+  String get whatIsYourStatus => translate(LocalKeys.WhatIsYourStatus);
+  String get temporarilyUnavailable => translate(LocalKeys.TemporarilyUnavailable);
+  String get addChannel => translate(LocalKeys.AddChannel);
+  String get useAnotherEmail => translate(LocalKeys.UseAnotherEmail);
+  String get unPinFrom => translate(LocalKeys.UnpinFrom);
+  String get pinTo => translate(LocalKeys.PinTo);
+  String get conversation => translate(LocalKeys.Conversation);
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
