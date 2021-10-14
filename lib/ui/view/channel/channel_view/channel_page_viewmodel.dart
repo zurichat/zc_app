@@ -172,6 +172,7 @@ class ChannelPageViewModel extends FormViewModel {
     String? userId = storage.getString(StorageKeys.currentUserId);
     String? orgId = storage.getString(StorageKeys.currentOrgId);
     String? token = storage.getString(StorageKeys.currentSessionToken);
+    storage.setString(StorageKeys.currentChannelId, channelId);
     // await _channelsApiService.joinChannel(channelId);
     try {
       final res = await _api
@@ -222,20 +223,19 @@ class ChannelPageViewModel extends FormViewModel {
 
       channelUserMessages?.add(
         UserPost(
-          id: data['_id'],
-          displayName: userid,
-          statusIcon: '7️⃣',
-          moment: Moment.now().from(DateTime.parse(data['timestamp'])),
-          message: data['content'],
-          channelType: ChannelType.public,
-          postEmojis: <PostEmojis>[],
-          userThreadPosts: <UserThreadPost>[],
-          channelName: channelId,
-          userImage: 'assets/images/chimamanda.png',
-          userId: userid,
-          channelId: channelId,
-          pinned: data['pinned'],
-        ),
+            id: data['_id'],
+            displayName: userid,
+            statusIcon: '⭐',
+            moment: Moment.now().from(DateTime.parse(data['timestamp'])),
+            message: data['content'],
+            channelType: ChannelType.public,
+            postEmojis: <PostEmojis>[],
+            userThreadPosts: <UserThreadPost>[],
+            channelName: channelId,
+            userImage: 'assets/images/chimamanda.png',
+            userId: userid,
+            channelId: channelId,
+            pinned: data['pinned']),
       );
     });
     isLoading = false;
