@@ -245,11 +245,19 @@ class ChannelPageViewModel extends FormViewModel {
   void sendMessage(
     String message,
   ) async {
-    String? userId = storage.getString(StorageKeys.currentUserId);
-    await _channelsApiService.sendChannelMessages(
-        channelID, "$userId", message);
-    scrollController.jumpTo(scrollController.position.minScrollExtent);
-    notifyListeners();
+    try {
+      String? userId = storage.getString(StorageKeys.currentUserId);
+      await _channelsApiService.sendChannelMessages(
+          channelID, "$userId", message);
+      scrollController.jumpTo(scrollController.position.minScrollExtent);
+      notifyListeners();
+    } catch (e) {
+      _snackbarService.showCustomSnackBar(
+        duration: const Duration(seconds: 1),
+        message: "Could not send message, please check your internet",
+        variant: SnackbarType.failure,
+      );
+    }
   }
 
   void navigateToShareMessage(UserPost userPost) async {
