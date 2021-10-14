@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/models/user_post.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/audio_message.dart';
@@ -28,7 +29,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
     return GestureDetector(
       onTap: () => viewModel.navigateToThread(userPost),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -39,13 +40,14 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                   height: 40,
                   decoration: BoxDecoration(
                     color: Colors.blue,
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                    borderRadius:
+                        const BorderRadius.all(Radius.circular(5)),
                     image: DecorationImage(
                         fit: BoxFit.fill,
                         image: AssetImage('${userPost.userImage}')),
                   )),
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 12.0),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +77,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 4.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

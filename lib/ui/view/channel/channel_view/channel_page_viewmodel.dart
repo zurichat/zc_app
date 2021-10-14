@@ -176,6 +176,7 @@ class ChannelPageViewModel extends FormViewModel {
     String? userId = storage.getString(StorageKeys.currentUserId);
     String? orgId = storage.getString(StorageKeys.currentOrgId);
     String? token = storage.getString(StorageKeys.currentSessionToken);
+    storage.setString(StorageKeys.currentChannelId, channelId);
     // await _channelsApiService.joinChannel(channelId);
     try {
       final res = await _api
@@ -228,7 +229,7 @@ class ChannelPageViewModel extends FormViewModel {
         UserPost(
           id: data['_id'],
           displayName: userid,
-          statusIcon: '7️⃣',
+          statusIcon: '⭐',
           moment: Moment.now().from(DateTime.parse(data['timestamp'])),
           message: data['content'],
           channelType: ChannelType.public,
@@ -259,20 +260,11 @@ class ChannelPageViewModel extends FormViewModel {
       String? userId = storage.getString(StorageKeys.currentUserId);
       List<String> urls = [];
       if (media != null) {
-        for (int i = 0; i<media.length; i++){
-           var url = await _mediaService.uploadImage(media[i], pluginId);
+        for (int i = 0; i < media.length; i++) {
+          var url = await _mediaService.uploadImage(media[i], pluginId);
           urls.add(url!);
         }
-
-        // await Future.forEach<File>(media, (file) async {
-        //   var url = await _mediaService.uploadImage(file, pluginId);
-        //   urls.add(url!);
-        // });
       }
-      // media?.forEach((file) async {
-      //   var url = await _mediaService.uploadImage(file, pluginId);
-      //   urls.add(url!);
-      // }
 
       await _channelsApiService.sendChannelMessages(
           channelID, "$userId", message, urls);

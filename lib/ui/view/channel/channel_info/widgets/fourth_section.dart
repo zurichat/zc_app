@@ -24,7 +24,7 @@ class FourthSection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6.r),
             ),
             child: const NewRowTile(
-                icon: Icons.push_pin_outlined, text: OnePinnedMessage)),
+                icon: Icons.push_pin_outlined, text: PinnedMessages)),
       ),
     );
   }
