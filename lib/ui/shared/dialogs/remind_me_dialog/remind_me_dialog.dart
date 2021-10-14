@@ -9,9 +9,7 @@ class ReminderDialog extends StatelessWidget {
   final DialogRequest request;
   final Function(DialogResponse) completer;
   const ReminderDialog(
-      {Key? key,
-      required this.request,
-      required this.completer})
+      {Key? key, required this.request, required this.completer})
       : super(key: key);
 
   @override
@@ -21,12 +19,12 @@ class ReminderDialog extends StatelessWidget {
       builder: (context, model, child) => AlertDialog(
         content: Container(
           padding: EdgeInsets.symmetric(
-              horizontal: size.width * .02, vertical: size.height * .02),
+              horizontal: size.width * .01, vertical: size.height * .02),
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(15)),
           width: size.width * .9,
-          height: size.height * .37,
-          child: Column(
+          height: size.height * .50,
+          child: ListView(
             children: [
               const ListTile(
                 title: CustomText(

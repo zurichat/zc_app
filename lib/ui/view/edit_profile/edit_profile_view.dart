@@ -36,7 +36,7 @@ class EditProfileView extends StatelessWidget {
             TextButton(
               onPressed: () => viewModel.onSave(),
               child: Text(
-                local.save.toUpperCase(),
+                Save.toUpperCase(),
                 style: AppTextStyles.body1Bold.copyWith(
                     color: viewModel.hasDataChanged
                         ? AppColors.deepBlackColor
