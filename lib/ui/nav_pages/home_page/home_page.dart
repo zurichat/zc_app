@@ -87,10 +87,12 @@ class HomePage extends StatelessWidget {
         children: [
           const SizedBox(height: 15),
           searchBar(context, vmodel),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
-            child: ThreadTextAndIcon(),
-          ),
+          vmodel.hasThreads()
+              ? const Padding(
+                  padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
+                  child: ThreadTextAndIcon(),
+                )
+              : Container(),
           vmodel.hasDrafts()
               ? const Padding(
                   padding: EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 3),

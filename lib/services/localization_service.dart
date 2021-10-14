@@ -52,6 +52,14 @@ class LocalizationService with ReactiveServiceMixin {
   /// specify which locales you plan to support by returning them.
   Locale loadSupportedLocals(
       Locale? locale, Iterable<Locale> supportedLocales) {
+    String? storedLocaleString =
+        _storageService.getString(StorageKeys.currentUserLocale);
+    if (storedLocaleString != null) {
+      Locale? storedLocale = Locale(storedLocaleString);
+      storeCurrentLocale(storedLocale);
+      return storedLocale;
+    }
+
     if (locale == null) {
       Intl.defaultLocale = supportedLocales.first.languageCode;
       storeCurrentLocale(supportedLocales.first);

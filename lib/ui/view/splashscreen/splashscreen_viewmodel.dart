@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/widgets.dart';
+import 'package:hng/main.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -11,16 +13,17 @@ import '../../../services/local_storage_services.dart';
 class SplashscreenViewModel extends BaseViewModel {
   final navigation = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
-  init() {
+  init(BuildContext context) {
     // storage.clearStorage();
     Timer(
       const Duration(seconds: 1),
       () {
+        
         //TODO comment it out to get access to once only view
         if (storage.getBool('onboarded') == null ||
             storage.getBool('onboarded') == false) {
           storage.setBool('onboarded', true);
-           navigation.clearStackAndShow(Routes.onboardingView);
+          navigation.clearStackAndShow(Routes.onboardingView);
         } else if (storage.getBool(StorageKeys.registeredNotverifiedOTP) ==
             true) {
           navigation.clearStackAndShow(Routes.oTPView);
@@ -31,6 +34,9 @@ class SplashscreenViewModel extends BaseViewModel {
               storage.getString(StorageKeys.currentOrgId) == '') {
             navigation.clearStackAndShow(Routes.organizationView);
           } else {
+            //Loading selected locale
+        String? storedLocale = storage.getString(StorageKeys.currentUserLocale);
+        MyApp.setLocale(context, Locale(storedLocale.toString()));
             navigation.clearStackAndShow(Routes.navBarView);
           }
         }

@@ -78,6 +78,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                       ),
                     ),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           hash,
@@ -88,9 +89,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
                         Expanded(
                           child: TextField(
                             controller: channelNameController,
-                            style: AppTextStyles.body2Medium.copyWith(
-                              color: AppColors.blackColor,
-                            ),
+                            style: AppTextStyles.body2Medium.copyWith(),
                             inputFormatters: [
                               LengthLimitingTextInputFormatter(80)
                             ],
