@@ -195,4 +195,7 @@ class LocalKeys {
   static const NewPassword = "new_password";
   static const PasswordLengthWarning = "password_length_warning";
   static const PasswordMustMatch = "password_must_match";
+  static const EnterOTP = "enter_otp";
+  static const DidntReceiveOTP = "didnt_receive_otp";
+  static const Resend = "resend";
 }

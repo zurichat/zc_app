@@ -195,5 +195,8 @@
     "new_password_header": "Your new password must be different from the previously used password",
     "new_password": "New Password",
     "password_length_warning": "Password Must be at least 6 characters",
-    "password_must_match": "Passwords do not match"
+    "password_must_match": "Passwords do not match",
+    "enter_otp": "Enter the 6-digit OTP sent to your email",
+    "didnt_receive_otp": "Didn't receive any code? ",
+    "resend": "Resend"
 }
