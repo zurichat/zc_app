@@ -179,5 +179,21 @@
     "check_your_email": "Check your mail",
     "confirm_email_text": "To confirm your email address, tap the button in the email we sent to ",
     "open_email_app": "Open email app",
-    "company_name": "What's the name of the company or team?"
+    "company_name": "What's the name of the company or team?",
+    "company_and": " and ",
+    "cookie_policy": "Cookie Policy",
+    "customer_agreement_text": "It’s okay to send me email with Zuri Chat app, news and offer",
+    "project_name": "What's a project your team is working on?",
+    "project_hint": "Eg.  Q4 Budget, Website Update",
+    "teammate_names": "Who else is working with you?",
+    "add_teammates": "Add Teammates",
+    "in_app_notify_subtitle": "In-app notifications appear while the app is open",
+    "forgot_password_header": "Please enter the email used in registering this account",
+    "invalid_email": "invalid email address",
+    "continue": "Continue",
+    "back_to": "Back to ",
+    "new_password_header": "Your new password must be different from the previously used password",
+    "new_password": "New Password",
+    "password_length_warning": "Password Must be at least 6 characters",
+    "password_must_match": "Passwords do not match"
 }

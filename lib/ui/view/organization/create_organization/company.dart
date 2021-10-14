@@ -64,36 +64,36 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                           final res = await viewModel.onCompanyNext();
                           if (res) next();
                         },
-                        label: 'Next'),
+                        label: local.next),
                     const SizedBox(height: 15),
-                    const Text.rich(
+                    Text.rich(
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: TnC1,
-                            style: TextStyle(
+                            text: local.tnC1,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                             ),
                           ),
                           TextSpan(
-                            text: TnC2,
-                            style: TextStyle(
+                            text: local.tnC2,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                               color: AppColors.zuriPrimaryColor,
                             ),
                           ),
                           TextSpan(
-                            text: ' and ',
-                            style: TextStyle(
+                            text: local.companyAnd,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                             ),
                           ),
                           TextSpan(
-                            text: CookiePolicy,
-                            style: TextStyle(
+                            text: local.cookiePolicy,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                               color: AppColors.zuriPrimaryColor,
@@ -110,9 +110,9 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                         value: viewModel.checkBoxVal,
                         onChanged: viewModel.onCheckBoxChanged,
                         controlAffinity: ListTileControlAffinity.leading,
-                        title: const Text(
-                          CustomerAgreementText,
-                          style: TextStyle(
+                        title: Text(
+                          local.customerAgreementText,
+                          style: const TextStyle(
                             fontSize: 15,
                           ),
                         ),
