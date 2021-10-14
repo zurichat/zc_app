@@ -200,7 +200,7 @@ class ChannelPageViewModel extends FormViewModel {
   }
 
   Future navigateToQuestionPollScreen() async {
-    await _navigationService.navigateTo(Routes.questionIntoPollView);
+    //await _navigationService.navigateTo(Routes.questionIntoPollView);
   }
 
   void getChannelSocketId(String channelId) async {
