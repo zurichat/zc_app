@@ -192,7 +192,7 @@ MockMediaService getAndRegisterMediaServiceMock() {
   final service = MockMediaService();
   Future<String> response = Future<String>.value("Image Address");
 
-  when(service.uploadImage(fileMock)).thenAnswer((_) async => response);
+  when(service.uploadImage(fileMock, pluginId_string)).thenAnswer((_) async => response);
 
   locator.registerSingleton<MediaService>(service);
   return service;
