@@ -163,13 +163,15 @@ class OrganizationViewModel extends BaseViewModel {
 
   String? get token => _storage.getString(StorageKeys.currentSessionToken);
 
-  void showSignOutBottomSheet(OrganizationModel org) {
-    _bottomSheetService.showCustomSheet(
+  Future<void> showSignOutBottomSheet(OrganizationModel org) async {
+    await _bottomSheetService.showCustomSheet(
       barrierColor: AppColors.blackColor,
       variant: BottomSheetType.signOut,
       isScrollControlled: true,
       data: org,
     );
+    organizations = await api.getJoinedOrganizations();
+    notifyListeners();
   }
 
   void navigateToSignIn() =>

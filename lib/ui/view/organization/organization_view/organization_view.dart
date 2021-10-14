@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/models/organization_model.dart';
@@ -151,16 +152,20 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
                 width: 2,
                 style: BorderStyle.solid,
               ),
-              color: AppColors.greyishColor,
+              color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(5),
             ),
             clipBehavior: Clip.antiAlias,
             //TODO : Add the org image here
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.05,
-              width: MediaQuery.of(context).size.width * 0.5,
-              color: Colors.grey,
-            ),
+            child: org.logoUrl != null && org.logoUrl!.isNotEmpty
+                ? CachedNetworkImage(
+                    imageUrl: org.logoUrl!,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    'assets/logo/new_zuri_logo.png',
+                    fit: BoxFit.cover,
+                  ),
           ),
         ),
         //TODO : Add the org name here

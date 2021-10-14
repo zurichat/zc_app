@@ -21,8 +21,14 @@ class OrganizationSettingsViewModel extends BaseViewModel with ValidatorMixin {
   final _mediaService = locator<MediaService>();
   final _userService = locator<UserService>();
   final _zuriApi = ZuriApi(coreBaseUrl);
+  late String name, url;
 
   File? tempImage;
+
+  void init(String _name, String _url) {
+    name = _name;
+    url = _url;
+  }
 
   void back() {
     navigation.back();
@@ -46,8 +52,7 @@ class OrganizationSettingsViewModel extends BaseViewModel with ValidatorMixin {
     try {
       setBusy(true);
       if (tempImage == null) return;
-      final url = await _mediaService.uploadImage(tempImage, orgId);
-      await _zuriApi.updateOrgLogo(orgId, url!, token);
+      await _zuriApi.updateOrgLogo(orgId, tempImage!, token);
       setBusy(false);
       navigation
           .popUntil((route) => route.settings.name == Routes.organizationView);
@@ -66,18 +71,18 @@ class OrganizationSettingsViewModel extends BaseViewModel with ValidatorMixin {
     final isCamera =
         await dialog.showCustomDialog(variant: DialogType.imageSource);
     if (isCamera?.confirmed == null) return;
-    tempImage = await _mediaService.getImage(fromGallery: isCamera!.confirmed);
+    tempImage = await _mediaService.getImage(fromGallery: !isCamera!.confirmed);
     notifyListeners();
   }
-
-  String get token => _userService.authToken;
 
   Future<void> updateOrgNameAndUrl(
       String orgId, String orgName, String orgUrl) async {
     try {
+      final parsedUrl = '$orgUrl.zurichat.com';
+
       setBusy(true);
-      await _zuriApi.updateOrgName(orgId, orgName, token);
-      await _zuriApi.updateOrgUrl(orgId, orgUrl, token);
+      if (orgName != name) await _zuriApi.updateOrgName(orgId, orgName, token);
+      if (orgUrl != url) await _zuriApi.updateOrgUrl(orgId, parsedUrl, token);
       setBusy(false);
       navigation
           .popUntil((route) => route.settings.name == Routes.organizationView);
@@ -90,4 +95,6 @@ class OrganizationSettingsViewModel extends BaseViewModel with ValidatorMixin {
           variant: SnackbarType.failure, message: 'Update not successful');
     }
   }
+
+  String get token => _userService.authToken;
 }

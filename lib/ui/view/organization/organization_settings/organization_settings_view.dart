@@ -55,8 +55,8 @@ class OrganizationSettingsView extends StatelessWidget {
                         const SizedBox(height: 10),
                         Text(
                           'Workspace icon is used in the desktop and mobile apps where it\'s useful in helping to quickly identify this workspace.',
-                          style:
-                              AppTextStyles.bodyRegular.copyWith(fontSize: 15),
+                          style: AppTextStyles.bodyRegular.copyWith(
+                              fontSize: 15, color: AppColors.greyColor),
                         ),
                       ],
                     ),
@@ -81,8 +81,8 @@ class OrganizationSettingsView extends StatelessWidget {
                             children: [
                               TextSpan(
                                 text: 'Your workspace name is ',
-                                style: AppTextStyles.bodyRegular
-                                    .copyWith(fontSize: 15),
+                                style: AppTextStyles.bodyRegular.copyWith(
+                                    fontSize: 15, color: AppColors.greyColor),
                               ),
                               TextSpan(
                                 text: org.name,
@@ -93,8 +93,8 @@ class OrganizationSettingsView extends StatelessWidget {
                               ),
                               TextSpan(
                                 text: ' and your URL is ',
-                                style: AppTextStyles.bodyRegular
-                                    .copyWith(fontSize: 15),
+                                style: AppTextStyles.bodyRegular.copyWith(
+                                    fontSize: 15, color: AppColors.greyColor),
                               ),
                               TextSpan(
                                 text: org.organizationUrl ?? '',

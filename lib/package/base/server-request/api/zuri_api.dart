@@ -308,7 +308,7 @@ class ZuriApi implements Api {
   Future updateOrgUrl(String orgId, String url, token) async {
     try {
       final res = await dio.patch(
-        '$channelsBaseUrl/organizations/$orgId/url',
+        '${coreBaseUrl}organizations/$orgId/url',
         options: Options(
           headers: {'Authorization': 'Bearer $token'},
         ),
@@ -327,7 +327,7 @@ class ZuriApi implements Api {
   Future updateOrgName(String orgId, String name, token) async {
     try {
       final res = await dio.patch(
-        '$channelsBaseUrl/organizations/$orgId/name',
+        '${coreBaseUrl}organizations/$orgId/name',
         options: Options(
           headers: {'Authorization': 'Bearer $token'},
         ),
@@ -343,14 +343,20 @@ class ZuriApi implements Api {
   /// Updates an organization's logo. The organization's id `orgId` must not be
   /// null or empty
   @override
-  Future updateOrgLogo(String orgId, String url, token) async {
+  Future updateOrgLogo(String orgId, File image, token) async {
     try {
+      var formData = FormData.fromMap({
+        "image": await MultipartFile.fromFile(
+          image.path,
+          filename: image.path.split(Platform.pathSeparator).last,
+        ),
+      });
       final res = await dio.patch(
-        '$channelsBaseUrl/organizations/$orgId/logo',
+        '${coreBaseUrl}organizations/$orgId/logo',
         options: Options(
           headers: {'Authorization': 'Bearer $token'},
         ),
-        data: {'url': url},
+        data: formData,
       );
       return res.data['message'];
     } on DioError catch (e) {

@@ -21,6 +21,7 @@ class OrganizationNameUrl extends HookWidget {
         useTextEditingController(text: org.organizationUrl?.split('.').first);
     return ViewModelBuilder<OrganizationSettingsViewModel>.reactive(
       viewModelBuilder: () => OrganizationSettingsViewModel(),
+      onModelReady: (model) => model.init(org.name!, org.organizationUrl!),
       builder: (context, model, child) {
         return Scaffold(
           appBar: ZuriAppBar(
@@ -100,7 +101,7 @@ class OrganizationNameUrl extends HookWidget {
                             child: BorderTextField(
                               hint: "hng_i8",
                               controller: _orgUrlController,
-                              textCapitalization: TextCapitalization.words,
+                              textCapitalization: TextCapitalization.none,
                               validator: model.vaidateOrgUrl,
                               textAlign: TextAlign.end,
                             ),
