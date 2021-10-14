@@ -159,4 +159,24 @@ class LocalKeys {
   static const HelpSignInEasily = "help_sign_in_easily";
   static const EnterWorkSpacesUrl = "enter_workspaces_url";
   static const SendEmailForSignin = "send_email_for_signin";
+  static const Done = "done";
+  static const InvitedAsAZuriChatMember = "invited_as_a_zuri_chat_member";
+  static const InvitationSent = "invitation_sent";
+  static const Invite = "invite";
+  static const SendRequest = "send_request";
+  static const ChooseContacts = "choose_contacts";
+  static const InviteForAdminApproval = "invite_for_admin_approval";
+  static const Send = "send";
+  static const CoworkersToJoin = "coworkers_to_join";
+  static const AddEmailAddress = "add_email_address";
+  static const InviteFromContacts = "invite_from_contacts";
+  static const ShareImage = "start_merged";
+  static const ShareInviteLink = "share_invite_link";
+  static const ShareLinkText = "share_link_test";
+  static const KnowAnyCoworkers = "know_any_coworkers";
+  static const ChangeExpiryDateText = "change_expiry_date_text";
+  static const CheckYourMail = "Check your mail";
+  static const ConfirmEmailText = "confirm_email_text";
+  static const OpenEmailApp = "open_email_app";
+  static const CompanyName = "company_name";
 }

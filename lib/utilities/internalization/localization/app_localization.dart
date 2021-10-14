@@ -207,7 +207,28 @@ class AppLocalization {
   String get helpSignInEasily => translate(LocalKeys.HelpSignInEasily);
   String get enterWorkSpacesUrl => translate(LocalKeys.EnterWorkSpacesUrl);
   String get sendEmailForSignin => translate(LocalKeys.SendEmailForSignin);
-
+  String get done => translate(LocalKeys.Done);
+  String get invitedAsAZuriChatMember =>
+      translate(LocalKeys.InvitedAsAZuriChatMember);
+  String get invitationSent => translate(LocalKeys.InvitationSent);
+  String get invite => translate(LocalKeys.Invite);
+  String get sendRequest => translate(LocalKeys.SendRequest);
+  String get chooseContacts => translate(LocalKeys.ChooseContacts);
+  String get inviteForAdminApproval =>
+      translate(LocalKeys.InviteForAdminApproval);
+  String get send => translate(LocalKeys.Send);
+  String get coworkersToJoin => translate(LocalKeys.CoworkersToJoin);
+  String get addEmailAddress => translate(LocalKeys.AddEmailAddress);
+  String get inviteFromContacts => translate(LocalKeys.InviteFromContacts);
+  String get shareImage => translate(LocalKeys.SavedItems);
+  String get shareInviteLink => translate(LocalKeys.ShareInviteLink);
+  String get shareLinkText => translate(LocalKeys.ShareLinkText);
+  String get knowAnyCoworkers => translate(LocalKeys.KnowAnyCoworkers);
+  String get changeExpiryDateText => translate(LocalKeys.ChangeExpiryDateText);
+  String get checkYourMail => translate(LocalKeys.CheckYourMail);
+  String get confirmEmailText => translate(LocalKeys.ConfirmEmailText);
+  String get openEmailApp => translate(LocalKeys.OpenEmailApp);
+  String get companyName => translate(LocalKeys.CompanyName);
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
