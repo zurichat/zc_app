@@ -9,7 +9,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../../../shared/shared.dart';
 import 'question_into_poll_view.form.dart';
-import 'package:polls/polls.dart';
+//import 'package:polls/polls.dart';
 
 @FormView(
   fields: [
@@ -44,7 +44,7 @@ class QuestionIntoPollView extends StatelessWidget with $QuestionIntoPollView {
       //this parameter allows us to reuse the view model to persist the state
       viewModelBuilder: () => QuestionIntoPollViewModel(),
       builder: (context, model, child) {
-        final message = model.channelUserMessages;
+        //final message = model.channelUserMessages;
         return Scaffold(
             backgroundColor: AppColors.whiteColor,
             appBar: ZuriAppBar(
