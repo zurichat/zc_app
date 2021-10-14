@@ -12,7 +12,6 @@ class FirstSection extends StatelessWidget {
   final String channelName;
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
     return Card(
       elevation: 2,
       child: Container(
