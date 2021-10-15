@@ -59,10 +59,11 @@ class YouPageViewModel extends ReactiveViewModel {
 
     if (response != null) {
       String status = response.data['data']['status']['text'];
+      String tag = response.data['data']['status']['tag'];
       if (status != '') {
         _statusText = status;
+        _tagIcon = tag;
       }
-      _tagIcon = response.data['data']['status']['tag'];
       notifyListeners();
     } else {}
   }
