@@ -1,6 +1,8 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
+import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -15,6 +17,9 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
   final _channelApiService = locator<ChannelsApiService>();
   final _navigationService = locator<NavigationService>();
   final snackbar = locator<SnackbarService>();
+  final storageService = locator<SharedPreferenceLocalStorage>();
+
+  String? get username => storageService.getString(StorageKeys.displayName);
 
   void toggleSwitch(bool value) {
     isChannelPrivate = value;
@@ -55,10 +60,10 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
     }
 
     final res = await _channelApiService.createChannels(
-      name: channelNameValue!,
-      description: channelDescriptionValue!,
-      private: isChannelPrivate,
-    );
+        name: channelNameValue!,
+        description: channelDescriptionValue!,
+        private: isChannelPrivate,
+        email: username!);
 
     if (res) {
       snackbar.showCustomSnackBar(
@@ -79,4 +84,8 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
 
   @override
   void setFormStatus() {}
+
+  void navigateBack() {
+    _navigationService.back();
+  }
 }

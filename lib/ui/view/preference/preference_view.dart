@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/menu_item_tile.dart';
@@ -13,15 +13,23 @@ class PreferenceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      final local = AppLocalization.of(context);
     return ViewModelBuilder<PreferenceViewModel>.reactive(
       viewModelBuilder: () => PreferenceViewModel(),
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-            orgTitle: Text('Preferences', style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor)),
-            leading: Icons.close_outlined,
-            leadingPress: () => model.exitPage(),
-            whiteBackground: true),
+          orgTitle: Text(
+            local!.preferences,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
+          ),
+          leading: Icons.close_outlined,
+          leadingPress: () => model.exitPage(),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -29,7 +37,7 @@ class PreferenceView extends StatelessWidget {
               MenuItemTile(
                 topBorder: false,
                 text: Text(
-                  LangAndRegion,
+                  local.langAndRegion,
                   style: AppTextStyles.faintBodyText.copyWith(
                     fontSize: 16,
                   ),
@@ -38,7 +46,7 @@ class PreferenceView extends StatelessWidget {
               ),
               MenuItemTile(
                 text: Text(
-                  DarkMode,
+                  local.darkMode,
                   style: AppTextStyles.faintBodyText.copyWith(
                     fontSize: 16,
                   ),
@@ -48,7 +56,7 @@ class PreferenceView extends StatelessWidget {
               ),
               MenuItemTile(
                 text: Text(
-                  Advanced,
+                  local.advanced,
                   style: AppTextStyles.faintBodyText.copyWith(
                     fontSize: 16,
                   ),
@@ -57,7 +65,7 @@ class PreferenceView extends StatelessWidget {
               ),
               MenuItemTile(
                 text: Text(
-                  SendFeedback,
+                  local.sendFeedback,
                   style: AppTextStyles.faintBodyText.copyWith(
                     fontSize: 16,
                   ),
@@ -66,7 +74,7 @@ class PreferenceView extends StatelessWidget {
               ),
               MenuItemTile(
                 text: Text(
-                  HelpCenter,
+                  local.helpCenter,
                   style: AppTextStyles.faintBodyText.copyWith(
                     fontSize: 16,
                   ),
@@ -75,7 +83,7 @@ class PreferenceView extends StatelessWidget {
               ),
               MenuItemTile(
                 text: Text(
-                  PrivacyNLicenses,
+                  local.privacyNLicenses,
                   style: AppTextStyles.faintBodyText.copyWith(
                     fontSize: 16,
                   ),

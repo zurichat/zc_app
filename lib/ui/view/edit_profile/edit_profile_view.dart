@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/user_model.dart';
 
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -16,6 +17,7 @@ class EditProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     Size _size = MediaQuery.of(context).size;
     return ViewModelBuilder<EditProfileViewModel>.reactive(
       viewModelBuilder: () => EditProfileViewModel(),
@@ -26,14 +28,14 @@ class EditProfileView extends StatelessWidget {
           leading: Icons.close_rounded,
           leadingPress: () => viewModel.close(),
           orgTitle: Text(
-            "Edit Profile",
+            local!.editProfileButton,
             style: AppTextStyles.heading4,
           ),
           actions: [
             TextButton(
               onPressed: () => viewModel.onSave(),
               child: Text(
-                Save.toUpperCase(),
+                local.save.toUpperCase(),
                 style: AppTextStyles.body1Bold.copyWith(
                     color: viewModel.hasDataChanged
                         ? AppColors.deepBlackColor
@@ -43,20 +45,9 @@ class EditProfileView extends StatelessWidget {
           ],
         ),
         body: Visibility(
-          visible: !viewModel.isBusy,
-          child: Body(size: _size),
-          replacement: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(GettingYourData),
-                CircularProgressIndicator(
-                  color: AppColors.zuriPrimaryColor,
-                ),
-              ],
-            ),
-          ),
-        ),
+            visible: !viewModel.isBusy,
+            child: Body(size: _size),
+            replacement: const ZuriLoader()),
       ),
     );
   }

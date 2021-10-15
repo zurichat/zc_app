@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -20,30 +21,33 @@ class ThreadTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
     return _TextAndIcon(
-      text: Threads,
+      text: local!.threads,
       unread: true,
-      onTap: () async{
+      onTap: () async {
         // Navigate to threads screen
         await navigationService.navigateTo(Routes.threadsView);
         viewModel.draftChecker();
       },
-      icon: SvgIcon(svgIcon: SvgAssets.threads),
+      icon: SvgIcon(
+        svgIcon: SvgAssets.threads,
+        color: Theme.of(context).textTheme.bodyText1!.color,
+      ),
     );
   }
 }
 
 class DraftTextAndIcon extends ViewModelWidget<HomePageViewModel> {
-
-  const
-  DraftTextAndIcon({Key? key}) : super(key: key);
+  const DraftTextAndIcon({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
     return _TextAndIcon(
-      text: Drafts,
+      text: local!.draft,
       unread: true,
-      onTap: () async{
+      onTap: () async {
         await navigationService.navigateTo(Routes.draftView);
         viewModel.draftChecker();
       },
@@ -60,14 +64,12 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
     return _TextAndIcon(
-      text: AddChannels,
-      unread: false,
-      onTap: () => viewModel.navigateToCreateChannel(),
-      icon: SvgIcon(
-        svgIcon: SvgAssets.addChannels,
-      ),
-    );
+        text: local!.addChannel,
+        unread: false,
+        onTap: () => viewModel.navigateToCreateChannel(),
+        icon: Image.asset(AddLogo));
   }
 }
 
@@ -76,14 +78,12 @@ class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
     return _TextAndIcon(
-      text: AddTeammates,
-      unread: false,
-      onTap: () => viewModel.navigateInviteMembers(),
-      icon: SvgIcon(
-        svgIcon: SvgAssets.addChannels,
-      ),
-    );
+        text: local!.addTeammates,
+        unread: false,
+        onTap: () => viewModel.navigateInviteMembers(),
+        icon: Image.asset(AddLogo));
   }
 }
 

@@ -5,6 +5,7 @@ class AppColors {
   static const Color borderColor = Color(0xFF7B8794);
   static const Color greyishColor = Color(0xFF999999);
   static const Color deepBlackColor = Color(0xFF333333);
+  static const Color darkModeColor = Color(0xFF121212);
   static const Color dividerColor = Color(0xFFD1D0D0);
   static const Color zuriPrimaryColor = Color(0xFF00B87C);
   static const Color blueColor = Color(0xFF1554F6);
@@ -15,6 +16,7 @@ class AppColors {
   static const Color unreadMessageColor = Color(0xffB8003C);
   static const Color darkGreyColor = Color(0xFF424141);
   static const Color paleGreen = Color(0xFF89D3BB);
+  static const Color lightYellow = Color(0xFFFFFFE8);
   static const Color inactiveGreyColor = Color(0xFFB0AFB0);
   static const Color blueTextColor = Color(0xFF2573F6);
   static const Color greyBackgroundColor = Color(0xFFF4F4F4);
@@ -39,5 +41,5 @@ class AppColors {
   static const kimbieAccent = Color(0xFF6E9B3B);
 
   //Dark Theme
-  static const dTBottomNavColour = Color(0xFF1C1B1B);
+  static const darkThemePrimaryColor = Color(0xFF1C1B1B);
 }

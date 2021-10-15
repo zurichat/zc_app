@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/ui_helpers.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -23,6 +25,7 @@ class LoginView extends StatelessWidget with $LoginView {
   LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<LoginViewModel>.reactive(
       //listenToFormUpdated automatically
       //syncs text from TextFields to the viewmodel
@@ -31,9 +34,7 @@ class LoginView extends StatelessWidget with $LoginView {
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
         color: AppColors.whiteColor,
-        progressIndicator: const CircularProgressIndicator(
-          color: AppColors.zuriPrimaryColor,
-        ),
+        progressIndicator: const ZuriLoader(),
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           body: SingleChildScrollView(
@@ -45,6 +46,7 @@ class LoginView extends StatelessWidget with $LoginView {
                 children: [
                   UIHelper.customVerticalSpace(57.0),
                   Container(
+                    height: 50,
                     alignment: Alignment.center,
                     child: Image.asset(ZuriLogo),
                   ),
@@ -57,13 +59,13 @@ class LoginView extends StatelessWidget with $LoginView {
                   ),
                   UIHelper.verticalSpaceSmall,
                   Text(
-                    WelcomeSignIn,
+                    local!.welcomeSignIn,
                     textAlign: TextAlign.center,
                     style: AppTextStyles.faintBodyText,
                   ),
                   UIHelper.customVerticalSpace(38.0),
                   Text(
-                    EmailAddress,
+                    local.emailAddress,
                     style: AppTextStyles.body1Bold,
                   ),
                   UIHelper.customVerticalSpace(10.0),
@@ -77,7 +79,7 @@ class LoginView extends StatelessWidget with $LoginView {
                   ),
                   UIHelper.verticalSpaceMedium,
                   Text(
-                    Password,
+                    local.password,
                     style: AppTextStyles.body1Bold,
                   ),
                   UIHelper.customVerticalSpace(10.0),
@@ -86,7 +88,7 @@ class LoginView extends StatelessWidget with $LoginView {
                     inputAction: TextInputAction.next,
                     autoCorrect: false,
                     obscureText: true,
-                    hintText: PasswordHintText,
+                    hintText: local.passwordHintText,
                     controller: passwordController,
                   ),
                   Align(
@@ -101,9 +103,9 @@ class LoginView extends StatelessWidget with $LoginView {
                         FocusScope.of(context).unfocus();
                         model.navigateToForgotPasswordScreen();
                       },
-                      child: const Text(
-                        ForgotPasswordBtn,
-                        style: TextStyle(
+                      child: Text(
+                        local.forgotPassword,
+                        style: const TextStyle(
                           color: AppColors.zuriPrimaryColor,
                         ),
                       ),
@@ -117,19 +119,19 @@ class LoginView extends StatelessWidget with $LoginView {
                         onPressed: () async {
                           await model.logInUser();
                         },
-                        label: SignIn,
+                        label: local.signIn,
                       ),
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(DontHaveAccount),
+                      Text(local.dontHaveAccount),
                       TextButton(
                         onPressed: () => model.navigateToSignUpScreen(),
-                        child: const Text(
-                          SignUp,
-                          style: TextStyle(color: AppColors.zuriPrimaryColor),
+                        child: Text(
+                          local.signUp,
+                          style: const TextStyle(color: AppColors.zuriPrimaryColor),
                         ),
                       )
                     ],

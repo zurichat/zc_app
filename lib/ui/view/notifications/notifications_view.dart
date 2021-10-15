@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/menu_item_tile.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'notifications_viewmodel.dart';
@@ -13,74 +11,78 @@ class NotificationsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<NotificationsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        backgroundColor: AppColors.whiteColor,
         appBar: ZuriAppBar(
           leading: Icons.close_rounded,
           leadingPress: () => model.goBack(),
           orgTitle: Text(
-            Notifications,
-            style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
+                        local!.notifications,
+
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           whiteBackground: true,
         ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const MenuItemTile(
-                text: Text(NotifyAbout),
-                subtitle: NotifyAboutSubtitle,
+              MenuItemTile(
+                text: Text(local.notifyAbout),
+                subtitle: local.notifyAboutSubtitle,
               ),
-              const MenuItemTile(
-                text: Text(NotifyOnMobile),
-                subtitle: NotifyOnMobileSubtitle,
+              MenuItemTile(
+                text: Text(local.notifyOnMobile),
+                subtitle: local.notifyOnMobileSubtitle,
               ),
-              const MenuItemTile(
-                text: Text(Sound),
-                subtitle: Ding,
+              MenuItemTile(
+                text: Text(local.sound),
+                subtitle: local.ding,
               ),
               MenuItemTile.flipSwitch(
-                text: const Text(Vibrate),
+                text: Text(local.vibrate),
                 value: model.vibrate,
                 onChanged: model.toggleVibrate,
               ),
               MenuItemTile.flipSwitch(
-                text: const Text(Light),
+                text: Text(local.light),
                 value: model.light,
                 onChanged: model.toggleLight,
               ),
-              const MenuItemTile(
-                text: Text(TroubleshootNotifs),
+              MenuItemTile(
+                text: Text(local.troubleShootNotifs),
               ),
               const SizedBox(height: 10),
-              const Padding(
-                padding: EdgeInsets.all(10),
+              Padding(
+                padding: const EdgeInsets.all(10),
                 child: Text(
-                  GeneralSettings,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  local.generalSettings,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              const MenuItemTile(
-                text: Text(NotificationSchedule),
-                subtitle: Everyday,
+              MenuItemTile(
+                text: Text(local.notificationSchedule),
+                subtitle: local.everyday,
                 topBorder: false,
               ),
               MenuItemTile.flipSwitch(
-                text: const Text(InAppNotif),
-                subtitle: 'In-app notifications appear while the app is open',
+                text: Text(local.inAppNotify),
+                subtitle: local.inAppNotifySubtitle,
                 value: model.inAppNotification,
                 onChanged: model.toggleInAppNotification,
               ),
               MenuItemTile.flipSwitch(
-                text: const Text(MyKeyword),
-                subtitle: MyKeywordSubtitle,
+                text: Text(local.myKeyword),
+                subtitle: local.myKeywordSubtitle,
                 value: model.notifyOnKeyword,
                 onChanged: model.toggleNotifyOnKeyword,
               ),
-              const MenuItemTile(
-                text: Text(ChannelSPecificNotif),
+              MenuItemTile(
+                text: Text(local.channelSpecificNotify),
               ),
             ],
           ),

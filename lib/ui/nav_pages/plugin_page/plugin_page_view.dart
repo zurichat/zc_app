@@ -8,6 +8,7 @@ import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/long_button.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 class PluginPage extends StatelessWidget {
@@ -18,12 +19,19 @@ class PluginPage extends StatelessWidget {
     return ViewModelBuilder<PluginViewModel>.reactive(
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
+        final local = AppLocalization.of(context);
         return Scaffold(
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             leadingPress: model.navigateBack,
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             whiteBackground: true,
-            orgTitle: Text(Plugins, style: AppTextStyles.heading4),
+            orgTitle: Text(
+              Plugins,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
+            ),
           ),
           body: !model.hasplugins
               ? Padding(
@@ -34,15 +42,12 @@ class PluginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Get serious and have fun here",
+                          local!.pluginIntroHeader,
                           style: AppTextStyles.header6,
                         ),
                         UIHelper.verticalSpaceMedium,
                         Text(
-                          '''Access your oganization’s important stuff'''
-                          ''' like holiday-calendar, meeting room, notice'''
-                          ''' board etc. Have fun by joining the chess'''
-                          ''' room and music room.''',
+                          local.pluginIntroBody,
                           style: AppTextStyles.body1Grey,
                         ),
                         UIHelper.customVerticalSpace(56.0),
@@ -52,7 +57,7 @@ class PluginPage extends StatelessWidget {
                             onPressed: () {
                               model.navigateToAdd();
                             },
-                            label: "Get Started",
+                            label: local.getstarted,
                           ),
                         ),
                       ],
@@ -70,7 +75,7 @@ class PluginPage extends StatelessWidget {
                           icon: Icons.add,
                           topBorder: false,
                           text: Text(
-                            "Add Plugin",
+                            local!.addPlugin,
                             style: AppTextStyles.faintBodyText.copyWith(
                               fontSize: 16,
                             ),

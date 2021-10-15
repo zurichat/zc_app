@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/view/channel/channel_view/widgets/check_user.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -20,15 +23,20 @@ class ExpandableTextFieldScreen extends HookWidget {
       required this.widget,
       required this.sendMessage,
       required this.hintText,
+      this.usercheck = true,
+      this.channelName,
+      this.channelId,
       required this.textController,
       required this.channelID})
       : super(key: key);
   final Widget widget;
-  final Function(String? message) sendMessage;
+  final Function(String message, List<File> media) sendMessage;
   final String hintText;
+  final bool usercheck;
   final focusNode = FocusNode();
   final TextEditingController textController;
-
+  final String? channelName;
+  final String? channelId;
   final String channelID;
 
   final keyboardVisibilityController = KeyboardVisibilityController();
@@ -111,7 +119,10 @@ class ExpandableTextFieldScreen extends HookWidget {
                             }
                           },
                           child: Container(
-                            color: AppColors.whiteColor,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? AppColors.darkThemePrimaryColor
+                                    : AppColors.whiteColor,
                             child: SizedBox.fromSize(
                               size: Size.fromHeight(model.size),
                               child: Column(
@@ -139,21 +150,25 @@ class ExpandableTextFieldScreen extends HookWidget {
                                   Expanded(
                                     // height:
                                     //     size,
-                                    child: MyTextField(
-                                      toggleVisibility: model.toggleVisibility,
-                                      isExpanded: model.isExpanded,
-                                      controller: textController,
-                                      focus: focusNode,
-                                      hintText: hintText,
-                                      isVisible: model.isVisible,
-                                      toggleExpanded: () {
-                                        if (!model.isExpanded) {
-                                          model.toggleExpanded(true);
-                                        } else {
-                                          model.toggleExpanded(false);
-                                        }
-                                      },
-                                    ),
+
+                                    child: !usercheck
+                                        ? CheckUser(channelId, channelName)
+                                        : MyTextField(
+                                            toggleVisibility:
+                                                model.toggleVisibility,
+                                            isExpanded: model.isExpanded,
+                                            controller: textController,
+                                            focus: focusNode,
+                                            hintText: hintText,
+                                            isVisible: model.isVisible,
+                                            toggleExpanded: () {
+                                              if (!model.isExpanded) {
+                                                model.toggleExpanded(true);
+                                              } else {
+                                                model.toggleExpanded(false);
+                                              }
+                                            },
+                                          ),
                                   ),
                                   Visibility(
                                     visible: model.isVisible,
@@ -170,7 +185,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/zap.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
@@ -181,7 +195,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/at_sign.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
@@ -192,13 +205,13 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/smile.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
                                           const Spacer(),
                                           GestureDetector(
-                                            onTap: () {},
+                                            onTap: () =>
+                                                model.onCameraTap("roomId"),
                                             child: Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
@@ -215,18 +228,21 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 'assets/icons/svg_icons/paperclip.svg',
-                                                color: AppColors.darkGreyColor,
                                               ),
                                             ),
                                           ),
                                           GestureDetector(
                                             onTap: () {
-                                              if (textController.text
-                                                  .toString()
-                                                  .isNotEmpty) {
-                                                sendMessage(
-                                                    textController.text);
+                                              if (textController.text.isEmpty &&
+                                                  model.mediaList.isEmpty) {
+                                                return;
+                                              } else 
+                                              {
+                                                sendMessage(textController.text,
+                                                    model.mediaList);
                                                 textController.clear();
+                                                model.clearMediaList();
+                                                model.toggleExpanded(false);
                                               }
                                             },
                                             onLongPress: () {
@@ -247,6 +263,21 @@ class ExpandableTextFieldScreen extends HookWidget {
                                       ),
                                     ),
                                   ),
+                                  Visibility(
+                                    visible: model.mediaList.isNotEmpty,
+                                    child: SizedBox(
+                                      height: 70,
+                                      width: double.infinity,
+                                      child: ListView.builder(
+                                        itemCount: model.mediaList.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (__, index) {
+                                          final media = model.mediaList[index];
+                                          return Image.file(media);
+                                        },
+                                      ),
+                                    ),
+                                  )
                                 ],
                               ),
                             ),

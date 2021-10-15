@@ -34,7 +34,9 @@ class CustomUserBottomSheetView extends StatelessWidget {
                   (BuildContext context, ScrollController scrollController) {
                 return Container(
                   height: height * .97,
-                  color: Colors.white,
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? AppColors.darkThemePrimaryColor
+                      : AppColors.whiteColor,
                   child: SingleChildScrollView(
                     controller: scrollController,
                     child: Column(

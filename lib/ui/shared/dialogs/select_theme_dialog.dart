@@ -21,27 +21,29 @@ class SelectThemeDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const CustomText(text: DarkMode, fontWeight: FontWeight.bold),
-            Flexible(
-              fit: FlexFit.loose,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: request.data['themes'].length,
-                itemBuilder: (context, index) => ListTile(
-                  title: CustomText(text: request.data['themes'][index]),
-                  leading: Radio(
-                    activeColor: AppColors.zuriPrimaryColor,
-                    value: index,
-                    groupValue: _currentThemeValue,
-                    onChanged: (int? value) {
-                      setState(() => _currentThemeValue = value);
-                    },
-                  ),
+            const Padding(
+                padding: EdgeInsets.only(top: 15, left: 15),
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: CustomText(
+                        text: DarkMode, fontWeight: FontWeight.bold))),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: request.data['themes'].length,
+              itemBuilder: (context, index) => ListTile(
+                title: CustomText(text: request.data['themes'][index]),
+                leading: Radio(
+                  activeColor: AppColors.zuriPrimaryColor,
+                  value: index,
+                  groupValue: _currentThemeValue,
+                  onChanged: (int? value) {
+                    setState(() => _currentThemeValue = value);
+                  },
                 ),
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 MaterialButton(
                   onPressed: () => completer(
@@ -55,6 +57,7 @@ class SelectThemeDialog extends StatelessWidget {
                   ),
                   child: const Text(Apply),
                 ),
+                const SizedBox(height: 30),
               ],
             ),
           ],

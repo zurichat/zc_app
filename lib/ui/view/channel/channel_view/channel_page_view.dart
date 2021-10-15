@@ -51,7 +51,6 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
               .jumpTo(model.scrollController.position.maxScrollExtent);
         }
         return Scaffold(
-          backgroundColor: AppColors.whiteColor,
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             leadingPress: () => model.goBack(
@@ -61,6 +60,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 membersCount,
                 public),
             whiteBackground: true,
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             actions: [
               IconButton(
                 onPressed: () {},
@@ -72,13 +72,11 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
               Padding(
                 padding: const EdgeInsets.only(right: 5),
                 child: IconButton(
-                  onPressed: () {
-                    model.navigateToChannelInfoScreen(
-                      membersCount!,
-                      ChannelModel(id: channelId!, name: channelName!),
-                    );
-                    channelMessagesController.text = "edit";
-                  },
+                  onPressed: () => model.navigateToChannelInfoScreen(
+                    membersCount!,
+                    ChannelModel(id: channelId!, name: channelName!),
+                    channelName!
+                  ),
                   icon: const Icon(
                     Icons.info_outlined,
                     color: AppColors.greyColor,
@@ -91,10 +89,13 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
           ),
           body: ExpandableTextFieldScreen(
+             usercheck: model.checkUser,
+            channelName: '$channelName',
+            channelId: '$channelId',
             channelID: channelId.toString(),
             textController: channelMessagesController,
             hintText: AddReply,
-            sendMessage:model.sendOrUpdateMessage,
+            sendMessage:model.sendMessage,
             widget: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               controller: model.scrollController,
