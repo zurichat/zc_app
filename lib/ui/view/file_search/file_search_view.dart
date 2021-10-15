@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
@@ -61,7 +62,7 @@ class _FileSearchViewState extends State<FileSearchView> {
                         child: Text(
                           //TODO REMOVE HARDCODED DATA AND TRANSLATE
                           FiftyResults,
-                          style: AppTextStyles.normalGrey,
+                          style: AppTextStyle.darkGreySize16,
                         ),
                       ),
                       const Expanded(
@@ -71,7 +72,10 @@ class _FileSearchViewState extends State<FileSearchView> {
                         right: 12,
                         child: Row(
                           children: [
-                            Text(local.newest, style: AppTextStyles.normalGrey),
+                            Text(
+                              local.newest,
+                              style: AppTextStyle.darkGreySize16,
+                            ),
                             Image.asset(Arrows),
                           ],
                         ),

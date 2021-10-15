@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/view/channel/share_message/share_message_viewmodel.dart';
 import 'package:hng/ui/view/channel/share_message/widgets/share_message_textfield.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
@@ -48,20 +48,23 @@ class ShareMessageView extends StatelessWidget with $ShareMessageView {
                       children: [
                         Image.asset(userPost.userImage!, height: 20, width: 20),
                         const SizedBox(width: 10),
-                        Text(userPost.displayName!,
-                            style: AppTextStyles.body3Medium),
+                        Text(
+                          userPost.displayName!,
+                          style: AppTextStyle.darkGreySize16,
+                        ),
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Text(userPost.message!,
-                        style:
-                            AppTextStyles.body3Medium.copyWith(fontSize: 16)),
                     Text(
-                        '${local.threadMessageIn} #${userPost.channelName} • ${userPost.moment}',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
-                        style: AppTextStyles.faintBodyText
-                            .copyWith(color: Colors.grey, fontSize: 12)),
+                      userPost.message!,
+                      style: AppTextStyle.darkGreySize16Bold,
+                    ),
+                    Text(
+                      '${local.threadMessageIn} #${userPost.channelName} • ${userPost.moment}',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                      style: AppTextStyle.lightGreySize12,
+                    ),
                   ],
                 ),
               ),

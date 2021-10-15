@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
@@ -35,7 +36,7 @@ class AddOrganizationView extends StatelessWidget {
               leading: Icons.arrow_back_ios,
               orgTitle: Text(
                 local!.addOrganizations,
-                style: AppTextStyles.heading4.copyWith(
+                style: AppTextStyle.darkGreySize18Bold.copyWith(
                     color: Theme.of(context).textTheme.bodyText1!.color),
               ),
               isDarkMode: Theme.of(context).brightness == Brightness.dark,
@@ -70,8 +71,10 @@ class AddOrganizationView extends StatelessWidget {
                                   Icons.grid_view,
                                 ),
                                 const SizedBox(width: 16),
-                                Text(local.signInWorkspace,
-                                    style: AppTextStyles.heading9),
+                                Text(
+                                  local.signInWorkspace,
+                                  style: AppTextStyle.darkGreySize16,
+                                ),
                               ],
                             ),
                           ),
@@ -91,8 +94,10 @@ class AddOrganizationView extends StatelessWidget {
                                   height: 18,
                                 ),
                                 const SizedBox(width: 16),
-                                Text(local.joinWorkspace,
-                                    style: AppTextStyles.heading9),
+                                Text(
+                                  local.joinWorkspace,
+                                  style: AppTextStyle.darkGreySize16,
+                                ),
                               ],
                             ),
                           ),
@@ -109,8 +114,10 @@ class AddOrganizationView extends StatelessWidget {
                                   Icons.edit_outlined,
                                 ),
                                 const SizedBox(width: 16),
-                                Text(local.createWorkspace,
-                                    style: AppTextStyles.heading9),
+                                Text(
+                                  local.createWorkspace,
+                                  style: AppTextStyle.darkGreySize16,
+                                ),
                               ],
                             ),
                           ),

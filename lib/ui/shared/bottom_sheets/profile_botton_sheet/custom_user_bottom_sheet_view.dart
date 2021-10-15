@@ -4,8 +4,8 @@ import 'package:hng/utilities/internalization/localization/app_localization.dart
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../../general_widgets/custom_text.dart';
 import '../../colors.dart';
+import '../../text_styles.dart';
 import 'custom_user_bottom_sheet_viewmodel.dart';
 import 'widgets/custom_button.dart';
 import 'widgets/custom_profile_tile.dart';
@@ -52,7 +52,8 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              CustomButton(text: local!.messageButton, onPressed: () {}),
+                              CustomButton(
+                                  text: local!.messageButton, onPressed: () {}),
                               CustomButton(
                                 text: local.editProfileButton,
                                 onPressed: () => model.navigateToEditProfile(),
@@ -72,8 +73,10 @@ class CustomUserBottomSheetView extends StatelessWidget {
                             subtitle: user?.displayName ?? ''),
                         const Divider(),
                         ListTile(
-                          title: CustomText(
-                              text: local.status, fontWeight: FontWeight.w300),
+                          title: Text(
+                            'Status',
+                            style: AppTextStyle.darkGreySize16,
+                          ),
                           subtitle: const Align(
                               alignment: Alignment.centerLeft,
                               child: Icon(Icons.looks_5, color: Colors.blue)),
@@ -91,7 +94,8 @@ class CustomUserBottomSheetView extends StatelessWidget {
                             subtitle: user?.phoneNumber ?? ''),
                         const Divider(),
                         CustomProfileTile(
-                            title: local.emailAddress, subtitle: '${user?.email}'),
+                            title: local.emailAddress,
+                            subtitle: '${user?.email}'),
                       ],
                     ),
                   ),

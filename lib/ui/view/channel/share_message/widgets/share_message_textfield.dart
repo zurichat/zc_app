@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 class ShareMessageTextField extends StatelessWidget {
   TextEditingController controller;
@@ -16,8 +15,7 @@ class ShareMessageTextField extends StatelessWidget {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           enabledBorder: InputBorder.none,
           hintText: 'Add a message',
-          hintStyle: AppTextStyles.textButtonText.copyWith(
-              decoration: TextDecoration.none, color: AppColors.greyColor)),
+          hintStyle: AppTextStyle.lightGreySize16),
     );
   }
 }

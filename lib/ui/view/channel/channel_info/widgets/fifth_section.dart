@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import '../../../../shared/colors.dart';
 
 class FifthSection extends StatelessWidget {
@@ -36,7 +36,7 @@ class FifthSection extends StatelessWidget {
             SizedBox(width: 24.23.w),
             Text(
               Leave,
-              style: AppTextStyles.namesStyle.copyWith(
+              style: AppTextStyle.darkGreySize16.copyWith(
                 fontSize: 14.sp,
                 color: Theme.of(context).textTheme.bodyText1!.color,
               ),

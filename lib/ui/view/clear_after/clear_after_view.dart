@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
-import '../../../general_widgets/custom_text.dart';
 import '../../shared/shared.dart';
 import 'package:stacked/stacked.dart';
 import 'clear_after_viewmodel.dart';
@@ -21,7 +22,7 @@ class ClearAfterView extends StatelessWidget {
           leadingPress: () => model.exitPage(),
           orgTitle: Text(
             local!.clearAfter,
-            style: AppTextStyles.heading7,
+            style: AppTextStyle.darkGreySize20Bold,
           ),
         ),
         body: Column(
@@ -31,7 +32,10 @@ class ClearAfterView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: model.clearAfterTimes.length,
                 itemBuilder: (context, index) => ListTile(
-                  title: CustomText(text: model.clearAfterTimes[index]),
+                  title: Text(
+                    model.clearAfterTimes[index],
+                    style: AppTextStyle.darkGreySize16,
+                  ),
                   leading: Radio(
                     activeColor: AppColors.zuriPrimaryColor,
                     value: index,
