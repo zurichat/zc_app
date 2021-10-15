@@ -6,11 +6,12 @@ import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/ui/view/channel/share_message/share_message_viewmodel.dart';
+import 'package:hng/ui/view/channel/share_message/widgets/select_channel_drop_down.dart';
 import 'package:hng/ui/view/channel/share_message/widgets/share_message_textfield.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
-class ShareMessageView extends StatelessWidget{
+class ShareMessageView extends StatelessWidget {
   final UserPost userPost;
 
   const ShareMessageView({required this.userPost, Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class ShareMessageView extends StatelessWidget{
   Widget build(BuildContext context) {
     return ViewModelBuilder<ShareMessageViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
+              backgroundColor: AppColors.whiteColor,
               appBar: AppBar(
                 backgroundColor: AppColors.zuriPrimaryColor,
                 leading: IconButton(
@@ -54,15 +56,15 @@ class ShareMessageHook extends HookViewModelWidget<ShareMessageViewModel> {
   @override
   Widget buildViewModelWidget(
       BuildContext context, ShareMessageViewModel viewModel) {
-    var channelController = useTextEditingController();
     var controller = useTextEditingController();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ShareMessageTextField(
-            controller: channelController,
-            onChanged: (String value) => viewModel.channelToSend = value,
-            hintText: EnterChannelName),
+        UIHelper.verticalSpaceSmall,
+        SelectChannelDropDown(
+            values: viewModel.data!,
+            value: viewModel.homeItemModel,
+            onChanged: viewModel.onChanged),
         UIHelper.verticalSpaceMedium,
         ShareMessageTextField(
             controller: controller,

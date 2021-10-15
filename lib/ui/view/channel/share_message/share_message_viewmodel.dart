@@ -15,37 +15,29 @@ class ShareMessageViewModel extends FutureViewModel<List<HomeItemModel>> {
   final _channelsApiService = locator<ChannelsApiService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
 
-  HomeItemModel defaultHomeItemModel =
-      HomeItemModel(type: HomeItemType.channels, name: '');
   String message = '';
-  String channelToSend = '';
+  late HomeItemModel homeItemModel;
+
+  void onChanged(HomeItemModel? homeItemModel) {
+    this.homeItemModel = homeItemModel!;
+    notifyListeners();
+  }
 
   void sendMessage(String sharedMessage) async {
     var userID = _storage.getString(StorageKeys.currentUserId);
-    if (channelToSend != '') {
-      HomeItemModel homeItemModel = data!.firstWhere(
-          (element) => element.name == channelToSend,
-          orElse: () => defaultHomeItemModel);
-      if (homeItemModel.name != '') {
-        if (message != '') {
-          var newMessage = '$message: $sharedMessage';
-          await _channelsApiService.sendChannelMessages(
-              homeItemModel.id!, userID!, newMessage);
-          _navigationService.popRepeated(2);
-          _navigationService.navigateTo(Routes.channelPageView,
-              arguments: ChannelPageViewArguments(
-                  channelName: homeItemModel.name,
-                  channelId: homeItemModel.id,
-                  membersCount: homeItemModel.membersCount,
-                  public: homeItemModel.public));
-        } else {
-          showSnackBar(EnterMessage);
-        }
-      } else {
-        showSnackBar(NoSuchChannel);
-      }
+    if (message != '') {
+      var newMessage = '$message: $sharedMessage';
+      await _channelsApiService.sendChannelMessages(
+          homeItemModel.id!, userID!, newMessage);
+      _navigationService.popRepeated(2);
+      _navigationService.navigateTo(Routes.channelPageView,
+          arguments: ChannelPageViewArguments(
+              channelName: homeItemModel.name,
+              channelId: homeItemModel.id,
+              membersCount: homeItemModel.membersCount,
+              public: homeItemModel.public));
     } else {
-      showSnackBar(EnterChannelName);
+      showSnackBar(EnterMessage);
     }
   }
 
@@ -73,6 +65,7 @@ class ShareMessageViewModel extends FutureViewModel<List<HomeItemModel>> {
         ),
       ),
     );
+    homeItemModel = channelList.first;
     return channelList;
   }
 }
