@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
 
 import 'package:hng/models/organization_model.dart';
 import 'package:hng/ui/shared/bottom_sheets/sign_out_bottomsheet/sign_out_botton_sheet_viewmodel.dart';
@@ -39,14 +38,12 @@ class SignOutBottomSheet extends StatelessWidget {
                       // model.dismissDialog();
                       // model.showSignOutDialog(org.name ?? "");
                     },
-                    child: const ListTile(
-                      title: CustomText(
-                        text: 'Invite members',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        color: AppColors.greyColor,
+                    child: ListTile(
+                      title: Text(
+                        'Invite members',
+                        style: AppTextStyle.darkGreySize16,
                       ),
-                      leading: Icon(
+                      leading: const Icon(
                         Icons.logout_sharp,
                         color: AppColors.greyColor,
                       ),
@@ -56,14 +53,12 @@ class SignOutBottomSheet extends StatelessWidget {
                     onTap: () {
                       model.navigateToWorkSpaceSettings(org);
                     },
-                    child: const ListTile(
-                      title: CustomText(
-                        text: 'Organization settings',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        color: AppColors.greyColor,
+                    child: ListTile(
+                      title: Text(
+                        'Organization settings',
+                        style: AppTextStyle.darkGreySize16,
                       ),
-                      leading: Icon(
+                      leading: const Icon(
                         Icons.settings,
                         color: AppColors.greyColor,
                       ),
