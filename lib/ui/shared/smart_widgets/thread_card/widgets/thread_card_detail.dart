@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
-import 'package:hng/ui/shared/styles.dart';
+
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../../general_widgets/custom_text.dart';
 import '../../../colors.dart';
+import '../../../text_styles.dart';
 import '../../text_parser/text_parser_view.dart';
 import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
@@ -16,7 +16,7 @@ class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
   ThreadCardDetail(this.userPost, {Key? key}) : super(key: key);
 
   final UserPost? userPost;
-      final log = getLogger("ThreadCardDetail");
+  final log = getLogger("ThreadCardDetail");
 
   @override
   Widget build(BuildContext context, ThreadCardViewModel viewModel) {
@@ -27,7 +27,7 @@ class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
         children: [
           InkWell(
             onTap: viewModel.viewProfile,
-             onLongPress: () => zuriChatBottomSheet(
+            onLongPress: () => zuriChatBottomSheet(
                 context: context,
                 addToSavedItems: () {
                   viewModel.saveItem(
@@ -77,22 +77,21 @@ class ThreadCardDetail extends ViewModelWidget<ThreadCardViewModel> {
                             children: [
                               Flexible(
                                 fit: FlexFit.loose,
-                                child: CustomText(
-                                  text: '${userPost!.displayName}',
-                                  fontWeight: FontWeight.bold,
+                                child: Text(
+                                  '${userPost!.displayName}',
+                                  style: AppTextStyle.darkGreySize14Bold,
                                 ),
                               ),
                               Text(
                                 "${userPost!.statusIcon}",
-                                style: AppTextStyles.regular,
+                                style: AppTextStyle.darkGreySize16,
                               ),
                               const SizedBox(width: 2),
                               Padding(
                                 padding: const EdgeInsets.only(right: 18),
-                                child: CustomText(
-                                  text: '${userPost!.moment}',
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
+                                child: Text(
+                                  '${userPost!.moment}',
+                                  style: AppTextStyle.darkGreySize16,
                                 ),
                               ),
                             ],

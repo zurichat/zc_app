@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -19,14 +20,14 @@ class SetStatusView extends StatelessWidget {
                 leadingPress: () => model.exitPage(),
                 orgTitle: Text(
                   'Set a status',
-                  style: AppTextStyles.heading4,
+                  style: AppTextStyle.darkGreySize20Bold,
                 ),
                 actions: [
                   TextButton(
                     onPressed: () {},
                     child: Text(
                       Save,
-                      style: AppTextStyles.heading8,
+                      style: AppTextStyle.greenSize16,
                     ),
                   )
                 ],

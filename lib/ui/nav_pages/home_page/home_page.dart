@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
               const SizedBox(width: 16),
               Text(
                 vmodel.orgName,
-                style: ZuriTextStyle.organizationNameText(),
+                style: AppTextStyle.organizationNameText,
               ),
             ],
           ),
@@ -135,7 +135,7 @@ class HomePage extends StatelessWidget {
           borderColor: Colors.grey[300],
           child: Text(
             local!.jumpTo,
-            style: ZuriTextStyle.mediumNormal(),
+            style: AppTextStyle.darkGreySize14,
           ),
         ),
       ),
