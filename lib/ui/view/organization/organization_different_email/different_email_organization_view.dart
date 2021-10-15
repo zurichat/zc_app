@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/text_field.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/shared.dart';
@@ -17,63 +20,58 @@ class UseDifferentEmailView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final emailController = useTextEditingController();
+    final local = AppLocalization.of(context);
 
     return ViewModelBuilder<UseDifferentEmailViewModel>.nonReactive(
-      viewModelBuilder: () => UseDifferentEmailViewModel(),
-      builder: (context, model, child) => Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(25.0),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Spacer(flex: 3),
-                  TextField(
-                    controller: emailController,
-                    cursorColor: AppColors.zuriPrimaryColor,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      labelText: YourEmail,
-                      hintText: SampleEmail,
-                      hintStyle: TextStyle(
-                        color: Color(0xffBEBEBE),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      labelStyle: TextStyle(
-                        color: Color(0xffBEBEBE),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none,
-                    ),
-                    onChanged: model.updateScreen,
+        viewModelBuilder: () => UseDifferentEmailViewModel(),
+        builder: (context, model, child) => Scaffold(
+              body: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Spacer(),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              BorderLessTextField(
+                                labelColor: AppColors.inactiveGreyColor,
+                                onChanged: (String? value) {
+                                  model.updateColor();
+                                  if (value!.isEmpty) {
+                                    return InputRequired;
+                                  }
+                                },
+                                controller: emailController,
+                                label: local!.yourEmailAddress,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                local.sendEmailForSignin,
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                local.sendEmailForSignin,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 16),
+                              ),
+                              const SizedBox(height: 25),
+                              const Spacer(flex: 3),
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: NextButton(method: method),
+                              ),
+                              const Spacer(),
+                            ],
+                          ),
+                        ]),
                   ),
-                  const SizedBox(height: 12),
-                  const Text(
-                    WillSendEmail,
-                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
-                  ),
-                  const SizedBox(height: 25),
-                  const Spacer(flex: 3),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: NextButton(method: method),
-                  ),
-                  const Spacer(),
-                ],
+                ),
               ),
-            ),
-          ),
-        ),
-      ),
-    );
+            ));
   }
 }
 
@@ -84,6 +82,7 @@ class NextButton extends ViewModelWidget<UseDifferentEmailViewModel> {
 
   @override
   Widget build(BuildContext context, UseDifferentEmailViewModel viewModel) {
+    final local = AppLocalization.of(context);
     return TextButton(
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(
@@ -96,8 +95,8 @@ class NextButton extends ViewModelWidget<UseDifferentEmailViewModel> {
           width: double.infinity,
           child: Center(
             child: Text(
-              Next,
-              style: AppTextStyles.buttonText,
+              local!.next,
+              style: AppTextStyle.whiteSize16,
             ),
           ),
         ),

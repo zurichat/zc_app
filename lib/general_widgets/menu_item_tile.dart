@@ -9,6 +9,7 @@ class MenuItemTile extends StatelessWidget {
   const MenuItemTile({
     this.onPressed,
     this.iconColor,
+    this.ico,
     this.text,
     this.icon,
     this.imageIcon,
@@ -23,6 +24,7 @@ class MenuItemTile extends StatelessWidget {
 
   const MenuItemTile.icon({
     this.onPressed,
+    this.ico,
     this.iconColor,
     this.text,
     this.icon,
@@ -39,6 +41,7 @@ class MenuItemTile extends StatelessWidget {
   const MenuItemTile.flipSwitch({
     this.onPressed,
     this.iconColor,
+    this.ico,
     this.text,
     this.subtitle,
     this.icon,
@@ -52,7 +55,7 @@ class MenuItemTile extends StatelessWidget {
         super(key: key);
 
   final Text? text;
-  final IconData? icon;
+  final Widget? icon;
   final String? imageIcon;
   final void Function()? onPressed;
   final void Function(bool)? onChanged;
@@ -62,15 +65,13 @@ class MenuItemTile extends StatelessWidget {
   final bool topBorder;
   final bool value;
   final Color? iconColor;
+  final IconData? ico;
 
   Widget? selectIcon() {
     if (icon == null && imageIcon == null) {
       return null;
     } else if (icon != null) {
-      return Icon(
-        icon,
-        color: iconColor,
-      );
+      return icon;
     } else {
       return Image.asset('$imageIcon');
     }
@@ -86,7 +87,7 @@ class MenuItemTile extends StatelessWidget {
           subtitle: subtitle != null
               ? Text(
                   subtitle ?? '',
-                  style: ZuriTextStyle.mediumNormal(),
+                  style: AppTextStyle.darkGreySize14,
                 )
               : null,
           dense: true,
@@ -118,7 +119,7 @@ class MenuItemTile extends StatelessWidget {
           subtitle: subtitle != null
               ? Text(
                   subtitle ?? '',
-                  style: ZuriTextStyle.mediumNormal(),
+                  style: AppTextStyle.darkGreySize14,
                 )
               : null,
           trailing: selectIcon(),

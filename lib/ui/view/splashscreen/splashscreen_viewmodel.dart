@@ -20,18 +20,18 @@ class SplashscreenViewModel extends BaseViewModel {
         if (storage.getBool('onboarded') == null ||
             storage.getBool('onboarded') == false) {
           storage.setBool('onboarded', true);
-          navigation.navigateTo(Routes.onboardingView);
+          navigation.clearStackAndShow(Routes.onboardingView);
         } else if (storage.getBool(StorageKeys.registeredNotverifiedOTP) ==
             true) {
-          navigation.navigateTo(Routes.oTPView);
+          navigation.clearStackAndShow(Routes.oTPView);
         } else if (storage.getString(StorageKeys.currentUserId) == null) {
-          navigation.navigateTo(Routes.loginView);
+          navigation.clearStackAndShow(Routes.loginView);
         } else {
           if (storage.getString(StorageKeys.currentOrgId) == null ||
               storage.getString(StorageKeys.currentOrgId) == '') {
-            navigation.navigateTo(Routes.organizationView);
+            navigation.clearStackAndShow(Routes.organizationView);
           } else {
-            navigation.navigateTo(Routes.navBarView);
+            navigation.clearStackAndShow(Routes.navBarView);
           }
         }
         // navigation.navigateTo(Routes.onboardingView);

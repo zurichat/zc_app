@@ -14,8 +14,8 @@ import 'package:hng/app/app.logger.dart';
 class ThreadCardViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
-  final storage = locator<SharedPreferenceLocalStorage>();
-    final log = getLogger("ThreadCardViewModel");
+  final _storage = locator<SharedPreferenceLocalStorage>();
+  final log = getLogger("ThreadCardViewModel");
 
   //TODO Delete this random number stuff
   //this was created to give the emojis unique ids which  would be handled by the backend
@@ -43,12 +43,12 @@ class ThreadCardViewModel extends BaseViewModel {
       'display_name': displayName
     };
     if (message!.isNotEmpty) {
-      var currentList = storage.getStringList(StorageKeys.savedItem) ?? [];
+      var currentList = _storage.getStringList(StorageKeys.savedItem) ?? [];
       currentList.add(messageID!);
-      await storage.setStringList(StorageKeys.savedItem, currentList);
-      await storage.setString(messageID, json.encode(savedMessageMap));
+      await _storage.setStringList(StorageKeys.savedItem, currentList);
+      await _storage.setString(messageID, json.encode(savedMessageMap));
       log.i(savedMessageMap);
-      final len = storage.getStringList(StorageKeys.savedItem);
+      final len = _storage.getStringList(StorageKeys.savedItem);
       log.w(len!.length.toString());
     }
   }

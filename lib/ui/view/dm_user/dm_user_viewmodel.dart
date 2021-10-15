@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:hng/app/app.locator.dart';
-import 'package:hng/models/user_post.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/message.dart';
 import 'package:hng/ui/view/dm_user/dummy_data/models/user.dart';
@@ -14,13 +12,60 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:hng/app/app.logger.dart';
 
 class DmUserViewModel extends FormViewModel {
-  final _username = "";
+  final navigationService = locator<NavigationService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
+
+  //**Draft implementations
+
+  //Note that the receiverID has to be unique to a dm_user_view
+  //instance, which is attached to a particular user to make the draft implementation
+  // unique to a particular user dm.
+
+  var storedDraft = '';
+
+  void getDraft(receiverId) {
+    List<String>? spList =
+        _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    if (spList != null) {
+      for (String e in spList) {
+        if (jsonDecode(e)['receiverId'] == receiverId) {
+          storedDraft = jsonDecode(e)['draft'];
+          spList.remove(e);
+          _storageService.setStringList(
+              StorageKeys.currentUserDmIdDrafts, spList);
+          return;
+        }
+      }
+    }
+  }
+
+  void storeDraft(receiverId, value) {
+    var keyMap = {
+      'draft': value,
+      'time': '${DateTime.now()}',
+      'receiverName': 'receiverName',
+      'receiverId': receiverId,
+    };
+
+    List<String>? spList =
+        _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+
+    if (value.length > 0 && spList != null) {
+      spList.add(json.encode(keyMap));
+      _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, spList);
+    } else if (value.length > 0 && spList == null) {
+      spList = [json.encode(keyMap)];
+      _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, spList);
+    }
+  }
+  //**draft implementation ends here
+
+  final _username = '';
   String get username => _username;
 
   final bottomSheet = locator<BottomSheetService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   final log = getLogger("DmUserViewModel");
-    List<UserPost>? dmMessages = [];
 
   final _isOnline = true;
   bool get isOnline => _isOnline;
@@ -52,8 +97,9 @@ class DmUserViewModel extends FormViewModel {
     _hasClickedMessageField = true;
     notifyListeners();
   }
-/// THIS FUNCTION BELOW IS TO SAVE MESSAGES INTO SAVED Items
-/// PLESE LEAVE IT
+
+  /// THIS FUNCTION BELOW IS TO SAVE MESSAGES INTO SAVED Items
+  /// PLESE LEAVE IT
   saveItem(
       {String? channelID,
       String? channelName,
@@ -83,6 +129,7 @@ class DmUserViewModel extends FormViewModel {
       log.w(len!.length.toString());
     }
   }
+
   /// IT ENDS HERE FOR SAVED ITEMS
 
   void onUnfocusMessageField() {
@@ -102,19 +149,21 @@ class DmUserViewModel extends FormViewModel {
           time: DateTime.now(),
         ),
       );
-      // ignore: todo
-      //TODO - fix autoclear
+
       messageController.clear();
-      //clearText();
+
       notifyListeners();
     }
-    //await sendResponse();
-    //}
   }
 
   void deleteMessage(Message message) {
     chatMessages.remove(message);
     notifyListeners();
+  }
+
+  void popScreens(receiverId, value) {
+    storeDraft(receiverId, value);
+    navigationService.back();
   }
 
   void popScreen() {
@@ -139,4 +188,38 @@ class DmUserViewModel extends FormViewModel {
 //TODO implement setFormStatus
   @override
   void setFormStatus() {}
+
+  scheduleMessage(double delay, String text) {
+    delay = delay * 60; //Converting from hour to minutes
+
+    int value = delay.toInt();
+    Future.delayed(Duration(minutes: value), () {
+      if (text.trim().isNotEmpty) {
+        chatMessages.add(
+          Message(
+            id: chatMessages.length,
+            sender: sender,
+            message: text,
+            time: DateTime.now(),
+          ),
+        );
+
+        notifyListeners();
+      }
+    });
+  }
+
+//Dialog box for schedulling
+  final _dialogService = locator<DialogService>();
+  showPop() {
+    _dialogService.showCustomDialog(
+      variant: DialogType.scheduleMessageDm,
+    );
+
+    notifyListeners();
+  }
+
+  void exit() {
+    navigationService.back();
+  }
 }

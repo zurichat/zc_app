@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/plugin_page/plugin_page_view.dart';
+import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
@@ -40,8 +41,8 @@ class NavBarView extends StatelessWidget {
             unselectedItemColor: AppColors.navBarItemColor,
             selectedFontSize: 14,
             unselectedFontSize: 14,
-            selectedLabelStyle: AppTextStyles.normalText,
-            unselectedLabelStyle: AppTextStyles.normalText,
+            selectedLabelStyle: AppTextStyle.darkGreySize12,
+            unselectedLabelStyle: AppTextStyle.darkGreySize12,
             currentIndex: vModel.currentIndex,
             onTap: vModel.setIndex,
             items: getBottomIcons(context),
@@ -120,7 +121,7 @@ class NavBarView extends StatelessWidget {
       case 0:
         return const HomePage();
       case 1:
-        return const PluginPage();
+        return const PluginPageIntro();
       case 2:
         return const DmPage();
       case 3:

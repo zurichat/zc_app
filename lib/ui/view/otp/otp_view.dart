@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
@@ -30,9 +32,7 @@ class OTPView extends StatelessWidget with $OTPView {
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
         color: AppColors.whiteColor,
-        progressIndicator: const CircularProgressIndicator(
-          color: AppColors.zuriPrimaryColor,
-        ),
+        progressIndicator: const ZuriLoader(),
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           body: SafeArea(
@@ -130,13 +130,13 @@ class OTPView extends StatelessWidget with $OTPView {
                       child: RichText(
                         text: TextSpan(
                           children: [
-                            const TextSpan(
+                            TextSpan(
                               text: DidntRecieveOTP,
+                              style: AppTextStyle.darkGreySize12,
                             ),
                             TextSpan(
                               text: Resend,
-                              style: AppTextStyles.body2Bold.copyWith(
-                                color: AppColors.zuriPrimaryColor,
+                              style: AppTextStyle.greenSize16.copyWith(
                                 decoration: TextDecoration.underline,
                               ),
                             ),

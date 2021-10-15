@@ -7,6 +7,8 @@ import 'package:stacked_services/stacked_services.dart';
 
 class PluginViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
+  //TODO 
+  // final local = AppLocalization.of(context);
   bool _editMode = false;
   bool _checked = false;
 
@@ -50,7 +52,9 @@ class PluginViewModel extends BaseViewModel {
 
   navigateToEdit() => navigationService.navigateTo(Routes.editPluginView);
 
-  navigateToPlugins() => navigationService.navigateTo(Routes.pluginView);
+  navigateToPlugins() => navigationService.navigateTo(Routes.pluginPage);
 
   navigateToHome() => navigationService.navigateTo(Routes.navBarView);
+
+  navigateBack() => navigationService.back();
 }

@@ -158,7 +158,7 @@ class HomePageViewModel extends StreamViewModel {
             unreadCount: 0,
             name: data['name'],
             id: data['_id'],
-            public: data['private'] != "True",
+            public: !data['private'],
             membersCount: data['members'],
           ),
         );
@@ -209,16 +209,16 @@ class HomePageViewModel extends StreamViewModel {
       setBusy(true);
       // _channel= await api.getChannelPage(id);
       // _membersList= await api.getChannelMembers(id);
-      setBusy(false);
 
       _moderateNavigation();
-      navigation.navigateTo(Routes.channelPageView,
+      await navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
             channelName: channelName,
             channelId: channelId,
             membersCount: membersCount,
             public: public,
           ));
+      setBusy(false);
     } catch (e) {
       log.e(e.toString());
       snackbar.showCustomSnackBar(
@@ -267,7 +267,44 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.newChannel);
   }
 
-  // void navigateToDmUser() {
-  //   _navigationService.navigateTo(Routes.dmUserView);
-  // }
+  void navigateInviteMembers() {
+    _navigationService.navigateTo(Routes.inviteViaEmail);
+  }
+
+  bool hasThreads() {
+    return false;
+  }
+
+  bool hasDrafts() {
+    var dmStoredDrafts =
+        storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    var channelStoredDrafts =
+        storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    var threadStoredDrafts =
+        storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    int counter = 0;
+
+    if (dmStoredDrafts != null) {
+      dmStoredDrafts.forEach((element) {
+        counter++;
+      });
+    }
+
+    if (channelStoredDrafts != null) {
+      channelStoredDrafts.forEach((element) {
+        counter++;
+      });
+    }
+
+    if (threadStoredDrafts != null) {
+      threadStoredDrafts.forEach((element) {
+        counter++;
+      });
+    }
+    return counter > 0;
+  }
+
+  void draftChecker() {
+    notifyListeners();
+  }
 }

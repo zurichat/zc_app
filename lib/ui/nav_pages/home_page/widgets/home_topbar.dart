@@ -55,7 +55,7 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
             const SizedBox(width: 16),
             Text(
               organizationName,
-              style: ZuriTextStyle.organizationNameText(),
+              style: AppTextStyle.organizationNameText,
             )
           ],
         ),

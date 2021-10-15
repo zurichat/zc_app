@@ -44,6 +44,7 @@ class OrganizationApiService {
   /// `id` which is the id of the organization
   Future<OrganizationModel> fetchOrganizationInfo(String id) async {
     final res = await _api.get('/organizations/$id', token: token);
+    log.i('>>>>>>>>>>>>> Selected Orge $res');
     return OrganizationModel.fromJson(res?.data?['data']);
   }
 

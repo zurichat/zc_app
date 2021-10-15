@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
@@ -24,6 +24,7 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
 
   @override
   Widget build(BuildContext context, CreateOrganizationViewModel viewModel) {
+    final local = AppLocalization.of(context);
     return LayoutBuilder(
       builder: (context, constraint) {
         return SingleChildScrollView(
@@ -42,19 +43,18 @@ class ProjectPage extends ViewModelWidget<CreateOrganizationViewModel> {
                     Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: const Text(
-                        ProjectName,
-                        style: TextStyle(
+                      child: Text(
+                        local!.projectName,
+                        style: const TextStyle(
                           letterSpacing: 0.5,
-                          color: AppColors.blackColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    const TextForm(
-                      hintText: ProjectHint,
+                    TextForm(
+                      hintText: local.projectHint,
                       wordCount: 80,
                     ),
                     UIHelper.verticalSpaceMedium,
@@ -95,7 +95,6 @@ class TextForm extends HookViewModelWidget<CreateOrganizationViewModel> {
           hintText: hintText,
           hintStyle: const TextStyle(
             fontSize: 16,
-            color: Colors.black45,
             fontWeight: FontWeight.w300,
           ),
           border: OutlineInputBorder(

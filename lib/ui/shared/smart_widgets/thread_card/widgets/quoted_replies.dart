@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 class QuotedReplies extends StatelessWidget {
   const QuotedReplies({
@@ -42,7 +43,7 @@ class QuotedReplies extends StatelessWidget {
                   Flexible(
                       child: Text(
                     "${postQuotedReplies![index].displayName}",
-                    style: AppTextStyles.bodyBig,
+                    style: AppTextStyle.darkGreySize16Bold,
                   ))
                 ],
               ),
@@ -55,7 +56,7 @@ class QuotedReplies extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 "Posted in ${postQuotedReplies![index].channelName} | ${postQuotedReplies![index].postDate}",
-                style: AppTextStyles.faintBodyText,
+                style: AppTextStyle.lightGreySize14,
               ),
             ],
           ),
