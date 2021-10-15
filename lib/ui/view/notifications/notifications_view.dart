@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/menu_item_tile.dart';
+
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
@@ -18,8 +19,7 @@ class NotificationsView extends StatelessWidget {
           leading: Icons.close_rounded,
           leadingPress: () => model.goBack(),
           orgTitle: Text(
-                        local!.notifications,
-
+            local!.notifications,
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),

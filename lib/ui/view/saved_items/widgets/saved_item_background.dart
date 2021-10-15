@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
+
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 class SavedItemBackground extends StatelessWidget {
   const SavedItemBackground({
@@ -22,9 +23,9 @@ class SavedItemBackground extends StatelessWidget {
             size: _size.height * .3,
             color: AppColors.greyishColor,
           ),
-          const CustomText(
-            text: 'No saved items',
-            fontWeight: FontWeight.w600,
+          Text(
+            'No saved items',
+            style: AppTextStyle.darkGreySize16,
           ),
           const SizedBox(height: 10),
           const Text(

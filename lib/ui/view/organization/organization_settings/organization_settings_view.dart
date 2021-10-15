@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/organization_model.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 
 import 'organization_settings_view_model.dart';
@@ -51,13 +51,13 @@ class OrganizationSettingsView extends StatelessWidget {
                       children: [
                         Text(
                           EditOrgIcon,
-                          style: AppTextStyles.heading4
+                          style: AppTextStyle.blackSize18Bold
                               .copyWith(color: AppColors.blackColor),
                         ),
                         const SizedBox(height: 10),
                         Text(
                           EditOrgIconDesc,
-                          style: AppTextStyles.bodyRegular.copyWith(
+                          style: AppTextStyle.lightGreySize16.copyWith(
                               fontSize: 15, color: AppColors.greyColor),
                         ),
                       ],
@@ -74,7 +74,7 @@ class OrganizationSettingsView extends StatelessWidget {
                       children: [
                         Text(
                           EditOrgNameUrl,
-                          style: AppTextStyles.heading4
+                          style: AppTextStyle.blackSize18Bold
                               .copyWith(color: AppColors.blackColor),
                         ),
                         const SizedBox(height: 10),
@@ -83,24 +83,24 @@ class OrganizationSettingsView extends StatelessWidget {
                             children: [
                               TextSpan(
                                 text: EditOrgNameUrlDesc1,
-                                style: AppTextStyles.bodyRegular.copyWith(
+                                style: AppTextStyle.lightGreySize16.copyWith(
                                     fontSize: 15, color: AppColors.greyColor),
                               ),
                               TextSpan(
                                 text: org.name,
-                                style: AppTextStyles.bodyBig.copyWith(
+                                style: AppTextStyle.blackSize18Bold.copyWith(
                                   fontSize: 15,
                                   color: AppColors.blackColor,
                                 ),
                               ),
                               TextSpan(
                                 text: EditOrgNameUrlDesc2,
-                                style: AppTextStyles.bodyRegular.copyWith(
+                                style: AppTextStyle.lightGreySize16.copyWith(
                                     fontSize: 15, color: AppColors.greyColor),
                               ),
                               TextSpan(
                                 text: org.organizationUrl ?? '',
-                                style: AppTextStyles.bodyBig.copyWith(
+                                style: AppTextStyle.blackSize18Bold.copyWith(
                                   fontSize: 15,
                                   color: AppColors.blackColor,
                                 ),

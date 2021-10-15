@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hng/models/organization_model.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/view/organization/organization_settings/organization_settings_view_model.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/text_field.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
@@ -38,7 +38,7 @@ class OrganizationNameUrl
             },
             child: Text(
               Save,
-              style: AppTextStyles.bodyRegular.copyWith(
+              style: AppTextStyle.lightGreySize16.copyWith(
                 color: AppColors.zuriPrimaryColor,
               ),
             ),
@@ -63,7 +63,7 @@ class OrganizationNameUrl
                     children: [
                       Text(
                         OrgName,
-                        style: AppTextStyles.heading4.copyWith(
+                        style: AppTextStyle.blackSize18Bold.copyWith(
                             color: AppColors.blackColor, fontSize: 18),
                       ),
                       const SizedBox(height: 15),
@@ -79,7 +79,7 @@ class OrganizationNameUrl
                       const SizedBox(height: 15),
                       Text(
                         OrgNameDesc,
-                        style: AppTextStyles.bodyRegular
+                        style: AppTextStyle.lightGreySize16
                             .copyWith(fontSize: 15, color: AppColors.greyColor),
                       ),
                     ],
@@ -95,7 +95,7 @@ class OrganizationNameUrl
                     children: [
                       Text(
                         OrgUrl,
-                        style: AppTextStyles.heading3.copyWith(
+                        style: AppTextStyle.blackSize18Bold.copyWith(
                             color: AppColors.blackColor, fontSize: 18),
                       ),
                       const SizedBox(height: 15),
@@ -114,7 +114,7 @@ class OrganizationNameUrl
                           const SizedBox(width: 10),
                           Text(
                             '.zurichat.com',
-                            style: AppTextStyles.bodyRegular
+                            style: AppTextStyle.lightGreySize16
                                 .copyWith(fontSize: 15),
                           ),
                         ],
@@ -122,7 +122,7 @@ class OrganizationNameUrl
                       const SizedBox(height: 15),
                       Text(
                         OrgUrlDesc,
-                        style: AppTextStyles.bodyRegular
+                        style: AppTextStyle.lightGreySize16
                             .copyWith(fontSize: 15, color: AppColors.greyColor),
                       ),
                     ],

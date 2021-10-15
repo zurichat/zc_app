@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/general_widgets/custom_text.dart';
+
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -72,8 +73,10 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         ),
                         const Divider(),
                         ListTile(
-                          title: const CustomText(
-                              text: StatusText, fontWeight: FontWeight.w300),
+                          title: Text(
+                            StatusText,
+                            style: AppTextStyle.darkGreySize16,
+                          ),
                           subtitle: const Align(
                               alignment: Alignment.centerLeft,
                               child: Icon(Icons.looks_5,

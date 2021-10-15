@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 
 class DraftedItemWidget extends StatelessWidget {
   const DraftedItemWidget({
@@ -25,13 +26,13 @@ class DraftedItemWidget extends StatelessWidget {
                   child: Text(
                     "$username",
                     overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.body1Bold,
+                    style: AppTextStyle.darkGreySize16Bold,
                   ),
                 ),
                 Text(
                   "$time",
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.normalText,
+                  style: AppTextStyle.darkGreySize12,
                 ),
               ],
             ),
@@ -41,7 +42,7 @@ class DraftedItemWidget extends StatelessWidget {
             Text(
               "$message",
               overflow: TextOverflow.ellipsis,
-              style: AppTextStyles.normalText,
+              style: AppTextStyle.darkGreySize12,
             ),
           ]),
         ),

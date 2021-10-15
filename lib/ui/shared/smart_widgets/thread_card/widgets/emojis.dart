@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
-import '../../../../../general_widgets/custom_text.dart';
 import '../../../../../models/user_post.dart';
 
 class Emojis extends StatefulWidget {
@@ -78,10 +78,9 @@ class _EmojisState extends State<Emojis> with SingleTickerProviderStateMixin {
                     style: TextStyle(fontSize: _sizeAnimation!.value),
                   ),
                   const SizedBox(width: 5),
-                  CustomText(
-                    text: widget.postEmoji.postEmojiCount.toString(),
-                    fontSize: _sizeAnimation!.value,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    widget.postEmoji.postEmojiCount.toString(),
+                    style: AppTextStyle.darkGreySize16,
                   ),
                   RichText(text: const TextSpan())
                 ],

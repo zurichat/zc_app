@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 class WorkSpaceDisplayInfo extends StatelessWidget {
   final String? imageUrl;
@@ -43,15 +43,13 @@ class WorkSpaceDisplayInfo extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(
-                    text: workSpaceTitle?.toUpperCase() ?? "",
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    workSpaceTitle?.toUpperCase() ?? "",
+                    style: AppTextStyle.darkGreySize16,
                   ),
-                  CustomText(
-                    text: workSpaceSlackUrl?.toLowerCase() ?? "",
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w300,
+                  Text(
+                    workSpaceSlackUrl?.toLowerCase() ?? "",
+                    style: AppTextStyle.darkGreySize16,
                   ),
                 ],
               )
