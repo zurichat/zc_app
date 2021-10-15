@@ -44,10 +44,10 @@ class YouPageViewModel extends ReactiveViewModel {
   String otherStatus = Away;
 
   final String hintText = SetAStatus;
-  String _statusText = 'What\'s your status';
+  String _statusText = 'What\'s your status?';
   String get statusText => _statusText;
-  final tagIcon = bubble;
-  var iconData = '';
+  String? _tagIcon;
+  String? get tagIcon => _tagIcon;
   bool isLoading = false;
 
   fetchStatus() async {
@@ -57,8 +57,11 @@ class YouPageViewModel extends ReactiveViewModel {
         await _apiService.get(endpoint, queryParameters: {}, token: token);
 
     if (response != null) {
-      _statusText = response.data['data']['status']['text'];
-      iconData = response.data['data']['status']['tag'];
+      String status = response.data['data']['status']['text'];
+      if (status != '') {
+        _statusText = status;
+      }
+      _tagIcon = response.data['data']['status']['tag'];
       notifyListeners();
     } else {}
   }
@@ -68,7 +71,42 @@ class YouPageViewModel extends ReactiveViewModel {
     notifyListeners();
   }
 
-  clear() {}
+  clearStatus() async {
+    _statusText = WhatsYourStatus;
+    //TODO - safe??
+    _tagIcon = null;
+    final orgId = _storageService.getString(StorageKeys.currentOrgId);
+    final memberId = _storageService.getString(StorageKeys.idInOrganization);
+    final token = _storageService.getString(StorageKeys.currentSessionToken);
+    final endpoint = 'organizations/$orgId/members/$memberId/status';
+    final data = {
+      'tag': _tagIcon,
+      'text': _statusText,
+      'expiry_time': 'dont_clear'
+    };
+    try {
+      final response = await _apiService.patch('$coreBaseUrl$endpoint',
+          body: data, token: token);
+
+      if (response != null && response.statusCode == 200) {
+        _storageService.setString(StorageKeys.statusText, _statusText);
+        if (tagIcon != null) {
+          _storageService.setString('status_tag_icon', _tagIcon!);
+        }
+        _statusService.updateStatusText(_statusText);
+      }
+      loading(false);
+      exitPage();
+    } catch (e) {
+      loading(false);
+      _snackbarService.showCustomSnackBar(
+        message: e.toString(),
+        variant: SnackbarType.failure,
+        duration: const Duration(seconds: 2),
+      );
+    }
+    notifyListeners();
+  }
 
   Future editProfile() async {
     await _navigationService.navigateTo(

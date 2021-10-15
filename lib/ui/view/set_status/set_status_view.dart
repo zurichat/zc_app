@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/ui/view/set_status/set_status_viewmodel.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
@@ -25,9 +26,7 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
         color: AppColors.whiteColor,
-        progressIndicator: const CircularProgressIndicator(
-          color: AppColors.zuriPrimaryColor,
-        ),
+        progressIndicator: const ZuriLoader(),
         child: Scaffold(
           appBar: ZuriAppBar(
             leading: Icons.close_rounded,
@@ -58,12 +57,20 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                 const Divider(),
                 Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        model.tagIcon,
-                        color: Colors.blue,
-                      ),
+                    InkWell(
+                      onTap: model.addEmojiTag,
+                      child: model.tagIcon != null
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(
+                                model.tagIcon ?? '',
+                              ),
+                            )
+                          : const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Icon(bubble),
+                            ),
                     ),
                     Flexible(
                       child: TextField(

@@ -27,5 +27,6 @@ class StorageKeys {
   static const allMembersinOrganization = 'all_members_in_organization';
   static const idInOrganization = 'id_in_organization';
   static const statusText = 'status_text';
+  static const statusTagIcon = 'status_tag_icon';
   static const invitedEmail = 'invited_email';
 }

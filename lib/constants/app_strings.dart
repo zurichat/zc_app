@@ -433,6 +433,7 @@ const String SendFeedback = 'Send Feedback';
 //Status
 const String SetAStatus = 'Set a Status';
 const IconData bubble = Icons.chat_bubble_outline_rounded;
+const String WhatsYourStatus = 'What\'s your status?';
 
 //Images and Logos
 const String AddLogo = 'assets/logo/add_logo.png';

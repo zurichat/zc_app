@@ -42,6 +42,8 @@ class YouPage extends StatelessWidget {
                 StatusForm(
                   onPressed: model.setStatus,
                   statusText: model.statusText,
+                  tagIcon: model.tagIcon,
+                  clearOnPressed: model.clearStatus,
                   // iconData: model.tag,
                 ),
                 const SizedBox(height: 20),

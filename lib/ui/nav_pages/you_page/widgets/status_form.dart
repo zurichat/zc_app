@@ -3,10 +3,16 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 
 class StatusForm extends StatelessWidget {
-  const StatusForm({Key? key, this.onPressed, this.iconData, this.statusText})
-      : super(key: key);
+  const StatusForm({
+    Key? key,
+    this.onPressed,
+    this.tagIcon,
+    this.statusText = 'What\'s your status?',
+    this.clearOnPressed,
+  }) : super(key: key);
   final void Function()? onPressed;
-  final IconData? iconData;
+  final void Function()? clearOnPressed;
+  final String? tagIcon;
   final String? statusText;
 
   @override
@@ -26,13 +32,18 @@ class StatusForm extends StatelessWidget {
       onPressed: onPressed,
       child: Row(
         children: [
-          Icon(iconData ?? bubble),
+          tagIcon != null ? Text(tagIcon ?? '') : const Icon(bubble),
           const SizedBox(width: 7),
           Flexible(
-            child: Text(statusText ?? 'What\'s your status'),
+            child: Text(
+              statusText ?? 'What\'s your status?',
+            ),
             fit: FlexFit.tight,
           ),
-          const Icon(Icons.close_rounded),
+          IconButton(
+            icon: const Icon(Icons.close_rounded),
+            onPressed: clearOnPressed,
+          ),
         ],
       ),
     );
