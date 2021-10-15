@@ -3,6 +3,7 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/menu_item_tile.dart';
@@ -15,10 +16,12 @@ class YouPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<YouPageViewModel>.reactive(
       viewModelBuilder: () => YouPageViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           orgTitle: Text(You, style: ZuriTextStyle.organizationNameText()),
           bottomNavBarScreen: true,
           leadingWidth: true,
@@ -30,7 +33,7 @@ class YouPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: () => model.editProfile(),
+                  onTap: () => model.getUserStatus(),
                   child: ProfilePageHead(
                     name: model.username,
                     currentStatus: model.currentStatus,
@@ -43,7 +46,7 @@ class YouPage extends StatelessWidget {
                 MenuItemTile(
                   icon: Icons.notifications_off_outlined,
                   text: Text(
-                    PauseNotifs,
+                    local!.pauseNotifications,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                   ),
                   onPressed: model.pauseNotifications,
@@ -54,6 +57,7 @@ class YouPage extends StatelessWidget {
                   topBorder: false,
                   text: Text.rich(
                     TextSpan(
+                      //TODO TRANSLATE
                       text: SetStatusText,
                       style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                       children: [
@@ -71,7 +75,7 @@ class YouPage extends StatelessWidget {
                 MenuItemTile(
                   icon: Icons.bookmark_outline_outlined,
                   text: Text(
-                    SavedItems,
+                    local.savedItems,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                   ),
                   onPressed: model.viewSavedItem,
@@ -80,17 +84,17 @@ class YouPage extends StatelessWidget {
                 MenuItemTile(
                   icon: Icons.account_circle_outlined,
                   text: Text(
-                    ViewProfile,
+                    local.viewProfile,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                   ),
-                  onPressed: model.viewProfile,
+                  onPressed: () => model.getUserStatus(),
                   topBorder: false,
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
                   icon: Icons.trip_origin,
                   text: Text(
-                    Notifs,
+                    local.notifications,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                   ),
                   onPressed: model.viewNotifications,
@@ -100,7 +104,7 @@ class YouPage extends StatelessWidget {
                 MenuItemTile(
                   icon: Icons.settings,
                   text: Text(
-                    Preferences,
+                    local.preferences,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                   ),
                   onPressed: model.viewPreferences,
@@ -110,7 +114,7 @@ class YouPage extends StatelessWidget {
                 MenuItemTile(
                   icon: Icons.logout_sharp,
                   text: Text(
-                    SignOut,
+                    local.signOut,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                   ),
                   onPressed: model.signOutAccount,

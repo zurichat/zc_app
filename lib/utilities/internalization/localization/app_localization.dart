@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hng/constants/local_keys.dart';
-import 'package:hng/utilities/internalization/local_setup.dart';
+import 'package:hng/services/localization_service.dart';
 
 class AppLocalization {
   ///TODO: Remove late
@@ -182,13 +182,80 @@ class AppLocalization {
   String get myKeywordSubtitle => translate(LocalKeys.MyKeywordSubtitle);
   String get channelSpecificNotify =>
       translate(LocalKeys.ChannelSpecificNotify);
+  String get markUnread => translate(LocalKeys.MarkUnread);
+  String get remindMe => translate(LocalKeys.RemindMe);
+  String get addSavedItems => translate(LocalKeys.AddSavedItems);
+  String get replyInThread => translate(LocalKeys.ReplyInThread);
+  String get followThread => translate(LocalKeys.FollowThread);
+  String get shareMessage => translate(LocalKeys.ShareMessage);
+  String get copyLinkToMessage => translate(LocalKeys.CopyLinkToMessage);
+  String get copyText => translate(LocalKeys.CopyText);
+  String get pinToConversation => translate(LocalKeys.PinToConversation);
+  String get questionIntoPoll => translate(LocalKeys.QuestionIntoPoll);
+  String get messageIn => translate(LocalKeys.MessageIn);
+  String get addAReply => translate(LocalKeys.AddAReply);
+  String get replies => translate(LocalKeys.Replies);
+  String get saved => translate(LocalKeys.Saved);
+  String get addedSuccessfully => translate(LocalKeys.AddedSuccessfully);
+  String get noNewReplies => translate(LocalKeys.NoNewReplies);
+  String get pluginIntroHeader => translate(LocalKeys.PluginIntroHeader);
+  String get pluginIntroBody => translate(LocalKeys.PluginIntroBody);
+  String get notJoinedOrg => translate(LocalKeys.NotJoinedOrg);
+  String get selectEmailToUse => translate(LocalKeys.SelectEmailToUse);
+  String get yourEmailAddress => translate(LocalKeys.YourEmailAddress);
+  String get dontKnowWorkspaceUrl => translate(LocalKeys.DontKnowWorkspaceUrl);
+  String get helpSignInEasily => translate(LocalKeys.HelpSignInEasily);
+  String get enterWorkSpacesUrl => translate(LocalKeys.EnterWorkSpacesUrl);
+  String get sendEmailForSignin => translate(LocalKeys.SendEmailForSignin);
+  String get done => translate(LocalKeys.Done);
+  String get invitedAsAZuriChatMember =>
+      translate(LocalKeys.InvitedAsAZuriChatMember);
+  String get invitationSent => translate(LocalKeys.InvitationSent);
+  String get invite => translate(LocalKeys.Invite);
+  String get sendRequest => translate(LocalKeys.SendRequest);
+  String get chooseContacts => translate(LocalKeys.ChooseContacts);
+  String get inviteForAdminApproval =>
+      translate(LocalKeys.InviteForAdminApproval);
+  String get send => translate(LocalKeys.Send);
+  String get coworkersToJoin => translate(LocalKeys.CoworkersToJoin);
+  String get addEmailAddress => translate(LocalKeys.AddEmailAddress);
+  String get inviteFromContacts => translate(LocalKeys.InviteFromContacts);
+  String get shareImage => translate(LocalKeys.SavedItems);
+  String get shareInviteLink => translate(LocalKeys.ShareInviteLink);
+  String get shareLinkText => translate(LocalKeys.ShareLinkText);
+  String get knowAnyCoworkers => translate(LocalKeys.KnowAnyCoworkers);
+  String get changeExpiryDateText => translate(LocalKeys.ChangeExpiryDateText);
+  String get checkYourMail => translate(LocalKeys.CheckYourMail);
+  String get confirmEmailText => translate(LocalKeys.ConfirmEmailText);
+  String get openEmailApp => translate(LocalKeys.OpenEmailApp);
+  String get companyName => translate(LocalKeys.CompanyName);
+  String get companyAnd => translate(LocalKeys.CompanyAnd);
+  String get cookiePolicy => translate(LocalKeys.CookiePolicy);
+  String get customerAgreementText =>
+      translate(LocalKeys.CustomerAgreementText);
+  String get projectName => translate(LocalKeys.ProjectName);
+  String get projectHint => translate(LocalKeys.ProjectHint);
+  String get teammateNames => translate(LocalKeys.TeammateNames);
+  String get addTeammates => translate(LocalKeys.AddTeammates);
+  String get inAppNotifySubtitle => translate(LocalKeys.InAppNotifySubtitle);
+  String get forgotPasswordHeader => translate(LocalKeys.ForgotPasswordHeader);
+  String get invalidEmail => translate(LocalKeys.InvalidEmail);
+  String get continueButton => translate(LocalKeys.Continue);
+  String get backTo => translate(LocalKeys.BackTo);
+  String get newPasswordHeader => translate(LocalKeys.NewPasswordHeader);
+  String get newPassword => translate(LocalKeys.NewPassword);
+  String get passwordLengthWarning => translate(LocalKeys.PasswordLengthWarning);
+  String get passwordMustMatch => translate(LocalKeys.PasswordMustMatch);
+  
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
   const AppLocalizationDelegate();
   @override
   bool isSupported(Locale locale) {
-    return supportedLocalCodes.contains(locale.languageCode);
+    return LocalizationService()
+        .supportedLocalCodes
+        .contains(locale.languageCode);
   }
 
   @override
@@ -208,7 +275,9 @@ class FallbackCupertinoLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) {
-    return supportedLocalCodes.contains(locale.languageCode);
+    return LocalizationService()
+        .supportedLocalCodes
+        .contains(locale.languageCode);
   }
 
   @override

@@ -172,6 +172,7 @@ class ChannelPageViewModel extends FormViewModel {
     String? userId = storage.getString(StorageKeys.currentUserId);
     String? orgId = storage.getString(StorageKeys.currentOrgId);
     String? token = storage.getString(StorageKeys.currentSessionToken);
+    storage.setString(StorageKeys.currentChannelId, channelId);
     // await _channelsApiService.joinChannel(channelId);
     try {
       final res = await _api
@@ -222,20 +223,19 @@ class ChannelPageViewModel extends FormViewModel {
 
       channelUserMessages?.add(
         UserPost(
-          id: data['_id'],
-          displayName: userid,
-          statusIcon: '7️⃣',
-          moment: Moment.now().from(DateTime.parse(data['timestamp'])),
-          message: data['content'],
-          channelType: ChannelType.public,
-          postEmojis: <PostEmojis>[],
-          userThreadPosts: <UserThreadPost>[],
-          channelName: channelId,
-          userImage: 'assets/images/chimamanda.png',
-          userId: userid,
-          channelId: channelId,
-          pinned: data['pinned'],
-        ),
+            id: data['_id'],
+            displayName: userid,
+            statusIcon: '⭐',
+            moment: Moment.now().from(DateTime.parse(data['timestamp'])),
+            message: data['content'],
+            channelType: ChannelType.public,
+            postEmojis: <PostEmojis>[],
+            userThreadPosts: <UserThreadPost>[],
+            channelName: channelId,
+            userImage: 'assets/images/chimamanda.png',
+            userId: userid,
+            channelId: channelId,
+            pinned: data['pinned']),
       );
     });
     isLoading = false;
@@ -245,11 +245,19 @@ class ChannelPageViewModel extends FormViewModel {
   void sendMessage(
     String message,
   ) async {
-    String? userId = storage.getString(StorageKeys.currentUserId);
-    await _channelsApiService.sendChannelMessages(
-        channelID, "$userId", message);
-    scrollController.jumpTo(scrollController.position.minScrollExtent);
-    notifyListeners();
+    try {
+      String? userId = storage.getString(StorageKeys.currentUserId);
+      await _channelsApiService.sendChannelMessages(
+          channelID, "$userId", message);
+      scrollController.jumpTo(scrollController.position.minScrollExtent);
+      notifyListeners();
+    } catch (e) {
+      _snackbarService.showCustomSnackBar(
+        duration: const Duration(seconds: 1),
+        message: "Could not send message, please check your internet",
+        variant: SnackbarType.failure,
+      );
+    }
   }
 
   void navigateToShareMessage(UserPost userPost) async {
@@ -271,15 +279,15 @@ class ChannelPageViewModel extends FormViewModel {
     return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
   }
 
-  Future? navigateToChannelInfoScreen(int numberOfMembers,
-      ChannelModel channelDetail, String channelName, String channelId) async {
+  Future? navigateToChannelInfoScreen(
+      int numberOfMembers, ChannelModel channelDetail,String channelName) async {
     await NavigationService().navigateTo(Routes.channelInfoView,
         arguments: ChannelInfoViewArguments(
             numberOfMembers: numberOfMembers,
             channelName: channelName,
-            channelID: channelId,
             channelMembers: channelMembers,
-            channelDetail: channelDetail));
+            channelDetail: channelDetail,
+        ));
   }
 
   Future? navigateToAddPeople(String channelName, String channelId) async {
