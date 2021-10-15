@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 import 'package:stacked/stacked.dart';
 
@@ -16,6 +17,24 @@ class OnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    final List<Widget> pages = [
+      PageViewOnboarding(
+          title: local!.onboardingTitleOne,
+          subtitle: local.onboardingSubtitleOne,
+          image: OnboardingOne),
+      PageViewOnboarding(
+        title: local.onboardingTitleTwo,
+        subtitle: local.onboardingSubtitleTwo,
+        image: OnboardingTwo,
+      ),
+      PageViewOnboarding(
+        title: local.onboardingTitleThree,
+        subtitle: local.onboardingSubtitleThree,
+        image: OnboardingThree,
+      ),
+    ];
+
     return ViewModelBuilder<OnboardingViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
@@ -31,15 +50,17 @@ class OnboardingView extends StatelessWidget {
                           ? TextButton(
                               onPressed: () => model.navigateToNext(),
                               child: Text(
-                                Skip,
+                                local.skip,
                                 style: AppTextStyle.greenSize16.copyWith(
-                                    decoration: TextDecoration.underline,
-                                    fontSize: 18),
+                                  decoration: TextDecoration.underline,
+                                  fontSize: 18,
+                                ),
                               ),
                             )
                           : const SizedBox(height: 50),
                     ],
                   ),
+                  //TODO TRANSLATE
                   pages[index],
                   const SizedBox(height: 20),
                   PageViewDotIndicator(
@@ -124,20 +145,3 @@ class PageViewOnboarding extends StatelessWidget {
     );
   }
 }
-
-final List<Widget> pages = [
-  const PageViewOnboarding(
-      title: OnboardingOneTitle,
-      subtitle: OnboardingOneSubtitle,
-      image: OnboardingOne),
-  const PageViewOnboarding(
-    title: OnboardingTwoTitle,
-    subtitle: OnboardingTwoSubtitle,
-    image: OnboardingTwo,
-  ),
-  const PageViewOnboarding(
-    title: OnboardingThreeTitle,
-    subtitle: OnboardingThreeSubtitle,
-    image: OnboardingThree,
-  ),
-];

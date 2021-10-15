@@ -17,6 +17,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TextEditingController? searchController;
   final String? title;
   final String? hintText;
+
   bool bottomNavBarScreen;
   bool whiteBackground;
   bool isDarkMode;
@@ -131,7 +132,9 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
       titleTextStyle: AppTextStyle.organizationNameText,
       centerTitle: false,
       backgroundColor: !whiteBackground
-          ? AppColors.zuriPrimaryColor
+          ? isDarkMode
+              ? AppColors.darkThemePrimaryColor
+              : AppColors.zuriPrimaryColor
           : isDarkMode
               ? AppColors.darkThemePrimaryColor
               : AppColors.whiteColor,

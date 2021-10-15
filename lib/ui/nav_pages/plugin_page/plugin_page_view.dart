@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/menu_item_tile.dart';
 import 'package:hng/models/plugin_model.dart';
@@ -8,6 +9,7 @@ import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/long_button.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 class PluginPage extends StatelessWidget {
@@ -18,12 +20,19 @@ class PluginPage extends StatelessWidget {
     return ViewModelBuilder<PluginViewModel>.reactive(
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
+        final local = AppLocalization.of(context);
         return Scaffold(
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             leadingPress: model.navigateBack,
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             whiteBackground: true,
-            orgTitle: Text(Plugins, style: AppTextStyle.darkGreySize18Bold),
+            orgTitle: Text(
+              Plugins,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
+            ),
           ),
           body: !model.hasplugins
               ? Padding(
@@ -34,15 +43,12 @@ class PluginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Get serious and have fun here",
+                          local!.pluginIntroHeader,
                           style: AppTextStyle.darkGreySize16,
                         ),
                         UIHelper.verticalSpaceMedium,
                         Text(
-                          '''Access your oganization’s important stuff'''
-                          ''' like holiday-calendar, meeting room, notice'''
-                          ''' board etc. Have fun by joining the chess'''
-                          ''' room and music room.''',
+                          local.pluginIntroBody,
                           style: AppTextStyle.lightGreySize14,
                         ),
                         UIHelper.customVerticalSpace(56.0),
@@ -52,7 +58,7 @@ class PluginPage extends StatelessWidget {
                             onPressed: () {
                               model.navigateToAdd();
                             },
-                            label: "Get Started",
+                            label: local.getstarted,
                           ),
                         ),
                       ],
@@ -67,16 +73,21 @@ class PluginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         MenuItemTile(
-                          icon: Icons.add,
+                          icon: SvgPicture.asset(
+                            'assets/icons/svg_icons/plus.svg',
+                            color: AppColors.zuriPrimaryColor,
+                            width: 18,
+                            height: 18,
+                          ),
                           topBorder: false,
-                          text: Text("Add Plugin",
+                          text: Text(local!.addPlugin,
                               style: AppTextStyle.lightGreySize16),
                         ),
                         for (PluginModel plugin in model.plugins)
                           MenuItemTile(
                             onPressed: () => model.navigateToWebviewPage(
                                 plugin.name, plugin.url),
-                            icon: plugin.icon,
+                            ico: plugin.icon,
                             iconColor: AppColors.zuriPrimaryColor,
                             topBorder: false,
                             text: Text(

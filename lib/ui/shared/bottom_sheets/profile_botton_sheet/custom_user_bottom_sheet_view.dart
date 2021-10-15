@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -22,6 +23,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     final height = MediaQuery.of(context).size.height;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
@@ -50,9 +52,10 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              CustomButton(text: 'Message', onPressed: () {}),
                               CustomButton(
-                                text: 'Edit Profile',
+                                  text: local!.messageButton, onPressed: () {}),
+                              CustomButton(
+                                text: local.editProfileButton,
                                 onPressed: () => model.navigateToEditProfile(),
                               ),
                               CustomButton.icon(
@@ -62,11 +65,11 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           ),
                         ),
                         const Divider(),
-                        const CustomProfileTile(
-                            title: 'What I do', subtitle: 'Mobile Dev'),
+                        CustomProfileTile(
+                            title: local.whatIDo, subtitle: 'Mobile Dev'),
                         const Divider(),
                         CustomProfileTile(
-                            title: 'Display Name',
+                            title: local.displayName,
                             subtitle: user?.displayName ?? ''),
                         const Divider(),
                         ListTile(
@@ -87,11 +90,12 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         ),
                         const Divider(),
                         CustomProfileTile(
-                            title: 'Mobile Number',
+                            title: local.mobileNumber,
                             subtitle: user?.phoneNumber ?? ''),
                         const Divider(),
                         CustomProfileTile(
-                            title: 'Email Address', subtitle: '${user?.email}'),
+                            title: local.emailAddress,
+                            subtitle: '${user?.email}'),
                       ],
                     ),
                   ),

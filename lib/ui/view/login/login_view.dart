@@ -3,6 +3,7 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -25,6 +26,7 @@ class LoginView extends StatelessWidget with $LoginView {
   LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<LoginViewModel>.reactive(
       //listenToFormUpdated automatically
       //syncs text from TextFields to the viewmodel
@@ -45,6 +47,7 @@ class LoginView extends StatelessWidget with $LoginView {
                 children: [
                   UIHelper.customVerticalSpace(57.0),
                   Container(
+                    height: 50,
                     alignment: Alignment.center,
                     child: Image.asset(ZuriLogo),
                   ),
@@ -57,13 +60,13 @@ class LoginView extends StatelessWidget with $LoginView {
                   ),
                   UIHelper.verticalSpaceSmall,
                   Text(
-                    WelcomeSignIn,
+                    local!.welcomeSignIn,
                     textAlign: TextAlign.center,
                     style: AppTextStyle.lightGreySize14,
                   ),
                   UIHelper.customVerticalSpace(38.0),
                   Text(
-                    EmailAddress,
+                    local.emailAddress,
                     style: AppTextStyle.darkGreySize16Bold,
                   ),
                   UIHelper.customVerticalSpace(10.0),
@@ -77,7 +80,7 @@ class LoginView extends StatelessWidget with $LoginView {
                   ),
                   UIHelper.verticalSpaceMedium,
                   Text(
-                    Password,
+                    local.password,
                     style: AppTextStyle.darkGreySize16Bold,
                   ),
                   UIHelper.customVerticalSpace(10.0),
@@ -86,7 +89,7 @@ class LoginView extends StatelessWidget with $LoginView {
                     inputAction: TextInputAction.next,
                     autoCorrect: false,
                     obscureText: true,
-                    hintText: PasswordHintText,
+                    hintText: local.passwordHintText,
                     controller: passwordController,
                   ),
                   Align(
@@ -102,7 +105,7 @@ class LoginView extends StatelessWidget with $LoginView {
                         model.navigateToForgotPasswordScreen();
                       },
                       child: Text(
-                        ForgotPasswordBtn,
+                        local.forgotPassword,
                         style: AppTextStyle.greenSize14,
                       ),
                     ),
@@ -115,7 +118,7 @@ class LoginView extends StatelessWidget with $LoginView {
                         onPressed: () async {
                           await model.logInUser();
                         },
-                        label: SignIn,
+                        label: local.signIn,
                       ),
                     ),
                   ),
@@ -123,13 +126,13 @@ class LoginView extends StatelessWidget with $LoginView {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        DontHaveAccount,
+                        local.dontHaveAccount,
                         style: AppTextStyle.darkGreySize14,
                       ),
                       TextButton(
                         onPressed: () => model.navigateToSignUpScreen(),
                         child: Text(
-                          SignUp,
+                          local.signUp,
                           style: AppTextStyle.greenSize14,
                         ),
                       )

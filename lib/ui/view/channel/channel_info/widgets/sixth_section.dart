@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
 
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:stacked/stacked.dart';
 
@@ -30,27 +33,46 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(
-              Icons.archive_rounded,
+            SvgPicture.asset(
+              archive,
               color: Theme.of(context).textTheme.bodyText1!.color,
-              size: 28,
+              width: 28,
+              height: 28,
             ),
-            Column(
+            Expanded(
+                child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Archive Channel',
+                  ArchiveChannel,
                   style: AppTextStyle.errorSize14,
                 ),
                 Container(
                     alignment: Alignment.center,
                     child: Text(
-                      'Archiving the channel will remover it from the channel list, and close it from all members.'
-                      'All chats and filse will still be stored and searchable',
+                      ArchiveChannelWarning,
                       style: AppTextStyle.darkGreySize14,
                     )),
               ],
-            )
+            )),
+            UIHelper.horizontalSpaceMedium,
+            UIHelper.horizontalSpaceSmall,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    ArchiveChannel,
+                    style: AppTextStyle.errorSize14,
+                  ),
+                  UIHelper.verticalSpaceSmall,
+                  Container(
+                      alignment: Alignment.center,
+                      child: Text(ArchiveChannelWarning,
+                          style: AppTextStyle.darkGreySize14)),
+                ],
+              ),
+            ),
           ],
         ),
       ),

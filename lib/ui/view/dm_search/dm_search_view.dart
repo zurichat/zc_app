@@ -3,8 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/constants/app_strings.dart';
 
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/dm_search/dm_search_widgets.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'dm_search_viewmodel.dart';
@@ -16,6 +17,7 @@ class DmSearch extends StatelessWidget with $DmSearch {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<DmSearchViewModel>.reactive(
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
@@ -40,7 +42,7 @@ class DmSearch extends StatelessWidget with $DmSearch {
                           icon: const Icon(Icons.chevron_left),
                           onPressed: () => viewModel.navigateBack(),
                         ),
-                        Text(DM,
+                        Text(local!.directMessages,
                             style: GoogleFonts.lato(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
@@ -49,7 +51,7 @@ class DmSearch extends StatelessWidget with $DmSearch {
                         const Spacer(),
                         GestureDetector(
                           onTap: () {},
-                          child: Text(Done,
+                          child: Text(local.done,
                               style: GoogleFonts.lato(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
@@ -65,14 +67,13 @@ class DmSearch extends StatelessWidget with $DmSearch {
                     child: TextField(
                       controller: searchController,
                       decoration: InputDecoration(
-                        hintText: DMHint,
+                        hintText: local.dmHint,
                         hintStyle: AppTextStyle.lightGreySize14,
                         border: InputBorder.none,
                       ),
                     ),
                   ),
                   const Divider(),
-                  const ChannelorPerson(),
                 ],
               ),
             ),

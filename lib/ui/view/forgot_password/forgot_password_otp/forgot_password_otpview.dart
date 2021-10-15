@@ -5,6 +5,8 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -27,6 +29,7 @@ class ForgotPasswordOtpView extends StatelessWidget
   )
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<ForgotPasswordOtpViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => Scaffold(
@@ -49,10 +52,10 @@ class ForgotPasswordOtpView extends StatelessWidget
                   const SizedBox(
                     height: 24.0,
                   ),
-                  const Center(
+                  Center(
                     child: Text(
-                      ForgotPassword,
-                      style: TextStyle(
+                      local!.forgotPassword,
+                      style: const TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 20.0,
                       ),
@@ -61,9 +64,9 @@ class ForgotPasswordOtpView extends StatelessWidget
                   const SizedBox(
                     height: 6.0,
                   ),
-                  const Center(
+                  Center(
                     child: Text(
-                      EnterOTP,
+                      local.enterOTP,
                     ),
                   ),
                   const SizedBox(
@@ -133,11 +136,11 @@ class ForgotPasswordOtpView extends StatelessWidget
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: DidntRecieveOTP,
+                            text: local.didntReceiveOTP,
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                           TextSpan(
-                            text: Resend,
+                            text: local.resend,
                             style: AppTextStyle.greenSize14,
                           ),
                         ],
@@ -153,9 +156,9 @@ class ForgotPasswordOtpView extends StatelessWidget
                       child: ElevatedButton(
                         // onPressed: () => model.navigateToNewPassword(),
                         onPressed: () {},
-                        child: const Text(
-                          Continue,
-                          style: TextStyle(
+                        child: Text(
+                          local.continueButton,
+                          style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,

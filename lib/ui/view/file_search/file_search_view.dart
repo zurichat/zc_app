@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -25,6 +26,7 @@ class _FileSearchViewState extends State<FileSearchView> {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<FileSearchViewModel>.reactive(
       viewModelBuilder: () => FileSearchViewModel(),
       builder: (context, viewModel, child) => SafeArea(
@@ -35,14 +37,14 @@ class _FileSearchViewState extends State<FileSearchView> {
             child: AppBar(
               backgroundColor: AppColors.zuriPrimaryColor,
               automaticallyImplyLeading: false,
-              title: const CustomSearchBar(
-                searchFilter: Designers,
+              title: CustomSearchBar(
+                searchFilter: local!.designers,
               ),
-              bottom: const PreferredSize(
-                preferredSize: Size.fromHeight(49),
+              bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(49),
                 child: CustomTabBar(
-                  tab1: Messages,
-                  tab2: Files,
+                  tab1: local.messages,
+                  tab2: local.files,
                 ),
               ),
             ),
@@ -58,6 +60,7 @@ class _FileSearchViewState extends State<FileSearchView> {
                       Positioned(
                         left: 12,
                         child: Text(
+                          //TODO REMOVE HARDCODED DATA AND TRANSLATE
                           FiftyResults,
                           style: AppTextStyle.darkGreySize16,
                         ),
@@ -70,7 +73,7 @@ class _FileSearchViewState extends State<FileSearchView> {
                         child: Row(
                           children: [
                             Text(
-                              Newest,
+                              local.newest,
                               style: AppTextStyle.darkGreySize16,
                             ),
                             Image.asset(Arrows),

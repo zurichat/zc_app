@@ -90,17 +90,16 @@ class ChannelsApiService {
     }
   }
 
-  getChanelCreator(String channelId)async{
+  getChanelCreator(String channelId) async {
     final orgId = _userService.currentOrgId;
-    try{
-      final res=await _api.get('v1/$orgId/channels/$channelId/',token: token);
+    try {
+      final res =
+          await _api.get('v1/$orgId/channels/$channelId/', token: token);
       return res.data;
-    }on Exception catch(e){
+    } on Exception catch (e) {
       log.e(e.toString());
     }
   }
-
-
 
   Future<List> getChannelMessages(String channelId) async {
     final orgId = _userService.currentOrgId;
@@ -168,8 +167,8 @@ class ChannelsApiService {
     return successful;
   }
 
-  Future sendChannelMessages(
-      String channelId, String userId, String message) async {
+  Future sendChannelMessages(String channelId, String userId, String message,
+      [List<String>? media]) async {
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
 
@@ -177,7 +176,8 @@ class ChannelsApiService {
 
     try {
       final res = await _api.post('v1/$orgId/channels/$channelId/messages/',
-          token: token, body: {'user_id': userId, 'content': message});
+          token: token,
+          body: {'user_id': userId, 'content': message, "files": media});
 
       channelMessage = res?.data['data'] ?? {};
 

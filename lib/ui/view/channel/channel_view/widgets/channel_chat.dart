@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
 import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:hng/utilities/utilities.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
@@ -17,6 +19,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
 
   @override
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
+    final local = AppLocalization.of(context);
     final message = viewModel.channelUserMessages;
     return Container(
       child: !nullListChecker(viewModel.channelUserMessages)
@@ -27,24 +30,51 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
               itemBuilder: (context, index) {
                 final userPost = viewModel.channelUserMessages![index];
                 return InkWell(
-                  child: ThreadCardView.threadChannelMain(userPost),
+                  child: Container(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: Column(
+                      children: [
+                        if (userPost.pinned) ...[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 40.0),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.push_pin,
+                                    size: 16.0, color: Colors.orange),
+                                const SizedBox(width: 12.0),
+                                Text(Pinned, style: AppTextStyles.bodySmall2),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 8.0),
+                        ],
+                        ThreadCardView.threadChannelMain(userPost),
+                      ],
+                    ),
+                    color: userPost.pinned
+                        ? AppColors.lightYellow
+                        : Colors.transparent,
+                  ),
                   onLongPress: () => zuriChatBottomSheet(
+                    shareMessage: () =>
+                        viewModel.navigateToShareMessage(userPost),
                     changePinnedState: () async {
                       final didChange =
                           await viewModel.changePinnedState(userPost);
-                      if (didChange) userPost.pinned = !userPost.pinned;
-                      Navigator.of(context).pop();
-                      showSimpleNotification(
-                        Text(didChange
-                            ? "${userPost.pinned ? "Pinned" : "Unpinned"} successfully"
-                            : "Could not ${userPost.pinned ? "unpin" : "pin"} post"),
-                        position: NotificationPosition.top,
-                        background: didChange
-                            ? AppColors.appBarGreen
-                            : AppColors.redColor,
-                        trailing: const Icon(Icons.push_pin_outlined),
-                        duration: const Duration(seconds: 2),
-                      );
+                      if (didChange) {
+                        userPost.pinned = !userPost.pinned;
+                      } else {
+                        showSimpleNotification(
+                          Text(
+                              "${local!.couldNot} ${userPost.pinned ? local.unPinFrom : local.pinTo} ${local.post} "),
+                          position: NotificationPosition.top,
+                          background: AppColors.redColor,
+                          trailing: const Icon(Icons.push_pin_outlined),
+                          duration: const Duration(seconds: 2),
+                        );
+                      }
+                      viewModel.notifyListeners();
+                      viewModel.exitPage();
                     },
                     addToSavedItems: () {
                       viewModel.saveItem(
@@ -56,10 +86,10 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                           messageID: message[index].id,
                           userID: message[index].userId,
                           userImage: message[index].userImage);
-                      log.i("Saved");
+                      log.i(local!.saved);
                       viewModel.exitPage();
                       showSimpleNotification(
-                        const Text("Added successfully"),
+                        Text(local.addedSuccessfully),
                         position: NotificationPosition.top,
                         background: AppColors.appBarGreen,
                         trailing: const Icon(Icons.mark_chat_read_outlined),
@@ -71,13 +101,6 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         ClipboardData(text: message![index].message),
                       );
                       viewModel.exitPage();
-                      showSimpleNotification(
-                        const Text("Copied!"),
-                        position: NotificationPosition.top,
-                        background: AppColors.appBarGreen,
-                        trailing: const Icon(Icons.copy_outlined),
-                        duration: const Duration(seconds: 3),
-                      );
                     },
                     context: context,
                     post: userPost,

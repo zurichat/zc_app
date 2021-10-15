@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/dialogs/remind_me_dialog/remind_me_dialog_viewmodel.dart';
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -14,20 +15,21 @@ class ReminderDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<RemindMeDialogViewModel>.reactive(
       builder: (context, model, child) => AlertDialog(
         content: Container(
           padding: EdgeInsets.symmetric(
-              horizontal: size.width * .02, vertical: size.height * .02),
+              horizontal: size.width * .01, vertical: size.height * .02),
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(15)),
           width: size.width * .9,
-          height: size.height * .37,
-          child: Column(
+          height: size.height * .50,
+          child: ListView(
             children: [
               ListTile(
                 title: Text(
-                  'Remind me',
+                  local!.remindMe,
                   style: AppTextStyle.darkGreySize18Bold,
                 ),
               ),
@@ -35,7 +37,7 @@ class ReminderDialog extends StatelessWidget {
                 onTap: model.messageRemindertwentyMinutes,
                 enabled: true,
                 title: Text(
-                  'in 20 minutes',
+                  local.in20Minutes,
                   style: AppTextStyle.darkGreySize16,
                 ),
                 trailing: Text(
@@ -45,7 +47,7 @@ class ReminderDialog extends StatelessWidget {
               ),
               ListTile(
                 title: Text(
-                  'in 1 hour',
+                  local.in1Hour,
                   style: AppTextStyle.darkGreySize16,
                 ),
                 trailing: Text(
@@ -55,7 +57,7 @@ class ReminderDialog extends StatelessWidget {
               ),
               ListTile(
                 title: Text(
-                  'in 3 hours',
+                  local.in3Hour,
                   style: AppTextStyle.darkGreySize16,
                 ),
                 trailing: Text(
@@ -65,7 +67,7 @@ class ReminderDialog extends StatelessWidget {
               ),
               ListTile(
                 title: Text(
-                  'Tomorrow',
+                  local.tomorrow,
                   style: AppTextStyle.darkGreySize16,
                 ),
                 trailing: Text(
@@ -75,7 +77,7 @@ class ReminderDialog extends StatelessWidget {
               ),
               ListTile(
                 title: Text(
-                  'Next week',
+                  local.nextWeek,
                   style: AppTextStyle.darkGreySize16,
                 ),
                 trailing: Text(
@@ -90,7 +92,7 @@ class ReminderDialog extends StatelessWidget {
                   model.customReminder(selectedDate, selectedTime);
                 },
                 title: Text(
-                  'Custom',
+                  local.custom,
                   style: AppTextStyle.darkGreySize16,
                 ),
               ),

@@ -22,6 +22,7 @@ class DmPage extends StatelessWidget {
         final local = AppLocalization.of(context);
         return Scaffold(
           appBar: ZuriAppBar(
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             leadingWidth: true,
             orgTitle: Text(local!.directMessages,
                 style: AppTextStyle.organizationNameText),
@@ -44,7 +45,7 @@ class DmPage extends StatelessWidget {
               ? const ZuriLoader()
               : !model.data!
                   ? Center(
-                      child: Text("Temporarily Unavailable",
+                      child: Text(local.temporarilyUnavailable,
                           style: AppTextStyle.darkGreySize18Bold),
                     )
                   : SingleChildScrollView(

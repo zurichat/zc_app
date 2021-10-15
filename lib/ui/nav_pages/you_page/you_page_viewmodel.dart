@@ -23,6 +23,9 @@ class YouPageViewModel extends BaseViewModel {
   final _snackBar = locator<SnackbarService>();
   final _connectivityService = locator<ConnectivityService>();
   final _apiService = ZuriApi(coreBaseUrl);
+  String _presence = 'false';
+
+
 
   String get username =>
       (_userService.userDetails?.displayName?.isNotEmpty ?? false
@@ -32,6 +35,40 @@ class YouPageViewModel extends BaseViewModel {
   String profileImage = ZuriAppbarLogo;
   String currentStatus = Active;
   String otherStatus = Away;
+
+
+  Future getUserPresence() async {
+    try{
+      final memberId = _storage.getString(StorageKeys.idInOrganization);
+      String? orgId = _storage.getString(StorageKeys.currentOrgId);
+      var response = await _apiService.get(
+          '$coreBaseUrl/organizations/$orgId/members/$memberId',
+        token: _userService.authToken
+      );
+      _presence = response.data['data']['presence'];
+      log.i('response query ======= $_presence');
+      otherStatus = _presence == 'true' ? 'away' : 'active';
+      currentStatus = _presence == 'true' ? 'Active' : 'Away';
+      notifyListeners();
+    } catch(e) {
+     e.toString();
+    }
+  }
+  Future setUserPresence() async {
+    try{
+      final memberId = _storage.getString(StorageKeys.idInOrganization);
+      String? orgId = _storage.getString(StorageKeys.currentOrgId);
+      var response = await _apiService.post(
+          coreBaseUrl+'organizations/$orgId/members/$memberId/presence',
+          token: _userService.authToken, body: {
+      },
+      );
+      log.i('response query ======= $response');
+    } catch(e) {
+      e.toString();
+    }
+  }
+
 
   Future editProfile() async {
     await _navigationService.navigateTo(
@@ -45,18 +82,20 @@ class YouPageViewModel extends BaseViewModel {
     await _navigationService.navigateTo(Routes.doNotDisturbView);
   }
 
-  void toggleStatus() {
+  void toggleStatus() async {
+    await runBusyFuture(setUserPresence());
     currentStatus == 'Active'
         ? () {
-            currentStatus = 'Away';
-            otherStatus = 'active';
-          }()
+      currentStatus = 'Away';
+      otherStatus = 'active';
+    }()
         : () {
-            currentStatus = 'Active';
-            otherStatus = 'away';
-          }();
+      currentStatus = 'Active';
+      otherStatus = 'away';
+    }();
     notifyListeners();
   }
+
 
   Future viewSavedItem() async {
     await _navigationService.navigateTo(Routes.savedItemsView);

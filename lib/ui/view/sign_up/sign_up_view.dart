@@ -58,8 +58,8 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       Center(
                         child: Image.asset(
                           ZuriLogo,
-                          height: 32,
-                          width: 32,
+                          height: 50,
+                          width: 50,
                         ),
                       ),
                       UIHelper.customVerticalSpace(24),

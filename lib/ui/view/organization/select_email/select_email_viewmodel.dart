@@ -1,4 +1,5 @@
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -47,6 +48,10 @@ class SelectEmailViewModel extends BaseViewModel {
     );
   }
 
+  navigateToUseDifferentEmailView() {
+    _navigationService.navigateTo(Routes.useDifferentEmailView);
+  }
+
   void navigateToDifferentEmail(OrganizationSwitchMethod method) {
     _navigationService.navigateTo(
       Routes.useDifferentEmailView,
@@ -54,14 +59,15 @@ class SelectEmailViewModel extends BaseViewModel {
     );
   }
 
-  String getScreenTitle(OrganizationSwitchMethod method) {
+  String getScreenTitle(OrganizationSwitchMethod method, context) {
+    final local = AppLocalization.of(context);
     switch (method) {
       case OrganizationSwitchMethod.create:
-        return CreateWorkspace;
+        return local!.createWorkspace;
       case OrganizationSwitchMethod.signIn:
-        return SignInWorkspace;
+        return local!.signInWorkspace;
       case OrganizationSwitchMethod.join:
-        return JoinWorkspace;
+        return local!.joinWorkspace;
     }
   }
 }

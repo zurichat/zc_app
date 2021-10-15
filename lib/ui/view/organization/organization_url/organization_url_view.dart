@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import '../../../shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
@@ -15,6 +16,7 @@ class OrganizationUrlView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<OrganizationUrlViewModel>.nonReactive(
       builder: (context, viewModel, child) => ModalProgressHUD(
         inAsyncCall: viewModel.isBusy,
@@ -40,7 +42,7 @@ class OrganizationUrlView extends StatelessWidget {
                             TextSpan(
                               children: [
                                 TextSpan(
-                                    text: OrgDesc1,
+                                    text: local!.dontKnowWorkspaceUrl,
                                     style: AppTextStyle.lightGreySize16),
                                 TextSpan(
                                   text: '$email',
@@ -48,7 +50,7 @@ class OrganizationUrlView extends StatelessWidget {
                                       .copyWith(color: AppColors.appBarGreen),
                                 ),
                                 TextSpan(
-                                  text: OrgDesc2,
+                                  text: local.helpSignInEasily,
                                   style: AppTextStyle.lightGreySize16,
                                 ),
                               ],
@@ -79,12 +81,13 @@ class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
   @override
   Widget buildViewModelWidget(
       BuildContext context, OrganizationUrlViewModel viewModel) {
+    final local = AppLocalization.of(context);
     return Center(
       child: TextField(
         cursorColor: AppColors.appBarGreen,
         style: AppTextStyle.darkGreySize16Bold,
         decoration: InputDecoration(
-          labelText: EnterOrgUrl,
+          labelText: local!.enterWorkSpacesUrl,
           labelStyle: AppTextStyle.greenSize16,
           hintText: EnterOrgUrlHint,
           hintStyle: AppTextStyle.lightGreySize16,
@@ -107,6 +110,7 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
 
   @override
   Widget build(BuildContext context, OrganizationUrlViewModel viewModel) {
+    final local = AppLocalization.of(context);
     return TextButton(
       style: ButtonStyle(
           backgroundColor:
@@ -118,7 +122,7 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
           width: MediaQuery.of(context).size.width,
           child: Center(
             child: Text(
-              Next,
+              local!.next,
               style: AppTextStyle.darkGreySize16Bold,
             ),
           ),

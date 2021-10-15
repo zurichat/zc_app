@@ -3,6 +3,8 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 
+import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import '../../shared/shared.dart';
 import 'package:stacked/stacked.dart';
 import 'clear_after_viewmodel.dart';
@@ -13,6 +15,7 @@ class ClearAfterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     final width = MediaQuery.of(context).size.height;
     return ViewModelBuilder<ClearAfterViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
@@ -20,7 +23,7 @@ class ClearAfterView extends StatelessWidget {
           leading: Icons.close_rounded,
           leadingPress: () => model.exitPage(),
           orgTitle: Text(
-            ClearAfter,
+            local!.clearAfter,
             style: AppTextStyle.darkGreySize20Bold,
           ),
         ),

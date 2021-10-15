@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../channel_page_viewmodel.dart';
@@ -18,6 +20,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
   final String channelId;
   @override
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
+    final local = AppLocalization.of(context);
     return Container(
       padding: const EdgeInsets.all(15),
       child: Column(
@@ -30,7 +33,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
           ),
           const SizedBox(height: 10),
           TextParser(
-              '@ ${viewModel.channelCreator} created this channel on August 12, 2021. This is the very beginning of the #$channelName channel.'),
+              '@ ${viewModel.channelCreator} ${local!.createdThisChannel}. ${local.channelIntroText} #$channelName ${local.channel}.'),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -43,14 +46,16 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                     padding: const EdgeInsets.all(15),
                     shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
-                    child: const Icon(
-                      Icons.edit_outlined,
+                    child: SvgPicture.asset(
+                      Add_Description,
                       color: AppColors.zuriPrimaryColor,
+                      width: 18,
+                      height: 18,
                     ),
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    AddDescription,
+                    local.description,
                     style: AppTextStyle.lightGreySize14,
                   )
                 ],
@@ -64,15 +69,17 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                     padding: const EdgeInsets.all(15),
                     shape: const CircleBorder(
                         side: BorderSide(color: AppColors.zuriPrimaryColor)),
-                    child: const Icon(
-                      Icons.person_add_alt_1_outlined,
+                    child: SvgPicture.asset(
+                      add_people,
                       color: AppColors.zuriPrimaryColor,
+                      width: 18,
+                      height: 18,
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Text(
-                    AddPeople,
-                    style: TextStyle(
+                  Text(
+                    local.addPeople,
+                    style: const TextStyle(
                       color: AppColors.greyishColor,
                       fontSize: 14,
                     ),
@@ -99,7 +106,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                     borderRadius: BorderRadius.circular(40),
                   ),
                   child: Text(
-                    'today',
+                    local.today,
                     textAlign: TextAlign.center,
                     style: AppTextStyle.lightGreySize12,
                   ),

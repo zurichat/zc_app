@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -20,12 +21,13 @@ import 'widgets/edit_channel_text_field.dart';
 )
 class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
   final _padding = const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0);
-  EditChannelPageView({Key? key, this.channelName, this.channelId})
+  EditChannelPageView({Key? key, required this.channelName, this.channelId})
       : super(key: key);
-  final String? channelName;
+  final String channelName;
   final String? channelId;
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<EditChannelViewModel>.reactive(
       onModelReady: (model) {
         listenToFormUpdated(model);
@@ -36,7 +38,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
         appBar: ZuriAppBar(
           leading: Icons.arrow_back_ios,
           orgTitle: Text(
-            EditChannel,
+            local!.editChannel,
             style: AppTextStyle.darkGreySize20Bold,
           ),
           whiteBackground: true,
@@ -47,7 +49,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    'Save',
+                    local.save,
                     style: AppTextStyle.darkGreySize18Bold,
                   ),
                 ),
@@ -68,7 +70,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
               Container(
                 margin: _padding,
                 child: Text(
-                  channelName!,
+                  channelName,
                   style: AppTextStyle.darkGreySize16,
                 ),
               ),
@@ -88,13 +90,13 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
               const TextHeader(headerText: ChannelTopic),
               TextBox(
                 onChanged: model.onChanged,
-                hint: AddTopic,
+                hint: local.addTopic,
                 controller: topicController,
               ),
               const TextHeader(headerText: ChannelDescription),
               TextBox(
                   onChanged: model.onChanged,
-                  hint: ChannelCreationHint,
+                  hint: local.description,
                   controller: descriptionController),
               const SizedBox(
                 height: 30,

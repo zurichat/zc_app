@@ -17,43 +17,58 @@ class SelectThemeDialog extends StatelessWidget {
     int? _currentThemeValue = request.data['currentThemeValue'];
 
     return StatefulBuilder(builder: (context, setState) {
-      return AlertDialog(
-        title: Text(
-          DarkMode,
-          style: AppTextStyle.darkGreySize14Bold,
+      return Dialog(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 15, left: 15),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  DarkMode,
+                  style: AppTextStyle.darkGreySize16Bold,
+                ),
+              ),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: request.data['themes'].length,
+              itemBuilder: (context, index) => ListTile(
+                title: Text(
+                  request.data['themes'][index],
+                  style: AppTextStyle.darkGreySize16,
+                ),
+                leading: Radio(
+                  activeColor: AppColors.zuriPrimaryColor,
+                  value: index,
+                  groupValue: _currentThemeValue,
+                  onChanged: (int? value) {
+                    setState(() => _currentThemeValue = value);
+                  },
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                MaterialButton(
+                  onPressed: () => completer(
+                    DialogResponse(confirmed: false),
+                  ),
+                  child: const Text(Cancel),
+                ),
+                MaterialButton(
+                  onPressed: () => completer(
+                    DialogResponse(data: _currentThemeValue, confirmed: true),
+                  ),
+                  child: const Text(Apply),
+                ),
+                const SizedBox(height: 30),
+              ],
+            ),
+          ],
         ),
-        content: ListView.builder(
-          shrinkWrap: true,
-          itemCount: request.data['themes'].length,
-          itemBuilder: (context, index) => ListTile(
-            title: Text(
-              request.data['themes'][index],
-              style: AppTextStyle.darkGreySize14Bold,
-            ),
-            leading: Radio(
-              activeColor: AppColors.zuriPrimaryColor,
-              value: index,
-              groupValue: _currentThemeValue,
-              onChanged: (int? value) {
-                setState(() => _currentThemeValue = value);
-              },
-            ),
-          ),
-        ),
-        actions: [
-          MaterialButton(
-            onPressed: () => completer(
-              DialogResponse(confirmed: false),
-            ),
-            child: const Text(Cancel),
-          ),
-          MaterialButton(
-            onPressed: () => completer(
-              DialogResponse(data: _currentThemeValue, confirmed: true),
-            ),
-            child: const Text(Apply),
-          ),
-        ],
       );
     });
   }

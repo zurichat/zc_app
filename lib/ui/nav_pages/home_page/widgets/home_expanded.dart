@@ -88,7 +88,9 @@ class HomeExpansionTile extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: AppTextStyle.darkGreySize16Bold,
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.caption!.color,
+                ),
               ),
             ],
           ),

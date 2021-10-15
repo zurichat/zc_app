@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -19,28 +20,27 @@ class NewChannel extends StatelessWidget with $NewChannel {
   NewChannel({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<NewChannelViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => NewChannelViewModel(),
       builder: (context, model, child) => Scaffold(
-        backgroundColor: AppColors.whiteColor,
         appBar: ZuriAppBar(
-          leading: Icons.arrow_back_ios,
-          leadingPress: () {},
           orgTitle: Text(
-            "New Channel",
+            local!.newChannel,
             style: AppTextStyle.darkGreySize20Bold,
           ),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           whiteBackground: true,
+          leading: Icons.arrow_back_ios,
+          leadingPress: () => model.navigateBack(),
           actions: [
             TextButton(
               style: TextButton.styleFrom(
                   padding: const EdgeInsets.only(right: 16.0)),
-              onPressed: () {
-                model.createChannel();
-              },
+              onPressed: model.createChannel,
               child: Text(
-                Create,
+                local.create,
                 style: AppTextStyle.greenSize16,
               ),
             ),
@@ -49,174 +49,174 @@ class NewChannel extends StatelessWidget with $NewChannel {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 19, bottom: 10, top: 24),
-                    child: Row(
-                      children: [
-                        Text(
-                          ChannelName,
-                          style: AppTextStyle.darkGreySize16,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 40,
-                    width: double.infinity,
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
-                    padding: const EdgeInsets.only(left: 12, right: 8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(
-                        color: model.inputError
-                            ? AppColors.redColor
-                            : AppColors.borderColor,
-                        width: 0.5,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 19, bottom: 10, top: 24),
+                  child: Row(
+                    children: [
+                      Text(
+                        local.channelName,
+                        style: AppTextStyle.darkGreySize16,
                       ),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 40,
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.only(left: 12, right: 8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                    border: Border.all(
+                      color: model.inputError
+                          ? AppColors.redColor
+                          : AppColors.borderColor,
+                      width: 0.5,
                     ),
-                    child: Row(
-                      children: [
-                        Text(
-                          hash,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        hash,
+                        style: AppTextStyle.darkGreySize14,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          controller: channelNameController,
                           style: AppTextStyle.darkGreySize14,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            controller: channelNameController,
-                            style: AppTextStyle.darkGreySize14,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(80)
-                            ],
-                            cursorColor: AppColors.zuriPrimaryColor,
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: ChannelTextFieldHint,
-                              hintStyle: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFFA1A9B2),
-                              ),
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(80)
+                          ],
+                          cursorColor: AppColors.zuriPrimaryColor,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: ChannelTextFieldHint,
+                            hintStyle: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFFA1A9B2),
                             ),
-                            onChanged: model.onChangeChannelNameField,
                           ),
+                          onChanged: model.onChangeChannelNameField,
                         ),
-                        Text(
-                          '${model.inputLength}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w400,
+                      ),
+                      Text(
+                        '${model.inputLength}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w400,
 
-                            //TODO Change to brand colors
-                            color: Color(0xFFA1A9B2),
-                          ),
-                        )
+                          //TODO Change to brand colors
+                          color: Color(0xFFA1A9B2),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Visibility(
+                    visible: model.inputError,
+                    child: Column(
+                      children: [
+                        UIHelper.verticalSpaceSmall,
+                        Text(
+                          local.errorMessage,
+                          style: AppTextStyle.errorSize14,
+                        ),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
-                    child: Visibility(
-                      visible: model.inputError,
-                      child: Column(
+                ),
+                UIHelper.verticalSpaceSmall,
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    local.channelCreationWarningMessage,
+                    style: AppTextStyle.lightGreySize14,
+                  ),
+                ),
+                UIHelper.verticalSpaceMedium,
+                const Divider(
+                  thickness: 0.5,
+                  color: AppColors.greyColor,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16, top: 13, bottom: 10),
+                  child: Text(
+                    local.channelDescription,
+                    style: AppTextStyle.darkGreySize16,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 16, top: 8, right: 16),
+                  height: 180,
+                  child: TextField(
+                    maxLines: null,
+                    controller: channelDescriptionController,
+                    style: AppTextStyle.darkGreySize14,
+                    cursorColor: AppColors.zuriPrimaryColor,
+                    keyboardType: TextInputType.multiline,
+                    decoration: InputDecoration.collapsed(
+                      hintText: local.addDescription,
+                      hintStyle: AppTextStyle.darkGreySize14,
+                    ),
+                  ),
+                ),
+                const Divider(
+                  thickness: 0.5,
+                  color: AppColors.greyColor,
+                ),
+                UIHelper.verticalSpaceMedium,
+                const Divider(
+                  thickness: 0.5,
+                  color: AppColors.navBarItemColor,
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 16.0, bottom: 14.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        local.makeChannelPrivate,
+                        style: AppTextStyle.darkGreySize16,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          UIHelper.verticalSpaceSmall,
                           Text(
-                            ErrorMsg,
-                            style: AppTextStyle.errorSize14,
+                            local.privateChannelDescription,
+                            style: AppTextStyle.darkGreySize14,
                           ),
+                          SizedBox(
+                            height: 20,
+                            child: Switch(
+                              //TODO  Change to brand colors
+                              inactiveTrackColor: const Color(0xffebebeb),
+                              activeColor: AppColors.zuriPrimaryColor,
+                              value: model.isChannelPrivate,
+                              onChanged: model.toggleSwitch,
+                            ),
+                          )
                         ],
                       ),
-                    ),
+                      //add this part here because the Row
+                      //widget won't align with just the
+                      //upper part of the text when there's a new line
+                      Text(
+                        local.byInvitation,
+                        style: AppTextStyle.darkGreySize14,
+                      )
+                    ],
                   ),
-                  UIHelper.verticalSpaceSmall,
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
-                    child: Text(
-                      ChannelCreationWarningMsg,
-                      style: AppTextStyle.lightGreySize14,
-                    ),
-                  ),
-                  UIHelper.verticalSpaceMedium,
-                  const Divider(
-                    thickness: 0.5,
-                    color: AppColors.greyColor,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, top: 13, bottom: 10),
-                    child: Text(
-                      ChannelDescription,
-                      style: AppTextStyle.darkGreySize16,
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(left: 16, top: 8, right: 16),
-                    height: 180,
-                    child: TextField(
-                      maxLines: null,
-                      controller: channelDescriptionController,
-                      style: AppTextStyle.darkGreySize14,
-                      cursorColor: AppColors.zuriPrimaryColor,
-                      keyboardType: TextInputType.multiline,
-                      decoration: InputDecoration.collapsed(
-                        hintText: AddDescription,
-                        hintStyle: AppTextStyle.darkGreySize14,
-                      ),
-                    ),
-                  ),
-                  const Divider(
-                    thickness: 0.5,
-                    color: AppColors.greyColor,
-                  ),
-                  UIHelper.verticalSpaceMedium,
-                  const Divider(
-                    thickness: 0.5,
-                    color: AppColors.navBarItemColor,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(left: 16.0, bottom: 14.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          MakeChannelPrivate,
-                          style: AppTextStyle.darkGreySize16,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              PrivateChannelDescription,
-                              style: AppTextStyle.darkGreySize14,
-                            ),
-                            SizedBox(
-                              height: 20,
-                              child: Switch(
-                                //TODO  Change to brand colors
-                                inactiveTrackColor: const Color(0xffebebeb),
-                                activeColor: AppColors.zuriPrimaryColor,
-                                value: model.isChannelPrivate,
-                                onChanged: model.toggleSwitch,
-                              ),
-                            )
-                          ],
-                        ),
-                        //add this part here because the Row
-                        //widget won't align with just the
-                        //upper part of the text when there's a new line
-                        Text(
-                          'by invitation.',
-                          style: AppTextStyle.darkGreySize14,
-                        )
-                      ],
-                    ),
-                  ),
-                  const Divider(
-                    thickness: 0.5,
-                    color: AppColors.navBarItemColor,
-                  ),
-                ]),
+                ),
+                const Divider(
+                  thickness: 0.5,
+                  color: AppColors.navBarItemColor,
+                ),
+              ],
+            ),
           ),
         ),
       ),

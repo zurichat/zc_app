@@ -9,7 +9,6 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:stacked_themes/stacked_themes.dart';
 
 import '../package/base/jump_to_request/jump_to_api.dart';
 import '../package/base/server-request/channels/channels_api_service.dart';
@@ -17,9 +16,11 @@ import '../package/base/server-request/dms/dms_api_service.dart';
 import '../services/centrifuge_service.dart';
 import '../services/connectivity_service.dart';
 import '../services/local_storage_services.dart';
+import '../services/localization_service.dart';
 import '../services/media_service.dart';
 import '../services/notification_service.dart';
 import '../services/user_service.dart';
+import '../services/zuri_theme_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -32,7 +33,10 @@ Future setupLocator(
 // Register dependencies
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
-  locator.registerLazySingleton(() => ThemeService.getInstance());
+  final zuriThemeService = await ZuriThemeService.getInstance();
+  locator.registerSingleton(zuriThemeService);
+
+  locator.registerLazySingleton(() => LocalizationService());
   final sharedPreferenceLocalStorage =
       await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/user_model.dart';
 
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -17,6 +17,7 @@ class EditProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     Size _size = MediaQuery.of(context).size;
     return ViewModelBuilder<EditProfileViewModel>.reactive(
       viewModelBuilder: () => EditProfileViewModel(),
@@ -27,14 +28,14 @@ class EditProfileView extends StatelessWidget {
           leading: Icons.close_rounded,
           leadingPress: () => viewModel.close(),
           orgTitle: Text(
-            "Edit Profile",
+            local!.editProfileButton,
             style: AppTextStyle.darkGreySize18Bold,
           ),
           actions: [
             TextButton(
               onPressed: () => viewModel.onSave(),
               child: Text(
-                Save.toUpperCase(),
+                local.save.toUpperCase(),
                 style: viewModel.hasDataChanged
                     ? AppTextStyle.darkGreySize16Bold
                     : AppTextStyle.lightGreySize16,

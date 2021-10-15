@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -24,6 +24,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     final log = getLogger("ThreadDetailView");
     final _scrollController = ScrollController();
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
@@ -38,7 +39,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           orgTitle: Text(
-            Threads,
+            local!.threads,
             style: AppTextStyle.darkGreySize20Bold.copyWith(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
@@ -61,7 +62,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                               horizontal: 10, vertical: 10),
                           child: Row(
                             children: [
-                              const Text(MsgIn),
+                              Text(local.messageIn),
                               TextButton.icon(
                                   onPressed: () {},
                                   icon: ChannelIcon(
@@ -84,9 +85,10 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              //TODO TRANSLATE
                               Text(
                                 '${model.channelThreadMessages.length} '
-                                '${model.channelThreadMessages.length == 1 ? "Reply" : "Replies"}',
+                                '${model.channelThreadMessages.length == 1 ? local.reply : local.replies}',
                                 style: AppTextStyle.lightGreySize14,
                               ),
                               Row(
@@ -115,12 +117,11 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                                   userID: userPost!.userId,
                                                   userImage:
                                                       userPost!.userImage);
-                                              log.i("Saved");
+                                              log.i(local.saved);
                                               model.exitPage(userPost,
                                                   messageController.text);
                                               showSimpleNotification(
-                                                const Text(
-                                                    "Added successfully"),
+                                                Text(local.addedSuccessfully),
                                                 position:
                                                     NotificationPosition.top,
                                                 background:
@@ -190,9 +191,9 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                         textAlignVertical:
                                             TextAlignVertical.center,
                                         decoration: InputDecoration.collapsed(
-                                          hintText: 'Add a Reply',
+                                          hintText: local.addAReply,
                                           hintStyle:
-                                              AppTextStyle.darkGreySize14,
+                                              AppTextStyle.lightGreySize14,
                                         ),
                                       ),
                                     ),
