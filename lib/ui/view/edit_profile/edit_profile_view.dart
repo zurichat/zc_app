@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/user_model.dart';
 
 import 'package:hng/ui/shared/shared.dart';
@@ -36,7 +35,7 @@ class EditProfileView extends StatelessWidget {
             TextButton(
               onPressed: () => viewModel.onSave(),
               child: Text(
-                Save.toUpperCase(),
+                local.save.toUpperCase(),
                 style: AppTextStyles.body1Bold.copyWith(
                     color: viewModel.hasDataChanged
                         ? AppColors.deepBlackColor

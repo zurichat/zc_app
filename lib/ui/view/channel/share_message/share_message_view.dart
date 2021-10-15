@@ -4,6 +4,7 @@ import 'package:hng/models/user_post.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/share_message/share_message_viewmodel.dart';
 import 'package:hng/ui/view/channel/share_message/widgets/share_message_textfield.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'share_message_view.form.dart';
@@ -18,6 +19,7 @@ class ShareMessageView extends StatelessWidget with $ShareMessageView {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<ShareMessageViewModel>.reactive(
         onModelReady: (model) => listenToFormUpdated(model),
         builder: (context, model, child) => Scaffold(
@@ -25,7 +27,7 @@ class ShareMessageView extends StatelessWidget with $ShareMessageView {
                 leading: IconButton(
                     onPressed: model.close, icon: const Icon(Icons.close)),
                 centerTitle: false,
-                title: const Text('Share Message'),
+                title: Text(local!.shareMessage),
                 actions: [
                   Center(
                     child: IconButton(
@@ -55,7 +57,7 @@ class ShareMessageView extends StatelessWidget with $ShareMessageView {
                         style:
                             AppTextStyles.body3Medium.copyWith(fontSize: 16)),
                     Text(
-                        'Thread in #${userPost.channelName} • ${userPost.moment}',
+                        '${local.threadMessageIn} #${userPost.channelName} • ${userPost.moment}',
                         overflow: TextOverflow.ellipsis,
                         maxLines: 3,
                         style: AppTextStyles.faintBodyText
