@@ -80,7 +80,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          TextParser(userPost.message),
+                          Expanded(child: TextParser(userPost.message)),
                           const Icon(Icons.check,
                               size: 12.0, color: AppColors.appBarGreen),
                         ],
