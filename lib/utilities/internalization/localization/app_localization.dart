@@ -244,9 +244,90 @@ class AppLocalization {
   String get backTo => translate(LocalKeys.BackTo);
   String get newPasswordHeader => translate(LocalKeys.NewPasswordHeader);
   String get newPassword => translate(LocalKeys.NewPassword);
-  String get passwordLengthWarning => translate(LocalKeys.PasswordLengthWarning);
+  String get passwordLengthWarning =>
+      translate(LocalKeys.PasswordLengthWarning);
   String get passwordMustMatch => translate(LocalKeys.PasswordMustMatch);
-  
+  String get enterOTP => translate(LocalKeys.EnterOTP);
+  String get didntReceiveOTP => translate(LocalKeys.DidntReceiveOTP);
+  String get resend => translate(LocalKeys.Resend);
+  String get designers => translate(LocalKeys.Designers);
+  String get messages => translate(LocalKeys.Messages);
+  String get files => translate(LocalKeys.Files);
+  String get newest => translate(LocalKeys.Newest);
+  String get save => translate(LocalKeys.Save);
+  String get draft => translate(LocalKeys.Draft);
+  String get delete => translate(LocalKeys.Delete);
+  String get draftMessageIntro => translate(LocalKeys.DraftMessageIntro);
+  String get draftIntroText => translate(LocalKeys.DraftIntroText);
+  String get doNotDisturb => translate(LocalKeys.DoNotDisturb);
+  String get dmHint => translate(LocalKeys.DMHint);
+  String get dmIntroBegin => translate(LocalKeys.DMIntroBegin);
+  String get dmIntroEnd => translate(LocalKeys.DMIntroEnd);
+  String get create => translate(LocalKeys.Create);
+  String get name => translate(LocalKeys.Name);
+  String get createChannelExample => translate(LocalKeys.CreateChannelExample);
+  String get description => translate(LocalKeys.Description);
+  String get aboutChannel => translate(LocalKeys.AboutChannel);
+  String get channelSettings => translate(LocalKeys.ChannelSettings);
+  String get makePrivate => translate(LocalKeys.MakePrivate);
+  String get privateDescription => translate(LocalKeys.PrivateDescription);
+  String get selected => translate(LocalKeys.Selected);
+  String get searchPeople => translate(LocalKeys.SearchPeople);
+  String get addEveryone => translate(LocalKeys.AddEveryone);
+  String get everyoneWillBeAdded => translate(LocalKeys.EveryoneWillBeAdded);
+  String get addingMarkedUsers => translate(LocalKeys.AddingMarkedUsers);
+  String get channelInfo => translate(LocalKeys.ChannelInfo);
+  String get muteChannelWarning => translate(LocalKeys.MuteChannelWarning);
+  String get bookmarks => translate(LocalKeys.Bookmarks);
+  String get edit => translate(LocalKeys.Edit);
+  String get addPeople => translate(LocalKeys.AddPeople);
+  String get channelNotifSubtitle => translate(LocalKeys.ChannelNotifSubtitle);
+  String get everyNewMessage => translate(LocalKeys.EveryNewMessage);
+  String get newButton => translate(LocalKeys.New);
+  String get justMentions => translate(LocalKeys.JustMentions);
+  String get mentions => translate(LocalKeys.Mentions);
+  String get nothing => translate(LocalKeys.Nothing);
+  String get none => translate(LocalKeys.None);
+  String get channelNotifSettings => translate(LocalKeys.ChannelNotifSettings);
+  String get searchPeopleHere => translate(LocalKeys.SearchPeopleHere);
+  String get searchPeopleOn => translate(LocalKeys.SearchPeopleOn);
+  String get editChannel => translate(LocalKeys.EditChannel);
+  String get addTopic => translate(LocalKeys.AddTopic);
+  String get newChannel => translate(LocalKeys.NewChannel);
+  String get channelName => translate(LocalKeys.ChannelName);
+  String get errorMessage => translate(LocalKeys.ErrorMessage);
+  String get channelCreationWarningMessage =>
+      translate(LocalKeys.ChannelCreationWarningMessage);
+  String get channelDescription => translate(LocalKeys.ChannelDescription);
+  String get addDescription => translate(LocalKeys.AddDescription);
+  String get makeChannelPrivate => translate(LocalKeys.MakeChannelPrivate);
+  String get privateChannelDescription =>
+      translate(LocalKeys.PrivateChannelDescription);
+  String get byInvitation => translate(LocalKeys.ByInvitation);
+  String get pinnedMessages => translate(LocalKeys.PinnedMessages);
+  String get noPinnedMessages => translate(LocalKeys.NoPinnedMessages);
+  String get threadMessageIn => translate(LocalKeys.ThreadMessageIn);
+  String get setStatusText => translate(LocalKeys.SetStatusText);
+  String get whatIsYourStatus => translate(LocalKeys.WhatIsYourStatus);
+  String get temporarilyUnavailable =>
+      translate(LocalKeys.TemporarilyUnavailable);
+  String get addChannel => translate(LocalKeys.AddChannel);
+  String get useAnotherEmail => translate(LocalKeys.UseAnotherEmail);
+  String get unPinFrom => translate(LocalKeys.UnpinFrom);
+  String get pinTo => translate(LocalKeys.PinTo);
+  String get conversation => translate(LocalKeys.Conversation);
+  String get in20Minutes => translate(LocalKeys.In20Minutes);
+  String get in1Hour => translate(LocalKeys.In1Hour);
+  String get in3Hour => translate(LocalKeys.In3Hour);
+  String get tomorrow => translate(LocalKeys.Tomorrow);
+  String get nextWeek => translate(LocalKeys.NextWeek);
+  String get custom => translate(LocalKeys.Custom);
+  String get couldNot => translate(LocalKeys.CouldNot);
+  String get post => translate(LocalKeys.Post);
+  String get createdThisChannel => translate(LocalKeys.CreatedThisChannel);
+  String get channelIntroText => translate(LocalKeys.ChannelIntroText);
+  String get channel => translate(LocalKeys.Channel);
+  String get today => translate(LocalKeys.Today);
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {

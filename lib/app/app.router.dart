@@ -421,7 +421,7 @@ class StackedRouter extends RouterBase {
     },
     DmScreen: (data) {
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => const DmScreen(),
+        builder: (context) => DmScreen(),
         settings: data,
       );
     },

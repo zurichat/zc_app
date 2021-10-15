@@ -4,6 +4,7 @@ import 'package:hng/app/app.locator.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'thread_options_bottomsheet/widget/recent_emojis.dart';
@@ -22,6 +23,7 @@ Future<dynamic> zuriChatBottomSheet({
   Function()? turnQuestionToPoll,
   UserPost? post,
 }) {
+  final local = AppLocalization.of(context);
   final _dialogService = locator<DialogService>();
   return showModalBottomSheet(
     context: context,
@@ -68,12 +70,12 @@ Future<dynamic> zuriChatBottomSheet({
             ),
             const Divider(),
             ListTile(
-              title: Text("Mark Unread", style: AppTextStyles.heading9),
+              title: Text(local!.markUnread, style: AppTextStyles.heading9),
               leading: const Icon(Icons.line_style_outlined),
               onTap: markUnread,
             ),
             ListTile(
-              title: Text("Remind Me", style: AppTextStyles.heading9),
+              title: Text(local.remindMe, style: AppTextStyles.heading9),
               leading: const Icon(Icons.timer_10_outlined),
               onTap: () async {
                 await _dialogService.showCustomDialog(
@@ -81,48 +83,40 @@ Future<dynamic> zuriChatBottomSheet({
               },
             ),
             ListTile(
-              title: Text("Add to Saved Items", style: AppTextStyles.heading9),
+              title: Text(local.addSavedItems, style: AppTextStyles.heading9),
               leading: const Icon(Icons.save_outlined),
               onTap: addToSavedItems,
             ),
             const Divider(),
             ListTile(
-                title: Text("Reply in Thread", style: AppTextStyles.heading9),
+                title: Text(local.replyInThread, style: AppTextStyles.heading9),
                 leading: const Icon(Icons.chat_rounded),
                 onTap: replyInThread),
             ListTile(
-                title: Text("Follow Thread", style: AppTextStyles.heading9),
+                title: Text(local.followThread, style: AppTextStyles.heading9),
                 leading: const Icon(Icons.mark_chat_unread),
                 onTap: followThread),
             const Divider(),
             ListTile(
-                title: Text("Share Message", style: AppTextStyles.heading9),
+                title: Text(local.shareMessage, style: AppTextStyles.heading9),
                 leading: const Icon(Icons.arrow_right_alt_rounded),
                 onTap: shareMessage),
             ListTile(
                 title:
-                    Text("Copy Link to Message", style: AppTextStyles.heading9),
+                    Text(local.copyLinkToMessage, style: AppTextStyles.heading9),
                 leading: const Icon(Icons.link),
                 onTap: copyLinkToMessage),
             ListTile(
-                title: Text("Copy Text", style: AppTextStyles.heading9),
+                title: Text(local.copyText, style: AppTextStyles.heading9),
                 leading: const Icon(Icons.copy),
                 onTap: copyText),
             const Divider(),
             ListTile(
                 title: Text(
-                    "${post?.pinned == true ? "Unpin from" : "Pin to"} Conversation",
+                    "${post?.pinned == true ? local.unPinFrom : local.pinTo} ${local.conversation}",
                     style: AppTextStyles.heading9),
                 leading: const Icon(Icons.push_pin),
                 onTap: changePinnedState),
-            ListTile(
-              title: Text("Turn question into poll",
-                  style: AppTextStyles.heading9),
-              leading: const Icon(Icons.bar_chart),
-              onTap: turnQuestionToPoll,
-              trailing: Text("Simple poll", style: AppTextStyles.subtitle),
-            ),
-            const Divider(),
           ],
         ),
       );
