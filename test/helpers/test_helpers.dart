@@ -160,7 +160,7 @@ MockZuriApi getAndRegisterZuriApiMock() {
   locator.registerSingleton<ZuriApi>(service);
 
   when(service.uploadImage(fileMock,
-          token: token_string, pluginId: orgId_string))
+          token: token_string, pluginId: pluginId_string))
       .thenAnswer((_) async => Future.value("Image Address"));
   return service;
 }
@@ -191,7 +191,7 @@ MockMediaService getAndRegisterMediaServiceMock() {
   final service = MockMediaService();
   Future<String> response = Future<String>.value("Image Address");
 
-  when(service.uploadImage(fileMock, orgId_string))
+  when(service.uploadImage(fileMock, pluginId_string))
       .thenAnswer((_) async => response);
 
   locator.registerSingleton<MediaService>(service);

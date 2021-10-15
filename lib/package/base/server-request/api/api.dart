@@ -164,6 +164,13 @@ abstract class Api {
   /// THIS INCLUDES THE ADMINS AND MEMBERS
   Future fetchListOfMembers(String currentOrgId, String channelId, token);
 
+  // Future uploadImage{
+  //   File image,(
+  //     {required String token,
+  //     required String pluginId}
+  //   );
+  // }
+
   /// A SERVICE TO SEND PATCH REQUEST TO THE ENDPOINT
   Future<ApiResponse?> patch(String path,
       {Map<String, dynamic>? body, String? token});

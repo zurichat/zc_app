@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -28,7 +30,7 @@ class ExpandableTextFieldScreen extends HookWidget {
       required this.channelID})
       : super(key: key);
   final Widget widget;
-  final Function(String message) sendMessage;
+  final Function(String message, List<File> media) sendMessage;
   final String hintText;
   final bool usercheck;
   final focusNode = FocusNode();
@@ -208,7 +210,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                                           ),
                                           const Spacer(),
                                           GestureDetector(
-                                            onTap: () {},
+                                            onTap: () =>
+                                                model.onCameraTap("roomId"),
                                             child: Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
@@ -230,12 +233,16 @@ class ExpandableTextFieldScreen extends HookWidget {
                                           ),
                                           GestureDetector(
                                             onTap: () {
-                                              if (textController.text
-                                                  .toString()
-                                                  .isNotEmpty) {
-                                                sendMessage(
-                                                    textController.text);
+                                              if (textController.text.isEmpty &&
+                                                  model.mediaList.isEmpty) {
+                                                return;
+                                              } else 
+                                              {
+                                                sendMessage(textController.text,
+                                                    model.mediaList);
                                                 textController.clear();
+                                                model.clearMediaList();
+                                                model.toggleExpanded(false);
                                               }
                                             },
                                             onLongPress: () {
@@ -256,6 +263,21 @@ class ExpandableTextFieldScreen extends HookWidget {
                                       ),
                                     ),
                                   ),
+                                  Visibility(
+                                    visible: model.mediaList.isNotEmpty,
+                                    child: SizedBox(
+                                      height: 70,
+                                      width: double.infinity,
+                                      child: ListView.builder(
+                                        itemCount: model.mediaList.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (__, index) {
+                                          final media = model.mediaList[index];
+                                          return Image.file(media);
+                                        },
+                                      ),
+                                    ),
+                                  )
                                 ],
                               ),
                             ),
