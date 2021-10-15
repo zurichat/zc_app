@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -12,8 +13,9 @@ class PinnedMessagesView extends StatelessWidget {
   const PinnedMessagesView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      ViewModelBuilder<PinnedMessagesViewModel>.reactive(
+  Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    return ViewModelBuilder<PinnedMessagesViewModel>.reactive(
         onModelReady: (model) => model.fetchPinnedMessages(),
         viewModelBuilder: () => PinnedMessagesViewModel(),
         initialiseSpecialViewModelsOnce: true,
@@ -23,8 +25,8 @@ class PinnedMessagesView extends StatelessWidget {
             leadingPress: model.navigateBack,
             leading: Icons.arrow_back_ios,
             orgTitle: Text(
-              PinnedMessages,
-              style: AppTextStyles.heading7,
+              local!.pinnedMessages,
+              style: AppTextStyles.heading4,
             ),
             whiteBackground: true,
           ),
@@ -37,11 +39,8 @@ class PinnedMessagesView extends StatelessWidget {
               : model.pinnedMessages.isEmpty
                   ? Center(
                       child: Text(
-                        NoPinnedMessagesYet,
-                        style: GoogleFonts.lato(
-                          color: AppColors.deepBlackColor,
-                          fontSize: 16.0,
-                        ),
+                        local.noPinnedMessages,
+                        style: AppTextStyles.heading5,
                       ),
                     )
                   : ListView.separated(
@@ -51,32 +50,28 @@ class PinnedMessagesView extends StatelessWidget {
                       separatorBuilder: (context, index) => const Divider(
                           height: 24.0, indent: 56.0, thickness: 1.28),
                       itemBuilder: (context, index) => ListTile(
-                        leading:
-                            const ImageIcon(AssetImage(PinIcon), size: 24.0),
+                        leading: const ImageIcon(AssetImage(PinIcon)),
                         contentPadding: EdgeInsets.zero,
                         subtitle: Text(
                           model.pinnedMessages[index].content!,
-                          style: GoogleFonts.lato(
-                              color: AppColors.zuriTextColorHeader,
-                              fontSize: 14.0),
+                          style: AppTextStyles.pinnedMessageBodyStyle,
                         ),
-                        title: SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
+                        title: Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
                           child: Row(
                             children: [
-                              Text(
-                                model.pinnedMessages[index].displayName!,
-                                style: GoogleFonts.lato(
-                                    color: AppColors.deepGreyColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16.0),
+                              Flexible(
+                                fit: FlexFit.loose,
+                                child: Text(
+                                  model.pinnedMessages[index].displayName!,
+                                  style: AppTextStyles.pinnedMessageHeaderStyle,
+                                  maxLines: 1,
+                                ),
                               ),
-                              const SizedBox(width: 24.0),
+                              const SizedBox(width: 16.0),
                               Text(
                                 model.pinnedMessages[index].moment!,
-                                style: GoogleFonts.lato(
-                                    color: AppColors.greyColor, fontSize: 12.0),
+                                style: AppTextStyles.lastSeen,
                               ),
                             ],
                           ),
@@ -85,4 +80,5 @@ class PinnedMessagesView extends StatelessWidget {
                     ),
         ),
       );
+  }
 }

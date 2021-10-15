@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/styles.dart';
@@ -41,80 +40,76 @@ class AddOrganizationView extends StatelessWidget {
             whiteBackground: true,
             leadingPress: model.back,
           ),
-          body: InkWell(
-            onTap: () => FocusScope.of(context).unfocus(),
-            child: Column(children: [
-              const SizedBox(height: 5),
-              Container(
-                margin: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? AppColors.darkThemePrimaryColor
-                      : AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(3),
+          body: Column(children: [
+            const SizedBox(height: 5),
+            Container(
+              margin: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? AppColors.darkThemePrimaryColor
+                    : AppColors.whiteColor,
+                borderRadius: BorderRadius.circular(3),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InkWell(
+                      onTap: () => model.navigateToSelectEmail(
+                          OrganizationSwitchMethod.signIn),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.grid_view,
+                            ),
+                            const SizedBox(width: 16),
+                            Text(local.signInWorkspace, style: AppTextStyles.heading9),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Divider(color: AppColors.dividerColor),
+                    InkWell(
+                      onTap: () => model
+                          .navigateToSelectEmail(OrganizationSwitchMethod.join),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.add_box_outlined,
+                            ),
+                            const SizedBox(width: 16),
+                            Text(local.joinWorkspace, style: AppTextStyles.heading9),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Divider(color: AppColors.dividerColor),
+                    InkWell(
+                      onTap: () => model.navigateToSelectEmail(
+                          OrganizationSwitchMethod.create),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.edit_outlined,
+                            ),
+                            const SizedBox(width: 16),
+                            Text(local.createWorkspace, style: AppTextStyles.heading9),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      InkWell(
-                        onTap: () => model.navigateToSelectEmail(
-                            OrganizationSwitchMethod.signIn),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.grid_view,
-                              ),
-                              const SizedBox(width: 16),
-                              Text(SignInNewOrg, style: AppTextStyles.heading9),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const Divider(color: AppColors.dividerColor),
-                      InkWell(
-                        onTap: () => model.navigateToSelectEmail(
-                            OrganizationSwitchMethod.join),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.add_box_outlined,
-                              ),
-                              const SizedBox(width: 16),
-                              Text(JoinAnotherOrg,
-                                  style: AppTextStyles.heading9),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const Divider(color: AppColors.dividerColor),
-                      InkWell(
-                        onTap: () => model.navigateToSelectEmail(
-                            OrganizationSwitchMethod.create),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.edit_outlined,
-                              ),
-                              const SizedBox(width: 16),
-                              Text(CreateNewOrg, style: AppTextStyles.heading9),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ]),
-          ),
+              ),
+            )
+          ]),
         );
       },
     );
