@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
@@ -39,10 +40,11 @@ class SecondSection extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(
-                          Icons.notifications_outlined,
-                          color: AppColors.deepBlackColor,
-                          size: 28,
+                        SvgPicture.asset(
+                          Channel_Info_Notification,
+                          color: AppColors.darkGreyColor,
+                          width: 20,
+                          height: 15,
                         ),
                         UIHelper.horizontalSpaceMedium,
                         UIHelper.horizontalSpaceSmall,
@@ -52,20 +54,19 @@ class SecondSection extends StatelessWidget {
                             children: [
                               Text(
                                 Notifications,
-                                style:
-                                AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14, color: AppColors.blackColor),
+                                style: AppTextStyles.archiveTextStyle2.copyWith(
+                                    fontSize: 14, color: AppColors.blackColor),
                               ),
                               UIHelper.verticalSpaceExtraSmall,
                               Text(
                                 EveryNewMessage,
-                                style:
-                                AppTextStyles.body1Regular.copyWith(letterSpacing: 0.005, fontSize: 14),
+                                style: AppTextStyles.body1Regular.copyWith(
+                                    letterSpacing: 0.005, fontSize: 14),
                               ),
                               UIHelper.verticalSpaceMedium,
                               Text(
                                 MuteChannel,
-                                style:
-                                AppTextStyles.descriptionStyle,
+                                style: AppTextStyles.descriptionStyle,
                               ),
                             ],
                           ),

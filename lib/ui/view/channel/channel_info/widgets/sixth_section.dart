@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
@@ -16,50 +17,43 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
   Widget build(BuildContext context, ChannelInfoViewModel viewModel) {
     return GestureDetector(
       onTap: () => viewModel.deleteChannel(channelDetail),
-      child: Card(
-        elevation: 2,
-        child: Container(
-          height: 136,
-          width: double.infinity,
-          alignment: Alignment.center,
-          padding: const EdgeInsets.fromLTRB(18, 18, 0, 42),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Icon(
-                Icons.archive_rounded,
-                color: AppColors.deepBlackColor,
-                size: 28,
-              ),
-              UIHelper.horizontalSpaceMedium,
-              UIHelper.horizontalSpaceSmall,
-              Expanded(
+      child: Container(
+        height: 136,
+        width: 395,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.fromLTRB(16, 18, 0, 0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.darkThemePrimaryColor
+              : AppColors.whiteColor,
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SvgPicture.asset(
+              archive,
+              color: Theme.of(context).textTheme.bodyText1!.color,
+              width: 28,
+              height: 28,
+            ),
+            Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       ArchiveChannel,
-                      style:
-                          AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
+                      style: AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
                     ),
-                    UIHelper.verticalSpaceSmall,
-                    Expanded(
-                      child: Container(
-                          alignment: Alignment.center,
-                          child: Text(
-                              ArchiveChannelWarning,
-                            maxLines: 6,
-                            style: AppTextStyles.body2_400.copyWith(fontSize: 14),
-                          )),
-                    ),
+                    Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          ArchiveChannelWarning,
+                          style: AppTextStyles.body2_400.copyWith(fontSize: 14),
+                        )),
                   ],
-                ),
-              )
-            ],
-          ),
+                )),
+          ],
         ),
       ),
     );
