@@ -338,14 +338,14 @@ const String MyKeywordSubtitle = 'Get notified when people say...';
 const String ChannelSPecificNotif = 'Channel-specific notifications (0)';
 
 //Zuri_Chat_BottomSheet
-const String mark_unread = "Mark Unread";
-const String remind_me = "Remind Me";
-const String add_to_saved_items = "Add to Saved Items";
-const String reply_in_threads = "Reply in Thread";
-const String follow_thread = "Follow Thread";
-const String share_message = "Share Message";
-const String copy_link_to_message = "Copy Link to Message";
-const String copy_text = "Copy Text";
+const String MarkUnread = "Mark Unread";
+const String RemindMe = "Remind Me";
+const String Add_To_Saved_Items = "Add to Saved Items";
+const String Reply_In_Threads = "Reply in Thread";
+const String Follow_Thread_ZuriChat_BottomSheet = "Follow Thread";
+const String Share_Message = "Share Message";
+const String Copy_Link_To_Message = "Copy Link to Message";
+const String Copy_Text_ZuriChat_BottomSheet = "Copy Text";
 
 //Onboarding
 const String Skip = 'Skip';
