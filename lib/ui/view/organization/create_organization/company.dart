@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/long_button.dart';
 import '../../../shared/text_field.dart';
@@ -24,6 +25,7 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
 
   @override
   Widget build(BuildContext context, CreateOrganizationViewModel viewModel) {
+    final local = AppLocalization.of(context);
     return LayoutBuilder(
       builder: (context, constraint) {
         return SingleChildScrollView(
@@ -42,11 +44,10 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                     Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: const Text(
-                        CompanyName,
-                        style: TextStyle(
+                      child: Text(
+                        local!.companyName,
+                        style: const TextStyle(
                           letterSpacing: 0.5,
-                          color: AppColors.blackColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),
@@ -63,36 +64,36 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                           final res = await viewModel.onCompanyNext();
                           if (res) next();
                         },
-                        label: 'Next'),
+                        label: local.next),
                     const SizedBox(height: 15),
-                    const Text.rich(
+                    Text.rich(
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: TnC1,
-                            style: TextStyle(
+                            text: local.tnC1,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                             ),
                           ),
                           TextSpan(
-                            text: TnC2,
-                            style: TextStyle(
+                            text: local.tnC2,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                               color: AppColors.zuriPrimaryColor,
                             ),
                           ),
                           TextSpan(
-                            text: ' and ',
-                            style: TextStyle(
+                            text: local.companyAnd,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                             ),
                           ),
                           TextSpan(
-                            text: CookiePolicy,
-                            style: TextStyle(
+                            text: local.cookiePolicy,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                               color: AppColors.zuriPrimaryColor,
@@ -109,9 +110,9 @@ class CompanyPage extends ViewModelWidget<CreateOrganizationViewModel> {
                         value: viewModel.checkBoxVal,
                         onChanged: viewModel.onCheckBoxChanged,
                         controlAffinity: ListTileControlAffinity.leading,
-                        title: const Text(
-                          CustomerAgreementText,
-                          style: TextStyle(
+                        title: Text(
+                          local.customerAgreementText,
+                          style: const TextStyle(
                             fontSize: 15,
                           ),
                         ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hng/ui/shared/colors.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
 
 // ignore: must_be_immutable
 class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -16,8 +17,10 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TextEditingController? searchController;
   final String? title;
   final String? hintText;
+
   bool bottomNavBarScreen;
   bool whiteBackground;
+  bool isDarkMode;
   final Function()? onEditingComplete;
   bool isSearchBar;
   final String? subtitle;
@@ -31,6 +34,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.bottomNavBarScreen = false,
     this.whiteBackground = false,
+    this.isDarkMode = false,
     this.onlineIndicator = false,
     Key? key,
     this.leadingPress,
@@ -55,10 +59,10 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: isSearchBar
           ? null
           : InkWell(
-              child: Icon(
-                leading,
-                color: Colors.black,
-              ),
+              child: Icon(leading,
+                  color:
+                      isDarkMode ? AppColors.whiteColor : AppColors.blackColor,
+                  size: 16),
               onTap: leadingPress),
       title: isSearchBar
           ? Container(
@@ -70,11 +74,10 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                 controller: searchController,
                 keyboardType: TextInputType.text,
                 onChanged: onChanged,
-                style: AppTextStyles.buttonText,
+                style: AppTextStyle.whiteSize16,
                 onEditingComplete: onEditingComplete,
                 decoration: InputDecoration(
-                    hintStyle: AppTextStyles.buttonText
-                        .copyWith(color: Colors.white60),
+                    hintStyle: AppTextStyle.whiteSize16,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
                         borderSide: BorderSide.none),
@@ -90,6 +93,8 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             )
           : subtitle == null
+              //TODO - bug: condition doesn't accomodate supplying a string title (!widget) && null subtitle
+              //sample on select_email_view.dart
               ? orgTitle
               : Row(
                   mainAxisSize: MainAxisSize.min,
@@ -101,13 +106,15 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(title!,
-                            style: AppTextStyles.heading7
-                                .copyWith(color: AppColors.blackColor)),
+                        Text(
+                          title!,
+                          style: AppTextStyle.darkGreySize16Bold.copyWith(
+                            color: isDarkMode ? AppColors.whiteColor : null,
+                          ),
+                        ),
                         Text(
                           subtitle!,
-                          style: AppTextStyles.messageText
-                              .copyWith(color: AppColors.greyColor),
+                          style: AppTextStyle.lightGreySize14,
                         ),
                       ],
                     ),
@@ -122,10 +129,16 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                         : const SizedBox()
                   ],
                 ),
+      titleTextStyle: AppTextStyle.organizationNameText,
       centerTitle: false,
+      backgroundColor: !whiteBackground
+          ? isDarkMode
+              ? AppColors.darkThemePrimaryColor
+              : AppColors.zuriPrimaryColor
+          : isDarkMode
+              ? AppColors.darkThemePrimaryColor
+              : AppColors.whiteColor,
       actions: isSearchBar ? null : actions,
-      backgroundColor:
-          !whiteBackground ? AppColors.zuriPrimaryColor : AppColors.whiteColor,
     );
   }
 }

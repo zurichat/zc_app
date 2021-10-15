@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/general_widgets/easy_container.dart';
 import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
@@ -11,6 +11,8 @@ import 'package:hng/utilities/constants.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
+import 'widgets/home_list_items.dart';
+
 class HomePage extends StatelessWidget {
   final Widget? organizationLogo;
   const HomePage({Key? key, this.organizationLogo}) : super(key: key);
@@ -20,12 +22,14 @@ class HomePage extends StatelessWidget {
       onModelReady: (model) {
         model.getDmAndChannelsList();
         model.getNewChannelStream();
+        model.hasDrafts();
         model.listenToNotificationTap();
       },
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, vmodel, child) => Scaffold(
         appBar: ZuriAppBar(
           leadingWidth: true,
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           orgTitle: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -40,7 +44,7 @@ class HomePage extends StatelessWidget {
               const SizedBox(width: 16),
               Text(
                 vmodel.orgName,
-                style: ZuriTextStyle.organizationNameText(),
+                style: AppTextStyle.organizationNameText,
               ),
             ],
           ),
@@ -51,33 +55,26 @@ class HomePage extends StatelessWidget {
               vmodel.isBusy
                   ? LinearProgressIndicator(
                       backgroundColor: Colors.grey[400],
-                      valueColor: const AlwaysStoppedAnimation(
-                          AppColors.zuriPrimaryColor),
+                      valueColor: AlwaysStoppedAnimation(
+                          Theme.of(context).brightness == Brightness.dark
+                              ? AppColors.darkThemePrimaryColor
+                              : AppColors.zuriPrimaryColor),
                     )
                   : Container(),
               Expanded(
                 child: body(context, vmodel),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Align(
-              //     alignment: Alignment.bottomRight,
-              //     child: FloatingActionButton(
-              //         onPressed: vmodel.navigateToStartDMScreen,
-              //         child: const Icon(
-              //           Icons.open_in_new_outlined,
-              //           color: AppColors.whiteColor,
-              //         )),
-              //   ),
-              // )
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: vmodel.navigateToStartDMScreen,
-          child: const Icon(
-            Icons.open_in_new_outlined,
+          child: IconButton(
+            onPressed: vmodel.navigateToStartDMScreen,
+            icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
+            color: AppColors.whiteColor,
           ),
+          backgroundColor: AppColors.zuriPrimaryColor,
         ),
       ),
     );
@@ -89,11 +86,18 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 15),
-          searchBar(vmodel),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
-            child: ThreadTextAndIcon(),
-          ),
+          searchBar(context, vmodel),
+          vmodel.hasThreads()
+              ? const Padding(
+                  padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
+                  child: ThreadTextAndIcon(),
+                )
+              : Container(),
+          vmodel.hasDrafts()
+              ? const Padding(
+                  padding: EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 3),
+                  child: DraftTextAndIcon())
+              : Container(),
           const Divider(),
           HomeExpandedList(
             title: local!.unreads,
@@ -110,12 +114,14 @@ class HomePage extends StatelessWidget {
             title: local.directMessages,
             data: vmodel.directMessages,
           ),
+          const Divider(),
         ],
       ),
     );
   }
 
-  Widget searchBar(vmodel) {
+  Widget searchBar(context, vmodel) {
+    final local = AppLocalization.of(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
       child: GestureDetector(
@@ -128,8 +134,8 @@ class HomePage extends StatelessWidget {
           borderWidth: 1.5,
           borderColor: Colors.grey[300],
           child: Text(
-            JumpTo,
-            style: ZuriTextStyle.mediumNormal(),
+            local!.jumpTo,
+            style: AppTextStyle.darkGreySize14,
           ),
         ),
       ),

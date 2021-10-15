@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/enums.dart';
 
 class CustomButton extends StatelessWidget {
@@ -28,7 +29,7 @@ class CustomButton extends StatelessWidget {
             shape: Border.all(color: AppColors.greyishColor),
             child: Text(
               " $text",
-              style: AppTextStyles.body3Medium,
+              style: AppTextStyle.lightGreySize14,
             ))
         : MaterialButton(
             onPressed: onPressed,

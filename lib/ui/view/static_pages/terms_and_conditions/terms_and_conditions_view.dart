@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../constants/app_strings.dart';
-import '../../../shared/shared.dart';
 import '../../../shared/zuri_appbar.dart';
 import 'terms_and_conditions_view_model.dart';
 
@@ -17,10 +17,9 @@ class TermsAndConditionsView extends StatelessWidget {
           return Scaffold(
             appBar: ZuriAppBar(
               leading: Icons.arrow_back,
-              whiteBackground: true,
               orgTitle: Text(
                 TnC2.toUpperCase(),
-                style: AppTextStyles.heading4,
+                style: AppTextStyle.darkGreySize20Bold,
               ),
               leadingPress: () => model.popNavigation(),
             ),
@@ -32,7 +31,7 @@ class TermsAndConditionsView extends StatelessWidget {
               ),
               child: Text(
                 TermsAndConditions,
-                style: AppTextStyles.normal,
+                style: AppTextStyle.darkGreySize16,
               ),
             ),
           );

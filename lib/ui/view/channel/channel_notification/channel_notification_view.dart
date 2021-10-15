@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'channel_notification_viewmodel.dart';
 
 class ChannelNotificationView extends StatelessWidget {
-  const ChannelNotificationView({Key? key}) : super(key: key);
+  final String? channelName;
+  const ChannelNotificationView({Key? key, this.channelName}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<ChannelNotificationViewModel>.reactive(
       viewModelBuilder: () => ChannelNotificationViewModel(),
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
             appBar: ZuriAppBar(
-              title: Notifications,
-              subtitle: ChannelNotifSubtitle,
+              title: local!.notifications,
+              subtitle: local.channelNotifSubtitle,
               leading: Icons.chevron_left,
             ),
             body: Column(
@@ -39,21 +42,21 @@ class ChannelNotificationView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       _buildOption(
-                        EveryNewMessage,
-                        New,
+                        local.everyNewMessage,
+                        local.newButton,
                         '${model.value}',
                         (val) => model.toggleOptions(val),
                         false,
                       ),
                       _buildOption(
-                        JustMentions,
-                        Mentions,
+                        local.justMentions,
+                        local.mentions,
                         '${model.value}',
                         (val) => model.toggleOptions(val),
                       ),
                       _buildOption(
-                        Nothing,
-                        None,
+                        local.nothing,
+                        local.none,
                         '${model.value}',
                         (val) => model.toggleOptions(val),
                       ),
@@ -64,8 +67,8 @@ class ChannelNotificationView extends StatelessWidget {
                   margin: const EdgeInsets.only(left: 16),
                   width: double.infinity,
                   child: Text(
-                    ChannelNotifSettings,
-                    style: AppTextStyles.body2Medium,
+                    "${local.channelNotifSettings} $channelName channel",
+                    style: AppTextStyle.lightGreySize14,
                   ),
                 )
               ],
@@ -91,9 +94,7 @@ class ChannelNotificationView extends StatelessWidget {
         onChanged: onChanged,
         title: Text(
           '$title',
-          style: AppTextStyles.body1Regular.copyWith(
-            color: AppColors.deepBlackColor,
-          ),
+          style: AppTextStyle.darkGreySize14,
         ),
       ),
     );

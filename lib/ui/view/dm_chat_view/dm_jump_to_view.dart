@@ -6,7 +6,10 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/custom_channel.dart';
 import 'package:hng/general_widgets/custom_user.dart';
 import 'package:hng/ui/shared/colors.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked/stacked.dart';
 import 'dm_jump_to_view.form.dart';
@@ -18,6 +21,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<DmJumpToViewModel>.reactive(
       fireOnModelReadyOnce: true,
       onModelReady: (model) {
@@ -31,7 +35,6 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
           ScreenUtilInit(
         designSize: const Size(411, 823),
         builder: () => Scaffold(
-          backgroundColor: Colors.white,
           resizeToAvoidBottomInset: false,
           body: SafeArea(
             child: Padding(
@@ -47,6 +50,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                       controller: searchController,
                       keyboardType: TextInputType.text,
                       maxLines: 1,
+                      cursorColor: AppColors.zuriPrimaryColor,
                       onChanged: model.onChanged,
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
@@ -64,12 +68,15 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                               style: BorderStyle.solid),
                         ),
                         prefixIcon: IconButton(
-                          icon: const Icon(Icons.arrow_back_ios_outlined),
+                          icon: Icon(
+                            Icons.arrow_back_ios_outlined,
+                            color: Theme.of(context).textTheme.bodyText1!.color,
+                          ),
                           iconSize: 18.sp,
                           onPressed: () => model.navigateBack(),
                         ),
-                        hintText: 'Jump to...',
-                        hintStyle: AppTextStyles.hintStyle.copyWith(),
+                        hintText: local!.jumpTo,
+                        hintStyle: AppTextStyle.lightGreySize14,
                       ),
                     ),
                   ),
@@ -108,9 +115,10 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                         SizedBox(
                           height: 16.h,
                           width: 37.w,
-                          child: Text(Recent,
-                              style: AppTextStyles.lastSeen
-                                  .copyWith(fontSize: 12.sp)),
+                          child: Text(
+                            local.recent,
+                            style: AppTextStyle.lightGreySize12,
+                          ),
                         ),
                         SizedBox(height: 24.h),
                         Padding(
@@ -125,6 +133,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                               final channel = model.allChannelsSearch[i];
                               return InkWell(
                                 child: CustomChannel(
+                                  public: channel.isPublic,
                                   text: channel.name ?? ChannelName,
                                 ),
                                 onTap: () {

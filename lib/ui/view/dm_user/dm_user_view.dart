@@ -1,34 +1,51 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
 import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
+import 'package:hng/ui/view/expandable_textfield/expandable_textfield_screen.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
-
+import 'package:stacked/stacked_annotations.dart';
 import '../../shared/colors.dart';
 import 'dm_user_viewmodel.dart';
 import 'dummy_data/models/message.dart';
 import 'widgets/message_view.dart';
 import 'widgets/online_indicator.dart';
+import 'dm_user_view.form.dart';
 
-class DmUserView extends StatelessWidget {
+@FormView(
+  fields: [
+    FormTextField(name: 'message'),
+  ],
+)
+class DmUserView extends StatelessWidget with $DmUserView {
   DmUserView({Key? key}) : super(key: key);
 
   final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    //TODO remove the var below and replace with the actual id from the backend once dm's get linked to the backend
+    dynamic receiverId = 'receiver';
     return ViewModelBuilder<DmUserViewModel>.reactive(
+      onModelReady: (model) {
+        model.getDraft(receiverId);
+        if (model.storedDraft.isNotEmpty) {
+          messageController.text = model.storedDraft;
+        }
+        return listenToFormUpdated(model);
+      },
       viewModelBuilder: () => DmUserViewModel(),
       builder: (context, model, child) {
         return Scaffold(
-          backgroundColor: Colors.white,
           appBar: ZuriAppBar(
               leading: Icons.arrow_back_ios,
-              leadingPress: () => model.popScreen(),
+              leadingPress: () =>
+                  model.popScreens(receiverId, messageController.text),
               title: model.receiver.username,
               subtitle: ViewDetails,
               actions: [
@@ -38,13 +55,16 @@ class DmUserView extends StatelessWidget {
                   onPressed: () {},
                 ),
               ],
+              isDarkMode: Theme.of(context).brightness == Brightness.dark,
               onlineIndicator: true,
               whiteBackground: true),
           body: Stack(
             children: [
               ExpandableTextFieldScreen(
-                hintText: 'Message ${model.receiver.username}',
-                sendMessage: (String message) {
+                channelID: '',
+                hintText: '${local!.messageButton} ${model.receiver.username}',
+                textController: messageController,
+                sendMessage: ( message, media) {
                   model.sendMessage();
                   FocusScope.of(context).requestFocus(FocusNode());
                   _scrollController
