@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:hng/ui/view/channel/channel_info/widgets/new_row_tile.dart';
@@ -63,7 +64,7 @@ class ThirdSection extends StatelessWidget {
                   SizedBox(width: 24.23.w),
                   Text(
                     AddPeople,
-                    style: AppTextStyles.namesStyle.copyWith(
+                    style: AppTextStyle.darkGreySize14.copyWith(
                       fontSize: 14.sp,
                       color: Theme.of(context).textTheme.bodyText1!.color,
                     ),
@@ -104,7 +105,7 @@ class ThirdSection extends StatelessWidget {
                   SizedBox(width: 24.23.w),
                   Text(
                     StartCall,
-                    style: AppTextStyles.namesStyle.copyWith(
+                    style: AppTextStyle.darkGreySize14.copyWith(
                       fontSize: 14.sp,
                       color: Theme.of(context).textTheme.bodyText1!.color,
                     ),

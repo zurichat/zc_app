@@ -40,7 +40,7 @@ class PinnedMessagesView extends StatelessWidget {
                 ? Center(
                     child: Text(
                       local.noPinnedMessages,
-                      style: AppTextStyles.heading5,
+                      style: AppTextStyle.darkGreySize16Bold,
                     ),
                   )
                 : ListView.separated(
@@ -54,7 +54,7 @@ class PinnedMessagesView extends StatelessWidget {
                       contentPadding: EdgeInsets.zero,
                       subtitle: Text(
                         model.pinnedMessages[index].content!,
-                        style: AppTextStyles.pinnedMessageBodyStyle,
+                        style: AppTextStyle.lightGreySize16,
                       ),
                       title: Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
@@ -64,14 +64,14 @@ class PinnedMessagesView extends StatelessWidget {
                               fit: FlexFit.loose,
                               child: Text(
                                 model.pinnedMessages[index].displayName!,
-                                style: AppTextStyles.pinnedMessageHeaderStyle,
+                                style: AppTextStyle.darkGreySize16,
                                 maxLines: 1,
                               ),
                             ),
                             const SizedBox(width: 16.0),
                             Text(
                               model.pinnedMessages[index].moment!,
-                              style: AppTextStyles.lastSeen,
+                              style: AppTextStyle.darkGreySize16,
                             ),
                           ],
                         ),

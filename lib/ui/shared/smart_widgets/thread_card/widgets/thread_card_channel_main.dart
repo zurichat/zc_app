@@ -7,7 +7,6 @@ import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/audio_message.dart';
 
 import 'package:hng/ui/shared/text_styles.dart';
-import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../colors.dart';

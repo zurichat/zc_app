@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/models/channel_members.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 class MyStatelessWidget extends StatelessWidget {
   final ChannelMembermodel membersList;
@@ -18,12 +18,9 @@ class MyStatelessWidget extends StatelessWidget {
             'assets/images/chimamanda.png',
           ),
           const SizedBox(width: 16.0),
-          Text(
-            membersList.name,
-            style: AppTextStyles.body1Bold,
-          ),
+          Text(membersList.name, style: AppTextStyle.darkGreySize16Bold),
           const SizedBox(width: 16.0),
-          Text('${membersList.isAdmin}', style: AppTextStyles.normal)
+          Text('${membersList.isAdmin}', style: AppTextStyle.lightGreySize16)
         ],
       ),
     );

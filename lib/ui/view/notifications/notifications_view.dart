@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/general_widgets/menu_item_tile.dart';
 
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';

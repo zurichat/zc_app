@@ -5,7 +5,6 @@ import 'package:hng/models/user_post.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked_services/stacked_services.dart';
 
