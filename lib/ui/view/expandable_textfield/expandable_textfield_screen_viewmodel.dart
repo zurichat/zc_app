@@ -73,11 +73,7 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  // void showMembersList(bool show) {
-  //   matchedUsers = channelUsersList;
-  //   _showMembers = show;
-  //   notifyListeners();
-  // }
+ 
   void showMembersList(bool show) {
     matchedUsers = channelUsersList;
     _showMembers = show;
