@@ -9,12 +9,11 @@ import 'package:hng/ui/view/channel/share_message/share_message_viewmodel.dart';
 import 'package:hng/ui/view/channel/share_message/widgets/share_message_textfield.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
-import 'share_message_view.form.dart';
 
-class ShareMessageView extends StatelessWidget with $ShareMessageView {
+class ShareMessageView extends StatelessWidget{
   final UserPost userPost;
 
-  ShareMessageView({required this.userPost, Key? key}) : super(key: key);
+  const ShareMessageView({required this.userPost, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
