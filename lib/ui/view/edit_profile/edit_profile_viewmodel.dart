@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/user_model.dart';
@@ -108,7 +110,7 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
     }
   }
 
-  Future<String?> editProfilePic() async {
+  Future<File?> editProfilePic() async {
     var sheetResponse = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.imagePicker,
       isScrollControlled: true,
