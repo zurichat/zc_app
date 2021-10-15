@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -21,8 +22,9 @@ class ThreadTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
     return _TextAndIcon(
-      text: Threads,
+      text: local!.threads,
       unread: true,
       onTap: () async {
         // Navigate to threads screen
@@ -42,8 +44,9 @@ class DraftTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
     return _TextAndIcon(
-      text: Drafts,
+      text: local!.draft,
       unread: true,
       onTap: () async {
         await navigationService.navigateTo(Routes.draftView);
@@ -62,8 +65,9 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
     return _TextAndIcon(
-        text: AddChannels,
+        text: local!.addChannel,
         unread: false,
         onTap: () => viewModel.navigateToCreateChannel(),
         icon: SvgPicture.asset(
@@ -79,8 +83,9 @@ class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
     return _TextAndIcon(
-        text: AddTeammates,
+        text: local!.addTeammates,
         unread: false,
         onTap: () => viewModel.navigateInviteMembers(),
         icon: SvgPicture.asset(

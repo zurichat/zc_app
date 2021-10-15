@@ -134,7 +134,9 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
       centerTitle: false,
       backgroundColor: !whiteBackground
-          ? AppColors.zuriPrimaryColor
+          ? isDarkMode
+              ? AppColors.darkThemePrimaryColor
+              : AppColors.zuriPrimaryColor
           : isDarkMode
               ? AppColors.darkThemePrimaryColor
               : AppColors.whiteColor,

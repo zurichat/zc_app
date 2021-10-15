@@ -125,6 +125,7 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
 
   @override
   Widget build(BuildContext context, OrganizationUrlViewModel viewModel) {
+    final local = AppLocalization.of(context);
     return TextButton(
       style: ButtonStyle(
           backgroundColor:
@@ -136,7 +137,7 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
           width: MediaQuery.of(context).size.width,
           child: Center(
             child: Text(
-              Next,
+              local!.next,
               style: AppTextStyles.buttonText.copyWith(
                   color: viewModel.buttonTextColor,
                   fontWeight: FontWeight.bold),

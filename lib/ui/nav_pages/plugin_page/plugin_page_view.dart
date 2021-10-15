@@ -25,8 +25,14 @@ class PluginPage extends StatelessWidget {
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             leadingPress: model.navigateBack,
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             whiteBackground: true,
-            orgTitle: Text(Plugins, style: AppTextStyles.heading4),
+            orgTitle: Text(
+              Plugins,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
+            ),
           ),
           body: !model.hasplugins
               ? Padding(
@@ -37,7 +43,7 @@ class PluginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                         local!.pluginIntroHeader,
+                          local!.pluginIntroHeader,
                           style: AppTextStyles.header6,
                         ),
                         UIHelper.verticalSpaceMedium,

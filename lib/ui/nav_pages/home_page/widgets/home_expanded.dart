@@ -83,7 +83,9 @@ class HomeExpansionTile extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: ZuriTextStyle.mediumBold(),
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.caption!.color,
+                ),
               ),
             ],
           ),

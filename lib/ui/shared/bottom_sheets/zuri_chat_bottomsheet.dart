@@ -6,6 +6,7 @@ import 'package:hng/app/app.locator.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'thread_options_bottomsheet/widget/recent_emojis.dart';
@@ -24,6 +25,7 @@ Future<dynamic> zuriChatBottomSheet({
   Function()? turnQuestionToPoll,
   UserPost? post,
 }) {
+  final local = AppLocalization.of(context);
   final _dialogService = locator<DialogService>();
   return showModalBottomSheet(
     context: context,
@@ -39,6 +41,7 @@ Future<dynamic> zuriChatBottomSheet({
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(5), topRight: Radius.circular(5))),
         child: ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -152,7 +155,7 @@ Future<dynamic> zuriChatBottomSheet({
             const Divider(),
             ListTile(
                 title: Text(
-                    "${post?.pinned == true ? "Unpin from" : "Pin to"} Conversation",
+                    "${post?.pinned == true ? local!.unPinFrom : local!.pinTo} ${local.conversation}",
                     style: AppTextStyles.heading9),
                 leading: SvgPicture.asset(
                   pinned_message,
@@ -161,14 +164,6 @@ Future<dynamic> zuriChatBottomSheet({
                   height: 18,
                 ),
                 onTap: changePinnedState),
-            ListTile(
-              title: Text("Turn question into poll",
-                  style: AppTextStyles.heading9),
-              leading: const Icon(Icons.bar_chart),
-              onTap: turnQuestionToPoll,
-              trailing: Text("Simple poll", style: AppTextStyles.subtitle),
-            ),
-            const Divider(),
           ],
         ),
       );
