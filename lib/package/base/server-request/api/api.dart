@@ -74,8 +74,7 @@ abstract class Api {
   Future uploadImage(
     File image, {
     required String token,
-    required String orgId,
-    required String memberId,
+    required String pluginId,
   });
 
   // THE SERVICE TO UPDATE AN ORGANIZATION LOGO
@@ -164,6 +163,13 @@ abstract class Api {
   /// THE SERVICE TO FETCH ALL MEMBERS IN AN ORGANIZATIONS
   /// THIS INCLUDES THE ADMINS AND MEMBERS
   Future fetchListOfMembers(String currentOrgId, String channelId, token);
+
+  // Future uploadImage{
+  //   File image,(
+  //     {required String token,
+  //     required String pluginId}
+  //   );
+  // }
 
   /// A SERVICE TO SEND PATCH REQUEST TO THE ENDPOINT
   Future<ApiResponse?> patch(String path,
