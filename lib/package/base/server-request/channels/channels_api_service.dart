@@ -133,6 +133,26 @@ class ChannelsApiService {
     return channelMessage;
   }
 
+  Future updateChannelMessages(
+      String message, String messageId) async {
+    final userId = _userService.userId;
+    final orgId = _userService.currentOrgId;
+    dynamic message;
+    try {
+      final res = await _api.put('v1/$orgId/messages/$messageId/',
+          token: token, body: {'user_id': userId, 'content': message});
+
+      message = res?.data['data'] ?? {};
+
+      log.i(message);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return [];
+    }
+
+    return message;
+  }
+
   Future<List<ChannelModel>> fetchChannel() async {
     var channels = <ChannelModel>[];
     try {

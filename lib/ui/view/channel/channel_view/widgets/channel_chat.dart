@@ -12,12 +12,15 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
   const ChannelChat({
     Key? key,
     this.channelId,
+    this.controller,
   }) : super(key: key);
   final String? channelId;
+  final controller;
 
   @override
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
     final message = viewModel.channelUserMessages;
+
     return Container(
       child: !nullListChecker(viewModel.channelUserMessages)
           ? ListView.builder(
@@ -31,6 +34,13 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                 onLongPress: () => zuriChatBottomSheet(
                     context: context,
                     message: message![index].message,
+                    editMessage: () {
+                      Navigator.pop(context);
+                      controller.text = message[index].message;
+                      viewModel.isEdited = true;
+                      viewModel.notifyListeners();
+                      log.i(message[index].id);
+                    },
                     addToSavedItems: () {
                       viewModel.saveItem(
                           channelID: message[index].channelId,
@@ -71,6 +81,4 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
           : Container(),
     );
   }
-
-  
 }

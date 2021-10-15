@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
+import 'package:hng/services/local_storage_services.dart';
+import 'package:hng/services/user_service.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/utilities/enums.dart';
+import 'package:hng/utilities/storage_keys.dart';
+import 'package:hng/utilities/utilities.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'thread_options_bottomsheet/widget/recent_emojis.dart';
 
 Future<dynamic> zuriChatBottomSheet(
     {required BuildContext context,
+    Function()? editMessage,
     Function()? markUnread,
     Function()? remindMe,
     var message,
@@ -21,6 +26,9 @@ Future<dynamic> zuriChatBottomSheet(
     Function()? unPinFromConversation,
     Function()? turnQuestionToPoll}) {
   final _dialogService = locator<DialogService>();
+  final _userService = locator<UserService>();
+  final _storageService = locator<SharedPreferenceLocalStorage>();
+
   return showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -62,6 +70,14 @@ Future<dynamic> zuriChatBottomSheet(
               ],
             ),
             const Divider(),
+            _userService.userId ==
+                    _storageService.getString(StorageKeys.currentUserId)
+                ? ListTile(
+                    title: Text("Edit message", style: AppTextStyles.heading9),
+                    leading: const Icon(Icons.line_style_outlined),
+                    onTap: editMessage,
+                  )
+                : Container(),
             ListTile(
               title: Text("Mark Unread", style: AppTextStyles.heading9),
               leading: const Icon(Icons.line_style_outlined),

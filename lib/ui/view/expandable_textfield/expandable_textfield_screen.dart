@@ -24,7 +24,7 @@ class ExpandableTextFieldScreen extends HookWidget {
       required this.channelID})
       : super(key: key);
   final Widget widget;
-  final Function(String message) sendMessage;
+  final Function(String? message) sendMessage;
   final String hintText;
   final focusNode = FocusNode();
   final TextEditingController textController;
@@ -294,7 +294,7 @@ class MyTextField extends StatelessWidget {
             isExpanded ? CrossAxisAlignment.start : CrossAxisAlignment.center,
         children: [
           Expanded(
-            child: TextField(
+            child: TextFormField(
               controller: controller,
               expands: true,
               maxLines: null,

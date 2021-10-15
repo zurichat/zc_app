@@ -56,6 +56,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                     trailing: const Icon(Icons.mark_chat_read_outlined),
                     duration: const Duration(seconds: 3),
                   );
+                  log.i(userPost!.id);
                 },
               ),
               child: Container(

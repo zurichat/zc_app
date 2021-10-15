@@ -78,6 +78,7 @@ class ChannelPageViewModel extends FormViewModel {
   bool isExpanded = false;
   bool isVisible = false;
   bool isLoading = true;
+  bool isEdited = false;
 
   List<ChannelMembermodel> channelMembers = [];
   List<UserPost>? channelUserMessages = [];
@@ -186,12 +187,21 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  void sendMessage(
-    String message,
-  ) async {
+  sendOrUpdateMessage(String? message) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
-    await _channelsApiService.sendChannelMessages(
-        channelID, "$userId", message);
+    // String? messageId = channelUserMessages![index].id;
+    if (isEdited == false) {
+      await _channelsApiService.sendChannelMessages(
+          channelID, "$userId", message!);
+    } else {
+      await _channelsApiService.updateChannelMessages(
+        message!,
+        "61682c6a7dd51bfd055f1218",
+      );
+      log.i('Is Edited : $isEdited');
+      isEdited = false;
+    }
+    notifyListeners();
     scrollController.jumpTo(scrollController.position.minScrollExtent);
     notifyListeners();
   }

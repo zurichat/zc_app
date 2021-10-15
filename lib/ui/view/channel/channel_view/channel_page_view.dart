@@ -50,7 +50,6 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
           model.scrollController
               .jumpTo(model.scrollController.position.maxScrollExtent);
         }
-
         return Scaffold(
           backgroundColor: AppColors.whiteColor,
           appBar: ZuriAppBar(
@@ -73,10 +72,13 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
               Padding(
                 padding: const EdgeInsets.only(right: 5),
                 child: IconButton(
-                  onPressed: () => model.navigateToChannelInfoScreen(
-                    membersCount!,
-                    ChannelModel(id: channelId!, name: channelName!),
-                  ),
+                  onPressed: () {
+                    model.navigateToChannelInfoScreen(
+                      membersCount!,
+                      ChannelModel(id: channelId!, name: channelName!),
+                    );
+                    channelMessagesController.text = "edit";
+                  },
                   icon: const Icon(
                     Icons.info_outlined,
                     color: AppColors.greyColor,
@@ -92,7 +94,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
             channelID: channelId.toString(),
             textController: channelMessagesController,
             hintText: AddReply,
-            sendMessage: model.sendMessage,
+            sendMessage:model.sendOrUpdateMessage,
             widget: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               controller: model.scrollController,
@@ -104,6 +106,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                     channelId: channelId!,
                   ),
                   ChannelChat(
+                    controller: channelMessagesController,
                     channelId: channelId,
                   ),
                   const NoConnectionWidget(Icons.wifi),
