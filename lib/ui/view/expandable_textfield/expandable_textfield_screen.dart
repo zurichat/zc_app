@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hng/ui/view/expandable_textfield/widget/user_mentions.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/expandable_textfield/expandable_textfield_screen_viewmodel.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/check_user.dart';
@@ -189,7 +190,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: SvgPicture.asset(
-                                            'assets/icons/svg_icons/minimize.svg',
+                                            maximize,
                                             color: AppColors.darkGreyColor,
                                           ),
                                         ),
@@ -234,7 +235,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
-                                                'assets/icons/svg_icons/zap.svg',
+                                                zap,
                                               ),
                                             ),
                                           ),
@@ -257,7 +258,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
-                                                'assets/icons/svg_icons/at_sign.svg',
+                                                at_sign,
                                               ),
                                             ),
                                           ),
@@ -267,7 +268,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
-                                                'assets/icons/svg_icons/smile.svg',
+                                                Smile,
                                               ),
                                             ),
                                           ),
@@ -279,7 +280,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
-                                                'assets/icons/svg_icons/camera.svg',
+                                                Camera,
                                                 color: AppColors.darkGreyColor,
                                               ),
                                             ),
@@ -290,7 +291,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
-                                                'assets/icons/svg_icons/paperclip.svg',
+                                                Channel_Page_Share,
                                               ),
                                             ),
                                           ),
@@ -314,11 +315,11 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   channelID);
                                               textController.clear();
                                             },
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(8.0),
-                                              child: Icon(
-                                                Icons.send,
-                                                color: AppColors.greyColor,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: SvgPicture.asset(
+                                                Send,
                                               ),
                                             ),
                                           ),
@@ -464,7 +465,7 @@ class MyTextField extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SvgPicture.asset(
-                  'assets/icons/svg_icons/maximize.svg',
+                  minimize,
                   color: AppColors.darkGreyColor,
                 ),
               ),
@@ -479,7 +480,7 @@ class MyTextField extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SvgPicture.asset(
-                      'assets/icons/svg_icons/zap.svg',
+                      zap,
                       color: AppColors.darkGreyColor,
                     ),
                   ),
@@ -489,7 +490,9 @@ class MyTextField extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SvgPicture.asset(
-                      'assets/icons/svg_icons/camera.svg',
+                      Camera,
+                      height: 24,
+                      width: 24,
                       color: AppColors.darkGreyColor,
                     ),
                   ),
@@ -499,8 +502,10 @@ class MyTextField extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SvgPicture.asset(
-                      'assets/icons/svg_icons/paperclip.svg',
+                      Send,
                       color: AppColors.darkGreyColor,
+                      height: 17.2,
+                      width: 15.42,
                     ),
                   ),
                 ),

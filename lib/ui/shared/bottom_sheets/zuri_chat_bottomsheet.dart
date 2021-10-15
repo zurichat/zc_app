@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/user_post.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/ui/shared/colors.dart';
@@ -70,52 +72,98 @@ Future<dynamic> zuriChatBottomSheet({
             ),
             const Divider(),
             ListTile(
-              title: Text(local!.markUnread, style: AppTextStyles.heading9),
-              leading: const Icon(Icons.line_style_outlined),
+              title: Text(MarkUnread, style: AppTextStyles.heading9),
+              leading: SvgPicture.asset(
+                Mark_Unread,
+                color: AppColors.darkGreyColor,
+                width: 18,
+                height: 18,
+              ),
               onTap: markUnread,
             ),
             ListTile(
-              title: Text(local.remindMe, style: AppTextStyles.heading9),
-              leading: const Icon(Icons.timer_10_outlined),
+              title: Text(RemindMe, style: AppTextStyles.heading9),
+              leading: SvgPicture.asset(
+                Remind_Me,
+                color: AppColors.darkGreyColor,
+                width: 18,
+                height: 18,
+              ),
               onTap: () async {
                 await _dialogService.showCustomDialog(
                     variant: DialogType.remindMe);
               },
             ),
             ListTile(
-              title: Text(local.addSavedItems, style: AppTextStyles.heading9),
-              leading: const Icon(Icons.save_outlined),
+              title: Text(AddToSavedItems, style: AppTextStyles.heading9),
+              leading: SvgPicture.asset(
+                Saved_Items,
+                color: AppColors.darkGreyColor,
+                width: 18,
+                height: 18,
+              ),
               onTap: addToSavedItems,
             ),
             const Divider(),
             ListTile(
-                title: Text(local.replyInThread, style: AppTextStyles.heading9),
-                leading: const Icon(Icons.chat_rounded),
+                title: Text(ReplyInThreads, style: AppTextStyles.heading9),
+                leading: SvgPicture.asset(
+                  Reply_In_Thread,
+                  color: AppColors.darkGreyColor,
+                  width: 18,
+                  height: 18,
+                ),
                 onTap: replyInThread),
             ListTile(
-                title: Text(local.followThread, style: AppTextStyles.heading9),
-                leading: const Icon(Icons.mark_chat_unread),
+                title: Text(FollowThreadZuriChatBottomSheet,
+                    style: AppTextStyles.heading9),
+                leading: SvgPicture.asset(
+                  Follow_Thread,
+                  color: AppColors.darkGreyColor,
+                  width: 18,
+                  height: 18,
+                ),
                 onTap: followThread),
             const Divider(),
             ListTile(
-                title: Text(local.shareMessage, style: AppTextStyles.heading9),
-                leading: const Icon(Icons.arrow_right_alt_rounded),
+                title: Text(ShareMessage, style: AppTextStyles.heading9),
+                leading: SvgPicture.asset(
+                  Share_message,
+                  color: AppColors.darkGreyColor,
+                  width: 18,
+                  height: 18,
+                ),
                 onTap: shareMessage),
             ListTile(
-                title:
-                    Text(local.copyLinkToMessage, style: AppTextStyles.heading9),
-                leading: const Icon(Icons.link),
+                title: Text(CopyLinkToMessage, style: AppTextStyles.heading9),
+                leading: SvgPicture.asset(
+                  Copy_link_To_Message,
+                  color: AppColors.darkGreyColor,
+                  width: 18,
+                  height: 18,
+                ),
                 onTap: copyLinkToMessage),
             ListTile(
-                title: Text(local.copyText, style: AppTextStyles.heading9),
-                leading: const Icon(Icons.copy),
+                title: Text(CopyTextZuriChatBottomSheet,
+                    style: AppTextStyles.heading9),
+                leading: SvgPicture.asset(
+                  Copy_Text,
+                  color: AppColors.darkGreyColor,
+                  width: 18,
+                  height: 18,
+                ),
                 onTap: copyText),
             const Divider(),
             ListTile(
                 title: Text(
-                    "${post?.pinned == true ? local.unPinFrom : local.pinTo} ${local.conversation}",
+                    "${post?.pinned == true ? local!.unPinFrom : local!.pinTo} ${local.conversation}",
                     style: AppTextStyles.heading9),
-                leading: const Icon(Icons.push_pin),
+                leading: SvgPicture.asset(
+                  pinned_message,
+                  color: AppColors.darkGreyColor,
+                  width: 18,
+                  height: 18,
+                ),
                 onTap: changePinnedState),
           ],
         ),
