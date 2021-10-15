@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/view/draft/draft_viewmodel.dart';
 import 'package:hng/ui/view/threads/test_data.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class CustomListTile extends StatelessWidget {
@@ -50,16 +49,16 @@ class CustomListTile extends StatelessWidget {
       child: ListTile(
         title: Text(
           text,
-          style: AppTextStyles.body1Bold.copyWith(fontSize: 16.sp),
+          style: AppTextStyle.darkGreySize16Bold,
         ),
         subtitle: Text(
           subtitle,
-          style: AppTextStyles.faintBodyText.copyWith(fontSize: 14.sp),
+          style: AppTextStyle.lightGreySize14,
         ),
         trailing: Text(
           // '$dateFormat',
           dateTime,
-          style: AppTextStyles.bodySmall2.copyWith(fontSize: 14.sp),
+          style: AppTextStyle.lightGreySize14,
         ),
       ),
     );

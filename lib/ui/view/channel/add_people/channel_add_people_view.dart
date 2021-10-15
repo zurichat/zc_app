@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/shared.dart';
+
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
@@ -34,7 +35,7 @@ class ChannelAddPeopleView extends StatelessWidget {
               viewModel.markedUsers.isNotEmpty
                   ? '${viewModel.markedUsers.length} ${local!.selected}'
                   : AddPeople,
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize20Bold,
             ),
             whiteBackground: true,
             leading: Icons.clear,

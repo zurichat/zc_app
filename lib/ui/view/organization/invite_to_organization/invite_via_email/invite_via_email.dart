@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/ui_helpers.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 import 'invite_via_email.form.dart';
 import 'invite_viewmodel.dart';
 
@@ -42,7 +41,7 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                 child: InkWell(
                   child: Text(
                     local.sendRequest,
-                    style: AppTextStyles.body1Green,
+                    style: AppTextStyle.greenSize16,
                   ),
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,

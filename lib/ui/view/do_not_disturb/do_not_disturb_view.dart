@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../general_widgets/custom_text.dart';
 import '../../shared/shared.dart';
 import 'do_not_disturb_viewmodel.dart';
 
@@ -18,7 +18,7 @@ class DoNotDisturbView extends StatelessWidget {
         appBar: ZuriAppBar(
           orgTitle: Text(
             local!.doNotDisturb,
-            style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
+            style: AppTextStyle.darkGreySize18Bold,
           ),
           leading: Icons.close_outlined,
           leadingPress: () => model.exitPage(),
@@ -29,7 +29,7 @@ class DoNotDisturbView extends StatelessWidget {
               onPressed: () {},
               child: Text(
                 local.save,
-                style: AppTextStyles.heading8,
+                style: AppTextStyle.greenSize16,
               ),
             ),
           ],
@@ -41,7 +41,10 @@ class DoNotDisturbView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: model.doNotDisturbTimes.length,
                 itemBuilder: (context, index) => ListTile(
-                  title: CustomText(text: model.doNotDisturbTimes[index]),
+                  title: Text(
+                    model.doNotDisturbTimes[index],
+                    style: AppTextStyle.darkGreySize16,
+                  ),
                   leading: Radio(
                     activeColor: AppColors.zuriPrimaryColor,
                     value: index,

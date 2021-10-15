@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 import '../../../shared/shared.dart';
 
@@ -22,8 +23,8 @@ class CustomTabBar extends StatelessWidget {
         child: TabBar(
           indicatorColor: AppColors.zuriPrimaryColor,
           tabs: [
-            Tab(child: Text("$tab1", style: AppTextStyles.unselectedLabelText)),
-            Tab(child: Text("$tab2", style: AppTextStyles.unselectedLabelText)),
+            Tab(child: Text("$tab1", style: AppTextStyle.darkGreySize16)),
+            Tab(child: Text("$tab2", style: AppTextStyle.darkGreySize16)),
           ],
         ),
       ),

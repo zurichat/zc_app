@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:hng/ui/shared/styles.dart';
+//
 //
 // class CustomUserChannel extends StatelessWidget {
 //   final String? image;
@@ -63,7 +63,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 class CustomUserChannel extends StatelessWidget {
   final String? image;
@@ -101,15 +101,14 @@ class CustomUserChannel extends StatelessWidget {
               SizedBox(width: 12.w),
               Text(
                 '$text',
-                style: AppTextStyles.fileName.copyWith(
-                    fontSize: 14
-                        .sp), // textfont in here won't scale to different screens
+                style: AppTextStyle
+                    .darkGreySize14Bold, // textfont in here won't scale to different screens
               ),
               SizedBox(width: 10.w),
               Text(
                 '$text2',
-                style: AppTextStyles
-                    .faintBodyText, // textfont in here won't scale to different screens
+                style: AppTextStyle
+                    .darkGreySize14, // textfont in here won't scale to different screens
               ),
               SizedBox(width: 10.w),
               SizedBox(

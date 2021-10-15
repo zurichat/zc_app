@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/colors.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
@@ -21,7 +22,7 @@ class AdvancedView extends StatelessWidget {
           leadingPress: () => model.exitPage(),
           orgTitle: Text(
             local!.advanced,
-            style: AppTextStyles.heading4.copyWith(
+            style: AppTextStyle.darkGreySize20Bold.copyWith(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),

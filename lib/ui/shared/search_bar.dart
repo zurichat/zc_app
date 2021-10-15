@@ -31,7 +31,7 @@ class JumpToSearchBar extends StatelessWidget {
           borderColor: Colors.grey[300],
           child: Text(
             JumpTo,
-            style: ZuriTextStyle.mediumNormal(),
+            style: AppTextStyle.darkGreySize14,
           ),
         ),
       ),

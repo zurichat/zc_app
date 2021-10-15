@@ -3,10 +3,9 @@ import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../../general_widgets/custom_text.dart';
 import '../../../../../models/user_post.dart';
 import '../../../shared.dart';
-import '../../../styles.dart';
+import '../../../text_styles.dart';
 import '../../text_parser/text_parser_view.dart';
 import '../thread_card_viewmodel.dart';
 import 'package:hng/app/app.logger.dart';
@@ -73,9 +72,9 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
                         children: [
                           Flexible(
                             fit: FlexFit.loose,
-                            child: CustomText(
-                              text: '${userThreadPost!.displayName}',
-                              fontWeight: FontWeight.bold,
+                            child: Text(
+                              '${userThreadPost!.displayName}',
+                              style: AppTextStyle.darkGreySize14Bold,
                             ),
                           ),
                           const Icon(
@@ -86,7 +85,7 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
                           const SizedBox(width: 2),
                           Text(
                             '${userThreadPost!.postDate}',
-                            style: AppTextStyles.lastSeen,
+                            style: AppTextStyle.lightGreySize12,
                           ),
                         ],
                       ),

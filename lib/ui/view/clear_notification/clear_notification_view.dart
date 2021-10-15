@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
@@ -31,23 +32,22 @@ class ClearNotificationView extends StatelessWidget {
     return ViewModelBuilder<ClearNotificationViewModel>.reactive(
         builder: (context, model, child) {
           return Scaffold(
-              appBar: ZuriAppBar(
-                leading: Icons.arrow_back_ios,
-                leadingPress: () => model.navigateBack(),
-                orgTitle: Text(
-                  local!.clearAfter,
-                  style: AppTextStyles.heading7,
-                ),
+            appBar: ZuriAppBar(
+              leading: Icons.arrow_back_ios,
+              leadingPress: () => model.navigateBack(),
+              orgTitle: Text(
+                local!.clearAfter,
+                style: AppTextStyle.darkGreySize20Bold,
               ),
-              body: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      buildRadios(),
-                    ]),
-              ),
-            );
+            ),
+            body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child:
+                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                buildRadios(),
+              ]),
+            ),
+          );
         },
         viewModelBuilder: () => ClearNotificationViewModel());
   }
@@ -69,4 +69,3 @@ class ClearNotificationView extends StatelessWidget {
         ).toList(),
       );
 }
-

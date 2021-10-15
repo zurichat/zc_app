@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../constants/app_strings.dart';
-import '../../../shared/shared.dart';
 import '../../../shared/zuri_appbar.dart';
 import 'terms_and_conditions_view_model.dart';
 
@@ -19,7 +19,7 @@ class TermsAndConditionsView extends StatelessWidget {
               leading: Icons.arrow_back,
               orgTitle: Text(
                 TnC2.toUpperCase(),
-                style: const TextStyle(color: AppColors.whiteColor),
+                style: AppTextStyle.darkGreySize20Bold,
               ),
               leadingPress: () => model.popNavigation(),
             ),
@@ -31,7 +31,7 @@ class TermsAndConditionsView extends StatelessWidget {
               ),
               child: Text(
                 TermsAndConditions,
-                style: AppTextStyles.normal,
+                style: AppTextStyle.darkGreySize16,
               ),
             ),
           );
