@@ -5,6 +5,7 @@ import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
 import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:hng/utilities/utilities.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
@@ -18,6 +19,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
 
   @override
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
+    final local = AppLocalization.of(context);
     final message = viewModel.channelUserMessages;
     return Container(
       child: !nullListChecker(viewModel.channelUserMessages)
@@ -64,7 +66,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                       } else {
                         showSimpleNotification(
                           Text(
-                              "Could not ${userPost.pinned ? "unpin" : "pin"} post"),
+                              "${local!.couldNot} ${userPost.pinned ? local.unPinFrom : local.pinTo} ${local.post} "),
                           position: NotificationPosition.top,
                           background: AppColors.redColor,
                           trailing: const Icon(Icons.push_pin_outlined),
@@ -84,10 +86,10 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                           messageID: message[index].id,
                           userID: message[index].userId,
                           userImage: message[index].userImage);
-                      log.i("Saved");
+                      log.i(local!.saved);
                       viewModel.exitPage();
                       showSimpleNotification(
-                        const Text("Added successfully"),
+                        Text(local.addedSuccessfully),
                         position: NotificationPosition.top,
                         background: AppColors.appBarGreen,
                         trailing: const Icon(Icons.mark_chat_read_outlined),
@@ -99,13 +101,6 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         ClipboardData(text: message![index].message),
                       );
                       viewModel.exitPage();
-                      showSimpleNotification(
-                        const Text("Copied!"),
-                        position: NotificationPosition.top,
-                        background: AppColors.appBarGreen,
-                        trailing: const Icon(Icons.copy_outlined),
-                        duration: const Duration(seconds: 3),
-                      );
                     },
                     context: context,
                     post: userPost,

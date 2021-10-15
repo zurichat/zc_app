@@ -8,6 +8,7 @@ import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/ui/view/channel/share_message/share_message_viewmodel.dart';
 import 'package:hng/ui/view/channel/share_message/widgets/select_channel_drop_down.dart';
 import 'package:hng/ui/view/channel/share_message/widgets/share_message_textfield.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
@@ -18,6 +19,7 @@ class ShareMessageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<ShareMessageViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
               backgroundColor: AppColors.whiteColor,
@@ -26,7 +28,7 @@ class ShareMessageView extends StatelessWidget {
                 leading: IconButton(
                     onPressed: model.close, icon: const Icon(Icons.close)),
                 centerTitle: false,
-                title: const Text(ShareMessage),
+                title: Text(local!.shareMessage),
                 actions: [
                   Center(
                     child: IconButton(

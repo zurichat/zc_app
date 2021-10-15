@@ -46,6 +46,7 @@ class LoginView extends StatelessWidget with $LoginView {
                 children: [
                   UIHelper.customVerticalSpace(57.0),
                   Container(
+                    height: 50,
                     alignment: Alignment.center,
                     child: Image.asset(ZuriLogo),
                   ),
