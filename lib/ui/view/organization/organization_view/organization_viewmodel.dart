@@ -1,10 +1,6 @@
-import 'dart:convert';
-
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -28,11 +24,8 @@ class OrganizationViewModel extends BaseViewModel {
   List<OrganizationModel> organizations = [];
   final _bottomSheetService = locator<BottomSheetService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
-  final _snackBar = locator<SnackbarService>();
-  final _connectivityService = locator<ConnectivityService>();
-  final _apiService = ZuriApi(coreBaseUrl);
 
-  void initViewModel() {
+  Future<void> initViewModel() async {
     fetchOrganizations();
     getOrganizationMemberList();
   }
@@ -138,14 +131,16 @@ class OrganizationViewModel extends BaseViewModel {
 
     try {
       setBusy(true);
-      var orgId = currentOrgId ?? ''; // ?? '61459d8e62688da5302acdb1';
+      var orgId = currentOrgId ?? '';
 
       if (orgId.isNotEmpty) {
         final orgMemberList = await api.getOrganizationMemberList(orgId);
 
         if (orgMemberList.data.isNotEmpty) {
-          storageService.setString(StorageKeys.organizationMemberList,
-              jsonEncode(orgMemberList.data));
+          storageService.setList(
+              StorageKeys.organizationMemberList, orgMemberList.data);
+          log.w(
+              "DETAILS ${storageService.getList(StorageKeys.organizationMemberList)}");
         }
       }
       setBusy(false);
@@ -176,39 +171,25 @@ class OrganizationViewModel extends BaseViewModel {
       navigationService.pushNamedAndRemoveUntil(Routes.loginView);
 
   Future<void> signOutAllOrg() async {
-    bool connected = await _connectivityService.checkConnection();
-    const endpoint = "/auth/logout";
-    if (!connected) {
-      _snackBar.showCustomSnackBar(
-          message: "No internet connection, connect and try again.",
-          variant: SnackbarType.failure,
-          duration: const Duration(milliseconds: 1500));
-      return;
-    }
+    _storage.clearData(StorageKeys.currentOrgId);
+    _storage.clearData(StorageKeys.currentSessionToken);
+    _storage.clearData(StorageKeys.currentUserId);
+    _storage.clearData(StorageKeys.currentUserEmail);
+    _storage.clearData(StorageKeys.otp);
+    _storage.clearData(StorageKeys.organizationIds);
+    _storage.clearData(StorageKeys.registeredNotverifiedOTP);
+    _storage.clearData(StorageKeys.currentOrgUrl);
+    _storage.clearData(StorageKeys.currentMemberID);
+    _storage.clearData(StorageKeys.displayName);
+    _storage.clearData(StorageKeys.firstName);
+    _storage.clearData(StorageKeys.status);
+    _storage.clearData(StorageKeys.phoneNum);
+    _storage.clearData(StorageKeys.currentUserImageUrl);
+    _storage.clearData(StorageKeys.currentChannelId);
+    _storage.clearData(StorageKeys.organizationMemberList);
+    _storage.clearData(StorageKeys.savedItem);
+    _storage.clearData(StorageKeys.idInOrganization);
 
-    final response = await _apiService.post(endpoint, body: {}, token: token);
-
-    if (response?.statusCode == 200) {
-      _storage.clearData(StorageKeys.currentOrgId);
-      _storage.clearData(StorageKeys.currentSessionToken);
-      _storage.clearData(StorageKeys.currentUserId);
-      _storage.clearData(StorageKeys.currentUserEmail);
-      _storage.clearData(StorageKeys.otp);
-      _storage.clearData(StorageKeys.organizationIds);
-      _storage.clearData(StorageKeys.registeredNotverifiedOTP);
-      _storage.clearData(StorageKeys.currentOrgUrl);
-      _storage.clearData(StorageKeys.currentMemberID);
-      _storage.clearData(StorageKeys.displayName);
-      _storage.clearData(StorageKeys.firstName);
-      _storage.clearData(StorageKeys.status);
-      _storage.clearData(StorageKeys.phoneNum);
-      _storage.clearData(StorageKeys.currentUserImageUrl);
-      _storage.clearData(StorageKeys.currentChannelId);
-      _storage.clearData(StorageKeys.organizationMemberList);
-      _storage.clearData(StorageKeys.savedItem);
-      _storage.clearData(StorageKeys.idInOrganization);
-
-      navigateToSignIn();
-    }
+    navigateToSignIn();
   }
 }
