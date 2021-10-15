@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
@@ -26,7 +27,10 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("#$channelName", style: AppTextStyles.heading7),
+          Text(
+            "#$channelName",
+            style: AppTextStyle.darkGreySize16Bold,
+          ),
           const SizedBox(height: 10),
           TextParser(
               '@ ${viewModel.channelCreator} ${local!.createdThisChannel}. ${local.channelIntroText} #$channelName ${local.channel}.'),
@@ -52,10 +56,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                   const SizedBox(height: 5),
                   Text(
                     local.description,
-                    style: const TextStyle(
-                      color: AppColors.greyishColor,
-                      fontSize: 14,
-                    ),
+                    style: AppTextStyle.lightGreySize14,
                   )
                 ],
               ),
@@ -107,10 +108,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                   child: Text(
                     local.today,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                    ),
+                    style: AppTextStyle.lightGreySize12,
                   ),
                 ),
               ),

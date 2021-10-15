@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
+
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
@@ -28,7 +28,7 @@ class YouPage extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           isDarkMode: Theme.of(context).brightness == Brightness.dark,
-          orgTitle: Text(You, style: ZuriTextStyle.organizationNameText()),
+          orgTitle: Text(You, style: AppTextStyle.organizationNameText),
           bottomNavBarScreen: true,
           leadingWidth: true,
         ),
@@ -65,7 +65,7 @@ class YouPage extends StatelessWidget {
                   ),
                   text: Text(
                     local!.pauseNotifications,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.pauseNotifications,
                   topBorder: false,
@@ -76,7 +76,7 @@ class YouPage extends StatelessWidget {
                   text: Text.rich(
                     TextSpan(
                       text: local.setStatusText,
-                      style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                      style: AppTextStyle.lightGreySize16,
                       children: [
                         TextSpan(
                           text: model.otherStatus,
@@ -103,7 +103,7 @@ class YouPage extends StatelessWidget {
                   ),
                   text: Text(
                     local.savedItems,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.viewSavedItem,
                 ),
@@ -117,7 +117,7 @@ class YouPage extends StatelessWidget {
                   ),
                   text: Text(
                     local.viewProfile,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: () => model.getUserPresence(),
                   topBorder: false,
@@ -132,7 +132,7 @@ class YouPage extends StatelessWidget {
                   ),
                   text: Text(
                     local.notifications,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.viewNotifications,
                   topBorder: false,
@@ -147,7 +147,7 @@ class YouPage extends StatelessWidget {
                   ),
                   text: Text(
                     local.preferences,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.viewPreferences,
                   topBorder: false,
@@ -162,7 +162,7 @@ class YouPage extends StatelessWidget {
                   ),
                   text: Text(
                     local.signOut,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.signOutAccount,
                   topBorder: false,

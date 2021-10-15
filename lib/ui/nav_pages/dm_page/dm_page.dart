@@ -25,7 +25,7 @@ class DmPage extends StatelessWidget {
             isDarkMode: Theme.of(context).brightness == Brightness.dark,
             leadingWidth: true,
             orgTitle: Text(local!.directMessages,
-                style: ZuriTextStyle.organizationNameText()),
+                style: AppTextStyle.organizationNameText),
             bottomNavBarScreen: true,
           ),
           floatingActionButton: FloatingActionButton(
@@ -46,7 +46,7 @@ class DmPage extends StatelessWidget {
               : !model.data!
                   ? Center(
                       child: Text(local.temporarilyUnavailable,
-                          style: AppTextStyles.heading6),
+                          style: AppTextStyle.darkGreySize18Bold),
                     )
                   : SingleChildScrollView(
                       child: Padding(

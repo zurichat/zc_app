@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
@@ -24,7 +24,7 @@ class CreateInviteLink extends StatelessWidget {
             whiteBackground: true,
             orgTitle: Text(
               local!.invite,
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize18Bold,
             ),
             actions: [
               Padding(
@@ -32,7 +32,7 @@ class CreateInviteLink extends StatelessWidget {
                 child: InkWell(
                     child: Text(
                       local.send,
-                      style: AppTextStyles.body1Green,
+                      style: AppTextStyle.greenSize14,
                     ),
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
@@ -89,7 +89,8 @@ class CreateInviteLink extends StatelessWidget {
                       ),
                       UIHelper.horizontalSpaceSmall,
                       Text(
-                          local.shareLinkText),
+                        local.shareLinkText,
+                      ),
                     ],
                   ),
                 ),

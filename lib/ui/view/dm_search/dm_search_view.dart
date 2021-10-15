@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
@@ -65,7 +66,7 @@ class DmSearch extends StatelessWidget with $DmSearch {
                       controller: searchController,
                       decoration: InputDecoration(
                         hintText: local.dmHint,
-                        hintStyle: AppTextStyles.body3Medium,
+                        hintStyle: AppTextStyle.lightGreySize14,
                         border: InputBorder.none,
                       ),
                     ),

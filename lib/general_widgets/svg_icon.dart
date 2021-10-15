@@ -26,11 +26,13 @@ class SvgIcon extends StatelessWidget {
   final SvgData svgIcon;
   final Color? color;
   final double? size;
+  final bool? noColor;
 
   const SvgIcon({
     Key? key,
     required this.svgIcon,
     this.color,
+    this.noColor,
     this.size,
   }) : super(key: key);
 
@@ -38,7 +40,9 @@ class SvgIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       svgIcon.data,
-      color: color ?? Theme.of(context).textTheme.bodyText1!.color,
+      color: noColor == true
+          ? null
+          : color ?? Theme.of(context).textTheme.bodyText1!.color,
       height: size,
     );
   }

@@ -4,7 +4,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_model.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:stacked/stacked.dart';
 
@@ -39,20 +41,20 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
             ),
             Expanded(
                 child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  ArchiveChannel,
-                  style: AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
-                ),
-                Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      ArchiveChannelWarning,
-                      style: AppTextStyles.body2_400.copyWith(fontSize: 14),
-                    )),
-              ],
-            )),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      ArchiveChannel,
+                      style: AppTextStyle.errorSize14,
+                    ),
+                    Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          ArchiveChannelWarning,
+                          style: AppTextStyle.darkGreySize14,
+                        )),
+                  ],
+                )),
             UIHelper.horizontalSpaceMedium,
             UIHelper.horizontalSpaceSmall,
             Expanded(
@@ -61,16 +63,13 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
                 children: [
                   Text(
                     ArchiveChannel,
-                    style:
-                        AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
+                    style: AppTextStyle.errorSize14,
                   ),
                   UIHelper.verticalSpaceSmall,
                   Container(
                       alignment: Alignment.center,
-                      child: Text(
-                        ArchiveChannelWarning,
-                        style: AppTextStyles.body2_400.copyWith(fontSize: 14),
-                      )),
+                      child: Text(ArchiveChannelWarning,
+                          style: AppTextStyle.darkGreySize14)),
                 ],
               ),
             ),

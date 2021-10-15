@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/ui/view/set_status/set_status_viewmodel.dart';
@@ -22,6 +23,8 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
+
+      //TODO: onModelReady to be reviewed in next PR
       // onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
@@ -29,12 +32,14 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
         progressIndicator: const ZuriLoader(),
         child: Scaffold(
           appBar: ZuriAppBar(
+            
             leading: Icons.close_rounded,
             leadingPress: () => model.exitPage(),
             orgTitle: Text(
               'Set a status',
               style: AppTextStyles.heading4.copyWith(
                 color: Theme.of(context).textTheme.bodyText1!.color,
+
               ),
             ),
             actions: [

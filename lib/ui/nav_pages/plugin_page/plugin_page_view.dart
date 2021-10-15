@@ -7,7 +7,7 @@ import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
@@ -44,12 +44,12 @@ class PluginPage extends StatelessWidget {
                       children: [
                         Text(
                           local!.pluginIntroHeader,
-                          style: AppTextStyles.header6,
+                          style: AppTextStyle.darkGreySize16,
                         ),
                         UIHelper.verticalSpaceMedium,
                         Text(
                           local.pluginIntroBody,
-                          style: AppTextStyles.body1Grey,
+                          style: AppTextStyle.lightGreySize14,
                         ),
                         UIHelper.customVerticalSpace(56.0),
                         FractionallySizedBox(
@@ -80,12 +80,8 @@ class PluginPage extends StatelessWidget {
                             height: 18,
                           ),
                           topBorder: false,
-                          text: Text(
-                            local!.addPlugin,
-                            style: AppTextStyles.faintBodyText.copyWith(
-                              fontSize: 16,
-                            ),
-                          ),
+                          text: Text(local!.addPlugin,
+                              style: AppTextStyle.lightGreySize16),
                         ),
                         for (PluginModel plugin in model.plugins)
                           MenuItemTile(
@@ -96,9 +92,7 @@ class PluginPage extends StatelessWidget {
                             topBorder: false,
                             text: Text(
                               plugin.name,
-                              style: AppTextStyles.faintBodyText.copyWith(
-                                fontSize: 16,
-                              ),
+                              style: AppTextStyle.lightGreySize16,
                             ),
                           ),
                       ],
