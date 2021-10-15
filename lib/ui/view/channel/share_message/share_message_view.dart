@@ -9,6 +9,7 @@ import 'package:hng/ui/view/channel/share_message/share_message_viewmodel.dart';
 import 'package:hng/ui/view/channel/share_message/widgets/select_channel_drop_down.dart';
 import 'package:hng/ui/view/channel/share_message/widgets/share_message_textfield.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:hng/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
@@ -70,7 +71,10 @@ class ShareMessageHook extends HookViewModelWidget<ShareMessageViewModel> {
         UIHelper.verticalSpaceMedium,
         ShareMessageTextField(
             controller: controller,
-            onChanged: (String value) => viewModel.message = value,
+            onChanged: (String value) {
+              viewModel.message = value;
+              log.e(viewModel.message);
+            },
             hintText: EnterMessage),
         UIHelper.customVerticalSpace(10),
         Row(

@@ -27,8 +27,8 @@ class ShareMessageViewModel extends FutureViewModel<List<HomeItemModel>> {
     var userID = _storage.getString(StorageKeys.currentUserId);
     if (message != '') {
       var newMessage = '$message: $sharedMessage';
-      await _channelsApiService.sendChannelMessages(
-          homeItemModel.id!, userID!, newMessage);
+      await _channelsApiService
+          .sendChannelMessages(homeItemModel.id!, userID!, newMessage, []);
       _navigationService.popRepeated(2);
       _navigationService.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
