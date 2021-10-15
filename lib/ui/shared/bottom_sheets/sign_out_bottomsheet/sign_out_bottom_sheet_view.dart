@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/general_widgets/custom_text.dart';
 
 import 'package:hng/models/organization_model.dart';
 import 'package:hng/ui/shared/bottom_sheets/sign_out_bottomsheet/sign_out_botton_sheet_viewmodel.dart';
