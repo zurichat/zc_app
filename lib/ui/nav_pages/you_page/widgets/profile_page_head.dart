@@ -4,12 +4,13 @@ import '../../../../general_widgets/custom_text.dart';
 import '../../../shared/colors.dart';
 
 class ProfilePageHead extends StatelessWidget {
-  const ProfilePageHead({Key? key, this.image, this.name, this.currentStatus})
+  const ProfilePageHead({Key? key, this.image, this.name, this.currentStatus, this.isActive = true})
       : super(key: key);
 
   final String? image;
   final String? name;
   final String? currentStatus;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +39,12 @@ class ProfilePageHead extends StatelessWidget {
                   ),
                 ),
               ),
-              const Align(
+              Align(
                 alignment: Alignment.topRight,
                 child: Icon(
                   Icons.circle,
                   size: 15,
-                  color: AppColors.zuriPrimaryColor,
+                  color: isActive ? AppColors.zuriPrimaryColor : AppColors.greyishColor,
                 ),
               ),
             ],
