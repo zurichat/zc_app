@@ -6,12 +6,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hng/ui/view/expandable_textfield/widget/user_mentions.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/view/expandable_textfield/expandable_textfield_screen_viewmodel.dart';
 import 'package:hng/ui/view/channel/channel_view/widgets/check_user.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
+import 'expandable_textfield_screen_viewmodel.dart';
 
 //stacked forms handling
 @FormView(
@@ -199,27 +201,29 @@ class ExpandableTextFieldScreen extends HookWidget {
                                   ),
                                   Expanded(
                                     // height:
-                                    //     size,  
-                                    child:  !usercheck
+                                    //     size,
+                                    child: !usercheck
                                         ? CheckUser(channelId, channelName)
                                         : MyTextField(
-                                          toggleMembersList: model.showMembersList,
-                                      toggleVisibility: model.toggleVisibility,
-                                      model: model,
-                                      showMembers: model.showMembers,
-                                      isExpanded: model.isExpanded,
-                                      controller: textController,
-                                      focus: focusNode,
-                                      hintText: hintText,
-                                      isVisible: model.isVisible,
-                                      toggleExpanded: () {
-                                        if (!model.isExpanded) {
-                                          model.toggleExpanded(true);
-                                        } else {
-                                          model.toggleExpanded(false);
-                                        }
-                                      },
-                                    ),
+                                            toggleMembersList:
+                                                model.showMembersList,
+                                            toggleVisibility:
+                                                model.toggleVisibility,
+                                            model: model,
+                                            showMembers: model.showMembers,
+                                            isExpanded: model.isExpanded,
+                                            controller: textController,
+                                            focus: focusNode,
+                                            hintText: hintText,
+                                            isVisible: model.isVisible,
+                                            toggleExpanded: () {
+                                              if (!model.isExpanded) {
+                                                model.toggleExpanded(true);
+                                              } else {
+                                                model.toggleExpanded(false);
+                                              }
+                                            },
+                                          ),
                                   ),
                                   Visibility(
                                     visible: model.isVisible,
@@ -300,8 +304,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               if (textController.text.isEmpty &&
                                                   model.mediaList.isEmpty) {
                                                 return;
-                                              } else 
-                                              {
+                                              } else {
                                                 sendMessage(textController.text,
                                                     model.mediaList);
                                                 textController.clear();
@@ -453,7 +456,7 @@ class MyTextField extends StatelessWidget {
                     : TextAlignVertical.center,
                 decoration: InputDecoration.collapsed(
                   hintText: hintText,
-                  hintStyle: AppTextStyles.faintBodyText,
+                  hintStyle: AppTextStyle.lightGreySize14,
                 ).copyWith(contentPadding: const EdgeInsets.all(8)),
               ),
             ),

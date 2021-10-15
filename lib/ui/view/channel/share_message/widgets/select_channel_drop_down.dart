@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 class SelectChannelDropDown extends StatelessWidget {
   final List<HomeItemModel> values;
@@ -33,7 +34,7 @@ class SelectChannelDropDown extends StatelessWidget {
               .map((item) => DropdownMenuItem(
                     child: Text(
                       item.name!,
-                      style: AppTextStyles.body3Medium,
+                      style: AppTextStyle.darkGreySize14,
                     ),
                     value: item,
                   ))

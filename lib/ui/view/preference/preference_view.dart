@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
@@ -13,7 +14,7 @@ class PreferenceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final local = AppLocalization.of(context);
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<PreferenceViewModel>.reactive(
       viewModelBuilder: () => PreferenceViewModel(),
       onModelReady: (model) => model.init(),
@@ -36,58 +37,32 @@ class PreferenceView extends StatelessWidget {
               UIHelper.verticalSpaceMedium,
               MenuItemTile(
                 topBorder: false,
-                text: Text(
-                  local.langAndRegion,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text: Text(local.langAndRegion,
+                    style: AppTextStyle.lightGreySize16),
                 onPressed: model.navigateLanguageAndRegion,
               ),
               MenuItemTile(
-                text: Text(
-                  local.darkMode,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text: Text(local.darkMode, style: AppTextStyle.lightGreySize16),
                 subtitle: model.currentTheme,
                 onPressed: model.changeTheme,
               ),
               MenuItemTile(
-                text: Text(
-                  local.advanced,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text: Text(local.advanced, style: AppTextStyle.lightGreySize16),
                 onPressed: model.navigateToAdvanced,
               ),
               MenuItemTile(
-                text: Text(
-                  local.sendFeedback,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text: Text(local.sendFeedback,
+                    style: AppTextStyle.lightGreySize16),
                 onPressed: model.sendFeedback,
               ),
               MenuItemTile(
-                text: Text(
-                  local.helpCenter,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text:
+                    Text(local.helpCenter, style: AppTextStyle.lightGreySize16),
                 onPressed: model.helpCentre,
               ),
               MenuItemTile(
-                text: Text(
-                  local.privacyNLicenses,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text: Text(local.privacyNLicenses,
+                    style: AppTextStyle.lightGreySize16),
                 onPressed: model.privacyAndLicences,
               ),
               UIHelper.verticalSpaceMedium,

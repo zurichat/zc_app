@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 
 class NoConnectionWidget extends StatelessWidget {
   const NoConnectionWidget(
@@ -39,11 +40,8 @@ class NoConnectionWidget extends StatelessWidget {
                 color: AppColors.greyishColor,
               ),
               const SizedBox(width: 20),
-              Text(
-                "Zuri chat is trying to connect",
-                style: AppTextStyles.smallTextGrey
-                    .copyWith(fontSize: 13, color: AppColors.greyishColor),
-              ),
+              Text("Zuri chat is trying to connect",
+                  style: AppTextStyle.lightGreySize14),
             ],
           ),
         );

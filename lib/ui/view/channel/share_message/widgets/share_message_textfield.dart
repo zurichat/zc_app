@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 class ShareMessageTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -27,8 +27,7 @@ class ShareMessageTextField extends StatelessWidget {
           enabledBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: AppColors.dividerColor)),
           hintText: hintText,
-          hintStyle: AppTextStyles.textButtonText.copyWith(
-              decoration: TextDecoration.none, color: AppColors.greyColor)),
+          hintStyle: AppTextStyle.lightGreySize16),
     );
   }
 }

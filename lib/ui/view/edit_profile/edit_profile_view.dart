@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/models/user_model.dart';
 
-import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
@@ -29,17 +29,16 @@ class EditProfileView extends StatelessWidget {
           leadingPress: () => viewModel.close(),
           orgTitle: Text(
             local!.editProfileButton,
-            style: AppTextStyles.heading4,
+            style: AppTextStyle.darkGreySize18Bold,
           ),
           actions: [
             TextButton(
               onPressed: () => viewModel.onSave(),
               child: Text(
                 local.save.toUpperCase(),
-                style: AppTextStyles.body1Bold.copyWith(
-                    color: viewModel.hasDataChanged
-                        ? AppColors.deepBlackColor
-                        : AppColors.zuriGrey),
+                style: viewModel.hasDataChanged
+                    ? AppTextStyle.darkGreySize16Bold
+                    : AppTextStyle.lightGreySize16,
               ),
             ),
           ],

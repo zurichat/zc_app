@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:hng/ui/view/channel/share_message/share_message_viewmodel.dart';
 import 'package:hng/ui/view/channel/share_message/widgets/select_channel_drop_down.dart';
@@ -37,16 +37,16 @@ class ShareMessageHook extends HookViewModelWidget<ShareMessageViewModel> {
           children: [
             Image.asset(userPost.userImage!, height: 20, width: 20),
             UIHelper.customHorizontalSpace(10),
-            Text(userPost.displayName!, style: AppTextStyles.body3Medium),
+            Text(userPost.displayName!, style: AppTextStyle.darkGreySize14),
           ],
         ),
         UIHelper.customVerticalSpace(10),
         Text(userPost.message!,
-            style: AppTextStyles.body3Medium.copyWith(fontSize: 16)),
+            style: AppTextStyle.darkGreySize14.copyWith(fontSize: 16)),
         Text('Thread in #${userPost.channelName} • ${userPost.moment}',
             overflow: TextOverflow.ellipsis,
             maxLines: 3,
-            style: AppTextStyles.faintBodyText
+            style: AppTextStyle.lightGreySize12
                 .copyWith(color: Colors.grey, fontSize: 12)),
       ],
     );
