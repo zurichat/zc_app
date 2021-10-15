@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SkinToneDialog extends StatelessWidget {
@@ -30,7 +31,9 @@ class _SkinToneDialogContent extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * .05, vertical: size.height * .02),
-      color: Colors.white,
+      color: Theme.of(context).brightness == Brightness.dark
+          ? AppColors.darkThemePrimaryColor
+          : AppColors.whiteColor,
       width: size.width * .9,
       height: size.height * .3,
       child: Column(

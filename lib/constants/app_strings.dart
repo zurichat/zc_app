@@ -82,6 +82,7 @@ const String BackToLogin = 'Back to login';
 const String Home = 'Home';
 const String Unreads = 'Unreads';
 const String Channels = 'Channels';
+const String CreateChannel = 'Create a new channel';
 const String DMs = 'Direct Messages';
 const String JumpTo = 'Jump to...';
 const String hash = ' # ';
@@ -113,7 +114,8 @@ const String Preferences = 'Preferences';
 const String Notifs = 'Notifications';
 const String ViewProfile = 'View Profile';
 const String SavedItems = 'Saved Items';
-const String SetStatusText = 'Go ';
+const String DoNotDisturb = 'Do not disturb';
+const String SetStatusText = 'Set yourself as ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
@@ -194,7 +196,7 @@ const String NoDescription = 'No description Added';
 //Channel Info
 const String Bookmarks = 'Bookmarks';
 const String MuteChannelWarning =
-    'You wont\'t recieve any messages from a muted channel';
+    'You won\'t receive any messages from a muted channel';
 const String ChannelInfo = 'Channel Info';
 const String Edit = 'Edit';
 const String Leave = 'Leave';
@@ -203,7 +205,11 @@ const String Topic = 'Topic';
 const String Notifications = 'Notification';
 const String EveryNewMessage = 'Every New Message';
 const String MuteChannel = 'Mute Channel';
+const String ArchiveChannel = 'Archive Channel';
 const String DeleteChannel = 'Delete Channel';
+const String ArchiveChannelWarning =
+    'Archiving the channel will remove it from the channel list, and close it from all members.'
+    'All chats and files will still be stored and searchable';
 const String DeleteChannelWarning =
     'All messages from this channel will be removed from Zuri Chat. Any files uploaded to this channel would not be removed.';
 const String StartCall = 'Start a call';
@@ -310,14 +316,9 @@ const String ImageDetails = '550KB png';
 const String LangAndRegion = 'Languages & Region';
 const String Language = 'Language';
 const String SetTimezone = 'Set time zone automatically';
-const String Deutsch = 'Deutsch (Deutschland)';
-const String EnglishUK = 'English (UK)';
 const String EnglishUS = 'English (US)';
-const String Espanol = 'Espanol (Espana)';
-const String Francais = 'Francais (France)';
-const String Italiano = 'Italiano (Italy)';
-const String Portugues = 'Portugues (Brazil)';
-const String Chinese = '陈摩托何';
+const String DeutschDE = 'Deutsch (Deutschland)';
+const String ArabicSA = 'اَلْعَرَبِيَّةُ';
 const String Mandarin = '来 本 嗄';
 
 //Notifications
@@ -337,6 +338,16 @@ const String InAppNotif = 'In-app notification';
 const String MyKeyword = 'My Keyword';
 const String MyKeywordSubtitle = 'Get notified when people say...';
 const String ChannelSPecificNotif = 'Channel-specific notifications (0)';
+
+//Zuri_Chat_BottomSheet
+const String MarkUnread = "Mark Unread";
+const String RemindMe = "Remind Me";
+const String AddToSavedItems = "Add to Saved Items";
+const String ReplyInThreads = "Reply in Thread";
+const String FollowThreadZuriChatBottomSheet = "Follow Thread";
+const String ShareMessage = "Share Message";
+const String CopyLinkToMessage = "Copy Link to Message";
+const String CopyTextZuriChatBottomSheet = "Copy Text";
 
 //Onboarding
 const String Skip = 'Skip';
@@ -435,11 +446,11 @@ const String SetAStatus = 'Set a Status';
 const IconData bubble = Icons.chat_bubble_outline_rounded;
 const String WhatsYourStatus = 'What\'s your status?';
 
-//Images and Logos
+//Images and Logos and Icons
 const String AddLogo = 'assets/logo/add_logo.png';
-const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
+const String ZuriLogo = 'assets/logo/zuri_app_logo.png';
 const String NewZuriLogo = 'assets/logo/new_zuri_logo.png';
-const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
+const String ZuriAppbarLogo = 'assets/logo/new_zuri_logo.png';
 const String GoogleLogo = 'assets/logo/Google_logo.png';
 const String statusBackground = 'assets/background/status.png';
 const String FemaleUser = 'assets/channel_page/femaleuser.png';
@@ -459,6 +470,39 @@ const String OnboardingThree = 'assets/images/onboarding_screen_2.png';
 const String LinkLogo = 'assets/icons/svg_icons/link.svg';
 const String CancelLogo = 'assets/icons/cancel.png';
 const String PinIcon = 'assets/icons/pin.png';
+const String PauseNotification = 'assets/icons/svg_icons/bell-off.svg';
+const String away = 'assets/icons/svg_icons/circle.svg';
+const String Saved_Items = 'assets/icons/svg_icons/bookmark.svg';
+const String View_Profile = 'assets/icons/svg_icons/user.svg';
+const String notification = 'assets/icons/svg_icons/notification.svg';
+const String preference = 'assets/icons/svg_icons/preference.svg';
+const String Log_Out = 'assets/icons/svg_icons/log-out.svg';
+const String Add_Description = 'assets/icons/svg_icons/Add-description.svg';
+const String add_people = 'assets/icons/svg_icons/add-people.svg';
+const String maximize = 'assets/icons/svg_icons/maximize.svg';
+const String minimize = 'assets/icons/svg_icons/minimize.svg';
+const String zap = 'assets/icons/svg_icons/zap.svg';
+const String at_sign = 'assets/icons/svg_icons/at_sign.svg';
+const String Smile = 'assets/icons/svg_icons/smile.svg';
+const String Camera = 'assets/icons/svg_icons/fluent_camera-16-regular.svg';
+const String Channel_Page_Share =
+    'assets/icons/svg_icons/Channel_Page_Share.svg';
+const String Send = 'assets/icons/svg_icons/Send.svg';
+const String Channel_Info_Notification = 'assets/icons/svg_icons/bell.svg';
+const String toggle_off_sharp = 'assets/icons/svg_icons/toggle_off_sharp.svg';
+const String Channel_Info_Members = 'assets/icons/svg_icons/members.svg';
+const String Channel_Info_Phone = 'assets/icons/svg_icons/phone.svg';
+const String archive = 'assets/icons/svg_icons/archive.svg';
+const String pinned_message = 'assets/icons/svg_icons/pinned_message.svg';
+const String Mark_Unread = 'assets/icons/svg_icons/Mark_Unread.svg';
+const String Remind_Me = 'assets/icons/svg_icons/gg_time.svg';
+const String Reply_In_Thread = 'assets/icons/svg_icons/Reply_In_Thread.svg';
+const String Follow_Thread = 'assets/icons/svg_icons/bi_chat-text.svg';
+const String Share_message = 'assets/icons/svg_icons/Share_message.svg';
+const String Copy_link_To_Message =
+    'assets/icons/svg_icons/akar-icons_link_chain.svg';
+const String Copy_Text = 'assets/icons/svg_icons/Copy-text.svg';
+const String Add_Organization = 'assets/icons/svg_icons/add-organization.svg';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
@@ -500,8 +544,13 @@ const String Track = 'What I do';
 const String MobileDev = 'Mobile Dev';
 const String MarkCreatedChannel = 'Mark created this channel on August 13.';
 const String CreatingZuri = 'Creating the zuri main app';
-const String OnePinnedMessage = 'Pinned messages (1)';
+const String Pinned = 'Pinned';
 const String OnePlugin = 'Plugins (1)';
+const String PluginIntroHeader = "Get serious and have fun here";
+const String PluginIntroBody = '''Access your oganization’s important stuff'''
+    ''' like holiday-calendar, meeting room, notice'''
+    ''' board etc. Have fun by joining the chess'''
+    ''' room and music room.''';
 const String MembersCount = '128 members';
 const String SoftwareDev = 'Software Development';
 const String PromotedPlaceholder = 'Have you been Promoted?';

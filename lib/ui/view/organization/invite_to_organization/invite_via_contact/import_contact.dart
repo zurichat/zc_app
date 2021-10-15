@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/ui/nav_pages/plugin_page/widgets/custom_search_field.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../invite_via_email/invite_viewmodel.dart';
@@ -11,19 +12,23 @@ class ImportContacts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
         return Scaffold(
           appBar: ZuriAppBar(
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             leading: Icons.close,
             leadingPress: () {
               model.navigateBack();
             },
             whiteBackground: true,
             orgTitle: Text(
-              'Choose contacts',
-              style: AppTextStyles.heading7,
+              local!.chooseContacts,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
             ),
             actions: [
               Padding(

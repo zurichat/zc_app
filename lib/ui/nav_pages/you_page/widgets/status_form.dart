@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 
 class StatusForm extends StatelessWidget {
   const StatusForm({
@@ -17,6 +18,7 @@ class StatusForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return MaterialButton(
       textColor: AppColors.greyishColor,
       shape: RoundedRectangleBorder(
@@ -36,7 +38,7 @@ class StatusForm extends StatelessWidget {
           const SizedBox(width: 7),
           Flexible(
             child: Text(
-              statusText ?? 'What\'s your status?',
+              statusText ?? local!.whatIsYourStatus,
             ),
             fit: FlexFit.tight,
           ),

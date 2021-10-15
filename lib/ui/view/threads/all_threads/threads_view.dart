@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -14,10 +14,12 @@ class ThreadsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ThreadsViewModel>.reactive(
-      builder: (context, model, child) => Scaffold(
+      builder: (context, model, child) {
+        final local = AppLocalization.of(context);
+        return Scaffold(
         appBar: ZuriAppBar(
           orgTitle: Text(
-            Threads,
+            local!.threads,
             style: AppTextStyles.heading7.copyWith(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
@@ -40,7 +42,7 @@ class ThreadsView extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Text(
-                    NoNewReplies,
+                    local.noNewReplies,
                     style: AppTextStyles.body2Bold,
                   ),
                 ),
@@ -56,7 +58,8 @@ class ThreadsView extends StatelessWidget {
             ),
           ),
         ),
-      ),
+      );
+      },
       onModelReady: (viewModel) => viewModel.initialise(),
       viewModelBuilder: () => ThreadsViewModel(),
     );

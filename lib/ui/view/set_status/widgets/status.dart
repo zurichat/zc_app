@@ -20,7 +20,7 @@ class Status extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10),
       child: MenuItemTile(
         topBorder: false,
-        icon: icon,
+        ico: icon,
         text: Text.rich(TextSpan(
             text: status,
             style: const TextStyle(fontWeight: FontWeight.bold),

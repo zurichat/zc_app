@@ -33,6 +33,7 @@ class YouPageViewModel extends ReactiveViewModel {
       _storageService.getString(StorageKeys.idInOrganization);
   String? get token =>
       _storageService.getString(StorageKeys.currentSessionToken);
+  String _presence = 'false';
 
   String get username =>
       (_userService.userDetails?.displayName?.isNotEmpty ?? false
@@ -75,9 +76,6 @@ class YouPageViewModel extends ReactiveViewModel {
     _statusText = WhatsYourStatus;
     //TODO - safe??
     _tagIcon = null;
-    final orgId = _storageService.getString(StorageKeys.currentOrgId);
-    final memberId = _storageService.getString(StorageKeys.idInOrganization);
-    final token = _storageService.getString(StorageKeys.currentSessionToken);
     final endpoint = 'organizations/$orgId/members/$memberId/status';
     final data = {
       'tag': _tagIcon,
@@ -108,6 +106,34 @@ class YouPageViewModel extends ReactiveViewModel {
     notifyListeners();
   }
 
+  Future getUserPresence() async {
+    try {
+      var response = await _apiService.get(
+          '$coreBaseUrl/organizations/$orgId/members/$memberId',
+          token: _userService.authToken);
+      _presence = response.data['data']['presence'];
+      log.i('response query ======= $_presence');
+      otherStatus = _presence == 'true' ? 'away' : 'active';
+      currentStatus = _presence == 'true' ? 'Active' : 'Away';
+      notifyListeners();
+    } catch (e) {
+      e.toString();
+    }
+  }
+
+  Future setUserPresence() async {
+    try {
+      var response = await _apiService.post(
+        coreBaseUrl + 'organizations/$orgId/members/$memberId/presence',
+        token: _userService.authToken,
+        body: {},
+      );
+      log.i('response query ======= $response');
+    } catch (e) {
+      e.toString();
+    }
+  }
+
   Future editProfile() async {
     await _navigationService.navigateTo(
       Routes.editProfileView,
@@ -120,7 +146,8 @@ class YouPageViewModel extends ReactiveViewModel {
     await _navigationService.navigateTo(Routes.doNotDisturbView);
   }
 
-  void toggleStatus() {
+  void toggleStatus() async {
+    await runBusyFuture(setUserPresence());
     currentStatus == 'Active'
         ? () {
             currentStatus = 'Away';

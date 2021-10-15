@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'clear_notification_viewmodel.dart';
@@ -26,13 +27,15 @@ class ClearNotificationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<ClearNotificationViewModel>.reactive(
-        builder: (context, model, child) => Scaffold(
+        builder: (context, model, child) {
+          return Scaffold(
               appBar: ZuriAppBar(
                 leading: Icons.arrow_back_ios,
                 leadingPress: () => model.navigateBack(),
                 orgTitle: Text(
-                  ClearAfter,
+                  local!.clearAfter,
                   style: AppTextStyles.heading7,
                 ),
               ),
@@ -44,7 +47,8 @@ class ClearNotificationView extends StatelessWidget {
                       buildRadios(),
                     ]),
               ),
-            ),
+            );
+        },
         viewModelBuilder: () => ClearNotificationViewModel());
   }
 
@@ -65,3 +69,4 @@ class ClearNotificationView extends StatelessWidget {
         ).toList(),
       );
 }
+

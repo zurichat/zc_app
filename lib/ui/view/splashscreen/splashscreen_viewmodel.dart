@@ -20,7 +20,7 @@ class SplashscreenViewModel extends BaseViewModel {
         if (storage.getBool('onboarded') == null ||
             storage.getBool('onboarded') == false) {
           storage.setBool('onboarded', true);
-           navigation.clearStackAndShow(Routes.onboardingView);
+          navigation.clearStackAndShow(Routes.onboardingView);
         } else if (storage.getBool(StorageKeys.registeredNotverifiedOTP) ==
             true) {
           navigation.clearStackAndShow(Routes.oTPView);

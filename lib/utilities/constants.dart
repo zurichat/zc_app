@@ -22,7 +22,7 @@ const youIcon = 'assets/icons/user.png';
 const lockIconShaded = 'assets/icons/lock_icon_shaded.png';
 const lockIcon = 'assets/icons/lock_icon.png';
 
-const appBarLogo = AssetImage('assets/logo/zuri_main_logo.png');
+const appBarLogo = AssetImage('assets/logo/zuri_app_logo2.png');
 const zuriWordLogo = AssetImage('assets/logo/Zuri_word_logo.png');
 const dummyUserImage = 'assets/background/bga.png';
 
@@ -38,7 +38,7 @@ const int DEFAULT_LOCALE_VAL = 0;
 
 Iterable<Locale> supportedLocalesList = const [
   Locale('en', 'US'),
-  Locale('zh', 'HK'),
-  Locale('ar', 'SA'),
   Locale('de', 'DE'),
+  Locale('ar', 'SA'),
+  Locale('zh', 'HK'),
 ];
