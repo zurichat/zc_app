@@ -25,7 +25,7 @@ class OrganizationNameUrl
     return Scaffold(
       appBar: ZuriAppBar(
         whiteBackground: true,
-        title: 'Workspace Name & URL',
+        title: OrgnameUrl,
         subtitle: '',
         leading: Icons.chevron_left,
         leadingPress: () => viewModel.back(),
@@ -62,14 +62,14 @@ class OrganizationNameUrl
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Workspace Name',
+                        OrgName,
                         style: AppTextStyles.heading4.copyWith(
                             color: AppColors.blackColor, fontSize: 18),
                       ),
                       const SizedBox(height: 15),
                       Flexible(
                         child: BorderTextField(
-                          hint: "HNG i8",
+                          hint: CompanyNameHint,
                           controller: _orgNameController,
                           textCapitalization: TextCapitalization.words,
                           validator: (val) =>
@@ -94,7 +94,7 @@ class OrganizationNameUrl
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Workspace URL',
+                        OrgUrl,
                         style: AppTextStyles.heading3.copyWith(
                             color: AppColors.blackColor, fontSize: 18),
                       ),

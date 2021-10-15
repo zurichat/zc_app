@@ -397,6 +397,8 @@ const String EditOrgIcon = 'Edit Workspace Icon';
 const String EditOrgIconDesc =
     'Workspace icon is used in the desktop and mobile apps where it\'s useful in helping to quickly identify this workspace.';
 const String EditOrgNameUrl = 'Edit Workspace Name & URL';
+const String EditOrgNameUrlDesc1 = 'Your workspace name is ';
+const String EditOrgNameUrlDesc2 = ' and your URL is ';
 const String OrgIcon = 'Workspace Icon';
 const String OrgIconGuide = 'Workspace Icon guideline';
 const String OrgIconGuideDesc =
@@ -405,6 +407,11 @@ const String OrgNameDesc =
     'Your workspace name is displayed in menus and headings. It will usually be (or include) the name of your company.';
 const String OrgUrlDesc =
     'Your workspace URL can only contain lowercase letters, numbers and dashes (and must start with a letter or number).';
+const String OrgnameUrl = 'Workspace Name & URL';
+const String OrgName = 'Workspace Name';
+const String OrgUrl = 'Workspace URL';
+const String OrgSettings = 'Workspace Settings';
+const String UploadLogo = 'Upload Icon';
 
 //Pinned Messages
 const String NoPinnedMessagesYet = 'No Pinned Messages Yet';
@@ -443,6 +450,7 @@ const String SendFeedback = 'Send Feedback';
 //Images and Logos
 const String AddLogo = 'assets/logo/add_logo.png';
 const String ZuriLogo = 'assets/logo/zuri_app_logo.png';
+const String ZuriWordLogo = 'assets/logo/zuri_word_and_logo.png';
 const String NewZuriLogo = 'assets/logo/new_zuri_logo.png';
 const String ZuriAppbarLogo = 'assets/logo/new_zuri_logo.png';
 const String GoogleLogo = 'assets/logo/Google_logo.png';

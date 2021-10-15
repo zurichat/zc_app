@@ -55,7 +55,7 @@ class OrganizationLogo extends StatelessWidget {
                       clipBehavior: Clip.hardEdge,
                       child: model.tempImage == null && org.logoUrl!.isEmpty
                           ? Image.asset(
-                              'assets/logo/zuri_word_and_logo.png',
+                              ZuriWordLogo,
                               fit: BoxFit.cover,
                             )
                           : model.tempImage != null
@@ -71,7 +71,7 @@ class OrganizationLogo extends StatelessWidget {
                     const SizedBox(height: 20),
                     LongButton(
                       onPressed: () => model.selectImage(),
-                      label: 'Upload Icon',
+                      label: UploadLogo,
                       width: 200,
                     ),
                     const SizedBox(height: 30),

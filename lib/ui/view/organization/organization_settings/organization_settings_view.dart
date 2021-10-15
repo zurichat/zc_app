@@ -21,8 +21,8 @@ class OrganizationSettingsView extends StatelessWidget {
       builder: (context, model, child) {
         return Scaffold(
           appBar: ZuriAppBar(
-            title: 'Workspace Settings',
-            subtitle: 'zuri chat',
+            title: OrgSettings,
+            subtitle: org.name,
             whiteBackground: true,
             leading: Icons.chevron_left,
             leadingPress: () => model.back(),
@@ -82,7 +82,7 @@ class OrganizationSettingsView extends StatelessWidget {
                           TextSpan(
                             children: [
                               TextSpan(
-                                text: 'Your workspace name is ',
+                                text: EditOrgNameUrlDesc1,
                                 style: AppTextStyles.bodyRegular.copyWith(
                                     fontSize: 15, color: AppColors.greyColor),
                               ),
@@ -94,7 +94,7 @@ class OrganizationSettingsView extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: ' and your URL is ',
+                                text: EditOrgNameUrlDesc2,
                                 style: AppTextStyles.bodyRegular.copyWith(
                                     fontSize: 15, color: AppColors.greyColor),
                               ),
