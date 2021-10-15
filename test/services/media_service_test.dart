@@ -12,8 +12,8 @@ void main() {
       final mediaService = getAndRegisterMediaServiceMock();
       test('When called it should upload an image and return image address',
           () async {
-        mediaService.uploadImage(fileMock);
-        verify(mediaService.uploadImage(fileMock));
+        mediaService.uploadImage(fileMock, pluginId_string);
+        verify(mediaService.uploadImage(fileMock, pluginId_string));
       });
     });
   });

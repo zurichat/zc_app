@@ -25,7 +25,7 @@ class SelectEmail extends StatelessWidget {
             : AppColors.whiteColor,
         appBar: ZuriAppBar(
           orgTitle: Text(
-            model.getScreenTitle(method),
+            model.getScreenTitle(method, context),
             style: AppTextStyles.heading4.copyWith(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
@@ -65,7 +65,7 @@ class SelectEmail extends StatelessWidget {
                 },
                 child: Padding(
                   padding:
-                  const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+                      const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
                   child: Row(
                     children: [
                       const Icon(
@@ -97,7 +97,7 @@ class SelectEmail extends StatelessWidget {
                 onTap: () => model.navigateToDifferentEmail(method),
                 child: Padding(
                   padding:
-                  const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+                      const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
                   child: Row(
                     children: [
                       const Icon(

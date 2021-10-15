@@ -19,8 +19,10 @@ class YouPage extends StatelessWidget {
     final local = AppLocalization.of(context);
     return ViewModelBuilder<YouPageViewModel>.reactive(
       viewModelBuilder: () => YouPageViewModel(),
+      onModelReady: (model) => model.getUserPresence(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           orgTitle: Text(You, style: ZuriTextStyle.organizationNameText()),
           bottomNavBarScreen: true,
           leadingWidth: true,
@@ -32,8 +34,9 @@ class YouPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: () => model.getUserStatus(),
+                  onTap: () => model.getUserPresence(),
                   child: ProfilePageHead(
+                    isActive: model.currentStatus == 'Active',
                     name: model.username,
                     currentStatus: model.currentStatus,
                     image: model.profileImage,
@@ -56,8 +59,7 @@ class YouPage extends StatelessWidget {
                   topBorder: false,
                   text: Text.rich(
                     TextSpan(
-                      //TODO TRANSLATE
-                      text: SetStatusText,
+                      text: local.setStatusText,
                       style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                       children: [
                         TextSpan(
@@ -86,7 +88,7 @@ class YouPage extends StatelessWidget {
                     local.viewProfile,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                   ),
-                  onPressed: () => model.getUserStatus(),
+                  onPressed: () => model.getUserPresence(),
                   topBorder: false,
                 ),
                 const SizedBox(height: 16),

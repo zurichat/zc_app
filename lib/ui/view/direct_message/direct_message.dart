@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
@@ -21,6 +22,7 @@ class DirectMessage extends StatelessWidget with $DirectMessage {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     final size = MediaQuery.of(context).size;
     return ViewModelBuilder<DirectMessageViewModel>.reactive(
         onModelReady: (model) {
@@ -90,9 +92,7 @@ class DirectMessage extends StatelessWidget with $DirectMessage {
                                 ),
                                 const SizedBox(height: 10),
                                 CustomText(
-                                  text: '''This is the very beginning of your'''
-                                      ''' direct message history with @${username.toString()}. '''
-                                      '''Only the two of you are in this conversation, and no one else can join it.''',
+                                  text: '${local!.dmIntroBegin} @${username.toString()}. \n ${local.dmIntroEnd}',
                                   color: Colors.black,
                                   fontSize: 15,
                                 ),
