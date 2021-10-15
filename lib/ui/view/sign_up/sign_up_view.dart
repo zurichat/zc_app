@@ -56,8 +56,8 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       Center(
                         child: Image.asset(
                           ZuriLogo,
-                          height: 32,
-                          width: 32,
+                          height: 50,
+                          width: 50,
                         ),
                       ),
                       UIHelper.customVerticalSpace(24),
@@ -220,8 +220,8 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(
                             color:
-                            Theme.of(context).textTheme.bodyText1!.color ??
-                                AppColors.zuriPrimaryColor,
+                                Theme.of(context).textTheme.bodyText1!.color ??
+                                    AppColors.zuriPrimaryColor,
                             width: 1,
                           ),
                         ),
