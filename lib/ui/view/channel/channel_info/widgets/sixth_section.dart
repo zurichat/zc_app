@@ -45,13 +45,16 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
                       style:
                           AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
                     ),
-                  UIHelper.verticalSpaceSmall,
-                    Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                            ArchiveChannelWarning,
-                          style: AppTextStyles.body2_400.copyWith(fontSize: 14),
-                        )),
+                    UIHelper.verticalSpaceSmall,
+                    Expanded(
+                      child: Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                              ArchiveChannelWarning,
+                            maxLines: 6,
+                            style: AppTextStyles.body2_400.copyWith(fontSize: 14),
+                          )),
+                    ),
                   ],
                 ),
               )

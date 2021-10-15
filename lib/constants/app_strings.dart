@@ -205,7 +205,7 @@ const String ArchiveChannel = 'Archive Channel';
 const String DeleteChannel = 'Delete Channel';
 const String ArchiveChannelWarning =
     'Archiving the channel will remove it from the channel list, and close it from all members.'
-    'All chats and files will still be stored and searchable';
+    ' All chats and files will still be stored and searchable';
 const String DeleteChannelWarning =
     'All messages from this channel will be removed from Zuri Chat. Any files uploaded to this channel would not be removed.';
 const String StartCall = 'Start a call';
@@ -451,6 +451,12 @@ const String OnboardingThree = 'assets/images/onboarding_screen_2.png';
 const String LinkLogo = 'assets/icons/svg_icons/link.svg';
 const String CancelLogo = 'assets/icons/cancel.png';
 const String PinIcon = 'assets/icons/pin.png';
+
+// SHARE MESSAGE SCREEN
+const String ShareMessage = 'Share Message';
+const String NoSuchChannel = 'No such channel';
+const String EnterChannelName = 'Enter channel name';
+const String EnterMessage = 'Enter a message';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
