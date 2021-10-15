@@ -22,6 +22,7 @@ class YouPage extends StatelessWidget {
       onModelReady: (model) => model.getUserPresence(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           orgTitle: Text(You, style: ZuriTextStyle.organizationNameText()),
           bottomNavBarScreen: true,
           leadingWidth: true,

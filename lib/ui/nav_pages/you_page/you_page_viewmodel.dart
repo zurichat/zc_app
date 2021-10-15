@@ -26,6 +26,7 @@ class YouPageViewModel extends BaseViewModel {
   String _presence = 'false';
 
 
+
   String get username =>
       (_userService.userDetails?.displayName?.isNotEmpty ?? false
           ? _userService.userDetails?.displayName
@@ -34,6 +35,7 @@ class YouPageViewModel extends BaseViewModel {
   String profileImage = ZuriAppbarLogo;
   String currentStatus = Active;
   String otherStatus = Away;
+
 
   Future getUserPresence() async {
     try{
@@ -63,7 +65,7 @@ class YouPageViewModel extends BaseViewModel {
       );
       log.i('response query ======= $response');
     } catch(e) {
-      // log.i (e.toString());
+      e.toString();
     }
   }
 

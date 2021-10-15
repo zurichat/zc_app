@@ -57,7 +57,7 @@ class SelectThemeDialog extends StatelessWidget {
                   ),
                   child: const Text(Apply),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
               ],
             ),
           ],

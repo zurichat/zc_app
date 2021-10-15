@@ -3,6 +3,7 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -19,6 +20,7 @@ class ForgotPasswordEmailView extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<ForgotPasswordEmailViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => ForgotPasswordEmailViewModel(),
@@ -47,16 +49,16 @@ class ForgotPasswordEmailView extends StatelessWidget
                   ),
                   Center(
                     child: Text(
-                      ForgotPassword,
+                      local!.forgotPassword,
                       style: AppTextStyles.body1Bold,
                     ),
                   ),
                   const SizedBox(
                     height: 6.0,
                   ),
-                  const Center(
+                  Center(
                     child: Text(
-                      Header,
+                      local.forgotPasswordHeader,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -66,7 +68,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                   Container(
                     margin: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
-                      EmailAddress,
+                      local.emailAddress,
                       style: AppTextStyles.body1Bold,
                     ),
                   ),
@@ -96,7 +98,6 @@ class ForgotPasswordEmailView extends StatelessWidget
                               ),
                             ),
                           ),
-                          // onChanged: model.submitEmail,
                         ),
                       ),
 
@@ -109,7 +110,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                             children: [
                               UIHelper.verticalSpaceSmall,
                               Text(
-                                InvalidEmail,
+                                local.invalidEmail,
                                 style: AppTextStyles.body2Medium.copyWith(
                                   color: AppColors.redColor,
                                 ),
@@ -133,7 +134,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                           model.validateEmailIsRegistered();
                         },
                         child: Text(
-                          Continue,
+                          local.continueButton,
                           style: AppTextStyles.buttonText,
                         ),
                         style: ElevatedButton.styleFrom(
@@ -154,11 +155,11 @@ class ForgotPasswordEmailView extends StatelessWidget
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: BackTo,
+                              text: local.backTo,
                               style: Theme.of(context).textTheme.bodyText1,
                             ),
                             TextSpan(
-                              text: SignIn,
+                              text: local.signIn,
                               style: AppTextStyles.body2Bold.copyWith(
                                 color: AppColors.zuriPrimaryColor,
                               ),
