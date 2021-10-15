@@ -22,7 +22,7 @@ class LoginViewModel extends FormViewModel {
   final _connectivityService = locator<ConnectivityService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
-  final zuriApi = ZuriApi(coreBaseUrl); 
+  final zuriApi = ZuriApi(coreBaseUrl);
   late UserModel userModel;
 
   final log = getLogger('LogInViewModel');

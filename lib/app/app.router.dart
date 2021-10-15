@@ -7,7 +7,6 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../models/channel_members.dart';
@@ -600,10 +599,8 @@ class StackedRouter extends RouterBase {
       );
     },
     EditChannelPageView: (data) {
-      var args = data.getArgs<EditChannelPageViewArguments>(
-        orElse: () => EditChannelPageViewArguments(channelName: ''),
-      );
-      return MaterialPageRoute<dynamic>(
+      var args = data.getArgs<EditChannelPageViewArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => EditChannelPageView(
           key: args.key,
           channelName: args.channelName,
