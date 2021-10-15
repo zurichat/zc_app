@@ -72,7 +72,7 @@ Future<dynamic> zuriChatBottomSheet({
             ),
             const Divider(),
             ListTile(
-              title: Text("Mark Unread", style: AppTextStyles.heading9),
+              title: Text(mark_unread, style: AppTextStyles.heading9),
               leading: SvgPicture.asset(
                 Mark_Unread,
                 color: AppColors.darkGreyColor,
@@ -82,7 +82,7 @@ Future<dynamic> zuriChatBottomSheet({
               onTap: markUnread,
             ),
             ListTile(
-              title: Text("Remind Me", style: AppTextStyles.heading9),
+              title: Text(remind_me, style: AppTextStyles.heading9),
               leading: SvgPicture.asset(
                 Remind_Me,
                 color: AppColors.darkGreyColor,
@@ -95,7 +95,7 @@ Future<dynamic> zuriChatBottomSheet({
               },
             ),
             ListTile(
-              title: Text("Add to Saved Items", style: AppTextStyles.heading9),
+              title: Text(add_to_saved_items, style: AppTextStyles.heading9),
               leading: SvgPicture.asset(
                 Saved_Items,
                 color: AppColors.darkGreyColor,
@@ -106,7 +106,7 @@ Future<dynamic> zuriChatBottomSheet({
             ),
             const Divider(),
             ListTile(
-                title: Text("Reply in Thread", style: AppTextStyles.heading9),
+                title: Text(reply_in_threads, style: AppTextStyles.heading9),
                 leading: SvgPicture.asset(
                   Reply_In_Thread,
                   color: AppColors.darkGreyColor,
@@ -115,7 +115,7 @@ Future<dynamic> zuriChatBottomSheet({
                 ),
                 onTap: replyInThread),
             ListTile(
-                title: Text("Follow Thread", style: AppTextStyles.heading9),
+                title: Text(follow_thread, style: AppTextStyles.heading9),
                 leading: SvgPicture.asset(
                   Follow_Thread,
                   color: AppColors.darkGreyColor,
@@ -125,7 +125,7 @@ Future<dynamic> zuriChatBottomSheet({
                 onTap: followThread),
             const Divider(),
             ListTile(
-                title: Text("Share Message", style: AppTextStyles.heading9),
+                title: Text(share_message, style: AppTextStyles.heading9),
                 leading: SvgPicture.asset(
                   Share_message,
                   color: AppColors.darkGreyColor,
@@ -135,7 +135,7 @@ Future<dynamic> zuriChatBottomSheet({
                 onTap: shareMessage),
             ListTile(
                 title:
-                    Text("Copy Link to Message", style: AppTextStyles.heading9),
+                    Text(copy_link_to_message, style: AppTextStyles.heading9),
                 leading: SvgPicture.asset(
                   Copy_link_To_Message,
                   color: AppColors.darkGreyColor,
@@ -144,7 +144,7 @@ Future<dynamic> zuriChatBottomSheet({
                 ),
                 onTap: copyLinkToMessage),
             ListTile(
-                title: Text("Copy Text", style: AppTextStyles.heading9),
+                title: Text(copy_text, style: AppTextStyles.heading9),
                 leading: SvgPicture.asset(
                   Copy_Text,
                   color: AppColors.darkGreyColor,
