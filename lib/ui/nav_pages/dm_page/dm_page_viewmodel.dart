@@ -14,6 +14,8 @@ class DmPageViewModel extends FutureViewModel<bool> {
     return false;
   }
 
+  goBack() => navigationService.back();
+
   void navigateToDmUserView() {
     navigationService.navigateTo(Routes.dmUserView);
   }

@@ -45,7 +45,7 @@ class DmPage extends StatelessWidget {
               ? const ZuriLoader()
               : !model.data!
                   ? Center(
-                      child: Text("Temporarily Unavailable",
+                      child: Text(local.temporarilyUnavailable,
                           style: AppTextStyles.heading6),
                     )
                   : SingleChildScrollView(

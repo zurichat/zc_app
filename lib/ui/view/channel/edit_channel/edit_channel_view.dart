@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -26,6 +27,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
   final String? channelId;
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<EditChannelViewModel>.reactive(
       onModelReady: (model) {
         listenToFormUpdated(model);
@@ -36,7 +38,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
         appBar: ZuriAppBar(
           leading: Icons.arrow_back_ios,
           orgTitle: Text(
-            EditChannel,
+            local!.editChannel,
             style: AppTextStyles.heading7,
           ),
           whiteBackground: true,
@@ -47,7 +49,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    'Save',
+                    local.save,
                     style: AppTextStyles.heading4.copyWith(
                       color: AppColors.appBarGreen,
                     ),
@@ -90,13 +92,13 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
               const TextHeader(headerText: ChannelTopic),
               TextBox(
                 onChanged: model.onChanged,
-                hint: AddTopic,
+                hint: local.addTopic,
                 controller: topicController,
               ),
               const TextHeader(headerText: ChannelDescription),
               TextBox(
                   onChanged: model.onChanged,
-                  hint: ChannelCreationHint,
+                  hint: local.description,
                   controller: descriptionController),
               const SizedBox(
                 height: 30,

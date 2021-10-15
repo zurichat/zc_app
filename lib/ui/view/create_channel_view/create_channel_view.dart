@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -13,29 +13,27 @@ class CreateChannelView extends StatelessWidget {
   const CreateChannelView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<CreateChannelViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
               appBar: ZuriAppBar(
-                orgTitle: Text(
-                  CreateChannel,
-                  style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1!.color,
-                  ),
-                ),
-                isDarkMode: Theme.of(context).brightness == Brightness.dark,
-                whiteBackground: true,
-                actions: const [
+                actions: [
                   Center(
                     child: CustomTextWidget(
                         padding: 17,
                         fontWeight: FontWeight.bold,
-                        text: Create,
+                        text: local!.create,
                         color: AppColors.zuriPrimaryColor,
                         decoration: TextDecoration.underline),
                   ),
                 ],
                 leading: Icons.arrow_back_ios,
                 leadingPress: () => model.navigateBack(),
+                whiteBackground: true,
+                orgTitle: Text(
+                  local.channels,
+                  style: AppTextStyles.heading7,
+                ),
               ),
               body: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(vertical: 23),
@@ -47,13 +45,13 @@ class CreateChannelView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const CustomTextWidget(
-                            text: Name,
+                           CustomTextWidget(
+                            text: local.name,
                             fontWeight: FontWeight.w500,
                           ),
                           UIHelper.verticalSpaceMedium,
-                          const CustomTextWidget(
-                            text: '# e.g. music room',
+                          CustomTextWidget(
+                            text: local.createChannelExample,
                             fontSize: 14,
                             color: AppColors.greyishColor,
                           ),
@@ -72,13 +70,13 @@ class CreateChannelView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const CustomTextWidget(
-                            text: Description,
+                          CustomTextWidget(
+                            text: local.description,
                             fontWeight: FontWeight.w500,
                           ),
                           UIHelper.verticalSpaceMedium,
-                          const CustomTextWidget(
-                            text: AboutChannel,
+                          CustomTextWidget(
+                            text: local.aboutChannel,
                             color: AppColors.greyishColor,
                             fontSize: 14,
                           )
@@ -97,8 +95,8 @@ class CreateChannelView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const CustomTextWidget(
-                            text: ChannelSettings,
+                          CustomTextWidget(
+                            text: local.channelSettings,
                           ),
                           UIHelper.verticalSpaceMedium,
                           SwitchListTile(
@@ -106,14 +104,14 @@ class CreateChannelView extends StatelessWidget {
                             activeColor: AppColors.blueColor,
                             value: true,
                             onChanged: (_) {},
-                            title: const CustomTextWidget(
-                              text: MakePrivate,
+                            title: CustomTextWidget(
+                              text: local.makePrivate,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           UIHelper.verticalSpaceMedium,
-                          const CustomTextWidget(
-                            text: PrivateDescription,
+                          CustomTextWidget(
+                            text: local.privateDescription,
                             color: AppColors.greyishColor,
                             fontSize: 14,
                           )
