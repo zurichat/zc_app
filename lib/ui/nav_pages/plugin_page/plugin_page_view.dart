@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/menu_item_tile.dart';
 import 'package:hng/models/plugin_model.dart';
@@ -72,7 +73,12 @@ class PluginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         MenuItemTile(
-                          icon: Icons.add,
+                          icon: SvgPicture.asset(
+                            'assets/icons/svg_icons/plus.svg',
+                            color: AppColors.zuriPrimaryColor,
+                            width: 18,
+                            height: 18,
+                          ),
                           topBorder: false,
                           text: Text(
                             local!.addPlugin,
@@ -85,7 +91,7 @@ class PluginPage extends StatelessWidget {
                           MenuItemTile(
                             onPressed: () => model.navigateToWebviewPage(
                                 plugin.name, plugin.url),
-                            icon: plugin.icon,
+                            ico: plugin.icon,
                             iconColor: AppColors.zuriPrimaryColor,
                             topBorder: false,
                             text: Text(

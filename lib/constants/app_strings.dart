@@ -337,6 +337,16 @@ const String MyKeyword = 'My Keyword';
 const String MyKeywordSubtitle = 'Get notified when people say...';
 const String ChannelSPecificNotif = 'Channel-specific notifications (0)';
 
+//Zuri_Chat_BottomSheet
+const String MarkUnread = "Mark Unread";
+const String RemindMe = "Remind Me";
+const String AddToSavedItems = "Add to Saved Items";
+const String ReplyInThreads = "Reply in Thread";
+const String FollowThreadZuriChatBottomSheet = "Follow Thread";
+const String ShareMessage = "Share Message";
+const String CopyLinkToMessage = "Copy Link to Message";
+const String CopyTextZuriChatBottomSheet = "Copy Text";
+
 //Onboarding
 const String Skip = 'Skip';
 const String OnboardingOneTitle = 'Perfect Collaboration App For Teams';
@@ -447,7 +457,7 @@ const String PrivacyNLicenses = 'Privacy & licences';
 const String HelpCenter = 'Help Center';
 const String SendFeedback = 'Send Feedback';
 
-//Images and Logos
+//Images and Logos and Icons
 const String AddLogo = 'assets/logo/add_logo.png';
 const String ZuriLogo = 'assets/logo/zuri_app_logo.png';
 const String ZuriWordLogo = 'assets/logo/zuri_word_and_logo.png';
@@ -472,6 +482,39 @@ const String OnboardingThree = 'assets/images/onboarding_screen_2.png';
 const String LinkLogo = 'assets/icons/svg_icons/link.svg';
 const String CancelLogo = 'assets/icons/cancel.png';
 const String PinIcon = 'assets/icons/pin.png';
+const String PauseNotification = 'assets/icons/svg_icons/bell-off.svg';
+const String away = 'assets/icons/svg_icons/circle.svg';
+const String Saved_Items = 'assets/icons/svg_icons/bookmark.svg';
+const String View_Profile = 'assets/icons/svg_icons/user.svg';
+const String notification = 'assets/icons/svg_icons/notification.svg';
+const String preference = 'assets/icons/svg_icons/preference.svg';
+const String Log_Out = 'assets/icons/svg_icons/log-out.svg';
+const String Add_Description = 'assets/icons/svg_icons/Add-description.svg';
+const String add_people = 'assets/icons/svg_icons/add-people.svg';
+const String maximize = 'assets/icons/svg_icons/maximize.svg';
+const String minimize = 'assets/icons/svg_icons/minimize.svg';
+const String zap = 'assets/icons/svg_icons/zap.svg';
+const String at_sign = 'assets/icons/svg_icons/at_sign.svg';
+const String Smile = 'assets/icons/svg_icons/smile.svg';
+const String Camera = 'assets/icons/svg_icons/fluent_camera-16-regular.svg';
+const String Channel_Page_Share =
+    'assets/icons/svg_icons/Channel_Page_Share.svg';
+const String Send = 'assets/icons/svg_icons/Send.svg';
+const String Channel_Info_Notification = 'assets/icons/svg_icons/bell.svg';
+const String toggle_off_sharp = 'assets/icons/svg_icons/toggle_off_sharp.svg';
+const String Channel_Info_Members = 'assets/icons/svg_icons/members.svg';
+const String Channel_Info_Phone = 'assets/icons/svg_icons/phone.svg';
+const String archive = 'assets/icons/svg_icons/archive.svg';
+const String pinned_message = 'assets/icons/svg_icons/pinned_message.svg';
+const String Mark_Unread = 'assets/icons/svg_icons/Mark_Unread.svg';
+const String Remind_Me = 'assets/icons/svg_icons/gg_time.svg';
+const String Reply_In_Thread = 'assets/icons/svg_icons/Reply_In_Thread.svg';
+const String Follow_Thread = 'assets/icons/svg_icons/bi_chat-text.svg';
+const String Share_message = 'assets/icons/svg_icons/Share_message.svg';
+const String Copy_link_To_Message =
+    'assets/icons/svg_icons/akar-icons_link_chain.svg';
+const String Copy_Text = 'assets/icons/svg_icons/Copy-text.svg';
+const String Add_Organization = 'assets/icons/svg_icons/add-organization.svg';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
