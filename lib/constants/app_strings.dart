@@ -340,12 +340,12 @@ const String ChannelSPecificNotif = 'Channel-specific notifications (0)';
 //Zuri_Chat_BottomSheet
 const String MarkUnread = "Mark Unread";
 const String RemindMe = "Remind Me";
-const String Add_To_Saved_Items = "Add to Saved Items";
-const String Reply_In_Threads = "Reply in Thread";
-const String Follow_Thread_ZuriChat_BottomSheet = "Follow Thread";
-const String Share_Message = "Share Message";
-const String Copy_Link_To_Message = "Copy Link to Message";
-const String Copy_Text_ZuriChat_BottomSheet = "Copy Text";
+const String AddToSavedItems = "Add to Saved Items";
+const String ReplyInThreads = "Reply in Thread";
+const String FollowThreadZuriChatBottomSheet = "Follow Thread";
+const String ShareMessage = "Share Message";
+const String CopyLinkToMessage = "Copy Link to Message";
+const String CopyTextZuriChatBottomSheet = "Copy Text";
 
 //Onboarding
 const String Skip = 'Skip';
