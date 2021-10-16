@@ -63,6 +63,9 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
       _snackbarService.showCustomSnackBar(
           message: 'Fullname cannot be null', variant: SnackbarType.failure);
     }
+    if(imageFile != null){
+      imageUrl = await uploadPic();
+    }
     fullName = fullName.trim();
     userModel
       ..firstName =
@@ -72,13 +75,13 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
       ..displayName = displayName
       ..bio = bio
       ..phoneNumber = phone
-      ..imageUrl = await uploadPic();
+      ..imageUrl;
     return userModel;
   }
 
   Future<void> onSave() async {
     if (!hasDataChanged) {
-      return;
+      close();
     }
     updateData();
     final res = await _zuriApi.patch(
