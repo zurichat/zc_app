@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hng/ui/view/expandable_textfield/widget/user_mentions.dart';
+import 'package:zurichat/ui/view/expandable_textfield/widget/user_mentions.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/constants/app_strings.dart';

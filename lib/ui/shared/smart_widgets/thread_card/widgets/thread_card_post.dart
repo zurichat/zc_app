@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
+import 'package:zurichat/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 
@@ -8,7 +8,7 @@ import '../../../shared.dart';
 import '../../../text_styles.dart';
 import '../../text_parser/text_parser_view.dart';
 import '../thread_card_viewmodel.dart';
-import 'package:hng/app/app.logger.dart';
+import 'package:zurichat/app/app.logger.dart';
 
 class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
   ThreadCardPost(this.userThreadPost, {Key? key}) : super(key: key);

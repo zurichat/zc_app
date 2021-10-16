@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/view/channel/channel_view/channel_page_viewmodel.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ScheduleMessChannel extends StatelessWidget {

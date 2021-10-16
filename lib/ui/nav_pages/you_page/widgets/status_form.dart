@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 
 class StatusForm extends StatelessWidget {
   const StatusForm({

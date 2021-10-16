@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -24,7 +24,7 @@ class SplashscreenViewModel extends BaseViewModel {
         } else if (storage.getBool(StorageKeys.registeredNotverifiedOTP) ==
             true) {
           navigation.clearStackAndShow(Routes.oTPView);
-        } else if (storage.getString(StorageKeys.currentUserId) == null) {
+        } else if (storage.getString(StorageKeys.currentUserId) != null) {
           navigation.clearStackAndShow(Routes.loginView);
         } else {
           if (storage.getString(StorageKeys.currentOrgId) == null ||

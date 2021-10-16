@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/constants/app_strings.dart';
-
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../general_widgets/menu_item_tile.dart';
 import 'widgets/profile_page_head.dart';
 import 'widgets/status_form.dart';
@@ -119,7 +117,10 @@ class YouPage extends StatelessWidget {
                     local.viewProfile,
                     style: AppTextStyle.lightGreySize16,
                   ),
-                  onPressed: () => model.getUserPresence(),
+                  onPressed: () {
+                    model.getUserPresence();
+                    model.editProfile();
+                  },
                   topBorder: false,
                 ),
                 const SizedBox(height: 16),

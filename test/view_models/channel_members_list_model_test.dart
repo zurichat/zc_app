@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hng/ui/view/channel/channel_members/channel_members_list_model.dart';
+import 'package:zurichat/ui/view/channel/channel_members/channel_members_list_model.dart';
 import 'package:mockito/mockito.dart';
 import '../helpers/test_helpers.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/text_field.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/text_field.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/shared.dart';
