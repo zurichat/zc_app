@@ -3,7 +3,6 @@ import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/models/organization_model.dart';
-import 'package:zurichat/ui/shared/colors.dart';
 import 'package:zurichat/ui/shared/long_button.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:zurichat/ui/shared/zuri_loader.dart';
@@ -25,8 +24,12 @@ class OrganizationLogo extends StatelessWidget {
             whiteBackground: true,
             leading: Icons.close,
             leadingPress: () => model.back(),
-            title: OrgIcon,
-            subtitle: '',
+            orgTitle: Text(
+              OrgIcon,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
+            ),
             actions: [
               TextButton(
                 onPressed: () => model.updateOrgLogo(org.id.toString()),
@@ -78,10 +81,9 @@ class OrganizationLogo extends StatelessWidget {
                     const SizedBox(height: 30),
                     Text(
                       OrgIconGuide,
-                      style: AppTextStyle.blackSize18Bold.copyWith(
-                          color: _dark
-                              ? AppColors.whiteColor
-                              : AppColors.blackColor),
+                      style: _dark
+                          ? AppTextStyle.whiteSize18Bold
+                          : AppTextStyle.blackSize18Bold,
                     ),
                     const SizedBox(height: 10),
                     Text(

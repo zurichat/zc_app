@@ -53,10 +53,9 @@ class OrganizationSettingsView extends StatelessWidget {
                       children: [
                         Text(
                           EditOrgIcon,
-                          style: AppTextStyle.blackSize18Bold.copyWith(
-                              color: _dark
-                                  ? AppColors.whiteColor
-                                  : AppColors.blackColor),
+                          style: _dark
+                              ? AppTextStyle.whiteSize18Bold
+                              : AppTextStyle.blackSize18Bold,
                         ),
                         const SizedBox(height: 10),
                         Text(
@@ -95,12 +94,9 @@ class OrganizationSettingsView extends StatelessWidget {
                               ),
                               TextSpan(
                                 text: org.name,
-                                style: AppTextStyle.blackSize18Bold.copyWith(
-                                  fontSize: 16,
-                                  color: _dark
-                                      ? AppColors.whiteColor
-                                      : AppColors.blackColor,
-                                ),
+                                style: _dark
+                                    ? AppTextStyle.whiteSize16Bold
+                                    : AppTextStyle.blackSize16Bold,
                               ),
                               TextSpan(
                                 text: EditOrgNameUrlDesc2,
@@ -110,12 +106,9 @@ class OrganizationSettingsView extends StatelessWidget {
                               ),
                               TextSpan(
                                 text: org.organizationUrl ?? '',
-                                style: AppTextStyle.blackSize18Bold.copyWith(
-                                  fontSize: 16,
-                                  color: _dark
-                                      ? AppColors.whiteColor
-                                      : AppColors.blackColor,
-                                ),
+                                style: _dark
+                                    ? AppTextStyle.whiteSize16Bold
+                                    : AppTextStyle.blackSize16Bold,
                               ),
                             ],
                           ),

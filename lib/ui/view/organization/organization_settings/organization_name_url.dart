@@ -29,8 +29,12 @@ class OrganizationNameUrl extends HookWidget {
           appBar: ZuriAppBar(
             whiteBackground: true,
             isDarkMode: _dark,
-            title: OrgnameUrl,
-            subtitle: '',
+            orgTitle: Text(
+              OrgnameUrl,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
+            ),
             leading: Icons.close,
             leadingPress: () => viewModel.back(),
             actions: [
@@ -67,10 +71,9 @@ class OrganizationNameUrl extends HookWidget {
                         children: [
                           Text(
                             OrgName,
-                            style: AppTextStyle.blackSize18Bold.copyWith(
-                                color: _dark
-                                    ? AppColors.whiteColor
-                                    : AppColors.blackColor),
+                            style: _dark
+                                ? AppTextStyle.whiteSize18Bold
+                                : AppTextStyle.blackSize18Bold,
                           ),
                           const SizedBox(height: 15),
                           Flexible(
@@ -102,10 +105,9 @@ class OrganizationNameUrl extends HookWidget {
                         children: [
                           Text(
                             OrgUrl,
-                            style: AppTextStyle.blackSize18Bold.copyWith(
-                                color: _dark
-                                    ? AppColors.whiteColor
-                                    : AppColors.blackColor),
+                            style: _dark
+                                ? AppTextStyle.whiteSize18Bold
+                                : AppTextStyle.blackSize18Bold,
                           ),
                           const SizedBox(height: 15),
                           Row(
