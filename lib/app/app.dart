@@ -2,6 +2,7 @@ import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/localization_service.dart';
 import 'package:hng/services/media_service.dart';
 import 'package:hng/services/notification_service.dart';
+import 'package:hng/services/status_service.dart';
 import 'package:hng/services/zuri_theme_service.dart';
 import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
@@ -183,6 +184,7 @@ import '../ui/view/user_search/user_search_view.dart';
       classType: CentrifugeService,
       presolveUsing: CentrifugeService.getInstance,
     ),
+    LazySingleton(classType: StatusService),
   ],
   logger: StackedLogger(),
 )
