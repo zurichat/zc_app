@@ -49,7 +49,7 @@ packages:
       name: awesome_notifications
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.6+11"
+    version: "0.0.6+10"
   boolean_selector:
     dependency: transitive
     description:
@@ -210,7 +210,7 @@ packages:
       name: connectivity_plus_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.1"
+    version: "1.2.0"
   connectivity_plus_platform_interface:
     dependency: transitive
     description:
@@ -573,7 +573,7 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.4+2"
+    version: "0.8.4+1"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -1194,28 +1194,7 @@ packages:
       name: webview_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
-  webview_flutter_android:
-    dependency: transitive
-    description:
-      name: webview_flutter_android
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.15"
-  webview_flutter_platform_interface:
-    dependency: transitive
-    description:
-      name: webview_flutter_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0"
-  webview_flutter_wkwebview:
-    dependency: transitive
-    description:
-      name: webview_flutter_wkwebview
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.14"
+    version: "2.0.13"
   win32:
     dependency: transitive
     description:
@@ -1245,5 +1224,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.14.0 <3.0.0"
-  flutter: ">=2.5.0"
+  dart: ">=2.13.0 <3.0.0"
+  flutter: ">=2.0.4"

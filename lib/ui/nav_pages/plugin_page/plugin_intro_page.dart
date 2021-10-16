@@ -16,9 +16,11 @@ class PluginPageIntro extends StatelessWidget {
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         final local = AppLocalization.of(context);
+        final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
         return Scaffold(
           appBar: ZuriAppBar(
-            isDarkMode: Theme.of(context).brightness == Brightness.dark,
+            isDarkMode: _dark,
             orgTitle: Text(
               local!.plugins,
               style: AppTextStyle.organizationNameText,
@@ -35,12 +37,16 @@ class PluginPageIntro extends StatelessWidget {
                 children: [
                   Text(
                     local.pluginIntroHeader,
-                    style: AppTextStyle.darkGreySize20Bold,
+                    style: _dark
+                        ? AppTextStyle.whiteSize20Bold
+                        : AppTextStyle.darkGreySize20Bold,
                   ),
                   UIHelper.verticalSpaceMedium,
                   Text(
                     local.pluginIntroBody,
-                    style: AppTextStyle.darkGreySize14,
+                    style: _dark
+                        ? AppTextStyle.whiteSize14
+                        : AppTextStyle.darkGreySize14,
                   ),
                   UIHelper.customVerticalSpace(56.0),
                   FractionallySizedBox(

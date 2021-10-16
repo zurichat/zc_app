@@ -11,6 +11,8 @@ class SavedItemBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -25,7 +27,8 @@ class SavedItemBackground extends StatelessWidget {
           ),
           Text(
             'No saved items',
-            style: AppTextStyle.darkGreySize16,
+            style:
+                _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16,
           ),
           const SizedBox(height: 10),
           const Text(

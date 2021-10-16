@@ -23,10 +23,13 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
   ThreadChannelMain(this.userPost, {Key? key}) : super(key: key);
 
   final log = getLogger("ThreadChannelMain");
+
   final UserPost userPost;
 
   @override
   Widget build(BuildContext context, ThreadCardViewModel viewModel) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return GestureDetector(
       onTap: () => viewModel.navigateToThread(userPost),
       child: Container(
@@ -61,7 +64,9 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                             fit: FlexFit.loose,
                             child: Text(
                               '${userPost.displayName}',
-                              style: AppTextStyle.darkGreySize16Bold,
+                              style: _dark
+                                  ? AppTextStyle.whiteSize16Bold
+                                  : AppTextStyle.darkGreySize16Bold,
                             ),
                           ),
                           const SizedBox(width: 4),
