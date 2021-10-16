@@ -34,9 +34,7 @@ class SignOutBottomSheet extends StatelessWidget {
                     workSpaceSlackUrl: org.organizationUrl,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      model.navigateToInvitePage();
-                    },
+                    onTap: () {},
                     child: ListTile(
                       title: Text(
                         'Invite members',
