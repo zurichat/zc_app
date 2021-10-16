@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zurichat/models/channel_members.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 class MyStatelessWidget extends StatelessWidget {
-  final ChannelMembermodel membersList;
-  const MyStatelessWidget({Key? key, required this.membersList})
+  final String membersList;
+  final String name;
+  const MyStatelessWidget(
+      {Key? key, required this.membersList, required this.name})
       : super(key: key);
 
   @override
@@ -18,9 +19,9 @@ class MyStatelessWidget extends StatelessWidget {
             'assets/images/chimamanda.png',
           ),
           const SizedBox(width: 16.0),
-          Text(membersList.name, style: AppTextStyle.darkGreySize16Bold),
+          Text(membersList, style: AppTextStyle.darkGreySize16Bold),
           const SizedBox(width: 16.0),
-          Text('${membersList.isAdmin}', style: AppTextStyle.lightGreySize16)
+          Text(name, style: AppTextStyle.lightGreySize16)
         ],
       ),
     );

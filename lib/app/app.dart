@@ -185,6 +185,7 @@ import '../ui/view/user_search/user_search_view.dart';
       presolveUsing: CentrifugeService.getInstance,
     ),
     LazySingleton(classType: StatusService),
+    LazySingleton(classType: OrganizationApiService),
   ],
   logger: StackedLogger(),
 )
