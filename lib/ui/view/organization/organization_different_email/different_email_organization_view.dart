@@ -56,7 +56,9 @@ class UseDifferentEmailView extends HookWidget {
                               Text(
                                 local.sendEmailForSignin,
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.w400, fontSize: 16),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                ),
                               ),
                               const SizedBox(height: 25),
                               const Spacer(flex: 3),

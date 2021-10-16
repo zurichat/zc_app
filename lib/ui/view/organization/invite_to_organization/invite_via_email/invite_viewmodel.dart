@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+
 import 'package:stacked/stacked.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
@@ -19,7 +20,7 @@ class InviteViewModel extends FormViewModel with ValidatorMixin {
   final log = getLogger('InviteEmailView');
   final _zuriApi = ZuriApi(coreBaseUrl);
 
-  inviteWithMail(String email) async {
+  Future<void> inviteWithMail(String email) async {
     final orgId = userService.currentOrgId;
     final token = userService.authToken;
     await storage.clearData(StorageKeys.invitedEmail);
@@ -31,7 +32,10 @@ class InviteViewModel extends FormViewModel with ValidatorMixin {
       };
       try {
         final res = await _zuriApi.inviteToOrganizationWithNormalMail(
-            orgId, body, token);
+          orgId,
+          body,
+          token,
+        );
         log.i('>>>>>>>>> invite response : $res');
         setBusy(false);
 

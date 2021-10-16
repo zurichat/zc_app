@@ -12,23 +12,29 @@ class ImportContacts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final local = AppLocalization.of(context);
+
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
         return Scaffold(
           appBar: ZuriAppBar(
+
             isDarkMode: Theme.of(context).brightness == Brightness.dark,
+
             leading: Icons.close,
             leadingPress: () {
               model.navigateBack();
             },
             whiteBackground: true,
             orgTitle: Text(
+
               local!.chooseContacts,
               style: TextStyle(
                 color: Theme.of(context).textTheme.bodyText1!.color,
               ),
+
             ),
             actions: [
               Padding(
@@ -36,7 +42,9 @@ class ImportContacts extends StatelessWidget {
                 child: InkWell(
                     child: Text(
                       "Add",
+
                       style: AppTextStyle.greenSize16,
+
                     ),
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,

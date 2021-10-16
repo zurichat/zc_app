@@ -81,16 +81,20 @@ class CreateInviteLink extends StatelessWidget {
                 SizedBox(
                   child: Column(
                     children: [
+
                       ListTile(
                         leading: const Icon(
+
                           Icons.link_sharp,
                         ),
                         title: Text(local.shareInviteLink),
                       ),
                       UIHelper.horizontalSpaceSmall,
+
                       Text(
                         local.shareLinkText,
                       ),
+
                     ],
                   ),
                 ),

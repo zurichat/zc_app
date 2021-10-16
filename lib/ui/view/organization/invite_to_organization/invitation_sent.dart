@@ -42,8 +42,10 @@ class InvitationSent extends StatelessWidget {
                 ),
                 UIHelper.verticalSpaceLarge,
                 Text(
+
                   local!.invitationSent,
                   style: AppTextStyle.darkGreySize18Bold,
+
                 ),
                 UIHelper.verticalSpaceLarge,
                 Center(
@@ -56,7 +58,9 @@ class InvitationSent extends StatelessWidget {
                       const SizedBox(width: 16),
                       Text(
                         model.getInvitedMail() ?? '',
+
                         style: AppTextStyle.darkGreySize16Bold,
+
                       ),
                     ],
                   ),
@@ -64,9 +68,11 @@ class InvitationSent extends StatelessWidget {
                 UIHelper.verticalSpaceLarge,
                 Center(
                   child: Text(
+
                     local.invitedAsAZuriChatMember,
                     style: AppTextStyle.darkGreySize16,
                   ),
+
                   // textAlign: TextAlign.center,
                 ),
                 const Spacer(),
@@ -74,7 +80,9 @@ class InvitationSent extends StatelessWidget {
                   onPressed: () {
                     model.navigateToHome();
                   },
+
                   label: local.done,
+
                 ),
               ],
             ),

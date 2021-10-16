@@ -92,6 +92,7 @@ import '../ui/view/user_search/user_search_view.dart';
 
 @StackedApp(
   routes: [
+
     CupertinoRoute(page: ChannelAddPeopleView),
     CupertinoRoute(page: NavBarView),
     CupertinoRoute(page: OnboardingView),
@@ -155,6 +156,7 @@ import '../ui/view/user_search/user_search_view.dart';
     CupertinoRoute(page: OrganizationSettingsView),
     CupertinoRoute(page: OrganizationNameUrl),
     CupertinoRoute(page: OrganizationLogo),
+
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

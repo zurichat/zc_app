@@ -229,7 +229,9 @@ class ChannelPageViewModel extends FormViewModel {
         UserPost(
           id: data['_id'],
           displayName: userid,
+
           statusIcon: '⭐',
+
           moment: Moment.now().from(DateTime.parse(data['timestamp'])),
           message: data['content'],
           channelType: ChannelType.public,
@@ -240,6 +242,7 @@ class ChannelPageViewModel extends FormViewModel {
           userId: userid,
           channelId: channelId,
           pinned: data['pinned'],
+
           postMediaFiles: (data['files'] as List)
               .map((e) => PostFiles(
                   id: "",
@@ -248,6 +251,7 @@ class ChannelPageViewModel extends FormViewModel {
                   size: null,
                   fileName: null))
               .toList(),
+
         ),
       );
     });

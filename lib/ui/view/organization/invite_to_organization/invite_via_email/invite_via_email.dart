@@ -18,6 +18,7 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
+
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
@@ -62,10 +63,10 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                       Center(
                         child: Text(
                           local.inviteForAdminApproval,
-                          //style: AppTextStyles.body2_400,
                         ),
                       ),
                       UIHelper.verticalSpaceLarge,
+                      //TODO:(Blazebrain) Bulk invite to Organization using Mail
                       TextField(
                         controller: emailController,
                         cursorColor: AppColors.zuriPrimaryColor,
@@ -85,18 +86,19 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                         ),
                       ),
                       UIHelper.verticalSpaceLarge,
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: AppColors.zuriPrimaryColor,
-                        ),
-                        onPressed: () {
-                          model.navigateToContacts();
-                        },
-                        child: const ListTile(
-                          leading: Icon(Icons.person_sharp),
-                          title: Text("Invite from contacts"),
-                        ),
-                      ),
+                      //TODO: (Blazebrain) Invite From Contacts
+                      // ElevatedButton(
+                      //   style: ElevatedButton.styleFrom(
+                      //     primary: AppColors.zuriPrimaryColor,
+                      //   ),
+                      //   onPressed: () {
+                      //     model.navigateToContacts();
+                      //   },
+                      //   child: const ListTile(
+                      //     leading: Icon(Icons.person_sharp),
+                      //     title: Text("Invite from contacts"),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
