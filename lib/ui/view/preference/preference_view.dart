@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/menu_item_tile.dart';
@@ -13,20 +14,24 @@ class PreferenceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    TextStyle _menuTitleStyle =
+        _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16;
     return ViewModelBuilder<PreferenceViewModel>.reactive(
       viewModelBuilder: () => PreferenceViewModel(),
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           orgTitle: Text(
-            'Preferences',
+            local!.preferences,
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),
           leading: Icons.close_outlined,
           leadingPress: () => model.exitPage(),
-          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          isDarkMode: _dark,
           whiteBackground: true,
         ),
         body: SingleChildScrollView(
@@ -35,58 +40,28 @@ class PreferenceView extends StatelessWidget {
               UIHelper.verticalSpaceMedium,
               MenuItemTile(
                 topBorder: false,
-                text: Text(
-                  LangAndRegion,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text: Text(local.langAndRegion, style: _menuTitleStyle),
                 onPressed: model.navigateLanguageAndRegion,
               ),
               MenuItemTile(
-                text: Text(
-                  DarkMode,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text: Text(local.darkMode, style: _menuTitleStyle),
                 subtitle: model.currentTheme,
                 onPressed: model.changeTheme,
               ),
               MenuItemTile(
-                text: Text(
-                  Advanced,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text: Text(local.advanced, style: _menuTitleStyle),
                 onPressed: model.navigateToAdvanced,
               ),
               MenuItemTile(
-                text: Text(
-                  SendFeedback,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text: Text(local.sendFeedback, style: _menuTitleStyle),
                 onPressed: model.sendFeedback,
               ),
               MenuItemTile(
-                text: Text(
-                  HelpCenter,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text: Text(local.helpCenter, style: _menuTitleStyle),
                 onPressed: model.helpCentre,
               ),
               MenuItemTile(
-                text: Text(
-                  PrivacyNLicenses,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text: Text(local.privacyNLicenses, style: _menuTitleStyle),
                 onPressed: model.privacyAndLicences,
               ),
               UIHelper.verticalSpaceMedium,

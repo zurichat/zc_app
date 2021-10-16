@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/plugin_intro_page.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/svg_icon.dart';
@@ -40,8 +41,8 @@ class NavBarView extends StatelessWidget {
             unselectedItemColor: AppColors.navBarItemColor,
             selectedFontSize: 14,
             unselectedFontSize: 14,
-            selectedLabelStyle: AppTextStyles.normalText,
-            unselectedLabelStyle: AppTextStyles.normalText,
+            selectedLabelStyle: AppTextStyle.darkGreySize12,
+            unselectedLabelStyle: AppTextStyle.darkGreySize12,
             currentIndex: vModel.currentIndex,
             onTap: vModel.setIndex,
             items: getBottomIcons(context),

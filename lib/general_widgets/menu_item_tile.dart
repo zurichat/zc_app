@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/text_styles.dart';
 
 import '../ui/shared/colors.dart';
 
@@ -9,6 +8,7 @@ class MenuItemTile extends StatelessWidget {
   const MenuItemTile({
     this.onPressed,
     this.iconColor,
+    this.ico,
     this.text,
     this.icon,
     this.imageIcon,
@@ -23,6 +23,7 @@ class MenuItemTile extends StatelessWidget {
 
   const MenuItemTile.icon({
     this.onPressed,
+    this.ico,
     this.iconColor,
     this.text,
     this.icon,
@@ -39,6 +40,7 @@ class MenuItemTile extends StatelessWidget {
   const MenuItemTile.flipSwitch({
     this.onPressed,
     this.iconColor,
+    this.ico,
     this.text,
     this.subtitle,
     this.icon,
@@ -52,7 +54,7 @@ class MenuItemTile extends StatelessWidget {
         super(key: key);
 
   final Text? text;
-  final IconData? icon;
+  final Widget? icon;
   final String? imageIcon;
   final void Function()? onPressed;
   final void Function(bool)? onChanged;
@@ -62,15 +64,13 @@ class MenuItemTile extends StatelessWidget {
   final bool topBorder;
   final bool value;
   final Color? iconColor;
+  final IconData? ico;
 
   Widget? selectIcon() {
-    if (icon == null && imageIcon == null) {
+    if (ico == null && icon == null && imageIcon == null) {
       return null;
     } else if (icon != null) {
-      return Icon(
-        icon,
-        color: iconColor,
-      );
+      return icon;
     } else {
       return Image.asset('$imageIcon');
     }
@@ -82,18 +82,8 @@ class MenuItemTile extends StatelessWidget {
       case _TileType.normal:
         return ListTile(
           title: text,
-
-          subtitle: subtitle != null
-              ? Text(
-                  subtitle ?? '',
-                  style: ZuriTextStyle.mediumNormal(),
-                )
-              : null,
+          subtitle: subtitle != null ? Text(subtitle ?? '') : null,
           dense: true,
-          // contentPadding: EdgeInsets.symmetric(
-          //   horizontal: 0.0,
-          //   vertical: 0.0,
-          // ),
           visualDensity: const VisualDensity(horizontal: 0.0, vertical: 0),
           onTap: onPressed,
           shape: Border(
@@ -115,12 +105,7 @@ class MenuItemTile extends StatelessWidget {
         return ListTile(
           onTap: onPressed,
           title: text,
-          subtitle: subtitle != null
-              ? Text(
-                  subtitle ?? '',
-                  style: ZuriTextStyle.mediumNormal(),
-                )
-              : null,
+          subtitle: subtitle != null ? Text(subtitle ?? '') : null,
           trailing: selectIcon(),
           shape: Border(
             top: BorderSide(

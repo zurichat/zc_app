@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/general_widgets/menu_item_tile.dart';
-import 'package:hng/models/plugin_model.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/general_widgets/menu_item_tile.dart';
+import 'package:zurichat/models/plugin_model.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/long_button.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 class PluginPage extends StatelessWidget {
@@ -18,12 +20,21 @@ class PluginPage extends StatelessWidget {
     return ViewModelBuilder<PluginViewModel>.reactive(
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
+        final local = AppLocalization.of(context);
+        final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
         return Scaffold(
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             leadingPress: model.navigateBack,
+            isDarkMode: _dark,
             whiteBackground: true,
-            orgTitle: Text(Plugins, style: AppTextStyles.heading4),
+            orgTitle: Text(
+              Plugins,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
+            ),
           ),
           body: !model.hasplugins
               ? Padding(
@@ -34,16 +45,17 @@ class PluginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Get serious and have fun here",
-                          style: AppTextStyles.header6,
+                          local!.pluginIntroHeader,
+                          style: _dark
+                              ? AppTextStyle.whiteSize16
+                              : AppTextStyle.darkGreySize16,
                         ),
                         UIHelper.verticalSpaceMedium,
                         Text(
-                          '''Access your oganization’s important stuff'''
-                          ''' like holiday-calendar, meeting room, notice'''
-                          ''' board etc. Have fun by joining the chess'''
-                          ''' room and music room.''',
-                          style: AppTextStyles.body1Grey,
+                          local.pluginIntroBody,
+                          style: _dark
+                              ? AppTextStyle.whiteSize14
+                              : AppTextStyle.lightGreySize14,
                         ),
                         UIHelper.customVerticalSpace(56.0),
                         FractionallySizedBox(
@@ -52,7 +64,7 @@ class PluginPage extends StatelessWidget {
                             onPressed: () {
                               model.navigateToAdd();
                             },
-                            label: "Get Started",
+                            label: local.getstarted,
                           ),
                         ),
                       ],
@@ -67,27 +79,36 @@ class PluginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         MenuItemTile(
-                          icon: Icons.add,
-                          topBorder: false,
-                          text: Text(
-                            "Add Plugin",
-                            style: AppTextStyles.faintBodyText.copyWith(
-                              fontSize: 16,
-                            ),
+                          icon: SvgPicture.asset(
+                            'assets/icons/svg_icons/plus.svg',
+                            color: _dark
+                                ? AppColors.whiteColor
+                                : AppColors.zuriGrey,
+                            width: 18,
+                            height: 18,
                           ),
+                          topBorder: false,
+                          text: Text(local!.addPlugin,
+                              style: _dark
+                                  ? AppTextStyle.whiteSize16
+                                  : AppTextStyle.lightGreySize16),
                         ),
                         for (PluginModel plugin in model.plugins)
                           MenuItemTile(
                             onPressed: () => model.navigateToWebviewPage(
                                 plugin.name, plugin.url),
-                            icon: plugin.icon,
+                            icon: Icon(
+                              plugin.icon,
+                              color: AppColors.zuriPrimaryColor,
+                              size: 18,
+                            ),
                             iconColor: AppColors.zuriPrimaryColor,
                             topBorder: false,
                             text: Text(
                               plugin.name,
-                              style: AppTextStyles.faintBodyText.copyWith(
-                                fontSize: 16,
-                              ),
+                              style: _dark
+                                  ? AppTextStyle.whiteSize16
+                                  : AppTextStyle.lightGreySize16,
                             ),
                           ),
                       ],

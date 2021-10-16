@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/models/api_response.dart';
-import 'package:hng/models/organization_model.dart';
-import 'package:hng/models/user_search_model.dart';
-import 'package:hng/utilities/failures.dart';
+import 'package:zurichat/models/api_response.dart';
+import 'package:zurichat/models/organization_model.dart';
+import 'package:zurichat/models/user_search_model.dart';
+import 'package:zurichat/utilities/failures.dart';
 
 abstract class Api {
   /// THIS IS THE API ABSTRACT CLASS FOR ZURI CHAT MOBILE
@@ -74,12 +74,11 @@ abstract class Api {
   Future uploadImage(
     File image, {
     required String token,
-    required String orgId,
-    required String memberId,
+    required String pluginId,
   });
 
   // THE SERVICE TO UPDATE AN ORGANIZATION LOGO
-  Future updateOrgLogo(String orgId, String url, token);
+  Future updateOrgLogo(String orgId, File image, token);
 
   // THE SERVICE TO ADD A MEMBERS TO AN ORGANIZATION
   Future addMemberToOrganization(String orgId, String email, token);
@@ -164,6 +163,13 @@ abstract class Api {
   /// THE SERVICE TO FETCH ALL MEMBERS IN AN ORGANIZATIONS
   /// THIS INCLUDES THE ADMINS AND MEMBERS
   Future fetchListOfMembers(String currentOrgId, String channelId, token);
+
+  // Future uploadImage{
+  //   File image,(
+  //     {required String token,
+  //     required String pluginId}
+  //   );
+  // }
 
   /// A SERVICE TO SEND PATCH REQUEST TO THE ENDPOINT
   Future<ApiResponse?> patch(String path,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/general_widgets/unread_count.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class CustomPluginListTile extends StatelessWidget {
   final String? assetName;
@@ -27,28 +29,29 @@ class CustomPluginListTile extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              icon != null ? 
-                Icon(
-                  icon,
-                  color: isActive ? Colors.black : AppColors.greyishColor,
-                  size: 16,
-                ) : 
-                 Image.asset(
-                  assetName!,
-                  width: 18,
-                ),
-              const SizedBox(width: 8),
-              Text(
-                pluginName,
-                style: isActive ? AppTextStyles.unreadText : AppTextStyles.normalText
-              ),
-            ]
-          ),
+          Row(children: [
+            icon != null
+                ? Icon(
+                    icon,
+                    color: isActive ? Colors.black : AppColors.greyishColor,
+                    size: 16,
+                  )
+                : Image.asset(
+                    assetName!,
+                    width: 18,
+                  ),
+            const SizedBox(width: 8),
+            Text(
+              pluginName,
+              style: isActive
+                  ? AppTextStyle.darkGreySize12
+                  : AppTextStyle.darkGreySize12,
+              //TODO: fix this
+            ),
+          ]),
           isActive
-              ? AppTextStyles.unreadCount(
-                  int.parse(data!),
+              ? UnreadCount(
+                  count: int.parse(data!),
                 )
               : Container()
         ],

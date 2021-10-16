@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class SavedItemBackground extends StatelessWidget {
   const SavedItemBackground({
@@ -9,7 +10,9 @@ class SavedItemBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  final _size = MediaQuery.of(context).size;
+    final _size = MediaQuery.of(context).size;
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -22,9 +25,10 @@ class SavedItemBackground extends StatelessWidget {
             size: _size.height * .3,
             color: AppColors.greyishColor,
           ),
-          const CustomText(
-            text: 'No saved items',
-            fontWeight: FontWeight.w600,
+          Text(
+            'No saved items',
+            style:
+                _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16,
           ),
           const SizedBox(height: 10),
           const Text(

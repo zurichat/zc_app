@@ -5,7 +5,7 @@ class UserModel {
   String? displayName;
   String? email;
   String? phoneNumber;
-  UserStatus? status;
+  int? status;
   String? timezone;
   String? createdAt;
   String? updatedAt;
@@ -37,7 +37,7 @@ class UserModel {
       'display_name': displayName,
       'email': email,
       'phone': phoneNumber,
-      'status': status?.toMap(),
+      'status': status,
       'time_zone': timezone,
       'created_at': createdAt,
       'updated_at': updatedAt,
@@ -53,7 +53,7 @@ class UserModel {
       displayName: map['display_name'],
       email: map['email'],
       phoneNumber: map['phone'],
-      status: UserStatus.fromMap(map['status']),
+      status: map['status'],
       timezone: map['time_zone'],
       createdAt: map['created_at'],
       updatedAt: map['updated_at'],

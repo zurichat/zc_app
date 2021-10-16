@@ -1,15 +1,15 @@
 import 'dart:convert';
 
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/utilities/constants.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:hng/app/app.logger.dart';
+import 'package:zurichat/app/app.logger.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../models/user_post.dart';
 import '../../../../package/base/server-request/api/zuri_api.dart';
@@ -27,7 +27,6 @@ class ThreadDetailViewModel extends BaseViewModel {
   final _apiService = ZuriApi(channelsBaseUrl);
   final _userService = locator<UserService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
-
 
   List<UserThreadPost> channelThreadMessages = [];
   late String channelMessageId;
@@ -115,6 +114,7 @@ class ThreadDetailViewModel extends BaseViewModel {
     storeDraft(userPost, value);
     _navigationService.back();
   }
+
   Future<void> sendThreadMessage(String message, String channelId) async {
     await _apiService.addReplyToMessage(
         channelMessageId, message, null, currentOrg, userId, channelId);
@@ -135,40 +135,45 @@ class ThreadDetailViewModel extends BaseViewModel {
 
   var storedDraft = '';
 
-  void getDraft(userPost){
-    List<String>? spList = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
-    if (spList != null){
-      for ( String encodedStoredDraft in spList) {
-        if(jsonDecode(encodedStoredDraft)['userPostId'] == userPost.id &&
-            jsonDecode(encodedStoredDraft)['userPostChannelName'] == userPost.channelName
-    ){
+  void getDraft(userPost) {
+    List<String>? spList =
+        storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    if (spList != null) {
+      for (String encodedStoredDraft in spList) {
+        if (jsonDecode(encodedStoredDraft)['userPostId'] == userPost.id &&
+            jsonDecode(encodedStoredDraft)['userPostChannelName'] ==
+                userPost.channelName) {
           storedDraft = jsonDecode(encodedStoredDraft)['draft'];
           spList.remove(encodedStoredDraft);
-          storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, spList);
+          storageService.setStringList(
+              StorageKeys.currentUserThreadIdDrafts, spList);
           return;
         }
       }
     }
   }
 
-  void storeDraft(userPost, value){
+  void storeDraft(userPost, value) {
     var keyMap = {
       'draft': value,
-      'time' : '${DateTime.now()}',
-      'userPostId' : userPost.id,
-      'userPostChannelName' : userPost.channelName,
-      'userPostMessage' : userPost.message,
-      'userPostDisplayName' : userPost.displayName,
+      'time': '${DateTime.now()}',
+      'userPostId': userPost.id,
+      'userPostChannelName': userPost.channelName,
+      'userPostMessage': userPost.message,
+      'userPostDisplayName': userPost.displayName,
     };
 
-    List<String>? spList = storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    List<String>? spList =
+        storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
 
-    if(value.length > 0 && spList != null){
+    if (value.length > 0 && spList != null) {
       spList.add(json.encode(keyMap));
-      storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, spList);
-    }else if (value.length > 0 && spList == null){
+      storageService.setStringList(
+          StorageKeys.currentUserThreadIdDrafts, spList);
+    } else if (value.length > 0 && spList == null) {
       spList = [json.encode(keyMap)];
-      storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, spList);
+      storageService.setStringList(
+          StorageKeys.currentUserThreadIdDrafts, spList);
     }
   }
   //**draft implementation ends here

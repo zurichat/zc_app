@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/utilities.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/utilities.dart';
 
 class PostFilesDisplay extends StatelessWidget {
   const PostFilesDisplay({Key? key, required this.postFiles}) : super(key: key);
@@ -35,8 +36,10 @@ class PostFilesDisplay extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("${postFiles![index].fileName}",
-                            style: AppTextStyles.body1Bold),
+                        Text(
+                          "${postFiles![index].fileName}",
+                          style: AppTextStyle.darkGreySize16Bold,
+                        ),
                         const SizedBox(height: 1),
                         Text(
                           "${postFiles![index].size} ${postFiles![index].fileName!.split('.').last}",

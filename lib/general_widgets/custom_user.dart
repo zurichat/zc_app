@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class CustomUser extends StatelessWidget {
   const CustomUser({Key? key, this.image, this.text}) : super(key: key);
@@ -31,7 +33,7 @@ class CustomUser extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                // style: AppTextStyles.subtitle1.copyWith(fontSize: 12.sp),
+                style: AppTextStyle.darkGreySize12,
               ))
         ],
       ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import '../ui/shared/colors.dart';
+//import 'package:expandable_text/expandable_text.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -34,6 +36,7 @@ class CustomTextField extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         labelText: labelText,
         hintText: hintText,
+        hintStyle: AppTextStyle.textFieldHint,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(3.0)),
         ),

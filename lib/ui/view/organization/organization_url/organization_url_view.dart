@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import '../../../shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
@@ -14,6 +16,7 @@ class OrganizationUrlView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<OrganizationUrlViewModel>.nonReactive(
       builder: (context, viewModel, child) => ModalProgressHUD(
         inAsyncCall: viewModel.isBusy,
@@ -39,22 +42,16 @@ class OrganizationUrlView extends StatelessWidget {
                             TextSpan(
                               children: [
                                 TextSpan(
-                                  text: OrgDesc1,
-                                  style: AppTextStyles.body3Medium.copyWith(
-                                    fontSize: 16,
-                                  ),
-                                ),
+                                    text: local!.dontKnowWorkspaceUrl,
+                                    style: AppTextStyle.lightGreySize16),
                                 TextSpan(
                                   text: '$email',
-                                  style: AppTextStyles.body3Medium.copyWith(
-                                      fontSize: 16,
-                                      color: AppColors.appBarGreen),
+                                  style: AppTextStyle.lightGreySize16
+                                      .copyWith(color: AppColors.appBarGreen),
                                 ),
                                 TextSpan(
-                                  text: OrgDesc2,
-                                  style: AppTextStyles.body3Medium.copyWith(
-                                    fontSize: 16,
-                                  ),
+                                  text: local.helpSignInEasily,
+                                  style: AppTextStyle.lightGreySize16,
                                 ),
                               ],
                             ),
@@ -84,25 +81,16 @@ class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
   @override
   Widget buildViewModelWidget(
       BuildContext context, OrganizationUrlViewModel viewModel) {
+    final local = AppLocalization.of(context);
     return Center(
       child: TextField(
         cursorColor: AppColors.appBarGreen,
-        style: AppTextStyles.body3Medium.copyWith(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
+        style: AppTextStyle.darkGreySize16Bold,
         decoration: InputDecoration(
-          labelText: EnterOrgUrl,
-          labelStyle: AppTextStyles.body3Medium.copyWith(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: AppColors.zuriPrimaryColor,
-          ),
+          labelText: local!.enterWorkSpacesUrl,
+          labelStyle: AppTextStyle.greenSize16,
           hintText: EnterOrgUrlHint,
-          hintStyle: AppTextStyles.body3Medium.copyWith(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: AppColors.zuriGrey),
+          hintStyle: AppTextStyle.lightGreySize16,
           border: InputBorder.none,
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
@@ -122,6 +110,7 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
 
   @override
   Widget build(BuildContext context, OrganizationUrlViewModel viewModel) {
+    final local = AppLocalization.of(context);
     return TextButton(
       style: ButtonStyle(
           backgroundColor:
@@ -133,10 +122,8 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
           width: MediaQuery.of(context).size.width,
           child: Center(
             child: Text(
-              Next,
-              style: AppTextStyles.buttonText.copyWith(
-                  color: viewModel.buttonTextColor,
-                  fontWeight: FontWeight.bold),
+              local!.next,
+              style: AppTextStyle.darkGreySize16Bold,
             ),
           ),
         ),

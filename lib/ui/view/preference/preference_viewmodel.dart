@@ -1,9 +1,8 @@
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/zuri_theme_service.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:stacked_themes/stacked_themes.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';
@@ -12,7 +11,7 @@ import '../../../utilities/enums.dart';
 
 class PreferenceViewModel extends BaseViewModel {
   final log = getLogger('PreferenceViewModel');
-  final ThemeService _themeService = locator<ThemeService>();
+  final _zuriThemeService = locator<ZuriThemeService>();
   final _dialogService = locator<DialogService>();
   final _navigationService = locator<NavigationService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
@@ -32,7 +31,6 @@ class PreferenceViewModel extends BaseViewModel {
 
   Future changeTheme() async {
     final dialogResult = await _dialogService.showCustomDialog(
-      title: DarkMode,
       barrierDismissible: false,
       variant: DialogType.themeMode,
       data: {'themes': themes, 'currentThemeValue': currentThemeValue},
@@ -41,7 +39,7 @@ class PreferenceViewModel extends BaseViewModel {
     if (dialogResult != null && dialogResult.confirmed == true) {
       log.i(dialogResult.data);
       currentThemeValue = dialogResult.data;
-      _themeService.selectThemeAtIndex(currentThemeValue);
+      _zuriThemeService.selectThemeAtIndex(currentThemeValue);
       currentTheme = themes[dialogResult.data];
       _storageService.setString(
           StorageKeys.currentTheme, themes[dialogResult.data]);

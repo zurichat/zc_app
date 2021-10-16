@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/services/notification_service.dart';
-import 'package:hng/ui/shared/setup_bottom_sheet_ui.dart';
-import 'package:hng/ui/shared/setup_dialog_ui.dart';
-import 'package:hng/utilities/internalization/local_setup.dart';
-import 'package:intl/intl.dart';
+import 'package:zurichat/services/notification_service.dart';
+import 'package:zurichat/ui/shared/setup_bottom_sheet_ui.dart';
+import 'package:zurichat/ui/shared/setup_dialog_ui.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
@@ -12,7 +12,8 @@ import 'app/app.locator.dart';
 import 'app/app.router.dart';
 import 'constants/app_strings.dart';
 import 'general_widgets/app_snackbar.dart';
-import 'services/theme_setup.dart';
+import 'main_app_view_model.dart';
+import 'services/zuri_theme_service.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,15 +23,42 @@ Future main() async {
   setupDialogUi();
   initNotificationService();
   AppSnackBar.setupSnackbarUi();
-  runApp(const MyApp());
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    return ViewModelBuilder<AppModel>.reactive(
+      onModelReady: (model) => model.initialise,
+      builder: (context, model, child) => MyApp(model),
+      viewModelBuilder: () => AppModel(),
+    );
+  }
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp(this.model, {Key? key}) : super(key: key);
+  final AppModel model;
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+  static void setLocale(BuildContext context, Locale locale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state!.setLocale(locale);
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+  @override
+  Widget build(BuildContext context) {
+    _locale = widget.model.appLocale;
     return ThemeBuilder(
-      themes: getThemes(),
+      themes: ZuriThemeService().getThemes(),
       builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -41,30 +69,18 @@ class MyApp extends StatelessWidget {
           darkTheme: darkTheme,
           themeMode: themeMode,
           initialRoute: Routes.splashview,
-          localizationsDelegates: localizationsDelegates,
-          supportedLocales: const [
-            Locale('en', 'US'),
-            Locale('nl', 'NL'),
-            Locale('pt', 'BR'),
-            Locale('ar', 'SA'),
-            Locale('zh', 'HK'),
-          ],
-          localeResolutionCallback: (locale, supportedLocales) {
-            if (locale == null) {
-              Intl.defaultLocale = supportedLocales.first.languageCode;
-              return supportedLocales.first;
-            }
-            for (var supportedLocale in supportedLocales) {
-              if (supportedLocale.languageCode == locale.languageCode &&
-                  supportedLocale.countryCode == locale.countryCode) {
-                return supportedLocale;
-              }
-            }
-            Intl.defaultLocale = supportedLocales.first.languageCode;
-            return supportedLocales.first;
-          },
+          localizationsDelegates: widget.model.localizationsDelegates,
+          locale: _locale,
+          supportedLocales: supportedLocalesList,
+          localeResolutionCallback: widget.model.loadSupportedLocals,
         ),
       ),
     );
+  }
+
+  void setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
   }
 }
