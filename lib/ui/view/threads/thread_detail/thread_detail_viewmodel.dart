@@ -111,8 +111,8 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   void exitPage(userPost, value) {
-    storeDraft(userPost, value);
     _navigationService.back();
+    storeDraft(userPost, value);
   }
 
   Future<void> sendThreadMessage(String message, String channelId) async {
@@ -136,15 +136,20 @@ class ThreadDetailViewModel extends BaseViewModel {
   var storedDraft = '';
 
   void getDraft(userPost) {
+    var currentOrgId =
+    storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId =
+    storageService.getString(StorageKeys.currentUserId);
     List<String>? spList =
-        storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
     if (spList != null) {
-      for (String encodedStoredDraft in spList) {
-        if (jsonDecode(encodedStoredDraft)['userPostId'] == userPost.id &&
-            jsonDecode(encodedStoredDraft)['userPostChannelName'] ==
-                userPost.channelName) {
-          storedDraft = jsonDecode(encodedStoredDraft)['draft'];
-          spList.remove(encodedStoredDraft);
+      for (String e in spList) {
+        if (jsonDecode(e)['userPostId'] == userPost.id &&
+            jsonDecode(e)['userPostChannelName'] == userPost.channelName &&
+            currentOrgId == jsonDecode(e)['currentOrgId'] &&
+            currentUserId == jsonDecode(e)['currentUserId']) {
+          storedDraft = jsonDecode(e)['draft'];
+          spList.remove(e);
           storageService.setStringList(
               StorageKeys.currentUserThreadIdDrafts, spList);
           return;
@@ -154,6 +159,10 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   void storeDraft(userPost, value) {
+    var currentOrgId =
+    storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId =
+    storageService.getString(StorageKeys.currentUserId);
     var keyMap = {
       'draft': value,
       'time': '${DateTime.now()}',
@@ -161,10 +170,12 @@ class ThreadDetailViewModel extends BaseViewModel {
       'userPostChannelName': userPost.channelName,
       'userPostMessage': userPost.message,
       'userPostDisplayName': userPost.displayName,
+      'currentOrgId': currentOrgId,
+      'currentUserId': currentUserId,
     };
 
     List<String>? spList =
-        storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
 
     if (value.length > 0 && spList != null) {
       spList.add(json.encode(keyMap));
@@ -176,6 +187,6 @@ class ThreadDetailViewModel extends BaseViewModel {
           StorageKeys.currentUserThreadIdDrafts, spList);
     }
   }
-  //**draft implementation ends here
+//**draft implementation ends here
 
 }
