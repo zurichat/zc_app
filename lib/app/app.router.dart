@@ -61,7 +61,7 @@ import '../ui/view/organization/invite_to_organization/invite_via_contact/import
 
 import '../ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
 import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
-import '../ui/view/organization/organization_settings/organization_icon.dart';
+import '../ui/view/organization/organization_settings/organization_logo.dart';
 import '../ui/view/organization/organization_settings/organization_name_url.dart';
 import '../ui/view/organization/organization_settings/organization_settings_view.dart';
 import '../ui/view/organization/organization_url/organization_url_view.dart';
