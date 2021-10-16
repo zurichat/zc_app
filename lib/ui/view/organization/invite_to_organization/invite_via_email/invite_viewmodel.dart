@@ -33,7 +33,10 @@ class InviteViewModel extends FormViewModel with ValidatorMixin {
       };
       try {
         final res = await _zuriApi.inviteToOrganizationWithNormalMail(
-            orgId, body, token);
+          orgId,
+          body,
+          token,
+        );
         log.i('>>>>>>>>> invite response : $res');
         setBusy(false);
 
