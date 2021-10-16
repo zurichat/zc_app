@@ -43,15 +43,17 @@ class PreferenceView extends StatelessWidget {
                 text: Text(local.langAndRegion, style: _menuTitleStyle),
                 onPressed: model.navigateLanguageAndRegion,
               ),
-              MenuItemTile(
-                text: Text(local.darkMode, style: _menuTitleStyle),
-                subtitle: model.currentTheme,
-                onPressed: model.changeTheme,
+              SwitchListTile(
+                value: model.isDarkMode,
+                onChanged: model.changeTheme,
+                title: Text(local.darkMode, style: _menuTitleStyle),
+                selected: model.isDarkMode,
+                subtitle: Text(model.currentTheme),
               ),
-              MenuItemTile(
-                text: Text(local.advanced, style: _menuTitleStyle),
-                onPressed: model.navigateToAdvanced,
-              ),
+              // MenuItemTile(
+              //   text: Text(local.advanced, style: _menuTitleStyle),
+              //   onPressed: model.navigateToAdvanced,
+              // ),
               MenuItemTile(
                 text: Text(local.sendFeedback, style: _menuTitleStyle),
                 onPressed: model.sendFeedback,

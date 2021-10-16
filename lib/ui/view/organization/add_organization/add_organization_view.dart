@@ -90,7 +90,9 @@ class AddOrganizationView extends StatelessWidget {
                             children: [
                               SvgPicture.asset(
                                 Add_Organization,
-                                color: AppColors.whiteColor,
+                                    ? AppColors.whiteColor
+                                    : AppColors.blackColor,
+
                                 width: 20,
                                 height: 20,
                               ),

@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:zurichat/general_widgets/easy_container.dart';
 import 'package:zurichat/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:zurichat/ui/nav_pages/home_page/widgets/home_expanded.dart';
@@ -84,15 +83,16 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: vmodel.navigateToStartDMScreen,
-          child: IconButton(
-            onPressed: vmodel.navigateToStartDMScreen,
-            icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
-            color: AppColors.whiteColor,
-          ),
-          backgroundColor: AppColors.zuriPrimaryColor,
-        ),
+        //TODO
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: vmodel.navigateToStartDMScreen,
+        //   child: IconButton(
+        //     onPressed: vmodel.navigateToStartDMScreen,
+        //     icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
+        //     color: AppColors.whiteColor,
+        //   ),
+        //   backgroundColor: AppColors.zuriPrimaryColor,
+        // ),
       ),
     );
   }
@@ -116,14 +116,15 @@ class HomePage extends StatelessWidget {
                   child: DraftTextAndIcon())
               : Container(),
           const Divider(),
+          //TODO
+          // HomeExpandedList(
+          //   title: local!.unreads,
+          //   canExpand: false,
+          //   data: vmodel.unreads,
+          // ),
+          // const Divider(),
           HomeExpandedList(
-            title: local!.unreads,
-            canExpand: false,
-            data: vmodel.unreads,
-          ),
-          const Divider(),
-          HomeExpandedList(
-            title: local.channels,
+            title: local!.channels,
             data: vmodel.joinedChannels,
           ),
           const Divider(),
