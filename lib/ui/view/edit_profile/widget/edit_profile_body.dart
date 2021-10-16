@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
-//import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+//import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../edit_profile_viewmodel.dart';
@@ -15,7 +15,6 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
         super(key: key, reactive: true);
   @override
   Widget build(BuildContext context, EditProfileViewModel viewModel) {
-     
     return Container(
       padding: EdgeInsets.symmetric(
           vertical: _size.height * 0.02, horizontal: _size.width * 0.05),

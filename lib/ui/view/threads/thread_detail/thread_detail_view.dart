@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -14,7 +14,7 @@ import '../../../shared/colors.dart';
 import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';
 import '../../dm_user/icons/zap_icon.dart';
 import 'thread_detail_viewmodel.dart';
-import 'package:hng/app/app.logger.dart';
+import 'package:zurichat/app/app.logger.dart';
 import 'thread_detail_view.form.dart';
 
 @FormView(fields: [FormTextField(name: 'message')])

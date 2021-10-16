@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import '../../../../shared/colors.dart';
 
 class FifthSection extends StatelessWidget {

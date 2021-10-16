@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/models/user_post.dart';
+import 'package:zurichat/models/user_post.dart';
 
 class AudioMessage extends StatelessWidget {
   const AudioMessage({Key? key, required this.postAudioFiles})

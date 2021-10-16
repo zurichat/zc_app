@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/services/localization_service.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/services/localization_service.dart';
 import 'package:stacked/stacked.dart';
 
 class AppModel extends ReactiveViewModel {
