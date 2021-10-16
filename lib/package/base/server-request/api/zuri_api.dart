@@ -55,13 +55,28 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 10),
-        variant: SnackbarType.failure,
-        message: e.response!.data!['message'] ?? errorOccurred,
-      );
+      if (e.response!.data!['message'] == String) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: e.response!.data!['message'],
+        );
+      } else if (e.response!.data!['message'] != String) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: e.response!.data!['message'] ??
+              e.response!.data['error'] ??
+              errorOccurred,
+        );
+      }
       log.w(e.toString());
       handleApiError(e);
+    } on SocketException {
+      snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 10),
+          variant: SnackbarType.failure,
+          message: 'Please check your internet');
     }
   }
 
@@ -79,13 +94,28 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 10),
-        variant: SnackbarType.failure,
-        message: e.response!.data!['message'] ?? errorOccurred,
-      );
+      if (e.response!.data!['message'] == String) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: e.response!.data!['message'],
+        );
+      } else if (e.response!.data!['message'] != String) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: e.response!.data!['message'] ??
+              e.response!.data['error'] ??
+              errorOccurred,
+        );
+      }
       log.w(e.toString());
       handleApiError(e);
+    } on SocketException {
+      snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 10),
+          variant: SnackbarType.failure,
+          message: 'Please check your internet');
     }
   }
 
@@ -103,13 +133,28 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
-        variant: SnackbarType.failure,
-        message: e.response!.data!['message'] ?? errorOccurred,
-      );
+      if (e.response!.data!['message'] == String) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: e.response!.data!['message'],
+        );
+      } else if (e.response!.data!['message'] != String) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: e.response!.data!['message'] ??
+              e.response!.data['error'] ??
+              errorOccurred,
+        );
+      }
       log.w(e.toString());
       handleApiError(e);
+    } on SocketException {
+      snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 10),
+          variant: SnackbarType.failure,
+          message: 'Please check your internet');
     }
   }
 
@@ -122,13 +167,28 @@ class ZuriApi implements Api {
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return ApiUtils.toApiResponse(res);
     } on DioError catch (e) {
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
-        variant: SnackbarType.failure,
-        message: e.response!.data!['message'] ?? errorOccurred,
-      );
+      if (e.response!.data!['message'] == String) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: e.response!.data!['message'],
+        );
+      } else if (e.response!.data!['message'] != String) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: e.response!.data!['message'] ??
+              e.response!.data['error'] ??
+              errorOccurred,
+        );
+      }
       log.w(e.toString());
       handleApiError(e);
+    } on SocketException {
+      snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 10),
+          variant: SnackbarType.failure,
+          message: 'Please check your internet');
     }
   }
 
@@ -146,13 +206,28 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
-      snackbar.showCustomSnackBar(
-        duration: const Duration(seconds: 3),
-        variant: SnackbarType.failure,
-        message: e.response!.data!['message'] ?? errorOccurred,
-      );
+      if (e.response!.data!['message'] == String) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: e.response!.data!['message'],
+        );
+      } else if (e.response!.data!['message'] != String) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: e.response!.data!['message'] ??
+              e.response!.data['error'] ??
+              errorOccurred,
+        );
+      }
       log.w(e.toString());
       handleApiError(e);
+    } on SocketException {
+      snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 10),
+          variant: SnackbarType.failure,
+          message: 'Please check your internet');
     }
   }
 
