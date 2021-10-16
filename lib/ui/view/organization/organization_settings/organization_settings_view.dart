@@ -15,6 +15,7 @@ class OrganizationSettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<OrganizationSettingsViewModel>.reactive(
       viewModelBuilder: () => OrganizationSettingsViewModel(),
       builder: (context, model, child) {
@@ -23,14 +24,15 @@ class OrganizationSettingsView extends StatelessWidget {
             title: OrgSettings,
             subtitle: org.name,
             whiteBackground: true,
+            isDarkMode: _dark,
             leading: Icons.arrow_back_ios_new,
             leadingPress: () => model.back(),
           ),
           body: Container(
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-            decoration: const BoxDecoration(
-              color: AppColors.whiteColor,
-              boxShadow: [
+            decoration: BoxDecoration(
+              color: _dark ? AppColors.blackColor : AppColors.whiteColor,
+              boxShadow: const <BoxShadow>[
                 BoxShadow(
                   color: AppColors.shadowColor,
                   spreadRadius: 5,
@@ -51,14 +53,17 @@ class OrganizationSettingsView extends StatelessWidget {
                       children: [
                         Text(
                           EditOrgIcon,
-                          style: AppTextStyle.blackSize18Bold
-                              .copyWith(color: AppColors.blackColor),
+                          style: AppTextStyle.blackSize18Bold.copyWith(
+                              color: _dark
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackColor),
                         ),
                         const SizedBox(height: 10),
                         Text(
                           EditOrgIconDesc,
-                          style: AppTextStyle.lightGreySize16.copyWith(
-                              fontSize: 15, color: AppColors.greyColor),
+                          style: _dark
+                              ? AppTextStyle.lightGreySize16
+                              : AppTextStyle.darkGreySize16,
                         ),
                       ],
                     ),
@@ -74,8 +79,10 @@ class OrganizationSettingsView extends StatelessWidget {
                       children: [
                         Text(
                           EditOrgNameUrl,
-                          style: AppTextStyle.blackSize18Bold
-                              .copyWith(color: AppColors.blackColor),
+                          style: AppTextStyle.blackSize18Bold.copyWith(
+                              color: _dark
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackColor),
                         ),
                         const SizedBox(height: 10),
                         Text.rich(
@@ -83,26 +90,32 @@ class OrganizationSettingsView extends StatelessWidget {
                             children: [
                               TextSpan(
                                 text: EditOrgNameUrlDesc1,
-                                style: AppTextStyle.lightGreySize16.copyWith(
-                                    fontSize: 15, color: AppColors.greyColor),
+                                style: _dark
+                                    ? AppTextStyle.lightGreySize16
+                                    : AppTextStyle.darkGreySize16,
                               ),
                               TextSpan(
                                 text: org.name,
                                 style: AppTextStyle.blackSize18Bold.copyWith(
-                                  fontSize: 15,
-                                  color: AppColors.blackColor,
+                                  fontSize: 16,
+                                  color: _dark
+                                      ? AppColors.whiteColor
+                                      : AppColors.blackColor,
                                 ),
                               ),
                               TextSpan(
                                 text: EditOrgNameUrlDesc2,
-                                style: AppTextStyle.lightGreySize16.copyWith(
-                                    fontSize: 15, color: AppColors.greyColor),
+                                style: _dark
+                                    ? AppTextStyle.lightGreySize16
+                                    : AppTextStyle.darkGreySize16,
                               ),
                               TextSpan(
                                 text: org.organizationUrl ?? '',
                                 style: AppTextStyle.blackSize18Bold.copyWith(
-                                  fontSize: 15,
-                                  color: AppColors.blackColor,
+                                  fontSize: 16,
+                                  color: _dark
+                                      ? AppColors.whiteColor
+                                      : AppColors.blackColor,
                                 ),
                               ),
                             ],

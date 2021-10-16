@@ -15,12 +15,14 @@ class OrganizationLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<OrganizationSettingsViewModel>.reactive(
       viewModelBuilder: () => OrganizationSettingsViewModel(),
       builder: (context, model, child) {
         return Scaffold(
           appBar: ZuriAppBar(
             whiteBackground: true,
+            isDarkMode: _dark,
             leading: Icons.close,
             leadingPress: () => model.back(),
             title: OrgIcon,
@@ -30,9 +32,9 @@ class OrganizationLogo extends StatelessWidget {
                 onPressed: () => model.updateOrgLogo(org.id.toString()),
                 child: Text(
                   Save,
-                  style: AppTextStyle.lightGreySize16.copyWith(
-                    color: AppColors.zuriPrimaryColor,
-                  ),
+                  style: _dark
+                      ? AppTextStyle.lightGreySize16
+                      : AppTextStyle.darkGreySize16,
                 ),
               ),
             ],
@@ -50,7 +52,6 @@ class OrganizationLogo extends StatelessWidget {
                       width: 150,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        // border: Border.all(color: AppColors.greyColor, width: 1),
                       ),
                       clipBehavior: Clip.hardEdge,
                       child: model.tempImage == null && org.logoUrl!.isEmpty
@@ -77,14 +78,17 @@ class OrganizationLogo extends StatelessWidget {
                     const SizedBox(height: 30),
                     Text(
                       OrgIconGuide,
-                      style: AppTextStyle.blackSize18Bold
-                          .copyWith(color: AppColors.blackColor, fontSize: 20),
+                      style: AppTextStyle.blackSize18Bold.copyWith(
+                          color: _dark
+                              ? AppColors.whiteColor
+                              : AppColors.blackColor),
                     ),
                     const SizedBox(height: 10),
                     Text(
                       OrgIconGuideDesc,
-                      style: AppTextStyle.lightGreySize16.copyWith(
-                          fontSize: 17, color: AppColors.greyishColor),
+                      style: _dark
+                          ? AppTextStyle.lightGreySize16
+                          : AppTextStyle.darkGreySize16,
                     ),
                   ],
                 ),

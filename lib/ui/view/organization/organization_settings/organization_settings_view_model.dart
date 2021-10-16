@@ -84,10 +84,11 @@ class OrganizationSettingsViewModel extends BaseViewModel with ValidatorMixin {
       String orgId, String orgName, String orgUrl) async {
     try {
       final parsedUrl = '$orgUrl.zurichat.com';
-
       setBusy(true);
       if (orgName != name) await _zuriApi.updateOrgName(orgId, orgName, token);
-      if (orgUrl != url) await _zuriApi.updateOrgUrl(orgId, parsedUrl, token);
+      if (parsedUrl != url) {
+        await _zuriApi.updateOrgUrl(orgId, parsedUrl, token);
+      }
       setBusy(false);
       navigation
           .popUntil((route) => route.settings.name == Routes.organizationView);

@@ -20,6 +20,7 @@ class OrganizationNameUrl extends HookWidget {
     final _orgNameController = useTextEditingController(text: org.name);
     final _orgUrlController =
         useTextEditingController(text: org.organizationUrl?.split('.').first);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<OrganizationSettingsViewModel>.reactive(
       viewModelBuilder: () => OrganizationSettingsViewModel(),
       onModelReady: (model) => model.init(org.name!, org.organizationUrl!),
@@ -27,6 +28,7 @@ class OrganizationNameUrl extends HookWidget {
         return Scaffold(
           appBar: ZuriAppBar(
             whiteBackground: true,
+            isDarkMode: _dark,
             title: OrgnameUrl,
             subtitle: '',
             leading: Icons.close,
@@ -40,9 +42,9 @@ class OrganizationNameUrl extends HookWidget {
                 },
                 child: Text(
                   Save,
-                  style: AppTextStyle.lightGreySize16.copyWith(
-                    color: AppColors.zuriPrimaryColor,
-                  ),
+                  style: _dark
+                      ? AppTextStyle.lightGreySize16
+                      : AppTextStyle.darkGreySize16,
                 ),
               ),
             ],
@@ -66,7 +68,9 @@ class OrganizationNameUrl extends HookWidget {
                           Text(
                             OrgName,
                             style: AppTextStyle.blackSize18Bold.copyWith(
-                                color: AppColors.blackColor, fontSize: 18),
+                                color: _dark
+                                    ? AppColors.whiteColor
+                                    : AppColors.blackColor),
                           ),
                           const SizedBox(height: 15),
                           Flexible(
@@ -81,8 +85,9 @@ class OrganizationNameUrl extends HookWidget {
                           const SizedBox(height: 15),
                           Text(
                             OrgNameDesc,
-                            style: AppTextStyle.lightGreySize16.copyWith(
-                                fontSize: 15, color: AppColors.greyColor),
+                            style: _dark
+                                ? AppTextStyle.lightGreySize16
+                                : AppTextStyle.darkGreySize16,
                           ),
                         ],
                       ),
@@ -98,7 +103,9 @@ class OrganizationNameUrl extends HookWidget {
                           Text(
                             OrgUrl,
                             style: AppTextStyle.blackSize18Bold.copyWith(
-                                color: AppColors.blackColor, fontSize: 18),
+                                color: _dark
+                                    ? AppColors.whiteColor
+                                    : AppColors.blackColor),
                           ),
                           const SizedBox(height: 15),
                           Row(
@@ -116,16 +123,18 @@ class OrganizationNameUrl extends HookWidget {
                               const SizedBox(width: 10),
                               Text(
                                 '.zurichat.com',
-                                style: AppTextStyle.lightGreySize16
-                                    .copyWith(fontSize: 15),
+                                style: _dark
+                                    ? AppTextStyle.lightGreySize16
+                                    : AppTextStyle.darkGreySize16,
                               ),
                             ],
                           ),
                           const SizedBox(height: 15),
                           Text(
                             OrgUrlDesc,
-                            style: AppTextStyle.lightGreySize16.copyWith(
-                                fontSize: 15, color: AppColors.greyColor),
+                            style: _dark
+                                ? AppTextStyle.lightGreySize16
+                                : AppTextStyle.darkGreySize16,
                           ),
                         ],
                       ),

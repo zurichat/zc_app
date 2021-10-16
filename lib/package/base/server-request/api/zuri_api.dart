@@ -351,6 +351,8 @@ class ZuriApi implements Api {
   Future<bool> updateOrgLogo(String orgId, File image, token) async {
     try {
       var formData = FormData.fromMap({
+        'height': 300,
+        'width': 300,
         "image": await MultipartFile.fromFile(
           image.path,
           filename: image.path.split(Platform.pathSeparator).last,
