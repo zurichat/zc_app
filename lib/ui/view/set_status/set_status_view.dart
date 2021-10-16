@@ -32,12 +32,12 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
         progressIndicator: const ZuriLoader(),
         child: Scaffold(
           appBar: ZuriAppBar(
-            
+
             leading: Icons.close_rounded,
             leadingPress: () => model.exitPage(),
             orgTitle: Text(
               'Set a status',
-              style: AppTextStyles.heading4.copyWith(
+              style: AppTextStyle.darkGreySize16.copyWith(
                 color: Theme.of(context).textTheme.bodyText1!.color,
 
               ),
@@ -47,7 +47,7 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                 onPressed: model.saveStatus,
                 child: Text(
                   Save,
-                  style: AppTextStyles.heading8,
+                  style: AppTextStyle.darkGreySize16,
                 ),
               )
             ],
@@ -66,16 +66,16 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                       onTap: model.addEmojiTag,
                       child: model.tagIcon != null
                           ? Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text(
-                                model.tagIcon ?? '',
-                              ),
-                            )
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(
+                          model.tagIcon ?? '',
+                        ),
+                      )
                           : const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Icon(bubble),
-                            ),
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Icon(bubble),
+                      ),
                     ),
                     Flexible(
                       child: TextField(

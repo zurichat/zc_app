@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/bottom_sheets/image_picker_bottomsheet/image_picker_bottomsheet_viewmodel.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -51,7 +52,7 @@ class ImagePickerBottomSheet extends StatelessWidget {
                                 onTap: () => completer(SheetResponse(confirmed: true)),
                                 title: Center(
                                   child: Text('Photo Library',
-                                      style: AppTextStyles.appBarTextStyle),
+                                      style: AppTextStyle.header6),
                                 ),
                               ),
                               const Divider(
@@ -62,7 +63,7 @@ class ImagePickerBottomSheet extends StatelessWidget {
                                   onTap: () => completer(SheetResponse(confirmed: false)),
                                   title: Center(
                                     child: Text('Take Photo',
-                                        style: AppTextStyles.appBarTextStyle),
+                                        style: AppTextStyle.header6),
                                   )),
                             ],
                           ),
@@ -81,7 +82,7 @@ class ImagePickerBottomSheet extends StatelessWidget {
                               },
                               title: Center(
                                 child: Text('Cancel',
-                                    style: AppTextStyles.appBarTextStyle),
+                                    style: AppTextStyle.header6),
                               )),
                         ),
                       ],
