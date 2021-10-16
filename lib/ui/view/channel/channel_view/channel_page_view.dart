@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/general_widgets/no_connection_widget.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
-import 'package:hng/ui/view/expandable_textfield/expandable_textfield_screen.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/general_widgets/no_connection_widget.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/view/channel/channel_view/widgets/channel_intro.dart';
+import 'package:zurichat/ui/view/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../../shared/shared.dart';
@@ -67,20 +67,19 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.search,
-                  color: AppColors.greyColor,
+                  color: AppColors.textLight10,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 5),
                 child: IconButton(
                   onPressed: () => model.navigateToChannelInfoScreen(
-                    membersCount!,
-                    ChannelModel(id: channelId!, name: channelName!),
-                    channelName!
-                  ),
+                      membersCount!,
+                      ChannelModel(id: channelId!, name: channelName!),
+                      channelName!),
                   icon: const Icon(
                     Icons.info_outlined,
-                    color: AppColors.greyColor,
+                    color: AppColors.textLight10,
                   ),
                 ),
               ),
@@ -90,7 +89,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
           ),
           body: ExpandableTextFieldScreen(
-             usercheck: model.checkUser,
+            usercheck: model.checkUser,
             channelName: '$channelName',
             channelId: '$channelId',
             channelID: channelId.toString(),

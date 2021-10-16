@@ -3,22 +3,22 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
-import 'package:hng/services/centrifuge_service.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/media_service.dart';
-import 'package:hng/services/notification_service.dart';
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
+import 'package:zurichat/services/centrifuge_service.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/media_service.dart';
+import 'package:zurichat/services/notification_service.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 import 'package:simple_moment/simple_moment.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -229,7 +229,9 @@ class ChannelPageViewModel extends FormViewModel {
         UserPost(
           id: data['_id'],
           displayName: userid,
+
           statusIcon: '⭐',
+
           moment: Moment.now().from(DateTime.parse(data['timestamp'])),
           message: data['content'],
           channelType: ChannelType.public,
@@ -240,6 +242,7 @@ class ChannelPageViewModel extends FormViewModel {
           userId: userid,
           channelId: channelId,
           pinned: data['pinned'],
+
           postMediaFiles: (data['files'] as List)
               .map((e) => PostFiles(
                   id: "",
@@ -248,6 +251,7 @@ class ChannelPageViewModel extends FormViewModel {
                   size: null,
                   fileName: null))
               .toList(),
+
         ),
       );
     });
@@ -281,20 +285,11 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
-  void navigateToShareMessage(UserPost userPost) async {
-    var result = await _navigationService.navigateTo(Routes.shareMessageView,
-        arguments: ShareMessageViewArguments(userPost: userPost));
+  void navigateToShareMessage(UserPost userPost) =>
+      _navigationService.navigateTo(Routes.shareMessageView,
+          arguments: ShareMessageViewArguments(userPost: userPost));
 
-    var newMessage = result['message'];
-    var sharedMessage = result['sharedMessage'];
-    var message = '$newMessage: $sharedMessage';
-    sendMessage(message);
-    _navigationService.back();
-  }
-
-  void exitPage() {
-    _navigationService.back();
-  }
+  void exitPage() => _navigationService.back();
 
   String time() {
     return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
@@ -329,7 +324,7 @@ class ChannelPageViewModel extends FormViewModel {
 
   void exit() => _navigationService.back();
 
-  navigateToChannelEdit(String channelName, String channelId) {
+  void navigateToChannelEdit(String channelName, String channelId) {
     _navigationService.navigateTo(Routes.editChannelPageView,
         arguments: EditChannelPageViewArguments(
           channelName: channelName,

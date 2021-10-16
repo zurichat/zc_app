@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'saved_items_viewmodel.dart';
 import 'widgets/saved_item_background.dart';
@@ -12,6 +13,7 @@ class SavedItemsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<SavedItemsViewModel>.reactive(
       onModelReady: (model) => model.savedItems,
       builder: (context, model, child) => Scaffold(
@@ -24,7 +26,7 @@ class SavedItemsView extends StatelessWidget {
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),
-          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          isDarkMode: _dark,
           whiteBackground: true,
         ),
         body: model.savedBuilderList.isEmpty
@@ -38,6 +40,7 @@ class SavedItemsView extends StatelessWidget {
                     onTap: () =>
                         model.navigateToMessage(model.savedBuilderList[index]),
                     onLongPress: () {
+                      //TODO: replace with dialog service
                       showDialog(
                           context: context,
                           builder: (context) {
@@ -50,10 +53,8 @@ class SavedItemsView extends StatelessWidget {
                                     ),
                                     onPressed: () => model.deleteItem(index)),
                                 TextButton(
-                                  child: Text(
-                                    "No",
-                                    style: AppTextStyles.bodySmall,
-                                  ),
+                                  child: Text("No",
+                                      style: AppTextStyle.greenSize14),
                                   onPressed: () => model.goBack(),
                                 ),
                               ],
@@ -69,9 +70,10 @@ class SavedItemsView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                              model.savedBuilderList[index].channelName ??
-                                  model.savedBuilderList[index].channelId!,
-                              style: AppTextStyles.heading4),
+                            model.savedBuilderList[index].channelName ??
+                                model.savedBuilderList[index].channelId!,
+                            style: AppTextStyle.darkGreySize18Bold,
+                          ),
                           const SizedBox(height: 20),
                           Row(
                             children: [
@@ -89,11 +91,12 @@ class SavedItemsView extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                          model.savedBuilderList[index]
-                                                  .displayName ??
-                                              model.savedBuilderList[index]
-                                                  .userID!,
-                                          style: AppTextStyles.heading7),
+                                        model.savedBuilderList[index]
+                                                .displayName ??
+                                            model.savedBuilderList[index]
+                                                .userID!,
+                                        style: AppTextStyle.darkGreySize20Bold,
+                                      ),
                                       const SizedBox(height: 10),
                                       Text(model
                                           .savedBuilderList[index].message!)

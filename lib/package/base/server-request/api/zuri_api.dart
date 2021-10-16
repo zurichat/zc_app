@@ -5,20 +5,20 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/api_response.dart';
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/models/channels_search_model.dart';
-import 'package:hng/models/organization_model.dart';
-import 'package:hng/models/user_search_model.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/api_utils.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/failures.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/api_response.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/models/channels_search_model.dart';
+import 'package:zurichat/models/organization_model.dart';
+import 'package:zurichat/models/user_search_model.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/api_utils.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/failures.dart';
 import 'package:stacked_services/stacked_services.dart'
     hide FormData, MultipartFile;
 
@@ -311,7 +311,7 @@ class ZuriApi implements Api {
   Future updateOrgUrl(String orgId, String url, token) async {
     try {
       final res = await dio.patch(
-        '$channelsBaseUrl/organizations/$orgId/url',
+        '${coreBaseUrl}organizations/$orgId/url',
         options: Options(
           headers: {'Authorization': 'Bearer $token'},
         ),
@@ -330,7 +330,7 @@ class ZuriApi implements Api {
   Future updateOrgName(String orgId, String name, token) async {
     try {
       final res = await dio.patch(
-        '$channelsBaseUrl/organizations/$orgId/name',
+        '${coreBaseUrl}organizations/$orgId/name',
         options: Options(
           headers: {'Authorization': 'Bearer $token'},
         ),
@@ -346,14 +346,21 @@ class ZuriApi implements Api {
   /// Updates an organization's logo. The organization's id `orgId` must not be
   /// null or empty
   @override
-  Future updateOrgLogo(String orgId, String url, token) async {
+  Future updateOrgLogo(String orgId, File image, token) async {
     try {
+      var formData = FormData.fromMap({
+        "image": await MultipartFile.fromFile(
+          image.path,
+          filename: image.path.split(Platform.pathSeparator).last,
+          contentType: MediaType('image', 'jpeg'),
+        ),
+      });
       final res = await dio.patch(
-        '$channelsBaseUrl/organizations/$orgId/logo',
+        '${coreBaseUrl}organizations/$orgId/logo',
         options: Options(
           headers: {'Authorization': 'Bearer $token'},
         ),
-        data: {'url': url},
+        data: formData,
       );
       return res.data['message'];
     } on DioError catch (e) {
@@ -820,7 +827,7 @@ class ZuriApi implements Api {
     });
     try {
       final res = await dio.post(
-        'https://api.zuri.chat/upload/file/$pluginId',
+        '${coreBaseUrl}upload/file/$pluginId',
         options: Options(
           headers: {'Authorization': 'Bearer $token', 'token': 'Bearer $token'},
         ),

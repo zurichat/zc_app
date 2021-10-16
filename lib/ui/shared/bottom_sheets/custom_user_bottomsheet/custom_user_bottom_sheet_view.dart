@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/constants/app_strings.dart';
+
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -23,6 +24,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
           ? Container()
@@ -34,7 +36,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
                   (BuildContext context, ScrollController scrollController) {
                 return Container(
                   height: height * .97,
-                  color: Theme.of(context).brightness == Brightness.dark
+                  color: _dark
                       ? AppColors.darkThemePrimaryColor
                       : AppColors.whiteColor,
                   child: SingleChildScrollView(
@@ -66,14 +68,25 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         const CustomProfileTile(
                             title: Track, subtitle: MobileDev),
                         const Divider(),
-                        const CustomProfileTile(
+                        CustomProfileTile(
                           title: DisplayName,
-                          subtitle: '',
+                          subtitle: model.userModel!.displayName ?? '',
                         ),
                         const Divider(),
                         ListTile(
-                          title: const CustomText(
-                              text: StatusText, fontWeight: FontWeight.w300),
+                          visualDensity:
+                              const VisualDensity(horizontal: 0.0, vertical: 0),
+                          horizontalTitleGap: 0,
+                          dense: true,
+                          title: Padding(
+                            padding: const EdgeInsets.only(bottom: 3),
+                            child: Text(
+                              StatusText,
+                              style: _dark
+                                  ? AppTextStyle.whiteSize16
+                                  : AppTextStyle.darkGreySize16,
+                            ),
+                          ),
                           subtitle: const Align(
                               alignment: Alignment.centerLeft,
                               child: Icon(Icons.looks_5,
@@ -89,14 +102,14 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           ),
                         ),
                         const Divider(),
-                        const CustomProfileTile(
+                        CustomProfileTile(
                           title: Number,
-                          subtitle: '',
+                          subtitle: model.userModel!.phoneNumber ?? '',
                         ),
                         const Divider(),
                         CustomProfileTile(
                           title: EmailAddress,
-                          subtitle: model.email!,
+                          subtitle: model.userModel!.email!,
                         ),
                       ],
                     ),

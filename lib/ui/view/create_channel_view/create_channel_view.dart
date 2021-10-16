@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -32,7 +33,7 @@ class CreateChannelView extends StatelessWidget {
                 whiteBackground: true,
                 orgTitle: Text(
                   local.channels,
-                  style: AppTextStyles.heading7,
+                  style: AppTextStyle.darkGreySize20Bold,
                 ),
               ),
               body: SingleChildScrollView(
@@ -45,7 +46,7 @@ class CreateChannelView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                           CustomTextWidget(
+                          CustomTextWidget(
                             text: local.name,
                             fontWeight: FontWeight.w500,
                           ),

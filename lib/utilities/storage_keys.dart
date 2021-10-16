@@ -10,6 +10,7 @@ class StorageKeys {
   static const registeredNotverifiedOTP = 'user_otp_verified';
   static const currentOrgName = 'current_org_name';
   static const currentOrgUrl = 'current_org_url';
+  static const currentOrgLogo = 'current_org_logo';
   static const currentMemberID = 'member_Id';
   static const displayName = 'display_name';
   static const firstName = 'first_name';
@@ -26,6 +27,10 @@ class StorageKeys {
   static const savedItem = 'saved_item';
   static const allMembersinOrganization = 'all_members_in_organization';
   static const idInOrganization = 'id_in_organization';
+
+  static const statusText = 'status_text';
+  static const statusTagIcon = 'status_tag_icon';
   static const invitedEmail = 'invited_email';
   static const currentLanguageIndex = "current_language_index";
+
 }

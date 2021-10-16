@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 import '../../../shared/colors.dart';
-import '../../../shared/styles.dart';
 import 'edit_channel_view_model.dart';
 import 'edit_channel_view.form.dart';
 import 'widgets/edit_channel_headers.dart';
@@ -39,7 +39,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
           leading: Icons.arrow_back_ios,
           orgTitle: Text(
             local!.editChannel,
-            style: AppTextStyles.heading7,
+            style: AppTextStyle.darkGreySize20Bold,
           ),
           whiteBackground: true,
           actions: [
@@ -50,9 +50,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
                     local.save,
-                    style: AppTextStyles.heading4.copyWith(
-                      color: AppColors.appBarGreen,
-                    ),
+                    style: AppTextStyle.darkGreySize18Bold,
                   ),
                 ),
               ),
@@ -73,7 +71,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
                 margin: _padding,
                 child: Text(
                   channelName,
-                  style: AppTextStyles.body1Light,
+                  style: AppTextStyle.darkGreySize16,
                 ),
               ),
               const SizedBox(
@@ -83,7 +81,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
                 margin: _padding,
                 child: Text(
                   ChannelCreationWarning,
-                  style: AppTextStyles.body2_400,
+                  style: AppTextStyle.darkGreySize14,
                 ),
               ),
               const SizedBox(

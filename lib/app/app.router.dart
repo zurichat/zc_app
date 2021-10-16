@@ -11,6 +11,7 @@ import 'package:stacked/stacked.dart';
 
 import '../models/channel_members.dart';
 import '../models/channel_model.dart';
+import '../models/organization_model.dart';
 import '../models/user_model.dart';
 import '../models/user_post.dart';
 import '../ui/nav_pages/dm_page/dm_search_find_page.dart';
@@ -30,7 +31,9 @@ import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
+
 import '../ui/view/channel/share_message/share_message_view.dart';
+
 import '../ui/view/clear_after/clear_after_view.dart';
 import '../ui/view/direct_message/direct_message.dart';
 import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
@@ -52,10 +55,15 @@ import '../ui/view/organization/add_organization/add_organization_view.dart';
 import '../ui/view/organization/create_organization/create_organization.dart';
 import '../ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
 import '../ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
+
 import '../ui/view/organization/invite_to_organization/invitation_sent.dart';
 import '../ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
+
 import '../ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
 import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
+import '../ui/view/organization/organization_settings/organization_logo.dart';
+import '../ui/view/organization/organization_settings/organization_name_url.dart';
+import '../ui/view/organization/organization_settings/organization_settings_view.dart';
 import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
@@ -137,6 +145,9 @@ class Routes {
   static const String createInviteLink = '/create-invite-link';
   static const String invitationSent = '/invitation-sent';
   static const String shareMessageView = '/share-message-view';
+  static const String organizationSettingsView = '/organization-settings-view';
+  static const String organizationNameUrl = '/organization-name-url';
+  static const String organizationLogo = '/organization-logo';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -198,6 +209,9 @@ class Routes {
     createInviteLink,
     invitationSent,
     shareMessageView,
+    organizationSettingsView,
+    organizationNameUrl,
+    organizationLogo,
   };
 }
 
@@ -266,6 +280,9 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createInviteLink, page: CreateInviteLink),
     RouteDef(Routes.invitationSent, page: InvitationSent),
     RouteDef(Routes.shareMessageView, page: ShareMessageView),
+    RouteDef(Routes.organizationSettingsView, page: OrganizationSettingsView),
+    RouteDef(Routes.organizationNameUrl, page: OrganizationNameUrl),
+    RouteDef(Routes.organizationLogo, page: OrganizationLogo),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -360,8 +377,14 @@ class StackedRouter extends RouterBase {
       );
     },
     ChannelNotificationView: (data) {
+      var args = data.getArgs<ChannelNotificationViewArguments>(
+        orElse: () => ChannelNotificationViewArguments(),
+      );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => const ChannelNotificationView(),
+        builder: (context) => ChannelNotificationView(
+          key: args.key,
+          channelName: args.channelName,
+        ),
         settings: data,
       );
     },
@@ -420,8 +443,11 @@ class StackedRouter extends RouterBase {
       );
     },
     DmScreen: (data) {
+      var args = data.getArgs<DmScreenArguments>(
+        orElse: () => DmScreenArguments(),
+      );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => DmScreen(),
+        builder: (context) => DmScreen(key: args.key),
         settings: data,
       );
     },
@@ -463,8 +489,11 @@ class StackedRouter extends RouterBase {
       );
     },
     SetStatusView: (data) {
+      var args = data.getArgs<SetStatusViewArguments>(
+        orElse: () => SetStatusViewArguments(),
+      );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => const SetStatusView(),
+        builder: (context) => SetStatusView(key: args.key),
         settings: data,
       );
     },
@@ -699,7 +728,9 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<InviteViaEmailArguments>(
         orElse: () => InviteViaEmailArguments(),
       );
+
       return CupertinoPageRoute<dynamic>(
+
         builder: (context) => InviteViaEmail(key: args.key),
         settings: data,
       );
@@ -734,6 +765,36 @@ class StackedRouter extends RouterBase {
         builder: (context) => ShareMessageView(
           userPost: args.userPost,
           key: args.key,
+        ),
+        settings: data,
+      );
+    },
+    OrganizationSettingsView: (data) {
+      var args = data.getArgs<OrganizationSettingsViewArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => OrganizationSettingsView(
+          key: args.key,
+          org: args.org,
+        ),
+        settings: data,
+      );
+    },
+    OrganizationNameUrl: (data) {
+      var args = data.getArgs<OrganizationNameUrlArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => OrganizationNameUrl(
+          key: args.key,
+          org: args.org,
+        ),
+        settings: data,
+      );
+    },
+    OrganizationLogo: (data) {
+      var args = data.getArgs<OrganizationLogoArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => OrganizationLogo(
+          key: args.key,
+          org: args.org,
         ),
         settings: data,
       );
@@ -790,6 +851,13 @@ class ForgotPasswordNewViewArguments {
   ForgotPasswordNewViewArguments({this.key});
 }
 
+/// ChannelNotificationView arguments holder class
+class ChannelNotificationViewArguments {
+  final Key? key;
+  final String? channelName;
+  ChannelNotificationViewArguments({this.key, this.channelName});
+}
+
 /// NewChannel arguments holder class
 class NewChannelArguments {
   final Key? key;
@@ -821,6 +889,12 @@ class DmUserViewArguments {
   DmUserViewArguments({this.key});
 }
 
+/// DmScreen arguments holder class
+class DmScreenArguments {
+  final Key? key;
+  DmScreenArguments({this.key});
+}
+
 /// AddPluginView arguments holder class
 class AddPluginViewArguments {
   final Key? key;
@@ -832,6 +906,12 @@ class UseDifferentEmailViewArguments {
   final Key? key;
   final OrganizationSwitchMethod method;
   UseDifferentEmailViewArguments({this.key, required this.method});
+}
+
+/// SetStatusView arguments holder class
+class SetStatusViewArguments {
+  final Key? key;
+  SetStatusViewArguments({this.key});
 }
 
 /// EditProfileView arguments holder class
@@ -935,9 +1015,32 @@ class InviteViaEmailArguments {
   InviteViaEmailArguments({this.key});
 }
 
+
 /// ShareMessageView arguments holder class
 class ShareMessageViewArguments {
   final UserPost userPost;
   final Key? key;
   ShareMessageViewArguments({required this.userPost, this.key});
 }
+
+/// OrganizationSettingsView arguments holder class
+class OrganizationSettingsViewArguments {
+  final Key? key;
+  final OrganizationModel org;
+  OrganizationSettingsViewArguments({this.key, required this.org});
+}
+
+/// OrganizationNameUrl arguments holder class
+class OrganizationNameUrlArguments {
+  final Key? key;
+  final OrganizationModel org;
+  OrganizationNameUrlArguments({this.key, required this.org});
+}
+
+/// OrganizationLogo arguments holder class
+class OrganizationLogoArguments {
+  final Key? key;
+  final OrganizationModel org;
+  OrganizationLogoArguments({this.key, required this.org});
+}
+

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -53,7 +54,7 @@ class ForgotPasswordNewView extends StatelessWidget
                     Center(
                       child: Text(
                         local!.forgotPassword,
-                        style: AppTextStyles.body1Bold,
+                        style: AppTextStyle.darkGreySize16Bold,
                       ),
                     ),
                     const SizedBox(
@@ -72,7 +73,7 @@ class ForgotPasswordNewView extends StatelessWidget
                       margin: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         local.newPassword,
-                        style: AppTextStyles.body1Bold,
+                        style: AppTextStyle.darkGreySize16Bold,
                       ),
                     ),
                     Form(
@@ -114,9 +115,7 @@ class ForgotPasswordNewView extends StatelessWidget
                                   UIHelper.verticalSpaceSmall,
                                   Text(
                                     local.passwordLengthWarning,
-                                    style: AppTextStyles.body2Medium.copyWith(
-                                      color: AppColors.redColor,
-                                    ),
+                                    style: AppTextStyle.errorSize14,
                                   ),
                                 ],
                               ),
@@ -131,7 +130,7 @@ class ForgotPasswordNewView extends StatelessWidget
                             margin: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Text(
                               local.confirmPassword,
-                              style: AppTextStyles.body1Bold,
+                              style: AppTextStyle.darkGreySize16Bold,
                             ),
                           ),
                           TextField(
@@ -169,9 +168,7 @@ class ForgotPasswordNewView extends StatelessWidget
                                   UIHelper.verticalSpaceSmall,
                                   Text(
                                     local.passwordMustMatch,
-                                    style: AppTextStyles.body2Medium.copyWith(
-                                      color: AppColors.redColor,
-                                    ),
+                                    style: AppTextStyle.errorSize14,
                                   ),
                                 ],
                               ),
@@ -195,7 +192,7 @@ class ForgotPasswordNewView extends StatelessWidget
                           },
                           child: Text(
                             local.continueButton,
-                            style: AppTextStyles.buttonText,
+                            style: AppTextStyle.whiteSize16,
                           ),
                           style: ElevatedButton.styleFrom(
                             padding:

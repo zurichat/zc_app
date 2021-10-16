@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'thread_options_bottomsheet/widget/recent_emojis.dart';
@@ -72,7 +71,10 @@ Future<dynamic> zuriChatBottomSheet({
             ),
             const Divider(),
             ListTile(
-              title: Text(MarkUnread, style: AppTextStyles.heading9),
+              title: Text(
+                MarkUnread,
+                style: AppTextStyle.darkGreySize16,
+              ),
               leading: SvgPicture.asset(
                 Mark_Unread,
                 color: AppColors.darkGreyColor,
@@ -82,7 +84,10 @@ Future<dynamic> zuriChatBottomSheet({
               onTap: markUnread,
             ),
             ListTile(
-              title: Text(RemindMe, style: AppTextStyles.heading9),
+              title: Text(
+                RemindMe,
+                style: AppTextStyle.darkGreySize16,
+              ),
               leading: SvgPicture.asset(
                 Remind_Me,
                 color: AppColors.darkGreyColor,
@@ -90,12 +95,14 @@ Future<dynamic> zuriChatBottomSheet({
                 height: 18,
               ),
               onTap: () async {
-                await _dialogService.showCustomDialog(
-                    variant: DialogType.remindMe);
+                await _dialogService.showCustomDialog();
               },
             ),
             ListTile(
-              title: Text(AddToSavedItems, style: AppTextStyles.heading9),
+              title: Text(
+                AddToSavedItems,
+                style: AppTextStyle.darkGreySize16,
+              ),
               leading: SvgPicture.asset(
                 Saved_Items,
                 color: AppColors.darkGreyColor,
@@ -106,7 +113,10 @@ Future<dynamic> zuriChatBottomSheet({
             ),
             const Divider(),
             ListTile(
-                title: Text(ReplyInThreads, style: AppTextStyles.heading9),
+                title: Text(
+                  ReplyInThreads,
+                  style: AppTextStyle.darkGreySize16,
+                ),
                 leading: SvgPicture.asset(
                   Reply_In_Thread,
                   color: AppColors.darkGreyColor,
@@ -115,8 +125,10 @@ Future<dynamic> zuriChatBottomSheet({
                 ),
                 onTap: replyInThread),
             ListTile(
-                title: Text(FollowThreadZuriChatBottomSheet,
-                    style: AppTextStyles.heading9),
+                title: Text(
+                  FollowThreadZuriChatBottomSheet,
+                  style: AppTextStyle.darkGreySize16,
+                ),
                 leading: SvgPicture.asset(
                   Follow_Thread,
                   color: AppColors.darkGreyColor,
@@ -126,7 +138,10 @@ Future<dynamic> zuriChatBottomSheet({
                 onTap: followThread),
             const Divider(),
             ListTile(
-                title: Text(ShareMessage, style: AppTextStyles.heading9),
+                title: Text(
+                  ShareMessage,
+                  style: AppTextStyle.darkGreySize16,
+                ),
                 leading: SvgPicture.asset(
                   Share_message,
                   color: AppColors.darkGreyColor,
@@ -135,7 +150,10 @@ Future<dynamic> zuriChatBottomSheet({
                 ),
                 onTap: shareMessage),
             ListTile(
-                title: Text(CopyLinkToMessage, style: AppTextStyles.heading9),
+                title: Text(
+                  CopyLinkToMessage,
+                  style: AppTextStyle.darkGreySize16,
+                ),
                 leading: SvgPicture.asset(
                   Copy_link_To_Message,
                   color: AppColors.darkGreyColor,
@@ -144,8 +162,10 @@ Future<dynamic> zuriChatBottomSheet({
                 ),
                 onTap: copyLinkToMessage),
             ListTile(
-                title: Text(CopyTextZuriChatBottomSheet,
-                    style: AppTextStyles.heading9),
+                title: Text(
+                  CopyTextZuriChatBottomSheet,
+                  style: AppTextStyle.darkGreySize16,
+                ),
                 leading: SvgPicture.asset(
                   Copy_Text,
                   color: AppColors.darkGreyColor,
@@ -156,8 +176,9 @@ Future<dynamic> zuriChatBottomSheet({
             const Divider(),
             ListTile(
                 title: Text(
-                    "${post?.pinned == true ? local!.unPinFrom : local!.pinTo} ${local.conversation}",
-                    style: AppTextStyles.heading9),
+                  "${post?.pinned == true ? local!.unPinFrom : local!.pinTo} ${local.conversation}",
+                  style: AppTextStyle.darkGreySize16,
+                ),
                 leading: SvgPicture.asset(
                   pinned_message,
                   color: AppColors.darkGreyColor,

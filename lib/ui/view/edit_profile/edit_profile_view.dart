@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/models/user_model.dart';
+import 'package:zurichat/models/user_model.dart';
 
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -24,30 +24,31 @@ class EditProfileView extends StatelessWidget {
       onModelReady: (model) => model.onInit(user),
       builder: (context, viewModel, child) => Scaffold(
         appBar: ZuriAppBar(
-          whiteBackground: true,
           leading: Icons.close_rounded,
           leadingPress: () => viewModel.close(),
           orgTitle: Text(
             local!.editProfileButton,
-            style: AppTextStyles.heading4,
+            style: AppTextStyle.darkGreySize18Bold.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
           actions: [
             TextButton(
-              onPressed: () => viewModel.onSave(),
+              onPressed: viewModel.onSave,
               child: Text(
-                local.save.toUpperCase(),
-                style: AppTextStyles.body1Bold.copyWith(
-                    color: viewModel.hasDataChanged
-                        ? AppColors.deepBlackColor
-                        : AppColors.zuriGrey),
+                local.save,
+                style: AppTextStyle.greenSize16,
               ),
-            ),
+            )
           ],
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
         ),
         body: Visibility(
-            visible: !viewModel.isBusy,
-            child: Body(size: _size),
-            replacement: const ZuriLoader()),
+          visible: !viewModel.isBusy,
+          child: Body(size: _size),
+          replacement: const ZuriLoader(),
+        ),
       ),
     );
   }

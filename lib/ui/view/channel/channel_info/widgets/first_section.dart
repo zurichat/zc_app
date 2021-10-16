@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
+import 'package:zurichat/constants/app_strings.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/ui_helpers.dart';
+import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.dart';
 import '../../../../shared/colors.dart';
 
 class FirstSection extends StatelessWidget {
-  const FirstSection(this.model, {Key? key, required this.channelName}) : super(key: key);
+  const FirstSection(this.model, {Key? key, required this.channelName})
+      : super(key: key);
   final ChannelInfoViewModel model;
   final String channelName;
   @override
@@ -17,7 +20,7 @@ class FirstSection extends StatelessWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(6),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,33 +33,37 @@ class FirstSection extends StatelessWidget {
                 children: [
                   Text(
                     "#$channelName",
-                    style: AppTextStyles.body1Bold,
+                    style: AppTextStyle.darkGreySize16Bold,
                   ),
                   UIHelper.verticalSpaceSmall,
                   UIHelper.verticalSpaceMedium,
                   Text(
                     Description,
-                    style: AppTextStyles.body1Bold,
+                    style: AppTextStyle.darkGreySize16Bold,
                   ),
                   UIHelper.verticalSpaceSmall,
                   Text(
                     '${model.channelDescription}',
-                    style: AppTextStyles.body1Light.copyWith(letterSpacing: 0.005),
+                    style: AppTextStyle.darkGreySize16
+                        .copyWith(letterSpacing: 0.005),
                   ),
                   UIHelper.verticalSpaceExtraSmall,
                   Text(
                     MarkCreatedChannel,
-                    style: AppTextStyles.body1Regular.copyWith(letterSpacing: 0.005),
+                    style: AppTextStyle.lightGreySize16
+                        .copyWith(letterSpacing: 0.005),
                   ),
                   UIHelper.verticalSpaceMedium,
                   Text(
                     Topic,
-                    style: AppTextStyles.headerStyle1.copyWith(fontSize: 16.sp),
+                    style:
+                        AppTextStyle.darkGreySize16.copyWith(fontSize: 16.sp),
                   ),
                   UIHelper.verticalSpaceSmall,
                   Text(
                     CreatingZuri,
-                    style: AppTextStyles.body1Light.copyWith(fontSize: 16.sp),
+                    style:
+                        AppTextStyle.lightGreySize16.copyWith(fontSize: 16.sp),
                   ),
                   UIHelper.verticalSpaceSmall,
                   UIHelper.verticalSpaceMedium,
@@ -75,7 +82,7 @@ class FirstSection extends StatelessWidget {
                 },
                 child: Text(
                   Edit,
-                  style: AppTextStyles.bodyBig..copyWith(fontSize: 16.sp),
+                  style: AppTextStyle.darkGreySize16Bold,
                 ),
               ),
             ),

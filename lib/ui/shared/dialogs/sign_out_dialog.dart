@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SignOutDialog extends StatelessWidget {
@@ -15,35 +15,28 @@ class SignOutDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final String orgName = request.data!;
     return AlertDialog(
-      title: CustomText(
-        text: 'Sign out of $orgName?',
-        fontWeight: FontWeight.w700,
-        fontSize: 20,
+      title: Text(
+        'Sign out of $orgName?',
+        style: AppTextStyle.darkGreySize20Bold,
       ),
-      content: const CustomText(
-        text: "You can sign back in anytime by tapping \n\"Add a workspace\"",
-        maxLines: 2,
-        fontWeight: FontWeight.w400,
-        fontSize: 14,
+      content: Text(
+        "You can sign back in anytime by tapping \n\"Add a workspace\"",
+        style: AppTextStyle.darkGreySize14,
       ),
       actions: [
         TextButton(
-          child: const CustomText(
-            text: 'Cancel',
-            fontWeight: FontWeight.w700,
-            fontSize: 16,
-            color: AppColors.zuriPrimaryColor,
+          child: Text(
+            'Cancel',
+            style: AppTextStyle.darkGreySize16,
           ),
           onPressed: () {
             completer(DialogResponse(confirmed: false));
           },
         ),
         TextButton(
-          child: const CustomText(
-            text: 'Sign Out',
-            fontWeight: FontWeight.w700,
-            fontSize: 16,
-            color: AppColors.zuriPrimaryColor,
+          child: Text(
+            'Sign Out',
+            style: AppTextStyle.darkGreySize16,
           ),
           onPressed: () {
             completer(DialogResponse(confirmed: true));

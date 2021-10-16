@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/enums.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/enums.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(
@@ -28,7 +29,9 @@ class CustomButton extends StatelessWidget {
             shape: Border.all(color: AppColors.greyishColor),
             child: Text(
               " $text",
-              style: AppTextStyles.body3Medium,
+              style: Theme.of(context).brightness == Brightness.dark
+                  ? AppTextStyle.whiteSize14
+                  : AppTextStyle.lightGreySize14,
             ))
         : MaterialButton(
             onPressed: onPressed,

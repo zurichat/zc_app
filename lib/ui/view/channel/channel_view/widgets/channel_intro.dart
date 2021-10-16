@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../channel_page_viewmodel.dart';
@@ -20,13 +21,20 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
   @override
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
     final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       padding: const EdgeInsets.all(15),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("#$channelName", style: AppTextStyles.heading7),
+          Text(
+            "#$channelName",
+            style: _dark
+                ? AppTextStyle.whiteSize16Bold
+                : AppTextStyle.darkGreySize16Bold,
+          ),
           const SizedBox(height: 10),
           TextParser(
               '@ ${viewModel.channelCreator} ${local!.createdThisChannel}. ${local.channelIntroText} #$channelName ${local.channel}.'),
@@ -52,10 +60,9 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                   const SizedBox(height: 5),
                   Text(
                     local.description,
-                    style: const TextStyle(
-                      color: AppColors.greyishColor,
-                      fontSize: 14,
-                    ),
+                    style: _dark
+                        ? AppTextStyle.whiteSize14
+                        : AppTextStyle.darkGreySize14,
                   )
                 ],
               ),
@@ -78,10 +85,9 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                   const SizedBox(height: 5),
                   Text(
                     local.addPeople,
-                    style: const TextStyle(
-                      color: AppColors.greyishColor,
-                      fontSize: 14,
-                    ),
+                    style: _dark
+                        ? AppTextStyle.whiteSize14
+                        : AppTextStyle.darkGreySize14,
                   )
                 ],
               ),
@@ -101,23 +107,20 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                   width: 50,
                   height: 20,
                   decoration: BoxDecoration(
-                    border: Border.all(width: 1),
+                    border: Border.all(width: 1, color: AppColors.greyishColor),
                     borderRadius: BorderRadius.circular(40),
                   ),
                   child: Text(
                     local.today,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                    ),
+                    style: AppTextStyle.lightGreySize12,
                   ),
                 ),
               ),
               const Expanded(
                   child: Divider(
                 indent: 1,
-                color: Colors.black,
+                color: AppColors.greyishColor,
               )),
             ]),
           )

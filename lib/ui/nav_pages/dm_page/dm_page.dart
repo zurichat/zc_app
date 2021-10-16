@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/search_bar.dart';
@@ -20,12 +20,13 @@ class DmPage extends StatelessWidget {
       onModelReady: (model) => model.initialise(),
       builder: (context, model, child) {
         final local = AppLocalization.of(context);
+        final bool _dark = Theme.of(context).brightness == Brightness.dark;
         return Scaffold(
           appBar: ZuriAppBar(
-            isDarkMode: Theme.of(context).brightness == Brightness.dark,
+            isDarkMode: _dark,
             leadingWidth: true,
             orgTitle: Text(local!.directMessages,
-                style: ZuriTextStyle.organizationNameText()),
+                style: AppTextStyle.organizationNameText),
             bottomNavBarScreen: true,
           ),
           floatingActionButton: FloatingActionButton(
@@ -46,7 +47,9 @@ class DmPage extends StatelessWidget {
               : !model.data!
                   ? Center(
                       child: Text(local.temporarilyUnavailable,
-                          style: AppTextStyles.heading6),
+                          style: _dark
+                              ? AppTextStyle.whiteSize18Bold
+                              : AppTextStyle.darkGreySize18Bold),
                     )
                   : SingleChildScrollView(
                       child: Padding(

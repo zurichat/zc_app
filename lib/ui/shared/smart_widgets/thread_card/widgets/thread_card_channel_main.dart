@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/audio_message.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
+import 'package:zurichat/ui/shared/smart_widgets/thread_card/widgets/audio_message.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../colors.dart';
@@ -16,16 +17,19 @@ import 'post_files_display.dart';
 import 'post_replies.dart';
 import 'quoted_replies.dart';
 import 'snapshot_links.dart';
-import 'package:hng/app/app.logger.dart';
+import 'package:zurichat/app/app.logger.dart';
 
 class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
   ThreadChannelMain(this.userPost, {Key? key}) : super(key: key);
 
   final log = getLogger("ThreadChannelMain");
+
   final UserPost userPost;
 
   @override
   Widget build(BuildContext context, ThreadCardViewModel viewModel) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return GestureDetector(
       onTap: () => viewModel.navigateToThread(userPost),
       child: Container(
@@ -40,8 +44,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                   height: 40,
                   decoration: BoxDecoration(
                     color: Colors.blue,
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     image: DecorationImage(
                         fit: BoxFit.fill,
                         image: AssetImage('${userPost.userImage}')),
@@ -59,21 +62,22 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                         children: [
                           Flexible(
                             fit: FlexFit.loose,
-                            child: CustomText(
-                              text: '${userPost.displayName}',
-                              fontWeight: FontWeight.bold,
+                            child: Text(
+                              '${userPost.displayName}',
+                              style: _dark
+                                  ? AppTextStyle.whiteSize16Bold
+                                  : AppTextStyle.darkGreySize16Bold,
                             ),
                           ),
                           const SizedBox(width: 4),
                           Text(
                             "${userPost.statusIcon}",
-                            style: AppTextStyles.body2Medium,
+                            style: AppTextStyle.lightGreySize14,
                           ),
                           const SizedBox(width: 4),
-                          CustomText(
-                            text: '${userPost.moment}',
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
+                          Text(
+                            '${userPost.moment}',
+                            style: AppTextStyle.darkGreySize12,
                           ),
                         ],
                       ),
@@ -81,7 +85,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          TextParser(userPost.message),
+                          Expanded(child: TextParser(userPost.message)),
                           const Icon(Icons.check,
                               size: 12.0, color: AppColors.appBarGreen),
                         ],

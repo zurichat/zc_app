@@ -40,6 +40,16 @@ class AppColors {
   ///Kimbie Dark Theme
   static const kimbieAccent = Color(0xFF6E9B3B);
 
+  //Colors for text
+  static const Color textDark = Color(0xFF424141);
+  static const Color textDark10 = Color(0xFF242424);
+  static const Color textDark20 = Color(0xFF1D1C1D);
+
+  static const Color textLight = Color(0xFF616061);
+  static const Color textLight10 = Color(0xFF727272);
+  static const Color textLight20 = Color(0xFF999999);
+
+  static const Color textGreen = Color(0xFF00B87C);
   //Dark Theme
   static const darkThemePrimaryColor = Color(0xFF1C1B1B);
 }

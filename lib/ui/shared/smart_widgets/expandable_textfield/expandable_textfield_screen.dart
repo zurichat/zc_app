@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hng/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen_viewmodel.dart';
+import 'package:zurichat/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen_viewmodel.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../colors.dart';
-import '../../styles.dart';
 
 class ExpandableTextFieldScreen extends HookWidget {
   ExpandableTextFieldScreen({
@@ -18,7 +18,7 @@ class ExpandableTextFieldScreen extends HookWidget {
     required this.hintText,
   }) : super(key: key);
   final Widget widget;
-  final Function(String message, {List<File>media}) sendMessage;
+  final Function(String message, {List<File> media}) sendMessage;
   final String hintText;
   final focusNode = FocusNode();
   final keyboardVisibilityController = KeyboardVisibilityController();
@@ -191,7 +191,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                                           ),
                                           const Spacer(),
                                           GestureDetector(
-                                            onTap: () =>model.onCameraTap("roomId") ,
+                                            onTap: () =>
+                                                model.onCameraTap("roomId"),
                                             child: Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
@@ -217,8 +218,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               if (textController.text
                                                   .toString()
                                                   .isNotEmpty) {
-                                                sendMessage(
-                                                    textController.text, media:model.mediaList);
+                                                sendMessage(textController.text,
+                                                    media: model.mediaList);
                                                 textController.clear();
                                               }
                                             },
@@ -290,7 +291,7 @@ class MyTextField extends StatelessWidget {
                   isExpanded ? TextAlignVertical.top : TextAlignVertical.center,
               decoration: InputDecoration.collapsed(
                 hintText: hintText,
-                hintStyle: AppTextStyles.faintBodyText,
+                hintStyle: AppTextStyle.lightGreySize14,
               ).copyWith(contentPadding: const EdgeInsets.all(8)),
             ),
           ),

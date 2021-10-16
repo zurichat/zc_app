@@ -19,6 +19,7 @@ import '../services/local_storage_services.dart';
 import '../services/localization_service.dart';
 import '../services/media_service.dart';
 import '../services/notification_service.dart';
+import '../services/status_service.dart';
 import '../services/user_service.dart';
 import '../services/zuri_theme_service.dart';
 
@@ -33,10 +34,12 @@ Future setupLocator(
 // Register dependencies
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
+
   final zuriThemeService = await ZuriThemeService.getInstance();
   locator.registerSingleton(zuriThemeService);
 
   locator.registerLazySingleton(() => LocalizationService());
+
   final sharedPreferenceLocalStorage =
       await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);
@@ -54,4 +57,6 @@ Future setupLocator(
   locator.registerLazySingleton(() => NotificationService());
   final centrifugeService = await CentrifugeService.getInstance();
   locator.registerSingleton(centrifugeService);
+
+  locator.registerLazySingleton(() => StatusService());
 }

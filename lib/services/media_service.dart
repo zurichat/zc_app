@@ -1,11 +1,11 @@
 import 'dart:io';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/utilities/constants.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/constants.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 
 class MediaService {
   final ImagePicker _picker = ImagePicker();
@@ -33,15 +33,9 @@ class MediaService {
     return file;
   }
 
-  String? get token =>
-      storageService.getString(StorageKeys.currentSessionToken);
-
   Future<String?> uploadImage(File? file, String pluginId) async {
     String imageAddress = await zuriApi.uploadImage(file,
-        token: token!, //userService.authToken,
-        // orgId: userService.currentOrgId,
-        // memberId: userService.userId);
-        pluginId: '6165f520375a4616090b8275');
+        token: userService.authToken, pluginId: '6165f520375a4616090b8275');
     return imageAddress;
   }
 }

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'invite_via_email.form.dart';
+import 'invite_viewmodel.dart';
 
 @FormView(fields: [
   FormTextField(name: 'email'),
@@ -17,6 +19,7 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
+
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
@@ -40,7 +43,7 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                 child: InkWell(
                   child: Text(
                     local.sendRequest,
-                    style: AppTextStyles.body1Green,
+                    style: AppTextStyle.greenSize16,
                   ),
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
@@ -61,10 +64,10 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                       Center(
                         child: Text(
                           local.inviteForAdminApproval,
-                          //style: AppTextStyles.body2_400,
                         ),
                       ),
                       UIHelper.verticalSpaceLarge,
+                      //TODO:(Blazebrain) Bulk invite to Organization using Mail
                       TextField(
                         controller: emailController,
                         cursorColor: AppColors.zuriPrimaryColor,
@@ -84,18 +87,19 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                         ),
                       ),
                       UIHelper.verticalSpaceLarge,
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: AppColors.zuriPrimaryColor,
-                        ),
-                        onPressed: () {
-                          model.navigateToContacts();
-                        },
-                        child: const ListTile(
-                          leading: Icon(Icons.person_sharp),
-                          title: Text("Invite from contacts"),
-                        ),
-                      ),
+                      //TODO: (Blazebrain) Invite From Contacts
+                      // ElevatedButton(
+                      //   style: ElevatedButton.styleFrom(
+                      //     primary: AppColors.zuriPrimaryColor,
+                      //   ),
+                      //   onPressed: () {
+                      //     model.navigateToContacts();
+                      //   },
+                      //   child: const ListTile(
+                      //     leading: Icon(Icons.person_sharp),
+                      //     title: Text("Invite from contacts"),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

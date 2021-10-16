@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
+import 'package:zurichat/ui/shared/long_button.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 class PluginPageIntro extends StatelessWidget {
@@ -16,11 +16,15 @@ class PluginPageIntro extends StatelessWidget {
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         final local = AppLocalization.of(context);
+        final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
         return Scaffold(
           appBar: ZuriAppBar(
-            isDarkMode: Theme.of(context).brightness == Brightness.dark,
-            orgTitle: Text(local!.plugins,
-                style: ZuriTextStyle.organizationNameText()),
+            isDarkMode: _dark,
+            orgTitle: Text(
+              local!.plugins,
+              style: AppTextStyle.organizationNameText,
+            ),
             bottomNavBarScreen: true,
             leadingWidth: true,
           ),
@@ -33,12 +37,16 @@ class PluginPageIntro extends StatelessWidget {
                 children: [
                   Text(
                     local.pluginIntroHeader,
-                    style: AppTextStyles.header6,
+                    style: _dark
+                        ? AppTextStyle.whiteSize20Bold
+                        : AppTextStyle.darkGreySize20Bold,
                   ),
                   UIHelper.verticalSpaceMedium,
                   Text(
                     local.pluginIntroBody,
-                    style: AppTextStyles.body1Grey,
+                    style: _dark
+                        ? AppTextStyle.whiteSize14
+                        : AppTextStyle.darkGreySize14,
                   ),
                   UIHelper.customVerticalSpace(56.0),
                   FractionallySizedBox(

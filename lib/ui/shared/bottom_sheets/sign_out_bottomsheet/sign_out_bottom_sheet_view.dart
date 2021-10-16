@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/models/organization_model.dart';
-import 'package:hng/ui/shared/bottom_sheets/sign_out_bottomsheet/sign_out_botton_sheet_viewmodel.dart';
-import 'package:hng/ui/shared/bottom_sheets/sign_out_bottomsheet/widgets/work_space_display_info_view.dart';
+
+import 'package:zurichat/models/organization_model.dart';
+import 'package:zurichat/ui/shared/bottom_sheets/sign_out_bottomsheet/sign_out_botton_sheet_viewmodel.dart';
+import 'package:zurichat/ui/shared/bottom_sheets/sign_out_bottomsheet/widgets/work_space_display_info_view.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -19,11 +20,10 @@ class SignOutBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final OrganizationModel org = request.data;
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<SignOutBottomSheetViewModel>.nonReactive(
         builder: (context, model, child) => Container(
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? Colors.grey[900]
-                  : AppColors.whiteColor,
+              color: _dark ? AppColors.darkModeColor : AppColors.whiteColor,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -33,20 +33,54 @@ class SignOutBottomSheet extends StatelessWidget {
                     workSpaceSlackUrl: org.organizationUrl,
                   ),
                   GestureDetector(
+                    onTap: () {},
+                    child: ListTile(
+                      title: Text(
+                        'Invite members',
+                        style: _dark
+                            ? AppTextStyle.whiteSize16
+                            : AppTextStyle.darkGreySize16,
+                      ),
+                      leading: Icon(
+                        Icons.logout_sharp,
+                        color:
+                            _dark ? AppColors.whiteColor : AppColors.greyColor,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      model.navigateToWorkSpaceSettings(org);
+                    },
+                    child: ListTile(
+                      title: Text(
+                        'Organization settings',
+                        style: _dark
+                            ? AppTextStyle.whiteSize16
+                            : AppTextStyle.darkGreySize16,
+                      ),
+                      leading: Icon(
+                        Icons.settings,
+                        color:
+                            _dark ? AppColors.whiteColor : AppColors.greyColor,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
                     onTap: () {
                       model.dismissDialog();
                       model.showSignOutDialog(org.name ?? "");
                     },
-                    child: const ListTile(
-                      title: CustomText(
-                        text: 'Sign Out',
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
-                        color: AppColors.zuriPrimaryColor,
+                    child: ListTile(
+                      title: Text(
+                        'Sign Out',
+                        style: _dark
+                            ? AppTextStyle.whiteSize16
+                            : AppTextStyle.darkGreySize16,
                       ),
-                      leading: Icon(
+                      leading: const Icon(
                         Icons.logout_sharp,
-                        color: AppColors.zuriPrimaryColor,
+                        color: AppColors.unreadMessageColor,
                       ),
                     ),
                   )

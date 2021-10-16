@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class DMMessageRead extends StatelessWidget {
   const DMMessageRead({
@@ -33,12 +33,12 @@ class DMMessageRead extends StatelessWidget {
             children: [
               Text(
                 'Pappin 4️⃣',
-                style: AppTextStyles.body1Bold,
+                style: AppTextStyle.darkGreySize16Bold,
               ),
               const SizedBox(height: 5),
               Text(
                 'Can i have your number?',
-                style: AppTextStyles.faintBodyText.copyWith(fontSize: 14),
+                style: AppTextStyle.lightGreySize14,
                 // style: AppTextStyles.normalText,
               ),
             ],

@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/ui_helpers.dart';
+import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:stacked/stacked.dart';
 
 class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
@@ -43,13 +45,13 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
               children: [
                 Text(
                   ArchiveChannel,
-                  style: AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
+                  style: AppTextStyle.errorSize14,
                 ),
                 Container(
                     alignment: Alignment.center,
                     child: Text(
                       ArchiveChannelWarning,
-                      style: AppTextStyles.body2_400.copyWith(fontSize: 14),
+                      style: AppTextStyle.darkGreySize14,
                     )),
               ],
             )),
@@ -61,16 +63,13 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
                 children: [
                   Text(
                     ArchiveChannel,
-                    style:
-                        AppTextStyles.archiveTextStyle2.copyWith(fontSize: 14),
+                    style: AppTextStyle.errorSize14,
                   ),
                   UIHelper.verticalSpaceSmall,
                   Container(
                       alignment: Alignment.center,
-                      child: Text(
-                        ArchiveChannelWarning,
-                        style: AppTextStyles.body2_400.copyWith(fontSize: 14),
-                      )),
+                      child: Text(ArchiveChannelWarning,
+                          style: AppTextStyle.darkGreySize14)),
                 ],
               ),
             ),

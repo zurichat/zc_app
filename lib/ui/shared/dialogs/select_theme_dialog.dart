@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../general_widgets/custom_text.dart';
 import '../colors.dart';
 
 class SelectThemeDialog extends StatelessWidget {
@@ -21,17 +21,25 @@ class SelectThemeDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Padding(
-                padding: EdgeInsets.only(top: 15, left: 15),
-                child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: CustomText(
-                        text: DarkMode, fontWeight: FontWeight.bold))),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  DarkMode,
+                  style: Theme.of(context).brightness == Brightness.dark
+                      ? AppTextStyle.whiteSize16Bold
+                      : AppTextStyle.darkGreySize16Bold,
+                ),
+              ),
+            ),
             ListView.builder(
               shrinkWrap: true,
               itemCount: request.data['themes'].length,
               itemBuilder: (context, index) => ListTile(
-                title: CustomText(text: request.data['themes'][index]),
+                title: Text(
+                  request.data['themes'][index],
+                ),
                 leading: Radio(
                   activeColor: AppColors.zuriPrimaryColor,
                   value: index,
@@ -60,6 +68,7 @@ class SelectThemeDialog extends StatelessWidget {
                 const SizedBox(height: 30),
               ],
             ),
+            const SizedBox(height: 20),
           ],
         ),
       );

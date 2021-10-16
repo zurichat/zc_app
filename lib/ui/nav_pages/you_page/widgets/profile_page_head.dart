@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import '../../../../general_widgets/custom_text.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+
 import '../../../shared/colors.dart';
 
 class ProfilePageHead extends StatelessWidget {
-  const ProfilePageHead({Key? key, this.image, this.name, this.currentStatus, this.isActive = true})
+  const ProfilePageHead(
+      {Key? key,
+      this.image,
+      this.name,
+      this.currentStatus,
+      this.isActive = true})
       : super(key: key);
 
   final String? image;
@@ -14,6 +20,8 @@ class ProfilePageHead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
@@ -44,7 +52,9 @@ class ProfilePageHead extends StatelessWidget {
                 child: Icon(
                   Icons.circle,
                   size: 15,
-                  color: isActive ? AppColors.zuriPrimaryColor : AppColors.greyishColor,
+                  color: isActive
+                      ? AppColors.zuriPrimaryColor
+                      : AppColors.greyishColor,
                 ),
               ),
             ],
@@ -53,20 +63,20 @@ class ProfilePageHead extends StatelessWidget {
         const SizedBox(width: 10),
         Flexible(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomText(
-                text: '$name',
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                lineHeight: 1.5,
+              Text(
+                '$name',
+                style: _dark
+                    ? AppTextStyle.whiteSize16Bold
+                    : AppTextStyle.darkGreySize16Bold,
               ),
-              CustomText(
-                text: '$currentStatus',
-                color: AppColors.greyishColor,
-                fontSize: 15,
-                lineHeight: 1.5,
+              const SizedBox(height: 5),
+              Text(
+                '$currentStatus',
+                style: _dark
+                    ? AppTextStyle.whiteSize14
+                    : AppTextStyle.lightGreySize14,
               ),
             ],
           ),

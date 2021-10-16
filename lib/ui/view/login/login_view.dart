@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/ui_helpers.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/ui_helpers.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -10,7 +11,7 @@ import 'package:stacked/stacked_annotations.dart';
 import '../../../general_widgets/custom_textfield.dart';
 import '../../shared/colors.dart';
 import '../../shared/long_button.dart';
-import '../../shared/styles.dart';
+
 import 'login_view.form.dart';
 import 'login_viewmodel.dart';
 
@@ -54,19 +55,19 @@ class LoginView extends StatelessWidget with $LoginView {
                   Center(
                     child: Text(
                       SignIn,
-                      style: AppTextStyles.heading7,
+                      style: AppTextStyle.darkGreySize20Bold,
                     ),
                   ),
                   UIHelper.verticalSpaceSmall,
                   Text(
                     local!.welcomeSignIn,
                     textAlign: TextAlign.center,
-                    style: AppTextStyles.faintBodyText,
+                    style: AppTextStyle.lightGreySize14,
                   ),
                   UIHelper.customVerticalSpace(38.0),
                   Text(
                     local.emailAddress,
-                    style: AppTextStyles.body1Bold,
+                    style: AppTextStyle.darkGreySize16Bold,
                   ),
                   UIHelper.customVerticalSpace(10.0),
                   CustomTextField(
@@ -80,7 +81,7 @@ class LoginView extends StatelessWidget with $LoginView {
                   UIHelper.verticalSpaceMedium,
                   Text(
                     local.password,
-                    style: AppTextStyles.body1Bold,
+                    style: AppTextStyle.darkGreySize16Bold,
                   ),
                   UIHelper.customVerticalSpace(10.0),
                   CustomTextField(
@@ -105,9 +106,7 @@ class LoginView extends StatelessWidget with $LoginView {
                       },
                       child: Text(
                         local.forgotPassword,
-                        style: const TextStyle(
-                          color: AppColors.zuriPrimaryColor,
-                        ),
+                        style: AppTextStyle.greenSize14,
                       ),
                     ),
                   ),
@@ -126,12 +125,15 @@ class LoginView extends StatelessWidget with $LoginView {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(local.dontHaveAccount),
+                      Text(
+                        local.dontHaveAccount,
+                        style: AppTextStyle.darkGreySize14,
+                      ),
                       TextButton(
                         onPressed: () => model.navigateToSignUpScreen(),
                         child: Text(
                           local.signUp,
-                          style: const TextStyle(color: AppColors.zuriPrimaryColor),
+                          style: AppTextStyle.greenSize14,
                         ),
                       )
                     ],
