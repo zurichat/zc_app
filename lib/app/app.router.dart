@@ -485,8 +485,11 @@ class StackedRouter extends RouterBase {
       );
     },
     SetStatusView: (data) {
+      var args = data.getArgs<SetStatusViewArguments>(
+        orElse: () => SetStatusViewArguments(),
+      );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => SetStatusView(),
+        builder: (context) => SetStatusView(key: args.key),
         settings: data,
       );
     },
@@ -897,6 +900,12 @@ class UseDifferentEmailViewArguments {
   final Key? key;
   final OrganizationSwitchMethod method;
   UseDifferentEmailViewArguments({this.key, required this.method});
+}
+
+/// SetStatusView arguments holder class
+class SetStatusViewArguments {
+  final Key? key;
+  SetStatusViewArguments({this.key});
 }
 
 /// EditProfileView arguments holder class

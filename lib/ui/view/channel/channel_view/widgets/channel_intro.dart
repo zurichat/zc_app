@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../channel_page_viewmodel.dart';

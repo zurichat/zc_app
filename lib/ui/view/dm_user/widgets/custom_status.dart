@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/status_icon.dart';
+import 'package:zurichat/general_widgets/status_icon.dart';
 
 class CustomStatus extends StatelessWidget {
   final bool isActive;

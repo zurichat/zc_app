@@ -1,13 +1,13 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:stacked/stacked.dart';
 import '../utilities/internalization/localization/app_localization.dart';
-import 'package:hng/app/app.logger.dart';
+import 'package:zurichat/app/app.logger.dart';
 import 'package:observable_ish/observable_ish.dart';
 
 /// List of languages codes that the app will support
