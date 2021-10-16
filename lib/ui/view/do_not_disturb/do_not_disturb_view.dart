@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../general_widgets/custom_text.dart';
 import '../../shared/shared.dart';
 import 'do_not_disturb_viewmodel.dart';
 
@@ -11,23 +12,24 @@ class DoNotDisturbView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<DoNotDisturbViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        backgroundColor: AppColors.whiteColor,
         appBar: ZuriAppBar(
-          leading: Icons.close_rounded,
-          leadingPress: () => model.exitPage(),
           orgTitle: Text(
-            'Do not disturb',
-            style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
+            local!.doNotDisturb,
+            style: AppTextStyle.darkGreySize18Bold,
           ),
+          leading: Icons.close_outlined,
+          leadingPress: () => model.exitPage(),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           whiteBackground: true,
           actions: [
             TextButton(
               onPressed: () {},
               child: Text(
-                'Save',
-                style: AppTextStyles.heading8,
+                local.save,
+                style: AppTextStyle.greenSize16,
               ),
             ),
           ],
@@ -39,7 +41,10 @@ class DoNotDisturbView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: model.doNotDisturbTimes.length,
                 itemBuilder: (context, index) => ListTile(
-                  title: CustomText(text: model.doNotDisturbTimes[index]),
+                  title: Text(
+                    model.doNotDisturbTimes[index],
+                    style: AppTextStyle.darkGreySize16,
+                  ),
                   leading: Radio(
                     activeColor: AppColors.zuriPrimaryColor,
                     value: index,

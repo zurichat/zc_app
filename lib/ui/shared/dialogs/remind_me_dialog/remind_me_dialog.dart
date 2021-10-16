@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/dialogs/remind_me_dialog/remind_me_dialog_viewmodel.dart';
+import 'package:hng/ui/shared/text_styles.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -15,6 +15,7 @@ class ReminderDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<RemindMeDialogViewModel>.reactive(
       builder: (context, model, child) => AlertDialog(
         content: Container(
@@ -26,64 +27,62 @@ class ReminderDialog extends StatelessWidget {
           height: size.height * .50,
           child: ListView(
             children: [
-              const ListTile(
-                title: CustomText(
-                  text: 'Remind me',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 20,
-                  color: AppColors.zuriTextBodyColor,
+              ListTile(
+                title: Text(
+                  local!.remindMe,
+                  style: AppTextStyle.darkGreySize18Bold,
                 ),
               ),
               ListTile(
                 onTap: model.messageRemindertwentyMinutes,
                 enabled: true,
-                title: const CustomText(
-                  text: 'in 20 minutes',
-                  color: AppColors.zuriTextBodyColor,
+                title: Text(
+                  local.in20Minutes,
+                  style: AppTextStyle.darkGreySize16,
                 ),
-                trailing: CustomText(
-                  text: model.twentyMinutes.toString(),
-                  color: AppColors.zuriTextBodyColor,
-                ),
-              ),
-              ListTile(
-                title: const CustomText(
-                  text: 'in 1 hour',
-                  color: AppColors.zuriTextBodyColor,
-                ),
-                trailing: CustomText(
-                  text: model.oneHour,
-                  color: AppColors.zuriTextBodyColor,
+                trailing: Text(
+                  model.twentyMinutes.toString(),
+                  style: AppTextStyle.darkGreySize16,
                 ),
               ),
               ListTile(
-                title: const CustomText(
-                  text: 'in 3 hours',
-                  color: AppColors.zuriTextBodyColor,
+                title: Text(
+                  local.in1Hour,
+                  style: AppTextStyle.darkGreySize16,
                 ),
-                trailing: CustomText(
-                  text: model.threeHours,
-                  color: AppColors.zuriTextBodyColor,
-                ),
-              ),
-              ListTile(
-                title: const CustomText(
-                  text: 'Tomorrow',
-                  color: AppColors.zuriTextBodyColor,
-                ),
-                trailing: CustomText(
-                  text: model.tomorrow,
-                  color: AppColors.zuriTextBodyColor,
+                trailing: Text(
+                  model.oneHour,
+                  style: AppTextStyle.darkGreySize16,
                 ),
               ),
               ListTile(
-                title: const CustomText(
-                  text: 'Next week',
-                  color: AppColors.zuriTextBodyColor,
+                title: Text(
+                  local.in3Hour,
+                  style: AppTextStyle.darkGreySize16,
                 ),
-                trailing: CustomText(
-                  text: model.nextWeek,
-                  color: AppColors.zuriTextBodyColor,
+                trailing: Text(
+                  model.threeHours,
+                  style: AppTextStyle.darkGreySize16,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  local.tomorrow,
+                  style: AppTextStyle.darkGreySize16,
+                ),
+                trailing: Text(
+                  model.tomorrow,
+                  style: AppTextStyle.darkGreySize16,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  local.nextWeek,
+                  style: AppTextStyle.darkGreySize16,
+                ),
+                trailing: Text(
+                  model.nextWeek,
+                  style: AppTextStyle.darkGreySize16,
                 ),
               ),
               ListTile(
@@ -92,9 +91,9 @@ class ReminderDialog extends StatelessWidget {
                   var selectedTime = await selectTime(context);
                   model.customReminder(selectedDate, selectedTime);
                 },
-                title: const CustomText(
-                  text: 'Custom',
-                  color: AppColors.zuriTextBodyColor,
+                title: Text(
+                  local.custom,
+                  style: AppTextStyle.darkGreySize16,
                 ),
               ),
             ],

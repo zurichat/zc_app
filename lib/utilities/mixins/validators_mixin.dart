@@ -82,4 +82,16 @@ mixin ValidatorMixin {
       return true;
     }
   }
+
+  String? vaidateOrgUrl(String? val) {
+    var regexp = r'/^[a-zA-Z0-9-_]+$/';
+
+    if (val!.isEmpty) {
+      return 'Workspace url cannot be empty';
+    }
+    if (RegExp(regexp).hasMatch(val)) {
+      return 'Invalid url';
+    }
+    return null;
+  }
 }

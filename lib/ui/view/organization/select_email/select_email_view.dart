@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
@@ -9,7 +10,6 @@ import 'select_email_viewmodel.dart';
 
 class SelectEmail extends StatelessWidget {
   final OrganizationSwitchMethod method;
-
   //The users email address can be passed in here from the api or database
 
   const SelectEmail({Key? key, required this.method}) : super(key: key);
@@ -25,8 +25,8 @@ class SelectEmail extends StatelessWidget {
             : AppColors.whiteColor,
         appBar: ZuriAppBar(
           orgTitle: Text(
-            model.getScreenTitle(method),
-            style: AppTextStyles.heading4.copyWith(
+            model.getScreenTitle(method, context),
+            style: AppTextStyle.darkGreySize18Bold.copyWith(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),
@@ -56,8 +56,10 @@ class SelectEmail extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-                child: Text(local!.selectEmailToUse,
-                    style: AppTextStyles.body1Bold),
+                child: Text(
+                  local!.selectEmailToUse,
+                  style: AppTextStyle.darkGreySize16Bold,
+                ),
               ),
               InkWell(
                 onTap: () {
@@ -65,7 +67,7 @@ class SelectEmail extends StatelessWidget {
                 },
                 child: Padding(
                   padding:
-                  const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+                      const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
                   child: Row(
                     children: [
                       const Icon(
@@ -97,7 +99,7 @@ class SelectEmail extends StatelessWidget {
                 onTap: () => model.navigateToDifferentEmail(method),
                 child: Padding(
                   padding:
-                  const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+                      const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
                   child: Row(
                     children: [
                       const Icon(

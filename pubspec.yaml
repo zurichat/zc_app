@@ -34,6 +34,7 @@ dependencies:
   google_fonts: ^2.1.0
   grouped_list: ^4.1.0
   hexcolor: ^2.0.5
+  http_parser: ^4.0.0
   image_picker: ^0.8.4+1
   intl: ^0.17.0
   introduction_screen: ^2.1.0

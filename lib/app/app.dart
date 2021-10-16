@@ -2,6 +2,8 @@ import 'package:hng/services/centrifuge_service.dart';
 import 'package:hng/services/localization_service.dart';
 import 'package:hng/services/media_service.dart';
 import 'package:hng/services/notification_service.dart';
+import 'package:hng/services/status_service.dart';
+import 'package:hng/services/zuri_theme_service.dart';
 import 'package:hng/ui/nav_pages/dm_page/dm_search_find_page.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
 import 'package:hng/ui/nav_pages/plugin_page/plugin_page_view.dart';
@@ -9,9 +11,12 @@ import 'package:hng/ui/view/channel/share_message/share_message_view.dart';
 import 'package:hng/ui/view/direct_message/direct_message.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
-import 'package:hng/ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invitation_sent.dart';
+import 'package:hng/ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
+import 'package:hng/ui/view/organization/organization_settings/organization_icon.dart';
+import 'package:hng/ui/view/organization/organization_settings/organization_name_url.dart';
+import 'package:hng/ui/view/organization/organization_settings/organization_settings_view.dart';
 import 'package:hng/ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';
 import 'package:hng/ui/view/threads/all_threads/threads_view.dart';
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
@@ -30,7 +35,6 @@ import 'package:hng/ui/view/webview_page/webview_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:stacked_themes/stacked_themes.dart';
 import '../package/base/jump_to_request/jump_to_api.dart';
 import '../package/base/server-request/channels/channels_api_service.dart';
 import '../package/base/server-request/dms/dms_api_service.dart';
@@ -148,11 +152,17 @@ import '../ui/view/user_search/user_search_view.dart';
     CupertinoRoute(page: CreateInviteLink),
     CupertinoRoute(page: InvitationSent),
     CupertinoRoute(page: ShareMessageView),
+    CupertinoRoute(page: OrganizationSettingsView),
+    CupertinoRoute(page: OrganizationNameUrl),
+    CupertinoRoute(page: OrganizationLogo),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: SnackbarService),
-    LazySingleton(classType: ThemeService),
+    Presolve(
+      classType: ZuriThemeService,
+      presolveUsing: ZuriThemeService.getInstance,
+    ),
     LazySingleton(classType: LocalizationService),
     Presolve(
       classType: SharedPreferenceLocalStorage,
@@ -174,6 +184,7 @@ import '../ui/view/user_search/user_search_view.dart';
       classType: CentrifugeService,
       presolveUsing: CentrifugeService.getInstance,
     ),
+    LazySingleton(classType: StatusService),
   ],
   logger: StackedLogger(),
 )

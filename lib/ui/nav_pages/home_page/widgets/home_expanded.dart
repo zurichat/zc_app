@@ -76,19 +76,27 @@ class HomeExpansionTile extends StatelessWidget {
     //Unread messages do cannot expand so no expanded list tile is returned
     if (canExpand) {
       return Theme(
-        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        data: Theme.of(context).copyWith(
+          dividerColor: Colors.transparent,
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            secondary: AppColors.textDark,
+          ),
+        ),
         child: ExpansionTile(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 title,
-                style: ZuriTextStyle.mediumBold(),
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.caption!.color,
+                ),
               ),
             ],
           ),
           children: children,
           tilePadding: EdgeInsets.zero,
+          collapsedTextColor: AppColors.textLight10,
           initiallyExpanded: true,
           iconColor: AppColors.greyishColor,
         ),
@@ -103,7 +111,7 @@ class HomeExpansionTile extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             title,
-            style: ZuriTextStyle.mediumBold(),
+            style: AppTextStyle.darkGreySize16Bold,
           ),
         ),
         Column(

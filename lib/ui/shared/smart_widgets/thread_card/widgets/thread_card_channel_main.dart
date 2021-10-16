@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
+
 import 'package:hng/models/user_post.dart';
+import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/widgets/audio_message.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../colors.dart';
 import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
 import 'media_files.dart';
@@ -25,15 +29,13 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
   Widget build(BuildContext context, ThreadCardViewModel viewModel) {
     return GestureDetector(
       onTap: () => viewModel.navigateToThread(userPost),
-      
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             InkWell(
               onTap: viewModel.viewProfile,
-              
               child: Container(
                   width: 40,
                   height: 40,
@@ -45,7 +47,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                         image: AssetImage('${userPost.userImage}')),
                   )),
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 12.0),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,26 +59,32 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                         children: [
                           Flexible(
                             fit: FlexFit.loose,
-                            child: CustomText(
-                              text: '${userPost.displayName}',
-                              fontWeight: FontWeight.bold,
+                            child: Text(
+                              '${userPost.displayName}',
+                              style: AppTextStyle.darkGreySize16Bold,
                             ),
                           ),
                           const SizedBox(width: 4),
                           Text(
                             "${userPost.statusIcon}",
-                            style: AppTextStyles.body2Medium,
+                            style: AppTextStyle.lightGreySize14,
                           ),
                           const SizedBox(width: 4),
-                          CustomText(
-                            text: '${userPost.moment}',
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
+                          Text(
+                            '${userPost.moment}',
+                            style: AppTextStyle.darkGreySize12,
                           ),
                         ],
                       ),
-                      const SizedBox(height: 10),
-                      TextParser(userPost.message),
+                      const SizedBox(height: 4.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(child: TextParser(userPost.message)),
+                          const Icon(Icons.check,
+                              size: 12.0, color: AppColors.appBarGreen),
+                        ],
+                      ),
                     ],
                   ),
                   userPost.postSnapshotLinks!.isNotEmpty

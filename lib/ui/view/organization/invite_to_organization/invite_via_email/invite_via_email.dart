@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
@@ -8,6 +8,7 @@ import 'package:hng/utilities/internalization/localization/app_localization.dart
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'invite_via_email.form.dart';
+import 'invite_viewmodel.dart';
 
 @FormView(fields: [
   FormTextField(name: 'email'),
@@ -27,9 +28,12 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
               model.navigateBack();
             },
             whiteBackground: true,
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             orgTitle: Text(
               local!.invite,
-              style: AppTextStyles.heading7,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
             ),
             actions: [
               Padding(
@@ -37,7 +41,7 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                 child: InkWell(
                   child: Text(
                     local.sendRequest,
-                    style: AppTextStyles.body1Green,
+                    style: AppTextStyle.greenSize16,
                   ),
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
@@ -55,38 +59,35 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   child: Column(
                     children: [
-                       Center(
+                      Center(
                         child: Text(
-                         local.inviteForAdminApproval,
+                          local.inviteForAdminApproval,
                           //style: AppTextStyles.body2_400,
                         ),
                       ),
                       UIHelper.verticalSpaceLarge,
-                      Container(
-                        color: AppColors.whiteColor,
-                        child: TextField(
-                          controller: emailController,
-                          cursorColor: AppColors.zuriPrimaryColor,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(
-                              Icons.email_outlined,
-                              color: AppColors.zuriPrimaryColor,
-                            ),
-                            labelStyle: const TextStyle(
-                              color: AppColors.zuriPrimaryColor,
-                            ),
-                            labelText: "Add an Email Address",
-                            border: border(),
-                            focusedBorder: border(),
-                            enabledBorder: border(),
+                      TextField(
+                        controller: emailController,
+                        cursorColor: AppColors.zuriPrimaryColor,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.email_outlined,
+                            color: AppColors.zuriPrimaryColor,
                           ),
+                          labelStyle: const TextStyle(
+                            color: AppColors.zuriPrimaryColor,
+                          ),
+                          labelText: "Add an Email Address",
+                          border: border(),
+                          focusedBorder: border(),
+                          enabledBorder: border(),
                         ),
                       ),
                       UIHelper.verticalSpaceLarge,
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: AppColors.whiteColor,
+                          primary: AppColors.zuriPrimaryColor,
                         ),
                         onPressed: () {
                           model.navigateToContacts();

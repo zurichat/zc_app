@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
@@ -11,7 +12,6 @@ import '../../../../general_widgets/channel_icon.dart';
 import '../../../../models/user_post.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';
-import '../../../shared/styles.dart';
 import '../../dm_user/icons/zap_icon.dart';
 import 'thread_detail_viewmodel.dart';
 import 'package:hng/app/app.logger.dart';
@@ -40,7 +40,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
         appBar: ZuriAppBar(
           orgTitle: Text(
             local!.threads,
-            style: AppTextStyles.heading4.copyWith(
+            style: AppTextStyle.darkGreySize20Bold.copyWith(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),
@@ -87,9 +87,10 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                             children: [
                               //TODO TRANSLATE
                               Text(
-                                  '${model.channelThreadMessages.length} '
-                                  '${model.channelThreadMessages.length == 1 ? local.reply : local.replies}',
-                                  style: AppTextStyles.body2Bold),
+                                '${model.channelThreadMessages.length} '
+                                '${model.channelThreadMessages.length == 1 ? local.reply : local.replies}',
+                                style: AppTextStyle.lightGreySize14,
+                              ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
@@ -120,8 +121,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                               model.exitPage(userPost,
                                                   messageController.text);
                                               showSimpleNotification(
-                                                Text(
-                                                    local.addedSuccessfully),
+                                                Text(local.addedSuccessfully),
                                                 position:
                                                     NotificationPosition.top,
                                                 background:
@@ -191,9 +191,10 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                                         textAlignVertical:
                                             TextAlignVertical.center,
                                         decoration: InputDecoration.collapsed(
-                                            hintText: local.addAReply,
-                                            hintStyle:
-                                                AppTextStyles.faintBodyText),
+                                          hintText: local.addAReply,
+                                          hintStyle:
+                                              AppTextStyle.lightGreySize14,
+                                        ),
                                       ),
                                     ),
                                   ),
