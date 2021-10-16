@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
+import 'package:zurichat/ui/shared/long_button.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 class PluginPageIntro extends StatelessWidget {
@@ -15,10 +15,14 @@ class PluginPageIntro extends StatelessWidget {
     return ViewModelBuilder<PluginViewModel>.reactive(
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
+        final local = AppLocalization.of(context);
         return Scaffold(
           appBar: ZuriAppBar(
-            orgTitle:
-                Text(Plugins, style: ZuriTextStyle.organizationNameText()),
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
+            orgTitle: Text(
+              local!.plugins,
+              style: AppTextStyle.organizationNameText,
+            ),
             bottomNavBarScreen: true,
             leadingWidth: true,
           ),
@@ -30,16 +34,13 @@ class PluginPageIntro extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Get serious and have fun here",
-                    style: AppTextStyles.header6,
+                    local.pluginIntroHeader,
+                    style: AppTextStyle.darkGreySize20Bold,
                   ),
                   UIHelper.verticalSpaceMedium,
                   Text(
-                    '''Access your oganization’s important stuff'''
-                    ''' like holiday-calendar, meeting room, notice'''
-                    ''' board etc. Have fun by joining the chess'''
-                    ''' room and music room.''',
-                    style: AppTextStyles.body1Grey,
+                    local.pluginIntroBody,
+                    style: AppTextStyle.darkGreySize14,
                   ),
                   UIHelper.customVerticalSpace(56.0),
                   FractionallySizedBox(
@@ -48,7 +49,7 @@ class PluginPageIntro extends StatelessWidget {
                       onPressed: () {
                         model.navigateToPlugins();
                       },
-                      label: "Get Started",
+                      label: local.getstarted,
                     ),
                   ),
                 ],

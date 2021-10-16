@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class NewRowTile extends StatelessWidget {
   const NewRowTile({
@@ -24,8 +25,7 @@ class NewRowTile extends StatelessWidget {
         SizedBox(width: 24.23.w),
         Text(
           "$text",
-          style: AppTextStyles.namesStyle.copyWith(
-            fontSize: 14.sp,
+          style: AppTextStyle.darkGreySize14Bold.copyWith(
             color: Theme.of(context).textTheme.bodyText1!.color,
           ),
         ),

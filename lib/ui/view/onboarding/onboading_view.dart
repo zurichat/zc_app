@@ -2,12 +2,14 @@ import 'dart:core';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
-import '../../shared/styles.dart';
+
 import 'onboarding_viewmodel.dart';
 
 class OnboardingView extends StatelessWidget {
@@ -15,6 +17,24 @@ class OnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    final List<Widget> pages = [
+      PageViewOnboarding(
+          title: local!.onboardingTitleOne,
+          subtitle: local.onboardingSubtitleOne,
+          image: OnboardingOne),
+      PageViewOnboarding(
+        title: local.onboardingTitleTwo,
+        subtitle: local.onboardingSubtitleTwo,
+        image: OnboardingTwo,
+      ),
+      PageViewOnboarding(
+        title: local.onboardingTitleThree,
+        subtitle: local.onboardingSubtitleThree,
+        image: OnboardingThree,
+      ),
+    ];
+
     return ViewModelBuilder<OnboardingViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
@@ -30,15 +50,17 @@ class OnboardingView extends StatelessWidget {
                           ? TextButton(
                               onPressed: () => model.navigateToNext(),
                               child: Text(
-                                Skip,
-                                style: AppTextStyles.heading8.copyWith(
-                                    decoration: TextDecoration.underline,
-                                    fontSize: 18),
+                                local.skip,
+                                style: AppTextStyle.greenSize16.copyWith(
+                                  decoration: TextDecoration.underline,
+                                  fontSize: 18,
+                                ),
                               ),
                             )
                           : const SizedBox(height: 50),
                     ],
                   ),
+                  //TODO TRANSLATE
                   pages[index],
                   const SizedBox(height: 20),
                   PageViewDotIndicator(
@@ -59,8 +81,10 @@ class OnboardingView extends StatelessWidget {
                       height: 50,
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Text(index < 2 ? Next : GetStarted,
-                          style: AppTextStyles.buttonText),
+                      child: Text(
+                        index < 2 ? Next : GetStarted,
+                        style: AppTextStyle.whiteSize16,
+                      ),
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
@@ -108,33 +132,16 @@ class PageViewOnboarding extends StatelessWidget {
           Text(
             title!,
             textAlign: TextAlign.center,
-            style: AppTextStyles.heading7,
+            style: AppTextStyle.darkGreySize20Bold,
           ),
           const SizedBox(height: 20),
           Text(
             subtitle!,
             textAlign: TextAlign.center,
-            style: AppTextStyles.body1Regular,
+            style: AppTextStyle.lightGreySize16,
           ),
         ],
       ),
     );
   }
 }
-
-final List<Widget> pages = [
-  const PageViewOnboarding(
-      title: OnboardingOneTitle,
-      subtitle: OnboardingOneSubtitle,
-      image: OnboardingOne),
-  const PageViewOnboarding(
-    title: OnboardingTwoTitle,
-    subtitle: OnboardingTwoSubtitle,
-    image: OnboardingTwo,
-  ),
-  const PageViewOnboarding(
-    title: OnboardingThreeTitle,
-    subtitle: OnboardingThreeSubtitle,
-    image: OnboardingThree,
-  ),
-];

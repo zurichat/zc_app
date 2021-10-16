@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 
 // ignore: must_be_immutable
 class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -73,11 +74,10 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                 controller: searchController,
                 keyboardType: TextInputType.text,
                 onChanged: onChanged,
-                style: AppTextStyles.buttonText,
+                style: AppTextStyle.whiteSize16,
                 onEditingComplete: onEditingComplete,
                 decoration: InputDecoration(
-                    hintStyle: AppTextStyles.buttonText
-                        .copyWith(color: Colors.white60),
+                    hintStyle: AppTextStyle.whiteSize16,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
                         borderSide: BorderSide.none),
@@ -108,16 +108,13 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                       children: [
                         Text(
                           title!,
-                          style: AppTextStyles.heading7.copyWith(
-                            color: isDarkMode
-                                ? AppColors.whiteColor
-                                : AppColors.blackColor,
+                          style: AppTextStyle.darkGreySize16Bold.copyWith(
+                            color: isDarkMode ? AppColors.whiteColor : null,
                           ),
                         ),
                         Text(
                           subtitle!,
-                          style: AppTextStyles.messageText
-                              .copyWith(color: AppColors.greyColor),
+                          style: AppTextStyle.lightGreySize14,
                         ),
                       ],
                     ),
@@ -132,9 +129,12 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                         : const SizedBox()
                   ],
                 ),
+      titleTextStyle: AppTextStyle.organizationNameText,
       centerTitle: false,
       backgroundColor: !whiteBackground
-          ? AppColors.zuriPrimaryColor
+          ? isDarkMode
+              ? AppColors.darkThemePrimaryColor
+              : AppColors.zuriPrimaryColor
           : isDarkMode
               ? AppColors.darkThemePrimaryColor
               : AppColors.whiteColor,

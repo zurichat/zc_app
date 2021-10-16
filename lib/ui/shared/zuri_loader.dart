@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 
 class ZuriLoader extends StatefulWidget {
-  const ZuriLoader({Key? key}) : super(key: key);
+  final bool isTransparent;
+  const ZuriLoader({Key? key, this.isTransparent = false}) : super(key: key);
 
   @override
   _ZuriLoaderState createState() => _ZuriLoaderState();
@@ -27,14 +29,16 @@ class _ZuriLoaderState extends State<ZuriLoader> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:
+          widget.isTransparent ? Colors.transparent : AppColors.whiteColor,
       body: Center(
         child: RotationTransition(
           turns: _animation,
           child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: 80,
-                width: 80,
+                height: 50,
+                width: 50,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.fill,

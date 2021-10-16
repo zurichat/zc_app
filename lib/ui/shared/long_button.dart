@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
-import '../../general_widgets/custom_text.dart';
 import 'shared.dart';
 
 class LongButton extends StatelessWidget {
@@ -43,13 +43,16 @@ class LongButton extends StatelessWidget {
         horizontal: 16,
       ),
       child: FittedBox(
-        child: CustomText(
-          text: '$label',
-          fontSize: 16,
-          fontWeight: FontWeight.w400,
-          color: labelColor ?? AppColors.whiteColor,
+        child: Text(
+          '$label',
+          style: AppTextStyle.longButtonStyle,
         ),
       ),
     );
+
+    //TODO: Remove this
+    // fontSize: 16,
+    // fontWeight: FontWeight.w400,
+    // color: labelColor ?? AppColors.whiteColor,
   }
 }

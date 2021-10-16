@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:zurichat/constants/app_strings.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.dart';
+import 'package:stacked/stacked.dart';
 import '../../../../shared/colors.dart';
 
 class SecondSection extends StatelessWidget {
@@ -10,75 +15,67 @@ class SecondSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 128.h,
-      width: 395.w,
-      alignment: Alignment.center,
-      padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 26.h, 16.37.w),
-      decoration: BoxDecoration(
-        color: Theme.of(context).brightness == Brightness.dark
-            ? AppColors.darkThemePrimaryColor
-            : AppColors.whiteColor,
-        borderRadius: BorderRadius.circular(6.r),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 88.h,
-            width: 279.03.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.notifications_none_outlined,
-                  size: 24.sp,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Text(
-                        Notifications,
-                        style:
-                            AppTextStyles.namesStyle.copyWith(fontSize: 14.sp),
-                      ),
-                    ),
-                    SizedBox(height: 6.h),
-                    InkWell(
-                      onTap: () {},
-                      child: Text(
-                        EveryNewMessage,
-                        style:
-                            AppTextStyles.body1Grey.copyWith(fontSize: 14.sp),
-                      ),
-                    ),
-                    SizedBox(height: 18.h),
-                    InkWell(
-                      onTap: () {},
-                      child: Text(
-                        MuteChannel,
-                        style: AppTextStyles.descriptionStyle
-                            .copyWith(fontSize: 14.sp),
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.toggle_off_sharp,
-                      color: AppColors.faintTextColor,
-                      size: 40.sp,
-                    ),
-                  ],
-                )
-              ],
-            ),
+    return ViewModelBuilder<ChannelInfoViewModel>.reactive(
+      viewModelBuilder: () => ChannelInfoViewModel(),
+      builder: (context, model, child) => Card(
+        elevation: 2,
+        child: Container(
+          width: double.infinity,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.fromLTRB(16.37, 0, 26, 26.37),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6.r),
           ),
-        ],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Switch(
+                    onChanged: model.toggleNotification,
+                    value: model.notification,
+                    activeColor: AppColors.zuriPrimaryColor,
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SvgPicture.asset(
+                    Channel_Info_Notification,
+                    color: AppColors.darkGreyColor,
+                    width: 20,
+                    height: 15,
+                  ),
+                  UIHelper.horizontalSpaceMedium,
+                  UIHelper.horizontalSpaceSmall,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          Notifications,
+                          style: AppTextStyle.darkGreySize14Bold,
+                        ),
+                        UIHelper.verticalSpaceExtraSmall,
+                        Text(
+                          EveryNewMessage,
+                          style: AppTextStyle.lightGreySize14,
+                        ),
+                        UIHelper.verticalSpaceMedium,
+                        Text(
+                          MuteChannel,
+                          style: AppTextStyle.darkGreySize14,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

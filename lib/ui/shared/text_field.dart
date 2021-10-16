@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 
 ///This is the text field with border
 ///Should accept only hint with no labels
@@ -14,6 +14,9 @@ class BorderTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String hint;
   final bool autofocus;
+  final TextCapitalization textCapitalization;
+  final String? Function(String?)? validator;
+  final TextAlign textAlign;
 
   const BorderTextField({
     Key? key,
@@ -21,16 +24,22 @@ class BorderTextField extends StatelessWidget {
     this.controller,
     required this.hint,
     this.autofocus = false,
+    this.textCapitalization = TextCapitalization.none,
+    this.validator,
+    this.textAlign = TextAlign.start,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       style: const TextStyle(fontSize: 16, color: Colors.black87),
       autofocus: autofocus,
       onChanged: onChanged,
       controller: controller,
       cursorColor: AppColors.zuriPrimaryColor,
+      textCapitalization: textCapitalization,
+      validator: validator,
+      textAlign: textAlign,
       decoration: InputDecoration(
         hintText: hint,
         border: border(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/bottom_sheets/thread_options_bottomsheet/thread_option_bottomsheet_viewmodel.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:zurichat/ui/shared/bottom_sheets/thread_options_bottomsheet/thread_option_bottomsheet_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -58,45 +59,90 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
                       ],
                     ),
                     const Divider(),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: SvgPicture.asset(
+                          'assets/icons/svg_icons/fluent_navigation-unread-24-regular.svg',
+                          color: AppColors.darkGreyColor,
+                          width: 18,
+                          height: 18,
+                        ),
+                        text: const Text('Mark unread')),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: SvgPicture.asset(
+                          'assets/icons/svg_icons/gg_time.svg',
+                          color: AppColors.darkGreyColor,
+                          width: 18,
+                          height: 18,
+                        ),
+                        text: const Text('Remind me')),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: SvgPicture.asset(
+                          'assets/icons/svg_icons/bookmark.svg',
+                          color: AppColors.darkGreyColor,
+                          width: 18,
+                          height: 18,
+                        ),
+                        text: const Text('Add to saved items')),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: SvgPicture.asset(
+                          'assets/icons/svg_icons/reply_in_thread.svg',
+                          color: AppColors.darkGreyColor,
+                          width: 18,
+                          height: 18,
+                        ),
+                        text: const Text('Reply in thread')),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: SvgPicture.asset(
+                          'assets/icons/svg_icons/bi_chat-text.svg',
+                          color: AppColors.darkGreyColor,
+                          width: 18,
+                          height: 18,
+                        ),
+                        text: const Text('Unfollow thread')),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: SvgPicture.asset(
+                          'assets/icons/svg_icons/share.svg',
+                          color: AppColors.darkGreyColor,
+                          width: 18,
+                          height: 18,
+                        ),
+                        text: const Text('Share message')),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: SvgPicture.asset(
+                          'assets/icons/svg_icons/akar-icons_link-chain.svg',
+                          color: AppColors.darkGreyColor,
+                          width: 18,
+                          height: 18,
+                        ),
+                        text: const Text('Copy link to message')),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: SvgPicture.asset(
+                          'assets/icons/svg_icons/copy_text.svg',
+                          color: AppColors.darkGreyColor,
+                          width: 18,
+                          height: 18,
+                        ),
+                        text: const Text('Copy text')),
+                    MenuItemTile(
+                        topBorder: false,
+                        icon: SvgPicture.asset(
+                          'assets/icons/svg_icons/pin_conversation.svg',
+                          color: AppColors.darkGreyColor,
+                          width: 18,
+                          height: 18,
+                        ),
+                        text: const Text('Pin to conversation')),
                     const MenuItemTile(
                         topBorder: false,
-                        icon: Icons.message,
-                        text: Text('Mark unread')),
-                   const MenuItemTile(
-                        topBorder: false,
-                        icon: Icons.access_time_rounded,
-                        text:  Text('Remind me')),
-                    const MenuItemTile(
-                        topBorder: false,
-                        icon: Icons.bookmark_border_outlined,
-                        text: Text('Add to saved items')),
-                    const MenuItemTile(
-                        topBorder: false,
-                        icon: Icons.message,
-                        text: Text('Reply in thread')),
-                    const MenuItemTile(
-                        topBorder: false,
-                        icon: Icons.message,
-                        text: Text('Unfollow thread')),
-                    const MenuItemTile(
-                        topBorder: false,
-                        icon: Icons.forward_outlined,
-                        text: Text('Share message')),
-                    const MenuItemTile(
-                        topBorder: false,
-                        icon: Icons.message,
-                        text: Text('Copy link to message')),
-                    const MenuItemTile(
-                        topBorder: false,
-                        icon: Icons.copy_rounded,
-                        text: Text('Copy text')),
-                    const MenuItemTile(
-                        topBorder: false,
-                        icon: Icons.message,
-                        text: Text('Pin to conversation')),
-                    const MenuItemTile(
-                        topBorder: false,
-                        icon: Icons.message,
+                        ico: Icons.poll,
                         text: Text('Turn question into poll')),
                   ],
                 ),

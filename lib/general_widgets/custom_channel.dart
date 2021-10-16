@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class CustomChannel extends StatelessWidget {
   final String? text;
-  final bool lock;
-  const CustomChannel({Key? key, this.text, this.lock = false})
+  final bool? public;
+  const CustomChannel({Key? key, this.text, required this.public})
       : super(key: key);
 
   @override
@@ -21,7 +22,7 @@ class CustomChannel extends StatelessWidget {
             SizedBox(
               height: 16.r,
               width: 16.r,
-              child: lock == true
+              child: public == false
                   ? SvgPicture.asset(
                       'assets/icons/svg_icons/lock_outline.svg',
                       color: Theme.of(context).textTheme.bodyText1!.color,
@@ -34,10 +35,7 @@ class CustomChannel extends StatelessWidget {
             SizedBox(width: 21.33.w),
             Text(
               '$text',
-              style: AppTextStyles.nameStyle1.copyWith(
-                fontSize: 14.sp,
-                color: Theme.of(context).textTheme.bodyText1!.color,
-              ),
+              style: AppTextStyle.darkGreySize14Bold,
             ),
           ],
         ),

@@ -1,22 +1,24 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/widgets.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
-import 'package:hng/services/centrifuge_service.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/notification_service.dart';
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
+import 'package:zurichat/services/centrifuge_service.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/media_service.dart';
+import 'package:zurichat/services/notification_service.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 import 'package:simple_moment/simple_moment.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -31,11 +33,13 @@ class ChannelPageViewModel extends FormViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _snackbarService = locator<SnackbarService>();
- final _userService = locator<UserService>();
+  final _mediaService = locator<MediaService>();
+  final _userService = locator<UserService>();
   bool _checkUser = true;
+
   get checkUser => _checkUser;
   final _api = ZuriApi(channelsBaseUrl);
-
+  String pluginId = '6165f520375a4616090b8275';
 
   //Draft implementations
   var storedDraft = '';
@@ -79,6 +83,7 @@ class ChannelPageViewModel extends FormViewModel {
           StorageKeys.currentUserChannelIdDrafts, spList);
     }
   }
+
   //**draft implementation ends here
 
   // ignore: todo
@@ -136,7 +141,7 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
- void updateCheckUser() {
+  void updateCheckUser() {
     _checkUser = false;
     notifyListeners();
   }
@@ -167,10 +172,11 @@ class ChannelPageViewModel extends FormViewModel {
       _channelsApiService.changeChannelMessagePinnedState(userPost!.channelId,
           userPost.id!, userPost.userId!, !userPost.pinned);
 
-   Future joinChannel(String channelId) async {
+  Future joinChannel(String channelId) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
     String? orgId = storage.getString(StorageKeys.currentOrgId);
     String? token = storage.getString(StorageKeys.currentSessionToken);
+    storage.setString(StorageKeys.currentChannelId, channelId);
     // await _channelsApiService.joinChannel(channelId);
     try {
       final res = await _api
@@ -189,7 +195,7 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
- void checkUserId() async {
+  void checkUserId() async {
     await Future.delayed(const Duration(milliseconds: 10));
     _checkUser =
         channelMembers.any((member) => member.name == _userService.userId);
@@ -197,6 +203,7 @@ class ChannelPageViewModel extends FormViewModel {
     log.i(_checkUser);
     notifyListeners();
   }
+
   void getChannelSocketId(String channelId) async {
     final channelSockId =
         await _channelsApiService.getChannelSocketId(channelId);
@@ -222,7 +229,9 @@ class ChannelPageViewModel extends FormViewModel {
         UserPost(
           id: data['_id'],
           displayName: userid,
-          statusIcon: '7️⃣',
+
+          statusIcon: '⭐',
+
           moment: Moment.now().from(DateTime.parse(data['timestamp'])),
           message: data['content'],
           channelType: ChannelType.public,
@@ -233,6 +242,16 @@ class ChannelPageViewModel extends FormViewModel {
           userId: userid,
           channelId: channelId,
           pinned: data['pinned'],
+
+          postMediaFiles: (data['files'] as List)
+              .map((e) => PostFiles(
+                  id: "",
+                  srcLink: e,
+                  type: PostFileType.text,
+                  size: null,
+                  fileName: null))
+              .toList(),
+
         ),
       );
     });
@@ -240,31 +259,51 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  void sendMessage(
-    String message,
-  ) async {
-    String? userId = storage.getString(StorageKeys.currentUserId);
-    await _channelsApiService.sendChannelMessages(
-        channelID, "$userId", message);
-    scrollController.jumpTo(scrollController.position.minScrollExtent);
-    notifyListeners();
+  void sendMessage(String message, [List<File>? media]) async {
+    try {
+      String? userId = storage.getString(StorageKeys.currentUserId);
+      List<String> urls = [];
+      if (media != null) {
+        for (int i = 0; i < media.length; i++) {
+          var url = await _mediaService.uploadImage(media[i], pluginId);
+          urls.add(url!);
+        }
+      }
+
+      await _channelsApiService.sendChannelMessages(
+          channelID, "$userId", message, urls);
+
+      scrollController.jumpTo(scrollController.position.minScrollExtent);
+
+      notifyListeners();
+    } catch (e) {
+      _snackbarService.showCustomSnackBar(
+        duration: const Duration(seconds: 1),
+        message: "Could not send message, please check your internet",
+        variant: SnackbarType.failure,
+      );
+    }
   }
 
-  void exitPage() {
-    _navigationService.back();
-  }
+  void navigateToShareMessage(UserPost userPost) =>
+      _navigationService.navigateTo(Routes.shareMessageView,
+          arguments: ShareMessageViewArguments(userPost: userPost));
+
+  void exitPage() => _navigationService.back();
 
   String time() {
     return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
   }
 
-  Future? navigateToChannelInfoScreen(
-      int numberOfMembers, ChannelModel channelDetail) async {
+  Future? navigateToChannelInfoScreen(int numberOfMembers,
+      ChannelModel channelDetail, String channelName) async {
     await NavigationService().navigateTo(Routes.channelInfoView,
         arguments: ChannelInfoViewArguments(
-            numberOfMembers: numberOfMembers,
-            channelMembers: channelMembers,
-            channelDetail: channelDetail));
+          numberOfMembers: numberOfMembers,
+          channelName: channelName,
+          channelMembers: channelMembers,
+          channelDetail: channelDetail,
+        ));
   }
 
   Future? navigateToAddPeople(String channelName, String channelId) async {
@@ -285,7 +324,7 @@ class ChannelPageViewModel extends FormViewModel {
 
   void exit() => _navigationService.back();
 
-  navigateToChannelEdit(String channelName, String channelId) {
+  void navigateToChannelEdit(String channelName, String channelId) {
     _navigationService.navigateTo(Routes.editChannelPageView,
         arguments: EditChannelPageViewArguments(
           channelName: channelName,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../colors.dart';
@@ -21,17 +21,22 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
     int? _currentValue = widget.request.data['currentValue'];
 
     return StatefulBuilder(builder: (context, setState) {
-      return AlertDialog(
-        title: const Text(
-          SelectLang,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 21,
-          ),
-        ),
-        content: Column(
+      return Dialog(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            const Padding(
+                padding: EdgeInsets.only(top: 15, left: 15),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    SelectLang,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 21,
+                    ),
+                  ),
+                )),
             const Divider(thickness: 2),
             ListView.builder(
               shrinkWrap: true,
@@ -51,18 +56,21 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
               ),
             ),
             const Divider(thickness: 2),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                MaterialButton(
+                    onPressed: () =>
+                        widget.completer(DialogResponse(confirmed: false)),
+                    child: const Text(Cancel)),
+                MaterialButton(
+                    onPressed: () => widget.completer(
+                        DialogResponse(data: _currentValue, confirmed: true)),
+                    child: const Text(Ok)),
+              ],
+            ),
           ],
         ),
-        actions: [
-          MaterialButton(
-              onPressed: () =>
-                  widget.completer(DialogResponse(confirmed: false)),
-              child: const Text(Cancel)),
-          MaterialButton(
-              onPressed: () => widget.completer(
-                  DialogResponse(data: _currentValue, confirmed: true)),
-              child: const Text(Ok)),
-        ],
       );
     });
   }

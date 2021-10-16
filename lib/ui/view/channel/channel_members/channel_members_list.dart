@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/nav_pages/plugin_page/widgets/custom_plugin_list_tile.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/widgets/custom_plugin_list_tile.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import '../../../shared/colors.dart';
 import 'package:stacked/stacked.dart';
 import '../shared_widgets.dart';
@@ -21,6 +23,7 @@ class ChannelMembersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<ChannelMembersModel>.reactive(
       viewModelBuilder: () => ChannelMembersModel(),
       builder: (context, viewModel, child) {
@@ -31,15 +34,15 @@ class ChannelMembersList extends StatelessWidget {
             leadingPress: () => viewModel.goBack(),
             orgTitle: Text(
               channelDetail.name,
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize20Bold,
             ),
             actions: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0.0, 20.0, 25.0, 0.0),
                 child: InkWell(
                   child: Text(
-                    Edit,
-                    style: AppTextStyles.heading5,
+                    local!.edit,
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
@@ -57,7 +60,7 @@ class ChannelMembersList extends StatelessWidget {
                   elevation: 4,
                   child: SearchField(
                     onChanged: viewModel.onSearchUser,
-                    labelText: SearchPeople,
+                    labelText: local.searchPeople,
                     // controller: viewModel.editor,
                   ),
                 ),
@@ -66,12 +69,12 @@ class ChannelMembersList extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(25.0, 24.0, 16.0, 0),
                 child: GestureDetector(
                   onTap: () {},
-                  child: const CustomPluginPageListTile(
-                    leadingIcon: Icon(
+                  child: CustomPluginPageListTile(
+                    leadingIcon: const Icon(
                       Icons.add,
                       color: AppColors.zuriPrimaryColor,
                     ),
-                    text: AddPeople,
+                    text: local.addPeople,
                     textColor: AppColors.zuriPrimaryColor,
                   ),
                 ),

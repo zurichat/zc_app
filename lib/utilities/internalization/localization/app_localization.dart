@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hng/constants/local_keys.dart';
-import 'package:hng/utilities/internalization/local_setup.dart';
+import 'package:zurichat/constants/local_keys.dart';
+import 'package:zurichat/services/localization_service.dart';
 
 class AppLocalization {
   ///TODO: Remove late
@@ -182,13 +182,161 @@ class AppLocalization {
   String get myKeywordSubtitle => translate(LocalKeys.MyKeywordSubtitle);
   String get channelSpecificNotify =>
       translate(LocalKeys.ChannelSpecificNotify);
+  String get markUnread => translate(LocalKeys.MarkUnread);
+  String get remindMe => translate(LocalKeys.RemindMe);
+  String get addSavedItems => translate(LocalKeys.AddSavedItems);
+  String get replyInThread => translate(LocalKeys.ReplyInThread);
+  String get followThread => translate(LocalKeys.FollowThread);
+  String get shareMessage => translate(LocalKeys.ShareMessage);
+  String get copyLinkToMessage => translate(LocalKeys.CopyLinkToMessage);
+  String get copyText => translate(LocalKeys.CopyText);
+  String get pinToConversation => translate(LocalKeys.PinToConversation);
+  String get questionIntoPoll => translate(LocalKeys.QuestionIntoPoll);
+  String get messageIn => translate(LocalKeys.MessageIn);
+  String get addAReply => translate(LocalKeys.AddAReply);
+  String get replies => translate(LocalKeys.Replies);
+  String get saved => translate(LocalKeys.Saved);
+  String get addedSuccessfully => translate(LocalKeys.AddedSuccessfully);
+  String get noNewReplies => translate(LocalKeys.NoNewReplies);
+  String get pluginIntroHeader => translate(LocalKeys.PluginIntroHeader);
+  String get pluginIntroBody => translate(LocalKeys.PluginIntroBody);
+  String get notJoinedOrg => translate(LocalKeys.NotJoinedOrg);
+  String get selectEmailToUse => translate(LocalKeys.SelectEmailToUse);
+  String get yourEmailAddress => translate(LocalKeys.YourEmailAddress);
+  String get dontKnowWorkspaceUrl => translate(LocalKeys.DontKnowWorkspaceUrl);
+  String get helpSignInEasily => translate(LocalKeys.HelpSignInEasily);
+  String get enterWorkSpacesUrl => translate(LocalKeys.EnterWorkSpacesUrl);
+  String get sendEmailForSignin => translate(LocalKeys.SendEmailForSignin);
+  String get done => translate(LocalKeys.Done);
+  String get invitedAsAZuriChatMember =>
+      translate(LocalKeys.InvitedAsAZuriChatMember);
+  String get invitationSent => translate(LocalKeys.InvitationSent);
+  String get invite => translate(LocalKeys.Invite);
+  String get sendRequest => translate(LocalKeys.SendRequest);
+  String get chooseContacts => translate(LocalKeys.ChooseContacts);
+  String get inviteForAdminApproval =>
+      translate(LocalKeys.InviteForAdminApproval);
+  String get send => translate(LocalKeys.Send);
+  String get coworkersToJoin => translate(LocalKeys.CoworkersToJoin);
+  String get addEmailAddress => translate(LocalKeys.AddEmailAddress);
+  String get inviteFromContacts => translate(LocalKeys.InviteFromContacts);
+  String get shareImage => translate(LocalKeys.SavedItems);
+  String get shareInviteLink => translate(LocalKeys.ShareInviteLink);
+  String get shareLinkText => translate(LocalKeys.ShareLinkText);
+  String get knowAnyCoworkers => translate(LocalKeys.KnowAnyCoworkers);
+  String get changeExpiryDateText => translate(LocalKeys.ChangeExpiryDateText);
+  String get checkYourMail => translate(LocalKeys.CheckYourMail);
+  String get confirmEmailText => translate(LocalKeys.ConfirmEmailText);
+  String get openEmailApp => translate(LocalKeys.OpenEmailApp);
+  String get companyName => translate(LocalKeys.CompanyName);
+  String get companyAnd => translate(LocalKeys.CompanyAnd);
+  String get cookiePolicy => translate(LocalKeys.CookiePolicy);
+  String get customerAgreementText =>
+      translate(LocalKeys.CustomerAgreementText);
+  String get projectName => translate(LocalKeys.ProjectName);
+  String get projectHint => translate(LocalKeys.ProjectHint);
+  String get teammateNames => translate(LocalKeys.TeammateNames);
+  String get addTeammates => translate(LocalKeys.AddTeammates);
+  String get inAppNotifySubtitle => translate(LocalKeys.InAppNotifySubtitle);
+  String get forgotPasswordHeader => translate(LocalKeys.ForgotPasswordHeader);
+  String get invalidEmail => translate(LocalKeys.InvalidEmail);
+  String get continueButton => translate(LocalKeys.Continue);
+  String get backTo => translate(LocalKeys.BackTo);
+  String get newPasswordHeader => translate(LocalKeys.NewPasswordHeader);
+  String get newPassword => translate(LocalKeys.NewPassword);
+  String get passwordLengthWarning =>
+      translate(LocalKeys.PasswordLengthWarning);
+  String get passwordMustMatch => translate(LocalKeys.PasswordMustMatch);
+  String get enterOTP => translate(LocalKeys.EnterOTP);
+  String get didntReceiveOTP => translate(LocalKeys.DidntReceiveOTP);
+  String get resend => translate(LocalKeys.Resend);
+  String get designers => translate(LocalKeys.Designers);
+  String get messages => translate(LocalKeys.Messages);
+  String get files => translate(LocalKeys.Files);
+  String get newest => translate(LocalKeys.Newest);
+  String get save => translate(LocalKeys.Save);
+  String get draft => translate(LocalKeys.Draft);
+  String get delete => translate(LocalKeys.Delete);
+  String get draftMessageIntro => translate(LocalKeys.DraftMessageIntro);
+  String get draftIntroText => translate(LocalKeys.DraftIntroText);
+  String get doNotDisturb => translate(LocalKeys.DoNotDisturb);
+  String get dmHint => translate(LocalKeys.DMHint);
+  String get dmIntroBegin => translate(LocalKeys.DMIntroBegin);
+  String get dmIntroEnd => translate(LocalKeys.DMIntroEnd);
+  String get create => translate(LocalKeys.Create);
+  String get name => translate(LocalKeys.Name);
+  String get createChannelExample => translate(LocalKeys.CreateChannelExample);
+  String get description => translate(LocalKeys.Description);
+  String get aboutChannel => translate(LocalKeys.AboutChannel);
+  String get channelSettings => translate(LocalKeys.ChannelSettings);
+  String get makePrivate => translate(LocalKeys.MakePrivate);
+  String get privateDescription => translate(LocalKeys.PrivateDescription);
+  String get selected => translate(LocalKeys.Selected);
+  String get searchPeople => translate(LocalKeys.SearchPeople);
+  String get addEveryone => translate(LocalKeys.AddEveryone);
+  String get everyoneWillBeAdded => translate(LocalKeys.EveryoneWillBeAdded);
+  String get addingMarkedUsers => translate(LocalKeys.AddingMarkedUsers);
+  String get channelInfo => translate(LocalKeys.ChannelInfo);
+  String get muteChannelWarning => translate(LocalKeys.MuteChannelWarning);
+  String get bookmarks => translate(LocalKeys.Bookmarks);
+  String get edit => translate(LocalKeys.Edit);
+  String get addPeople => translate(LocalKeys.AddPeople);
+  String get channelNotifSubtitle => translate(LocalKeys.ChannelNotifSubtitle);
+  String get everyNewMessage => translate(LocalKeys.EveryNewMessage);
+  String get newButton => translate(LocalKeys.New);
+  String get justMentions => translate(LocalKeys.JustMentions);
+  String get mentions => translate(LocalKeys.Mentions);
+  String get nothing => translate(LocalKeys.Nothing);
+  String get none => translate(LocalKeys.None);
+  String get channelNotifSettings => translate(LocalKeys.ChannelNotifSettings);
+  String get searchPeopleHere => translate(LocalKeys.SearchPeopleHere);
+  String get searchPeopleOn => translate(LocalKeys.SearchPeopleOn);
+  String get editChannel => translate(LocalKeys.EditChannel);
+  String get addTopic => translate(LocalKeys.AddTopic);
+  String get newChannel => translate(LocalKeys.NewChannel);
+  String get channelName => translate(LocalKeys.ChannelName);
+  String get errorMessage => translate(LocalKeys.ErrorMessage);
+  String get channelCreationWarningMessage =>
+      translate(LocalKeys.ChannelCreationWarningMessage);
+  String get channelDescription => translate(LocalKeys.ChannelDescription);
+  String get addDescription => translate(LocalKeys.AddDescription);
+  String get makeChannelPrivate => translate(LocalKeys.MakeChannelPrivate);
+  String get privateChannelDescription =>
+      translate(LocalKeys.PrivateChannelDescription);
+  String get byInvitation => translate(LocalKeys.ByInvitation);
+  String get pinnedMessages => translate(LocalKeys.PinnedMessages);
+  String get noPinnedMessages => translate(LocalKeys.NoPinnedMessages);
+  String get threadMessageIn => translate(LocalKeys.ThreadMessageIn);
+  String get setStatusText => translate(LocalKeys.SetStatusText);
+  String get whatIsYourStatus => translate(LocalKeys.WhatIsYourStatus);
+  String get temporarilyUnavailable =>
+      translate(LocalKeys.TemporarilyUnavailable);
+  String get addChannel => translate(LocalKeys.AddChannel);
+  String get useAnotherEmail => translate(LocalKeys.UseAnotherEmail);
+  String get unPinFrom => translate(LocalKeys.UnpinFrom);
+  String get pinTo => translate(LocalKeys.PinTo);
+  String get conversation => translate(LocalKeys.Conversation);
+  String get in20Minutes => translate(LocalKeys.In20Minutes);
+  String get in1Hour => translate(LocalKeys.In1Hour);
+  String get in3Hour => translate(LocalKeys.In3Hour);
+  String get tomorrow => translate(LocalKeys.Tomorrow);
+  String get nextWeek => translate(LocalKeys.NextWeek);
+  String get custom => translate(LocalKeys.Custom);
+  String get couldNot => translate(LocalKeys.CouldNot);
+  String get post => translate(LocalKeys.Post);
+  String get createdThisChannel => translate(LocalKeys.CreatedThisChannel);
+  String get channelIntroText => translate(LocalKeys.ChannelIntroText);
+  String get channel => translate(LocalKeys.Channel);
+  String get today => translate(LocalKeys.Today);
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
   const AppLocalizationDelegate();
   @override
   bool isSupported(Locale locale) {
-    return supportedLocalCodes.contains(locale.languageCode);
+    return LocalizationService()
+        .supportedLocalCodes
+        .contains(locale.languageCode);
   }
 
   @override
@@ -208,7 +356,9 @@ class FallbackCupertinoLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) {
-    return supportedLocalCodes.contains(locale.languageCode);
+    return LocalizationService()
+        .supportedLocalCodes
+        .contains(locale.languageCode);
   }
 
   @override

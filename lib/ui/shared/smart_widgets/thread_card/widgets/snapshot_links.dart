@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/utilities.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/utilities.dart';
 
 class SnapshotLinks extends StatelessWidget {
   const SnapshotLinks({Key? key, required this.postSnapshotLinks})
@@ -49,15 +50,17 @@ class SnapshotLinks extends StatelessWidget {
                             ),
                             const SizedBox(width: 5),
                             Flexible(
-                                child: Text(
-                                    "${postSnapshotLinks![index].title}",
-                                    style: AppTextStyles.bodyBig))
+                              child: Text(
+                                "${postSnapshotLinks![index].title}",
+                                style: AppTextStyle.darkGreySize16Bold,
+                              ),
+                            )
                           ],
                         ),
                         const SizedBox(height: 10),
                         Text(
                           "${postSnapshotLinks![index].linkTitleText}",
-                          style: AppTextStyles.body1Bold,
+                          style: AppTextStyle.darkGreySize16Bold,
                         ),
                         const SizedBox(height: 5),
                         Text(

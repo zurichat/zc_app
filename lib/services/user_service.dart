@@ -1,7 +1,7 @@
 //On login or signup the user service is used to save all the user details
 import 'dart:convert';
 
-import 'package:hng/models/user_model.dart';
+import 'package:zurichat/models/user_model.dart';
 
 import '../app/app.locator.dart';
 import '../models/organization_model.dart';
@@ -19,6 +19,7 @@ class UserService {
   String _currentOrgId = '';
   String _currentOrgUrl = '';
   String _currentOrgName = '';
+  String _currentOrgLogo = '';
   String _authToken = '';
   String _userId = '';
   String _userEmail = '';
@@ -38,6 +39,12 @@ class UserService {
     _currentOrgName = _sharedPrefs.getString(StorageKeys.currentOrgName) ?? '';
     //You can perform other function before returning
     return _currentOrgName;
+  }
+
+  String get currentOrgLogo {
+    _currentOrgLogo = _sharedPrefs.getString(StorageKeys.currentOrgLogo) ?? '';
+    //You can perform other function before returning
+    return _currentOrgLogo;
   }
 
   String get currentOrgUrl {
@@ -75,7 +82,7 @@ class UserService {
     return _userId;
   }
 
-    String get memberId {
+  String get memberId {
     _userId = _sharedPrefs.getString(StorageKeys.idInOrganization) ?? '';
     //You can perform other function before returning
     return _userId;

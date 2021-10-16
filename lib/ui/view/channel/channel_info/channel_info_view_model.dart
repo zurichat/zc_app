@@ -1,12 +1,12 @@
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/ui/view/channel/channel_members/channel_members_list.dart';
-import 'package:hng/utilities/constants.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/ui/view/channel/channel_members/channel_members_list.dart';
+import 'package:zurichat/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../../app/app.locator.dart';
@@ -24,7 +24,9 @@ class ChannelInfoViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
   final log = getLogger('ChannelInfoViewModel');
 
-  String? _channelName;
+  bool notification = true;
+
+  String? channelName;
 
   String? _channelDescription;
 
@@ -38,13 +40,8 @@ class ChannelInfoViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  String get channelName {
-    return _channelName ?? UnnamedChannel;
-  }
-
-  void setChannelName(String channelName) {
-    _channelName = channelName;
-    log.i('pppp $channelDescription');
+  void toggleNotification(bool value) {
+    notification = value;
     notifyListeners();
   }
 
@@ -88,7 +85,6 @@ class ChannelInfoViewModel extends BaseViewModel {
       log.i(response?.data);
       String des = response?.data['description'];
       setChannelDescription(des);
-      setChannelName(channelName);
 
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),

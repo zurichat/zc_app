@@ -1,9 +1,9 @@
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/user_model.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/utilities/constants.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/user_model.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -85,7 +85,6 @@ class LoginViewModel extends FormViewModel {
 
     //saving user details to storage on request success
     if (response?.statusCode == 200) {
-     
       _storageService.setString(
         StorageKeys.currentSessionToken,
         response?.data['data']['user']['token'],
@@ -99,17 +98,17 @@ class LoginViewModel extends FormViewModel {
         response?.data['data']['user']['email'],
       );
       _storageService.clearData(StorageKeys.currentOrgId);
-      // final userModel = UserModel.fromJson(response?.data['data']['user']);
- final res = await zuriApi.get(
-          "https://api.zuri.chat/users/${response?.data['data']['user']['id']}");
-      if (res?.statusCode == 200) {
-        _snackbarService.showCustomSnackBar(
-            message: profileUpdated, variant: SnackbarType.success);
+      final userModel = UserModel.fromJson(response?.data['data']['user']);
+      // final res = await zuriApi
+      //     .get("${coreBaseUrl}users/${response?.data['data']['user']['id']}");
+      // if (res?.statusCode == 200) {
+      //   _snackbarService.showCustomSnackBar(
+      //       message: profileUpdated, variant: SnackbarType.success);
         _userService.setUserDetails(userModel);
-      } else {
-        _snackbarService.showCustomSnackBar(
-            message: errorOccurred, variant: SnackbarType.failure);
-      }
+      // } else {
+      //   _snackbarService.showCustomSnackBar(
+      //       message: errorOccurred, variant: SnackbarType.failure);
+      // }
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.success,

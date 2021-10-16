@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class WorkSpaceDisplayInfo extends StatelessWidget {
   final String? imageUrl;
@@ -20,25 +22,34 @@ class WorkSpaceDisplayInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.all(15),
-                child: Container(
-                  color: Colors.grey,
-                  height: 32,
-                  width: 32,
+                height: MediaQuery.of(context).size.height * 0.05,
+                width: MediaQuery.of(context).size.height * 0.05,
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(5),
                 ),
+                clipBehavior: Clip.antiAlias,
+                child: imageUrl != null && imageUrl!.isNotEmpty
+                    ? CachedNetworkImage(
+                        imageUrl: imageUrl!,
+                        fit: BoxFit.cover,
+                      )
+                    : Image.asset(
+                        'assets/logo/new_zuri_logo.png',
+                        fit: BoxFit.cover,
+                      ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(
-                    text: workSpaceTitle?.toUpperCase() ?? "",
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    workSpaceTitle?.toUpperCase() ?? "",
+                    style: AppTextStyle.darkGreySize16,
                   ),
-                  CustomText(
-                    text: workSpaceSlackUrl?.toLowerCase() ?? "",
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w300,
+                  Text(
+                    workSpaceSlackUrl?.toLowerCase() ?? "",
+                    style: AppTextStyle.darkGreySize16,
                   ),
                 ],
               )

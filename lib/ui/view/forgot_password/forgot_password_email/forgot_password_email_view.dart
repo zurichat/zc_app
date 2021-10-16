@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -19,6 +21,7 @@ class ForgotPasswordEmailView extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<ForgotPasswordEmailViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => ForgotPasswordEmailViewModel(),
@@ -47,16 +50,16 @@ class ForgotPasswordEmailView extends StatelessWidget
                   ),
                   Center(
                     child: Text(
-                      ForgotPassword,
-                      style: AppTextStyles.body1Bold,
+                      local!.forgotPassword,
+                      style: AppTextStyle.darkGreySize16,
                     ),
                   ),
                   const SizedBox(
                     height: 6.0,
                   ),
-                  const Center(
+                  Center(
                     child: Text(
-                      Header,
+                      local.forgotPasswordHeader,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -66,8 +69,8 @@ class ForgotPasswordEmailView extends StatelessWidget
                   Container(
                     margin: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
-                      EmailAddress,
-                      style: AppTextStyles.body1Bold,
+                      local.emailAddress,
+                      style: AppTextStyle.darkGreySize16Bold,
                     ),
                   ),
                   Column(
@@ -96,7 +99,6 @@ class ForgotPasswordEmailView extends StatelessWidget
                               ),
                             ),
                           ),
-                          // onChanged: model.submitEmail,
                         ),
                       ),
 
@@ -109,10 +111,8 @@ class ForgotPasswordEmailView extends StatelessWidget
                             children: [
                               UIHelper.verticalSpaceSmall,
                               Text(
-                                InvalidEmail,
-                                style: AppTextStyles.body2Medium.copyWith(
-                                  color: AppColors.redColor,
-                                ),
+                                local.invalidEmail,
+                                style: AppTextStyle.errorSize14,
                               ),
                             ],
                           ),
@@ -133,8 +133,8 @@ class ForgotPasswordEmailView extends StatelessWidget
                           model.validateEmailIsRegistered();
                         },
                         child: Text(
-                          Continue,
-                          style: AppTextStyles.buttonText,
+                          local.continueButton,
+                          style: AppTextStyle.whiteSize16,
                         ),
                         style: ElevatedButton.styleFrom(
                           padding:
@@ -154,14 +154,12 @@ class ForgotPasswordEmailView extends StatelessWidget
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: BackTo,
+                              text: local.backTo,
                               style: Theme.of(context).textTheme.bodyText1,
                             ),
                             TextSpan(
-                              text: SignIn,
-                              style: AppTextStyles.body2Bold.copyWith(
-                                color: AppColors.zuriPrimaryColor,
-                              ),
+                              text: local.signIn,
+                              style: AppTextStyle.greenSize14,
                             ),
                           ],
                         ),
