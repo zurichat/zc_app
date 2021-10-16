@@ -13,16 +13,19 @@ class DoNotDisturbView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<DoNotDisturbViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           orgTitle: Text(
             local!.doNotDisturb,
-            style: AppTextStyle.darkGreySize18Bold,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
           leading: Icons.close_outlined,
           leadingPress: () => model.exitPage(),
-          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          isDarkMode: _dark,
           whiteBackground: true,
           actions: [
             TextButton(
@@ -43,7 +46,9 @@ class DoNotDisturbView extends StatelessWidget {
                 itemBuilder: (context, index) => ListTile(
                   title: Text(
                     model.doNotDisturbTimes[index],
-                    style: AppTextStyle.darkGreySize16,
+                    style: _dark
+                        ? AppTextStyle.whiteSize16
+                        : AppTextStyle.darkGreySize16,
                   ),
                   leading: Radio(
                     activeColor: AppColors.zuriPrimaryColor,

@@ -17,13 +17,14 @@ class PluginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<PluginViewModel>.reactive(
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         return Scaffold(
           appBar: ZuriAppBar(
 
-            isDarkMode: Theme.of(context).brightness == Brightness.dark,
+            isDarkMode: _dark,
             orgTitle: Text(
               Plugins,
               style: AppTextStyle.darkGreySize20Bold,

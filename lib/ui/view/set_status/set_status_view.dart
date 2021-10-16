@@ -76,6 +76,7 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                     ),
                     Flexible(
                       child: TextField(
+                        cursorColor: AppColors.zuriPrimaryColor,
                         decoration: InputDecoration(
                           hintText: model.hintText,
                           border: InputBorder.none,

@@ -20,9 +20,10 @@ class DmPage extends StatelessWidget {
       onModelReady: (model) => model.initialise(),
       builder: (context, model, child) {
         final local = AppLocalization.of(context);
+        final bool _dark = Theme.of(context).brightness == Brightness.dark;
         return Scaffold(
           appBar: ZuriAppBar(
-            isDarkMode: Theme.of(context).brightness == Brightness.dark,
+            isDarkMode: _dark,
             leadingWidth: true,
             orgTitle: Text(local!.directMessages,
                 style: AppTextStyle.organizationNameText),
@@ -46,7 +47,9 @@ class DmPage extends StatelessWidget {
               : !model.data!
                   ? Center(
                       child: Text(local.temporarilyUnavailable,
-                          style: AppTextStyle.darkGreySize18Bold),
+                          style: _dark
+                              ? AppTextStyle.whiteSize18Bold
+                              : AppTextStyle.darkGreySize18Bold),
                     )
                   : SingleChildScrollView(
                       child: Padding(

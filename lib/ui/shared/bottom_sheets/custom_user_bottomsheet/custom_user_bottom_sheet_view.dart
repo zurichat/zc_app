@@ -24,6 +24,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
           ? Container()
@@ -35,7 +36,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
                   (BuildContext context, ScrollController scrollController) {
                 return Container(
                   height: height * .97,
-                  color: Theme.of(context).brightness == Brightness.dark
+                  color: _dark
                       ? AppColors.darkThemePrimaryColor
                       : AppColors.whiteColor,
                   child: SingleChildScrollView(
@@ -73,9 +74,18 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         ),
                         const Divider(),
                         ListTile(
-                          title: Text(
-                            StatusText,
-                            style: AppTextStyle.darkGreySize16,
+                          visualDensity:
+                              const VisualDensity(horizontal: 0.0, vertical: 0),
+                          horizontalTitleGap: 0,
+                          dense: true,
+                          title: Padding(
+                            padding: const EdgeInsets.only(bottom: 3),
+                            child: Text(
+                              StatusText,
+                              style: _dark
+                                  ? AppTextStyle.whiteSize16
+                                  : AppTextStyle.darkGreySize16,
+                            ),
                           ),
                           subtitle: const Align(
                               alignment: Alignment.centerLeft,

@@ -15,7 +15,6 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
         super(key: key, reactive: true);
   @override
   Widget build(BuildContext context, EditProfileViewModel viewModel) {
-     
     return Container(
       padding: EdgeInsets.symmetric(
           vertical: _size.height * 0.02, horizontal: _size.width * 0.05),
@@ -38,7 +37,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                       borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       ),
-                      color: AppColors.greyishColor,
+                      color: AppColors.shadowColor,
                     ),
                     child: Align(
                       alignment: Alignment.bottomRight,
@@ -47,7 +46,7 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                         icon: Icon(
                           Icons.add_a_photo,
                           size: _size.width * 0.06,
-                          color: AppColors.whiteColor,
+                          color: AppColors.zuriGrey,
                         ),
                       ),
                     ),

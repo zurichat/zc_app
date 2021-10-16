@@ -21,11 +21,13 @@ class PluginPage extends StatelessWidget {
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         final local = AppLocalization.of(context);
+        final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
         return Scaffold(
           appBar: ZuriAppBar(
             leading: Icons.arrow_back_ios,
             leadingPress: model.navigateBack,
-            isDarkMode: Theme.of(context).brightness == Brightness.dark,
+            isDarkMode: _dark,
             whiteBackground: true,
             orgTitle: Text(
               Plugins,
@@ -44,12 +46,16 @@ class PluginPage extends StatelessWidget {
                       children: [
                         Text(
                           local!.pluginIntroHeader,
-                          style: AppTextStyle.darkGreySize16,
+                          style: _dark
+                              ? AppTextStyle.whiteSize16
+                              : AppTextStyle.darkGreySize16,
                         ),
                         UIHelper.verticalSpaceMedium,
                         Text(
                           local.pluginIntroBody,
-                          style: AppTextStyle.lightGreySize14,
+                          style: _dark
+                              ? AppTextStyle.whiteSize14
+                              : AppTextStyle.lightGreySize14,
                         ),
                         UIHelper.customVerticalSpace(56.0),
                         FractionallySizedBox(
@@ -75,24 +81,34 @@ class PluginPage extends StatelessWidget {
                         MenuItemTile(
                           icon: SvgPicture.asset(
                             'assets/icons/svg_icons/plus.svg',
-                            color: AppColors.zuriPrimaryColor,
+                            color: _dark
+                                ? AppColors.whiteColor
+                                : AppColors.zuriGrey,
                             width: 18,
                             height: 18,
                           ),
                           topBorder: false,
                           text: Text(local!.addPlugin,
-                              style: AppTextStyle.lightGreySize16),
+                              style: _dark
+                                  ? AppTextStyle.whiteSize16
+                                  : AppTextStyle.lightGreySize16),
                         ),
                         for (PluginModel plugin in model.plugins)
                           MenuItemTile(
                             onPressed: () => model.navigateToWebviewPage(
                                 plugin.name, plugin.url),
-                            ico: plugin.icon,
+                            icon: Icon(
+                              plugin.icon,
+                              color: AppColors.zuriPrimaryColor,
+                              size: 18,
+                            ),
                             iconColor: AppColors.zuriPrimaryColor,
                             topBorder: false,
                             text: Text(
                               plugin.name,
-                              style: AppTextStyle.lightGreySize16,
+                              style: _dark
+                                  ? AppTextStyle.whiteSize16
+                                  : AppTextStyle.lightGreySize16,
                             ),
                           ),
                       ],
