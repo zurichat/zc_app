@@ -13,6 +13,7 @@ class SavedItemsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<SavedItemsViewModel>.reactive(
       onModelReady: (model) => model.savedItems,
       builder: (context, model, child) => Scaffold(
@@ -25,7 +26,7 @@ class SavedItemsView extends StatelessWidget {
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),
-          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          isDarkMode: _dark,
           whiteBackground: true,
         ),
         body: model.savedBuilderList.isEmpty
@@ -39,6 +40,7 @@ class SavedItemsView extends StatelessWidget {
                     onTap: () =>
                         model.navigateToMessage(model.savedBuilderList[index]),
                     onLongPress: () {
+                      //TODO: replace with dialog service
                       showDialog(
                           context: context,
                           builder: (context) {

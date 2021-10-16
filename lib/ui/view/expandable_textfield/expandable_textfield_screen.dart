@@ -86,7 +86,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Visibility(
+                        //TODO: RED SCREEN
+                        /*  Visibility(
                           visible: model.showMembers,
                           child: Container(
                             color: Colors.white,
@@ -131,7 +132,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                   : null,
                             ),
                           ),
-                        ),
+                        ), */
                         const Divider(height: 0, color: Color(0xFF999999)),
                         GestureDetector(
                           onPanUpdate: (details) {
@@ -519,10 +520,12 @@ class MyTextField extends StatelessWidget {
                   }
                   toggleMembersList(detected);
 
+
                   if (word.contains('@')) {
                     search = word.split('@');
                     model.onSearchUser(search[1]);
                   }
+
                 },
                 textAlignVertical: isExpanded
                     ? TextAlignVertical.top

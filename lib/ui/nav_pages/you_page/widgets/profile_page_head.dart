@@ -20,6 +20,8 @@ class ProfilePageHead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
@@ -61,16 +63,20 @@ class ProfilePageHead extends StatelessWidget {
         const SizedBox(width: 10),
         Flexible(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 '$name',
-                style: AppTextStyle.darkGreySize16Bold,
+                style: _dark
+                    ? AppTextStyle.whiteSize16Bold
+                    : AppTextStyle.darkGreySize16Bold,
               ),
+              const SizedBox(height: 5),
               Text(
                 '$currentStatus',
-                style: AppTextStyle.lightGreySize14,
+                style: _dark
+                    ? AppTextStyle.whiteSize14
+                    : AppTextStyle.lightGreySize14,
               ),
             ],
           ),

@@ -35,9 +35,8 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
             leadingPress: () => model.exitPage(),
             orgTitle: Text(
               'Set a status',
-              style: AppTextStyle.darkGreySize16.copyWith(
+              style: AppTextStyle.darkGreySize18Bold.copyWith(
                 color: Theme.of(context).textTheme.bodyText1!.color,
-
               ),
             ),
             actions: [
@@ -45,7 +44,7 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                 onPressed: model.saveStatus,
                 child: Text(
                   Save,
-                  style: AppTextStyle.darkGreySize16,
+                  style: AppTextStyle.greenSize16,
                 ),
               )
             ],
@@ -77,6 +76,7 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                     ),
                     Flexible(
                       child: TextField(
+                        cursorColor: AppColors.zuriPrimaryColor,
                         decoration: InputDecoration(
                           hintText: model.hintText,
                           border: InputBorder.none,

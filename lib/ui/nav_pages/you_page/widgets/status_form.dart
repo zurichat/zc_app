@@ -29,13 +29,13 @@ class StatusForm extends StatelessWidget {
               AppColors.zuriPrimaryColor,
         ),
       ),
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.only(top: 5, bottom: 5, left: 12),
       elevation: 3,
       onPressed: onPressed,
       child: Row(
         children: [
           tagIcon != null ? Text(tagIcon ?? '') : const Icon(bubble),
-          const SizedBox(width: 7),
+          const SizedBox(width: 10),
           Flexible(
             child: Text(
               statusText ?? local!.whatIsYourStatus,

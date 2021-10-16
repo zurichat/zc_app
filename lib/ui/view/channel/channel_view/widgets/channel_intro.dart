@@ -21,6 +21,8 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
   @override
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
     final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       padding: const EdgeInsets.all(15),
       child: Column(
@@ -29,7 +31,9 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
         children: [
           Text(
             "#$channelName",
-            style: AppTextStyle.darkGreySize16Bold,
+            style: _dark
+                ? AppTextStyle.whiteSize16Bold
+                : AppTextStyle.darkGreySize16Bold,
           ),
           const SizedBox(height: 10),
           TextParser(
@@ -56,7 +60,9 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                   const SizedBox(height: 5),
                   Text(
                     local.description,
-                    style: AppTextStyle.lightGreySize14,
+                    style: _dark
+                        ? AppTextStyle.whiteSize14
+                        : AppTextStyle.darkGreySize14,
                   )
                 ],
               ),
@@ -79,10 +85,9 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                   const SizedBox(height: 5),
                   Text(
                     local.addPeople,
-                    style: const TextStyle(
-                      color: AppColors.greyishColor,
-                      fontSize: 14,
-                    ),
+                    style: _dark
+                        ? AppTextStyle.whiteSize14
+                        : AppTextStyle.darkGreySize14,
                   )
                 ],
               ),
@@ -102,7 +107,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                   width: 50,
                   height: 20,
                   decoration: BoxDecoration(
-                    border: Border.all(width: 1),
+                    border: Border.all(width: 1, color: AppColors.greyishColor),
                     borderRadius: BorderRadius.circular(40),
                   ),
                   child: Text(
@@ -115,7 +120,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
               const Expanded(
                   child: Divider(
                 indent: 1,
-                color: Colors.black,
+                color: AppColors.greyishColor,
               )),
             ]),
           )
