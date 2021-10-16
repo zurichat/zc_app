@@ -35,14 +35,17 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
             leadingPress: () => model.exitPage(),
             orgTitle: Text(
               'Set a status',
-              style: AppTextStyle.darkGreySize20Bold
+              style: AppTextStyle.darkGreySize16.copyWith(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+
+              ),
             ),
             actions: [
               TextButton(
                 onPressed: model.saveStatus,
                 child: Text(
                   Save,
-                  style: AppTextStyle.greenSize16,
+                  style: AppTextStyle.darkGreySize16,
                 ),
               )
             ],
@@ -61,16 +64,16 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                       onTap: model.addEmojiTag,
                       child: model.tagIcon != null
                           ? Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text(
-                                model.tagIcon ?? '',
-                              ),
-                            )
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(
+                          model.tagIcon ?? '',
+                        ),
+                      )
                           : const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Icon(bubble),
-                            ),
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Icon(bubble),
+                      ),
                     ),
                     Flexible(
                       child: TextField(
