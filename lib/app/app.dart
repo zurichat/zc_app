@@ -14,7 +14,7 @@ import 'package:hng/ui/view/organization/invite_to_organization/admin_permission
 import 'package:hng/ui/view/organization/invite_to_organization/invitation_sent.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
-import 'package:hng/ui/view/organization/organization_settings/organization_icon.dart';
+import 'package:hng/ui/view/organization/organization_settings/organization_logo.dart';
 import 'package:hng/ui/view/organization/organization_settings/organization_name_url.dart';
 import 'package:hng/ui/view/organization/organization_settings/organization_settings_view.dart';
 import 'package:hng/ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';

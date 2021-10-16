@@ -35,10 +35,11 @@ class OrganizationSettingsViewModel extends BaseViewModel with ValidatorMixin {
   }
 
   void navigateToWorkspaceName(OrganizationModel org) {
-    navigation.navigateTo(
-      Routes.organizationNameUrl,
-      arguments: OrganizationNameUrlArguments(org: org),
-    );
+   //TODO: getting ready
+    // navigation.navigateTo(
+    //   Routes.organizationNameUrl,
+    //   arguments: OrganizationNameUrlArguments(org: org),
+    // );
   }
 
   void navigateToWorkspaceLogo(OrganizationModel org) {

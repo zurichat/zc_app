@@ -64,6 +64,9 @@ class AppTextStyle {
   static TextStyle errorSize14 =
       _base(_size14, _normalWeight, AppColors.redColor);
 
+  static TextStyle whiteSize14Bold =
+      _base(_size14, _boldWeight, AppColors.whiteColor);
+
   static TextStyle whiteSize18Bold =
       _base(_size18, _boldWeight, AppColors.whiteColor);
 
@@ -120,6 +123,11 @@ class AppTextStyle {
     AppColors.textDark10,
   );
 
+  static TextStyle bigWhiteText = _base(
+    24,
+    _boldWeight,
+    AppColors.whiteColor,
+  );
   static TextStyle organizationNameText = _base(
     19,
     FontWeight.w800,

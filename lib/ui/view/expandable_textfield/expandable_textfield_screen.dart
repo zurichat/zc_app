@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hng/ui/view/expandable_textfield/widget/user_mentions.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/constants/app_strings.dart';
@@ -88,7 +87,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Visibility(
+                        //TODO: RED SCREEN
+                        /*  Visibility(
                           visible: model.showMembers,
                           child: Container(
                             color: Colors.white,
@@ -132,7 +132,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                     ),
                             ),
                           ),
-                        ),
+                        ), */
                         const Divider(height: 0, color: Color(0xFF999999)),
                         GestureDetector(
                           onPanUpdate: (details) {
@@ -448,7 +448,7 @@ class MyTextField extends StatelessWidget {
                   toggleMembersList(detected);
                   search = word.split('@');
 
-                  model.onSearchUser(search[1]);
+                  //model.onSearchUser(search[1]);
                   search.clear();
                 },
                 textAlignVertical: isExpanded
