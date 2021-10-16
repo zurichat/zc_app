@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hng/ui/shared/long_button.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/ui_helpers.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
@@ -19,6 +20,7 @@ class InvitationSent extends StatelessWidget {
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
         return Scaffold(
           appBar: ZuriAppBar(
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             leading: Icons.close,
             leadingPress: () {
               model.navigateBack();
@@ -41,7 +43,7 @@ class InvitationSent extends StatelessWidget {
                 UIHelper.verticalSpaceLarge,
                 Text(
                   local!.invitationSent,
-                  style: AppTextStyles.body1Bold.copyWith(fontSize: 20),
+                  style: AppTextStyle.darkGreySize18Bold,
                 ),
                 UIHelper.verticalSpaceLarge,
                 Center(
@@ -54,7 +56,7 @@ class InvitationSent extends StatelessWidget {
                       const SizedBox(width: 16),
                       Text(
                         model.getInvitedMail() ?? '',
-                        style: AppTextStyles.body2Bold,
+                        style: AppTextStyle.darkGreySize16Bold,
                       ),
                     ],
                   ),
@@ -62,9 +64,9 @@ class InvitationSent extends StatelessWidget {
                 UIHelper.verticalSpaceLarge,
                 Center(
                   child: Text(
-                      local.invitedAsAZuriChatMember,
-                      style: AppTextStyles.descriptionStyle
-                          .copyWith(color: AppColors.zuriDarkGrey)),
+                    local.invitedAsAZuriChatMember,
+                    style: AppTextStyle.darkGreySize16,
+                  ),
                   // textAlign: TextAlign.center,
                 ),
                 const Spacer(),

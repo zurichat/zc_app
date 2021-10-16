@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
 import 'dm_page_viewmodel.dart';
 
-class DmScreen extends StatefulWidget {
-  const DmScreen({Key? key}) : super(key: key);
+class DmScreen extends StatelessWidget {
+  DmScreen({Key? key}) : super(key: key);
 
-  @override
-  _DmScreenState createState() => _DmScreenState();
-}
-
-class _DmScreenState extends State<DmScreen> {
-  //The inputchip key
   final _chipKey = GlobalKey<ChipsInputState>();
 
   //Hardcoded list of users
@@ -36,15 +32,18 @@ class _DmScreenState extends State<DmScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<DmPageViewModel>.reactive(
       viewModelBuilder: () => DmPageViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           isDarkMode: Theme.of(context).brightness == Brightness.dark,
           whiteBackground: true,
+          leading: Icons.arrow_back_ios_new,
+          leadingPress: model.goBack,
           orgTitle: Text(
-            DM,
-            style: AppTextStyles.heading7.copyWith(
+            local!.directMessages,
+            style: AppTextStyle.blackSize18Bold.copyWith(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),
@@ -53,9 +52,9 @@ class _DmScreenState extends State<DmScreen> {
               onPressed: () {
                 model.navigateToDmUserView();
               },
-              child: const Text(
-                Done,
-                style: TextStyle(color: AppColors.borderColor),
+              child: Text(
+                local.done,
+                style: const TextStyle(color: AppColors.borderColor),
               ),
             ),
           ],
@@ -83,18 +82,16 @@ class _DmScreenState extends State<DmScreen> {
                   userOnline: _userResults[index].isOnline,
                   checkBoxValue: _userResults[index].checked,
                   onChange: (bool? value) {
-                    setState(() {
-                      _userResults[index].checked = value;
-                      if (value == true) {
-                        _chipKey.currentState!.selectSuggestion(UserProfile(
-                          username: _userResults[index].username,
-                        ));
-                      } else if (value == false) {
-                        _chipKey.currentState!.deleteChip(UserProfile(
-                          username: _userResults[index].username,
-                        ));
-                      }
-                    });
+                    _userResults[index].checked = value;
+                    if (value == true) {
+                      _chipKey.currentState!.selectSuggestion(UserProfile(
+                        username: _userResults[index].username,
+                      ));
+                    } else if (value == false) {
+                      _chipKey.currentState!.deleteChip(UserProfile(
+                        username: _userResults[index].username,
+                      ));
+                    }
                   },
                 ),
                 shrinkWrap: true,
@@ -121,16 +118,17 @@ class ChipInputTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ChipsInput(
       key: _chipKey,
       keyboardAppearance: Brightness.dark,
       textCapitalization: TextCapitalization.words,
       textStyle: const TextStyle(height: 1.5, fontSize: 16),
-      decoration: const InputDecoration(
-        contentPadding: EdgeInsets.only(left: 10),
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.only(left: 10),
         border: InputBorder.none,
-        hintText: UserSearchHint,
-        focusedBorder: OutlineInputBorder(
+        hintText: local!.dmHint,
+        focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.greyishColor,
           ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
@@ -19,9 +21,14 @@ class YouPage extends StatelessWidget {
     final local = AppLocalization.of(context);
     return ViewModelBuilder<YouPageViewModel>.reactive(
       viewModelBuilder: () => YouPageViewModel(),
+      onModelReady: (model) {
+        model.fetchStatus();
+        model.getUserPresence();
+      },
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-          orgTitle: Text(You, style: ZuriTextStyle.organizationNameText()),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          orgTitle: Text(You, style: AppTextStyle.organizationNameText),
           bottomNavBarScreen: true,
           leadingWidth: true,
         ),
@@ -32,21 +39,33 @@ class YouPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: () => model.editProfile(),
+                  onTap: () => model.getUserPresence(),
                   child: ProfilePageHead(
+                    isActive: model.currentStatus == 'Active',
                     name: model.username,
                     currentStatus: model.currentStatus,
                     image: model.profileImage,
                   ),
                 ),
                 const SizedBox(height: 30),
-                StatusForm(onPressed: model.setStatus),
+                StatusForm(
+                  onPressed: model.setStatus,
+                  statusText: model.statusText,
+                  tagIcon: model.tagIcon,
+                  clearOnPressed: model.clearStatus,
+                  // iconData: model.tag,
+                ),
                 const SizedBox(height: 20),
                 MenuItemTile(
-                  icon: Icons.notifications_off_outlined,
+                  icon: SvgPicture.asset(
+                    PauseNotification,
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   text: Text(
                     local!.pauseNotifications,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.pauseNotifications,
                   topBorder: false,
@@ -56,9 +75,8 @@ class YouPage extends StatelessWidget {
                   topBorder: false,
                   text: Text.rich(
                     TextSpan(
-                      //TODO TRANSLATE
-                      text: SetStatusText,
-                      style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                      text: local.setStatusText,
+                      style: AppTextStyle.lightGreySize16,
                       children: [
                         TextSpan(
                           text: model.otherStatus,
@@ -67,54 +85,84 @@ class YouPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  icon: Icons.circle_outlined,
+                  icon: SvgPicture.asset(
+                    away,
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   onPressed: model.toggleStatus,
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
-                  icon: Icons.bookmark_outline_outlined,
+                  icon: SvgPicture.asset(
+                    Saved_Items,
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   text: Text(
                     local.savedItems,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.viewSavedItem,
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
-                  icon: Icons.account_circle_outlined,
+                  icon: SvgPicture.asset(
+                    View_Profile,
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   text: Text(
                     local.viewProfile,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
-                  onPressed: model.viewProfile,
+                  onPressed: () => model.getUserPresence(),
                   topBorder: false,
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
-                  icon: Icons.trip_origin,
+                  icon: SvgPicture.asset(
+                    notification,
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   text: Text(
                     local.notifications,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.viewNotifications,
                   topBorder: false,
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
-                  icon: Icons.settings,
+                  icon: SvgPicture.asset(
+                    preference,
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   text: Text(
                     local.preferences,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.viewPreferences,
                   topBorder: false,
                 ),
                 const SizedBox(height: 16),
                 MenuItemTile(
-                  icon: Icons.logout_sharp,
+                  icon: SvgPicture.asset(
+                    Log_Out,
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
                   text: Text(
                     local.signOut,
-                    style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
+                    style: AppTextStyle.lightGreySize16,
                   ),
                   onPressed: model.signOutAccount,
                   topBorder: false,

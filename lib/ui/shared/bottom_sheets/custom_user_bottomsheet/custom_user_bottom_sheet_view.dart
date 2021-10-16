@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/general_widgets/custom_text.dart';
+
 import 'package:hng/ui/shared/colors.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -35,7 +36,7 @@ class CustomUserBottomSheetView extends StatelessWidget {
                 return Container(
                   height: height * .97,
                   color: Theme.of(context).brightness == Brightness.dark
-                      ? AppColors.zuriDarkGrey
+                      ? AppColors.darkThemePrimaryColor
                       : AppColors.whiteColor,
                   child: SingleChildScrollView(
                     controller: scrollController,
@@ -66,14 +67,16 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         const CustomProfileTile(
                             title: Track, subtitle: MobileDev),
                         const Divider(),
-                        const CustomProfileTile(
+                        CustomProfileTile(
                           title: DisplayName,
-                          subtitle: '',
+                          subtitle: model.userModel!.displayName ?? '',
                         ),
                         const Divider(),
                         ListTile(
-                          title: const CustomText(
-                              text: StatusText, fontWeight: FontWeight.w300),
+                          title: Text(
+                            StatusText,
+                            style: AppTextStyle.darkGreySize16,
+                          ),
                           subtitle: const Align(
                               alignment: Alignment.centerLeft,
                               child: Icon(Icons.looks_5,
@@ -89,14 +92,14 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           ),
                         ),
                         const Divider(),
-                        const CustomProfileTile(
+                        CustomProfileTile(
                           title: Number,
-                          subtitle: '',
+                          subtitle: model.userModel!.phoneNumber ?? '',
                         ),
                         const Divider(),
                         CustomProfileTile(
                           title: EmailAddress,
-                          subtitle: model.email!,
+                          subtitle: model.userModel!.email!,
                         ),
                       ],
                     ),

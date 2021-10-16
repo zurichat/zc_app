@@ -85,7 +85,6 @@ class LoginViewModel extends FormViewModel {
 
     //saving user details to storage on request success
     if (response?.statusCode == 200) {
-     
       _storageService.setString(
         StorageKeys.currentSessionToken,
         response?.data['data']['user']['token'],
@@ -100,8 +99,8 @@ class LoginViewModel extends FormViewModel {
       );
       _storageService.clearData(StorageKeys.currentOrgId);
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
- final res = await zuriApi.get(
-          "https://api.zuri.chat/users/${response?.data['data']['user']['id']}");
+      final res = await zuriApi
+          .get("${coreBaseUrl}users/${response?.data['data']['user']['id']}");
       if (res?.statusCode == 200) {
         _snackbarService.showCustomSnackBar(
             message: profileUpdated, variant: SnackbarType.success);

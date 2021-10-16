@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 
 class MessageTile extends StatelessWidget {
   final String message, avatar, name, time;
@@ -28,7 +29,10 @@ class MessageTile extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-            Text(time, style: AppTextStyles.smallText),
+            Text(
+              time,
+              style: AppTextStyle.lightGreySize12,
+            ),
           ],
         ),
       );

@@ -5,7 +5,8 @@ import 'package:hng/ui/shared/colors.dart';
 class StartMessage extends StatelessWidget {
   final String? userName;
 
-  const StartMessage(String username, {
+  const StartMessage(
+    String username, {
     Key? key,
     //TODO assign to app_strings.dart
     this.userName = 'OyinkanUA',

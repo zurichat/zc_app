@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../shared/colors.dart';
 import '../../../../shared/shared.dart';
-import '../../../../shared/styles.dart';
+
 import '../channel_info_view_model.dart';
 
 class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
@@ -48,7 +49,7 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
                   onPressed: viewModel.showDialog,
                   child: Text(
                     DeleteChannel,
-                    style: AppTextStyles.heading7,
+                    style: AppTextStyle.darkGreySize20Bold,
                   ),
                 ),
               ),
@@ -59,7 +60,7 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
             margin: const EdgeInsets.only(left: 45, bottom: 10),
             child: Text(
               DeleteChannelWarning,
-              style: AppTextStyles.normalGrey,
+              style: AppTextStyle.lightGreySize14,
             ),
           ),
         ],

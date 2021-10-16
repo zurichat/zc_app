@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hng/general_widgets/easy_container.dart';
@@ -24,26 +25,43 @@ class HomePage extends StatelessWidget {
         model.getNewChannelStream();
         model.hasDrafts();
         model.listenToNotificationTap();
+        model.getUserInfo();
       },
       viewModelBuilder: () => HomePageViewModel(),
       builder: (context, vmodel, child) => Scaffold(
         appBar: ZuriAppBar(
           leadingWidth: true,
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           orgTitle: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               InkWell(
                 onTap: () => vmodel.navigateToOrganization(),
-                child: const Image(
-                  image: appBarLogo,
-                  fit: BoxFit.cover,
+                child: Container(
                   height: 25,
+                  width: 25,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  clipBehavior: Clip.hardEdge,
+                  //TODO : Add the org image here
+                  child: vmodel.orgLogo != null && vmodel.orgLogo!.isNotEmpty
+                      ? CachedNetworkImage(
+                          imageUrl: vmodel.orgLogo!,
+                          fit: BoxFit.cover,
+                        )
+                      : const Image(
+                          image: appBarLogo,
+                          fit: BoxFit.cover,
+                          height: 25,
+                        ),
                 ),
               ),
               const SizedBox(width: 16),
               Text(
                 vmodel.orgName,
-                style: ZuriTextStyle.organizationNameText(),
+                style: AppTextStyle.organizationNameText,
               ),
             ],
           ),
@@ -54,8 +72,10 @@ class HomePage extends StatelessWidget {
               vmodel.isBusy
                   ? LinearProgressIndicator(
                       backgroundColor: Colors.grey[400],
-                      valueColor: const AlwaysStoppedAnimation(
-                          AppColors.zuriPrimaryColor),
+                      valueColor: AlwaysStoppedAnimation(
+                          Theme.of(context).brightness == Brightness.dark
+                              ? AppColors.darkThemePrimaryColor
+                              : AppColors.zuriPrimaryColor),
                     )
                   : Container(),
               Expanded(
@@ -84,10 +104,12 @@ class HomePage extends StatelessWidget {
         children: [
           const SizedBox(height: 15),
           searchBar(context, vmodel),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
-            child: ThreadTextAndIcon(),
-          ),
+          vmodel.hasThreads()
+              ? const Padding(
+                  padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
+                  child: ThreadTextAndIcon(),
+                )
+              : Container(),
           vmodel.hasDrafts()
               ? const Padding(
                   padding: EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 3),
@@ -130,7 +152,7 @@ class HomePage extends StatelessWidget {
           borderColor: Colors.grey[300],
           child: Text(
             local!.jumpTo,
-            style: ZuriTextStyle.mediumNormal(),
+            style: AppTextStyle.darkGreySize14,
           ),
         ),
       ),

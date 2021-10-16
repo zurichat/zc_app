@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/new_row_tile.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import '../../../../shared/colors.dart';
 
 class FifthSection extends StatelessWidget {
@@ -24,9 +25,23 @@ class FifthSection extends StatelessWidget {
               ? AppColors.darkThemePrimaryColor
               : AppColors.whiteColor,
         ),
-        child: const NewRowTile(
-          icon: Icons.push_pin_outlined,
-          text: Leave,
+        child: Row(
+          children: [
+            SvgPicture.asset(
+              Log_Out,
+              color: Theme.of(context).textTheme.bodyText1!.color,
+              width: 18,
+              height: 18,
+            ),
+            SizedBox(width: 24.23.w),
+            Text(
+              Leave,
+              style: AppTextStyle.darkGreySize16.copyWith(
+                fontSize: 14.sp,
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
+            ),
+          ],
         ),
       ),
     );

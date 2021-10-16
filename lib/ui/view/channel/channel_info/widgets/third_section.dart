@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/channel_members.dart';
 import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/ui/shared/text_styles.dart';
+
 import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:hng/ui/view/channel/channel_info/widgets/new_row_tile.dart';
 import '../../../../shared/colors.dart';
@@ -51,8 +53,24 @@ class ThirdSection extends StatelessWidget {
           SizedBox(height: 18.h),
           InkWell(
               onTap: () {},
-              child: const NewRowTile(
-                  icon: Icons.person_add_alt_1_outlined, text: AddPeople)),
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    Channel_Info_Members,
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
+                  SizedBox(width: 24.23.w),
+                  Text(
+                    AddPeople,
+                    style: AppTextStyle.darkGreySize14.copyWith(
+                      fontSize: 14.sp,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
+                    ),
+                  ),
+                ],
+              )),
           SizedBox(height: 10.h),
           Divider(
             thickness: 0.5.h,
@@ -76,8 +94,24 @@ class ThirdSection extends StatelessWidget {
           SizedBox(height: 18.h),
           InkWell(
               onTap: () {},
-              child: const NewRowTile(
-                  icon: Icons.phone_outlined, text: StartCall)),
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    Channel_Info_Phone,
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
+                  SizedBox(width: 24.23.w),
+                  Text(
+                    StartCall,
+                    style: AppTextStyle.darkGreySize14.copyWith(
+                      fontSize: 14.sp,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
+                    ),
+                  ),
+                ],
+              )),
         ],
       ),
     );

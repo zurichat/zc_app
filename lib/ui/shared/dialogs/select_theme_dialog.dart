@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../general_widgets/custom_text.dart';
 import '../colors.dart';
 
 class SelectThemeDialog extends StatelessWidget {
@@ -21,17 +21,24 @@ class SelectThemeDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Padding(
-                padding: EdgeInsets.only(top: 15, left: 15),
-                child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: CustomText(
-                        text: DarkMode, fontWeight: FontWeight.bold))),
+            Padding(
+              padding: const EdgeInsets.only(top: 15, left: 15),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  DarkMode,
+                  style: AppTextStyle.darkGreySize16Bold,
+                ),
+              ),
+            ),
             ListView.builder(
               shrinkWrap: true,
               itemCount: request.data['themes'].length,
               itemBuilder: (context, index) => ListTile(
-                title: CustomText(text: request.data['themes'][index]),
+                title: Text(
+                  request.data['themes'][index],
+                  style: AppTextStyle.darkGreySize16,
+                ),
                 leading: Radio(
                   activeColor: AppColors.zuriPrimaryColor,
                   value: index,
@@ -57,7 +64,7 @@ class SelectThemeDialog extends StatelessWidget {
                   ),
                   child: const Text(Apply),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
               ],
             ),
           ],

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/shared.dart';
+
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/colors.dart';
@@ -19,8 +21,9 @@ class ChannelAddPeopleView extends StatelessWidget {
   final String channelId;
 
   @override
-  Widget build(BuildContext context) =>
-      ViewModelBuilder<ChannelAddPeopleViewModel>.reactive(
+  Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    return ViewModelBuilder<ChannelAddPeopleViewModel>.reactive(
         onModelReady: (model) => model.fetchOrganizationMembers(),
         viewModelBuilder: () => ChannelAddPeopleViewModel(),
         initialiseSpecialViewModelsOnce: true,
@@ -30,9 +33,9 @@ class ChannelAddPeopleView extends StatelessWidget {
           appBar: ZuriAppBar(
             orgTitle: Text(
               viewModel.markedUsers.isNotEmpty
-                  ? '${viewModel.markedUsers.length} selected'
+                  ? '${viewModel.markedUsers.length} ${local!.selected}'
                   : AddPeople,
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize20Bold,
             ),
             whiteBackground: true,
             leading: Icons.clear,
@@ -65,7 +68,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: SearchField(
                     onChanged: viewModel.onSearchUser,
-                    labelText: SearchPeople,
+                    labelText: local!.searchPeople,
                   ),
                 ),
                 if (viewModel.matchingUsers.isNotEmpty &&
@@ -82,7 +85,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              AddEveryone,
+                              local.addEveryone,
                               style: GoogleFonts.lato(
                                 color: AppColors.deepBlackColor,
                                 fontWeight: FontWeight.bold,
@@ -90,7 +93,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                             ),
                             const SizedBox(height: 4.0),
                             Text(
-                              EveryoneWillBeAdded,
+                              local.everyoneWillBeAdded,
                               style: GoogleFonts.lato(
                                 color: AppColors.greyishColor,
                                 fontWeight: FontWeight.bold,
@@ -120,7 +123,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                     : viewModel.isBusy
                         ? Center(
                             child: Text(
-                              'Adding Marked Users...',
+                              local!.addingMarkedUsers,
                               style: GoogleFonts.lato(
                                 color: AppColors.deepBlackColor,
                                 fontWeight: FontWeight.bold,
@@ -176,4 +179,5 @@ class ChannelAddPeopleView extends StatelessWidget {
           ),
         ),
       );
+  }
 }

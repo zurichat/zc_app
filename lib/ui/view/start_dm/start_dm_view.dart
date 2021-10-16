@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 
 import 'package:stacked/stacked.dart';
@@ -32,7 +33,7 @@ class StartDmView extends StatelessWidget with $StartDmView {
         appBar: ZuriAppBar(
           orgTitle: Text(
             DM,
-            style: AppTextStyles.heading4.copyWith(
+            style: AppTextStyle.darkGreySize20Bold.copyWith(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),
@@ -47,9 +48,8 @@ class StartDmView extends StatelessWidget with $StartDmView {
               onPressed: () {},
               child: Text(
                 Done,
-                style: AppTextStyles.heading8.copyWith(
+                style: AppTextStyle.greenSize16.copyWith(
                   letterSpacing: 0.5,
-                  fontWeight: FontWeight.w400,
                 ),
               ),
             ),

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
 import 'package:hng/services/local_storage_services.dart';
 import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
@@ -15,7 +14,6 @@ import 'package:hng/app/app.logger.dart';
 class ThreadCardViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
-  final _channelsApiService = locator<ChannelsApiService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
   final log = getLogger("ThreadCardViewModel");
 
@@ -54,10 +52,6 @@ class ThreadCardViewModel extends BaseViewModel {
       log.w(len!.length.toString());
     }
   }
-
-  Future<bool> changePinnedState(UserPost? userPost) =>
-      _channelsApiService.changeChannelMessagePinnedState(userPost!.channelId,
-          userPost.id!, userPost.userId!, !userPost.pinned);
 
   Future navigateToThread(UserPost? userPost) async {
     _navigationService.navigateTo(

@@ -6,7 +6,10 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/general_widgets/custom_channel.dart';
 import 'package:hng/general_widgets/custom_user.dart';
 import 'package:hng/ui/shared/colors.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/shared.dart';
+import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked/stacked.dart';
 import 'dm_jump_to_view.form.dart';
@@ -18,6 +21,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<DmJumpToViewModel>.reactive(
       fireOnModelReadyOnce: true,
       onModelReady: (model) {
@@ -71,8 +75,8 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                           iconSize: 18.sp,
                           onPressed: () => model.navigateBack(),
                         ),
-                        hintText: 'Jump to...',
-                        hintStyle: AppTextStyles.hintStyle.copyWith(),
+                        hintText: local!.jumpTo,
+                        hintStyle: AppTextStyle.lightGreySize14,
                       ),
                     ),
                   ),
@@ -111,9 +115,10 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                         SizedBox(
                           height: 16.h,
                           width: 37.w,
-                          child: Text(Recent,
-                              style: AppTextStyles.lastSeen
-                                  .copyWith(fontSize: 12.sp)),
+                          child: Text(
+                            local.recent,
+                            style: AppTextStyle.lightGreySize12,
+                          ),
                         ),
                         SizedBox(height: 24.h),
                         Padding(
