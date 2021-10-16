@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class MyStatelessWidget extends StatelessWidget {
   final String membersList;

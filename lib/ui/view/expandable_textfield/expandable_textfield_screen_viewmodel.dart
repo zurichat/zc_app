@@ -1,18 +1,16 @@
 import 'dart:io';
-
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/services/media_service.dart';
-import 'package:hng/models/organization_member_model.dart';
-import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/utilities/enums.dart';
-
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
-import 'package:hng/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/organization_member_model.dart';
+import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
+import 'package:zurichat/package/base/server-request/organization_request/organization_api_service.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/media_service.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 
 import '/../../app/app.logger.dart';
 
