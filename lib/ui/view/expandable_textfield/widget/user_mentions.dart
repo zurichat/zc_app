@@ -18,11 +18,11 @@ class MyStatelessWidget extends StatelessWidget {
             'assets/images/chimamanda.png',
           ),
           const SizedBox(width: 16.0),
-<<<<<<< HEAD
-          Text(
-            membersList.name,
-            style: AppTextStyles.body1Bold,
+          Text(membersList.name, style: AppTextStyle.darkGreySize16Bold),
+          const SizedBox(width: 16.0),
+          Text('${membersList.isAdmin}', style: AppTextStyle.lightGreySize16)
         ],
       ),
     );
+  }
 }
