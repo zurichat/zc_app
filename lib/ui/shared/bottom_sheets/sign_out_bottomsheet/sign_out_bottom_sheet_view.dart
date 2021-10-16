@@ -33,11 +33,7 @@ class SignOutBottomSheet extends StatelessWidget {
                     workSpaceSlackUrl: org.organizationUrl,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      //TODO: check this
-                      // model.dismissDialog();
-                      // model.showSignOutDialog(org.name ?? "");
-                    },
+                    onTap: () {},
                     child: ListTile(
                       title: Text(
                         'Invite members',
