@@ -5,8 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/models/user_post.dart';
 import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/services/user_service.dart';
 import 'package:zurichat/ui/shared/colors.dart';
 import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:zurichat/utilities/enums.dart';
