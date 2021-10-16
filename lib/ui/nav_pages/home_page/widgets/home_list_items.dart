@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
@@ -66,10 +67,15 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   Widget build(BuildContext context, viewModel) {
     final local = AppLocalization.of(context);
     return _TextAndIcon(
-        text: local!.addChannel,
-        unread: false,
-        onTap: () => viewModel.navigateToCreateChannel(),
-        icon: Image.asset(AddLogo));
+      text: local!.addChannel,
+      unread: false,
+      onTap: () => viewModel.navigateToCreateChannel(),
+      icon: SvgPicture.asset(
+        Add_Organization,
+        width: 24,
+        height: 24,
+      ),
+    );
   }
 }
 
@@ -80,10 +86,15 @@ class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
   Widget build(BuildContext context, viewModel) {
     final local = AppLocalization.of(context);
     return _TextAndIcon(
-        text: local!.addTeammates,
-        unread: false,
-        onTap: () => viewModel.navigateInviteMembers(),
-        icon: Image.asset(AddLogo));
+      text: local!.addTeammates,
+      unread: false,
+      onTap: () => viewModel.navigateInviteMembers(),
+      icon: SvgPicture.asset(
+        Add_Organization,
+        width: 24,
+        height: 24,
+      ),
+    );
   }
 }
 
@@ -236,10 +247,8 @@ class _TextAndIcon extends StatelessWidget {
             Text(
               text,
               style: unread
-                  ? ZuriTextStyle.unreadText()
-                  : ZuriTextStyle.mediumNormal(
-                      // color: Colors.grey[600],
-                      ),
+                  ? AppTextStyle.darkGreySize16Bold
+                  : AppTextStyle.lightGreySize16,
             )
           ],
         ),

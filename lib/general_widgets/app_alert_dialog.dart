@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 
 import '../ui/shared/shared.dart';
-import 'custom_text.dart';
 
 class AppAlertDialog {
   Dialog feedback = const Dialog();
@@ -20,10 +20,9 @@ class AppAlertDialog {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomText(
-              text: title,
-              fontSize: MediaQuery.of(context).size.width / 22,
-              fontWeight: FontWeight.bold,
+            Text(
+              title,
+              style: AppTextStyle.darkGreySize14,
             ),
             TextFormField(
               decoration: InputDecoration(
@@ -44,9 +43,9 @@ class AppAlertDialog {
             SizedBox(
               height: MediaQuery.of(context).size.width / 60,
             ),
-            CustomText(
-              text: 'we will respond via email to feedback questions.',
-              fontSize: MediaQuery.of(context).size.width / 32,
+            Text(
+              'we will respond via email to feedback questions.',
+              style: AppTextStyle.darkGreySize14,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.width / 60,
@@ -57,11 +56,9 @@ class AppAlertDialog {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    child: CustomText(
-                      text: 'CANCEL',
-                      color: AppColors.zuriPrimaryColor,
-                      fontSize: MediaQuery.of(context).size.width / 28,
-                      fontWeight: FontWeight.bold,
+                    child: Text(
+                      'CANCEL',
+                      style: AppTextStyle.greenSize16,
                     ),
                     onTap: () => Navigator.pop(context),
                   ),
@@ -70,11 +67,9 @@ class AppAlertDialog {
                   ),
                   GestureDetector(
 //                  onTap: () => onPressed ,
-                    child: CustomText(
-                      text: 'SEND',
-                      color: AppColors.zuriPrimaryColor,
-                      fontSize: MediaQuery.of(context).size.width / 28,
-                      fontWeight: FontWeight.bold,
+                    child: Text(
+                      'CANCEL',
+                      style: AppTextStyle.greenSize16,
                     ),
                   ),
                 ],

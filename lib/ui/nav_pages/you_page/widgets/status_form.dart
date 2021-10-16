@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 
 class StatusForm extends StatelessWidget {
-  const StatusForm({Key? key, this.onPressed}) : super(key: key);
+  const StatusForm({
+    Key? key,
+    this.onPressed,
+    this.tagIcon,
+    this.statusText = 'What\'s your status?',
+    this.clearOnPressed,
+  }) : super(key: key);
   final void Function()? onPressed;
+  final void Function()? clearOnPressed;
+  final String? tagIcon;
+  final String? statusText;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +25,7 @@ class StatusForm extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
         side: BorderSide(
           width: 1,
-          color: ThemeData.dark().textTheme.bodyText1!.color ??
+          color: Theme.of(context).textTheme.bodyText1!.color ??
               AppColors.zuriPrimaryColor,
         ),
       ),
@@ -24,13 +34,18 @@ class StatusForm extends StatelessWidget {
       onPressed: onPressed,
       child: Row(
         children: [
-          const Icon(Icons.chat_bubble_outline_rounded),
+          tagIcon != null ? Text(tagIcon ?? '') : const Icon(bubble),
           const SizedBox(width: 7),
           Flexible(
-            child: Text(local!.whatIsYourStatus),
+            child: Text(
+              statusText ?? local!.whatIsYourStatus,
+            ),
             fit: FlexFit.tight,
           ),
-          const Icon(Icons.close_rounded),
+          IconButton(
+            icon: const Icon(Icons.close_rounded),
+            onPressed: clearOnPressed,
+          ),
         ],
       ),
     );

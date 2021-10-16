@@ -3,6 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:hng/app/app.logger.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/colors.dart';
+
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -139,10 +141,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                           ),
                           TextSpan(
                             text: local.resend,
-                            style: AppTextStyles.body2Bold.copyWith(
-                              color: AppColors.zuriPrimaryColor,
-                              decoration: TextDecoration.underline,
-                            ),
+                            style: AppTextStyle.greenSize14,
                           ),
                         ],
                       ),

@@ -13,7 +13,6 @@ void main() {
         final service = getAndRegisterNavigationServiceMock();
         verify(service.navigateTo(Routes.forgotPasswordNewView));
       });
-
     });
   });
 }

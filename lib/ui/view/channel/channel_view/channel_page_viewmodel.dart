@@ -405,6 +405,7 @@ class ChannelPageViewModel extends FormViewModel {
       });
     }
 
+
     @override
     void setFormStatus() {
       // TODO: implement setFormStatus

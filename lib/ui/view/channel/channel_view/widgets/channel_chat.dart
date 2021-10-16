@@ -4,6 +4,7 @@ import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:hng/ui/shared/shared.dart';
 import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:hng/utilities/utilities.dart';
@@ -46,7 +47,10 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                                 const Icon(Icons.push_pin,
                                     size: 16.0, color: Colors.orange),
                                 const SizedBox(width: 12.0),
-                                Text(Pinned, style: AppTextStyles.bodySmall2),
+                                Text(
+                                  Pinned,
+                                  style: AppTextStyle.lightGreySize14,
+                                ),
                               ],
                             ),
                           ),

@@ -66,7 +66,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.search,
-                  color: AppColors.greyColor,
+                  color: AppColors.textLight10,
                 ),
               ),
               Padding(
@@ -79,7 +79,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                   ),
                   icon: const Icon(
                     Icons.info_outlined,
-                    color: AppColors.greyColor,
+                    color: AppColors.textLight10,
                   ),
                 ),
               ),
@@ -89,7 +89,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
           ),
           body: ExpandableTextFieldScreen(
-             usercheck: model.checkUser,
+            usercheck: model.checkUser,
             channelName: '$channelName',
             channelId: '$channelId',
             channelID: channelId.toString(),
