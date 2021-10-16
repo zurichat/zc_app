@@ -58,8 +58,19 @@ class AppTextStyle {
   static TextStyle darkGreySize20Bold =
       _base(_size20, _boldWeight, AppColors.textDark10);
 
+  static TextStyle blackSize14 =
+  _base(_size14, _normalWeight, AppColors.blackColor);
+
+  static TextStyle blackSize14Bold =
+  _base(_size14, _boldWeight, AppColors.blackColor);
+
+  static TextStyle blackSize16Bold =
+  _base(_size16, _boldWeight, AppColors.blackColor);
+
   static TextStyle errorSize14 =
       _base(_size14, _normalWeight, AppColors.redColor);
+  static TextStyle errorBoldSize14 =
+  _base(_size14, _boldWeight, AppColors.redColor);
 
   static TextStyle whiteSize16 =
       _base(_size16, _normalWeight, AppColors.whiteColor);
@@ -81,6 +92,12 @@ class AppTextStyle {
   static TextStyle greenSize16 = _base(
     _size16,
     _normalWeight,
+    AppColors.zuriPrimaryColor,
+  );
+
+  static TextStyle greenSize16Bold = _base(
+    _size16,
+    _boldWeight,
     AppColors.zuriPrimaryColor,
   );
 

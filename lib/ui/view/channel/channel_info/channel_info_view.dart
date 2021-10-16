@@ -5,16 +5,17 @@ import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
 import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/ui_helpers.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zurichat/ui/shared/colors.dart';
 import 'channel_info_view_model.dart';
 import 'widgets/first_section.dart';
-import 'widgets/second_section.dart';
+// import 'widgets/second_section.dart';
 import 'widgets/third_section.dart';
-import 'widgets/fourth_section.dart';
-import 'widgets/fifth_section.dart';
+// import 'widgets/fourth_section.dart';
+// import 'widgets/fifth_section.dart';
 import 'widgets/sixth_section.dart';
 
 class ChannelInfoView extends StatelessWidget {
@@ -48,13 +49,13 @@ class ChannelInfoView extends StatelessWidget {
               appBar: ZuriAppBar(
                 leading: Icons.clear,
                 leadingPress: () => model.navigateBack(),
-                actions: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.star),
-                    color: AppColors.zuriPrimaryColor,
-                  ),
-                ],
+                // actions: [
+                //   IconButton(
+                //     onPressed: () {},
+                //     icon: const Icon(Icons.star),
+                //     color: AppColors.zuriPrimaryColor,
+                //   ),
+                // ],
                 whiteBackground: true,
                 isDarkMode: Theme.of(context).brightness == Brightness.dark,
                 orgTitle: Text(
@@ -75,29 +76,30 @@ class ChannelInfoView extends StatelessWidget {
                         model,
                         channelName: channelName,
                       ),
-                      SizedBox(height: 12.h),
-                      const SecondSection(),
-                      SizedBox(height: 8.h),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8.w),
-                        child: Text(
-                          MuteChannelWarning,
-                          style: AppTextStyle.lightGreySize14,
-                        ),
-                      ),
+                      // SizedBox(height: 12.h),
+                      // const SecondSection(),
+                      // UIHelper.verticalSpaceMedium,
+                      // Padding(
+                      //   padding: EdgeInsets.only(left: 8.w),
+                      //   child: Text(
+                      //     MuteChannelWarning,
+                      //     style: AppTextStyle.lightGreySize14,
+                      //   ),
+                      // ),
+                      UIHelper.verticalSpaceSmall,
                       ThirdSection(model, numberOfMembers, channelDetail,
                           channelMembers),
-                      SizedBox(height: 16.h),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8.w),
-                        child: Text(local.bookmarks,
-                            style: AppTextStyle.lightGreySize14),
-                      ),
-                      SizedBox(height: 8.h),
-                      FourthSection(model),
-                      SizedBox(height: 16.h),
-                      const FifthSection(),
-                      SizedBox(height: 16.h),
+                      // SizedBox(height: 16.h),
+                      // Padding(
+                      //   padding: EdgeInsets.only(left: 8.w),
+                      //   child: Text(local.bookmarks,
+                      //       style: AppTextStyle.lightGreySize14),
+                      // ),
+                      // SizedBox(height: 8.h),
+                      // FourthSection(model),
+                      // SizedBox(height: 16.h),
+                      // const FifthSection(),
+                      UIHelper.verticalSpaceMedium,
                       Padding(
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
@@ -105,9 +107,9 @@ class ChannelInfoView extends StatelessWidget {
                           style: AppTextStyle.lightGreySize14,
                         ),
                       ),
-                      SizedBox(height: 8.h),
+                      UIHelper.verticalSpaceSmall,
                       SixthSection(channelDetail),
-                      SizedBox(height: 12.h),
+                      // UIHelper.verticalSpaceExtraSmall,
                     ],
                   ),
                 ),

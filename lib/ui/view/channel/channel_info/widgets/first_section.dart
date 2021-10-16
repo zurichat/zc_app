@@ -9,8 +9,7 @@ import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.da
 import '../../../../shared/colors.dart';
 
 class FirstSection extends StatelessWidget {
-  const FirstSection(this.model, {Key? key, required this.channelName})
-      : super(key: key);
+  const FirstSection(this.model, {Key? key, required this.channelName}) : super(key: key);
   final ChannelInfoViewModel model;
   final String channelName;
   @override
@@ -33,37 +32,33 @@ class FirstSection extends StatelessWidget {
                 children: [
                   Text(
                     "#$channelName",
-                    style: AppTextStyle.darkGreySize16Bold,
+                    style: AppTextStyle.blackSize16Bold,
                   ),
                   UIHelper.verticalSpaceSmall,
                   UIHelper.verticalSpaceMedium,
                   Text(
                     Description,
-                    style: AppTextStyle.darkGreySize16Bold,
+                    style: AppTextStyle.blackSize16Bold,
                   ),
                   UIHelper.verticalSpaceSmall,
                   Text(
                     '${model.channelDescription}',
-                    style: AppTextStyle.darkGreySize16
-                        .copyWith(letterSpacing: 0.005),
+                    style: AppTextStyle.darkGreySize16,
                   ),
                   UIHelper.verticalSpaceExtraSmall,
                   Text(
                     MarkCreatedChannel,
-                    style: AppTextStyle.lightGreySize16
-                        .copyWith(letterSpacing: 0.005),
+                    style: AppTextStyle.darkGreySize16,
                   ),
                   UIHelper.verticalSpaceMedium,
                   Text(
                     Topic,
-                    style:
-                        AppTextStyle.darkGreySize16.copyWith(fontSize: 16.sp),
+                    style: AppTextStyle.blackSize16Bold,
                   ),
                   UIHelper.verticalSpaceSmall,
                   Text(
                     CreatingZuri,
-                    style:
-                        AppTextStyle.lightGreySize16.copyWith(fontSize: 16.sp),
+                    style: AppTextStyle.darkGreySize16,
                   ),
                   UIHelper.verticalSpaceSmall,
                   UIHelper.verticalSpaceMedium,
@@ -82,7 +77,7 @@ class FirstSection extends StatelessWidget {
                 },
                 child: Text(
                   Edit,
-                  style: AppTextStyle.darkGreySize16Bold,
+                  style: AppTextStyle.greenSize16Bold,
                 ),
               ),
             ),

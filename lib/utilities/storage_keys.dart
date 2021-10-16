@@ -32,5 +32,6 @@ class StorageKeys {
   static const statusTagIcon = 'status_tag_icon';
   static const invitedEmail = 'invited_email';
   static const currentLanguageIndex = "current_language_index";
+  static const presence = "presence";
 
 }

@@ -628,7 +628,9 @@ class StackedRouter extends RouterBase {
       );
     },
     EditChannelPageView: (data) {
-      var args = data.getArgs<EditChannelPageViewArguments>(nullOk: false);
+      var args = data.getArgs<EditChannelPageViewArguments>(
+        orElse: () => EditChannelPageViewArguments(channelName: ''),
+      );
       return CupertinoPageRoute<dynamic>(
         builder: (context) => EditChannelPageView(
           key: args.key,
