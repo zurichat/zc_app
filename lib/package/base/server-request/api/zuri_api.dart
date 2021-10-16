@@ -94,13 +94,13 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
-      if (e.response!.data!['message'] != null) {
+      if (e.response!.data!['message'] == String) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
           message: e.response!.data!['message'],
         );
-      } else if (e.response!.data!['message'] == null) {
+      } else if (e.response!.data!['message'] != String) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
@@ -133,13 +133,13 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
-      if (e.response!.data!['message'] != null) {
+      if (e.response!.data!['message'] == String) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
           message: e.response!.data!['message'],
         );
-      } else if (e.response!.data!['message'] == null) {
+      } else if (e.response!.data!['message'] != String) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
@@ -167,13 +167,13 @@ class ZuriApi implements Api {
           options: Options(headers: {'Authorization': 'Bearer $token'}));
       return ApiUtils.toApiResponse(res);
     } on DioError catch (e) {
-      if (e.response!.data!['message'] != null) {
+      if (e.response!.data!['message'] == String) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
           message: e.response!.data!['message'],
         );
-      } else if (e.response!.data!['message'] == null) {
+      } else if (e.response!.data!['message'] != String) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
@@ -206,13 +206,13 @@ class ZuriApi implements Api {
       log.i('Response from $string \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
-      if (e.response!.data!['message'] != null) {
+      if (e.response!.data!['message'] == String) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
           message: e.response!.data!['message'],
         );
-      } else if (e.response!.data!['message'] == null) {
+      } else if (e.response!.data!['message'] != String) {
         snackbar.showCustomSnackBar(
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
