@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class ShareMessageTextField extends StatelessWidget {
   final TextEditingController controller;

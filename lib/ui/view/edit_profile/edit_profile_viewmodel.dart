@@ -1,14 +1,14 @@
 import 'dart:io';
 
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/user_model.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/media_service.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/utilities/constants.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/mixins/validators_mixin.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/user_model.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/services/media_service.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/mixins/validators_mixin.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app.logger.dart';
@@ -69,9 +69,9 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
     fullName = fullName.trim();
     userModel
       ..firstName =
-      fullName.isNotEmpty ? fullName.split(" ").first : userModel.firstName
+          fullName.isNotEmpty ? fullName.split(" ").first : userModel.firstName
       ..lastName =
-      fullName.isNotEmpty ? fullName.split(" ").last : userModel.lastName
+          fullName.isNotEmpty ? fullName.split(" ").last : userModel.lastName
       ..displayName = displayName
       ..bio = bio
       ..phoneNumber = phone

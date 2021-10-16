@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/services/media_service.dart';
-import 'package:hng/utilities/enums.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/services/media_service.dart';
+import 'package:zurichat/utilities/enums.dart';
 
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -90,7 +90,6 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
- 
   void showMembersList(bool show) {
     matchedUsers = channelUsersList;
     _showMembers = show;
@@ -114,6 +113,7 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
 
     notifyListeners();
   }
+
   void clearMediaList() {
     _mediaList.clear();
   }

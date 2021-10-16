@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/draft/drafts.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/view/draft/drafts.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'draft_viewmodel.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -30,10 +30,8 @@ class DraftView extends StatelessWidget {
               model.goBack();
             },
             orgTitle: Text(
-                local!.draft,
-              style: const TextStyle(
-                  color:AppColors.blackColor
-              ),
+              local!.draft,
+              style: const TextStyle(color: AppColors.blackColor),
             ),
           ),
           body: model.widgetBuilderList.isNotEmpty
@@ -105,22 +103,20 @@ class DraftView extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.all(8.r),
                           child: Center(
-                            child:
-                                Text(local.draftMessageIntro,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 20.sp,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.blackColor,
-                                    )),
+                            child: Text(local.draftMessageIntro,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.blackColor,
+                                )),
                           ),
                         ),
                       ),
                       SizedBox(height: 10.h),
                       Center(
                         child: Center(
-                          child: Text(
-                              local.draftIntroText,
+                          child: Text(local.draftIntroText,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 15.sp,
