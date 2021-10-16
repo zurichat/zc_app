@@ -22,6 +22,10 @@ class DraftViewModel extends BaseViewModel {
   List<DraftDataHolder> widgetBuilderList = [];
 
   void get drafts {
+    var currentOrgId =
+    _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId =
+    _storageService.getString(StorageKeys.currentUserId);
     var dmStoredDrafts =
         _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
     var channelStoredDrafts =
@@ -31,40 +35,49 @@ class DraftViewModel extends BaseViewModel {
 
     if (dmStoredDrafts != null) {
       dmStoredDrafts.forEach((element) {
-        var mapKey = jsonDecode(element);
+        if(currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']){
+          var mapKey = jsonDecode(element);
 
-        widgetBuilderList.add(DraftDataHolder(
-          '${mapKey['receiverName']}',
-          '${mapKey['draft']}',
-          mapKey,
-          '${mapKey['time']}',
-        ));
+          widgetBuilderList.add(DraftDataHolder(
+            '${mapKey['receiverName']}',
+            '${mapKey['draft']}',
+            mapKey,
+            '${mapKey['time']}',
+          ));
+        }
       });
     }
 
     if (channelStoredDrafts != null) {
       channelStoredDrafts.forEach((element) {
-        var mapKey = jsonDecode(element);
+        if(currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']){
+          var mapKey = jsonDecode(element);
 
-        widgetBuilderList.add(DraftDataHolder(
-          '${mapKey['channelName']}',
-          '${mapKey['draft']}',
-          mapKey,
-          '${mapKey['time']}',
-        ));
+          widgetBuilderList.add(DraftDataHolder(
+            '${mapKey['channelName']}',
+            '${mapKey['draft']}',
+            mapKey,
+            '${mapKey['time']}',
+          ));
+        }
       });
     }
 
     if (threadStoredDrafts != null) {
       threadStoredDrafts.forEach((element) {
-        var mapKey = jsonDecode(element);
+        if(currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']){
+          var mapKey = jsonDecode(element);
 
-        widgetBuilderList.add(DraftDataHolder(
-          '# ${mapKey['userPostChannelName']}',
-          '${mapKey['draft']}',
-          mapKey,
-          '${mapKey['time']}',
-        ));
+          widgetBuilderList.add(DraftDataHolder(
+            '# ${mapKey['userPostChannelName']}',
+            '${mapKey['draft']}',
+            mapKey,
+            '${mapKey['time']}',
+          ));
+        }
       });
     }
   }
