@@ -27,7 +27,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
   final String? channelId;
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    // final bool _dark = Theme.of(context).brightness == Brightness.dark;
     final local = AppLocalization.of(context);
     return ViewModelBuilder<EditChannelViewModel>.reactive(
       onModelReady: (model) {

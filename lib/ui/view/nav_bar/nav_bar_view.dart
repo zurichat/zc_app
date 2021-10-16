@@ -5,7 +5,6 @@ import 'package:zurichat/utilities/internalization/localization/app_localization
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/svg_icon.dart';
-import '../../nav_pages/dm_page/dm_page.dart';
 import '../../nav_pages/home_page/home_page.dart';
 import '../../nav_pages/you_page/you_page.dart';
 import '../../shared/colors.dart';
