@@ -8,6 +8,7 @@ import 'package:hng/utilities/internalization/localization/app_localization.dart
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'invite_via_email.form.dart';
+import 'invite_viewmodel.dart';
 
 @FormView(fields: [
   FormTextField(name: 'email'),

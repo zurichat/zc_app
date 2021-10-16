@@ -7,7 +7,6 @@ import 'package:hng/ui/nav_pages/plugin_page/widgets/custom_plugin_list_tile.dar
 import 'package:hng/ui/nav_pages/plugin_page/widgets/custom_search_field.dart';
 import 'package:stacked/stacked.dart';
 
-
 class EditPluginView extends StatelessWidget {
   const EditPluginView({Key? key}) : super(key: key);
 

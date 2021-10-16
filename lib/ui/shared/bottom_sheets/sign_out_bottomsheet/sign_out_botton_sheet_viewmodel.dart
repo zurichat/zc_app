@@ -1,5 +1,6 @@
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/models/organization_model.dart';
 import 'package:hng/package/base/server-request/api/zuri_api.dart';
 import 'package:hng/services/connectivity_service.dart';
 import 'package:hng/services/local_storage_services.dart';
@@ -23,6 +24,13 @@ class SignOutBottomSheetViewModel extends BaseViewModel {
     if (result != null && result.confirmed) {
       signOut();
     }
+  }
+
+  void navigateToWorkSpaceSettings(OrganizationModel org) {
+    _navigator.navigateTo(
+      Routes.organizationSettingsView,
+      arguments: OrganizationSettingsViewArguments(org: org),
+    );
   }
 
   void navigateToSignIn() =>

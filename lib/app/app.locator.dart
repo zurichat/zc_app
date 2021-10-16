@@ -33,6 +33,7 @@ Future setupLocator(
 // Register dependencies
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
+
   final zuriThemeService = await ZuriThemeService.getInstance();
   locator.registerSingleton(zuriThemeService);
 

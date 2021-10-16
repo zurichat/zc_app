@@ -1,6 +1,6 @@
-import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/app/app.locator.dart';
 import 'package:hng/app/app.router.dart';
+import 'package:hng/ui/shared/colors.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:hng/utilities/mixins/validators_mixin.dart';
 import 'package:stacked/stacked.dart';
