@@ -33,6 +33,10 @@ class SignOutBottomSheetViewModel extends BaseViewModel {
     );
   }
 
+  void navigateToInvitePage() {
+    _navigator.navigateTo(Routes.inviteViaEmail);
+  }
+
   void navigateToSignIn() =>
       _navigator.pushNamedAndRemoveUntil(Routes.loginView);
 

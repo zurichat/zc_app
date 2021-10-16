@@ -21,7 +21,7 @@ class InviteViewModel extends FormViewModel with ValidatorMixin {
   final log = getLogger('InviteEmailView');
   final _zuriApi = ZuriApi(coreBaseUrl);
 
-  inviteWithMail(String email) async {
+  Future<void> inviteWithMail(String email) async {
     final orgId = userService.currentOrgId;
     final token = userService.authToken;
     await storage.clearData(StorageKeys.invitedEmail);

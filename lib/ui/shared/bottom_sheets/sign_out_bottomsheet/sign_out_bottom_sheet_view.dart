@@ -35,8 +35,7 @@ class SignOutBottomSheet extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // model.dismissDialog();
-                      // model.showSignOutDialog(org.name ?? "");
+                      model.navigateToInvitePage();
                     },
                     child: ListTile(
                       title: Text(
