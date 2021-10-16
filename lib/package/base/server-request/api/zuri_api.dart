@@ -66,7 +66,7 @@ class ZuriApi implements Api {
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
           message: e.response!.data!['message'] ??
-              e.response!.data['error']['message'] ??
+              e.response!.data['error'] ??
               errorOccurred,
         );
       }
@@ -105,7 +105,7 @@ class ZuriApi implements Api {
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
           message: e.response!.data!['message'] ??
-              e.response!.data['error']['message'] ??
+              e.response!.data['error'] ??
               errorOccurred,
         );
       }
@@ -144,7 +144,7 @@ class ZuriApi implements Api {
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
           message: e.response!.data!['message'] ??
-              e.response!.data['error']['message'] ??
+              e.response!.data['error'] ??
               errorOccurred,
         );
       }
@@ -178,7 +178,7 @@ class ZuriApi implements Api {
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
           message: e.response!.data!['message'] ??
-              e.response!.data['error']['message'] ??
+              e.response!.data['error'] ??
               errorOccurred,
         );
       }
@@ -217,7 +217,7 @@ class ZuriApi implements Api {
           duration: const Duration(seconds: 3),
           variant: SnackbarType.failure,
           message: e.response!.data!['message'] ??
-              e.response!.data['error']['message'] ??
+              e.response!.data['error'] ??
               errorOccurred,
         );
       }
