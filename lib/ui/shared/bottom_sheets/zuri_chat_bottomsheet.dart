@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 
 import 'thread_options_bottomsheet/widget/recent_emojis.dart';
 

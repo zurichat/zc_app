@@ -63,7 +63,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class CustomUserChannel extends StatelessWidget {
   final String? image;

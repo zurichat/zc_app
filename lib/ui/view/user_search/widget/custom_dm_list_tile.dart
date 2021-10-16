@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/view/user_search/user_search_viewmodel.dart';
+import 'package:zurichat/ui/view/user_search/user_search_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class CustomDMListTile extends ViewModelWidget<UserSearchViewModel> {

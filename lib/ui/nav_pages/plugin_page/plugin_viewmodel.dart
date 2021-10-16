@@ -1,13 +1,13 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/plugin_model.dart';
-import 'package:hng/ui/nav_pages/plugin_page/widgets/icons.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/plugin_model.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/widgets/icons.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class PluginViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
-  //TODO 
+  //TODO
   // final local = AppLocalization.of(context);
   bool _editMode = false;
   bool _checked = false;

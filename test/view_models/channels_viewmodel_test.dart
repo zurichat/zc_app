@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hng/models/app_model.dart';
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/ui/view/channel/channel_list/channels_viewmodel.dart';
+import 'package:zurichat/models/app_model.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/ui/view/channel/channel_list/channels_viewmodel.dart';
 import '../helpers/test_helpers.dart';
 
 // This is a test setup

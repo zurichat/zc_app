@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
-import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/new_row_tile.dart';
+import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.dart';
+import 'package:zurichat/ui/view/channel/channel_info/widgets/new_row_tile.dart';
 import '../../../../shared/colors.dart';
 
 class ThirdSection extends StatelessWidget {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/models/user_model.dart';
+import 'package:zurichat/models/user_model.dart';
 
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 
 import 'package:stacked/stacked.dart';
 

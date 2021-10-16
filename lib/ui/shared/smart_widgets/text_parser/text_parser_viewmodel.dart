@@ -1,5 +1,5 @@
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
-import 'package:hng/utilities/utilities.dart';
+import 'package:zurichat/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../text_styles.dart';

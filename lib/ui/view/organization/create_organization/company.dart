@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/long_button.dart';
 import '../../../shared/text_field.dart';
