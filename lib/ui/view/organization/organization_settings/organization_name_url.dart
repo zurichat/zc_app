@@ -31,9 +31,9 @@ class OrganizationNameUrl extends HookWidget {
             isDarkMode: _dark,
             orgTitle: Text(
               OrgnameUrl,
-              style: TextStyle(
-                color: Theme.of(context).textTheme.bodyText1!.color,
-              ),
+              style: _dark
+                  ? AppTextStyle.whiteSize20Bold
+                  : AppTextStyle.blackSize20Bold,
             ),
             leading: Icons.close,
             leadingPress: () => viewModel.back(),

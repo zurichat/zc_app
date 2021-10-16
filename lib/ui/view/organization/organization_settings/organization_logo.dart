@@ -26,9 +26,9 @@ class OrganizationLogo extends StatelessWidget {
             leadingPress: () => model.back(),
             orgTitle: Text(
               OrgIcon,
-              style: TextStyle(
-                color: Theme.of(context).textTheme.bodyText1!.color,
-              ),
+              style: _dark
+                  ? AppTextStyle.whiteSize20Bold
+                  : AppTextStyle.blackSize20Bold,
             ),
             actions: [
               TextButton(

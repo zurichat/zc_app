@@ -55,6 +55,9 @@ class AppTextStyle {
   static TextStyle darkGreySize18Bold =
       _base(_size18, _boldWeight, AppColors.textDark10);
 
+  static TextStyle blackSize20Bold =
+      _base(_size20, _boldWeight, AppColors.textDark10);
+
   static TextStyle blackSize18Bold =
       _base(_size18, _boldWeight, AppColors.textDark10);
 
