@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/ui/view/set_status/set_status_viewmodel.dart';
+import 'package:zurichat/constants/app_strings.dart';
+// import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/ui/view/set_status/set_status_viewmodel.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/set_status/widgets/status.dart';
-import 'package:hng/ui/view/set_status/widgets/statuses.dart';
-import 'package:hng/ui/view/set_status/set_status_view.form.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/view/set_status/widgets/status.dart';
+import 'package:zurichat/ui/view/set_status/widgets/statuses.dart';
+import 'package:zurichat/ui/view/set_status/set_status_view.form.dart';
 
 @FormView(
   fields: [
@@ -35,19 +35,19 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
             
             leading: Icons.close_rounded,
             leadingPress: () => model.exitPage(),
-            orgTitle: Text(
+            orgTitle: const Text(
               'Set a status',
-              style: AppTextStyles.heading4.copyWith(
-                color: Theme.of(context).textTheme.bodyText1!.color,
+            //   style: AppTextStyle.heading4.copyWith(
+            //     color: Theme.of(context).textTheme.bodyText1!.color,
 
-              ),
+            //   ),
             ),
             actions: [
               TextButton(
                 onPressed: model.saveStatus,
-                child: Text(
+                child: const Text(
                   Save,
-                  style: AppTextStyles.heading8,
+                //   style: AppTextStyle.heading8,
                 ),
               )
             ],

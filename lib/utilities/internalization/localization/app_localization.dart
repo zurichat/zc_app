@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hng/constants/local_keys.dart';
-import 'package:hng/services/localization_service.dart';
+import 'package:zurichat/constants/local_keys.dart';
+import 'package:zurichat/services/localization_service.dart';
 
 class AppLocalization {
   ///TODO: Remove late
@@ -328,6 +328,7 @@ class AppLocalization {
   String get channelIntroText => translate(LocalKeys.ChannelIntroText);
   String get channel => translate(LocalKeys.Channel);
   String get today => translate(LocalKeys.Today);
+  String get searchAll => translate(LocalKeys.SearchAll);
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 
 class AppTextStyle {
   // static const double _size10 = 11;

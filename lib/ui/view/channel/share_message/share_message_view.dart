@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/ui/view/channel/share_message/share_message_hook.dart';
-import 'package:hng/ui/view/channel/share_message/share_message_viewmodel.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/ui/view/channel/share_message/share_message_hook.dart';
+import 'package:zurichat/ui/view/channel/share_message/share_message_viewmodel.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 class ShareMessageView extends StatelessWidget {

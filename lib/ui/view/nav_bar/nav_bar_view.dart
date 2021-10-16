@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/nav_pages/plugin_page/plugin_intro_page.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/plugin_intro_page.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/svg_icon.dart';

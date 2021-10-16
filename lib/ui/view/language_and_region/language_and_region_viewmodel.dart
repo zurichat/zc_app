@@ -1,11 +1,11 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/widgets.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/main.dart';
-import 'package:hng/services/localization_service.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/extensions/locale_extension.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/main.dart';
+import 'package:zurichat/services/localization_service.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/extensions/locale_extension.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

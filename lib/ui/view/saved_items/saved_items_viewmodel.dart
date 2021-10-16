@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/saved_item_model.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/saved_item_model.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:hng/app/app.logger.dart';
+import 'package:zurichat/app/app.logger.dart';
 
 class SavedItemsViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();

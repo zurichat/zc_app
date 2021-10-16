@@ -44,6 +44,7 @@ import '../ui/view/file_search/file_search_view.dart';
 import '../ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
 import '../ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
 import '../ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
+import '../ui/view/general_search/general_search_view.dart';
 import '../ui/view/language_and_region/language_and_region_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/nav_bar/nav_bar_view.dart';
@@ -120,6 +121,7 @@ class Routes {
   static const String selectEmail = '/select-email';
   static const String addOrganizationView = '/add-organization-view';
   static const String createOrganization = '/create-organization';
+  static const String generalSearchView = '/general-search-view';
   static const String fileSearchView = '/file-search-view';
   static const String draftView = '/draft-view';
   static const String threadsView = '/threads-view';
@@ -184,6 +186,7 @@ class Routes {
     selectEmail,
     addOrganizationView,
     createOrganization,
+    generalSearchView,
     fileSearchView,
     draftView,
     threadsView,
@@ -255,6 +258,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.selectEmail, page: SelectEmail),
     RouteDef(Routes.addOrganizationView, page: AddOrganizationView),
     RouteDef(Routes.createOrganization, page: CreateOrganization),
+    RouteDef(Routes.generalSearchView, page: GeneralSearchView),
     RouteDef(Routes.fileSearchView, page: FileSearchView),
     RouteDef(Routes.draftView, page: DraftView),
     RouteDef(Routes.threadsView, page: ThreadsView),
@@ -373,8 +377,14 @@ class StackedRouter extends RouterBase {
       );
     },
     ChannelNotificationView: (data) {
+      var args = data.getArgs<ChannelNotificationViewArguments>(
+        orElse: () => ChannelNotificationViewArguments(),
+      );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => const ChannelNotificationView(),
+        builder: (context) => ChannelNotificationView(
+          key: args.key,
+          channelName: args.channelName,
+        ),
         settings: data,
       );
     },
@@ -433,8 +443,11 @@ class StackedRouter extends RouterBase {
       );
     },
     DmScreen: (data) {
+      var args = data.getArgs<DmScreenArguments>(
+        orElse: () => DmScreenArguments(),
+      );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => DmScreen(),
+        builder: (context) => DmScreen(key: args.key),
         settings: data,
       );
     },
@@ -476,8 +489,11 @@ class StackedRouter extends RouterBase {
       );
     },
     SetStatusView: (data) {
+      var args = data.getArgs<SetStatusViewArguments>(
+        orElse: () => SetStatusViewArguments(),
+      );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => SetStatusView(),
+        builder: (context) => SetStatusView(key: args.key),
         settings: data,
       );
     },
@@ -574,6 +590,15 @@ class StackedRouter extends RouterBase {
           key: args.key,
           email: args.email,
         ),
+        settings: data,
+      );
+    },
+    GeneralSearchView: (data) {
+      var args = data.getArgs<GeneralSearchViewArguments>(
+        orElse: () => GeneralSearchViewArguments(),
+      );
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => GeneralSearchView(key: args.key),
         settings: data,
       );
     },
@@ -833,6 +858,13 @@ class ForgotPasswordNewViewArguments {
   ForgotPasswordNewViewArguments({this.key});
 }
 
+/// ChannelNotificationView arguments holder class
+class ChannelNotificationViewArguments {
+  final Key? key;
+  final String? channelName;
+  ChannelNotificationViewArguments({this.key, this.channelName});
+}
+
 /// NewChannel arguments holder class
 class NewChannelArguments {
   final Key? key;
@@ -864,6 +896,12 @@ class DmUserViewArguments {
   DmUserViewArguments({this.key});
 }
 
+/// DmScreen arguments holder class
+class DmScreenArguments {
+  final Key? key;
+  DmScreenArguments({this.key});
+}
+
 /// AddPluginView arguments holder class
 class AddPluginViewArguments {
   final Key? key;
@@ -875,6 +913,12 @@ class UseDifferentEmailViewArguments {
   final Key? key;
   final OrganizationSwitchMethod method;
   UseDifferentEmailViewArguments({this.key, required this.method});
+}
+
+/// SetStatusView arguments holder class
+class SetStatusViewArguments {
+  final Key? key;
+  SetStatusViewArguments({this.key});
 }
 
 /// EditProfileView arguments holder class
@@ -896,6 +940,12 @@ class CreateOrganizationArguments {
   final Key? key;
   final String email;
   CreateOrganizationArguments({this.key, required this.email});
+}
+
+/// GeneralSearchView arguments holder class
+class GeneralSearchViewArguments {
+  final Key? key;
+  GeneralSearchViewArguments({this.key});
 }
 
 /// ThreadDetailView arguments holder class

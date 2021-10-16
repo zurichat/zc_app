@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class DeleteMessageDialog extends StatelessWidget {

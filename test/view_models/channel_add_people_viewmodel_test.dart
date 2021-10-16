@@ -1,7 +1,7 @@
-import 'package:hng/models/user_search_model.dart';
-import 'package:hng/ui/view/channel/add_people/channel_add_people_viewmodel.dart';
+import 'package:zurichat/models/user_search_model.dart';
+import 'package:zurichat/ui/view/channel/add_people/channel_add_people_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 import 'package:mockito/mockito.dart';
 import '../helpers/test_helpers.dart';
 

@@ -272,5 +272,6 @@
     "created_this_channel": "created this channel",
     "channel_intro_text": "This is the very beginning of the ",
     "channel": "channel",
-    "today": "today"
+    "today": "today",
+    "search_all": "Search messages, files and users"
 }
