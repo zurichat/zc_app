@@ -1,3 +1,4 @@
+
 import 'package:zurichat/services/centrifuge_service.dart';
 import 'package:zurichat/services/localization_service.dart';
 import 'package:zurichat/services/media_service.dart';
@@ -33,6 +34,7 @@ import 'package:zurichat/ui/view/forgot_password/forgot_password_email/forgot_pa
 import 'package:zurichat/ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
 import 'package:zurichat/ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
 import 'package:zurichat/ui/view/webview_page/webview_page.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -93,6 +95,7 @@ import '../ui/view/user_search/user_search_view.dart';
 
 @StackedApp(
   routes: [
+
     CupertinoRoute(page: ChannelAddPeopleView),
     CupertinoRoute(page: NavBarView),
     CupertinoRoute(page: OnboardingView),
@@ -157,6 +160,7 @@ import '../ui/view/user_search/user_search_view.dart';
     CupertinoRoute(page: OrganizationSettingsView),
     CupertinoRoute(page: OrganizationNameUrl),
     CupertinoRoute(page: OrganizationLogo),
+
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
