@@ -81,7 +81,7 @@ Future<dynamic> zuriChatBottomSheet({
             _userService.userId ==
                     _storageService.getString(StorageKeys.currentUserId)
                 ? ListTile(
-                    title: Text("Edit message", style: AppTextStyles.heading9),
+                    title: Text("Edit message", style: AppTextStyle.darkGreySize16),
                     leading: const Icon(Icons.line_style_outlined),
                     onTap: editMessage,
                   )

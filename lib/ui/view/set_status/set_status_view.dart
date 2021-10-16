@@ -35,19 +35,19 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
             
             leading: Icons.close_rounded,
             leadingPress: () => model.exitPage(),
-            orgTitle: Text(
+            orgTitle: const Text(
               'Set a status',
-              style: AppTextStyles.heading4.copyWith(
-                color: Theme.of(context).textTheme.bodyText1!.color,
+              // style: AppTextStyles.heading4.copyWith(
+              //   color: Theme.of(context).textTheme.bodyText1!.color,
 
-              ),
+              // ),
             ),
             actions: [
               TextButton(
                 onPressed: model.saveStatus,
-                child: Text(
+                child:const Text(
                   Save,
-                  style: AppTextStyles.heading8,
+                 // style: AppTextStyles.heading8,
                 ),
               )
             ],
