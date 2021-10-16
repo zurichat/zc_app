@@ -19,7 +19,9 @@ class TermsAndConditionsView extends StatelessWidget {
               leading: Icons.arrow_back,
               orgTitle: Text(
                 TnC2.toUpperCase(),
+
                 style: AppTextStyle.darkGreySize20Bold,
+
               ),
               leadingPress: () => model.popNavigation(),
             ),

@@ -33,6 +33,11 @@ class SignOutBottomSheetViewModel extends BaseViewModel {
     );
   }
 
+//TODO: (Blazebrain) Link singout bottomsheet to Invite Members Flow
+  // void navigateToInvitePage() {
+  //   _navigator.navigateTo(Routes.inviteViaEmail);
+  // }
+
   void navigateToSignIn() =>
       _navigator.pushNamedAndRemoveUntil(Routes.loginView);
 
