@@ -77,52 +77,54 @@ class DraftViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void onDismissed(index){
+  void onDismissed(index) {
     var removeDmDraft = '';
     var removeChannelDraft = '';
     var removeThreadDraft = '';
 
-
     var dmStoredDrafts =
-    _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+        _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
     var channelStoredDrafts =
-    _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
     var threadStoredDrafts =
-    _storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+        _storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
 
-    if(dmStoredDrafts != null){
+    if (dmStoredDrafts != null) {
       dmStoredDrafts.forEach((element) {
-        if(jsonDecode(element)['time'] == widgetBuilderList[index].time ){
+        if (jsonDecode(element)['time'] == widgetBuilderList[index].time) {
           removeDmDraft = element;
         }
       });
     }
 
-    if(channelStoredDrafts != null){
+    if (channelStoredDrafts != null) {
       channelStoredDrafts.forEach((element) {
-        if(jsonDecode(element)['time'] == widgetBuilderList[index].time ){
-          removeChannelDraft = element ;
+        if (jsonDecode(element)['time'] == widgetBuilderList[index].time) {
+          removeChannelDraft = element;
         }
       });
     }
 
-    if( threadStoredDrafts != null){
+    if (threadStoredDrafts != null) {
       threadStoredDrafts.forEach((element) {
-        if(jsonDecode(element)['time'] == widgetBuilderList[index].time ){
-          removeThreadDraft = element ;
+        if (jsonDecode(element)['time'] == widgetBuilderList[index].time) {
+          removeThreadDraft = element;
         }
       });
     }
 
-    if(removeDmDraft.isNotEmpty && dmStoredDrafts != null ){
+    if (removeDmDraft.isNotEmpty && dmStoredDrafts != null) {
       dmStoredDrafts.remove(removeDmDraft);
-      _storageService.setStringList(StorageKeys.currentUserDmIdDrafts, dmStoredDrafts);
-    }else if(removeChannelDraft.isNotEmpty && channelStoredDrafts != null ){
+      _storageService.setStringList(
+          StorageKeys.currentUserDmIdDrafts, dmStoredDrafts);
+    } else if (removeChannelDraft.isNotEmpty && channelStoredDrafts != null) {
       channelStoredDrafts.remove(removeChannelDraft);
-      _storageService.setStringList(StorageKeys.currentUserChannelIdDrafts, channelStoredDrafts);
-    }else if(removeThreadDraft.isNotEmpty && threadStoredDrafts != null ){
+      _storageService.setStringList(
+          StorageKeys.currentUserChannelIdDrafts, channelStoredDrafts);
+    } else if (removeThreadDraft.isNotEmpty && threadStoredDrafts != null) {
       threadStoredDrafts.remove(removeThreadDraft);
-      _storageService.setStringList(StorageKeys.currentUserThreadIdDrafts, threadStoredDrafts);
+      _storageService.setStringList(
+          StorageKeys.currentUserThreadIdDrafts, threadStoredDrafts);
     }
 
     widgetBuilderList.removeAt(index);
@@ -174,7 +176,7 @@ class DraftViewModel extends BaseViewModel {
 
   showDeleteDraftDialog(index) async {
     final result = await _dialogService.showCustomDialog(
-        variant: DialogType.deleteDraft,
+      variant: DialogType.deleteDraft,
       title: "Delete Draft",
       description: "Are you sure you want to delete this draft?",
       mainButtonTitle: 'Ok',
@@ -182,7 +184,7 @@ class DraftViewModel extends BaseViewModel {
       barrierDismissible: true,
     );
 
-    if(result!.confirmed){
+    if (result!.confirmed) {
       onDismissed(index);
       return result.confirmed;
     }

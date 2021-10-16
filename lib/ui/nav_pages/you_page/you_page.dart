@@ -21,7 +21,10 @@ class YouPage extends StatelessWidget {
     final local = AppLocalization.of(context);
     return ViewModelBuilder<YouPageViewModel>.reactive(
       viewModelBuilder: () => YouPageViewModel(),
-      onModelReady: (model) => model.getUserPresence(),
+      onModelReady: (model) {
+        model.fetchStatus();
+        model.getUserPresence();
+      },
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           isDarkMode: Theme.of(context).brightness == Brightness.dark,
@@ -45,7 +48,13 @@ class YouPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                StatusForm(onPressed: model.setStatus),
+                StatusForm(
+                  onPressed: model.setStatus,
+                  statusText: model.statusText,
+                  tagIcon: model.tagIcon,
+                  clearOnPressed: model.clearStatus,
+                  // iconData: model.tag,
+                ),
                 const SizedBox(height: 20),
                 MenuItemTile(
                   icon: SvgPicture.asset(

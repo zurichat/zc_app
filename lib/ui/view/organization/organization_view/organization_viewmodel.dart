@@ -77,24 +77,25 @@ class OrganizationViewModel extends BaseViewModel {
     organizations.retainWhere((e) => ids.any((id) => id == e.id));
   }
 
-  Future<void> onTap(
-      String? id, String? name, String? url, String? memberId) async {
+  Future<void> onTap(OrganizationModel? org) async {
     try {
-      if (id == currentOrgId) {
+      if (org!.id == currentOrgId) {
         navigation.replaceWith(Routes.navBarView);
         return;
       }
       await checkSnackBarConnectivity();
 
-      await storageService.setString(StorageKeys.currentOrgId, id!);
-      await storageService.setString(StorageKeys.idInOrganization, memberId!);
+      await storageService.setString(StorageKeys.currentOrgId, org.id!);
+      await storageService.setString(
+          StorageKeys.idInOrganization, org.userIdInOrg!);
       snackbar.showCustomSnackBar(
         duration: const Duration(seconds: 3),
         variant: SnackbarType.success,
-        message: 'You have entered $name',
+        message: 'You have entered ${org.name}',
       );
-      storageService.setString(StorageKeys.currentOrgName, name!);
-      storageService.setString(StorageKeys.currentOrgUrl, url!);
+      storageService.setString(StorageKeys.currentOrgName, org.name!);
+      storageService.setString(StorageKeys.currentOrgUrl, org.organizationUrl!);
+      storageService.setString(StorageKeys.currentOrgLogo, org.logoUrl!);
 
       navigation.replaceWith(Routes.navBarView);
     } catch (e) {
@@ -158,13 +159,15 @@ class OrganizationViewModel extends BaseViewModel {
 
   String? get token => _storage.getString(StorageKeys.currentSessionToken);
 
-  void showSignOutBottomSheet(OrganizationModel org) {
-    _bottomSheetService.showCustomSheet(
+  Future<void> showSignOutBottomSheet(OrganizationModel org) async {
+    await _bottomSheetService.showCustomSheet(
       barrierColor: AppColors.blackColor,
       variant: BottomSheetType.signOut,
       isScrollControlled: true,
       data: org,
     );
+    organizations = await api.getJoinedOrganizations();
+    notifyListeners();
   }
 
   void navigateToSignIn() =>

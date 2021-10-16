@@ -10,7 +10,6 @@ import 'select_email_viewmodel.dart';
 
 class SelectEmail extends StatelessWidget {
   final OrganizationSwitchMethod method;
-
   //The users email address can be passed in here from the api or database
 
   const SelectEmail({Key? key, required this.method}) : super(key: key);

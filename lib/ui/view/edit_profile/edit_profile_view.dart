@@ -44,9 +44,10 @@ class EditProfileView extends StatelessWidget {
           ],
         ),
         body: Visibility(
-            visible: !viewModel.isBusy,
-            child: Body(size: _size),
-            replacement: const ZuriLoader()),
+          visible: !viewModel.isBusy,
+          child: Body(size: _size),
+          replacement: const ZuriLoader(),
+        ),
       ),
     );
   }

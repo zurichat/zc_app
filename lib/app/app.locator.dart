@@ -6,6 +6,7 @@
 
 // ignore_for_file: public_member_api_docs
 
+import 'package:hng/services/status_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -33,6 +34,7 @@ Future setupLocator(
 // Register dependencies
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
+
   final zuriThemeService = await ZuriThemeService.getInstance();
   locator.registerSingleton(zuriThemeService);
 
@@ -54,4 +56,5 @@ Future setupLocator(
   locator.registerLazySingleton(() => NotificationService());
   final centrifugeService = await CentrifugeService.getInstance();
   locator.registerSingleton(centrifugeService);
+  locator.registerLazySingleton(() => StatusService());
 }

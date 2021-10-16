@@ -22,8 +22,7 @@ class CustomDMListTile extends ViewModelWidget<UserSearchViewModel> {
           ),
           const SizedBox(width: 8),
           TextButton(
-            onPressed: viewModel.viewProfile
-            ,
+            onPressed: viewModel.viewProfile,
             child: Text(
               "$userName",
               style: const TextStyle(

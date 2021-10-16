@@ -99,8 +99,8 @@ class LoginViewModel extends FormViewModel {
       );
       _storageService.clearData(StorageKeys.currentOrgId);
       // final userModel = UserModel.fromJson(response?.data['data']['user']);
-      final res = await zuriApi.get(
-          "https://api.zuri.chat/users/${response?.data['data']['user']['id']}");
+      final res = await zuriApi
+          .get("${coreBaseUrl}users/${response?.data['data']['user']['id']}");
       if (res?.statusCode == 200) {
         _snackbarService.showCustomSnackBar(
             message: profileUpdated, variant: SnackbarType.success);

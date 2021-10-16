@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 const String appName = 'Zuri Chat';
 const String zuri = 'ZURI';
 
@@ -207,7 +209,7 @@ const String ArchiveChannel = 'Archive Channel';
 const String DeleteChannel = 'Delete Channel';
 const String ArchiveChannelWarning =
     'Archiving the channel will remove it from the channel list, and close it from all members.'
-    'All chats and files will still be stored and searchable';
+    ' All chats and files will still be stored and searchable';
 const String DeleteChannelWarning =
     'All messages from this channel will be removed from Zuri Chat. Any files uploaded to this channel would not be removed.';
 const String StartCall = 'Start a call';
@@ -403,11 +405,29 @@ const String CreateNewOrg = 'Create a new workspace';
 const String SignInNewOrg = 'Sign in to another workspace';
 const String JoinAnotherOrg = 'Join another workspace';
 const String SplashScreen = 'assets/logo/splash_image.png';
+const String EditOrgIcon = 'Edit Workspace Icon';
+const String EditOrgIconDesc =
+    'Workspace icon is used in the desktop and mobile apps where it\'s useful in helping to quickly identify this workspace.';
+const String EditOrgNameUrl = 'Edit Workspace Name & URL';
+const String EditOrgNameUrlDesc1 = 'Your workspace name is ';
+const String EditOrgNameUrlDesc2 = ' and your URL is ';
+const String OrgIcon = 'Workspace Icon';
+const String OrgIconGuide = 'Workspace Icon guideline';
+const String OrgIconGuideDesc =
+    "Your workspace icon is a way for you to visually identify the Clutch king workspace. It is used in the desktop and mobile apps, and on your workspace admin site. It's most helpful when you are on multiple ZuriChat workspaces.";
+const String OrgNameDesc =
+    'Your workspace name is displayed in menus and headings. It will usually be (or include) the name of your company.';
+const String OrgUrlDesc =
+    'Your workspace URL can only contain lowercase letters, numbers and dashes (and must start with a letter or number).';
+const String OrgnameUrl = 'Workspace Name & URL';
+const String OrgName = 'Workspace Name';
+const String OrgUrl = 'Workspace URL';
+const String OrgSettings = 'Workspace Settings';
+const String UploadLogo = 'Upload Icon';
 
 //Pinned Messages
 const String NoPinnedMessagesYet = 'No Pinned Messages Yet';
 const String PinnedMessages = 'Pinned Messages';
-
 //View Profile
 const String MessageText = 'Message';
 
@@ -439,9 +459,15 @@ const String PrivacyNLicenses = 'Privacy & licences';
 const String HelpCenter = 'Help Center';
 const String SendFeedback = 'Send Feedback';
 
+//Status
+const String SetAStatus = 'Set a Status';
+const IconData bubble = Icons.chat_bubble_outline_rounded;
+const String WhatsYourStatus = 'What\'s your status?';
+
 //Images and Logos and Icons
 const String AddLogo = 'assets/logo/add_logo.png';
 const String ZuriLogo = 'assets/logo/zuri_app_logo.png';
+const String ZuriWordLogo = 'assets/logo/zuri_word_and_logo.png';
 const String NewZuriLogo = 'assets/logo/new_zuri_logo.png';
 const String ZuriAppbarLogo = 'assets/logo/new_zuri_logo.png';
 const String GoogleLogo = 'assets/logo/Google_logo.png';
@@ -496,6 +522,11 @@ const String Copy_link_To_Message =
     'assets/icons/svg_icons/akar-icons_link_chain.svg';
 const String Copy_Text = 'assets/icons/svg_icons/Copy-text.svg';
 const String Add_Organization = 'assets/icons/svg_icons/add-organization.svg';
+
+// SHARE MESSAGE SCREEN
+const String NoSuchChannel = 'No such channel';
+const String EnterChannelName = 'Enter channel name';
+const String EnterMessage = 'Enter a message';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =

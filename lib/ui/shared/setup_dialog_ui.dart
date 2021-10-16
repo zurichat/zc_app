@@ -6,6 +6,7 @@ import 'package:hng/ui/shared/dialogs/schedule_dialog.dart';
 import 'package:hng/ui/shared/dialogs/sign_out_dialog.dart';
 import 'package:hng/utilities/enums.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'dialogs/image_source_dialog.dart';
 import 'dialogs/schedule_channel_dialog.dart';
 import 'dialogs/select_language_dialog.dart';
 import 'dialogs/skin_tone_dialog.dart';
@@ -41,7 +42,9 @@ void setupDialogUi() {
         ScheduleMessChannel(
           request: request,
           completer: completer,
-        )
+        ),
+    DialogType.imageSource: (context, request, completer) =>
+        ImageSourceDialog(request: request, completer: completer),
   };
 
   dialogService.registerCustomDialogBuilders(builders);
