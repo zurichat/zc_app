@@ -25,6 +25,8 @@ class PluginViewModel extends BaseViewModel {
         icon: icons[3], name: "Goals Plugin", url: "https://zuri.chat/goals"),
     PluginModel(
         icon: icons[4], name: "Music Plugin", url: "https://zuri.chat/music"),
+    PluginModel(
+        icon: icons[5], name: "Chess Plugin", url: "https://chess.zuri.chat/"),
   ];
 
   bool get editMode => _editMode;

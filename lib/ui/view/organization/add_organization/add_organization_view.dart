@@ -44,7 +44,6 @@ class AddOrganizationView extends StatelessWidget {
               leadingPress: model.back,
             ),
             body: Column(children: [
-              const SizedBox(height: 5),
               Container(
                 margin: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
@@ -90,7 +89,9 @@ class AddOrganizationView extends StatelessWidget {
                             children: [
                               SvgPicture.asset(
                                 Add_Organization,
-                                color: AppColors.whiteColor,
+                                color: _dark
+                                    ? AppColors.whiteColor
+                                    : AppColors.blackColor,
                                 width: 20,
                                 height: 20,
                               ),
