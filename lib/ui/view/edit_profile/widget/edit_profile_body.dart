@@ -1,23 +1,19 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
 import 'package:hng/ui/shared/shared.dart';
 //import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
-
 import '../edit_profile_viewmodel.dart';
 
 class Body extends ViewModelWidget<EditProfileViewModel> {
   final Size _size;
-  late File imageFile;
-  Body({
+  const Body({
     Key? key,
     required Size size,
   })  : _size = size,
         super(key: key, reactive: true);
   @override
   Widget build(BuildContext context, EditProfileViewModel viewModel) {
-     
     return Container(
       padding: EdgeInsets.symmetric(
           vertical: _size.height * 0.02, horizontal: _size.width * 0.05),
@@ -30,34 +26,55 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   InkWell(
-                    onTap:(){
-                      viewModel.editProfilePic();
-                    },
-                    child: Container(
-                      width: _size.height * 0.14,
-                      height: double.maxFinite,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(ZuriAppbarLogo),
-                          fit: BoxFit.contain,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        color: AppColors.greyishColor,
-                      ),
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.add_a_photo,
-                            size: _size.width * 0.06,
-                            color: AppColors.whiteColor,
+                    onTap: () => viewModel.editProfilePic(),
+                    child: viewModel.imageFile == null
+                        ? Container(
+                            width: _size.height * 0.14,
+                            height: double.maxFinite,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(ZuriAppbarLogo),
+                                fit: BoxFit.contain,
+                              ),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              color: AppColors.greyishColor,
+                            ),
+                            child: Align(
+                              alignment: Alignment.bottomRight,
+                              child: Icon(
+                                Icons.add_a_photo,
+                                size: _size.width * 0.06,
+                                color: AppColors.whiteColor,
+                              ),
+                            ),
+                          )
+                        : SizedBox(
+                            width: _size.height * 0.14,
+                            height: double.maxFinite,
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.file(
+                                    viewModel.imageFile!,
+                                    fit: BoxFit.cover,
+                                    width: _size.height * 0.14,
+                                    height: double.maxFinite,
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Icon(
+                                    Icons.add_a_photo,
+                                    size: _size.width * 0.06,
+                                    color: AppColors.whiteColor,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
                   ),
                   const Spacer(),
                   SizedBox(

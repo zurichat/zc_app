@@ -29,6 +29,8 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
   String phone = '';
   String bio = '';
   String displayName = '';
+  String imageUrl = '';
+  File? imageFile;
 
   void navigateBack() {
     _navigationService.back();
@@ -40,21 +42,23 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
     phone = user.phoneNumber ?? '';
     displayName = user.displayName ?? '';
     bio = user.bio ?? '';
+    imageUrl = user.imageUrl ?? '';
   }
 
   void setState() => notifyListeners();
 
-  void onChanged({String? disp, String? bo, String? phn, String? name}) {
+  void onChanged({String? disp, String? bo, String? phn, String? name, File? file}) {
     {
       if (disp != null) displayName = disp;
       if (bo != null) bio = bo;
       if (phn != null) phone = phn;
       if (name != null) fullName = name;
+      if (file != null) imageFile = file;
       setState();
     }
   }
 
-  UserModel updateData() {
+  Future<UserModel> updateData() async{
     if (validateNotEmptyField(fullName) != null) {
       _snackbarService.showCustomSnackBar(
           message: 'Fullname cannot be null', variant: SnackbarType.failure);
@@ -67,8 +71,8 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
       fullName.isNotEmpty ? fullName.split(" ").last : userModel.lastName
       ..displayName = displayName
       ..bio = bio
-      ..phoneNumber = phone;
-
+      ..phoneNumber = phone
+      ..imageUrl = await uploadPic();
     return userModel;
   }
 
@@ -103,7 +107,9 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
     if (displayName != userModel.displayName ||
         bio != userModel.bio ||
         phone != userModel.phoneNumber ||
-        (fullName.isNotEmpty && fullName != userModel.fullName)) {
+        (fullName.isNotEmpty && fullName != userModel.fullName ) ||
+        imageFile != null
+    ) {
       return true;
     } else {
       return false;
@@ -116,11 +122,17 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
       isScrollControlled: true,
     );
 
-    log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}uuuuu');
-    // notifyListeners();
+    log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
     if(sheetResponse != null){
-      return  mediaService.getImage(fromGallery: sheetResponse.confirmed);
+      imageFile = await mediaService.getImage(fromGallery: sheetResponse.confirmed);
+      notifyListeners();
     }
+  }
+
+  //TODO-- fix the plugIn parameter needed to upload user profile pic to the endpoint
+  Future<String> uploadPic() async{
+    imageUrl = (await mediaService.uploadImage(imageFile,'6165f520375a4616090b8275'))!;
+    return imageUrl;
   }
 
 }

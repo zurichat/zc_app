@@ -5,7 +5,6 @@ import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_appbar.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../general_widgets/menu_item_tile.dart';
 import 'widgets/profile_page_head.dart';
 import 'widgets/status_form.dart';
@@ -88,7 +87,10 @@ class YouPage extends StatelessWidget {
                     local.viewProfile,
                     style: AppTextStyles.faintBodyText.copyWith(fontSize: 16),
                   ),
-                  onPressed: () => model.getUserPresence(),
+                  onPressed: () {
+                    model.getUserPresence();
+                    model.editProfile();
+                  },
                   topBorder: false,
                 ),
                 const SizedBox(height: 16),
