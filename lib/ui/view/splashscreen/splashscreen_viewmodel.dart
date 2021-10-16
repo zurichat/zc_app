@@ -24,7 +24,7 @@ class SplashscreenViewModel extends BaseViewModel {
         } else if (storage.getBool(StorageKeys.registeredNotverifiedOTP) ==
             true) {
           navigation.clearStackAndShow(Routes.oTPView);
-        } else if (storage.getString(StorageKeys.currentUserId) == null) {
+        } else if (storage.getString(StorageKeys.currentUserId) != null) {
           navigation.clearStackAndShow(Routes.loginView);
         } else {
           if (storage.getString(StorageKeys.currentOrgId) == null ||
