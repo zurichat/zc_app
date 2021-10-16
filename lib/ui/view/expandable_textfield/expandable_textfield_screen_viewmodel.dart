@@ -90,7 +90,6 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
- 
   void showMembersList(bool show) {
     matchedUsers = channelUsersList;
     _showMembers = show;
@@ -114,6 +113,7 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
 
     notifyListeners();
   }
+
   void clearMediaList() {
     _mediaList.clear();
   }

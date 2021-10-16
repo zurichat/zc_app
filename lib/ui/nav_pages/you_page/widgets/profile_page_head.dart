@@ -5,7 +5,12 @@ import 'package:zurichat/ui/shared/text_styles.dart';
 import '../../../shared/colors.dart';
 
 class ProfilePageHead extends StatelessWidget {
-  const ProfilePageHead({Key? key, this.image, this.name, this.currentStatus, this.isActive = true})
+  const ProfilePageHead(
+      {Key? key,
+      this.image,
+      this.name,
+      this.currentStatus,
+      this.isActive = true})
       : super(key: key);
 
   final String? image;
@@ -45,7 +50,9 @@ class ProfilePageHead extends StatelessWidget {
                 child: Icon(
                   Icons.circle,
                   size: 15,
-                  color: isActive ? AppColors.zuriPrimaryColor : AppColors.greyishColor,
+                  color: isActive
+                      ? AppColors.zuriPrimaryColor
+                      : AppColors.greyishColor,
                 ),
               ),
             ],

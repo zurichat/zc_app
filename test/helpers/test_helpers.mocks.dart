@@ -17,7 +17,7 @@ import 'package:zurichat/models/organization_member_model.dart' as _i7;
 import 'package:zurichat/models/organization_model.dart' as _i6;
 import 'package:zurichat/models/pinned_message_model.dart' as _i18;
 import 'package:zurichat/models/user_model.dart' as _i9;
-import 'package:zurichat/models/user_search_model.dart' as _i25;
+import 'package:zurichat/models/user_search_model.dart' as _i24;
 import 'package:zurichat/package/base/jump_to_request/jump_to_api.dart' as _i28;
 import 'package:zurichat/package/base/server-request/api/zuri_api.dart' as _i5;
 import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart'

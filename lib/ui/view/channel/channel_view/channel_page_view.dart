@@ -74,10 +74,9 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 padding: const EdgeInsets.only(right: 5),
                 child: IconButton(
                   onPressed: () => model.navigateToChannelInfoScreen(
-                    membersCount!,
-                    ChannelModel(id: channelId!, name: channelName!),
-                    channelName!
-                  ),
+                      membersCount!,
+                      ChannelModel(id: channelId!, name: channelName!),
+                      channelName!),
                   icon: const Icon(
                     Icons.info_outlined,
                     color: AppColors.textLight10,

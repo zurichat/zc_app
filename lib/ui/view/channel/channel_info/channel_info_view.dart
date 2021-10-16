@@ -9,7 +9,6 @@ import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zurichat/ui/shared/colors.dart';
-
 import 'channel_info_view_model.dart';
 import 'widgets/first_section.dart';
 import 'widgets/second_section.dart';

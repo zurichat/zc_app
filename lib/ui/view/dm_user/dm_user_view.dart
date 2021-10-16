@@ -64,7 +64,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
                 channelID: '',
                 hintText: '${local!.messageButton} ${model.receiver.username}',
                 textController: messageController,
-                sendMessage: ( message, media) {
+                sendMessage: (message, media) {
                   model.sendMessage();
                   FocusScope.of(context).requestFocus(FocusNode());
                   _scrollController

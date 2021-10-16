@@ -30,10 +30,8 @@ class DraftView extends StatelessWidget {
               model.goBack();
             },
             orgTitle: Text(
-                local!.draft,
-              style: const TextStyle(
-                  color:AppColors.blackColor
-              ),
+              local!.draft,
+              style: const TextStyle(color: AppColors.blackColor),
             ),
           ),
           body: model.widgetBuilderList.isNotEmpty
@@ -105,22 +103,20 @@ class DraftView extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.all(8.r),
                           child: Center(
-                            child:
-                                Text(local.draftMessageIntro,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 20.sp,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.blackColor,
-                                    )),
+                            child: Text(local.draftMessageIntro,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.blackColor,
+                                )),
                           ),
                         ),
                       ),
                       SizedBox(height: 10.h),
                       Center(
                         child: Center(
-                          child: Text(
-                              local.draftIntroText,
+                          child: Text(local.draftIntroText,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 15.sp,

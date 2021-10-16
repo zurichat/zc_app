@@ -41,7 +41,6 @@ class LanguageAndRegionModelViewModel extends BaseViewModel {
     currentValue = locales.indexOf(_localizationService.appLocale);
     final dialogResult = await _dialogService.showCustomDialog(
       variant: DialogType.selectLanguage,
-      
       data: {'languages': languages, 'currentValue': currentValue},
     );
 

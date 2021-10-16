@@ -22,7 +22,6 @@ class PluginView extends StatelessWidget {
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         return Scaffold(
           appBar: ZuriAppBar(
-
             isDarkMode: Theme.of(context).brightness == Brightness.dark,
             orgTitle: Text(
               Plugins,

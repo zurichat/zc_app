@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/constants/app_strings.dart';
-// import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:zurichat/ui/shared/zuri_loader.dart';
 import 'package:zurichat/ui/view/set_status/set_status_viewmodel.dart';
@@ -23,7 +23,6 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
-
       //TODO: onModelReady to be reviewed in next PR
       // onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => ModalProgressHUD(
@@ -32,22 +31,20 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
         progressIndicator: const ZuriLoader(),
         child: Scaffold(
           appBar: ZuriAppBar(
-            
             leading: Icons.close_rounded,
             leadingPress: () => model.exitPage(),
-            orgTitle: const Text(
+            orgTitle: Text(
               'Set a status',
-            //   style: AppTextStyle.heading4.copyWith(
-            //     color: Theme.of(context).textTheme.bodyText1!.color,
-
-            //   ),
+              style: AppTextStyle.darkGreySize16.copyWith(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
             ),
             actions: [
               TextButton(
                 onPressed: model.saveStatus,
-                child: const Text(
+                child: Text(
                   Save,
-                //   style: AppTextStyle.heading8,
+                  style: AppTextStyle.darkGreySize16,
                 ),
               )
             ],

@@ -24,10 +24,7 @@ class ChannelInfoViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
   final log = getLogger('ChannelInfoViewModel');
 
-
-
   bool notification = true;
-
 
   String? channelName;
 

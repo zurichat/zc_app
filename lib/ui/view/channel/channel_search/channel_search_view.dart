@@ -37,8 +37,8 @@ class ChannelSearchPageView extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
                   child: TextFormField(
                       // style: textStyling(),
-                      decoration:
-                          textFormFields('${local.searchPeopleOn} $channelName')),
+                      decoration: textFormFields(
+                          '${local.searchPeopleOn} $channelName')),
                 ),
 
                 const SizedBox(child: SearchResults()),

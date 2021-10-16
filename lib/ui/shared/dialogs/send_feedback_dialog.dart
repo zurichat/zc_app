@@ -41,7 +41,7 @@ class _SendFeedbackDialogContent extends StatelessWidget {
       height: size.height * .3,
       child: Column(
         children: [
-           Align(
+          Align(
             alignment: Alignment.topLeft,
             child: Text(
               local!.composeFeedback,
@@ -54,7 +54,8 @@ class _SendFeedbackDialogContent extends StatelessWidget {
             child: TextField(
               controller: controller,
               decoration: InputDecoration(
-                  hintText: local.feedbackHint, helperText: local.feedbackHelperText),
+                  hintText: local.feedbackHint,
+                  helperText: local.feedbackHelperText),
               minLines: 1,
               maxLines: 5,
             ),
