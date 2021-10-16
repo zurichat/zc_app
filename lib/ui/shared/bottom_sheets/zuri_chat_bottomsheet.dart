@@ -12,9 +12,6 @@ import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:zurichat/utilities/enums.dart';
 import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
-
-import 'thread_options_bottomsheet/widget/recent_emojis.dart';
 
 Future<dynamic> zuriChatBottomSheet({
   required BuildContext context,
@@ -34,8 +31,6 @@ Future<dynamic> zuriChatBottomSheet({
 }) {
   final local = AppLocalization.of(context);
   final _dialogService = locator<DialogService>();
-  final _userService = locator<UserService>();
-  final _storageService = locator<SharedPreferenceLocalStorage>();
 
   return showModalBottomSheet(
     context: context,
@@ -45,7 +40,7 @@ Future<dynamic> zuriChatBottomSheet({
     builder: (context) {
       return Container(
         width: double.infinity,
-        height: MediaQuery.of(context).size.height * .75,
+        height: MediaQuery.of(context).size.height * .40,
         padding: const EdgeInsets.all(15),
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -53,56 +48,61 @@ Future<dynamic> zuriChatBottomSheet({
         child: ListView(
           physics: const BouncingScrollPhysics(),
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                const Expanded(child: RecentEmojis('😘')),
-                const Expanded(child: RecentEmojis('😳')),
-                const Expanded(child: RecentEmojis('😭')),
-                const Expanded(child: RecentEmojis('🤣')),
-                const Expanded(child: RecentEmojis('🤔')),
-                const Expanded(child: RecentEmojis('😏')),
-                Expanded(
-                  child: Container(
-                    height: 50,
-                    width: 50,
-                    child: const Align(
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.add_reaction_outlined,
-                          size: 25,
-                        )),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.greyBackgroundColor,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            const Divider(),
-            _userService.userId ==
-                    _storageService.getString(StorageKeys.currentUserId)
-                ? ListTile(
-                    title: Text("Edit message",
-                        style: AppTextStyle.darkGreySize16),
-                    leading: const Icon(Icons.line_style_outlined),
-                    onTap: editMessage,
-                  )
-                : Container(),
-            ListTile(
-              title: Text(
-                MarkUnread,
-                style: AppTextStyle.darkGreySize16,
-              ),
-              leading: SvgPicture.asset(
-                Mark_Unread,
-                color: AppColors.darkGreyColor,
-                width: 18,
-                height: 18,
-              ),
-              onTap: markUnread,
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //   children: [
+            //TODO
+            // const Expanded(child: RecentEmojis('😘')),
+            // const Expanded(child: RecentEmojis('😳')),
+            // const Expanded(child: RecentEmojis('😭')),
+            // const Expanded(child: RecentEmojis('🤣')),
+            // const Expanded(child: RecentEmojis('🤔')),
+            // const Expanded(child: RecentEmojis('😏')),
+            //     Expanded(
+            //       child: Container(
+            //         height: 50,
+            //         width: 50,
+            //         child: const Align(
+            //             alignment: Alignment.center,
+            //             child: Icon(
+            //               Icons.add_reaction_outlined,
+            //               size: 25,
+            //             )),
+            //         decoration: const BoxDecoration(
+            //           shape: BoxShape.circle,
+            //           color: AppColors.greyBackgroundColor,
+            //         ),
+            //       ),
+            //     )
+            //   ],
+            // ),
+            // const Divider(),
+            // ListTile(
+            //   title: Text(
+            //     MarkUnread,
+            //     style: AppTextStyle.darkGreySize16,
+            //   ),
+            //   leading: SvgPicture.asset(
+            //     Mark_Unread,
+            //     color: AppColors.darkGreyColor,
+            //     width: 18,
+            //     height: 18,
+            //   ),
+            //   onTap: markUnread,
+            // ),
+            // ListTile(
+            //   title: Text(
+            //     EditMessage,
+            //     style: AppTextStyle.darkGreySize16,
+            //   ),
+            //   leading: SvgPicture.asset(
+            //     Saved_Items,
+            //     color: AppColors.darkGreyColor,
+            //     width: 18,
+            //     height: 18,
+            //   ),
+            //   onTap: addToSavedItems,
+            // ),
             ListTile(
               title: Text(
                 RemindMe,
@@ -133,31 +133,31 @@ Future<dynamic> zuriChatBottomSheet({
               onTap: addToSavedItems,
             ),
             const Divider(),
-            ListTile(
-                title: Text(
-                  ReplyInThreads,
-                  style: AppTextStyle.darkGreySize16,
-                ),
-                leading: SvgPicture.asset(
-                  Reply_In_Thread,
-                  color: AppColors.darkGreyColor,
-                  width: 18,
-                  height: 18,
-                ),
-                onTap: replyInThread),
-            ListTile(
-                title: Text(
-                  FollowThreadZuriChatBottomSheet,
-                  style: AppTextStyle.darkGreySize16,
-                ),
-                leading: SvgPicture.asset(
-                  Follow_Thread,
-                  color: AppColors.darkGreyColor,
-                  width: 18,
-                  height: 18,
-                ),
-                onTap: followThread),
-            const Divider(),
+            // ListTile(
+            //     title: Text(
+            //       ReplyInThreads,
+            //       style: AppTextStyle.darkGreySize16,
+            //     ),
+            //     leading: SvgPicture.asset(
+            //       Reply_In_Thread,
+            //       color: AppColors.darkGreyColor,
+            //       width: 18,
+            //       height: 18,
+            //     ),
+            //     onTap: replyInThread),
+            // ListTile(
+            //     title: Text(
+            //       FollowThreadZuriChatBottomSheet,
+            //       style: AppTextStyle.darkGreySize16,
+            //     ),
+            //     leading: SvgPicture.asset(
+            //       Follow_Thread,
+            //       color: AppColors.darkGreyColor,
+            //       width: 18,
+            //       height: 18,
+            //     ),
+            //     onTap: followThread),
+            // const Divider(),
             ListTile(
                 title: Text(
                   ShareMessage,
@@ -170,18 +170,18 @@ Future<dynamic> zuriChatBottomSheet({
                   height: 18,
                 ),
                 onTap: shareMessage),
-            ListTile(
-                title: Text(
-                  CopyLinkToMessage,
-                  style: AppTextStyle.darkGreySize16,
-                ),
-                leading: SvgPicture.asset(
-                  Copy_link_To_Message,
-                  color: AppColors.darkGreyColor,
-                  width: 18,
-                  height: 18,
-                ),
-                onTap: copyLinkToMessage),
+            // ListTile(
+            //     title: Text(
+            //       CopyLinkToMessage,
+            //       style: AppTextStyle.darkGreySize16,
+            //     ),
+            //     leading: SvgPicture.asset(
+            //       Copy_link_To_Message,
+            //       color: AppColors.darkGreyColor,
+            //       width: 18,
+            //       height: 18,
+            //     ),
+            //     onTap: copyLinkToMessage),
             ListTile(
                 title: Text(
                   CopyTextZuriChatBottomSheet,

@@ -341,6 +341,7 @@ const String ChannelSPecificNotif = 'Channel-specific notifications (0)';
 
 //Zuri_Chat_BottomSheet
 const String MarkUnread = "Mark Unread";
+const String EditMessage = "Edit Message";
 const String RemindMe = "Remind Me";
 const String AddToSavedItems = "Add to Saved Items";
 const String ReplyInThreads = "Reply in Thread";

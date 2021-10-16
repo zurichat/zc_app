@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:zurichat/ui/shared/zuri_loader.dart';
@@ -29,19 +27,20 @@ class DmPage extends StatelessWidget {
                 style: AppTextStyle.organizationNameText),
             bottomNavBarScreen: true,
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              model.navigateToDmScreen();
-            },
-            child: IconButton(
-              onPressed: () {
-                model.navigateToDmScreen();
-              },
-              icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
-              color: AppColors.whiteColor,
-            ),
-            // backgroundColor: AppColors.zuriPrimaryColor,
-          ),
+          //TODO
+          // floatingActionButton: FloatingActionButton(
+          //   onPressed: () {
+          //     model.navigateToDmScreen();
+          //   },
+          //   child: IconButton(
+          //     onPressed: () {
+          //       model.navigateToDmScreen();
+          //     },
+          //     icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
+          //     color: AppColors.whiteColor,
+          //   ),
+          //   // backgroundColor: AppColors.zuriPrimaryColor,
+          // ),
           body: model.isBusy
               ? const ZuriLoader()
               : !model.data!
