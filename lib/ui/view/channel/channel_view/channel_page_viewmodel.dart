@@ -330,8 +330,8 @@ class ChannelPageViewModel extends FormViewModel {
     fetchChannelMembers(channelId);
   }
 
-  void goBack(channelId, value, channelName, membersCount, public) {
-    _navigationService.back();
+  Future<void> goBack(channelId, value, channelName, membersCount, public) async{
+    await _navigationService.back();
     storeDraft(channelId, value, channelName, membersCount, public);
   }
 
