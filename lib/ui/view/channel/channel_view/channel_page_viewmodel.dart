@@ -44,13 +44,11 @@ class ChannelPageViewModel extends FormViewModel {
   var storedDraft = '';
 
   void getDraft(channelId) {
-    var currentOrgId =
-    _storageService.getString(StorageKeys.currentOrgId);
-    var currentUserId =
-    _storageService.getString(StorageKeys.currentUserId);
+    var currentOrgId = _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId = _storageService.getString(StorageKeys.currentUserId);
 
     List<String>? spList =
-    _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
     if (spList != null) {
       for (String e in spList) {
         if (jsonDecode(e)['channelId'] == channelId &&
@@ -67,10 +65,8 @@ class ChannelPageViewModel extends FormViewModel {
   }
 
   void storeDraft(channelId, value, channelName, membersCount, public) {
-    var currentOrgId =
-    _storageService.getString(StorageKeys.currentOrgId);
-    var currentUserId =
-    _storageService.getString(StorageKeys.currentUserId);
+    var currentOrgId = _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId = _storageService.getString(StorageKeys.currentUserId);
 
     var keyMap = {
       'draft': value,
@@ -84,7 +80,7 @@ class ChannelPageViewModel extends FormViewModel {
     };
 
     List<String>? spList =
-    _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
 
     if (value.length > 0 && spList != null) {
       spList.add(json.encode(keyMap));
@@ -243,9 +239,7 @@ class ChannelPageViewModel extends FormViewModel {
         UserPost(
           id: data['_id'],
           displayName: userid,
-
           statusIcon: '⭐',
-
           moment: Moment.now().from(DateTime.parse(data['timestamp'])),
           message: data['content'],
           channelType: ChannelType.public,
@@ -256,7 +250,6 @@ class ChannelPageViewModel extends FormViewModel {
           userId: userid,
           channelId: channelId,
           pinned: data['pinned'],
-
           postMediaFiles: (data['files'] as List)
               .map((e) => PostFiles(
                   id: "",
@@ -265,7 +258,6 @@ class ChannelPageViewModel extends FormViewModel {
                   size: null,
                   fileName: null))
               .toList(),
-
         ),
       );
     });
@@ -273,26 +265,10 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  // sendOrUpdateMessage(String? message) async {
-  //   String? userId = storage.getString(StorageKeys.currentUserId);
-  //   // String? messageId = channelUserMessages![index].id;
-  //   if (isEdited == false) {
-  //     await _channelsApiService.sendChannelMessages(
-  //         channelID, "$userId", message!);
-  //   } else {
-  //     await _channelsApiService.updateChannelMessages(
-  //       message!,
-  //       "61682c6a7dd51bfd055f1218",
-  //     );
-  //     log.i('Is Edited : $isEdited');
-  //     isEdited = false;
-  //   }
-  //   notifyListeners();
-  //   scrollController.jumpTo(scrollController.position.minScrollExtent);
-  //   notifyListeners();
-  // }
-
-    void sendMessage(String message, [List<File>? media]) async {
+  sendOrUpdateMessage(String message, [List<File>? media]) async {
+    // String? userId = storage.getString(StorageKeys.currentUserId);
+    // String? messageId = channelUserMessages![index].id;
+    if (isEdited == false) {
       try {
         String? userId = storage.getString(StorageKeys.currentUserId);
         List<String> urls = [];
@@ -316,117 +292,152 @@ class ChannelPageViewModel extends FormViewModel {
           variant: SnackbarType.failure,
         );
       }
+    } else {
+      // TODO: Implement update channel endpoint here, check in channel service API and correct endpoint as required
+      // await _channelsApiService.updateChannelMessages(
+      //   message,
+      //   "616b5b18d73c740b1cef48e5",
+      // );
+      log.i('Is Edited : $isEdited');
+      isEdited = false;
     }
+    notifyListeners();
+    scrollController.jumpTo(scrollController.position.minScrollExtent);
+    notifyListeners();
+  }
 
+  // void sendMessage(String message, [List<File>? media]) async {
+  //   try {
+  //     String? userId = storage.getString(StorageKeys.currentUserId);
+  //     List<String> urls = [];
+  //     if (media != null) {
+  //       for (int i = 0; i < media.length; i++) {
+  //         var url = await _mediaService.uploadImage(media[i], pluginId);
+  //         urls.add(url!);
+  //       }
+  //     }
 
-    void navigateToShareMessage(UserPost userPost) async {
-      var result = await _navigationService.navigateTo(Routes.shareMessageView,
-          arguments: ShareMessageViewArguments(userPost: userPost));
+  //     await _channelsApiService.sendChannelMessages(
+  //         channelID, "$userId", message, urls);
 
-      var newMessage = result['message'];
-      var sharedMessage = result['sharedMessage'];
-      var message = '$newMessage: $sharedMessage';
-      sendMessage(message);
-      _navigationService.back();
-    }
+  //     scrollController.jumpTo(scrollController.position.minScrollExtent);
 
-    void exitPage() {
-      _navigationService.back();
-    }
+  //     notifyListeners();
+  //   } catch (e) {
+  //     _snackbarService.showCustomSnackBar(
+  //       duration: const Duration(seconds: 1),
+  //       message: "Could not send message, please check your internet",
+  //       variant: SnackbarType.failure,
+  //     );
+  //   }
+  // }
 
-    String time() {
-      return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
-    }
+  void navigateToShareMessage(UserPost userPost) async {
+    var result = await _navigationService.navigateTo(Routes.shareMessageView,
+        arguments: ShareMessageViewArguments(userPost: userPost));
 
-    Future? navigateToChannelInfoScreen(int numberOfMembers,
-        ChannelModel channelDetail, String channelName) async {
-      await NavigationService().navigateTo(Routes.channelInfoView,
-          arguments: ChannelInfoViewArguments(
-            numberOfMembers: numberOfMembers,
-            channelName: channelName,
-            channelMembers: channelMembers,
-            channelDetail: channelDetail,
-          ));
-    }
+    var newMessage = result['message'];
+    var sharedMessage = result['sharedMessage'];
+    var message = '$newMessage: $sharedMessage';
+    sendOrUpdateMessage(message);
+    _navigationService.back();
+  }
 
-    Future? navigateToAddPeople(String channelName, String channelId) async {
-      await _navigationService.navigateTo(Routes.channelAddPeopleView,
-          arguments: ChannelAddPeopleViewArguments(
-              channelId: channelId, channelName: channelName));
-      _snackbarService.showCustomSnackBar(
-          duration: const Duration(milliseconds: 2048),
-          message: "Members were added successfully",
-          variant: SnackbarType.success);
-      fetchChannelMembers(channelId);
-    }
+  void exitPage() {
+    _navigationService.back();
+  }
 
-    void goBack(channelId, value, channelName, membersCount, public) {
-      storeDraft(channelId, value, channelName, membersCount, public);
-      _navigationService.back();
-    }
+  String time() {
+    return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
+  }
 
-    void exit() => _navigationService.back();
+  Future? navigateToChannelInfoScreen(int numberOfMembers,
+      ChannelModel channelDetail, String channelName) async {
+    await NavigationService().navigateTo(Routes.channelInfoView,
+        arguments: ChannelInfoViewArguments(
+          numberOfMembers: numberOfMembers,
+          channelName: channelName,
+          channelMembers: channelMembers,
+          channelDetail: channelDetail,
+        ));
+  }
 
-    navigateToChannelEdit(String channelName, String channelId) {
-      _navigationService.navigateTo(Routes.editChannelPageView,
-          arguments: EditChannelPageViewArguments(
-            channelName: channelName,
-            channelId: channelId,
-          ));
-    }
+  Future? navigateToAddPeople(String channelName, String channelId) async {
+    await _navigationService.navigateTo(Routes.channelAddPeopleView,
+        arguments: ChannelAddPeopleViewArguments(
+            channelId: channelId, channelName: channelName));
+    _snackbarService.showCustomSnackBar(
+        duration: const Duration(milliseconds: 2048),
+        message: "Members were added successfully",
+        variant: SnackbarType.success);
+    fetchChannelMembers(channelId);
+  }
 
-    void websocketConnect(String channelSocketId) async {
-      await _centrifugeService.subscribe(channelSocketId);
-    }
+  void goBack(channelId, value, channelName, membersCount, public) {
+    storeDraft(channelId, value, channelName, membersCount, public);
+    _navigationService.back();
+  }
 
-    void showNotificationForOtherChannels(
-        String channelId, String channelName) async {
-      notificationSubscription = _centrifugeService.onNotificationReceived(
-        channelId: channelId,
-        onData: (message) {
-          _notificationService.show(
-            title: '#$channelName',
-            body: message['content'],
-            payload: NotificationPayload(
-              messageId: message['_id'],
-              roomId: message['channel_id'],
-              name: channelName,
-            ),
-          );
-        },
-      );
-    }
+  void exit() => _navigationService.back();
 
-    @override
-    void dispose() {
-      // this fixes the scroll controller error
-      messageSubscription?.cancel();
-      notificationSubscription?.cancel();
-      super.dispose();
-    }
+  navigateToChannelEdit(String channelName, String channelId) {
+    _navigationService.navigateTo(Routes.editChannelPageView,
+        arguments: EditChannelPageViewArguments(
+          channelName: channelName,
+          channelId: channelId,
+        ));
+  }
 
-    void toggleExpanded() {
-      isExpanded = !isExpanded;
+  void websocketConnect(String channelSocketId) async {
+    await _centrifugeService.subscribe(channelSocketId);
+  }
+
+  void showNotificationForOtherChannels(
+      String channelId, String channelName) async {
+    notificationSubscription = _centrifugeService.onNotificationReceived(
+      channelId: channelId,
+      onData: (message) {
+        _notificationService.show(
+          title: '#$channelName',
+          body: message['content'],
+          payload: NotificationPayload(
+            messageId: message['_id'],
+            roomId: message['channel_id'],
+            name: channelName,
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    // this fixes the scroll controller error
+    messageSubscription?.cancel();
+    notificationSubscription?.cancel();
+    super.dispose();
+  }
+
+  void toggleExpanded() {
+    isExpanded = !isExpanded;
+    notifyListeners();
+  }
+
+  void scheduleMessage(double delay, String text, String channelID) async {
+    delay = delay * 60; //Converting from hour to minutes
+
+    int value = delay.toInt();
+    String? userId = storage.getString(StorageKeys.currentUserId);
+    Future.delayed(Duration(minutes: value), () async {
+      _channelsApiService.sendChannelMessages(channelID, "$userId", text);
+
       notifyListeners();
-    }
+    });
+  }
 
-    void scheduleMessage(double delay, String text, String channelID) async {
-      delay = delay * 60; //Converting from hour to minutes
-
-      int value = delay.toInt();
-      String? userId = storage.getString(StorageKeys.currentUserId);
-      Future.delayed(Duration(minutes: value), () async {
-        _channelsApiService.sendChannelMessages(channelID, "$userId", text);
-
-        notifyListeners();
-      });
-    }
-
-
-    @override
-    void setFormStatus() {
-      // TODO: implement setFormStatus
-    
+  @override
+  void setFormStatus() {
+    // TODO: implement setFormStatus
   }
 
   void listenToNewMessage(String channelId) async {

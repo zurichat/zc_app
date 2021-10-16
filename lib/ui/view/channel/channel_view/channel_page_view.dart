@@ -94,7 +94,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
             channelID: channelId.toString(),
             textController: channelMessagesController,
             hintText: AddReply,
-            sendMessage:model.sendMessage,
+            sendMessage: model.sendOrUpdateMessage,
             widget: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               controller: model.scrollController,
