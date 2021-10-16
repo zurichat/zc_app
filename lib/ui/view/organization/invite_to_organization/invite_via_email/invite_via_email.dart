@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
@@ -10,6 +11,7 @@ import 'package:stacked/stacked_annotations.dart';
 import 'invite_via_email.form.dart';
 import 'invite_viewmodel.dart';
 
+
 @FormView(fields: [
   FormTextField(name: 'email'),
 ])
@@ -17,7 +19,9 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
   InviteViaEmail({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
     final local = AppLocalization.of(context);
+
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
@@ -28,20 +32,24 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
               model.navigateBack();
             },
             whiteBackground: true,
+
             isDarkMode: Theme.of(context).brightness == Brightness.dark,
             orgTitle: Text(
               local!.invite,
               style: TextStyle(
                 color: Theme.of(context).textTheme.bodyText1!.color,
               ),
+
             ),
             actions: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 0.0),
                 child: InkWell(
                   child: Text(
+
                     local.sendRequest,
                     style: AppTextStyle.greenSize16,
+
                   ),
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
@@ -59,13 +67,16 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   child: Column(
                     children: [
+
                       Center(
                         child: Text(
                           local.inviteForAdminApproval,
+
                           //style: AppTextStyles.body2_400,
                         ),
                       ),
                       UIHelper.verticalSpaceLarge,
+
                       TextField(
                         controller: emailController,
                         cursorColor: AppColors.zuriPrimaryColor,
@@ -82,12 +93,15 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
                           border: border(),
                           focusedBorder: border(),
                           enabledBorder: border(),
+
                         ),
                       ),
                       UIHelper.verticalSpaceLarge,
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
+
                           primary: AppColors.zuriPrimaryColor,
+
                         ),
                         onPressed: () {
                           model.navigateToContacts();

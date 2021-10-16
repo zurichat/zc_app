@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+
 import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:zurichat/ui/shared/text_field.dart';
 import 'package:zurichat/utilities/enums.dart';
 import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/shared.dart';
@@ -46,6 +48,7 @@ class UseDifferentEmailView extends HookWidget {
                                   }
                                 },
                                 controller: emailController,
+
                                 label: local!.yourEmailAddress,
                               ),
                               const SizedBox(height: 8),
@@ -56,6 +59,7 @@ class UseDifferentEmailView extends HookWidget {
                               Text(
                                 local.sendEmailForSignin,
                                 style: const TextStyle(
+v
                                     fontWeight: FontWeight.w400, fontSize: 16),
                               ),
                               const SizedBox(height: 25),
