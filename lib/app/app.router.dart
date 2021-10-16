@@ -477,7 +477,7 @@ class StackedRouter extends RouterBase {
     },
     SetStatusView: (data) {
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => const SetStatusView(),
+        builder: (context) => SetStatusView(),
         settings: data,
       );
     },
