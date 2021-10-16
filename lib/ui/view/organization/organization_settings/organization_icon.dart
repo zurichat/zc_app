@@ -21,7 +21,7 @@ class OrganizationLogo extends StatelessWidget {
         return Scaffold(
           appBar: ZuriAppBar(
             whiteBackground: true,
-            leading: Icons.chevron_left,
+            leading: Icons.close,
             leadingPress: () => model.back(),
             title: OrgIcon,
             subtitle: '',

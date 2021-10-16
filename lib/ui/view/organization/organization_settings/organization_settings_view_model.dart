@@ -52,18 +52,23 @@ class OrganizationSettingsViewModel extends BaseViewModel with ValidatorMixin {
     try {
       setBusy(true);
       if (tempImage == null) return;
-      await _zuriApi.updateOrgLogo(orgId, tempImage!, token);
+      final res = await _zuriApi.updateOrgLogo(orgId, tempImage!, token);
       setBusy(false);
-      navigation
-          .popUntil((route) => route.settings.name == Routes.organizationView);
-      snackbar.showCustomSnackBar(
-          variant: SnackbarType.success, message: 'Update Successful');
+      if (res) {
+        navigation.popUntil(
+            (route) => route.settings.name == Routes.organizationView);
+        snackbar.showCustomSnackBar(
+            variant: SnackbarType.success, message: 'Update Successful');
+      } else {
+        snackbar.showCustomSnackBar(
+            variant: SnackbarType.failure,
+            message: 'Error Updating Workspace logo');
+      }
     } catch (e) {
       setBusy(false);
       log.e(e.toString());
       snackbar.showCustomSnackBar(
-          variant: SnackbarType.failure,
-          message: 'Error Updating Workspace logo');
+          variant: SnackbarType.failure, message: e.toString());
     }
   }
 
@@ -92,7 +97,7 @@ class OrganizationSettingsViewModel extends BaseViewModel with ValidatorMixin {
       setBusy(false);
       log.e(e.toString());
       snackbar.showCustomSnackBar(
-          variant: SnackbarType.failure, message: 'Update not successful');
+          variant: SnackbarType.failure, message: 'Update not successful: $e');
     }
   }
 

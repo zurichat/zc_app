@@ -321,6 +321,7 @@ class ZuriApi implements Api {
     } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
+      throw e.response!.data['message'];
     }
   }
 
@@ -340,13 +341,14 @@ class ZuriApi implements Api {
     } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
+      throw e.response!.data['message'];
     }
   }
 
   /// Updates an organization's logo. The organization's id `orgId` must not be
   /// null or empty
   @override
-  Future updateOrgLogo(String orgId, File image, token) async {
+  Future<bool> updateOrgLogo(String orgId, File image, token) async {
     try {
       var formData = FormData.fromMap({
         "image": await MultipartFile.fromFile(
@@ -355,17 +357,18 @@ class ZuriApi implements Api {
           contentType: MediaType('image', 'jpeg'),
         ),
       });
-      final res = await dio.patch(
+      await dio.patch(
         '${coreBaseUrl}organizations/$orgId/logo',
         options: Options(
           headers: {'Authorization': 'Bearer $token'},
         ),
         data: formData,
       );
-      return res.data['message'];
+      return true;
     } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
+      throw e.response?.data['message'];
     }
   }
 

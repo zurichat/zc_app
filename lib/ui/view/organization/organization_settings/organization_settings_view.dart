@@ -17,14 +17,13 @@ class OrganizationSettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<OrganizationSettingsViewModel>.reactive(
       viewModelBuilder: () => OrganizationSettingsViewModel(),
-      onModelReady: (model) => model.init(org.name!, org.organizationUrl!),
       builder: (context, model, child) {
         return Scaffold(
           appBar: ZuriAppBar(
             title: OrgSettings,
             subtitle: org.name,
             whiteBackground: true,
-            leading: Icons.chevron_left,
+            leading: Icons.arrow_back_ios_new,
             leadingPress: () => model.back(),
           ),
           body: Container(
@@ -34,7 +33,8 @@ class OrganizationSettingsView extends StatelessWidget {
               boxShadow: [
                 BoxShadow(
                   color: AppColors.shadowColor,
-                  spreadRadius: 10,
+                  spreadRadius: 5,
+                  blurRadius: 10,
                 ),
               ],
             ),
