@@ -11,7 +11,14 @@ import 'package:centrifuge/centrifuge.dart' as _i22;
 import 'package:dio/dio.dart' as _i3;
 import 'package:flutter/material.dart' as _i12;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+import 'package:mockito/mockito.dart' as _i1;
+import 'package:stacked_services/stacked_services.dart' as _i11;
+import 'package:stacked_themes/src/theme_manager.dart' as _i14;
+import 'package:stacked_themes/src/theme_service.dart' as _i13;
+>>>>>>> upstream/dev
 import 'package:zurichat/models/api_response.dart' as _i23;
 import 'package:zurichat/models/channel_members.dart' as _i20;
 import 'package:zurichat/models/channel_model.dart' as _i19;
@@ -20,7 +27,7 @@ import 'package:zurichat/models/organization_member_model.dart' as _i7;
 import 'package:zurichat/models/organization_model.dart' as _i6;
 import 'package:zurichat/models/pinned_message_model.dart' as _i18;
 import 'package:zurichat/models/user_model.dart' as _i9;
-import 'package:zurichat/models/user_search_model.dart' as _i24;
+import 'package:zurichat/models/user_search_model.dart' as _i25;
 import 'package:zurichat/package/base/jump_to_request/jump_to_api.dart' as _i28;
 import 'package:zurichat/package/base/server-request/api/zuri_api.dart' as _i5;
 import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart'

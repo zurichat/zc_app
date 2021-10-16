@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key, this.organizationLogo}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<HomePageViewModel>.reactive(
       onModelReady: (model) {
         model.getDmAndChannelsList();
@@ -31,7 +32,7 @@ class HomePage extends StatelessWidget {
       builder: (context, vmodel, child) => Scaffold(
         appBar: ZuriAppBar(
           leadingWidth: true,
-          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          isDarkMode: _dark,
           orgTitle: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -72,10 +73,9 @@ class HomePage extends StatelessWidget {
               vmodel.isBusy
                   ? LinearProgressIndicator(
                       backgroundColor: Colors.grey[400],
-                      valueColor: AlwaysStoppedAnimation(
-                          Theme.of(context).brightness == Brightness.dark
-                              ? AppColors.darkThemePrimaryColor
-                              : AppColors.zuriPrimaryColor),
+                      valueColor: AlwaysStoppedAnimation(_dark
+                          ? AppColors.darkThemePrimaryColor
+                          : AppColors.zuriPrimaryColor),
                     )
                   : Container(),
               Expanded(

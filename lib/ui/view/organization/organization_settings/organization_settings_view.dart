@@ -79,10 +79,9 @@ class OrganizationSettingsView extends StatelessWidget {
                       children: [
                         Text(
                           EditOrgNameUrl,
-                          style: AppTextStyle.blackSize18Bold.copyWith(
-                              color: _dark
-                                  ? AppColors.whiteColor
-                                  : AppColors.blackColor),
+                          style: _dark
+                              ? AppTextStyle.whiteSize18Bold
+                              : AppTextStyle.darkGreySize18Bold,
                         ),
                         const SizedBox(height: 10),
                         Text.rich(

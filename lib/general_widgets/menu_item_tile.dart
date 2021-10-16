@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
 
 import '../ui/shared/colors.dart';
 
@@ -68,7 +67,7 @@ class MenuItemTile extends StatelessWidget {
   final IconData? ico;
 
   Widget? selectIcon() {
-    if (icon == null && imageIcon == null) {
+    if (ico == null && icon == null && imageIcon == null) {
       return null;
     } else if (icon != null) {
       return icon;
@@ -83,18 +82,8 @@ class MenuItemTile extends StatelessWidget {
       case _TileType.normal:
         return ListTile(
           title: text,
-
-          subtitle: subtitle != null
-              ? Text(
-                  subtitle ?? '',
-                  style: AppTextStyle.darkGreySize14,
-                )
-              : null,
+          subtitle: subtitle != null ? Text(subtitle ?? '') : null,
           dense: true,
-          // contentPadding: EdgeInsets.symmetric(
-          //   horizontal: 0.0,
-          //   vertical: 0.0,
-          // ),
           visualDensity: const VisualDensity(horizontal: 0.0, vertical: 0),
           onTap: onPressed,
           shape: Border(
@@ -116,12 +105,7 @@ class MenuItemTile extends StatelessWidget {
         return ListTile(
           onTap: onPressed,
           title: text,
-          subtitle: subtitle != null
-              ? Text(
-                  subtitle ?? '',
-                  style: AppTextStyle.darkGreySize14,
-                )
-              : null,
+          subtitle: subtitle != null ? Text(subtitle ?? '') : null,
           trailing: selectIcon(),
           shape: Border(
             top: BorderSide(

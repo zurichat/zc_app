@@ -21,12 +21,14 @@ class OrganizationLogo extends StatelessWidget {
       builder: (context, model, child) {
         return Scaffold(
           appBar: ZuriAppBar(
-            whiteBackground: true,
             isDarkMode: _dark,
+            whiteBackground: true,
             leading: Icons.close,
             leadingPress: () => model.back(),
-            title: OrgIcon,
-            subtitle: '',
+            orgTitle: Text(
+              OrgIcon,
+              style: AppTextStyle.organizationNameText,
+            ),
             actions: [
               TextButton(
                 onPressed: () => model.updateOrgLogo(org.id.toString()),
