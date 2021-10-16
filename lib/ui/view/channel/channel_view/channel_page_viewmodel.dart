@@ -281,20 +281,11 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
-  void navigateToShareMessage(UserPost userPost) async {
-    var result = await _navigationService.navigateTo(Routes.shareMessageView,
-        arguments: ShareMessageViewArguments(userPost: userPost));
+  void navigateToShareMessage(UserPost userPost) =>
+      _navigationService.navigateTo(Routes.shareMessageView,
+          arguments: ShareMessageViewArguments(userPost: userPost));
 
-    var newMessage = result['message'];
-    var sharedMessage = result['sharedMessage'];
-    var message = '$newMessage: $sharedMessage';
-    sendMessage(message);
-    _navigationService.back();
-  }
-
-  void exitPage() {
-    _navigationService.back();
-  }
+  void exitPage() => _navigationService.back();
 
   String time() {
     return "${DateTime.now().hour.toString()}:${DateTime.now().minute.toString()}";
@@ -329,7 +320,7 @@ class ChannelPageViewModel extends FormViewModel {
 
   void exit() => _navigationService.back();
 
-  navigateToChannelEdit(String channelName, String channelId) {
+  void navigateToChannelEdit(String channelName, String channelId) {
     _navigationService.navigateTo(Routes.editChannelPageView,
         arguments: EditChannelPageViewArguments(
           channelName: channelName,
