@@ -14,8 +14,6 @@ class DmSearchViewModel extends IndexTrackingViewModel {
     _navigationService.back();
   }
 
-
-
   DmSearchViewModel._internal();
 
   init() {}

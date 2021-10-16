@@ -11,6 +11,7 @@ import 'package:stacked/stacked.dart';
 
 import '../models/channel_members.dart';
 import '../models/channel_model.dart';
+import '../models/organization_model.dart';
 import '../models/user_model.dart';
 import '../models/user_post.dart';
 import '../ui/nav_pages/dm_page/dm_search_find_page.dart';
@@ -56,6 +57,9 @@ import '../ui/view/organization/invite_to_organization/invitation_sent.dart';
 import '../ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
 import '../ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
 import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
+import '../ui/view/organization/organization_settings/organization_icon.dart';
+import '../ui/view/organization/organization_settings/organization_name_url.dart';
+import '../ui/view/organization/organization_settings/organization_settings_view.dart';
 import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
@@ -137,6 +141,9 @@ class Routes {
   static const String createInviteLink = '/create-invite-link';
   static const String invitationSent = '/invitation-sent';
   static const String shareMessageView = '/share-message-view';
+  static const String organizationSettingsView = '/organization-settings-view';
+  static const String organizationNameUrl = '/organization-name-url';
+  static const String organizationLogo = '/organization-logo';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -198,6 +205,9 @@ class Routes {
     createInviteLink,
     invitationSent,
     shareMessageView,
+    organizationSettingsView,
+    organizationNameUrl,
+    organizationLogo,
   };
 }
 
@@ -266,6 +276,9 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createInviteLink, page: CreateInviteLink),
     RouteDef(Routes.invitationSent, page: InvitationSent),
     RouteDef(Routes.shareMessageView, page: ShareMessageView),
+    RouteDef(Routes.organizationSettingsView, page: OrganizationSettingsView),
+    RouteDef(Routes.organizationNameUrl, page: OrganizationNameUrl),
+    RouteDef(Routes.organizationLogo, page: OrganizationLogo),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -464,7 +477,7 @@ class StackedRouter extends RouterBase {
     },
     SetStatusView: (data) {
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => const SetStatusView(),
+        builder: (context) => SetStatusView(),
         settings: data,
       );
     },
@@ -738,6 +751,36 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    OrganizationSettingsView: (data) {
+      var args = data.getArgs<OrganizationSettingsViewArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => OrganizationSettingsView(
+          key: args.key,
+          org: args.org,
+        ),
+        settings: data,
+      );
+    },
+    OrganizationNameUrl: (data) {
+      var args = data.getArgs<OrganizationNameUrlArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => OrganizationNameUrl(
+          key: args.key,
+          org: args.org,
+        ),
+        settings: data,
+      );
+    },
+    OrganizationLogo: (data) {
+      var args = data.getArgs<OrganizationLogoArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => OrganizationLogo(
+          key: args.key,
+          org: args.org,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -940,4 +983,25 @@ class ShareMessageViewArguments {
   final UserPost userPost;
   final Key? key;
   ShareMessageViewArguments({required this.userPost, this.key});
+}
+
+/// OrganizationSettingsView arguments holder class
+class OrganizationSettingsViewArguments {
+  final Key? key;
+  final OrganizationModel org;
+  OrganizationSettingsViewArguments({this.key, required this.org});
+}
+
+/// OrganizationNameUrl arguments holder class
+class OrganizationNameUrlArguments {
+  final Key? key;
+  final OrganizationModel org;
+  OrganizationNameUrlArguments({this.key, required this.org});
+}
+
+/// OrganizationLogo arguments holder class
+class OrganizationLogoArguments {
+  final Key? key;
+  final OrganizationModel org;
+  OrganizationLogoArguments({this.key, required this.org});
 }

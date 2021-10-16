@@ -78,7 +78,7 @@ abstract class Api {
   });
 
   // THE SERVICE TO UPDATE AN ORGANIZATION LOGO
-  Future updateOrgLogo(String orgId, String url, token);
+  Future updateOrgLogo(String orgId, File image, token);
 
   // THE SERVICE TO ADD A MEMBERS TO AN ORGANIZATION
   Future addMemberToOrganization(String orgId, String email, token);

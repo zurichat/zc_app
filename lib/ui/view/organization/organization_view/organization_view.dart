@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/organization_model.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
@@ -26,7 +29,7 @@ class OrganizationView extends StatelessWidget {
                 children: [
                   Text(
                     local!.workspaces,
-                    style: AppTextStyles.heading6,
+                    style: AppTextStyle.bigBlackText,
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.01,
@@ -46,7 +49,7 @@ class OrganizationView extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 50.0),
                                     child: Text(
                                       local.notJoinedOrg,
-                                      style: AppTextStyles.bodyRegular,
+                                      style: AppTextStyle.darkGreySize14,
                                     ),
                                   ),
                                 )
@@ -85,8 +88,7 @@ class OrganizationView extends StatelessWidget {
                           contentPadding: EdgeInsets.zero,
                           title: Text(
                             local.addOrg,
-                            style: AppTextStyles.faintBodyText
-                                .copyWith(fontSize: 16),
+                            style: AppTextStyle.lightGreySize16,
                           ),
                         ),
                         ListTile(
@@ -95,24 +97,25 @@ class OrganizationView extends StatelessWidget {
                           contentPadding: EdgeInsets.zero,
                           title: Text(
                             local.preferences,
-                            style: AppTextStyles.faintBodyText
-                                .copyWith(fontSize: 16),
+                            style: AppTextStyle.lightGreySize16,
                           ),
                         ),
                         ListTile(
                           leading: const Icon(Icons.help_outline),
                           contentPadding: EdgeInsets.zero,
-                          title: Text(local.help,
-                              style: AppTextStyles.faintBodyText
-                                  .copyWith(fontSize: 16)),
+                          title: Text(
+                            local.help,
+                            style: AppTextStyle.lightGreySize16,
+                          ),
                         ),
                         ListTile(
                           onTap: () => viewModel.signOutAllOrg(),
                           leading: const Icon(Icons.logout_sharp),
                           contentPadding: EdgeInsets.zero,
-                          title: Text(local.signOutAccount,
-                              style: AppTextStyles.faintBodyText
-                                  .copyWith(fontSize: 16)),
+                          title: Text(
+                            local.signOutAccount,
+                            style: AppTextStyle.lightGreySize16,
+                          ),
                         ),
                       ],
                     ),
@@ -139,8 +142,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
   @override
   Widget build(BuildContext context, OrganizationViewModel viewModel) {
     return ListTile(
-        onTap: () => viewModel.onTap(
-            org.id, org.name, org.organizationUrl, org.userIdInOrg),
+        onTap: () => viewModel.onTap(org),
         leading: Container(
           height: MediaQuery.of(context).size.height * 0.06,
           width: MediaQuery.of(context).size.height * 0.06,
@@ -159,21 +161,20 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
             height: MediaQuery.of(context).size.height * 0.05,
             width: MediaQuery.of(context).size.height * 0.05,
             decoration: BoxDecoration(
-              border: Border.all(
-                color: AppColors.whiteColor,
-                width: 2,
-                style: BorderStyle.solid,
-              ),
-              color: AppColors.greyishColor,
+              color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(5),
             ),
-            clipBehavior: Clip.antiAlias,
+            clipBehavior: Clip.hardEdge,
             //TODO : Add the org image here
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.05,
-              width: MediaQuery.of(context).size.width * 0.5,
-              color: Colors.grey,
-            ),
+            child: org.logoUrl != null && org.logoUrl!.isNotEmpty
+                ? CachedNetworkImage(
+                    imageUrl: org.logoUrl!,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    NewZuriLogo,
+                    fit: BoxFit.cover,
+                  ),
           ),
         ),
         //TODO : Add the org name here
@@ -182,16 +183,14 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
           overflow: TextOverflow.ellipsis,
           softWrap: false,
           maxLines: 2,
-          style: AppTextStyles.heading7.copyWith(
-            fontSize: MediaQuery.of(context).size.height * 0.02,
-          ),
+          style: AppTextStyle.darkGreySize16Bold,
         ),
         contentPadding: EdgeInsets.zero,
         subtitle: Container(
           padding: const EdgeInsets.only(top: 5.0),
           child: Text(
             org.organizationUrl ?? '',
-            style: AppTextStyles.body3Medium,
+            style: AppTextStyle.lightGreySize14,
           ),
         ),
         trailing: GestureDetector(

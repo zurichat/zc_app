@@ -12,6 +12,7 @@ enum DialogType {
   deleteDraft,
   scheduleMessageDm,
   scheduleMessageChannel,
+  imageSource,
 }
 
 enum ChannelType { private, public, personal }

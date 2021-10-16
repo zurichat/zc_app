@@ -50,7 +50,7 @@ class DmJumpToViewModel extends FormViewModel {
     yield await connectivityService.checkConnection();
   }
 
-  Future<List<ChannelsSearch>?> ?fetchChannels() async {
+  Future<List<ChannelsSearch>?>? fetchChannels() async {
     try {
       setBusy(true);
       allChannelsSearch = await api.allChannelsList();
@@ -62,7 +62,7 @@ class DmJumpToViewModel extends FormViewModel {
     }
   }
 
-  Future<List<NewUser>?> ?fetchUsers() async {
+  Future<List<NewUser>?>? fetchUsers() async {
     try {
       setBusy(true);
       userSearch = (await api.fetchList());
@@ -75,8 +75,8 @@ class DmJumpToViewModel extends FormViewModel {
     }
   }
 
-  void navigateToChannel({String? name, String? id,
-      int? membersCount, bool? isPublic}) {
+  void navigateToChannel(
+      {String? name, String? id, int? membersCount, bool? isPublic}) {
     navigation.navigateTo(Routes.channelPageView,
         arguments: ChannelPageViewArguments(
             channelName: name,
@@ -88,6 +88,4 @@ class DmJumpToViewModel extends FormViewModel {
   void navigateToUserDm() {
     navigation.navigateTo(Routes.dmUserView);
   }
-
-
 }

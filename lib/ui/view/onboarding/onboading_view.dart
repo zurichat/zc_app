@@ -3,12 +3,13 @@ import 'dart:core';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hng/constants/app_strings.dart';
+import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/utilities/internalization/localization/app_localization.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
-import '../../shared/styles.dart';
+
 import 'onboarding_viewmodel.dart';
 
 class OnboardingView extends StatelessWidget {
@@ -18,21 +19,21 @@ class OnboardingView extends StatelessWidget {
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
     final List<Widget> pages = [
-  PageViewOnboarding(
-      title: local!.onboardingTitleOne,
-      subtitle: local.onboardingSubtitleOne,
-      image: OnboardingOne),
-   PageViewOnboarding(
-    title: local.onboardingTitleTwo,
-    subtitle: local.onboardingSubtitleTwo,
-    image: OnboardingTwo,
-  ),
-   PageViewOnboarding(
-    title: local.onboardingTitleThree,
-    subtitle: local.onboardingSubtitleThree,
-    image: OnboardingThree,
-  ),
-];
+      PageViewOnboarding(
+          title: local!.onboardingTitleOne,
+          subtitle: local.onboardingSubtitleOne,
+          image: OnboardingOne),
+      PageViewOnboarding(
+        title: local.onboardingTitleTwo,
+        subtitle: local.onboardingSubtitleTwo,
+        image: OnboardingTwo,
+      ),
+      PageViewOnboarding(
+        title: local.onboardingTitleThree,
+        subtitle: local.onboardingSubtitleThree,
+        image: OnboardingThree,
+      ),
+    ];
 
     return ViewModelBuilder<OnboardingViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
@@ -50,9 +51,10 @@ class OnboardingView extends StatelessWidget {
                               onPressed: () => model.navigateToNext(),
                               child: Text(
                                 local.skip,
-                                style: AppTextStyles.heading8.copyWith(
-                                    decoration: TextDecoration.underline,
-                                    fontSize: 18),
+                                style: AppTextStyle.greenSize16.copyWith(
+                                  decoration: TextDecoration.underline,
+                                  fontSize: 18,
+                                ),
                               ),
                             )
                           : const SizedBox(height: 50),
@@ -79,8 +81,10 @@ class OnboardingView extends StatelessWidget {
                       height: 50,
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Text(index < 2 ? Next : GetStarted,
-                          style: AppTextStyles.buttonText),
+                      child: Text(
+                        index < 2 ? Next : GetStarted,
+                        style: AppTextStyle.whiteSize16,
+                      ),
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
@@ -99,7 +103,6 @@ class OnboardingView extends StatelessWidget {
       viewModelBuilder: () => OnboardingViewModel(),
     );
   }
-  
 }
 
 class PageViewOnboarding extends StatelessWidget {
@@ -129,20 +132,16 @@ class PageViewOnboarding extends StatelessWidget {
           Text(
             title!,
             textAlign: TextAlign.center,
-            style: AppTextStyles.heading7,
+            style: AppTextStyle.darkGreySize20Bold,
           ),
           const SizedBox(height: 20),
           Text(
             subtitle!,
             textAlign: TextAlign.center,
-            style: AppTextStyles.body1Regular,
+            style: AppTextStyle.lightGreySize16,
           ),
         ],
       ),
-    ); 
+    );
   }
 }
-
-
-
-

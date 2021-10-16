@@ -81,6 +81,10 @@ class MockUserService extends _i1.Mock implements _i8.UserService {
       (super.noSuchMethod(Invocation.getter(#currentOrgName), returnValue: '')
           as String);
   @override
+  String get currentOrgLogo =>
+      (super.noSuchMethod(Invocation.getter(#currentOrgLogo), returnValue: '')
+          as String);
+  @override
   String get currentOrgUrl =>
       (super.noSuchMethod(Invocation.getter(#currentOrgUrl), returnValue: '')
           as String);
@@ -1026,9 +1030,9 @@ class MockZuriApi extends _i1.Mock implements _i5.ZuriApi {
           returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
   @override
   _i2.Future<dynamic> updateOrgLogo(
-          String? orgId, String? url, dynamic token) =>
+          String? orgId, _i24.File? image, dynamic token) =>
       (super.noSuchMethod(
-          Invocation.method(#updateOrgLogo, [orgId, url, token]),
+          Invocation.method(#updateOrgLogo, [orgId, image, token]),
           returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
   @override
   _i2.Future<void> addMemberToChannel(
@@ -1045,13 +1049,13 @@ class MockZuriApi extends _i1.Mock implements _i5.ZuriApi {
           Invocation.method(#addMemberToOrganization, [orgId, email, token]),
           returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
   @override
-  _i2.Future<List<_i24.UserSearch>> fetchMembersInOrganization(
+  _i2.Future<List<_i25.UserSearch>> fetchMembersInOrganization(
           String? orgId, dynamic token) =>
       (super.noSuchMethod(
               Invocation.method(#fetchMembersInOrganization, [orgId, token]),
               returnValue:
-                  Future<List<_i24.UserSearch>>.value(<_i24.UserSearch>[]))
-          as _i2.Future<List<_i24.UserSearch>>);
+                  Future<List<_i25.UserSearch>>.value(<_i25.UserSearch>[]))
+          as _i2.Future<List<_i25.UserSearch>>);
   @override
   _i2.Future<dynamic> getChannelSocketId(
           String? channelId, String? orgId, dynamic token) =>
@@ -1303,15 +1307,15 @@ class MockJumpToApi extends _i1.Mock implements _i28.JumpToApi {
                   <_i29.ChannelsSearch>[]))
           as _i2.Future<List<_i29.ChannelsSearch>>);
   @override
-  _i2.Future<List<_i24.UserSearch>> fetchListOfMembers() => (super.noSuchMethod(
+  _i2.Future<List<_i25.UserSearch>> fetchListOfMembers() => (super.noSuchMethod(
           Invocation.method(#fetchListOfMembers, []),
-          returnValue: Future<List<_i24.UserSearch>>.value(<_i24.UserSearch>[]))
-      as _i2.Future<List<_i24.UserSearch>>);
+          returnValue: Future<List<_i25.UserSearch>>.value(<_i25.UserSearch>[]))
+      as _i2.Future<List<_i25.UserSearch>>);
   @override
-  _i2.Future<List<_i24.NewUser>> fetchList() =>
+  _i2.Future<List<_i25.NewUser>> fetchList() =>
       (super.noSuchMethod(Invocation.method(#fetchList, []),
-              returnValue: Future<List<_i24.NewUser>>.value(<_i24.NewUser>[]))
-          as _i2.Future<List<_i24.NewUser>>);
+              returnValue: Future<List<_i25.NewUser>>.value(<_i25.NewUser>[]))
+          as _i2.Future<List<_i25.NewUser>>);
   @override
   String toString() => super.toString();
 }
@@ -1398,12 +1402,12 @@ class MockOrganizationApiService extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i2.Future<void>);
   @override
-  _i2.Future<List<_i24.UserSearch>> fetchMembersInOrganization(String? orgId) =>
+  _i2.Future<List<_i25.UserSearch>> fetchMembersInOrganization(String? orgId) =>
       (super.noSuchMethod(
               Invocation.method(#fetchMembersInOrganization, [orgId]),
               returnValue:
-                  Future<List<_i24.UserSearch>>.value(<_i24.UserSearch>[]))
-          as _i2.Future<List<_i24.UserSearch>>);
+                  Future<List<_i25.UserSearch>>.value(<_i25.UserSearch>[]))
+          as _i2.Future<List<_i25.UserSearch>>);
   @override
   _i2.Future<_i7.OrganizationMemberModelList> getOrganizationMemberList(
           String? orgId) =>

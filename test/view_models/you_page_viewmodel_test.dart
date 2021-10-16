@@ -34,7 +34,7 @@ void main() {
     });
     group('navigateToViewProfile -', () {
       test('when called, it takes user to the edit profile page', () async {
-      //TODO write proper test
+        //TODO write proper test
       });
     });
     group('navigateToViewNotification -', () {
