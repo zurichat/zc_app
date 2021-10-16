@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.logger.dart';
 import 'package:zurichat/app/app.router.dart';
@@ -292,6 +293,10 @@ class HomePageViewModel extends StreamViewModel {
   }
 
   bool hasDrafts() {
+    var currentOrgId =
+    storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId =
+    storageService.getString(StorageKeys.currentUserId);
     var dmStoredDrafts =
         storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
     var channelStoredDrafts =
@@ -302,19 +307,28 @@ class HomePageViewModel extends StreamViewModel {
 
     if (dmStoredDrafts != null) {
       dmStoredDrafts.forEach((element) {
-        counter++;
+        if(currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']){
+          counter++;
+        }
       });
     }
 
     if (channelStoredDrafts != null) {
       channelStoredDrafts.forEach((element) {
-        counter++;
+        if(currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']){
+          counter++;
+        }
       });
     }
 
     if (threadStoredDrafts != null) {
       threadStoredDrafts.forEach((element) {
-        counter++;
+        if(currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']){
+          counter++;
+        }
       });
     }
     return counter > 0;

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/widgets.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
@@ -46,11 +45,18 @@ class ChannelPageViewModel extends FormViewModel {
   var storedDraft = '';
 
   void getDraft(channelId) {
+    var currentOrgId =
+    _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId =
+    _storageService.getString(StorageKeys.currentUserId);
+
     List<String>? spList =
-        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
     if (spList != null) {
       for (String e in spList) {
-        if (jsonDecode(e)['channelId'] == channelId) {
+        if (jsonDecode(e)['channelId'] == channelId &&
+            currentOrgId == jsonDecode(e)['currentOrgId'] &&
+            currentUserId == jsonDecode(e)['currentUserId']) {
           storedDraft = jsonDecode(e)['draft'];
           spList.remove(e);
           _storageService.setStringList(
@@ -62,6 +68,11 @@ class ChannelPageViewModel extends FormViewModel {
   }
 
   void storeDraft(channelId, value, channelName, membersCount, public) {
+    var currentOrgId =
+    _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId =
+    _storageService.getString(StorageKeys.currentUserId);
+
     var keyMap = {
       'draft': value,
       'time': '${DateTime.now()}',
@@ -69,10 +80,12 @@ class ChannelPageViewModel extends FormViewModel {
       'channelId': channelId,
       'membersCount': membersCount,
       'public': public,
+      'currentOrgId': currentOrgId,
+      'currentUserId': currentUserId,
     };
 
     List<String>? spList =
-        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
 
     if (value.length > 0 && spList != null) {
       spList.add(json.encode(keyMap));
@@ -330,8 +343,8 @@ class ChannelPageViewModel extends FormViewModel {
   }
 
   void goBack(channelId, value, channelName, membersCount, public) {
-    storeDraft(channelId, value, channelName, membersCount, public);
     _navigationService.back();
+    storeDraft(channelId, value, channelName, membersCount, public);
   }
 
   void exit() => _navigationService.back();
