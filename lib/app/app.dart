@@ -1,3 +1,4 @@
+
 import 'package:zurichat/services/centrifuge_service.dart';
 import 'package:zurichat/services/localization_service.dart';
 import 'package:zurichat/services/media_service.dart';
@@ -14,7 +15,7 @@ import 'package:zurichat/ui/view/organization/invite_to_organization/admin_permi
 import 'package:zurichat/ui/view/organization/invite_to_organization/invitation_sent.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
-import 'package:zurichat/ui/view/organization/organization_settings/organization_icon.dart';
+import 'package:zurichat/ui/view/organization/organization_settings/organization_logo.dart';
 import 'package:zurichat/ui/view/organization/organization_settings/organization_name_url.dart';
 import 'package:zurichat/ui/view/organization/organization_settings/organization_settings_view.dart';
 import 'package:zurichat/ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';
@@ -32,6 +33,7 @@ import 'package:zurichat/ui/view/forgot_password/forgot_password_email/forgot_pa
 import 'package:zurichat/ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
 import 'package:zurichat/ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
 import 'package:zurichat/ui/view/webview_page/webview_page.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -92,6 +94,7 @@ import '../ui/view/user_search/user_search_view.dart';
 
 @StackedApp(
   routes: [
+
     CupertinoRoute(page: ChannelAddPeopleView),
     CupertinoRoute(page: NavBarView),
     CupertinoRoute(page: OnboardingView),
@@ -155,6 +158,7 @@ import '../ui/view/user_search/user_search_view.dart';
     CupertinoRoute(page: OrganizationSettingsView),
     CupertinoRoute(page: OrganizationNameUrl),
     CupertinoRoute(page: OrganizationLogo),
+
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

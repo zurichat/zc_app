@@ -29,7 +29,9 @@ class CustomButton extends StatelessWidget {
             shape: Border.all(color: AppColors.greyishColor),
             child: Text(
               " $text",
-              style: AppTextStyle.lightGreySize14,
+              style: Theme.of(context).brightness == Brightness.dark
+                  ? AppTextStyle.whiteSize14
+                  : AppTextStyle.lightGreySize14,
             ))
         : MaterialButton(
             onPressed: onPressed,

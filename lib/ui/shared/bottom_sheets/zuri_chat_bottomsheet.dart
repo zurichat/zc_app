@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zurichat/constants/app_strings.dart';
@@ -6,7 +8,9 @@ import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/services/local_storage_services.dart';
 import 'package:zurichat/services/user_service.dart';
 import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/dialogs/remind_me_dialog/remind_me_dialog.dart';
 import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/enums.dart';
 import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/utilities/storage_keys.dart';
@@ -81,7 +85,8 @@ Future<dynamic> zuriChatBottomSheet({
             _userService.userId ==
                     _storageService.getString(StorageKeys.currentUserId)
                 ? ListTile(
-                    title: Text("Edit message", style: AppTextStyle.darkGreySize16),
+                    title: Text("Edit message",
+                        style: AppTextStyle.darkGreySize16),
                     leading: const Icon(Icons.line_style_outlined),
                     onTap: editMessage,
                   )
@@ -111,7 +116,8 @@ Future<dynamic> zuriChatBottomSheet({
                 height: 18,
               ),
               onTap: () async {
-                await _dialogService.showCustomDialog();
+                await _dialogService.showCustomDialog(
+                    variant: DialogType.remindMe);
               },
             ),
             ListTile(

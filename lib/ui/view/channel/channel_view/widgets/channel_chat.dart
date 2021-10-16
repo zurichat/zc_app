@@ -90,6 +90,8 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                       viewModel.exitPage();
                     },
                     addToSavedItems: () {
+
+                      //TODO pass a model to the viewmodel
                       viewModel.saveItem(
                           channelID: message![index].channelId,
                           channelName: message[index].channelName,

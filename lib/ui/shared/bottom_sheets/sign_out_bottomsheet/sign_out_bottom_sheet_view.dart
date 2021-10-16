@@ -20,11 +20,10 @@ class SignOutBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final OrganizationModel org = request.data;
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<SignOutBottomSheetViewModel>.nonReactive(
         builder: (context, model, child) => Container(
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? Colors.grey[900]
-                  : AppColors.whiteColor,
+              color: _dark ? AppColors.darkModeColor : AppColors.whiteColor,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -34,18 +33,18 @@ class SignOutBottomSheet extends StatelessWidget {
                     workSpaceSlackUrl: org.organizationUrl,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      // model.dismissDialog();
-                      // model.showSignOutDialog(org.name ?? "");
-                    },
+                    onTap: () {},
                     child: ListTile(
                       title: Text(
                         'Invite members',
-                        style: AppTextStyle.darkGreySize16,
+                        style: _dark
+                            ? AppTextStyle.whiteSize16
+                            : AppTextStyle.darkGreySize16,
                       ),
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.logout_sharp,
-                        color: AppColors.greyColor,
+                        color:
+                            _dark ? AppColors.whiteColor : AppColors.greyColor,
                       ),
                     ),
                   ),
@@ -56,11 +55,14 @@ class SignOutBottomSheet extends StatelessWidget {
                     child: ListTile(
                       title: Text(
                         'Organization settings',
-                        style: AppTextStyle.darkGreySize16,
+                        style: _dark
+                            ? AppTextStyle.whiteSize16
+                            : AppTextStyle.darkGreySize16,
                       ),
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.settings,
-                        color: AppColors.greyColor,
+                        color:
+                            _dark ? AppColors.whiteColor : AppColors.greyColor,
                       ),
                     ),
                   ),
@@ -72,11 +74,13 @@ class SignOutBottomSheet extends StatelessWidget {
                     child: ListTile(
                       title: Text(
                         'Sign Out',
-                        style: AppTextStyle.darkGreySize16,
+                        style: _dark
+                            ? AppTextStyle.whiteSize16
+                            : AppTextStyle.darkGreySize16,
                       ),
                       leading: const Icon(
                         Icons.logout_sharp,
-                        color: AppColors.zuriPrimaryColor,
+                        color: AppColors.unreadMessageColor,
                       ),
                     ),
                   )

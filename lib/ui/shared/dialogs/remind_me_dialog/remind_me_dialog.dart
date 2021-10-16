@@ -24,7 +24,7 @@ class ReminderDialog extends StatelessWidget {
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(15)),
           width: size.width * .9,
-          height: size.height * .50,
+          height: size.height * .35,
           child: ListView(
             children: [
               ListTile(
