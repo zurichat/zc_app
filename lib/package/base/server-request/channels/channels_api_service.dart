@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
 import 'package:zurichat/models/pinned_message_model.dart';
