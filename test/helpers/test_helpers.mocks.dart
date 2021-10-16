@@ -3,7 +3,7 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i2;
-import 'dart:io' as _i25;
+import 'dart:io' as _i24;
 import 'dart:ui' as _i15;
 
 import 'package:centrifuge/centrifuge.dart' as _i22;
@@ -17,7 +17,7 @@ import 'package:hng/models/organization_member_model.dart' as _i7;
 import 'package:hng/models/organization_model.dart' as _i6;
 import 'package:hng/models/pinned_message_model.dart' as _i18;
 import 'package:hng/models/user_model.dart' as _i9;
-import 'package:hng/models/user_search_model.dart' as _i24;
+import 'package:hng/models/user_search_model.dart' as _i25;
 import 'package:hng/package/base/jump_to_request/jump_to_api.dart' as _i28;
 import 'package:hng/package/base/server-request/api/zuri_api.dart' as _i5;
 import 'package:hng/package/base/server-request/channels/channels_api_service.dart'
@@ -1190,7 +1190,7 @@ class MockZuriApi extends _i1.Mock implements _i5.ZuriApi {
       (super.noSuchMethod(Invocation.method(#handleApiError, [e]),
           returnValue: _FakeFailure_3()) as _i4.Failure);
   @override
-  _i2.Future<String> uploadImage(_i25.File? image,
+  _i2.Future<String> uploadImage(_i24.File? image,
           {String? token, String? pluginId}) =>
       (super.noSuchMethod(
           Invocation.method(
@@ -1328,15 +1328,15 @@ class MockMediaService extends _i1.Mock implements _i30.MediaService {
   _i5.ZuriApi get zuriApi => (super.noSuchMethod(Invocation.getter(#zuriApi),
       returnValue: _FakeZuriApi_4()) as _i5.ZuriApi);
   @override
-  _i2.Future<_i25.File?> getImage({bool? fromGallery}) => (super.noSuchMethod(
+  _i2.Future<_i24.File?> getImage({bool? fromGallery}) => (super.noSuchMethod(
       Invocation.method(#getImage, [], {#fromGallery: fromGallery}),
-      returnValue: Future<_i25.File?>.value()) as _i2.Future<_i25.File?>);
+      returnValue: Future<_i24.File?>.value()) as _i2.Future<_i24.File?>);
   @override
-  _i2.Future<_i25.File?> getVideo({bool? fromGallery}) => (super.noSuchMethod(
+  _i2.Future<_i24.File?> getVideo({bool? fromGallery}) => (super.noSuchMethod(
       Invocation.method(#getVideo, [], {#fromGallery: fromGallery}),
-      returnValue: Future<_i25.File?>.value()) as _i2.Future<_i25.File?>);
+      returnValue: Future<_i24.File?>.value()) as _i2.Future<_i24.File?>);
   @override
-  _i2.Future<String?> uploadImage(_i25.File? file, String? pluginId) =>
+  _i2.Future<String?> uploadImage(_i24.File? file, String? pluginId) =>
       (super.noSuchMethod(Invocation.method(#uploadImage, [file, pluginId]),
           returnValue: Future<String?>.value()) as _i2.Future<String?>);
   @override
