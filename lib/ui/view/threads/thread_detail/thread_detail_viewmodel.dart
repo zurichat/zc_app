@@ -110,8 +110,8 @@ class ThreadDetailViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  Future<void> exitPage(userPost, value) async{
-    await _navigationService.back();
+  void exitPage(userPost, value) {
+    _navigationService.back();
     storeDraft(userPost, value);
   }
 
