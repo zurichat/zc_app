@@ -8,7 +8,6 @@ import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/services/local_storage_services.dart';
 import 'package:zurichat/services/user_service.dart';
 import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/dialogs/remind_me_dialog/remind_me_dialog.dart';
 import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:zurichat/utilities/enums.dart';
 import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
