@@ -25,10 +25,8 @@ class OrganizationLogo extends StatelessWidget {
             whiteBackground: true,
             leading: Icons.close,
             leadingPress: () => model.back(),
-            orgTitle: Text(
-              OrgIcon,
-              style: AppTextStyle.organizationNameText,
-            ),
+            title: OrgIcon,
+            subtitle: '',
             actions: [
               TextButton(
                 onPressed: () => model.updateOrgLogo(org.id.toString()),
