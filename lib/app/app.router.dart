@@ -373,8 +373,14 @@ class StackedRouter extends RouterBase {
       );
     },
     ChannelNotificationView: (data) {
+      var args = data.getArgs<ChannelNotificationViewArguments>(
+        orElse: () => ChannelNotificationViewArguments(),
+      );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => const ChannelNotificationView(),
+        builder: (context) => ChannelNotificationView(
+          key: args.key,
+          channelName: args.channelName,
+        ),
         settings: data,
       );
     },
@@ -433,8 +439,11 @@ class StackedRouter extends RouterBase {
       );
     },
     DmScreen: (data) {
+      var args = data.getArgs<DmScreenArguments>(
+        orElse: () => DmScreenArguments(),
+      );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => DmScreen(),
+        builder: (context) => DmScreen(key: args.key),
         settings: data,
       );
     },
@@ -476,8 +485,11 @@ class StackedRouter extends RouterBase {
       );
     },
     SetStatusView: (data) {
+      var args = data.getArgs<SetStatusViewArguments>(
+        orElse: () => SetStatusViewArguments(),
+      );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => SetStatusView(),
+        builder: (context) => SetStatusView(key: args.key),
         settings: data,
       );
     },
@@ -833,6 +845,13 @@ class ForgotPasswordNewViewArguments {
   ForgotPasswordNewViewArguments({this.key});
 }
 
+/// ChannelNotificationView arguments holder class
+class ChannelNotificationViewArguments {
+  final Key? key;
+  final String? channelName;
+  ChannelNotificationViewArguments({this.key, this.channelName});
+}
+
 /// NewChannel arguments holder class
 class NewChannelArguments {
   final Key? key;
@@ -864,6 +883,12 @@ class DmUserViewArguments {
   DmUserViewArguments({this.key});
 }
 
+/// DmScreen arguments holder class
+class DmScreenArguments {
+  final Key? key;
+  DmScreenArguments({this.key});
+}
+
 /// AddPluginView arguments holder class
 class AddPluginViewArguments {
   final Key? key;
@@ -875,6 +900,12 @@ class UseDifferentEmailViewArguments {
   final Key? key;
   final OrganizationSwitchMethod method;
   UseDifferentEmailViewArguments({this.key, required this.method});
+}
+
+/// SetStatusView arguments holder class
+class SetStatusViewArguments {
+  final Key? key;
+  SetStatusViewArguments({this.key});
 }
 
 /// EditProfileView arguments holder class

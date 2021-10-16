@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/organization_model.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/ui/view/organization/organization_settings/organization_settings_view_model.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/organization_model.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/long_button.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/ui/view/organization/organization_settings/organization_settings_view_model.dart';
 
 class OrganizationLogo extends StatelessWidget {
   final OrganizationModel org;

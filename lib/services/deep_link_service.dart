@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:hng/utilities/utilities.dart';
+import 'package:zurichat/utilities/utilities.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:flutter/services.dart' show PlatformException;
 

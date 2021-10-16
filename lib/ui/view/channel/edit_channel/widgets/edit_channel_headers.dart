@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class TextHeader extends StatelessWidget {
   final String headerText;

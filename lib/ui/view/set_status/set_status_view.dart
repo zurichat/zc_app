@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/ui/view/set_status/set_status_viewmodel.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/ui/view/set_status/set_status_viewmodel.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/set_status/widgets/status.dart';
-import 'package:hng/ui/view/set_status/widgets/statuses.dart';
-import 'package:hng/ui/view/set_status/set_status_view.form.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/view/set_status/widgets/status.dart';
+import 'package:zurichat/ui/view/set_status/widgets/statuses.dart';
+import 'package:zurichat/ui/view/set_status/set_status_view.form.dart';
 
 @FormView(
   fields: [
@@ -23,7 +23,6 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
-
       //TODO: onModelReady to be reviewed in next PR
       // onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => ModalProgressHUD(
@@ -32,12 +31,11 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
         progressIndicator: const ZuriLoader(),
         child: Scaffold(
           appBar: ZuriAppBar(
-            
             leading: Icons.close_rounded,
             leadingPress: () => model.exitPage(),
             orgTitle: Text(
               'Set a status',
-              style: AppTextStyles.heading4.copyWith(
+              style: AppTextStyle.darkGreySize16.copyWith(
                 color: Theme.of(context).textTheme.bodyText1!.color,
 
               ),
@@ -47,7 +45,7 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                 onPressed: model.saveStatus,
                 child: Text(
                   Save,
-                  style: AppTextStyles.heading8,
+                  style: AppTextStyle.darkGreySize16,
                 ),
               )
             ],
@@ -66,16 +64,16 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                       onTap: model.addEmojiTag,
                       child: model.tagIcon != null
                           ? Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text(
-                                model.tagIcon ?? '',
-                              ),
-                            )
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(
+                          model.tagIcon ?? '',
+                        ),
+                      )
                           : const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Icon(bubble),
-                            ),
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Icon(bubble),
+                      ),
                     ),
                     Flexible(
                       child: TextField(

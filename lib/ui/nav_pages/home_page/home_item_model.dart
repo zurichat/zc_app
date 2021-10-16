@@ -1,5 +1,5 @@
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/utilities/enums.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/utilities/enums.dart';
 
 class HomeItemModel {
   final log = getLogger('HomeItemModel');

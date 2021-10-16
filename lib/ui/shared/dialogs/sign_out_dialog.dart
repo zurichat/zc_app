@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SignOutDialog extends StatelessWidget {
