@@ -17,12 +17,11 @@ class SelectEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<SelectEmailViewModel>.nonReactive(
       viewModelBuilder: () => SelectEmailViewModel(),
       builder: (context, model, child) => Scaffold(
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? AppColors.blackColor
-            : AppColors.whiteColor,
+        backgroundColor: _dark ? AppColors.blackColor : AppColors.whiteColor,
         appBar: ZuriAppBar(
           orgTitle: Text(
             model.getScreenTitle(method, context),
@@ -31,24 +30,17 @@ class SelectEmail extends StatelessWidget {
             ),
           ),
           whiteBackground: true,
-          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          isDarkMode: _dark,
           leading: Icons.arrow_back_ios_outlined,
           leadingPress: () => model.back(),
         ),
         body: Container(
           margin: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
           decoration: BoxDecoration(
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? AppColors.darkThemePrimaryColor
-                  : AppColors.whiteColor,
-              borderRadius: BorderRadius.circular(2.0),
-              boxShadow: const [
-                BoxShadow(
-                  color: AppColors.darkGreyColor,
-                  blurRadius: 1,
-                  offset: Offset(0, 1),
-                ),
-              ]),
+            color:
+                _dark ? AppColors.darkThemePrimaryColor : AppColors.whiteColor,
+            borderRadius: BorderRadius.circular(2.0),
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +50,9 @@ class SelectEmail extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                 child: Text(
                   local!.selectEmailToUse,
-                  style: AppTextStyle.darkGreySize16Bold,
+                  style: _dark
+                      ? AppTextStyle.whiteSize16Bold
+                      : AppTextStyle.darkGreySize16Bold,
                 ),
               ),
               InkWell(
@@ -113,8 +107,9 @@ class SelectEmail extends StatelessWidget {
                         child: GestureDetector(
                           child: Text(
                             model.anotherEmail,
-                            style: const TextStyle(
-                                color: AppColors.deepBlackColor, fontSize: 14),
+                            style: _dark
+                                ? AppTextStyle.whiteSize14
+                                : AppTextStyle.darkGreySize16,
                           ),
                           onTap: () => model.navigateToUseDifferentEmailView(),
                         ),

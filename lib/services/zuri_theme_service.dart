@@ -39,6 +39,7 @@ class ZuriThemeService {
         primaryColor: AppColors.zuriPrimaryColor,
         accentColor: AppColors.zuriPrimaryColor,
         scaffoldBackgroundColor: AppColors.darkModeColor,
+        focusColor: AppColors.zuriPrimaryColor,
         iconTheme: const IconThemeData(
           color: AppColors.whiteColor,
         ),

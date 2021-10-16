@@ -40,7 +40,7 @@ class ProfileHead extends ViewModelWidget<CustomUserBottomSheetViewModel> {
                       fit: FlexFit.loose,
                       child: Text(
                         viewModel.userModel!.fullName!,
-                        style: AppTextStyle.whiteSize16,
+                        style: AppTextStyle.whiteSize18Bold,
                       ),
                     ),
                     const Padding(
