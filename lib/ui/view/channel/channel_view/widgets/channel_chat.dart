@@ -60,6 +60,11 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         : Colors.transparent,
                   ),
                   onLongPress: () => zuriChatBottomSheet(
+                    editMessage: () {
+                      Navigator.pop(context);
+                      controller.text = message![index].message;
+                      viewModel.notifyListeners();
+                    },
                     shareMessage: () =>
                         viewModel.navigateToShareMessage(userPost),
                     changePinnedState: () async {
