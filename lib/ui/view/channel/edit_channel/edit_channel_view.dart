@@ -27,6 +27,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
   final String? channelId;
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     final local = AppLocalization.of(context);
     return ViewModelBuilder<EditChannelViewModel>.reactive(
       onModelReady: (model) {
@@ -37,6 +38,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           leading: Icons.arrow_back_ios,
+          leadingPress: model.navigateBack,
           orgTitle: Text(
             local!.editChannel,
             style: AppTextStyle.darkGreySize20Bold,
@@ -44,6 +46,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
           whiteBackground: true,
           actions: [
             InkWell(
+              //TODO
               onTap: () {},
               child: Center(
                 child: Padding(

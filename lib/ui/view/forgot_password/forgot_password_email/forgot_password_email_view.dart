@@ -38,20 +38,19 @@ class ForgotPasswordEmailView extends StatelessWidget
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const SizedBox(
-                    height: 6.0,
+                  UIHelper.verticalSpaceLarge,
+                  Center(
+                    child: Image.asset(
+                      ZuriLogo,
+                      height: 50,
+                      width: 50,
+                    ),
                   ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Image.asset(ZuriLogo),
-                  ),
-                  const SizedBox(
-                    height: 24.0,
-                  ),
+                  UIHelper.customVerticalSpace(24),
                   Center(
                     child: Text(
                       local!.forgotPassword,
-                      style: AppTextStyle.darkGreySize16,
+                      style: AppTextStyle.darkGreySize20Bold,
                     ),
                   ),
                   const SizedBox(
@@ -144,7 +143,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  UIHelper.customVerticalSpace(24),
                   Center(
                     child: GestureDetector(
                       onTap: () {
