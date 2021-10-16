@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hng/constants/app_strings.dart';
 import 'package:hng/models/organization_model.dart';
 import 'package:hng/ui/shared/text_styles.dart';
 import 'package:hng/ui/shared/zuri_loader.dart';
@@ -140,8 +142,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
   @override
   Widget build(BuildContext context, OrganizationViewModel viewModel) {
     return ListTile(
-        onTap: () => viewModel.onTap(
-            org.id, org.name, org.organizationUrl, org.userIdInOrg),
+        onTap: () => viewModel.onTap(org),
         leading: Container(
           height: MediaQuery.of(context).size.height * 0.06,
           width: MediaQuery.of(context).size.height * 0.06,
@@ -160,21 +161,20 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
             height: MediaQuery.of(context).size.height * 0.05,
             width: MediaQuery.of(context).size.height * 0.05,
             decoration: BoxDecoration(
-              border: Border.all(
-                color: AppColors.whiteColor,
-                width: 2,
-                style: BorderStyle.solid,
-              ),
-              color: AppColors.greyishColor,
+              color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(5),
             ),
-            clipBehavior: Clip.antiAlias,
+            clipBehavior: Clip.hardEdge,
             //TODO : Add the org image here
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.05,
-              width: MediaQuery.of(context).size.width * 0.5,
-              color: Colors.grey,
-            ),
+            child: org.logoUrl != null && org.logoUrl!.isNotEmpty
+                ? CachedNetworkImage(
+                    imageUrl: org.logoUrl!,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    NewZuriLogo,
+                    fit: BoxFit.cover,
+                  ),
           ),
         ),
         //TODO : Add the org name here

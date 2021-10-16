@@ -17,8 +17,7 @@ void main() {
         verify(service.navigateTo(Routes.loginView));
       });
 
-      test('when called, loading indicator is disabled',
-          () {
+      test('when called, loading indicator is disabled', () {
         final model = OTPViewModel();
         var load = model.isLoading;
         expect(load, false);

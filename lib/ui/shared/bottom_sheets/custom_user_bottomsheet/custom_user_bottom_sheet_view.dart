@@ -67,9 +67,9 @@ class CustomUserBottomSheetView extends StatelessWidget {
                         const CustomProfileTile(
                             title: Track, subtitle: MobileDev),
                         const Divider(),
-                        const CustomProfileTile(
+                        CustomProfileTile(
                           title: DisplayName,
-                          subtitle: '',
+                          subtitle: model.userModel!.displayName ?? '',
                         ),
                         const Divider(),
                         ListTile(
@@ -92,14 +92,14 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           ),
                         ),
                         const Divider(),
-                        const CustomProfileTile(
+                        CustomProfileTile(
                           title: Number,
-                          subtitle: '',
+                          subtitle: model.userModel!.phoneNumber ?? '',
                         ),
                         const Divider(),
                         CustomProfileTile(
                           title: EmailAddress,
-                          subtitle: model.email!,
+                          subtitle: model.userModel!.email!,
                         ),
                       ],
                     ),

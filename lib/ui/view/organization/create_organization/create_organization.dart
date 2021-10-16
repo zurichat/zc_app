@@ -35,6 +35,7 @@ class CreateOrganization extends HookWidget {
               bottom: 0,
               child: PageView(
                 controller: pageController,
+                allowImplicitScrolling: false,
                 children: [
                   CompanyPage(pageController: pageController),
                   ProjectPage(pageController: pageController),
