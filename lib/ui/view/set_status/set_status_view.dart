@@ -91,22 +91,22 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
 
               //TODO - Quwaysim
               const Divider(),
-              MaterialButton(
-                minWidth: double.infinity,
-                onPressed: model.clearAfter,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(ClearAfter),
-                      UIHelper.verticalSpaceExtraSmall,
-                      const Text(DontClear),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
+              // MaterialButton(
+              //   minWidth: double.infinity,
+              //   onPressed: model.clearAfter,
+              //   child: Align(
+              //     alignment: Alignment.centerLeft,
+              //     child: Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         const Text(ClearAfter),
+              //         UIHelper.verticalSpaceExtraSmall,
+              //         const Text(DontClear),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(height: 10),
               //TODO - Extract TextStyles - During DarkTheme refactor
               Visibility(
                 visible: !(model.formerStatusText == null),
