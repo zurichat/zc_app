@@ -12,11 +12,9 @@ class SplashscreenViewModel extends BaseViewModel {
   final navigation = locator<NavigationService>();
   final storage = locator<SharedPreferenceLocalStorage>();
   init() {
-    // storage.clearStorage();
     Timer(
       const Duration(seconds: 1),
       () {
-        //TODO comment it out to get access to once only view
         if (storage.getBool('onboarded') == null ||
             storage.getBool('onboarded') == false) {
           storage.setBool('onboarded', true);
@@ -25,16 +23,15 @@ class SplashscreenViewModel extends BaseViewModel {
             true) {
           navigation.clearStackAndShow(Routes.oTPView);
         } else if (storage.getString(StorageKeys.currentUserId) != null) {
-          navigation.clearStackAndShow(Routes.loginView);
+          navigation.clearStackAndShow(Routes.navBarView);
         } else {
           if (storage.getString(StorageKeys.currentOrgId) == null ||
               storage.getString(StorageKeys.currentOrgId) == '') {
-            navigation.clearStackAndShow(Routes.organizationView);
+            navigation.clearStackAndShow(Routes.loginView);
           } else {
-            navigation.clearStackAndShow(Routes.navBarView);
+            navigation.clearStackAndShow(Routes.signUpView);
           }
         }
-        // navigation.navigateTo(Routes.onboardingView);
       },
     );
   }

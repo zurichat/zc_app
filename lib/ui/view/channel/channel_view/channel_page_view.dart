@@ -63,13 +63,14 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
             whiteBackground: true,
             isDarkMode: Theme.of(context).brightness == Brightness.dark,
             actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search,
-                  color: AppColors.textLight10,
-                ),
-              ),
+              // TODO FOR FUTURE
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: const Icon(
+              //     Icons.search,
+              //     color: AppColors.textLight10,
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.only(right: 5),
                 child: IconButton(

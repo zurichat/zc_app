@@ -63,7 +63,7 @@ class NewChannelViewModel extends FormViewModel with ValidatorMixin {
         name: channelNameValue!,
         description: channelDescriptionValue!,
         private: isChannelPrivate,
-        email: username!);
+        email: username);
 
     if (res) {
       snackbar.showCustomSnackBar(
