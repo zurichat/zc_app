@@ -333,15 +333,15 @@ class AppLocalization {
   String get browseChannels => translate(LocalKeys.BrowseChannels);
   String get recentSearches => translate(LocalKeys.RecentSearches);
   String get narrowYourSearch => translate(LocalKeys.NarrowYourSearch);
-  String get in_ => translate(LocalKeys.In);
+  String get inFilter => translate(LocalKeys.In);
   String get inExample => translate(LocalKeys.InExample);
-  String get from_ => translate(LocalKeys.From);
+  String get fromFilter => translate(LocalKeys.From);
   String get fromExample => translate(LocalKeys.FromExample);
-  String get is_ => translate(LocalKeys.Is);
+  String get isFilter => translate(LocalKeys.Is);
   String get isExample => translate(LocalKeys.IsExample);
-  String get after_ => translate(LocalKeys.After);
+  String get afterFilter => translate(LocalKeys.After);
   String get afterExample => translate(LocalKeys.AfterExample);
-  String get to_ => translate(LocalKeys.To);
+  String get toFilter => translate(LocalKeys.To);
   String get toExample => translate(LocalKeys.ToExample);
 }
 

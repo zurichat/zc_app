@@ -164,10 +164,10 @@ class GeneralSearchView extends StatelessWidget with $GeneralSearchView {
                             const EdgeInsets.symmetric(horizontal: 12.0),
                         trailing: Text(locale.inExample,
                             style: AppTextStyle.darkGreySize16),
-                        title: Text(locale.in_,
+                        title: Text(locale.inFilter,
                             style: AppTextStyle.darkGreySize16),
                         onTap: () {
-                          searchController.text = "${locale.in_}#";
+                          searchController.text = "${locale.inFilter}#";
                           searchFocusNode.requestFocus();
                           model.notifyListeners();
                         },
@@ -184,10 +184,10 @@ class GeneralSearchView extends StatelessWidget with $GeneralSearchView {
                             const EdgeInsets.symmetric(horizontal: 12.0),
                         trailing: Text(locale.fromExample,
                             style: AppTextStyle.darkGreySize16),
-                        title: Text(locale.from_,
+                        title: Text(locale.fromFilter,
                             style: AppTextStyle.darkGreySize16),
                         onTap: () {
-                          searchController.text = "${locale.from_}@";
+                          searchController.text = "${locale.fromFilter}@";
                           searchFocusNode.requestFocus();
                           model.notifyListeners();
                         },
@@ -204,10 +204,10 @@ class GeneralSearchView extends StatelessWidget with $GeneralSearchView {
                             const EdgeInsets.symmetric(horizontal: 12.0),
                         trailing: Text(locale.isExample,
                             style: AppTextStyle.darkGreySize16),
-                        title: Text(locale.is_,
+                        title: Text(locale.isFilter,
                             style: AppTextStyle.darkGreySize16),
                         onTap: () {
-                          searchController.text = "${locale.is_}";
+                          searchController.text = "${locale.isFilter}";
                           searchFocusNode.requestFocus();
                           model.notifyListeners();
                         },
@@ -224,10 +224,10 @@ class GeneralSearchView extends StatelessWidget with $GeneralSearchView {
                             const EdgeInsets.symmetric(horizontal: 12.0),
                         trailing: Text(locale.afterExample,
                             style: AppTextStyle.darkGreySize16),
-                        title: Text(locale.after_,
+                        title: Text(locale.afterFilter,
                             style: AppTextStyle.darkGreySize16),
                         onTap: () {
-                          searchController.text = "${locale.after_}";
+                          searchController.text = "${locale.afterFilter}";
                           searchFocusNode.requestFocus();
                           model.notifyListeners();
                         },
@@ -244,10 +244,10 @@ class GeneralSearchView extends StatelessWidget with $GeneralSearchView {
                             const EdgeInsets.symmetric(horizontal: 12.0),
                         trailing: Text(locale.toExample,
                             style: AppTextStyle.darkGreySize16),
-                        title: Text(locale.to_,
+                        title: Text(locale.toFilter,
                             style: AppTextStyle.darkGreySize16),
                         onTap: () {
-                          searchController.text = "${locale.to_}";
+                          searchController.text = "${locale.toFilter}";
                           searchFocusNode.requestFocus();
                           model.notifyListeners();
                         },
