@@ -124,6 +124,14 @@ class NotificationService {
                 "You set a notification for a message for ${selectedDate.toString().substring(0, 16)}"),
         schedule: NotificationCalendar.fromDate(date: selectedDate));
   }
+
+  // User mention notification
+  Future<void> notifyUsers(String message, String channelName) async {
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+          id: 1, channelKey: 'message', title: channelName, body: message),
+    );
+  }
 }
 
 ///This payload gives a pattern for saving notification data and retreiving it
