@@ -3,7 +3,6 @@ import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/models/organization_model.dart';
-import 'package:zurichat/ui/shared/colors.dart';
 import 'package:zurichat/ui/shared/long_button.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:zurichat/ui/shared/zuri_loader.dart';
@@ -16,7 +15,6 @@ class OrganizationLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool _dark = Theme.of(context).brightness == Brightness.dark;
-
     return ViewModelBuilder<OrganizationSettingsViewModel>.reactive(
       viewModelBuilder: () => OrganizationSettingsViewModel(),
       builder: (context, model, child) {
@@ -24,20 +22,22 @@ class OrganizationLogo extends StatelessWidget {
           appBar: ZuriAppBar(
             isDarkMode: _dark,
             whiteBackground: true,
-            leading: Icons.chevron_left,
+            leading: Icons.close,
             leadingPress: () => model.back(),
             orgTitle: Text(
               OrgIcon,
-              style: AppTextStyle.organizationNameText,
+              style: _dark
+                  ? AppTextStyle.whiteSize20Bold
+                  : AppTextStyle.blackSize20Bold,
             ),
             actions: [
               TextButton(
                 onPressed: () => model.updateOrgLogo(org.id.toString()),
                 child: Text(
                   Save,
-                  style: AppTextStyle.lightGreySize16.copyWith(
-                    color: AppColors.zuriPrimaryColor,
-                  ),
+                  style: _dark
+                      ? AppTextStyle.lightGreySize16
+                      : AppTextStyle.darkGreySize16,
                 ),
               ),
             ],
@@ -79,15 +79,18 @@ class OrganizationLogo extends StatelessWidget {
                       width: 200,
                     ),
                     const SizedBox(height: 30),
-                    Text(OrgIconGuide,
-                        style: _dark
-                            ? AppTextStyle.whiteSize18Bold
-                            : AppTextStyle.blackSize18Bold),
+                    Text(
+                      OrgIconGuide,
+                      style: _dark
+                          ? AppTextStyle.whiteSize18Bold
+                          : AppTextStyle.blackSize18Bold,
+                    ),
                     const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(OrgIconGuideDesc,
-                          style: AppTextStyle.lightGreySize16),
+                    Text(
+                      OrgIconGuideDesc,
+                      style: _dark
+                          ? AppTextStyle.lightGreySize16
+                          : AppTextStyle.darkGreySize16,
                     ),
                   ],
                 ),

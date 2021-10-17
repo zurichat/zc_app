@@ -153,8 +153,8 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
     return ListTile(
         onTap: () => viewModel.onTap(org),
         leading: Container(
-          height: MediaQuery.of(context).size.height * 0.06,
-          width: MediaQuery.of(context).size.height * 0.06,
+          height: 40,
+          width: 40,
           padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
             color: viewModel.currentOrgId == org.id

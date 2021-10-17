@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:zurichat/ui/shared/long_button.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/ui/shared/text_styles.dart';
@@ -8,7 +7,6 @@ import 'package:zurichat/ui/shared/ui_helpers.dart';
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
 import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
-
 import 'package:stacked/stacked.dart';
 
 class InvitationSent extends StatelessWidget {

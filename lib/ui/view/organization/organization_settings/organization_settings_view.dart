@@ -16,27 +16,27 @@ class OrganizationSettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool _dark = Theme.of(context).brightness == Brightness.dark;
-
     return ViewModelBuilder<OrganizationSettingsViewModel>.reactive(
       viewModelBuilder: () => OrganizationSettingsViewModel(),
-      onModelReady: (model) => model.init(org.name!, org.organizationUrl!),
       builder: (context, model, child) {
         return Scaffold(
           appBar: ZuriAppBar(
             title: OrgSettings,
             subtitle: org.name,
             whiteBackground: true,
-            leading: Icons.chevron_left,
-            leadingPress: () => model.back(),
             isDarkMode: _dark,
+            leading: Icons.arrow_back_ios_new,
+            leadingPress: () => model.back(),
           ),
           body: Container(
-            margin: const EdgeInsets.all(20),
-            decoration: const BoxDecoration(
-              boxShadow: [
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            decoration: BoxDecoration(
+              color: _dark ? AppColors.blackColor : AppColors.whiteColor,
+              boxShadow: const <BoxShadow>[
                 BoxShadow(
                   color: AppColors.shadowColor,
-                  spreadRadius: 10,
+                  spreadRadius: 5,
+                  blurRadius: 10,
                 ),
               ],
             ),
@@ -51,15 +51,19 @@ class OrganizationSettingsView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(EditOrgIcon,
-                            style: _dark
-                                ? AppTextStyle.whiteSize18Bold
-                                : AppTextStyle.darkGreySize18Bold),
+                        Text(
+                          EditOrgIcon,
+                          style: _dark
+                              ? AppTextStyle.whiteSize18Bold
+                              : AppTextStyle.blackSize18Bold,
+                        ),
                         const SizedBox(height: 10),
-                        Text(EditOrgIconDesc,
-                            style: _dark
-                                ? AppTextStyle.whiteSize14
-                                : AppTextStyle.lightGreySize14),
+                        Text(
+                          EditOrgIconDesc,
+                          style: _dark
+                              ? AppTextStyle.lightGreySize16
+                              : AppTextStyle.darkGreySize16,
+                        ),
                       ],
                     ),
                   ),
@@ -85,24 +89,27 @@ class OrganizationSettingsView extends StatelessWidget {
                               TextSpan(
                                 text: EditOrgNameUrlDesc1,
                                 style: _dark
-                                    ? AppTextStyle.whiteSize14
-                                    : AppTextStyle.darkGreySize14,
+                                    ? AppTextStyle.lightGreySize16
+                                    : AppTextStyle.darkGreySize16,
                               ),
                               TextSpan(
-                                  text: org.name,
-                                  style: _dark
-                                      ? AppTextStyle.whiteSize14Bold
-                                      : AppTextStyle.darkGreySize14Bold),
+                                text: org.name,
+                                style: _dark
+                                    ? AppTextStyle.whiteSize16Bold
+                                    : AppTextStyle.blackSize16Bold,
+                              ),
                               TextSpan(
-                                  text: EditOrgNameUrlDesc2,
-                                  style: _dark
-                                      ? AppTextStyle.whiteSize14
-                                      : AppTextStyle.darkGreySize14),
+                                text: EditOrgNameUrlDesc2,
+                                style: _dark
+                                    ? AppTextStyle.lightGreySize16
+                                    : AppTextStyle.darkGreySize16,
+                              ),
                               TextSpan(
-                                  text: org.organizationUrl ?? '',
-                                  style: _dark
-                                      ? AppTextStyle.whiteSize14Bold
-                                      : AppTextStyle.darkGreySize14Bold),
+                                text: org.organizationUrl ?? '',
+                                style: _dark
+                                    ? AppTextStyle.whiteSize16Bold
+                                    : AppTextStyle.blackSize16Bold,
+                              ),
                             ],
                           ),
                         ),
