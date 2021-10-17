@@ -8,6 +8,8 @@ import 'package:stacked/stacked_annotations.dart';
 
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/ui/view/set_status/set_status_view.form.dart';
+import 'package:zurichat/ui/view/set_status/widgets/status.dart';
+import 'package:zurichat/ui/view/set_status/widgets/statuses.dart';
 
 @FormView(
   fields: [
@@ -88,7 +90,7 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
               ),
 
               //TODO - Quwaysim
-              /*const Divider(),
+              const Divider(),
               MaterialButton(
                 minWidth: double.infinity,
                 onPressed: model.clearAfter,
@@ -118,32 +120,41 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                 ],
               ),
               const SizedBox(height: 10),
-              const Statuses(
+              Statuses(
                 title: TrackDescription,
                 children: [
                   Status(
-                      status: InMeeting,
-                      duration: OneHour,
-                      icon: Icons.calendar_today_rounded),
+                    status: InMeeting,
+                    duration: OneHour,
+                    icon: Icons.calendar_today_rounded,
+                    onPressed: model.inMeeting,
+                  ),
                   Status(
-                      status: Commuting,
-                      duration: ThirtyMins,
-                      icon: Icons.train),
+                    status: Commuting,
+                    duration: ThirtyMins,
+                    icon: Icons.train,
+                    onPressed: model.commuting,
+                  ),
                   Status(
-                      status: OffSick,
-                      duration: Today,
-                      icon: Icons.sick_rounded),
+                    status: OffSick,
+                    duration: Today,
+                    icon: Icons.sick_rounded,
+                    onPressed: model.offSick,
+                  ),
                   Status(
-                      status: OnHoliday,
-                      duration: DontClear,
-                      icon: Icons.hotel),
+                    status: OnHoliday,
+                    duration: DontClear,
+                    icon: Icons.hotel,
+                    onPressed: model.onHoliday,
+                  ),
                   Status(
-                      status: WorkingRemotely,
-                      duration: Today,
-                      icon: Icons.home),
+                    status: WorkingRemotely,
+                    duration: Today,
+                    icon: Icons.home,
+                    onPressed: model.workingRemotely,
+                  ),
                 ],
               ),
-            */
             ],
           ),
         ),

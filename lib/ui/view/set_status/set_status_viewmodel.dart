@@ -19,20 +19,17 @@ class SetStatusViewModel extends ReactiveViewModel {
   final _statusService = locator<StatusService>();
   final _bottomSheetService = locator<BottomSheetService>();
   final log = getLogger('SetStatusViewModel');
-  final String hintText = SetAStatus;
-  bool isLoading = false;
+  String _hintText = SetAStatus;
   String? _tagIcon;
   String _statusText = '';
+  String _expiryTime = 'dont_clear';
+  String get hintText => _hintText;
   String? get tagIcon => _tagIcon;
   String get statusText => _statusText;
+  String get expiryTime => _expiryTime;
 
   @override
   List<ReactiveServiceMixin> get reactiveServices => [_statusService];
-
-  loading(status) {
-    isLoading = status;
-    notifyListeners();
-  }
 
   statusValueText(value) {
     _statusText = value;
@@ -47,11 +44,12 @@ class SetStatusViewModel extends ReactiveViewModel {
   }
 
   saveStatus() async {
-    loading(true);
     final orgId = _storageService.getString(StorageKeys.currentOrgId);
     final memberId = _storageService.getString(StorageKeys.idInOrganization);
     final token = _storageService.getString(StorageKeys.currentSessionToken);
     final endpoint = 'organizations/$orgId/members/$memberId/status';
+    // dont_clear, thirty_mins, one_hour, four_hours, today, this_week
+    // format "2006-01-02T15:04:05Z07:00"
     final data = {
       'tag': _tagIcon,
       'text': _statusText,
@@ -67,11 +65,15 @@ class SetStatusViewModel extends ReactiveViewModel {
           _storageService.setString('status_tag_icon', _tagIcon!);
         }
         _statusService.updateStatusText(_statusText);
+      } else {
+        _snackbarService.showCustomSnackBar(
+          message: errorOccurred,
+          variant: SnackbarType.failure,
+          duration: const Duration(seconds: 2),
+        );
       }
-      loading(false);
       exitPage();
     } catch (e) {
-      loading(false);
       _snackbarService.showCustomSnackBar(
         message: e.toString(),
         variant: SnackbarType.failure,
@@ -95,5 +97,51 @@ class SetStatusViewModel extends ReactiveViewModel {
     }
   }
 
-  clear() {}
+  inMeeting() {
+    _statusText = InMeeting;
+    _hintText = InMeeting;
+    _tagIcon = '📆';
+    _expiryTime = 'one_hour';
+    notifyListeners();
+  }
+
+  commuting() {
+    _statusText = Commuting;
+    _hintText = Commuting;
+    _tagIcon = '🚊';
+    _expiryTime = 'thirty_mins';
+    notifyListeners();
+  }
+
+  offSick() {
+    _statusText = OffSick;
+    _hintText = OffSick;
+    _tagIcon = '🤒';
+    _expiryTime = 'today';
+    notifyListeners();
+  }
+
+  onHoliday() {
+    _statusText = OnHoliday;
+    _hintText = OnHoliday;
+    _tagIcon = '✈';
+    _expiryTime = 'dont_clear';
+    notifyListeners();
+  }
+
+  workingRemotely() {
+    _statusText = WorkingRemotely;
+    _hintText = WorkingRemotely;
+    _tagIcon = '🏡';
+    _expiryTime = 'today';
+    notifyListeners();
+  }
+
+  clear() {
+    _statusText = SetAStatus;
+    _hintText = SetAStatus;
+    _tagIcon = null;
+    _expiryTime = 'dont_clear';
+    notifyListeners();
+  }
 }
