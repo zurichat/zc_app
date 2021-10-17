@@ -44,7 +44,6 @@ class AddOrganizationView extends StatelessWidget {
               leadingPress: model.back,
             ),
             body: Column(children: [
-              const SizedBox(height: 5),
               Container(
                 margin: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(

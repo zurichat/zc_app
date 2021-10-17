@@ -52,9 +52,11 @@ class ForgotPasswordEmailView extends StatelessWidget
                   Center(
                     child: Text(
                       local!.forgotPassword,
+
                       style: _dark
                           ? AppTextStyle.whiteSize20Bold
                           : AppTextStyle.darkGreySize20Bold,
+
                     ),
                   ),
                   const SizedBox(

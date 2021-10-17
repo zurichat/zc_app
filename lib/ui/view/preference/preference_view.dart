@@ -54,6 +54,7 @@ class PreferenceView extends StatelessWidget {
               //   text: Text(local.advanced, style: _menuTitleStyle),
               //   onPressed: model.navigateToAdvanced,
               // ),
+
               // MenuItemTile(
               //   text: Text(local.sendFeedback, style: _menuTitleStyle),
               //   onPressed: model.sendFeedback,
@@ -66,6 +67,7 @@ class PreferenceView extends StatelessWidget {
               //   text: Text(local.privacyNLicenses, style: _menuTitleStyle),
               //   onPressed: model.privacyAndLicences,
               // ),
+
               UIHelper.verticalSpaceMedium,
             ],
           ),

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:zurichat/app/app.locator.dart';
@@ -159,8 +160,10 @@ class ChannelPageViewModel extends FormViewModel {
 
   void initialise(String channelId) async {
     channelID = channelId;
+
     //TODO: join channel wasn't done
     await joinChannel(channelId);
+
     fetchMessages(channelId);
     getChannelSocketId(channelId);
     //TODO: this was returning the error
@@ -241,6 +244,7 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
+
   Future<void> deleteChannel(ChannelModel channel) async {
     try {
       bool res = await _channelsApiService.deleteChannel(
@@ -269,10 +273,14 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
+
   void fetchMessages(String channelId) async {
     List? channelMessages =
         await _channelsApiService.getChannelMessages(channelId);
     channelUserMessages = [];
+
+    inspect(channelMessages.toString());
+    log.wtf(channelMessages[0].toString());
 
     channelMessages.forEach((data) async {
       String userid = data["user_id"];
@@ -280,8 +288,10 @@ class ChannelPageViewModel extends FormViewModel {
       channelUserMessages?.add(
         UserPost(
           id: data['_id'],
+
           displayName:
               _userService.userId == userid ? _userService.userEmail : userid,
+
           statusIcon: '⭐',
           moment: Moment.now().from(DateTime.parse(data['timestamp'])),
           message: messageEventCheck(data),
