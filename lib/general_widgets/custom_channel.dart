@@ -12,6 +12,8 @@ class CustomChannel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return SizedBox(
       height: 24.h,
       width: 211.w,
@@ -35,7 +37,9 @@ class CustomChannel extends StatelessWidget {
             SizedBox(width: 21.33.w),
             Text(
               '$text',
-              style: AppTextStyle.darkGreySize14Bold,
+              style: _dark
+                  ? AppTextStyle.whiteSize14Bold
+                  : AppTextStyle.darkGreySize14Bold,
             ),
           ],
         ),
