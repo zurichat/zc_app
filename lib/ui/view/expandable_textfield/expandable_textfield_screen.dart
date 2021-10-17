@@ -232,16 +232,18 @@ class ExpandableTextFieldScreen extends HookWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          GestureDetector(
-                                            onTap: () {},
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: SvgPicture.asset(
-                                                zap,
-                                              ),
-                                            ),
-                                          ),
+                                          const SizedBox(width: 10),
+                                          //TODO
+                                          // GestureDetector(
+                                          //   onTap: () {},
+                                          //   child: Padding(
+                                          //     padding:
+                                          //         const EdgeInsets.all(8.0),
+                                          //     child: SvgPicture.asset(
+                                          //       zap,
+                                          //     ),
+                                          //   ),
+                                          // ),
                                           GestureDetector(
                                             onTap: () {
                                               textController.text =
@@ -265,16 +267,17 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               ),
                                             ),
                                           ),
-                                          GestureDetector(
-                                            onTap: () {},
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: SvgPicture.asset(
-                                                Smile,
-                                              ),
-                                            ),
-                                          ),
+                                          //TODO
+                                          // GestureDetector(
+                                          //   onTap: () {},
+                                          //   child: Padding(
+                                          //     padding:
+                                          //         const EdgeInsets.all(8.0),
+                                          //     child: SvgPicture.asset(
+                                          //       Smile,
+                                          //     ),
+                                          //   ),
+                                          // ),
                                           const Spacer(),
                                           GestureDetector(
                                             onTap: () =>
@@ -288,16 +291,17 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               ),
                                             ),
                                           ),
-                                          GestureDetector(
-                                            onTap: () {},
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: SvgPicture.asset(
-                                                Channel_Page_Share,
-                                              ),
-                                            ),
-                                          ),
+                                          //TODO
+                                          // GestureDetector(
+                                          //   onTap: () {},
+                                          //   child: Padding(
+                                          //     padding:
+                                          //         const EdgeInsets.all(8.0),
+                                          //     child: SvgPicture.asset(
+                                          //       Channel_Page_Share,
+                                          //     ),
+                                          //   ),
+                                          // ),
                                           GestureDetector(
                                             onTap: () async {
                                               if (textController.text
@@ -399,6 +403,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               ),
                                             ),
                                           ),
+                                          const SizedBox(width: 10),
                                         ],
                                       ),
                                     ),
@@ -554,28 +559,29 @@ class MyTextField extends StatelessWidget {
             visible: !isVisible,
             child: Row(
               children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(
-                      zap,
-                      color: AppColors.darkGreyColor,
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(
-                      Camera,
-                      height: 24,
-                      width: 24,
-                      color: AppColors.darkGreyColor,
-                    ),
-                  ),
-                ),
+                //TODO
+                // GestureDetector(
+                //   onTap: () {},
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: SvgPicture.asset(
+                //       zap,
+                //       color: AppColors.darkGreyColor,
+                //     ),
+                //   ),
+                // ),
+                // GestureDetector(
+                //   onTap: () {},
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: SvgPicture.asset(
+                //       Camera,
+                //       height: 24,
+                //       width: 24,
+                //       color: AppColors.darkGreyColor,
+                //     ),
+                //   ),
+                // ),
                 GestureDetector(
                   onTap: () {},
                   child: Padding(
@@ -588,6 +594,7 @@ class MyTextField extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(width: 10),
               ],
             ),
           )

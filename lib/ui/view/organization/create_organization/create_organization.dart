@@ -17,13 +17,15 @@ class CreateOrganization extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final pageController = usePageController();
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    
     return ViewModelBuilder<CreateOrganizationViewModel>.reactive(
       viewModelBuilder: () => CreateOrganizationViewModel(),
       onModelReady: (model) => model.init(email),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
             whiteBackground: true,
-            isDarkMode: Theme.of(context).brightness == Brightness.dark,
+            isDarkMode: _dark,
             leadingPress: () => model.back(),
             leading: Icons.close_outlined),
         body: Stack(

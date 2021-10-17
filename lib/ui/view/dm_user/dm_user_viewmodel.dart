@@ -24,11 +24,17 @@ class DmUserViewModel extends FormViewModel {
   var storedDraft = '';
 
   void getDraft(receiverId) {
+    var currentOrgId =
+    _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId =
+    _storageService.getString(StorageKeys.currentUserId);
     List<String>? spList =
-        _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
     if (spList != null) {
       for (String e in spList) {
-        if (jsonDecode(e)['receiverId'] == receiverId) {
+        if (jsonDecode(e)['receiverId'] == receiverId &&
+            currentOrgId == jsonDecode(e)['currentOrgId'] &&
+            currentUserId == jsonDecode(e)['currentUserId']) {
           storedDraft = jsonDecode(e)['draft'];
           spList.remove(e);
           _storageService.setStringList(
@@ -40,15 +46,21 @@ class DmUserViewModel extends FormViewModel {
   }
 
   void storeDraft(receiverId, value) {
+    var currentOrgId =
+    _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId =
+    _storageService.getString(StorageKeys.currentUserId);
     var keyMap = {
       'draft': value,
       'time': '${DateTime.now()}',
       'receiverName': 'receiverName',
       'receiverId': receiverId,
+      'currentOrgId': currentOrgId,
+      'currentUserId': currentUserId,
     };
 
     List<String>? spList =
-        _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
 
     if (value.length > 0 && spList != null) {
       spList.add(json.encode(keyMap));
@@ -162,8 +174,8 @@ class DmUserViewModel extends FormViewModel {
   }
 
   void popScreens(receiverId, value) {
-    storeDraft(receiverId, value);
     navigationService.back();
+    storeDraft(receiverId, value);
   }
 
   void popScreen() {
