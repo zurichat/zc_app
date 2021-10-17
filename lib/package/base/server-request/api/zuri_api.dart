@@ -218,6 +218,7 @@ class ZuriApi implements Api {
           variant: SnackbarType.failure,
           message: e.response!.data!['message'] ??
               e.response!.data['error'] ??
+              e.response!.data['detail'] ??
               errorOccurred,
         );
       }

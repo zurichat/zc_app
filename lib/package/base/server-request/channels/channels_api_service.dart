@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
 import 'package:zurichat/models/pinned_message_model.dart';
 import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/utilities/enums.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
@@ -17,6 +19,7 @@ class ChannelsApiService {
   final _api = ZuriApi(channelsBaseUrl);
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
+  final _snackbarService = locator<SnackbarService>();
 
   StreamController<String> controller = StreamController.broadcast();
 
@@ -241,6 +244,29 @@ class ChannelsApiService {
     }
 
     return false;
+  }
+
+  Future deleteChannelMessage(
+      String orgId, String channelId, String messageId, String userId) async {
+    try {
+      final res = await _api.delete(
+        '/v1/$orgId/messages/$messageId/?user_id=$userId&channel_id=$channelId',
+        token: token,
+      );
+      if (res?.statusCode == 201 || res?.statusCode == 204) {
+        controller.sink.add('Message Deleted');
+        _snackbarService.showCustomSnackBar(
+            duration: const Duration(milliseconds: 1500),
+            variant: SnackbarType.success,
+            message: 'Message deleted successfully');
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      log.e(e.toString());
+      return false;
+    }
   }
 
   Future<bool> deleteChannel(String orgId, String channelId) async {

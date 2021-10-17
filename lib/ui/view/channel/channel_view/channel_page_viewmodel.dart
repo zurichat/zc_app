@@ -244,7 +244,6 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
-
   Future<void> deleteChannel(ChannelModel channel) async {
     try {
       bool res = await _channelsApiService.deleteChannel(
@@ -273,7 +272,6 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
-
   void fetchMessages(String channelId) async {
     List? channelMessages =
         await _channelsApiService.getChannelMessages(channelId);
@@ -288,10 +286,8 @@ class ChannelPageViewModel extends FormViewModel {
       channelUserMessages?.add(
         UserPost(
           id: data['_id'],
-
           displayName:
               _userService.userId == userid ? _userService.userEmail : userid,
-
           statusIcon: '⭐',
           moment: Moment.now().from(DateTime.parse(data['timestamp'])),
           message: messageEventCheck(data),
@@ -315,6 +311,18 @@ class ChannelPageViewModel extends FormViewModel {
       );
     });
     isLoading = false;
+    notifyListeners();
+  }
+
+  void deleteMessage(String channelId, String messageId) async {
+    String? userId = storage.getString(StorageKeys.currentUserId);
+    String? orgId = storage.getString(StorageKeys.currentOrgId);
+    await _channelsApiService.deleteChannelMessage(
+        orgId!, channelId, messageId, userId!);
+
+    fetchMessages(channelId);
+    scrollController.jumpTo(scrollController.position.minScrollExtent);
+    _navigationService.back();
     notifyListeners();
   }
 

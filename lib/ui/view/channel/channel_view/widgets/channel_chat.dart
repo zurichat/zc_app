@@ -81,7 +81,6 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                       viewModel.exitPage();
                     },
                     addToSavedItems: () {
-
                       //TODO pass a model to the viewmodel
                       viewModel.saveItem(
                           channelID: message![index].channelId,
@@ -101,6 +100,9 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         trailing: const Icon(Icons.mark_chat_read_outlined),
                         duration: const Duration(seconds: 3),
                       );
+                    },
+                    deleteMessage: () {
+                      viewModel.deleteMessage(channelId!, message![index].id!);
                     },
                     copyText: () {
                       Clipboard.setData(
