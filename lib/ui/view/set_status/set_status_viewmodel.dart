@@ -55,8 +55,7 @@ class SetStatusViewModel extends ReactiveViewModel {
     final memberId = _storageService.getString(StorageKeys.idInOrganization);
     final token = _storageService.getString(StorageKeys.currentSessionToken);
     final endpoint = 'organizations/$orgId/members/$memberId/status';
-    // dont_clear, thirty_mins, one_hour, four_hours, today, this_week
-    // format "2006-01-02T15:04:05Z07:00"
+
     final data = {
       'tag': _tagIcon,
       'text': _statusText,
@@ -110,7 +109,26 @@ class SetStatusViewModel extends ReactiveViewModel {
     _formerStatusIcon = _storageService.getString(StorageKeys.statusTagIcon);
     _hintText = _formerStatusText ?? SetAStatus;
     _tagIcon = _formerStatusIcon;
-    _formerStatusDuration = _storageService.getString(StorageKeys.statusExpiry);
+    _formerStatusDuration =
+        decodeExpiry(_storageService.getString(StorageKeys.statusExpiry));
+  }
+
+  /// dont_clear, thirty_mins, one_hour, four_hours, today, this_week
+  /// format "2006-01-02T15:04:05Z07:00"
+  String? decodeExpiry(String? expiry) {
+    if (expiry == 'dont_clear') {
+      return 'Don\'t clear';
+    } else if (expiry == 'this_week') {
+      return 'this week';
+    } else if (expiry == 'four_hours') {
+      return '4 hours';
+    } else if (expiry == 'one_hour') {
+      return '1 hour';
+    } else if (expiry == 'thirty_mins') {
+      return '30 mins';
+    } else {
+      return expiry;
+    }
   }
 
   //Custom Status buttons
