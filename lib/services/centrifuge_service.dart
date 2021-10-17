@@ -49,7 +49,6 @@ class CentrifugeService with ReactiveServiceMixin {
     _client.disconnectStream.listen(_showLog);
 
     _client.connect();
-
     return _instance!;
   }
 

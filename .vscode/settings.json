@@ -4,7 +4,7 @@
         "!upload scalar",
         "!remove scalar",
         "!keep scalar",
-        "!erase scalar"
+        "!erase scalar"  
     ],
     "yaml.schemas": {
         "https://raw.githubusercontent.com/doanthuanthanh88/testapi6/main/schema.json": "*.yaml"

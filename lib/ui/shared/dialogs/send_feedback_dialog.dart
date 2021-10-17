@@ -41,7 +41,7 @@ class _SendFeedbackDialogContent extends StatelessWidget {
       height: size.height * .3,
       child: Column(
         children: [
-          Align(
+          const Align(
             alignment: Alignment.topLeft,
             child: Text(
               local!.composeFeedback,

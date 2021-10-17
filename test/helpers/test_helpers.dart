@@ -103,7 +103,6 @@ MockDialogService getAndRegisterDialogServiceMock(
     variant: DialogType.skinTone,
   )).thenAnswer((realInvocation) => response);
   locator.registerSingleton<DialogService>(service);
-
   return service;
 }
 

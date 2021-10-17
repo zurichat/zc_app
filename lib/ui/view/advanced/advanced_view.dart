@@ -67,7 +67,7 @@ class AdvancedView extends StatelessWidget {
                   subtitle: local.optimiseImageSubtitle,
                   value: model.optimizeImageUploads,
                   onChanged: model.toggleOptimizeImageUploads),
-              MenuItemTile(
+              const MenuItemTile(
                 text: Text(
                   local.resetCache,
                   style: const TextStyle(color: AppColors.redColor),

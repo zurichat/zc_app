@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:zurichat/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
-import 'package:zurichat/ui/nav_pages/plugin_page/widgets/custom_appbar.dart';
-import 'package:zurichat/ui/nav_pages/plugin_page/widgets/custom_plugin_list_tile.dart';
-import 'package:zurichat/ui/nav_pages/plugin_page/widgets/custom_search_field.dart';
+import 'package:hng/app/app.logger.dart';
 import 'package:stacked/stacked.dart';
 
 import 'plugin_viewmodel.dart';
@@ -12,8 +9,9 @@ import 'widgets/custom_appbar.dart';
 import 'widgets/custom_plugin_list_tile.dart';
 import 'widgets/custom_search_field.dart';
 
-class EditPluginView extends StatelessWidget {
-  const EditPluginView({Key? key}) : super(key: key);
+class AddPluginView extends StatelessWidget {
+  final log = getLogger('AddPluginView');
+  AddPluginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +20,8 @@ class EditPluginView extends StatelessWidget {
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         return Scaffold(
           appBar: CustomAppBars(
-            appbarTitle: 'Plugins',
-            appbarAction: 'Done',
+            appbarTitle: 'Add Plugin',
+            appbarAction: 'Add',
             model: model,
           ),
           body: SingleChildScrollView(
@@ -34,7 +32,7 @@ class EditPluginView extends StatelessWidget {
                 const SizedBox(
                     height: 40.0,
                     child: CustomSearchField(
-                      searchHint: 'Search plugin',
+                      searchHint: 'Search people to add',
                     )),
                 const SizedBox(
                   height: 25.0,
@@ -48,22 +46,23 @@ class EditPluginView extends StatelessWidget {
                           width: 20,
                         ),
                         text: 'Quick message plugin',
+
+                        //TODO change color to brand colors
                         textColor: const Color(0xFF242424),
                       ),
                     ),
                     SizedBox(
-                        width: 24.0,
-                        height: 24.0,
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.clear,
-                            size: 24.0,
-
-                            //TODO change colors to brand colors
-                            color: Color(0xFFF40101),
-                          ),
-                          onPressed: () {},
-                        )),
+                      width: 24.0,
+                      height: 24.0,
+                      child: Checkbox(
+                        checkColor: Colors.white,
+                        value: model.checked,
+                        onChanged: (bool? value) {
+                          model.setChecked(value!);
+                          log.i(value);
+                        },
+                      ),
+                    )
                   ],
                 )
               ],

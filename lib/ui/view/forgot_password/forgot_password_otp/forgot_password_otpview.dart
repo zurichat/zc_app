@@ -52,7 +52,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                   const SizedBox(
                     height: 24.0,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       local!.forgotPassword,
                       style: const TextStyle(
@@ -64,7 +64,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                   const SizedBox(
                     height: 6.0,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       local.enterOTP,
                     ),
@@ -168,6 +168,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                               const EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: const Color(0xff00B87C),
                         ),
+                        // onPressed: () => model.verifyOtpCode(),
                       ),
                     ),
                   ),

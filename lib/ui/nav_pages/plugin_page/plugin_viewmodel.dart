@@ -11,7 +11,7 @@ class PluginViewModel extends BaseViewModel {
   // final local = AppLocalization.of(context);
   bool _editMode = false;
   bool _checked = false;
-
+ 
   List<PluginModel> plugins = [
     PluginModel(
         icon: icons[0], name: "Todo Plugin", url: "https://www.zuri.chat/todo"),
@@ -58,5 +58,5 @@ class PluginViewModel extends BaseViewModel {
 
   navigateToHome() => navigationService.navigateTo(Routes.navBarView);
 
-  navigateBack() => navigationService.back();
+  navigateBack() => navigationService.back(); 
 }

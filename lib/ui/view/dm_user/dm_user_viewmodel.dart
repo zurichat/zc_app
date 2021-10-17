@@ -166,6 +166,13 @@ class DmUserViewModel extends FormViewModel {
 
       notifyListeners();
     }
+    //await sendResponse();
+    //}
+  }
+
+  void deleteMessage(Message message) {
+    chatMessages.remove(message);
+    notifyListeners();
   }
 
   void deleteMessage(Message message) {

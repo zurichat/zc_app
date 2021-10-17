@@ -18,16 +18,16 @@ void setupDialogUi() {
 
   final builders = {
     DialogType.skinTone: (BuildContext context, DialogRequest request,
-            Function(DialogResponse) completer) =>
+        Function(DialogResponse) completer) =>
         SkinToneDialog(request: request, completer: completer),
     DialogType.selectLanguage: (BuildContext context, DialogRequest request,
-            Function(DialogResponse) completer) =>
+        Function(DialogResponse) completer) =>
         SelectLanguageDialog(request: request, completer: completer),
     DialogType.feedback: (BuildContext context, DialogRequest request,
-            Function(DialogResponse) completer) =>
+        Function(DialogResponse) completer) =>
         SendFeedbackDialog(request: request, completer: completer),
     DialogType.themeMode: (BuildContext context, DialogRequest request,
-            Function(DialogResponse) completer) =>
+        Function(DialogResponse) completer) =>
         SelectThemeDialog(request: request, completer: completer),
     DialogType.signOut: (context, request, completer) =>
         SignOutDialog(request: request, completer: completer),

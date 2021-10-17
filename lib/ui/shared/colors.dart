@@ -25,6 +25,15 @@ class AppColors {
   static const Color greyColor = Color(0xFF616061);
   static const Color deepGreyColor = Color(0xFF1D1C1D);
 
+  // static const Color blueTextColor = Color(0xFF2573F6);
+  // static const Color greyBackgroundColor = Color(0xFFF4F4F4);
+
+  // static const Color lightBlackColor = Color(0xFF756767);
+
+  // //New colors from the updated designs
+  // static const Color greyColor = Color(0xFF616061);
+  // static const Color deepGreyColor = Color(0xFF1D1C1D);
+
   static const Color zuriTextBodyColor = Color(0xFF424141);
   static const Color zuriTextColorHeader = Color(0xFF242424);
   static const Color shadowColor = Color.fromRGBO(79, 79, 79, 0.15);

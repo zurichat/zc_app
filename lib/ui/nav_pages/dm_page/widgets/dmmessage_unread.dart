@@ -47,7 +47,7 @@ class DMMessageUnread extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 '1m',
                 style: AppTextStyle.lightGreySize12,
               ),

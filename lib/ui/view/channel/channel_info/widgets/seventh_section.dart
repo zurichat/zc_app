@@ -6,7 +6,6 @@ import 'package:stacked/stacked.dart';
 
 import '../../../../shared/colors.dart';
 import '../../../../shared/shared.dart';
-
 import '../channel_info_view_model.dart';
 
 class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
