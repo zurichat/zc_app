@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/widgets.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
@@ -41,6 +41,7 @@ class ChannelPageViewModel extends FormViewModel {
   get checkUser => _checkUser;
   final _api = ZuriApi(channelsBaseUrl);
   String pluginId = '6165f520375a4616090b8275';
+  final snackbar = locator<SnackbarService>();
 
   //Draft implementations
   var storedDraft = '';
@@ -56,11 +57,16 @@ class ChannelPageViewModel extends FormViewModel {
   }
 
   void getDraft(channelId) {
+    var currentOrgId = _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId = _storageService.getString(StorageKeys.currentUserId);
+
     List<String>? spList =
         _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
     if (spList != null) {
       for (String e in spList) {
-        if (jsonDecode(e)['channelId'] == channelId) {
+        if (jsonDecode(e)['channelId'] == channelId &&
+            currentOrgId == jsonDecode(e)['currentOrgId'] &&
+            currentUserId == jsonDecode(e)['currentUserId']) {
           storedDraft = jsonDecode(e)['draft'];
           spList.remove(e);
           _storageService.setStringList(
@@ -72,6 +78,9 @@ class ChannelPageViewModel extends FormViewModel {
   }
 
   void storeDraft(channelId, value, channelName, membersCount, public) {
+    var currentOrgId = _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId = _storageService.getString(StorageKeys.currentUserId);
+
     var keyMap = {
       'draft': value,
       'time': '${DateTime.now()}',
@@ -79,6 +88,8 @@ class ChannelPageViewModel extends FormViewModel {
       'channelId': channelId,
       'membersCount': membersCount,
       'public': public,
+      'currentOrgId': currentOrgId,
+      'currentUserId': currentUserId,
     };
 
     List<String>? spList =
@@ -193,10 +204,14 @@ class ChannelPageViewModel extends FormViewModel {
 
   void initialise(String channelId) async {
     channelID = channelId;
+
+    //TODO: join channel wasn't done
     await joinChannel(channelId);
+
     fetchMessages(channelId);
     getChannelSocketId(channelId);
-    fetchChannelMembers(channelId);
+    //TODO: this was returning the error
+    //fetchChannelMembers(channelId);
     listenToNewMessage(channelId);
     getChannelCreator(channelId);
   }
@@ -262,63 +277,113 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
+  String messageEventCheck(Map message) {
+    if (message['content'] == 'event') {
+      if (message['event']['action'] == 'join:channel') {
+        return "${message['user_id']} has joined the channel";
+      }
+      return "...";
+    } else {
+      return message['content'];
+    }
+  }
+
+
+  Future<void> deleteChannel(ChannelModel channel) async {
+    try {
+      bool res = await _channelsApiService.deleteChannel(
+          _userService.currentOrgId, channel.id);
+      if (res) {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.success,
+          message: 'Channels ${channel.name} deleted successful',
+        );
+
+        _navigationService.back();
+      } else {
+        snackbar.showCustomSnackBar(
+          duration: const Duration(seconds: 3),
+          variant: SnackbarType.failure,
+          message: DeleteOrgError,
+        );
+      }
+    } catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.toString(),
+      );
+    }
+  }
+
+
   void fetchMessages(String channelId) async {
     List? channelMessages =
         await _channelsApiService.getChannelMessages(channelId);
     channelUserMessages = [];
 
+    inspect(channelMessages.toString());
+    log.wtf(channelMessages[0].toString());
+
     channelMessages.forEach((data) async {
       String userid = data["user_id"];
       checkIfMessageIsShared(data['content'])
           ? channelUserMessages?.add(convertToSharedMessage(UserPost(
-              id: data['_id'],
-              displayName: userid,
-              statusIcon: '⭐',
-              moment: Moment.now().from(DateTime.parse(data['timestamp'])),
-              message: data['content'],
-              channelType: ChannelType.public,
-              isShared: true,
-              postEmojis: <PostEmojis>[],
-              userThreadPosts: <UserThreadPost>[],
-              channelName: channelId,
-              userImage: 'assets/images/chimamanda.png',
-              userId: userid,
-              channelId: channelId,
-              pinned: data['pinned'],
-              postMediaFiles: (data['files'] as List)
-                  .map((e) => PostFiles(
-                      id: "",
-                      srcLink: e,
-                      type: PostFileType.text,
-                      size: null,
-                      fileName: null))
-                  .toList(),
-            )))
+        id: data['_id'],
+
+        displayName:
+        _userService.userId == userid ? _userService.userEmail : userid,
+
+        statusIcon: '⭐',
+        moment: Moment.now().from(DateTime.parse(data['timestamp'])),
+        message: messageEventCheck(data),
+        channelType: ChannelType.public,
+        postEmojis: <PostEmojis>[],
+        userThreadPosts: <UserThreadPost>[],
+        channelName: channelId,
+        userImage: 'assets/images/chimamanda.png',
+        userId: userid,
+        channelId: channelId,
+        pinned: data['pinned'],
+        postMediaFiles: (data['files'] as List)
+            .map((e) => PostFiles(
+            id: "",
+            srcLink: e,
+            type: PostFileType.text,
+            size: null,
+            fileName: null))
+            .toList(),
+      )))
           : channelUserMessages?.add(
-              UserPost(
-                id: data['_id'],
-                displayName: userid,
-                statusIcon: '⭐',
-                moment: Moment.now().from(DateTime.parse(data['timestamp'])),
-                message: data['content'],
-                channelType: ChannelType.public,
-                postEmojis: <PostEmojis>[],
-                userThreadPosts: <UserThreadPost>[],
-                channelName: channelId,
-                userImage: 'assets/images/chimamanda.png',
-                userId: userid,
-                channelId: channelId,
-                pinned: data['pinned'],
-                postMediaFiles: (data['files'] as List)
-                    .map((e) => PostFiles(
-                        id: "",
-                        srcLink: e,
-                        type: PostFileType.text,
-                        size: null,
-                        fileName: null))
-                    .toList(),
-              ),
+        UserPost(
+          id: data['_id'],
+
+          displayName:
+          _userService.userId == userid ? _userService.userEmail : userid,
+
+          statusIcon: '⭐',
+          moment: Moment.now().from(DateTime.parse(data['timestamp'])),
+          message: messageEventCheck(data),
+          channelType: ChannelType.public,
+          postEmojis: <PostEmojis>[],
+          userThreadPosts: <UserThreadPost>[],
+          channelName: channelId,
+          userImage: 'assets/images/chimamanda.png',
+          userId: userid,
+          channelId: channelId,
+          pinned: data['pinned'],
+          postMediaFiles: (data['files'] as List)
+              .map((e) => PostFiles(
+              id: "",
+              srcLink: e,
+              type: PostFileType.text,
+              size: null,
+              fileName: null))
+              .toList(),
+        )
             );
+
     });
     isLoading = false;
     notifyListeners();
@@ -383,8 +448,8 @@ class ChannelPageViewModel extends FormViewModel {
   }
 
   void goBack(channelId, value, channelName, membersCount, public) {
-    storeDraft(channelId, value, channelName, membersCount, public);
     _navigationService.back();
+    storeDraft(channelId, value, channelName, membersCount, public);
   }
 
   void exit() => _navigationService.back();

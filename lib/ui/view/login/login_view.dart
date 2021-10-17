@@ -27,6 +27,7 @@ class LoginView extends StatelessWidget with $LoginView {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<LoginViewModel>.reactive(
       //listenToFormUpdated automatically
       //syncs text from TextFields to the viewmodel
@@ -55,19 +56,25 @@ class LoginView extends StatelessWidget with $LoginView {
                   Center(
                     child: Text(
                       SignIn,
-                      style: AppTextStyle.darkGreySize20Bold,
+                      style: _dark
+                          ? AppTextStyle.whiteSize20Bold
+                          : AppTextStyle.darkGreySize20Bold,
                     ),
                   ),
                   UIHelper.verticalSpaceSmall,
                   Text(
                     local!.welcomeSignIn,
                     textAlign: TextAlign.center,
-                    style: AppTextStyle.lightGreySize14,
+                    style: _dark
+                        ? AppTextStyle.whiteSize14
+                        : AppTextStyle.lightGreySize14,
                   ),
                   UIHelper.customVerticalSpace(38.0),
                   Text(
                     local.emailAddress,
-                    style: AppTextStyle.darkGreySize16Bold,
+                    style: _dark
+                        ? AppTextStyle.whiteSize16Bold
+                        : AppTextStyle.darkGreySize16Bold,
                   ),
                   UIHelper.customVerticalSpace(10.0),
                   CustomTextField(
@@ -81,7 +88,9 @@ class LoginView extends StatelessWidget with $LoginView {
                   UIHelper.verticalSpaceMedium,
                   Text(
                     local.password,
-                    style: AppTextStyle.darkGreySize16Bold,
+                    style: _dark
+                        ? AppTextStyle.whiteSize16Bold
+                        : AppTextStyle.darkGreySize16Bold,
                   ),
                   UIHelper.customVerticalSpace(10.0),
                   CustomTextField(
@@ -127,7 +136,9 @@ class LoginView extends StatelessWidget with $LoginView {
                     children: [
                       Text(
                         local.dontHaveAccount,
-                        style: AppTextStyle.darkGreySize14,
+                        style: _dark
+                            ? AppTextStyle.whiteSize14
+                            : AppTextStyle.darkGreySize14,
                       ),
                       TextButton(
                         onPressed: () => model.navigateToSignUpScreen(),

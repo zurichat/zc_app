@@ -39,7 +39,6 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
               width: 28,
               height: 28,
             ),
-            UIHelper.horizontalSpaceSmall,
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,6 +56,7 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
                 ],
               ),
             ),
+            UIHelper.horizontalSpaceMedium,
           ],
         ),
       ),

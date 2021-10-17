@@ -21,6 +21,7 @@ class NewChannel extends StatelessWidget with $NewChannel {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<NewChannelViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => NewChannelViewModel(),
@@ -28,9 +29,11 @@ class NewChannel extends StatelessWidget with $NewChannel {
         appBar: ZuriAppBar(
           orgTitle: Text(
             local!.newChannel,
-            style: AppTextStyle.darkGreySize20Bold,
+            style: _dark
+                ? AppTextStyle.whiteSize20Bold
+                : AppTextStyle.darkGreySize20Bold,
           ),
-          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          isDarkMode: _dark,
           whiteBackground: true,
           leading: Icons.arrow_back_ios,
           leadingPress: () => model.navigateBack(),
@@ -57,7 +60,9 @@ class NewChannel extends StatelessWidget with $NewChannel {
                     children: [
                       Text(
                         local.channelName,
-                        style: AppTextStyle.darkGreySize16,
+                        style: _dark
+                            ? AppTextStyle.whiteSize16
+                            : AppTextStyle.darkGreySize16,
                       ),
                     ],
                   ),
@@ -81,12 +86,16 @@ class NewChannel extends StatelessWidget with $NewChannel {
                     children: [
                       Text(
                         hash,
-                        style: AppTextStyle.darkGreySize14,
+                        style: _dark
+                            ? AppTextStyle.whiteSize14
+                            : AppTextStyle.darkGreySize14,
                       ),
                       Expanded(
                         child: TextField(
                           controller: channelNameController,
-                          style: AppTextStyle.darkGreySize14,
+                          style: _dark
+                              ? AppTextStyle.whiteSize14
+                              : AppTextStyle.darkGreySize14,
                           inputFormatters: [
                             LengthLimitingTextInputFormatter(80)
                           ],
@@ -134,7 +143,9 @@ class NewChannel extends StatelessWidget with $NewChannel {
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
                     local.channelCreationWarningMessage,
-                    style: AppTextStyle.lightGreySize14,
+                    style: _dark
+                        ? AppTextStyle.whiteSize14
+                        : AppTextStyle.lightGreySize14,
                   ),
                 ),
                 UIHelper.verticalSpaceMedium,
@@ -146,7 +157,9 @@ class NewChannel extends StatelessWidget with $NewChannel {
                   padding: const EdgeInsets.only(left: 16, top: 13, bottom: 10),
                   child: Text(
                     local.channelDescription,
-                    style: AppTextStyle.darkGreySize16,
+                    style: _dark
+                        ? AppTextStyle.whiteSize16
+                        : AppTextStyle.darkGreySize16,
                   ),
                 ),
                 Container(
@@ -155,7 +168,9 @@ class NewChannel extends StatelessWidget with $NewChannel {
                   child: TextField(
                     maxLines: null,
                     controller: channelDescriptionController,
-                    style: AppTextStyle.darkGreySize14,
+                    style: _dark
+                        ? AppTextStyle.whiteSize14
+                        : AppTextStyle.darkGreySize14,
                     cursorColor: AppColors.zuriPrimaryColor,
                     keyboardType: TextInputType.multiline,
                     decoration: InputDecoration.collapsed(
@@ -180,7 +195,9 @@ class NewChannel extends StatelessWidget with $NewChannel {
                     children: [
                       Text(
                         local.makeChannelPrivate,
-                        style: AppTextStyle.darkGreySize16,
+                        style: _dark
+                            ? AppTextStyle.whiteSize16
+                            : AppTextStyle.darkGreySize16,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -188,13 +205,16 @@ class NewChannel extends StatelessWidget with $NewChannel {
                           Expanded(
                             child: Text(
                               local.privateChannelDescription,
-                              style: AppTextStyle.darkGreySize14,
+                              style: _dark
+                                  ? AppTextStyle.whiteSize14
+                                  : AppTextStyle.darkGreySize14,
                             ),
                           ),
                           SizedBox(
                             height: 20,
                             child: Switch(
                               //TODO  Change to brand colors
+                              inactiveTrackColor: const Color(0xffebebeb),
                               activeColor: AppColors.zuriPrimaryColor,
                               value: model.isChannelPrivate,
                               onChanged: model.toggleSwitch,
@@ -207,7 +227,9 @@ class NewChannel extends StatelessWidget with $NewChannel {
                       //upper part of the text when there's a new line
                       Text(
                         local.byInvitation,
-                        style: AppTextStyle.darkGreySize14,
+                        style: _dark
+                            ? AppTextStyle.whiteSize14
+                            : AppTextStyle.darkGreySize14,
                       )
                     ],
                   ),
