@@ -48,7 +48,7 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
                       controller: searchController,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.text, 
                       maxLines: 1,
                       cursorColor: AppColors.zuriPrimaryColor,
                       onChanged: model.onChanged,

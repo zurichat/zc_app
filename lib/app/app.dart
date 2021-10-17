@@ -54,7 +54,7 @@ import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/clear_after/clear_after_view.dart';
-import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
+
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
 import '../ui/view/do_not_disturb/do_not_disturb_view.dart';
@@ -111,7 +111,7 @@ import '../ui/view/user_search/user_search_view.dart';
     CupertinoRoute(page: HomePage),
     CupertinoRoute(page: AddPeopleView),
     CupertinoRoute(page: DmSearch),
-    CupertinoRoute(page: DmJumpToView),
+
     CupertinoRoute(page: DmUserView),
     CupertinoRoute(page: DmScreen),
     CupertinoRoute(page: Splashview, initial: true),

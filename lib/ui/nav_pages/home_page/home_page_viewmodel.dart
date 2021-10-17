@@ -16,7 +16,7 @@ import 'package:zurichat/services/local_storage_services.dart';
 import 'package:zurichat/services/notification_service.dart';
 import 'package:zurichat/services/user_service.dart';
 import 'package:zurichat/ui/nav_pages/home_page/home_item_model.dart';
-import 'package:zurichat/ui/view/dm_chat_view/dm_jump_to_view.dart';
+import 'package:zurichat/ui/view/dm_jump_to_view/dm_jump_to_view.dart';
 import 'package:zurichat/utilities/constants.dart';
 import 'package:zurichat/utilities/enums.dart';
 import 'package:zurichat/utilities/storage_keys.dart';
