@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
-import '../../general_widgets/custom_text.dart';
 import 'shared.dart';
 
 class LongButton extends StatelessWidget {
   final Function() onPressed;
   final String label;
+  final Color? labelColor;
   final Color? outlineColor;
   final double? height;
   final double? width;
 
   const LongButton({
     Key? key,
+    this.labelColor,
     required this.onPressed,
     required this.label,
     this.outlineColor,
@@ -28,7 +30,7 @@ class LongButton extends StatelessWidget {
       hoverElevation: 0,
       highlightElevation: 0,
       disabledElevation: 0,
-      fillColor: AppColors.zuriPrimaryColor,
+      fillColor: outlineColor ?? AppColors.zuriPrimaryColor,
       constraints: BoxConstraints.tightFor(
         height: height ?? 48,
         width: width ?? MediaQuery.of(context).size.width.clamp(240.0, 560.0),
@@ -41,13 +43,16 @@ class LongButton extends StatelessWidget {
         horizontal: 16,
       ),
       child: FittedBox(
-        child: CustomText(
-          text: '$label',
-          fontSize: 16,
-          fontWeight: FontWeight.w400,
-          color: AppColors.whiteColor,
+        child: Text(
+          '$label',
+          style: AppTextStyle.longButtonStyle,
         ),
       ),
     );
+
+    //TODO: Remove this
+    // fontSize: 16,
+    // fontWeight: FontWeight.w400,
+    // color: labelColor ?? AppColors.whiteColor,
   }
 }

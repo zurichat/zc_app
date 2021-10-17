@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-
-import '../../../shared/shared.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/general_widgets/unread_count.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class DMMessageUnread extends StatelessWidget {
   const DMMessageUnread({
@@ -13,6 +13,7 @@ class DMMessageUnread extends StatelessWidget {
     return InkWell(
       child: Row(
         children: [
+          const SizedBox(width: 5),
           Container(
             height: 40,
             width: 40,
@@ -27,20 +28,18 @@ class DMMessageUnread extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 20),
+          const SizedBox(width: 15),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'OyinkaUA 4️⃣',
-                style: AppTextStyles.body1Bold,
+                style: AppTextStyle.darkGreySize16Bold,
               ),
               const SizedBox(height: 5),
-              const Text(
-                'You: Have you been promoted?',
-                // style: AppTextStyles.normalText
-              ),
+              Text('You: Have you been promoted?',
+                  style: AppTextStyle.lightGreySize14),
             ],
           ),
           const Spacer(),
@@ -48,13 +47,12 @@ class DMMessageUnread extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+               Text(
                 '1m',
-                // style:
-                //     AppTextStyles.timestamp,
+                style: AppTextStyle.lightGreySize12,
               ),
               const SizedBox(height: 5),
-              AppTextStyles.unreadCount(3)
+              const UnreadCount(count: 3),
             ],
           ),
         ],

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../general_widgets/menu_item_tile.dart';
@@ -10,64 +14,72 @@ class AdvancedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<AdvancedViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: const Text(
-            Advanced,
+        appBar: ZuriAppBar(
+          leading: Icons.close_rounded,
+          leadingPress: () => model.exitPage(),
+          orgTitle: Text(
+            local!.advanced,
+            style: AppTextStyle.darkGreySize20Bold.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
         ),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               MenuItemTile.icon(
-                text: const Text(EmojiDeluxe),
-                subtitle: EmojiDeluxeSubititle,
+                text: Text(local.emojiDeluxe),
+                subtitle: local.emojiDeluxeSubititle,
                 imageIcon: 'assets/icons/emojiHands/${model.currentEmoji}.png',
                 onPressed: model.changeSkinTone,
               ),
               MenuItemTile.flipSwitch(
-                text: const Text(ShowPreviews),
-                subtitle: ShowPreviewsSubtitle,
+                text: Text(local.showPreviews),
+                subtitle: local.showPreviewsSubtitle,
                 onChanged: model.toggleShowImagePreviews,
                 value: model.showImagePreviews,
               ),
               MenuItemTile.flipSwitch(
-                text: const Text(OpenWebPages),
-                subtitle: OpenWebPagesSubtitle,
+                text: Text(local.openWebPages),
+                subtitle: local.openWebPagesSubtitle,
                 value: model.openWebPagesInApp,
                 onChanged: model.toggleOpenWebPagesInApp,
               ),
               MenuItemTile.flipSwitch(
-                text: const Text(TypingIndicator),
-                subtitle: TypingIndicatorSubtitle,
+                text: Text(local.typingIndicator),
+                subtitle: local.typingIndicatorSubtitle,
                 value: model.displayTypingIndicators,
                 onChanged: model.toggleDisplayTypingIndicators,
               ),
               MenuItemTile.flipSwitch(
-                text: const Text(AnimateEmoji),
-                subtitle: AnimateEmojiSubtitle,
+                text: Text(local.animateEmoji),
+                subtitle: local.animateEmojiSubtitle,
                 value: model.allowAnimatedImageAndEmoji,
                 onChanged: model.toggleAllowAnimatedImageAndEmoji,
               ),
               MenuItemTile.flipSwitch(
-                  text: const Text(OptimiseImage),
-                  subtitle: OptimiseImageSubtitle,
+                  text: Text(local.optimiseImage),
+                  subtitle: local.optimiseImageSubtitle,
                   value: model.optimizeImageUploads,
                   onChanged: model.toggleOptimizeImageUploads),
-              const MenuItemTile(
+              MenuItemTile(
                 text: Text(
-                  ResetCache,
-                  style: TextStyle(color: Colors.red),
+                  local.resetCache,
+                  style: const TextStyle(color: AppColors.redColor),
                 ),
               ),
-              const MenuItemTile(
+              const SizedBox(height: 10),
+              MenuItemTile(
                 text: Text(
-                  ForceStop,
-                  style: TextStyle(color: Colors.red),
+                  local.forceStop,
+                  style: const TextStyle(color: AppColors.redColor),
                 ),
-                subtitle: UnsavedDataWarning,
+                subtitle: local.unsavedDataWarning,
               )
             ],
           ),

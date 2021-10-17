@@ -1,3 +1,5 @@
 import 'package:stacked/stacked.dart';
 
-class ThreadOptionsBottomSheetViewModel extends BaseViewModel {}
+class ThreadOptionsBottomSheetViewModel extends BaseViewModel {
+
+}

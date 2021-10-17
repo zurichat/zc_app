@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:stacked/stacked.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:stacked/stacked.dart';
 import 'create_organization_viewmodel.dart';
 import 'company.dart';
 import 'invite.dart';
 import 'project.dart';
 
-class CreateOrganization extends StatelessWidget {
+class CreateOrganization extends HookWidget {
   //The users email address can be passed in here from the api or database
   final String email;
   const CreateOrganization({Key? key, required this.email}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final pageController = usePageController();
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    
     return ViewModelBuilder<CreateOrganizationViewModel>.reactive(
       viewModelBuilder: () => CreateOrganizationViewModel(),
+      onModelReady: (model) => model.init(email),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          leading: TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Image.asset(CancelLogo),
-          ),
-        ),
+        appBar: ZuriAppBar(
+            whiteBackground: true,
+            isDarkMode: _dark,
+            leadingPress: () => model.back(),
+            leading: Icons.close_outlined),
         body: Stack(
           children: [
             Positioned(
@@ -35,11 +36,12 @@ class CreateOrganization extends StatelessWidget {
               top: 0,
               bottom: 0,
               child: PageView(
-                controller: model.pageController,
+                controller: pageController,
+                allowImplicitScrolling: false,
                 children: [
-                  CompanyPage(email: email),
-                  const ProjectPage(),
-                  const InvitePage(),
+                  CompanyPage(pageController: pageController),
+                  ProjectPage(pageController: pageController),
+                  InvitePage(pageController: pageController),
                 ],
               ),
             ),
@@ -51,9 +53,7 @@ class CreateOrganization extends StatelessWidget {
               child: Visibility(
                 visible: model.isBusy,
                 child: const Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.zuriPrimaryColor,
-                  ),
+                  child: ZuriLoader(),
                 ),
                 replacement: Container(),
               ),

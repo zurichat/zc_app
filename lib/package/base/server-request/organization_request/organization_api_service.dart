@@ -1,6 +1,6 @@
-import 'package:hng/models/organization_member_model.dart';
-import 'package:hng/models/user_search_model.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/models/organization_member_model.dart';
+import 'package:zurichat/models/user_search_model.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
 import '../../../../models/organization_model.dart';
@@ -44,6 +44,7 @@ class OrganizationApiService {
   /// `id` which is the id of the organization
   Future<OrganizationModel> fetchOrganizationInfo(String id) async {
     final res = await _api.get('/organizations/$id', token: token);
+    log.i('>>>>>>>>>>>>> Selected Orge $res');
     return OrganizationModel.fromJson(res?.data?['data']);
   }
 
@@ -82,7 +83,7 @@ class OrganizationApiService {
       token: token,
       body: {'creator_email': email},
     );
-    return res?.data?['data']['InsertedID'];
+    return res?.data?['data']['organization_id'];
   }
 
   /// Updates an organization's URL. The organization's id `orgId` must not be

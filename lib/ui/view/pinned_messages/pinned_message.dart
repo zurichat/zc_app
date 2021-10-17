@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter/painting.dart';
-import 'package:hng/constants/app_strings.dart';
 
 class SingleListItem {
   final String name;
@@ -41,7 +41,7 @@ class PinnedMessages extends StatelessWidget {
           ),
         ),
         title: const Text(
-          PinnedMsgs,
+          "Pined Messages",
           style: TextStyle(
               color: Color(0xff242424),
               fontWeight: FontWeight.w700,

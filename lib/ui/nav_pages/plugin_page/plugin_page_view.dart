@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 
 import 'plugin_viewmodel.dart';
 

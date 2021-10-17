@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/models/pinned_message_model.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
@@ -24,7 +25,7 @@ class ChannelsApiService {
   //TODo - fix
 
   onChange() {}
-  Future<List> getActiveDms() async {
+  Future<List> getActiveChannels() async {
     final orgId = _userService.currentOrgId;
 
     var joinedChannels = [];
@@ -89,8 +90,18 @@ class ChannelsApiService {
     }
   }
 
+  getChanelCreator(String channelId) async {
+    final orgId = _userService.currentOrgId;
+    try {
+      final res =
+          await _api.get('v1/$orgId/channels/$channelId/', token: token);
+      return res.data;
+    } on Exception catch (e) {
+      log.e(e.toString());
+    }
+  }
+
   Future<List> getChannelMessages(String channelId) async {
-    // final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
 
     List channelMessages;
@@ -111,8 +122,53 @@ class ChannelsApiService {
     return channelMessages;
   }
 
-  Future sendChannelMessages(
-      String channelId, String userId, String message) async {
+  Future<List<PinnedMessage>> getChannelPinnedMessages(String channelId) async {
+    final orgId = _userService.currentOrgId;
+    List<PinnedMessage> pinnedMessages;
+
+    try {
+      final res = await _api.post(
+          'v1/$orgId/channels/$channelId/search_messages/',
+          body: {"pinned": true},
+          token: token);
+
+      pinnedMessages = [
+        ...res.data["result"].map((json) => PinnedMessage.fromJson(json))
+      ];
+
+      log.i(pinnedMessages);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return [];
+    }
+
+    return pinnedMessages;
+  }
+
+  Future<bool> changeChannelMessagePinnedState(
+      String channelId, String messageId, String userId, bool pinned) async {
+    final orgId = _userService.currentOrgId;
+    bool successful;
+
+    try {
+      final res = await _api.put(
+          'v1/$orgId/messages/$messageId/?user_id=$userId&channel_id=$channelId',
+          body: {"pinned": pinned},
+          token: token);
+
+      successful = res.data["pinned"] == pinned;
+
+      log.i(successful);
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return false;
+    }
+
+    return successful;
+  }
+
+  Future sendChannelMessages(String channelId, String userId, String message,
+      [List<String>? media]) async {
     final userId = _userService.userId;
     final orgId = _userService.currentOrgId;
 
@@ -120,7 +176,8 @@ class ChannelsApiService {
 
     try {
       final res = await _api.post('v1/$orgId/channels/$channelId/messages/',
-          token: token, body: {'user_id': userId, 'content': message});
+          token: token,
+          body: {'user_id': userId, 'content': message, "files": media});
 
       channelMessage = res?.data['data'] ?? {};
 
@@ -155,9 +212,11 @@ class ChannelsApiService {
     required String name,
     required String description,
     required bool private,
+    String? email,
+    String? id,
   }) async {
-    final owner = _userService.userEmail;
-    final orgId = _userService.currentOrgId;
+    final owner = email ?? _userService.userEmail;
+    final orgId = id ?? _userService.currentOrgId;
 
     try {
       final res = await _api.post(

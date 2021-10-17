@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
 
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -28,25 +30,29 @@ class StartDmView extends StatelessWidget with $StartDmView {
       viewModelBuilder: () => StartDmViewModel(),
       builder: (ctx, model, child) => Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: Text(DM,
-              style: GoogleFonts.lato(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 20,
-                  color: Colors.black)),
-          backgroundColor: Colors.white,
-          elevation: 1,
-          leading: IconButton(
-            icon:
-                const Icon(Icons.arrow_back_ios, size: 20, color: Colors.black),
-            onPressed: () => Navigator.of(context).pop(),
+        appBar: ZuriAppBar(
+          orgTitle: Text(
+            DM,
+            style: AppTextStyle.darkGreySize20Bold.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
+          leading: Icons.arrow_back_ios,
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
+          leadingPress: () => model.navigateBack(),
           actions: [
             TextButton(
+              style: TextButton.styleFrom(
+                  padding: const EdgeInsets.only(right: 16.0)),
               onPressed: () {},
-              child: const Text(Done),
-            )
+              child: Text(
+                Done,
+                style: AppTextStyle.greenSize16.copyWith(
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ),
           ],
         ),
         body: Stack(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+//import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
-
 import '../edit_profile_viewmodel.dart';
 
 class Body extends ViewModelWidget<EditProfileViewModel> {
@@ -25,35 +25,63 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Container(
-                    width: _size.height * 0.14,
-                    height: double.maxFinite,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(ZuriAppbarLogo),
-                        fit: BoxFit.contain,
-                      ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                      color: AppColors.greyishColor,
-                    ),
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.add_a_photo,
-                            size: _size.width * 0.06,
-                          )),
-                    ),
-                  ),
+                  viewModel.imageFile == null
+                      ? Container(
+                          width: _size.height * 0.14,
+                          height: double.maxFinite,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(ZuriAppbarLogo),
+                              fit: BoxFit.contain,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            color: AppColors.greyishColor,
+                          ),
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: IconButton(
+                              onPressed: viewModel.editProfilePic,
+                              icon: Icon(
+                                Icons.add_a_photo,
+                                size: _size.width * 0.06,
+                                color: AppColors.whiteColor,
+                              ),
+                            ),
+                          ),
+                        )
+                      : SizedBox(
+                          width: _size.height * 0.14,
+                          height: double.maxFinite,
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.file(
+                                  viewModel.imageFile!,
+                                  fit: BoxFit.cover,
+                                  width: _size.height * 0.14,
+                                  height: double.maxFinite,
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: Icon(
+                                  Icons.add_a_photo,
+                                  size: _size.width * 0.06,
+                                  color: AppColors.whiteColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                   const Spacer(),
                   SizedBox(
                     width: _size.width * 0.55,
                     child: TextFormField(
-                      initialValue: "viewModel.userData.firstNam",
-                      onChanged: (value) {},
+                      initialValue: viewModel.userModel.fullName,
+                      onChanged: (value) => viewModel.onChanged(name: value),
                       decoration: const InputDecoration(
                         labelText: FullName,
                       ),
@@ -63,8 +91,8 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue: " viewModel.userData.displayName",
-              onChanged: (value) {},
+              initialValue: viewModel.userModel.displayName,
+              onChanged: (value) => viewModel.onChanged(disp: value),
               decoration: const InputDecoration(
                 labelText: DisplayName,
                 helperText: DisplayNameDescription,
@@ -72,14 +100,15 @@ class Body extends ViewModelWidget<EditProfileViewModel> {
               ),
             ),
             TextFormField(
-              initialValue: "viewModel.userData.status",
-              onChanged: (value) {},
+              initialValue: viewModel.userModel.bio,
+              onChanged: (value) => viewModel.onChanged(bo: value),
               decoration: const InputDecoration(
                   labelText: Track, helperText: TrackDescription),
             ),
             TextFormField(
-              initialValue: " viewModel.userData.phoneNum,",
-              onChanged: (value) {},
+              keyboardType: TextInputType.phone,
+              initialValue: viewModel.userModel.phoneNumber,
+              onChanged: (value) => viewModel.onChanged(phn: value),
               decoration: const InputDecoration(
                   labelText: Phone, helperText: PhoneDescription),
             ),

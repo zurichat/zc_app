@@ -1,40 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import '../../../../general_widgets/channel_icon.dart';
-import '../../../../general_widgets/custom_text.dart';
 import '../../../../models/user_post.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';
-import '../../../shared/styles.dart';
 import '../../dm_user/icons/zap_icon.dart';
 import 'thread_detail_viewmodel.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'thread_detail_view.form.dart';
 
-class ThreadDetailView extends StatelessWidget {
-  const ThreadDetailView(this.userPost, {Key? key}) : super(key: key);
+@FormView(fields: [FormTextField(name: 'message')])
+class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
+  ThreadDetailView(this.userPost, {Key? key}) : super(key: key);
   final UserPost? userPost;
 
   @override
   Widget build(BuildContext context) {
-    // var _messageController = useTextEditingController();
+    final local = AppLocalization.of(context);
+    final log = getLogger("ThreadDetailView");
     final _scrollController = ScrollController();
-    final _messageController = TextEditingController();
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
-      onModelReady: (model) => model.initialise(userPost!.id!),
+      // onModelReady: (model) => model.initialise(userPost!.id!),
+      onModelReady: (model) {
+        model.getDraft(userPost);
+        if (model.storedDraft.isNotEmpty) {
+          messageController.text = model.storedDraft;
+        }
+        model.initialise(userPost!.id!);
+      },
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: const CustomText(text: 'Threads', fontWeight: FontWeight.bold),
-          leading: IconButton(
-            onPressed: model.exitPage,
-            icon: const Icon(
-              Icons.arrow_back_ios,
+        appBar: ZuriAppBar(
+          orgTitle: Text(
+            local!.threads,
+            style: AppTextStyle.darkGreySize20Bold.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),
+          leading: Icons.chevron_left,
+          leadingPress: () => model.exitPage(userPost, messageController.text),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
         ),
         body: model.isBusy
-            ? const Center(child: CircularProgressIndicator())
+            ? const ZuriLoader()
             : Column(
                 children: [
                   Expanded(
@@ -46,7 +62,7 @@ class ThreadDetailView extends StatelessWidget {
                               horizontal: 10, vertical: 10),
                           child: Row(
                             children: [
-                              const Text(MsgIn),
+                              Text(local.messageIn),
                               TextButton.icon(
                                   onPressed: () {},
                                   icon: ChannelIcon(
@@ -69,10 +85,12 @@ class ThreadDetailView extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              //TODO TRANSLATE
                               Text(
-                                  '${model.channelThreadMessages.length} '
-                                  '${model.channelThreadMessages.length == 1 ? "Reply" : "Replies"}',
-                                  style: AppTextStyles.body2Bold),
+                                '${model.channelThreadMessages.length} '
+                                '${model.channelThreadMessages.length == 1 ? local.reply : local.replies}',
+                                style: AppTextStyle.lightGreySize14,
+                              ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
@@ -83,11 +101,42 @@ class ThreadDetailView extends StatelessWidget {
                                         color: AppColors.greyishColor,
                                       )),
                                   IconButton(
-                                      onPressed: model.showThreadOptions,
+                                      onPressed: () => zuriChatBottomSheet(
+                                            context: context,
+                                            addToSavedItems: () {
+                                              model.saveItem(
+                                                  channelID:
+                                                      userPost!.channelId,
+                                                  channelName:
+                                                      userPost!.channelName,
+                                                  displayName:
+                                                      userPost!.displayName,
+                                                  message: userPost!.message,
+                                                  lastSeen: userPost!.moment,
+                                                  messageID: userPost!.id,
+                                                  userID: userPost!.userId,
+                                                  userImage:
+                                                      userPost!.userImage);
+                                              log.i(local.saved);
+                                              model.exitPage(userPost,
+                                                  messageController.text);
+                                              showSimpleNotification(
+                                                Text(local.addedSuccessfully),
+                                                position:
+                                                    NotificationPosition.top,
+                                                background:
+                                                    AppColors.appBarGreen,
+                                                trailing: const Icon(Icons
+                                                    .mark_chat_read_outlined),
+                                                duration:
+                                                    const Duration(seconds: 3),
+                                              );
+                                            },
+                                          ),
                                       icon: const Icon(Icons.more_vert_rounded,
                                           color: AppColors.greyishColor)),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -136,15 +185,16 @@ class ThreadDetailView extends StatelessWidget {
                                         }
                                       },
                                       child: TextField(
-                                        controller: _messageController,
+                                        controller: messageController,
                                         expands: true,
                                         maxLines: null,
                                         textAlignVertical:
                                             TextAlignVertical.center,
                                         decoration: InputDecoration.collapsed(
-                                            hintText: 'Add a Reply',
-                                            hintStyle:
-                                                AppTextStyles.faintBodyText),
+                                          hintText: local.addAReply,
+                                          hintStyle:
+                                              AppTextStyle.lightGreySize14,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -216,19 +266,21 @@ class ThreadDetailView extends StatelessWidget {
                                 ),
                                 IconButton(
                                   onPressed: () async {
-                                    if (_messageController.text
+                                    if (messageController.text
                                         .toString()
                                         .isNotEmpty) {
-                                      final message = _messageController.text;
-                                      _messageController.text = "";
+                                      final message = messageController.text;
+                                      messageController.text = "";
                                       FocusScope.of(context).requestFocus(
                                         FocusNode(),
                                       );
 
                                       await model.sendThreadMessage(
                                           message, userPost!.channelId);
-                                      _scrollController.jumpTo(_scrollController
-                                          .position.maxScrollExtent);
+                                      _scrollController.jumpTo(
+                                        _scrollController
+                                            .position.maxScrollExtent,
+                                      );
                                     }
                                   },
                                   icon: const Icon(

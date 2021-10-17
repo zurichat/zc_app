@@ -1,4 +1,5 @@
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -9,14 +10,15 @@ import '../../../../utilities/enums.dart';
 import '../../../../utilities/storage_keys.dart';
 
 class SelectEmailViewModel extends BaseViewModel {
-  final _navigation = locator<NavigationService>();
-  final snackbar = locator<SnackbarService>();
+  final _navigationService = locator<NavigationService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
-  // final _api = WorkSpaceApiService();
   final _anotherEmail = UseAnotherEmail;
 
   String? get userEmail => _storage.getString(StorageKeys.currentUserEmail);
+
   String get anotherEmail => _anotherEmail;
+
+  void back() => _navigationService.back();
 
   void onEmailTap(OrganizationSwitchMethod method) {
     switch (method) {
@@ -33,43 +35,39 @@ class SelectEmailViewModel extends BaseViewModel {
   }
 
   void navigateToOrganizationUrl() {
-    _navigation.navigateTo(Routes.organizationUrlView);
+    _navigationService.navigateTo(
+      Routes.organizationUrlView,
+      arguments: OrganizationUrlViewArguments(email: userEmail!),
+    );
   }
 
   void navigateToCreateOrganization() {
-    _navigation.navigateTo(
+    _navigationService.navigateTo(
       Routes.createOrganization,
       arguments: CreateOrganizationArguments(email: userEmail!),
     );
   }
 
-  // Future<OrganizationModel?> createOrganization(
-  //     String email, OrganizationModel org) async {
-  //   try {
-  //     final id = await _api.createOrganization(email);
-  //     await _api.updateOrgName(id, org.name!);
-  //     await _api.updateOrgUrl(id, org.organizationUrl!);
-  //     await _api.updateOrgLogo(id, org.logoUrl!);
-  //     // return WorkspaceModel(
-  //     //   id: id,
-  //     //   name: org.name,
-  //     //   workSpaceUrl: org.workSpaceUrl,
-  //     //   logoUrl: org.logoUrl,
-  //     //   time: null,
-  //     // );
-  //   } catch (e) {
-  //     snackbar.showSnackbar(message: e.toString());
-  //   }
-  // }
+  navigateToUseDifferentEmailView() {
+    _navigationService.navigateTo(Routes.useDifferentEmailView);
+  }
 
-  String getScreenTitle(OrganizationSwitchMethod method) {
+  void navigateToDifferentEmail(OrganizationSwitchMethod method) {
+    _navigationService.navigateTo(
+      Routes.useDifferentEmailView,
+      arguments: UseDifferentEmailViewArguments(method: method),
+    );
+  }
+
+  String getScreenTitle(OrganizationSwitchMethod method, context) {
+    final local = AppLocalization.of(context);
     switch (method) {
       case OrganizationSwitchMethod.create:
-        return CreateWorkspace;
+        return local!.createWorkspace;
       case OrganizationSwitchMethod.signIn:
-        return SignInWorkspace;
+        return local!.signInWorkspace;
       case OrganizationSwitchMethod.join:
-        return JoinWorkspace;
+        return local!.joinWorkspace;
     }
   }
 }

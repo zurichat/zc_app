@@ -1,4 +1,9 @@
 PODS:
+<<<<<<< HEAD
+  - awesome_notifications (0.0.2):
+    - Flutter
+=======
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7
   - connectivity_plus (0.0.1):
     - Flutter
     - Reachability
@@ -7,6 +12,11 @@ PODS:
   - Flutter (1.0.0)
   - flutter_appavailability (0.0.1):
     - Flutter
+<<<<<<< HEAD
+  - flutter_keyboard_visibility (0.0.1):
+    - Flutter
+=======
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7
   - flutter_statusbarcolor_ns (0.0.1):
     - Flutter
   - fluttertoast (0.0.2):
@@ -17,6 +27,11 @@ PODS:
   - FMDB/standard (2.7.5)
   - hexcolor (0.0.1):
     - Flutter
+<<<<<<< HEAD
+  - image_picker (0.0.1):
+    - Flutter
+=======
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7
   - modal_progress_hud_nsn (0.0.1):
     - Flutter
   - path_provider (0.0.1):
@@ -30,20 +45,40 @@ PODS:
   - Toast (4.0.0)
   - url_launcher (0.0.1):
     - Flutter
+<<<<<<< HEAD
+  - webview_flutter (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
+  - awesome_notifications (from `.symlinks/plugins/awesome_notifications/ios`)
+=======
+
+DEPENDENCIES:
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - emoji_picker_flutter (from `.symlinks/plugins/emoji_picker_flutter/ios`)
   - Flutter (from `Flutter`)
   - flutter_appavailability (from `.symlinks/plugins/flutter_appavailability/ios`)
+<<<<<<< HEAD
+  - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_statusbarcolor_ns (from `.symlinks/plugins/flutter_statusbarcolor_ns/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - hexcolor (from `.symlinks/plugins/hexcolor/ios`)
+  - image_picker (from `.symlinks/plugins/image_picker/ios`)
+=======
+  - flutter_statusbarcolor_ns (from `.symlinks/plugins/flutter_statusbarcolor_ns/ios`)
+  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - hexcolor (from `.symlinks/plugins/hexcolor/ios`)
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7
   - modal_progress_hud_nsn (from `.symlinks/plugins/modal_progress_hud_nsn/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+<<<<<<< HEAD
+  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
+=======
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7
 
 SPEC REPOS:
   trunk:
@@ -52,6 +87,11 @@ SPEC REPOS:
     - Toast
 
 EXTERNAL SOURCES:
+<<<<<<< HEAD
+  awesome_notifications:
+    :path: ".symlinks/plugins/awesome_notifications/ios"
+=======
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7
   connectivity_plus:
     :path: ".symlinks/plugins/connectivity_plus/ios"
   emoji_picker_flutter:
@@ -60,12 +100,22 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_appavailability:
     :path: ".symlinks/plugins/flutter_appavailability/ios"
+<<<<<<< HEAD
+  flutter_keyboard_visibility:
+    :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
+=======
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7
   flutter_statusbarcolor_ns:
     :path: ".symlinks/plugins/flutter_statusbarcolor_ns/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
   hexcolor:
     :path: ".symlinks/plugins/hexcolor/ios"
+<<<<<<< HEAD
+  image_picker:
+    :path: ".symlinks/plugins/image_picker/ios"
+=======
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7
   modal_progress_hud_nsn:
     :path: ".symlinks/plugins/modal_progress_hud_nsn/ios"
   path_provider:
@@ -76,16 +126,32 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sqflite/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
+<<<<<<< HEAD
+  webview_flutter:
+    :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
+  awesome_notifications: 74462bc8e68b11f8235d78422266886759e9da61
+=======
+
+SPEC CHECKSUMS:
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7
   connectivity_plus: 5f0eb61093bec56935f21a1699dd2758bc895587
   emoji_picker_flutter: 4f9a1ac31d355e1bf9622a1e821a809149130127
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_appavailability: ebf8f85abea44436d1262fcde8a4e64b2534b01a
+<<<<<<< HEAD
+  flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
+=======
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7
   flutter_statusbarcolor_ns: 68a360889d88d7915ae524e422aeab62e4063804
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   hexcolor: fdfb9c4258ad96e949c2dbcdf790a62194b8aa89
+<<<<<<< HEAD
+  image_picker: e06f7a68f000bd36f552c1847e33cda96ed31f1f
+=======
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7
   modal_progress_hud_nsn: f6fb744cd060653d66ed8f325360ef3650eb2fde
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
@@ -93,7 +159,15 @@ SPEC CHECKSUMS:
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
+<<<<<<< HEAD
+  webview_flutter: 3603125dfd3bcbc9d8d418c3f80aeecf331c068b
+
+PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d
+
+COCOAPODS: 1.11.2
+=======
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
 COCOAPODS: 1.11.0
+>>>>>>> e8eba0ce5d026d88366f37a0b12fce252422cac7

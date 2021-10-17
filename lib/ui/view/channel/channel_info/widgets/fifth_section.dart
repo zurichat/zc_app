@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/new_row_tile.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import '../../../../shared/colors.dart';
 
 class FifthSection extends StatelessWidget {
@@ -19,19 +20,28 @@ class FifthSection extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6.r),
-          border: Border.all(width: 1.w, color: AppColors.borderColor),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5.r,
-              blurRadius: 6.r,
-              offset: Offset(0, 3.h), // changes position of shadow
+          // border: Border.all(width: 1.w, color: AppColors.borderColor),
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.darkThemePrimaryColor
+              : AppColors.whiteColor,
+        ),
+        child: Row(
+          children: [
+            SvgPicture.asset(
+              Log_Out,
+              color: Theme.of(context).textTheme.bodyText1!.color,
+              width: 18,
+              height: 18,
+            ),
+            SizedBox(width: 24.23.w),
+            Text(
+              Leave,
+              style: AppTextStyle.darkGreySize16.copyWith(
+                fontSize: 14.sp,
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
             ),
           ],
-        ),
-        child: const NewRowTile(
-          icon: Icons.push_pin_outlined,
-          text: Leave,
         ),
       ),
     );

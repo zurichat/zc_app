@@ -1,17 +1,18 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/package/base/jump_to_request/jump_to_api.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
-import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
-import 'package:hng/package/base/server-request/organization_request/organization_api_service.dart';
-import 'package:hng/services/centrifuge_service.dart';
-import 'package:hng/services/connectivity_service.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/media_service.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/channels_search_model.dart';
+import 'package:zurichat/models/user_search_model.dart';
+import 'package:zurichat/package/base/jump_to_request/jump_to_api.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
+import 'package:zurichat/package/base/server-request/dms/dms_api_service.dart';
+import 'package:zurichat/package/base/server-request/organization_request/organization_api_service.dart';
+import 'package:zurichat/services/centrifuge_service.dart';
+import 'package:zurichat/services/connectivity_service.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/media_service.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/enums.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -50,14 +51,11 @@ MockUserService getAndRegisterUserServiceMock({
 }
 
 MockSharedPreferenceLocalStorage
-    getAndRegisterSharedPreferencesLocalStorageMock(
-        {String? token, String orgId = 'org_id'}) {
+    getAndRegisterSharedPreferencesLocalStorageMock() {
   _removeRegistrationIfExists<SharedPreferenceLocalStorage>();
   final service = MockSharedPreferenceLocalStorage();
-  when(service.getString(StorageKeys.currentSessionToken))
-      .thenReturn(token ?? 'token');
-  when(service.getString(StorageKeys.currentOrgId)).thenReturn(orgId);
   locator.registerSingleton<SharedPreferenceLocalStorage>(service);
+
   return service;
 }
 
@@ -88,13 +86,15 @@ MockSnackbarService getAndRegisterSnackbarServiceMock(
 MockThemeService getAndRegisterThemeServiceMock() {
   _removeRegistrationIfExists<ThemeService>();
   final service = MockThemeService();
+  var result = Future.value(const bool.fromEnvironment('Dark Mode'));
+  when(service.selectThemeAtIndex(0)).thenAnswer((realInvocation) => result);
   locator.registerSingleton<ThemeService>(service);
 
   return service;
 }
 
 MockDialogService getAndRegisterDialogServiceMock(
-    {DialogResponse<dynamic>? dialogResult}) {
+    {DialogResponse<dynamic>? dialogResult /*,String? currentEmoji*/}) {
   _removeRegistrationIfExists<DialogService>();
   final service = MockDialogService();
   Future<DialogResponse<dynamic>?> response =
@@ -159,7 +159,7 @@ MockZuriApi getAndRegisterZuriApiMock() {
   locator.registerSingleton<ZuriApi>(service);
 
   when(service.uploadImage(fileMock,
-          token: token_string, memberId: memberId_string, orgId: orgId_string))
+          token: token_string, pluginId: pluginId_string))
       .thenAnswer((_) async => Future.value("Image Address"));
   return service;
 }
@@ -167,8 +167,7 @@ MockZuriApi getAndRegisterZuriApiMock() {
 MockConnectivityService getAndRegisterConnectivityServiceMock() {
   _removeRegistrationIfExists<ConnectivityService>();
   final service = MockConnectivityService();
-  var result =
-      Future.value(const bool.fromEnvironment("network status") ? true : false);
+  var result = Future.value(const bool.fromEnvironment('network status'));
   when(service.checkConnection()).thenAnswer((realInvocation) => result);
   locator.registerSingleton<ConnectivityService>(service);
 
@@ -179,7 +178,10 @@ MockJumpToApi getAndRegisterJumpToApiMock() {
   _removeRegistrationIfExists<JumpToApi>();
   final service = MockJumpToApi();
   locator.registerSingleton<JumpToApi>(service);
-
+  when(service.allChannelsList())
+      .thenAnswer((realInvocation) => Future.value([ChannelsSearch()]));
+  when(service.fetchList())
+      .thenAnswer((realInvocation) => Future.value([NewUser()]));
   return service;
 }
 
@@ -188,7 +190,8 @@ MockMediaService getAndRegisterMediaServiceMock() {
   final service = MockMediaService();
   Future<String> response = Future<String>.value("Image Address");
 
-  when(service.uploadImage(fileMock)).thenAnswer((_) async => response);
+  when(service.uploadImage(fileMock, pluginId_string))
+      .thenAnswer((_) async => response);
 
   locator.registerSingleton<MediaService>(service);
   return service;

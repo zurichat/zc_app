@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 const String appName = 'Zuri Chat';
 const String zuri = 'ZURI';
 
@@ -13,6 +15,7 @@ const String invalidEmailFormat = 'Invalid email format';
 const String passwordsMustMatch = 'Passwords do not match';
 const String passwordUpdated = 'Password Successfully Updated';
 const String passwordNotUpdated = 'Password could not be updated';
+const String profileUpdated = 'Profile Successfully Updated';
 const String errorOccurred = 'An Error Occurred';
 const String errorOTP = 'OTP could not be validated';
 const String wrongOTP = 'Wrong OTP, please check again';
@@ -20,7 +23,7 @@ const String UpdateSuccessful = 'Update successful';
 const String UpdateFailed = 'Update failed';
 const String FetchError = 'Error fetching info';
 const String ChannelUpdateError = 'Error encountered during channel update';
-const String DeleteOrgError = 'Delete organization failed';
+const String DeleteOrgError = 'Delete workspace failed';
 const String ComingSoon = 'Coming soon!!';
 
 //API Endpoints
@@ -38,6 +41,10 @@ const String userDataEndpoint = 'users/';
 //Auth Screens
 const String SignIn = 'Sign In';
 const String WelcomeSignIn = 'Welcome! Sign in to continue';
+const String FirstName = 'First Name';
+const String FirstNameHintText = 'John';
+const String LastName = 'Last Name';
+const String LastNameHintText = 'Doe';
 const String EmailAddress = 'Email Address';
 const String EmailHintText = 'Name@gmail.com';
 const String Password = 'Password';
@@ -53,7 +60,7 @@ const String CreateAccount = 'Create Account';
 const String AlreadyHaveAcct = 'Already  have an Account?';
 const String Or = 'or';
 const String SignUpGoogle = 'Sign Up with Google';
-const String TnC1 = 'By selecting this box, you agreed to our';
+const String TnC1 = 'By selecting this box, you agreed to our ';
 const String TnC2 = 'terms and conditions';
 const String NewPasswordHeader =
     'Your new password must be different from the previously used password';
@@ -75,11 +82,13 @@ const String BackToLogin = 'Back to login';
 const String Home = 'Home';
 const String Unreads = 'Unreads';
 const String Channels = 'Channels';
+const String CreateChannel = 'Create a new channel';
 const String DMs = 'Direct Messages';
 const String JumpTo = 'Jump to...';
 const String hash = ' # ';
 const String AddChannels = 'Add channels';
 const String Threads = 'Threads';
+const String Drafts = 'Drafts';
 
 //DM
 const String DmTitle = 'Dm';
@@ -105,10 +114,12 @@ const String Preferences = 'Preferences';
 const String Notifs = 'Notifications';
 const String ViewProfile = 'View Profile';
 const String SavedItems = 'Saved Items';
+const String DoNotDisturb = 'Do not disturb';
 const String SetStatusText = 'Set yourself as ';
 const String Away = 'away';
 const String StatusHintText = 'What\'s your status?';
 const String Active = 'Active';
+const String SignOut = 'Sign Out';
 
 //Drafts
 const String Draft = 'Draft';
@@ -128,6 +139,7 @@ const String Ok = 'Ok';
 const String SelectLang = 'Select Language';
 const String DarkMode = 'Dark mode';
 const String Set = 'Set';
+const String Apply = 'Apply';
 const String ComposeFeedback = 'Compose feedback';
 const String FeedbackHint = 'e.g I found a bug in the Dm’s';
 const String FeedbackHelperText =
@@ -184,7 +196,7 @@ const String NoDescription = 'No description Added';
 //Channel Info
 const String Bookmarks = 'Bookmarks';
 const String MuteChannelWarning =
-    'You wont\'t recieve any messages from a muted channel';
+    'You won\'t receive any messages from a muted channel';
 const String ChannelInfo = 'Channel Info';
 const String Edit = 'Edit';
 const String Leave = 'Leave';
@@ -193,7 +205,11 @@ const String Topic = 'Topic';
 const String Notifications = 'Notification';
 const String EveryNewMessage = 'Every New Message';
 const String MuteChannel = 'Mute Channel';
+const String ArchiveChannel = 'Archive Channel';
 const String DeleteChannel = 'Delete Channel';
+const String ArchiveChannelWarning =
+    'Archiving the channel will remove it from the channel list, and close it from all members.'
+    ' All chats and files will still be stored and searchable';
 const String DeleteChannelWarning =
     'All messages from this channel will be removed from Zuri Chat. Any files uploaded to this channel would not be removed.';
 const String StartCall = 'Start a call';
@@ -262,7 +278,7 @@ const String AboutChannel = 'What\'s this channel about?';
 const String ChannelSettings = 'Channel Settings';
 const String MakePrivate = 'Make Private';
 const String PrivateDescription =
-    'When channel is set to private, members of your organization can only view or join by invitation';
+    'When channel is set to private, members of your workspace can only view or join by invitation';
 
 //DM dirs
 const String ViewDetails = 'View details';
@@ -300,14 +316,9 @@ const String ImageDetails = '550KB png';
 const String LangAndRegion = 'Languages & Region';
 const String Language = 'Language';
 const String SetTimezone = 'Set time zone automatically';
-const String Deutsch = 'Deutsch (Deutschland)';
-const String EnglishUK = 'English (UK)';
 const String EnglishUS = 'English (US)';
-const String Espanol = 'Espanol (Espana)';
-const String Francais = 'Francais (France)';
-const String Italiano = 'Italiano (Italy)';
-const String Portugues = 'Portugues (Brazil)';
-const String Chinese = '陈摩托何';
+const String DeutschDE = 'Deutsch (Deutschland)';
+const String ArabicSA = 'اَلْعَرَبِيَّةُ';
 const String Mandarin = '来 本 嗄';
 
 //Notifications
@@ -328,6 +339,16 @@ const String MyKeyword = 'My Keyword';
 const String MyKeywordSubtitle = 'Get notified when people say...';
 const String ChannelSPecificNotif = 'Channel-specific notifications (0)';
 
+//Zuri_Chat_BottomSheet
+const String MarkUnread = "Mark Unread";
+const String RemindMe = "Remind Me";
+const String AddToSavedItems = "Add to Saved Items";
+const String ReplyInThreads = "Reply in Thread";
+const String FollowThreadZuriChatBottomSheet = "Follow Thread";
+const String ShareMessage = "Share Message";
+const String CopyLinkToMessage = "Copy Link to Message";
+const String CopyTextZuriChatBottomSheet = "Copy Text";
+
 //Onboarding
 const String Skip = 'Skip';
 const String OnboardingOneTitle = 'Perfect Collaboration App For Teams';
@@ -347,15 +368,17 @@ const String UseAnotherEmail = 'Use another email address';
 const String CreateWorkspace = 'Create a workspace';
 const String SignInWorkspace = 'Sign in to a workspace';
 const String JoinWorkspace = 'Join a workspace';
-const String Organizations = 'Organizations';
-const String NotJoinedOrgYet = 'You have not joined any organization yet!';
+const String Workspaces = 'Workspaces';
+const String NotJoinedOrgYet = 'You have not joined any workspace yet!';
 const String Help = 'Help';
-const String AddOrg = 'Add an organisation';
-const String EnterOrgUrl = 'Enter Organization URL';
-const String EnterOrgUrlHint = 'https://organization.zuri.com';
+const String SignOutAccount = 'Sign Out From All workspaces';
+const String AddOrg = 'Add a workspace';
+const String AddOrganisations = 'Add Organisations';
+const String EnterOrgUrl = 'Enter Workspace URL';
+const String EnterOrgUrlHint = 'https://workspace.zuri.com';
 const String OrgDesc1 =
-    'If you don\'t know your Organization URL, we have sent an email to ';
-const String OrgDesc2 = ' to help you sign in easily';
+    'If you don\'t know your workspace URL, we have sent an email to ';
+const String OrgDesc2 = ' to help you sign in easily.';
 const String InputRequired = 'Input is required';
 const String EnterEmail = 'Enter Email Address';
 const String WillSendEmail =
@@ -377,15 +400,34 @@ const String CompanyNameHint = 'Eg.  HNG I8 / Team Socrates';
 const String CookiePolicy = 'Cookie Policy';
 const String CustomerAgreementText =
     'It’s okay to send me email with Zuri Chat app, news and offer';
-const String AddOrganisations = 'Add Organisations';
-const String CreateNewOrg = 'Create a new organization';
-const String SignInNewOrg = 'Sign in to another organization';
-const String JoinAnotherOrg = 'Join another organization';
+const String AddWorkspaces = 'Add Workspaces';
+const String CreateNewOrg = 'Create a new workspace';
+const String SignInNewOrg = 'Sign in to another workspace';
+const String JoinAnotherOrg = 'Join another workspace';
 const String SplashScreen = 'assets/logo/splash_image.png';
+const String EditOrgIcon = 'Edit Workspace Icon';
+const String EditOrgIconDesc =
+    'Workspace icon is used in the desktop and mobile apps where it\'s useful in helping to quickly identify this workspace.';
+const String EditOrgNameUrl = 'Edit Workspace Name & URL';
+const String EditOrgNameUrlDesc1 = 'Your workspace name is ';
+const String EditOrgNameUrlDesc2 = ' and your URL is ';
+const String OrgIcon = 'Workspace Icon';
+const String OrgIconGuide = 'Workspace Icon guideline';
+const String OrgIconGuideDesc =
+    "Your workspace icon is a way for you to visually identify the Clutch king workspace. It is used in the desktop and mobile apps, and on your workspace admin site. It's most helpful when you are on multiple ZuriChat workspaces.";
+const String OrgNameDesc =
+    'Your workspace name is displayed in menus and headings. It will usually be (or include) the name of your company.';
+const String OrgUrlDesc =
+    'Your workspace URL can only contain lowercase letters, numbers and dashes (and must start with a letter or number).';
+const String OrgnameUrl = 'Workspace Name & URL';
+const String OrgName = 'Workspace Name';
+const String OrgUrl = 'Workspace URL';
+const String OrgSettings = 'Workspace Settings';
+const String UploadLogo = 'Upload Icon';
 
 //Pinned Messages
-const String PinnedMsgs = 'Pinned Messages';
-
+const String NoPinnedMessagesYet = 'No Pinned Messages Yet';
+const String PinnedMessages = 'Pinned Messages';
 //View Profile
 const String MessageText = 'Message';
 
@@ -412,9 +454,22 @@ const String OffSick = 'Off sick';
 const String InMeeting = 'In a meeting';
 const String Commuting = 'Commuting';
 
-//Images and Logos
-const String ZuriLogo = 'assets/logo/zuri_chat_logo.png';
-const String ZuriAppbarLogo = 'assets/background/appBarLogo.png';
+//Preferences
+const String PrivacyNLicenses = 'Privacy & licences';
+const String HelpCenter = 'Help Center';
+const String SendFeedback = 'Send Feedback';
+
+//Status
+const String SetAStatus = 'Set a Status';
+const IconData bubble = Icons.chat_bubble_outline_rounded;
+const String WhatsYourStatus = 'What\'s your status?';
+
+//Images and Logos and Icons
+const String AddLogo = 'assets/logo/add_logo.png';
+const String ZuriLogo = 'assets/logo/zuri_app_logo.png';
+const String ZuriWordLogo = 'assets/logo/zuri_word_and_logo.png';
+const String NewZuriLogo = 'assets/logo/new_zuri_logo.png';
+const String ZuriAppbarLogo = 'assets/logo/new_zuri_logo.png';
 const String GoogleLogo = 'assets/logo/Google_logo.png';
 const String statusBackground = 'assets/background/status.png';
 const String FemaleUser = 'assets/channel_page/femaleuser.png';
@@ -433,6 +488,45 @@ const String OnboardingTwo = 'assets/images/onboarding_screen_1.png';
 const String OnboardingThree = 'assets/images/onboarding_screen_2.png';
 const String LinkLogo = 'assets/icons/svg_icons/link.svg';
 const String CancelLogo = 'assets/icons/cancel.png';
+const String PinIcon = 'assets/icons/pin.png';
+const String PauseNotification = 'assets/icons/svg_icons/bell-off.svg';
+const String away = 'assets/icons/svg_icons/circle.svg';
+const String Saved_Items = 'assets/icons/svg_icons/bookmark.svg';
+const String View_Profile = 'assets/icons/svg_icons/user.svg';
+const String notification = 'assets/icons/svg_icons/notification.svg';
+const String preference = 'assets/icons/svg_icons/preference.svg';
+const String Log_Out = 'assets/icons/svg_icons/log-out.svg';
+const String Add_Description = 'assets/icons/svg_icons/Add-description.svg';
+const String add_people = 'assets/icons/svg_icons/add-people.svg';
+const String maximize = 'assets/icons/svg_icons/maximize.svg';
+const String minimize = 'assets/icons/svg_icons/minimize.svg';
+const String zap = 'assets/icons/svg_icons/zap.svg';
+const String at_sign = 'assets/icons/svg_icons/at_sign.svg';
+const String Smile = 'assets/icons/svg_icons/smile.svg';
+const String Camera = 'assets/icons/svg_icons/fluent_camera-16-regular.svg';
+const String Channel_Page_Share =
+    'assets/icons/svg_icons/Channel_Page_Share.svg';
+const String Send = 'assets/icons/svg_icons/Send.svg';
+const String Channel_Info_Notification = 'assets/icons/svg_icons/bell.svg';
+const String toggle_off_sharp = 'assets/icons/svg_icons/toggle_off_sharp.svg';
+const String Channel_Info_Members = 'assets/icons/svg_icons/members.svg';
+const String Channel_Info_Phone = 'assets/icons/svg_icons/phone.svg';
+const String archive = 'assets/icons/svg_icons/archive.svg';
+const String pinned_message = 'assets/icons/svg_icons/pinned_message.svg';
+const String Mark_Unread = 'assets/icons/svg_icons/Mark_Unread.svg';
+const String Remind_Me = 'assets/icons/svg_icons/gg_time.svg';
+const String Reply_In_Thread = 'assets/icons/svg_icons/Reply_In_Thread.svg';
+const String Follow_Thread = 'assets/icons/svg_icons/bi_chat-text.svg';
+const String Share_message = 'assets/icons/svg_icons/Share_message.svg';
+const String Copy_link_To_Message =
+    'assets/icons/svg_icons/akar-icons_link_chain.svg';
+const String Copy_Text = 'assets/icons/svg_icons/Copy-text.svg';
+const String Add_Organization = 'assets/icons/svg_icons/add-organization.svg';
+
+// SHARE MESSAGE SCREEN
+const String NoSuchChannel = 'No such channel';
+const String EnterChannelName = 'Enter channel name';
+const String EnterMessage = 'Enter a message';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
@@ -474,8 +568,13 @@ const String Track = 'What I do';
 const String MobileDev = 'Mobile Dev';
 const String MarkCreatedChannel = 'Mark created this channel on August 13.';
 const String CreatingZuri = 'Creating the zuri main app';
-const String OnePinnedMessage = 'Pinned messages (1)';
+const String Pinned = 'Pinned';
 const String OnePlugin = 'Plugins (1)';
+const String PluginIntroHeader = "Get serious and have fun here";
+const String PluginIntroBody = '''Access your oganization’s important stuff'''
+    ''' like holiday-calendar, meeting room, notice'''
+    ''' board etc. Have fun by joining the chess'''
+    ''' room and music room.''';
 const String MembersCount = '128 members';
 const String SoftwareDev = 'Software Development';
 const String PromotedPlaceholder = 'Have you been Promoted?';
@@ -498,3 +597,126 @@ const String Yeah = 'Yeah';
 const String Nope = 'Nope';
 const String Why = 'Why';
 const String FiftyResults = '50 Results';
+const String DummyAvatar =
+    'https://www.nairaland.com/attachments/10525387_7523740813649122436786583150820259255025664o3_jpega51895fd0bf50cf5d5982826ac401627';
+const String TermsAndConditions = '''Introduction\n\n'''
+    '''We are a social network and online platform for professionals and beginners. '''
+    '''People use our Services to find and be found for business opportunities, '''
+    '''to connect with others and find information. Our Privacy Policy applies'''
+    ''' to any Member or Visitor to our Services. Our registered users '''
+    '''(“Members”) share their professional identities, engage'''
+    '''with their network, exchange knowledge and professional insights,'''
+    '''post and view relevant content, learn and develop skills, and '''
+    '''find business and career opportunities. Content and data on some '''
+    '''of our Services is viewable to non-members (“Visitors”). '''
+    '''We use the term “Designated Countries” to refer to countries '''
+    '''in the European Union (EU), European Economic Area (EEA), and Switzerland.\n'''
+    '''Services\n\n'''
+    '''This Privacy Policy, including our Cookie Policy applies to your use of our Services.'''
+    '''This Privacy Policy applies to LinkedIn.com, Zurichat’s-branded apps,'''
+    '''zuri Learning and other Zurichat’s-related sites, apps, communications '''
+    '''and services (“Services”), including off-site Services, such as our ad '''
+    '''services and the “Apply with Zurichat’s” and “Share with LinkedIn” plugins, '''
+    '''but excluding services that state that they are offered under a different privacy '''
+    '''policy. For Nigeria residents, additional disclosures required by Nigerian law '''
+    '''Service Development\n\n'''
+    '''This Privacy Policy describes how Zurichat’s collects, uses and '''
+    '''discloses information and what choices you have with respect to the information.'''
+    '''When we refer to “Zuri”, we mean the Zurichat’s entity that '''
+    '''acts as the controller or processor of your information, as explained '''
+    '''in more detail in the “Identifying the Data Controller and Processor” section below.\n'''
+    '''Zurichat’s mission is to connect the world’s professionals to allow '''
+    '''them to be more productive and successful. Central to this mission is '''
+    '''our commitment to be transparent about the data we collect about you, '''
+    '''how it is used and with whom it is shared.'''
+    '''This Privacy Policy applies when you use our Services (described below). '''
+    '''We offer our users choices about the data we collect, use and share as '''
+    '''described in this Privacy Policy, Cookie Policy, Settings and our Help Center.\n\n'''
+    '''Applicability Of This Privacy Policy\n\n'''
+    '''This Privacy Policy applies to Zurichat’s online workplace '''
+    '''productivity tools and platform, including the associated Zurichat’s '''
+    '''mobile and desktop applications (collectively, the “Services”), Zurichat.com '''
+    '''and other Zurichat websites (collectively, the “Websites”) and other interactions'''
+    '''(e.g., customer service inquiries, user conferences, etc.) you may have with Zuri. '''
+    '''If you do not agree with the terms, do not access or use the Services, Websites or '''
+    '''any other aspect of Zurichat’s business.\n\n'''
+    '''This Privacy Policy does not apply to any third-party applications or '''
+    '''software that integrate with the Services through the Zurichat platform '''
+    '''(“Third-Party Services”), or any other third-party products, services or '''
+    '''businesses. In addition, a separate agreement governs delivery, access and '''
+    '''use of the Services (the “Customer Agreement”), including the processing of '''
+    '''any messages, files or other content submitted through Services accounts '''
+    '''(collectively, “Customer Data”). The workspace (e.g., your employer or another'''
+    '''entity or person) that entered into the Customer Agreement (“Customer”) controls '''
+    '''its instance of the Services (its “Workspace”) and any associated Customer Data. '''
+    '''If you have any questions about specific Workspace settings and privacy practices, '''
+    '''please contact the Customer whose Workspace you use. If you have an account, '''
+    '''you can check http://Zurichat.com/account/team, for contact information of your '''
+    '''Workspace owner(s) and administrator(s). If you have received an invitation to join '''
+    '''a Workspace but have not yet created an account, you should request assistance from '''
+    '''the Customer that sent the invitation.\n\n'''
+    '''Information We Collect And Receive\n\n'''
+    '''Zurichat may collect and receive Customer Data and other information and '''
+    '''data (“Other Information”) in a variety of ways: Customer Data. Customers '''
+    '''or individuals granted access to a Workspace by a Customer (“Authorized Users”)'''
+    '''routinely submit Customer Data to Zurichat when using the Services. '''
+    '''Other Information. Zurichat also collects, generates and/or receives \n\n'''
+    '''Other Information:\n\n'''
+    '''(1) Workspace and account information.\n'''
+    '''To create or update a '''
+    '''Workspace account, you or your Customer (e.g. your employer) '''
+    '''supply Zurichat with an email address, phone number, password, '''
+    '''domain and/or similar account details. For details on Workspace '''
+    '''creation, click here . In addition, Customers that purchase a '''
+    '''paid version of the Services provide Zurichat (or its payment '''
+    '''processors) with billing details such as credit card information, '''
+    '''banking information and/or a billing address.\n\n'''
+    '''(2) Usage information.\n'''
+    '''Services metadata. When an Authorized User '''
+    '''interacts with the Services, metadata is generated that provides '''
+    '''additional context about the way Authorized Users work. '''
+    '''For example, Zurichat logs the Workspaces, channels, people, '''
+    '''features, content and links you view or interact with, the '''
+    '''types of files shared and what Third-Party Services are used (if any).'''
+    '''Log data. As with most websites and technology services delivered '''
+    '''over the Internet, our servers automatically collect information when'''
+    '''you access or use our Websites or Services and record it in log files. '''
+    '''This log data may include the Internet Protocol (IP) address, the address '''
+    '''of the web page visited before using the Website or Services, browser type '''
+    '''and settings, the date and time the Services were used, information about browser'''
+    '''configuration and plugins, language preferences and cookie data.\n\n'''
+    '''Device information. \n'''
+    '''Zurichat collects information about devices '''
+    '''accessing the Services, including type of device, what operating system '''
+    '''is used, device settings, application IDs, unique device identifiers and '''
+    '''crash data. Whether we collect some or all of this Other Information often '''
+    '''depends on the type of device used and its settings.\n\n'''
+    '''Location information.\n\n'''
+    '''We receive information from you, your Customer and '''
+    '''other third-parties that helps us approximate your location. We may, for example,'''
+    '''use a business address submitted by your employer or an IP address received from '''
+    '''your browser or device to determine approximate location. Zurichat may also '''
+    '''collect location information from devices in accordance with the consent process '''
+    '''provided by your device. Cookie information. Zurichat uses a variety of cookies '''
+    '''and similar technologies in our Websites and Services to help us collect Other '''
+    '''Information. For more details about how we use these technologies, and your opt-out'''
+    '''opportunities and other options, please see our Cookie Policy. Third-Party services. '''
+    '''A Customer can choose to permit or restrict Third-Party Services for its Workspace. '''
+    '''Typically, Third-Party Services are software that integrate with our Services, and a '''
+    '''Customer can permit its Authorized Users to enable and disable these integrations '''
+    '''for its Workspace. Zurichat may also develop and offer Zurichat '''
+    '''applications that connect the Services with a Third-Party Service. Once enabled, '''
+    '''the provider of a Third-Party Service may share certain information with\n\n'''
+    '''Data From Others\n\n'''
+    '''Others may post or write about you.'''
+    '''You and others may post content that includes information about you '''
+    '''(as part of articles, posts, comments, videos) on our Services. '''
+    '''We also may collect public information about you, such as professional-related'''
+    '''news and accomplishments, and make it available as part of our Services, '''
+    '''including, as permitted by your settings, in notifications to others of '''
+    '''mentions in the news\n\n'''
+    '''Partners\n'''
+    '''We receive personal data (e.g., your job title and work email address) about '''
+    '''you when you use the services of our customers and partners, such as employers '''
+    '''or prospective employers and applicant tracking systems providing us job '''
+    '''application data.''';

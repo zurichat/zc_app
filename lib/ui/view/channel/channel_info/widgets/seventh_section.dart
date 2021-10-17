@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../shared/colors.dart';
 import '../../../../shared/shared.dart';
-import '../../../../shared/styles.dart';
 import '../channel_info_view_model.dart';
 
 class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
@@ -18,8 +18,11 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
       alignment: Alignment.center,
       margin: const EdgeInsets.only(right: 5, left: 5, bottom: 15),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2),
-          border: Border.all(width: 1.0, color: AppColors.borderColor)),
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.darkThemePrimaryColor
+            : AppColors.whiteColor,
+        borderRadius: BorderRadius.circular(2),
+      ),
       child: Column(
         children: [
           Row(
@@ -29,9 +32,9 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
                   left: 9,
                   top: 19,
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.lock_outline,
-                  color: AppColors.deepBlackColor,
+                  color: Theme.of(context).textTheme.bodyText1!.color,
                   size: 28,
                 ),
               ),
@@ -45,7 +48,7 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
                   onPressed: viewModel.showDialog,
                   child: Text(
                     DeleteChannel,
-                    style: AppTextStyles.heading7,
+                    style: AppTextStyle.darkGreySize20Bold,
                   ),
                 ),
               ),
@@ -56,7 +59,7 @@ class SeventhSection extends ViewModelWidget<ChannelInfoViewModel> {
             margin: const EdgeInsets.only(left: 45, bottom: 10),
             child: Text(
               DeleteChannelWarning,
-              style: AppTextStyles.normalGrey,
+              style: AppTextStyle.lightGreySize14,
             ),
           ),
         ],
