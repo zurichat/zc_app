@@ -35,12 +35,12 @@ class LanguageAndRegionModelView extends StatelessWidget {
               subtitle: model.currentLanguage,
               onPressed: () => model.changeLanguage(context),
             ),
-            MenuItemTile.flipSwitch(
-              text: Text(local.setTimezone),
-              subtitle: model.currentTimeZone,
-              value: model.automaticTimeZone,
-              onChanged: model.toggleAutomaticTimeZone,
-            )
+            // MenuItemTile.flipSwitch(
+            //   text: Text(local.setTimezone),
+            //   subtitle: model.currentTimeZone,
+            //   value: model.automaticTimeZone,
+            //   onChanged: model.toggleAutomaticTimeZone,
+            // )
           ],
         ),
       ),

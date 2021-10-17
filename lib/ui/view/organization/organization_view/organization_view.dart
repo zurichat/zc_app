@@ -107,14 +107,14 @@ class OrganizationView extends StatelessWidget {
                             style: _tileStyle,
                           ),
                         ),
-                        ListTile(
-                          leading: const Icon(Icons.help_outline),
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(
-                            local.help,
-                            style: _tileStyle,
-                          ),
-                        ),
+                        // ListTile(
+                        //   leading: const Icon(Icons.help_outline),
+                        //   contentPadding: EdgeInsets.zero,
+                        //   title: Text(
+                        //     local.help,
+                        //     style: _tileStyle,
+                        //   ),
+                        // ),
                         ListTile(
                           onTap: () => viewModel.signOutAllOrg(),
                           leading: const Icon(Icons.logout_sharp),

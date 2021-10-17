@@ -26,6 +26,8 @@ class OrganizationViewModel extends BaseViewModel {
   final _storage = locator<SharedPreferenceLocalStorage>();
 
   Future<void> initViewModel() async {
+    setBusy(true);
+
     fetchOrganizations();
     getOrganizationMemberList();
   }
