@@ -10,6 +10,7 @@ import 'package:zurichat/ui/nav_pages/plugin_page/plugin_intro_page.dart';
 import 'package:zurichat/ui/nav_pages/plugin_page/plugin_page_view.dart';
 import 'package:zurichat/ui/view/channel/share_message/share_message_view.dart';
 import 'package:zurichat/ui/view/direct_message/direct_message.dart';
+import 'package:zurichat/ui/view/dm_jump_to_view/dm_jump_to_view.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/invitation_sent.dart';
@@ -111,7 +112,7 @@ import '../ui/view/user_search/user_search_view.dart';
     CupertinoRoute(page: HomePage),
     CupertinoRoute(page: AddPeopleView),
     CupertinoRoute(page: DmSearch),
-
+    CupertinoRoute(page: DmJumpToView),
     CupertinoRoute(page: DmUserView),
     CupertinoRoute(page: DmScreen),
     CupertinoRoute(page: Splashview, initial: true),
