@@ -35,7 +35,7 @@ class MediaService {
 
   Future<String?> uploadImage(File? file, String pluginId) async {
     String imageAddress = await zuriApi.uploadImage(file,
-        token: userService.authToken, pluginId: '6165f520375a4616090b8275');
+        token: userService.authToken, pluginId: pluginId);
     return imageAddress;
   }
 }

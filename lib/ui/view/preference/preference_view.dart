@@ -50,22 +50,24 @@ class PreferenceView extends StatelessWidget {
                 selected: model.isDarkMode,
                 subtitle: Text(model.currentTheme),
               ),
-              MenuItemTile(
-                text: Text(local.advanced, style: _menuTitleStyle),
-                onPressed: model.navigateToAdvanced,
-              ),
-              MenuItemTile(
-                text: Text(local.sendFeedback, style: _menuTitleStyle),
-                onPressed: model.sendFeedback,
-              ),
-              MenuItemTile(
-                text: Text(local.helpCenter, style: _menuTitleStyle),
-                onPressed: model.helpCentre,
-              ),
-              MenuItemTile(
-                text: Text(local.privacyNLicenses, style: _menuTitleStyle),
-                onPressed: model.privacyAndLicences,
-              ),
+              // MenuItemTile(
+              //   text: Text(local.advanced, style: _menuTitleStyle),
+              //   onPressed: model.navigateToAdvanced,
+              // ),
+
+              // MenuItemTile(
+              //   text: Text(local.sendFeedback, style: _menuTitleStyle),
+              //   onPressed: model.sendFeedback,
+              // ),
+              // MenuItemTile(
+              //   text: Text(local.helpCenter, style: _menuTitleStyle),
+              //   onPressed: model.helpCentre,
+              // ),
+              // MenuItemTile(
+              //   text: Text(local.privacyNLicenses, style: _menuTitleStyle),
+              //   onPressed: model.privacyAndLicences,
+              // ),
+
               UIHelper.verticalSpaceMedium,
             ],
           ),

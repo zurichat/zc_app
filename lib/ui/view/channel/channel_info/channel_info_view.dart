@@ -48,13 +48,14 @@ class ChannelInfoView extends StatelessWidget {
               appBar: ZuriAppBar(
                 leading: Icons.clear,
                 leadingPress: () => model.navigateBack(),
-                actions: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.star),
-                    color: AppColors.zuriPrimaryColor,
-                  ),
-                ],
+                //TODO
+                // actions: [
+                //   IconButton(
+                //     onPressed: () {},
+                //     icon: const Icon(Icons.star),
+                //     color: AppColors.zuriPrimaryColor,
+                //   ),
+                // ],
                 whiteBackground: true,
                 isDarkMode: Theme.of(context).brightness == Brightness.dark,
                 orgTitle: Text(
