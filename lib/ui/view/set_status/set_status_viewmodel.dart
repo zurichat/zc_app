@@ -18,6 +18,7 @@ class SetStatusViewModel extends ReactiveViewModel {
   final _snackbarService = locator<SnackbarService>();
   final _statusService = locator<StatusService>();
   final _bottomSheetService = locator<BottomSheetService>();
+
   final log = getLogger('SetStatusViewModel');
   String _hintText = SetAStatus;
   String? _tagIcon;
@@ -40,6 +41,12 @@ class SetStatusViewModel extends ReactiveViewModel {
 
   statusValueText(value) {
     _statusText = value;
+    notifyListeners();
+  }
+
+  statusValueIcon(value) {
+    _tagIcon = value;
+    notifyListeners();
   }
 
   void exitPage() {
@@ -72,6 +79,8 @@ class SetStatusViewModel extends ReactiveViewModel {
           _storageService.setString(StorageKeys.statusTagIcon, _tagIcon!);
         }
         _statusService.updateStatusText(_statusText);
+        _statusService.updateStatusIcon(_tagIcon);
+        notifyListeners();
       } else {
         _snackbarService.showCustomSnackBar(
           message: errorOccurred,
@@ -113,8 +122,9 @@ class SetStatusViewModel extends ReactiveViewModel {
         decodeExpiry(_storageService.getString(StorageKeys.statusExpiry));
   }
 
-  /// dont_clear, thirty_mins, one_hour, four_hours, today, this_week
-  /// format "2006-01-02T15:04:05Z07:00"
+  /// Preset Expiry Options (_String_) : dont_clear, thirty_mins, one_hour, four_hours, today, this_week.
+  ///
+  /// Custom Time Format "2006-01-02T15:04:05Z07:00"
   String? decodeExpiry(String? expiry) {
     if (expiry == 'dont_clear') {
       return 'Don\'t clear';
