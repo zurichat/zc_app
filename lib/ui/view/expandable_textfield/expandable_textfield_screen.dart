@@ -86,8 +86,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        //TODO: RED SCREEN
-                        /*  Visibility(
+                        Visibility(
                           visible: model.showMembers,
                           child: Container(
                             color: Colors.white,
@@ -120,9 +119,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                           },
                                           child: MyStatelessWidget(
                                             membersList: model
-                                                    .matchedUsers?[index]
-                                                    .userName ??
-                                                '',
+                                                .matchedUsers![index].userName!,
                                             name: model.matchedUsers?[index]
                                                     .name ??
                                                 '-',
@@ -132,7 +129,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                   : null,
                             ),
                           ),
-                        ), */
+                        ),
                         const Divider(height: 0, color: Color(0xFF999999)),
                         GestureDetector(
                           onPanUpdate: (details) {
@@ -306,8 +303,9 @@ class ExpandableTextFieldScreen extends HookWidget {
                                             onTap: () async {
                                               if (textController.text
                                                       .toString()
-                                                      .isNotEmpty &&
-                                                  model.mediaList.isNotEmpty) {
+                                                      .isNotEmpty /* &&
+                                                  model.mediaList.isNotEmpty*/
+                                                  ) {
                                                 sendMessage(textController.text,
                                                     model.mediaList);
                                                 model.clearMediaList();
@@ -355,10 +353,12 @@ class ExpandableTextFieldScreen extends HookWidget {
 
                                                   usernames.add(username);
                                                 }
+
                                                 if (usernames.isNotEmpty) {
                                                   String? displayName =
                                                       model.displayName;
-
+                                                  String message =
+                                                      '$displayName invited you to join $channelName';
                                                   if (usernames.length > 1) {
                                                     for (var username
                                                         in usernames) {
@@ -371,6 +371,10 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                         sendMessage(
                                                             '$username joined $channelName by invitation from $displayName',
                                                             model.mediaList);
+                                                        model
+                                                            .notifyUserOnMention(
+                                                                message,
+                                                                channelName!);
                                                       }
                                                     }
                                                   } else {
@@ -383,6 +387,9 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                       sendMessage(
                                                           '$username joined $channelName by invitation from $displayName',
                                                           model.mediaList);
+                                                      model.notifyUserOnMention(
+                                                          message,
+                                                          channelName!);
                                                     }
                                                   }
                                                 }
@@ -525,12 +532,10 @@ class MyTextField extends StatelessWidget {
                   }
                   toggleMembersList(detected);
 
-
                   if (word.contains('@')) {
                     search = word.split('@');
                     model.onSearchUser(search[1]);
                   }
-
                 },
                 textAlignVertical: isExpanded
                     ? TextAlignVertical.top

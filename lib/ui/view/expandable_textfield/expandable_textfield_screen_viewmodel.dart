@@ -8,6 +8,7 @@ import 'package:zurichat/package/base/server-request/channels/channels_api_servi
 import 'package:zurichat/package/base/server-request/organization_request/organization_api_service.dart';
 import 'package:zurichat/services/local_storage_services.dart';
 import 'package:zurichat/services/media_service.dart';
+import 'package:zurichat/services/notification_service.dart';
 import 'package:zurichat/services/user_service.dart';
 import 'package:zurichat/utilities/enums.dart';
 import 'package:zurichat/utilities/storage_keys.dart';
@@ -23,6 +24,7 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
   final organizationApiService = locator<OrganizationApiService>();
   final _userService = locator<UserService>();
   final storage = locator<SharedPreferenceLocalStorage>();
+  final notificationService = locator<NotificationService>();
 
   bool isVisible = false;
   bool isExpanded = false;
@@ -36,12 +38,16 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
   List<OrganizationMemberModel>? matchedUsers = [];
   List<ChannelMembermodel>? channelUsersLists = [];
   String? get displayName => storage.getString(StorageKeys.displayName);
+  bool yes = false;
 
   void init(double max, String channelId, [bool val = true]) {
     if (val) size = minSize;
     maxSize = max;
     userMentions();
     getUsersInChannels(channelId);
+    log.i('oo: $channelId');
+    storage.setString(StorageKeys.displayName, 'aconchuk');
+    log.i('oo: $displayName');
     notifyListeners();
   }
 
@@ -163,16 +169,22 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
         /// Add user to channel if user doesn't exist in the channel
         var res =
             await channelsApiService.addChannelMember(channelId, memberId);
-
+        getUsersInChannels(channelId);
         // If succesful let the response be true
         if (res?['_id'] == memberId) {
           response = true;
         }
       }
     }
-
+    yes = !yes;
     notifyListeners();
     return response;
+  }
+
+  void notifyUserOnMention(String message, String channelName) async {
+    await notificationService.notifyUsers(message, channelName);
+    //navigationService.popRepeated(1);
+    notifyListeners();
   }
 
   void clearMediaList() {
