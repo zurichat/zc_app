@@ -19,7 +19,7 @@ enum ChannelType { private, public, personal }
 
 enum CustomUserProfileButtonType { normal, icon }
 
-enum ThreadCardType { threadMain, threadDetail, threadPost, threadChannelMain }
+enum ThreadCardType { threadMain, threadDetail, threadPost, threadChannelMain, shared }
 
 enum PostFileType { text, app }
 

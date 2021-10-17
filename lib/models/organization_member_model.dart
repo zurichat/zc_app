@@ -36,7 +36,7 @@ class OrganizationMemberModel {
   final String? pronouns;
   final String? role;
   final String? socials;
-  final String? status;
+  final Map<String, dynamic>? status;
   final String? timeZone;
   final String? userName;
 
@@ -69,7 +69,7 @@ class OrganizationMemberModel {
         id: json['_id'] ?? json['id'] as String?,
         bio: json['bio'] as String?,
         email: json['email'] as String?,
-        status: json['status'] as String?,
+        status: json['status'] as Map<String,dynamic>?,
         phone: json['phone'] as String?,
         deleted: json['deleted'] as bool?,
         deletedAt: json['deleted_at'] as String?,

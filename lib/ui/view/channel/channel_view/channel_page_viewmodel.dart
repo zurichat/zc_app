@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/constants/app_strings.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
 import 'package:zurichat/models/user_post.dart';
@@ -43,6 +44,16 @@ class ChannelPageViewModel extends FormViewModel {
 
   //Draft implementations
   var storedDraft = '';
+
+  bool checkIfMessageIsShared(String message) {
+    if (message.contains('shared_message') &&
+        message.contains('user_shared_from') &&
+        message.contains('shared_user_display_image') &&
+        message.contains('channel_shared_from')) {
+      return true;
+    }
+    return false;
+  }
 
   void getDraft(channelId) {
     List<String>? spList =
@@ -128,6 +139,40 @@ class ChannelPageViewModel extends FormViewModel {
       final len = storage.getStringList(StorageKeys.savedItem);
       log.w(len!.length.toString());
     }
+  }
+
+  UserPost convertToSharedMessage(UserPost userPost) {
+    final string1 = userPost.message!
+        .replaceAll(': ', SemiColon)
+        .replaceAll(".", Dot)
+        .replaceAll('/', Slash)
+        .replaceAll(' ', Space);
+    final formattedString =
+        string1.replaceAllMapped(RegExp(r'\b\w+\b'), (match) {
+      return '"${match.group(0)}"';
+    });
+    log.i(formattedString);
+    var messageAsMap = jsonDecode(formattedString);
+
+    String message = messageAsMap['message'];
+    String sharedMessage = messageAsMap['shared_message'];
+    String userSharedFrom = messageAsMap['user_shared_from'];
+    String channelSharedFrom = messageAsMap['channel_shared_from'];
+    String sharedUserDisplayImage = messageAsMap['shared_user_display_image'];
+    var convertedUserPost = userPost
+      ..message = message.replaceAll(Space, ' ')
+      ..isShared = true
+      ..sharedMessage = sharedMessage
+          .replaceAll(Space, ' ')
+          .replaceAll('{', '')
+          .replaceAll('}', '')
+          .replaceAll(SemiColon, ': ')
+      ..userSharedFrom = userSharedFrom
+      ..channelSharedFrom = channelSharedFrom
+      ..sharedUserDisplayImage =
+          sharedUserDisplayImage.replaceAll(Dot, '.').replaceAll(Slash, '/');
+    log.i(userPost.sharedUserDisplayImage);
+    return convertedUserPost;
   }
 
   void onMessageFieldTap() {
@@ -224,36 +269,56 @@ class ChannelPageViewModel extends FormViewModel {
 
     channelMessages.forEach((data) async {
       String userid = data["user_id"];
-
-      channelUserMessages?.add(
-        UserPost(
-          id: data['_id'],
-          displayName: userid,
-
-          statusIcon: '⭐',
-
-          moment: Moment.now().from(DateTime.parse(data['timestamp'])),
-          message: data['content'],
-          channelType: ChannelType.public,
-          postEmojis: <PostEmojis>[],
-          userThreadPosts: <UserThreadPost>[],
-          channelName: channelId,
-          userImage: 'assets/images/chimamanda.png',
-          userId: userid,
-          channelId: channelId,
-          pinned: data['pinned'],
-
-          postMediaFiles: (data['files'] as List)
-              .map((e) => PostFiles(
-                  id: "",
-                  srcLink: e,
-                  type: PostFileType.text,
-                  size: null,
-                  fileName: null))
-              .toList(),
-
-        ),
-      );
+      checkIfMessageIsShared(data['content'])
+          ? channelUserMessages?.add(convertToSharedMessage(UserPost(
+              id: data['_id'],
+              displayName: userid,
+              statusIcon: '⭐',
+              moment: Moment.now().from(DateTime.parse(data['timestamp'])),
+              message: data['content'],
+              channelType: ChannelType.public,
+              isShared: true,
+              postEmojis: <PostEmojis>[],
+              userThreadPosts: <UserThreadPost>[],
+              channelName: channelId,
+              userImage: 'assets/images/chimamanda.png',
+              userId: userid,
+              channelId: channelId,
+              pinned: data['pinned'],
+              postMediaFiles: (data['files'] as List)
+                  .map((e) => PostFiles(
+                      id: "",
+                      srcLink: e,
+                      type: PostFileType.text,
+                      size: null,
+                      fileName: null))
+                  .toList(),
+            )))
+          : channelUserMessages?.add(
+              UserPost(
+                id: data['_id'],
+                displayName: userid,
+                statusIcon: '⭐',
+                moment: Moment.now().from(DateTime.parse(data['timestamp'])),
+                message: data['content'],
+                channelType: ChannelType.public,
+                postEmojis: <PostEmojis>[],
+                userThreadPosts: <UserThreadPost>[],
+                channelName: channelId,
+                userImage: 'assets/images/chimamanda.png',
+                userId: userid,
+                channelId: channelId,
+                pinned: data['pinned'],
+                postMediaFiles: (data['files'] as List)
+                    .map((e) => PostFiles(
+                        id: "",
+                        srcLink: e,
+                        type: PostFileType.text,
+                        size: null,
+                        fileName: null))
+                    .toList(),
+              ),
+            );
     });
     isLoading = false;
     notifyListeners();

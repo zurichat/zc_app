@@ -3,6 +3,7 @@ import 'package:zurichat/models/user_post.dart';
 import 'package:zurichat/ui/shared/smart_widgets/thread_card/widgets/thread_card_detail.dart';
 import 'package:zurichat/ui/shared/smart_widgets/thread_card/widgets/thread_card_main.dart';
 import 'package:zurichat/ui/shared/smart_widgets/thread_card/widgets/thread_card_channel_main.dart';
+import 'package:zurichat/ui/shared/smart_widgets/thread_card/widgets/thread_card_shared.dart';
 import 'package:zurichat/utilities/enums.dart';
 import 'package:stacked/stacked.dart';
 
@@ -26,6 +27,9 @@ class ThreadCardView extends StatelessWidget {
   ThreadCardView.threadChannelMain(this.userPost, {Key? key})
       : _threadCardType = ThreadCardType.threadChannelMain,
         super(key: key);
+  ThreadCardView.shared(this.userPost, {Key? key})
+      : _threadCardType = ThreadCardType.shared,
+        super(key: key);
 
   UserThreadPost? userThreadPost;
   UserPost? userPost;
@@ -44,6 +48,8 @@ class ThreadCardView extends StatelessWidget {
             return ThreadCardPost(userThreadPost);
           case ThreadCardType.threadChannelMain:
             return ThreadChannelMain(userPost!);
+          case ThreadCardType.shared:
+            return ThreadCardShared(userPost!);
         }
       },
       viewModelBuilder: () => ThreadCardViewModel(),

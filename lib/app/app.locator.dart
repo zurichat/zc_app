@@ -9,6 +9,7 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:zurichat/package/base/server-request/organization_request/organization_api_service.dart';
 
 import '../package/base/jump_to_request/jump_to_api.dart';
 import '../package/base/server-request/channels/channels_api_service.dart';
@@ -53,6 +54,7 @@ Future setupLocator(
   locator.registerLazySingleton(() => MediaService());
   locator.registerLazySingleton(() => DMApiService());
   locator.registerLazySingleton(() => ChannelsApiService());
+  locator.registerLazySingleton(() => OrganizationApiService());
   locator.registerLazySingleton(() => JumpToApi());
   locator.registerLazySingleton(() => NotificationService());
   final centrifugeService = await CentrifugeService.getInstance();

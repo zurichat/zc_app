@@ -17,6 +17,7 @@ class ShareMessageView extends StatelessWidget {
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
     return ViewModelBuilder<ShareMessageViewModel>.reactive(
+        onModelReady: (model) => model.userPost = userPost,
         builder: (context, model, child) => Scaffold(
               backgroundColor: AppColors.whiteColor,
               appBar: AppBar(

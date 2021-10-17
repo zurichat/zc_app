@@ -52,7 +52,9 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                           ),
                           const SizedBox(height: 8.0),
                         ],
-                        ThreadCardView.threadChannelMain(userPost),
+                        userPost.isShared
+                            ? ThreadCardView.shared(userPost)
+                            : ThreadCardView.threadChannelMain(userPost),
                       ],
                     ),
                     color: userPost.pinned
@@ -81,7 +83,6 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                       viewModel.exitPage();
                     },
                     addToSavedItems: () {
-
                       //TODO pass a model to the viewmodel
                       viewModel.saveItem(
                           channelID: message![index].channelId,

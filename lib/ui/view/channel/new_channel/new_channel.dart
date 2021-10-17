@@ -185,15 +185,16 @@ class NewChannel extends StatelessWidget with $NewChannel {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            local.privateChannelDescription,
-                            style: AppTextStyle.darkGreySize14,
+                          Expanded(
+                            child: Text(
+                              local.privateChannelDescription,
+                              style: AppTextStyle.darkGreySize14,
+                            ),
                           ),
                           SizedBox(
                             height: 20,
                             child: Switch(
                               //TODO  Change to brand colors
-                              inactiveTrackColor: const Color(0xffebebeb),
                               activeColor: AppColors.zuriPrimaryColor,
                               value: model.isChannelPrivate,
                               onChanged: model.toggleSwitch,

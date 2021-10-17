@@ -7,6 +7,12 @@ class UserThreadPost {
   String? userImage;
   String? statusIcon;
 
+  bool isShared;
+  String? sharedMessage;
+  String? userSharedFrom;
+  String? channelSharedFrom;
+  String? sharedUserDisplayImage;
+
   String? moment;
   String? message;
   List<PostEmojis>? postEmojis;
@@ -31,6 +37,11 @@ class UserThreadPost {
     this.userImage,
     required this.displayName,
     this.statusIcon,
+    this.isShared=false,
+    this.sharedMessage,
+    this.userSharedFrom,
+    this.channelSharedFrom,
+    this.sharedUserDisplayImage,
     this.moment,
     required this.message,
     this.postEmojis,
@@ -111,6 +122,17 @@ class UserPost extends UserThreadPost {
   String? statusIcon;
 
   @override
+  bool isShared;
+  @override
+  String? sharedMessage;
+  @override
+  String? userSharedFrom;
+  @override
+  String? channelSharedFrom;
+  @override
+  String? sharedUserDisplayImage;
+
+  @override
   String? moment;
 
   @override
@@ -158,6 +180,11 @@ class UserPost extends UserThreadPost {
     this.userId,
     this.userImage,
     this.statusIcon,
+    this.isShared=false,
+    this.sharedMessage,
+    this.userSharedFrom,
+    this.channelSharedFrom,
+    this.sharedUserDisplayImage,
     this.moment,
     this.postEmojis,
     this.userThreadPosts = const <UserThreadPost>[],

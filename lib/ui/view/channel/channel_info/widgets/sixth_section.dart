@@ -39,23 +39,6 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
               width: 28,
               height: 28,
             ),
-            Expanded(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  ArchiveChannel,
-                  style: AppTextStyle.errorSize14,
-                ),
-                Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      ArchiveChannelWarning,
-                      style: AppTextStyle.darkGreySize14,
-                    )),
-              ],
-            )),
-            UIHelper.horizontalSpaceMedium,
             UIHelper.horizontalSpaceSmall,
             Expanded(
               child: Column(
@@ -65,11 +48,12 @@ class SixthSection extends ViewModelWidget<ChannelInfoViewModel> {
                     ArchiveChannel,
                     style: AppTextStyle.errorSize14,
                   ),
-                  UIHelper.verticalSpaceSmall,
                   Container(
                       alignment: Alignment.center,
-                      child: Text(ArchiveChannelWarning,
-                          style: AppTextStyle.darkGreySize14)),
+                      child: Text(
+                        ArchiveChannelWarning,
+                        style: AppTextStyle.darkGreySize14,
+                      )),
                 ],
               ),
             ),

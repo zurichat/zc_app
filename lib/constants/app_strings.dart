@@ -527,6 +527,11 @@ const String Add_Organization = 'assets/icons/svg_icons/add-organization.svg';
 const String NoSuchChannel = 'No such channel';
 const String EnterChannelName = 'Enter channel name';
 const String EnterMessage = 'Enter a message';
+const String Success = 'Message shared successfully';
+const String Slash = '5l45h';
+const String Dot = 'd0t';
+const String Space = '5p4c3';
+const String SemiColon = '53m1c0l0n';
 
 //Temporary Placeholders and Dummy Data
 const String DmUnreadAvatar =
