@@ -105,6 +105,11 @@ class AppTextStyle {
     AppColors.zuriPrimaryColor,
   );
 
+  static TextStyle greenSize20Bold = _base(
+    _size16,
+    _boldWeight,
+    AppColors.zuriPrimaryColor,
+  );
   static TextStyle textFieldHint = _base(
     _size16,
     _normalWeight,

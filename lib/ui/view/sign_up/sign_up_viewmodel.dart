@@ -41,7 +41,7 @@ class SignUpViewModel extends FormViewModel {
   void navigateToTermsAndConditions() =>
       navigator.navigateTo(Routes.termsAndConditionsView);
 
-  createUser(context) async {
+  createUser() async {
     if (checkBoxValue == true) {
       loading(true);
 
