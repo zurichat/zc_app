@@ -22,13 +22,13 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SetStatusViewModel>.reactive(
       //TODO: onModelReady to be reviewed in next PR
-      // onModelReady: (model) => listenToFormUpdated(model),
+      onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           leading: Icons.close_rounded,
           leadingPress: () => model.exitPage(),
           orgTitle: Text(
-            'Set a status',
+            SetAStatus,
             style: AppTextStyle.darkGreySize18Bold.copyWith(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
@@ -98,26 +98,51 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                   alignment: Alignment.centerLeft,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(ClearAfter),
-                      Text(DontClear),
+                    children: [
+                      const Text(ClearAfter),
+                      UIHelper.verticalSpaceExtraSmall,
+                      const Text(DontClear),
                     ],
                   ),
                 ),
               ),
               const SizedBox(height: 10),
-              const Statuses(
-                title: Recent,
-                children: [
-                  Status(
-                      status: FormerStatus,
-                      duration: DontClear,
-                      icon: Icons.biotech_rounded),
-                  Status(
-                      status: FormerStatus,
-                      duration: DontClear,
-                      icon: Icons.social_distance)
-                ],
+              //TODO - Extract TextStyles - During DarkTheme refactor
+              Visibility(
+                visible: !(model.formerStatusText == null),
+                child: Statuses(
+                  title: Recent,
+                  children: [
+                    ListTile(
+                      leading: Text(model.formerStatusIcon ?? ''),
+                      minLeadingWidth: 20,
+                      dense: true,
+                      title: RichText(
+                        text: TextSpan(
+                          text: '${model.formerStatusText ?? ''}',
+                          style: TextStyle(
+                            color: Theme.of(context).textTheme.bodyText1!.color,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          children: [
+                            TextSpan(
+                              text:
+                                  ' - ${model.formerStatusDuration ?? 'Don\'t clear'}',
+                              style: const TextStyle(
+                                color: AppColors.greyishColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                    // Status(
+                    //     status: FormerStatus,
+                    //     duration: DontClear,
+                    //     icon: Icons.social_distance)
+                  ],
+                ),
               ),
               const SizedBox(height: 10),
               Statuses(

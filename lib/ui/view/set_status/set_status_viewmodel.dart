@@ -28,6 +28,13 @@ class SetStatusViewModel extends ReactiveViewModel {
   String get statusText => _statusText;
   String get expiryTime => _expiryTime;
 
+  String? _formerStatusText;
+  String? _formerStatusIcon;
+  String? _formerStatusDuration;
+  String? get formerStatusText => _formerStatusText;
+  String? get formerStatusIcon => _formerStatusIcon;
+  String? get formerStatusDuration => _formerStatusDuration;
+
   @override
   List<ReactiveServiceMixin> get reactiveServices => [_statusService];
 
@@ -53,7 +60,7 @@ class SetStatusViewModel extends ReactiveViewModel {
     final data = {
       'tag': _tagIcon,
       'text': _statusText,
-      'expiry_time': 'dont_clear'
+      'expiry_time': _expiryTime
     };
     try {
       final response = await _zuriApi.patch('$coreBaseUrl$endpoint',
@@ -61,8 +68,9 @@ class SetStatusViewModel extends ReactiveViewModel {
 
       if (response != null && response.statusCode == 200) {
         _storageService.setString(StorageKeys.statusText, _statusText);
+        _storageService.setString(StorageKeys.statusExpiry, _expiryTime);
         if (tagIcon != null) {
-          _storageService.setString('status_tag_icon', _tagIcon!);
+          _storageService.setString(StorageKeys.statusTagIcon, _tagIcon!);
         }
         _statusService.updateStatusText(_statusText);
       } else {
@@ -97,6 +105,15 @@ class SetStatusViewModel extends ReactiveViewModel {
     }
   }
 
+  init() {
+    _formerStatusText = _storageService.getString(StorageKeys.statusText);
+    _formerStatusIcon = _storageService.getString(StorageKeys.statusTagIcon);
+    _hintText = _formerStatusText ?? SetAStatus;
+    _tagIcon = _formerStatusIcon;
+    _formerStatusDuration = _storageService.getString(StorageKeys.statusExpiry);
+  }
+
+  //Custom Status buttons
   inMeeting() {
     _statusText = InMeeting;
     _hintText = InMeeting;
