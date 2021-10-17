@@ -22,6 +22,8 @@ class ForgotPasswordEmailView extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return ViewModelBuilder<ForgotPasswordEmailViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => ForgotPasswordEmailViewModel(),
@@ -50,7 +52,9 @@ class ForgotPasswordEmailView extends StatelessWidget
                   Center(
                     child: Text(
                       local!.forgotPassword,
-                      style: AppTextStyle.darkGreySize20Bold,
+                      style: _dark
+                          ? AppTextStyle.whiteSize20Bold
+                          : AppTextStyle.darkGreySize20Bold,
                     ),
                   ),
                   const SizedBox(
@@ -69,7 +73,9 @@ class ForgotPasswordEmailView extends StatelessWidget
                     margin: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       local.emailAddress,
-                      style: AppTextStyle.darkGreySize16Bold,
+                      style: _dark
+                          ? AppTextStyle.whiteSize16Bold
+                          : AppTextStyle.darkGreySize16Bold,
                     ),
                   ),
                   Column(
