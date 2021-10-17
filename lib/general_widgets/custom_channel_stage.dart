@@ -1,32 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class CustomChannelStage extends StatelessWidget {
+  final IconData? leadingIcon;
+  final String? text;
+
   const CustomChannelStage({Key? key, this.leadingIcon, this.text})
       : super(key: key);
-  final leadingIcon;
-  final text;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      width: 379,
-      child: Row(
-        children: [
-          Container(
-            height: 16,
-            width: 16,
-            child: Icon(
-              leadingIcon,
-              size: 16,
-            ),
+    return InkWell(
+      onTap: () {},
+      child: SizedBox(
+        height: 24.h,
+        width: 211.w,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(3.w, 0, 0, 0),
+          child: Row(
+            children: [
+              SizedBox(
+                height: 16.h,
+                width: 16.w,
+                child: Icon(
+                  leadingIcon,
+                  size: 16.sp,
+                ),
+              ),
+              SizedBox(width: 18.w),
+              Text(
+                '$text',
+                style: AppTextStyle.darkGreySize14Bold,
+                // textfont in here won't scale to different screens
+              ),
+            ],
           ),
-          const SizedBox(width: 20),
-          Text(
-            text,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-        ],
+        ),
       ),
     );
   }

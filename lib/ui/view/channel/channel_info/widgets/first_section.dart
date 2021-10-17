@@ -1,76 +1,93 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../shared/colors.dart';
-import 'textstyles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/ui_helpers.dart';
+import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.dart';
 
 class FirstSection extends StatelessWidget {
-  const FirstSection({Key? key}) : super(key: key);
-
+  const FirstSection(this.model, {Key? key, required this.channelName})
+      : super(key: key);
+  final ChannelInfoViewModel model;
+  final String channelName;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2),
-          border: Border.all(width: 1.0, color: AppColors.borderColor)),
-      margin: const EdgeInsets.only(right: 5, left: 5, top: 15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 19, vertical: 30),
-            child: Text(
-              '#teamsocrates',
-              style: headerStyle(),
+    return Card(
+      elevation: 2,
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(16.w, 24.h, 16.w, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "#$channelName",
+                    style: AppTextStyle.darkGreySize16Bold,
+                  ),
+                  // UIHelper.verticalSpaceSmall,
+                  UIHelper.verticalSpaceMedium,
+                  Text(
+                    Description,
+                    style: AppTextStyle.darkGreySize16Bold,
+                  ),
+                  UIHelper.verticalSpaceSmall,
+                  Text(
+                    '${model.channelDescription}',
+                    style: AppTextStyle.darkGreySize16
+                        .copyWith(letterSpacing: 0.005),
+                  ),
+                  //TODO
+                  // UIHelper.verticalSpaceExtraSmall,
+                  // Text(
+                  //   MarkCreatedChannel,
+                  //   style: AppTextStyle.lightGreySize16
+                  //       .copyWith(letterSpacing: 0.005),
+                  // ),
+                  UIHelper.verticalSpaceMedium,
+                  Text(
+                    Topic,
+                    style:
+                        AppTextStyle.darkGreySize16.copyWith(fontSize: 16.sp),
+                  ),
+                  UIHelper.verticalSpaceSmall,
+                  Text(
+                    CreatingZuri,
+                    style:
+                        AppTextStyle.lightGreySize16.copyWith(fontSize: 16.sp),
+                  ),
+                  UIHelper.verticalSpaceSmall,
+                  UIHelper.verticalSpaceMedium,
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 19,
-            ),
-            child: Text(
-              'Description',
-              style: nameStyle(),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 19,
-              vertical: 15,
-            ),
-            child: Text(
-              'No description set',
-              style: descriptionStyle(),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 19,
-            ),
-            child: Text(
-              'Mark created this channel on August 13.',
-              style: faintTextStyle(),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 19,
-              vertical: 15,
-            ),
-            child: Text(
-              'Topic',
-              style: descriptionStyle(),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 19, right: 19, bottom: 19),
-            child: Text(
-              'Creating the zuri main app',
-              style: descriptionStyle(),
-            ),
-          ),
-        ],
+            // const Divider(
+            //   thickness: 0.5,
+            //   color: AppColors.borderColor,
+            // ),
+            // UIHelper.verticalSpaceMedium,
+            // Center(
+            //   child: InkWell(
+            //     onTap: () {
+            //       model.navigateToEditChannel();
+            //     },
+            //     child: Text(
+            //       Edit,
+            //       style: AppTextStyle.darkGreySize16Bold,
+            //     ),
+            //   ),
+            // ),
+            UIHelper.verticalSpaceMedium,
+          ],
+        ),
       ),
     );
   }

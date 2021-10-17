@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/menu_item_tile.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../general_widgets/menu_item_tile.dart';
 import 'advanced_viewmodel.dart';
 
 class AdvancedView extends StatelessWidget {
@@ -8,64 +14,72 @@ class AdvancedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<AdvancedViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: Text(
-            "Advanced",
+        appBar: ZuriAppBar(
+          leading: Icons.close_rounded,
+          leadingPress: () => model.exitPage(),
+          orgTitle: Text(
+            local!.advanced,
+            style: AppTextStyle.darkGreySize20Bold.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
         ),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               MenuItemTile.icon(
-                text: Text("Emoji Deluxe"),
-                subtitle: "Choose your default skin tone",
-                imageIcon: "assets/icons/emojiHands/${model.currentEmoji}.png",
+                text: Text(local.emojiDeluxe),
+                subtitle: local.emojiDeluxeSubititle,
+                imageIcon: 'assets/icons/emojiHands/${model.currentEmoji}.png',
                 onPressed: model.changeSkinTone,
               ),
               MenuItemTile.flipSwitch(
-                text: Text("Show image previews"),
-                subtitle: "Image previews not displayed",
+                text: Text(local.showPreviews),
+                subtitle: local.showPreviewsSubtitle,
                 onChanged: model.toggleShowImagePreviews,
                 value: model.showImagePreviews,
               ),
               MenuItemTile.flipSwitch(
-                text: Text("Open web pages in app"),
-                subtitle: "Link will open in Zuri Chat",
+                text: Text(local.openWebPages),
+                subtitle: local.openWebPagesSubtitle,
                 value: model.openWebPagesInApp,
                 onChanged: model.toggleOpenWebPagesInApp,
               ),
               MenuItemTile.flipSwitch(
-                text: Text("Display typing indicators"),
-                subtitle: "Typing indicators will be displayed",
+                text: Text(local.typingIndicator),
+                subtitle: local.typingIndicatorSubtitle,
                 value: model.displayTypingIndicators,
                 onChanged: model.toggleDisplayTypingIndicators,
               ),
               MenuItemTile.flipSwitch(
-                text: Text("Allow animated image and emoji"),
-                subtitle: "Images and emoji can be animated",
+                text: Text(local.animateEmoji),
+                subtitle: local.animateEmojiSubtitle,
                 value: model.allowAnimatedImageAndEmoji,
                 onChanged: model.toggleAllowAnimatedImageAndEmoji,
               ),
               MenuItemTile.flipSwitch(
-                  text: Text("Optimize image uploads"),
-                  subtitle: "Images are optimized for upload performance",
+                  text: Text(local.optimiseImage),
+                  subtitle: local.optimiseImageSubtitle,
                   value: model.optimizeImageUploads,
                   onChanged: model.toggleOptimizeImageUploads),
               MenuItemTile(
                 text: Text(
-                  "Reset Cache",
-                  style: TextStyle(color: Colors.red),
+                  local.resetCache,
+                  style: const TextStyle(color: AppColors.redColor),
                 ),
               ),
+              const SizedBox(height: 10),
               MenuItemTile(
                 text: Text(
-                  "Force Stop",
-                  style: TextStyle(color: Colors.red),
+                  local.forceStop,
+                  style: const TextStyle(color: AppColors.redColor),
                 ),
-                subtitle: "Unsaved data may be lost",
+                subtitle: local.unsavedDataWarning,
               )
             ],
           ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class CustomHomePageSectionTitle extends StatelessWidget {
-  final title;
+  final String? title;
   final void Function()? ontap;
 
   const CustomHomePageSectionTitle({
@@ -19,8 +20,8 @@ class CustomHomePageSectionTitle extends StatelessWidget {
         GestureDetector(
           onTap: ontap,
           child: Text(
-            title,
-            style: AppTextStyles.normalText
+            "$title",
+            style: AppTextStyle.darkGreySize12,
           ),
         ),
       ],

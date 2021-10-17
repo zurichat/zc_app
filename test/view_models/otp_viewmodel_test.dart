@@ -1,0 +1,27 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/ui/view/otp/otp_viewmodel.dart';
+import 'package:mockito/mockito.dart';
+
+import '../helpers/test_helpers.dart';
+
+void main() {
+  group('OTP viewmodel -', () {
+    setUp(() => registerServices());
+    tearDown(() => unregisterServices());
+    group('initialize -', () {
+      test('when called navigate to login view', () {
+        final service = getAndRegisterNavigationServiceMock();
+        final model = OTPViewModel();
+        model.navigateLogin;
+        verify(service.navigateTo(Routes.loginView));
+      });
+
+      test('when called, loading indicator is disabled', () {
+        final model = OTPViewModel();
+        var load = model.isLoading;
+        expect(load, false);
+      });
+    });
+  });
+}

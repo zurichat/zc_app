@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/view/password_recovery/recovery_viewmodel.dart';
+import 'package:zurichat/general_widgets/custom_textfield.dart';
+import 'package:zurichat/ui/view/password_recovery/recovery_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class NewPassView extends StatelessWidget {
@@ -15,20 +15,20 @@ class NewPassView extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Image.asset('assets/zuri_chat_logo.png'),
-                SizedBox(height: 20),
-                Text(
+                const SizedBox(height: 20),
+                const Text(
                   'Forgot Password',
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                     'Your new password must be different from\n'
                     'previously used password',
                     textAlign: TextAlign.center,
@@ -45,8 +45,8 @@ class NewPassView extends StatelessWidget {
                     hintText: 'Enter Password',
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
+                const Padding(
+                  padding: EdgeInsets.all(15.0),
                   child: CustomTextField(
                     keyboardType: TextInputType.visiblePassword,
                     inputAction: TextInputAction.done,
@@ -56,19 +56,21 @@ class NewPassView extends StatelessWidget {
                     hintText: 'Re-enter Password',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text('Continue'),
+                  child: const Text('Continue'),
                   style: ElevatedButton.styleFrom(
-                      primary: Color(0xff00B87C),
-                      onPrimary: Colors.white,
-                      padding: const EdgeInsets.all(8.0),
-                      minimumSize: Size(340.0, 48.0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4))),
+                    primary: const Color(0xff00B87C),
+                    onPrimary: Colors.white,
+                    padding: const EdgeInsets.all(8.0),
+                    minimumSize: const Size(340.0, 48.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
                 )
               ],
             ),

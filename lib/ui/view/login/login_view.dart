@@ -1,75 +1,105 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/ui_helpers.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import '../../../general_widgets/custom_textfield.dart';
 import '../../shared/colors.dart';
 import '../../shared/long_button.dart';
-import '../../shared/styles.dart';
+
+import 'login_view.form.dart';
 import 'login_viewmodel.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({Key? key}) : super(key: key);
-
+//stacked forms handling
+@FormView(
+  fields: [
+    FormTextField(name: 'email'),
+    FormTextField(name: 'password'),
+  ],
+)
+class LoginView extends StatelessWidget with $LoginView {
+  LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<LoginViewModel>.reactive(
+      //listenToFormUpdated automatically
+      //syncs text from TextFields to the viewmodel
+      onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => LoginViewModel(),
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
         color: AppColors.whiteColor,
-        progressIndicator: CircularProgressIndicator(
-          color: AppColors.zuriPrimaryColor,
-        ),
+        progressIndicator: const ZuriLoader(),
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppColors.whiteColor,
           body: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 0),
+              padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(
-                    height: 57.0,
-                  ),
+                  UIHelper.customVerticalSpace(57.0),
                   Container(
+                    height: 50,
                     alignment: Alignment.center,
-                    child: Image.asset('assets/logo/zuri_chat_logo.png'),
+                    child: Image.asset(ZuriLogo),
                   ),
-                  SizedBox(
-                    height: 24.23,
-                  ),
+                  UIHelper.customVerticalSpace(24.23),
                   Center(
                     child: Text(
-                      'Sign In',
-                      style: AppTextStyles.heading7,
+                      SignIn,
+                      style: _dark
+                          ? AppTextStyle.whiteSize20Bold
+                          : AppTextStyle.darkGreySize20Bold,
                     ),
                   ),
-                  const SizedBox(
-                    height: 32.0,
+                  UIHelper.verticalSpaceSmall,
+                  Text(
+                    local!.welcomeSignIn,
+                    textAlign: TextAlign.center,
+                    style: _dark
+                        ? AppTextStyle.whiteSize14
+                        : AppTextStyle.lightGreySize14,
                   ),
+                  UIHelper.customVerticalSpace(38.0),
+                  Text(
+                    local.emailAddress,
+                    style: _dark
+                        ? AppTextStyle.whiteSize16Bold
+                        : AppTextStyle.darkGreySize16Bold,
+                  ),
+                  UIHelper.customVerticalSpace(10.0),
                   CustomTextField(
                     keyboardType: TextInputType.emailAddress,
                     inputAction: TextInputAction.next,
-                    autoCorrect: true,
+                    autoCorrect: false,
                     obscureText: false,
-                    labelText: 'Email',
-                    hintText: 'Name@gmail.com',
-                    controller: model.email,
+                    hintText: EmailHintText,
+                    controller: emailController,
                   ),
-                  SizedBox(
-                    height: 24.0,
+                  UIHelper.verticalSpaceMedium,
+                  Text(
+                    local.password,
+                    style: _dark
+                        ? AppTextStyle.whiteSize16Bold
+                        : AppTextStyle.darkGreySize16Bold,
                   ),
+                  UIHelper.customVerticalSpace(10.0),
                   CustomTextField(
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.visiblePassword,
                     inputAction: TextInputAction.next,
-                    autoCorrect: true,
+                    autoCorrect: false,
                     obscureText: true,
-                    labelText: 'Password',
-                    hintText: 'Enter Password',
-                    controller: model.password,
+                    hintText: local.passwordHintText,
+                    controller: passwordController,
                   ),
                   Align(
                     alignment: Alignment.centerRight,
@@ -77,38 +107,44 @@ class LoginView extends StatelessWidget {
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all(EdgeInsets.zero),
                       ),
-                      onPressed: () => model.logInUser(context),
+                      onPressed: () {
+                        //Hides the keyboard for the failure
+                        //snackbar to be visible
+                        FocusScope.of(context).unfocus();
+                        model.navigateToForgotPasswordScreen();
+                      },
                       child: Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          color: AppColors.zuriPrimaryColor,
-                        ),
+                        local.forgotPassword,
+                        style: AppTextStyle.greenSize14,
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
+                  UIHelper.verticalSpaceLarge,
                   Center(
                     child: FractionallySizedBox(
                       widthFactor: 1.0,
                       child: LongButton(
                         onPressed: () async {
-                          await model.logInUser(context);
+                          await model.logInUser();
                         },
-                        label: 'Sign In',
+                        label: local.signIn,
                       ),
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Don\'t have an account?'),
+                      Text(
+                        local.dontHaveAccount,
+                        style: _dark
+                            ? AppTextStyle.whiteSize14
+                            : AppTextStyle.darkGreySize14,
+                      ),
                       TextButton(
                         onPressed: () => model.navigateToSignUpScreen(),
                         child: Text(
-                          'Register',
-                          style: TextStyle(color: AppColors.zuriPrimaryColor),
+                          local.signUp,
+                          style: AppTextStyle.greenSize14,
                         ),
                       )
                     ],

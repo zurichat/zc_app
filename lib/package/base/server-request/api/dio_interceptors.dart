@@ -1,29 +1,31 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
+import 'package:zurichat/app/app.logger.dart';
 
 class DioInterceptor implements Interceptor {
+  final log = getLogger("DioInterceptor");
+
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    log('ENDPOINT: ' + err.requestOptions.uri.toString());
-    log('STATUSCODE: ' + err.error.toString());
-    log('STATUSCODE: ' + (err.response?.data ?? err.message).toString());
+    log.i('ENDPOINT: ' + err.requestOptions.uri.toString());
+    log.i('STATUSCODE: ' + err.error.toString());
+    log.i('MESSAGE: ' + (err.response?.data ?? err.message).toString());
     handler.next(err);
   }
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    log('METHOD: ' + options.method);
-    log('ENDPOINT: ' + options.uri.toString());
-    log('DATA: ' + (options.data ?? options.queryParameters).toString());
+    log.i('METHOD: ' + options.method);
+    log.i('ENDPOINT: ' + options.uri.toString());
+    //log.i('HEADERS: ' + options.headers.toString());
+    log.i('DATA: ' + (options.data ?? options.queryParameters).toString());
     handler.next(options);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    log('ENDPOINT: ' + response.requestOptions.uri.toString());
-    log('STATUSCODE: ' + response.statusCode.toString());
-    print('DATA: ' + response.data.toString());
+    log.i('ENDPOINT: ' + response.requestOptions.uri.toString());
+    log.i('STATUSCODE: ' + response.statusCode.toString());
+    log.i('DATA: ' + response.data.toString());
     handler.next(response);
   }
 }

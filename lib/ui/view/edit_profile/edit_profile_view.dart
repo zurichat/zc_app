@@ -1,102 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/models/user_model.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+
 import 'package:stacked/stacked.dart';
 
 import 'edit_profile_viewmodel.dart';
+import 'widget/edit_profile_body.dart';
 
 class EditProfileView extends StatelessWidget {
-  const EditProfileView({Key? key}) : super(key: key);
+  final UserModel user;
+  const EditProfileView({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     Size _size = MediaQuery.of(context).size;
     return ViewModelBuilder<EditProfileViewModel>.reactive(
-      builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          leading: IconButton(
-              onPressed: model.exitPage, icon: Icon(Icons.close_rounded)),
-          title: Text("Edit Profile"),
+      viewModelBuilder: () => EditProfileViewModel(),
+      onModelReady: (model) => model.onInit(user),
+      builder: (context, viewModel, child) => Scaffold(
+        appBar: ZuriAppBar(
+          leading: Icons.close_rounded,
+          leadingPress: () => viewModel.close(),
+          orgTitle: Text(
+            local!.editProfileButton,
+            style: AppTextStyle.darkGreySize18Bold.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
+          ),
           actions: [
             TextButton(
-              onPressed: () {},
+              onPressed: viewModel.onSave,
               child: Text(
-                "Save",
-                style: TextStyle(color: AppColors.zuriTextBodyColor),
+                local.save,
+                style: AppTextStyle.greenSize16,
               ),
             )
           ],
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
         ),
-        body: Container(
-          padding: EdgeInsets.symmetric(
-              vertical: _size.height * 0.02, horizontal: _size.width * 0.05),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  height: _size.height * 0.14,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Container(
-                        width: _size.height * 0.14,
-                        height: double.maxFinite,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image:
-                                AssetImage("assets/background/appBarLogo.png"),
-                            fit: BoxFit.contain,
-                          ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          color: AppColors.greyishColor,
-                        ),
-                        child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.add_a_photo,
-                                size: _size.width * 0.06,
-                              )),
-                        ),
-                      ),
-                      Spacer(),
-                      Container(
-                        width: _size.width * 0.55,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            labelText: "Full Name",
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: "Display Name",
-                    helperText:
-                        "This is how your name will show up in Zuri Chat. It’s best kept simple: whatever people call you in everyday conversation.",
-                    helperMaxLines: 3,
-                  ),
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                      labelText: "What I do", helperText: "HNGi9 X I4G"),
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                      labelText: "Phone",
-                      helperText: "Enter your phone number"),
-                ),
-              ],
-            ),
-          ),
+        body: Visibility(
+          visible: !viewModel.isBusy,
+          child: Body(size: _size),
+          replacement: const ZuriLoader(),
         ),
       ),
-      viewModelBuilder: () => EditProfileViewModel(),
     );
   }
 }

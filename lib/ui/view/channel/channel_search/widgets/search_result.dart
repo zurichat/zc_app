@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:zurichat/constants/app_strings.dart';
 
 import '../../../../shared/shared.dart';
 import '../../channel_info/widgets/textstyles.dart';
@@ -22,8 +23,8 @@ class _SearchResultsState extends State<SearchResults> {
       child: Stack(
         children: [
           //online Dot
-          // ignore: avoid_unnecessary_containers
-          Container(
+
+          SizedBox(
             child: Positioned(
               top: 5,
               left: 36,
@@ -36,15 +37,15 @@ class _SearchResultsState extends State<SearchResults> {
           ),
 
           //user Image
-          // ignore: sized_box_for_whitespace
-          Container(
+
+          const SizedBox(
             height: 40,
             width: 40,
-            child: const Positioned(
+            child: Positioned(
               top: 19,
               left: 19,
               child: Image(
-                image: AssetImage('assets/images/user.png'),
+                image: AssetImage(UserImage),
               ),
             ),
           ),
@@ -56,7 +57,7 @@ class _SearchResultsState extends State<SearchResults> {
               ),
               child: ListTile(
                 title: Text(
-                  'Destiny',
+                  BlazeBrain,
                   style: nameStyle(),
                 ),
                 trailing: IconButton(

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import '../ui/shared/colors.dart';
+//import 'package:expandable_text/expandable_text.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -8,12 +11,12 @@ class CustomTextField extends StatelessWidget {
     required this.inputAction,
     required this.autoCorrect,
     required this.obscureText,
-    required this.labelText,
+    this.labelText,
     this.hintText,
   }) : super(key: key);
-  final keyboardType;
-  final inputAction;
-  final controller;
+  final TextInputType? keyboardType;
+  final TextInputAction? inputAction;
+  final TextEditingController? controller;
 
   final bool? autoCorrect;
   final bool? obscureText;
@@ -26,20 +29,21 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       textInputAction: inputAction,
-      // autofocus: ,
       autocorrect: autoCorrect!,
       obscureText: obscureText!,
+      cursorColor: AppColors.zuriPrimaryColor,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         labelText: labelText,
         hintText: hintText,
+        hintStyle: AppTextStyle.textFieldHint,
         border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          borderRadius: BorderRadius.all(Radius.circular(3.0)),
         ),
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
           borderSide: BorderSide(
-            color: Color(0xff1A61DB),
+            color: AppColors.zuriPrimaryColor,
           ),
         ),
       ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/menu_item_tile.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../general_widgets/menu_item_tile.dart';
 import 'language_and_region_viewmodel.dart';
 
 class LanguageAndRegionModelView extends StatelessWidget {
@@ -9,25 +12,35 @@ class LanguageAndRegionModelView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<LanguageAndRegionModelViewModel>.reactive(
+      onModelReady: (model) => model.initialise(),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          title: Text("Languages & Region"),
-          elevation: 0,
+        appBar: ZuriAppBar(
+          leading: Icons.close_rounded,
+          whiteBackground: true,
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          leadingPress: () => model.goBack(),
+          orgTitle: Text(
+            local!.langAndRegion,
+            style: AppTextStyle.darkGreySize20Bold.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
+          ),
         ),
         body: Column(
           children: [
             MenuItemTile(
-              text: Text("Language"),
+              text: Text(local.language),
               subtitle: model.currentLanguage,
-              onPressed: model.changeLanguage,
+              onPressed: () => model.changeLanguage(context),
             ),
-            MenuItemTile.flipSwitch(
-              text: Text("Set time zone automatically"),
-              subtitle: model.currentTimeZone,
-              value: model.automaticTimeZone,
-              onChanged: model.toggleAutomaticTimeZone,
-            )
+            // MenuItemTile.flipSwitch(
+            //   text: Text(local.setTimezone),
+            //   subtitle: model.currentTimeZone,
+            //   value: model.automaticTimeZone,
+            //   onChanged: model.toggleAutomaticTimeZone,
+            // )
           ],
         ),
       ),

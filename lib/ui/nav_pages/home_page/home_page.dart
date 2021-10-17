@@ -1,204 +1,160 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:zurichat/general_widgets/easy_container.dart';
+import 'package:zurichat/ui/nav_pages/home_page/home_page_viewmodel.dart';
+import 'package:zurichat/ui/nav_pages/home_page/widgets/home_expanded.dart';
+import 'package:zurichat/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../models/user_model.dart';
-import '../../../utilities/constants.dart';
-import '../../shared/colors.dart';
-import '../../shared/shared.dart';
-import '../dm_page/dm_search_find_page.dart';
-import 'home_page_viewmodel.dart';
-import 'widgets/custom_channel_list_tile.dart';
-import 'widgets/custom_dm_list_tile.dart';
-import 'widgets/custom_homepage_section_title.dart';
-import 'widgets/custom_plugin_list_tile.dart';
-import 'widgets/zuri_logo.dart';
+import 'widgets/home_list_items.dart';
 
 class HomePage extends StatelessWidget {
-  // final UserModel? userModel;
-
-  // const HomePage({Key? key, this.userModel}) : super(key: key);
-
+  final Widget? organizationLogo;
+  const HomePage({Key? key, this.organizationLogo}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<HomePageViewModel>.reactive(
+      onModelReady: (model) {
+        model.getDmAndChannelsList();
+        model.getNewChannelStream();
+        model.hasDrafts();
+        model.listenToNotificationTap();
+        model.getUserInfo();
+      },
       viewModelBuilder: () => HomePageViewModel(),
-      builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.zuriPrimaryColor,
-          automaticallyImplyLeading: false,
-          title: Row(
+      builder: (context, vmodel, child) => Scaffold(
+        appBar: ZuriAppBar(
+          leadingWidth: true,
+          isDarkMode: _dark,
+          orgTitle: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0, right: 5.0),
-                child: InkWell(
-                  child: ZuriLogo(),
-                  onTap: () {
-                    model.nToWorkspace();
-                  },
+              InkWell(
+                onTap: () => vmodel.navigateToOrganization(),
+                child: Container(
+                  height: 25,
+                  width: 25,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  clipBehavior: Clip.hardEdge,
+                  //TODO : Add the org image here
+                  child: vmodel.orgLogo != null && vmodel.orgLogo!.isNotEmpty
+                      ? CachedNetworkImage(
+                          imageUrl: vmodel.orgLogo!,
+                          fit: BoxFit.cover,
+                        )
+                      : const Image(
+                          image: appBarLogo,
+                          fit: BoxFit.cover,
+                          height: 25,
+                        ),
                 ),
+              ),
+              const SizedBox(width: 16),
+              Text(
+                vmodel.orgName,
+                style: AppTextStyle.organizationNameText,
               ),
             ],
           ),
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(top: 4, right: 12),
-              child: GestureDetector(
-                child: Icon(Icons.search, color: AppColors.whiteColor),
-                onTap: () {},
-              ),
-            ),
-          ],
         ),
         body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
-              child: Column(
-                children: [
-                  Container(
-                    height: 40,
-                    margin: const EdgeInsets.only(top: 10),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(7),
-                        hintText: 'Jump to...',
-                        hintStyle: AppTextStyles.normalText,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.borderColor),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.borderColor),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomPluginListTile(
-                    assetName: threadIcon,
-                    pluginName: 'Threads',
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomPluginListTile(
-                    assetName: draftIcon,
-                    pluginName: 'Drafts',
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomChannelListTile(
-                    channelName: 'chat-random',
-                    isActive: true,
-                    data: '22',
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomPluginListTile(
-                    assetName: lockIconShaded,
-                    pluginName: 'stage4',
-                    isActive: true,
-                    data: '3',
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomChannelListTile(
-                    channelName: 'games',
-                    isActive: true,
-                    data: '1',
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomPluginListTile(
-                    assetName: lockIconShaded,
-                    pluginName: 'dm_plus_entrepreneurs',
-                    isActive: true,
-                    data: '1',
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomPluginListTile(
-                    icon: Icons.file_copy,
-                    pluginName: 'Files',
-                  ),
-                  const SizedBox(height: 16),
-                  const SizedBox(height: 16),
-                  const CustomHomePageSectionTitle(
-                    title: 'Channels',
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomChannelListTile(
-                    channelName: 'announcement',
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomPluginListTile(
-                    assetName: lockIcon,
-                    pluginName: 'team-socrates',
-                    isActive: false,
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomChannelListTile(
-                    channelName: 'questions',
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomPluginListTile(
-                    icon: Icons.add_box_rounded,
-                    pluginName: 'Add channel',
-                    isActive: false,
-                  ),
-                  const SizedBox(height: 16),
-                  CustomHomePageSectionTitle(
-                    title: 'Direct Messages',
-                    ontap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => const DmScreen()));
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  InkWell(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.favorite,
-                              color: AppColors.zuriPrimaryColor,
-                              size: 16,
-                            ),
-                            const SizedBox(width: 8),
-                            Text('Zuri-chat', style: AppTextStyles.timestamp),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomDMListTile(
-                    userName: 'Princess (You)',
-                    imagelink: dummyUserImage,
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomDMListTile(
-                    userName: 'Tobi',
-                    imagelink: dummyUserImage,
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomDMListTile(
-                    userName: 'Victor',
-                    imagelink: dummyUserImage,
-                  ),
-                  const SizedBox(height: 16),
-                  const CustomDMListTile(
-                    userName: 'Fierce',
-                    imagelink: dummyUserImage,
-                  ),
-                  const SizedBox(height: 20),
-                ],
+          child: Column(
+            children: [
+              vmodel.isBusy
+                  ? LinearProgressIndicator(
+                      backgroundColor: Colors.grey[400],
+                      valueColor: AlwaysStoppedAnimation(_dark
+                          ? AppColors.darkThemePrimaryColor
+                          : AppColors.zuriPrimaryColor),
+                    )
+                  : Container(),
+              Expanded(
+                child: body(context, vmodel),
               ),
-            ),
+            ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(
-            Icons.open_in_new_outlined,
-            color: AppColors.whiteColor,
+        //TODO
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: vmodel.navigateToStartDMScreen,
+        //   child: IconButton(
+        //     onPressed: vmodel.navigateToStartDMScreen,
+        //     icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
+        //     color: AppColors.whiteColor,
+        //   ),
+        //   backgroundColor: AppColors.zuriPrimaryColor,
+        // ),
+      ),
+    );
+  }
+
+  Widget body(BuildContext context, HomePageViewModel vmodel) {
+    final local = AppLocalization.of(context);
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const SizedBox(height: 15),
+          searchBar(context, vmodel),
+          vmodel.hasThreads()
+              ? const Padding(
+                  padding: EdgeInsets.fromLTRB(zSideMargin, 10, zSideMargin, 3),
+                  child: ThreadTextAndIcon(),
+                )
+              : Container(),
+          vmodel.hasDrafts()
+              ? const Padding(
+                  padding: EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 3),
+                  child: DraftTextAndIcon())
+              : Container(),
+          const Divider(),
+          //TODO
+          // HomeExpandedList(
+          //   title: local!.unreads,
+          //   canExpand: false,
+          //   data: vmodel.unreads,
+          // ),
+          // const Divider(),
+          HomeExpandedList(
+            title: local!.channels,
+            data: vmodel.joinedChannels,
           ),
-          backgroundColor: AppColors.zuriPrimaryColor,
+          const Divider(),
+          HomeExpandedList(
+            title: local.directMessages,
+            data: vmodel.directMessages,
+          ),
+          const Divider(),
+        ],
+      ),
+    );
+  }
+
+  Widget searchBar(context, vmodel) {
+    final local = AppLocalization.of(context);
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
+      child: GestureDetector(
+        onTap: () => vmodel.onJumpToScreen(),
+        child: EasyContainer(
+          height: 50,
+          radius: 7,
+          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+          borderWidth: 1.5,
+          borderColor: Colors.grey[300],
+          child: Text(
+            local!.jumpTo,
+            style: AppTextStyle.darkGreySize14,
+          ),
         ),
       ),
     );

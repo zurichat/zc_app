@@ -1,85 +1,120 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 import 'channel_info_view_model.dart';
-import 'widgets/custom_app_bar.dart';
-import 'widgets/edit_button.dart';
-import 'widgets/fifth_section.dart';
 import 'widgets/first_section.dart';
-import 'widgets/fourth_section.dart';
 import 'widgets/second_section.dart';
-import 'widgets/sixth_section.dart';
-import 'widgets/textstyles.dart';
 import 'widgets/third_section.dart';
+import 'widgets/fourth_section.dart';
+import 'widgets/fifth_section.dart';
+import 'widgets/sixth_section.dart';
 
-class ChannelInfoView extends StatefulWidget {
-  const ChannelInfoView({Key? key}) : super(key: key);
+class ChannelInfoView extends StatelessWidget {
+  const ChannelInfoView(
+      {Key? key,
+      required this.numberOfMembers,
+      required this.channelMembers,
+      required this.channelDetail,
+      required this.channelName})
+      : super(key: key);
+  final int numberOfMembers;
+  final String channelName;
+  final List<ChannelMembermodel> channelMembers;
+  final ChannelModel channelDetail;
 
-  @override
-  _ChannelInfoViewState createState() => _ChannelInfoViewState();
-}
-
-class _ChannelInfoViewState extends State<ChannelInfoView> {
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: AppColors.deepBlackColor));
     return ViewModelBuilder<ChannelInfoViewModel>.reactive(
-      builder: (context, model, child) => Scaffold(
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(60), child: customAppBar()),
-        // ignore: avoid_unnecessary_containers
-        body: SafeArea(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const FirstSection(),
-
-                const EditButton(),
-
-                const SecondSection(),
-
-                Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 19),
-                    child: Text(
-                      'You wont\'t  recieve any messages from a muted channel',
-                      style: faintTextStyle(),
-                    )),
-//Third Section
-
-                const ThirdSection(),
-
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
-                  child: Text(
-                    'Bookmarks',
-                    style: faintTextStyle(),
+      fireOnModelReadyOnce: true,
+      onModelReady: (model) {
+        model.getChannelInfo();
+      },
+      disposeViewModel: false,
+      builder: (context, model, child) => ScreenUtilInit(
+          designSize: const Size(411, 823),
+          builder: () {
+            return Scaffold(
+              appBar: ZuriAppBar(
+                leading: Icons.clear,
+                leadingPress: () => model.navigateBack(),
+                //TODO
+                // actions: [
+                //   IconButton(
+                //     onPressed: () {},
+                //     icon: const Icon(Icons.star),
+                //     color: AppColors.zuriPrimaryColor,
+                //   ),
+                // ],
+                whiteBackground: true,
+                isDarkMode: Theme.of(context).brightness == Brightness.dark,
+                orgTitle: Text(
+                  local!.channelInfo,
+                  style: AppTextStyle.darkGreySize20Bold.copyWith(
+                    color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                 ),
-
-                const FourthSection(),
-                const FifthSection(),
-
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
-                  child: Text(
-                    'Advanced',
-                    style: faintTextStyle(),
+              ),
+              body: SafeArea(
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.fromLTRB(8.w, 16.h, 8.w, 0),
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FirstSection(
+                        model,
+                        channelName: channelName,
+                      ),
+                      SizedBox(height: 12.h),
+                      const SecondSection(),
+                      SizedBox(height: 8.h),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8.w),
+                        child: Text(
+                          MuteChannelWarning,
+                          style: AppTextStyle.lightGreySize14,
+                        ),
+                      ),
+                      ThirdSection(model, numberOfMembers, channelDetail,
+                          channelMembers),
+                      SizedBox(height: 16.h),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8.w),
+                        child: Text(local.bookmarks,
+                            style: AppTextStyle.lightGreySize14),
+                      ),
+                      SizedBox(height: 8.h),
+                      FourthSection(model),
+                      SizedBox(height: 16.h),
+                      const FifthSection(),
+                      SizedBox(height: 16.h),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8.w),
+                        child: Text(
+                          local.advanced,
+                          style: AppTextStyle.lightGreySize14,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      SixthSection(channelDetail),
+                      SizedBox(height: 12.h),
+                    ],
                   ),
                 ),
-
-                const SixthSection(),
-              ],
-            ),
-          ),
-        ),
-      ),
+              ),
+            );
+          }),
       viewModelBuilder: () => ChannelInfoViewModel(),
     );
   }

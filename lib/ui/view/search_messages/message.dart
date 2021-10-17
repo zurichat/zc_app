@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Message extends StatelessWidget {
-  Message({
+  const Message({
     Key? key,
   }) : super(key: key);
 
@@ -22,7 +22,7 @@ class Message extends StatelessWidget {
             color: Colors.white,
             child: Column(children: [
               Row(
-                children: [
+                children: const [
                   Text('#stage4-design',
                       style: TextStyle(
                           fontSize: 18,
@@ -46,9 +46,9 @@ class Message extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
-                          children: [
+                          children: const [
                             Padding(
-                              padding: const EdgeInsets.only(right: 10),
+                              padding: EdgeInsets.only(right: 10),
                               child: Text('Nate',
                                   style: TextStyle(
                                     color: Colors.black,
@@ -65,14 +65,18 @@ class Message extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               vertical:
                                   MediaQuery.of(context).size.height * 0.01),
-                          child: Text(
-                              'What\'s the update designers. The deadline is tomorrow, ensure you write the name of those who contributed.',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 16,
-                                  color: Colors.black)),
+                          child: const Text(
+                            '''What's the update designers. '''
+                            '''The deadline is tomorrow, ensure you'''
+                            ''' write the name of those who contributed.''',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: Colors.black,
+                            ),
+                          ),
                         ),
-                        Text('From a thread',
+                        const Text('From a thread',
                             style: TextStyle(color: Colors.black)),
                       ],
                     ),

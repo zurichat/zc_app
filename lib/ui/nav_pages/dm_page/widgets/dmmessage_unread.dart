@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../shared/shared.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/general_widgets/unread_count.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class DMMessageUnread extends StatelessWidget {
   const DMMessageUnread({
@@ -10,50 +11,48 @@ class DMMessageUnread extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
       child: Row(
         children: [
+          const SizedBox(width: 5),
           Container(
             height: 40,
             width: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3),
-              color: Color(0xff1A61DB),
-              image: DecorationImage(
+              color: const Color(0xff1A61DB),
+              image: const DecorationImage(
                 image: NetworkImage(
-                    'https://th.bing.com/th/id/OIP.QHG-JO3iI1u8VQjSkpO0HwHaLH?pid=ImgDet&rs=1'),
+                  DmUnreadAvatar,
+                ),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 15),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'OyinkaUA 4️⃣',
-                style: AppTextStyles.body1Bold,
+                style: AppTextStyle.darkGreySize16Bold,
               ),
-              SizedBox(height: 5),
-              Text(
-                'You: Have you been promoted?',
-                // style: AppTextStyles.normalText
-              ),
+              const SizedBox(height: 5),
+              Text('You: Have you been promoted?',
+                  style: AppTextStyle.lightGreySize14),
             ],
           ),
-          Spacer(),
+          const Spacer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+               Text(
                 '1m',
-                // style:
-                //     AppTextStyles.timestamp,
+                style: AppTextStyle.lightGreySize12,
               ),
-              SizedBox(height: 5),
-              AppTextStyles.unreadCount(3)
+              const SizedBox(height: 5),
+              const UnreadCount(count: 3),
             ],
           ),
         ],

@@ -1,32 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zurichat/constants/app_strings.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class CustomUser extends StatelessWidget {
   const CustomUser({Key? key, this.image, this.text}) : super(key: key);
-  final text;
-  final image;
+  final String? text;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
+    return SizedBox(
+      width: 48.w,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            height: 60,
-            width: 60,
-            // color: Color(0xFFC4C4C4),
+            height: 48.h,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                      image,
-                    ))),
+                borderRadius: BorderRadius.circular(8.r),
+                image: const DecorationImage(
+                    fit: BoxFit.cover, image: NetworkImage(DummyAvatar))),
           ),
           SizedBox(
-            height: 8,
+            height: 8.h,
           ),
-          Container(height: 17, child: Text(text))
+          SizedBox(
+              height: 32.h,
+              child: Text(
+                '$text',
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyle.darkGreySize12,
+              ))
         ],
       ),
     );

@@ -1,38 +1,57 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/utilities/enums.dart';
+// ignore_for_file: avoid_print
+
+import 'package:flutter/widgets.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/main.dart';
+import 'package:zurichat/services/localization_service.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/extensions/locale_extension.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../app/app.locator.dart';
+import '../../../app/app.logger.dart';
+import '../../../utilities/enums.dart';
+
 class LanguageAndRegionModelViewModel extends BaseViewModel {
+  final log = getLogger('LanguageAndRegionModelViewModel');
   final _dialogService = locator<DialogService>();
-  String? currentLanguage = "English (UK)";
-  String? currentTimeZone = "(UTC+01:00) West Central Africa";
+  final _localizationService = locator<LocalizationService>();
+  final _navigationService = locator<NavigationService>();
+  String? currentLanguage = '';
+  String? currentTimeZone = '(UTC+01:00) West Central Africa';
   bool automaticTimeZone = true;
-  int currentValue = 1;
+  int currentValue = 0;
+
+  goBack() => _navigationService.back();
+
+  void initialise() {
+    currentLanguage = _localizationService.appLocale?.getLanguageName();
+  }
 
   List languages = [
-    "Deutsch (Deutschland)",
-    "English (UK)",
-    "English (US)",
-    "Espanol (Espana)",
-    "Francais (France)",
-    "Italiano (Italy)",
-    "Portugues (Brazil)",
-    "陈摩托何",
-    "来 本 嗄",
+    EnglishUS,
+    DeutschDE,
+    ArabicSA,
+    Mandarin,
   ];
 
-  Future changeLanguage() async {
+  Future changeLanguage(BuildContext context) async {
+    List locales = supportedLocalesList as List;
+    currentValue = locales.indexOf(_localizationService.appLocale);
     final dialogResult = await _dialogService.showCustomDialog(
       variant: DialogType.selectLanguage,
-      data: {"languages": languages, "currentValue": currentValue},
+      data: {'languages': languages, 'currentValue': currentValue},
     );
 
     if (dialogResult != null && dialogResult.confirmed == true) {
       currentValue = dialogResult.data;
       currentLanguage = languages[currentValue];
+      Locale? selectedLocale = supportedLocalesList.elementAt(currentValue);
+      _localizationService.storeCurrentLocale(selectedLocale);
+      MyApp.setLocale(context, selectedLocale);
 
-      print(dialogResult.data);
+      log.i(dialogResult.data);
       notifyListeners();
     }
   }

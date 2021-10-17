@@ -4,9 +4,9 @@ import '../../../shared/shared.dart';
 
 // File List Tile
 class CustomFileListTile extends StatelessWidget {
-  final imagelink;
-  final fileName;
-  final subtitle;
+  final String? imagelink;
+  final String? fileName;
+  final String? subtitle;
   const CustomFileListTile({
     Key? key,
     this.imagelink,
@@ -17,9 +17,9 @@ class CustomFileListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.asset(imagelink),
+      leading: Image.asset("$imagelink"),
       title: Text(
-        fileName,
+        "$fileName",
         style: const TextStyle(
           fontWeight: FontWeight.w500,
           color: AppColors.blackColor,
@@ -27,7 +27,7 @@ class CustomFileListTile extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        subtitle,
+        "$subtitle",
         style: const TextStyle(
           fontWeight: FontWeight.w400,
           color: AppColors.greyColor,

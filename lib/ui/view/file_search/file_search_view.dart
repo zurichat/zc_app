@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
@@ -23,68 +26,81 @@ class _FileSearchViewState extends State<FileSearchView> {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<FileSearchViewModel>.reactive(
-        viewModelBuilder: () => FileSearchViewModel(),
-        builder: (context, viewModel, child) => SafeArea(
-              child: Scaffold(
-                backgroundColor: AppColors.whiteColor,
-                appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(100),
-                  child: AppBar(
-                    backgroundColor: AppColors.zuriPrimaryColor,
-                    automaticallyImplyLeading: false,
-                    title: const CustomSearchBar(
-                      searchFilter: 'designers',
-                    ),
-                    bottom: const PreferredSize(
-                      preferredSize: Size.fromHeight(49),
-                      child: CustomTabBar(tab1: 'Messages', tab2: 'Files'),
-                    ),
-                  ),
+      viewModelBuilder: () => FileSearchViewModel(),
+      builder: (context, viewModel, child) => SafeArea(
+        child: Scaffold(
+          backgroundColor: AppColors.whiteColor,
+          appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(100),
+            child: AppBar(
+              backgroundColor: AppColors.zuriPrimaryColor,
+              automaticallyImplyLeading: false,
+              title: CustomSearchBar(
+                searchFilter: local!.designers,
+              ),
+              bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(49),
+                child: CustomTabBar(
+                  tab1: local.messages,
+                  tab2: local.files,
                 ),
-                body: SingleChildScrollView(
-                  child: Column(
+              ),
+            ),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: 49,
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Row(
                     children: [
-                      // ignore: sized_box_for_whitespace
-                      Container(
-                        height: 49,
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                      Positioned(
+                        left: 12,
+                        child: Text(
+                          //TODO REMOVE HARDCODED DATA AND TRANSLATE
+                          FiftyResults,
+                          style: AppTextStyle.darkGreySize16,
+                        ),
+                      ),
+                      const Expanded(
+                        child: SizedBox(width: 1000),
+                      ),
+                      Positioned(
+                        right: 12,
                         child: Row(
                           children: [
-                            Positioned(
-                                left: 12,
-                                child: Text('50 Results',
-                                    style: AppTextStyles.normalGrey)),
-                            Expanded(child: SizedBox(width: 1000)),
-                            Positioned(
-                              right: 12,
-                              child: Row(
-                                children: [
-                                  Text('Newest',
-                                      style: AppTextStyles.normalGrey),
-                                  Image.asset('assets/images/arrows.png'),
-                                ],
-                              ),
+                            Text(
+                              local.newest,
+                              style: AppTextStyle.darkGreySize16,
                             ),
+                            Image.asset(Arrows),
                           ],
                         ),
                       ),
-                      _divider,
-                      const CustomFileListTile(
-                          imagelink: 'assets/images/file_image.png',
-                          fileName: 'image.png',
-                          subtitle: '550KB png'),
-                      _divider,
-                      const CustomFileListTile(
-                          imagelink: 'assets/images/file_image.png',
-                          fileName: 'image.png',
-                          subtitle: '550KB png'),
-                      _divider,
                     ],
                   ),
                 ),
-              ),
-            ));
+                _divider,
+                const CustomFileListTile(
+                    imagelink: FileLogo,
+                    fileName: ImageFileName,
+                    subtitle: ImageDetails),
+                _divider,
+                const CustomFileListTile(
+                  imagelink: FileLogo,
+                  fileName: ImageFileName,
+                  subtitle: ImageDetails,
+                ),
+                _divider,
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

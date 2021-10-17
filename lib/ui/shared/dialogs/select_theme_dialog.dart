@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class SelectThemeDialog extends StatefulWidget {
+import '../colors.dart';
+
+class SelectThemeDialog extends StatelessWidget {
   final DialogRequest request;
   final Function(DialogResponse) completer;
   const SelectThemeDialog(
@@ -11,68 +13,63 @@ class SelectThemeDialog extends StatefulWidget {
       : super(key: key);
 
   @override
-  _SelectThemeDialogState createState() => _SelectThemeDialogState();
-}
-
-class _SelectThemeDialogState extends State<SelectThemeDialog> {
-  @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    int? _currentThemeValue = widget.request.data["currentThemeValue"];
+    int? _currentThemeValue = request.data['currentThemeValue'];
 
     return StatefulBuilder(builder: (context, setState) {
-      return AlertDialog(
-        content: Container(
-          padding: EdgeInsets.symmetric(
-              horizontal: size.width * .02, vertical: size.height * .02),
-          color: Colors.white,
-          width: size.width * .9,
-          height: size.height * .4,
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child:
-                    CustomText(text: "Dark mode", fontWeight: FontWeight.bold),
-              ),
-              Flexible(
-                fit: FlexFit.loose,
-                child: ListView.builder(
-                  itemCount: widget.request.data["themes"].length,
-                  itemBuilder: (context, index) => Container(
-                    child: ListTile(
-                      title: CustomText(
-                          text: widget.request.data["themes"][index]),
-                      leading: Radio(
-                        activeColor: AppColors.zuriPrimaryColor,
-                        value: index,
-                        groupValue: _currentThemeValue,
-                        onChanged: (int? value) {
-                          setState(() {
-                            _currentThemeValue = value;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
+      return Dialog(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  DarkMode,
+                  style: Theme.of(context).brightness == Brightness.dark
+                      ? AppTextStyle.whiteSize16Bold
+                      : AppTextStyle.darkGreySize16Bold,
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  MaterialButton(
-                      onPressed: () =>
-                          widget.completer(DialogResponse(confirmed: false)),
-                      child: Text("CANCEL")),
-                  MaterialButton(
-                      onPressed: () => widget.completer(DialogResponse(
-                          data: _currentThemeValue, confirmed: true)),
-                      child: Text("SET")),
-                ],
-              )
-            ],
-          ),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: request.data['themes'].length,
+              itemBuilder: (context, index) => ListTile(
+                title: Text(
+                  request.data['themes'][index],
+                ),
+                leading: Radio(
+                  activeColor: AppColors.zuriPrimaryColor,
+                  value: index,
+                  groupValue: _currentThemeValue,
+                  onChanged: (int? value) {
+                    setState(() => _currentThemeValue = value);
+                  },
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                MaterialButton(
+                  onPressed: () => completer(
+                    DialogResponse(confirmed: false),
+                  ),
+                  child: const Text(Cancel),
+                ),
+                MaterialButton(
+                  onPressed: () => completer(
+                    DialogResponse(data: _currentThemeValue, confirmed: true),
+                  ),
+                  child: const Text(Apply),
+                ),
+                const SizedBox(height: 30),
+              ],
+            ),
+            const SizedBox(height: 20),
+          ],
         ),
       );
     });

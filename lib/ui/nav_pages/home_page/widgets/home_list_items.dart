@@ -1,0 +1,263 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import '../../../../app/app.router.dart';
+import '../../../../general_widgets/easy_container.dart';
+import '../../../../general_widgets/ripple.dart';
+import '../../../../general_widgets/svg_icon.dart';
+import '../../../shared/colors.dart';
+import '../../../shared/text_styles.dart';
+import '../home_item_model.dart';
+import '../home_page_viewmodel.dart';
+
+final navigationService = locator<NavigationService>();
+
+class ThreadTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+  const ThreadTextAndIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
+    return _TextAndIcon(
+      text: local!.threads,
+      unread: true,
+      onTap: () async {
+        // Navigate to threads screen
+        await navigationService.navigateTo(Routes.threadsView);
+        viewModel.draftChecker();
+      },
+      icon: SvgIcon(
+        svgIcon: SvgAssets.threads,
+        color: Theme.of(context).textTheme.bodyText1!.color,
+      ),
+    );
+  }
+}
+
+class DraftTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+  const DraftTextAndIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
+    return _TextAndIcon(
+      text: local!.draft,
+      unread: true,
+      onTap: () async {
+        await navigationService.navigateTo(Routes.draftView);
+        viewModel.draftChecker();
+      },
+      icon: SvgIcon(
+        svgIcon: SvgAssets.threads,
+        color: Theme.of(context).textTheme.bodyText1!.color,
+      ),
+    );
+  }
+}
+
+class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+  const AddChannelsTextAndIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
+    return _TextAndIcon(
+      text: local!.addChannel,
+      unread: false,
+      onTap: () => viewModel.navigateToCreateChannel(),
+      icon: SvgPicture.asset(
+        Add_Organization,
+        width: 24,
+        height: 24,
+      ),
+    );
+  }
+}
+
+class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+  const AddTeammatesTextAndIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
+    return _TextAndIcon(
+      text: local!.addTeammates,
+      unread: false,
+      onTap: () => viewModel.navigateInviteMembers(),
+      icon: SvgPicture.asset(
+        Add_Organization,
+        width: 24,
+        height: 24,
+      ),
+    );
+  }
+}
+
+///Specify the noTopPad as true for all the first child
+///
+//Expanded tile don't allow sizing so we have to decrease
+//the top pad of the first child to make it look visually ok
+class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+  final HomeItemModel data;
+  final bool? noTopPad;
+
+  const DMTextAndIcon({
+    Key? key,
+    required this.data,
+    this.noTopPad,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, viewModel) {
+    bool isUnread = false;
+    if (data.unreadCount != null && data.unreadCount != 0) {
+      isUnread = true;
+    }
+
+    return _TextAndIcon(
+      text: data.name ?? '',
+      unread: isUnread,
+      onTap: () {
+        //Navigate to dm screen
+        //Todo: pass the navigation Id
+        viewModel.navigateToDmUser();
+      },
+      icon: Container(
+        alignment: Alignment.centerLeft,
+        child: const EasyContainer(
+          height: 23,
+          width: 23,
+          radius: 3,
+          color: AppColors.paleGreen,
+        ),
+      ),
+    );
+  }
+}
+
+///Specify the noTopPad as true for all the first child
+///
+//Expanded tile don't allow sizing so we have to decrease
+//the top pad of the first child to make it look visually ok
+
+// ignore: must_be_immutable
+class ChannelTextAndIcon extends ViewModelWidget<HomePageViewModel> {
+  final HomeItemModel data;
+  final String? channelId;
+  final bool? noTopPad;
+  bool isUnread = false;
+
+  ChannelTextAndIcon({
+    Key? key,
+    required this.data,
+    this.noTopPad,
+    required this.channelId,
+  }) : super(key: key);
+
+  Widget prefixIcon() {
+    if (data.public) {
+      if (isUnread) {
+        return SvgIcon(
+          svgIcon: SvgAssets.hashTag,
+        );
+      }
+
+      return SvgIcon(
+        svgIcon: SvgAssets.hashTag,
+      );
+    }
+
+    if (isUnread) {
+      return SvgIcon(
+        svgIcon: SvgAssets.locked,
+      );
+    }
+
+    return SvgIcon(
+      svgIcon: SvgAssets.lockedOutline,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, viewModel) {
+    if (data.unreadCount != null && data.unreadCount != 0) {
+      isUnread = true;
+    }
+
+    return _TextAndIcon(
+      text: data.name ?? '',
+      unread: isUnread,
+      icon: prefixIcon(),
+      onTap: () => viewModel.navigateToChannelPage(
+          data.name, data.id, data.membersCount, data.public),
+    );
+  }
+}
+
+///Specify the noTopPad as true for all the first child
+///
+///Expanded tile don't allow sizing so we have to remove
+///the top pad of the first child to make it look visually ok
+///Shows text and Icon together in a Row
+class _TextAndIcon extends StatelessWidget {
+  final String text;
+  final bool unread;
+  final Widget icon;
+  final Function() onTap;
+  // final bool? noTopPad;
+
+  const _TextAndIcon({
+    Key? key,
+    required this.text,
+    required this.unread,
+    required this.icon,
+    // this.noTopPad,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    //Expanded tile don't allow sizing so we have to decrease
+    //the top pad of the first child to make it look visually ok
+    // double topPad = 14;
+    // if (noTopPad == true) {
+    //   topPad = 5;
+    // }
+
+    //Todo: make text thickness change based on the unreads and read
+    return Ripple(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 14, 0, 14),
+        child: Row(
+          children: [
+            Container(
+              width: 25,
+              alignment: Alignment.center,
+              child: icon,
+            ),
+            const SizedBox(
+              width: 12,
+            ),
+            Text(
+              text,
+              style: unread
+                  ? _dark
+                      ? AppTextStyle.whiteSize16Bold
+                      : AppTextStyle.darkGreySize16Bold
+                  : _dark
+                      ? AppTextStyle.whiteSize16
+                      : AppTextStyle.lightGreySize16,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

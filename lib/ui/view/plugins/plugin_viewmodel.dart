@@ -1,18 +1,16 @@
-import 'package:hng/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
 
 class PluginViewModel extends BaseViewModel {
+  final _navigationService = locator<NavigationService>();
   bool _editMode = false;
   bool _checked = false;
 
-  bool get editMode {
-    return _editMode;
-  }
+  bool get editMode => _editMode;
 
-  bool get checked {
-    return _checked;
-  }
+  bool get checked => _checked;
 
   void setMode(bool editMode) {
     _editMode = editMode;
@@ -24,19 +22,11 @@ class PluginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  nToAdd() {
-    NavigationService().navigateTo(Routes.addPluginView);
-  }
+  navigateToAdd() => _navigationService.navigateTo(Routes.addPluginView);
 
-  nToEdit() {
-    NavigationService().navigateTo(Routes.editPluginView);
-  }
+  navigateToEdit() => _navigationService.navigateTo(Routes.editPluginView);
 
-  nToPlugins() {
-    NavigationService().navigateTo(Routes.pluginView);
-  }
+  navigateToPlugins() => _navigationService.navigateTo(Routes.pluginView);
 
-  nToHome() {
-    NavigationService().navigateTo(Routes.navBarView);
-  }
+  navigateToHome() => _navigationService.navigateTo(Routes.navBarView);
 }

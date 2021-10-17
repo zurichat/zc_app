@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SendFeedbackDialog extends StatelessWidget {
@@ -26,12 +28,15 @@ class _SendFeedbackDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    TextEditingController controller = TextEditingController();
+    final local = AppLocalization.of(context);
+    final size = MediaQuery.of(context).size;
+    final controller = TextEditingController();
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * .05, vertical: size.height * .02),
-      color: Colors.white,
+      color: Theme.of(context).brightness == Brightness.dark
+          ? AppColors.darkThemePrimaryColor
+          : AppColors.whiteColor,
       width: size.width * .9,
       height: size.height * .3,
       child: Column(
@@ -39,35 +44,36 @@ class _SendFeedbackDialogContent extends StatelessWidget {
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              "Compose feedback",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              local!.composeFeedback,
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: double.infinity),
+            constraints: const BoxConstraints(maxWidth: double.infinity),
             child: TextField(
               controller: controller,
               decoration: InputDecoration(
-                  hintText: "e.g I found a bug in the Dm’s",
-                  helperText:
-                      "We will respond via email to feedback and questions."),
+                  hintText: local.feedbackHint,
+                  helperText: local.feedbackHelperText),
               minLines: 1,
               maxLines: 5,
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               MaterialButton(
                   onPressed: () => completer(DialogResponse(confirmed: false)),
-                  child: Text("CANCEL")),
+                  child: Text(local.cancel,
+                      style: const TextStyle(color: AppColors.paleGreen))),
               MaterialButton(
                   onPressed: () => completer(
                       DialogResponse(data: controller.text, confirmed: true)),
-                  child: Text("OK")),
+                  child: Text(local.ok,
+                      style: const TextStyle(color: AppColors.paleGreen))),
             ],
           )
         ],

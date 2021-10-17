@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/menu_item_tile.dart';
+import 'package:zurichat/general_widgets/menu_item_tile.dart';
+
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'notifications_viewmodel.dart';
@@ -9,68 +12,77 @@ class NotificationsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<NotificationsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          title: Text("Notification"),
-          elevation: 0,
+        appBar: ZuriAppBar(
+          leading: Icons.close_rounded,
+          leadingPress: () => model.goBack(),
+          orgTitle: Text(
+            local!.notifications,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
+          ),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          whiteBackground: true,
         ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MenuItemTile(
-                text: Text("On mobile, notify me about..."),
-                subtitle: "Direct messages, mentions & keywords",
+                text: Text(local.notifyAbout),
+                subtitle: local.notifyAboutSubtitle,
               ),
               MenuItemTile(
-                text: Text("Notify me on mobile..."),
-                subtitle: "As soon as I'm active",
+                text: Text(local.notifyOnMobile),
+                subtitle: local.notifyOnMobileSubtitle,
               ),
               MenuItemTile(
-                text: Text("Sound"),
-                subtitle: "Ding",
+                text: Text(local.sound),
+                subtitle: local.ding,
               ),
               MenuItemTile.flipSwitch(
-                text: Text("Vibrate"),
+                text: Text(local.vibrate),
                 value: model.vibrate,
                 onChanged: model.toggleVibrate,
               ),
               MenuItemTile.flipSwitch(
-                text: Text("Light"),
+                text: Text(local.light),
                 value: model.light,
                 onChanged: model.toggleLight,
               ),
               MenuItemTile(
-                text: Text("Troubleshoot notifications"),
+                text: Text(local.troubleShootNotifs),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Text(
-                  "General Settings",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  local.generalSettings,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               MenuItemTile(
-                text: Text("Notification Schedule"),
-                subtitle: "Everyday",
+                text: Text(local.notificationSchedule),
+                subtitle: local.everyday,
                 topBorder: false,
               ),
               MenuItemTile.flipSwitch(
-                text: Text("In-app notification"),
-                subtitle: "In-app notifications appear while the app is open",
+                text: Text(local.inAppNotify),
+                subtitle: local.inAppNotifySubtitle,
                 value: model.inAppNotification,
                 onChanged: model.toggleInAppNotification,
               ),
               MenuItemTile.flipSwitch(
-                text: Text("My Keyword"),
-                subtitle: "Get notified when people say...",
+                text: Text(local.myKeyword),
+                subtitle: local.myKeywordSubtitle,
                 value: model.notifyOnKeyword,
                 onChanged: model.toggleNotifyOnKeyword,
               ),
               MenuItemTile(
-                text: Text("Channel-specific notifications (0)"),
+                text: Text(local.channelSpecificNotify),
               ),
             ],
           ),

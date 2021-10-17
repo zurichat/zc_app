@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../shared/colors.dart';
+import '../../shared/search_bar.dart';
 import 'dm_page_viewmodel.dart';
-import 'widgets/dmmessage_read.dart';
 import 'widgets/dmmessage_unread.dart';
 
 class DmPage extends StatelessWidget {
@@ -13,89 +15,60 @@ class DmPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DmPageViewModel>.reactive(
+      onModelReady: (model) => model.initialise(),
       builder: (context, model, child) {
+        final local = AppLocalization.of(context);
+        final bool _dark = Theme.of(context).brightness == Brightness.dark;
         return Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            elevation: 0,
-            backgroundColor: AppColors.zuriPrimaryColor,
-            title: Text(
-              "Direct Messages",
-              style: GoogleFonts.lato(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 20,
-                  color: AppColors.whiteColor),
-            ),
-            centerTitle: false,
+          appBar: ZuriAppBar(
+            isDarkMode: _dark,
+            leadingWidth: true,
+            orgTitle: Text(local!.directMessages,
+                style: AppTextStyle.organizationNameText),
+            bottomNavBarScreen: true,
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(
-              Icons.add,
-              color: AppColors.whiteColor,
-            ),
-            backgroundColor: AppColors.zuriPrimaryColor,
-          ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Jump to...',
-                      hintStyle: GoogleFonts.lato(
-                        color: Colors.grey,
+          //TODO
+          // floatingActionButton: FloatingActionButton(
+          //   onPressed: () {
+          //     model.navigateToDmScreen();
+          //   },
+          //   child: IconButton(
+          //     onPressed: () {
+          //       model.navigateToDmScreen();
+          //     },
+          //     icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
+          //     color: AppColors.whiteColor,
+          //   ),
+          //   // backgroundColor: AppColors.zuriPrimaryColor,
+          // ),
+          body: model.isBusy
+              ? const ZuriLoader()
+              : !model.data!
+                  ? Center(
+                      child: Text(local.temporarilyUnavailable,
+                          style: _dark
+                              ? AppTextStyle.whiteSize18Bold
+                              : AppTextStyle.darkGreySize18Bold),
+                    )
+                  : SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 10),
+                            JumpToSearchBar(
+                                onTap: () => model.navigateToJumpToScreen(),
+                                left: 6,
+                                right: 6),
+                            const SizedBox(height: 30),
+                            GestureDetector(
+                              onTap: model.getActiveDMs,
+                              child: const DMMessageUnread(),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  DMMessageUnread(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageUnread(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageUnread(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageRead(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DMMessageUnread(),
-                  SizedBox(
-                    height: 30,
-                  ),
-                ],
-              ),
-            ),
-          ),
         );
       },
       viewModelBuilder: () => DmPageViewModel(),

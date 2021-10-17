@@ -1,3 +1,4 @@
+import 'package:zurichat/constants/app_strings.dart';
 import 'package:intl/intl.dart';
 
 import 'user.dart';
@@ -27,15 +28,15 @@ class Message {
     );
 
     if (timeToCheck == today) {
-      return 'Today';
+      return Today;
     } else if (timeToCheck == yesterday) {
-      return 'Yesterday';
+      return Yesterday;
     } else {
       return DateFormat.MMMd().format(time);
     }
   }
 
   static List<String> responses() {
-    return ['Hello...', 'Cool...', 'Nice...', 'Okay', 'Yeah', 'Nope'];
+    return [Hello, Cool, Nice, Okay, Yeah, Nope];
   }
 }

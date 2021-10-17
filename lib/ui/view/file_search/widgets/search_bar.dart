@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 import '../../../shared/shared.dart';
 
 // search bar
-final Image closeIcon = Image.asset('assets/images/close_search.png');
-final Image voiceSearch = Image.asset('assets/images/voice_search.png');
+final Image closeIcon = Image.asset(CloseSearch);
+final Image voiceSearch = Image.asset(VoiceSearch);
 
 class CustomSearchBar extends StatelessWidget {
-  final searchFilter;
+  final String? searchFilter;
   const CustomSearchBar({
     Key? key,
     this.searchFilter,
@@ -31,8 +33,8 @@ class CustomSearchBar extends StatelessWidget {
                 leading: closeIcon,
                 title: TextField(
                   decoration: InputDecoration(
-                    hintText: 'designers',
-                    hintStyle: AppTextStyles.unreadText,
+                    hintText: Designers,
+                    hintStyle: AppTextStyle.darkGreySize12,
                   ),
                 ),
                 trailing: voiceSearch),

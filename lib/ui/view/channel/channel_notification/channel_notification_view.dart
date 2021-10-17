@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'channel_notification_viewmodel.dart';
 
 class ChannelNotificationView extends StatelessWidget {
+  final String? channelName;
+  const ChannelNotificationView({Key? key, this.channelName}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<ChannelNotificationViewModel>.reactive(
       viewModelBuilder: () => ChannelNotificationViewModel(),
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
             appBar: ZuriAppBar(
-              60,
-              'Notifications',
-              subtitle: 'Settings for #teamsocrates',
-              icon: Icons.chevron_left,
+              title: local!.notifications,
+              subtitle: local.channelNotifSubtitle,
+              leading: Icons.chevron_left,
             ),
             body: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.all(16),
+                  margin: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: AppColors.whiteColor,
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: AppColors.shadowColor,
                         blurRadius: 5,
@@ -37,21 +42,21 @@ class ChannelNotificationView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       _buildOption(
-                        'Every new message',
-                        'new',
+                        local.everyNewMessage,
+                        local.newButton,
                         '${model.value}',
                         (val) => model.toggleOptions(val),
                         false,
                       ),
                       _buildOption(
-                        'Just @mentions',
-                        'mentions',
+                        local.justMentions,
+                        local.mentions,
                         '${model.value}',
                         (val) => model.toggleOptions(val),
                       ),
                       _buildOption(
-                        'Nothing',
-                        'none',
+                        local.nothing,
+                        local.none,
                         '${model.value}',
                         (val) => model.toggleOptions(val),
                       ),
@@ -59,11 +64,11 @@ class ChannelNotificationView extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 16),
+                  margin: const EdgeInsets.only(left: 16),
                   width: double.infinity,
                   child: Text(
-                    'This setting only applies to #teamsocrates channel.',
-                    style: AppTextStyles.body2Medium,
+                    "${local.channelNotifSettings} $channelName channel",
+                    style: AppTextStyle.lightGreySize14,
                   ),
                 )
               ],
@@ -80,7 +85,7 @@ class ChannelNotificationView extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: border
-            ? Border(top: BorderSide(width: 1, color: Colors.grey))
+            ? const Border(top: BorderSide(width: 1, color: Colors.grey))
             : null,
       ),
       child: RadioListTile(
@@ -89,89 +94,8 @@ class ChannelNotificationView extends StatelessWidget {
         onChanged: onChanged,
         title: Text(
           '$title',
-          style: AppTextStyles.body1Regular.copyWith(
-            color: AppColors.deepBlackColor,
-          ),
+          style: AppTextStyle.darkGreySize14,
         ),
-      ),
-    );
-  }
-}
-
-class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final double height;
-  final String title;
-  final String? subtitle;
-  final IconData? icon;
-  final VoidCallback? onIconTap;
-  final String? buttonText;
-  final VoidCallback? onButtanTap;
-
-  const ZuriAppBar(
-    this.height,
-    this.title, {
-    this.subtitle,
-    this.icon,
-    this.onIconTap,
-    this.buttonText,
-    this.onButtanTap,
-  });
-
-  @override
-  Size get preferredSize => Size.fromHeight(height);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.shadowColor,
-            blurRadius: 5,
-          )
-        ],
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              icon: Icon(this.icon, size: 25, color: AppColors.deepBlackColor),
-              onPressed: this.onIconTap,
-            ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '$title',
-                  style: AppTextStyles.heading6.copyWith(
-                    color: AppColors.deepBlackColor,
-                  ),
-                ),
-                SizedBox(height: 4),
-                if (this.subtitle != null)
-                  Text(
-                    '$subtitle',
-                    style: AppTextStyles.body1Regular,
-                  ),
-              ],
-            ),
-          ),
-          if (this.buttonText != null)
-            TextButton(
-              onPressed: onButtanTap,
-              child: Text(
-                '$buttonText',
-                style: AppTextStyles.heading5.copyWith(
-                  color: Colors.green,
-                ),
-              ),
-            ),
-        ],
       ),
     );
   }

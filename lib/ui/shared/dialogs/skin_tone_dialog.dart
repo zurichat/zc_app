@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SkinToneDialog extends StatelessWidget {
@@ -25,53 +27,61 @@ class _SkinToneDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * .05, vertical: size.height * .02),
-      color: Colors.white,
+      color: Theme.of(context).brightness == Brightness.dark
+          ? AppColors.darkThemePrimaryColor
+          : AppColors.whiteColor,
       width: size.width * .9,
       height: size.height * .3,
       child: Column(
         children: [
-          Align(
+          const Align(
             alignment: Alignment.topLeft,
             child: Text(
-              "Default skin tone",
+              DefSkinTone,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                onPressed: () => completer(DialogResponse(data: "1")),
-                icon: Image.asset('assets/icons/emojiHands/1.png'),
+                onPressed: () =>
+                    completer(DialogResponse(data: Emoji1DialogData)),
+                icon: Image.asset(Emoji1),
               ),
               IconButton(
-                  onPressed: () => completer(DialogResponse(data: "2")),
-                  icon: Image.asset('assets/icons/emojiHands/2.png')),
+                  onPressed: () =>
+                      completer(DialogResponse(data: Emoji2DialogData)),
+                  icon: Image.asset(Emoji2)),
               IconButton(
-                  onPressed: () => completer(DialogResponse(data: "3")),
-                  icon: Image.asset('assets/icons/emojiHands/3.png'))
+                  onPressed: () =>
+                      completer(DialogResponse(data: Emoji3DialogData)),
+                  icon: Image.asset(Emoji3))
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                  onPressed: () => completer(DialogResponse(data: "4")),
-                  icon: Image.asset('assets/icons/emojiHands/4.png')),
+                  onPressed: () =>
+                      completer(DialogResponse(data: Emoji4DialogData)),
+                  icon: Image.asset(Emoji4)),
               IconButton(
-                  onPressed: () => completer(DialogResponse(data: "5")),
-                  icon: Image.asset('assets/icons/emojiHands/5.png')),
+                  onPressed: () =>
+                      completer(DialogResponse(data: Emoji5DialogData)),
+                  icon: Image.asset(Emoji5)),
               IconButton(
-                  onPressed: () => completer(DialogResponse(data: "6")),
-                  icon: Image.asset('assets/icons/emojiHands/6.png'))
+                  onPressed: () =>
+                      completer(DialogResponse(data: Emoji6DialogData)),
+                  icon: Image.asset(Emoji6))
             ],
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

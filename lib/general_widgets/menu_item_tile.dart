@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import '../ui/shared/colors.dart';
 
 enum _TileType { normal, icon, flipSwitch }
 
 class MenuItemTile extends StatelessWidget {
-  MenuItemTile({
+  const MenuItemTile({
     this.onPressed,
+    this.iconColor,
+    this.ico,
     this.text,
     this.icon,
     this.imageIcon,
@@ -18,8 +21,10 @@ class MenuItemTile extends StatelessWidget {
   })  : _tileType = _TileType.normal,
         super(key: key);
 
-  MenuItemTile.icon({
+  const MenuItemTile.icon({
     this.onPressed,
+    this.ico,
+    this.iconColor,
     this.text,
     this.icon,
     this.imageIcon,
@@ -32,8 +37,10 @@ class MenuItemTile extends StatelessWidget {
   })  : _tileType = _TileType.icon,
         super(key: key);
 
-  MenuItemTile.flipSwitch({
+  const MenuItemTile.flipSwitch({
     this.onPressed,
+    this.iconColor,
+    this.ico,
     this.text,
     this.subtitle,
     this.icon,
@@ -47,7 +54,7 @@ class MenuItemTile extends StatelessWidget {
         super(key: key);
 
   final Text? text;
-  final IconData? icon;
+  final Widget? icon;
   final String? imageIcon;
   final void Function()? onPressed;
   final void Function(bool)? onChanged;
@@ -56,14 +63,17 @@ class MenuItemTile extends StatelessWidget {
   final bool bottomBorder;
   final bool topBorder;
   final bool value;
+  final Color? iconColor;
+  final IconData? ico;
 
-  selectIcon() {
-    if (icon == null && imageIcon == null) {
+  Widget? selectIcon() {
+    if (ico == null && icon == null && imageIcon == null) {
       return null;
     } else if (icon != null) {
-      return Icon(icon);
-    } else
+      return icon;
+    } else {
       return Image.asset('$imageIcon');
+    }
   }
 
   @override
@@ -73,6 +83,8 @@ class MenuItemTile extends StatelessWidget {
         return ListTile(
           title: text,
           subtitle: subtitle != null ? Text(subtitle ?? '') : null,
+          dense: true,
+          visualDensity: const VisualDensity(horizontal: 0.0, vertical: 0),
           onTap: onPressed,
           shape: Border(
             top: BorderSide(
@@ -86,7 +98,7 @@ class MenuItemTile extends StatelessWidget {
           ),
           leading: selectIcon(),
           horizontalTitleGap: 0,
-          contentPadding: icon != null ? EdgeInsets.all(1) : null,
+          contentPadding: icon != null ? const EdgeInsets.all(1) : null,
         );
 
       case _TileType.icon:
@@ -121,6 +133,7 @@ class MenuItemTile extends StatelessWidget {
               color: bottomBorder ? AppColors.greyishColor : Colors.transparent,
             ),
           ),
+          activeColor: AppColors.paleGreen,
           title: text,
           subtitle: subtitle != null ? Text(subtitle ?? '') : null,
         );

@@ -2,11 +2,14 @@ import 'dart:core';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
-import '../../shared/styles.dart';
+
 import 'onboarding_viewmodel.dart';
 
 class OnboardingView extends StatelessWidget {
@@ -14,66 +17,86 @@ class OnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    final List<Widget> pages = [
+      PageViewOnboarding(
+          title: local!.onboardingTitleOne,
+          subtitle: local.onboardingSubtitleOne,
+          image: OnboardingOne),
+      PageViewOnboarding(
+        title: local.onboardingTitleTwo,
+        subtitle: local.onboardingSubtitleTwo,
+        image: OnboardingTwo,
+      ),
+      PageViewOnboarding(
+        title: local.onboardingTitleThree,
+        subtitle: local.onboardingSubtitleThree,
+        image: OnboardingThree,
+      ),
+    ];
+
+    final Size _size = MediaQuery.of(context).size;
+
     return ViewModelBuilder<OnboardingViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
-          child: PageView.builder(
-            controller: model.controller,
-            itemBuilder: (context, index) {
-              return ListView(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      index < 2
-                          ? TextButton(
-                              onPressed: () => model.navigateToNext(),
-                              child: Text(
-                                "Skip",
-                                style: AppTextStyles.heading8.copyWith(
-                                    decoration: TextDecoration.underline,
-                                    fontSize: 18),
-                              ),
-                            )
-                          : SizedBox(height: 50),
-                    ],
+            child: Container(
+          padding: const EdgeInsets.only(top: 20, right: 25),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: model.currentIndex < 2
+                    ? TextButton(
+                        onPressed: model.navigateToNext,
+                        child: Text(
+                          local.skip,
+                          style: AppTextStyle.greenSize20Bold,
+                        ),
+                      )
+                    : Container(),
+              ),
+              const SizedBox(height: 20),
+              Expanded(
+                child: PageView.builder(
+                  controller: model.controller,
+                  onPageChanged: model.setCurrentIndex,
+                  itemCount: pages.length,
+                  itemBuilder: (context, idx) {
+                    return pages[idx];
+                  },
+                ),
+              ),
+              PageViewDotIndicator(
+                  currentItem: model.currentIndex,
+                  count: pages.length,
+                  unselectedColor: AppColors.lightGreen,
+                  selectedColor: AppColors.zuriPrimaryColor,
+                  size: const Size(12, 12),
+                  unselectedSize: const Size(8, 8),
+                  duration: const Duration(milliseconds: 200),
+                  margin: const EdgeInsets.symmetric(horizontal: 8)),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: MaterialButton(
+                  color: AppColors.zuriPrimaryColor,
+                  height: 50,
+                  minWidth: _size.width * 0.8,
+                  child: Text(
+                    model.currentIndex < 2 ? Next : GetStarted,
+                    style: AppTextStyle.whiteSize16,
                   ),
-                  pages[index],
-                  SizedBox(height: 20),
-                  PageViewDotIndicator(
-                      currentItem: index,
-                      count: pages.length,
-                      unselectedColor: AppColors.lightGreen,
-                      selectedColor: AppColors.zuriPrimaryColor,
-                      size: const Size(12, 12),
-                      unselectedSize: const Size(8, 8),
-                      duration: const Duration(milliseconds: 200),
-                      margin: const EdgeInsets.symmetric(horizontal: 8)),
-                  SizedBox(height: 70),
-                  InkWell(
-                    onTap: index < 2
-                        ? () => model.animateToPage(index)
-                        : () => model.navigateToNext(),
-                    child: Container(
-                      height: 50,
-                      alignment: Alignment.center,
-                      margin: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Text(index < 2 ? 'Next' : 'Get Started',
-                          style: AppTextStyles.buttonText),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: AppColors.zuriPrimaryColor,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 50),
-                ],
-              );
-            },
-            itemCount: pages.length,
+                  onPressed: model.currentIndex < 2
+                      ? () => model.animateToPage(model.currentIndex)
+                      : () => model.navigateToNext(),
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
           ),
-        ),
+        )),
       ),
       viewModelBuilder: () => OnboardingViewModel(),
     );
@@ -97,46 +120,27 @@ class PageViewOnboarding extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
+          SizedBox(
             height: theme.height * .45,
             width: theme.width * .85,
             child: Image.asset(image!, fit: BoxFit.fill),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Text(
             title!,
             textAlign: TextAlign.center,
-            style: AppTextStyles.heading7,
+            style: AppTextStyle.darkGreySize20Bold,
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             subtitle!,
             textAlign: TextAlign.center,
-            style: AppTextStyles.body1Regular,
+            style: AppTextStyle.lightGreySize16,
           ),
         ],
       ),
     );
   }
 }
-
-final List<Widget> pages = [
-  PageViewOnboarding(
-      title: 'Perfect Collaboration App For Teams',
-      subtitle: '''Chat with other team members'''
-          ''' without any distractions from the world''',
-      image: 'assets/images/onboarding_screen_0.png'),
-  PageViewOnboarding(
-    title: 'Music Room',
-    subtitle: '''Now you can listen to your favourite'''
-        ''' tracks right in the App''',
-    image: 'assets/images/onboarding_screen_1.png',
-  ),
-  PageViewOnboarding(
-    title: 'Chess Room',
-    subtitle: '''Chat with other team members without'''
-        ''' any distractions from the world''',
-    image: 'assets/images/onboarding_screen_2.png',
-  ),
-];
