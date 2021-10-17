@@ -52,7 +52,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                   const SizedBox(
                     height: 24.0,
                   ),
-                  const Center(
+                  Center(
                     child: Text(
                       local!.forgotPassword,
                       style: const TextStyle(
@@ -64,7 +64,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                   const SizedBox(
                     height: 6.0,
                   ),
-                  const Center(
+                  Center(
                     child: Text(
                       local.enterOTP,
                     ),

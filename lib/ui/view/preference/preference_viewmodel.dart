@@ -9,10 +9,6 @@ import '../../../app/app.logger.dart';
 import '../../../app/app.router.dart';
 import '../../../utilities/enums.dart';
 
-import '../../../app/app.locator.dart';
-import '../../../app/app.logger.dart';
-import '../../../app/app.router.dart';
-import '../../../utilities/enums.dart';
 
 class PreferenceViewModel extends BaseViewModel {
   final log = getLogger('PreferenceViewModel');

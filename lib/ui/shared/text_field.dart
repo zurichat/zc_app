@@ -53,7 +53,7 @@ class BorderTextField extends StatelessWidget {
         ),
         contentPadding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
       ),
-      borderRadius: BorderRadius.circular(4),
+      // borderRadius: BorderRadius.circular(4),
     );
   }
 

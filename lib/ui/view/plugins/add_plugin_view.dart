@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/app/app.logger.dart';
 import 'package:stacked/stacked.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/widgets/custom_appbar.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/widgets/custom_plugin_list_tile.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/widgets/custom_search_field.dart';
+import '../../../app/app.logger.dart';
+
 
 import 'plugin_viewmodel.dart';
-import 'widgets/custom_appbar.dart';
-import 'widgets/custom_plugin_list_tile.dart';
-import 'widgets/custom_search_field.dart';
 
 class AddPluginView extends StatelessWidget {
   final log = getLogger('AddPluginView');
@@ -22,7 +23,7 @@ class AddPluginView extends StatelessWidget {
           appBar: CustomAppBars(
             appbarTitle: 'Add Plugin',
             appbarAction: 'Add',
-            model: model,
+            model: model.navigateToPlugins(),
           ),
           body: SingleChildScrollView(
               child: Padding(

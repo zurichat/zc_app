@@ -47,7 +47,7 @@ class ProfilePageHead extends StatelessWidget {
                   ),
                 ),
               ),
-              const Align(
+              Align(
                 alignment: Alignment.topRight,
                 child: Icon(
                   Icons.circle,

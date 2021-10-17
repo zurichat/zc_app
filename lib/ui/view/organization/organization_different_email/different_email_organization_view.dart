@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/enums.dart';
 
 import '../../../shared/shared.dart';
 import '../../../shared/text_field.dart';
 import 'different_email_organization_viewmodel.dart';
 
 class UseDifferentEmailView extends StatelessWidget {
-  const UseDifferentEmailView({Key? key}) : super(key: key);
+   final OrganizationSwitchMethod method;
+  const UseDifferentEmailView({Key? key, required this.method}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +65,7 @@ class UseDifferentEmailView extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             Next,
-                            style: AppTextStyles.buttonText,
+                            style: AppTextStyle.longButtonStyle,
                           ),
                         ),
                       )
