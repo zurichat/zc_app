@@ -273,5 +273,19 @@
     "channel_intro_text": "This is the very beginning of the ",
     "channel": "channel",
     "today": "today",
-    "search_all": "Search messages, files and users"
+    "search_all": "Search messages and files",
+    "browse_people": "Browse people",
+    "browse_channels": "Browse channels",
+    "recent_searches": "Recent searches",
+    "narrow_your_search": "Narrow your search",
+    "in": "in:",
+    "in_example": "e.g. #project-unicorn",
+    "from": "from:",
+    "from_example": "e.g. Mark Essien",
+    "is": "is:",
+    "is_example": "e.g. saved",
+    "after": "after:",
+    "after_example": "e.g. 2021-10-16",
+    "to": "to:",
+    "to_example": "e.g. me"
 }

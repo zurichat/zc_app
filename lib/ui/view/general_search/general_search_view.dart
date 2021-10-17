@@ -1,9 +1,14 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 import 'package:zurichat/ui/shared/zuri_appbar.dart';
-// import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked/stacked.dart';
 import 'general_search_view.form.dart';
@@ -13,20 +18,245 @@ import 'general_search_viewmodel.dart';
 class GeneralSearchView extends StatelessWidget with $GeneralSearchView {
   GeneralSearchView({Key? key}) : super(key: key);
 
+  String get needle => searchController.text.trim();
+
   @override
   Widget build(BuildContext context) {
-    // final local = AppLocalization.of(context);
+    final locale = AppLocalization.of(context)!;
     return ViewModelBuilder<GeneralSearchViewModel>.reactive(
-      onModelReady: (model) => model,
+      onModelReady: (model) => model.init(),
       viewModelBuilder: () => GeneralSearchViewModel(),
       initialiseSpecialViewModelsOnce: true,
-      disposeViewModel: false,
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-          searchController: searchController,
           isSearchBar: true,
+          hintText: locale.searchAll,
+          focusNode: searchFocusNode,
+          onTap: model.notifyListeners,
+          onChanged: (value) => model.notifyListeners(),
+          onEditingComplete: () {
+            FocusScope.of(context).unfocus();
+            model.search(needle);
+          },
+          searchController: searchController,
+          prefixIcon: needle.isEmpty
+              ? const Icon(Icons.search,
+                  color: AppColors.whiteColor, size: 20.0)
+              : IconButton(
+                  onPressed: () {
+                    FocusScope.of(context).unfocus();
+                    model.isShowingResults = false;
+                    searchController.clear();
+                    model.notifyListeners();
+                  },
+                  icon: const Icon(Icons.arrow_back_ios,
+                      color: AppColors.whiteColor, size: 16.0)),
         ),
-        body: Container(),
+        body: WillPopScope(
+          onWillPop: () async {
+            if (model.isShowingResults) {
+              model.isShowingResults = false;
+              searchController.clear();
+              model.notifyListeners();
+              return false;
+            }
+
+            return true;
+          },
+          child: model.isShowingResults
+              ? Center(child: Text(needle, style: AppTextStyle.darkGreySize16))
+              : SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 24.0),
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (!searchFocusNode.hasFocus) ...[
+                        ListTile(
+                          onTap: model.navigateToPeopleBrowser,
+                          horizontalTitleGap: 0.0,
+                          leading: const Icon(
+                            Icons.people_outline,
+                            color: AppColors.zuriDarkGrey,
+                            size: 20.0,
+                          ),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 12.0),
+                          title: Text(locale.browsePeople,
+                              style: AppTextStyle.darkGreySize16),
+                          dense: true,
+                        ),
+                        ListTile(
+                          onTap: model.navigateToChannelBrowser,
+                          horizontalTitleGap: 0.0,
+                          leading: const Icon(
+                            Icons.tag,
+                            color: AppColors.zuriDarkGrey,
+                            size: 20.0,
+                          ),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 12.0),
+                          title: Text(locale.browseChannels,
+                              style: AppTextStyle.darkGreySize16),
+                          dense: true,
+                        ),
+                      ],
+                      if (model.recentSearches.isNotEmpty) ...[
+                        const SizedBox(height: 8.0),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 12.0),
+                          child: Text(locale.recentSearches,
+                              style: AppTextStyle.darkGreySize14Bold),
+                        ),
+                        const SizedBox(height: 8.0),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: min(model.recentSearches.length, 5),
+                          itemBuilder: (context, index) {
+                            final recentSearch = model.recentSearches[
+                                model.recentSearches.length - index - 1];
+                            return ListTile(
+                              horizontalTitleGap: 0.0,
+                              leading: const Icon(
+                                Icons.access_time_outlined,
+                                color: AppColors.zuriDarkGrey,
+                                size: 20.0,
+                              ),
+                              contentPadding: const EdgeInsets.only(left: 12.0),
+                              trailing: IconButton(
+                                  padding: EdgeInsets.zero,
+                                  onPressed: () =>
+                                      model.removeRecent(recentSearch),
+                                  icon: const Icon(
+                                    Icons.close,
+                                    color: AppColors.zuriDarkGrey,
+                                    size: 20.0,
+                                  )),
+                              title: Text(recentSearch,
+                                  style: AppTextStyle.darkGreySize16),
+                              onTap: () {
+                                searchController.text = recentSearch;
+                                FocusScope.of(context).unfocus();
+                                model.notifyListeners();
+                                model.search(needle);
+                              },
+                              dense: true,
+                            );
+                          },
+                        ),
+                      ],
+                      const SizedBox(height: 8.0),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12.0),
+                        child: Text(locale.narrowYourSearch,
+                            style: AppTextStyle.darkGreySize14Bold),
+                      ),
+                      const SizedBox(height: 8.0),
+                      ListTile(
+                        horizontalTitleGap: 0.0,
+                        leading: const Icon(
+                          Icons.add_box_outlined,
+                          color: AppColors.zuriDarkGrey,
+                          size: 20.0,
+                        ),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 12.0),
+                        trailing: Text(locale.inExample,
+                            style: AppTextStyle.darkGreySize16),
+                        title: Text(locale.in_,
+                            style: AppTextStyle.darkGreySize16),
+                        onTap: () {
+                          searchController.text = "${locale.in_}#";
+                          searchFocusNode.requestFocus();
+                          model.notifyListeners();
+                        },
+                        dense: true,
+                      ),
+                      ListTile(
+                        horizontalTitleGap: 0.0,
+                        leading: const Icon(
+                          Icons.add_box_outlined,
+                          color: AppColors.zuriDarkGrey,
+                          size: 20.0,
+                        ),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 12.0),
+                        trailing: Text(locale.fromExample,
+                            style: AppTextStyle.darkGreySize16),
+                        title: Text(locale.from_,
+                            style: AppTextStyle.darkGreySize16),
+                        onTap: () {
+                          searchController.text = "${locale.from_}@";
+                          searchFocusNode.requestFocus();
+                          model.notifyListeners();
+                        },
+                        dense: true,
+                      ),
+                      ListTile(
+                        horizontalTitleGap: 0.0,
+                        leading: const Icon(
+                          Icons.add_box_outlined,
+                          color: AppColors.zuriDarkGrey,
+                          size: 20.0,
+                        ),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 12.0),
+                        trailing: Text(locale.isExample,
+                            style: AppTextStyle.darkGreySize16),
+                        title: Text(locale.is_,
+                            style: AppTextStyle.darkGreySize16),
+                        onTap: () {
+                          searchController.text = "${locale.is_}";
+                          searchFocusNode.requestFocus();
+                          model.notifyListeners();
+                        },
+                        dense: true,
+                      ),
+                      ListTile(
+                        horizontalTitleGap: 0.0,
+                        leading: const Icon(
+                          Icons.add_box_outlined,
+                          color: AppColors.zuriDarkGrey,
+                          size: 20.0,
+                        ),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 12.0),
+                        trailing: Text(locale.afterExample,
+                            style: AppTextStyle.darkGreySize16),
+                        title: Text(locale.after_,
+                            style: AppTextStyle.darkGreySize16),
+                        onTap: () {
+                          searchController.text = "${locale.after_}";
+                          searchFocusNode.requestFocus();
+                          model.notifyListeners();
+                        },
+                        dense: true,
+                      ),
+                      ListTile(
+                        horizontalTitleGap: 0.0,
+                        leading: const Icon(
+                          Icons.add_box_outlined,
+                          color: AppColors.zuriDarkGrey,
+                          size: 20.0,
+                        ),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 12.0),
+                        trailing: Text(locale.toExample,
+                            style: AppTextStyle.darkGreySize16),
+                        title: Text(locale.to_,
+                            style: AppTextStyle.darkGreySize16),
+                        onTap: () {
+                          searchController.text = "${locale.to_}";
+                          searchFocusNode.requestFocus();
+                          model.notifyListeners();
+                        },
+                        dense: true,
+                      ),
+                    ],
+                  ),
+                ),
+        ),
       ),
     );
   }

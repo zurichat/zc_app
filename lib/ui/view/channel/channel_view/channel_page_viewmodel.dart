@@ -161,6 +161,7 @@ class ChannelPageViewModel extends FormViewModel {
   }
 
   void initialise(String channelId) async {
+    storage.setString(StorageKeys.currentChannelId, channelId);
     channelID = channelId;
     //TODO
     // await joinChannel(channelId);
@@ -183,15 +184,14 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  Future<bool> changePinnedState(UserPost? userPost) =>
-      _channelsApiService.changeChannelMessagePinnedState(userPost!.channelId,
+  Future<bool> changePinnedState(UserPost userPost) =>
+      _channelsApiService.changeChannelMessagePinnedState(userPost.channelId,
           userPost.id!, userPost.userId!, !userPost.pinned);
 
   Future joinChannel(String channelId) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
     String? orgId = storage.getString(StorageKeys.currentOrgId);
     String? token = storage.getString(StorageKeys.currentSessionToken);
-    storage.setString(StorageKeys.currentChannelId, channelId);
     // await _channelsApiService.joinChannel(channelId);
     try {
       final res = await _api

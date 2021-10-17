@@ -99,7 +99,7 @@ class HomePageViewModel extends StreamViewModel {
 
   void navigateToGeneralSearchScreen() {
     navigation.navigateWithTransition(GeneralSearchView(),
-        transition: NavigationTransition.DownToUp);
+        transition: NavigationTransition.Fade);
   }
 
   @override

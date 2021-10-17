@@ -25,6 +25,9 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
   bool isSearchBar;
   final String? subtitle;
   final List<Widget>? actions;
+  final FocusNode? focusNode;
+  final Widget? prefixIcon;
+  final Function()? onTap;
 
   ZuriAppBar({
     this.leading,
@@ -45,6 +48,9 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onChanged,
     this.orgTitle,
     this.onEditingComplete,
+    this.prefixIcon,
+    this.focusNode,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -66,30 +72,38 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
               onTap: leadingPress),
       title: isSearchBar
           ? Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-              height: 50,
-              alignment: Alignment.center,
+              margin: const EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 0.0),
+              height: 40.0,
+              alignment: Alignment.centerLeft,
               child: TextField(
-                autofocus: false,
                 controller: searchController,
                 keyboardType: TextInputType.text,
                 onChanged: onChanged,
                 style: AppTextStyle.whiteSize16,
                 onEditingComplete: onEditingComplete,
+                textInputAction: TextInputAction.search,
                 decoration: InputDecoration(
-                    hintStyle: AppTextStyle.whiteSize16,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4),
-                        borderSide: BorderSide.none),
-                    prefixIcon: IconButton(
-                      icon: Icon(searchBarIcon, color: AppColors.whiteColor),
-                      onPressed: leadingPress,
-                    ),
-                    hintText: hintText,
-                    filled: true,
-                    fillColor: AppColors.appBarGreen),
+                  hintStyle: AppTextStyle.whiteSize16,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4.0),
+                      borderSide: BorderSide.none),
+                  prefixIcon: searchBarIcon != null
+                      ? IconButton(
+                          icon:
+                              Icon(searchBarIcon, color: AppColors.whiteColor),
+                          onPressed: leadingPress,
+                        )
+                      : prefixIcon,
+                  hintText: hintText,
+                  filled: true,
+                  fillColor: AppColors.appBarGreen,
+                  contentPadding: EdgeInsets.zero,
+                ),
                 toolbarOptions: const ToolbarOptions(
                     copy: true, paste: true, selectAll: true, cut: true),
+                cursorColor: AppColors.whiteColor,
+                focusNode: focusNode,
+                onTap: onTap,
               ),
             )
           : subtitle == null
