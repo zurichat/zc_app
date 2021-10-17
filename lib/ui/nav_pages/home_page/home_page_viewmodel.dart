@@ -299,10 +299,8 @@ class HomePageViewModel extends StreamViewModel {
   }
 
   bool hasDrafts() {
-    var currentOrgId =
-    storageService.getString(StorageKeys.currentOrgId);
-    var currentUserId =
-    storageService.getString(StorageKeys.currentUserId);
+    var currentOrgId = storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId = storageService.getString(StorageKeys.currentUserId);
     var dmStoredDrafts =
         storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
     var channelStoredDrafts =
@@ -313,8 +311,8 @@ class HomePageViewModel extends StreamViewModel {
 
     if (dmStoredDrafts != null) {
       dmStoredDrafts.forEach((element) {
-        if(currentOrgId == jsonDecode(element)['currentOrgId'] &&
-            currentUserId == jsonDecode(element)['currentUserId']){
+        if (currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']) {
           counter++;
         }
       });
@@ -322,8 +320,8 @@ class HomePageViewModel extends StreamViewModel {
 
     if (channelStoredDrafts != null) {
       channelStoredDrafts.forEach((element) {
-        if(currentOrgId == jsonDecode(element)['currentOrgId'] &&
-            currentUserId == jsonDecode(element)['currentUserId']){
+        if (currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']) {
           counter++;
         }
       });
@@ -331,8 +329,8 @@ class HomePageViewModel extends StreamViewModel {
 
     if (threadStoredDrafts != null) {
       threadStoredDrafts.forEach((element) {
-        if(currentOrgId == jsonDecode(element)['currentOrgId'] &&
-            currentUserId == jsonDecode(element)['currentUserId']){
+        if (currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']) {
           counter++;
         }
       });
