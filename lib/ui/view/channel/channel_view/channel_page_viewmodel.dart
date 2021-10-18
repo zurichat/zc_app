@@ -341,7 +341,7 @@ class ChannelPageViewModel extends FormViewModel {
           channelID, "$userId", message, urls);
 
       scrollController.jumpTo(scrollController.position.minScrollExtent);
-
+      fetchChannelMembers(channelID);
       notifyListeners();
     } catch (e) {
       _snackbarService.showCustomSnackBar(

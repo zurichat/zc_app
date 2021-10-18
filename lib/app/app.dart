@@ -1,4 +1,4 @@
-
+import 'package:zurichat/package/base/server-request/organization_request/organization_api_service.dart';
 import 'package:zurichat/services/centrifuge_service.dart';
 import 'package:zurichat/services/localization_service.dart';
 import 'package:zurichat/services/media_service.dart';
@@ -189,6 +189,7 @@ import '../ui/view/user_search/user_search_view.dart';
       presolveUsing: CentrifugeService.getInstance,
     ),
     LazySingleton(classType: StatusService),
+    LazySingleton(classType: OrganizationApiService),
   ],
   logger: StackedLogger(),
 )

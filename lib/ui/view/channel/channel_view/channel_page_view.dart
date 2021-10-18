@@ -59,7 +59,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 channelId,
                 channelMessagesController.text,
                 channelName,
-                membersCount,
+                model.channelMembers.length,
                 public),
             whiteBackground: true,
             isDarkMode: Theme.of(context).brightness == Brightness.dark,

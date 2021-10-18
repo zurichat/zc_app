@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
@@ -30,6 +29,7 @@ class ChannelsApiService {
   onChange() {}
   Future<List> getActiveChannels() async {
     final orgId = _userService.currentOrgId;
+    log.w('asc: $orgId');
 
     var joinedChannels = [];
 
@@ -101,6 +101,25 @@ class ChannelsApiService {
       return res.data;
     } on Exception catch (e) {
       log.e(e.toString());
+    }
+  }
+
+  Future<Map?> addChannelMember(String channelId, memberId) async {
+    await storageService.clearData(StorageKeys.currentChannelId);
+    final orgId = _userService.currentOrgId;
+
+    try {
+      final res = await _api
+          .post('v1/$orgId/channels/$channelId/members/', token: token, body: {
+        '_id': memberId,
+        'is_admin': false,
+      });
+      await storageService.setString(StorageKeys.currentChannelId, channelId);
+      log.i(res?.data);
+      return res?.data ?? {};
+    } on Exception catch (e) {
+      log.e(e.toString());
+      return {};
     }
   }
 
@@ -253,7 +272,7 @@ class ChannelsApiService {
         '/v1/$orgId/messages/$messageId/?user_id=$userId&channel_id=$channelId',
         token: token,
       );
-      if (res?.statusCode == 201 || res?.statusCode == 204) {
+      if (res?.statusCode == 200 || res?.statusCode == 204) {
         controller.sink.add('Message Deleted');
         _snackbarService.showCustomSnackBar(
             duration: const Duration(milliseconds: 1500),
