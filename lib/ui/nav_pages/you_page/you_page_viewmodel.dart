@@ -46,13 +46,15 @@ class YouPageViewModel extends ReactiveViewModel {
 
   final String hintText = SetAStatus;
   String _statusText = 'What\'s your status?';
-  String get statusText => _statusText;
+  String get statusText => _statusService.statusText;
   String? _tagIcon;
   String? get tagIcon => _tagIcon;
   bool isLoading = false;
 
   fetchStatus() async {
-    _statusText = _statusService.statusText;
+    // _statusText = _statusService.statusText;
+    // print('QQQ- init,fetchStatus - $_statusText');
+    notifyListeners();
     final endpoint = 'organizations/$orgId/members/$memberId';
     final response =
         await _apiService.get(endpoint, queryParameters: {}, token: token);
