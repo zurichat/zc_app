@@ -314,6 +314,18 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
+  void deleteMessage(String channelId, String messageId) async {
+    String? userId = storage.getString(StorageKeys.currentUserId);
+    String? orgId = storage.getString(StorageKeys.currentOrgId);
+    await _channelsApiService.deleteChannelMessage(
+        orgId!, channelId, messageId, userId!);
+
+    fetchMessages(channelId);
+    scrollController.jumpTo(scrollController.position.minScrollExtent);
+    _navigationService.back();
+    notifyListeners();
+  }
+
   void sendMessage(String message, [List<File>? media]) async {
     try {
       String? userId = storage.getString(StorageKeys.currentUserId);

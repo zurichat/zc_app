@@ -8,7 +8,6 @@ import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-
 Future<dynamic> zuriChatBottomSheet({
   required BuildContext context,
   Function()? markUnread,
@@ -18,6 +17,7 @@ Future<dynamic> zuriChatBottomSheet({
   Function()? followThread,
   Function()? shareMessage,
   Function()? copyLinkToMessage,
+  Function()? deleteMessage,
   Function()? copyText,
   Function()? changePinnedState,
   Function()? turnQuestionToPoll,
@@ -149,6 +149,11 @@ Future<dynamic> zuriChatBottomSheet({
                   height: 18,
                 ),
                 onTap: shareMessage),
+            ListTile(
+                title:
+                    Text('Delete Message', style: AppTextStyle.darkGreySize16),
+                leading: const Icon(Icons.delete),
+                onTap: deleteMessage),
             // ListTile(
             //     title: Text(
             //       CopyLinkToMessage,
