@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../constants/app_strings.dart';
@@ -19,7 +19,9 @@ class TermsAndConditionsView extends StatelessWidget {
               leading: Icons.arrow_back,
               orgTitle: Text(
                 TnC2.toUpperCase(),
+
                 style: AppTextStyle.darkGreySize20Bold,
+
               ),
               leadingPress: () => model.popNavigation(),
             ),

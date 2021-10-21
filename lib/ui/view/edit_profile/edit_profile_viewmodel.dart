@@ -1,13 +1,17 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/user_model.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/utilities/constants.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/mixins/validators_mixin.dart';
+import 'dart:io';
+
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/user_model.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/services/media_service.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/mixins/validators_mixin.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import '../../../app/app.logger.dart';
 
 //TODO refactor entire View Model, write as a Future View Model
 
@@ -16,12 +20,17 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
   final _userService = locator<UserService>();
   final _snackbarService = locator<SnackbarService>();
   final _zuriApi = ZuriApi(coreBaseUrl);
+  final _bottomSheetService = locator<BottomSheetService>();
+  final log = getLogger('EditProfileViewModel');
+  final mediaService = locator<MediaService>();
 
   late UserModel userModel;
   String fullName = '';
   String phone = '';
   String bio = '';
   String displayName = '';
+  String imageUrl = '';
+  File? imageFile;
 
   void navigateBack() {
     _navigationService.back();
@@ -33,41 +42,46 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
     phone = user.phoneNumber ?? '';
     displayName = user.displayName ?? '';
     bio = user.bio ?? '';
+    imageUrl = user.imageUrl ?? '';
   }
 
   void setState() => notifyListeners();
 
-  void onChanged({String? disp, String? bo, String? phn, String? name}) {
+  void onChanged({String? disp, String? bo, String? phn, String? name, File? file}) {
     {
       if (disp != null) displayName = disp;
       if (bo != null) bio = bo;
       if (phn != null) phone = phn;
       if (name != null) fullName = name;
+      if (file != null) imageFile = file;
       setState();
     }
   }
 
-  UserModel updateData() {
+  Future<UserModel> updateData() async{
     if (validateNotEmptyField(fullName) != null) {
       _snackbarService.showCustomSnackBar(
           message: 'Fullname cannot be null', variant: SnackbarType.failure);
     }
+    if(imageFile != null){
+      imageUrl = await uploadPic();
+    }
     fullName = fullName.trim();
     userModel
       ..firstName =
-      fullName.isNotEmpty ? fullName.split(" ").first : userModel.firstName
+          fullName.isNotEmpty ? fullName.split(" ").first : userModel.firstName
       ..lastName =
-      fullName.isNotEmpty ? fullName.split(" ").last : userModel.lastName
+          fullName.isNotEmpty ? fullName.split(" ").last : userModel.lastName
       ..displayName = displayName
       ..bio = bio
-      ..phoneNumber = phone;
-
+      ..phoneNumber = phone
+      ..imageUrl;
     return userModel;
   }
 
   Future<void> onSave() async {
     if (!hasDataChanged) {
-      return;
+      close();
     }
     updateData();
     final res = await _zuriApi.patch(
@@ -96,10 +110,32 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
     if (displayName != userModel.displayName ||
         bio != userModel.bio ||
         phone != userModel.phoneNumber ||
-        (fullName.isNotEmpty && fullName != userModel.fullName)) {
+        (fullName.isNotEmpty && fullName != userModel.fullName ) ||
+        imageFile != null
+    ) {
       return true;
     } else {
       return false;
     }
   }
+
+  Future<File?> editProfilePic() async {
+    var sheetResponse = await _bottomSheetService.showCustomSheet(
+      variant: BottomSheetType.imagePicker,
+      isScrollControlled: true,
+    );
+
+    log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
+    if(sheetResponse != null){
+      imageFile = await mediaService.getImage(fromGallery: sheetResponse.confirmed);
+      notifyListeners();
+    }
+  }
+
+  //TODO-- fix the plugIn parameter needed to upload user profile pic to the endpoint
+  Future<String> uploadPic() async{
+    imageUrl = (await mediaService.uploadImage(imageFile,'6165f520375a4616090b8275'))!;
+    return imageUrl;
+  }
+
 }

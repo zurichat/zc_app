@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'channel_search_view_model.dart';
@@ -37,8 +37,8 @@ class ChannelSearchPageView extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
                   child: TextFormField(
                       // style: textStyling(),
-                      decoration:
-                          textFormFields('${local.searchPeopleOn} $channelName')),
+                      decoration: textFormFields(
+                          '${local.searchPeopleOn} $channelName')),
                 ),
 
                 const SizedBox(child: SearchResults()),

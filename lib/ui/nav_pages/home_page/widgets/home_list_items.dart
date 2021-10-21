@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -222,6 +222,7 @@ class _TextAndIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     //Expanded tile don't allow sizing so we have to decrease
     //the top pad of the first child to make it look visually ok
     // double topPad = 14;
@@ -247,8 +248,12 @@ class _TextAndIcon extends StatelessWidget {
             Text(
               text,
               style: unread
-                  ? AppTextStyle.darkGreySize16Bold
-                  : AppTextStyle.lightGreySize16,
+                  ? _dark
+                      ? AppTextStyle.whiteSize16Bold
+                      : AppTextStyle.darkGreySize16Bold
+                  : _dark
+                      ? AppTextStyle.whiteSize16
+                      : AppTextStyle.lightGreySize16,
             )
           ],
         ),

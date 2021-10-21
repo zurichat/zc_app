@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../colors.dart';
@@ -22,12 +22,14 @@ class SelectThemeDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 15, left: 15),
+              padding: const EdgeInsets.all(15),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   DarkMode,
-                  style: AppTextStyle.darkGreySize16Bold,
+                  style: Theme.of(context).brightness == Brightness.dark
+                      ? AppTextStyle.whiteSize16Bold
+                      : AppTextStyle.darkGreySize16Bold,
                 ),
               ),
             ),
@@ -37,7 +39,6 @@ class SelectThemeDialog extends StatelessWidget {
               itemBuilder: (context, index) => ListTile(
                 title: Text(
                   request.data['themes'][index],
-                  style: AppTextStyle.darkGreySize16,
                 ),
                 leading: Radio(
                   activeColor: AppColors.zuriPrimaryColor,
@@ -67,6 +68,7 @@ class SelectThemeDialog extends StatelessWidget {
                 const SizedBox(height: 30),
               ],
             ),
+            const SizedBox(height: 20),
           ],
         ),
       );

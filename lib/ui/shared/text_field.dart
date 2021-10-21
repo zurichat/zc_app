@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 ///This is the text field with border
 ///Should accept only hint with no labels
@@ -31,8 +32,10 @@ class BorderTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return TextFormField(
-      style: const TextStyle(fontSize: 16, color: Colors.black87),
+      style: _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16,
       autofocus: autofocus,
       onChanged: onChanged,
       controller: controller,

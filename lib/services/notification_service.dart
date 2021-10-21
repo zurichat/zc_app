@@ -3,9 +3,9 @@ import 'dart:math';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class NotificationService {
@@ -123,6 +123,14 @@ class NotificationService {
             body:
                 "You set a notification for a message for ${selectedDate.toString().substring(0, 16)}"),
         schedule: NotificationCalendar.fromDate(date: selectedDate));
+  }
+
+  // User mention notification
+  Future<void> notifyUsers(String message, String channelName) async {
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+          id: 1, channelKey: 'message', title: channelName, body: message),
+    );
   }
 }
 

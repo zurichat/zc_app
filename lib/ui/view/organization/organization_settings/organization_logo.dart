@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/organization_model.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/ui/view/organization/organization_settings/organization_settings_view_model.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/organization_model.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/long_button.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/ui/view/organization/organization_settings/organization_settings_view_model.dart';
 
 class OrganizationLogo extends StatelessWidget {
   final OrganizationModel org;
@@ -15,16 +15,21 @@ class OrganizationLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return ViewModelBuilder<OrganizationSettingsViewModel>.reactive(
       viewModelBuilder: () => OrganizationSettingsViewModel(),
       builder: (context, model, child) {
         return Scaffold(
           appBar: ZuriAppBar(
+            isDarkMode: _dark,
             whiteBackground: true,
             leading: Icons.chevron_left,
             leadingPress: () => model.back(),
-            title: OrgIcon,
-            subtitle: '',
+            orgTitle: Text(
+              OrgIcon,
+              style: AppTextStyle.organizationNameText,
+            ),
             actions: [
               TextButton(
                 onPressed: () => model.updateOrgLogo(org.id.toString()),
@@ -50,7 +55,6 @@ class OrganizationLogo extends StatelessWidget {
                       width: 150,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        // border: Border.all(color: AppColors.greyColor, width: 1),
                       ),
                       clipBehavior: Clip.hardEdge,
                       child: model.tempImage == null && org.logoUrl!.isEmpty
@@ -75,16 +79,15 @@ class OrganizationLogo extends StatelessWidget {
                       width: 200,
                     ),
                     const SizedBox(height: 30),
-                    Text(
-                      OrgIconGuide,
-                      style: AppTextStyle.blackSize18Bold
-                          .copyWith(color: AppColors.blackColor, fontSize: 20),
-                    ),
+                    Text(OrgIconGuide,
+                        style: _dark
+                            ? AppTextStyle.whiteSize18Bold
+                            : AppTextStyle.blackSize18Bold),
                     const SizedBox(height: 10),
-                    Text(
-                      OrgIconGuideDesc,
-                      style: AppTextStyle.lightGreySize16.copyWith(
-                          fontSize: 17, color: AppColors.greyishColor),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(OrgIconGuideDesc,
+                          style: AppTextStyle.lightGreySize16),
                     ),
                   ],
                 ),

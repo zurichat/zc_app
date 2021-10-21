@@ -1,5 +1,5 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/services/notification_service.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/services/notification_service.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 
 class AppTextStyle {
   // static const double _size10 = 11;
@@ -42,6 +42,9 @@ class AppTextStyle {
   static TextStyle lightGreySize16 =
       _base(_size16, _normalWeight, AppColors.textLight10);
 
+  static TextStyle lightGreySize18 =
+      _base(_size18, _normalWeight, AppColors.textLight10);
+
   //very dark text
   static TextStyle darkGreySize14Bold =
       _base(_size14, _boldWeight, AppColors.textDark10);
@@ -61,8 +64,26 @@ class AppTextStyle {
   static TextStyle errorSize14 =
       _base(_size14, _normalWeight, AppColors.redColor);
 
+  static TextStyle whiteSize14Bold =
+      _base(_size14, _boldWeight, AppColors.whiteColor);
+
+  static TextStyle whiteSize18Bold =
+      _base(_size18, _boldWeight, AppColors.whiteColor);
+
+  static TextStyle whiteSize20Bold =
+      _base(_size20, _boldWeight, AppColors.whiteColor);
+
+  static TextStyle whiteSize16Bold =
+      _base(_size16, _boldWeight, AppColors.whiteColor);
+
+  static TextStyle whiteSize18 =
+      _base(_size18, _normalWeight, AppColors.whiteColor);
+
   static TextStyle whiteSize16 =
       _base(_size16, _normalWeight, AppColors.whiteColor);
+
+  static TextStyle whiteSize14 =
+      _base(_size14, _normalWeight, AppColors.whiteColor);
 
   static TextStyle whiteSize12 =
       _base(_size12, _normalWeight, AppColors.whiteColor);
@@ -84,6 +105,11 @@ class AppTextStyle {
     AppColors.zuriPrimaryColor,
   );
 
+  static TextStyle greenSize20Bold = _base(
+    _size16,
+    _boldWeight,
+    AppColors.zuriPrimaryColor,
+  );
   static TextStyle textFieldHint = _base(
     _size16,
     _normalWeight,
@@ -102,6 +128,11 @@ class AppTextStyle {
     AppColors.textDark10,
   );
 
+  static TextStyle bigWhiteText = _base(
+    24,
+    _boldWeight,
+    AppColors.whiteColor,
+  );
   static TextStyle organizationNameText = _base(
     19,
     FontWeight.w800,

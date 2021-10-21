@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class WorkSpaceDisplayInfo extends StatelessWidget {
   final String? imageUrl;
@@ -14,6 +14,7 @@ class WorkSpaceDisplayInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _dark = Theme.of(context).brightness == Brightness.dark;
     return Row(
       children: [
         GestureDetector(
@@ -26,7 +27,8 @@ class WorkSpaceDisplayInfo extends StatelessWidget {
                 width: MediaQuery.of(context).size.height * 0.05,
                 margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: AppColors.whiteColor,
+                  color:
+                      !_dark ? AppColors.darkModeColor : AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(5),
                 ),
                 clipBehavior: Clip.antiAlias,
@@ -45,12 +47,14 @@ class WorkSpaceDisplayInfo extends StatelessWidget {
                 children: [
                   Text(
                     workSpaceTitle?.toUpperCase() ?? "",
-                    style: AppTextStyle.darkGreySize16,
+                    style: _dark
+                        ? AppTextStyle.whiteSize16Bold
+                        : AppTextStyle.darkGreySize16Bold,
                   ),
-                  Text(
-                    workSpaceSlackUrl?.toLowerCase() ?? "",
-                    style: AppTextStyle.darkGreySize16,
-                  ),
+                  Text(workSpaceSlackUrl?.toLowerCase() ?? "",
+                      style: _dark
+                          ? AppTextStyle.whiteSize14
+                          : AppTextStyle.darkGreySize14),
                 ],
               )
             ],

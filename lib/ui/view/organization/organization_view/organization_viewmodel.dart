@@ -1,6 +1,6 @@
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -26,6 +26,8 @@ class OrganizationViewModel extends BaseViewModel {
   final _storage = locator<SharedPreferenceLocalStorage>();
 
   Future<void> initViewModel() async {
+    setBusy(true);
+
     fetchOrganizations();
     getOrganizationMemberList();
   }

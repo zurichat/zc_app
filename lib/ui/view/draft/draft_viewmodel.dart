@@ -1,16 +1,16 @@
 import 'dart:convert';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/draft_data_holder_model.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/services/connectivity_service.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/storage_keys.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/draft_data_holder_model.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/services/connectivity_service.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:hng/app/app.logger.dart';
+import 'package:zurichat/app/app.logger.dart';
 
 class DraftViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
@@ -22,49 +22,63 @@ class DraftViewModel extends BaseViewModel {
   List<DraftDataHolder> widgetBuilderList = [];
 
   void get drafts {
+    var currentOrgId =
+    _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId =
+    _storageService.getString(StorageKeys.currentUserId);
     var dmStoredDrafts =
-        _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
     var channelStoredDrafts =
-        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
     var threadStoredDrafts =
-        _storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    _storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    
 
     if (dmStoredDrafts != null) {
       dmStoredDrafts.forEach((element) {
-        var mapKey = jsonDecode(element);
+        if(currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']){
+          var mapKey = jsonDecode(element);
 
-        widgetBuilderList.add(DraftDataHolder(
-          '${mapKey['receiverName']}',
-          '${mapKey['draft']}',
-          mapKey,
-          '${mapKey['time']}',
-        ));
+          widgetBuilderList.add(DraftDataHolder(
+            '${mapKey['receiverName']}',
+            '${mapKey['draft']}',
+            mapKey,
+            '${mapKey['time']}',
+          ));
+        }
       });
     }
 
     if (channelStoredDrafts != null) {
       channelStoredDrafts.forEach((element) {
-        var mapKey = jsonDecode(element);
+        if(currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']){
+          var mapKey = jsonDecode(element);
 
-        widgetBuilderList.add(DraftDataHolder(
-          '${mapKey['channelName']}',
-          '${mapKey['draft']}',
-          mapKey,
-          '${mapKey['time']}',
-        ));
+          widgetBuilderList.add(DraftDataHolder(
+            '${mapKey['channelName']}',
+            '${mapKey['draft']}',
+            mapKey,
+            '${mapKey['time']}',
+          ));
+        }
       });
     }
 
     if (threadStoredDrafts != null) {
       threadStoredDrafts.forEach((element) {
-        var mapKey = jsonDecode(element);
+        if(currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']){
+          var mapKey = jsonDecode(element);
 
-        widgetBuilderList.add(DraftDataHolder(
-          '# ${mapKey['userPostChannelName']}',
-          '${mapKey['draft']}',
-          mapKey,
-          '${mapKey['time']}',
-        ));
+          widgetBuilderList.add(DraftDataHolder(
+            '# ${mapKey['userPostChannelName']}',
+            '${mapKey['draft']}',
+            mapKey,
+            '${mapKey['time']}',
+          ));
+        }
       });
     }
   }
@@ -83,11 +97,11 @@ class DraftViewModel extends BaseViewModel {
     var removeThreadDraft = '';
 
     var dmStoredDrafts =
-        _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
     var channelStoredDrafts =
-        _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    _storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
     var threadStoredDrafts =
-        _storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    _storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
 
     if (dmStoredDrafts != null) {
       dmStoredDrafts.forEach((element) {

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/ui/view/forgot_password/forgot_password_new_password/forgot_password_newviewmodel.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/ui/view/forgot_password/forgot_password_new_password/forgot_password_newviewmodel.dart';
 import 'package:mockito/mockito.dart';
 
 import '../helpers/test_helpers.dart';

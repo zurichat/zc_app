@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/general_widgets/no_connection_widget.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/channel/channel_view/widgets/channel_intro.dart';
-import 'package:hng/ui/view/expandable_textfield/expandable_textfield_screen.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/general_widgets/no_connection_widget.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/view/channel/channel_view/widgets/channel_intro.dart';
+import 'package:zurichat/ui/view/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../../shared/shared.dart';
@@ -58,31 +59,42 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
                 channelId,
                 channelMessagesController.text,
                 channelName,
-                membersCount,
+                model.channelMembers.length,
                 public),
             whiteBackground: true,
             isDarkMode: Theme.of(context).brightness == Brightness.dark,
             actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search,
-                  color: AppColors.textLight10,
-                ),
-              ),
+              // TODO FOR FUTURE
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: const Icon(
+              //     Icons.search,
+              //     color: AppColors.textLight10,
+              //   ),
+              // ),
               Padding(
-                padding: const EdgeInsets.only(right: 5),
-                child: IconButton(
-                  onPressed: () => model.navigateToChannelInfoScreen(
-                    membersCount!,
+                padding: const EdgeInsets.only(right: 15),
+                child: InkWell(
+                  onTap: () => model.deleteChannel(
                     ChannelModel(id: channelId!, name: channelName!),
-                    channelName!
                   ),
-                  icon: const Icon(
-                    Icons.info_outlined,
-                    color: AppColors.textLight10,
+                  child: SvgPicture.asset(
+                    Log_Out,
+                    color: AppColors.unreadMessageColor,
+                    width: 20,
+                    height: 20,
                   ),
                 ),
+                // child: IconButton(
+                //   onPressed: () => model.navigateToChannelInfoScreen(
+                //       membersCount!,
+                //       ChannelModel(id: channelId!, name: channelName!),
+                //       channelName!),
+                //   icon: const Icon(
+                //     Icons.info_outlined,
+                //     color: AppColors.textLight10,
+                //   ),
+                // ),
               ),
             ],
             title: "#$channelName",
@@ -100,7 +112,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
             widget: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               controller: model.scrollController,
-              reverse: true,
+              reverse: false,
               child: Column(
                 children: [
                   ChannelIntro(

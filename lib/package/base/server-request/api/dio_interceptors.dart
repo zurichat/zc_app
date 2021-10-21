@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:hng/app/app.logger.dart';
+import 'package:zurichat/app/app.logger.dart';
 
 class DioInterceptor implements Interceptor {
   final log = getLogger("DioInterceptor");

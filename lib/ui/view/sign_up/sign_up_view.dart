@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/text_styles.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/general_widgets/custom_textfield.dart';
+import 'package:zurichat/ui/shared/long_button.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
-import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -34,6 +34,8 @@ class SignUpView extends StatelessWidget with $SignUpView {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return ViewModelBuilder<SignUpViewModel>.reactive(
       //listenToFormUpdated automatically syncs text
       // from TextFields to the viewmodel
@@ -66,7 +68,9 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       Center(
                         child: Text(
                           SignUp,
-                          style: AppTextStyle.darkGreySize20Bold,
+                          style: _dark
+                              ? AppTextStyle.whiteSize20Bold
+                              : AppTextStyle.darkGreySize20Bold,
                         ),
                       ),
                       UIHelper.verticalSpaceExtraSmall,
@@ -79,7 +83,9 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       UIHelper.customVerticalSpace(48),
                       Text(
                         FirstName,
-                        style: AppTextStyle.darkGreySize16Bold,
+                        style: _dark
+                            ? AppTextStyle.whiteSize16Bold
+                            : AppTextStyle.darkGreySize16Bold,
                       ),
                       UIHelper.customVerticalSpace(10),
                       CustomTextField(
@@ -93,7 +99,9 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       UIHelper.customVerticalSpace(25),
                       Text(
                         LastName,
-                        style: AppTextStyle.darkGreySize16Bold,
+                        style: _dark
+                            ? AppTextStyle.whiteSize16Bold
+                            : AppTextStyle.darkGreySize16Bold,
                       ),
                       UIHelper.customVerticalSpace(10),
                       CustomTextField(
@@ -107,7 +115,9 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       UIHelper.customVerticalSpace(20),
                       Text(
                         EmailAddress,
-                        style: AppTextStyle.darkGreySize16Bold,
+                        style: _dark
+                            ? AppTextStyle.whiteSize16Bold
+                            : AppTextStyle.darkGreySize16Bold,
                       ),
                       UIHelper.customVerticalSpace(15),
                       CustomTextField(
@@ -121,7 +131,9 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       UIHelper.customVerticalSpace(25),
                       Text(
                         Password,
-                        style: AppTextStyle.darkGreySize16Bold,
+                        style: _dark
+                            ? AppTextStyle.whiteSize16Bold
+                            : AppTextStyle.darkGreySize16Bold,
                       ),
                       UIHelper.customVerticalSpace(10),
                       CustomTextField(
@@ -135,7 +147,9 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       UIHelper.customVerticalSpace(25),
                       Text(
                         ConfirmPassword,
-                        style: AppTextStyle.darkGreySize16Bold,
+                        style: _dark
+                            ? AppTextStyle.whiteSize16Bold
+                            : AppTextStyle.darkGreySize16Bold,
                       ),
                       UIHelper.customVerticalSpace(10),
                       CustomTextField(
@@ -181,7 +195,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       ),
                       UIHelper.verticalSpaceLarge,
                       LongButton(
-                        onPressed: () => model.createUser(context),
+                        onPressed: () => model.createUser(),
                         label: CreateAccount,
                       ),
                       Row(
@@ -189,7 +203,9 @@ class SignUpView extends StatelessWidget with $SignUpView {
                         children: [
                           Text(
                             AlreadyHaveAcct,
-                            style: AppTextStyle.darkGreySize14,
+                            style: _dark
+                                ? AppTextStyle.whiteSize14
+                                : AppTextStyle.darkGreySize14,
                           ),
                           TextButton(
                             child: Text(
@@ -200,43 +216,47 @@ class SignUpView extends StatelessWidget with $SignUpView {
                           )
                         ],
                       ),
-                      Center(
-                        child: Text(
-                          Or,
-                          style: AppTextStyle.darkGreySize16,
-                        ),
-                      ),
-                      UIHelper.verticalSpaceMedium,
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(
-                            color:
-                                Theme.of(context).textTheme.bodyText1!.color ??
-                                    AppColors.zuriPrimaryColor,
-                            width: 1,
-                          ),
-                        ),
-                        child: InkWell(
-                          onTap: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                GoogleLogo,
-                                height: 24,
-                                width: 24,
-                              ),
-                              UIHelper.customHorizontalSpace(12.0),
-                              Text(
-                                SignUpGoogle,
-                                style: AppTextStyle.darkGreySize16Bold,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+
+                      //TODO: EmmyTech J. Emeka
+                      // Center(
+                      //   child: Text(
+                      //     Or,
+                      //     style: AppTextStyle.darkGreySize16,
+                      //   ),
+                      // ),
+                      // UIHelper.verticalSpaceMedium,
+                      // Container(
+                      //   padding: const EdgeInsets.all(8),
+                      //   decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.circular(4),
+                      //     border: Border.all(
+                      //       color:
+                      //           Theme.of(context).textTheme.bodyText1!.color ??
+                      //               AppColors.zuriPrimaryColor,
+                      //       width: 1,
+                      //     ),
+                      //   ),
+                      //   child: InkWell(
+                      //     onTap: () {},
+                      //     child: Row(
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: [
+                      //         Image.asset(
+                      //           GoogleLogo,
+                      //           height: 24,
+                      //           width: 24,
+                      //         ),
+                      //         UIHelper.customHorizontalSpace(12.0),
+                      //         Text(
+                      //           SignUpGoogle,
+                      //           style:  _dark
+                      // ? AppTextStyle.whiteSize16Bold
+                      //   : AppTextStyle.darkGreySize16Bold,
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                       UIHelper.verticalSpaceLarge,
                     ],
                   ),

@@ -2,15 +2,15 @@ import 'dart:io';
 
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/organization_model.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/media_service.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/mixins/validators_mixin.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/organization_model.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/services/media_service.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/mixins/validators_mixin.dart';
 import '../../../../app/app.logger.dart';
 
 class OrganizationSettingsViewModel extends BaseViewModel with ValidatorMixin {
@@ -35,10 +35,11 @@ class OrganizationSettingsViewModel extends BaseViewModel with ValidatorMixin {
   }
 
   void navigateToWorkspaceName(OrganizationModel org) {
-    navigation.navigateTo(
-      Routes.organizationNameUrl,
-      arguments: OrganizationNameUrlArguments(org: org),
-    );
+   //TODO: getting ready
+    // navigation.navigateTo(
+    //   Routes.organizationNameUrl,
+    //   arguments: OrganizationNameUrlArguments(org: org),
+    // );
   }
 
   void navigateToWorkspaceLogo(OrganizationModel org) {

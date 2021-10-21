@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/organization_model.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/organization_model.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
@@ -16,6 +16,9 @@ class OrganizationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    TextStyle _tileStyle =
+        _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16;
     return ViewModelBuilder<OrganizationViewModel>.reactive(
       onModelReady: (viewModel) => viewModel.initViewModel(),
       disposeViewModel: false,
@@ -29,7 +32,9 @@ class OrganizationView extends StatelessWidget {
                 children: [
                   Text(
                     local!.workspaces,
-                    style: AppTextStyle.bigBlackText,
+                    style: _dark
+                        ? AppTextStyle.bigWhiteText
+                        : AppTextStyle.bigBlackText,
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.01,
@@ -49,7 +54,9 @@ class OrganizationView extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 50.0),
                                     child: Text(
                                       local.notJoinedOrg,
-                                      style: AppTextStyle.darkGreySize14,
+                                      style: _dark
+                                          ? AppTextStyle.whiteSize14
+                                          : AppTextStyle.darkGreySize14,
                                     ),
                                   ),
                                 )
@@ -88,7 +95,7 @@ class OrganizationView extends StatelessWidget {
                           contentPadding: EdgeInsets.zero,
                           title: Text(
                             local.addOrg,
-                            style: AppTextStyle.lightGreySize16,
+                            style: _tileStyle,
                           ),
                         ),
                         ListTile(
@@ -97,24 +104,24 @@ class OrganizationView extends StatelessWidget {
                           contentPadding: EdgeInsets.zero,
                           title: Text(
                             local.preferences,
-                            style: AppTextStyle.lightGreySize16,
+                            style: _tileStyle,
                           ),
                         ),
-                        ListTile(
-                          leading: const Icon(Icons.help_outline),
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(
-                            local.help,
-                            style: AppTextStyle.lightGreySize16,
-                          ),
-                        ),
+                        // ListTile(
+                        //   leading: const Icon(Icons.help_outline),
+                        //   contentPadding: EdgeInsets.zero,
+                        //   title: Text(
+                        //     local.help,
+                        //     style: _tileStyle,
+                        //   ),
+                        // ),
                         ListTile(
                           onTap: () => viewModel.signOutAllOrg(),
                           leading: const Icon(Icons.logout_sharp),
                           contentPadding: EdgeInsets.zero,
                           title: Text(
                             local.signOutAccount,
-                            style: AppTextStyle.lightGreySize16,
+                            style: _tileStyle,
                           ),
                         ),
                       ],
@@ -141,6 +148,8 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
 
   @override
   Widget build(BuildContext context, OrganizationViewModel viewModel) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return ListTile(
         onTap: () => viewModel.onTap(org),
         leading: Container(
@@ -161,7 +170,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
             height: MediaQuery.of(context).size.height * 0.05,
             width: MediaQuery.of(context).size.height * 0.05,
             decoration: BoxDecoration(
-              color: AppColors.whiteColor,
+              color: !_dark ? AppColors.darkModeColor : AppColors.whiteColor,
               borderRadius: BorderRadius.circular(5),
             ),
             clipBehavior: Clip.hardEdge,
@@ -183,7 +192,9 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
           overflow: TextOverflow.ellipsis,
           softWrap: false,
           maxLines: 2,
-          style: AppTextStyle.darkGreySize16Bold,
+          style: _dark
+              ? AppTextStyle.whiteSize16Bold
+              : AppTextStyle.darkGreySize16Bold,
         ),
         contentPadding: EdgeInsets.zero,
         subtitle: Container(

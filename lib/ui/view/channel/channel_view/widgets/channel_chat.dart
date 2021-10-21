@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
-import 'package:hng/utilities/utilities.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/view/channel/channel_view/channel_page_viewmodel.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/utilities.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 
@@ -81,6 +81,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                       viewModel.exitPage();
                     },
                     addToSavedItems: () {
+                      //TODO pass a model to the viewmodel
                       viewModel.saveItem(
                           channelID: message![index].channelId,
                           channelName: message[index].channelName,
@@ -99,6 +100,9 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         trailing: const Icon(Icons.mark_chat_read_outlined),
                         duration: const Duration(seconds: 3),
                       );
+                    },
+                    deleteMessage: () {
+                      viewModel.deleteMessage(channelId!, message![index].id!);
                     },
                     copyText: () {
                       Clipboard.setData(

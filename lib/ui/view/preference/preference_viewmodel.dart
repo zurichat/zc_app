@@ -1,6 +1,6 @@
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/zuri_theme_service.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/zuri_theme_service.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -16,8 +16,9 @@ class PreferenceViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
 
-  String? currentTheme = 'Off';
+  String currentTheme = 'Off';
   int currentThemeValue = 0;
+  bool isDarkMode = false;
   List themes = [
     'Off',
     'On',
@@ -27,27 +28,28 @@ class PreferenceViewModel extends BaseViewModel {
     currentTheme = _storageService.getString(StorageKeys.currentTheme) ?? 'Off';
     currentThemeValue =
         _storageService.getInt(StorageKeys.currentThemeValue) ?? 0;
+    isDarkMode = currentTheme == 'On' ? true : false;
+    notifyListeners();
   }
 
-  Future changeTheme() async {
-    final dialogResult = await _dialogService.showCustomDialog(
-      barrierDismissible: false,
-      variant: DialogType.themeMode,
-      data: {'themes': themes, 'currentThemeValue': currentThemeValue},
-    );
-
-    if (dialogResult != null && dialogResult.confirmed == true) {
-      log.i(dialogResult.data);
-      currentThemeValue = dialogResult.data;
+  changeTheme(value) {
+    if (value == true) {
+      currentThemeValue = 1;
+      currentTheme = 'On';
+      isDarkMode = true;
       _zuriThemeService.selectThemeAtIndex(currentThemeValue);
-      currentTheme = themes[dialogResult.data];
-      _storageService.setString(
-          StorageKeys.currentTheme, themes[dialogResult.data]);
-
-      _storageService.setInt(StorageKeys.currentThemeValue, dialogResult.data);
-
+      notifyListeners();
+    } else {
+      currentThemeValue = 0;
+      currentTheme = 'Off';
+      isDarkMode = false;
+      _zuriThemeService.selectThemeAtIndex(currentThemeValue);
       notifyListeners();
     }
+    _storageService.setString(StorageKeys.currentTheme, currentTheme);
+    _storageService.setInt(StorageKeys.currentThemeValue, currentThemeValue);
+
+    notifyListeners();
   }
 
   void exitPage() {

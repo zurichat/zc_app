@@ -1,13 +1,15 @@
 import 'package:dio/dio.dart';
+
 import 'package:stacked/stacked.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/utilities/constants.dart';
-import 'package:hng/utilities/mixins/validators_mixin.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/mixins/validators_mixin.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
+
 import '../../../../../../app/app.logger.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -19,7 +21,7 @@ class InviteViewModel extends FormViewModel with ValidatorMixin {
   final log = getLogger('InviteEmailView');
   final _zuriApi = ZuriApi(coreBaseUrl);
 
-  inviteWithMail(String email) async {
+  Future<void> inviteWithMail(String email) async {
     final orgId = userService.currentOrgId;
     final token = userService.authToken;
     await storage.clearData(StorageKeys.invitedEmail);
@@ -31,7 +33,10 @@ class InviteViewModel extends FormViewModel with ValidatorMixin {
       };
       try {
         final res = await _zuriApi.inviteToOrganizationWithNormalMail(
-            orgId, body, token);
+          orgId,
+          body,
+          token,
+        );
         log.i('>>>>>>>>> invite response : $res');
         setBusy(false);
 

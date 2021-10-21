@@ -1,13 +1,13 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/plugin_model.dart';
-import 'package:hng/ui/nav_pages/plugin_page/widgets/icons.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/plugin_model.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/widgets/icons.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class PluginViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
-  //TODO 
+  //TODO
   // final local = AppLocalization.of(context);
   bool _editMode = false;
   bool _checked = false;
@@ -25,6 +25,8 @@ class PluginViewModel extends BaseViewModel {
         icon: icons[3], name: "Goals Plugin", url: "https://zuri.chat/goals"),
     PluginModel(
         icon: icons[4], name: "Music Plugin", url: "https://zuri.chat/music"),
+    PluginModel(
+        icon: icons[5], name: "Chess Plugin", url: "https://chess.zuri.chat/"),
   ];
 
   bool get editMode => _editMode;

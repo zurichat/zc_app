@@ -38,6 +38,7 @@ Future setupLocator(
   locator.registerSingleton(zuriThemeService);
 
   locator.registerLazySingleton(() => LocalizationService());
+
   final sharedPreferenceLocalStorage =
       await SharedPreferenceLocalStorage.getInstance();
   locator.registerSingleton(sharedPreferenceLocalStorage);

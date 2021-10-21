@@ -1,15 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:hng/general_widgets/easy_container.dart';
-import 'package:hng/ui/nav_pages/home_page/home_page_viewmodel.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/home_expanded.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/utilities/constants.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/general_widgets/easy_container.dart';
+import 'package:zurichat/ui/nav_pages/home_page/home_page_viewmodel.dart';
+import 'package:zurichat/ui/nav_pages/home_page/widgets/home_expanded.dart';
+import 'package:zurichat/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'widgets/home_list_items.dart';
@@ -19,6 +18,7 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key, this.organizationLogo}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<HomePageViewModel>.reactive(
       onModelReady: (model) {
         model.getDmAndChannelsList();
@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
       builder: (context, vmodel, child) => Scaffold(
         appBar: ZuriAppBar(
           leadingWidth: true,
-          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          isDarkMode: _dark,
           orgTitle: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -72,10 +72,9 @@ class HomePage extends StatelessWidget {
               vmodel.isBusy
                   ? LinearProgressIndicator(
                       backgroundColor: Colors.grey[400],
-                      valueColor: AlwaysStoppedAnimation(
-                          Theme.of(context).brightness == Brightness.dark
-                              ? AppColors.darkThemePrimaryColor
-                              : AppColors.zuriPrimaryColor),
+                      valueColor: AlwaysStoppedAnimation(_dark
+                          ? AppColors.darkThemePrimaryColor
+                          : AppColors.zuriPrimaryColor),
                     )
                   : Container(),
               Expanded(
@@ -84,15 +83,16 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: vmodel.navigateToStartDMScreen,
-          child: IconButton(
-            onPressed: vmodel.navigateToStartDMScreen,
-            icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
-            color: AppColors.whiteColor,
-          ),
-          backgroundColor: AppColors.zuriPrimaryColor,
-        ),
+        //TODO
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: vmodel.navigateToStartDMScreen,
+        //   child: IconButton(
+        //     onPressed: vmodel.navigateToStartDMScreen,
+        //     icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
+        //     color: AppColors.whiteColor,
+        //   ),
+        //   backgroundColor: AppColors.zuriPrimaryColor,
+        // ),
       ),
     );
   }
@@ -116,14 +116,15 @@ class HomePage extends StatelessWidget {
                   child: DraftTextAndIcon())
               : Container(),
           const Divider(),
+          //TODO
+          // HomeExpandedList(
+          //   title: local!.unreads,
+          //   canExpand: false,
+          //   data: vmodel.unreads,
+          // ),
+          // const Divider(),
           HomeExpandedList(
-            title: local!.unreads,
-            canExpand: false,
-            data: vmodel.unreads,
-          ),
-          const Divider(),
-          HomeExpandedList(
-            title: local.channels,
+            title: local!.channels,
             data: vmodel.joinedChannels,
           ),
           const Divider(),
