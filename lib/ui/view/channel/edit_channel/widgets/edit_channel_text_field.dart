@@ -1,15 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/colors.dart';
 
 class TextBox extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
+  final Function(String)? onChanged;
 
   const TextBox({
     Key? key,
     required this.hint,
     required this.controller,
+    required this.onChanged,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,7 @@ class TextBox extends StatelessWidget {
       child: TextField(
         //maxLines: 9,
         controller: controller,
+        onChanged: onChanged,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: hint,

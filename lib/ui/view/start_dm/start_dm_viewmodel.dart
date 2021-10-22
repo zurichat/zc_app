@@ -1,5 +1,5 @@
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/utilities/constants.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -14,6 +14,10 @@ class StartDmViewModel extends FormViewModel {
   final storageService = locator<SharedPreferenceLocalStorage>();
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
+
+  navigateBack() {
+    navigationService.back();
+  }
 
   // bool _hasClickedMessageField = false;
   // bool get hasClickedMessageField => _hasClickedMessageField;

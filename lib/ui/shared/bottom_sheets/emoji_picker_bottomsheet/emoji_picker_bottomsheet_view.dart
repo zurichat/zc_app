@@ -1,6 +1,6 @@
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'package:stacked/stacked.dart';
@@ -28,9 +28,11 @@ class EmojiPickerBottomSheetView extends StatelessWidget {
         minChildSize: 0.5,
         builder: (BuildContext context, ScrollController scrollController) {
           return Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? AppColors.darkThemePrimaryColor
+                  : AppColors.whiteColor,
+              borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(15), topRight: Radius.circular(15)),
             ),
             padding: const EdgeInsets.only(top: 10),
@@ -46,7 +48,7 @@ class EmojiPickerBottomSheetView extends StatelessWidget {
                     width: width * 0.15,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: AppColors.greyishColor,
+                      color: AppColors.zuriPrimaryColor,
                     ),
                   ),
                   Container(
@@ -74,23 +76,28 @@ class EmojiPickerBottomSheetView extends StatelessWidget {
                         onEmojiSelected: (Category category, Emoji emoji) =>
                             completer(
                                 SheetResponse(confirmed: true, data: emoji)),
-                        config: const Config(
+                        config: Config(
                           columns: 7,
                           emojiSizeMax: 25,
                           initCategory: Category.RECENT,
                           bgColor: Colors.transparent,
                           indicatorColor: AppColors.zuriPrimaryColor,
-                          iconColor: AppColors.greyColor,
+                          iconColor: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .color!
+                              .withOpacity(0.5),
                           iconColorSelected: AppColors.zuriPrimaryColor,
                           progressIndicatorColor: AppColors.zuriPrimaryColor,
                           backspaceColor: AppColors.zuriPrimaryColor,
                           showRecentsTab: true,
                           recentsLimit: 28,
                           noRecentsText: 'No Recents',
-                          noRecentsStyle:
-                              TextStyle(fontSize: 20, color: Colors.black26),
+                          noRecentsStyle: const TextStyle(
+                            fontSize: 20,
+                          ),
                           tabIndicatorAnimDuration: kTabScrollDuration,
-                          categoryIcons: CategoryIcons(),
+                          categoryIcons: const CategoryIcons(),
                           buttonMode: ButtonMode.MATERIAL,
                         ),
                       ),

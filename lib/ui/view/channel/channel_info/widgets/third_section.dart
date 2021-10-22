@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/new_row_tile.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+
+import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.dart';
+import 'package:zurichat/ui/view/channel/channel_info/widgets/new_row_tile.dart';
 import '../../../../shared/colors.dart';
 
-// ignore: must_be_immutable
 class ThirdSection extends StatelessWidget {
   const ThirdSection(
       this.model, this.numberOfMembers, this.channelDetail, this.channelMembers,
@@ -28,16 +29,11 @@ class ThirdSection extends StatelessWidget {
       alignment: Alignment.center,
       padding: EdgeInsets.fromLTRB(16.37.w, 18.h, 0, 0),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6.r),
-          border: Border.all(width: 1.w, color: AppColors.borderColor),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5.r,
-              blurRadius: 6.r,
-              offset: Offset(0, 3.h), // changes position of shadow
-            ),
-          ]),
+        borderRadius: BorderRadius.circular(6.r),
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.darkThemePrimaryColor
+            : AppColors.whiteColor,
+      ),
       child: Column(
         children: [
           InkWell(
@@ -57,8 +53,24 @@ class ThirdSection extends StatelessWidget {
           SizedBox(height: 18.h),
           InkWell(
               onTap: () {},
-              child: const NewRowTile(
-                  icon: Icons.person_add_alt_1_outlined, text: AddPeople)),
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    Channel_Info_Members,
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
+                  SizedBox(width: 24.23.w),
+                  Text(
+                    AddPeople,
+                    style: AppTextStyle.darkGreySize14.copyWith(
+                      fontSize: 14.sp,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
+                    ),
+                  ),
+                ],
+              )),
           SizedBox(height: 10.h),
           Divider(
             thickness: 0.5.h,
@@ -82,8 +94,24 @@ class ThirdSection extends StatelessWidget {
           SizedBox(height: 18.h),
           InkWell(
               onTap: () {},
-              child: const NewRowTile(
-                  icon: Icons.phone_outlined, text: StartCall)),
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    Channel_Info_Phone,
+                    color: AppColors.darkGreyColor,
+                    width: 18,
+                    height: 18,
+                  ),
+                  SizedBox(width: 24.23.w),
+                  Text(
+                    StartCall,
+                    style: AppTextStyle.darkGreySize14.copyWith(
+                      fontSize: 14.sp,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
+                    ),
+                  ),
+                ],
+              )),
         ],
       ),
     );

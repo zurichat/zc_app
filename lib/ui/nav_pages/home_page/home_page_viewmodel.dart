@@ -1,23 +1,25 @@
 import 'dart:async';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/channel_members.dart';
-import 'package:hng/models/channel_model.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/package/base/server-request/channels/channels_api_service.dart';
-import 'package:hng/package/base/server-request/dms/dms_api_service.dart';
-import 'package:hng/services/centrifuge_service.dart';
-import 'package:hng/services/connectivity_service.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/services/notification_service.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/ui/nav_pages/home_page/home_item_model.dart';
-import 'package:hng/ui/nav_pages/home_page/widgets/home_list_items.dart';
-import 'package:hng/utilities/constants.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'dart:convert';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/models/user_model.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
+import 'package:zurichat/package/base/server-request/dms/dms_api_service.dart';
+import 'package:zurichat/services/centrifuge_service.dart';
+import 'package:zurichat/services/connectivity_service.dart';
+import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/notification_service.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/ui/nav_pages/home_page/home_item_model.dart';
+import 'package:zurichat/ui/view/dm_chat_view/dm_jump_to_view.dart';
+import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -58,6 +60,8 @@ class HomePageViewModel extends StreamViewModel {
 
   String get orgName => userService.currentOrgName;
   String get orgId => userService.currentOrgId;
+  String get email => userService.userEmail;
+  String? get orgLogo => userService.currentOrgLogo;
 
   StreamSubscription? notificationSub;
 
@@ -118,6 +122,20 @@ class HomePageViewModel extends StreamViewModel {
     return connectionStatus;
   }
 
+  Future<void> getUserInfo() async {
+    try {
+      final _zuriApi = ZuriApi(coreBaseUrl);
+      String? userID = userService.memberId;
+
+      final response = await _zuriApi
+          .get('organizations/$orgId/members/$userID', token: token);
+      final _userModel = UserModel.fromJson(response!.data['data']);
+      userService.setUserDetails(_userModel);
+    } catch (e) {
+      log.e(e.toString());
+    }
+  }
+
   ///This sets all the expanded list items
   ///into unreads, channels and dms
   setAllList() {
@@ -146,7 +164,7 @@ class HomePageViewModel extends StreamViewModel {
     homePageList = [];
     setBusy(true);
 
-    List? channelsList = await channelsApiService.getActiveDms();
+    List? channelsList = await channelsApiService.getActiveChannels();
 
     channelsList.forEach(
       (data) {
@@ -157,7 +175,7 @@ class HomePageViewModel extends StreamViewModel {
             unreadCount: 0,
             name: data['name'],
             id: data['_id'],
-            public: data['private'] != "True",
+            public: !data['private'],
             membersCount: data['members'],
           ),
         );
@@ -181,7 +199,11 @@ class HomePageViewModel extends StreamViewModel {
     String channelSockId =
         await channelsApiService.getChannelSocketId(channelId);
 
-    _centrifugeService.subscribe(channelSockId);
+    try {
+      await _centrifugeService.subscribe(channelSockId);
+    } catch (e) {
+      log.e(e.toString());
+    }
   }
 
   // listenToChannelsChange() {
@@ -204,16 +226,16 @@ class HomePageViewModel extends StreamViewModel {
       setBusy(true);
       // _channel= await api.getChannelPage(id);
       // _membersList= await api.getChannelMembers(id);
-      setBusy(false);
 
       _moderateNavigation();
-      navigation.navigateTo(Routes.channelPageView,
+      await navigation.navigateTo(Routes.channelPageView,
           arguments: ChannelPageViewArguments(
             channelName: channelName,
             channelId: channelId,
             membersCount: membersCount,
             public: public,
           ));
+      setBusy(false);
     } catch (e) {
       log.e(e.toString());
       snackbar.showCustomSnackBar(
@@ -248,7 +270,8 @@ class HomePageViewModel extends StreamViewModel {
   }
 
   void onJumpToScreen() {
-    navigationService.navigateTo(Routes.dmJumpToView);
+    navigation.navigateWithTransition(DmJumpToView(),
+        transition: NavigationTransition.DownToUp);
   }
 
   @override
@@ -261,7 +284,55 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.newChannel);
   }
 
-  // void navigateToDmUser() {
-  //   _navigationService.navigateTo(Routes.dmUserView);
-  // }
+  void navigateInviteMembers() {
+    _navigationService.navigateTo(Routes.inviteViaEmail);
+  }
+
+  bool hasThreads() {
+    return false;
+  }
+
+  bool hasDrafts() {
+    var currentOrgId = storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId = storageService.getString(StorageKeys.currentUserId);
+    var dmStoredDrafts =
+        storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
+    var channelStoredDrafts =
+        storageService.getStringList(StorageKeys.currentUserChannelIdDrafts);
+    var threadStoredDrafts =
+        storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
+    int counter = 0;
+
+    if (dmStoredDrafts != null) {
+      dmStoredDrafts.forEach((element) {
+        if (currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']) {
+          counter++;
+        }
+      });
+    }
+
+    if (channelStoredDrafts != null) {
+      channelStoredDrafts.forEach((element) {
+        if (currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']) {
+          counter++;
+        }
+      });
+    }
+
+    if (threadStoredDrafts != null) {
+      threadStoredDrafts.forEach((element) {
+        if (currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']) {
+          counter++;
+        }
+      });
+    }
+    return counter > 0;
+  }
+
+  void draftChecker() {
+    notifyListeners();
+  }
 }

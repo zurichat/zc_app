@@ -1,6 +1,6 @@
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/utilities/constants.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app.locator.dart';
@@ -38,9 +38,10 @@ class SignUpViewModel extends FormViewModel {
   void navigateToHome() => navigator.navigateTo(Routes.navBarView);
   void navigateToSignIn() => navigation.navigateTo(Routes.loginView);
   void navigateToOTPView() => navigation.navigateTo(Routes.oTPView);
+  void navigateToTermsAndConditions() =>
+      navigator.navigateTo(Routes.termsAndConditionsView);
 
-  // ignore: always_declare_return_types
-  createUser(context) async {
+  createUser() async {
     if (checkBoxValue == true) {
       loading(true);
 
@@ -68,12 +69,6 @@ class SignUpViewModel extends FormViewModel {
         storage.setString(StorageKeys.currentUserEmail, emailValue!);
         storage.setBool(StorageKeys.registeredNotverifiedOTP, true);
         navigateToOTPView();
-      } else {
-        snackbar.showCustomSnackBar(
-          duration: const Duration(seconds: 3),
-          variant: SnackbarType.failure,
-          message: response?.data['message'] ?? errorEncounteredSignUp,
-        );
       }
     } else {
       snackbar.showCustomSnackBar(

@@ -4,20 +4,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 class SvgAssets {
   static final SvgData threads = SvgData('assets/icons/svg_icons/threads.svg');
   static final SvgData dm = SvgData('assets/icons/svg_icons/dm.svg');
-  static final SvgData plugin= SvgData('assets/icons/svg_icons/plugin.svg');
+  static final SvgData plugin = SvgData('assets/icons/svg_icons/plugin.svg');
   static final SvgData home = SvgData('assets/icons/svg_icons/home.svg');
   static final SvgData you = SvgData('assets/icons/svg_icons/you.svg');
+  static final SvgData createMsg =
+      SvgData('assets/icons/svg_icons/create_msg.svg');
   static final SvgData hashTag = SvgData('assets/icons/svg_icons/hash_tag.svg');
   static final SvgData locked = SvgData('assets/icons/svg_icons/lock1.svg');
   static final SvgData lockedOutline =
       SvgData('assets/icons/svg_icons/lock_outline.svg');
-  static final SvgData addChannels =
-      SvgData('assets/icons/svg_icons/add_channel.svg');
+  static final SvgData addChannels = SvgData('assets/icons/svg_icons/add.svg');
 }
 
 class SvgData {
   final String data;
-  SvgData(this.data);
+  SvgData(this.data, {icon});
 }
 
 ///Use SvgAsset.iconName to specify the svg icon
@@ -25,11 +26,13 @@ class SvgIcon extends StatelessWidget {
   final SvgData svgIcon;
   final Color? color;
   final double? size;
+  final bool? noColor;
 
   const SvgIcon({
     Key? key,
     required this.svgIcon,
     this.color,
+    this.noColor,
     this.size,
   }) : super(key: key);
 
@@ -37,7 +40,9 @@ class SvgIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       svgIcon.data,
-      color: color,
+      color: noColor == true
+          ? null
+          : color ?? Theme.of(context).textTheme.bodyText1!.color,
       height: size,
     );
   }

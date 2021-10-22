@@ -33,7 +33,7 @@ pubspec.lock
 .pub-cache/
 .pub/
 /build/
-
+/test/helpers/test_helpers.mocks.dart
 # Web related
 lib/generated_plugin_registrant.dart
 

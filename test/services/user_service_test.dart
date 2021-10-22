@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/services/user_service.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/services/user_service.dart';
 
 void main() {
   group('UserServiceTest -', () {
@@ -8,7 +8,7 @@ void main() {
       setupLocator();
     });
     group('User services', () {
-      test('When called, it sets value to the organisation Id', () {
+      test('When called, it sets value to the workspace Id', () {
         final userService = UserService();
         userService.setCurrentOrganizationId('currentOrgId');
         expect(userService.currentOrgId, 'currentOrgId');

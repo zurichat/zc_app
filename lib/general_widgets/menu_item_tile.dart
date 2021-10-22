@@ -7,6 +7,8 @@ enum _TileType { normal, icon, flipSwitch }
 class MenuItemTile extends StatelessWidget {
   const MenuItemTile({
     this.onPressed,
+    this.iconColor,
+    this.ico,
     this.text,
     this.icon,
     this.imageIcon,
@@ -21,6 +23,8 @@ class MenuItemTile extends StatelessWidget {
 
   const MenuItemTile.icon({
     this.onPressed,
+    this.ico,
+    this.iconColor,
     this.text,
     this.icon,
     this.imageIcon,
@@ -35,6 +39,8 @@ class MenuItemTile extends StatelessWidget {
 
   const MenuItemTile.flipSwitch({
     this.onPressed,
+    this.iconColor,
+    this.ico,
     this.text,
     this.subtitle,
     this.icon,
@@ -48,7 +54,7 @@ class MenuItemTile extends StatelessWidget {
         super(key: key);
 
   final Text? text;
-  final IconData? icon;
+  final Widget? icon;
   final String? imageIcon;
   final void Function()? onPressed;
   final void Function(bool)? onChanged;
@@ -57,12 +63,14 @@ class MenuItemTile extends StatelessWidget {
   final bool bottomBorder;
   final bool topBorder;
   final bool value;
+  final Color? iconColor;
+  final IconData? ico;
 
   Widget? selectIcon() {
-    if (icon == null && imageIcon == null) {
+    if (ico == null && icon == null && imageIcon == null) {
       return null;
     } else if (icon != null) {
-      return Icon(icon);
+      return icon;
     } else {
       return Image.asset('$imageIcon');
     }
@@ -76,11 +84,7 @@ class MenuItemTile extends StatelessWidget {
           title: text,
           subtitle: subtitle != null ? Text(subtitle ?? '') : null,
           dense: true,
-          // contentPadding: EdgeInsets.symmetric(
-          //   horizontal: 0.0,
-          //   vertical: 0.0,
-          // ),
-          visualDensity: const VisualDensity(horizontal: 0.0, vertical: -4.0),
+          visualDensity: const VisualDensity(horizontal: 0.0, vertical: 0),
           onTap: onPressed,
           shape: Border(
             top: BorderSide(
@@ -129,6 +133,7 @@ class MenuItemTile extends StatelessWidget {
               color: bottomBorder ? AppColors.greyishColor : Colors.transparent,
             ),
           ),
+          activeColor: AppColors.paleGreen,
           title: text,
           subtitle: subtitle != null ? Text(subtitle ?? '') : null,
         );

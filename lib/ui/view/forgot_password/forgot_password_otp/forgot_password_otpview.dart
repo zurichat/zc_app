@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -26,11 +29,11 @@ class ForgotPasswordOtpView extends StatelessWidget
   )
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<ForgotPasswordOtpViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.whiteColor,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
@@ -49,10 +52,10 @@ class ForgotPasswordOtpView extends StatelessWidget
                   const SizedBox(
                     height: 24.0,
                   ),
-                  const Center(
+                  Center(
                     child: Text(
-                      ForgotPassword,
-                      style: TextStyle(
+                      local!.forgotPassword,
+                      style: const TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 20.0,
                       ),
@@ -61,9 +64,9 @@ class ForgotPasswordOtpView extends StatelessWidget
                   const SizedBox(
                     height: 6.0,
                   ),
-                  const Center(
+                  Center(
                     child: Text(
-                      EnterOTP,
+                      local.enterOTP,
                     ),
                   ),
                   const SizedBox(
@@ -73,7 +76,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         vertical: 8.0,
-                        horizontal: 30,
+                        // horizontal: 20,
                       ),
                       child: PinCodeTextField(
                         appContext: context,
@@ -96,7 +99,7 @@ class ForgotPasswordOtpView extends StatelessWidget
                           borderRadius: BorderRadius.circular(5),
                           fieldHeight: 50,
                           fieldWidth: 50,
-                          activeFillColor: Colors.white,
+                          activeFillColor: AppColors.zuriPrimaryColor,
                         ),
                         cursorColor: AppColors.zuriPrimaryColor,
                         animationDuration: const Duration(milliseconds: 300),
@@ -133,17 +136,12 @@ class ForgotPasswordOtpView extends StatelessWidget
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: DidntRecieveOTP,
-                            style: AppTextStyles.normalText.copyWith(
-                              color: Colors.black,
-                            ),
+                            text: local.didntReceiveOTP,
+                            style: Theme.of(context).textTheme.bodyText1,
                           ),
                           TextSpan(
-                            text: Resend,
-                            style: AppTextStyles.body2Bold.copyWith(
-                              color: Colors.blue,
-                              decoration: TextDecoration.underline,
-                            ),
+                            text: local.resend,
+                            style: AppTextStyle.greenSize14,
                           ),
                         ],
                       ),
@@ -156,11 +154,10 @@ class ForgotPasswordOtpView extends StatelessWidget
                     child: FractionallySizedBox(
                       widthFactor: 1.0,
                       child: ElevatedButton(
-                        // onPressed: () => model.navigateToNewPassword(),
-                        onPressed: () {},
-                        child:const  Text(
-                          Continue,
-                          style: TextStyle(
+                        onPressed: model.verifyOtpCode,
+                        child: Text(
+                          local.continueButton,
+                          style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
@@ -171,7 +168,6 @@ class ForgotPasswordOtpView extends StatelessWidget
                               const EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: const Color(0xff00B87C),
                         ),
-                        // onPressed: () => model.verifyOtpCode(),
                       ),
                     ),
                   ),

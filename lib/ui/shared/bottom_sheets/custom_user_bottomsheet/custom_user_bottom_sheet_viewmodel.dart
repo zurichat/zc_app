@@ -1,35 +1,47 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/models/start_dm_models.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/utilities/constants.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/user_model.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class CustomUserBottomSheetViewModel extends FutureViewModel {
+  final _log = getLogger('CustomUserBottomSheetViewModel');
   final _navigationService = locator<NavigationService>();
-  static final _storage = locator<SharedPreferenceLocalStorage>();
-  final zuriApi = ZuriApi(coreBaseUrl);
+  final _userService = locator<UserService>();
+  final _zuriApi = ZuriApi(coreBaseUrl);
 
   UserModel? _userModel;
 
   void navigateToSetStatus() =>
       _navigationService.navigateTo(Routes.setStatusView);
 
-  void navigateToEditProfile() =>
-      _navigationService.navigateTo(Routes.editProfileView);
-
-  final String? userID = _storage.getString(StorageKeys.currentUserId);
-  final String? token = _storage.getString(StorageKeys.currentSessionToken);
+  void navigateToEditProfile() async {
+    await _navigationService.navigateTo(
+      Routes.editProfileView,
+      arguments: EditProfileViewArguments(user: userModel!),
+    );
+    notifyListeners();
+  }
 
   @override
   Future<void> futureToRun() async {
-    final response = await zuriApi.get('$userDataEndpoint', token: token);
-    _userModel = UserModel.fromJson(response!.data['data']);
+    try {
+      final response = await _zuriApi
+          .get('organizations/$orgId/members/$userID', token: token);
+      _userModel = UserModel.fromJson(response!.data['data']);
+      _userService.setUserDetails(_userModel!);
+    } catch (e) {
+      _log.e(e.toString());
+    }
   }
 
-  UserModel? get userModel => _userModel;
+  String? get userID => _userService.memberId;
+  String? get token => _userService.authToken;
+  String? get orgId => _userService.currentOrgId;
+  String? get email => _userService.userEmail;
+  UserModel? get userModel => _userService.userDetails;
 }

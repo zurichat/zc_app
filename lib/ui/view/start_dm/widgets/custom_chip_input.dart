@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
 
 import '../../../../models/start_dm_models.dart';
 import '../../../../utilities/utilities.dart';
@@ -32,7 +32,7 @@ class CustomChipInput extends StatelessWidget {
         hintStyle: GoogleFonts.lato(
           fontWeight: FontWeight.w400,
           fontSize: 16,
-          // ignore: todo
+
           //TODO CHange to brand colors
           color: const Color(0xFF999999),
         ),
@@ -95,7 +95,6 @@ class CustomChipInput extends StatelessWidget {
                   height: 8,
                   width: 8,
                   decoration: BoxDecoration(
-                    // ignore: todo
                     //TODO Change to brand colors
                     color: profile.isOnline == true
                         ? const Color(0xFF007952)
@@ -103,7 +102,7 @@ class CustomChipInput extends StatelessWidget {
                     shape: BoxShape.circle,
                     border: profile.isOnline == true
                         ? null
-                        // ignore: todo
+
                         //TODO Change to brand colors
                         : Border.all(color: const Color(0xFF424141)),
                   )),

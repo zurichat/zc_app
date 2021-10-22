@@ -8,27 +8,33 @@ class Status extends StatelessWidget {
       {Key? key,
       required this.status,
       required this.duration,
-      required this.icon})
+      required this.icon, this.onPressed})
       : super(key: key);
   final String status;
   final String duration;
   final IconData icon;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 10),
       child: MenuItemTile(
+        onPressed: onPressed,
         topBorder: false,
-        icon: icon,
-        text: Text.rich(TextSpan(
+        icon: Icon(icon),
+        text: Text.rich(
+          TextSpan(
             text: status,
             style: const TextStyle(fontWeight: FontWeight.bold),
             children: [
               TextSpan(
-                  text: ' - $duration',
-                  style: const TextStyle(color: AppColors.greyishColor))
-            ])),
+                text: ' - $duration',
+                style: const TextStyle(color: AppColors.greyishColor),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

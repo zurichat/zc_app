@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 ///This is the text field with border
 ///Should accept only hint with no labels
@@ -14,6 +15,9 @@ class BorderTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String hint;
   final bool autofocus;
+  final TextCapitalization textCapitalization;
+  final String? Function(String?)? validator;
+  final TextAlign textAlign;
 
   const BorderTextField({
     Key? key,
@@ -21,16 +25,24 @@ class BorderTextField extends StatelessWidget {
     this.controller,
     required this.hint,
     this.autofocus = false,
+    this.textCapitalization = TextCapitalization.none,
+    this.validator,
+    this.textAlign = TextAlign.start,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      style: const TextStyle(fontSize: 16, color: Colors.black87),
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
+    return TextFormField(
+      style: _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16,
       autofocus: autofocus,
       onChanged: onChanged,
       controller: controller,
       cursorColor: AppColors.zuriPrimaryColor,
+      textCapitalization: textCapitalization,
+      validator: validator,
+      textAlign: textAlign,
       decoration: InputDecoration(
         hintText: hint,
         border: border(),
@@ -38,7 +50,6 @@ class BorderTextField extends StatelessWidget {
         enabledBorder: border(),
         hintStyle: const TextStyle(
           fontSize: 16,
-          color: Colors.black45,
         ),
         contentPadding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
       ),
@@ -95,6 +106,53 @@ class LabelTextField extends StatelessWidget {
         ),
         contentPadding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
       ),
+    );
+  }
+}
+
+///This is the text field without border
+///
+///Auto focus is automatically set to false to override this
+///change set auto focus to true
+///
+///This is primarily used in the login screen
+class BorderLessTextField extends StatelessWidget {
+  final Function(String) onChanged;
+  final TextEditingController controller;
+  final String label;
+  final Color? labelColor;
+
+  const BorderLessTextField({
+    Key? key,
+    required this.onChanged,
+    required this.controller,
+    required this.label,
+    this.labelColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(
+          color: labelColor ?? const Color(0xffBEBEBE),
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+        ),
+        hintText: label,
+        hintStyle: const TextStyle(
+          color: Color(0xffBEBEBE),
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+        ),
+        border: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        errorBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+      ),
+      onChanged: onChanged,
     );
   }
 }

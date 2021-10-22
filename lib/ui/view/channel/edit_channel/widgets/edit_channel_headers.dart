@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
 
 class TextHeader extends StatelessWidget {
   final String headerText;
@@ -20,7 +21,7 @@ class TextHeader extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             headerText,
-            style: AppTextStyles.body2_400,
+            style: AppTextStyle.darkGreySize14,
           ),
         ),
       ),

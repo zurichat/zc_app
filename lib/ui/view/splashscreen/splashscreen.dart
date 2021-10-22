@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
-
-import '../../shared/colors.dart';
 import 'splashscreen_viewmodel.dart';
 
 class Splashview extends StatelessWidget {
@@ -12,9 +10,8 @@ class Splashview extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SplashscreenViewModel>.reactive(
       viewModelBuilder: () => SplashscreenViewModel(),
-      onModelReady: SplashscreenViewModel().init(),
+      onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
-        backgroundColor: AppColors.whiteColor,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

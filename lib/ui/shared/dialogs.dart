@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
 
 import 'shared.dart';
 
@@ -52,7 +52,6 @@ class Dialogs {
             content: Text(
               CloseChannelWarning,
               style: GoogleFonts.roboto(
-                // ignore: todo
                 //TODO Change to Brand color
                 color: const Color(0xff000000).withOpacity(0.54),
                 fontSize: 16.0,

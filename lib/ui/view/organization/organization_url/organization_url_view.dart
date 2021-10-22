@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import '../../../shared/shared.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
@@ -8,17 +11,19 @@ import 'package:stacked_hooks/stacked_hooks.dart';
 import 'organization_url_viewmodel.dart';
 
 class OrganizationUrlView extends StatelessWidget {
-  const OrganizationUrlView({Key? key}) : super(key: key);
+  final String email;
+  const OrganizationUrlView({Key? key, required this.email}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return ViewModelBuilder<OrganizationUrlViewModel>.nonReactive(
       builder: (context, viewModel, child) => ModalProgressHUD(
         inAsyncCall: viewModel.isBusy,
         color: AppColors.whiteColor,
-        progressIndicator: const CircularProgressIndicator(
-          color: AppColors.zuriPrimaryColor,
-        ),
+        progressIndicator: const ZuriLoader(),
         child: Scaffold(
           body: SafeArea(
             child: SingleChildScrollView(
@@ -38,25 +43,21 @@ class OrganizationUrlView extends StatelessWidget {
                           Text.rich(
                             TextSpan(
                               children: [
-                                const TextSpan(
-                                  text: OrgDesc1,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16),
+                                TextSpan(
+                                    text: local!.dontKnowWorkspaceUrl,
+                                    style: _dark
+                                        ? AppTextStyle.whiteSize16
+                                        : AppTextStyle.lightGreySize16),
+                                TextSpan(
+                                  text: '$email',
+                                  style: AppTextStyle.lightGreySize16
+                                      .copyWith(color: AppColors.appBarGreen),
                                 ),
                                 TextSpan(
-                                  text: '${viewModel.email}',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 16,
-                                    color: AppColors.appBarGreen,
-                                  ),
-                                ),
-                                const TextSpan(
-                                  text: OrgDesc2,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16),
+                                  text: local.helpSignInEasily,
+                                  style: _dark
+                                      ? AppTextStyle.whiteSize16
+                                      : AppTextStyle.lightGreySize16,
                                 ),
                               ],
                             ),
@@ -82,19 +83,23 @@ class OrganizationUrlView extends StatelessWidget {
 
 class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
   const TextForm({Key? key}) : super(key: key, reactive: false);
+
   @override
   Widget buildViewModelWidget(
       BuildContext context, OrganizationUrlViewModel viewModel) {
+    final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return Center(
       child: TextField(
-        decoration: const InputDecoration(
-          labelText: EnterOrgUrl,
+        cursorColor: AppColors.appBarGreen,
+        style: _dark
+            ? AppTextStyle.whiteSize16Bold
+            : AppTextStyle.darkGreySize16Bold,
+        decoration: InputDecoration(
+          labelText: local!.enterWorkSpacesUrl,
+          labelStyle: AppTextStyle.greenSize16,
           hintText: EnterOrgUrlHint,
-          hintStyle: TextStyle(
-            color: Color(0xffBEBEBE),
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-          ),
+          hintStyle: AppTextStyle.lightGreySize16,
           border: InputBorder.none,
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
@@ -114,22 +119,24 @@ class NextButton extends ViewModelWidget<OrganizationUrlViewModel> {
 
   @override
   Widget build(BuildContext context, OrganizationUrlViewModel viewModel) {
+    final local = AppLocalization.of(context);
     return TextButton(
-        style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.all<Color>(viewModel.buttonColors)),
-        onPressed: () => viewModel.signInToOrganization(),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-          child: SizedBox(
-            width: 300,
-            child: Center(
-              child: Text(
-                Next,
-                style: AppTextStyles.buttonText,
-              ),
+      style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all<Color>(viewModel.buttonColors)),
+      onPressed: () => viewModel.signInToOrganization(),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Center(
+            child: Text(
+              local!.next,
+              style: AppTextStyle.darkGreySize16Bold,
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

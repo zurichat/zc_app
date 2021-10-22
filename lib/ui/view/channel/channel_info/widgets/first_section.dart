@@ -1,81 +1,93 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/channel/channel_info/channel_info_view_model.dart';
-import '../../../../shared/colors.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/ui_helpers.dart';
+import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.dart';
 
 class FirstSection extends StatelessWidget {
-  const FirstSection(this.model, {Key? key}) : super(key: key);
+  const FirstSection(this.model, {Key? key, required this.channelName})
+      : super(key: key);
   final ChannelInfoViewModel model;
+  final String channelName;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 284.h,
-      width: 395.w,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6.r),
-          border: Border.all(width: 1.w, color: AppColors.borderColor),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5.r,
-              blurRadius: 6.r,
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ]),
-      padding: EdgeInsets.fromLTRB(16.37.w, 24.h, 24.h, 16.37.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            // "$channelName",
-            "#${model.channelName}",
-            style: AppTextStyles.body1Light,
-          ),
-          Text(
-            Description,
-            style: AppTextStyles.body1Light,
-          ),
-          SizedBox(height: 24.h),
-          Text(
-            '${model.channelDescription}',
-            style: AppTextStyles.body1Light.copyWith(letterSpacing: 0.005),
-          ),
-          SizedBox(height: 6.h),
-          Text(
-            MarkCreatedChannel,
-            style: AppTextStyles.body1Regular.copyWith(letterSpacing: 0.005),
-          ),
-          SizedBox(height: 18.h),
-          Text(
-            Topic,
-            style: AppTextStyles.headerStyle1.copyWith(fontSize: 16.sp),
-          ),
-          SizedBox(height: 10.h),
-          Text(
-            CreatingZuri,
-            style: AppTextStyles.body1Light.copyWith(fontSize: 16.sp),
-          ),
-          SizedBox(height: 26.h),
-          Divider(
-            thickness: 0.5.h,
-            color: AppColors.borderColor,
-          ),
-          SizedBox(height: 16.h),
-          Center(
-            child: InkWell(
-              onTap: () {
-                model.navigateToEditChannel();
-              },
-              child: Text(
-                Edit,
-                style: AppTextStyles.bodyBig..copyWith(fontSize: 16.sp),
+    return Card(
+      elevation: 2,
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(16.w, 24.h, 16.w, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "#$channelName",
+                    style: AppTextStyle.darkGreySize16Bold,
+                  ),
+                  // UIHelper.verticalSpaceSmall,
+                  UIHelper.verticalSpaceMedium,
+                  Text(
+                    Description,
+                    style: AppTextStyle.darkGreySize16Bold,
+                  ),
+                  UIHelper.verticalSpaceSmall,
+                  Text(
+                    '${model.channelDescription}',
+                    style: AppTextStyle.darkGreySize16
+                        .copyWith(letterSpacing: 0.005),
+                  ),
+                  //TODO
+                  // UIHelper.verticalSpaceExtraSmall,
+                  // Text(
+                  //   MarkCreatedChannel,
+                  //   style: AppTextStyle.lightGreySize16
+                  //       .copyWith(letterSpacing: 0.005),
+                  // ),
+                  UIHelper.verticalSpaceMedium,
+                  Text(
+                    Topic,
+                    style:
+                        AppTextStyle.darkGreySize16.copyWith(fontSize: 16.sp),
+                  ),
+                  UIHelper.verticalSpaceSmall,
+                  Text(
+                    CreatingZuri,
+                    style:
+                        AppTextStyle.lightGreySize16.copyWith(fontSize: 16.sp),
+                  ),
+                  UIHelper.verticalSpaceSmall,
+                  UIHelper.verticalSpaceMedium,
+                ],
               ),
             ),
-          ),
-        ],
+            // const Divider(
+            //   thickness: 0.5,
+            //   color: AppColors.borderColor,
+            // ),
+            // UIHelper.verticalSpaceMedium,
+            // Center(
+            //   child: InkWell(
+            //     onTap: () {
+            //       model.navigateToEditChannel();
+            //     },
+            //     child: Text(
+            //       Edit,
+            //       style: AppTextStyle.darkGreySize16Bold,
+            //     ),
+            //   ),
+            // ),
+            UIHelper.verticalSpaceMedium,
+          ],
+        ),
       ),
     );
   }

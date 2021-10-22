@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -18,18 +21,18 @@ class ForgotPasswordEmailView extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return ViewModelBuilder<ForgotPasswordEmailViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => ForgotPasswordEmailViewModel(),
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
         color: AppColors.whiteColor,
-        progressIndicator: const CircularProgressIndicator(
-          color: AppColors.zuriPrimaryColor,
-        ),
+        progressIndicator: const ZuriLoader(),
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppColors.whiteColor,
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
@@ -37,39 +40,44 @@ class ForgotPasswordEmailView extends StatelessWidget
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                const   SizedBox(
+                  UIHelper.verticalSpaceLarge,
+                  Center(
+                    child: Image.asset(
+                      ZuriLogo,
+                      height: 50,
+                      width: 50,
+                    ),
+                  ),
+                  UIHelper.customVerticalSpace(24),
+                  Center(
+                    child: Text(
+                      local!.forgotPassword,
+
+                      style: _dark
+                          ? AppTextStyle.whiteSize20Bold
+                          : AppTextStyle.darkGreySize20Bold,
+
+                    ),
+                  ),
+                  const SizedBox(
                     height: 6.0,
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Image.asset(ZuriLogo),
-                  ),
-                const   SizedBox(
-                    height: 24.0,
                   ),
                   Center(
                     child: Text(
-                      ForgotPassword,
-                      style: AppTextStyles.heading9,
-                    ),
-                  ),
-              const     SizedBox(
-                    height: 6.0,
-                  ),
-               const    Center(
-                    child: Text(
-                      Header,
+                      local.forgotPasswordHeader,
                       textAlign: TextAlign.center,
                     ),
                   ),
-               const    SizedBox(
+                  const SizedBox(
                     height: 49.0,
                   ),
                   Container(
-                    margin:const  EdgeInsets.symmetric(vertical: 8.0),
+                    margin: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
-                      EmailAddress,
-                      style: AppTextStyles.body1Bold,
+                      local.emailAddress,
+                      style: _dark
+                          ? AppTextStyle.whiteSize16Bold
+                          : AppTextStyle.darkGreySize16Bold,
                     ),
                   ),
                   Column(
@@ -82,7 +90,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                           obscureText: false,
                           textInputAction: TextInputAction.done,
                           autocorrect: true,
-                          decoration:const  InputDecoration(
+                          decoration: const InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(3.0),
@@ -98,7 +106,6 @@ class ForgotPasswordEmailView extends StatelessWidget
                               ),
                             ),
                           ),
-                          // onChanged: model.submitEmail,
                         ),
                       ),
 
@@ -111,10 +118,8 @@ class ForgotPasswordEmailView extends StatelessWidget
                             children: [
                               UIHelper.verticalSpaceSmall,
                               Text(
-                                InvalidEmail,
-                                style: AppTextStyles.body2Medium.copyWith(
-                                  color: AppColors.redColor,
-                                ),
+                                local.invalidEmail,
+                                style: AppTextStyle.errorSize14,
                               ),
                             ],
                           ),
@@ -123,7 +128,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                     ],
                   ),
                   //Changes  ss
-               const    SizedBox(
+                  const SizedBox(
                     height: 30.0,
                   ),
                   Center(
@@ -131,22 +136,22 @@ class ForgotPasswordEmailView extends StatelessWidget
                       widthFactor: 1.0,
                       child: ElevatedButton(
                         onPressed: () {
-                          // ignore: unnecessary_statements
                           // model.submitEmail();
                           model.validateEmailIsRegistered();
                         },
                         child: Text(
-                          Continue,
-                          style: AppTextStyles.buttonText,
+                          local.continueButton,
+                          style: AppTextStyle.whiteSize16,
                         ),
                         style: ElevatedButton.styleFrom(
-                          padding:const  EdgeInsets.only(top: 15.0, bottom: 15.0),
+                          padding:
+                              const EdgeInsets.only(top: 15.0, bottom: 15.0),
                           primary: AppColors.zuriPrimaryColor,
                         ),
                       ),
                     ),
                   ),
-              const     SizedBox(height: 10),
+                  UIHelper.customVerticalSpace(24),
                   Center(
                     child: GestureDetector(
                       onTap: () {
@@ -156,16 +161,12 @@ class ForgotPasswordEmailView extends StatelessWidget
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: BackTo,
-                              style: AppTextStyles.normalText.copyWith(
-                                color: AppColors.blackColor,
-                              ),
+                              text: local.backTo,
+                              style: Theme.of(context).textTheme.bodyText1,
                             ),
                             TextSpan(
-                              text: SignIn,
-                              style: AppTextStyles.body2Bold.copyWith(
-                                color: AppColors.zuriPrimaryColor,
-                              ),
+                              text: local.signIn,
+                              style: AppTextStyle.greenSize14,
                             ),
                           ],
                         ),

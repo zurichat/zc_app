@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../general_widgets/custom_text.dart';
 import '../../shared/shared.dart';
 import 'do_not_disturb_viewmodel.dart';
 
@@ -10,23 +12,29 @@ class DoNotDisturbView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<DoNotDisturbViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          leading: IconButton(
-            onPressed: model.exitPage,
-            icon: const Icon(Icons.close_rounded),
+        appBar: ZuriAppBar(
+          orgTitle: Text(
+            local!.doNotDisturb,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
-          title: const Text('Do not disturb'),
+          leading: Icons.close_outlined,
+          leadingPress: () => model.exitPage(),
+          isDarkMode: _dark,
+          whiteBackground: true,
           actions: [
             TextButton(
               onPressed: () {},
-              child: const Text(
-                'Save',
-                style: TextStyle(color: AppColors.zuriPrimaryColor),
+              child: Text(
+                local.save,
+                style: AppTextStyle.greenSize16,
               ),
-            )
+            ),
           ],
         ),
         body: Column(
@@ -36,7 +44,12 @@ class DoNotDisturbView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: model.doNotDisturbTimes.length,
                 itemBuilder: (context, index) => ListTile(
-                  title: CustomText(text: model.doNotDisturbTimes[index]),
+                  title: Text(
+                    model.doNotDisturbTimes[index],
+                    style: _dark
+                        ? AppTextStyle.whiteSize16
+                        : AppTextStyle.darkGreySize16,
+                  ),
                   leading: Radio(
                     activeColor: AppColors.zuriPrimaryColor,
                     value: index,

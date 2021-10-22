@@ -6,13 +6,21 @@
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:stacked/stacked.dart';
 
 import '../models/channel_members.dart';
 import '../models/channel_model.dart';
+import '../models/organization_model.dart';
+import '../models/user_model.dart';
 import '../models/user_post.dart';
+import '../ui/nav_pages/dm_page/dm_search_find_page.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
+import '../ui/nav_pages/plugin_page/add_plugin_view.dart';
+import '../ui/nav_pages/plugin_page/edit_plugin_view.dart';
+import '../ui/nav_pages/plugin_page/plugin_intro_page.dart';
+import '../ui/nav_pages/plugin_page/plugin_page_view.dart';
+import '../ui/nav_pages/plugin_page/plugins_view.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
 import '../ui/view/channel/add_people/channel_add_people_view.dart';
@@ -22,7 +30,12 @@ import '../ui/view/channel/channel_notification/channel_notification_view.dart';
 import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
+import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
+
+import '../ui/view/channel/share_message/share_message_view.dart';
+
 import '../ui/view/clear_after/clear_after_view.dart';
+import '../ui/view/direct_message/direct_message.dart';
 import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
@@ -40,15 +53,21 @@ import '../ui/view/notifications/notifications_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/organization/add_organization/add_organization_view.dart';
 import '../ui/view/organization/create_organization/create_organization.dart';
+import '../ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
+import '../ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
+
+import '../ui/view/organization/invite_to_organization/invitation_sent.dart';
+import '../ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
+
+import '../ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
 import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
+import '../ui/view/organization/organization_settings/organization_logo.dart';
+import '../ui/view/organization/organization_settings/organization_name_url.dart';
+import '../ui/view/organization/organization_settings/organization_settings_view.dart';
 import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
-import '../ui/view/pinned_messages/pinned_message.dart';
-import '../ui/view/plugins/add_plugin_view.dart';
-import '../ui/view/plugins/edit_plugin_view.dart';
-import '../ui/view/plugins/plugins_view.dart';
 import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/profile_page/profile_page_view.dart';
@@ -57,9 +76,14 @@ import '../ui/view/set_status/set_status_view.dart';
 import '../ui/view/sign_up/sign_up_view.dart';
 import '../ui/view/splashscreen/splashscreen.dart';
 import '../ui/view/start_dm/start_dm_view.dart';
+import '../ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';
 import '../ui/view/threads/all_threads/threads_view.dart';
 import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 import '../ui/view/user_search/user_search_view.dart';
+<<<<<<< HEAD
+=======
+import '../ui/view/webview_page/webview_page.dart';
+>>>>>>> e0ec9a58844dcdf0ed41ee76378015bdd3d4baf0
 import '../utilities/enums.dart';
 
 class Routes {
@@ -81,6 +105,7 @@ class Routes {
   static const String dmSearch = '/dm-search';
   static const String dmJumpToView = '/dm-jump-to-view';
   static const String dmUserView = '/dm-user-view';
+  static const String dmScreen = '/dm-screen';
   static const String splashview = '/';
   static const String pluginView = '/plugin-view';
   static const String addPluginView = '/add-plugin-view';
@@ -98,7 +123,7 @@ class Routes {
   static const String doNotDisturbView = '/do-not-disturb-view';
   static const String editProfileView = '/edit-profile-view';
   static const String popUpNotificationsView = '/pop-up-notifications-view';
-  static const String pinnedMessages = '/pinned-messages';
+  static const String pinnedMessagesView = '/pinned-messages-view';
   static const String selectEmail = '/select-email';
   static const String addOrganizationView = '/add-organization-view';
   static const String createOrganization = '/create-organization';
@@ -112,6 +137,20 @@ class Routes {
   static const String organizationUrlView = '/organization-url-view';
   static const String channelPageView = '/channel-page-view';
   static const String channelInfoView = '/channel-info-view';
+  static const String pluginPage = '/plugin-page';
+  static const String directMessage = '/direct-message';
+  static const String termsAndConditionsView = '/terms-and-conditions-view';
+  static const String webViewPage = '/web-view-page';
+  static const String pluginPageIntro = '/plugin-page-intro';
+  static const String inviteViaEmail = '/invite-via-email';
+  static const String inviteViaEmailAdmin = '/invite-via-email-admin';
+  static const String importContacts = '/import-contacts';
+  static const String createInviteLink = '/create-invite-link';
+  static const String invitationSent = '/invitation-sent';
+  static const String shareMessageView = '/share-message-view';
+  static const String organizationSettingsView = '/organization-settings-view';
+  static const String organizationNameUrl = '/organization-name-url';
+  static const String organizationLogo = '/organization-logo';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -131,6 +170,7 @@ class Routes {
     dmSearch,
     dmJumpToView,
     dmUserView,
+    dmScreen,
     splashview,
     pluginView,
     addPluginView,
@@ -147,7 +187,7 @@ class Routes {
     doNotDisturbView,
     editProfileView,
     popUpNotificationsView,
-    pinnedMessages,
+    pinnedMessagesView,
     selectEmail,
     addOrganizationView,
     createOrganization,
@@ -161,6 +201,20 @@ class Routes {
     organizationUrlView,
     channelPageView,
     channelInfoView,
+    pluginPage,
+    directMessage,
+    termsAndConditionsView,
+    webViewPage,
+    pluginPageIntro,
+    inviteViaEmail,
+    inviteViaEmailAdmin,
+    importContacts,
+    createInviteLink,
+    invitationSent,
+    shareMessageView,
+    organizationSettingsView,
+    organizationNameUrl,
+    organizationLogo,
   };
 }
 
@@ -186,6 +240,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.dmSearch, page: DmSearch),
     RouteDef(Routes.dmJumpToView, page: DmJumpToView),
     RouteDef(Routes.dmUserView, page: DmUserView),
+    RouteDef(Routes.dmScreen, page: DmScreen),
     RouteDef(Routes.splashview, page: Splashview),
     RouteDef(Routes.pluginView, page: PluginView),
     RouteDef(Routes.addPluginView, page: AddPluginView),
@@ -203,7 +258,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.doNotDisturbView, page: DoNotDisturbView),
     RouteDef(Routes.editProfileView, page: EditProfileView),
     RouteDef(Routes.popUpNotificationsView, page: PopUpNotificationsView),
-    RouteDef(Routes.pinnedMessages, page: PinnedMessages),
+    RouteDef(Routes.pinnedMessagesView, page: PinnedMessagesView),
     RouteDef(Routes.selectEmail, page: SelectEmail),
     RouteDef(Routes.addOrganizationView, page: AddOrganizationView),
     RouteDef(Routes.createOrganization, page: CreateOrganization),
@@ -217,13 +272,27 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.organizationUrlView, page: OrganizationUrlView),
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
+    RouteDef(Routes.pluginPage, page: PluginPage),
+    RouteDef(Routes.directMessage, page: DirectMessage),
+    RouteDef(Routes.termsAndConditionsView, page: TermsAndConditionsView),
+    RouteDef(Routes.webViewPage, page: WebViewPage),
+    RouteDef(Routes.pluginPageIntro, page: PluginPageIntro),
+    RouteDef(Routes.inviteViaEmail, page: InviteViaEmail),
+    RouteDef(Routes.inviteViaEmailAdmin, page: InviteViaEmailAdmin),
+    RouteDef(Routes.importContacts, page: ImportContacts),
+    RouteDef(Routes.createInviteLink, page: CreateInviteLink),
+    RouteDef(Routes.invitationSent, page: InvitationSent),
+    RouteDef(Routes.shareMessageView, page: ShareMessageView),
+    RouteDef(Routes.organizationSettingsView, page: OrganizationSettingsView),
+    RouteDef(Routes.organizationNameUrl, page: OrganizationNameUrl),
+    RouteDef(Routes.organizationLogo, page: OrganizationLogo),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
     ChannelAddPeopleView: (data) {
       var args = data.getArgs<ChannelAddPeopleViewArguments>(nullOk: false);
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => ChannelAddPeopleView(
           key: args.key,
           channelId: args.channelId,
@@ -233,13 +302,13 @@ class StackedRouter extends RouterBase {
       );
     },
     NavBarView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const NavBarView(),
         settings: data,
       );
     },
     OnboardingView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const OnboardingView(),
         settings: data,
       );
@@ -248,7 +317,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<LoginViewArguments>(
         orElse: () => LoginViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => LoginView(key: args.key),
         settings: data,
       );
@@ -257,7 +326,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<OTPViewArguments>(
         orElse: () => OTPViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => OTPView(key: args.key),
         settings: data,
       );
@@ -266,19 +335,19 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<SignUpViewArguments>(
         orElse: () => SignUpViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => SignUpView(key: args.key),
         settings: data,
       );
     },
     OrganizationView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const OrganizationView(),
         settings: data,
       );
     },
     ChannelList: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const ChannelList(),
         settings: data,
       );
@@ -287,7 +356,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<ForgotPasswordEmailViewArguments>(
         orElse: () => ForgotPasswordEmailViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => ForgotPasswordEmailView(key: args.key),
         settings: data,
       );
@@ -296,7 +365,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<ForgotPasswordOtpViewArguments>(
         orElse: () => ForgotPasswordOtpViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => ForgotPasswordOtpView(key: args.key),
         settings: data,
       );
@@ -305,14 +374,20 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<ForgotPasswordNewViewArguments>(
         orElse: () => ForgotPasswordNewViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => ForgotPasswordNewView(key: args.key),
         settings: data,
       );
     },
     ChannelNotificationView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const ChannelNotificationView(),
+      var args = data.getArgs<ChannelNotificationViewArguments>(
+        orElse: () => ChannelNotificationViewArguments(),
+      );
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => ChannelNotificationView(
+          key: args.key,
+          channelName: args.channelName,
+        ),
         settings: data,
       );
     },
@@ -320,26 +395,35 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<NewChannelArguments>(
         orElse: () => NewChannelArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => NewChannel(key: args.key),
         settings: data,
       );
     },
     HomePage: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const HomePage(),
+      var args = data.getArgs<HomePageArguments>(
+        orElse: () => HomePageArguments(),
+      );
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => HomePage(
+          key: args.key,
+          organizationLogo: args.organizationLogo,
+        ),
         settings: data,
       );
     },
     AddPeopleView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const AddPeopleView(),
         settings: data,
       );
     },
     DmSearch: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const DmSearch(),
+      var args = data.getArgs<DmSearchArguments>(
+        orElse: () => DmSearchArguments(),
+      );
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => DmSearch(key: args.key),
         settings: data,
       );
     },
@@ -347,7 +431,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<DmJumpToViewArguments>(
         orElse: () => DmJumpToViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => DmJumpToView(key: args.key),
         settings: data,
       );
@@ -356,19 +440,28 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<DmUserViewArguments>(
         orElse: () => DmUserViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => DmUserView(key: args.key),
         settings: data,
       );
     },
+    DmScreen: (data) {
+      var args = data.getArgs<DmScreenArguments>(
+        orElse: () => DmScreenArguments(),
+      );
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => DmScreen(key: args.key),
+        settings: data,
+      );
+    },
     Splashview: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const Splashview(),
         settings: data,
       );
     },
     PluginView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const PluginView(),
         settings: data,
       );
@@ -377,98 +470,109 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<AddPluginViewArguments>(
         orElse: () => AddPluginViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => AddPluginView(key: args.key),
         settings: data,
       );
     },
     UseDifferentEmailView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const UseDifferentEmailView(),
+      var args = data.getArgs<UseDifferentEmailViewArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => UseDifferentEmailView(
+          key: args.key,
+          method: args.method,
+        ),
         settings: data,
       );
     },
     EditPluginView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const EditPluginView(),
         settings: data,
       );
     },
     SetStatusView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const SetStatusView(),
+      var args = data.getArgs<SetStatusViewArguments>(
+        orElse: () => SetStatusViewArguments(),
+      );
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => SetStatusView(key: args.key),
         settings: data,
       );
     },
     ProfilePageView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const ProfilePageView(),
         settings: data,
       );
     },
     PreferenceView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const PreferenceView(),
         settings: data,
       );
     },
     LanguageAndRegionModelView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const LanguageAndRegionModelView(),
         settings: data,
       );
     },
     SavedItemsView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const SavedItemsView(),
         settings: data,
       );
     },
     NotificationsView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const NotificationsView(),
         settings: data,
       );
     },
     AdvancedView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const AdvancedView(),
         settings: data,
       );
     },
     ClearAfterView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const ClearAfterView(),
         settings: data,
       );
     },
     DoNotDisturbView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const DoNotDisturbView(),
         settings: data,
       );
     },
     EditProfileView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const EditProfileView(),
+      var args = data.getArgs<EditProfileViewArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => EditProfileView(
+          key: args.key,
+          user: args.user,
+        ),
         settings: data,
       );
     },
     PopUpNotificationsView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const PopUpNotificationsView(),
         settings: data,
       );
     },
-    PinnedMessages: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const PinnedMessages(),
+    PinnedMessagesView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const PinnedMessagesView(),
         settings: data,
       );
     },
     SelectEmail: (data) {
       var args = data.getArgs<SelectEmailArguments>(nullOk: false);
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => SelectEmail(
           key: args.key,
           method: args.method,
@@ -477,14 +581,14 @@ class StackedRouter extends RouterBase {
       );
     },
     AddOrganizationView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const AddOrganizationView(),
         settings: data,
       );
     },
     CreateOrganization: (data) {
       var args = data.getArgs<CreateOrganizationArguments>(nullOk: false);
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => CreateOrganization(
           key: args.key,
           email: args.email,
@@ -493,26 +597,26 @@ class StackedRouter extends RouterBase {
       );
     },
     FileSearchView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const FileSearchView(),
         settings: data,
       );
     },
     DraftView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const DraftView(),
         settings: data,
       );
     },
     ThreadsView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const ThreadsView(),
         settings: data,
       );
     },
     ThreadDetailView: (data) {
       var args = data.getArgs<ThreadDetailViewArguments>(nullOk: false);
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => ThreadDetailView(
           args.userPost,
           key: args.key,
@@ -521,17 +625,19 @@ class StackedRouter extends RouterBase {
       );
     },
     UserSearchView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => const UserSearchView(),
         settings: data,
       );
     },
     EditChannelPageView: (data) {
-      var args = data.getArgs<EditChannelPageViewArguments>(
-        orElse: () => EditChannelPageViewArguments(),
-      );
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => EditChannelPageView(key: args.key),
+      var args = data.getArgs<EditChannelPageViewArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => EditChannelPageView(
+          key: args.key,
+          channelName: args.channelName,
+          channelId: args.channelId,
+        ),
         settings: data,
       );
     },
@@ -539,20 +645,24 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<StartDmViewArguments>(
         orElse: () => StartDmViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => StartDmView(key: args.key),
         settings: data,
       );
     },
     OrganizationUrlView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const OrganizationUrlView(),
+      var args = data.getArgs<OrganizationUrlViewArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => OrganizationUrlView(
+          key: args.key,
+          email: args.email,
+        ),
         settings: data,
       );
     },
     ChannelPageView: (data) {
       var args = data.getArgs<ChannelPageViewArguments>(nullOk: false);
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => ChannelPageView(
           key: args.key,
           channelName: args.channelName,
@@ -565,12 +675,129 @@ class StackedRouter extends RouterBase {
     },
     ChannelInfoView: (data) {
       var args = data.getArgs<ChannelInfoViewArguments>(nullOk: false);
-      return MaterialPageRoute<dynamic>(
+      return CupertinoPageRoute<dynamic>(
         builder: (context) => ChannelInfoView(
           key: args.key,
           numberOfMembers: args.numberOfMembers,
           channelMembers: args.channelMembers,
           channelDetail: args.channelDetail,
+          channelName: args.channelName,
+        ),
+        settings: data,
+      );
+    },
+    PluginPage: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const PluginPage(),
+        settings: data,
+      );
+    },
+    DirectMessage: (data) {
+      var args = data.getArgs<DirectMessageArguments>(
+        orElse: () => DirectMessageArguments(),
+      );
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => DirectMessage(
+          key: args.key,
+          username: args.username,
+        ),
+        settings: data,
+      );
+    },
+    TermsAndConditionsView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const TermsAndConditionsView(),
+        settings: data,
+      );
+    },
+    WebViewPage: (data) {
+      var args = data.getArgs<WebViewPageArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => WebViewPage(
+          name: args.name,
+          url: args.url,
+          key: args.key,
+        ),
+        settings: data,
+      );
+    },
+    PluginPageIntro: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const PluginPageIntro(),
+        settings: data,
+      );
+    },
+    InviteViaEmail: (data) {
+      var args = data.getArgs<InviteViaEmailArguments>(
+        orElse: () => InviteViaEmailArguments(),
+      );
+
+      return CupertinoPageRoute<dynamic>(
+
+        builder: (context) => InviteViaEmail(key: args.key),
+        settings: data,
+      );
+    },
+    InviteViaEmailAdmin: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const InviteViaEmailAdmin(),
+        settings: data,
+      );
+    },
+    ImportContacts: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const ImportContacts(),
+        settings: data,
+      );
+    },
+    CreateInviteLink: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const CreateInviteLink(),
+        settings: data,
+      );
+    },
+    InvitationSent: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const InvitationSent(),
+        settings: data,
+      );
+    },
+    ShareMessageView: (data) {
+      var args = data.getArgs<ShareMessageViewArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => ShareMessageView(
+          userPost: args.userPost,
+          key: args.key,
+        ),
+        settings: data,
+      );
+    },
+    OrganizationSettingsView: (data) {
+      var args = data.getArgs<OrganizationSettingsViewArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => OrganizationSettingsView(
+          key: args.key,
+          org: args.org,
+        ),
+        settings: data,
+      );
+    },
+    OrganizationNameUrl: (data) {
+      var args = data.getArgs<OrganizationNameUrlArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => OrganizationNameUrl(
+          key: args.key,
+          org: args.org,
+        ),
+        settings: data,
+      );
+    },
+    OrganizationLogo: (data) {
+      var args = data.getArgs<OrganizationLogoArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => OrganizationLogo(
+          key: args.key,
+          org: args.org,
         ),
         settings: data,
       );
@@ -627,10 +854,30 @@ class ForgotPasswordNewViewArguments {
   ForgotPasswordNewViewArguments({this.key});
 }
 
+/// ChannelNotificationView arguments holder class
+class ChannelNotificationViewArguments {
+  final Key? key;
+  final String? channelName;
+  ChannelNotificationViewArguments({this.key, this.channelName});
+}
+
 /// NewChannel arguments holder class
 class NewChannelArguments {
   final Key? key;
   NewChannelArguments({this.key});
+}
+
+/// HomePage arguments holder class
+class HomePageArguments {
+  final Key? key;
+  final Widget? organizationLogo;
+  HomePageArguments({this.key, this.organizationLogo});
+}
+
+/// DmSearch arguments holder class
+class DmSearchArguments {
+  final Key? key;
+  DmSearchArguments({this.key});
 }
 
 /// DmJumpToView arguments holder class
@@ -645,10 +892,36 @@ class DmUserViewArguments {
   DmUserViewArguments({this.key});
 }
 
+/// DmScreen arguments holder class
+class DmScreenArguments {
+  final Key? key;
+  DmScreenArguments({this.key});
+}
+
 /// AddPluginView arguments holder class
 class AddPluginViewArguments {
   final Key? key;
   AddPluginViewArguments({this.key});
+}
+
+/// UseDifferentEmailView arguments holder class
+class UseDifferentEmailViewArguments {
+  final Key? key;
+  final OrganizationSwitchMethod method;
+  UseDifferentEmailViewArguments({this.key, required this.method});
+}
+
+/// SetStatusView arguments holder class
+class SetStatusViewArguments {
+  final Key? key;
+  SetStatusViewArguments({this.key});
+}
+
+/// EditProfileView arguments holder class
+class EditProfileViewArguments {
+  final Key? key;
+  final UserModel user;
+  EditProfileViewArguments({this.key, required this.user});
 }
 
 /// SelectEmail arguments holder class
@@ -675,13 +948,23 @@ class ThreadDetailViewArguments {
 /// EditChannelPageView arguments holder class
 class EditChannelPageViewArguments {
   final Key? key;
-  EditChannelPageViewArguments({this.key});
+  final String channelName;
+  final String? channelId;
+  EditChannelPageViewArguments(
+      {this.key, required this.channelName, this.channelId});
 }
 
 /// StartDmView arguments holder class
 class StartDmViewArguments {
   final Key? key;
   StartDmViewArguments({this.key});
+}
+
+/// OrganizationUrlView arguments holder class
+class OrganizationUrlViewArguments {
+  final Key? key;
+  final String email;
+  OrganizationUrlViewArguments({this.key, required this.email});
 }
 
 /// ChannelPageView arguments holder class
@@ -705,9 +988,62 @@ class ChannelInfoViewArguments {
   final int numberOfMembers;
   final List<ChannelMembermodel> channelMembers;
   final ChannelModel channelDetail;
+  final String channelName;
   ChannelInfoViewArguments(
       {this.key,
       required this.numberOfMembers,
       required this.channelMembers,
-      required this.channelDetail});
+      required this.channelDetail,
+      required this.channelName});
 }
+
+/// DirectMessage arguments holder class
+class DirectMessageArguments {
+  final Key? key;
+  final String? username;
+  DirectMessageArguments({this.key, this.username});
+}
+
+/// WebViewPage arguments holder class
+class WebViewPageArguments {
+  final String name;
+  final String url;
+  final Key? key;
+  WebViewPageArguments({required this.name, required this.url, this.key});
+}
+
+/// InviteViaEmail arguments holder class
+class InviteViaEmailArguments {
+  final Key? key;
+  InviteViaEmailArguments({this.key});
+}
+
+
+/// ShareMessageView arguments holder class
+class ShareMessageViewArguments {
+  final UserPost userPost;
+  final Key? key;
+  ShareMessageViewArguments({required this.userPost, this.key});
+}
+
+/// OrganizationSettingsView arguments holder class
+class OrganizationSettingsViewArguments {
+  final Key? key;
+  final OrganizationModel org;
+  OrganizationSettingsViewArguments({this.key, required this.org});
+}
+
+/// OrganizationNameUrl arguments holder class
+class OrganizationNameUrlArguments {
+  final Key? key;
+  final OrganizationModel org;
+  OrganizationNameUrlArguments({this.key, required this.org});
+}
+
+/// OrganizationLogo arguments holder class
+class OrganizationLogoArguments {
+  final Key? key;
+  final OrganizationModel org;
+  OrganizationLogoArguments({this.key, required this.org});
+}
+

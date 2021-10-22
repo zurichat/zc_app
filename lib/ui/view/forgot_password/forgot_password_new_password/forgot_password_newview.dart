@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -20,59 +23,57 @@ class ForgotPasswordNewView extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<ForgotPasswordNewViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => ModalProgressHUD(
         inAsyncCall: model.isLoading,
         color: AppColors.whiteColor,
-        progressIndicator:const  CircularProgressIndicator(
-          color: AppColors.zuriPrimaryColor,
-        ),
+        progressIndicator: const ZuriLoader(),
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppColors.whiteColor,
           body: SafeArea(
             child: Padding(
-              padding:const  EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
+              padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                   const  SizedBox(
+                    const SizedBox(
                       height: 6.0,
                     ),
                     Container(
                       alignment: Alignment.center,
                       child: Image.asset(ZuriLogo),
                     ),
-                  const   SizedBox(
+                    const SizedBox(
                       height: 24.0,
                     ),
                     Center(
                       child: Text(
-                        ForgotPassword,
-                        style: AppTextStyles.body1Bold,
+                        local!.forgotPassword,
+                        style: AppTextStyle.darkGreySize16Bold,
                       ),
                     ),
-                  const   SizedBox(
+                    const SizedBox(
                       height: 6.0,
                     ),
-                 const    Center(
+                    Center(
                       child: Text(
-                        NewPasswordHeader,
+                        local.newPasswordHeader,
                         textAlign: TextAlign.center,
                       ),
                     ),
-                const     SizedBox(
+                    const SizedBox(
                       height: 49.0,
                     ),
                     Container(
-                      margin:const  EdgeInsets.symmetric(vertical: 8.0),
+                      margin: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
-                        NewPassword,
-                        style: AppTextStyles.body1Bold,
+                        local.newPassword,
+                        style: AppTextStyle.darkGreySize16Bold,
                       ),
                     ),
                     Form(
@@ -85,14 +86,14 @@ class ForgotPasswordNewView extends StatelessWidget
                             obscureText: true,
                             textInputAction: TextInputAction.done,
                             autocorrect: true,
-                            decoration:const  InputDecoration(
-                              border: OutlineInputBorder(
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(3.0),
                                 ),
                               ),
-                              hintText: PasswordHintText,
-                              focusedBorder: OutlineInputBorder(
+                              hintText: local.passwordHintText,
+                              focusedBorder: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(5.0),
                                 ),
@@ -113,10 +114,8 @@ class ForgotPasswordNewView extends StatelessWidget
                                 children: [
                                   UIHelper.verticalSpaceSmall,
                                   Text(
-                                    PasswordLengthWarning,
-                                    style: AppTextStyles.body2Medium.copyWith(
-                                      color: AppColors.redColor,
-                                    ),
+                                    local.passwordLengthWarning,
+                                    style: AppTextStyle.errorSize14,
                                   ),
                                 ],
                               ),
@@ -124,14 +123,14 @@ class ForgotPasswordNewView extends StatelessWidget
                           ),
 
                           //Changes  ss
-                       const    SizedBox(
+                          const SizedBox(
                             height: 15.0,
                           ),
                           Container(
-                            margin:const  EdgeInsets.symmetric(vertical: 8.0),
+                            margin: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Text(
-                              ConfirmPassword,
-                              style: AppTextStyles.body1Bold,
+                              local.confirmPassword,
+                              style: AppTextStyle.darkGreySize16Bold,
                             ),
                           ),
                           TextField(
@@ -140,14 +139,14 @@ class ForgotPasswordNewView extends StatelessWidget
                             obscureText: true,
                             textInputAction: TextInputAction.done,
                             autocorrect: true,
-                            decoration:const  InputDecoration(
-                              border: OutlineInputBorder(
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(3.0),
                                 ),
                               ),
-                              hintText: ConfirmPasswordHinText,
-                              focusedBorder: OutlineInputBorder(
+                              hintText: local.confirmPasswordHinText,
+                              focusedBorder: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(5.0),
                                 ),
@@ -168,10 +167,8 @@ class ForgotPasswordNewView extends StatelessWidget
                                 children: [
                                   UIHelper.verticalSpaceSmall,
                                   Text(
-                                    passwordsMustMatch,
-                                    style: AppTextStyles.body2Medium.copyWith(
-                                      color: AppColors.redColor,
-                                    ),
+                                    local.passwordMustMatch,
+                                    style: AppTextStyle.errorSize14,
                                   ),
                                 ],
                               ),
@@ -182,7 +179,7 @@ class ForgotPasswordNewView extends StatelessWidget
                         ],
                       ),
                     ),
-                  const   SizedBox(
+                    const SizedBox(
                       height: 30.0,
                     ),
                     Center(
@@ -194,11 +191,12 @@ class ForgotPasswordNewView extends StatelessWidget
                             model.resetPassword();
                           },
                           child: Text(
-                            Continue,
-                            style: AppTextStyles.buttonText,
+                            local.continueButton,
+                            style: AppTextStyle.whiteSize16,
                           ),
                           style: ElevatedButton.styleFrom(
-                            padding:const  EdgeInsets.only(top: 15.0, bottom: 15.0),
+                            padding:
+                                const EdgeInsets.only(top: 15.0, bottom: 15.0),
                             primary: AppColors.zuriPrimaryColor,
                           ),
                         ),

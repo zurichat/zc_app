@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/constants/app_strings.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
 import '../edit_channel_view_model.dart';
 
 class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
@@ -30,7 +31,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Text(
             appbarTitle,
-            style: AppTextStyles.header6,
+            style: AppTextStyle.header6,
           ),
           GestureDetector(
             onTap: () {
@@ -39,6 +40,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
                   model.editChannel();
                   break;
                 case Done:
+                  model.navigateBack();
                   //model.nToPlugins();
                   break;
                 case Add:
@@ -52,7 +54,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
                 child: Text(
                   appbarAction,
                   textAlign: TextAlign.end,
-                  style: AppTextStyles.body1Green,
+                  style: AppTextStyle.greenSize16,
                 ),
               ),
             ),
@@ -70,7 +72,7 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
                 if (appbarAction == 'Edit') {
                   model.nToChannelInfo();
                 } else {
-                  Navigator.of(context).pop();
+                  model.navigateBack();
                 }
               },
             )),

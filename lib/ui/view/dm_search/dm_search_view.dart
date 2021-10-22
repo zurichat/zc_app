@@ -1,33 +1,33 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/view/dm_search/dm_search_widgets.dart';
+
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 import 'dm_search_viewmodel.dart';
+import 'dm_search_view.form.dart';
 
-class DmSearch extends StatefulWidget {
-  const DmSearch({Key? key}) : super(key: key);
+@FormView(fields: [FormTextField(name: 'search')])
+class DmSearch extends StatelessWidget with $DmSearch {
+  DmSearch({Key? key}) : super(key: key);
 
-  @override
-  _DmSearchState createState() => _DmSearchState();
-}
-
-class _DmSearchState extends State<DmSearch> {
-  TextEditingController searchCon = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<DmSearchViewModel>.reactive(
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
       viewModelBuilder: () => DmSearchViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          // ignore: sized_box_for_whitespace
+          appBar: ZuriAppBar(
+            leading: Icons.chevron_left,
+            leadingPress: () => viewModel.navigateBack(),
+          ),
           body: SafeArea(
-            // ignore: sized_box_for_whitespace
-            child: Container(
+            child: SizedBox(
               //height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: Column(
@@ -37,21 +37,19 @@ class _DmSearchState extends State<DmSearch> {
                     child: Row(
                       children: <Widget>[
                         IconButton(
-                          icon: Icon(Icons.chevron_left),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+                          icon: const Icon(Icons.chevron_left),
+                          onPressed: () => viewModel.navigateBack(),
                         ),
-                        Text(DM,
+                        Text(local!.directMessages,
                             style: GoogleFonts.lato(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,
                             )),
-                        Spacer(),
+                        const Spacer(),
                         GestureDetector(
                           onTap: () {},
-                          child: Text(Done,
+                          child: Text(local.done,
                               style: GoogleFonts.lato(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
@@ -61,22 +59,19 @@ class _DmSearchState extends State<DmSearch> {
                       ],
                     ),
                   ),
-                  Divider(),
+                  const Divider(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 17.0),
                     child: TextField(
-                      controller: searchCon,
+                      controller: searchController,
                       decoration: InputDecoration(
-                        hintText: DMHint,
-                        hintStyle: GoogleFonts.lato(
-                          color: Color(0xFF999999),
-                        ),
+                        hintText: local.dmHint,
+                        hintStyle: AppTextStyle.lightGreySize14,
                         border: InputBorder.none,
                       ),
                     ),
                   ),
-                  Divider(),
-                  ChannelorPerson(),
+                  const Divider(),
                 ],
               ),
             ),

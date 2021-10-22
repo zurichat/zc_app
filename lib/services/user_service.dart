@@ -1,4 +1,8 @@
 //On login or signup the user service is used to save all the user details
+import 'dart:convert';
+
+import 'package:zurichat/models/user_model.dart';
+
 import '../app/app.locator.dart';
 import '../models/organization_model.dart';
 import 'local_storage_services.dart';
@@ -15,6 +19,7 @@ class UserService {
   String _currentOrgId = '';
   String _currentOrgUrl = '';
   String _currentOrgName = '';
+  String _currentOrgLogo = '';
   String _authToken = '';
   String _userId = '';
   String _userEmail = '';
@@ -36,14 +41,25 @@ class UserService {
     return _currentOrgName;
   }
 
+  String get currentOrgLogo {
+    _currentOrgLogo = _sharedPrefs.getString(StorageKeys.currentOrgLogo) ?? '';
+    //You can perform other function before returning
+    return _currentOrgLogo;
+  }
+
   String get currentOrgUrl {
     _currentOrgUrl = _sharedPrefs.getString(StorageKeys.currentOrgUrl) ?? '';
     //You can perform other function before returning
     return _currentOrgUrl;
   }
 
+  void setUserDetails(UserModel user) {
+    final val = jsonEncode(user.toMap());
+    _sharedPrefs.setString(StorageKeys.currentUserModel, val);
+  }
+
   void setOrganization() {
-    // Todo implement Organization setter
+    // TODO implement Organization setter
   }
 
   ///From the organization side bar set the current organissation Id
@@ -66,10 +82,24 @@ class UserService {
     return _userId;
   }
 
+  String get memberId {
+    _userId = _sharedPrefs.getString(StorageKeys.idInOrganization) ?? '';
+    //You can perform other function before returning
+    return _userId;
+  }
+
   String get userEmail {
     _userEmail = _sharedPrefs.getString(StorageKeys.currentUserEmail) ?? '';
     //You can perform other function before returning
     return _userEmail;
+  }
+
+  UserModel? get userDetails {
+    final res = _sharedPrefs.getString(StorageKeys.currentUserModel);
+    if (res == null) {
+      return null;
+    }
+    return UserModel.fromMap(jsonDecode(res));
   }
 
   void setUserAndToken({
@@ -77,7 +107,7 @@ class UserService {
     required String? userId,
     required String? userEmail,
   }) {
-    //Todo: throw error for null parameters
+    //TODO: throw error for null parameters
     _authToken = authToken ?? '';
     _userId = userId ?? '';
     _userEmail = userEmail ?? '';

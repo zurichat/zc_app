@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hng/app/app.router.dart';
+import 'package:zurichat/app/app.router.dart';
 import 'package:mockito/mockito.dart';
 import '../helpers/test_helpers.dart';
-import 'package:hng/ui/nav_pages/you_page/you_page_viewmodel.dart';
+import 'package:zurichat/ui/nav_pages/you_page/you_page_viewmodel.dart';
 
 void main() {
   group('YouPageViewModelTest -', () {
@@ -34,7 +34,11 @@ void main() {
     });
     group('navigateToViewProfile -', () {
       test('when called, it takes user to the edit profile page', () async {
+<<<<<<< HEAD
       //TODO write proper test
+=======
+        //TODO write proper test
+>>>>>>> e0ec9a58844dcdf0ed41ee76378015bdd3d4baf0
       });
     });
     group('navigateToViewNotification -', () {

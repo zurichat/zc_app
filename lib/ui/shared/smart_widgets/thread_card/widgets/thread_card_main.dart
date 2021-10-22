@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
 import 'package:stacked/stacked.dart';
 //Shows the original message with the number of replies
-import '../../../../../general_widgets/custom_text.dart';
+
 import '../../../../../models/user_post.dart';
 import '../../../../../utilities/utilities.dart';
-import '../../../shared.dart';
 import '../../text_parser/text_parser_view.dart';
 import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
@@ -49,20 +49,19 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
                         children: [
                           Flexible(
                             fit: FlexFit.loose,
-                            child: CustomText(
-                              text: '${userPost!.displayName}',
-                              fontWeight: FontWeight.bold,
+                            child: Text(
+                              '${userPost!.displayName}',
+                              style: AppTextStyle.darkGreySize14Bold,
                             ),
                           ),
                           Text(
                             "${userPost!.statusIcon}",
-                            style: AppTextStyles.regular,
+                            style: AppTextStyle.darkGreySize16,
                           ),
                           const SizedBox(width: 2),
-                          CustomText(
-                            text: '${userPost!.lastSeen}',
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
+                          Text(
+                            '${userPost!.moment}',
+                            style: AppTextStyle.darkGreySize12,
                           ),
                         ],
                       ),
@@ -78,7 +77,7 @@ class ThreadCardMain extends ViewModelWidget<ThreadCardViewModel> {
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Text(
                             '$Show ${userPost!.userThreadPosts!.length} $moreReplies',
-                            style: AppTextStyles.textButton1,
+                            style: AppTextStyle.blueSize14,
                           ),
                         )
                       : Container(),

@@ -50,6 +50,7 @@ mixin ValidatorMixin {
 
   bool validateNewChannelName(String input) {
     // TODO review this
+
     // ignore: unnecessary_string_escapes
     final reg = RegExp('.*?[A-Z\\s\.].*');
     if (reg.hasMatch(input)) {
@@ -80,5 +81,17 @@ mixin ValidatorMixin {
     } else {
       return true;
     }
+  }
+
+  String? vaidateOrgUrl(String? val) {
+    var regexp = r'/^[a-zA-Z0-9-_]+$/';
+
+    if (val!.isEmpty) {
+      return 'Workspace url cannot be empty';
+    }
+    if (RegExp(regexp).hasMatch(val)) {
+      return 'Invalid url';
+    }
+    return null;
   }
 }

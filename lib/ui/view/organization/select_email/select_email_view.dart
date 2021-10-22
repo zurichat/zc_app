@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../utilities/enums.dart';
@@ -13,110 +16,113 @@ class SelectEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<SelectEmailViewModel>.nonReactive(
-        viewModelBuilder: () => SelectEmailViewModel(),
-        builder: (context, model, child) => Scaffold(
-              appBar: AppBar(
-                title: Text(
-                  model.getScreenTitle(method),
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: AppColors.deepBlackColor,
+      viewModelBuilder: () => SelectEmailViewModel(),
+      builder: (context, model, child) => Scaffold(
+        backgroundColor: _dark ? AppColors.blackColor : AppColors.whiteColor,
+        appBar: ZuriAppBar(
+          orgTitle: Text(
+            model.getScreenTitle(method, context),
+            style: AppTextStyle.darkGreySize18Bold.copyWith(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
+          ),
+          whiteBackground: true,
+          isDarkMode: _dark,
+          leading: Icons.arrow_back_ios_outlined,
+          leadingPress: () => model.back(),
+        ),
+        body: Container(
+          margin: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
+          decoration: BoxDecoration(
+            color:
+                _dark ? AppColors.darkThemePrimaryColor : AppColors.whiteColor,
+            borderRadius: BorderRadius.circular(2.0),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                child: Text(
+                  local!.selectEmailToUse,
+                  style: _dark
+                      ? AppTextStyle.whiteSize16Bold
+                      : AppTextStyle.darkGreySize16Bold,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  model.onEmailTap(method);
+                },
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.email_outlined,
+                        size: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25.5),
+                        child: Text(
+                          model.userEmail ?? '',
+                          style: const TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                backgroundColor: Colors.white,
-                leading: IconButton(
-                  iconSize: 12,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back_ios_outlined),
-                  color: Colors.black,
-                ),
               ),
-              body: Container(
-                margin: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
-                height: 137.0,
-                width: 395.0,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(2.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                      ),
-                    ]),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 17.5, top: 24),
-                          child: Icon(
-                            Icons.email_outlined,
-                            size: 20,
-                            color: AppColors.deepBlackColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 25.5, top: 24),
-                          child: GestureDetector(
-                            onTap: () {
-                              model.onEmailTap(method);
-                            },
-                            child: Text(
-                              model.userEmail ?? '',
-                              style: const TextStyle(
-                                  color: AppColors.deepBlackColor,
-                                  fontSize: 14),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 57.0, top: 24, bottom: 24),
-                      child: Divider(
-                        thickness: 1,
-                        height: 9,
-                        color: AppColors.greyishColor,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(
-                            left: 17.5,
-                          ),
-                          child: Icon(
-                            Icons.email_outlined,
-                            size: 20,
-                            color: AppColors.deepBlackColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 25.5,
-                          ),
-                          child: GestureDetector(
-                            child: Text(
-                              model.anotherEmail,
-                              style: const TextStyle(
-                                  color: AppColors.deepBlackColor,
-                                  fontSize: 14),
-                            ),
-                            onTap: () {
-                              // Open Use another email screen
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ));
+              //TODO:
+              // const Padding(
+              //   padding: EdgeInsets.only(left: 57.0),
+              //   child: Divider(
+              //     thickness: 1,
+              //     height: 9,
+              //     color: AppColors.greyishColor,
+              //   ),
+              // ),
+              // InkWell(
+              //   onTap: () => model.navigateToDifferentEmail(method),
+              //   child: Padding(
+              //     padding:
+              //         const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+              //     child: Row(
+              //       children: [
+              //         const Icon(
+              //           Icons.email_outlined,
+              //           size: 20,
+              //         ),
+              //         Padding(
+              //           padding: const EdgeInsets.only(
+              //             left: 25.5,
+              //           ),
+              //           child: GestureDetector(
+              //             child: Text(
+              //               model.anotherEmail,
+              //               style: _dark
+              //                   ? AppTextStyle.whiteSize14
+              //                   : AppTextStyle.darkGreySize16,
+              //             ),
+              //             onTap: () => model.navigateToUseDifferentEmailView(),
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -1,8 +1,9 @@
-import 'package:hng/app/app.logger.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/user_service.dart';
-import 'package:hng/utilities/constants.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/models/user_model.dart';
+import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -22,6 +23,7 @@ class LoginViewModel extends FormViewModel {
   final storageService = locator<SharedPreferenceLocalStorage>();
   final _userService = locator<UserService>();
   final zuriApi = ZuriApi(coreBaseUrl);
+  late UserModel userModel;
 
   final log = getLogger('LogInViewModel');
 
@@ -52,14 +54,13 @@ class LoginViewModel extends FormViewModel {
     _navigationService.navigateTo(Routes.forgotPasswordEmailView);
   }
 
-  // ignore: always_declare_return_types
   Future logInUser() async {
     var connected = await _connectivityService.checkConnection();
     if (!connected) {
       _snackbarService.showCustomSnackBar(
         message: noInternet,
         variant: SnackbarType.failure,
-        duration:const  Duration(milliseconds: 1500),
+        duration: const Duration(milliseconds: 1500),
       );
       return;
     }
@@ -75,7 +76,6 @@ class LoginViewModel extends FormViewModel {
         variant: SnackbarType.failure,
         message: fillAllFields,
       );
-
       return;
     }
     final response = await zuriApi.login(
@@ -98,8 +98,17 @@ class LoginViewModel extends FormViewModel {
         response?.data['data']['user']['email'],
       );
       _storageService.clearData(StorageKeys.currentOrgId);
-      // final userModel = UserModel.fromJson(response?.data['data']['user']);
-
+      final userModel = UserModel.fromJson(response?.data['data']['user']);
+      // final res = await zuriApi
+      //     .get("${coreBaseUrl}users/${response?.data['data']['user']['id']}");
+      // if (res?.statusCode == 200) {
+      //   _snackbarService.showCustomSnackBar(
+      //       message: profileUpdated, variant: SnackbarType.success);
+        _userService.setUserDetails(userModel);
+      // } else {
+      //   _snackbarService.showCustomSnackBar(
+      //       message: errorOccurred, variant: SnackbarType.failure);
+      // }
       _snackbarService.showCustomSnackBar(
         duration: const Duration(milliseconds: 1500),
         variant: SnackbarType.success,
@@ -107,14 +116,8 @@ class LoginViewModel extends FormViewModel {
             ''' ${response?.data['data']['user']['email']}''',
       );
 
-      //Todo check if user has currently joined an Organization
+      //TODO check if user has currently joined an Organization
       _navigationService.pushNamedAndRemoveUntil(Routes.organizationView);
-    } else {
-      _snackbarService.showCustomSnackBar(
-        duration: const Duration(milliseconds: 1500),
-        variant: SnackbarType.failure,
-        message: response?.data['message'] ?? errorEncounteredLogin,
-      );
     }
   }
 
