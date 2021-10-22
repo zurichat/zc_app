@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/zuri_loader.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../colors.dart';
-import '../../text_styles.dart';
+import '../../../../utilities/constants/colors.dart';
+import '../../../../utilities/constants/text_styles.dart';
 import 'custom_user_bottom_sheet_viewmodel.dart';
 import 'widgets/custom_button.dart';
 import 'widgets/custom_profile_tile.dart';

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../../../general_widgets/menu_item_tile.dart';
-import '../../../shared/colors.dart';
+import '../../../../utilities/constants/colors.dart';
 
 class Status extends StatelessWidget {
   const Status(
       {Key? key,
       required this.status,
       required this.duration,
-      required this.icon, this.onPressed})
+      required this.icon,
+      this.onPressed})
       : super(key: key);
   final String status;
   final String duration;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 
-import '../../../../utilities/constants.dart';
+import '../../../../utilities/constants/app_constants.dart';
 
 class ZuriLogo extends StatelessWidget {
   const ZuriLogo({

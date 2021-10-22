@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -10,8 +10,8 @@ import '../../../../app/app.router.dart';
 import '../../../../general_widgets/easy_container.dart';
 import '../../../../general_widgets/ripple.dart';
 import '../../../../general_widgets/svg_icon.dart';
-import '../../../shared/colors.dart';
-import '../../../shared/text_styles.dart';
+import '../../../../utilities/constants/colors.dart';
+import '../../../../utilities/constants/text_styles.dart';
 import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
 

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 
 import '../../../general_widgets/menu_item_tile.dart';
-import '../../shared/colors.dart';
-import '../../shared/shared.dart';
+
 import 'widgets/profile_page_head.dart';
 import 'widgets/status_form.dart';
 import 'you_page_viewmodel.dart';
@@ -14,20 +16,17 @@ class YouPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<YouPageViewModel>.reactive(
       viewModelBuilder: () => YouPageViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: AppColors.zuriPrimaryColor,
-          // Here we take the value from the
-          // MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: const Text(
-            You,
-            style: TextStyle(
-                fontWeight: FontWeight.bold, color: AppColors.whiteColor),
-          ),
+        appBar: ZuriAppBar(
+          isDarkMode: _dark,
+          leadingWidth: true,
+          orgTitle:
+              Text(local!.youNavBar, style: AppTextStyle.organizationNameText),
+          bottomNavBarScreen: true,
         ),
         body: Padding(
           padding: const EdgeInsets.all(15),
@@ -47,7 +46,7 @@ class YouPage extends StatelessWidget {
                 StatusForm(onPressed: model.setStatus),
                 const SizedBox(height: 20),
                 MenuItemTile(
-                  icon: Icons.notifications_off_outlined,
+                  icon: const Icon(Icons.notifications_off_outlined),
                   text: const Text(PauseNotifs),
                   onPressed: model.pauseNotifications,
                   topBorder: false,
@@ -64,29 +63,29 @@ class YouPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  icon: Icons.circle_outlined,
+                  icon: const Icon(Icons.circle_outlined),
                   onPressed: model.toggleStatus,
                   topBorder: false,
                 ),
                 MenuItemTile(
-                  icon: Icons.bookmark_outline_outlined,
+                  icon: const Icon(Icons.bookmark_outline_outlined),
                   text: const Text(SavedItems),
                   onPressed: model.viewSavedItem,
                 ),
                 MenuItemTile(
-                  icon: Icons.account_circle_outlined,
+                  icon: const Icon(Icons.account_circle_outlined),
                   text: const Text(ViewProfile),
                   onPressed: model.viewProfile,
                   topBorder: false,
                 ),
                 MenuItemTile(
-                  icon: Icons.trip_origin,
+                  icon: const Icon(Icons.trip_origin),
                   text: const Text(Notifs),
                   onPressed: model.viewNotifications,
                   topBorder: false,
                 ),
                 MenuItemTile(
-                  icon: Icons.settings,
+                  icon: const Icon(Icons.settings),
                   text: const Text(Preferences),
                   onPressed: model.viewPreferences,
                   topBorder: false,

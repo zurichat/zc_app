@@ -32,16 +32,6 @@ void main() {
     });
 
     group('navigation tests -', () {
-      test('When called, verify that the addPluginView is displayed', () {
-        model.navigateToAdd();
-        verify(navigationService.navigateTo(Routes.addPluginView));
-      });
-
-      test('When called, verify that the editPluginView is displayed', () {
-        model.navigateToEdit();
-        verify(navigationService.navigateTo(Routes.editPluginView));
-      });
-
       test('When called, verify that the pluginView is displayed', () {
         model.navigateToPlugins();
         verify(navigationService.navigateTo(Routes.pluginView));

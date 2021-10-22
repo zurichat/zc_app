@@ -1,6 +1,6 @@
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 // import 'package:zurichat/utilities/utilities.dart';
 // import 'package:zurichat/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
@@ -8,8 +8,8 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.router.dart';
-import '../../../../services/local_storage_services.dart';
-import '../../../../utilities/constants.dart';
+import '../../../../services/app_services/local_storage_services.dart';
+import '../../../../utilities/constants/app_constants.dart';
 import '../../../../utilities/enums.dart';
 import 'edit_channel_view.form.dart';
 

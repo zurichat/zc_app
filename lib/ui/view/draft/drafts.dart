@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/models/user_post.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/view/draft/draft_viewmodel.dart';
 import 'package:zurichat/ui/view/threads/test_data.dart';
 import 'package:intl/intl.dart';

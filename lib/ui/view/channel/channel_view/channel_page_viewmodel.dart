@@ -5,21 +5,21 @@ import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
 import 'package:zurichat/models/user_post.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
-import 'package:zurichat/services/centrifuge_service.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/services/media_service.dart';
-import 'package:zurichat/services/notification_service.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/services/messaging_services/channels_api_service.dart';
+import 'package:zurichat/services/messaging_services/centrifuge_rtc_service.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/services/app_services/media_service.dart';
+import 'package:zurichat/services/app_services/notification_service.dart';
 import 'package:zurichat/app/app.logger.dart';
-import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:simple_moment/simple_moment.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -110,8 +110,6 @@ class ChannelPageViewModel extends FormViewModel {
   StreamSubscription? messageSubscription;
   StreamSubscription? notificationSubscription;
   String channelID = '';
-<<<<<<< HEAD
-=======
   String channelCreator = '';
 
   saveItem(
@@ -143,7 +141,6 @@ class ChannelPageViewModel extends FormViewModel {
       log.w(len!.length.toString());
     }
   }
->>>>>>> e0ec9a58844dcdf0ed41ee76378015bdd3d4baf0
 
   void onMessageFieldTap() {
     isVisible = true;
@@ -163,11 +160,8 @@ class ChannelPageViewModel extends FormViewModel {
 
   void initialise(String channelId) async {
     channelID = channelId;
-<<<<<<< HEAD
-=======
 
     //TODO: join channel wasn't done
->>>>>>> e0ec9a58844dcdf0ed41ee76378015bdd3d4baf0
     await joinChannel(channelId);
 
     fetchMessages(channelId);
@@ -320,14 +314,6 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-<<<<<<< HEAD
-  void sendMessage(
-    String message,
-  ) async {
-    String? userId = storage.getString(StorageKeys.currentUserId);
-    await _channelsApiService.sendChannelMessages(
-        channelID, "$userId", message);
-=======
   void deleteMessage(String channelId, String messageId) async {
     String? userId = storage.getString(StorageKeys.currentUserId);
     String? orgId = storage.getString(StorageKeys.currentOrgId);
@@ -335,7 +321,6 @@ class ChannelPageViewModel extends FormViewModel {
         orgId!, channelId, messageId, userId!);
 
     fetchMessages(channelId);
->>>>>>> e0ec9a58844dcdf0ed41ee76378015bdd3d4baf0
     scrollController.jumpTo(scrollController.position.minScrollExtent);
     _navigationService.back();
     notifyListeners();

@@ -16,11 +16,7 @@ import '../models/user_model.dart';
 import '../models/user_post.dart';
 import '../ui/nav_pages/dm_page/dm_search_find_page.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
-import '../ui/nav_pages/plugin_page/add_plugin_view.dart';
-import '../ui/nav_pages/plugin_page/edit_plugin_view.dart';
-import '../ui/nav_pages/plugin_page/plugin_intro_page.dart';
-import '../ui/nav_pages/plugin_page/plugin_page_view.dart';
-import '../ui/nav_pages/plugin_page/plugins_view.dart';
+import '../ui/nav_pages/plugin_page/plugin_view.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
 import '../ui/view/channel/add_people/channel_add_people_view.dart';
@@ -48,7 +44,7 @@ import '../ui/view/forgot_password/forgot_password_new_password/forgot_password_
 import '../ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
 import '../ui/view/language_and_region/language_and_region_view.dart';
 import '../ui/view/login/login_view.dart';
-import '../ui/view/nav_bar/nav_bar_view.dart';
+import '../ui/nav_pages/nav_bar/nav_bar_view.dart';
 import '../ui/view/notifications/notifications_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/organization/add_organization/add_organization_view.dart';
@@ -80,10 +76,7 @@ import '../ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.d
 import '../ui/view/threads/all_threads/threads_view.dart';
 import '../ui/view/threads/thread_detail/thread_detail_view.dart';
 import '../ui/view/user_search/user_search_view.dart';
-<<<<<<< HEAD
-=======
 import '../ui/view/webview_page/webview_page.dart';
->>>>>>> e0ec9a58844dcdf0ed41ee76378015bdd3d4baf0
 import '../utilities/enums.dart';
 
 class Routes {
@@ -242,10 +235,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.dmUserView, page: DmUserView),
     RouteDef(Routes.dmScreen, page: DmScreen),
     RouteDef(Routes.splashview, page: Splashview),
-    RouteDef(Routes.pluginView, page: PluginView),
-    RouteDef(Routes.addPluginView, page: AddPluginView),
+    RouteDef(Routes.pluginView, page: PluginPage),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
-    RouteDef(Routes.editPluginView, page: EditPluginView),
     RouteDef(Routes.setStatusView, page: SetStatusView),
     RouteDef(Routes.profilePageView, page: ProfilePageView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
@@ -276,7 +267,6 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.directMessage, page: DirectMessage),
     RouteDef(Routes.termsAndConditionsView, page: TermsAndConditionsView),
     RouteDef(Routes.webViewPage, page: WebViewPage),
-    RouteDef(Routes.pluginPageIntro, page: PluginPageIntro),
     RouteDef(Routes.inviteViaEmail, page: InviteViaEmail),
     RouteDef(Routes.inviteViaEmailAdmin, page: InviteViaEmailAdmin),
     RouteDef(Routes.importContacts, page: ImportContacts),
@@ -460,18 +450,9 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    PluginView: (data) {
+    PluginPage: (data) {
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => const PluginView(),
-        settings: data,
-      );
-    },
-    AddPluginView: (data) {
-      var args = data.getArgs<AddPluginViewArguments>(
-        orElse: () => AddPluginViewArguments(),
-      );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => AddPluginView(key: args.key),
+        builder: (context) => const PluginPage(),
         settings: data,
       );
     },
@@ -482,12 +463,6 @@ class StackedRouter extends RouterBase {
           key: args.key,
           method: args.method,
         ),
-        settings: data,
-      );
-    },
-    EditPluginView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const EditPluginView(),
         settings: data,
       );
     },
@@ -686,12 +661,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    PluginPage: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const PluginPage(),
-        settings: data,
-      );
-    },
     DirectMessage: (data) {
       var args = data.getArgs<DirectMessageArguments>(
         orElse: () => DirectMessageArguments(),
@@ -721,19 +690,12 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    PluginPageIntro: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const PluginPageIntro(),
-        settings: data,
-      );
-    },
     InviteViaEmail: (data) {
       var args = data.getArgs<InviteViaEmailArguments>(
         orElse: () => InviteViaEmailArguments(),
       );
 
       return CupertinoPageRoute<dynamic>(
-
         builder: (context) => InviteViaEmail(key: args.key),
         settings: data,
       );
@@ -1018,7 +980,6 @@ class InviteViaEmailArguments {
   InviteViaEmailArguments({this.key});
 }
 
-
 /// ShareMessageView arguments holder class
 class ShareMessageViewArguments {
   final UserPost userPost;
@@ -1046,4 +1007,3 @@ class OrganizationLogoArguments {
   final OrganizationModel org;
   OrganizationLogoArguments({this.key, required this.org});
 }
-

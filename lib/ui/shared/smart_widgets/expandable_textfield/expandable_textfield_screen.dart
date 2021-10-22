@@ -5,10 +5,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zurichat/ui/shared/smart_widgets/expandable_textfield/expandable_textfield_screen_viewmodel.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../colors.dart';
+import '../../../../utilities/constants/colors.dart';
 
 class ExpandableTextFieldScreen extends HookWidget {
   ExpandableTextFieldScreen({
@@ -218,13 +218,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                                               if (textController.text
                                                   .toString()
                                                   .isNotEmpty) {
-<<<<<<< HEAD
-                                                sendMessage(
-                                                    textController.text);
-=======
                                                 sendMessage(textController.text,
                                                     media: model.mediaList);
->>>>>>> e0ec9a58844dcdf0ed41ee76378015bdd3d4baf0
                                                 textController.clear();
                                               }
                                             },

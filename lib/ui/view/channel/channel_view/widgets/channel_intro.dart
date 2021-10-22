@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../channel_page_viewmodel.dart';
@@ -35,11 +35,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
           ),
           const SizedBox(height: 10),
           TextParser(
-<<<<<<< HEAD
-              '@mark created this channel on August 12, 2021. This is the very beginning of the #$channelName channel.'),
-=======
               '@ ${viewModel.channelCreator} ${local!.createdThisChannel}. ${local.channelIntroText} #$channelName ${local.channel}.'),
->>>>>>> e0ec9a58844dcdf0ed41ee76378015bdd3d4baf0
           const SizedBox(height: 20),
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.center,

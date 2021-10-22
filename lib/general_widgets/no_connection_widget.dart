@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/services/connectivity_service.dart';
-import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/services/app_services/connectivity_service.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
 
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 
 class NoConnectionWidget extends StatelessWidget {
   const NoConnectionWidget(

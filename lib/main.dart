@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/services/notification_service.dart';
-import 'package:zurichat/ui/shared/setup_bottom_sheet_ui.dart';
-import 'package:zurichat/ui/shared/setup_dialog_ui.dart';
+import 'package:zurichat/services/app_services/notification_service.dart';
+import 'package:zurichat/ui/shared/bottom_sheets/setup_bottom_sheet_ui.dart';
+import 'package:zurichat/ui/shared/dialogs/setup_dialog_ui.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
@@ -10,10 +10,10 @@ import 'package:stacked_themes/stacked_themes.dart';
 
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
-import 'constants/app_strings.dart';
-import 'general_widgets/app_snackbar.dart';
+import 'utilities/constants/app_strings.dart';
+import 'services/app_services/snackbar_service.dart';
 import 'main_app_view_model.dart';
-import 'services/zuri_theme_service.dart';
+import 'services/app_services/zuri_theme_service.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

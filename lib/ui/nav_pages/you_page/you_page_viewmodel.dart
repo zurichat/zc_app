@@ -1,18 +1,13 @@
-<<<<<<< HEAD
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/utilities/enums.dart';
-=======
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/services/connectivity_service.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/services/status_service.dart';
-import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/services/app_services/connectivity_service.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/services/in_review/status_service.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
 import 'package:zurichat/ui/nav_pages/home_page/widgets/home_list_items.dart';
-import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
->>>>>>> e0ec9a58844dcdf0ed41ee76378015bdd3d4baf0
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/app/app.locator.dart';
@@ -23,8 +18,6 @@ class YouPageViewModel extends ReactiveViewModel {
   final log = getLogger('YouPageViewModel');
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
-<<<<<<< HEAD
-=======
   final _userService = locator<UserService>();
   final _storageService = locator<SharedPreferenceLocalStorage>();
   final _connectivityService = locator<ConnectivityService>();
@@ -41,7 +34,6 @@ class YouPageViewModel extends ReactiveViewModel {
   String? get token =>
       _storageService.getString(StorageKeys.currentSessionToken);
   String _presence = 'false';
->>>>>>> e0ec9a58844dcdf0ed41ee76378015bdd3d4baf0
 
   String get username =>
       (_userService.userDetails?.displayName?.isNotEmpty ?? false
@@ -175,16 +167,6 @@ class YouPageViewModel extends ReactiveViewModel {
     await _navigationService.navigateTo(Routes.savedItemsView);
   }
 
-<<<<<<< HEAD
- Future<void> viewProfile() async {
-    var sheetResponse = await _bottomSheetService.showCustomSheet(
-      variant: BottomSheetType.user,
-      isScrollControlled: true,
-    
-    );
-
-    log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
-=======
   Future<void> viewProfile() async {
     var sheetResponse = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.user,
@@ -193,7 +175,6 @@ class YouPageViewModel extends ReactiveViewModel {
 
     log.i('confirmationResponse confirmed: ${sheetResponse?.confirmed}');
     notifyListeners();
->>>>>>> e0ec9a58844dcdf0ed41ee76378015bdd3d4baf0
   }
 
   Future viewNotifications() async {

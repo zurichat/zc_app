@@ -10,10 +10,7 @@ dependencies:
   analyzer: ^1.7.0
   awesome_notifications: ^0.0.6+8
   cached_network_image: ^3.1.0
-<<<<<<< HEAD
   # DO NOT CHANGE CENTRIFUGE FROM ^0.6.0!!!!!!!!!!!!!!
-=======
->>>>>>> e0ec9a58844dcdf0ed41ee76378015bdd3d4baf0
   centrifuge: ^0.6.0
   connectivity_plus: ^1.1.0
   connectivity_plus_web: null

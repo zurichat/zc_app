@@ -4,14 +4,14 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/organization_member_model.dart';
-import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
-import 'package:zurichat/package/base/server-request/organization_request/organization_api_service.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/services/media_service.dart';
-import 'package:zurichat/services/notification_service.dart';
-import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/services/messaging_services/channels_api_service.dart';
+import 'package:zurichat/services/in_review/organization_api_service.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/services/app_services/media_service.dart';
+import 'package:zurichat/services/app_services/notification_service.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
 import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 
 import '/../../app/app.logger.dart';
 
@@ -108,7 +108,6 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
     if (users.status == 200) {
       matchedUsers = organizationUsersList = users.data;
     }
-
     setBusy(false);
     notifyListeners();
   }

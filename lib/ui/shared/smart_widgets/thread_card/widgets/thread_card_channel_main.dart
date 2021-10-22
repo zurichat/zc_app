@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:zurichat/models/user_post.dart';
 import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
 import 'package:zurichat/ui/shared/smart_widgets/text_parser/text_parser_view.dart';
 import 'package:zurichat/ui/shared/smart_widgets/thread_card/widgets/audio_message.dart';
 
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../colors.dart';
+import '../../../../../utilities/constants/colors.dart';
 import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
 import 'media_files.dart';
