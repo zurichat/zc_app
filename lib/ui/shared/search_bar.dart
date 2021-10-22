@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 
 import '../../general_widgets/easy_container.dart';
-import '../../utilities/constants.dart';
-import 'text_styles.dart';
+import '../../utilities/constants/app_constants.dart';
+import '../../utilities/constants/text_styles.dart';
 
 class JumpToSearchBar extends StatelessWidget {
   final Function() onTap;

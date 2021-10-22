@@ -1,17 +1,17 @@
 import 'package:zurichat/app/app.logger.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
-import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/services/messaging_services/channels_api_service.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
 import 'package:zurichat/ui/view/channel/channel_members/channel_members_list.dart';
-import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.router.dart';
-import '../../../../services/local_storage_services.dart';
+import '../../../../services/app_services/local_storage_services.dart';
 import '../../../../utilities/enums.dart';
 
 class ChannelInfoViewModel extends BaseViewModel {

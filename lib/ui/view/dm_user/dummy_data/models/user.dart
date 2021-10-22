@@ -1,4 +1,4 @@
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 
 class User {
   String name;

@@ -3,12 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/services/user_service.dart';
-import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
+import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:zurichat/utilities/mixins/validators_mixin.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 
 import '../../../../../../app/app.logger.dart';
 import 'package:stacked_services/stacked_services.dart';

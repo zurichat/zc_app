@@ -7,6 +7,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class PluginViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
+  final snackbarService = locator<SnackbarService>();
   //TODO
   // final local = AppLocalization.of(context);
   bool _editMode = false;
@@ -50,11 +51,8 @@ class PluginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  navigateToAdd() => navigationService.navigateTo(Routes.addPluginView);
-
-  navigateToEdit() => navigationService.navigateTo(Routes.editPluginView);
-
-  navigateToPlugins() => navigationService.navigateTo(Routes.pluginPage);
+  navigateToPlugins() =>
+      snackbarService.showSnackbar(message: "No new plugins available");
 
   navigateToHome() => navigationService.navigateTo(Routes.navBarView);
 
