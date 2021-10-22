@@ -10,19 +10,19 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../services/in_review/jump_to_api.dart';
-import '../services/messaging_services/channels_api_service.dart';
-import '../services/messaging_services/dms_api_service.dart';
-import '../services/in_review/organization_api_service.dart';
-import '../services/messaging_services/centrifuge_rtc_service.dart';
 import '../services/app_services/connectivity_service.dart';
 import '../services/app_services/local_storage_services.dart';
 import '../services/app_services/localization_service.dart';
 import '../services/app_services/media_service.dart';
 import '../services/app_services/notification_service.dart';
+import '../services/app_services/zuri_theme_service.dart';
+import '../services/in_review/jump_to_api.dart';
+import '../services/in_review/organization_api_service.dart';
 import '../services/in_review/status_service.dart';
 import '../services/in_review/user_service.dart';
-import '../services/app_services/zuri_theme_service.dart';
+import '../services/messaging_services/centrifuge_rtc_service.dart';
+import '../services/messaging_services/channels_api_service.dart';
+import '../services/messaging_services/dms_api_service.dart';
 
 final locator = StackedLocator.instance;
 

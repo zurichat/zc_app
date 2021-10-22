@@ -34,7 +34,7 @@ void main() {
     group('navigation tests -', () {
       test('When called, verify that the pluginView is displayed', () {
         model.navigateToPlugins();
-        verify(navigationService.navigateTo(Routes.pluginView));
+        verify(navigationService.navigateTo(Routes.pluginPage));
       });
 
       test('When called, verify that the user is taken to the home screen', () {
