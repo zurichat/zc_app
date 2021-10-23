@@ -1,4 +1,4 @@
-import 'package:zurichat/services/in_review/organization_api_service.dart';
+import 'package:zurichat/services/core_services/organization_api_service.dart';
 import 'package:zurichat/services/messaging_services/centrifuge_rtc_service.dart';
 import 'package:zurichat/services/app_services/localization_service.dart';
 import 'package:zurichat/services/app_services/media_service.dart';

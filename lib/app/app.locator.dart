@@ -17,7 +17,7 @@ import '../services/app_services/media_service.dart';
 import '../services/app_services/notification_service.dart';
 import '../services/app_services/zuri_theme_service.dart';
 import '../services/in_review/jump_to_api.dart';
-import '../services/in_review/organization_api_service.dart';
+import '../services/core_services/organization_api_service.dart';
 import '../services/in_review/status_service.dart';
 import '../services/in_review/user_service.dart';
 import '../services/messaging_services/centrifuge_rtc_service.dart';
