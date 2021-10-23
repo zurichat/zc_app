@@ -3,11 +3,11 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:zurichat/ui/shared/long_button.dart';
 import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/ui/shared/ui_helpers.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/utilities/constants/ui_helpers.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -44,10 +44,8 @@ class InvitationSent extends StatelessWidget {
                 ),
                 UIHelper.verticalSpaceLarge,
                 Text(
-
                   local!.invitationSent,
                   style: AppTextStyle.darkGreySize18Bold,
-
                 ),
                 UIHelper.verticalSpaceLarge,
                 Center(
@@ -60,9 +58,7 @@ class InvitationSent extends StatelessWidget {
                       const SizedBox(width: 16),
                       Text(
                         model.getInvitedMail() ?? '',
-
                         style: AppTextStyle.darkGreySize16Bold,
-
                       ),
                     ],
                   ),
@@ -70,7 +66,6 @@ class InvitationSent extends StatelessWidget {
                 UIHelper.verticalSpaceLarge,
                 Center(
                   child: Text(
-
                     local.invitedAsAZuriChatMember,
                     style: AppTextStyle.darkGreySize16,
                   ),
@@ -82,9 +77,7 @@ class InvitationSent extends StatelessWidget {
                   onPressed: () {
                     model.navigateToHome();
                   },
-
                   label: local.done,
-
                 ),
               ],
             ),

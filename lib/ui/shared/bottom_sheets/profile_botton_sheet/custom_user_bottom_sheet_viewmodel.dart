@@ -1,5 +1,5 @@
 import 'package:zurichat/app/app.logger.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -7,9 +7,9 @@ import '../../../../app/app.locator.dart';
 import '../../../../app/app.router.dart';
 import '../../../../models/user_model.dart';
 
-import '../../../../services/local_storage_services.dart';
-import '../../../../utilities/constants.dart';
-import '../../../../utilities/storage_keys.dart';
+import '../../../../services/app_services/local_storage_services.dart';
+import '../../../../utilities/constants/app_constants.dart';
+import '../../../../utilities/constants/storage_keys.dart';
 
 class CustomUserBottomSheetViewModel extends FutureViewModel {
   final _navigationService = locator<NavigationService>();

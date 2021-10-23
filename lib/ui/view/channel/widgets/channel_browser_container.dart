@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/ui/view/channel/channel_list/channels_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 

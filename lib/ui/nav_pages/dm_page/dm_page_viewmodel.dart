@@ -1,4 +1,4 @@
-import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';

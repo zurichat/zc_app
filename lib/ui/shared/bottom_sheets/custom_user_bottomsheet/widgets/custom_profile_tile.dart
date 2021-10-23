@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../text_styles.dart';
+import '../../../../../utilities/constants/text_styles.dart';
 
 class CustomProfileTile extends StatelessWidget {
   const CustomProfileTile(

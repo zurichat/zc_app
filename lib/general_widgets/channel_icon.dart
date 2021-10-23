@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../ui/shared/colors.dart';
+import '../utilities/constants/colors.dart';
 import '../utilities/enums.dart';
 
 class ChannelIcon extends StatelessWidget {
