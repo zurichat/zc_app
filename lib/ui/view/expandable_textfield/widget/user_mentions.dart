@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/utilities/extensions/string_extension.dart';
 
-class MyStatelessWidget extends StatelessWidget {
+class UserMentions extends StatelessWidget {
   final String membersList;
   final String name;
-  const MyStatelessWidget(
+  const UserMentions(
       {Key? key, required this.membersList, required this.name})
       : super(key: key);
 

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:zurichat/models/message.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/ui/view/dm_user/widgets/custom_start_message.dart';
@@ -11,7 +12,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../../utilities/constants/colors.dart';
 import 'dm_user_viewmodel.dart';
-import 'dummy_data/models/message.dart';
 import 'widgets/message_view.dart';
 import 'widgets/online_indicator.dart';
 import 'dm_user_view.form.dart';

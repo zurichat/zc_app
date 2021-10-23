@@ -40,6 +40,7 @@ class ChannelPageViewModel extends FormViewModel {
 
   get checkUser => _checkUser;
   final _api = ZuriApi(channelsBaseUrl);
+  //TODO HARD-CODED PLUGIN ID
   String pluginId = '6165f520375a4616090b8275';
   final snackbar = locator<SnackbarService>();
 

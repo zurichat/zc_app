@@ -11,7 +11,7 @@ import '../../../services/in_review/jump_to_api.dart';
 import '../../../services/app_services/connectivity_service.dart';
 import '../../../services/app_services/local_storage_services.dart';
 
-class DmJumpToViewModel extends FormViewModel {
+class JumpToViewModel extends FormViewModel {
   final navigation = locator<NavigationService>();
   final log = getLogger('DmJumpToViewModel');
   static final storageService = locator<SharedPreferenceLocalStorage>();

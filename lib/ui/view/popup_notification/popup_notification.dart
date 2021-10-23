@@ -1,5 +1,3 @@
-// import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:zurichat/utilities/constants/colors.dart';
 import 'package:zurichat/ui/view/popup_notification/popup_notification_viewmodel.dart';

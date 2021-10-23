@@ -25,7 +25,7 @@ class DmPageViewModel extends FutureViewModel<bool> {
   }
 
   void navigateToJumpToScreen() {
-    navigationService.navigateTo(Routes.dmJumpToView);
+    navigationService.navigateTo(Routes.jumpToView);
   }
 
   @override

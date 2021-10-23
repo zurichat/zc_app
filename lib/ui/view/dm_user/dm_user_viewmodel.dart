@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/models/message.dart';
+import 'package:zurichat/models/user.dart';
 import 'package:zurichat/services/app_services/local_storage_services.dart';
-import 'package:zurichat/ui/view/dm_user/dummy_data/models/message.dart';
-import 'package:zurichat/ui/view/dm_user/dummy_data/models/user.dart';
 import 'package:zurichat/utilities/enums.dart';
 import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:stacked/stacked.dart';
@@ -134,7 +134,7 @@ class DmUserViewModel extends FormViewModel {
       await storage.setString(messageID, json.encode(savedMessageMap));
       log.i(savedMessageMap);
       final len = storage.getStringList(StorageKeys.savedItem);
-      log.w(len!.length.toString());
+      log.wtf(len!.length.toString());
     }
   }
 

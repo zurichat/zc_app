@@ -11,7 +11,7 @@ import 'package:stacked/stacked.dart';
 
 const String SearchValueKey = 'search';
 
-mixin $DmJumpToView on StatelessWidget {
+mixin $JumpToView on StatelessWidget {
   final TextEditingController searchController = TextEditingController();
   final FocusNode searchFocusNode = FocusNode();
 
