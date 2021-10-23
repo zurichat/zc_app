@@ -1,18 +1,18 @@
 import 'package:zurichat/app/app.logger.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/user_model.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/services/user_service.dart';
-import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
+import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
-import '../../../services/connectivity_service.dart';
-import '../../../services/local_storage_services.dart';
+import '../../../services/app_services/connectivity_service.dart';
+import '../../../services/app_services/local_storage_services.dart';
 import '../../../utilities/enums.dart';
-import '../../../utilities/storage_keys.dart';
+import '../../../utilities/constants/storage_keys.dart';
 import 'login_view.form.dart';
 
 class LoginViewModel extends FormViewModel {
@@ -104,7 +104,7 @@ class LoginViewModel extends FormViewModel {
       // if (res?.statusCode == 200) {
       //   _snackbarService.showCustomSnackBar(
       //       message: profileUpdated, variant: SnackbarType.success);
-        _userService.setUserDetails(userModel);
+      _userService.setUserDetails(userModel);
       // } else {
       //   _snackbarService.showCustomSnackBar(
       //       message: errorOccurred, variant: SnackbarType.failure);

@@ -5,21 +5,21 @@ import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
 import 'package:zurichat/models/user_post.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
-import 'package:zurichat/services/centrifuge_service.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/services/media_service.dart';
-import 'package:zurichat/services/notification_service.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/services/messaging_services/channels_api_service.dart';
+import 'package:zurichat/services/messaging_services/centrifuge_rtc_service.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/services/app_services/media_service.dart';
+import 'package:zurichat/services/app_services/notification_service.dart';
 import 'package:zurichat/app/app.logger.dart';
-import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:simple_moment/simple_moment.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -244,7 +244,6 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
-
   Future<void> deleteChannel(ChannelModel channel) async {
     try {
       bool res = await _channelsApiService.deleteChannel(
@@ -273,7 +272,6 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
-
   void fetchMessages(String channelId) async {
     List? channelMessages =
         await _channelsApiService.getChannelMessages(channelId);
@@ -288,10 +286,8 @@ class ChannelPageViewModel extends FormViewModel {
       channelUserMessages?.add(
         UserPost(
           id: data['_id'],
-
           displayName:
               _userService.userId == userid ? _userService.userEmail : userid,
-
           statusIcon: '⭐',
           moment: Moment.now().from(DateTime.parse(data['timestamp'])),
           message: messageEventCheck(data),
@@ -318,6 +314,18 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
+  void deleteMessage(String channelId, String messageId) async {
+    String? userId = storage.getString(StorageKeys.currentUserId);
+    String? orgId = storage.getString(StorageKeys.currentOrgId);
+    await _channelsApiService.deleteChannelMessage(
+        orgId!, channelId, messageId, userId!);
+
+    fetchMessages(channelId);
+    scrollController.jumpTo(scrollController.position.minScrollExtent);
+    _navigationService.back();
+    notifyListeners();
+  }
+
   void sendMessage(String message, [List<File>? media]) async {
     try {
       String? userId = storage.getString(StorageKeys.currentUserId);
@@ -333,7 +341,7 @@ class ChannelPageViewModel extends FormViewModel {
           channelID, "$userId", message, urls);
 
       scrollController.jumpTo(scrollController.position.minScrollExtent);
-
+      fetchChannelMembers(channelID);
       notifyListeners();
     } catch (e) {
       _snackbarService.showCustomSnackBar(

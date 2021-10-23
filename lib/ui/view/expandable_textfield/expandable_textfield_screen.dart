@@ -1,16 +1,14 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:zurichat/ui/view/expandable_textfield/widget/user_mentions.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/ui/view/expandable_textfield/expandable_textfield_screen_viewmodel.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/view/channel/channel_view/widgets/check_user.dart';
+import 'package:zurichat/ui/view/expandable_textfield/widget/user_mentions.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'expandable_textfield_screen_viewmodel.dart';
@@ -53,7 +51,7 @@ class ExpandableTextFieldScreen extends HookWidget {
     return ViewModelBuilder<ExpandableTextFieldScreenViewModel>.reactive(
       viewModelBuilder: () => ExpandableTextFieldScreenViewModel(),
       onModelReady: (model) {
-        model.init(maxSize);
+        model.init(maxSize, channelId!);
         keyboardVisibilityController.onChange.listen((bool visible) {
           model.notifyListeners();
         });
@@ -88,8 +86,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        //TODO: RED SCREEN
-                        /*  Visibility(
+                        Visibility(
                           visible: model.showMembers,
                           child: Container(
                             color: Colors.white,
@@ -103,7 +100,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                                         return GestureDetector(
                                           onTap: () {
                                             String text = (model
-                                                .matchedUsers![index].name);
+                                                .matchedUsers![index]
+                                                .userName)!;
                                             String result = textController.text
                                                 .substring(
                                                     0,
@@ -111,7 +109,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                         .lastIndexOf('@'));
 
                                             textController.text =
-                                                result + '@' + text;
+                                                result + '@' + text + ' ';
                                             textController.selection =
                                                 TextSelection.fromPosition(
                                                     TextPosition(
@@ -120,27 +118,24 @@ class ExpandableTextFieldScreen extends HookWidget {
                                             model.showMembersList(false);
                                           },
                                           child: MyStatelessWidget(
-                                            membersList:
-                                                model.matchedUsers![index],
+                                            membersList: model
+                                                .matchedUsers![index].userName!,
+                                            name: model.matchedUsers?[index]
+                                                    .name ??
+                                                '-',
                                           ),
                                         );
                                       })
-                                  : Center(
-                                      child: Container(
-                                        color: Colors.white,
-                                        child: const Text('No user'),
-                                      ),
-                                    ),
+                                  : null,
                             ),
                           ),
-                        ), */
+                        ),
                         const Divider(height: 0, color: Color(0xFF999999)),
                         GestureDetector(
                           onPanUpdate: (details) {
                             if (model.isVisible) {
                               double offset = details.delta.dy;
                               double currentSize = model.size - offset;
-                              // print("moving");
                               model.size = currentSize;
                               if (model.size > model.maxSize) {
                                 model.size = model.maxSize;
@@ -305,16 +300,100 @@ class ExpandableTextFieldScreen extends HookWidget {
                                           //   ),
                                           // ),
                                           GestureDetector(
-                                            onTap: () {
-                                              if (textController.text.isEmpty &&
-                                                  model.mediaList.isEmpty) {
-                                                return;
-                                              } else {
+                                            onTap: () async {
+                                              if (textController.text
+                                                      .toString()
+                                                      .isNotEmpty /* &&
+                                                  model.mediaList.isNotEmpty*/
+                                                  ) {
                                                 sendMessage(textController.text,
                                                     model.mediaList);
-                                                textController.clear();
                                                 model.clearMediaList();
                                                 model.toggleExpanded(false);
+
+                                                /// Send Message
+                                                String textInput =
+                                                    textController.text;
+                                                textController.clear();
+                                                var usernames = [];
+                                                while (
+                                                    textInput.contains('@')) {
+                                                  String at = '@';
+                                                  final startIndex =
+                                                      textInput.indexOf('@');
+
+                                                  int endIndex = 0;
+                                                  if (textInput.contains(' ',
+                                                      startIndex + at.length)) {
+                                                    endIndex =
+                                                        textInput.indexOf(
+                                                            ' ',
+                                                            startIndex +
+                                                                at.length);
+                                                  } else {
+                                                    endIndex = textInput.length;
+                                                  }
+
+                                                  String username =
+                                                      textInput.substring(
+                                                          startIndex +
+                                                              at.length,
+                                                          endIndex);
+
+                                                  if (textInput
+                                                      .startsWith(at)) {
+                                                    textInput =
+                                                        textInput.substring(1);
+                                                  } else {
+                                                    textInput =
+                                                        textInput.substring(
+                                                            startIndex - 1,
+                                                            startIndex);
+                                                  }
+
+                                                  usernames.add(username);
+                                                }
+
+                                                if (usernames.isNotEmpty) {
+                                                  String? displayName =
+                                                      model.displayName;
+                                                  String message =
+                                                      '$displayName invited you to join $channelName';
+                                                  if (usernames.length > 1) {
+                                                    for (var username
+                                                        in usernames) {
+                                                      bool? response =
+                                                          await model
+                                                              .addUserToChannel(
+                                                                  channelId!,
+                                                                  username);
+                                                      if (response!) {
+                                                        sendMessage(
+                                                            '$username joined $channelName by invitation from $displayName',
+                                                            model.mediaList);
+                                                        model
+                                                            .notifyUserOnMention(
+                                                                message,
+                                                                channelName!);
+                                                      }
+                                                    }
+                                                  } else {
+                                                    var username = usernames[0];
+                                                    bool? response = await model
+                                                        .addUserToChannel(
+                                                            channelId!,
+                                                            username);
+                                                    if (response!) {
+                                                      sendMessage(
+                                                          '$username joined $channelName by invitation from $displayName',
+                                                          model.mediaList);
+                                                      model.notifyUserOnMention(
+                                                          message,
+                                                          channelName!);
+                                                    }
+                                                  }
+                                                }
+                                                model.showMembersList(false);
                                               }
                                             },
                                             onLongPress: () {
@@ -452,10 +531,11 @@ class MyTextField extends StatelessWidget {
                     startIndexOfTag = value.indexOf('@');
                   }
                   toggleMembersList(detected);
-                  search = word.split('@');
 
-                  //model.onSearchUser(search[1]);
-                  search.clear();
+                  if (word.contains('@')) {
+                    search = word.split('@');
+                    model.onSearchUser(search[1]);
+                  }
                 },
                 textAlignVertical: isExpanded
                     ? TextAlignVertical.top

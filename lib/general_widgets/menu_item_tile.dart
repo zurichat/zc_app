@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../ui/shared/colors.dart';
+import '../utilities/constants/colors.dart';
 
 enum _TileType { normal, icon, flipSwitch }
 
@@ -120,7 +120,7 @@ class MenuItemTile extends StatelessWidget {
         );
 
       case _TileType.flipSwitch:
-        return SwitchListTile.adaptive(
+        return SwitchListTile(
           value: value,
           onChanged: onChanged,
           shape: Border(

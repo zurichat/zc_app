@@ -1,12 +1,11 @@
 {
-    "dart.flutterSdkPath": "C:\\Users\\chris\\fvm\\versions\\stable",
-    "yaml.customTags": [
-        "!upload scalar",
-        "!remove scalar",
-        "!keep scalar",
-        "!erase scalar"
-    ],
-    "yaml.schemas": {
-        "https://raw.githubusercontent.com/doanthuanthanh88/testapi6/main/schema.json": "*.yaml"
-    }
+  "dart.flutterSdkPath": "/Users/e/fvm/versions/2.5.2",
+  // Remove .fvm files from search
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  // Remove from file watching
+  "files.watcherExclude": {
+    "**/.fvm": true
+  }
 }

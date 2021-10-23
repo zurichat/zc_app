@@ -4,7 +4,7 @@ import 'package:zurichat/app/app.logger.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
-import 'constants.dart';
+import 'constants/app_constants.dart';
 import 'extensions/string_extension.dart';
 
 final log = getLogger('Utilities');
@@ -35,12 +35,12 @@ bool nullListChecker(List? list) {
   }
 }
 
-launcher(String url) {
+Future<bool> launcher(String url) {
   var _launcher = launch(url);
   return _launcher;
 }
 
-Future<bool> canLaunch(String url) async {
+Future<bool> canLaunchUrl(String url) async {
   var islaunchable = await canLaunch(url);
   return islaunchable;
 }

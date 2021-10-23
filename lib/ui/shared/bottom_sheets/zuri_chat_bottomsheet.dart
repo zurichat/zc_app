@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/user_post.dart';
 import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 
 Future<dynamic> zuriChatBottomSheet({
   required BuildContext context,
@@ -18,6 +17,7 @@ Future<dynamic> zuriChatBottomSheet({
   Function()? followThread,
   Function()? shareMessage,
   Function()? copyLinkToMessage,
+  Function()? deleteMessage,
   Function()? copyText,
   Function()? changePinnedState,
   Function()? turnQuestionToPoll,
@@ -149,6 +149,11 @@ Future<dynamic> zuriChatBottomSheet({
                   height: 18,
                 ),
                 onTap: shareMessage),
+            ListTile(
+                title:
+                    Text('Delete Message', style: AppTextStyle.darkGreySize16),
+                leading: const Icon(Icons.delete),
+                onTap: deleteMessage),
             // ListTile(
             //     title: Text(
             //       CopyLinkToMessage,

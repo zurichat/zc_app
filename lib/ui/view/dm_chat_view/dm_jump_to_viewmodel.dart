@@ -1,5 +1,5 @@
 import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app.locator.dart';
@@ -7,9 +7,9 @@ import '../../../app/app.logger.dart';
 import '../../../general_widgets/app_toast.dart';
 import '../../../models/channels_search_model.dart';
 import '../../../models/user_search_model.dart';
-import '../../../package/base/jump_to_request/jump_to_api.dart';
-import '../../../services/connectivity_service.dart';
-import '../../../services/local_storage_services.dart';
+import '../../../services/in_review/jump_to_api.dart';
+import '../../../services/app_services/connectivity_service.dart';
+import '../../../services/app_services/local_storage_services.dart';
 
 class DmJumpToViewModel extends FormViewModel {
   final navigation = locator<NavigationService>();

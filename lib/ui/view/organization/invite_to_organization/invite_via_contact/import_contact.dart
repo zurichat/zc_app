@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:zurichat/ui/nav_pages/plugin_page/widgets/custom_search_field.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -14,7 +13,6 @@ class ImportContacts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final local = AppLocalization.of(context);
 
     return ViewModelBuilder<InviteViewModel>.reactive(
@@ -22,21 +20,17 @@ class ImportContacts extends StatelessWidget {
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
         return Scaffold(
           appBar: ZuriAppBar(
-
             isDarkMode: Theme.of(context).brightness == Brightness.dark,
-
             leading: Icons.close,
             leadingPress: () {
               model.navigateBack();
             },
             whiteBackground: true,
             orgTitle: Text(
-
               local!.chooseContacts,
               style: TextStyle(
                 color: Theme.of(context).textTheme.bodyText1!.color,
               ),
-
             ),
             actions: [
               Padding(
@@ -44,9 +38,7 @@ class ImportContacts extends StatelessWidget {
                 child: InkWell(
                     child: Text(
                       "Add",
-
                       style: AppTextStyle.greenSize16,
-
                     ),
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
@@ -61,11 +53,10 @@ class ImportContacts extends StatelessWidget {
             child: ListView(
               children: [
                 const SizedBox(
-                  height: 40.0,
-                  child: CustomSearchField(
-                    searchHint: 'Select or type an email address',
-                  ),
-                ),
+                    height: 40.0,
+                    child: TextField(
+                        decoration: InputDecoration(
+                            hintText: 'Select or type an email address'))),
                 const SizedBox(
                   height: 40.0,
                 ),

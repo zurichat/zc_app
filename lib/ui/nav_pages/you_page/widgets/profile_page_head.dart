@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 
-import '../../../shared/colors.dart';
+import '../../../../utilities/constants/colors.dart';
 
 class ProfilePageHead extends StatelessWidget {
   const ProfilePageHead(
