@@ -50,6 +50,7 @@ class PreferenceView extends StatelessWidget {
                 selected: model.isDarkMode,
                 subtitle: Text(model.currentTheme),
               ),
+              //TODO
               // MenuItemTile(
               //   text: Text(local.advanced, style: _menuTitleStyle),
               //   onPressed: model.navigateToAdvanced,

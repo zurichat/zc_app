@@ -31,7 +31,6 @@ import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
 import '../ui/view/channel/share_message/share_message_view.dart';
 import '../ui/view/clear_after/clear_after_view.dart';
 import '../ui/view/direct_message/direct_message.dart';
-import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
 import '../ui/view/do_not_disturb/do_not_disturb_view.dart';
@@ -41,6 +40,7 @@ import '../ui/view/file_search/file_search_view.dart';
 import '../ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
 import '../ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
 import '../ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
+import '../ui/view/jump_to_view/jump_to_view.dart';
 import '../ui/view/language_and_region/language_and_region_view.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/notifications/notifications_view.dart';
@@ -92,7 +92,7 @@ class Routes {
   static const String homePage = '/home-page';
   static const String addPeopleView = '/add-people-view';
   static const String dmSearch = '/dm-search';
-  static const String dmJumpToView = '/dm-jump-to-view';
+  static const String jumpToView = '/jump-to-view';
   static const String dmUserView = '/dm-user-view';
   static const String dmScreen = '/dm-screen';
   static const String splashview = '/';
@@ -153,7 +153,7 @@ class Routes {
     homePage,
     addPeopleView,
     dmSearch,
-    dmJumpToView,
+    jumpToView,
     dmUserView,
     dmScreen,
     splashview,
@@ -219,7 +219,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.homePage, page: HomePage),
     RouteDef(Routes.addPeopleView, page: AddPeopleView),
     RouteDef(Routes.dmSearch, page: DmSearch),
-    RouteDef(Routes.dmJumpToView, page: DmJumpToView),
+    RouteDef(Routes.jumpToView, page: JumpToView),
     RouteDef(Routes.dmUserView, page: DmUserView),
     RouteDef(Routes.dmScreen, page: DmScreen),
     RouteDef(Routes.splashview, page: Splashview),
@@ -404,12 +404,12 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    DmJumpToView: (data) {
-      var args = data.getArgs<DmJumpToViewArguments>(
-        orElse: () => DmJumpToViewArguments(),
+    JumpToView: (data) {
+      var args = data.getArgs<JumpToViewArguments>(
+        orElse: () => JumpToViewArguments(),
       );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => DmJumpToView(key: args.key),
+        builder: (context) => JumpToView(key: args.key),
         settings: data,
       );
     },
@@ -828,10 +828,10 @@ class DmSearchArguments {
   DmSearchArguments({this.key});
 }
 
-/// DmJumpToView arguments holder class
-class DmJumpToViewArguments {
+/// JumpToView arguments holder class
+class JumpToViewArguments {
   final Key? key;
-  DmJumpToViewArguments({this.key});
+  JumpToViewArguments({this.key});
 }
 
 /// DmUserView arguments holder class

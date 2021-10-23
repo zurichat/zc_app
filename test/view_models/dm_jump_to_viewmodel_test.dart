@@ -1,10 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zurichat/ui/view/dm_chat_view/dm_jump_to_viewmodel.dart';
+import 'package:zurichat/ui/view/jump_to_view/jump_to_viewmodel.dart';
+
 import '../helpers/test_helpers.dart';
 
 //TODO test properly
 void main() {
-  group('dmJumpToViewModelTest -', () {
+  group('JumpToViewModelTest -', () {
     setUp(() => registerServices());
     tearDown(() => unregisterServices());
     group('initialise -', () {
@@ -15,7 +16,7 @@ void main() {
 
     group('api calls -', () {
       test('When called, check if users list is not empty', () async {
-        final model = DmJumpToViewModel();
+        final model = JumpToViewModel();
      
         //TODO write test properly
         await model.fetchUsers();
@@ -23,7 +24,7 @@ void main() {
       });
 
       test('When called, check if channels list is not empty', () async {
-        final model = DmJumpToViewModel();
+        final model = JumpToViewModel();
 
      
         //TODO write test properly

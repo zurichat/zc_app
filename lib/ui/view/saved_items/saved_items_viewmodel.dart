@@ -38,7 +38,7 @@ class SavedItemsViewModel extends BaseViewModel {
           var savedItemMap = storageService.getString(element);
           if (savedItemMap != null) {
             var savedMap = jsonDecode(savedItemMap);
-            log.w(savedMap);
+            log.wtf(savedMap);
             savedBuilderList.add(SavedItemModel(
               savedMap['channel_name'],
               savedMap['user_id'],
