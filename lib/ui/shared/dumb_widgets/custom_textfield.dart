@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
-import '../utilities/constants/colors.dart';
 //import 'package:expandable_text/expandable_text.dart';
 
 class CustomTextField extends StatelessWidget {

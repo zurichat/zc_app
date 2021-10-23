@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:zurichat/ui/shared/long_button.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/long_button.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/utilities/constants/ui_helpers.dart';

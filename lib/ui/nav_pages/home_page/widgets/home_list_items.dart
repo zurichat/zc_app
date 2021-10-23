@@ -7,9 +7,8 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.router.dart';
-import '../../../../general_widgets/easy_container.dart';
-import '../../../../general_widgets/ripple.dart';
-import '../../../../general_widgets/svg_icon.dart';
+import '../../../shared/dumb_widgets/ripple.dart';
+import '../../../shared/dumb_widgets/svg_icon.dart';
 import '../../../../utilities/constants/colors.dart';
 import '../../../../utilities/constants/text_styles.dart';
 import '../home_item_model.dart';
@@ -129,10 +128,12 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       },
       icon: Container(
         alignment: Alignment.centerLeft,
-        child: const EasyContainer(
+        child: Container(
           height: 23,
           width: 23,
-          radius: 3,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(3),
+          ),
           color: AppColors.paleGreen,
         ),
       ),

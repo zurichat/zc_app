@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utilities/constants/colors.dart';
+import '../../../utilities/constants/colors.dart';
 
 enum _TileType { normal, icon, flipSwitch }
 

@@ -5,7 +5,7 @@ import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/view/organization/organization_settings/organization_settings_view_model.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/utilities/constants/colors.dart';
-import 'package:zurichat/ui/shared/text_field.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/text_field.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';

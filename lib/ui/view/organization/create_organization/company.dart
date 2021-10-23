@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import '../../../../utilities/constants/colors.dart';
-import '../../../shared/long_button.dart';
-import '../../../shared/text_field.dart';
+import '../../../shared/dumb_widgets/long_button.dart';
+import '../../../shared/dumb_widgets/text_field.dart';
 import '../../../../utilities/constants/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
