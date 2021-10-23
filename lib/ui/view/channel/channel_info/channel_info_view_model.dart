@@ -77,6 +77,7 @@ class ChannelInfoViewModel extends BaseViewModel {
   }
 
   getChannelInfo() async {
+    //TODO LOOK AT THIS PLACE - HARD-CODED CHANNEL ID
     const channel_id = '613f70bd6173056af01b4aba';
     const endpoint = '$ChannelInfoEndpoint$channel_id/';
 

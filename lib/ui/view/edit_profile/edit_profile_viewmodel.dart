@@ -136,7 +136,10 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
   //TODO-- fix the plugIn parameter needed to upload user profile pic to the endpoint
   Future<String> uploadPic() async {
     imageUrl = (await mediaService.uploadImage(
-        imageFile, '6165f520375a4616090b8275'))!;
+      imageFile,
+  //TODO MOVE PLUGIN ID TO CONSTANTS
+      '6165f520375a4616090b8275',
+    ))!;
     return imageUrl;
   }
 }

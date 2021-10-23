@@ -9,6 +9,7 @@ import 'package:zurichat/ui/nav_pages/dm_page/dm_search_find_page.dart';
 import 'package:zurichat/ui/nav_pages/plugin_page/plugin_view.dart';
 import 'package:zurichat/ui/view/channel/share_message/share_message_view.dart';
 import 'package:zurichat/ui/view/direct_message/direct_message.dart';
+import 'package:zurichat/ui/view/jump_to_view/jump_to_view.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/invitation_sent.dart';
@@ -53,7 +54,6 @@ import '../ui/view/channel/channel_view/channel_page_view.dart';
 import '../ui/view/channel/edit_channel/edit_channel_view.dart';
 import '../ui/view/channel/new_channel/new_channel.dart';
 import '../ui/view/clear_after/clear_after_view.dart';
-import '../ui/view/dm_chat_view/dm_jump_to_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
 import '../ui/view/do_not_disturb/do_not_disturb_view.dart';
@@ -107,7 +107,7 @@ import '../ui/view/user_search/user_search_view.dart';
     CupertinoRoute(page: HomePage),
     CupertinoRoute(page: AddPeopleView),
     CupertinoRoute(page: DmSearch),
-    CupertinoRoute(page: DmJumpToView),
+    CupertinoRoute(page: JumpToView),
     CupertinoRoute(page: DmUserView),
     CupertinoRoute(page: DmScreen),
     CupertinoRoute(page: Splashview, initial: true),

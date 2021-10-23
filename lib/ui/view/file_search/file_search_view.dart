@@ -103,5 +103,3 @@ class _FileSearchViewState extends State<FileSearchView> {
     );
   }
 }
-
-//* Custom Widgets

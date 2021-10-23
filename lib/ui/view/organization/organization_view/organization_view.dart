@@ -116,6 +116,11 @@ class OrganizationView extends StatelessWidget {
                         //   ),
                         // ),
                         ListTile(
+                          ///TODO THERE SHOULD BE A DIALOG TO INFORM THE USERS THAT THIS ACTION WILL CLEAR
+                          ///ALL THEIR DETAILS - AND YOU WILL LIST THEM OUT 
+                          ///LIKE SAVED ITEMS, PERSONAL INFORMATION ETC.
+                          ///AND WHEN THE USER AGREES, THEN THIS FUNCTION SHOULD BE EXECUTED.
+                          ///TODO
                           onTap: () => viewModel.signOutAllOrg(),
                           leading: const Icon(Icons.logout_sharp),
                           contentPadding: EdgeInsets.zero,

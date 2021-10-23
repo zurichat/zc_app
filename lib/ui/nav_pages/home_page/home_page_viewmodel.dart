@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.logger.dart';
 import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/ui/view/jump_to_view/jump_to_view.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
@@ -16,7 +17,6 @@ import 'package:zurichat/services/app_services/local_storage_services.dart';
 import 'package:zurichat/services/app_services/notification_service.dart';
 import 'package:zurichat/services/in_review/user_service.dart';
 import 'package:zurichat/ui/nav_pages/home_page/home_item_model.dart';
-import 'package:zurichat/ui/view/dm_chat_view/dm_jump_to_view.dart';
 import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:zurichat/utilities/enums.dart';
 import 'package:zurichat/utilities/constants/storage_keys.dart';
@@ -89,7 +89,7 @@ class HomePageViewModel extends StreamViewModel {
   }
 
   void navigateToJumpToScreen() {
-    _navigationService.navigateTo(Routes.dmJumpToView);
+    _navigationService.navigateTo(Routes.jumpToView);
   }
 
   void navigateToStartDMScreen() {
@@ -270,7 +270,7 @@ class HomePageViewModel extends StreamViewModel {
   }
 
   void onJumpToScreen() {
-    navigation.navigateWithTransition(DmJumpToView(),
+    navigation.navigateWithTransition(JumpToView(),
         transition: NavigationTransition.DownToUp);
   }
 

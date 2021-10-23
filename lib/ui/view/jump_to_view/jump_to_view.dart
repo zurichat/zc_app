@@ -9,18 +9,18 @@ import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked/stacked.dart';
-import 'dm_jump_to_view.form.dart';
-import 'dm_jump_to_viewmodel.dart';
+import 'jump_to_viewmodel.dart';
+import 'jump_to_view.form.dart';
 
 @FormView(fields: [FormTextField(name: 'search')])
-class DmJumpToView extends StatelessWidget with $DmJumpToView {
-  DmJumpToView({Key? key}) : super(key: key);
+class JumpToView extends StatelessWidget with $JumpToView {
+  JumpToView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
     final bool _dark = Theme.of(context).brightness == Brightness.dark;
-    return ViewModelBuilder<DmJumpToViewModel>.reactive(
+    return ViewModelBuilder<JumpToViewModel>.reactive(
       fireOnModelReadyOnce: true,
       onModelReady: (model) {
         // listenToFormUpdated(model);
@@ -28,8 +28,8 @@ class DmJumpToView extends StatelessWidget with $DmJumpToView {
         model.fetchChannels();
       },
       disposeViewModel: false,
-      viewModelBuilder: () => DmJumpToViewModel(),
-      builder: (BuildContext context, DmJumpToViewModel model, Widget? child) =>
+      viewModelBuilder: () => JumpToViewModel(),
+      builder: (BuildContext context, JumpToViewModel model, Widget? child) =>
           ScreenUtilInit(
         designSize: const Size(411, 823),
         builder: () => Scaffold(
