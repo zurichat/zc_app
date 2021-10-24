@@ -281,11 +281,11 @@
     "in": "in:",
     "in_example": "e.g. #project-unicorn",
     "from": "from:",
-    "from_example": "e.g. Mark Essien",
+    "from_example": "e.g. @mark",
     "is": "is:",
     "is_example": "e.g. saved",
     "after": "after:",
-    "after_example": "e.g. 2021-10-16",
+    "after_example": "e.g. 2020-10-20",
     "to": "to:",
     "to_example": "e.g. me"
 }
