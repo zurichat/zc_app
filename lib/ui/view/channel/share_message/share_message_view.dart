@@ -18,7 +18,6 @@ class ShareMessageView extends StatelessWidget {
     final local = AppLocalization.of(context);
     return ViewModelBuilder<ShareMessageViewModel>.reactive(
         builder: (context, model, child) => Scaffold(
-              backgroundColor: AppColors.whiteColor,
               appBar: AppBar(
                 backgroundColor: AppColors.zuriPrimaryColor,
                 leading: IconButton(

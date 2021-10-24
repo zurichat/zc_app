@@ -17,12 +17,19 @@ class InvitationSent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
         return Scaffold(
           appBar: ZuriAppBar(
-            isDarkMode: Theme.of(context).brightness == Brightness.dark,
+            orgTitle: Text(
+              local!.invitationSent,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
+            ),
+            isDarkMode: _dark,
             leading: Icons.close,
             leadingPress: () {
               model.navigateBack();
@@ -44,8 +51,10 @@ class InvitationSent extends StatelessWidget {
                 ),
                 UIHelper.verticalSpaceLarge,
                 Text(
-                  local!.invitationSent,
-                  style: AppTextStyle.darkGreySize18Bold,
+                  local.invitationSent,
+                  style: _dark
+                      ? AppTextStyle.whiteSize18Bold
+                      : AppTextStyle.darkGreySize18Bold,
                 ),
                 UIHelper.verticalSpaceLarge,
                 Center(
@@ -58,7 +67,9 @@ class InvitationSent extends StatelessWidget {
                       const SizedBox(width: 16),
                       Text(
                         model.getInvitedMail() ?? '',
-                        style: AppTextStyle.darkGreySize16Bold,
+                        style: _dark
+                            ? AppTextStyle.whiteSize16Bold
+                            : AppTextStyle.darkGreySize16Bold,
                       ),
                     ],
                   ),
@@ -67,7 +78,9 @@ class InvitationSent extends StatelessWidget {
                 Center(
                   child: Text(
                     local.invitedAsAZuriChatMember,
-                    style: AppTextStyle.darkGreySize16,
+                    style: _dark
+                        ? AppTextStyle.whiteSize16
+                        : AppTextStyle.darkGreySize16,
                   ),
 
                   // textAlign: TextAlign.center,

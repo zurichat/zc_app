@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/utilities/constants/colors.dart';
 
@@ -64,59 +65,14 @@ class SavedItemsView extends StatelessWidget {
                           });
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            model.savedBuilderList[index].channelName ??
-                                model.savedBuilderList[index].channelId!,
-                            style: AppTextStyle.darkGreySize18Bold,
-                          ),
-                          const SizedBox(height: 20),
-                          Row(
-                            children: [
-                              Flexible(
-                                child: CircleAvatar(
-                                  backgroundImage: AssetImage(
-                                      model.savedBuilderList[index].userImage!),
-                                ),
-                              ),
-                              const SizedBox(width: 15),
-                              Expanded(
-                                flex: 4,
-                                child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        model.savedBuilderList[index]
-                                                .displayName ??
-                                            model.savedBuilderList[index]
-                                                .userID!,
-                                        style: AppTextStyle.darkGreySize20Bold,
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Text(model
-                                          .savedBuilderList[index].message!)
-                                    ]),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: ThreadCardView.threadChannelMain(
+                          model.savedBuilderList[index]),
                     ),
                   );
                 },
                 separatorBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.only(left: 25),
-                    height: 15,
-                    width: double.infinity,
-                    color: AppColors.greyishColor.withOpacity(0.15),
-                  );
+                  return const Divider();
                 },
               ),
       ),

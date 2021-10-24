@@ -22,6 +22,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
     final local = AppLocalization.of(context);
     final message = viewModel.channelUserMessages;
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       child: !nullListChecker(viewModel.channelUserMessages)
           ? ListView.builder(
@@ -56,7 +57,9 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                       ],
                     ),
                     color: userPost.pinned
-                        ? AppColors.lightYellow
+                        ? _dark
+                            ? AppColors.deepBlackColor
+                            : AppColors.lightYellow
                         : Colors.transparent,
                   ),
                   onLongPress: () => zuriChatBottomSheet(

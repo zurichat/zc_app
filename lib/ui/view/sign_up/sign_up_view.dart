@@ -179,7 +179,9 @@ class SignUpView extends StatelessWidget with $SignUpView {
                             children: [
                               Text(
                                 TnC1,
-                                style: AppTextStyle.lightGreySize12,
+                                style: _dark
+                                    ? AppTextStyle.whiteSize12
+                                    : AppTextStyle.lightGreySize12,
                               ),
                               GestureDetector(
                                 onTap: () =>
