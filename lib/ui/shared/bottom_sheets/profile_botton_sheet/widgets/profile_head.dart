@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../colors.dart';
+import '../../../../../utilities/constants/colors.dart';
 import '../custom_user_bottom_sheet_viewmodel.dart';
 
 class ProfileHead extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:flutter_parsed_text/flutter_parsed_text.dart';
 import 'package:zurichat/utilities/utilities.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../text_styles.dart';
+import '../../../../utilities/constants/text_styles.dart';
 
 //To receive keywords
 String keyword = '';
@@ -23,7 +23,7 @@ class TextParserViewModel extends BaseViewModel {
         type: ParsedType.URL,
         style: AppTextStyle.greenSize14,
         onTap: ((url) async {
-          var canBrowse = await canLaunch(url);
+          var canBrowse = await canLaunchUrl(url);
 
           if (canBrowse) {
             launcher(url);

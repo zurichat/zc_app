@@ -1,11 +1,11 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/services/app_services/connectivity_service.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/services/messaging_services/channels_api_service.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';
-import '../../../services/connectivity_service.dart';
-import '../../../services/local_storage_services.dart';
 
 class GeneralSearchViewModel extends FormViewModel {
   final log = getLogger('GeneralSearchViewModel');

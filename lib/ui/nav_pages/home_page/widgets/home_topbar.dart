@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../general_widgets/easy_container.dart';
-import '../../../shared/colors.dart';
+import '../../../../utilities/constants/colors.dart';
 import '../../../shared/shared.dart';
-import '../../../shared/text_styles.dart';
+import '../../../../utilities/constants/text_styles.dart';
 import '../home_page_viewmodel.dart';
 
 class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {

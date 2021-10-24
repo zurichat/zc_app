@@ -26,6 +26,8 @@
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
+.fvm/flutter_sdk
+.vscode/settings.json
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
@@ -33,6 +35,8 @@ pubspec.lock
 .pub-cache/
 .pub/
 /build/
+lib/app/app.locator.dart
+lib/app/app.router.dart
 /test/helpers/test_helpers.mocks.dart
 # Web related
 lib/generated_plugin_registrant.dart

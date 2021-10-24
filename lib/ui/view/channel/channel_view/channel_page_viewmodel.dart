@@ -5,21 +5,21 @@ import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
 import 'package:zurichat/models/user_post.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart';
-import 'package:zurichat/services/centrifuge_service.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/services/media_service.dart';
-import 'package:zurichat/services/notification_service.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/services/messaging_services/channels_api_service.dart';
+import 'package:zurichat/services/messaging_services/centrifuge_rtc_service.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/services/app_services/media_service.dart';
+import 'package:zurichat/services/app_services/notification_service.dart';
 import 'package:zurichat/app/app.logger.dart';
-import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:simple_moment/simple_moment.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -40,6 +40,7 @@ class ChannelPageViewModel extends FormViewModel {
 
   get checkUser => _checkUser;
   final _api = ZuriApi(channelsBaseUrl);
+  //TODO HARD-CODED PLUGIN ID
   String pluginId = '6165f520375a4616090b8275';
   final snackbar = locator<SnackbarService>();
 

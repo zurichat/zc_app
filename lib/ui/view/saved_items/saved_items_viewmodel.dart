@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
 import 'package:zurichat/models/saved_item_model.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/app/app.logger.dart';
@@ -38,7 +38,7 @@ class SavedItemsViewModel extends BaseViewModel {
           var savedItemMap = storageService.getString(element);
           if (savedItemMap != null) {
             var savedMap = jsonDecode(savedItemMap);
-            log.w(savedMap);
+            log.wtf(savedMap);
             savedBuilderList.add(SavedItemModel(
               savedMap['channel_name'],
               savedMap['user_id'],
