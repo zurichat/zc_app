@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 
-import '../../general_widgets/easy_container.dart';
-import '../../utilities/constants/app_constants.dart';
-import '../../utilities/constants/text_styles.dart';
+import '../../../utilities/constants/app_constants.dart';
+import '../../../utilities/constants/text_styles.dart';
 
 class JumpToSearchBar extends StatelessWidget {
   final Function() onTap;
@@ -22,13 +22,14 @@ class JumpToSearchBar extends StatelessWidget {
       onTap: onTap,
       child: Padding(
         padding: EdgeInsets.fromLTRB(left, 0, right, 0),
-        child: EasyContainer(
+        child: Container(
           height: 50,
-          radius: 7,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7),
+              border:
+                  Border.all(color: AppColors.greyBackgroundColor, width: 1.5)),
           padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
           alignment: Alignment.centerLeft,
-          borderWidth: 1.5,
-          borderColor: Colors.grey[300],
           child: Text(
             JumpTo,
             style: AppTextStyle.darkGreySize14,

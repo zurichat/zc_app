@@ -31,7 +31,6 @@ class ForgotPasswordNewView extends StatelessWidget
         color: AppColors.whiteColor,
         progressIndicator: const ZuriLoader(),
         child: Scaffold(
-          resizeToAvoidBottomInset: false,
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),

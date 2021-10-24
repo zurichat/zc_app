@@ -1,7 +1,7 @@
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/models/user_search_model.dart';
 import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
-import 'package:zurichat/services/in_review/organization_api_service.dart';
+import 'package:zurichat/services/core_services/organization_api_service.dart';
 import 'package:zurichat/services/app_services/local_storage_services.dart';
 import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:zurichat/utilities/constants/storage_keys.dart';

@@ -18,7 +18,7 @@ import 'package:zurichat/models/user_search_model.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/api_handlers/api_utils.dart';
 import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/failures.dart';
+import 'package:zurichat/utilities/api_handlers/failures.dart';
 import 'package:stacked_services/stacked_services.dart'
     hide FormData, MultipartFile;
 

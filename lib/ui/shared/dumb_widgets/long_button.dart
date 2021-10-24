@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 
-import 'shared.dart';
+import '../shared.dart';
 
 class LongButton extends StatelessWidget {
   final Function() onPressed;
@@ -49,10 +49,5 @@ class LongButton extends StatelessWidget {
         ),
       ),
     );
-
-    //TODO: Remove this
-    // fontSize: 16,
-    // fontWeight: FontWeight.w400,
-    // color: labelColor ?? AppColors.whiteColor,
   }
 }

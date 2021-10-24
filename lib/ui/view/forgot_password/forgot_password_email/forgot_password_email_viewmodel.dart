@@ -65,6 +65,7 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
 
       navigateToForgotPasswordOtpView();
     }
+    loading(false);
   }
 
   @override
@@ -73,5 +74,5 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
   void navigateToForgotPasswordOtpView() =>
       _navigationService.navigateTo(Routes.forgotPasswordOtpView);
 
-  void navigateToSignIn() => _navigationService.navigateTo(Routes.loginView);
+  void navigateToSignIn() => _navigationService.back();
 }

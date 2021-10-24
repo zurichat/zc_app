@@ -6,7 +6,7 @@ import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
-import '../../../general_widgets/menu_item_tile.dart';
+import '../../shared/dumb_widgets/menu_item_tile.dart';
 import 'widgets/profile_page_head.dart';
 import 'widgets/status_form.dart';
 import 'you_page_viewmodel.dart';

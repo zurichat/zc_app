@@ -8,7 +8,7 @@ import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import '../../../../general_widgets/channel_icon.dart';
+import '../../../shared/dumb_widgets/channel_icon.dart';
 import '../../../../models/user_post.dart';
 import '../../../../utilities/constants/colors.dart';
 import '../../../shared/smart_widgets/thread_card/thread_card_view.dart';

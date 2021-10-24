@@ -30,7 +30,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   }
 
   void navigateToLogin() {
-    _navigationService.navigateTo(Routes.loginView);
+    _navigationService.clearStackAndShow(Routes.loginView);
   }
 
   void passwordVerification() {
@@ -60,6 +60,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
         variant: SnackbarType.failure,
         message: fillAllFields,
       );
+
       return;
     } else if (newPasswordValue != confirmPasswordValue) {
       loading(false);

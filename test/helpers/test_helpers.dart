@@ -6,7 +6,7 @@ import 'package:zurichat/services/in_review/jump_to_api.dart';
 import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
 import 'package:zurichat/services/messaging_services/channels_api_service.dart';
 import 'package:zurichat/services/messaging_services/dms_api_service.dart';
-import 'package:zurichat/services/in_review/organization_api_service.dart';
+import 'package:zurichat/services/core_services/organization_api_service.dart';
 import 'package:zurichat/services/messaging_services/centrifuge_rtc_service.dart';
 import 'package:zurichat/services/app_services/connectivity_service.dart';
 import 'package:zurichat/services/app_services/local_storage_services.dart';

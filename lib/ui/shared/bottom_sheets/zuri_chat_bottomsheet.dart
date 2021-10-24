@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/user_post.dart';
-import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/utilities/constants/colors.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 Future<dynamic> zuriChatBottomSheet({
   required BuildContext context,
@@ -24,7 +22,6 @@ Future<dynamic> zuriChatBottomSheet({
   UserPost? post,
 }) {
   final local = AppLocalization.of(context);
-  final _dialogService = locator<DialogService>();
   return showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -34,7 +31,7 @@ Future<dynamic> zuriChatBottomSheet({
       final bool _dark = Theme.of(context).brightness == Brightness.dark;
       return Container(
         width: double.infinity,
-        height: MediaQuery.of(context).size.height * .40,
+        height: MediaQuery.of(context).size.height * 0.5,
         padding: const EdgeInsets.all(15),
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -86,23 +83,23 @@ Future<dynamic> zuriChatBottomSheet({
             //   ),
             //   onTap: markUnread,
             // ),
-            ListTile(
-              title: Text(
-                RemindMe,
-                style: _dark
-                    ? AppTextStyle.whiteSize16
-                    : AppTextStyle.darkGreySize16,
-              ),
-              leading: SvgPicture.asset(
-                Remind_Me,
-                color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
-                width: 18,
-                height: 18,
-              ),
-              onTap: () async {
-                await _dialogService.showCustomDialog();
-              },
-            ),
+            // ListTile(
+            //   title: Text(
+            //     RemindMe,
+            //     style: _dark
+            //         ? AppTextStyle.whiteSize16
+            //         : AppTextStyle.darkGreySize16,
+            //   ),
+            //   leading: SvgPicture.asset(
+            //     Remind_Me,
+            //     color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+            //     width: 18,
+            //     height: 18,
+            //   ),
+            //   onTap: () async {
+            //     await _dialogService.showCustomDialog();
+            //   },
+            // ),
             ListTile(
               title: Text(
                 AddToSavedItems,
@@ -148,20 +145,20 @@ Future<dynamic> zuriChatBottomSheet({
             //     ),
             //     onTap: followThread),
             // const Divider(),
-            ListTile(
-                title: Text(
-                  ShareMessage,
-                  style: _dark
-                      ? AppTextStyle.whiteSize16
-                      : AppTextStyle.darkGreySize16,
-                ),
-                leading: SvgPicture.asset(
-                  Share_message,
-                  color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
-                  width: 18,
-                  height: 18,
-                ),
-                onTap: shareMessage),
+            // ListTile(
+            //     title: Text(
+            //       ShareMessage,
+            //       style: _dark
+            //           ? AppTextStyle.whiteSize16
+            //           : AppTextStyle.darkGreySize16,
+            //     ),
+            //     leading: SvgPicture.asset(
+            //       Share_message,
+            //       color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+            //       width: 18,
+            //       height: 18,
+            //     ),
+            //     onTap: shareMessage),
             ListTile(
                 title: Text('Delete Message',
                     style: _dark

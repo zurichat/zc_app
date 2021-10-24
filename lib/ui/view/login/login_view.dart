@@ -8,9 +8,9 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import '../../../general_widgets/custom_textfield.dart';
+import '../../shared/dumb_widgets/custom_textfield.dart';
 import '../../../utilities/constants/colors.dart';
-import '../../shared/long_button.dart';
+import '../../shared/dumb_widgets/long_button.dart';
 
 import 'login_view.form.dart';
 import 'login_viewmodel.dart';

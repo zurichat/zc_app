@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/general_widgets/menu_item_tile.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/menu_item_tile.dart';
 
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';

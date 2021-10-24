@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:zurichat/app/app.locator.dart';
@@ -278,7 +277,6 @@ class ChannelPageViewModel extends FormViewModel {
         await _channelsApiService.getChannelMessages(channelId);
     channelUserMessages = [];
 
-    inspect(channelMessages.toString());
     log.wtf(channelMessages[0].toString());
 
     channelMessages.forEach((data) async {

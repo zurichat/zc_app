@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:zurichat/models/organization_model.dart';
-import 'package:zurichat/ui/shared/bottom_sheets/sign_out_bottomsheet/sign_out_botton_sheet_viewmodel.dart';
+import 'package:zurichat/ui/shared/bottom_sheets/sign_out_bottomsheet/sign_out_bottom_sheet_viewmodel.dart';
 import 'package:zurichat/ui/shared/bottom_sheets/sign_out_bottomsheet/widgets/work_space_display_info_view.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
@@ -33,7 +33,7 @@ class SignOutBottomSheet extends StatelessWidget {
                     workSpaceSlackUrl: org.organizationUrl,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () => model.navigateInviteMembers(),
                     child: ListTile(
                       title: Text(
                         'Invite members',

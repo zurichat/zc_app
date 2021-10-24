@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../general_widgets/easy_container.dart';
 import '../../../../utilities/constants/colors.dart';
 import '../../../shared/shared.dart';
 import '../../../../utilities/constants/text_styles.dart';
@@ -20,17 +19,17 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
   @override
   Widget build(BuildContext context, viewModel) {
     //Todo:get the standard app bar height
-    return EasyContainer(
+    return Container(
       color: AppColors.zuriPrimaryColor,
       height: kToolbarHeight + 10,
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
-      boxShadow: [
+      decoration: BoxDecoration(boxShadow: [
         BoxShadow(
           offset: const Offset(0, 3),
           blurRadius: 6,
           color: Colors.black.withOpacity(0.1),
         )
-      ],
+      ]),
       child: SafeArea(
         child: Row(
           children: [
@@ -39,13 +38,15 @@ class HomePageTopBar extends ViewModelWidget<HomePageViewModel> {
                 viewModel.navigateToOrganization();
               },
               child: organizationLogo ??
-                  const EasyContainer(
+                  Container(
                     height: 35,
                     width: 35,
                     color: AppColors.whiteColor,
                     alignment: Alignment.center,
-                    radius: 6,
-                    child: Image(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: const Image(
                       image: appBarLogo,
                       fit: BoxFit.cover,
                       height: 25,
