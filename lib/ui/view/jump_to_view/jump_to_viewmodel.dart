@@ -4,7 +4,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';
-import '../../../general_widgets/app_toast.dart';
+import '../../../services/app_services/app_toast.dart';
 import '../../../models/channels_search_model.dart';
 import '../../../models/user_search_model.dart';
 import '../../../services/in_review/jump_to_api.dart';

@@ -3,7 +3,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.router.dart';
-import '../../../../services/in_review/organization_api_service.dart';
+import '../../../../services/core_services/organization_api_service.dart';
 import '../../../../services/app_services/local_storage_services.dart';
 import '../../../../services/in_review/user_service.dart';
 import '../../../../utilities/constants/storage_keys.dart';

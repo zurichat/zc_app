@@ -4,10 +4,10 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:zurichat/utilities/constants/text_styles.dart';
 
-class CustomChannel extends StatelessWidget {
+class ChannelTile extends StatelessWidget {
   final String? text;
   final bool? public;
-  const CustomChannel({Key? key, this.text, required this.public})
+  const ChannelTile({Key? key, this.text, required this.public})
       : super(key: key);
 
   @override

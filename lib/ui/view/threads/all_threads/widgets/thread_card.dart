@@ -4,7 +4,7 @@ import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 //The screen shown in homepage -> Threads
-import '../../../../../general_widgets/channel_icon.dart';
+import '../../../../shared/dumb_widgets/channel_icon.dart';
 
 import '../../../../../models/user_post.dart';
 import '../../../../shared/shared.dart';

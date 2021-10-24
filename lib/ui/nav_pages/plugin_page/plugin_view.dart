@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/general_widgets/menu_item_tile.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/menu_item_tile.dart';
 import 'package:zurichat/models/plugin_model.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
-import 'package:zurichat/ui/shared/long_button.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/long_button.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';

@@ -4,7 +4,7 @@ import 'package:stacked/stacked.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/organization_model.dart';
 import 'package:zurichat/utilities/constants/colors.dart';
-import 'package:zurichat/ui/shared/long_button.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/long_button.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
 import 'package:zurichat/ui/view/organization/organization_settings/organization_settings_view_model.dart';
