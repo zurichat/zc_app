@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/ui/view/dm_user/dummy_data/models/message.dart';
-import 'package:zurichat/ui/view/dm_user/dummy_data/models/user.dart';
+import 'package:zurichat/models/message.dart';
+import 'package:zurichat/models/user.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
 import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/app/app.logger.dart';
@@ -24,11 +24,15 @@ class DmUserViewModel extends FormViewModel {
   var storedDraft = '';
 
   void getDraft(receiverId) {
+    var currentOrgId = _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId = _storageService.getString(StorageKeys.currentUserId);
     List<String>? spList =
         _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
     if (spList != null) {
       for (String e in spList) {
-        if (jsonDecode(e)['receiverId'] == receiverId) {
+        if (jsonDecode(e)['receiverId'] == receiverId &&
+            currentOrgId == jsonDecode(e)['currentOrgId'] &&
+            currentUserId == jsonDecode(e)['currentUserId']) {
           storedDraft = jsonDecode(e)['draft'];
           spList.remove(e);
           _storageService.setStringList(
@@ -40,11 +44,15 @@ class DmUserViewModel extends FormViewModel {
   }
 
   void storeDraft(receiverId, value) {
+    var currentOrgId = _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId = _storageService.getString(StorageKeys.currentUserId);
     var keyMap = {
       'draft': value,
       'time': '${DateTime.now()}',
       'receiverName': 'receiverName',
       'receiverId': receiverId,
+      'currentOrgId': currentOrgId,
+      'currentUserId': currentUserId,
     };
 
     List<String>? spList =
@@ -126,7 +134,7 @@ class DmUserViewModel extends FormViewModel {
       await storage.setString(messageID, json.encode(savedMessageMap));
       log.i(savedMessageMap);
       final len = storage.getStringList(StorageKeys.savedItem);
-      log.w(len!.length.toString());
+      log.wtf(len!.length.toString());
     }
   }
 
@@ -162,8 +170,8 @@ class DmUserViewModel extends FormViewModel {
   }
 
   void popScreens(receiverId, value) {
-    storeDraft(receiverId, value);
     navigationService.back();
+    storeDraft(receiverId, value);
   }
 
   void popScreen() {

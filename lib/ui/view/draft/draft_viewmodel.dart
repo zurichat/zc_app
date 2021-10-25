@@ -3,11 +3,11 @@ import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
 import 'package:zurichat/models/draft_data_holder_model.dart';
 import 'package:zurichat/models/user_post.dart';
-import 'package:zurichat/services/connectivity_service.dart';
-import 'package:zurichat/services/local_storage_services.dart';
+import 'package:zurichat/services/app_services/connectivity_service.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
 import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/app/app.logger.dart';
@@ -22,6 +22,8 @@ class DraftViewModel extends BaseViewModel {
   List<DraftDataHolder> widgetBuilderList = [];
 
   void get drafts {
+    var currentOrgId = _storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId = _storageService.getString(StorageKeys.currentUserId);
     var dmStoredDrafts =
         _storageService.getStringList(StorageKeys.currentUserDmIdDrafts);
     var channelStoredDrafts =
@@ -31,40 +33,49 @@ class DraftViewModel extends BaseViewModel {
 
     if (dmStoredDrafts != null) {
       dmStoredDrafts.forEach((element) {
-        var mapKey = jsonDecode(element);
+        if (currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']) {
+          var mapKey = jsonDecode(element);
 
-        widgetBuilderList.add(DraftDataHolder(
-          '${mapKey['receiverName']}',
-          '${mapKey['draft']}',
-          mapKey,
-          '${mapKey['time']}',
-        ));
+          widgetBuilderList.add(DraftDataHolder(
+            '${mapKey['receiverName']}',
+            '${mapKey['draft']}',
+            mapKey,
+            '${mapKey['time']}',
+          ));
+        }
       });
     }
 
     if (channelStoredDrafts != null) {
       channelStoredDrafts.forEach((element) {
-        var mapKey = jsonDecode(element);
+        if (currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']) {
+          var mapKey = jsonDecode(element);
 
-        widgetBuilderList.add(DraftDataHolder(
-          '${mapKey['channelName']}',
-          '${mapKey['draft']}',
-          mapKey,
-          '${mapKey['time']}',
-        ));
+          widgetBuilderList.add(DraftDataHolder(
+            '${mapKey['channelName']}',
+            '${mapKey['draft']}',
+            mapKey,
+            '${mapKey['time']}',
+          ));
+        }
       });
     }
 
     if (threadStoredDrafts != null) {
       threadStoredDrafts.forEach((element) {
-        var mapKey = jsonDecode(element);
+        if (currentOrgId == jsonDecode(element)['currentOrgId'] &&
+            currentUserId == jsonDecode(element)['currentUserId']) {
+          var mapKey = jsonDecode(element);
 
-        widgetBuilderList.add(DraftDataHolder(
-          '# ${mapKey['userPostChannelName']}',
-          '${mapKey['draft']}',
-          mapKey,
-          '${mapKey['time']}',
-        ));
+          widgetBuilderList.add(DraftDataHolder(
+            '# ${mapKey['userPostChannelName']}',
+            '${mapKey['draft']}',
+            mapKey,
+            '${mapKey['time']}',
+          ));
+        }
       });
     }
   }

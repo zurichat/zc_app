@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/organization_model.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/ui/shared/zuri_loader.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
@@ -107,15 +107,20 @@ class OrganizationView extends StatelessWidget {
                             style: _tileStyle,
                           ),
                         ),
+                        // ListTile(
+                        //   leading: const Icon(Icons.help_outline),
+                        //   contentPadding: EdgeInsets.zero,
+                        //   title: Text(
+                        //     local.help,
+                        //     style: _tileStyle,
+                        //   ),
+                        // ),
                         ListTile(
-                          leading: const Icon(Icons.help_outline),
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(
-                            local.help,
-                            style: _tileStyle,
-                          ),
-                        ),
-                        ListTile(
+                          ///TODO THERE SHOULD BE A DIALOG TO INFORM THE USERS THAT THIS ACTION WILL CLEAR
+                          ///ALL THEIR DETAILS - AND YOU WILL LIST THEM OUT 
+                          ///LIKE SAVED ITEMS, PERSONAL INFORMATION ETC.
+                          ///AND WHEN THE USER AGREES, THEN THIS FUNCTION SHOULD BE EXECUTED.
+                          ///TODO
                           onTap: () => viewModel.signOutAllOrg(),
                           leading: const Icon(Icons.logout_sharp),
                           contentPadding: EdgeInsets.zero,

@@ -1,21 +1,21 @@
 import 'dart:convert';
 
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/services/user_service.dart';
-import 'package:zurichat/utilities/constants.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
+import 'package:zurichat/utilities/constants/app_constants.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/app/app.logger.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../models/user_post.dart';
-import '../../../../package/base/server-request/api/zuri_api.dart';
-import '../../../../services/local_storage_services.dart';
-import '../../../../services/user_service.dart';
-import '../../../../utilities/constants.dart';
+import '../../../../utilities/api_handlers/zuri_api.dart';
+import '../../../../services/app_services/local_storage_services.dart';
+import '../../../../services/in_review/user_service.dart';
+import '../../../../utilities/constants/app_constants.dart';
 import '../../../../utilities/enums.dart';
 
 class ThreadDetailViewModel extends BaseViewModel {
@@ -111,8 +111,8 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   void exitPage(userPost, value) {
-    storeDraft(userPost, value);
     _navigationService.back();
+    storeDraft(userPost, value);
   }
 
   Future<void> sendThreadMessage(String message, String channelId) async {
@@ -136,15 +136,18 @@ class ThreadDetailViewModel extends BaseViewModel {
   var storedDraft = '';
 
   void getDraft(userPost) {
+    var currentOrgId = storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId = storageService.getString(StorageKeys.currentUserId);
     List<String>? spList =
         storageService.getStringList(StorageKeys.currentUserThreadIdDrafts);
     if (spList != null) {
-      for (String encodedStoredDraft in spList) {
-        if (jsonDecode(encodedStoredDraft)['userPostId'] == userPost.id &&
-            jsonDecode(encodedStoredDraft)['userPostChannelName'] ==
-                userPost.channelName) {
-          storedDraft = jsonDecode(encodedStoredDraft)['draft'];
-          spList.remove(encodedStoredDraft);
+      for (String e in spList) {
+        if (jsonDecode(e)['userPostId'] == userPost.id &&
+            jsonDecode(e)['userPostChannelName'] == userPost.channelName &&
+            currentOrgId == jsonDecode(e)['currentOrgId'] &&
+            currentUserId == jsonDecode(e)['currentUserId']) {
+          storedDraft = jsonDecode(e)['draft'];
+          spList.remove(e);
           storageService.setStringList(
               StorageKeys.currentUserThreadIdDrafts, spList);
           return;
@@ -154,6 +157,8 @@ class ThreadDetailViewModel extends BaseViewModel {
   }
 
   void storeDraft(userPost, value) {
+    var currentOrgId = storageService.getString(StorageKeys.currentOrgId);
+    var currentUserId = storageService.getString(StorageKeys.currentUserId);
     var keyMap = {
       'draft': value,
       'time': '${DateTime.now()}',
@@ -161,6 +166,8 @@ class ThreadDetailViewModel extends BaseViewModel {
       'userPostChannelName': userPost.channelName,
       'userPostMessage': userPost.message,
       'userPostDisplayName': userPost.displayName,
+      'currentOrgId': currentOrgId,
+      'currentUserId': currentUserId,
     };
 
     List<String>? spList =
@@ -176,6 +183,6 @@ class ThreadDetailViewModel extends BaseViewModel {
           StorageKeys.currentUserThreadIdDrafts, spList);
     }
   }
-  //**draft implementation ends here
+//**draft implementation ends here
 
 }

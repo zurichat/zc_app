@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
 
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'add_organization_viewmodel.dart';
@@ -44,7 +44,6 @@ class AddOrganizationView extends StatelessWidget {
               leadingPress: model.back,
             ),
             body: Column(children: [
-              const SizedBox(height: 5),
               Container(
                 margin: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
@@ -90,7 +89,9 @@ class AddOrganizationView extends StatelessWidget {
                             children: [
                               SvgPicture.asset(
                                 Add_Organization,
-                                color: AppColors.whiteColor,
+                                color: _dark
+                                    ? AppColors.whiteColor
+                                    : AppColors.blackColor,
                                 width: 20,
                                 height: 20,
                               ),

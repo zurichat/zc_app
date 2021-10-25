@@ -1,13 +1,13 @@
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/services/connectivity_service.dart';
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/services/status_service.dart';
-import 'package:zurichat/services/user_service.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/services/app_services/connectivity_service.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/services/in_review/status_service.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
 import 'package:zurichat/ui/nav_pages/home_page/widgets/home_list_items.dart';
-import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/app/app.locator.dart';
@@ -46,13 +46,15 @@ class YouPageViewModel extends ReactiveViewModel {
 
   final String hintText = SetAStatus;
   String _statusText = 'What\'s your status?';
-  String get statusText => _statusText;
+  String get statusText => _statusService.statusText;
   String? _tagIcon;
   String? get tagIcon => _tagIcon;
   bool isLoading = false;
 
   fetchStatus() async {
-    _statusText = _statusService.statusText;
+    // _statusText = _statusService.statusText;
+    // print('QQQ- init,fetchStatus - $_statusText');
+    notifyListeners();
     final endpoint = 'organizations/$orgId/members/$memberId';
     final response =
         await _apiService.get(endpoint, queryParameters: {}, token: token);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/ui/nav_pages/home_page/home_item_model.dart';
 import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 
 class SelectChannelDropDown extends StatelessWidget {
   final List<HomeItemModel> values;

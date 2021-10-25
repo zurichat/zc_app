@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zurichat/constants/app_strings.dart';
-
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/ui/shared/ui_helpers.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/utilities/constants/ui_helpers.dart';
 import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.dart';
-import '../../../../shared/colors.dart';
 
 class FirstSection extends StatelessWidget {
   const FirstSection(this.model, {Key? key, required this.channelName})
@@ -35,7 +33,7 @@ class FirstSection extends StatelessWidget {
                     "#$channelName",
                     style: AppTextStyle.darkGreySize16Bold,
                   ),
-                  UIHelper.verticalSpaceSmall,
+                  // UIHelper.verticalSpaceSmall,
                   UIHelper.verticalSpaceMedium,
                   Text(
                     Description,
@@ -47,12 +45,13 @@ class FirstSection extends StatelessWidget {
                     style: AppTextStyle.darkGreySize16
                         .copyWith(letterSpacing: 0.005),
                   ),
-                  UIHelper.verticalSpaceExtraSmall,
-                  Text(
-                    MarkCreatedChannel,
-                    style: AppTextStyle.lightGreySize16
-                        .copyWith(letterSpacing: 0.005),
-                  ),
+                  //TODO
+                  // UIHelper.verticalSpaceExtraSmall,
+                  // Text(
+                  //   MarkCreatedChannel,
+                  //   style: AppTextStyle.lightGreySize16
+                  //       .copyWith(letterSpacing: 0.005),
+                  // ),
                   UIHelper.verticalSpaceMedium,
                   Text(
                     Topic,
@@ -70,22 +69,22 @@ class FirstSection extends StatelessWidget {
                 ],
               ),
             ),
-            const Divider(
-              thickness: 0.5,
-              color: AppColors.borderColor,
-            ),
-            UIHelper.verticalSpaceMedium,
-            Center(
-              child: InkWell(
-                onTap: () {
-                  model.navigateToEditChannel();
-                },
-                child: Text(
-                  Edit,
-                  style: AppTextStyle.darkGreySize16Bold,
-                ),
-              ),
-            ),
+            // const Divider(
+            //   thickness: 0.5,
+            //   color: AppColors.borderColor,
+            // ),
+            // UIHelper.verticalSpaceMedium,
+            // Center(
+            //   child: InkWell(
+            //     onTap: () {
+            //       model.navigateToEditChannel();
+            //     },
+            //     child: Text(
+            //       Edit,
+            //       style: AppTextStyle.darkGreySize16Bold,
+            //     ),
+            //   ),
+            // ),
             UIHelper.verticalSpaceMedium,
           ],
         ),

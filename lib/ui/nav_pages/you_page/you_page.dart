@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
-import '../../../general_widgets/menu_item_tile.dart';
+import '../../shared/dumb_widgets/menu_item_tile.dart';
 import 'widgets/profile_page_head.dart';
 import 'widgets/status_form.dart';
 import 'you_page_viewmodel.dart';
@@ -58,26 +58,26 @@ class YouPage extends StatelessWidget {
                   // iconData: model.tag,
                 ),
                 const SizedBox(height: 20),
-                MenuItemTile(
-                  icon: SvgPicture.asset(
-                    PauseNotification,
-                    color: _menuColor,
-                    width: 18,
-                    height: 18,
-                  ),
-                  text: Text(
-                    local!.pauseNotifications,
-                    style: _tileStyle,
-                  ),
-                  onPressed: model.pauseNotifications,
-                  topBorder: false,
-                ),
-                const SizedBox(height: 16),
+                // MenuItemTile(
+                //   icon: SvgPicture.asset(
+                //     PauseNotification,
+                //     color: _menuColor,
+                //     width: 18,
+                //     height: 18,
+                //   ),
+                //   text: Text(
+                //     local!.pauseNotifications,
+                //     style: _tileStyle,
+                //   ),
+                //   onPressed: model.pauseNotifications,
+                //   topBorder: false,
+                // ),
+                // const SizedBox(height: 16),
                 MenuItemTile(
                   topBorder: false,
                   text: Text.rich(
                     TextSpan(
-                      text: local.setStatusText,
+                      text: local!.setStatusText,
                       style: _tileStyle,
                       children: [
                         TextSpan(
@@ -125,21 +125,22 @@ class YouPage extends StatelessWidget {
                   topBorder: false,
                 ),
                 const SizedBox(height: 16),
-                MenuItemTile(
-                  icon: SvgPicture.asset(
-                    notification,
-                    color: _menuColor,
-                    width: 18,
-                    height: 18,
-                  ),
-                  text: Text(
-                    local.notifications,
-                    style: _tileStyle,
-                  ),
-                  onPressed: model.viewNotifications,
-                  topBorder: false,
-                ),
-                const SizedBox(height: 16),
+                //TODO
+                // MenuItemTile(
+                //   icon: SvgPicture.asset(
+                //     notification,
+                //     color: _menuColor,
+                //     width: 18,
+                //     height: 18,
+                //   ),
+                //   text: Text(
+                //     local.notifications,
+                //     style: _tileStyle,
+                //   ),
+                //   onPressed: model.viewNotifications,
+                //   topBorder: false,
+                // ),
+                // const SizedBox(height: 16),
                 MenuItemTile(
                   icon: SvgPicture.asset(
                     preference,

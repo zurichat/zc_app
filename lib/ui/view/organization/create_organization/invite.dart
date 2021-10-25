@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../shared/colors.dart';
-import '../../../shared/long_button.dart';
-import '../../../shared/text_field.dart';
-import '../../../shared/ui_helpers.dart';
+import '../../../../utilities/constants/colors.dart';
+import '../../../shared/dumb_widgets/long_button.dart';
+import '../../../shared/dumb_widgets/text_field.dart';
+import '../../../../utilities/constants/ui_helpers.dart';
 import 'create_organization_viewmodel.dart';
 
 class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
@@ -60,34 +59,34 @@ class InvitePage extends ViewModelWidget<CreateOrganizationViewModel> {
                     Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.only(bottom: 20),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SvgPicture.asset(
-                            LinkLogo,
-                            width: 18,
-                            // color: AppColors.zuriPrimaryColor,
-                          ),
-                          const SizedBox(width: 10),
-                          Text(
-                            local.shareInviteLink,
-                            style: const TextStyle(
-                              letterSpacing: 0.5,
-                              color: AppColors.zuriPrimaryColor,
-                              decoration: TextDecoration.underline,
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
+                      // child: Row(
+                      //   mainAxisSize: MainAxisSize.min,
+                      //   children: [
+                      //     SvgPicture.asset(
+                      //       LinkLogo,
+                      //       width: 18,
+                      //       // color: AppColors.zuriPrimaryColor,
+                      //     ),
+                      //     const SizedBox(width: 10),
+                      //     Text(
+                      //       local.shareInviteLink,
+                      //       style: const TextStyle(
+                      //         letterSpacing: 0.5,
+                      //         color: AppColors.zuriPrimaryColor,
+                      //         decoration: TextDecoration.underline,
+                      //         fontSize: 16,
+                      //         fontWeight: FontWeight.normal,
+                      //       ),
+                      //       textAlign: TextAlign.center,
+                      //     ),
+                      //   ],
+                      // ),
                     ),
                     BorderTextField(
                       hint: SampleEmail,
                       onChanged: (val) => viewModel.updateData(invi: val),
                     ),
-                    const InviteButton(),
+                    // const InviteButton(),
                     UIHelper.verticalSpaceMedium,
                     LongButton(
                         onPressed: () => viewModel.addTeammates(),

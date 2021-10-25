@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../utilities/enums.dart';
@@ -81,43 +81,44 @@ class SelectEmail extends StatelessWidget {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 57.0),
-                child: Divider(
-                  thickness: 1,
-                  height: 9,
-                  color: AppColors.greyishColor,
-                ),
-              ),
-              InkWell(
-                onTap: () => model.navigateToDifferentEmail(method),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.email_outlined,
-                        size: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 25.5,
-                        ),
-                        child: GestureDetector(
-                          child: Text(
-                            model.anotherEmail,
-                            style: _dark
-                                ? AppTextStyle.whiteSize14
-                                : AppTextStyle.darkGreySize16,
-                          ),
-                          onTap: () => model.navigateToUseDifferentEmailView(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              //TODO:
+              // const Padding(
+              //   padding: EdgeInsets.only(left: 57.0),
+              //   child: Divider(
+              //     thickness: 1,
+              //     height: 9,
+              //     color: AppColors.greyishColor,
+              //   ),
+              // ),
+              // InkWell(
+              //   onTap: () => model.navigateToDifferentEmail(method),
+              //   child: Padding(
+              //     padding:
+              //         const EdgeInsets.only(left: 17.5, top: 24, bottom: 24),
+              //     child: Row(
+              //       children: [
+              //         const Icon(
+              //           Icons.email_outlined,
+              //           size: 20,
+              //         ),
+              //         Padding(
+              //           padding: const EdgeInsets.only(
+              //             left: 25.5,
+              //           ),
+              //           child: GestureDetector(
+              //             child: Text(
+              //               model.anotherEmail,
+              //               style: _dark
+              //                   ? AppTextStyle.whiteSize14
+              //                   : AppTextStyle.darkGreySize16,
+              //             ),
+              //             onTap: () => model.navigateToUseDifferentEmailView(),
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

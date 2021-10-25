@@ -7,6 +7,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class PluginViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
+  final snackbarService = locator<SnackbarService>();
   //TODO
   // final local = AppLocalization.of(context);
   bool _editMode = false;
@@ -25,6 +26,8 @@ class PluginViewModel extends BaseViewModel {
         icon: icons[3], name: "Goals Plugin", url: "https://zuri.chat/goals"),
     PluginModel(
         icon: icons[4], name: "Music Plugin", url: "https://zuri.chat/music"),
+    PluginModel(
+        icon: icons[5], name: "Chess Plugin", url: "https://chess.zuri.chat/"),
   ];
 
   bool get editMode => _editMode;
@@ -48,11 +51,8 @@ class PluginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  navigateToAdd() => navigationService.navigateTo(Routes.addPluginView);
-
-  navigateToEdit() => navigationService.navigateTo(Routes.editPluginView);
-
-  navigateToPlugins() => navigationService.navigateTo(Routes.pluginPage);
+  navigateToPlugins() =>
+      snackbarService.showSnackbar(message: "No new plugins available");
 
   navigateToHome() => navigationService.navigateTo(Routes.navBarView);
 
