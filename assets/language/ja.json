@@ -272,5 +272,13 @@
     "created_this_channel": "このチャンネルを作成しました",
     "channel_intro_text": "これはまさに始まりです ",
     "channel": "チャネル",
-    "today": "今日"
+    "today": "今日",
+    
+    "yes": "はい",
+    "no": "番号",
+    "delete_message_prompt": "このメッセージを削除しますか？",
+    "chess_plugin": "チェスプラグイン",
+    "member": "メンバー",
+    "s": "NS",
+    "pinned": "固定"
 }

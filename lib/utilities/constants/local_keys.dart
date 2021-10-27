@@ -274,4 +274,11 @@ class LocalKeys {
   static const ChannelIntroText = "channel_intro_text";
   static const Channel = "channel";
   static const Today = "today";
+  static const Yes = "yes";
+  static const No = "no";
+  static const DeleteMessagePrompt = "delete_message_prompt";
+  static const ChessPlugin = "chess_plugin";
+  static const Member = "member";
+  static const S = "s";
+  static const Pinned = "pinned";
 }

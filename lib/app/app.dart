@@ -18,6 +18,7 @@ import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_
 import 'package:zurichat/ui/view/organization/organization_settings/organization_logo.dart';
 import 'package:zurichat/ui/view/organization/organization_settings/organization_name_url.dart';
 import 'package:zurichat/ui/view/organization/organization_settings/organization_settings_view.dart';
+import 'package:zurichat/ui/view/plugins/add_plugin_view.dart';
 import 'package:zurichat/ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';
 import 'package:zurichat/ui/view/threads/all_threads/threads_view.dart';
 import 'package:zurichat/services/in_review/jump_to_api.dart';
@@ -150,6 +151,7 @@ import '../ui/view/user_search/user_search_view.dart';
     CupertinoRoute(page: OrganizationSettingsView),
     CupertinoRoute(page: OrganizationNameUrl),
     CupertinoRoute(page: OrganizationLogo),
+    CupertinoRoute(page: AddPluginView)
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

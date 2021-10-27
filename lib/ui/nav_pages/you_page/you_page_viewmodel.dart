@@ -109,14 +109,14 @@ class YouPageViewModel extends ReactiveViewModel {
     notifyListeners();
   }
 
-  Future getUserPresence() async {
+  Future getUserPresence({String? away, String? active}) async {
     try {
       var response = await _apiService.get(
           '$coreBaseUrl/organizations/$orgId/members/$memberId',
           token: _userService.authToken);
       _presence = response.data['data']['presence'];
       log.i('response query ======= $_presence');
-      otherStatus = _presence == 'true' ? 'away' : 'active';
+      otherStatus = _presence == 'true' ? away! : active!;
       currentStatus = _presence == 'true' ? 'Active' : 'Away';
       notifyListeners();
     } catch (e) {

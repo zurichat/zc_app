@@ -272,5 +272,13 @@
     "created_this_channel": "creó este canal",
     "channel_intro_text": "Este es el comienzo de la ",
     "channel": "canal",
-    "today": "hoy dia"
+    "today": "hoy dia",
+    
+    "yes": "sí",
+    "no": "no",
+    "delete_message_prompt": "¿Quieres borrar este mensaje?",
+    "chess_plugin": "Complemento de ajedrez",
+    "member": "miembro",
+    "s": "s",
+    "pinned": "Fijado"
 }

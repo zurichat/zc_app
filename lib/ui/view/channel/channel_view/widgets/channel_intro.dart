@@ -99,21 +99,17 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
                 endIndent: 1,
                 color: AppColors.greyishColor,
               )),
-              Padding(
-                padding: const EdgeInsets.only(left: 0.0, right: 0.0),
-                child: Container(
-                  width: 50,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: AppColors.greyishColor),
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                  child: Text(
-                    // local.today,
-                    'posts',
-                    textAlign: TextAlign.center,
-                    style: AppTextStyle.lightGreySize12,
-                  ),
+              Container(
+                padding: const EdgeInsets.only(left: 5.0, right: 5.0, top: 2.0),
+                height: 20,
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: AppColors.greyishColor),
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Text(
+                  local.messages,
+                  textAlign: TextAlign.center,
+                  style: AppTextStyle.lightGreySize12,
                 ),
               ),
               const Expanded(
