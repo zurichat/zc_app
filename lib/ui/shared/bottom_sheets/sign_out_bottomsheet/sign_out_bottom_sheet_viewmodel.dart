@@ -11,7 +11,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SignOutBottomSheetViewModel extends BaseViewModel {
-  final _navigator = locator<NavigationService>();
+  final _navigationService = locator<NavigationService>();
   final _apiService = ZuriApi(coreBaseUrl);
   final _storage = locator<SharedPreferenceLocalStorage>();
   final _snackBar = locator<SnackbarService>();
@@ -26,8 +26,12 @@ class SignOutBottomSheetViewModel extends BaseViewModel {
     }
   }
 
+  void navigateInviteMembers() {
+    _navigationService.navigateTo(Routes.inviteViaEmail);
+  }
+
   void navigateToWorkSpaceSettings(OrganizationModel org) {
-    _navigator.navigateTo(
+    _navigationService.navigateTo(
       Routes.organizationSettingsView,
       arguments: OrganizationSettingsViewArguments(org: org),
     );
@@ -35,13 +39,13 @@ class SignOutBottomSheetViewModel extends BaseViewModel {
 
 //TODO: (Blazebrain) Link singout bottomsheet to Invite Members Flow
   // void navigateToInvitePage() {
-  //   _navigator.navigateTo(Routes.inviteViaEmail);
+  //   _navigationService.navigateTo(Routes.inviteViaEmail);
   // }
 
   void navigateToSignIn() =>
-      _navigator.pushNamedAndRemoveUntil(Routes.loginView);
+      _navigationService.pushNamedAndRemoveUntil(Routes.loginView);
 
-  void dismissDialog() => _navigator.back();
+  void dismissDialog() => _navigationService.back();
 
   Future<void> signOut() async {
     bool connected = await _connectivityService.checkConnection();

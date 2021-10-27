@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
-import 'package:zurichat/general_widgets/custom_channel.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/channel_tile.dart';
 
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';
@@ -131,7 +131,7 @@ class JumpToView extends StatelessWidget with $JumpToView {
                       itemBuilder: (context, i) {
                         final channel = model.allChannelsSearch[i];
                         return InkWell(
-                          child: CustomChannel(
+                          child: ChannelTile(
                             public: channel.isPublic,
                             text: channel.name ?? ChannelName,
                           ),

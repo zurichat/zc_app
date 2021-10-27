@@ -4,7 +4,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
 import '../../../../utilities/constants/colors.dart';
-import '../../../shared/long_button.dart';
+import '../../../shared/dumb_widgets/long_button.dart';
 import '../../../../utilities/constants/ui_helpers.dart';
 import 'create_organization_viewmodel.dart';
 

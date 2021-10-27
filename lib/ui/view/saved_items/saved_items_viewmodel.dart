@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/models/saved_item_model.dart';
+import 'package:zurichat/models/user_post.dart';
 import 'package:zurichat/services/app_services/local_storage_services.dart';
 import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:stacked/stacked.dart';
@@ -12,7 +12,7 @@ import 'package:zurichat/app/app.logger.dart';
 class SavedItemsViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final storageService = locator<SharedPreferenceLocalStorage>();
-  List<SavedItemModel> savedBuilderList = [];
+  List<UserPost> savedBuilderList = [];
   final log = getLogger('SavedItemsViewModel');
 
   goBack() => _navigationService.back();
@@ -38,15 +38,19 @@ class SavedItemsViewModel extends BaseViewModel {
           var savedItemMap = storageService.getString(element);
           if (savedItemMap != null) {
             var savedMap = jsonDecode(savedItemMap);
-            log.wtf(savedMap);
-            savedBuilderList.add(SavedItemModel(
-              savedMap['channel_name'],
-              savedMap['user_id'],
-              savedMap['user_image'],
-              savedMap['last_seen'],
-              savedMap['message'],
-              savedMap['channel_id'],
-              savedMap['display_name'],
+
+            savedBuilderList.add(UserPost(
+              id: element,
+              statusIcon: '⭐',
+              postEmojis: <PostEmojis>[],
+              userThreadPosts: <UserThreadPost>[],
+              userImage: savedMap['user_image'],
+              userId: savedMap['user_id'],
+              channelName: savedMap['channel_name'],
+              moment: savedMap['last_seen'],
+              channelId: savedMap['channel_id'],
+              displayName: savedMap['display_name'],
+              message: savedMap['message'],
             ));
           }
         }

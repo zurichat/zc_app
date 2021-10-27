@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/ui/nav_pages/you_page/you_page.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/nav_pages/plugin_page/plugin_view.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../general_widgets/svg_icon.dart';
+import '../../shared/dumb_widgets/svg_icon.dart';
 import '../../nav_pages/home_page/home_page.dart';
-import '../../nav_pages/you_page/you_page_view.dart';
 import '../../../utilities/constants/colors.dart';
 import '../../shared/shared.dart';
 import 'nav_bar_viewmodel.dart';

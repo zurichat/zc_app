@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:zurichat/models/api_response.dart';
 import 'package:zurichat/models/organization_model.dart';
 import 'package:zurichat/models/user_search_model.dart';
-import 'package:zurichat/utilities/failures.dart';
+import 'package:zurichat/utilities/api_handlers/failures.dart';
 
 abstract class Api {
   /// THIS IS THE API ABSTRACT CLASS FOR ZURI CHAT MOBILE

@@ -5,7 +5,7 @@ import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/organization_member_model.dart';
 import 'package:zurichat/services/messaging_services/channels_api_service.dart';
-import 'package:zurichat/services/in_review/organization_api_service.dart';
+import 'package:zurichat/services/core_services/organization_api_service.dart';
 import 'package:zurichat/services/app_services/local_storage_services.dart';
 import 'package:zurichat/services/app_services/media_service.dart';
 import 'package:zurichat/services/app_services/notification_service.dart';

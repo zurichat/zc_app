@@ -8,7 +8,7 @@ import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
 import '../../../../app/app.router.dart';
 import '../../../../models/organization_model.dart';
-import '../../../../services/in_review/organization_api_service.dart';
+import '../../../../services/core_services/organization_api_service.dart';
 import '../../../../services/app_services/connectivity_service.dart';
 import '../../../../services/app_services/local_storage_services.dart';
 import '../../../../utilities/enums.dart';

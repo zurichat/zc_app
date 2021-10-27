@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
-import 'package:zurichat/general_widgets/menu_item_tile.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/menu_item_tile.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
 import 'package:zurichat/utilities/constants/colors.dart';

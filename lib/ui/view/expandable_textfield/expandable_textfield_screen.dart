@@ -384,9 +384,6 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                             channelId!,
                                                             username);
                                                     if (response!) {
-                                                      sendMessage(
-                                                          '$username joined $channelName by invitation from $displayName',
-                                                          model.mediaList);
                                                       model.notifyUserOnMention(
                                                           message,
                                                           channelName!);
@@ -407,6 +404,8 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                   const EdgeInsets.all(8.0),
                                               child: SvgPicture.asset(
                                                 Send,
+                                                color:
+                                                    AppColors.zuriPrimaryColor,
                                               ),
                                             ),
                                           ),
@@ -447,4 +446,3 @@ class ExpandableTextFieldScreen extends HookWidget {
     );
   }
 }
-

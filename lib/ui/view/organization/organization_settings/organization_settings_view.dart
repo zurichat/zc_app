@@ -64,52 +64,52 @@ class OrganizationSettingsView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Divider(color: AppColors.greyColor),
-                InkWell(
-                  onTap: () => model.navigateToWorkspaceName(org),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          EditOrgNameUrl,
-                          style: _dark
-                              ? AppTextStyle.whiteSize18Bold
-                              : AppTextStyle.darkGreySize18Bold,
-                        ),
-                        const SizedBox(height: 10),
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: EditOrgNameUrlDesc1,
-                                style: _dark
-                                    ? AppTextStyle.whiteSize14
-                                    : AppTextStyle.darkGreySize14,
-                              ),
-                              TextSpan(
-                                  text: org.name,
-                                  style: _dark
-                                      ? AppTextStyle.whiteSize14Bold
-                                      : AppTextStyle.darkGreySize14Bold),
-                              TextSpan(
-                                  text: EditOrgNameUrlDesc2,
-                                  style: _dark
-                                      ? AppTextStyle.whiteSize14
-                                      : AppTextStyle.darkGreySize14),
-                              TextSpan(
-                                  text: org.organizationUrl ?? '',
-                                  style: _dark
-                                      ? AppTextStyle.whiteSize14Bold
-                                      : AppTextStyle.darkGreySize14Bold),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                // const Divider(color: AppColors.greyColor),
+                // InkWell(
+                //   onTap: () => model.navigateToWorkspaceName(org),
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(20),
+                //     child: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           EditOrgNameUrl,
+                //           style: _dark
+                //               ? AppTextStyle.whiteSize18Bold
+                //               : AppTextStyle.darkGreySize18Bold,
+                //         ),
+                //         const SizedBox(height: 10),
+                //         Text.rich(
+                //           TextSpan(
+                //             children: [
+                //               TextSpan(
+                //                 text: EditOrgNameUrlDesc1,
+                //                 style: _dark
+                //                     ? AppTextStyle.whiteSize14
+                //                     : AppTextStyle.darkGreySize14,
+                //               ),
+                //               TextSpan(
+                //                   text: org.name,
+                //                   style: _dark
+                //                       ? AppTextStyle.whiteSize14Bold
+                //                       : AppTextStyle.darkGreySize14Bold),
+                //               TextSpan(
+                //                   text: EditOrgNameUrlDesc2,
+                //                   style: _dark
+                //                       ? AppTextStyle.whiteSize14
+                //                       : AppTextStyle.darkGreySize14),
+                //               TextSpan(
+                //                   text: org.organizationUrl ?? '',
+                //                   style: _dark
+                //                       ? AppTextStyle.whiteSize14Bold
+                //                       : AppTextStyle.darkGreySize14Bold),
+                //             ],
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

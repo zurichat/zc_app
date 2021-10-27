@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
-import 'package:zurichat/general_widgets/no_connection_widget.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/no_connection_widget.dart';
 import 'package:zurichat/models/channel_model.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/ui/view/channel/channel_view/widgets/channel_intro.dart';
