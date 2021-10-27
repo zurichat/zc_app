@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
@@ -45,7 +44,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                                     size: 16.0, color: Colors.orange),
                                 const SizedBox(width: 12.0),
                                 Text(
-                                  Pinned,
+                                  local!.pinned,
                                   style: AppTextStyle.lightGreySize14,
                                 ),
                               ],
