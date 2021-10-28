@@ -77,7 +77,7 @@ class PluginPage extends StatelessWidget {
                               color: AppColors.zuriPrimaryColor),
                           topBorder: false,
                           text: Text(
-                            "Add Plugin",
+                            local.addPlugin,
                             style: AppTextStyle.greenSize14,
                           ),
                           onPressed: model.navigateToPlugins,
