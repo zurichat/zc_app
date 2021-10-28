@@ -61,6 +61,7 @@ import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
+import '../ui/view/plugins/add_plugin_view.dart';
 import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/profile_page/profile_page_view.dart';
@@ -138,6 +139,7 @@ class Routes {
   static const String organizationSettingsView = '/organization-settings-view';
   static const String organizationNameUrl = '/organization-name-url';
   static const String organizationLogo = '/organization-logo';
+  static const String addPluginView = '/add-plugin-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -199,6 +201,7 @@ class Routes {
     organizationSettingsView,
     organizationNameUrl,
     organizationLogo,
+    addPluginView,
   };
 }
 
@@ -267,6 +270,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.organizationSettingsView, page: OrganizationSettingsView),
     RouteDef(Routes.organizationNameUrl, page: OrganizationNameUrl),
     RouteDef(Routes.organizationLogo, page: OrganizationLogo),
+    RouteDef(Routes.addPluginView, page: AddPluginView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -760,6 +764,12 @@ class StackedRouter extends RouterBase {
           key: args.key,
           org: args.org,
         ),
+        settings: data,
+      );
+    },
+    AddPluginView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const AddPluginView(),
         settings: data,
       );
     },

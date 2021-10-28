@@ -343,6 +343,13 @@ class AppLocalization {
   String get afterExample => translate(LocalKeys.AfterExample);
   String get toFilter => translate(LocalKeys.To);
   String get toExample => translate(LocalKeys.ToExample);
+  String get yes => translate(LocalKeys.Yes);
+  String get no => translate(LocalKeys.No);
+  String get deleteMessagePrompt => translate(LocalKeys.DeleteMessagePrompt);
+  String get chessPlugin => translate(LocalKeys.ChessPlugin);
+  String get member => translate(LocalKeys.Member);
+  String get s => translate(LocalKeys.S);
+  String get pinned => translate(LocalKeys.Pinned);
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {

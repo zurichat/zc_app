@@ -23,7 +23,7 @@ class LocalizationService with ReactiveServiceMixin {
 
   Locale? get appLocale => _appLocale.value;
 
-  static const _supportedLocalCodes = ['en', 'de', 'ar', 'zh'];
+  static const _supportedLocalCodes = ['en', 'de', 'ar', 'zh', 'es', 'ja'];
   get supportedLocalCodes => _supportedLocalCodes;
 
   List<LocalizationsDelegate> get localizationsDelegates {

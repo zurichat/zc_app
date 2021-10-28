@@ -9,6 +9,7 @@ import 'package:zurichat/ui/view/channel/channel_view/widgets/channel_intro.dart
 import 'package:zurichat/ui/view/expandable_textfield/expandable_textfield_screen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import '../../../shared/shared.dart';
 
 import 'channel_page_viewmodel.dart';
@@ -35,6 +36,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<ChannelPageViewModel>.reactive(
       onModelReady: (model) {
         model.getDraft(channelId);
@@ -99,7 +101,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
             ],
             title: "#$channelName",
             subtitle:
-                "${model.channelMembers.length} member${model.channelMembers.length == 1 ? "" : "s"}",
+                "${model.channelMembers.length} ${local!.member}${model.channelMembers.length == 1 ? "" : "${local.s}"}",
           ),
           body: ExpandableTextFieldScreen(
             usercheck: model.checkUser,
@@ -107,7 +109,7 @@ class ChannelPageView extends StatelessWidget with $ChannelPageView {
             channelId: '$channelId',
             channelID: channelId.toString(),
             textController: channelMessagesController,
-            hintText: AddReply,
+            hintText: local.addAReply,
             sendMessage: model.sendMessage,
             widget: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),

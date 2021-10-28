@@ -289,4 +289,11 @@ class LocalKeys {
   static const AfterExample = "after_example";
   static const To = "to";
   static const ToExample = "to_example";
+  static const Yes = "yes";
+  static const No = "no";
+  static const DeleteMessagePrompt = "delete_message_prompt";
+  static const ChessPlugin = "chess_plugin";
+  static const Member = "member";
+  static const S = "s";
+  static const Pinned = "pinned";
 }
