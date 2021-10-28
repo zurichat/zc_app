@@ -43,4 +43,5 @@ Iterable<Locale> supportedLocalesList = const [
   Locale('zh', 'HK'),
   Locale('es', 'ES'),
   Locale('ja', 'JP'),
+  Locale('he', 'IL'),
 ];

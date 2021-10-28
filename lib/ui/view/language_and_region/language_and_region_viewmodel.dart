@@ -35,7 +35,8 @@ class LanguageAndRegionModelViewModel extends BaseViewModel {
     ArabicSA,
     Mandarin,
     Spanish,
-    Japanese
+    Japanese,
+    Hebrew
   ];
 
   Future changeLanguage(BuildContext context) async {
