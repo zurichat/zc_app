@@ -272,5 +272,13 @@
     "created_this_channel": "创建了这个频道",
     "channel_intro_text": "这是最开始的",
     "channel": "渠道",
-    "today": "今天"
+    "today": "今天",
+    
+    "yes": "是的",
+    "no": "不",
+    "delete_message_prompt": "您要删除此消息吗？",
+    "chess_plugin": "国际象棋插件",
+    "member": "成员",
+    "s": "秒",
+    "pinned": "固定"
 }

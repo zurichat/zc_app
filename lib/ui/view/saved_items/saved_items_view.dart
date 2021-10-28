@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
-import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/utilities/constants/colors.dart';
-
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'saved_items_viewmodel.dart';
 import 'widgets/saved_item_background.dart';
 
@@ -14,6 +13,7 @@ class SavedItemsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<SavedItemsViewModel>.reactive(
       onModelReady: (model) => model.savedItems,
@@ -22,7 +22,7 @@ class SavedItemsView extends StatelessWidget {
           leading: Icons.close_rounded,
           leadingPress: () => model.goBack(),
           orgTitle: Text(
-            SavedItems,
+            local!.savedItems,
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
@@ -48,19 +48,18 @@ class SavedItemsView extends StatelessWidget {
                             return AlertDialog(
                               actions: [
                                 ElevatedButton(
-                                    child: const Text("Yes"),
+                                    child: Text(local.yes),
                                     style: ElevatedButton.styleFrom(
                                       primary: AppColors.redColor,
                                     ),
                                     onPressed: () => model.deleteItem(index)),
                                 TextButton(
-                                  child: Text("No",
+                                  child: Text(local.no,
                                       style: AppTextStyle.greenSize14),
                                   onPressed: () => model.goBack(),
                                 ),
                               ],
-                              content: const Text(
-                                  "Do you want to delete this message?"),
+                              content: Text(local.deleteMessagePrompt),
                             );
                           });
                     },
