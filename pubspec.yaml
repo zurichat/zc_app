@@ -48,7 +48,7 @@ dependencies:
   overlay_support: ^1.2.1
   page_view_dot_indicator: ^1.0.0
   #NEW HERE - A package for creating paths 
-  path_provider: ^2.0.6
+  path_provider: ^2.0.4
   pin_code_fields: ^7.3.0
   shared_preferences: ^2.0.7
   simple_moment: ^1.1.1
