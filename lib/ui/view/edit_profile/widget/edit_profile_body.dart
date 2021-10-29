@@ -15,8 +15,7 @@ class EditProfileBody extends ViewModelWidget<EditProfileViewModel> {
   @override
   Widget build(BuildContext context, EditProfileViewModel viewModel) {
     return Container(
-      padding: EdgeInsets.symmetric(
-          vertical: _size.height * 0.02, horizontal: _size.width * 0.05),
+      padding: EdgeInsets.symmetric(vertical: _size.height * 0.02, horizontal: _size.width * 0.05),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -83,8 +82,11 @@ class EditProfileBody extends ViewModelWidget<EditProfileViewModel> {
                       initialValue: viewModel.userModel.fullName,
                       onChanged: (value) => viewModel.onChanged(name: value),
                       decoration: const InputDecoration(
-                        labelText: FullName,
-                      ),
+                          labelText: FullName,
+                          enabledBorder:
+                              UnderlineInputBorder(borderSide: BorderSide(color: AppColors.zuriPrimaryColor)),
+                          focusedBorder:
+                              UnderlineInputBorder(borderSide: BorderSide(color: AppColors.zuriPrimaryColor))),
                     ),
                   )
                 ],
@@ -94,23 +96,30 @@ class EditProfileBody extends ViewModelWidget<EditProfileViewModel> {
               initialValue: viewModel.userModel.displayName,
               onChanged: (value) => viewModel.onChanged(disp: value),
               decoration: const InputDecoration(
-                labelText: DisplayName,
-                helperText: DisplayNameDescription,
-                helperMaxLines: 3,
-              ),
+                  labelText: DisplayName,
+                  helperText: DisplayNameDescription,
+                  helperMaxLines: 3,
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.zuriPrimaryColor)),
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.zuriPrimaryColor))),
             ),
             TextFormField(
               initialValue: viewModel.userModel.bio,
               onChanged: (value) => viewModel.onChanged(bo: value),
               decoration: const InputDecoration(
-                  labelText: Track, helperText: TrackDescription),
+                  labelText: Track,
+                  helperText: TrackDescription,
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.zuriPrimaryColor)),
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.zuriPrimaryColor))),
             ),
             TextFormField(
               keyboardType: TextInputType.phone,
               initialValue: viewModel.userModel.phoneNumber,
               onChanged: (value) => viewModel.onChanged(phn: value),
               decoration: const InputDecoration(
-                  labelText: Phone, helperText: PhoneDescription),
+                  labelText: Phone,
+                  helperText: PhoneDescription,
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.zuriPrimaryColor)),
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.zuriPrimaryColor))),
             ),
           ],
         ),
