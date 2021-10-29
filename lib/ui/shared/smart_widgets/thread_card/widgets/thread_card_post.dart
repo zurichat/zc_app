@@ -5,7 +5,7 @@ import 'package:stacked/stacked.dart';
 
 import '../../../../../models/user_post.dart';
 import '../../../shared.dart';
-import '../../../text_styles.dart';
+import '../../../../../utilities/constants/text_styles.dart';
 import '../../text_parser/text_parser_view.dart';
 import '../thread_card_viewmodel.dart';
 import 'package:zurichat/app/app.logger.dart';

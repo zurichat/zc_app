@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/ui/shared/ui_helpers.dart';
-import 'package:zurichat/ui/shared/zuri_loader.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/utilities/constants/ui_helpers.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import '../../../general_widgets/custom_textfield.dart';
-import '../../shared/colors.dart';
-import '../../shared/long_button.dart';
+import '../../shared/dumb_widgets/custom_textfield.dart';
+import '../../../utilities/constants/colors.dart';
+import '../../shared/dumb_widgets/long_button.dart';
 
 import 'login_view.form.dart';
 import 'login_viewmodel.dart';

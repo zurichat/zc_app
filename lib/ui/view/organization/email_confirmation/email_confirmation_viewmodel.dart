@@ -3,7 +3,7 @@ import 'dart:io';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_appavailability/flutter_appavailability.dart';
 import 'package:zurichat/app/app.logger.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

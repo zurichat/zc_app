@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/ui/shared/bottom_sheets/image_picker_bottomsheet/image_picker_bottomsheet_viewmodel.dart';
 import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
