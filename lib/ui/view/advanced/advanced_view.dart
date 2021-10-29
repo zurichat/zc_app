@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
 
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../general_widgets/menu_item_tile.dart';
+import '../../shared/dumb_widgets/menu_item_tile.dart';
 import 'advanced_viewmodel.dart';
 
 class AdvancedView extends StatelessWidget {

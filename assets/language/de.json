@@ -272,5 +272,12 @@
     "created_this_channel": "hat diesen Kanal erstellt",
     "channel_intro_text": "Dies ist der Anfang des ",
     "channel": "Kanal",
-    "today": "heute"
+    "today": "heute",
+    "yes": "Jawohl",
+    "no": "Nein",
+    "delete_message_prompt": "Möchten Sie diese Nachricht löschen?",
+    "chess_plugin": "Schach-Plugin",
+    "member": "Mitglied",
+    "s": "s",
+    "pinned": "Angepinnt"
 }

@@ -1,14 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:zurichat/general_widgets/easy_container.dart';
 import 'package:zurichat/ui/nav_pages/home_page/home_page_viewmodel.dart';
 import 'package:zurichat/ui/nav_pages/home_page/widgets/home_expanded.dart';
 import 'package:zurichat/ui/nav_pages/home_page/widgets/home_list_items.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
-import 'package:zurichat/utilities/constants.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/utilities/constants/app_constants.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'widgets/home_list_items.dart';
@@ -83,16 +82,6 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        //TODO
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: vmodel.navigateToStartDMScreen,
-        //   child: IconButton(
-        //     onPressed: vmodel.navigateToStartDMScreen,
-        //     icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
-        //     color: AppColors.whiteColor,
-        //   ),
-        //   backgroundColor: AppColors.zuriPrimaryColor,
-        // ),
       ),
     );
   }
@@ -144,13 +133,14 @@ class HomePage extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
       child: GestureDetector(
         onTap: () => vmodel.onJumpToScreen(),
-        child: EasyContainer(
+        child: Container(
           height: 50,
-          radius: 7,
           padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
           alignment: Alignment.centerLeft,
-          borderWidth: 1.5,
-          borderColor: Colors.grey[300],
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7),
+              border:
+                  Border.all(color: AppColors.greyBackgroundColor, width: 1.5)),
           child: Text(
             local!.jumpTo,
             style: AppTextStyle.darkGreySize14,

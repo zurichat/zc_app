@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'saved_items_viewmodel.dart';
 import 'widgets/saved_item_background.dart';
 
@@ -13,6 +13,7 @@ class SavedItemsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<SavedItemsViewModel>.reactive(
       onModelReady: (model) => model.savedItems,
@@ -21,7 +22,7 @@ class SavedItemsView extends StatelessWidget {
           leading: Icons.close_rounded,
           leadingPress: () => model.goBack(),
           orgTitle: Text(
-            SavedItems,
+            local!.savedItems,
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
@@ -47,76 +48,30 @@ class SavedItemsView extends StatelessWidget {
                             return AlertDialog(
                               actions: [
                                 ElevatedButton(
-                                    child: const Text("Yes"),
+                                    child: Text(local.yes),
                                     style: ElevatedButton.styleFrom(
                                       primary: AppColors.redColor,
                                     ),
                                     onPressed: () => model.deleteItem(index)),
                                 TextButton(
-                                  child: Text("No",
+                                  child: Text(local.no,
                                       style: AppTextStyle.greenSize14),
                                   onPressed: () => model.goBack(),
                                 ),
                               ],
-                              content: const Text(
-                                  "Do you want to delete this message?"),
+                              content: Text(local.deleteMessagePrompt),
                             );
                           });
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            model.savedBuilderList[index].channelName ??
-                                model.savedBuilderList[index].channelId!,
-                            style: AppTextStyle.darkGreySize18Bold,
-                          ),
-                          const SizedBox(height: 20),
-                          Row(
-                            children: [
-                              Flexible(
-                                child: CircleAvatar(
-                                  backgroundImage: AssetImage(
-                                      model.savedBuilderList[index].userImage!),
-                                ),
-                              ),
-                              const SizedBox(width: 15),
-                              Expanded(
-                                flex: 4,
-                                child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        model.savedBuilderList[index]
-                                                .displayName ??
-                                            model.savedBuilderList[index]
-                                                .userID!,
-                                        style: AppTextStyle.darkGreySize20Bold,
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Text(model
-                                          .savedBuilderList[index].message!)
-                                    ]),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: ThreadCardView.threadChannelMain(
+                          model.savedBuilderList[index]),
                     ),
                   );
                 },
                 separatorBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.only(left: 25),
-                    height: 15,
-                    width: double.infinity,
-                    color: AppColors.greyishColor.withOpacity(0.15),
-                  );
+                  return const Divider();
                 },
               ),
       ),

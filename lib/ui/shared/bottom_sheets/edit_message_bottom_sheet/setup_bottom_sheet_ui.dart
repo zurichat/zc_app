@@ -5,7 +5,7 @@ import 'package:stacked_services/stacked_services.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../utilities/enums.dart';
 import '../../../view/dm_user/dm_user_viewmodel.dart';
-import '../../colors.dart';
+import '../../../../utilities/constants/colors.dart';
 
 void setupBottomSheetUi2() {
   final bottomSheetService = locator<BottomSheetService>();

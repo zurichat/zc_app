@@ -1,4 +1,4 @@
-package com.example.hng
+package com.zuri.chat.app
 
 import io.flutter.embedding.android.FlutterActivity
 

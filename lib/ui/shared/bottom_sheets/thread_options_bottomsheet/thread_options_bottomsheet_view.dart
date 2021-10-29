@@ -4,7 +4,7 @@ import 'package:zurichat/ui/shared/bottom_sheets/thread_options_bottomsheet/thre
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../../general_widgets/menu_item_tile.dart';
+import '../../dumb_widgets/menu_item_tile.dart';
 import '../../shared.dart';
 //import 'thread_options_bottomsheet_viewmodel.dart';
 import 'widget/recent_emojis.dart';

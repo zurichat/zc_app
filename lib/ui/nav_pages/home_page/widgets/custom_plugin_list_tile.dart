@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/general_widgets/unread_count.dart';
-import 'package:zurichat/ui/shared/colors.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/unread_count.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
 import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 
 class CustomPluginListTile extends StatelessWidget {
   final String? assetName;

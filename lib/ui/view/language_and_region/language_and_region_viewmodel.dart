@@ -1,9 +1,9 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/widgets.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/main.dart';
-import 'package:zurichat/services/localization_service.dart';
+import 'package:zurichat/services/app_services/localization_service.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/extensions/locale_extension.dart';
 import 'package:stacked/stacked.dart';
@@ -34,6 +34,9 @@ class LanguageAndRegionModelViewModel extends BaseViewModel {
     DeutschDE,
     ArabicSA,
     Mandarin,
+    Spanish,
+    Japanese,
+    Hebrew
   ];
 
   Future changeLanguage(BuildContext context) async {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'email_confirmation_viewmodel.dart';

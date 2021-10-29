@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/organization_model.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 
 import 'organization_settings_view_model.dart';
 
@@ -64,52 +64,52 @@ class OrganizationSettingsView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Divider(color: AppColors.greyColor),
-                InkWell(
-                  onTap: () => model.navigateToWorkspaceName(org),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          EditOrgNameUrl,
-                          style: _dark
-                              ? AppTextStyle.whiteSize18Bold
-                              : AppTextStyle.darkGreySize18Bold,
-                        ),
-                        const SizedBox(height: 10),
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: EditOrgNameUrlDesc1,
-                                style: _dark
-                                    ? AppTextStyle.whiteSize14
-                                    : AppTextStyle.darkGreySize14,
-                              ),
-                              TextSpan(
-                                  text: org.name,
-                                  style: _dark
-                                      ? AppTextStyle.whiteSize14Bold
-                                      : AppTextStyle.darkGreySize14Bold),
-                              TextSpan(
-                                  text: EditOrgNameUrlDesc2,
-                                  style: _dark
-                                      ? AppTextStyle.whiteSize14
-                                      : AppTextStyle.darkGreySize14),
-                              TextSpan(
-                                  text: org.organizationUrl ?? '',
-                                  style: _dark
-                                      ? AppTextStyle.whiteSize14Bold
-                                      : AppTextStyle.darkGreySize14Bold),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                // const Divider(color: AppColors.greyColor),
+                // InkWell(
+                //   onTap: () => model.navigateToWorkspaceName(org),
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(20),
+                //     child: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           EditOrgNameUrl,
+                //           style: _dark
+                //               ? AppTextStyle.whiteSize18Bold
+                //               : AppTextStyle.darkGreySize18Bold,
+                //         ),
+                //         const SizedBox(height: 10),
+                //         Text.rich(
+                //           TextSpan(
+                //             children: [
+                //               TextSpan(
+                //                 text: EditOrgNameUrlDesc1,
+                //                 style: _dark
+                //                     ? AppTextStyle.whiteSize14
+                //                     : AppTextStyle.darkGreySize14,
+                //               ),
+                //               TextSpan(
+                //                   text: org.name,
+                //                   style: _dark
+                //                       ? AppTextStyle.whiteSize14Bold
+                //                       : AppTextStyle.darkGreySize14Bold),
+                //               TextSpan(
+                //                   text: EditOrgNameUrlDesc2,
+                //                   style: _dark
+                //                       ? AppTextStyle.whiteSize14
+                //                       : AppTextStyle.darkGreySize14),
+                //               TextSpan(
+                //                   text: org.organizationUrl ?? '',
+                //                   style: _dark
+                //                       ? AppTextStyle.whiteSize14Bold
+                //                       : AppTextStyle.darkGreySize14Bold),
+                //             ],
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
