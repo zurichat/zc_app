@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:zurichat/models/plugin_model.dart';
 import 'package:zurichat/services/app_services/notification_service.dart';
 import 'package:zurichat/ui/shared/bottom_sheets/setup_bottom_sheet_ui.dart';
 import 'package:zurichat/ui/shared/dialogs/setup_dialog_ui.dart';
@@ -14,9 +18,19 @@ import 'utilities/constants/app_strings.dart';
 import 'services/app_services/snackbar_service.dart';
 import 'main_app_view_model.dart';
 import 'services/app_services/zuri_theme_service.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  /// PLEASE NOTE THAT THIS IS A TEMPORARY SETUP FOR HIVE
+  /// IT CAN BE EDITED WHEN THE SETUP FOR HIVE PATH IS COMPLETED
+  Directory directory = await path_provider.getApplicationDocumentsDirectory();
+  /// THIS LINE OF CODE IS TO SET UP PLUGIN MODEL ADAPTER WHICH STORES
+  /// IN THE DISK. IT CAN BE EDITED BUT NOT TOTALLY REMOVED AS
+  /// THE PLUGIN SCREEN DEPENDS ON THIS LINE OF CODE.
+  Hive
+    ..init(directory.path)
+    ..registerAdapter(PluginModelAdapter());
   await ThemeManager.initialise();
   await setupLocator();
   setupBottomSheetUi();

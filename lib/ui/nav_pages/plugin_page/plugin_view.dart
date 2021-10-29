@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/dumb_widgets/menu_item_tile.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:zurichat/models/plugin_model.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/menu_item_tile.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/long_button.dart';
@@ -15,11 +16,11 @@ class PluginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PluginViewModel>.reactive(
+      onModelReady: (model) => model.getPlugins(),
       viewModelBuilder: () => PluginViewModel(),
       builder: (BuildContext context, PluginViewModel model, Widget? child) {
         final local = AppLocalization.of(context);
         final bool _dark = Theme.of(context).brightness == Brightness.dark;
-
         return Scaffold(
           appBar: ZuriAppBar(
             isDarkMode: _dark,
@@ -78,22 +79,24 @@ class PluginPage extends StatelessWidget {
                           topBorder: false,
                           text: Text(
                             local.addPlugin,
-                            style: AppTextStyle.greenSize14,
+                            style: AppTextStyle.greenSize14
+                                .copyWith(fontWeight: FontWeight.bold),
                           ),
                           onPressed: model.navigateToPlugins,
                         ),
-                        for (PluginModel plugin in model.plugins)
+                        for (PluginModel plugin in model.pluginsList)
                           MenuItemTile(
                             onPressed: () => model.navigateToWebviewPage(
                                 plugin.name, plugin.url),
-                            icon: Icon(plugin.icon),
+                            icon: SvgPicture.asset(plugin.icon,
+                                height: 25, width: 25),
                             iconColor: AppColors.zuriPrimaryColor,
                             topBorder: false,
                             text: Text(
                               plugin.name,
                               style: _dark
-                                  ? AppTextStyle.whiteSize14
-                                  : AppTextStyle.darkGreySize14,
+                                  ? AppTextStyle.whiteSize16Bold
+                                  : AppTextStyle.darkGreySize16Bold,
                             ),
                           ),
                       ],

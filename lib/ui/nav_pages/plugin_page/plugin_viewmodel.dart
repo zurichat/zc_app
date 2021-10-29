@@ -1,40 +1,32 @@
+import 'package:hive/hive.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/models/plugin_model.dart';
-import 'package:zurichat/ui/nav_pages/plugin_page/widgets/icons.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:zurichat/models/plugin_model.dart';
+import 'package:zurichat/app/app.logger.dart';
 
 class PluginViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
   final snackbarService = locator<SnackbarService>();
-  //TODO
-  // final local = AppLocalization.of(context);
+  final log = getLogger("PluginViewModel");
   bool _editMode = false;
   bool _checked = false;
+  List _pluginsList = <PluginModel>[];
+  List get pluginsList => _pluginsList;
 
-  List<PluginModel> plugins = [
-    PluginModel(
-        icon: icons[0], name: "Todo Plugin", url: "https://www.zuri.chat/todo"),
-    PluginModel(
-        icon: icons[1], name: "Sales Plugin", url: "https://sales.zuri.chat/"),
-    PluginModel(
-        icon: icons[2],
-        name: "Notice Board Plugin",
-        url: "https://zuri.chat/noticeboard"),
-    PluginModel(
-        icon: icons[3], name: "Goals Plugin", url: "https://zuri.chat/goals"),
-    PluginModel(
-        icon: icons[4], name: "Music Plugin", url: "https://zuri.chat/music"),
-    PluginModel(
-        icon: icons[5], name: "Chess Plugin", url: "https://chess.zuri.chat/"),
-  ];
+  getPlugins() async {
+    var plugin = await Hive.openBox<PluginModel>("plugin");
+    _pluginsList = plugin.values.toList();
+    log.i("Getting plugins -------- ${_pluginsList.length}");
+    notifyListeners();
+  }
 
   bool get editMode => _editMode;
 
   bool get checked => _checked;
 
-  bool get hasplugins => plugins.isNotEmpty ? true : false;
+  bool get hasplugins => pluginsList.isNotEmpty ? true : false;
 
   void setMode(bool editMode) {
     _editMode = editMode;
@@ -51,8 +43,7 @@ class PluginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  navigateToPlugins() =>
-      snackbarService.showSnackbar(message: "No new plugins available");
+  navigateToPlugins() => navigationService.navigateTo(Routes.addPluginView);
 
   navigateToHome() => navigationService.navigateTo(Routes.navBarView);
 

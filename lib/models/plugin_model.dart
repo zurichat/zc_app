@@ -1,9 +1,20 @@
-import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
+part 'plugin_model.g.dart';
+
+@HiveType(typeId: 0)
 class PluginModel {
- IconData icon;
+  @HiveField(0)
+  String icon;
+
+   @HiveField(1)
   String name;
+
+   @HiveField(2)
   String url;
 
-  PluginModel({required this.icon, required this.name, required this.url});
+   @HiveField(3)
+  bool isCheck;
+
+  PluginModel({required this.icon, required this.name, required this.url, this.isCheck = false});
 }
