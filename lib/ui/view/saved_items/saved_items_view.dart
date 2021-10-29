@@ -59,8 +59,7 @@ class SavedItemsView extends StatelessWidget {
                                   onPressed: () => model.goBack(),
                                 ),
                               ],
-                              content: Text(
-                                  local.deleteMessagePrompt),
+                              content: Text(local.deleteMessagePrompt),
                             );
                           });
                     },
