@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -63,7 +64,7 @@ class GeneralSearchView extends StatelessWidget with $GeneralSearchView {
             return true;
           },
           child: model.isShowingResults
-              ? Center(child: Text(needle, style: AppTextStyle.darkGreySize16))
+              ? Center(child: Text(NoResultsFound, style: AppTextStyle.darkGreySize16))
               : SingleChildScrollView(
                   padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 24.0),
                   physics: const BouncingScrollPhysics(),

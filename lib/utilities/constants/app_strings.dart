@@ -230,6 +230,9 @@ const String Nothing = 'Nothing';
 //Channel Search
 const String TeamSocrates = '#teamsocrates';
 
+//General Search
+const String NoResultsFound = 'No Results Found';
+
 //Channel View
 const String AddDescription = 'Add Description';
 const String Today = 'today';
