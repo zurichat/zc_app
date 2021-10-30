@@ -33,13 +33,7 @@ class ZuriThemeService {
           selectedItemColor: AppColors.zuriPrimaryColor,
         ),
         colorScheme: ColorScheme.fromSwatch()
-            .copyWith(secondary: AppColors.zuriPrimaryColor),
-
-            inputDecorationTheme: const InputDecorationTheme(
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: AppColors.zuriPrimaryColor),
-            ),
-          )
+            .copyWith(secondary: AppColors.zuriPrimaryColor), 
       ),
       ThemeData.dark().copyWith(
         primaryColor: AppColors.zuriPrimaryColor,
