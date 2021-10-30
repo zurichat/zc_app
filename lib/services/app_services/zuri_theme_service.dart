@@ -17,55 +17,57 @@ class ZuriThemeService {
   List<ThemeData> getThemes() {
     return [
       ThemeData.light().copyWith(
-        primaryColor: AppColors.zuriPrimaryColor,
-        textButtonTheme: TextButtonThemeData(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(
-              ThemeData.light().textTheme.bodyText1!.color,
+          primaryColor: AppColors.zuriPrimaryColor,
+          textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all(
+                ThemeData.light().textTheme.bodyText1!.color,
+              ),
             ),
           ),
-        ),
-        floatingActionButtonTheme:
-            const FloatingActionButtonThemeData().copyWith(
-          backgroundColor: AppColors.zuriPrimaryColor,
-        ),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: AppColors.zuriPrimaryColor,
-        ),
-        colorScheme: ColorScheme.fromSwatch()
-            .copyWith(secondary: AppColors.zuriPrimaryColor), 
-      ),
-      ThemeData.dark().copyWith(
-        primaryColor: AppColors.zuriPrimaryColor,
-        accentColor: AppColors.zuriPrimaryColor,
-        scaffoldBackgroundColor: AppColors.darkModeColor,
-        focusColor: AppColors.zuriPrimaryColor,
-        iconTheme: const IconThemeData(
-          color: AppColors.whiteColor,
-        ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: AppColors.zuriPrimaryColor,
-          foregroundColor: Color(0xFF424242),
-        ),
-        textButtonTheme: TextButtonThemeData(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(
-              ThemeData.dark().textTheme.bodyText1!.color,
-            ),
+          floatingActionButtonTheme:
+              const FloatingActionButtonThemeData().copyWith(
+            backgroundColor: AppColors.zuriPrimaryColor,
           ),
-        ),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: AppColors.zuriPrimaryColor,
-          backgroundColor: Color(0xFF212121),
-          elevation: 8,
-        ),
-
-        inputDecorationTheme: const InputDecorationTheme(
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            selectedItemColor: AppColors.zuriPrimaryColor,
+          ),
+          colorScheme: ColorScheme.fromSwatch()
+              .copyWith(secondary: AppColors.zuriPrimaryColor),
+          inputDecorationTheme: const InputDecorationTheme(
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: AppColors.zuriPrimaryColor),
             ),
-          )
-      ),
+          )),
+      ThemeData.dark().copyWith(
+          primaryColor: AppColors.zuriPrimaryColor,
+          accentColor: AppColors.zuriPrimaryColor,
+          scaffoldBackgroundColor: AppColors.darkModeColor,
+          focusColor: AppColors.zuriPrimaryColor,
+          iconTheme: const IconThemeData(
+            color: AppColors.whiteColor,
+          ),
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: AppColors.zuriPrimaryColor,
+            foregroundColor: Color(0xFF424242),
+          ),
+          textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all(
+                ThemeData.dark().textTheme.bodyText1!.color,
+              ),
+            ),
+          ),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            selectedItemColor: AppColors.zuriPrimaryColor,
+            backgroundColor: Color(0xFF212121),
+            elevation: 8,
+          ),
+          inputDecorationTheme: const InputDecorationTheme(
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: AppColors.zuriPrimaryColor),
+            ),
+          )),
     ];
   }
 
