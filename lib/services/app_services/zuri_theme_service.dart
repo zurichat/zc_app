@@ -34,6 +34,12 @@ class ZuriThemeService {
         ),
         colorScheme: ColorScheme.fromSwatch()
             .copyWith(secondary: AppColors.zuriPrimaryColor),
+
+            inputDecorationTheme: const InputDecorationTheme(
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: AppColors.zuriPrimaryColor),
+            ),
+          )
       ),
       ThemeData.dark().copyWith(
         primaryColor: AppColors.zuriPrimaryColor,
@@ -59,6 +65,12 @@ class ZuriThemeService {
           backgroundColor: Color(0xFF212121),
           elevation: 8,
         ),
+
+        inputDecorationTheme: const InputDecorationTheme(
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: AppColors.zuriPrimaryColor),
+            ),
+          )
       ),
     ];
   }
