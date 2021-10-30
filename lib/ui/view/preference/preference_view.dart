@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../general_widgets/menu_item_tile.dart';
+import '../../shared/dumb_widgets/menu_item_tile.dart';
 import 'preference_viewmodel.dart';
 
 class PreferenceView extends StatelessWidget {
@@ -13,7 +14,10 @@ class PreferenceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final local = AppLocalization.of(context);
+    final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    TextStyle _menuTitleStyle =
+        _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16;
     return ViewModelBuilder<PreferenceViewModel>.reactive(
       viewModelBuilder: () => PreferenceViewModel(),
       onModelReady: (model) => model.init(),
@@ -27,7 +31,7 @@ class PreferenceView extends StatelessWidget {
           ),
           leading: Icons.close_outlined,
           leadingPress: () => model.exitPage(),
-          isDarkMode: Theme.of(context).brightness == Brightness.dark,
+          isDarkMode: _dark,
           whiteBackground: true,
         ),
         body: SingleChildScrollView(
@@ -36,60 +40,35 @@ class PreferenceView extends StatelessWidget {
               UIHelper.verticalSpaceMedium,
               MenuItemTile(
                 topBorder: false,
-                text: Text(
-                  local.langAndRegion,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
+                text: Text(local.langAndRegion, style: _menuTitleStyle),
                 onPressed: model.navigateLanguageAndRegion,
               ),
-              MenuItemTile(
-                text: Text(
-                  local.darkMode,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
-                subtitle: model.currentTheme,
-                onPressed: model.changeTheme,
+              SwitchListTile(
+                value: model.isDarkMode,
+                onChanged: model.changeTheme,
+                title: Text(local.darkMode, style: _menuTitleStyle),
+                selected: model.isDarkMode,
+                subtitle: Text(model.currentTheme),
               ),
-              MenuItemTile(
-                text: Text(
-                  local.advanced,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
-                onPressed: model.navigateToAdvanced,
-              ),
-              MenuItemTile(
-                text: Text(
-                  local.sendFeedback,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
-                onPressed: model.sendFeedback,
-              ),
-              MenuItemTile(
-                text: Text(
-                  local.helpCenter,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
-                onPressed: model.helpCentre,
-              ),
-              MenuItemTile(
-                text: Text(
-                  local.privacyNLicenses,
-                  style: AppTextStyles.faintBodyText.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
-                onPressed: model.privacyAndLicences,
-              ),
+              //TODO
+              // MenuItemTile(
+              //   text: Text(local.advanced, style: _menuTitleStyle),
+              //   onPressed: model.navigateToAdvanced,
+              // ),
+
+              // MenuItemTile(
+              //   text: Text(local.sendFeedback, style: _menuTitleStyle),
+              //   onPressed: model.sendFeedback,
+              // ),
+              // MenuItemTile(
+              //   text: Text(local.helpCenter, style: _menuTitleStyle),
+              //   onPressed: model.helpCentre,
+              // ),
+              // MenuItemTile(
+              //   text: Text(local.privacyNLicenses, style: _menuTitleStyle),
+              //   onPressed: model.privacyAndLicences,
+              // ),
+
               UIHelper.verticalSpaceMedium,
             ],
           ),

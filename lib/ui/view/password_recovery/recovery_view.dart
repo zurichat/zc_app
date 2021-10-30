@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:hng/general_widgets/custom_textfield.dart';
-import 'package:hng/ui/view/password_recovery/recovery_viewmodel.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/custom_textfield.dart';
+import 'package:zurichat/ui/view/password_recovery/recovery_viewmodel.dart';
 
 class ForgotPassView extends StatelessWidget {
   const ForgotPassView({Key? key}) : super(key: key);

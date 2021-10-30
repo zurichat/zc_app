@@ -1,13 +1,13 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/services/local_storage_services.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.form.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/mixins/validators_mixin.dart';
-import 'package:hng/utilities/storage_keys.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.form.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/mixins/validators_mixin.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -65,6 +65,7 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
 
       navigateToForgotPasswordOtpView();
     }
+    loading(false);
   }
 
   @override
@@ -73,5 +74,5 @@ class ForgotPasswordEmailViewModel extends FormViewModel with ValidatorMixin {
   void navigateToForgotPasswordOtpView() =>
       _navigationService.navigateTo(Routes.forgotPasswordOtpView);
 
-  void navigateToSignIn() => _navigationService.navigateTo(Routes.loginView);
+  void navigateToSignIn() => _navigationService.back();
 }

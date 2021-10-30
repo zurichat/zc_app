@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../colors.dart';
+import '../../../../../utilities/constants/colors.dart';
 
 enum _CustomButtonType { normal, icon }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../colors.dart';
+import '../../../../../utilities/constants/colors.dart';
 
 class RecentEmojis extends StatelessWidget {
   const RecentEmojis(this.text, {Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class RecentEmojis extends StatelessWidget {
             text,
             style: const TextStyle(fontSize: 25),
           )),
-      decoration:const  BoxDecoration(
+      decoration: const BoxDecoration(
         shape: BoxShape.circle,
         color: AppColors.greyBackgroundColor,
       ),

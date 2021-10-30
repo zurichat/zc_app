@@ -1,14 +1,5 @@
-import 'package:hng/constants/app_strings.dart';
-
-class DraftedItem {
-  final String? username, message, time;
-
-  DraftedItem({
-    this.username,
-    this.message,
-    this.time,
-  });
-}
+import 'package:zurichat/models/drafted_item_model.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 
 double mySize = 0.0;
 double kPadding = mySize * 0.025;

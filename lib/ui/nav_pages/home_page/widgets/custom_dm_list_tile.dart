@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../shared/shared.dart';
 import '../home_page_viewmodel.dart';
 
 class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
@@ -33,7 +33,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
           const SizedBox(width: 8),
           Text(
             "$userName",
-            style: AppTextStyles.normalText,
+            style: AppTextStyle.darkGreySize12,
           ),
         ],
       ),
@@ -71,7 +71,7 @@ class CustomDMListTile extends ViewModelWidget<HomePageViewModel> {
             },
             child: Text(
               "$userName",
-              style: AppTextStyles.normalText,
+              style: AppTextStyle.darkGreySize12,
             ),
           ),
           const SizedBox(width: 8),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/models/message.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:intl/intl.dart';
 
-import '../dummy_data/models/message.dart';
+
 
 class MessageView extends StatelessWidget {
   final Message _message;

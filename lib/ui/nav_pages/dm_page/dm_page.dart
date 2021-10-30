@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/text_styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../shared/search_bar.dart';
+import '../../shared/dumb_widgets/search_bar.dart';
 import 'dm_page_viewmodel.dart';
 import 'widgets/dmmessage_unread.dart';
 
@@ -20,32 +18,37 @@ class DmPage extends StatelessWidget {
       onModelReady: (model) => model.initialise(),
       builder: (context, model, child) {
         final local = AppLocalization.of(context);
+        final bool _dark = Theme.of(context).brightness == Brightness.dark;
         return Scaffold(
           appBar: ZuriAppBar(
+            isDarkMode: _dark,
             leadingWidth: true,
             orgTitle: Text(local!.directMessages,
-                style: ZuriTextStyle.organizationNameText()),
+                style: AppTextStyle.organizationNameText),
             bottomNavBarScreen: true,
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              model.navigateToDmScreen();
-            },
-            child: IconButton(
-              onPressed: () {
-                model.navigateToDmScreen();
-              },
-              icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
-              color: AppColors.whiteColor,
-            ),
-            // backgroundColor: AppColors.zuriPrimaryColor,
-          ),
+          //TODO
+          // floatingActionButton: FloatingActionButton(
+          //   onPressed: () {
+          //     model.navigateToDmScreen();
+          //   },
+          //   child: IconButton(
+          //     onPressed: () {
+          //       model.navigateToDmScreen();
+          //     },
+          //     icon: SvgPicture.asset('assets/icons/svg_icons/create_msg.svg'),
+          //     color: AppColors.whiteColor,
+          //   ),
+          //   // backgroundColor: AppColors.zuriPrimaryColor,
+          // ),
           body: model.isBusy
               ? const ZuriLoader()
               : !model.data!
                   ? Center(
-                      child: Text("Temporarily Unavailable",
-                          style: AppTextStyles.heading6),
+                      child: Text(local.temporarilyUnavailable,
+                          style: _dark
+                              ? AppTextStyle.whiteSize18Bold
+                              : AppTextStyle.darkGreySize18Bold),
                     )
                   : SingleChildScrollView(
                       child: Padding(

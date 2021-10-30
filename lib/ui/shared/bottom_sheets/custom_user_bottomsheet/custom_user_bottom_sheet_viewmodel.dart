@@ -1,15 +1,20 @@
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/models/user_model.dart';
-import 'package:hng/services/user_service.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/user_model.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
+import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class CustomUserBottomSheetViewModel extends FutureViewModel {
+  final _log = getLogger('CustomUserBottomSheetViewModel');
   final _navigationService = locator<NavigationService>();
   final _userService = locator<UserService>();
+  final _zuriApi = ZuriApi(coreBaseUrl);
 
-  //UserModel? _userModel;
+  UserModel? _userModel;
 
   void navigateToSetStatus() =>
       _navigationService.navigateTo(Routes.setStatusView);
@@ -24,7 +29,14 @@ class CustomUserBottomSheetViewModel extends FutureViewModel {
 
   @override
   Future<void> futureToRun() async {
-    Future.delayed(const Duration(seconds: 2));
+    try {
+      final response = await _zuriApi
+          .get('organizations/$orgId/members/$userID', token: token);
+      _userModel = UserModel.fromJson(response!.data['data']);
+      _userService.setUserDetails(_userModel!);
+    } catch (e) {
+      _log.e(e.toString());
+    }
   }
 
   String? get userID => _userService.memberId;

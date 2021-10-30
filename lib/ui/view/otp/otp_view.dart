@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import '../../shared/colors.dart';
+import '../../../utilities/constants/colors.dart';
 import '../../shared/shared.dart';
 import 'otp_view.form.dart';
 import 'otp_viewmodel.dart';
@@ -129,13 +130,13 @@ class OTPView extends StatelessWidget with $OTPView {
                       child: RichText(
                         text: TextSpan(
                           children: [
-                            const TextSpan(
+                            TextSpan(
                               text: DidntRecieveOTP,
+                              style: AppTextStyle.darkGreySize12,
                             ),
                             TextSpan(
                               text: Resend,
-                              style: AppTextStyles.body2Bold.copyWith(
-                                color: AppColors.zuriPrimaryColor,
+                              style: AppTextStyle.greenSize16.copyWith(
                                 decoration: TextDecoration.underline,
                               ),
                             ),

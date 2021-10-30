@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.router.dart';
-import '../../../../general_widgets/easy_container.dart';
-import '../../../../general_widgets/ripple.dart';
-import '../../../../general_widgets/svg_icon.dart';
-import '../../../shared/colors.dart';
-import '../../../shared/text_styles.dart';
+import '../../../shared/dumb_widgets/ripple.dart';
+import '../../../shared/dumb_widgets/svg_icon.dart';
+import '../../../../utilities/constants/colors.dart';
+import '../../../../utilities/constants/text_styles.dart';
 import '../home_item_model.dart';
 import '../home_page_viewmodel.dart';
 
@@ -20,8 +21,9 @@ class ThreadTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
     return _TextAndIcon(
-      text: Threads,
+      text: local!.threads,
       unread: true,
       onTap: () async {
         // Navigate to threads screen
@@ -41,8 +43,9 @@ class DraftTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
     return _TextAndIcon(
-      text: Drafts,
+      text: local!.draft,
       unread: true,
       onTap: () async {
         await navigationService.navigateTo(Routes.draftView);
@@ -61,11 +64,17 @@ class AddChannelsTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
     return _TextAndIcon(
-        text: AddChannels,
-        unread: false,
-        onTap: () => viewModel.navigateToCreateChannel(),
-        icon: Image.asset(AddLogo));
+      text: local!.addChannel,
+      unread: false,
+      onTap: () => viewModel.navigateToCreateChannel(),
+      icon: SvgPicture.asset(
+        Add_Organization,
+        width: 24,
+        height: 24,
+      ),
+    );
   }
 }
 
@@ -74,11 +83,17 @@ class AddTeammatesTextAndIcon extends ViewModelWidget<HomePageViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
+    final local = AppLocalization.of(context);
     return _TextAndIcon(
-        text: AddTeammates,
-        unread: false,
-        onTap: () => viewModel.navigateInviteMembers(),
-        icon: Image.asset(AddLogo));
+      text: local!.addTeammates,
+      unread: false,
+      onTap: () => viewModel.navigateInviteMembers(),
+      icon: SvgPicture.asset(
+        Add_Organization,
+        width: 24,
+        height: 24,
+      ),
+    );
   }
 }
 
@@ -113,10 +128,12 @@ class DMTextAndIcon extends ViewModelWidget<HomePageViewModel> {
       },
       icon: Container(
         alignment: Alignment.centerLeft,
-        child: const EasyContainer(
+        child: Container(
           height: 23,
           width: 23,
-          radius: 3,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(3),
+          ),
           color: AppColors.paleGreen,
         ),
       ),
@@ -206,6 +223,7 @@ class _TextAndIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     //Expanded tile don't allow sizing so we have to decrease
     //the top pad of the first child to make it look visually ok
     // double topPad = 14;
@@ -231,10 +249,12 @@ class _TextAndIcon extends StatelessWidget {
             Text(
               text,
               style: unread
-                  ? ZuriTextStyle.unreadText()
-                  : ZuriTextStyle.mediumNormal(
-                      // color: Colors.grey[600],
-                      ),
+                  ? _dark
+                      ? AppTextStyle.whiteSize16Bold
+                      : AppTextStyle.darkGreySize16Bold
+                  : _dark
+                      ? AppTextStyle.whiteSize16
+                      : AppTextStyle.lightGreySize16,
             )
           ],
         ),

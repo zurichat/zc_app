@@ -1,4 +1,4 @@
-name: hng
+name: zurichat
 description: A new Flutter project.
 publish_to: "none"
 version: 1.0.0+1
@@ -10,6 +10,7 @@ dependencies:
   analyzer: ^1.7.0
   awesome_notifications: ^0.0.6+8
   cached_network_image: ^3.1.0
+  # DO NOT CHANGE CENTRIFUGE FROM ^0.6.0!!!!!!!!!!!!!!
   centrifuge: ^0.6.0
   connectivity_plus: ^1.1.0
   connectivity_plus_web: null
@@ -34,6 +35,7 @@ dependencies:
   google_fonts: ^2.1.0
   grouped_list: ^4.1.0
   hexcolor: ^2.0.5
+  http_parser: ^4.0.0
   image_picker: ^0.8.4+1
   intl: ^0.17.0
   introduction_screen: ^2.1.0

@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/text_field.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/text_field.dart';
+import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
+
 import 'package:stacked/stacked.dart';
 
 import '../../../shared/shared.dart';
@@ -55,7 +58,9 @@ class UseDifferentEmailView extends HookWidget {
                               Text(
                                 local.sendEmailForSignin,
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.w400, fontSize: 16),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                ),
                               ),
                               const SizedBox(height: 25),
                               const Spacer(flex: 3),
@@ -81,7 +86,7 @@ class NextButton extends ViewModelWidget<UseDifferentEmailViewModel> {
 
   @override
   Widget build(BuildContext context, UseDifferentEmailViewModel viewModel) {
-     final local = AppLocalization.of(context);
+    final local = AppLocalization.of(context);
     return TextButton(
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(
@@ -95,7 +100,7 @@ class NextButton extends ViewModelWidget<UseDifferentEmailViewModel> {
           child: Center(
             child: Text(
               local!.next,
-              style: AppTextStyles.buttonText,
+              style: AppTextStyle.whiteSize16,
             ),
           ),
         ),

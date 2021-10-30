@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+
+import 'package:zurichat/utilities/constants/colors.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 
 import 'custom_user_bottom_sheet_viewmodel.dart';
 import 'widgets/custom_button.dart';
@@ -23,6 +24,8 @@ class CustomUserBottomSheetView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<CustomUserBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
           ? Container()
@@ -34,8 +37,8 @@ class CustomUserBottomSheetView extends StatelessWidget {
                   (BuildContext context, ScrollController scrollController) {
                 return Container(
                   height: height * .97,
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? AppColors.zuriDarkGrey
+                  color: _dark
+                      ? AppColors.darkThemePrimaryColor
                       : AppColors.whiteColor,
                   child: SingleChildScrollView(
                     controller: scrollController,
@@ -51,52 +54,63 @@ class CustomUserBottomSheetView extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              CustomButton(text: Msg, onPressed: () {}),
+                              // CustomButton(text: Msg, onPressed: () {}),
                               CustomButton(
-                                text: EditProfile,
+                                text: local!.editProfileButton,
                                 onPressed: () => model.navigateToEditProfile(),
                               ),
-                              CustomButton.icon(
-                                  icon: Icons.more_horiz_rounded,
-                                  onPressed: () {}),
+                              // CustomButton.icon(
+                              //     icon: Icons.more_horiz_rounded,
+                              //     onPressed: () {}),
                             ],
                           ),
                         ),
                         const Divider(),
-                        const CustomProfileTile(
-                            title: Track, subtitle: MobileDev),
+                        CustomProfileTile(
+                            title: local.whatIDo, subtitle: MobileDev),
                         const Divider(),
-                        const CustomProfileTile(
-                          title: DisplayName,
-                          subtitle: '',
+                        CustomProfileTile(
+                          title: local.displayName,
+                          subtitle: model.userModel!.displayName ?? '',
                         ),
+                        // const Divider(),
+                        // ListTile(
+                        //   visualDensity:
+                        //       const VisualDensity(horizontal: 0.0, vertical: 0),
+                        //   horizontalTitleGap: 0,
+                        //   dense: true,
+                        //   title: Padding(
+                        //     padding: const EdgeInsets.only(bottom: 3),
+                        //     child: Text(
+                        //       StatusText,
+                        //       style: _dark
+                        //           ? AppTextStyle.whiteSize16
+                        //           : AppTextStyle.darkGreySize16,
+                        //     ),
+                        //   ),
+                        //   subtitle: const Align(
+                        //       alignment: Alignment.centerLeft,
+                        //       child: Icon(Icons.looks_5,
+                        //           color: AppColors.blueTextColor)),
+                        //   shape: const Border(
+                        //     top: BorderSide(
+                        //         width: .5, color: AppColors.greyishColor),
+                        //   ),
+                        //   onTap: () => model.navigateToSetStatus(),
+                        //   trailing: IconButton(
+                        //     onPressed: () {},
+                        //     icon: const Icon(Icons.cancel),
+                        //   ),
+                        // ),
                         const Divider(),
-                        ListTile(
-                          title: const CustomText(
-                              text: StatusText, fontWeight: FontWeight.w300),
-                          subtitle: const Align(
-                              alignment: Alignment.centerLeft,
-                              child: Icon(Icons.looks_5,
-                                  color: AppColors.blueTextColor)),
-                          shape: const Border(
-                            top: BorderSide(
-                                width: .5, color: AppColors.greyishColor),
-                          ),
-                          onTap: () => model.navigateToSetStatus(),
-                          trailing: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.cancel),
-                          ),
-                        ),
-                        const Divider(),
-                        const CustomProfileTile(
-                          title: Number,
-                          subtitle: '',
+                        CustomProfileTile(
+                          title: local.mobileNumber,
+                          subtitle: model.userModel!.phoneNumber ?? '',
                         ),
                         const Divider(),
                         CustomProfileTile(
-                          title: EmailAddress,
-                          subtitle: model.email!,
+                          title: local.emailAddress,
+                          subtitle: model.userModel!.email!,
                         ),
                       ],
                     ),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/menu_item_tile.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/menu_item_tile.dart';
+
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import 'notifications_viewmodel.dart';
@@ -21,8 +20,11 @@ class NotificationsView extends StatelessWidget {
           leadingPress: () => model.goBack(),
           orgTitle: Text(
             local!.notifications,
-            style: AppTextStyles.heading4.copyWith(color: AppColors.blackColor),
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1!.color,
+            ),
           ),
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
           whiteBackground: true,
         ),
         body: SingleChildScrollView(

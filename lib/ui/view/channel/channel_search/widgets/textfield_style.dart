@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
 
 InputDecoration textFormFields(String hintText) {
   return InputDecoration(

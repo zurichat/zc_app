@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../../general_widgets/custom_text.dart';
-import '../../../colors.dart';
+import '../../../../../utilities/constants/colors.dart';
 import '../custom_user_bottom_sheet_viewmodel.dart';
 
 class ProfileHead extends StatelessWidget {
@@ -40,13 +40,9 @@ class ProfileHead extends StatelessWidget {
                       children: [
                         Flexible(
                           fit: FlexFit.loose,
-                          child: CustomText(
-                            text:
-                                '${model.userModel!.firstName} ${model.userModel!.lastName}',
-                            color: AppColors.whiteColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: height * 0.025,
-                            maxLines: 3,
+                          child: Text(
+                            '${model.userModel!.firstName} ${model.userModel!.lastName}',
+                            style: AppTextStyle.whiteSize16,
                           ),
                         ),
                         const Padding(

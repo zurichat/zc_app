@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
@@ -14,7 +15,6 @@ class NewEmailView extends StatelessWidget {
     final local = AppLocalization.of(context);
     return ViewModelBuilder<NewEmailViewModel>.nonReactive(
       builder: (context, viewModel, child) => Scaffold(
-        
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -26,8 +26,8 @@ class NewEmailView extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 300),
                     child: Column(
                       children: [
-                       const TextForm(),
-                       const SizedBox(height: 12),
+                        const TextForm(),
+                        const SizedBox(height: 12),
                         Text(
                           local!.sendEmailForSignin,
                           style: const TextStyle(
@@ -56,10 +56,10 @@ class TextForm extends HookViewModelWidget<NewEmailViewModel> {
   @override
   Widget buildViewModelWidget(
       BuildContext context, NewEmailViewModel viewModel) {
-        final local = AppLocalization.of(context);
+    final local = AppLocalization.of(context);
     return Center(
       child: TextField(
-        decoration:  InputDecoration(
+        decoration: InputDecoration(
           labelText: local!.yourEmailAddress,
           hintText: local.yourEmailAddress,
           hintStyle: const TextStyle(
@@ -103,7 +103,7 @@ class NextButton extends ViewModelWidget<NewEmailViewModel> {
             child: Center(
               child: Text(
                 local!.next,
-                style: AppTextStyles.buttonText,
+                style: AppTextStyle.whiteSize16,
               ),
             ),
           ),

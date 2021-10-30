@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import '../../../shared/colors.dart';
-import '../../../shared/styles.dart';
+import '../../../../utilities/constants/colors.dart';
 import 'edit_channel_view_model.dart';
 import 'edit_channel_view.form.dart';
 import 'widgets/edit_channel_headers.dart';
@@ -26,6 +27,8 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
   final String? channelId;
   @override
   Widget build(BuildContext context) {
+    // final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final local = AppLocalization.of(context);
     return ViewModelBuilder<EditChannelViewModel>.reactive(
       onModelReady: (model) {
         listenToFormUpdated(model);
@@ -35,22 +38,22 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
           leading: Icons.arrow_back_ios,
+          leadingPress: model.navigateBack,
           orgTitle: Text(
-            EditChannel,
-            style: AppTextStyles.heading7,
+            local!.editChannel,
+            style: AppTextStyle.darkGreySize20Bold,
           ),
           whiteBackground: true,
           actions: [
             InkWell(
+              //TODO
               onTap: () {},
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    'Save',
-                    style: AppTextStyles.heading4.copyWith(
-                      color: AppColors.appBarGreen,
-                    ),
+                    local.save,
+                    style: AppTextStyle.darkGreySize18Bold,
                   ),
                 ),
               ),
@@ -71,7 +74,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
                 margin: _padding,
                 child: Text(
                   channelName,
-                  style: AppTextStyles.body1Light,
+                  style: AppTextStyle.darkGreySize16,
                 ),
               ),
               const SizedBox(
@@ -81,7 +84,7 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
                 margin: _padding,
                 child: Text(
                   ChannelCreationWarning,
-                  style: AppTextStyles.body2_400,
+                  style: AppTextStyle.darkGreySize14,
                 ),
               ),
               const SizedBox(
@@ -90,13 +93,13 @@ class EditChannelPageView extends StatelessWidget with $EditChannelPageView {
               const TextHeader(headerText: ChannelTopic),
               TextBox(
                 onChanged: model.onChanged,
-                hint: AddTopic,
+                hint: local.addTopic,
                 controller: topicController,
               ),
               const TextHeader(headerText: ChannelDescription),
               TextBox(
                   onChanged: model.onChanged,
-                  hint: ChannelCreationHint,
+                  hint: local.description,
                   controller: descriptionController),
               const SizedBox(
                 height: 30,

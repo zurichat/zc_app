@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 //The screen shown in homepage -> Threads
-import '../../../../../general_widgets/channel_icon.dart';
-import '../../../../../general_widgets/custom_text.dart';
+import '../../../../shared/dumb_widgets/channel_icon.dart';
+
 import '../../../../../models/user_post.dart';
 import '../../../../shared/shared.dart';
 import '../../../../shared/smart_widgets/thread_card/thread_card_view.dart';
@@ -33,16 +34,15 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
               children: [
                 ChannelIcon(channelType: userPost!.channelType!),
                 const SizedBox(width: 5),
-                CustomText(
-                  text: userPost!.channelName ?? '',
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                Text(
+                  userPost!.channelName ?? '',
+                  style: AppTextStyle.darkGreySize16,
                 ),
               ],
             ),
             subtitle: Text(
               YouAndOthers,
-              style: AppTextStyles.subtitle,
+              style: AppTextStyle.lightGreySize12,
             ),
           ),
           ThreadCardView.main(userPost),
@@ -76,9 +76,9 @@ class ThreadCard extends ViewModelWidget<ThreadsViewModel> {
                   Radius.circular(5),
                 ),
               ),
-              child: const CustomText(
-                text: Reply,
-                fontWeight: FontWeight.w500,
+              child: Text(
+                Reply,
+                style: AppTextStyle.darkGreySize16,
               ),
             ),
           ),

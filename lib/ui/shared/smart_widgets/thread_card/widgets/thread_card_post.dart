@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
+import 'package:zurichat/ui/shared/bottom_sheets/zuri_chat_bottomsheet.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../../general_widgets/custom_text.dart';
 import '../../../../../models/user_post.dart';
 import '../../../shared.dart';
-import '../../../styles.dart';
+import '../../../../../utilities/constants/text_styles.dart';
 import '../../text_parser/text_parser_view.dart';
 import '../thread_card_viewmodel.dart';
-import 'package:hng/app/app.logger.dart';
+import 'package:zurichat/app/app.logger.dart';
 
 class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
   ThreadCardPost(this.userThreadPost, {Key? key}) : super(key: key);
 
   final UserThreadPost? userThreadPost;
-    final log = getLogger("ThreadCardPost");
+  final log = getLogger("ThreadCardPost");
 
   @override
   Widget build(BuildContext context, ThreadCardViewModel viewModel) {
@@ -31,28 +30,28 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
               children: [
                 GestureDetector(
                   onTap: viewModel.viewProfile,
-                   onLongPress: () => zuriChatBottomSheet(
-                context: context,
-                addToSavedItems: () {
-                  viewModel.saveItem(
-                      channelID: userThreadPost!.channelId,
-                      channelName: userThreadPost!.channelName,
-                      displayName: userThreadPost!.displayName,
-                      message: userThreadPost!.message,
-                      lastSeen: userThreadPost!.moment,
-                      messageID: userThreadPost!.id,
-                      userID: userThreadPost!.userId,
-                      userImage: userThreadPost!.userImage);
-                  log.i("Saved");
-                  viewModel.goBack();
-                  showSimpleNotification(
-                    const Text("Added successfully"),
-                    position: NotificationPosition.top,
-                    background: AppColors.appBarGreen,
-                    trailing: const Icon(Icons.mark_chat_read_outlined),
-                    duration: const Duration(seconds: 3),
-                  );
-                }),
+                  onLongPress: () => zuriChatBottomSheet(
+                      context: context,
+                      addToSavedItems: () {
+                        viewModel.saveItem(
+                            channelID: userThreadPost!.channelId,
+                            channelName: userThreadPost!.channelName,
+                            displayName: userThreadPost!.displayName,
+                            message: userThreadPost!.message,
+                            lastSeen: userThreadPost!.moment,
+                            messageID: userThreadPost!.id,
+                            userID: userThreadPost!.userId,
+                            userImage: userThreadPost!.userImage);
+                        log.i("Saved");
+                        viewModel.goBack();
+                        showSimpleNotification(
+                          const Text("Added successfully"),
+                          position: NotificationPosition.top,
+                          background: AppColors.appBarGreen,
+                          trailing: const Icon(Icons.mark_chat_read_outlined),
+                          duration: const Duration(seconds: 3),
+                        );
+                      }),
                   child: Container(
                       width: 40,
                       height: 40,
@@ -73,9 +72,9 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
                         children: [
                           Flexible(
                             fit: FlexFit.loose,
-                            child: CustomText(
-                              text: '${userThreadPost!.displayName}',
-                              fontWeight: FontWeight.bold,
+                            child: Text(
+                              '${userThreadPost!.displayName}',
+                              style: AppTextStyle.darkGreySize14Bold,
                             ),
                           ),
                           const Icon(
@@ -86,7 +85,7 @@ class ThreadCardPost extends ViewModelWidget<ThreadCardViewModel> {
                           const SizedBox(width: 2),
                           Text(
                             '${userThreadPost!.postDate}',
-                            style: AppTextStyles.lastSeen,
+                            style: AppTextStyle.lightGreySize12,
                           ),
                         ],
                       ),

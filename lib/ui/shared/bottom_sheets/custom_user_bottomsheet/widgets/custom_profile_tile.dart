@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
+
+import '../../../../../utilities/constants/text_styles.dart';
 
 class CustomProfileTile extends StatelessWidget {
   const CustomProfileTile(
@@ -10,9 +11,23 @@ class CustomProfileTile extends StatelessWidget {
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return ListTile(
-      title: CustomText(text: title, fontWeight: FontWeight.w300),
-      subtitle: CustomText(text: subtitle, fontWeight: FontWeight.w500),
+      visualDensity: const VisualDensity(horizontal: 0.0, vertical: 0),
+      horizontalTitleGap: 0,
+      dense: true,
+      title: Padding(
+        padding: const EdgeInsets.only(bottom: 3),
+        child: Text(
+          title,
+          style: _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16,
+        ),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16,
+      ),
       onTap: onPressed,
     );
   }

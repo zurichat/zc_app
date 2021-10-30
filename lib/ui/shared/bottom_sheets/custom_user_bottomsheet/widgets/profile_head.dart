@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
 import '../custom_user_bottom_sheet_viewmodel.dart';
@@ -37,12 +38,9 @@ class ProfileHead extends ViewModelWidget<CustomUserBottomSheetViewModel> {
                   children: [
                     Flexible(
                       fit: FlexFit.loose,
-                      child: CustomText(
-                        text: viewModel.email!,
-                        color: AppColors.whiteColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: height * 0.025,
-                        maxLines: 3,
+                      child: Text(
+                        viewModel.userModel!.fullName!,
+                        style: AppTextStyle.whiteSize18Bold,
                       ),
                     ),
                     const Padding(

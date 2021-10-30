@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/dm_user/widgets/custom_start_message.dart';
-import 'package:hng/ui/view/dm_user/widgets/group_separator.dart';
-import 'package:hng/ui/view/expandable_textfield/expandable_textfield_screen.dart';
+import 'package:zurichat/models/message.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/ui/view/dm_user/widgets/custom_start_message.dart';
+import 'package:zurichat/ui/view/dm_user/widgets/group_separator.dart';
+import 'package:zurichat/ui/view/expandable_textfield/expandable_textfield_screen.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
-import '../../shared/colors.dart';
+import '../../../utilities/constants/colors.dart';
 import 'dm_user_viewmodel.dart';
-import 'dummy_data/models/message.dart';
 import 'widgets/message_view.dart';
 import 'widgets/online_indicator.dart';
 import 'dm_user_view.form.dart';
@@ -27,6 +28,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     //TODO remove the var below and replace with the actual id from the backend once dm's get linked to the backend
     dynamic receiverId = 'receiver';
     return ViewModelBuilder<DmUserViewModel>.reactive(
@@ -60,9 +62,9 @@ class DmUserView extends StatelessWidget with $DmUserView {
             children: [
               ExpandableTextFieldScreen(
                 channelID: '',
-                hintText: 'Message ${model.receiver.username}',
+                hintText: '${local!.messageButton} ${model.receiver.username}',
                 textController: messageController,
-                sendMessage: (String message) {
+                sendMessage: (message, media) {
                   model.sendMessage();
                   FocusScope.of(context).requestFocus(FocusNode());
                   _scrollController

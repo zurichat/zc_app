@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/general_widgets/custom_text.dart';
-import 'package:hng/ui/shared/colors.dart';
+
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 
 class SavedItemBackground extends StatelessWidget {
   const SavedItemBackground({
@@ -9,7 +11,10 @@ class SavedItemBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  final _size = MediaQuery.of(context).size;
+    final local = AppLocalization.of(context);
+    final _size = MediaQuery.of(context).size;
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -22,16 +27,17 @@ class SavedItemBackground extends StatelessWidget {
             size: _size.height * .3,
             color: AppColors.greyishColor,
           ),
-          const CustomText(
-            text: 'No saved items',
-            fontWeight: FontWeight.w600,
+          Text(
+            local!.noSavedItems,
+            style:
+                _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16,
           ),
           const SizedBox(height: 10),
-          const Text(
-            'Add messages and files to easily \ncome back to them later.',
+          Text(
+            local.noSavedItemsSubtitle,
             maxLines: 2,
             textAlign: TextAlign.center,
-            style: TextStyle(color: AppColors.greyishColor, fontSize: 16),
+            style: const TextStyle(color: AppColors.greyishColor, fontSize: 16),
           ),
         ],
       ),

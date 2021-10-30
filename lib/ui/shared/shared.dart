@@ -1,4 +1,3 @@
-export 'package:hng/ui/shared/colors.dart';
-export 'package:hng/utilities/constants.dart';
-export 'package:hng/ui/shared/styles.dart';
-export 'package:hng/ui/shared/ui_helpers.dart';
+export 'package:zurichat/utilities/constants/colors.dart';
+export 'package:zurichat/utilities/constants/app_constants.dart';
+export 'package:zurichat/utilities/constants/ui_helpers.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hng/app/app.router.dart';
-import 'package:hng/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/ui/nav_pages/plugin_page/plugin_viewmodel.dart';
 import 'package:mockito/mockito.dart';
 import '../helpers/test_helpers.dart';
 
@@ -32,19 +32,9 @@ void main() {
     });
 
     group('navigation tests -', () {
-      test('When called, verify that the addPluginView is displayed', () {
-        model.navigateToAdd();
-        verify(navigationService.navigateTo(Routes.addPluginView));
-      });
-
-      test('When called, verify that the editPluginView is displayed', () {
-        model.navigateToEdit();
-        verify(navigationService.navigateTo(Routes.editPluginView));
-      });
-
       test('When called, verify that the pluginView is displayed', () {
         model.navigateToPlugins();
-        verify(navigationService.navigateTo(Routes.pluginView));
+        verify(navigationService.navigateTo(Routes.pluginPage));
       });
 
       test('When called, verify that the user is taken to the home screen', () {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/services/notification_service.dart';
-import 'package:hng/ui/shared/setup_bottom_sheet_ui.dart';
-import 'package:hng/ui/shared/setup_dialog_ui.dart';
-import 'package:hng/ui/shared/shared.dart';
+import 'package:zurichat/services/app_services/notification_service.dart';
+import 'package:zurichat/ui/shared/bottom_sheets/setup_bottom_sheet_ui.dart';
+import 'package:zurichat/ui/shared/dialogs/setup_dialog_ui.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -10,10 +10,10 @@ import 'package:stacked_themes/stacked_themes.dart';
 
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
-import 'constants/app_strings.dart';
-import 'general_widgets/app_snackbar.dart';
+import 'utilities/constants/app_strings.dart';
+import 'services/app_services/snackbar_service.dart';
 import 'main_app_view_model.dart';
-import 'services/theme_setup.dart';
+import 'services/app_services/zuri_theme_service.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     _locale = widget.model.appLocale;
     return ThemeBuilder(
-      themes: getThemes(),
+      themes: ZuriThemeService().getThemes(),
       builder: (context, regularTheme, darkTheme, themeMode) => OverlaySupport(
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

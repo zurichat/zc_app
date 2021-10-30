@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
+
 import 'package:stacked/stacked.dart';
 
 class InviteViaEmailAdmin extends StatelessWidget {
@@ -24,7 +26,7 @@ class InviteViaEmailAdmin extends StatelessWidget {
             whiteBackground: true,
             orgTitle: Text(
               local!.invite,
-              style: AppTextStyles.heading7,
+              style: AppTextStyle.darkGreySize18Bold,
             ),
             actions: [
               Padding(
@@ -32,7 +34,7 @@ class InviteViaEmailAdmin extends StatelessWidget {
                 child: InkWell(
                     child: Text(
                       local.send,
-                      style: AppTextStyles.body1Green,
+                      style: AppTextStyle.greenSize14,
                     ),
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
@@ -47,6 +49,7 @@ class InviteViaEmailAdmin extends StatelessWidget {
                 Center(
                   child: Text(
                     local.knowAnyCoworkers,
+                    style: AppTextStyle.darkGreySize14,
                   ),
                 ),
                 UIHelper.verticalSpaceLarge,
@@ -83,15 +86,14 @@ class InviteViaEmailAdmin extends StatelessWidget {
                 SizedBox(
                   child: Column(
                     children: [
-                       ListTile(
+                      ListTile(
                         leading: const Icon(
                           Icons.link_sharp,
                         ),
                         title: Text(local.shareInviteLink),
                       ),
                       UIHelper.horizontalSpaceSmall,
-                       Text(
-                         local.changeExpiryDateText),
+                      Text(local.changeExpiryDateText),
                       const Divider(),
                       GestureDetector(
                           onTap: () {}, child: const Text("Deactivate link")),

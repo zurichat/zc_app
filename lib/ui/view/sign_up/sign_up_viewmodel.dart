@@ -1,13 +1,13 @@
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/package/base/server-request/api/zuri_api.dart';
-import 'package:hng/utilities/constants.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
-import '../../../services/local_storage_services.dart';
+import '../../../services/app_services/local_storage_services.dart';
 import '../../../utilities/enums.dart';
-import '../../../utilities/storage_keys.dart';
+import '../../../utilities/constants/storage_keys.dart';
 import 'sign_up_view.form.dart';
 
 class SignUpViewModel extends FormViewModel {
@@ -41,7 +41,7 @@ class SignUpViewModel extends FormViewModel {
   void navigateToTermsAndConditions() =>
       navigator.navigateTo(Routes.termsAndConditionsView);
 
-  createUser(context) async {
+  createUser() async {
     if (checkBoxValue == true) {
       loading(true);
 

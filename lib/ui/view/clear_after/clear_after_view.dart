@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import '../../../general_widgets/custom_text.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import '../../shared/shared.dart';
 import 'package:stacked/stacked.dart';
 import 'clear_after_viewmodel.dart';
@@ -12,6 +13,7 @@ class ClearAfterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     final width = MediaQuery.of(context).size.height;
     return ViewModelBuilder<ClearAfterViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
@@ -19,8 +21,8 @@ class ClearAfterView extends StatelessWidget {
           leading: Icons.close_rounded,
           leadingPress: () => model.exitPage(),
           orgTitle: Text(
-            ClearAfter,
-            style: AppTextStyles.heading7,
+            local!.clearAfter,
+            style: AppTextStyle.darkGreySize20Bold,
           ),
         ),
         body: Column(
@@ -30,7 +32,10 @@ class ClearAfterView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: model.clearAfterTimes.length,
                 itemBuilder: (context, index) => ListTile(
-                  title: CustomText(text: model.clearAfterTimes[index]),
+                  title: Text(
+                    model.clearAfterTimes[index],
+                    style: AppTextStyle.darkGreySize16,
+                  ),
                   leading: Radio(
                     activeColor: AppColors.zuriPrimaryColor,
                     value: index,

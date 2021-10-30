@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/nav_pages/plugin_page/widgets/custom_search_field.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
+
 import 'package:stacked/stacked.dart';
 
 import '../invite_via_email/invite_viewmodel.dart';
@@ -13,11 +14,13 @@ class ImportContacts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
+
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
         return Scaffold(
           appBar: ZuriAppBar(
+            isDarkMode: Theme.of(context).brightness == Brightness.dark,
             leading: Icons.close,
             leadingPress: () {
               model.navigateBack();
@@ -25,7 +28,9 @@ class ImportContacts extends StatelessWidget {
             whiteBackground: true,
             orgTitle: Text(
               local!.chooseContacts,
-              style: AppTextStyles.heading7,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
             ),
             actions: [
               Padding(
@@ -33,7 +38,7 @@ class ImportContacts extends StatelessWidget {
                 child: InkWell(
                     child: Text(
                       "Add",
-                      style: AppTextStyles.body1Green,
+                      style: AppTextStyle.greenSize16,
                     ),
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
@@ -48,11 +53,10 @@ class ImportContacts extends StatelessWidget {
             child: ListView(
               children: [
                 const SizedBox(
-                  height: 40.0,
-                  child: CustomSearchField(
-                    searchHint: 'Select or type an email address',
-                  ),
-                ),
+                    height: 40.0,
+                    child: TextField(
+                        decoration: InputDecoration(
+                            hintText: 'Select or type an email address'))),
                 const SizedBox(
                   height: 40.0,
                 ),

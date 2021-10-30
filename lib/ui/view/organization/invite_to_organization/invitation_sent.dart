@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hng/ui/shared/long_button.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/ui_helpers.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+
+import 'package:zurichat/ui/shared/dumb_widgets/long_button.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/utilities/constants/ui_helpers.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_email/invite_viewmodel.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
+
 import 'package:stacked/stacked.dart';
 
 class InvitationSent extends StatelessWidget {
@@ -14,11 +17,19 @@ class InvitationSent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
         return Scaffold(
           appBar: ZuriAppBar(
+            orgTitle: Text(
+              local!.invitationSent,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyText1!.color,
+              ),
+            ),
+            isDarkMode: _dark,
             leading: Icons.close,
             leadingPress: () {
               model.navigateBack();
@@ -40,8 +51,10 @@ class InvitationSent extends StatelessWidget {
                 ),
                 UIHelper.verticalSpaceLarge,
                 Text(
-                  local!.invitationSent,
-                  style: AppTextStyles.body1Bold.copyWith(fontSize: 20),
+                  local.invitationSent,
+                  style: _dark
+                      ? AppTextStyle.whiteSize18Bold
+                      : AppTextStyle.darkGreySize18Bold,
                 ),
                 UIHelper.verticalSpaceLarge,
                 Center(
@@ -54,7 +67,9 @@ class InvitationSent extends StatelessWidget {
                       const SizedBox(width: 16),
                       Text(
                         model.getInvitedMail() ?? '',
-                        style: AppTextStyles.body2Bold,
+                        style: _dark
+                            ? AppTextStyle.whiteSize16Bold
+                            : AppTextStyle.darkGreySize16Bold,
                       ),
                     ],
                   ),
@@ -62,9 +77,12 @@ class InvitationSent extends StatelessWidget {
                 UIHelper.verticalSpaceLarge,
                 Center(
                   child: Text(
-                      local.invitedAsAZuriChatMember,
-                      style: AppTextStyles.descriptionStyle
-                          .copyWith(color: AppColors.zuriDarkGrey)),
+                    local.invitedAsAZuriChatMember,
+                    style: _dark
+                        ? AppTextStyle.whiteSize16
+                        : AppTextStyle.darkGreySize16,
+                  ),
+
                   // textAlign: TextAlign.center,
                 ),
                 const Spacer(),

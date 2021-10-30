@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 
 import '../../../shared/shared.dart';
 
@@ -33,7 +34,7 @@ class CustomSearchBar extends StatelessWidget {
                 title: TextField(
                   decoration: InputDecoration(
                     hintText: Designers,
-                    hintStyle: AppTextStyles.unreadText,
+                    hintStyle: AppTextStyle.darkGreySize12,
                   ),
                 ),
                 trailing: voiceSearch),

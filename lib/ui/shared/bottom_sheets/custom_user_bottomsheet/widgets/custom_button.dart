@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/utilities/enums.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
+
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/utilities/enums.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(
@@ -23,12 +24,15 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return _customButtonType == CustomUserProfileButtonType.normal
         ? MaterialButton(
+            minWidth: (MediaQuery.of(context).size.width * 0.8),
             onPressed: onPressed,
             padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.02),
             shape: Border.all(color: AppColors.greyishColor),
             child: Text(
               " $text",
-              style: AppTextStyles.body3Medium,
+              style: Theme.of(context).brightness == Brightness.dark
+                  ? AppTextStyle.whiteSize14
+                  : AppTextStyle.lightGreySize14,
             ))
         : MaterialButton(
             onPressed: onPressed,

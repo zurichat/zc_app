@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hng/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../shared/colors.dart';
-import '../../shared/styles.dart';
+import '../../../utilities/constants/colors.dart';
+
 import 'user_search_viewmodel.dart';
 
 class UserSearch extends StatelessWidget {
@@ -64,8 +65,10 @@ class UserSearch extends StatelessWidget {
                     height: 50,
                     alignment: Alignment.center,
                     margin: const EdgeInsets.symmetric(horizontal: 30),
-                    child:
-                        Text(StartNewSearch, style: AppTextStyles.buttonText),
+                    child: Text(
+                      StartNewSearch,
+                      style: AppTextStyle.whiteSize16,
+                    ),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),

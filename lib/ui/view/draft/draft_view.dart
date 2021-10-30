@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/zuri_appbar.dart';
-import 'package:hng/ui/view/draft/drafts.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
+import 'package:zurichat/ui/view/draft/drafts.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'draft_viewmodel.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -13,6 +13,7 @@ class DraftView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalization.of(context);
     var controller = SlidableController();
     return ViewModelBuilder<DraftViewModel>.reactive(
       onModelReady: (model) {
@@ -28,11 +29,9 @@ class DraftView extends StatelessWidget {
             leadingPress: () {
               model.goBack();
             },
-            orgTitle: const Text(
-                "Draft",
-              style: TextStyle(
-                  color:AppColors.blackColor
-              ),
+            orgTitle: Text(
+              local!.draft,
+              style: const TextStyle(color: AppColors.blackColor),
             ),
           ),
           body: model.widgetBuilderList.isNotEmpty
@@ -62,7 +61,7 @@ class DraftView extends StatelessWidget {
                       actionExtentRatio: 0.35.sp,
                       secondaryActions: [
                         IconSlideAction(
-                          caption: 'Delete',
+                          caption: local.delete,
                           color: Colors.red,
                           icon: Icons.delete,
                           onTap: () {
@@ -104,23 +103,20 @@ class DraftView extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.all(8.r),
                           child: Center(
-                            child:
-                                Text("Draft messages to send when you're ready",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 20.sp,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.blackColor,
-                                    )),
+                            child: Text(local.draftMessageIntro,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.blackColor,
+                                )),
                           ),
                         ),
                       ),
                       SizedBox(height: 10.h),
                       Center(
                         child: Center(
-                          child: Text(
-                              "Start typing a message anywhere, then find it here. Re-read,"
-                              " revise, and send whenever you'd like.",
+                          child: Text(local.draftIntroText,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 15.sp,
@@ -133,7 +129,7 @@ class DraftView extends StatelessWidget {
                 ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
-            tooltip: AddDraft,
+            tooltip: local.draft,
             child: const Icon(
               Icons.open_in_new_outlined,
             ),

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/constants/app_strings.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/shared/zuri_loader.dart';
-import 'package:hng/utilities/internalization/localization/app_localization.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -21,6 +22,8 @@ class ForgotPasswordEmailView extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+
     return ViewModelBuilder<ForgotPasswordEmailViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => ForgotPasswordEmailViewModel(),
@@ -37,20 +40,21 @@ class ForgotPasswordEmailView extends StatelessWidget
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const SizedBox(
-                    height: 6.0,
+                  UIHelper.verticalSpaceLarge,
+                  Center(
+                    child: Image.asset(
+                      ZuriLogo,
+                      height: 50,
+                      width: 50,
+                    ),
                   ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Image.asset(ZuriLogo),
-                  ),
-                  const SizedBox(
-                    height: 24.0,
-                  ),
+                  UIHelper.customVerticalSpace(24),
                   Center(
                     child: Text(
                       local!.forgotPassword,
-                      style: AppTextStyles.body1Bold,
+                      style: _dark
+                          ? AppTextStyle.whiteSize20Bold
+                          : AppTextStyle.darkGreySize20Bold,
                     ),
                   ),
                   const SizedBox(
@@ -69,7 +73,9 @@ class ForgotPasswordEmailView extends StatelessWidget
                     margin: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       local.emailAddress,
-                      style: AppTextStyles.body1Bold,
+                      style: _dark
+                          ? AppTextStyle.whiteSize16Bold
+                          : AppTextStyle.darkGreySize16Bold,
                     ),
                   ),
                   Column(
@@ -111,9 +117,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                               UIHelper.verticalSpaceSmall,
                               Text(
                                 local.invalidEmail,
-                                style: AppTextStyles.body2Medium.copyWith(
-                                  color: AppColors.redColor,
-                                ),
+                                style: AppTextStyle.errorSize14,
                               ),
                             ],
                           ),
@@ -135,7 +139,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                         },
                         child: Text(
                           local.continueButton,
-                          style: AppTextStyles.buttonText,
+                          style: AppTextStyle.whiteSize16,
                         ),
                         style: ElevatedButton.styleFrom(
                           padding:
@@ -145,7 +149,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  UIHelper.customVerticalSpace(24),
                   Center(
                     child: GestureDetector(
                       onTap: () {
@@ -160,9 +164,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                             ),
                             TextSpan(
                               text: local.signIn,
-                              style: AppTextStyles.body2Bold.copyWith(
-                                color: AppColors.zuriPrimaryColor,
-                              ),
+                              style: AppTextStyle.greenSize14,
                             ),
                           ],
                         ),

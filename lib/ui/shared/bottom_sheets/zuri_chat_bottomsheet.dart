@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hng/models/user_post.dart';
-import 'package:hng/app/app.locator.dart';
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/styles.dart';
-import 'package:hng/utilities/enums.dart';
-import 'package:stacked_services/stacked_services.dart';
-
-import 'thread_options_bottomsheet/widget/recent_emojis.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/utilities/internationalization/app_localization.dart';
 
 Future<dynamic> zuriChatBottomSheet({
   required BuildContext context,
@@ -17,111 +15,200 @@ Future<dynamic> zuriChatBottomSheet({
   Function()? followThread,
   Function()? shareMessage,
   Function()? copyLinkToMessage,
+  Function()? deleteMessage,
   Function()? copyText,
   Function()? changePinnedState,
   Function()? turnQuestionToPoll,
   UserPost? post,
 }) {
-  final _dialogService = locator<DialogService>();
+  final local = AppLocalization.of(context);
   return showModalBottomSheet(
     context: context,
     isScrollControlled: true,
     enableDrag: true,
     isDismissible: true,
     builder: (context) {
+      final bool _dark = Theme.of(context).brightness == Brightness.dark;
       return Container(
         width: double.infinity,
-        height: MediaQuery.of(context).size.height * .75,
+        height: MediaQuery.of(context).size.height * 0.5,
         padding: const EdgeInsets.all(15),
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(5), topRight: Radius.circular(5))),
         child: ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                const Expanded(child: RecentEmojis('😘')),
-                const Expanded(child: RecentEmojis('😳')),
-                const Expanded(child: RecentEmojis('😭')),
-                const Expanded(child: RecentEmojis('🤣')),
-                const Expanded(child: RecentEmojis('🤔')),
-                const Expanded(child: RecentEmojis('😏')),
-                Expanded(
-                  child: Container(
-                    height: 50,
-                    width: 50,
-                    child: const Align(
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.add_reaction_outlined,
-                          size: 25,
-                        )),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.greyBackgroundColor,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            const Divider(),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //   children: [
+            //TODO
+            // const Expanded(child: RecentEmojis('😘')),
+            // const Expanded(child: RecentEmojis('😳')),
+            // const Expanded(child: RecentEmojis('😭')),
+            // const Expanded(child: RecentEmojis('🤣')),
+            // const Expanded(child: RecentEmojis('🤔')),
+            // const Expanded(child: RecentEmojis('😏')),
+            //     Expanded(
+            //       child: Container(
+            //         height: 50,
+            //         width: 50,
+            //         child: const Align(
+            //             alignment: Alignment.center,
+            //             child: Icon(
+            //               Icons.add_reaction_outlined,
+            //               size: 25,
+            //             )),
+            //         decoration: const BoxDecoration(
+            //           shape: BoxShape.circle,
+            //           color: AppColors.greyBackgroundColor,
+            //         ),
+            //       ),
+            //     )
+            //   ],
+            // ),
+            // const Divider(),
+            // ListTile(
+            //   title: Text(
+            //     MarkUnread,
+            //     style: _dark
+            // ? AppTextStyle.whiteSize16
+            // : AppTextStyle.darkGreySize16,
+            //   ),
+            //   leading: SvgPicture.asset(
+            //     Mark_Unread,
+            //     color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+            //     width: 18,
+            //     height: 18,
+            //   ),
+            //   onTap: markUnread,
+            // ),
+            // ListTile(
+            //   title: Text(
+            //     RemindMe,
+            //     style: _dark
+            //         ? AppTextStyle.whiteSize16
+            //         : AppTextStyle.darkGreySize16,
+            //   ),
+            //   leading: SvgPicture.asset(
+            //     Remind_Me,
+            //     color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+            //     width: 18,
+            //     height: 18,
+            //   ),
+            //   onTap: () async {
+            //     await _dialogService.showCustomDialog();
+            //   },
+            // ),
             ListTile(
-              title: Text("Mark Unread", style: AppTextStyles.heading9),
-              leading: const Icon(Icons.line_style_outlined),
-              onTap: markUnread,
-            ),
-            ListTile(
-              title: Text("Remind Me", style: AppTextStyles.heading9),
-              leading: const Icon(Icons.timer_10_outlined),
-              onTap: () async {
-                await _dialogService.showCustomDialog(
-                    variant: DialogType.remindMe);
-              },
-            ),
-            ListTile(
-              title: Text("Add to Saved Items", style: AppTextStyles.heading9),
-              leading: const Icon(Icons.save_outlined),
+              title: Text(
+                AddToSavedItems,
+                style: _dark
+                    ? AppTextStyle.whiteSize16
+                    : AppTextStyle.darkGreySize16,
+              ),
+              leading: SvgPicture.asset(
+                Saved_Items,
+                color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+                width: 18,
+                height: 18,
+              ),
               onTap: addToSavedItems,
             ),
             const Divider(),
+            // ListTile(
+            //     title: Text(
+            //       ReplyInThreads,
+            //       style: _dark
+            // ? AppTextStyle.whiteSize16
+            // : AppTextStyle.darkGreySize16,
+            //     ),
+            //     leading: SvgPicture.asset(
+            //       Reply_In_Thread,
+            //       color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+            //       width: 18,
+            //       height: 18,
+            //     ),
+            //     onTap: replyInThread),
+            // ListTile(
+            //     title: Text(
+            //       FollowThreadZuriChatBottomSheet,
+            //       style: _dark
+            // ? AppTextStyle.whiteSize16
+            // : AppTextStyle.darkGreySize16,
+            //     ),
+            //     leading: SvgPicture.asset(
+            //       Follow_Thread,
+            //       color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+            //       width: 18,
+            //       height: 18,
+            //     ),
+            //     onTap: followThread),
+            // const Divider(),
+            // ListTile(
+            //     title: Text(
+            //       ShareMessage,
+            //       style: _dark
+            //           ? AppTextStyle.whiteSize16
+            //           : AppTextStyle.darkGreySize16,
+            //     ),
+            //     leading: SvgPicture.asset(
+            //       Share_message,
+            //       color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+            //       width: 18,
+            //       height: 18,
+            //     ),
+            //     onTap: shareMessage),
             ListTile(
-                title: Text("Reply in Thread", style: AppTextStyles.heading9),
-                leading: const Icon(Icons.chat_rounded),
-                onTap: replyInThread),
+                title: Text('Delete Message',
+                    style: _dark
+                        ? AppTextStyle.whiteSize16
+                        : AppTextStyle.darkGreySize16),
+                leading: const Icon(Icons.delete),
+                onTap: deleteMessage),
+            // ListTile(
+            //     title: Text(
+            //       CopyLinkToMessage,
+            //       style: _dark
+            // ? AppTextStyle.whiteSize16
+            // : AppTextStyle.darkGreySize16,
+            //     ),
+            //     leading: SvgPicture.asset(
+            //       Copy_link_To_Message,
+            //       color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+            //       width: 18,
+            //       height: 18,
+            //     ),
+            //     onTap: copyLinkToMessage),
             ListTile(
-                title: Text("Follow Thread", style: AppTextStyles.heading9),
-                leading: const Icon(Icons.mark_chat_unread),
-                onTap: followThread),
-            const Divider(),
-            ListTile(
-                title: Text("Share Message", style: AppTextStyles.heading9),
-                leading: const Icon(Icons.arrow_right_alt_rounded),
-                onTap: shareMessage),
-            ListTile(
-                title:
-                    Text("Copy Link to Message", style: AppTextStyles.heading9),
-                leading: const Icon(Icons.link),
-                onTap: copyLinkToMessage),
-            ListTile(
-                title: Text("Copy Text", style: AppTextStyles.heading9),
-                leading: const Icon(Icons.copy),
+                title: Text(
+                  CopyTextZuriChatBottomSheet,
+                  style: _dark
+                      ? AppTextStyle.whiteSize16
+                      : AppTextStyle.darkGreySize16,
+                ),
+                leading: SvgPicture.asset(
+                  Copy_Text,
+                  color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+                  width: 18,
+                  height: 18,
+                ),
                 onTap: copyText),
             const Divider(),
             ListTile(
                 title: Text(
-                    "${post?.pinned == true ? "Unpin from" : "Pin to"} Conversation",
-                    style: AppTextStyles.heading9),
-                leading: const Icon(Icons.push_pin),
+                  "${post?.pinned == true ? local!.unPinFrom : local!.pinTo} ${local.conversation}",
+                  style: _dark
+                      ? AppTextStyle.whiteSize16
+                      : AppTextStyle.darkGreySize16,
+                ),
+                leading: SvgPicture.asset(
+                  pinned_message,
+                  color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+                  width: 18,
+                  height: 18,
+                ),
                 onTap: changePinnedState),
-            ListTile(
-              title: Text("Turn question into poll",
-                  style: AppTextStyles.heading9),
-              leading: const Icon(Icons.bar_chart),
-              onTap: turnQuestionToPoll,
-              trailing: Text("Simple poll", style: AppTextStyles.subtitle),
-            ),
-            const Divider(),
           ],
         ),
       );

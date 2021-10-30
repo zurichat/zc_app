@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/widgets.dart';
 
-import 'package:hng/ui/shared/colors.dart';
-import 'package:hng/ui/shared/shared.dart';
-import 'package:hng/ui/view/channel/channel_info/widgets/textstyles.dart';
-import 'package:hng/ui/view/channel/channel_view/channel_page_viewmodel.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/view/channel/channel_info/widgets/textstyles.dart';
+import 'package:zurichat/ui/view/channel/channel_view/channel_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class CheckUser extends ViewModelWidget<ChannelPageViewModel> {
@@ -26,11 +27,12 @@ class CheckUser extends ViewModelWidget<ChannelPageViewModel> {
             RichText(
               text: TextSpan(
                 text: 'you are viewing ',
-                style: AppTextStyles.normal,
+                style: AppTextStyle.darkGreySize16,
                 children: <TextSpan>[
-                  TextSpan(text: '#', style: AppTextStyles.body1Bold),
+                  TextSpan(text: '#', style: AppTextStyle.darkGreySize16Bold),
                   TextSpan(
-                      text: '$channelName', style: AppTextStyles.body1Bold),
+                      text: '$channelName',
+                      style: AppTextStyle.darkGreySize16Bold),
                 ],
               ),
             ),
@@ -41,7 +43,7 @@ class CheckUser extends ViewModelWidget<ChannelPageViewModel> {
               child: TextButton(
                 onPressed: () {
                   viewModel.joinChannel('$channelId');
-              viewModel.updateCheckUser();
+                  viewModel.updateCheckUser();
                 },
                 child: Text(
                   'Join Channel',
