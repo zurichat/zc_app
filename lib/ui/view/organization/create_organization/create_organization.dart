@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import 'package:zurichat/ui/shared/zuri_loader.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 import 'create_organization_viewmodel.dart';
 import 'company.dart';
@@ -18,7 +18,7 @@ class CreateOrganization extends HookWidget {
   Widget build(BuildContext context) {
     final pageController = usePageController();
     final bool _dark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return ViewModelBuilder<CreateOrganizationViewModel>.reactive(
       viewModelBuilder: () => CreateOrganizationViewModel(),
       onModelReady: (model) => model.init(email),

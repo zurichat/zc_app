@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 //import 'package:zurichat/utilities/internalization/localization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import '../edit_profile_viewmodel.dart';
 
-class Body extends ViewModelWidget<EditProfileViewModel> {
+class EditProfileBody extends ViewModelWidget<EditProfileViewModel> {
   final Size _size;
-  const Body({
+  const EditProfileBody({
     Key? key,
     required Size size,
   })  : _size = size,

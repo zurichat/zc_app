@@ -1,6 +1,6 @@
-import 'package:zurichat/services/local_storage_services.dart';
-import 'package:zurichat/services/zuri_theme_service.dart';
-import 'package:zurichat/utilities/storage_keys.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/services/app_services/zuri_theme_service.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -8,7 +8,6 @@ import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';
 import '../../../app/app.router.dart';
 import '../../../utilities/enums.dart';
-
 
 class PreferenceViewModel extends BaseViewModel {
   final log = getLogger('PreferenceViewModel');

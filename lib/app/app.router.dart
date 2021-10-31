@@ -16,11 +16,8 @@ import '../models/user_model.dart';
 import '../models/user_post.dart';
 import '../ui/nav_pages/dm_page/dm_search_find_page.dart';
 import '../ui/nav_pages/home_page/home_page.dart';
-import '../ui/nav_pages/plugin_page/add_plugin_view.dart';
-import '../ui/nav_pages/plugin_page/edit_plugin_view.dart';
-import '../ui/nav_pages/plugin_page/plugin_intro_page.dart';
-import '../ui/nav_pages/plugin_page/plugin_page_view.dart';
-import '../ui/nav_pages/plugin_page/plugins_view.dart';
+import '../ui/nav_pages/nav_bar/nav_bar_view.dart';
+import '../ui/nav_pages/plugin_page/plugin_view.dart';
 import '../ui/view/add_people/add_people_view.dart';
 import '../ui/view/advanced/advanced_view.dart';
 import '../ui/view/channel/add_people/channel_add_people_view.dart';
@@ -34,7 +31,6 @@ import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
 import '../ui/view/channel/share_message/share_message_view.dart';
 import '../ui/view/clear_after/clear_after_view.dart';
 import '../ui/view/direct_message/direct_message.dart';
-import '../ui/view/dm_jump_to_view/dm_jump_to_view.dart';
 import '../ui/view/dm_search/dm_search_view.dart';
 import '../ui/view/dm_user/dm_user_view.dart';
 import '../ui/view/do_not_disturb/do_not_disturb_view.dart';
@@ -44,9 +40,9 @@ import '../ui/view/file_search/file_search_view.dart';
 import '../ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
 import '../ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
 import '../ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
+import '../ui/view/jump_to_view/jump_to_view.dart';
 import '../ui/view/language_and_region/language_and_region_view.dart';
 import '../ui/view/login/login_view.dart';
-import '../ui/view/nav_bar/nav_bar_view.dart';
 import '../ui/view/notifications/notifications_view.dart';
 import '../ui/view/onboarding/onboading_view.dart';
 import '../ui/view/organization/add_organization/add_organization_view.dart';
@@ -64,6 +60,7 @@ import '../ui/view/organization/organization_url/organization_url_view.dart';
 import '../ui/view/organization/organization_view/organization_view.dart';
 import '../ui/view/organization/select_email/select_email_view.dart';
 import '../ui/view/otp/otp_view.dart';
+import '../ui/view/plugins/add_plugin_view.dart';
 import '../ui/view/popup_notification/popup_notification.dart';
 import '../ui/view/preference/preference_view.dart';
 import '../ui/view/profile_page/profile_page_view.dart';
@@ -96,14 +93,12 @@ class Routes {
   static const String homePage = '/home-page';
   static const String addPeopleView = '/add-people-view';
   static const String dmSearch = '/dm-search';
-  static const String dmJumpToView = '/dm-jump-to-view';
+  static const String jumpToView = '/jump-to-view';
   static const String dmUserView = '/dm-user-view';
   static const String dmScreen = '/dm-screen';
   static const String splashview = '/';
-  static const String pluginView = '/plugin-view';
-  static const String addPluginView = '/add-plugin-view';
+  static const String pluginPage = '/plugin-page';
   static const String useDifferentEmailView = '/use-different-email-view';
-  static const String editPluginView = '/edit-plugin-view';
   static const String setStatusView = '/set-status-view';
   static const String profilePageView = '/profile-page-view';
   static const String preferenceView = '/preference-view';
@@ -130,11 +125,9 @@ class Routes {
   static const String organizationUrlView = '/organization-url-view';
   static const String channelPageView = '/channel-page-view';
   static const String channelInfoView = '/channel-info-view';
-  static const String pluginPage = '/plugin-page';
   static const String directMessage = '/direct-message';
   static const String termsAndConditionsView = '/terms-and-conditions-view';
   static const String webViewPage = '/web-view-page';
-  static const String pluginPageIntro = '/plugin-page-intro';
   static const String inviteViaEmail = '/invite-via-email';
   static const String inviteViaEmailAdmin = '/invite-via-email-admin';
   static const String importContacts = '/import-contacts';
@@ -144,6 +137,7 @@ class Routes {
   static const String organizationSettingsView = '/organization-settings-view';
   static const String organizationNameUrl = '/organization-name-url';
   static const String organizationLogo = '/organization-logo';
+  static const String addPluginView = '/add-plugin-view';
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -161,14 +155,12 @@ class Routes {
     homePage,
     addPeopleView,
     dmSearch,
-    dmJumpToView,
+    jumpToView,
     dmUserView,
     dmScreen,
     splashview,
-    pluginView,
-    addPluginView,
+    pluginPage,
     useDifferentEmailView,
-    editPluginView,
     setStatusView,
     profilePageView,
     preferenceView,
@@ -194,11 +186,9 @@ class Routes {
     organizationUrlView,
     channelPageView,
     channelInfoView,
-    pluginPage,
     directMessage,
     termsAndConditionsView,
     webViewPage,
-    pluginPageIntro,
     inviteViaEmail,
     inviteViaEmailAdmin,
     importContacts,
@@ -208,6 +198,7 @@ class Routes {
     organizationSettingsView,
     organizationNameUrl,
     organizationLogo,
+    addPluginView,
   };
 }
 
@@ -231,14 +222,12 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.homePage, page: HomePage),
     RouteDef(Routes.addPeopleView, page: AddPeopleView),
     RouteDef(Routes.dmSearch, page: DmSearch),
-    RouteDef(Routes.dmJumpToView, page: DmJumpToView),
+    RouteDef(Routes.jumpToView, page: JumpToView),
     RouteDef(Routes.dmUserView, page: DmUserView),
     RouteDef(Routes.dmScreen, page: DmScreen),
     RouteDef(Routes.splashview, page: Splashview),
-    RouteDef(Routes.pluginView, page: PluginView),
-    RouteDef(Routes.addPluginView, page: AddPluginView),
+    RouteDef(Routes.pluginPage, page: PluginPage),
     RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
-    RouteDef(Routes.editPluginView, page: EditPluginView),
     RouteDef(Routes.setStatusView, page: SetStatusView),
     RouteDef(Routes.profilePageView, page: ProfilePageView),
     RouteDef(Routes.preferenceView, page: PreferenceView),
@@ -265,11 +254,9 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.organizationUrlView, page: OrganizationUrlView),
     RouteDef(Routes.channelPageView, page: ChannelPageView),
     RouteDef(Routes.channelInfoView, page: ChannelInfoView),
-    RouteDef(Routes.pluginPage, page: PluginPage),
     RouteDef(Routes.directMessage, page: DirectMessage),
     RouteDef(Routes.termsAndConditionsView, page: TermsAndConditionsView),
     RouteDef(Routes.webViewPage, page: WebViewPage),
-    RouteDef(Routes.pluginPageIntro, page: PluginPageIntro),
     RouteDef(Routes.inviteViaEmail, page: InviteViaEmail),
     RouteDef(Routes.inviteViaEmailAdmin, page: InviteViaEmailAdmin),
     RouteDef(Routes.importContacts, page: ImportContacts),
@@ -279,6 +266,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.organizationSettingsView, page: OrganizationSettingsView),
     RouteDef(Routes.organizationNameUrl, page: OrganizationNameUrl),
     RouteDef(Routes.organizationLogo, page: OrganizationLogo),
+    RouteDef(Routes.addPluginView, page: AddPluginView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -420,12 +408,12 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    DmJumpToView: (data) {
-      var args = data.getArgs<DmJumpToViewArguments>(
-        orElse: () => DmJumpToViewArguments(),
+    JumpToView: (data) {
+      var args = data.getArgs<JumpToViewArguments>(
+        orElse: () => JumpToViewArguments(),
       );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => DmJumpToView(key: args.key),
+        builder: (context) => JumpToView(key: args.key),
         settings: data,
       );
     },
@@ -453,18 +441,9 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    PluginView: (data) {
+    PluginPage: (data) {
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => const PluginView(),
-        settings: data,
-      );
-    },
-    AddPluginView: (data) {
-      var args = data.getArgs<AddPluginViewArguments>(
-        orElse: () => AddPluginViewArguments(),
-      );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => AddPluginView(key: args.key),
+        builder: (context) => const PluginPage(),
         settings: data,
       );
     },
@@ -475,12 +454,6 @@ class StackedRouter extends RouterBase {
           key: args.key,
           method: args.method,
         ),
-        settings: data,
-      );
-    },
-    EditPluginView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const EditPluginView(),
         settings: data,
       );
     },
@@ -679,12 +652,6 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    PluginPage: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const PluginPage(),
-        settings: data,
-      );
-    },
     DirectMessage: (data) {
       var args = data.getArgs<DirectMessageArguments>(
         orElse: () => DirectMessageArguments(),
@@ -711,12 +678,6 @@ class StackedRouter extends RouterBase {
           url: args.url,
           key: args.key,
         ),
-        settings: data,
-      );
-    },
-    PluginPageIntro: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const PluginPageIntro(),
         settings: data,
       );
     },
@@ -790,6 +751,12 @@ class StackedRouter extends RouterBase {
           key: args.key,
           org: args.org,
         ),
+        settings: data,
+      );
+    },
+    AddPluginView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const AddPluginView(),
         settings: data,
       );
     },
@@ -871,10 +838,10 @@ class DmSearchArguments {
   DmSearchArguments({this.key});
 }
 
-/// DmJumpToView arguments holder class
-class DmJumpToViewArguments {
+/// JumpToView arguments holder class
+class JumpToViewArguments {
   final Key? key;
-  DmJumpToViewArguments({this.key});
+  JumpToViewArguments({this.key});
 }
 
 /// DmUserView arguments holder class
@@ -887,12 +854,6 @@ class DmUserViewArguments {
 class DmScreenArguments {
   final Key? key;
   DmScreenArguments({this.key});
-}
-
-/// AddPluginView arguments holder class
-class AddPluginViewArguments {
-  final Key? key;
-  AddPluginViewArguments({this.key});
 }
 
 /// UseDifferentEmailView arguments holder class

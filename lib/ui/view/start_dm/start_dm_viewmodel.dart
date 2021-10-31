@@ -1,12 +1,12 @@
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart';
-import 'package:zurichat/utilities/constants.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../models/start_dm_models.dart';
-import '../../../services/local_storage_services.dart';
-import '../../../utilities/storage_keys.dart';
+import '../../../services/app_services/local_storage_services.dart';
+import '../../../utilities/constants/storage_keys.dart';
 
 class StartDmViewModel extends FormViewModel {
   final navigationService = locator<NavigationService>();

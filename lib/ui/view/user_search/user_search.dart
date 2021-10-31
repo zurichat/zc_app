@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../utilities/constants.dart';
-import '../../shared/colors.dart';
+import '../../../utilities/constants/app_constants.dart';
+import '../../../utilities/constants/colors.dart';
 import 'user_search_viewmodel.dart';
 import 'widget/custom_dm_list_tile.dart';
 

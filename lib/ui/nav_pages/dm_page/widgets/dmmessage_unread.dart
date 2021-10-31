@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/constants/app_strings.dart';
-import 'package:zurichat/general_widgets/unread_count.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/unread_count.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
 
 class DMMessageUnread extends StatelessWidget {
   const DMMessageUnread({
@@ -47,7 +47,7 @@ class DMMessageUnread extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               Text(
+              Text(
                 '1m',
                 style: AppTextStyle.lightGreySize12,
               ),

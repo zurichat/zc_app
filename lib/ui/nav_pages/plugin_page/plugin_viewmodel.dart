@@ -7,11 +7,12 @@ import 'package:stacked_services/stacked_services.dart';
 
 class PluginViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
+  final snackbarService = locator<SnackbarService>();
   //TODO
   // final local = AppLocalization.of(context);
   bool _editMode = false;
   bool _checked = false;
- 
+
   List<PluginModel> plugins = [
     PluginModel(
         icon: icons[0], name: "Todo Plugin", url: "https://www.zuri.chat/todo"),
@@ -50,13 +51,10 @@ class PluginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  navigateToAdd() => navigationService.navigateTo(Routes.addPluginView);
-
-  navigateToEdit() => navigationService.navigateTo(Routes.editPluginView);
-
-  navigateToPlugins() => navigationService.navigateTo(Routes.pluginPage);
+  navigateToPlugins() =>
+      snackbarService.showSnackbar(message: "No new plugins available");
 
   navigateToHome() => navigationService.navigateTo(Routes.navBarView);
 
-  navigateBack() => navigationService.back(); 
+  navigateBack() => navigationService.back();
 }

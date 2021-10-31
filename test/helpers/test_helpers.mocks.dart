@@ -22,21 +22,24 @@ import 'package:zurichat/models/organization_model.dart' as _i6;
 import 'package:zurichat/models/pinned_message_model.dart' as _i18;
 import 'package:zurichat/models/user_model.dart' as _i9;
 import 'package:zurichat/models/user_search_model.dart' as _i25;
-import 'package:zurichat/package/base/jump_to_request/jump_to_api.dart' as _i28;
-import 'package:zurichat/package/base/server-request/api/zuri_api.dart' as _i5;
-import 'package:zurichat/package/base/server-request/channels/channels_api_service.dart'
-    as _i17;
-import 'package:zurichat/package/base/server-request/dms/dms_api_service.dart'
-    as _i16;
-import 'package:zurichat/package/base/server-request/organization_request/organization_api_service.dart'
+import 'package:zurichat/services/app_services/connectivity_service.dart'
+    as _i26;
+import 'package:zurichat/services/app_services/local_storage_services.dart'
+    as _i10;
+import 'package:zurichat/services/app_services/media_service.dart' as _i30;
+import 'package:zurichat/services/core_services/organization_api_service.dart'
     as _i31;
-import 'package:zurichat/services/centrifuge_service.dart' as _i21;
-import 'package:zurichat/services/connectivity_service.dart' as _i26;
-import 'package:zurichat/services/local_storage_services.dart' as _i10;
-import 'package:zurichat/services/media_service.dart' as _i30;
-import 'package:zurichat/services/user_service.dart' as _i8;
+import 'package:zurichat/services/in_review/jump_to_api.dart' as _i28;
+import 'package:zurichat/services/in_review/user_service.dart' as _i8;
+import 'package:zurichat/services/messaging_services/centrifuge_rtc_service.dart'
+    as _i21;
+import 'package:zurichat/services/messaging_services/channels_api_service.dart'
+    as _i17;
+import 'package:zurichat/services/messaging_services/dms_api_service.dart'
+    as _i16;
+import 'package:zurichat/utilities/api_handlers/failures.dart' as _i4;
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart' as _i5;
 import 'package:zurichat/utilities/enums.dart' as _i27;
-import 'package:zurichat/utilities/failures.dart' as _i4;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -760,6 +763,13 @@ class MockChannelsApiService extends _i1.Mock
   dynamic getChanelCreator(String? channelId) =>
       super.noSuchMethod(Invocation.method(#getChanelCreator, [channelId]));
   @override
+  _i2.Future<Map<dynamic, dynamic>?> addChannelMember(
+          String? channelId, dynamic memberId) =>
+      (super.noSuchMethod(
+              Invocation.method(#addChannelMember, [channelId, memberId]),
+              returnValue: Future<Map<dynamic, dynamic>?>.value())
+          as _i2.Future<Map<dynamic, dynamic>?>);
+  @override
   _i2.Future<List<dynamic>> getChannelMessages(String? channelId) =>
       (super.noSuchMethod(Invocation.method(#getChannelMessages, [channelId]),
               returnValue: Future<List<dynamic>>.value(<dynamic>[]))
@@ -808,6 +818,13 @@ class MockChannelsApiService extends _i1.Mock
             #id: id
           }),
           returnValue: Future<bool>.value(false)) as _i2.Future<bool>);
+  @override
+  _i2.Future<dynamic> deleteChannelMessage(String? orgId, String? channelId,
+          String? messageId, String? userId) =>
+      (super.noSuchMethod(
+          Invocation.method(
+              #deleteChannelMessage, [orgId, channelId, messageId, userId]),
+          returnValue: Future<dynamic>.value()) as _i2.Future<dynamic>);
   @override
   _i2.Future<bool> deleteChannel(String? orgId, String? channelId) =>
       (super.noSuchMethod(Invocation.method(#deleteChannel, [orgId, channelId]),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 
 import 'textfield_style.dart';
 

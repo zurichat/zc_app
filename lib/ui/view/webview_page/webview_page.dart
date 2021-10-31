@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/ui/shared/colors.dart';
-import 'package:zurichat/ui/shared/text_styles.dart';
-import 'package:zurichat/ui/shared/zuri_appbar.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:stacked/stacked.dart';
 import 'web_view_model.dart';
@@ -12,11 +12,13 @@ class WebViewPage extends StatelessWidget {
   final String name, url;
   @override
   Widget build(BuildContext context) {
+    final bool _dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<WebViewModel>.reactive(
         viewModelBuilder: () => WebViewModel(),
         disposeViewModel: true,
         builder: (context, model, child) {
           return Scaffold(
+           
             appBar: ZuriAppBar(
               leading: Icons.arrow_back_ios,
               leadingPress: () => model.goBack(),
@@ -27,7 +29,7 @@ class WebViewPage extends StatelessWidget {
                 ),
               ),
               bottomNavBarScreen: true,
-              isDarkMode: Theme.of(context).brightness == Brightness.dark,
+              isDarkMode: _dark,
               whiteBackground: true,
               actions: [
                 model.isLoading
@@ -44,21 +46,7 @@ class WebViewPage extends StatelessWidget {
               ],
             ),
             body:
-                // model.isLoading
-                //     ? Center(
-                //         child: Column(
-                //           mainAxisAlignment: MainAxisAlignment.center,
-                //           children: [
-                //             const ZuriLoader(),
-                //             const SizedBox(height: 15),
-                //             Text(
-                //               "Loading Plugin... ${model.progressValue}%",
-                //               style: AppTextStyle.darkGreySize16,
-                //             )
-                //           ],
-                //         ),
-                //       )
-                //     :
+             
                 WebView(
               initialUrl: url,
               onPageStarted: (url) {
