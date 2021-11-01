@@ -43,7 +43,7 @@ class DmPage extends StatelessWidget {
           // ),
           body: model.isBusy
               ? const ZuriLoader()
-              : !model.data!
+              : model.data!
                   ? Center(
                       child: Text(local.temporarilyUnavailable,
                           style: _dark

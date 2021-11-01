@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:zurichat/models/message.dart';
+import 'package:zurichat/models/dm_model.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/ui/view/dm_user/widgets/custom_start_message.dart';
@@ -22,7 +22,8 @@ import 'dm_user_view.form.dart';
   ],
 )
 class DmUserView extends StatelessWidget with $DmUserView {
-  DmUserView({Key? key}) : super(key: key);
+  DmUserView({Key? key, required this.friendID}) : super(key: key);
+  final String friendID;
 
   final _scrollController = ScrollController();
 
@@ -33,6 +34,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
     dynamic receiverId = 'receiver';
     return ViewModelBuilder<DmUserViewModel>.reactive(
       onModelReady: (model) {
+        model.initialiseRoom(friendID);
         model.getDraft(receiverId);
         if (model.storedDraft.isNotEmpty) {
           messageController.text = model.storedDraft;
@@ -61,11 +63,11 @@ class DmUserView extends StatelessWidget with $DmUserView {
           body: Stack(
             children: [
               ExpandableTextFieldScreen(
-                channelID: '',
+                channelID: 'DM',
                 hintText: '${local!.messageButton} ${model.receiver.username}',
                 textController: messageController,
                 sendMessage: (message, media) {
-                  model.sendMessage();
+                  model.sendMessage(message);
                   FocusScope.of(context).requestFocus(FocusNode());
                   _scrollController
                       .jumpTo(_scrollController.position.maxScrollExtent);
@@ -122,11 +124,11 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                 ],
                               ),
                             ),
-                            GroupedListView<Message, String>(
+                            GroupedListView<DmModel, String>(
                               shrinkWrap: true,
-                              elements: model.chatMessages,
+                              elements: model.dmUserMessage,
                               groupBy: (message) {
-                                return message.getRelativeTime();
+                                return TimeOfDay.now().toString();
                               },
                               groupSeparatorBuilder: (value) {
                                 return GroupSeparator(value);
@@ -136,8 +138,9 @@ class DmUserView extends StatelessWidget with $DmUserView {
                               },
                               groupComparator: (groupOne, groupTwo) =>
                                   groupOne.compareTo(groupTwo),
-                              itemComparator: (itemOne, itemTwo) =>
-                                  itemOne.id.compareTo(itemTwo.id),
+                              itemComparator: (itemOne, itemTwo) => itemOne
+                                  .messageID!
+                                  .compareTo(itemTwo.messageID!),
                             ),
                             const SizedBox(height: 40)
                           ],

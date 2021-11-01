@@ -98,6 +98,29 @@ class CentrifugeService with ReactiveServiceMixin {
     return streamSub;
   }
 
+  StreamSubscription listenDM({
+    required String socketId,
+    required roomID,
+    required Function(Map userMessage) onData,
+  }) {
+    if (!hasSubscribed(socketId)) {
+      _showLog("subscribed $socketId");
+      subscribe(socketId);
+    }
+
+    var streamSub = messageStreamController.stream.listen((message) {
+      String? eventType = message['event']['action'];
+      if (eventType != 'create:message') {
+        return;
+      }
+      if (message['room_id'] != roomID) {
+        return;
+      }
+      onData(message);
+    });
+    return streamSub;
+  }
+
   StreamSubscription onNotificationReceived({
     required String channelId,
     required Function(Map userMessage) onData,
