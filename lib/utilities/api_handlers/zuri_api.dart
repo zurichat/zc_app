@@ -119,6 +119,40 @@ class ZuriApi implements Api {
     }
   }
 
+  @override
+  Future<dynamic> postDM(
+    String endpoint, {
+    required Map<String, dynamic> body,
+  }) async {
+    log.i('Making request to $endpoint');
+    try {
+      final response = await dio.post(endpoint, data: body);
+
+      log.i('Response from $endpoint \n${response.data}');
+      return ApiUtils.toApiResponse(response);
+    } on DioError catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.response!.data!['message'] ?? errorOccurred,
+      );
+      log.w(e.toString());
+      handleApiError(e);
+    }
+  }
+
+  Future getDM(String roomID, String orgId, token) async {
+    try {
+      final res =
+          await dio.get('$dmsBaseUrl/v1/org/$orgId/rooms/$roomID/messages');
+      log.i(res.data['data']);
+      return res;
+    } on DioError catch (e) {
+      log.w(e.toString());
+      handleApiError(e);
+    }
+  }
+
   Future<dynamic> put(
     String string, {
     required Map<String, dynamic> body,
