@@ -18,6 +18,16 @@ extension LocaleExtension on Locale {
         return ArabicSA;
       case 'zh_HK':
         return Mandarin;
+      case 'es_ES':
+        return Spanish;
+      case 'ja_JP':
+        return Japanese;
+      case 'he_IL':
+        return Hebrew;
+      case 'it_IT':
+        return Italian;
+      case 'pt_BR':
+        return PortugueseBrazil;
       default:
         return LocalizationService().appLocale.toString();
     }
