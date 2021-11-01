@@ -11,6 +11,7 @@ import 'package:stacked/stacked.dart';
 
 import '../../../../../utilities/constants/colors.dart';
 import '../thread_card_viewmodel.dart';
+import 'emojis_list.dart';
 import 'media_files.dart';
 import 'post_files_display.dart';
 import 'post_replies.dart';
@@ -108,9 +109,9 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                   userPost.postMediaFiles!.isNotEmpty
                       ? MediaFiles(postMediaFiles: userPost.postMediaFiles)
                       : Container(),
-                  //userPost.postEmojis!.isNotEmpty
-                  // ? EmojisList(userPost: userPost)
-//: Container(),
+                  userPost.postEmojis!.isNotEmpty
+                      ? EmojisList(userPost: userPost)
+                      : Container(),
                   userPost.userThreadPosts!.isNotEmpty
                       ? PostReplies(userPost: userPost)
                       : Container(),

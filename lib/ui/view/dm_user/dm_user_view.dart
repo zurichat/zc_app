@@ -95,7 +95,8 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                     displayName: message.senderID,
                                     message: message.message,
                                     channelId: message.roomID.toString(),
-                                    id: message.messageID);
+                                    id: message.messageID,
+                                    postEmojis: []);
                                 return InkWell(
                                   child: Container(
                                     padding: const EdgeInsets.only(top: 20.0),
