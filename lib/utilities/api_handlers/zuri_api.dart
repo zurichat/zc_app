@@ -119,15 +119,16 @@ class ZuriApi implements Api {
     }
   }
 
+  @override
   Future<dynamic> postDM(
-    String string, {
+    String endpoint, {
     required Map<String, dynamic> body,
   }) async {
-    log.i('Making request to $string');
+    log.i('Making request to $endpoint');
     try {
-      final response = await dio.post(string, data: body);
+      final response = await dio.post(endpoint, data: body);
 
-      log.i('Response from $string \n${response.data}');
+      log.i('Response from $endpoint \n${response.data}');
       return ApiUtils.toApiResponse(response);
     } on DioError catch (e) {
       snackbar.showCustomSnackBar(
