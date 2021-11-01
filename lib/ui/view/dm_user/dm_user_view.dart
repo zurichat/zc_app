@@ -63,7 +63,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
           body: Stack(
             children: [
               ExpandableTextFieldScreen(
-                channelID: 'DM',
+                channelID: DmTitle,
                 hintText: '${local!.messageButton} ${model.receiver.username}',
                 textController: messageController,
                 sendMessage: (message, media) {

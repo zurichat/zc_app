@@ -46,10 +46,12 @@ class DMApiService {
     final String memberID =
         storageService.getString(StorageKeys.idInOrganization).toString();
     String endpoint = '/v1/org/$orgId/users/$memberID/room';
+    String roomName =
+        storageService.getString(StorageKeys.displayName).toString();
     var body = {
       "org_id": orgId,
       "room_member_ids": [memberID, friendId],
-      "room_name": "Prince"
+      "room_name": roomName,
     };
     try {
       final res = await _api.postDM(endpoint, body: body);
@@ -60,6 +62,7 @@ class DMApiService {
     }
   }
 
+  /// For sending messages to the specified Room ID
   Future sendDMs(String roomID, String memberID, String message) async {
     final orgId = _userService.currentOrgId;
 
