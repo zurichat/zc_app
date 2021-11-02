@@ -34,7 +34,12 @@ class ZuriThemeService {
           ),
           colorScheme: ColorScheme.fromSwatch()
               .copyWith(secondary: AppColors.zuriPrimaryColor),
+          textSelectionTheme: const TextSelectionThemeData(
+              cursorColor: AppColors.zuriPrimaryColor,
+              selectionColor: AppColors.zuriPrimaryColor,
+              selectionHandleColor: AppColors.zuriPrimaryColor),
           inputDecorationTheme: const InputDecorationTheme(
+            labelStyle: TextStyle(color: AppColors.zuriPrimaryColor),
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: AppColors.zuriPrimaryColor),
             ),
@@ -63,7 +68,12 @@ class ZuriThemeService {
             backgroundColor: Color(0xFF212121),
             elevation: 8,
           ),
+          textSelectionTheme: const TextSelectionThemeData(
+              cursorColor: AppColors.zuriPrimaryColor,
+              selectionColor: AppColors.zuriPrimaryColor,
+              selectionHandleColor: AppColors.zuriPrimaryColor),
           inputDecorationTheme: const InputDecorationTheme(
+            labelStyle: TextStyle(color: AppColors.zuriPrimaryColor),
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: AppColors.zuriPrimaryColor),
             ),
