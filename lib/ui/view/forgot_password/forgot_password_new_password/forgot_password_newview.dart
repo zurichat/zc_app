@@ -19,7 +19,8 @@ import 'forgot_password_newviewmodel.dart';
 ])
 class ForgotPasswordNewView extends StatelessWidget
     with $ForgotPasswordNewView {
-  ForgotPasswordNewView({Key? key}) : super(key: key);
+  final String otp;
+  ForgotPasswordNewView({Key? key, required this.otp}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +188,7 @@ class ForgotPasswordNewView extends StatelessWidget
                         child: ElevatedButton(
                           onPressed: () {
                             // model.passwordVerification();
-                            model.resetPassword();
+                            model.resetPassword(otp);
                           },
                           child: Text(
                             local.continueButton,

@@ -352,11 +352,12 @@ class StackedRouter extends RouterBase {
       );
     },
     ForgotPasswordNewView: (data) {
-      var args = data.getArgs<ForgotPasswordNewViewArguments>(
-        orElse: () => ForgotPasswordNewViewArguments(),
-      );
+      var args = data.getArgs<ForgotPasswordNewViewArguments>(nullOk: false);
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => ForgotPasswordNewView(key: args.key),
+        builder: (context) => ForgotPasswordNewView(
+          key: args.key,
+          otp: args.otp,
+        ),
         settings: data,
       );
     },
@@ -807,7 +808,8 @@ class ForgotPasswordOtpViewArguments {
 /// ForgotPasswordNewView arguments holder class
 class ForgotPasswordNewViewArguments {
   final Key? key;
-  ForgotPasswordNewViewArguments({this.key});
+  final String otp;
+  ForgotPasswordNewViewArguments({this.key, required this.otp});
 }
 
 /// ChannelNotificationView arguments holder class
