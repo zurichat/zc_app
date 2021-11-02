@@ -66,7 +66,7 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
-// STORE MESSAGES IN DRAFTS
+  // STORE MESSAGES IN DRAFTS
   void storeDraft(channelId, value, channelName, membersCount, public) {
     var currentOrgId = _storageService.getString(StorageKeys.currentOrgId);
     var currentUserId = _storageService.getString(StorageKeys.currentUserId);
@@ -163,6 +163,7 @@ class ChannelPageViewModel extends FormViewModel {
   ///INITIALIZATION WHICH INCLUDES JOINING CHANNEL, FETCHING MESSAGES, 
   ///LISTENING TO NEW MESSAGES, GETTING THE CHANNEL SOCKET ID AND GETTING THE CHANNEL CREATOR
   void initialise(String channelId) async {
+    storage.setString(StorageKeys.currentChannelId, channelId);
     channelID = channelId;
 
     //TODO: join channel wasn't done
@@ -189,7 +190,7 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-// FUNCTION TO CHECK THE PINNED STATE OF A MESSAGE
+  // FUNCTION TO CHECK THE PINNED STATE OF A MESSAGE
   Future<bool> changePinnedState(UserPost? userPost) {
     return _channelsApiService.changeChannelMessagePinnedState(userPost!.channelId,
           userPost.id!, userPost.userId!, !userPost.pinned);
@@ -200,7 +201,6 @@ class ChannelPageViewModel extends FormViewModel {
     String? userId = storage.getString(StorageKeys.currentUserId);
     String? orgId = storage.getString(StorageKeys.currentOrgId);
     String? token = storage.getString(StorageKeys.currentSessionToken);
-    storage.setString(StorageKeys.currentChannelId, channelId);
     // await _channelsApiService.joinChannel(channelId);
     try {
       final res = await _api
