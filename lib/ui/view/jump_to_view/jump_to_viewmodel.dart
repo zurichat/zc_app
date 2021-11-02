@@ -21,12 +21,6 @@ class JumpToViewModel extends FormViewModel {
   List<ChannelsSearch> joinedChannelsSearch = [];
   List<ChannelsSearch> allChannelsSearch = [];
 
-  // @override
-  // // Future futureToRun() => fetchUsers();
-
-  // @override
-  // Stream get stream => checkConnectivity();
-
   @override
   void setFormStatus() {}
 
@@ -85,7 +79,7 @@ class JumpToViewModel extends FormViewModel {
             public: isPublic));
   }
 
-  void navigateToUserDm() {
-    navigation.navigateTo(Routes.dmUserView);
+  void navigateToUserDm(String friendID) {
+    navigation.navigateTo(Routes.dmUserView, arguments: friendID);
   }
 }

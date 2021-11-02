@@ -422,11 +422,9 @@ class StackedRouter extends RouterBase {
       );
     },
     DmUserView: (data) {
-      var args = data.getArgs<DmUserViewArguments>(
-        orElse: () => DmUserViewArguments(),
-      );
+      String args = data.getArgs(nullOk: false);
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => DmUserView(key: args.key),
+        builder: (context) => DmUserView(friendID: args),
         settings: data,
       );
     },

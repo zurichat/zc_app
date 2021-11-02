@@ -95,7 +95,7 @@ const String DmTitle = 'Dm';
 const String DM = 'Direct Message';
 const String Done = 'Done';
 const String UserSearchHint = 'To: Type the name of a person or channel';
-
+const String NoMessages = "No messages yet\n Get Started";
 //Plugins
 const String Plugins = 'Plugins';
 const String Calendar = 'Holiday-Calender';

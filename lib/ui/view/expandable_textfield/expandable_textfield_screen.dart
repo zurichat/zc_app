@@ -51,7 +51,7 @@ class ExpandableTextFieldScreen extends HookWidget {
     return ViewModelBuilder<ExpandableTextFieldScreenViewModel>.reactive(
       viewModelBuilder: () => ExpandableTextFieldScreenViewModel(),
       onModelReady: (model) {
-        model.init(maxSize, channelId!);
+        model.init(maxSize);
         keyboardVisibilityController.onChange.listen((bool visible) {
           model.notifyListeners();
         });
