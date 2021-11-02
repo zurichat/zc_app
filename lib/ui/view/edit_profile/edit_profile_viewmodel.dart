@@ -32,6 +32,8 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
   String imageUrl = '';
   File? imageFile;
 
+  bool isSaving = false;
+
   void navigateBack() {
     _navigationService.back();
   }
@@ -83,21 +85,24 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
   Future<void> onSave() async {
     if (!hasDataChanged) {
       close();
-    }
-    updateData();
-    final res = await _zuriApi.patch(
-      'organizations/$orgId/members/$userId/profile',
-      body: userModel.toMap(),
-      token: token,
-    );
-    if (res?.statusCode == 200) {
-      _snackbarService.showCustomSnackBar(
-          message: profileUpdated, variant: SnackbarType.success);
-      _userService.setUserDetails(userModel);
-      close();
     } else {
-      _snackbarService.showCustomSnackBar(
-          message: errorOccurred, variant: SnackbarType.failure);
+      updateData();
+      isSaving = true;
+      notifyListeners();
+      final res = await _zuriApi.patch(
+        'organizations/$orgId/members/$userId/profile',
+        body: userModel.toMap(),
+        token: token,
+      );
+      if (res?.statusCode == 200) {
+        _snackbarService.showCustomSnackBar(
+            message: profileUpdated, variant: SnackbarType.success);
+        _userService.setUserDetails(userModel);
+        close();
+      } else {
+        _snackbarService.showCustomSnackBar(
+            message: errorOccurred, variant: SnackbarType.failure);
+      }
     }
   }
 
@@ -137,7 +142,7 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
   Future<String> uploadPic() async {
     imageUrl = (await mediaService.uploadImage(
       imageFile,
-  //TODO MOVE PLUGIN ID TO CONSTANTS
+      //TODO MOVE PLUGIN ID TO CONSTANTS
       '6165f520375a4616090b8275',
     ))!;
     return imageUrl;
