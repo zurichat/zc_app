@@ -36,7 +36,7 @@ class OrganizationMemberModel {
   final String? pronouns;
   final String? role;
   final String? socials;
-  final String? status;
+  final List? status;
   final String? timeZone;
   final String? userName;
 
@@ -44,7 +44,7 @@ class OrganizationMemberModel {
     required this.id,
     required this.bio,
     required this.email,
-    required this.status,
+    this.status,
     required this.phone,
     required this.deleted,
     required this.deletedAt,
@@ -69,7 +69,6 @@ class OrganizationMemberModel {
         id: json['_id'] ?? json['id'] as String?,
         bio: json['bio'] as String?,
         email: json['email'] as String?,
-        status: json['status'] as String?,
         phone: json['phone'] as String?,
         deleted: json['deleted'] as bool?,
         deletedAt: json['deleted_at'] as String?,

@@ -40,12 +40,14 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
   String? get displayName => storage.getString(StorageKeys.displayName);
   bool yes = false;
 
-  void init(double max, String channelId, [bool val = true]) {
+  void init(double max, [bool val = true]) {
     if (val) size = minSize;
     maxSize = max;
     userMentions();
-    getUsersInChannels(channelId);
-    log.i('oo: $channelId');
+    //I commented this out because this is a shared widget
+    //DMs don't support this yet
+    // getUsersInChannels(channelId);
+    // log.i('oo: $channelId');
     storage.setString(StorageKeys.displayName, 'aconchuk');
     log.i('oo: $displayName');
     notifyListeners();

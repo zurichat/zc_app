@@ -95,7 +95,7 @@ const String DmTitle = 'Dm';
 const String DM = 'Direct Message';
 const String Done = 'Done';
 const String UserSearchHint = 'To: Type the name of a person or channel';
-
+const String NoMessages = "No messages yet\n Get Started";
 //Plugins
 const String Plugins = 'Plugins';
 const String Calendar = 'Holiday-Calender';
@@ -323,6 +323,8 @@ const String Mandarin = '来 本 嗄';
 const String Spanish = 'español';
 const String Japanese = '日本';
 const String Hebrew = 'Hebrew (עִברִית)';
+const String Italian = 'Italiano';
+const String PortugueseBrazil = 'Português (Brazil)';
 
 //Notifications
 const String NotifyAbout = 'On mobile, notify me about...';

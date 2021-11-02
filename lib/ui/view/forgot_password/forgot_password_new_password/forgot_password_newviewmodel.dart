@@ -20,6 +20,7 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
   final snackbar = locator<SnackbarService>();
   final log = getLogger("Forgot Password New View Model");
   bool isLoading = false;
+
   final storageService = locator<SharedPreferenceLocalStorage>();
   String? get token =>
       storageService.getString(StorageKeys.currentSessionToken);
@@ -49,10 +50,9 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
     }
   }
 
-  Future resetPassword() async {
+  Future resetPassword(String otp) async {
     loading(true);
-    //TODO - wrong endpoint
-
+    String endpoint = '$resetPasswordEndpoint/$otp';
     if (newPasswordValue == '' || confirmPasswordValue == '') {
       loading(false);
       snackbar.showCustomSnackBar(
@@ -76,9 +76,9 @@ class ForgotPasswordNewViewModel extends FormViewModel with ValidatorMixin {
       'password': newPasswordValue,
       'confirm_password': confirmPasswordValue
     };
-    //TODO - CONFIRM ENDPOINT - should be a patch req
-    final response = await _apiService.post(resetPasswordEndpoint,
-        body: newPasswordData, token: token);
+
+    final response =
+        await _apiService.post(endpoint, body: newPasswordData, token: token);
     loading(false);
     if (response?.statusCode == 200) {
       snackbar.showCustomSnackBar(
