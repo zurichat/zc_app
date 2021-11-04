@@ -74,7 +74,6 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? Container(
               margin: const EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 0.0),
               height: 40.0,
-              alignment: Alignment.centerLeft,
               child: TextField(
                 controller: searchController,
                 keyboardType: TextInputType.text,
@@ -97,7 +96,7 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
                   hintText: hintText,
                   filled: true,
                   fillColor: AppColors.appBarGreen,
-                  contentPadding: EdgeInsets.zero,
+                  contentPadding: const EdgeInsets.only(top: 4.0),
                 ),
                 toolbarOptions: const ToolbarOptions(
                     copy: true, paste: true, selectAll: true, cut: true),

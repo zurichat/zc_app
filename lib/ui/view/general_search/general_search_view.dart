@@ -5,26 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/ui/view/general_search/general_search_view.form.dart';
+import 'package:zurichat/ui/view/general_search/general_search_viewmodel.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';
-import 'general_search_view.form.dart';
-import 'general_search_viewmodel.dart';
 
 @FormView(fields: [FormTextField(name: 'search')])
 class GeneralSearchView extends StatelessWidget with $GeneralSearchView {
   GeneralSearchView({Key? key}) : super(key: key);
 
-  String get needle => searchController.text.trim();
-
   @override
   Widget build(BuildContext context) {
     final locale = AppLocalization.of(context)!;
     return ViewModelBuilder<GeneralSearchViewModel>.reactive(
-      onModelReady: (model) => model.init(),
+      onModelReady: (model) => listenToFormUpdated(model..init()),
       viewModelBuilder: () => GeneralSearchViewModel(),
       initialiseSpecialViewModelsOnce: true,
       builder: (context, model, child) => Scaffold(
@@ -36,35 +34,45 @@ class GeneralSearchView extends StatelessWidget with $GeneralSearchView {
           onChanged: (value) => model.notifyListeners(),
           onEditingComplete: () {
             FocusScope.of(context).unfocus();
-            model.search(needle);
+            model.search();
           },
           searchController: searchController,
-          prefixIcon: needle.isEmpty
-              ? const Icon(Icons.search,
-                  color: AppColors.whiteColor, size: 20.0)
-              : IconButton(
+          prefixIcon: model.searchValue?.isNotEmpty == true
+              ? IconButton(
                   onPressed: () {
                     FocusScope.of(context).unfocus();
-                    model.isShowingResults = false;
                     searchController.clear();
-                    model.notifyListeners();
+                    model.clearResults();
                   },
-                  icon: const Icon(Icons.arrow_back_ios,
-                      color: AppColors.whiteColor, size: 16.0)),
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    color: AppColors.whiteColor,
+                    size: 16.0,
+                  ),
+                )
+              : const Icon(
+                  Icons.search,
+                  color: AppColors.whiteColor,
+                  size: 20.0,
+                ),
         ),
         body: WillPopScope(
           onWillPop: () async {
             if (model.isShowingResults) {
-              model.isShowingResults = false;
               searchController.clear();
-              model.notifyListeners();
+              model.clearResults();
               return false;
             }
 
             return true;
           },
           child: model.isShowingResults
-              ? Center(child: Text(NoResultsFound, style: AppTextStyle.darkGreySize16))
+              ? Center(
+                  child: Text(
+                    NoResultsFound,
+                    style: AppTextStyle.darkGreySize16,
+                  ),
+                )
               : SingleChildScrollView(
                   padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 24.0),
                   physics: const BouncingScrollPhysics(),
@@ -138,8 +146,7 @@ class GeneralSearchView extends StatelessWidget with $GeneralSearchView {
                               onTap: () {
                                 searchController.text = recentSearch;
                                 FocusScope.of(context).unfocus();
-                                model.notifyListeners();
-                                model.search(needle);
+                                model.search();
                               },
                               dense: true,
                             );

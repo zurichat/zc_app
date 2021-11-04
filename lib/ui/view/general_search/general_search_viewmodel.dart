@@ -1,11 +1,12 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.logger.dart';
 import 'package:zurichat/services/app_services/connectivity_service.dart';
 import 'package:zurichat/services/app_services/local_storage_services.dart';
 import 'package:zurichat/services/messaging_services/channels_api_service.dart';
+import 'package:zurichat/ui/view/general_search/general_search_view.form.dart';
 import 'package:zurichat/utilities/constants/storage_keys.dart';
-import '../../../app/app.locator.dart';
-import '../../../app/app.logger.dart';
 
 class GeneralSearchViewModel extends FormViewModel {
   final log = getLogger('GeneralSearchViewModel');
@@ -32,20 +33,27 @@ class GeneralSearchViewModel extends FormViewModel {
         storageService.getStringList(StorageKeys.recentSearches) ?? [];
   }
 
-  void removeRecent(String needle) {
+  void removeRecent(String search) {
     storageService.setStringList(
-        StorageKeys.recentSearches, recentSearches..remove(needle));
+        StorageKeys.recentSearches, recentSearches..remove(search));
     notifyListeners();
   }
 
-  void search(String needle) async {
-    if (needle.isNotEmpty) {
+  void clearResults() {
+    isShowingResults = false;
+    notifyListeners();
+  }
+
+  void search() async {
+    if (searchValue?.isNotEmpty == true) {
       isShowingResults = true;
+      notifyListeners();
+
       storageService.setStringList(
           StorageKeys.recentSearches,
           recentSearches
-            ..remove(needle)
-            ..add(needle));
+            ..remove(searchValue!)
+            ..add(searchValue!));
     }
 
     notifyListeners();
