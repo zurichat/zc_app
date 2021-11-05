@@ -9,6 +9,7 @@ import 'package:zurichat/ui/nav_pages/dm_page/dm_search_find_page.dart';
 import 'package:zurichat/ui/nav_pages/plugin_page/plugin_view.dart';
 import 'package:zurichat/ui/view/channel/share_message/share_message_view.dart';
 import 'package:zurichat/ui/view/direct_message/direct_message.dart';
+import 'package:zurichat/ui/view/general_search/general_search_view.dart';
 import 'package:zurichat/ui/view/jump_to_view/jump_to_view.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
 import 'package:zurichat/ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
@@ -129,6 +130,7 @@ import '../ui/view/user_search/user_search_view.dart';
     CupertinoRoute(page: SelectEmail),
     CupertinoRoute(page: AddOrganizationView),
     CupertinoRoute(page: CreateOrganization),
+    CupertinoRoute(page: GeneralSearchView),
     CupertinoRoute(page: FileSearchView),
     CupertinoRoute(page: DraftView),
     CupertinoRoute(page: ThreadsView),

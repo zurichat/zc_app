@@ -64,6 +64,12 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.search, color: AppColors.whiteColor),
+              onPressed: vmodel.navigateToGeneralSearchScreen,
+            ),
+          ],
         ),
         body: SafeArea(
           child: Column(
@@ -127,7 +133,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget searchBar(context, vmodel) {
+  Widget searchBar(BuildContext context, HomePageViewModel vmodel) {
     final local = AppLocalization.of(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),
