@@ -40,43 +40,16 @@ class CentrifugeService with ReactiveServiceMixin {
           data: connectData
         ),);
 
-    // config: ClientConfig(
-    //   debug: true,
-    //   retry: (int rty) {
-    //     log.w("Retry Count - $rty");
-    //   },
-    // ));
-
-    // _client.setConnectData(connectData);
-    // _client.connectStream.listen(_showLog);
-    // _client.disconnectStream.listen(_showLog);
-    // _client.connect();
-
     onEvent(dynamic event) {
       log.i('client event> $event');
     }
 
-    // _client.send(connectData);
+
     _client.connecting.listen(onEvent);
     _client.connected.listen(onEvent);
     _client.disconnected.listen(onEvent);
 
     await _client.connect();
-
-    // final onEvent = (dynamic event) {
-    //   print('client event> $event');
-    // };
-    //
-    // final client = centrifuge.createClient(
-    //   'ws://localhost:8000/connection/websocket',
-    //   centrifuge.ClientConfig(),
-    // );
-    //
-    // client.connecting.listen(onEvent);
-    // client.connected.listen(onEvent);
-    // client.disconnected.listen(onEvent);
-    //
-    // await client.connect();
 
     return _instance!;
   }
@@ -85,12 +58,12 @@ class CentrifugeService with ReactiveServiceMixin {
     _client.disconnect();
   }
 
-  void _showError(_error) {
-    log.e(_error);
+  void _showError(error) {
+    log.e(error);
   }
 
-  static void _showLog(_message) {
-    log.wtf(_message);
+  static void _showLog(message) {
+    log.wtf(message);
   }
 
   ///Use this to listen to centrifuge event either from dm, channels
@@ -178,22 +151,11 @@ class CentrifugeService with ReactiveServiceMixin {
     }
     Subscription? subscription = _client.getSubscription(channelSocketId);
 
-    //
-    // final subscription = client.newSubscription(channel);
-    //
-    // subscription.subscribing.listen(onSubscriptionEvent);
-    // subscription.subscribed.listen(onSubscriptionEvent);
-    // subscription.unsubscribed.listen(onSubscriptionEvent);
-    //
-    // await subscription.subscribe();
 
     subscription!.subscribing.listen(_showLog);
     subscription.error.listen(_showError);
     subscription.subscribed.listen(_showLog);
     subscription.unsubscribed.listen(_showLog);
-    // subscription.subscribeErrorStream.listen(_showError);
-    // subscription.subscribeSuccessStream.listen(_showLog);
-    // subscription.unsubscribeStream.listen(_showLog);
 
     subscription.join.listen((event) {
       log.i('Subscribe join stream $event');

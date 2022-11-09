@@ -73,7 +73,6 @@ class PopUpNotificationsView extends StatelessWidget {
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
-                child: const Icon(Icons.add),
                 backgroundColor: AppColors.zuriPrimaryColor,
                 onPressed: () {
                   showSimpleNotification(
@@ -178,7 +177,8 @@ class PopUpNotificationsView extends StatelessWidget {
                       ),
                     ),
                   );
-                }));
+                },
+                child: const Icon(Icons.add)));
       },
       viewModelBuilder: () => PopupNotificationViewModel(),
     );
