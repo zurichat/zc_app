@@ -25,30 +25,58 @@ class CentrifugeService with ReactiveServiceMixin {
 
   Map<String, Subscription> subList = {};
 
-  ///This contains the `socketId` mapped to the stream or contoller
-  ///so user dont subscribe to the same event twice
+  ///This contains the `socketId` mapped to the stream or controller
+  ///so user don't subscribe to the same event twice
 
   static Future<CentrifugeService> getInstance() async {
     _showLog("Starting Centrifuge Service");
     _instance ??= CentrifugeService();
 
-    _client = centrifuge.createClient('$websocketUrl?format=protobuf',
-        config: ClientConfig(
-          debug: true,
-          retry: (int rty) {
-            log.w("Retry Count - $rty");
-          },
-        ));
-
     final connectData = utf8.encode(json.encode({"bearer": token}));
 
-    _client.setConnectData(connectData);
+    _client = centrifuge.createClient('$websocketUrl?format=protobuf',
+        centrifuge.ClientConfig(
+          token: token,
+          data: connectData
+        ),);
 
-// _client.setConnectData([2]);
-    _client.connectStream.listen(_showLog);
-    _client.disconnectStream.listen(_showLog);
+    // config: ClientConfig(
+    //   debug: true,
+    //   retry: (int rty) {
+    //     log.w("Retry Count - $rty");
+    //   },
+    // ));
 
-    _client.connect();
+    // _client.setConnectData(connectData);
+    // _client.connectStream.listen(_showLog);
+    // _client.disconnectStream.listen(_showLog);
+    // _client.connect();
+
+    onEvent(dynamic event) {
+      log.i('client event> $event');
+    }
+
+    // _client.send(connectData);
+    _client.connecting.listen(onEvent);
+    _client.connected.listen(onEvent);
+    _client.disconnected.listen(onEvent);
+
+    await _client.connect();
+
+    // final onEvent = (dynamic event) {
+    //   print('client event> $event');
+    // };
+    //
+    // final client = centrifuge.createClient(
+    //   'ws://localhost:8000/connection/websocket',
+    //   centrifuge.ClientConfig(),
+    // );
+    //
+    // client.connecting.listen(onEvent);
+    // client.connected.listen(onEvent);
+    // client.disconnected.listen(onEvent);
+    //
+    // await client.connect();
 
     return _instance!;
   }
@@ -150,19 +178,32 @@ class CentrifugeService with ReactiveServiceMixin {
     }
     Subscription? subscription = _client.getSubscription(channelSocketId);
 
-    subscription.subscribeErrorStream.listen(_showError);
-    subscription.subscribeSuccessStream.listen(_showLog);
-    subscription.unsubscribeStream.listen(_showLog);
+    //
+    // final subscription = client.newSubscription(channel);
+    //
+    // subscription.subscribing.listen(onSubscriptionEvent);
+    // subscription.subscribed.listen(onSubscriptionEvent);
+    // subscription.unsubscribed.listen(onSubscriptionEvent);
+    //
+    // await subscription.subscribe();
 
-    subscription.joinStream.listen((event) {
-      log.i('Subcribe join stream $event');
+    subscription!.subscribing.listen(_showLog);
+    subscription.error.listen(_showError);
+    subscription.subscribed.listen(_showLog);
+    subscription.unsubscribed.listen(_showLog);
+    // subscription.subscribeErrorStream.listen(_showError);
+    // subscription.subscribeSuccessStream.listen(_showLog);
+    // subscription.unsubscribeStream.listen(_showLog);
+
+    subscription.join.listen((event) {
+      log.i('Subscribe join stream $event');
     });
 
-    subscription.leaveStream.listen((event) {
-      log.i('Subcribe leave stream $event');
+    subscription.leave.listen((event) {
+      log.i('Subscribe leave stream $event');
     });
 
-    subscription.publishStream.listen((event) {
+    subscription.publication.listen((event) {
       Map userMessage = json.decode(utf8.decode(event.data));
       _showLog("CENTRIFUGE RTC EVENT OUTPUT $userMessage");
 
