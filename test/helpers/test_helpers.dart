@@ -24,21 +24,21 @@ import 'test_helpers.mocks.dart';
 ///SUPPLY THE MOCKS FOR ANY SERVICE YOU WANT TO AUTO-GENERATE.
 ///ONCE YOU SUPPLY BELOW AUTO GENERATE BY RUNNING ""
 @GenerateMocks([], customMocks: [
-  MockSpec<UserService>(returnNullOnMissingStub: true),
-  MockSpec<SharedPreferenceLocalStorage>(returnNullOnMissingStub: true),
-  MockSpec<NavigationService>(returnNullOnMissingStub: true),
-  MockSpec<SnackbarService>(returnNullOnMissingStub: true),
-  MockSpec<ThemeService>(returnNullOnMissingStub: true),
-  MockSpec<DialogService>(returnNullOnMissingStub: true),
-  MockSpec<BottomSheetService>(returnNullOnMissingStub: true),
-  MockSpec<DMApiService>(returnNullOnMissingStub: true),
-  MockSpec<ChannelsApiService>(returnNullOnMissingStub: true),
-  MockSpec<CentrifugeService>(returnNullOnMissingStub: true),
-  MockSpec<ZuriApi>(returnNullOnMissingStub: true),
-  MockSpec<ConnectivityService>(returnNullOnMissingStub: true),
-  MockSpec<JumpToApi>(returnNullOnMissingStub: true),
-  MockSpec<MediaService>(returnNullOnMissingStub: true),
-  MockSpec<OrganizationApiService>(returnNullOnMissingStub: true),
+  MockSpec<UserService>(onMissingStub: null),
+  MockSpec<SharedPreferenceLocalStorage>(onMissingStub: null),
+  MockSpec<NavigationService>(onMissingStub: null),
+  MockSpec<SnackbarService>(onMissingStub: null),
+  MockSpec<ThemeService>(onMissingStub: null),
+  MockSpec<DialogService>(onMissingStub: null),
+  MockSpec<BottomSheetService>(onMissingStub: null),
+  MockSpec<DMApiService>(onMissingStub: null),
+  MockSpec<ChannelsApiService>(onMissingStub: null),
+  MockSpec<CentrifugeService>(onMissingStub: null),
+  MockSpec<ZuriApi>(onMissingStub: null),
+  MockSpec<ConnectivityService>(onMissingStub: null),
+  MockSpec<JumpToApi>(onMissingStub: null),
+  MockSpec<MediaService>(onMissingStub: null),
+  MockSpec<OrganizationApiService>(onMissingStub: null),
 ])
 MockUserService getAndRegisterUserServiceMock({
   bool hasUser = false,
@@ -141,10 +141,10 @@ MockCentrifugeService getAndRegisterCentrifugeServiceMock() {
   final service = MockCentrifugeService();
   _removeRegistrationIfExists<CentrifugeService>();
   Map eventData = {"some_key": "some_returned_string"};
-  final Future<Stream?> streamtoReturn =
+  final Future<Stream?> streamToReturn =
       Future.value(Stream.fromIterable([eventData]));
   when(service.subscribe("channelSocketID"))
-      .thenAnswer((_) async => streamtoReturn);
+      .thenAnswer((_) async => streamToReturn);
 
   when(service.subscribe("")).thenAnswer((_) => throw Exception(
       "Channel Socket ID is required to subscribe to a channel"));

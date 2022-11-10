@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
@@ -8,10 +9,10 @@ import 'package:zurichat/utilities/enums.dart';
 
 import '../../app/app.locator.dart';
 import '../../app/app.logger.dart';
-import '../app_services/local_storage_services.dart';
-import '../in_review/user_service.dart';
 import '../../utilities/constants/app_constants.dart';
 import '../../utilities/constants/storage_keys.dart';
+import '../app_services/local_storage_services.dart';
+import '../in_review/user_service.dart';
 
 class ChannelsApiService {
   final log = getLogger('ChannelsApiService');
@@ -322,16 +323,14 @@ class ChannelsApiService {
     }
   }
 
-  Future<List<ChannelMembermodel>?> getChannelMembers(id) async {
+  Future<List<ChannelMember>?> getChannelMembers(id) async {
     String orgId = _userService.currentOrgId;
     try {
       final res = await _api.get(
         '/v1/$orgId/channels/$id/members/',
         //token: token,
       );
-      return (res?.data as List)
-          .map((e) => ChannelMembermodel.fromJson(e))
-          .toList();
+      return (res?.data as List).map((e) => ChannelMember.fromJson(e)).toList();
     } on Exception catch (e) {
       log.e("Channels member EXception $e");
     } catch (e) {

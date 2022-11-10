@@ -15,10 +15,10 @@ class CustomPeopleListTile extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CustomPeopleListTileState createState() => _CustomPeopleListTileState();
+  CustomPeopleListTileState createState() => CustomPeopleListTileState();
 }
 
-class _CustomPeopleListTileState extends State<CustomPeopleListTile> {
+class CustomPeopleListTileState extends State<CustomPeopleListTile> {
   bool? isChecked = true;
 
   @override

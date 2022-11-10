@@ -7,10 +7,10 @@ class ZuriLoader extends StatefulWidget {
   const ZuriLoader({Key? key, this.isTransparent = false}) : super(key: key);
 
   @override
-  _ZuriLoaderState createState() => _ZuriLoaderState();
+  ZuriLoaderState createState() => ZuriLoaderState();
 }
 
-class _ZuriLoaderState extends State<ZuriLoader> with TickerProviderStateMixin {
+class ZuriLoaderState extends State<ZuriLoader> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 2),
     vsync: this,

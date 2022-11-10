@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
-import 'package:zurichat/utilities/constants/text_styles.dart';
-
 import 'package:zurichat/ui/view/channel/channel_info/channel_info_view_model.dart';
 import 'package:zurichat/ui/view/channel/channel_info/widgets/new_row_tile.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/text_styles.dart';
+
 import '../../../../../utilities/constants/colors.dart';
 
 class ThirdSection extends StatelessWidget {
@@ -17,7 +17,7 @@ class ThirdSection extends StatelessWidget {
       : super(key: key);
   final int numberOfMembers;
   final ChannelModel channelDetail;
-  final List<ChannelMembermodel> channelMembers;
+  final List<ChannelMember> channelMembers;
   final ChannelInfoViewModel model;
 
   @override

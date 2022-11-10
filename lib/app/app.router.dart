@@ -957,7 +957,7 @@ class ChannelPageViewArguments {
 class ChannelInfoViewArguments {
   final Key? key;
   final int numberOfMembers;
-  final List<ChannelMembermodel> channelMembers;
+  final List<ChannelMember> channelMembers;
   final ChannelModel channelDetail;
   final String channelName;
   ChannelInfoViewArguments(

@@ -1,13 +1,13 @@
-class ChannelMembermodel {
+class ChannelMember {
   String name;
   bool isAdmin;
-  ChannelMembermodel({
+  ChannelMember({
     required this.name,
     required this.isAdmin,
   });
 
-  factory ChannelMembermodel.fromJson(Map<String, dynamic> json) {
-    return ChannelMembermodel(name: json['_id'], isAdmin: json['is_admin']);
+  factory ChannelMember.fromJson(Map<String, dynamic> json) {
+    return ChannelMember(name: json['_id'], isAdmin: json['is_admin']);
     // archived: json['archived'],
     //private:json['private'] );
   }

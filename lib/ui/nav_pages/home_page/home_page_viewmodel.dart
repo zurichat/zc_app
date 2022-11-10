@@ -51,12 +51,12 @@ class HomePageViewModel extends StreamViewModel {
   ChannelModel? _channel;
   List<ChannelModel> get channelsList => _channelsList;
   ChannelModel get channel => _channel!;
-  final List<ChannelMembermodel> _membersList = [];
+  final List<ChannelMember> _membersList = [];
   List get membersList => _membersList;
 
   ///This contains the list of data for both the channels and dms
   List<HomeItemModel> homePageList = [];
-  List<HomeItemModel> unreads = [];
+  List<HomeItemModel> unReads = [];
   List<HomeItemModel> joinedChannels = [];
   List<HomeItemModel> directMessages = [];
 
@@ -99,8 +99,10 @@ class HomePageViewModel extends StreamViewModel {
   }
 
   void navigateToGeneralSearchScreen() {
-    navigation.navigateWithTransition(GeneralSearchView(),
-        transition: NavigationTransition.Fade);
+    navigation.navigateWithTransition(
+      GeneralSearchView(),
+      transitionStyle: Transition.fade,
+    );
   }
 
   @override
@@ -144,11 +146,11 @@ class HomePageViewModel extends StreamViewModel {
   }
 
   ///This sets all the expanded list items
-  ///into unreads, channels and dms
+  ///into unread, channels and dms
   setAllList() {
     homePageList.forEach((e) {
       if (e.unreadCount != null && e.unreadCount != 0) {
-        unreads.add(e);
+        unReads.add(e);
       } else if (e.type == HomeItemType.channels) {
         joinedChannels.add(e);
       } else if (e.type == HomeItemType.dm) {
@@ -191,7 +193,7 @@ class HomePageViewModel extends StreamViewModel {
 
     //Todo: add channels implementation
 
-    unreads.clear();
+    unReads.clear();
     directMessages.clear();
     joinedChannels.clear();
 
@@ -277,8 +279,10 @@ class HomePageViewModel extends StreamViewModel {
   }
 
   void onJumpToScreen() {
-    navigation.navigateWithTransition(JumpToView(),
-        transition: NavigationTransition.DownToUp);
+    navigation.navigateWithTransition(
+      JumpToView(),
+      transitionStyle: Transition.downToUp,
+    );
   }
 
   @override
