@@ -155,7 +155,8 @@ class OTPView extends StatelessWidget with $OTPView {
                           onPressed: () => model.verifyOTP(context),
                           style: ElevatedButton.styleFrom(
                             padding:
-                                const EdgeInsets.only(top: 15.0, bottom: 15.0), backgroundColor: const Color(0xff00B87C),
+                                const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                            backgroundColor: const Color(0xff00B87C),
                           ),
                           child: const Text(
                             Continue,

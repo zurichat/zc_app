@@ -27,8 +27,7 @@ class WorkSpaceDisplayInfo extends StatelessWidget {
                 width: MediaQuery.of(context).size.height * 0.05,
                 margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color:
-                      !dark ? AppColors.darkModeColor : AppColors.whiteColor,
+                  color: !dark ? AppColors.darkModeColor : AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(5),
                 ),
                 clipBehavior: Clip.antiAlias,
