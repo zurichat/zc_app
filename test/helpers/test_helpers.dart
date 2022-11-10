@@ -77,6 +77,7 @@ MockSnackbarService getAndRegisterSnackbarServiceMock(
   _removeRegistrationIfExists<SnackbarService>();
   final service = MockSnackbarService();
   when(service.showCustomSnackBar(
+    message: anyNamed('message'),
     variant: SnackbarType.failure,
   )).thenAnswer((_) => Future.value(userRegistered));
   locator.registerSingleton<SnackbarService>(service);
