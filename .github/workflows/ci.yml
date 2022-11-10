@@ -28,7 +28,7 @@ jobs:
         run: flutter analyze --no-pub
       - name: Running code generation
         run: flutter pub run build_runner build --delete-conflicting-outputs
-     - name: Verifying different changes has not been made
+      - name: Verifying different changes has not been made
         run: git diff --exit-code
       - name: Running tests without coverage
         run: flutter test --no-pub --no-code-coverage
