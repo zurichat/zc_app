@@ -37,11 +37,11 @@ class DraftedMessagePage extends StatelessWidget {
               backgroundColor: Colors.white,
               floatingActionButton: FloatingActionButton(
                 onPressed: () {},
+                backgroundColor: const Color(0xff00B87C),
                 child: const Icon(
                   Icons.open_in_new_outlined,
                   color: Colors.white,
                 ),
-                backgroundColor: const Color(0xff00B87C),
               ),
             ),
         viewModelBuilder: () => DraftedMessagePageModel());

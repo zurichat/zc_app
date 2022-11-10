@@ -21,12 +21,6 @@ class JumpToViewModel extends FormViewModel {
   List<ChannelsSearch> joinedChannelsSearch = [];
   List<ChannelsSearch> allChannelsSearch = [];
 
-  // @override
-  // // Future futureToRun() => fetchUsers();
-
-  // @override
-  // Stream get stream => checkConnectivity();
-
   @override
   void setFormStatus() {}
 
@@ -60,6 +54,7 @@ class JumpToViewModel extends FormViewModel {
     } catch (e) {
       log.e("Model channels error - $e");
     }
+    return null;
   }
 
   Future<List<NewUser>?>? fetchUsers() async {
@@ -73,6 +68,7 @@ class JumpToViewModel extends FormViewModel {
       log.e("Model users Error - ${e.toString()}");
       AppToast.instance.error(null, errorOccurred);
     }
+    return null;
   }
 
   void navigateToChannel(
@@ -85,7 +81,7 @@ class JumpToViewModel extends FormViewModel {
             public: isPublic));
   }
 
-  void navigateToUserDm() {
-    navigation.navigateTo(Routes.dmUserView);
+  void navigateToUserDm(String friendID) {
+    navigation.navigateTo(Routes.dmUserView, arguments: friendID);
   }
 }

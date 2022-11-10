@@ -73,7 +73,7 @@ class EmojiPickerBottomSheetView extends StatelessWidget {
                     margin: EdgeInsets.only(top: height * 0.03),
                     child: Expanded(
                       child: EmojiPicker(
-                        onEmojiSelected: (Category category, Emoji emoji) =>
+                        onEmojiSelected: (Category? category, Emoji emoji) =>
                             completer(
                                 SheetResponse(confirmed: true, data: emoji)),
                         config: Config(
@@ -88,14 +88,14 @@ class EmojiPickerBottomSheetView extends StatelessWidget {
                               .color!
                               .withOpacity(0.5),
                           iconColorSelected: AppColors.zuriPrimaryColor,
-                          progressIndicatorColor: AppColors.zuriPrimaryColor,
+                          // progressIndicatorColor: AppColors.zuriPrimaryColor,
                           backspaceColor: AppColors.zuriPrimaryColor,
                           showRecentsTab: true,
                           recentsLimit: 28,
-                          noRecentsText: 'No Recents',
-                          noRecentsStyle: const TextStyle(
-                            fontSize: 20,
-                          ),
+                          // noRecentsText: 'No Recents',
+                          // noRecentsStyle: const TextStyle(
+                          //   fontSize: 20,
+                          // ),
                           tabIndicatorAnimDuration: kTabScrollDuration,
                           categoryIcons: const CategoryIcons(),
                           buttonMode: ButtonMode.MATERIAL,

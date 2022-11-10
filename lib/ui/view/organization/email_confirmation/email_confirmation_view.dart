@@ -34,16 +34,16 @@ class EmailConfirmationView extends StatelessWidget {
                       height: 10,
                     ),
                     TextButton(
-                      child: Text(local.openEmailApp,
-                          style: AppTextStyle.darkGreySize16Bold),
                       style: TextButton.styleFrom(
-                        primary: AppColors.whiteColor,
+                        foregroundColor: AppColors.whiteColor,
                         backgroundColor: HexColor('#00B87C'),
-                        onSurface: HexColor('#00B87C'),
+                        disabledForegroundColor: HexColor('#00B87C'),
                       ),
                       onPressed: () {
                         viewModel.openEmailApp();
                       },
+                      child: Text(local.openEmailApp,
+                          style: AppTextStyle.darkGreySize16Bold),
                     )
                   ]),
             ),

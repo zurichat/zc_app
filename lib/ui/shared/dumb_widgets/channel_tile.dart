@@ -12,7 +12,7 @@ class ChannelTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
     return SizedBox(
       height: 24.h,
@@ -37,7 +37,7 @@ class ChannelTile extends StatelessWidget {
             SizedBox(width: 21.33.w),
             Text(
               '$text',
-              style: _dark
+              style: dark
                   ? AppTextStyle.whiteSize14Bold
                   : AppTextStyle.darkGreySize14Bold,
             ),

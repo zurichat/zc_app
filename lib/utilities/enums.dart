@@ -23,7 +23,14 @@ enum ThreadCardType { threadMain, threadDetail, threadPost, threadChannelMain }
 
 enum PostFileType { text, app }
 
-enum BottomSheetType { user, emojiPicker, floatingBox, threadOptions, signOut, imagePicker }
+enum BottomSheetType {
+  user,
+  emojiPicker,
+  floatingBox,
+  threadOptions,
+  signOut,
+  imagePicker
+}
 
 enum HomeListType {
   unreads,

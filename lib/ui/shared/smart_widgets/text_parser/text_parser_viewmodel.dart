@@ -16,7 +16,7 @@ class TextParserViewModel extends BaseViewModel {
         type: ParsedType.EMAIL,
         style: AppTextStyle.greenSize14,
         onTap: ((url) {
-          launcher("mailto:" + url);
+          launcher("mailto:$url");
         })),
     //Opens a browser when an HTML is clicked
     MatchText(
@@ -34,7 +34,7 @@ class TextParserViewModel extends BaseViewModel {
         type: ParsedType.PHONE,
         style: AppTextStyle.greenSize14,
         onTap: ((url) {
-          launcher("tel:" + url);
+          launcher("tel:$url");
         })),
     //To make a text bold using *...*
     MatchText(

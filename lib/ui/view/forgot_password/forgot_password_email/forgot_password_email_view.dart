@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
-import 'package:zurichat/utilities/constants/colors.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
@@ -22,7 +21,7 @@ class ForgotPasswordEmailView extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
     return ViewModelBuilder<ForgotPasswordEmailViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
@@ -52,7 +51,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                   Center(
                     child: Text(
                       local!.forgotPassword,
-                      style: _dark
+                      style: dark
                           ? AppTextStyle.whiteSize20Bold
                           : AppTextStyle.darkGreySize20Bold,
                     ),
@@ -73,7 +72,7 @@ class ForgotPasswordEmailView extends StatelessWidget
                     margin: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       local.emailAddress,
-                      style: _dark
+                      style: dark
                           ? AppTextStyle.whiteSize16Bold
                           : AppTextStyle.darkGreySize16Bold,
                     ),
@@ -137,14 +136,13 @@ class ForgotPasswordEmailView extends StatelessWidget
                           // model.submitEmail();
                           model.validateEmailIsRegistered();
                         },
+                        style: ElevatedButton.styleFrom(
+                          padding:
+                              const EdgeInsets.only(top: 15.0, bottom: 15.0), backgroundColor: AppColors.zuriPrimaryColor,
+                        ),
                         child: Text(
                           local.continueButton,
                           style: AppTextStyle.whiteSize16,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          padding:
-                              const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                          primary: AppColors.zuriPrimaryColor,
                         ),
                       ),
                     ),

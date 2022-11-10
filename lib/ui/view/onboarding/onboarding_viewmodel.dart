@@ -16,10 +16,9 @@ class OnboardingViewModel extends BaseViewModel {
   final PageController? controller = PageController();
 
   void animateToPage(int index) {
-    
-        controller?.animateToPage(index+1,
-            duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
-     
+    controller?.animateToPage(index + 1,
+        duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
+
     notifyListeners();
   }
 

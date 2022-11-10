@@ -10,14 +10,13 @@ import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
-import 'widgets/home_list_items.dart';
 
 class HomePage extends StatelessWidget {
   final Widget? organizationLogo;
   const HomePage({Key? key, this.organizationLogo}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<HomePageViewModel>.reactive(
       onModelReady: (model) {
         model.getDmAndChannelsList();
@@ -30,7 +29,7 @@ class HomePage extends StatelessWidget {
       builder: (context, vmodel, child) => Scaffold(
         appBar: ZuriAppBar(
           leadingWidth: true,
-          isDarkMode: _dark,
+          isDarkMode: dark,
           orgTitle: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -64,6 +63,12 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.search, color: AppColors.whiteColor),
+              onPressed: vmodel.navigateToGeneralSearchScreen,
+            ),
+          ],
         ),
         body: SafeArea(
           child: Column(
@@ -71,7 +76,7 @@ class HomePage extends StatelessWidget {
               vmodel.isBusy
                   ? LinearProgressIndicator(
                       backgroundColor: Colors.grey[400],
-                      valueColor: AlwaysStoppedAnimation(_dark
+                      valueColor: AlwaysStoppedAnimation(dark
                           ? AppColors.darkThemePrimaryColor
                           : AppColors.zuriPrimaryColor),
                     )
@@ -127,7 +132,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget searchBar(context, vmodel) {
+  Widget searchBar(BuildContext context, HomePageViewModel vmodel) {
     final local = AppLocalization.of(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(zSideMargin, 0, zSideMargin, 0),

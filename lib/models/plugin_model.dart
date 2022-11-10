@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PluginModel {
- IconData icon;
+  IconData icon;
   String name;
   String url;
 

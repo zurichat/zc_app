@@ -5,8 +5,7 @@ import 'package:zurichat/utilities/extensions/string_extension.dart';
 class UserMentions extends StatelessWidget {
   final String membersList;
   final String name;
-  const UserMentions(
-      {Key? key, required this.membersList, required this.name})
+  const UserMentions({Key? key, required this.membersList, required this.name})
       : super(key: key);
 
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
@@ -18,10 +19,10 @@ class DmPage extends StatelessWidget {
       onModelReady: (model) => model.initialise(),
       builder: (context, model, child) {
         final local = AppLocalization.of(context);
-        final bool _dark = Theme.of(context).brightness == Brightness.dark;
+        final bool dark = Theme.of(context).brightness == Brightness.dark;
         return Scaffold(
           appBar: ZuriAppBar(
-            isDarkMode: _dark,
+            isDarkMode: dark,
             leadingWidth: true,
             orgTitle: Text(local!.directMessages,
                 style: AppTextStyle.organizationNameText),
@@ -43,10 +44,10 @@ class DmPage extends StatelessWidget {
           // ),
           body: model.isBusy
               ? const ZuriLoader()
-              : !model.data!
+              : model.data!
                   ? Center(
-                      child: Text(local.temporarilyUnavailable,
-                          style: _dark
+                      child: Text(NoMessages,
+                          style: dark
                               ? AppTextStyle.whiteSize18Bold
                               : AppTextStyle.darkGreySize18Bold),
                     )

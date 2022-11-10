@@ -4,140 +4,234 @@
 // StackedRouterGenerator
 // **************************************************************************
 
-// ignore_for_file: public_member_api_docs
-
-import 'package:flutter/cupertino.dart';
-import 'package:stacked/stacked.dart';
-
-import '../models/channel_members.dart';
-import '../models/channel_model.dart';
-import '../models/organization_model.dart';
-import '../models/user_model.dart';
-import '../models/user_post.dart';
-import '../ui/nav_pages/dm_page/dm_search_find_page.dart';
-import '../ui/nav_pages/home_page/home_page.dart';
-import '../ui/nav_pages/nav_bar/nav_bar_view.dart';
-import '../ui/nav_pages/plugin_page/plugin_view.dart';
-import '../ui/view/add_people/add_people_view.dart';
-import '../ui/view/advanced/advanced_view.dart';
-import '../ui/view/channel/add_people/channel_add_people_view.dart';
-import '../ui/view/channel/channel_info/channel_info_view.dart';
-import '../ui/view/channel/channel_list/channels_view.dart';
-import '../ui/view/channel/channel_notification/channel_notification_view.dart';
-import '../ui/view/channel/channel_view/channel_page_view.dart';
-import '../ui/view/channel/edit_channel/edit_channel_view.dart';
-import '../ui/view/channel/new_channel/new_channel.dart';
-import '../ui/view/channel/pinned_messages/pinned_messages_view.dart';
-import '../ui/view/channel/share_message/share_message_view.dart';
-import '../ui/view/clear_after/clear_after_view.dart';
-import '../ui/view/direct_message/direct_message.dart';
-import '../ui/view/dm_search/dm_search_view.dart';
-import '../ui/view/dm_user/dm_user_view.dart';
-import '../ui/view/do_not_disturb/do_not_disturb_view.dart';
-import '../ui/view/draft/draft_view.dart';
-import '../ui/view/edit_profile/edit_profile_view.dart';
-import '../ui/view/file_search/file_search_view.dart';
-import '../ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart';
-import '../ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart';
-import '../ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart';
-import '../ui/view/jump_to_view/jump_to_view.dart';
-import '../ui/view/language_and_region/language_and_region_view.dart';
-import '../ui/view/login/login_view.dart';
-import '../ui/view/notifications/notifications_view.dart';
-import '../ui/view/onboarding/onboading_view.dart';
-import '../ui/view/organization/add_organization/add_organization_view.dart';
-import '../ui/view/organization/create_organization/create_organization.dart';
-import '../ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart';
-import '../ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart';
-import '../ui/view/organization/invite_to_organization/invitation_sent.dart';
-import '../ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart';
-import '../ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart';
-import '../ui/view/organization/organization_different_email/different_email_organization_view.dart';
-import '../ui/view/organization/organization_settings/organization_logo.dart';
-import '../ui/view/organization/organization_settings/organization_name_url.dart';
-import '../ui/view/organization/organization_settings/organization_settings_view.dart';
-import '../ui/view/organization/organization_url/organization_url_view.dart';
-import '../ui/view/organization/organization_view/organization_view.dart';
-import '../ui/view/organization/select_email/select_email_view.dart';
-import '../ui/view/otp/otp_view.dart';
-import '../ui/view/plugins/add_plugin_view.dart';
-import '../ui/view/popup_notification/popup_notification.dart';
-import '../ui/view/preference/preference_view.dart';
-import '../ui/view/profile_page/profile_page_view.dart';
-import '../ui/view/saved_items/saved_items_view.dart';
-import '../ui/view/set_status/set_status_view.dart';
-import '../ui/view/sign_up/sign_up_view.dart';
-import '../ui/view/splashscreen/splashscreen.dart';
-import '../ui/view/start_dm/start_dm_view.dart';
-import '../ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart';
-import '../ui/view/threads/all_threads/threads_view.dart';
-import '../ui/view/threads/thread_detail/thread_detail_view.dart';
-import '../ui/view/user_search/user_search_view.dart';
-import '../ui/view/webview_page/webview_page.dart';
-import '../utilities/enums.dart';
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:flutter/cupertino.dart' as _i63;
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart' as _i64;
+import 'package:stacked/stacked.dart' as _i1;
+import 'package:stacked_services/stacked_services.dart' as _i71;
+import 'package:zurichat/models/channel_members.dart' as _i68;
+import 'package:zurichat/models/channel_model.dart' as _i69;
+import 'package:zurichat/models/organization_model.dart' as _i70;
+import 'package:zurichat/models/user_model.dart' as _i66;
+import 'package:zurichat/models/user_post.dart' as _i67;
+import 'package:zurichat/ui/nav_pages/dm_page/dm_search_find_page.dart' as _i20;
+import 'package:zurichat/ui/nav_pages/home_page/home_page.dart' as _i15;
+import 'package:zurichat/ui/nav_pages/nav_bar/nav_bar_view.dart' as _i3;
+import 'package:zurichat/ui/nav_pages/plugin_page/plugin_view.dart' as _i22;
+import 'package:zurichat/ui/view/add_people/add_people_view.dart' as _i16;
+import 'package:zurichat/ui/view/advanced/advanced_view.dart' as _i30;
+import 'package:zurichat/ui/view/channel/add_people/channel_add_people_view.dart'
+    as _i2;
+import 'package:zurichat/ui/view/channel/channel_info/channel_info_view.dart'
+    as _i49;
+import 'package:zurichat/ui/view/channel/channel_list/channels_view.dart'
+    as _i9;
+import 'package:zurichat/ui/view/channel/channel_notification/channel_notification_view.dart'
+    as _i13;
+import 'package:zurichat/ui/view/channel/channel_view/channel_page_view.dart'
+    as _i48;
+import 'package:zurichat/ui/view/channel/edit_channel/edit_channel_view.dart'
+    as _i45;
+import 'package:zurichat/ui/view/channel/new_channel/new_channel.dart' as _i14;
+import 'package:zurichat/ui/view/channel/pinned_messages/pinned_messages_view.dart'
+    as _i35;
+import 'package:zurichat/ui/view/channel/share_message/share_message_view.dart'
+    as _i58;
+import 'package:zurichat/ui/view/clear_after/clear_after_view.dart' as _i31;
+import 'package:zurichat/ui/view/direct_message/direct_message.dart' as _i50;
+import 'package:zurichat/ui/view/dm_search/dm_search_view.dart' as _i17;
+import 'package:zurichat/ui/view/dm_user/dm_user_view.dart' as _i19;
+import 'package:zurichat/ui/view/do_not_disturb/do_not_disturb_view.dart'
+    as _i32;
+import 'package:zurichat/ui/view/draft/draft_view.dart' as _i41;
+import 'package:zurichat/ui/view/edit_profile/edit_profile_view.dart' as _i33;
+import 'package:zurichat/ui/view/file_search/file_search_view.dart' as _i40;
+import 'package:zurichat/ui/view/forgot_password/forgot_password_email/forgot_password_email_view.dart'
+    as _i10;
+import 'package:zurichat/ui/view/forgot_password/forgot_password_new_password/forgot_password_newview.dart'
+    as _i12;
+import 'package:zurichat/ui/view/forgot_password/forgot_password_otp/forgot_password_otpview.dart'
+    as _i11;
+import 'package:zurichat/ui/view/general_search/general_search_view.dart'
+    as _i39;
+import 'package:zurichat/ui/view/jump_to_view/jump_to_view.dart' as _i18;
+import 'package:zurichat/ui/view/language_and_region/language_and_region_view.dart'
+    as _i27;
+import 'package:zurichat/ui/view/login/login_view.dart' as _i5;
+import 'package:zurichat/ui/view/notifications/notifications_view.dart' as _i29;
+import 'package:zurichat/ui/view/onboarding/onboading_view.dart' as _i4;
+import 'package:zurichat/ui/view/organization/add_organization/add_organization_view.dart'
+    as _i37;
+import 'package:zurichat/ui/view/organization/create_organization/create_organization.dart'
+    as _i38;
+import 'package:zurichat/ui/view/organization/invite_to_organization/admin_permissions/create_invite_link.dart'
+    as _i56;
+import 'package:zurichat/ui/view/organization/invite_to_organization/admin_permissions/invite_via_email.dart'
+    as _i54;
+import 'package:zurichat/ui/view/organization/invite_to_organization/invitation_sent.dart'
+    as _i57;
+import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_contact/import_contact.dart'
+    as _i55;
+import 'package:zurichat/ui/view/organization/invite_to_organization/invite_via_email/invite_via_email.dart'
+    as _i53;
+import 'package:zurichat/ui/view/organization/organization_different_email/different_email_organization_view.dart'
+    as _i23;
+import 'package:zurichat/ui/view/organization/organization_settings/organization_logo.dart'
+    as _i61;
+import 'package:zurichat/ui/view/organization/organization_settings/organization_name_url.dart'
+    as _i60;
+import 'package:zurichat/ui/view/organization/organization_settings/organization_settings_view.dart'
+    as _i59;
+import 'package:zurichat/ui/view/organization/organization_url/organization_url_view.dart'
+    as _i47;
+import 'package:zurichat/ui/view/organization/organization_view/organization_view.dart'
+    as _i8;
+import 'package:zurichat/ui/view/organization/select_email/select_email_view.dart'
+    as _i36;
+import 'package:zurichat/ui/view/otp/otp_view.dart' as _i6;
+import 'package:zurichat/ui/view/plugins/add_plugin_view.dart' as _i62;
+import 'package:zurichat/ui/view/popup_notification/popup_notification.dart'
+    as _i34;
+import 'package:zurichat/ui/view/preference/preference_view.dart' as _i26;
+import 'package:zurichat/ui/view/profile_page/profile_page_view.dart' as _i25;
+import 'package:zurichat/ui/view/saved_items/saved_items_view.dart' as _i28;
+import 'package:zurichat/ui/view/set_status/set_status_view.dart' as _i24;
+import 'package:zurichat/ui/view/sign_up/sign_up_view.dart' as _i7;
+import 'package:zurichat/ui/view/splashscreen/splashscreen.dart' as _i21;
+import 'package:zurichat/ui/view/start_dm/start_dm_view.dart' as _i46;
+import 'package:zurichat/ui/view/static_pages/terms_and_conditions/terms_and_conditions_view.dart'
+    as _i51;
+import 'package:zurichat/ui/view/threads/all_threads/threads_view.dart' as _i42;
+import 'package:zurichat/ui/view/threads/thread_detail/thread_detail_view.dart'
+    as _i43;
+import 'package:zurichat/ui/view/user_search/user_search_view.dart' as _i44;
+import 'package:zurichat/ui/view/webview_page/webview_page.dart' as _i52;
+import 'package:zurichat/utilities/enums.dart' as _i65;
 
 class Routes {
-  static const String channelAddPeopleView = '/channel-add-people-view';
-  static const String navBarView = '/nav-bar-view';
-  static const String onboardingView = '/onboarding-view';
-  static const String loginView = '/login-view';
-  static const String oTPView = '/o-tp-view';
-  static const String signUpView = '/sign-up-view';
-  static const String organizationView = '/organization-view';
-  static const String channelList = '/channel-list';
-  static const String forgotPasswordEmailView = '/forgot-password-email-view';
-  static const String forgotPasswordOtpView = '/forgot-password-otp-view';
-  static const String forgotPasswordNewView = '/forgot-password-new-view';
-  static const String channelNotificationView = '/channel-notification-view';
-  static const String newChannel = '/new-channel';
-  static const String homePage = '/home-page';
-  static const String addPeopleView = '/add-people-view';
-  static const String dmSearch = '/dm-search';
-  static const String jumpToView = '/jump-to-view';
-  static const String dmUserView = '/dm-user-view';
-  static const String dmScreen = '/dm-screen';
-  static const String splashview = '/';
-  static const String pluginPage = '/plugin-page';
-  static const String useDifferentEmailView = '/use-different-email-view';
-  static const String setStatusView = '/set-status-view';
-  static const String profilePageView = '/profile-page-view';
-  static const String preferenceView = '/preference-view';
-  static const String languageAndRegionModelView =
-      '/language-and-region-model-view';
-  static const String savedItemsView = '/saved-items-view';
-  static const String notificationsView = '/notifications-view';
-  static const String advancedView = '/advanced-view';
-  static const String clearAfterView = '/clear-after-view';
-  static const String doNotDisturbView = '/do-not-disturb-view';
-  static const String editProfileView = '/edit-profile-view';
-  static const String popUpNotificationsView = '/pop-up-notifications-view';
-  static const String pinnedMessagesView = '/pinned-messages-view';
-  static const String selectEmail = '/select-email';
-  static const String addOrganizationView = '/add-organization-view';
-  static const String createOrganization = '/create-organization';
-  static const String fileSearchView = '/file-search-view';
-  static const String draftView = '/draft-view';
-  static const String threadsView = '/threads-view';
-  static const String threadDetailView = '/thread-detail-view';
-  static const String userSearchView = '/user-search-view';
-  static const String editChannelPageView = '/edit-channel-page-view';
-  static const String startDmView = '/start-dm-view';
-  static const String organizationUrlView = '/organization-url-view';
-  static const String channelPageView = '/channel-page-view';
-  static const String channelInfoView = '/channel-info-view';
-  static const String directMessage = '/direct-message';
-  static const String termsAndConditionsView = '/terms-and-conditions-view';
-  static const String webViewPage = '/web-view-page';
-  static const String inviteViaEmail = '/invite-via-email';
-  static const String inviteViaEmailAdmin = '/invite-via-email-admin';
-  static const String importContacts = '/import-contacts';
-  static const String createInviteLink = '/create-invite-link';
-  static const String invitationSent = '/invitation-sent';
-  static const String shareMessageView = '/share-message-view';
-  static const String organizationSettingsView = '/organization-settings-view';
-  static const String organizationNameUrl = '/organization-name-url';
-  static const String organizationLogo = '/organization-logo';
-  static const String addPluginView = '/add-plugin-view';
+  static const channelAddPeopleView = '/channel-add-people-view';
+
+  static const navBarView = '/nav-bar-view';
+
+  static const onboardingView = '/onboarding-view';
+
+  static const loginView = '/login-view';
+
+  static const oTPView = '/o-tp-view';
+
+  static const signUpView = '/sign-up-view';
+
+  static const organizationView = '/organization-view';
+
+  static const channelList = '/channel-list';
+
+  static const forgotPasswordEmailView = '/forgot-password-email-view';
+
+  static const forgotPasswordOtpView = '/forgot-password-otp-view';
+
+  static const forgotPasswordNewView = '/forgot-password-new-view';
+
+  static const channelNotificationView = '/channel-notification-view';
+
+  static const newChannel = '/new-channel';
+
+  static const homePage = '/home-page';
+
+  static const addPeopleView = '/add-people-view';
+
+  static const dmSearch = '/dm-search';
+
+  static const jumpToView = '/jump-to-view';
+
+  static const dmUserView = '/dm-user-view';
+
+  static const dmScreen = '/dm-screen';
+
+  static const splashview = '/';
+
+  static const pluginPage = '/plugin-page';
+
+  static const useDifferentEmailView = '/use-different-email-view';
+
+  static const setStatusView = '/set-status-view';
+
+  static const profilePageView = '/profile-page-view';
+
+  static const preferenceView = '/preference-view';
+
+  static const languageAndRegionModelView = '/language-and-region-model-view';
+
+  static const savedItemsView = '/saved-items-view';
+
+  static const notificationsView = '/notifications-view';
+
+  static const advancedView = '/advanced-view';
+
+  static const clearAfterView = '/clear-after-view';
+
+  static const doNotDisturbView = '/do-not-disturb-view';
+
+  static const editProfileView = '/edit-profile-view';
+
+  static const popUpNotificationsView = '/pop-up-notifications-view';
+
+  static const pinnedMessagesView = '/pinned-messages-view';
+
+  static const selectEmail = '/select-email';
+
+  static const addOrganizationView = '/add-organization-view';
+
+  static const createOrganization = '/create-organization';
+
+  static const generalSearchView = '/general-search-view';
+
+  static const fileSearchView = '/file-search-view';
+
+  static const draftView = '/draft-view';
+
+  static const threadsView = '/threads-view';
+
+  static const threadDetailView = '/thread-detail-view';
+
+  static const userSearchView = '/user-search-view';
+
+  static const editChannelPageView = '/edit-channel-page-view';
+
+  static const startDmView = '/start-dm-view';
+
+  static const organizationUrlView = '/organization-url-view';
+
+  static const channelPageView = '/channel-page-view';
+
+  static const channelInfoView = '/channel-info-view';
+
+  static const directMessage = '/direct-message';
+
+  static const termsAndConditionsView = '/terms-and-conditions-view';
+
+  static const webViewPage = '/web-view-page';
+
+  static const inviteViaEmail = '/invite-via-email';
+
+  static const inviteViaEmailAdmin = '/invite-via-email-admin';
+
+  static const importContacts = '/import-contacts';
+
+  static const createInviteLink = '/create-invite-link';
+
+  static const invitationSent = '/invitation-sent';
+
+  static const shareMessageView = '/share-message-view';
+
+  static const organizationSettingsView = '/organization-settings-view';
+
+  static const organizationNameUrl = '/organization-name-url';
+
+  static const organizationLogo = '/organization-logo';
+
+  static const addPluginView = '/add-plugin-view';
+
   static const all = <String>{
     channelAddPeopleView,
     navBarView,
@@ -176,6 +270,7 @@ class Routes {
     selectEmail,
     addOrganizationView,
     createOrganization,
+    generalSearchView,
     fileSearchView,
     draftView,
     threadsView,
@@ -202,798 +297,2013 @@ class Routes {
   };
 }
 
-class StackedRouter extends RouterBase {
-  @override
-  List<RouteDef> get routes => _routes;
-  final _routes = <RouteDef>[
-    RouteDef(Routes.channelAddPeopleView, page: ChannelAddPeopleView),
-    RouteDef(Routes.navBarView, page: NavBarView),
-    RouteDef(Routes.onboardingView, page: OnboardingView),
-    RouteDef(Routes.loginView, page: LoginView),
-    RouteDef(Routes.oTPView, page: OTPView),
-    RouteDef(Routes.signUpView, page: SignUpView),
-    RouteDef(Routes.organizationView, page: OrganizationView),
-    RouteDef(Routes.channelList, page: ChannelList),
-    RouteDef(Routes.forgotPasswordEmailView, page: ForgotPasswordEmailView),
-    RouteDef(Routes.forgotPasswordOtpView, page: ForgotPasswordOtpView),
-    RouteDef(Routes.forgotPasswordNewView, page: ForgotPasswordNewView),
-    RouteDef(Routes.channelNotificationView, page: ChannelNotificationView),
-    RouteDef(Routes.newChannel, page: NewChannel),
-    RouteDef(Routes.homePage, page: HomePage),
-    RouteDef(Routes.addPeopleView, page: AddPeopleView),
-    RouteDef(Routes.dmSearch, page: DmSearch),
-    RouteDef(Routes.jumpToView, page: JumpToView),
-    RouteDef(Routes.dmUserView, page: DmUserView),
-    RouteDef(Routes.dmScreen, page: DmScreen),
-    RouteDef(Routes.splashview, page: Splashview),
-    RouteDef(Routes.pluginPage, page: PluginPage),
-    RouteDef(Routes.useDifferentEmailView, page: UseDifferentEmailView),
-    RouteDef(Routes.setStatusView, page: SetStatusView),
-    RouteDef(Routes.profilePageView, page: ProfilePageView),
-    RouteDef(Routes.preferenceView, page: PreferenceView),
-    RouteDef(Routes.languageAndRegionModelView,
-        page: LanguageAndRegionModelView),
-    RouteDef(Routes.savedItemsView, page: SavedItemsView),
-    RouteDef(Routes.notificationsView, page: NotificationsView),
-    RouteDef(Routes.advancedView, page: AdvancedView),
-    RouteDef(Routes.clearAfterView, page: ClearAfterView),
-    RouteDef(Routes.doNotDisturbView, page: DoNotDisturbView),
-    RouteDef(Routes.editProfileView, page: EditProfileView),
-    RouteDef(Routes.popUpNotificationsView, page: PopUpNotificationsView),
-    RouteDef(Routes.pinnedMessagesView, page: PinnedMessagesView),
-    RouteDef(Routes.selectEmail, page: SelectEmail),
-    RouteDef(Routes.addOrganizationView, page: AddOrganizationView),
-    RouteDef(Routes.createOrganization, page: CreateOrganization),
-    RouteDef(Routes.fileSearchView, page: FileSearchView),
-    RouteDef(Routes.draftView, page: DraftView),
-    RouteDef(Routes.threadsView, page: ThreadsView),
-    RouteDef(Routes.threadDetailView, page: ThreadDetailView),
-    RouteDef(Routes.userSearchView, page: UserSearchView),
-    RouteDef(Routes.editChannelPageView, page: EditChannelPageView),
-    RouteDef(Routes.startDmView, page: StartDmView),
-    RouteDef(Routes.organizationUrlView, page: OrganizationUrlView),
-    RouteDef(Routes.channelPageView, page: ChannelPageView),
-    RouteDef(Routes.channelInfoView, page: ChannelInfoView),
-    RouteDef(Routes.directMessage, page: DirectMessage),
-    RouteDef(Routes.termsAndConditionsView, page: TermsAndConditionsView),
-    RouteDef(Routes.webViewPage, page: WebViewPage),
-    RouteDef(Routes.inviteViaEmail, page: InviteViaEmail),
-    RouteDef(Routes.inviteViaEmailAdmin, page: InviteViaEmailAdmin),
-    RouteDef(Routes.importContacts, page: ImportContacts),
-    RouteDef(Routes.createInviteLink, page: CreateInviteLink),
-    RouteDef(Routes.invitationSent, page: InvitationSent),
-    RouteDef(Routes.shareMessageView, page: ShareMessageView),
-    RouteDef(Routes.organizationSettingsView, page: OrganizationSettingsView),
-    RouteDef(Routes.organizationNameUrl, page: OrganizationNameUrl),
-    RouteDef(Routes.organizationLogo, page: OrganizationLogo),
-    RouteDef(Routes.addPluginView, page: AddPluginView),
+class StackedRouter extends _i1.RouterBase {
+  final _routes = <_i1.RouteDef>[
+    _i1.RouteDef(
+      Routes.channelAddPeopleView,
+      page: _i2.ChannelAddPeopleView,
+    ),
+    _i1.RouteDef(
+      Routes.navBarView,
+      page: _i3.NavBarView,
+    ),
+    _i1.RouteDef(
+      Routes.onboardingView,
+      page: _i4.OnboardingView,
+    ),
+    _i1.RouteDef(
+      Routes.loginView,
+      page: _i5.LoginView,
+    ),
+    _i1.RouteDef(
+      Routes.oTPView,
+      page: _i6.OTPView,
+    ),
+    _i1.RouteDef(
+      Routes.signUpView,
+      page: _i7.SignUpView,
+    ),
+    _i1.RouteDef(
+      Routes.organizationView,
+      page: _i8.OrganizationView,
+    ),
+    _i1.RouteDef(
+      Routes.channelList,
+      page: _i9.ChannelList,
+    ),
+    _i1.RouteDef(
+      Routes.forgotPasswordEmailView,
+      page: _i10.ForgotPasswordEmailView,
+    ),
+    _i1.RouteDef(
+      Routes.forgotPasswordOtpView,
+      page: _i11.ForgotPasswordOtpView,
+    ),
+    _i1.RouteDef(
+      Routes.forgotPasswordNewView,
+      page: _i12.ForgotPasswordNewView,
+    ),
+    _i1.RouteDef(
+      Routes.channelNotificationView,
+      page: _i13.ChannelNotificationView,
+    ),
+    _i1.RouteDef(
+      Routes.newChannel,
+      page: _i14.NewChannel,
+    ),
+    _i1.RouteDef(
+      Routes.homePage,
+      page: _i15.HomePage,
+    ),
+    _i1.RouteDef(
+      Routes.addPeopleView,
+      page: _i16.AddPeopleView,
+    ),
+    _i1.RouteDef(
+      Routes.dmSearch,
+      page: _i17.DmSearch,
+    ),
+    _i1.RouteDef(
+      Routes.jumpToView,
+      page: _i18.JumpToView,
+    ),
+    _i1.RouteDef(
+      Routes.dmUserView,
+      page: _i19.DmUserView,
+    ),
+    _i1.RouteDef(
+      Routes.dmScreen,
+      page: _i20.DmScreen,
+    ),
+    _i1.RouteDef(
+      Routes.splashview,
+      page: _i21.Splashview,
+    ),
+    _i1.RouteDef(
+      Routes.pluginPage,
+      page: _i22.PluginPage,
+    ),
+    _i1.RouteDef(
+      Routes.useDifferentEmailView,
+      page: _i23.UseDifferentEmailView,
+    ),
+    _i1.RouteDef(
+      Routes.setStatusView,
+      page: _i24.SetStatusView,
+    ),
+    _i1.RouteDef(
+      Routes.profilePageView,
+      page: _i25.ProfilePageView,
+    ),
+    _i1.RouteDef(
+      Routes.preferenceView,
+      page: _i26.PreferenceView,
+    ),
+    _i1.RouteDef(
+      Routes.languageAndRegionModelView,
+      page: _i27.LanguageAndRegionModelView,
+    ),
+    _i1.RouteDef(
+      Routes.savedItemsView,
+      page: _i28.SavedItemsView,
+    ),
+    _i1.RouteDef(
+      Routes.notificationsView,
+      page: _i29.NotificationsView,
+    ),
+    _i1.RouteDef(
+      Routes.advancedView,
+      page: _i30.AdvancedView,
+    ),
+    _i1.RouteDef(
+      Routes.clearAfterView,
+      page: _i31.ClearAfterView,
+    ),
+    _i1.RouteDef(
+      Routes.doNotDisturbView,
+      page: _i32.DoNotDisturbView,
+    ),
+    _i1.RouteDef(
+      Routes.editProfileView,
+      page: _i33.EditProfileView,
+    ),
+    _i1.RouteDef(
+      Routes.popUpNotificationsView,
+      page: _i34.PopUpNotificationsView,
+    ),
+    _i1.RouteDef(
+      Routes.pinnedMessagesView,
+      page: _i35.PinnedMessagesView,
+    ),
+    _i1.RouteDef(
+      Routes.selectEmail,
+      page: _i36.SelectEmail,
+    ),
+    _i1.RouteDef(
+      Routes.addOrganizationView,
+      page: _i37.AddOrganizationView,
+    ),
+    _i1.RouteDef(
+      Routes.createOrganization,
+      page: _i38.CreateOrganization,
+    ),
+    _i1.RouteDef(
+      Routes.generalSearchView,
+      page: _i39.GeneralSearchView,
+    ),
+    _i1.RouteDef(
+      Routes.fileSearchView,
+      page: _i40.FileSearchView,
+    ),
+    _i1.RouteDef(
+      Routes.draftView,
+      page: _i41.DraftView,
+    ),
+    _i1.RouteDef(
+      Routes.threadsView,
+      page: _i42.ThreadsView,
+    ),
+    _i1.RouteDef(
+      Routes.threadDetailView,
+      page: _i43.ThreadDetailView,
+    ),
+    _i1.RouteDef(
+      Routes.userSearchView,
+      page: _i44.UserSearchView,
+    ),
+    _i1.RouteDef(
+      Routes.editChannelPageView,
+      page: _i45.EditChannelPageView,
+    ),
+    _i1.RouteDef(
+      Routes.startDmView,
+      page: _i46.StartDmView,
+    ),
+    _i1.RouteDef(
+      Routes.organizationUrlView,
+      page: _i47.OrganizationUrlView,
+    ),
+    _i1.RouteDef(
+      Routes.channelPageView,
+      page: _i48.ChannelPageView,
+    ),
+    _i1.RouteDef(
+      Routes.channelInfoView,
+      page: _i49.ChannelInfoView,
+    ),
+    _i1.RouteDef(
+      Routes.directMessage,
+      page: _i50.DirectMessage,
+    ),
+    _i1.RouteDef(
+      Routes.termsAndConditionsView,
+      page: _i51.TermsAndConditionsView,
+    ),
+    _i1.RouteDef(
+      Routes.webViewPage,
+      page: _i52.WebViewPage,
+    ),
+    _i1.RouteDef(
+      Routes.inviteViaEmail,
+      page: _i53.InviteViaEmail,
+    ),
+    _i1.RouteDef(
+      Routes.inviteViaEmailAdmin,
+      page: _i54.InviteViaEmailAdmin,
+    ),
+    _i1.RouteDef(
+      Routes.importContacts,
+      page: _i55.ImportContacts,
+    ),
+    _i1.RouteDef(
+      Routes.createInviteLink,
+      page: _i56.CreateInviteLink,
+    ),
+    _i1.RouteDef(
+      Routes.invitationSent,
+      page: _i57.InvitationSent,
+    ),
+    _i1.RouteDef(
+      Routes.shareMessageView,
+      page: _i58.ShareMessageView,
+    ),
+    _i1.RouteDef(
+      Routes.organizationSettingsView,
+      page: _i59.OrganizationSettingsView,
+    ),
+    _i1.RouteDef(
+      Routes.organizationNameUrl,
+      page: _i60.OrganizationNameUrl,
+    ),
+    _i1.RouteDef(
+      Routes.organizationLogo,
+      page: _i61.OrganizationLogo,
+    ),
+    _i1.RouteDef(
+      Routes.addPluginView,
+      page: _i62.AddPluginView,
+    ),
   ];
-  @override
-  Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
-  final _pagesMap = <Type, StackedRouteFactory>{
-    ChannelAddPeopleView: (data) {
-      var args = data.getArgs<ChannelAddPeopleViewArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => ChannelAddPeopleView(
-          key: args.key,
-          channelId: args.channelId,
-          channelName: args.channelName,
-        ),
+
+  final _pagesMap = <Type, _i1.StackedRouteFactory>{
+    _i2.ChannelAddPeopleView: (data) {
+      final args = data.getArgs<ChannelAddPeopleViewArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i2.ChannelAddPeopleView(
+            key: args.key,
+            channelId: args.channelId,
+            channelName: args.channelName),
         settings: data,
       );
     },
-    NavBarView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const NavBarView(),
+    _i3.NavBarView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i3.NavBarView(),
         settings: data,
       );
     },
-    OnboardingView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const OnboardingView(),
+    _i4.OnboardingView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i4.OnboardingView(),
         settings: data,
       );
     },
-    LoginView: (data) {
-      var args = data.getArgs<LoginViewArguments>(
-        orElse: () => LoginViewArguments(),
+    _i5.LoginView: (data) {
+      final args = data.getArgs<LoginViewArguments>(
+        orElse: () => const LoginViewArguments(),
       );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => LoginView(key: args.key),
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i5.LoginView(key: args.key),
         settings: data,
       );
     },
-    OTPView: (data) {
-      var args = data.getArgs<OTPViewArguments>(
-        orElse: () => OTPViewArguments(),
+    _i6.OTPView: (data) {
+      final args = data.getArgs<OTPViewArguments>(
+        orElse: () => const OTPViewArguments(),
       );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => OTPView(key: args.key),
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i6.OTPView(key: args.key),
         settings: data,
       );
     },
-    SignUpView: (data) {
-      var args = data.getArgs<SignUpViewArguments>(
-        orElse: () => SignUpViewArguments(),
+    _i7.SignUpView: (data) {
+      final args = data.getArgs<SignUpViewArguments>(
+        orElse: () => const SignUpViewArguments(),
       );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => SignUpView(key: args.key),
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i7.SignUpView(key: args.key),
         settings: data,
       );
     },
-    OrganizationView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const OrganizationView(),
+    _i8.OrganizationView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i8.OrganizationView(),
         settings: data,
       );
     },
-    ChannelList: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const ChannelList(),
+    _i9.ChannelList: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i9.ChannelList(),
         settings: data,
       );
     },
-    ForgotPasswordEmailView: (data) {
-      var args = data.getArgs<ForgotPasswordEmailViewArguments>(
-        orElse: () => ForgotPasswordEmailViewArguments(),
+    _i10.ForgotPasswordEmailView: (data) {
+      final args = data.getArgs<ForgotPasswordEmailViewArguments>(
+        orElse: () => const ForgotPasswordEmailViewArguments(),
       );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => ForgotPasswordEmailView(key: args.key),
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i10.ForgotPasswordEmailView(key: args.key),
         settings: data,
       );
     },
-    ForgotPasswordOtpView: (data) {
-      var args = data.getArgs<ForgotPasswordOtpViewArguments>(
-        orElse: () => ForgotPasswordOtpViewArguments(),
+    _i11.ForgotPasswordOtpView: (data) {
+      final args = data.getArgs<ForgotPasswordOtpViewArguments>(
+        orElse: () => const ForgotPasswordOtpViewArguments(),
       );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => ForgotPasswordOtpView(key: args.key),
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i11.ForgotPasswordOtpView(key: args.key),
         settings: data,
       );
     },
-    ForgotPasswordNewView: (data) {
-      var args = data.getArgs<ForgotPasswordNewViewArguments>(
-        orElse: () => ForgotPasswordNewViewArguments(),
-      );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => ForgotPasswordNewView(key: args.key),
+    _i12.ForgotPasswordNewView: (data) {
+      final args = data.getArgs<ForgotPasswordNewViewArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i12.ForgotPasswordNewView(key: args.key, otp: args.otp),
         settings: data,
       );
     },
-    ChannelNotificationView: (data) {
-      var args = data.getArgs<ChannelNotificationViewArguments>(
-        orElse: () => ChannelNotificationViewArguments(),
+    _i13.ChannelNotificationView: (data) {
+      final args = data.getArgs<ChannelNotificationViewArguments>(
+        orElse: () => const ChannelNotificationViewArguments(),
       );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => ChannelNotificationView(
-          key: args.key,
-          channelName: args.channelName,
-        ),
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i13.ChannelNotificationView(
+            key: args.key, channelName: args.channelName),
         settings: data,
       );
     },
-    NewChannel: (data) {
-      var args = data.getArgs<NewChannelArguments>(
-        orElse: () => NewChannelArguments(),
+    _i14.NewChannel: (data) {
+      final args = data.getArgs<NewChannelArguments>(
+        orElse: () => const NewChannelArguments(),
       );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => NewChannel(key: args.key),
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i14.NewChannel(key: args.key),
         settings: data,
       );
     },
-    HomePage: (data) {
-      var args = data.getArgs<HomePageArguments>(
-        orElse: () => HomePageArguments(),
+    _i15.HomePage: (data) {
+      final args = data.getArgs<HomePageArguments>(
+        orElse: () => const HomePageArguments(),
       );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => HomePage(
-          key: args.key,
-          organizationLogo: args.organizationLogo,
-        ),
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i15.HomePage(
+            key: args.key, organizationLogo: args.organizationLogo),
         settings: data,
       );
     },
-    AddPeopleView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const AddPeopleView(),
+    _i16.AddPeopleView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i16.AddPeopleView(),
         settings: data,
       );
     },
-    DmSearch: (data) {
-      var args = data.getArgs<DmSearchArguments>(
-        orElse: () => DmSearchArguments(),
+    _i17.DmSearch: (data) {
+      final args = data.getArgs<DmSearchArguments>(
+        orElse: () => const DmSearchArguments(),
       );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => DmSearch(key: args.key),
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i17.DmSearch(key: args.key),
         settings: data,
       );
     },
-    JumpToView: (data) {
-      var args = data.getArgs<JumpToViewArguments>(
-        orElse: () => JumpToViewArguments(),
+    _i18.JumpToView: (data) {
+      final args = data.getArgs<JumpToViewArguments>(
+        orElse: () => const JumpToViewArguments(),
       );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => JumpToView(key: args.key),
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i18.JumpToView(key: args.key),
         settings: data,
       );
     },
-    DmUserView: (data) {
-      var args = data.getArgs<DmUserViewArguments>(
-        orElse: () => DmUserViewArguments(),
-      );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => DmUserView(key: args.key),
+    _i19.DmUserView: (data) {
+      final args = data.getArgs<DmUserViewArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i19.DmUserView(key: args.key, friendID: args.friendID),
         settings: data,
       );
     },
-    DmScreen: (data) {
-      var args = data.getArgs<DmScreenArguments>(
-        orElse: () => DmScreenArguments(),
+    _i20.DmScreen: (data) {
+      final args = data.getArgs<DmScreenArguments>(
+        orElse: () => const DmScreenArguments(),
       );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => DmScreen(key: args.key),
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i20.DmScreen(key: args.key),
         settings: data,
       );
     },
-    Splashview: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const Splashview(),
+    _i21.Splashview: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i21.Splashview(),
         settings: data,
       );
     },
-    PluginPage: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const PluginPage(),
+    _i22.PluginPage: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i22.PluginPage(),
         settings: data,
       );
     },
-    UseDifferentEmailView: (data) {
-      var args = data.getArgs<UseDifferentEmailViewArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => UseDifferentEmailView(
-          key: args.key,
-          method: args.method,
-        ),
+    _i23.UseDifferentEmailView: (data) {
+      final args = data.getArgs<UseDifferentEmailViewArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i23.UseDifferentEmailView(key: args.key, method: args.method),
         settings: data,
       );
     },
-    SetStatusView: (data) {
-      var args = data.getArgs<SetStatusViewArguments>(
-        orElse: () => SetStatusViewArguments(),
+    _i24.SetStatusView: (data) {
+      final args = data.getArgs<SetStatusViewArguments>(
+        orElse: () => const SetStatusViewArguments(),
       );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => SetStatusView(key: args.key),
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i24.SetStatusView(key: args.key),
         settings: data,
       );
     },
-    ProfilePageView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const ProfilePageView(),
+    _i25.ProfilePageView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i25.ProfilePageView(),
         settings: data,
       );
     },
-    PreferenceView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const PreferenceView(),
+    _i26.PreferenceView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i26.PreferenceView(),
         settings: data,
       );
     },
-    LanguageAndRegionModelView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const LanguageAndRegionModelView(),
+    _i27.LanguageAndRegionModelView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i27.LanguageAndRegionModelView(),
         settings: data,
       );
     },
-    SavedItemsView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const SavedItemsView(),
+    _i28.SavedItemsView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i28.SavedItemsView(),
         settings: data,
       );
     },
-    NotificationsView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const NotificationsView(),
+    _i29.NotificationsView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i29.NotificationsView(),
         settings: data,
       );
     },
-    AdvancedView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const AdvancedView(),
+    _i30.AdvancedView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i30.AdvancedView(),
         settings: data,
       );
     },
-    ClearAfterView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const ClearAfterView(),
+    _i31.ClearAfterView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i31.ClearAfterView(),
         settings: data,
       );
     },
-    DoNotDisturbView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const DoNotDisturbView(),
+    _i32.DoNotDisturbView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i32.DoNotDisturbView(),
         settings: data,
       );
     },
-    EditProfileView: (data) {
-      var args = data.getArgs<EditProfileViewArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => EditProfileView(
-          key: args.key,
-          user: args.user,
-        ),
+    _i33.EditProfileView: (data) {
+      final args = data.getArgs<EditProfileViewArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i33.EditProfileView(key: args.key, user: args.user),
         settings: data,
       );
     },
-    PopUpNotificationsView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const PopUpNotificationsView(),
+    _i34.PopUpNotificationsView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i34.PopUpNotificationsView(),
         settings: data,
       );
     },
-    PinnedMessagesView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const PinnedMessagesView(),
+    _i35.PinnedMessagesView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i35.PinnedMessagesView(),
         settings: data,
       );
     },
-    SelectEmail: (data) {
-      var args = data.getArgs<SelectEmailArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => SelectEmail(
-          key: args.key,
-          method: args.method,
-        ),
+    _i36.SelectEmail: (data) {
+      final args = data.getArgs<SelectEmailArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i36.SelectEmail(key: args.key, method: args.method),
         settings: data,
       );
     },
-    AddOrganizationView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const AddOrganizationView(),
+    _i37.AddOrganizationView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i37.AddOrganizationView(),
         settings: data,
       );
     },
-    CreateOrganization: (data) {
-      var args = data.getArgs<CreateOrganizationArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => CreateOrganization(
-          key: args.key,
-          email: args.email,
-        ),
+    _i38.CreateOrganization: (data) {
+      final args = data.getArgs<CreateOrganizationArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i38.CreateOrganization(key: args.key, email: args.email),
         settings: data,
       );
     },
-    FileSearchView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const FileSearchView(),
+    _i39.GeneralSearchView: (data) {
+      final args = data.getArgs<GeneralSearchViewArguments>(
+        orElse: () => const GeneralSearchViewArguments(),
+      );
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i39.GeneralSearchView(key: args.key),
         settings: data,
       );
     },
-    DraftView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const DraftView(),
+    _i40.FileSearchView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i40.FileSearchView(),
         settings: data,
       );
     },
-    ThreadsView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const ThreadsView(),
+    _i41.DraftView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i41.DraftView(),
         settings: data,
       );
     },
-    ThreadDetailView: (data) {
-      var args = data.getArgs<ThreadDetailViewArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => ThreadDetailView(
-          args.userPost,
-          key: args.key,
-        ),
+    _i42.ThreadsView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i42.ThreadsView(),
         settings: data,
       );
     },
-    UserSearchView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const UserSearchView(),
+    _i43.ThreadDetailView: (data) {
+      final args = data.getArgs<ThreadDetailViewArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i43.ThreadDetailView(args.userPost, key: args.key),
         settings: data,
       );
     },
-    EditChannelPageView: (data) {
-      var args = data.getArgs<EditChannelPageViewArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => EditChannelPageView(
-          key: args.key,
-          channelName: args.channelName,
-          channelId: args.channelId,
-        ),
+    _i44.UserSearchView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i44.UserSearchView(),
         settings: data,
       );
     },
-    StartDmView: (data) {
-      var args = data.getArgs<StartDmViewArguments>(
-        orElse: () => StartDmViewArguments(),
-      );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => StartDmView(key: args.key),
+    _i45.EditChannelPageView: (data) {
+      final args = data.getArgs<EditChannelPageViewArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i45.EditChannelPageView(
+            key: args.key,
+            channelName: args.channelName,
+            channelId: args.channelId),
         settings: data,
       );
     },
-    OrganizationUrlView: (data) {
-      var args = data.getArgs<OrganizationUrlViewArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => OrganizationUrlView(
-          key: args.key,
-          email: args.email,
-        ),
+    _i46.StartDmView: (data) {
+      final args = data.getArgs<StartDmViewArguments>(
+        orElse: () => const StartDmViewArguments(),
+      );
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i46.StartDmView(key: args.key),
         settings: data,
       );
     },
-    ChannelPageView: (data) {
-      var args = data.getArgs<ChannelPageViewArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => ChannelPageView(
-          key: args.key,
-          channelName: args.channelName,
-          channelId: args.channelId,
-          membersCount: args.membersCount,
-          public: args.public,
-        ),
+    _i47.OrganizationUrlView: (data) {
+      final args = data.getArgs<OrganizationUrlViewArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i47.OrganizationUrlView(key: args.key, email: args.email),
         settings: data,
       );
     },
-    ChannelInfoView: (data) {
-      var args = data.getArgs<ChannelInfoViewArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => ChannelInfoView(
-          key: args.key,
-          numberOfMembers: args.numberOfMembers,
-          channelMembers: args.channelMembers,
-          channelDetail: args.channelDetail,
-          channelName: args.channelName,
-        ),
+    _i48.ChannelPageView: (data) {
+      final args = data.getArgs<ChannelPageViewArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i48.ChannelPageView(
+            key: args.key,
+            channelName: args.channelName,
+            channelId: args.channelId,
+            membersCount: args.membersCount,
+            public: args.public),
         settings: data,
       );
     },
-    DirectMessage: (data) {
-      var args = data.getArgs<DirectMessageArguments>(
-        orElse: () => DirectMessageArguments(),
-      );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => DirectMessage(
-          key: args.key,
-          username: args.username,
-        ),
+    _i49.ChannelInfoView: (data) {
+      final args = data.getArgs<ChannelInfoViewArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i49.ChannelInfoView(
+            key: args.key,
+            numberOfMembers: args.numberOfMembers,
+            channelMembers: args.channelMembers,
+            channelDetail: args.channelDetail,
+            channelName: args.channelName),
         settings: data,
       );
     },
-    TermsAndConditionsView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const TermsAndConditionsView(),
+    _i50.DirectMessage: (data) {
+      final args = data.getArgs<DirectMessageArguments>(
+        orElse: () => const DirectMessageArguments(),
+      );
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i50.DirectMessage(key: args.key, username: args.username),
         settings: data,
       );
     },
-    WebViewPage: (data) {
-      var args = data.getArgs<WebViewPageArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => WebViewPage(
-          name: args.name,
-          url: args.url,
-          key: args.key,
-        ),
+    _i51.TermsAndConditionsView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i51.TermsAndConditionsView(),
         settings: data,
       );
     },
-    InviteViaEmail: (data) {
-      var args = data.getArgs<InviteViaEmailArguments>(
-        orElse: () => InviteViaEmailArguments(),
-      );
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => InviteViaEmail(key: args.key),
+    _i52.WebViewPage: (data) {
+      final args = data.getArgs<WebViewPageArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i52.WebViewPage(name: args.name, url: args.url, key: args.key),
         settings: data,
       );
     },
-    InviteViaEmailAdmin: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const InviteViaEmailAdmin(),
+    _i53.InviteViaEmail: (data) {
+      final args = data.getArgs<InviteViaEmailArguments>(
+        orElse: () => const InviteViaEmailArguments(),
+      );
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => _i53.InviteViaEmail(key: args.key),
         settings: data,
       );
     },
-    ImportContacts: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const ImportContacts(),
+    _i54.InviteViaEmailAdmin: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i54.InviteViaEmailAdmin(),
         settings: data,
       );
     },
-    CreateInviteLink: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const CreateInviteLink(),
+    _i55.ImportContacts: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i55.ImportContacts(),
         settings: data,
       );
     },
-    InvitationSent: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const InvitationSent(),
+    _i56.CreateInviteLink: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i56.CreateInviteLink(),
         settings: data,
       );
     },
-    ShareMessageView: (data) {
-      var args = data.getArgs<ShareMessageViewArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => ShareMessageView(
-          userPost: args.userPost,
-          key: args.key,
-        ),
+    _i57.InvitationSent: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i57.InvitationSent(),
         settings: data,
       );
     },
-    OrganizationSettingsView: (data) {
-      var args = data.getArgs<OrganizationSettingsViewArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => OrganizationSettingsView(
-          key: args.key,
-          org: args.org,
-        ),
+    _i58.ShareMessageView: (data) {
+      final args = data.getArgs<ShareMessageViewArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i58.ShareMessageView(userPost: args.userPost, key: args.key),
         settings: data,
       );
     },
-    OrganizationNameUrl: (data) {
-      var args = data.getArgs<OrganizationNameUrlArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => OrganizationNameUrl(
-          key: args.key,
-          org: args.org,
-        ),
+    _i59.OrganizationSettingsView: (data) {
+      final args =
+          data.getArgs<OrganizationSettingsViewArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i59.OrganizationSettingsView(key: args.key, org: args.org),
         settings: data,
       );
     },
-    OrganizationLogo: (data) {
-      var args = data.getArgs<OrganizationLogoArguments>(nullOk: false);
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => OrganizationLogo(
-          key: args.key,
-          org: args.org,
-        ),
+    _i60.OrganizationNameUrl: (data) {
+      final args = data.getArgs<OrganizationNameUrlArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i60.OrganizationNameUrl(key: args.key, org: args.org),
         settings: data,
       );
     },
-    AddPluginView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const AddPluginView(),
+    _i61.OrganizationLogo: (data) {
+      final args = data.getArgs<OrganizationLogoArguments>(nullOk: false);
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) =>
+            _i61.OrganizationLogo(key: args.key, org: args.org),
+        settings: data,
+      );
+    },
+    _i62.AddPluginView: (data) {
+      return _i63.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i62.AddPluginView(),
         settings: data,
       );
     },
   };
+
+  @override
+  List<_i1.RouteDef> get routes => _routes;
+  @override
+  Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-/// ************************************************************************
-/// Arguments holder classes
-/// *************************************************************************
-
-/// ChannelAddPeopleView arguments holder class
 class ChannelAddPeopleViewArguments {
-  final Key? key;
+  const ChannelAddPeopleViewArguments({
+    this.key,
+    required this.channelId,
+    required this.channelName,
+  });
+
+  final _i64.Key? key;
+
   final String channelId;
+
   final String channelName;
-  ChannelAddPeopleViewArguments(
-      {this.key, required this.channelId, required this.channelName});
 }
 
-/// LoginView arguments holder class
 class LoginViewArguments {
-  final Key? key;
-  LoginViewArguments({this.key});
+  const LoginViewArguments({this.key});
+
+  final _i64.Key? key;
 }
 
-/// OTPView arguments holder class
 class OTPViewArguments {
-  final Key? key;
-  OTPViewArguments({this.key});
+  const OTPViewArguments({this.key});
+
+  final _i64.Key? key;
 }
 
-/// SignUpView arguments holder class
 class SignUpViewArguments {
-  final Key? key;
-  SignUpViewArguments({this.key});
+  const SignUpViewArguments({this.key});
+
+  final _i64.Key? key;
 }
 
-/// ForgotPasswordEmailView arguments holder class
 class ForgotPasswordEmailViewArguments {
-  final Key? key;
-  ForgotPasswordEmailViewArguments({this.key});
+  const ForgotPasswordEmailViewArguments({this.key});
+
+  final _i64.Key? key;
 }
 
-/// ForgotPasswordOtpView arguments holder class
 class ForgotPasswordOtpViewArguments {
-  final Key? key;
-  ForgotPasswordOtpViewArguments({this.key});
+  const ForgotPasswordOtpViewArguments({this.key});
+
+  final _i64.Key? key;
 }
 
-/// ForgotPasswordNewView arguments holder class
 class ForgotPasswordNewViewArguments {
-  final Key? key;
-  ForgotPasswordNewViewArguments({this.key});
+  const ForgotPasswordNewViewArguments({
+    this.key,
+    required this.otp,
+  });
+
+  final _i64.Key? key;
+
+  final String otp;
 }
 
-/// ChannelNotificationView arguments holder class
 class ChannelNotificationViewArguments {
-  final Key? key;
+  const ChannelNotificationViewArguments({
+    this.key,
+    this.channelName,
+  });
+
+  final _i64.Key? key;
+
   final String? channelName;
-  ChannelNotificationViewArguments({this.key, this.channelName});
 }
 
-/// NewChannel arguments holder class
 class NewChannelArguments {
-  final Key? key;
-  NewChannelArguments({this.key});
+  const NewChannelArguments({this.key});
+
+  final _i64.Key? key;
 }
 
-/// HomePage arguments holder class
 class HomePageArguments {
-  final Key? key;
-  final Widget? organizationLogo;
-  HomePageArguments({this.key, this.organizationLogo});
+  const HomePageArguments({
+    this.key,
+    this.organizationLogo,
+  });
+
+  final _i64.Key? key;
+
+  final _i64.Widget? organizationLogo;
 }
 
-/// DmSearch arguments holder class
 class DmSearchArguments {
-  final Key? key;
-  DmSearchArguments({this.key});
+  const DmSearchArguments({this.key});
+
+  final _i64.Key? key;
 }
 
-/// JumpToView arguments holder class
 class JumpToViewArguments {
-  final Key? key;
-  JumpToViewArguments({this.key});
+  const JumpToViewArguments({this.key});
+
+  final _i64.Key? key;
 }
 
-/// DmUserView arguments holder class
 class DmUserViewArguments {
-  final Key? key;
-  DmUserViewArguments({this.key});
+  const DmUserViewArguments({
+    this.key,
+    required this.friendID,
+  });
+
+  final _i64.Key? key;
+
+  final String friendID;
 }
 
-/// DmScreen arguments holder class
 class DmScreenArguments {
-  final Key? key;
-  DmScreenArguments({this.key});
+  const DmScreenArguments({this.key});
+
+  final _i64.Key? key;
 }
 
-/// UseDifferentEmailView arguments holder class
 class UseDifferentEmailViewArguments {
-  final Key? key;
-  final OrganizationSwitchMethod method;
-  UseDifferentEmailViewArguments({this.key, required this.method});
+  const UseDifferentEmailViewArguments({
+    this.key,
+    required this.method,
+  });
+
+  final _i64.Key? key;
+
+  final _i65.OrganizationSwitchMethod method;
 }
 
-/// SetStatusView arguments holder class
 class SetStatusViewArguments {
-  final Key? key;
-  SetStatusViewArguments({this.key});
+  const SetStatusViewArguments({this.key});
+
+  final _i64.Key? key;
 }
 
-/// EditProfileView arguments holder class
 class EditProfileViewArguments {
-  final Key? key;
-  final UserModel user;
-  EditProfileViewArguments({this.key, required this.user});
+  const EditProfileViewArguments({
+    this.key,
+    required this.user,
+  });
+
+  final _i64.Key? key;
+
+  final _i66.UserModel user;
 }
 
-/// SelectEmail arguments holder class
 class SelectEmailArguments {
-  final Key? key;
-  final OrganizationSwitchMethod method;
-  SelectEmailArguments({this.key, required this.method});
+  const SelectEmailArguments({
+    this.key,
+    required this.method,
+  });
+
+  final _i64.Key? key;
+
+  final _i65.OrganizationSwitchMethod method;
 }
 
-/// CreateOrganization arguments holder class
 class CreateOrganizationArguments {
-  final Key? key;
+  const CreateOrganizationArguments({
+    this.key,
+    required this.email,
+  });
+
+  final _i64.Key? key;
+
   final String email;
-  CreateOrganizationArguments({this.key, required this.email});
 }
 
-/// ThreadDetailView arguments holder class
+class GeneralSearchViewArguments {
+  const GeneralSearchViewArguments({this.key});
+
+  final _i64.Key? key;
+}
+
 class ThreadDetailViewArguments {
-  final UserPost? userPost;
-  final Key? key;
-  ThreadDetailViewArguments({required this.userPost, this.key});
+  const ThreadDetailViewArguments({
+    required this.userPost,
+    this.key,
+  });
+
+  final _i67.UserPost? userPost;
+
+  final _i64.Key? key;
 }
 
-/// EditChannelPageView arguments holder class
 class EditChannelPageViewArguments {
-  final Key? key;
+  const EditChannelPageViewArguments({
+    this.key,
+    required this.channelName,
+    this.channelId,
+  });
+
+  final _i64.Key? key;
+
   final String channelName;
+
   final String? channelId;
-  EditChannelPageViewArguments(
-      {this.key, required this.channelName, this.channelId});
 }
 
-/// StartDmView arguments holder class
 class StartDmViewArguments {
-  final Key? key;
-  StartDmViewArguments({this.key});
+  const StartDmViewArguments({this.key});
+
+  final _i64.Key? key;
 }
 
-/// OrganizationUrlView arguments holder class
 class OrganizationUrlViewArguments {
-  final Key? key;
+  const OrganizationUrlViewArguments({
+    this.key,
+    required this.email,
+  });
+
+  final _i64.Key? key;
+
   final String email;
-  OrganizationUrlViewArguments({this.key, required this.email});
 }
 
-/// ChannelPageView arguments holder class
 class ChannelPageViewArguments {
-  final Key? key;
+  const ChannelPageViewArguments({
+    this.key,
+    required this.channelName,
+    required this.channelId,
+    required this.membersCount,
+    required this.public,
+  });
+
+  final _i64.Key? key;
+
   final String? channelName;
+
   final String? channelId;
+
   final int? membersCount;
+
   final bool? public;
-  ChannelPageViewArguments(
-      {this.key,
-      required this.channelName,
-      required this.channelId,
-      required this.membersCount,
-      required this.public});
 }
 
-/// ChannelInfoView arguments holder class
 class ChannelInfoViewArguments {
-  final Key? key;
+  const ChannelInfoViewArguments({
+    this.key,
+    required this.numberOfMembers,
+    required this.channelMembers,
+    required this.channelDetail,
+    required this.channelName,
+  });
+
+  final _i64.Key? key;
+
   final int numberOfMembers;
-  final List<ChannelMembermodel> channelMembers;
-  final ChannelModel channelDetail;
+
+  final List<_i68.ChannelMember> channelMembers;
+
+  final _i69.ChannelModel channelDetail;
+
   final String channelName;
-  ChannelInfoViewArguments(
-      {this.key,
-      required this.numberOfMembers,
-      required this.channelMembers,
-      required this.channelDetail,
-      required this.channelName});
 }
 
-/// DirectMessage arguments holder class
 class DirectMessageArguments {
-  final Key? key;
+  const DirectMessageArguments({
+    this.key,
+    this.username,
+  });
+
+  final _i64.Key? key;
+
   final String? username;
-  DirectMessageArguments({this.key, this.username});
 }
 
-/// WebViewPage arguments holder class
 class WebViewPageArguments {
+  const WebViewPageArguments({
+    required this.name,
+    required this.url,
+    this.key,
+  });
+
   final String name;
+
   final String url;
-  final Key? key;
-  WebViewPageArguments({required this.name, required this.url, this.key});
+
+  final _i64.Key? key;
 }
 
-/// InviteViaEmail arguments holder class
 class InviteViaEmailArguments {
-  final Key? key;
-  InviteViaEmailArguments({this.key});
+  const InviteViaEmailArguments({this.key});
+
+  final _i64.Key? key;
 }
 
-/// ShareMessageView arguments holder class
 class ShareMessageViewArguments {
-  final UserPost userPost;
-  final Key? key;
-  ShareMessageViewArguments({required this.userPost, this.key});
+  const ShareMessageViewArguments({
+    required this.userPost,
+    this.key,
+  });
+
+  final _i67.UserPost userPost;
+
+  final _i64.Key? key;
 }
 
-/// OrganizationSettingsView arguments holder class
 class OrganizationSettingsViewArguments {
-  final Key? key;
-  final OrganizationModel org;
-  OrganizationSettingsViewArguments({this.key, required this.org});
+  const OrganizationSettingsViewArguments({
+    this.key,
+    required this.org,
+  });
+
+  final _i64.Key? key;
+
+  final _i70.OrganizationModel org;
 }
 
-/// OrganizationNameUrl arguments holder class
 class OrganizationNameUrlArguments {
-  final Key? key;
-  final OrganizationModel org;
-  OrganizationNameUrlArguments({this.key, required this.org});
+  const OrganizationNameUrlArguments({
+    this.key,
+    required this.org,
+  });
+
+  final _i64.Key? key;
+
+  final _i70.OrganizationModel org;
 }
 
-/// OrganizationLogo arguments holder class
 class OrganizationLogoArguments {
-  final Key? key;
-  final OrganizationModel org;
-  OrganizationLogoArguments({this.key, required this.org});
+  const OrganizationLogoArguments({
+    this.key,
+    required this.org,
+  });
+
+  final _i64.Key? key;
+
+  final _i70.OrganizationModel org;
+}
+
+extension NavigatorStateExtension on _i71.NavigationService {
+  Future<dynamic> navigateToChannelAddPeopleView({
+    _i64.Key? key,
+    required String channelId,
+    required String channelName,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.channelAddPeopleView,
+        arguments: ChannelAddPeopleViewArguments(
+            key: key, channelId: channelId, channelName: channelName),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToNavBarView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.navBarView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToOnboardingView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.onboardingView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToLoginView({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.loginView,
+        arguments: LoginViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToOTPView({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.oTPView,
+        arguments: OTPViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToSignUpView({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.signUpView,
+        arguments: SignUpViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToOrganizationView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.organizationView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToChannelList([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.channelList,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToForgotPasswordEmailView({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.forgotPasswordEmailView,
+        arguments: ForgotPasswordEmailViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToForgotPasswordOtpView({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.forgotPasswordOtpView,
+        arguments: ForgotPasswordOtpViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToForgotPasswordNewView({
+    _i64.Key? key,
+    required String otp,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.forgotPasswordNewView,
+        arguments: ForgotPasswordNewViewArguments(key: key, otp: otp),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToChannelNotificationView({
+    _i64.Key? key,
+    String? channelName,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.channelNotificationView,
+        arguments: ChannelNotificationViewArguments(
+            key: key, channelName: channelName),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToNewChannel({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.newChannel,
+        arguments: NewChannelArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToHomePage({
+    _i64.Key? key,
+    _i64.Widget? organizationLogo,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.homePage,
+        arguments:
+            HomePageArguments(key: key, organizationLogo: organizationLogo),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAddPeopleView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.addPeopleView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToDmSearch({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.dmSearch,
+        arguments: DmSearchArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToJumpToView({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.jumpToView,
+        arguments: JumpToViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToDmUserView({
+    _i64.Key? key,
+    required String friendID,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.dmUserView,
+        arguments: DmUserViewArguments(key: key, friendID: friendID),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToDmScreen({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.dmScreen,
+        arguments: DmScreenArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToSplashview([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.splashview,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToPluginPage([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.pluginPage,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToUseDifferentEmailView({
+    _i64.Key? key,
+    required _i65.OrganizationSwitchMethod method,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.useDifferentEmailView,
+        arguments: UseDifferentEmailViewArguments(key: key, method: method),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToSetStatusView({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.setStatusView,
+        arguments: SetStatusViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToProfilePageView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.profilePageView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToPreferenceView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.preferenceView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToLanguageAndRegionModelView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.languageAndRegionModelView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToSavedItemsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.savedItemsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToNotificationsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.notificationsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAdvancedView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.advancedView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToClearAfterView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.clearAfterView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToDoNotDisturbView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.doNotDisturbView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToEditProfileView({
+    _i64.Key? key,
+    required _i66.UserModel user,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.editProfileView,
+        arguments: EditProfileViewArguments(key: key, user: user),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToPopUpNotificationsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.popUpNotificationsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToPinnedMessagesView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.pinnedMessagesView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToSelectEmail({
+    _i64.Key? key,
+    required _i65.OrganizationSwitchMethod method,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.selectEmail,
+        arguments: SelectEmailArguments(key: key, method: method),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAddOrganizationView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.addOrganizationView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToCreateOrganization({
+    _i64.Key? key,
+    required String email,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.createOrganization,
+        arguments: CreateOrganizationArguments(key: key, email: email),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToGeneralSearchView({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.generalSearchView,
+        arguments: GeneralSearchViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToFileSearchView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.fileSearchView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToDraftView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.draftView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToThreadsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.threadsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToThreadDetailView({
+    required _i67.UserPost? userPost,
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.threadDetailView,
+        arguments: ThreadDetailViewArguments(userPost: userPost, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToUserSearchView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.userSearchView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToEditChannelPageView({
+    _i64.Key? key,
+    required String channelName,
+    String? channelId,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.editChannelPageView,
+        arguments: EditChannelPageViewArguments(
+            key: key, channelName: channelName, channelId: channelId),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToStartDmView({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.startDmView,
+        arguments: StartDmViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToOrganizationUrlView({
+    _i64.Key? key,
+    required String email,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.organizationUrlView,
+        arguments: OrganizationUrlViewArguments(key: key, email: email),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToChannelPageView({
+    _i64.Key? key,
+    required String? channelName,
+    required String? channelId,
+    required int? membersCount,
+    required bool? public,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.channelPageView,
+        arguments: ChannelPageViewArguments(
+            key: key,
+            channelName: channelName,
+            channelId: channelId,
+            membersCount: membersCount,
+            public: public),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToChannelInfoView({
+    _i64.Key? key,
+    required int numberOfMembers,
+    required List<_i68.ChannelMember> channelMembers,
+    required _i69.ChannelModel channelDetail,
+    required String channelName,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.channelInfoView,
+        arguments: ChannelInfoViewArguments(
+            key: key,
+            numberOfMembers: numberOfMembers,
+            channelMembers: channelMembers,
+            channelDetail: channelDetail,
+            channelName: channelName),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToDirectMessage({
+    _i64.Key? key,
+    String? username,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.directMessage,
+        arguments: DirectMessageArguments(key: key, username: username),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToTermsAndConditionsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.termsAndConditionsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToWebViewPage({
+    required String name,
+    required String url,
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.webViewPage,
+        arguments: WebViewPageArguments(name: name, url: url, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToInviteViaEmail({
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.inviteViaEmail,
+        arguments: InviteViaEmailArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToInviteViaEmailAdmin([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.inviteViaEmailAdmin,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToImportContacts([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.importContacts,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToCreateInviteLink([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.createInviteLink,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToInvitationSent([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.invitationSent,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToShareMessageView({
+    required _i67.UserPost userPost,
+    _i64.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.shareMessageView,
+        arguments: ShareMessageViewArguments(userPost: userPost, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToOrganizationSettingsView({
+    _i64.Key? key,
+    required _i70.OrganizationModel org,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.organizationSettingsView,
+        arguments: OrganizationSettingsViewArguments(key: key, org: org),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToOrganizationNameUrl({
+    _i64.Key? key,
+    required _i70.OrganizationModel org,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.organizationNameUrl,
+        arguments: OrganizationNameUrlArguments(key: key, org: org),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToOrganizationLogo({
+    _i64.Key? key,
+    required _i70.OrganizationModel org,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.organizationLogo,
+        arguments: OrganizationLogoArguments(key: key, org: org),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAddPluginView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.addPluginView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:centrifuge/centrifuge.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:zurichat/utilities/enums.dart';
+
 import '../helpers/test_helpers.dart';
 
 void main() {
@@ -11,11 +13,16 @@ void main() {
       test('When called, a customSnackBar is shown', () async {
         var snackbar = getAndRegisterSnackbarServiceMock();
         await snackbar.showCustomSnackBar(
-            message:
-                Error.custom(401, 'Could not create workspace').toString());
+          message:
+              Error.custom(401, 'Could not create workspace', true).toString(),
+          variant: SnackbarType.failure,
+        );
+
         verify(snackbar.showCustomSnackBar(
-            message:
-                Error.custom(401, 'Could not create workspace').toString()));
+          message:
+              Error.custom(401, 'Could not create workspace', true).toString(),
+          variant: SnackbarType.failure,
+        ));
       });
     });
   });

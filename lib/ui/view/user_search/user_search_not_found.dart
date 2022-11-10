@@ -23,11 +23,11 @@ class UserSearch extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
+            backgroundColor: AppColors.zuriPrimaryColor,
             child: const Icon(
               Icons.add,
               color: AppColors.whiteColor,
             ),
-            backgroundColor: AppColors.zuriPrimaryColor,
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -65,14 +65,14 @@ class UserSearch extends StatelessWidget {
                     height: 50,
                     alignment: Alignment.center,
                     margin: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Text(
-                      StartNewSearch,
-                      style: AppTextStyle.whiteSize16,
-                    ),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: AppColors.zuriPrimaryColor,
+                    ),
+                    child: Text(
+                      StartNewSearch,
+                      style: AppTextStyle.whiteSize16,
                     ),
                   ),
                 ],

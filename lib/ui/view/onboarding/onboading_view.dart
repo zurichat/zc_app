@@ -1,6 +1,5 @@
 import 'dart:core';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
@@ -35,7 +34,7 @@ class OnboardingView extends StatelessWidget {
       ),
     ];
 
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return ViewModelBuilder<OnboardingViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
@@ -83,14 +82,14 @@ class OnboardingView extends StatelessWidget {
                 child: MaterialButton(
                   color: AppColors.zuriPrimaryColor,
                   height: 50,
-                  minWidth: _size.width * 0.8,
+                  minWidth: size.width * 0.8,
+                  onPressed: model.currentIndex < 2
+                      ? () => model.animateToPage(model.currentIndex)
+                      : () => model.navigateToNext(),
                   child: Text(
                     model.currentIndex < 2 ? Next : GetStarted,
                     style: AppTextStyle.whiteSize16,
                   ),
-                  onPressed: model.currentIndex < 2
-                      ? () => model.animateToPage(model.currentIndex)
-                      : () => model.navigateToNext(),
                 ),
               ),
               const SizedBox(height: 20),

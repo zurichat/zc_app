@@ -27,7 +27,7 @@ class LoginView extends StatelessWidget with $LoginView {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<LoginViewModel>.reactive(
       //listenToFormUpdated automatically
       //syncs text from TextFields to the viewmodel
@@ -56,7 +56,7 @@ class LoginView extends StatelessWidget with $LoginView {
                   Center(
                     child: Text(
                       SignIn,
-                      style: _dark
+                      style: dark
                           ? AppTextStyle.whiteSize20Bold
                           : AppTextStyle.darkGreySize20Bold,
                     ),
@@ -65,14 +65,14 @@ class LoginView extends StatelessWidget with $LoginView {
                   Text(
                     local!.welcomeSignIn,
                     textAlign: TextAlign.center,
-                    style: _dark
+                    style: dark
                         ? AppTextStyle.whiteSize14
                         : AppTextStyle.lightGreySize14,
                   ),
                   UIHelper.customVerticalSpace(38.0),
                   Text(
                     local.emailAddress,
-                    style: _dark
+                    style: dark
                         ? AppTextStyle.whiteSize16Bold
                         : AppTextStyle.darkGreySize16Bold,
                   ),
@@ -88,7 +88,7 @@ class LoginView extends StatelessWidget with $LoginView {
                   UIHelper.verticalSpaceMedium,
                   Text(
                     local.password,
-                    style: _dark
+                    style: dark
                         ? AppTextStyle.whiteSize16Bold
                         : AppTextStyle.darkGreySize16Bold,
                   ),
@@ -136,7 +136,7 @@ class LoginView extends StatelessWidget with $LoginView {
                     children: [
                       Text(
                         local.dontHaveAccount,
-                        style: _dark
+                        style: dark
                             ? AppTextStyle.whiteSize14
                             : AppTextStyle.darkGreySize14,
                       ),

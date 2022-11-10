@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:zurichat/utilities/constants/local_keys.dart';
 import 'package:zurichat/services/app_services/localization_service.dart';
@@ -20,10 +19,10 @@ class AppLocalization {
   Future<bool> load() async {
     final path = 'assets/language/${locale.languageCode}.json';
     final data = await rootBundle.loadString(path);
-    final Map<String, dynamic> _result = json.decode(data);
+    final Map<String, dynamic> result = json.decode(data);
 
     _sentences = <String, String>{};
-    _result.forEach((String key, dynamic value) {
+    result.forEach((String key, dynamic value) {
       _sentences[key] = value.toString();
     });
 
@@ -328,6 +327,21 @@ class AppLocalization {
   String get channelIntroText => translate(LocalKeys.ChannelIntroText);
   String get channel => translate(LocalKeys.Channel);
   String get today => translate(LocalKeys.Today);
+  String get searchAll => translate(LocalKeys.SearchAll);
+  String get browsePeople => translate(LocalKeys.BrowsePeople);
+  String get browseChannels => translate(LocalKeys.BrowseChannels);
+  String get recentSearches => translate(LocalKeys.RecentSearches);
+  String get narrowYourSearch => translate(LocalKeys.NarrowYourSearch);
+  String get inFilter => translate(LocalKeys.In);
+  String get inExample => translate(LocalKeys.InExample);
+  String get fromFilter => translate(LocalKeys.From);
+  String get fromExample => translate(LocalKeys.FromExample);
+  String get isFilter => translate(LocalKeys.Is);
+  String get isExample => translate(LocalKeys.IsExample);
+  String get afterFilter => translate(LocalKeys.After);
+  String get afterExample => translate(LocalKeys.AfterExample);
+  String get toFilter => translate(LocalKeys.To);
+  String get toExample => translate(LocalKeys.ToExample);
   String get yes => translate(LocalKeys.Yes);
   String get no => translate(LocalKeys.No);
   String get deleteMessagePrompt => translate(LocalKeys.DeleteMessagePrompt);

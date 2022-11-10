@@ -21,7 +21,7 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
     final local = AppLocalization.of(context);
     final message = viewModel.channelUserMessages;
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       child: !nullListChecker(viewModel.channelUserMessages)
           ? ListView.builder(
@@ -33,6 +33,11 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                 return InkWell(
                   child: Container(
                     padding: const EdgeInsets.only(top: 20.0),
+                    color: userPost.pinned
+                        ? dark
+                            ? AppColors.deepBlackColor
+                            : AppColors.lightYellow
+                        : Colors.transparent,
                     child: Column(
                       children: [
                         if (userPost.pinned) ...[
@@ -55,11 +60,6 @@ class ChannelChat extends ViewModelWidget<ChannelPageViewModel> {
                         ThreadCardView.threadChannelMain(userPost),
                       ],
                     ),
-                    color: userPost.pinned
-                        ? _dark
-                            ? AppColors.deepBlackColor
-                            : AppColors.lightYellow
-                        : Colors.transparent,
                   ),
                   onLongPress: () => zuriChatBottomSheet(
                     shareMessage: () =>

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/models/user_model.dart';
+import 'package:zurichat/ui/shared/shared.dart';
 
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
@@ -18,7 +19,7 @@ class EditProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    Size _size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return ViewModelBuilder<EditProfileViewModel>.reactive(
       viewModelBuilder: () => EditProfileViewModel(),
       onModelReady: (model) => model.onInit(user),
@@ -34,11 +35,22 @@ class EditProfileView extends StatelessWidget {
           ),
           actions: [
             TextButton(
-              onPressed: viewModel.onSave,
-              child: Text(
-                local.save,
-                style: AppTextStyle.greenSize16,
-              ),
+              onPressed: () {
+                FocusScope.of(context).unfocus();
+                viewModel.onSave();
+              },
+              child: viewModel.isSaving
+                  ? const SizedBox(
+                      height: 20.0,
+                      width: 20.0,
+                      child: CircularProgressIndicator(
+                        color: AppColors.zuriPrimaryColor,
+                      ),
+                    )
+                  : Text(
+                      local.save,
+                      style: AppTextStyle.greenSize16,
+                    ),
             )
           ],
           isDarkMode: Theme.of(context).brightness == Brightness.dark,
@@ -46,8 +58,8 @@ class EditProfileView extends StatelessWidget {
         ),
         body: Visibility(
           visible: !viewModel.isBusy,
-          child: EditProfileBody(size: _size),
           replacement: const ZuriLoader(),
+          child: EditProfileBody(size: size),
         ),
       ),
     );

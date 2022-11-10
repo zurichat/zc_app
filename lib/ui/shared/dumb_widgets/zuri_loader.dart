@@ -7,10 +7,10 @@ class ZuriLoader extends StatefulWidget {
   const ZuriLoader({Key? key, this.isTransparent = false}) : super(key: key);
 
   @override
-  _ZuriLoaderState createState() => _ZuriLoaderState();
+  ZuriLoaderState createState() => ZuriLoaderState();
 }
 
-class _ZuriLoaderState extends State<ZuriLoader> with TickerProviderStateMixin {
+class ZuriLoaderState extends State<ZuriLoader> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 2),
     vsync: this,
@@ -28,11 +28,11 @@ class _ZuriLoaderState extends State<ZuriLoader> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: widget.isTransparent
           ? Colors.transparent
-          : _dark
+          : dark
               ? AppColors.darkModeColor
               : AppColors.whiteColor,
       body: Center(

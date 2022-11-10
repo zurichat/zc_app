@@ -6,7 +6,6 @@ import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
-import '../../../../models/organization_model.dart';
 import '../../../shared/shared.dart';
 import 'organization_viewmodel.dart';
 
@@ -16,9 +15,9 @@ class OrganizationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
-    TextStyle _tileStyle =
-        _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
+    TextStyle tileStyle =
+        dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16;
     return ViewModelBuilder<OrganizationViewModel>.reactive(
       onModelReady: (viewModel) => viewModel.initViewModel(),
       disposeViewModel: false,
@@ -32,7 +31,7 @@ class OrganizationView extends StatelessWidget {
                 children: [
                   Text(
                     local!.workspaces,
-                    style: _dark
+                    style: dark
                         ? AppTextStyle.bigWhiteText
                         : AppTextStyle.bigBlackText,
                   ),
@@ -42,6 +41,7 @@ class OrganizationView extends StatelessWidget {
                   Expanded(
                     child: Visibility(
                       visible: !viewModel.isBusy,
+                      replacement: const Center(child: ZuriLoader()),
                       child: RefreshIndicator(
                         color: AppColors.zuriPrimaryColor,
                         onRefresh: viewModel.initViewModel,
@@ -54,7 +54,7 @@ class OrganizationView extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 50.0),
                                     child: Text(
                                       local.notJoinedOrg,
-                                      style: _dark
+                                      style: dark
                                           ? AppTextStyle.whiteSize14
                                           : AppTextStyle.darkGreySize14,
                                     ),
@@ -82,7 +82,6 @@ class OrganizationView extends StatelessWidget {
                                 ),
                         ),
                       ),
-                      replacement: const Center(child: ZuriLoader()),
                     ),
                   ),
                   SizedBox(
@@ -95,7 +94,7 @@ class OrganizationView extends StatelessWidget {
                           contentPadding: EdgeInsets.zero,
                           title: Text(
                             local.addOrg,
-                            style: _tileStyle,
+                            style: tileStyle,
                           ),
                         ),
                         ListTile(
@@ -104,7 +103,7 @@ class OrganizationView extends StatelessWidget {
                           contentPadding: EdgeInsets.zero,
                           title: Text(
                             local.preferences,
-                            style: _tileStyle,
+                            style: tileStyle,
                           ),
                         ),
                         // ListTile(
@@ -117,7 +116,7 @@ class OrganizationView extends StatelessWidget {
                         // ),
                         ListTile(
                           ///TODO THERE SHOULD BE A DIALOG TO INFORM THE USERS THAT THIS ACTION WILL CLEAR
-                          ///ALL THEIR DETAILS - AND YOU WILL LIST THEM OUT 
+                          ///ALL THEIR DETAILS - AND YOU WILL LIST THEM OUT
                           ///LIKE SAVED ITEMS, PERSONAL INFORMATION ETC.
                           ///AND WHEN THE USER AGREES, THEN THIS FUNCTION SHOULD BE EXECUTED.
                           ///TODO
@@ -126,7 +125,7 @@ class OrganizationView extends StatelessWidget {
                           contentPadding: EdgeInsets.zero,
                           title: Text(
                             local.signOutAccount,
-                            style: _tileStyle,
+                            style: tileStyle,
                           ),
                         ),
                       ],
@@ -153,7 +152,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
 
   @override
   Widget build(BuildContext context, OrganizationViewModel viewModel) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
     return ListTile(
         onTap: () => viewModel.onTap(org),
@@ -175,7 +174,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
             height: MediaQuery.of(context).size.height * 0.05,
             width: MediaQuery.of(context).size.height * 0.05,
             decoration: BoxDecoration(
-              color: !_dark ? AppColors.darkModeColor : AppColors.whiteColor,
+              color: !dark ? AppColors.darkModeColor : AppColors.whiteColor,
               borderRadius: BorderRadius.circular(5),
             ),
             clipBehavior: Clip.hardEdge,
@@ -197,7 +196,7 @@ class OrganizationTile extends ViewModelWidget<OrganizationViewModel> {
           overflow: TextOverflow.ellipsis,
           softWrap: false,
           maxLines: 2,
-          style: _dark
+          style: dark
               ? AppTextStyle.whiteSize16Bold
               : AppTextStyle.darkGreySize16Bold,
         ),

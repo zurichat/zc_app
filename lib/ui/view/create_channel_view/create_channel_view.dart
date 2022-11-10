@@ -5,7 +5,6 @@ import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../shared/shared.dart';
-import '../../../utilities/constants/ui_helpers.dart';
 import 'create_channel_viewmodel.dart';
 import 'widgets/custom_text_field.dart';
 import 'widgets/custom_text_widget.dart';

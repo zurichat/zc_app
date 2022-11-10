@@ -45,16 +45,16 @@ class ThreadOptionsBottomSheetView extends StatelessWidget {
                         Container(
                           height: 50,
                           width: 50,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.greyBackgroundColor,
+                          ),
                           child: const Align(
                               alignment: Alignment.center,
                               child: Icon(
                                 Icons.add_reaction_outlined,
                                 size: 25,
                               )),
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.greyBackgroundColor,
-                          ),
                         )
                       ],
                     ),

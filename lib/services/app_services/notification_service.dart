@@ -47,11 +47,17 @@ class NotificationService {
           )
         ]);
 
-    AwesomeNotifications().actionStream.listen((receivedNotifiction) {
-      //var payload = NotificationPayload._fromMap(receivedNotifiction.payload);
-      //_notificationControl.sink.add(payload);
+    /// Use this method to detect when the user taps on a notification or action button
+    @pragma("vm:entry-point")
+    Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
       _navigationService.navigateTo(Routes.homePage);
-    });
+    }
+
+    // AwesomeNotifications().actionStream.listen((receivedNotifiction) {
+    //   //var payload = NotificationPayload._fromMap(receivedNotifiction.payload);
+    //   //_notificationControl.sink.add(payload);
+    //   _navigationService.navigateTo(Routes.homePage);
+    // });
   }
 
   void show({

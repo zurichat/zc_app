@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 
 import '../../../../utilities/constants/colors.dart';
 
@@ -12,13 +12,13 @@ class SelectLanguageDialog extends StatefulWidget {
       : super(key: key);
 
   @override
-  _SelectLanguageDialogState createState() => _SelectLanguageDialogState();
+  SelectLanguageDialogState createState() => SelectLanguageDialogState();
 }
 
-class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
+class SelectLanguageDialogState extends State<SelectLanguageDialog> {
   @override
   Widget build(BuildContext context) {
-    int? _currentValue = widget.request.data['currentValue'];
+    int? currentValue = widget.request.data['currentValue'];
 
     return StatefulBuilder(builder: (context, setState) {
       return Dialog(
@@ -46,10 +46,10 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
                 leading: Radio(
                   activeColor: AppColors.zuriPrimaryColor,
                   value: index,
-                  groupValue: _currentValue,
+                  groupValue: currentValue,
                   onChanged: (int? value) {
                     setState(() {
-                      _currentValue = value;
+                      currentValue = value;
                     });
                   },
                 ),
@@ -65,7 +65,7 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
                     child: const Text(Cancel)),
                 MaterialButton(
                     onPressed: () => widget.completer(
-                        DialogResponse(data: _currentValue, confirmed: true)),
+                        DialogResponse(data: currentValue, confirmed: true)),
                     child: const Text(Ok)),
               ],
             ),

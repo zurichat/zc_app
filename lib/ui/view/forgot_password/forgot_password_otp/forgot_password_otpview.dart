@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:zurichat/app/app.logger.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/utilities/constants/colors.dart';
@@ -84,7 +83,9 @@ class ForgotPasswordOtpView extends StatelessWidget
                           color: AppColors.zuriPrimaryColor,
                           fontWeight: FontWeight.bold,
                         ),
-                        validator: (value) {},
+                        validator: (value) {
+                          return null;
+                        },
                         length: 6,
                         blinkWhenObscuring: true,
                         animationType: AnimationType.fade,
@@ -155,6 +156,10 @@ class ForgotPasswordOtpView extends StatelessWidget
                       widthFactor: 1.0,
                       child: ElevatedButton(
                         onPressed: model.verifyOtpCode,
+                        style: ElevatedButton.styleFrom(
+                          padding:
+                              const EdgeInsets.only(top: 15.0, bottom: 15.0), backgroundColor: const Color(0xff00B87C),
+                        ),
                         child: Text(
                           local.continueButton,
                           style: const TextStyle(
@@ -162,11 +167,6 @@ class ForgotPasswordOtpView extends StatelessWidget
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
                               color: Color(0xffFFFFFF)),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          padding:
-                              const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                          primary: const Color(0xff00B87C),
                         ),
                       ),
                     ),

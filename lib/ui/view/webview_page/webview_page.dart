@@ -12,13 +12,12 @@ class WebViewPage extends StatelessWidget {
   final String name, url;
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<WebViewModel>.reactive(
         viewModelBuilder: () => WebViewModel(),
         disposeViewModel: true,
         builder: (context, model, child) {
           return Scaffold(
-           
             appBar: ZuriAppBar(
               leading: Icons.arrow_back_ios,
               leadingPress: () => model.goBack(),
@@ -29,7 +28,7 @@ class WebViewPage extends StatelessWidget {
                 ),
               ),
               bottomNavBarScreen: true,
-              isDarkMode: _dark,
+              isDarkMode: dark,
               whiteBackground: true,
               actions: [
                 model.isLoading
@@ -45,9 +44,7 @@ class WebViewPage extends StatelessWidget {
                 const SizedBox(width: 20)
               ],
             ),
-            body:
-             
-                WebView(
+            body: WebView(
               initialUrl: url,
               onPageStarted: (url) {
                 model.startLoading();

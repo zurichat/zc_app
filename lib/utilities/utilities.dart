@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
-import 'package:zurichat/app/app.logger.dart';
-
 import 'package:url_launcher/url_launcher.dart';
+import 'package:zurichat/app/app.logger.dart';
 
 import 'constants/app_constants.dart';
 import 'extensions/string_extension.dart';
 
 final log = getLogger('Utilities');
+
 ImageProvider makeNetworkImage(String? link) {
   return link == null || !link.validateLink()
       ? const CachedNetworkImageProvider(defaultNetworkImage)
@@ -36,11 +36,9 @@ bool nullListChecker(List? list) {
 }
 
 Future<bool> launcher(String url) {
-  var _launcher = launch(url);
-  return _launcher;
+  return launchUrl(Uri.parse(url));
 }
 
 Future<bool> canLaunchUrl(String url) async {
-  var islaunchable = await canLaunch(url);
-  return islaunchable;
+  return await canLaunchUrl(url);
 }

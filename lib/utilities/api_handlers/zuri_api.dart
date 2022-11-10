@@ -1,14 +1,15 @@
 // ignore_for_file: deprecated_member_use
 
 import 'dart:async';
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.logger.dart';
-import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/api_response.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
@@ -17,10 +18,9 @@ import 'package:zurichat/models/organization_model.dart';
 import 'package:zurichat/models/user_search_model.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/api_handlers/api_utils.dart';
-import 'package:zurichat/utilities/enums.dart';
 import 'package:zurichat/utilities/api_handlers/failures.dart';
-import 'package:stacked_services/stacked_services.dart'
-    hide FormData, MultipartFile;
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/enums.dart';
 
 import 'api.dart';
 import 'dio_interceptors.dart';
@@ -119,6 +119,40 @@ class ZuriApi implements Api {
     }
   }
 
+  @override
+  Future<dynamic> postDM(
+    String endpoint, {
+    required Map<String, dynamic> body,
+  }) async {
+    log.i('Making request to $endpoint');
+    try {
+      final response = await dio.post(endpoint, data: body);
+
+      log.i('Response from $endpoint \n${response.data}');
+      return ApiUtils.toApiResponse(response);
+    } on DioError catch (e) {
+      snackbar.showCustomSnackBar(
+        duration: const Duration(seconds: 3),
+        variant: SnackbarType.failure,
+        message: e.response!.data!['message'] ?? errorOccurred,
+      );
+      log.w(e.toString());
+      handleApiError(e);
+    }
+  }
+
+  Future getDM(String roomID, String orgId, token) async {
+    try {
+      final res =
+          await dio.get('$dmsBaseUrl/v1/org/$orgId/rooms/$roomID/messages');
+      log.i(res.data['data']);
+      return res;
+    } on DioError catch (e) {
+      log.w(e.toString());
+      handleApiError(e);
+    }
+  }
+
   Future<dynamic> put(
     String string, {
     required Map<String, dynamic> body,
@@ -190,6 +224,7 @@ class ZuriApi implements Api {
           variant: SnackbarType.failure,
           message: 'Please check your internet');
     }
+    return null;
   }
 
   @override
@@ -230,6 +265,7 @@ class ZuriApi implements Api {
           variant: SnackbarType.failure,
           message: 'Please check your internet');
     }
+    return null;
   }
 
   /// -------------------------------------------------------------------------------------------
@@ -623,7 +659,7 @@ class ZuriApi implements Api {
 
   Future<bool> addReplyToMessage(String? channelMessageId, content, files,
       orgId, userId, channelId) async {
-    log.i('channelll Iddd >>>>>>>> $channelId');
+    log.i('channel Id >>>>>>>> $channelId');
     try {
       final res = await post(
         '/v1/$orgId/messages/$channelMessageId/threads/?channel_id=$channelId',
@@ -712,16 +748,14 @@ class ZuriApi implements Api {
       final res = await get('$channelsBaseUrl/v1/$orgId/channels/$id/members/',
           token: token);
       log.i(res.data);
-      return (res?.data as List)
-          .map((e) => ChannelMembermodel.fromJson(e))
-          .toList();
+      return (res?.data as List).map((e) => ChannelMember.fromJson(e)).toList();
     } on DioError catch (e) {
       log.w(e.toString());
       handleApiError(e);
     }
   }
 
-  /// Invites a user to the organzization
+  /// Invites a user to the organization
   /// This endpoint would sent the user a mail with the UUID
   inviteToOrganizationWithNormalMail(
     String organizationId,

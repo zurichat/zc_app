@@ -23,7 +23,7 @@ class StartDmViewModel extends FormViewModel {
   // bool get hasClickedMessageField => _hasClickedMessageField;
 
   Future<List<UserModel>> allUsers() async {
-    final _currentOrgId = storageService.getString(StorageKeys.currentOrgId);
+    final currentOrgId = storageService.getString(StorageKeys.currentOrgId);
     // print("_currentOrgId ${storageService.
     // getString(StorageKeys.currentOrgId)}");
     // print("_currentOrgId $_currentOrgId");
@@ -34,7 +34,7 @@ class StartDmViewModel extends FormViewModel {
     final endpoint =
         '/organizations/${storageService.getString(StorageKeys.currentUserId)}/members/';
     try {
-      if (_currentOrgId == null || token == null) {
+      if (currentOrgId == null || token == null) {
         return [];
       }
       final response = await zuriApi.get(
@@ -57,10 +57,10 @@ class StartDmViewModel extends FormViewModel {
   }
 
   Future<List<UserModel>> get userResults async {
-    final _userResults = await allUsers();
+    final userResults = await allUsers();
     // print("Donnnneee");
     // print("_userResults $_userResults");
-    return [..._userResults];
+    return [...userResults];
   }
 
   // onTapMessageField() {

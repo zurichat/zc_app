@@ -12,10 +12,6 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/app/app.logger.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../models/user_post.dart';
-import '../../../../utilities/api_handlers/zuri_api.dart';
-import '../../../../services/app_services/local_storage_services.dart';
-import '../../../../services/in_review/user_service.dart';
-import '../../../../utilities/constants/app_constants.dart';
 import '../../../../utilities/enums.dart';
 
 class ThreadDetailViewModel extends BaseViewModel {

@@ -6,17 +6,18 @@
   but make sure to add model.saveProfilePictureLocally() where he/she see fit
  */
 import 'package:flutter/material.dart';
-import 'profile_page_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+
+import 'profile_page_viewmodel.dart';
 
 class ProfilePageView extends StatefulWidget {
   const ProfilePageView({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<ProfilePageView> {
+class MyHomePageState extends State<ProfilePageView> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ProfilePageViewModel>.reactive(

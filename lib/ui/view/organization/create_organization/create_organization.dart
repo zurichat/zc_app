@@ -17,7 +17,7 @@ class CreateOrganization extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final pageController = usePageController();
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
     return ViewModelBuilder<CreateOrganizationViewModel>.reactive(
       viewModelBuilder: () => CreateOrganizationViewModel(),
@@ -25,7 +25,7 @@ class CreateOrganization extends HookWidget {
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
             whiteBackground: true,
-            isDarkMode: _dark,
+            isDarkMode: dark,
             leadingPress: () => model.back(),
             leading: Icons.close_outlined),
         body: Stack(
@@ -52,10 +52,10 @@ class CreateOrganization extends HookWidget {
               bottom: 0,
               child: Visibility(
                 visible: model.isBusy,
+                replacement: Container(),
                 child: const Center(
                   child: ZuriLoader(),
                 ),
-                replacement: Container(),
               ),
             ),
           ],

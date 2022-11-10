@@ -69,6 +69,7 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                           ),
                   ),
                   Flexible(
+                    fit: FlexFit.loose,
                     child: TextField(
                       cursorColor: AppColors.zuriPrimaryColor,
                       decoration: InputDecoration(
@@ -77,7 +78,6 @@ class SetStatusView extends StatelessWidget with $SetStatusView {
                       ),
                       onChanged: model.statusValueText,
                     ),
-                    fit: FlexFit.loose,
                   ),
                   IconButton(
                     onPressed: model.clear,

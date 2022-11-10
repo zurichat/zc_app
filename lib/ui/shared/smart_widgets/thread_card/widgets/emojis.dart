@@ -14,10 +14,10 @@ class Emojis extends StatefulWidget {
   final void Function()? checkReact;
 
   @override
-  _EmojisState createState() => _EmojisState();
+  EmojisState createState() => EmojisState();
 }
 
-class _EmojisState extends State<Emojis> with SingleTickerProviderStateMixin {
+class EmojisState extends State<Emojis> with SingleTickerProviderStateMixin {
   Animation<double>? _sizeAnimation;
   AnimationController? _controller;
 

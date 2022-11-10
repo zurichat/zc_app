@@ -46,14 +46,14 @@ class ChannelAddPeopleView extends StatelessWidget {
                 : Padding(
                     padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 0.0),
                     child: InkWell(
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      onTap: () => viewModel.addMarkedUsersToChannel(channelId),
                       child: Text(
                         Add,
                         style: GoogleFonts.lato(
                             color: AppColors.zuriPrimaryColor, fontSize: 16.0),
                       ),
-                      highlightColor: Colors.transparent,
-                      splashColor: Colors.transparent,
-                      onTap: () => viewModel.addMarkedUsersToChannel(channelId),
                     ),
                   ),
           ],
@@ -100,12 +100,12 @@ class ChannelAddPeopleView extends StatelessWidget {
                         ],
                       ),
                       Transform.scale(
+                        scale: 1.512,
                         child: Checkbox(
                           onChanged: viewModel.onMarkAll,
                           side: const BorderSide(width: 0.96),
                           value: viewModel.allMarked,
                         ),
-                        scale: 1.512,
                       ),
                     ],
                   ),
@@ -154,6 +154,7 @@ class ChannelAddPeopleView extends StatelessWidget {
                               radius: 20.0,
                             ),
                             trailing: Transform.scale(
+                              scale: 1.512,
                               child: Checkbox(
                                 value: viewModel.markedUsers
                                     .contains(viewModel.matchingUsers[index]),
@@ -161,7 +162,6 @@ class ChannelAddPeopleView extends StatelessWidget {
                                     viewModel.markOne(marked, index),
                                 side: const BorderSide(width: 0.96),
                               ),
-                              scale: 1.512,
                             ),
                             title: Text(
                               "${viewModel.matchingUsers[index].userName}",
