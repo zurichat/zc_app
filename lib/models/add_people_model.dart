@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 AddPeopleToChannel addPeopleToChannelFromJson(String str) =>
@@ -15,9 +14,10 @@ class AddPeopleToChannel {
     this.isAdmin,
   });
 
-  factory AddPeopleToChannel.fromJson(Map<String, dynamic> json) => AddPeopleToChannel(
-    id: json["_id"],
-    roleId: json["role_id"],
-    isAdmin: json["is_admin"],
-  );
+  factory AddPeopleToChannel.fromJson(Map<String, dynamic> json) =>
+      AddPeopleToChannel(
+        id: json["_id"],
+        roleId: json["role_id"],
+        isAdmin: json["is_admin"],
+      );
 }

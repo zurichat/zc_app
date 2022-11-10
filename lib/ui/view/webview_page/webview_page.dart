@@ -18,7 +18,6 @@ class WebViewPage extends StatelessWidget {
         disposeViewModel: true,
         builder: (context, model, child) {
           return Scaffold(
-           
             appBar: ZuriAppBar(
               leading: Icons.arrow_back_ios,
               leadingPress: () => model.goBack(),
@@ -45,9 +44,7 @@ class WebViewPage extends StatelessWidget {
                 const SizedBox(width: 20)
               ],
             ),
-            body:
-             
-                WebView(
+            body: WebView(
               initialUrl: url,
               onPageStarted: (url) {
                 model.startLoading();

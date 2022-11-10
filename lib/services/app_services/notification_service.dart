@@ -49,7 +49,7 @@ class NotificationService {
 
     /// Use this method to detect when the user taps on a notification or action button
     @pragma("vm:entry-point")
-    Future <void> onActionReceivedMethod(ReceivedAction receivedAction) async {
+    Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
       _navigationService.navigateTo(Routes.homePage);
     }
 

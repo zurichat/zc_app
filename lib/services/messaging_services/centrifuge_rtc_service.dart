@@ -34,16 +34,14 @@ class CentrifugeService with ReactiveServiceMixin {
 
     final connectData = utf8.encode(json.encode({"bearer": token}));
 
-    _client = centrifuge.createClient('$websocketUrl?format=protobuf',
-        centrifuge.ClientConfig(
-          token: token,
-          data: connectData
-        ),);
+    _client = centrifuge.createClient(
+      '$websocketUrl?format=protobuf',
+      centrifuge.ClientConfig(token: token, data: connectData),
+    );
 
     onEvent(dynamic event) {
       log.i('client event> $event');
     }
-
 
     _client.connecting.listen(onEvent);
     _client.connected.listen(onEvent);
@@ -150,7 +148,6 @@ class CentrifugeService with ReactiveServiceMixin {
           "Channel Socket ID is required to subscribe to a channel");
     }
     Subscription? subscription = _client.getSubscription(channelSocketId);
-
 
     subscription!.subscribing.listen(_showLog);
     subscription.error.listen(_showError);

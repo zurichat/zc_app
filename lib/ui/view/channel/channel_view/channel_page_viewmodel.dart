@@ -160,7 +160,7 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  ///INITIALIZATION WHICH INCLUDES JOINING CHANNEL, FETCHING MESSAGES, 
+  ///INITIALIZATION WHICH INCLUDES JOINING CHANNEL, FETCHING MESSAGES,
   ///LISTENING TO NEW MESSAGES, GETTING THE CHANNEL SOCKET ID AND GETTING THE CHANNEL CREATOR
   void initialise(String channelId) async {
     storage.setString(StorageKeys.currentChannelId, channelId);
@@ -192,8 +192,8 @@ class ChannelPageViewModel extends FormViewModel {
 
   // FUNCTION TO CHECK THE PINNED STATE OF A MESSAGE
   Future<bool> changePinnedState(UserPost? userPost) {
-    return _channelsApiService.changeChannelMessagePinnedState(userPost!.channelId,
-          userPost.id!, userPost.userId!, !userPost.pinned);
+    return _channelsApiService.changeChannelMessagePinnedState(
+        userPost!.channelId, userPost.id!, userPost.userId!, !userPost.pinned);
   }
 
   // FUNCTION FOR JOIN CHANNEL
@@ -458,7 +458,6 @@ class ChannelPageViewModel extends FormViewModel {
     notificationSubscription?.cancel();
     super.dispose();
   }
-
 
   void toggleExpanded() {
     isExpanded = !isExpanded;

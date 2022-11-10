@@ -66,7 +66,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.2.1
   json_serializable: null
-  mockito: null
+  mockito: 5.3.2
   stacked_generator: null
 
 flutter_native_splash:

@@ -15,7 +15,9 @@ class EmailConfirmationViewModel extends BaseViewModel {
 
   void openEmailApp() {
     try {
-      AppCheck.launchApp(Platform.isIOS ? 'message://' : 'com.google.android.gm').then((_) {
+      AppCheck.launchApp(
+              Platform.isIOS ? 'message://' : 'com.google.android.gm')
+          .then((_) {
         log.i('App Email launched!');
       }).catchError((err) {
         snackbar.showCustomSnackBar(

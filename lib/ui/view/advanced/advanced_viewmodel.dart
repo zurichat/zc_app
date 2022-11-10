@@ -14,8 +14,7 @@ class AdvancedViewModel extends BaseViewModel {
   bool allowAnimatedImageAndEmoji = true;
   bool optimizeImageUploads = true;
 
-
-    void exitPage() {
+  void exitPage() {
     _navigationService.back();
   }
 
