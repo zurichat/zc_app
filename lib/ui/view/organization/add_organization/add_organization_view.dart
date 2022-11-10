@@ -29,8 +29,7 @@ class AddOrganizationView extends StatelessWidget {
       viewModelBuilder: () => AddOrganizationViewModel(),
       builder: (context, model, child) {
         return Scaffold(
-            backgroundColor:
-                dark ? AppColors.blackColor : AppColors.whiteColor,
+            backgroundColor: dark ? AppColors.blackColor : AppColors.whiteColor,
             appBar: ZuriAppBar(
               leading: Icons.arrow_back_ios,
               orgTitle: Text(

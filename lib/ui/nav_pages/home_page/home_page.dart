@@ -10,7 +10,6 @@ import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 
-
 class HomePage extends StatelessWidget {
   final Widget? organizationLogo;
   const HomePage({Key? key, this.organizationLogo}) : super(key: key);

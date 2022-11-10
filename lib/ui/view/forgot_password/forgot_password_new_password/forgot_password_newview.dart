@@ -191,7 +191,8 @@ class ForgotPasswordNewView extends StatelessWidget
                           },
                           style: ElevatedButton.styleFrom(
                             padding:
-                                const EdgeInsets.only(top: 15.0, bottom: 15.0), backgroundColor: AppColors.zuriPrimaryColor,
+                                const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                            backgroundColor: AppColors.zuriPrimaryColor,
                           ),
                           child: Text(
                             local.continueButton,

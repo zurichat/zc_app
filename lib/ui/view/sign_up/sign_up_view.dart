@@ -9,7 +9,6 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-
 import '../../shared/shared.dart';
 
 import 'sign_up_view.form.dart';

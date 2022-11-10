@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import 'package:zurichat/utilities/constants/colors.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
