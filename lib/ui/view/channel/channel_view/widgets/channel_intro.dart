@@ -19,7 +19,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
   @override
   Widget build(BuildContext context, ChannelPageViewModel viewModel) {
     final local = AppLocalization.of(context);
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
       padding: const EdgeInsets.all(15),
@@ -29,7 +29,7 @@ class ChannelIntro extends ViewModelWidget<ChannelPageViewModel> {
         children: [
           Text(
             "#$channelName",
-            style: _dark
+            style: dark
                 ? AppTextStyle.whiteSize16Bold
                 : AppTextStyle.darkGreySize16Bold,
           ),

@@ -12,7 +12,7 @@ class WebViewPage extends StatelessWidget {
   final String name, url;
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<WebViewModel>.reactive(
         viewModelBuilder: () => WebViewModel(),
         disposeViewModel: true,
@@ -28,7 +28,7 @@ class WebViewPage extends StatelessWidget {
                 ),
               ),
               bottomNavBarScreen: true,
-              isDarkMode: _dark,
+              isDarkMode: dark,
               whiteBackground: true,
               actions: [
                 model.isLoading

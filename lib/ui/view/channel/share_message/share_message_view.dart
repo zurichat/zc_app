@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zurichat/models/user_post.dart';
 import 'package:zurichat/ui/shared/shared.dart';

@@ -19,7 +19,7 @@ class EditProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    Size _size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return ViewModelBuilder<EditProfileViewModel>.reactive(
       viewModelBuilder: () => EditProfileViewModel(),
       onModelReady: (model) => model.onInit(user),
@@ -58,8 +58,8 @@ class EditProfileView extends StatelessWidget {
         ),
         body: Visibility(
           visible: !viewModel.isBusy,
-          child: EditProfileBody(size: _size),
           replacement: const ZuriLoader(),
+          child: EditProfileBody(size: size),
         ),
       ),
     );

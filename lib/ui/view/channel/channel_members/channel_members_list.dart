@@ -9,7 +9,6 @@ import 'package:zurichat/utilities/constants/colors.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_appbar.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';
-import '../../../../utilities/constants/colors.dart';
 import 'package:stacked/stacked.dart';
 import '../shared_widgets.dart';
 import 'channel_members_list_model.dart';
@@ -40,13 +39,13 @@ class ChannelMembersList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0.0, 20.0, 25.0, 0.0),
                 child: InkWell(
+                  highlightColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  onTap: () {},
                   child: Text(
                     local!.edit,
                     style: AppTextStyle.lightGreySize16,
                   ),
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  onTap: () {},
                 ),
               )
             ],

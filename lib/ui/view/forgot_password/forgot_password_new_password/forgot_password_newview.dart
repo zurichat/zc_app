@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
-import 'package:zurichat/utilities/constants/colors.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
@@ -190,14 +189,13 @@ class ForgotPasswordNewView extends StatelessWidget
                             // model.passwordVerification();
                             model.resetPassword(otp);
                           },
+                          style: ElevatedButton.styleFrom(
+                            padding:
+                                const EdgeInsets.only(top: 15.0, bottom: 15.0), backgroundColor: AppColors.zuriPrimaryColor,
+                          ),
                           child: Text(
                             local.continueButton,
                             style: AppTextStyle.whiteSize16,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            padding:
-                                const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                            primary: AppColors.zuriPrimaryColor,
                           ),
                         ),
                       ),

@@ -18,7 +18,7 @@ class SelectLanguageDialog extends StatefulWidget {
 class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
   @override
   Widget build(BuildContext context) {
-    int? _currentValue = widget.request.data['currentValue'];
+    int? currentValue = widget.request.data['currentValue'];
 
     return StatefulBuilder(builder: (context, setState) {
       return Dialog(
@@ -46,10 +46,10 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
                 leading: Radio(
                   activeColor: AppColors.zuriPrimaryColor,
                   value: index,
-                  groupValue: _currentValue,
+                  groupValue: currentValue,
                   onChanged: (int? value) {
                     setState(() {
-                      _currentValue = value;
+                      currentValue = value;
                     });
                   },
                 ),
@@ -65,7 +65,7 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
                     child: const Text(Cancel)),
                 MaterialButton(
                     onPressed: () => widget.completer(
-                        DialogResponse(data: _currentValue, confirmed: true)),
+                        DialogResponse(data: currentValue, confirmed: true)),
                     child: const Text(Ok)),
               ],
             ),

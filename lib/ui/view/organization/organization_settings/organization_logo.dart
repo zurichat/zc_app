@@ -15,14 +15,14 @@ class OrganizationLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
     return ViewModelBuilder<OrganizationSettingsViewModel>.reactive(
       viewModelBuilder: () => OrganizationSettingsViewModel(),
       builder: (context, model, child) {
         return Scaffold(
           appBar: ZuriAppBar(
-            isDarkMode: _dark,
+            isDarkMode: dark,
             whiteBackground: true,
             leading: Icons.chevron_left,
             leadingPress: () => model.back(),
@@ -80,7 +80,7 @@ class OrganizationLogo extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     Text(OrgIconGuide,
-                        style: _dark
+                        style: dark
                             ? AppTextStyle.whiteSize18Bold
                             : AppTextStyle.blackSize18Bold),
                     const SizedBox(height: 10),

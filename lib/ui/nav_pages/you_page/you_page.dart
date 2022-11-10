@@ -17,10 +17,10 @@ class YouPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
-    TextStyle _tileStyle =
-        _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16;
-    Color _menuColor = _dark ? AppColors.whiteColor : AppColors.darkGreyColor;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
+    TextStyle tileStyle =
+        dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16;
+    Color menuColor = dark ? AppColors.whiteColor : AppColors.darkGreyColor;
     return ViewModelBuilder<YouPageViewModel>.reactive(
       viewModelBuilder: () => YouPageViewModel(),
       onModelReady: (model) {
@@ -29,7 +29,7 @@ class YouPage extends StatelessWidget {
       },
       builder: (context, model, child) => Scaffold(
         appBar: ZuriAppBar(
-          isDarkMode: _dark,
+          isDarkMode: dark,
           orgTitle: Text(You, style: AppTextStyle.organizationNameText),
           bottomNavBarScreen: true,
           leadingWidth: true,
@@ -78,7 +78,7 @@ class YouPage extends StatelessWidget {
                   text: Text.rich(
                     TextSpan(
                       text: local.setStatusText,
-                      style: _tileStyle,
+                      style: tileStyle,
                       children: [
                         TextSpan(
                           text: model.otherStatus,
@@ -89,7 +89,7 @@ class YouPage extends StatelessWidget {
                   ),
                   icon: SvgPicture.asset(
                     away,
-                    color: _menuColor,
+                    color: menuColor,
                     width: 18,
                     height: 18,
                   ),
@@ -99,13 +99,13 @@ class YouPage extends StatelessWidget {
                 MenuItemTile(
                   icon: SvgPicture.asset(
                     Saved_Items,
-                    color: _menuColor,
+                    color: menuColor,
                     width: 18,
                     height: 18,
                   ),
                   text: Text(
                     local.savedItems,
-                    style: _tileStyle,
+                    style: tileStyle,
                   ),
                   onPressed: model.viewSavedItem,
                 ),
@@ -113,13 +113,13 @@ class YouPage extends StatelessWidget {
                 MenuItemTile(
                   icon: SvgPicture.asset(
                     View_Profile,
-                    color: _menuColor,
+                    color: menuColor,
                     width: 18,
                     height: 18,
                   ),
                   text: Text(
                     local.viewProfile,
-                    style: _tileStyle,
+                    style: tileStyle,
                   ),
                   onPressed: model.viewProfile,
                   topBorder: false,
@@ -144,13 +144,13 @@ class YouPage extends StatelessWidget {
                 MenuItemTile(
                   icon: SvgPicture.asset(
                     preference,
-                    color: _menuColor,
+                    color: menuColor,
                     width: 18,
                     height: 18,
                   ),
                   text: Text(
                     local.preferences,
-                    style: _tileStyle,
+                    style: tileStyle,
                   ),
                   onPressed: model.viewPreferences,
                   topBorder: false,
@@ -159,13 +159,13 @@ class YouPage extends StatelessWidget {
                 MenuItemTile(
                   icon: SvgPicture.asset(
                     Log_Out,
-                    color: _menuColor,
+                    color: menuColor,
                     width: 18,
                     height: 18,
                   ),
                   text: Text(
                     local.signOut,
-                    style: _tileStyle,
+                    style: tileStyle,
                   ),
                   onPressed: model.signOutAccount,
                   topBorder: false,

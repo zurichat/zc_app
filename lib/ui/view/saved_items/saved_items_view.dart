@@ -14,7 +14,7 @@ class SavedItemsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<SavedItemsViewModel>.reactive(
       onModelReady: (model) => model.savedItems,
       builder: (context, model, child) => Scaffold(
@@ -27,7 +27,7 @@ class SavedItemsView extends StatelessWidget {
               color: Theme.of(context).textTheme.bodyText1!.color,
             ),
           ),
-          isDarkMode: _dark,
+          isDarkMode: dark,
           whiteBackground: true,
         ),
         body: model.savedBuilderList.isEmpty
@@ -48,11 +48,11 @@ class SavedItemsView extends StatelessWidget {
                             return AlertDialog(
                               actions: [
                                 ElevatedButton(
-                                    child: Text(local.yes),
                                     style: ElevatedButton.styleFrom(
-                                      primary: AppColors.redColor,
+                                      backgroundColor: AppColors.redColor,
                                     ),
-                                    onPressed: () => model.deleteItem(index)),
+                                    onPressed: () => model.deleteItem(index),
+                                    child: Text(local.yes)),
                                 TextButton(
                                   child: Text(local.no,
                                       style: AppTextStyle.greenSize14),

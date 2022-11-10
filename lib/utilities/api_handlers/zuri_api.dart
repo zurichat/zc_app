@@ -224,6 +224,7 @@ class ZuriApi implements Api {
           variant: SnackbarType.failure,
           message: 'Please check your internet');
     }
+    return null;
   }
 
   @override
@@ -264,6 +265,7 @@ class ZuriApi implements Api {
           variant: SnackbarType.failure,
           message: 'Please check your internet');
     }
+    return null;
   }
 
   /// -------------------------------------------------------------------------------------------

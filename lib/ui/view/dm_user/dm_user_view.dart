@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zurichat/models/user_post.dart';
 import 'package:zurichat/ui/shared/smart_widgets/thread_card/thread_card_view.dart';
@@ -29,7 +28,7 @@ class DmUserView extends StatelessWidget with $DmUserView {
   final log = getLogger("DmUserView");
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     final local = AppLocalization.of(context);
     //TODO remove the var below and replace with the actual id from the backend once dm's get linked to the backend
     dynamic receiverId = 'receiver';
@@ -100,6 +99,11 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                 return InkWell(
                                   child: Container(
                                     padding: const EdgeInsets.only(top: 20.0),
+                                    color: userPost.pinned
+                                        ? dark
+                                            ? AppColors.deepBlackColor
+                                            : AppColors.lightYellow
+                                        : Colors.transparent,
                                     child: Column(
                                       children: [
                                         if (userPost.pinned) ...[
@@ -126,11 +130,6 @@ class DmUserView extends StatelessWidget with $DmUserView {
                                             userPost),
                                       ],
                                     ),
-                                    color: userPost.pinned
-                                        ? _dark
-                                            ? AppColors.deepBlackColor
-                                            : AppColors.lightYellow
-                                        : Colors.transparent,
                                   ),
                                   onLongPress: () => log.i('Long Pressesd'),
                                   onTap: () {

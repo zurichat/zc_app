@@ -21,7 +21,7 @@ class CustomChannelListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Text(
-        hash + '   ' + channelName,
+        '$hash   $channelName',
         style: isActive
             ? AppTextStyle.darkGreySize12
             : AppTextStyle.darkGreySize12,

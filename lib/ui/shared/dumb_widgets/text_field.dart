@@ -32,10 +32,10 @@ class BorderTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
     return TextFormField(
-      style: _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16,
+      style: dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16,
       autofocus: autofocus,
       onChanged: onChanged,
       controller: controller,

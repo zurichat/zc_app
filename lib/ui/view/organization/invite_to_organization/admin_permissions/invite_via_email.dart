@@ -32,13 +32,13 @@ class InviteViaEmailAdmin extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 0.0),
                 child: InkWell(
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    onTap: () {},
                     child: Text(
                       local.send,
                       style: AppTextStyle.greenSize14,
-                    ),
-                    highlightColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    onTap: () {}),
+                    )),
               ),
             ],
           ),
@@ -72,7 +72,7 @@ class InviteViaEmailAdmin extends StatelessWidget {
                 UIHelper.verticalSpaceLarge,
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: AppColors.whiteColor,
+                    backgroundColor: AppColors.whiteColor,
                   ),
                   onPressed: () {
                     model.navigateToContacts();

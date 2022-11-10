@@ -14,9 +14,9 @@ class PreferenceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
-    TextStyle _menuTitleStyle =
-        _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
+    TextStyle menuTitleStyle =
+        dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16;
     return ViewModelBuilder<PreferenceViewModel>.reactive(
       viewModelBuilder: () => PreferenceViewModel(),
       onModelReady: (model) => model.init(),
@@ -30,7 +30,7 @@ class PreferenceView extends StatelessWidget {
           ),
           leading: Icons.close_outlined,
           leadingPress: () => model.exitPage(),
-          isDarkMode: _dark,
+          isDarkMode: dark,
           whiteBackground: true,
         ),
         body: SingleChildScrollView(
@@ -39,13 +39,13 @@ class PreferenceView extends StatelessWidget {
               UIHelper.verticalSpaceMedium,
               MenuItemTile(
                 topBorder: false,
-                text: Text(local.langAndRegion, style: _menuTitleStyle),
+                text: Text(local.langAndRegion, style: menuTitleStyle),
                 onPressed: model.navigateLanguageAndRegion,
               ),
               SwitchListTile(
                 value: model.isDarkMode,
                 onChanged: model.changeTheme,
-                title: Text(local.darkMode, style: _menuTitleStyle),
+                title: Text(local.darkMode, style: menuTitleStyle),
                 selected: model.isDarkMode,
                 subtitle: Text(model.currentTheme),
               ),

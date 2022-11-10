@@ -57,10 +57,10 @@ class StartDmViewModel extends FormViewModel {
   }
 
   Future<List<UserModel>> get userResults async {
-    final _userResults = await allUsers();
+    final userResults = await allUsers();
     // print("Donnnneee");
     // print("_userResults $_userResults");
-    return [..._userResults];
+    return [...userResults];
   }
 
   // onTapMessageField() {

@@ -36,8 +36,8 @@ bool nullListChecker(List? list) {
 }
 
 Future<bool> launcher(String url) {
-  var _launcher = launch(url);
-  return _launcher;
+  var launcher = launch(url);
+  return launcher;
 }
 
 Future<bool> canLaunchUrl(String url) async {

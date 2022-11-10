@@ -28,11 +28,11 @@ class _ZuriLoaderState extends State<ZuriLoader> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: widget.isTransparent
           ? Colors.transparent
-          : _dark
+          : dark
               ? AppColors.darkModeColor
               : AppColors.whiteColor,
       body: Center(

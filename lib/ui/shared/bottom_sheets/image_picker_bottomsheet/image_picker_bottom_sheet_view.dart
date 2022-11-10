@@ -18,7 +18,7 @@ class ImagePickerBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<ImagePickerBottomSheetViewModel>.reactive(
       builder: (context, model, child) => model.isBusy
           ? Container()
@@ -31,7 +31,7 @@ class ImagePickerBottomSheet extends StatelessWidget {
                 return Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
-                      color: _dark
+                      color: dark
                           ? AppColors.zuriDarkGrey.withOpacity(0)
                           : AppColors.whiteColor.withOpacity(0),
                       borderRadius: BorderRadius.circular(30)),
@@ -52,7 +52,7 @@ class ImagePickerBottomSheet extends StatelessWidget {
                                     completer(SheetResponse(confirmed: true)),
                                 title: Center(
                                   child: Text('Photo Library',
-                                      style: !_dark
+                                      style: !dark
                                           ? AppTextStyle.whiteSize18Bold
                                           : AppTextStyle.darkGreySize20Bold),
                                 ),
@@ -67,7 +67,7 @@ class ImagePickerBottomSheet extends StatelessWidget {
                                       SheetResponse(confirmed: false)),
                                   title: Center(
                                     child: Text('Take Photo',
-                                        style: !_dark
+                                        style: !dark
                                             ? AppTextStyle.whiteSize20Bold
                                             : AppTextStyle.darkGreySize20Bold),
                                   )),
@@ -85,7 +85,7 @@ class ImagePickerBottomSheet extends StatelessWidget {
                               },
                               title: Center(
                                 child: Text('Cancel',
-                                    style: _dark
+                                    style: dark
                                         ? AppTextStyle.whiteSize20Bold
                                         : AppTextStyle.darkGreySize20Bold),
                               )),

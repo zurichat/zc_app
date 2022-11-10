@@ -65,8 +65,8 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void toggleVisibility(bool _isVisible) {
-    if (!_isVisible) {
+  void toggleVisibility(bool isVisible) {
+    if (!isVisible) {
       isVisible = false;
       size = minSize;
     } else {

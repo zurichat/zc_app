@@ -22,6 +22,7 @@ class Message extends StatelessWidget {
             color: Colors.white,
             child: Column(children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
                   Text('#stage4-design',
                       style: TextStyle(
@@ -30,7 +31,6 @@ class Message extends StatelessWidget {
                           color: Colors.black)),
                   Text('Today', style: TextStyle(color: Colors.black))
                 ],
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,

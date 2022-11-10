@@ -136,6 +136,7 @@ class EditProfileViewModel extends BaseViewModel with ValidatorMixin {
           await mediaService.getImage(fromGallery: sheetResponse.confirmed);
       notifyListeners();
     }
+    return null;
   }
 
   //TODO-- fix the plugIn parameter needed to upload user profile pic to the endpoint

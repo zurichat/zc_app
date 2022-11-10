@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/ui/nav_pages/home_page/widgets/home_list_items.dart';
+import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:zurichat/utilities/constants/colors.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
-import 'package:zurichat/utilities/constants/app_constants.dart';
 import 'package:zurichat/utilities/enums.dart';
 
 import '../home_item_model.dart';
@@ -94,11 +94,11 @@ class HomeExpansionTile extends StatelessWidget {
               ),
             ],
           ),
-          children: children,
           tilePadding: EdgeInsets.zero,
           collapsedTextColor: AppColors.textLight10,
           initiallyExpanded: true,
           iconColor: AppColors.greyishColor,
+          children: children,
         ),
       );
     }

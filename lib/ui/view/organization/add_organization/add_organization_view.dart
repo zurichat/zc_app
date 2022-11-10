@@ -20,7 +20,7 @@ class AddOrganizationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<AddOrganizationViewModel>.reactive(
       //this parameter allows us to reuse the view model to persist the state
       disposeViewModel: false,
@@ -30,7 +30,7 @@ class AddOrganizationView extends StatelessWidget {
       builder: (context, model, child) {
         return Scaffold(
             backgroundColor:
-                _dark ? AppColors.blackColor : AppColors.whiteColor,
+                dark ? AppColors.blackColor : AppColors.whiteColor,
             appBar: ZuriAppBar(
               leading: Icons.arrow_back_ios,
               orgTitle: Text(
@@ -38,7 +38,7 @@ class AddOrganizationView extends StatelessWidget {
                 style: AppTextStyle.darkGreySize18Bold.copyWith(
                     color: Theme.of(context).textTheme.bodyText1!.color),
               ),
-              isDarkMode: _dark,
+              isDarkMode: dark,
               whiteBackground: true,
               leadingPress: model.back,
             ),
@@ -46,7 +46,7 @@ class AddOrganizationView extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                  color: _dark
+                  color: dark
                       ? AppColors.darkThemePrimaryColor
                       : AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(3),
@@ -70,7 +70,7 @@ class AddOrganizationView extends StatelessWidget {
                               const SizedBox(width: 16),
                               Text(
                                 local.signInWorkspace,
-                                style: _dark
+                                style: dark
                                     ? AppTextStyle.whiteSize16
                                     : AppTextStyle.darkGreySize16,
                               ),
@@ -88,7 +88,7 @@ class AddOrganizationView extends StatelessWidget {
                             children: [
                               SvgPicture.asset(
                                 Add_Organization,
-                                color: _dark
+                                color: dark
                                     ? AppColors.whiteColor
                                     : AppColors.blackColor,
                                 width: 20,
@@ -97,7 +97,7 @@ class AddOrganizationView extends StatelessWidget {
                               const SizedBox(width: 16),
                               Text(
                                 local.joinWorkspace,
-                                style: _dark
+                                style: dark
                                     ? AppTextStyle.whiteSize16
                                     : AppTextStyle.darkGreySize16,
                               ),
@@ -120,7 +120,7 @@ class AddOrganizationView extends StatelessWidget {
                               const SizedBox(width: 16),
                               Text(
                                 local.createWorkspace,
-                                style: _dark
+                                style: dark
                                     ? AppTextStyle.whiteSize16
                                     : AppTextStyle.darkGreySize16,
                               ),

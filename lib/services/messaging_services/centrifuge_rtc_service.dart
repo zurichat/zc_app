@@ -175,6 +175,7 @@ class CentrifugeService with ReactiveServiceMixin {
       return null;
     }
     subList[channelSocketId] = subscription;
+    return null;
   }
 
   void dispose() {

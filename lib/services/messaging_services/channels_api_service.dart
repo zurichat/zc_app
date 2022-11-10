@@ -337,10 +337,12 @@ class ChannelsApiService {
     } catch (e) {
       log.e(e);
     }
+    return null;
   }
 
   Future<void>? dispose() {
     controller.close();
+    return null;
   }
 
   String? get token =>

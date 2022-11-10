@@ -38,9 +38,9 @@ class _CustomPeopleListTileState extends State<CustomPeopleListTile> {
 
     return ListTile(
       leading: SizedBox(
-        child: Image.asset("${widget.imagelink}"),
         height: 30,
         width: 30,
+        child: Image.asset("${widget.imagelink}"),
       ),
       title: Text('${widget.userName}',
           style: const TextStyle(

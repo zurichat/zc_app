@@ -54,7 +54,6 @@ class ForgotPassView extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   onPressed: () {},
-                  child: const Text('Continue'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff00B87C),
                     foregroundColor: Colors.white,
@@ -63,6 +62,7 @@ class ForgotPassView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
+                  child: const Text('Continue'),
                 ),
               ),
             ],

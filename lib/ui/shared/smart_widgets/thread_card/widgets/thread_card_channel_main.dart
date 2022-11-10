@@ -9,7 +9,6 @@ import 'package:zurichat/ui/shared/smart_widgets/thread_card/widgets/audio_messa
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../../utilities/constants/colors.dart';
 import '../thread_card_viewmodel.dart';
 import 'emojis_list.dart';
 import 'media_files.dart';
@@ -28,7 +27,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
 
   @override
   Widget build(BuildContext context, ThreadCardViewModel viewModel) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
     return GestureDetector(
       onTap: () => viewModel.navigateToThread(userPost),
@@ -64,7 +63,7 @@ class ThreadChannelMain extends ViewModelWidget<ThreadCardViewModel> {
                             fit: FlexFit.loose,
                             child: Text(
                               '${userPost.displayName}',
-                              style: _dark
+                              style: dark
                                   ? AppTextStyle.whiteSize16Bold
                                   : AppTextStyle.darkGreySize16Bold,
                             ),
