@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
-import 'package:zurichat/utilities/constants/colors.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/zuri_loader.dart';
@@ -19,7 +18,8 @@ import 'forgot_password_newviewmodel.dart';
 ])
 class ForgotPasswordNewView extends StatelessWidget
     with $ForgotPasswordNewView {
-  ForgotPasswordNewView({Key? key}) : super(key: key);
+  final String otp;
+  ForgotPasswordNewView({Key? key, required this.otp}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -187,16 +187,15 @@ class ForgotPasswordNewView extends StatelessWidget
                         child: ElevatedButton(
                           onPressed: () {
                             // model.passwordVerification();
-                            model.resetPassword();
+                            model.resetPassword(otp);
                           },
+                          style: ElevatedButton.styleFrom(
+                            padding:
+                                const EdgeInsets.only(top: 15.0, bottom: 15.0), backgroundColor: AppColors.zuriPrimaryColor,
+                          ),
                           child: Text(
                             local.continueButton,
                             style: AppTextStyle.whiteSize16,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            padding:
-                                const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                            primary: AppColors.zuriPrimaryColor,
                           ),
                         ),
                       ),

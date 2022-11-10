@@ -30,7 +30,8 @@ class ForgotPasswordOtpViewModel extends FormViewModel {
   }
 
   void navigateToNewPassword() {
-    _navigationService.navigateTo(Routes.forgotPasswordNewView);
+    _navigationService.navigateTo(Routes.forgotPasswordNewView,
+        arguments: ForgotPasswordNewViewArguments(otp: otpValue!));
   }
 
   Future verifyOtpCode() async {

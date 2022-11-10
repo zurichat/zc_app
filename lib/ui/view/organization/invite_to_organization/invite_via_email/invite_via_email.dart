@@ -9,7 +9,6 @@ import 'package:zurichat/utilities/internationalization/app_localization.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'invite_via_email.form.dart';
-import 'invite_viewmodel.dart';
 
 @FormView(fields: [
   FormTextField(name: 'email'),
@@ -41,15 +40,15 @@ class InviteViaEmail extends StatelessWidget with $InviteViaEmail {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 0.0),
                 child: InkWell(
-                  child: Text(
-                    local.sendRequest,
-                    style: AppTextStyle.greenSize16,
-                  ),
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   onTap: () {
                     model.inviteWithMail(emailController.text);
                   },
+                  child: Text(
+                    local.sendRequest,
+                    style: AppTextStyle.greenSize16,
+                  ),
                 ),
               ),
             ],

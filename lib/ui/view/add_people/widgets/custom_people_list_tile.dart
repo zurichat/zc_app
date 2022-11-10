@@ -15,10 +15,10 @@ class CustomPeopleListTile extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CustomPeopleListTileState createState() => _CustomPeopleListTileState();
+  CustomPeopleListTileState createState() => CustomPeopleListTileState();
 }
 
-class _CustomPeopleListTileState extends State<CustomPeopleListTile> {
+class CustomPeopleListTileState extends State<CustomPeopleListTile> {
   bool? isChecked = true;
 
   @override
@@ -38,9 +38,9 @@ class _CustomPeopleListTileState extends State<CustomPeopleListTile> {
 
     return ListTile(
       leading: SizedBox(
-        child: Image.asset("${widget.imagelink}"),
         height: 30,
         width: 30,
+        child: Image.asset("${widget.imagelink}"),
       ),
       title: Text('${widget.userName}',
           style: const TextStyle(

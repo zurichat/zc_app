@@ -12,8 +12,8 @@ class SavedItemBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    final _size = MediaQuery.of(context).size;
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final size = MediaQuery.of(context).size;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
     return SizedBox(
       width: double.infinity,
@@ -24,13 +24,13 @@ class SavedItemBackground extends StatelessWidget {
         children: [
           Icon(
             Icons.bookmark_border_outlined,
-            size: _size.height * .3,
+            size: size.height * .3,
             color: AppColors.greyishColor,
           ),
           Text(
             local!.noSavedItems,
             style:
-                _dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16,
+                dark ? AppTextStyle.whiteSize16 : AppTextStyle.darkGreySize16,
           ),
           const SizedBox(height: 10),
           Text(

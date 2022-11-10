@@ -24,8 +24,8 @@ class CreateOrganizationViewModel extends BaseViewModel {
 
   late String email = '';
 
-  void init(String _email) {
-    email = _email;
+  void init(String email) {
+    email = email;
   }
 
   void back() => _navigation.back();
@@ -72,6 +72,7 @@ class CreateOrganizationViewModel extends BaseViewModel {
       log.e(e.toString());
       snackbar.showSnackbar(message: e.toString());
     }
+    return null;
   }
 
   Future<bool> onCompanyNext() async {

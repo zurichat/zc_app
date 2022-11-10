@@ -19,8 +19,8 @@ class OrganizationNameUrl
   @override
   Widget buildViewModelWidget(
       BuildContext context, OrganizationSettingsViewModel viewModel) {
-    final _orgNameController = useTextEditingController(text: org.name);
-    final _orgUrlController =
+    final orgNameController = useTextEditingController(text: org.name);
+    final orgUrlController =
         useTextEditingController(text: org.organizationUrl?.split('.').first);
     return Scaffold(
       appBar: ZuriAppBar(
@@ -34,7 +34,7 @@ class OrganizationNameUrl
             onPressed: () {
               if (!_formKey.currentState!.validate()) return;
               viewModel.updateOrgNameAndUrl(org.id.toString(),
-                  _orgNameController.text, _orgUrlController.text);
+                  orgNameController.text, orgUrlController.text);
             },
             child: Text(
               Save,
@@ -70,7 +70,7 @@ class OrganizationNameUrl
                       Flexible(
                         child: BorderTextField(
                           hint: CompanyNameHint,
-                          controller: _orgNameController,
+                          controller: orgNameController,
                           textCapitalization: TextCapitalization.words,
                           validator: (val) =>
                               viewModel.validateNotEmptyField(val!),
@@ -105,7 +105,7 @@ class OrganizationNameUrl
                           Flexible(
                             child: BorderTextField(
                               hint: "hng_i8",
-                              controller: _orgUrlController,
+                              controller: orgUrlController,
                               textCapitalization: TextCapitalization.none,
                               validator: viewModel.vaidateOrgUrl,
                               textAlign: TextAlign.end,

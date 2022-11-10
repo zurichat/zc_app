@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../utilities/constants/colors.dart';
 import '../../../shared/shared.dart';
 import '../../../../utilities/constants/text_styles.dart';
 import '../home_page_viewmodel.dart';

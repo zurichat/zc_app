@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/utilities/constants/colors.dart';
-import 'package:zurichat/ui/view/dm_user/dm_user_viewmodel.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:zurichat/ui/view/dm_user/dm_user_viewmodel.dart';
+import 'package:zurichat/utilities/constants/colors.dart';
 
 class ScheduleMess extends StatelessWidget {
   final DialogRequest request;
@@ -20,9 +20,12 @@ class ScheduleMess extends StatelessWidget {
           child: Column(children: [
             TextButton(
               onPressed: () async {
+                final focus = FocusScope.of(context);
+
                 await model.scheduleMessage(5, '30 minutes from now');
                 model.exit();
-                FocusScope.of(context).requestFocus(FocusNode());
+
+                focus.requestFocus(FocusNode());
               },
               child: const Text(
                 '30 minutes from now',

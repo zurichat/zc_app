@@ -3,6 +3,4 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class FileSearchViewModel extends BaseViewModel {
-
-}
+class FileSearchViewModel extends BaseViewModel {}

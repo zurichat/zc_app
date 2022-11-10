@@ -15,7 +15,7 @@ class ShareMessageViewModel extends FutureViewModel<List<HomeItemModel>> {
   final _channelsApiService = locator<ChannelsApiService>();
   final _storage = locator<SharedPreferenceLocalStorage>();
 
-  String message = '';
+  String shareMessage = '';
   late HomeItemModel homeItemModel;
 
   void onChanged(HomeItemModel? homeItemModel) {
@@ -25,8 +25,8 @@ class ShareMessageViewModel extends FutureViewModel<List<HomeItemModel>> {
 
   void sendMessage(String sharedMessage) async {
     var userID = _storage.getString(StorageKeys.currentUserId);
-    if (message != '') {
-      var newMessage = '$message: $sharedMessage';
+    if (shareMessage != '') {
+      var newMessage = '$shareMessage: $sharedMessage';
       await _channelsApiService
           .sendChannelMessages(homeItemModel.id!, userID!, newMessage, []);
       _navigationService.popRepeated(2);

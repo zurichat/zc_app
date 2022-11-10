@@ -11,14 +11,14 @@ class TermsAndConditionsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<TermsAndConditionsViewModel>.nonReactive(
         viewModelBuilder: () => TermsAndConditionsViewModel(),
         builder: (context, model, child) {
           return Scaffold(
             appBar: ZuriAppBar(
               leading: Icons.arrow_back,
-              isDarkMode: _dark,
+              isDarkMode: dark,
               orgTitle: Text(
                 TnC2.toUpperCase(),
                 style: AppTextStyle.whiteSize20Bold,
@@ -33,7 +33,7 @@ class TermsAndConditionsView extends StatelessWidget {
               ),
               child: Text(
                 TermsAndConditions,
-                style: _dark
+                style: dark
                     ? AppTextStyle.whiteSize16
                     : AppTextStyle.darkGreySize16,
               ),

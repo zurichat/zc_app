@@ -1,0 +1,34 @@
+name: Flutter workflow
+env:
+  FLUTTER_VERSION: "3.3.8"
+  FLUTTER_CHANNEL: "stable"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - dev
+
+jobs:
+  qa:
+    name: Quality Assurance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ env.FLUTTER_CHANNEL }}
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Running the formatter
+        run: flutter format lib/
+      - name: Running the analyzer
+        run: flutter analyze --no-pub
+      - name: Running code generation
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+     - name: Verifying different changes has not been made
+        run: git diff --exit-code
+      - name: Running tests without coverage
+        run: flutter test --no-pub --no-code-coverage

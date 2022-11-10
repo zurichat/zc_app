@@ -1,4 +1,3 @@
-
 class StaticUserModel {
   String userName;
   String userimg;

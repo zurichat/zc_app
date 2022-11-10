@@ -29,7 +29,8 @@ const dummyUserImage = 'assets/background/bga.png';
 const double zSideMargin = 16;
 
 const channelsBaseUrl = 'https://channels.zuri.chat/api/';
-const dmsBaseUrl = 'https://dm.zuri.chat/api/';
+const dmsBaseUrl = 'https://dm.zuri.chat/dmapi';
+const dmsBaseUrlSend = 'https://dm.zuri.chat/api';
 const coreBaseUrl = 'https://api.zuri.chat/';
 const websocketUrl = 'wss://realtime.zuri.chat/connection/websocket';
 
@@ -44,4 +45,6 @@ Iterable<Locale> supportedLocalesList = const [
   Locale('es', 'ES'),
   Locale('ja', 'JP'),
   Locale('he', 'IL'),
+  Locale('it', 'IT'),
+  Locale('pt', 'BR')
 ];

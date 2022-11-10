@@ -19,11 +19,11 @@ class UserSearch extends StatelessWidget {
           appBar: ZuriAppBar(),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
+            backgroundColor: AppColors.zuriPrimaryColor,
             child: const Icon(
               Icons.add,
               color: AppColors.whiteColor,
             ),
-            backgroundColor: AppColors.zuriPrimaryColor,
           ),
           body: SingleChildScrollView(
             child: Padding(

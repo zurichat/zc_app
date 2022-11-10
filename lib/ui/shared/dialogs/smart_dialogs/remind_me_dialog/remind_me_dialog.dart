@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/ui/shared/dialogs/smart_dialogs/remind_me_dialog/remind_me_dialog_viewmodel.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 class ReminderDialog extends StatelessWidget {
   final DialogRequest request;
@@ -34,7 +34,7 @@ class ReminderDialog extends StatelessWidget {
                 ),
               ),
               ListTile(
-                onTap: model.messageRemindertwentyMinutes,
+                onTap: model.messageReminderTwentyMinutes,
                 enabled: true,
                 title: Text(
                   local.in20Minutes,
@@ -88,6 +88,7 @@ class ReminderDialog extends StatelessWidget {
               ListTile(
                 onTap: () async {
                   var selectedDate = await selectDateTime(context);
+                  // ignore: use_build_context_synchronously
                   var selectedTime = await selectTime(context);
                   model.customReminder(selectedDate, selectedTime);
                 },

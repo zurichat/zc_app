@@ -1,27 +1,28 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/widgets.dart';
-import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/utilities/constants/app_strings.dart';
-import 'package:zurichat/models/channel_members.dart';
-import 'package:zurichat/models/channel_model.dart';
-import 'package:zurichat/models/user_post.dart';
-import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
-import 'package:zurichat/services/messaging_services/channels_api_service.dart';
-import 'package:zurichat/services/messaging_services/centrifuge_rtc_service.dart';
-import 'package:zurichat/services/app_services/local_storage_services.dart';
-import 'package:zurichat/services/app_services/media_service.dart';
-import 'package:zurichat/services/app_services/notification_service.dart';
-import 'package:zurichat/app/app.logger.dart';
-import 'package:zurichat/services/in_review/user_service.dart';
-import 'package:zurichat/ui/shared/shared.dart';
-import 'package:zurichat/utilities/enums.dart';
-import 'package:zurichat/utilities/constants/storage_keys.dart';
 import 'package:simple_moment/simple_moment.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.logger.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/channel_members.dart';
+import 'package:zurichat/models/channel_model.dart';
+import 'package:zurichat/models/user_post.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/services/app_services/media_service.dart';
+import 'package:zurichat/services/app_services/notification_service.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
+import 'package:zurichat/services/messaging_services/centrifuge_rtc_service.dart';
+import 'package:zurichat/services/messaging_services/channels_api_service.dart';
+import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:zurichat/utilities/constants/storage_keys.dart';
+import 'package:zurichat/utilities/enums.dart';
 
 class ChannelPageViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
@@ -66,7 +67,7 @@ class ChannelPageViewModel extends FormViewModel {
     }
   }
 
-// STORE MESSAGES IN DRAFTS
+  // STORE MESSAGES IN DRAFTS
   void storeDraft(channelId, value, channelName, membersCount, public) {
     var currentOrgId = _storageService.getString(StorageKeys.currentOrgId);
     var currentUserId = _storageService.getString(StorageKeys.currentUserId);
@@ -105,7 +106,7 @@ class ChannelPageViewModel extends FormViewModel {
   bool isVisible = false;
   bool isLoading = true;
 
-  List<ChannelMembermodel> channelMembers = [];
+  List<ChannelMember> channelMembers = [];
   List<UserPost>? channelUserMessages = [];
   StreamSubscription? messageSubscription;
   StreamSubscription? notificationSubscription;
@@ -160,9 +161,10 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-  ///INITIALIZATION WHICH INCLUDES JOINING CHANNEL, FETCHING MESSAGES, 
+  ///INITIALIZATION WHICH INCLUDES JOINING CHANNEL, FETCHING MESSAGES,
   ///LISTENING TO NEW MESSAGES, GETTING THE CHANNEL SOCKET ID AND GETTING THE CHANNEL CREATOR
   void initialise(String channelId) async {
+    storage.setString(StorageKeys.currentChannelId, channelId);
     channelID = channelId;
 
     //TODO: join channel wasn't done
@@ -189,10 +191,10 @@ class ChannelPageViewModel extends FormViewModel {
     notifyListeners();
   }
 
-// FUNCTION TO CHECK THE PINNED STATE OF A MESSAGE
+  // FUNCTION TO CHECK THE PINNED STATE OF A MESSAGE
   Future<bool> changePinnedState(UserPost? userPost) {
-    return _channelsApiService.changeChannelMessagePinnedState(userPost!.channelId,
-          userPost.id!, userPost.userId!, !userPost.pinned);
+    return _channelsApiService.changeChannelMessagePinnedState(
+        userPost!.channelId, userPost.id!, userPost.userId!, !userPost.pinned);
   }
 
   // FUNCTION FOR JOIN CHANNEL
@@ -200,7 +202,6 @@ class ChannelPageViewModel extends FormViewModel {
     String? userId = storage.getString(StorageKeys.currentUserId);
     String? orgId = storage.getString(StorageKeys.currentOrgId);
     String? token = storage.getString(StorageKeys.currentSessionToken);
-    storage.setString(StorageKeys.currentChannelId, channelId);
     // await _channelsApiService.joinChannel(channelId);
     try {
       final res = await _api
@@ -458,7 +459,6 @@ class ChannelPageViewModel extends FormViewModel {
     notificationSubscription?.cancel();
     super.dispose();
   }
-
 
   void toggleExpanded() {
     isExpanded = !isExpanded;

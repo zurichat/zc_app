@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 import 'package:zurichat/utilities/internationalization/app_localization.dart';

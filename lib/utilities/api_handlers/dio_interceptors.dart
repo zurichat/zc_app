@@ -6,26 +6,26 @@ class DioInterceptor implements Interceptor {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    log.i('ENDPOINT: ' + err.requestOptions.uri.toString());
-    log.i('STATUSCODE: ' + err.error.toString());
-    log.i('MESSAGE: ' + (err.response?.data ?? err.message).toString());
+    log.i('ENDPOINT: ${err.requestOptions.uri}');
+    log.i('STATUSCODE: ${err.error}');
+    log.i('MESSAGE: ${err.response?.data ?? err.message}');
     handler.next(err);
   }
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    log.i('METHOD: ' + options.method);
-    log.i('ENDPOINT: ' + options.uri.toString());
+    log.i('METHOD: ${options.method}');
+    log.i('ENDPOINT: ${options.uri}');
     //log.i('HEADERS: ' + options.headers.toString());
-    log.i('DATA: ' + (options.data ?? options.queryParameters).toString());
+    log.i('DATA: ${options.data ?? options.queryParameters}');
     handler.next(options);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    log.i('ENDPOINT: ' + response.requestOptions.uri.toString());
-    log.i('STATUSCODE: ' + response.statusCode.toString());
-    log.i('DATA: ' + response.data.toString());
+    log.i('ENDPOINT: ${response.requestOptions.uri}');
+    log.i('STATUSCODE: ${response.statusCode}');
+    log.i('DATA: ${response.data}');
     handler.next(response);
   }
 }

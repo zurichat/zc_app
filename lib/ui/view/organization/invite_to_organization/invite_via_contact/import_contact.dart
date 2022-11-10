@@ -36,15 +36,15 @@ class ImportContacts extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 0.0),
                 child: InkWell(
-                    child: Text(
-                      "Add",
-                      style: AppTextStyle.greenSize16,
-                    ),
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
                     onTap: () {
                       model.navigateToInvitationSent();
-                    }),
+                    },
+                    child: Text(
+                      "Add",
+                      style: AppTextStyle.greenSize16,
+                    )),
               ),
             ],
           ),

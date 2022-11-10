@@ -177,4 +177,11 @@ abstract class Api {
 
   Future<ApiResponse?> delete(String path,
       {Map<String, dynamic>? body, String? token});
+
+  /// A SERVICE TO SEND POST REQUEST FOR DM MESSAGES.
+  /// THE ENPOINT PARAMETER SHOULD NEVER BE NULL
+  Future<dynamic> postDM(
+    String endpoint, {
+    required Map<String, dynamic> body,
+  });
 }

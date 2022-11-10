@@ -1,27 +1,29 @@
 import 'dart:async';
 import 'dart:convert';
+
+import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/app/app.logger.dart';
 import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/ui/view/jump_to_view/jump_to_view.dart';
-import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/channel_model.dart';
 import 'package:zurichat/models/user_model.dart';
-import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
-import 'package:zurichat/services/messaging_services/channels_api_service.dart';
-import 'package:zurichat/services/messaging_services/dms_api_service.dart';
-import 'package:zurichat/services/messaging_services/centrifuge_rtc_service.dart';
 import 'package:zurichat/services/app_services/connectivity_service.dart';
 import 'package:zurichat/services/app_services/local_storage_services.dart';
 import 'package:zurichat/services/app_services/notification_service.dart';
 import 'package:zurichat/services/in_review/user_service.dart';
+import 'package:zurichat/services/messaging_services/centrifuge_rtc_service.dart';
+import 'package:zurichat/services/messaging_services/channels_api_service.dart';
+import 'package:zurichat/services/messaging_services/dms_api_service.dart';
 import 'package:zurichat/ui/nav_pages/home_page/home_item_model.dart';
+import 'package:zurichat/ui/view/general_search/general_search_view.dart';
+import 'package:zurichat/ui/view/jump_to_view/jump_to_view.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
 import 'package:zurichat/utilities/constants/app_constants.dart';
-import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/utilities/constants/storage_keys.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
+import 'package:zurichat/utilities/enums.dart';
 
 bool connectionStatus = false;
 
@@ -49,12 +51,12 @@ class HomePageViewModel extends StreamViewModel {
   ChannelModel? _channel;
   List<ChannelModel> get channelsList => _channelsList;
   ChannelModel get channel => _channel!;
-  final List<ChannelMembermodel> _membersList = [];
+  final List<ChannelMember> _membersList = [];
   List get membersList => _membersList;
 
   ///This contains the list of data for both the channels and dms
   List<HomeItemModel> homePageList = [];
-  List<HomeItemModel> unreads = [];
+  List<HomeItemModel> unReads = [];
   List<HomeItemModel> joinedChannels = [];
   List<HomeItemModel> directMessages = [];
 
@@ -96,6 +98,13 @@ class HomePageViewModel extends StreamViewModel {
     _navigationService.navigateTo(Routes.startDmView);
   }
 
+  void navigateToGeneralSearchScreen() {
+    navigation.navigateWithTransition(
+      GeneralSearchView(),
+      transitionStyle: Transition.fade,
+    );
+  }
+
   @override
   void onError(error) {
     log.e('Error: $error');
@@ -124,24 +133,24 @@ class HomePageViewModel extends StreamViewModel {
 
   Future<void> getUserInfo() async {
     try {
-      final _zuriApi = ZuriApi(coreBaseUrl);
+      final zuriApi = ZuriApi(coreBaseUrl);
       String? userID = userService.memberId;
 
-      final response = await _zuriApi
-          .get('organizations/$orgId/members/$userID', token: token);
-      final _userModel = UserModel.fromJson(response!.data['data']);
-      userService.setUserDetails(_userModel);
+      final response = await zuriApi.get('organizations/$orgId/members/$userID',
+          token: token);
+      final userModel = UserModel.fromJson(response!.data['data']);
+      userService.setUserDetails(userModel);
     } catch (e) {
       log.e(e.toString());
     }
   }
 
   ///This sets all the expanded list items
-  ///into unreads, channels and dms
+  ///into unread, channels and dms
   setAllList() {
     homePageList.forEach((e) {
       if (e.unreadCount != null && e.unreadCount != 0) {
-        unreads.add(e);
+        unReads.add(e);
       } else if (e.type == HomeItemType.channels) {
         joinedChannels.add(e);
       } else if (e.type == HomeItemType.dm) {
@@ -184,7 +193,7 @@ class HomePageViewModel extends StreamViewModel {
 
     //Todo: add channels implementation
 
-    unreads.clear();
+    unReads.clear();
     directMessages.clear();
     joinedChannels.clear();
 
@@ -270,8 +279,10 @@ class HomePageViewModel extends StreamViewModel {
   }
 
   void onJumpToScreen() {
-    navigation.navigateWithTransition(JumpToView(),
-        transition: NavigationTransition.DownToUp);
+    navigation.navigateWithTransition(
+      JumpToView(),
+      transitionStyle: Transition.downToUp,
+    );
   }
 
   @override

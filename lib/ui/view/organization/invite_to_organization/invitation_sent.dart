@@ -17,7 +17,7 @@ class InvitationSent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (BuildContext context, InviteViewModel model, Widget? children) {
@@ -29,7 +29,7 @@ class InvitationSent extends StatelessWidget {
                 color: Theme.of(context).textTheme.bodyText1!.color,
               ),
             ),
-            isDarkMode: _dark,
+            isDarkMode: dark,
             leading: Icons.close,
             leadingPress: () {
               model.navigateBack();
@@ -52,7 +52,7 @@ class InvitationSent extends StatelessWidget {
                 UIHelper.verticalSpaceLarge,
                 Text(
                   local.invitationSent,
-                  style: _dark
+                  style: dark
                       ? AppTextStyle.whiteSize18Bold
                       : AppTextStyle.darkGreySize18Bold,
                 ),
@@ -67,7 +67,7 @@ class InvitationSent extends StatelessWidget {
                       const SizedBox(width: 16),
                       Text(
                         model.getInvitedMail() ?? '',
-                        style: _dark
+                        style: dark
                             ? AppTextStyle.whiteSize16Bold
                             : AppTextStyle.darkGreySize16Bold,
                       ),
@@ -78,7 +78,7 @@ class InvitationSent extends StatelessWidget {
                 Center(
                   child: Text(
                     local.invitedAsAZuriChatMember,
-                    style: _dark
+                    style: dark
                         ? AppTextStyle.whiteSize16
                         : AppTextStyle.darkGreySize16,
                   ),

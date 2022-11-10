@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:zurichat/utilities/constants/text_styles.dart';
 
-import '../../../../utilities/constants/colors.dart';
 
 class ProfilePageHead extends StatelessWidget {
   const ProfilePageHead(
@@ -20,7 +19,7 @@ class ProfilePageHead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -67,14 +66,14 @@ class ProfilePageHead extends StatelessWidget {
             children: [
               Text(
                 '$name',
-                style: _dark
+                style: dark
                     ? AppTextStyle.whiteSize16Bold
                     : AppTextStyle.darkGreySize16Bold,
               ),
               const SizedBox(height: 5),
               Text(
                 '$currentStatus',
-                style: _dark
+                style: dark
                     ? AppTextStyle.whiteSize14
                     : AppTextStyle.lightGreySize14,
               ),

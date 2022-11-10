@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
@@ -12,7 +11,7 @@ class FourthSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: model.navigateToPinnedMessages,
       child: Card(
         elevation: 2,
         child: Container(

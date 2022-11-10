@@ -37,10 +37,10 @@ class StatusForm extends StatelessWidget {
           tagIcon != null ? Text(tagIcon ?? '') : const Icon(bubble),
           const SizedBox(width: 10),
           Flexible(
+            fit: FlexFit.tight,
             child: Text(
               statusText ?? local!.whatIsYourStatus,
             ),
-            fit: FlexFit.tight,
           ),
           IconButton(
             icon: const Icon(Icons.close_rounded),

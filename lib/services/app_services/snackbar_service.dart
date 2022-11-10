@@ -5,8 +5,6 @@ import '../../app/app.locator.dart';
 import '../../utilities/constants/colors.dart';
 import '../../utilities/enums.dart';
 
-// enum SnackBarType { Success, Failure }
-
 class AppSnackBar {
   static void setupSnackbarUi() {
     final service = locator<SnackbarService>();
@@ -17,8 +15,7 @@ class AppSnackBar {
         backgroundColor: AppColors.zuriPrimaryColor,
         textColor: AppColors.whiteColor,
         borderRadius: 1,
-        dismissDirection: SnackDismissDirection.HORIZONTAL,
-        // animationDuration: const Duration(seconds: 3),
+        dismissDirection: DismissDirection.horizontal,
         margin: const EdgeInsets.only(bottom: 0, right: 0, left: 0),
         barBlur: 0.6,
         messageColor: AppColors.whiteColor,
@@ -33,8 +30,7 @@ class AppSnackBar {
         backgroundColor: AppColors.redColor.withOpacity(0.6),
         textColor: AppColors.whiteColor,
         borderRadius: 1,
-        dismissDirection: SnackDismissDirection.HORIZONTAL,
-        // animationDuration: const Duration(seconds: 3),
+        dismissDirection: DismissDirection.horizontal,
         margin: const EdgeInsets.only(bottom: 0, right: 0, left: 0),
         barBlur: 0.6,
         messageColor: AppColors.whiteColor,

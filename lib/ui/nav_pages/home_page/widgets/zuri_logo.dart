@@ -11,7 +11,8 @@ class ZuriLogo extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {    return Row(
+  Widget build(BuildContext context) {
+    return Row(
       children: [
         const Image(
           image: appBarLogo,

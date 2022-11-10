@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
@@ -51,7 +50,7 @@ class ExpandableTextFieldScreen extends HookWidget {
     return ViewModelBuilder<ExpandableTextFieldScreenViewModel>.reactive(
       viewModelBuilder: () => ExpandableTextFieldScreenViewModel(),
       onModelReady: (model) {
-        model.init(maxSize, channelId!);
+        model.init(maxSize);
         keyboardVisibilityController.onChange.listen((bool visible) {
           model.notifyListeners();
         });
@@ -109,7 +108,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                                         .lastIndexOf('@'));
 
                                             textController.text =
-                                                result + '@' + text + ' ';
+                                                '$result@$text ';
                                             textController.selection =
                                                 TextSelection.fromPosition(
                                                     TextPosition(
@@ -244,7 +243,7 @@ class ExpandableTextFieldScreen extends HookWidget {
                                           GestureDetector(
                                             onTap: () {
                                               textController.text =
-                                                  textController.text + '@';
+                                                  '${textController.text}@';
                                               textController.selection =
                                                   TextSelection.fromPosition(
                                                       TextPosition(
