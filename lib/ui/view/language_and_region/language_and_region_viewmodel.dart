@@ -1,13 +1,13 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/widgets.dart';
-import 'package:zurichat/utilities/constants/app_strings.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/main.dart';
 import 'package:zurichat/services/app_services/localization_service.dart';
 import 'package:zurichat/ui/shared/shared.dart';
+import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/utilities/extensions/locale_extension.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';
@@ -54,6 +54,8 @@ class LanguageAndRegionModelViewModel extends BaseViewModel {
       currentLanguage = languages[currentValue];
       Locale? selectedLocale = supportedLocalesList.elementAt(currentValue);
       _localizationService.storeCurrentLocale(selectedLocale);
+
+      // ignore: use_build_context_synchronously
       MyApp.setLocale(context, selectedLocale);
 
       log.i(dialogResult.data);

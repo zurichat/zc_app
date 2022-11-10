@@ -127,7 +127,7 @@ class YouPageViewModel extends ReactiveViewModel {
   Future setUserPresence() async {
     try {
       var response = await _apiService.post(
-        coreBaseUrl + 'organizations/$orgId/members/$memberId/presence',
+        '${coreBaseUrl}organizations/$orgId/members/$memberId/presence',
         token: _userService.authToken,
         body: {},
       );

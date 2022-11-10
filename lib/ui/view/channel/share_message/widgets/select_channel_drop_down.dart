@@ -17,10 +17,10 @@ class SelectChannelDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _mediaQuery = MediaQuery.of(context).size;
+    final mediaQuery = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.all(10),
-      width: _mediaQuery.width,
+      width: mediaQuery.width,
       height: 45,
       decoration: BoxDecoration(
           color: AppColors.whiteColor,
@@ -32,11 +32,11 @@ class SelectChannelDropDown extends StatelessWidget {
           onChanged: onChanged,
           items: values
               .map((item) => DropdownMenuItem(
+                    value: item,
                     child: Text(
                       item.name!,
                       style: AppTextStyle.darkGreySize14,
                     ),
-                    value: item,
                   ))
               .toList(),
         ),

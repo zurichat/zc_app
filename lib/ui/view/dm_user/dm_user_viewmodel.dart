@@ -254,7 +254,7 @@ class DmUserViewModel extends FormViewModel {
 
   Future createRoom() async {
     userID = _storageService.getString(StorageKeys.currentUserId).toString();
-    String dmKey = 'DM' + userID + friendID;
+    String dmKey = 'DM$userID$friendID';
     String id = _storageService.getString(dmKey).toString();
     if (id != 'null') {
       roomID = id;

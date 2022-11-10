@@ -25,9 +25,9 @@ class OrganizationSettingsViewModel extends BaseViewModel with ValidatorMixin {
 
   File? tempImage;
 
-  void init(String _name, String _url) {
-    name = _name;
-    url = _url;
+  void init(String name, String url) {
+    name = name;
+    url = url;
   }
 
   void back() {

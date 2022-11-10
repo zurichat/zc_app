@@ -14,7 +14,7 @@ class WorkSpaceDisplayInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _dark = Theme.of(context).brightness == Brightness.dark;
+    final dark = Theme.of(context).brightness == Brightness.dark;
     return Row(
       children: [
         GestureDetector(
@@ -28,7 +28,7 @@ class WorkSpaceDisplayInfo extends StatelessWidget {
                 margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color:
-                      !_dark ? AppColors.darkModeColor : AppColors.whiteColor,
+                      !dark ? AppColors.darkModeColor : AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(5),
                 ),
                 clipBehavior: Clip.antiAlias,
@@ -47,12 +47,12 @@ class WorkSpaceDisplayInfo extends StatelessWidget {
                 children: [
                   Text(
                     workSpaceTitle?.toUpperCase() ?? "",
-                    style: _dark
+                    style: dark
                         ? AppTextStyle.whiteSize16Bold
                         : AppTextStyle.darkGreySize16Bold,
                   ),
                   Text(workSpaceSlackUrl?.toLowerCase() ?? "",
-                      style: _dark
+                      style: dark
                           ? AppTextStyle.whiteSize14
                           : AppTextStyle.darkGreySize14),
                 ],

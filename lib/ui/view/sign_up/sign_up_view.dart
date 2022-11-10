@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:zurichat/ui/shared/dumb_widgets/custom_textfield.dart';
@@ -10,7 +9,6 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import '../../../utilities/constants/colors.dart';
 
 import '../../shared/shared.dart';
 
@@ -34,7 +32,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
 
   @override
   Widget build(BuildContext context) {
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
     return ViewModelBuilder<SignUpViewModel>.reactive(
       //listenToFormUpdated automatically syncs text
@@ -68,7 +66,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       Center(
                         child: Text(
                           SignUp,
-                          style: _dark
+                          style: dark
                               ? AppTextStyle.whiteSize20Bold
                               : AppTextStyle.darkGreySize20Bold,
                         ),
@@ -83,7 +81,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       UIHelper.customVerticalSpace(48),
                       Text(
                         FirstName,
-                        style: _dark
+                        style: dark
                             ? AppTextStyle.whiteSize16Bold
                             : AppTextStyle.darkGreySize16Bold,
                       ),
@@ -99,7 +97,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       UIHelper.customVerticalSpace(25),
                       Text(
                         LastName,
-                        style: _dark
+                        style: dark
                             ? AppTextStyle.whiteSize16Bold
                             : AppTextStyle.darkGreySize16Bold,
                       ),
@@ -115,7 +113,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       UIHelper.customVerticalSpace(20),
                       Text(
                         EmailAddress,
-                        style: _dark
+                        style: dark
                             ? AppTextStyle.whiteSize16Bold
                             : AppTextStyle.darkGreySize16Bold,
                       ),
@@ -131,7 +129,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       UIHelper.customVerticalSpace(25),
                       Text(
                         Password,
-                        style: _dark
+                        style: dark
                             ? AppTextStyle.whiteSize16Bold
                             : AppTextStyle.darkGreySize16Bold,
                       ),
@@ -147,7 +145,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       UIHelper.customVerticalSpace(25),
                       Text(
                         ConfirmPassword,
-                        style: _dark
+                        style: dark
                             ? AppTextStyle.whiteSize16Bold
                             : AppTextStyle.darkGreySize16Bold,
                       ),
@@ -179,7 +177,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                             children: [
                               Text(
                                 TnC1,
-                                style: _dark
+                                style: dark
                                     ? AppTextStyle.whiteSize12
                                     : AppTextStyle.lightGreySize12,
                               ),
@@ -205,7 +203,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
                         children: [
                           Text(
                             AlreadyHaveAcct,
-                            style: _dark
+                            style: dark
                                 ? AppTextStyle.whiteSize14
                                 : AppTextStyle.darkGreySize14,
                           ),

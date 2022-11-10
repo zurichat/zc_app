@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:zurichat/utilities/constants/local_keys.dart';
 import 'package:zurichat/services/app_services/localization_service.dart';
@@ -20,10 +19,10 @@ class AppLocalization {
   Future<bool> load() async {
     final path = 'assets/language/${locale.languageCode}.json';
     final data = await rootBundle.loadString(path);
-    final Map<String, dynamic> _result = json.decode(data);
+    final Map<String, dynamic> result = json.decode(data);
 
     _sentences = <String, String>{};
-    _result.forEach((String key, dynamic value) {
+    result.forEach((String key, dynamic value) {
       _sentences[key] = value.toString();
     });
 

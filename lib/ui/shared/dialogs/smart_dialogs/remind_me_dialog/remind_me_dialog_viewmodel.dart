@@ -1,8 +1,8 @@
-import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/services/app_services/notification_service.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/services/app_services/notification_service.dart';
 
 class RemindMeDialogViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
@@ -21,7 +21,7 @@ class RemindMeDialogViewModel extends BaseViewModel {
   var now = DateTime.now();
 
 //twenty minutes
-  void messageRemindertwentyMinutes() async {
+  void messageReminderTwentyMinutes() async {
     await notificationService.messageReminder(
         dateTime: now.add(const Duration(minutes: 20)));
     navigationService.popRepeated(1);

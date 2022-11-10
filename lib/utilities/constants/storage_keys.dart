@@ -34,5 +34,4 @@ class StorageKeys {
   static const invitedEmail = 'invited_email';
   static const currentLanguageIndex = "current_language_index";
   static const recentSearches = "recent_searches";
-
 }

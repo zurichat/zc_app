@@ -1,7 +1,6 @@
 import 'dart:io';
 
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:flutter_appavailability/flutter_appavailability.dart';
+import 'package:appcheck/appcheck.dart';
 import 'package:zurichat/app/app.logger.dart';
 import 'package:zurichat/utilities/constants/app_strings.dart';
 import 'package:stacked/stacked.dart';
@@ -16,7 +15,7 @@ class EmailConfirmationViewModel extends BaseViewModel {
 
   void openEmailApp() {
     try {
-      AppAvailability.launchApp(
+      AppCheck.launchApp(
               Platform.isIOS ? 'message://' : 'com.google.android.gm')
           .then((_) {
         log.i('App Email launched!');

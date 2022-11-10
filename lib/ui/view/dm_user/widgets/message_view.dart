@@ -11,9 +11,9 @@ class MessageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _storageService = locator<SharedPreferenceLocalStorage>();
+    final storageService = locator<SharedPreferenceLocalStorage>();
     String userName =
-        _storageService.getString(StorageKeys.displayName).toString();
+        storageService.getString(StorageKeys.displayName).toString();
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, top: 16),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [

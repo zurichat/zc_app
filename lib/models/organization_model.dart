@@ -21,14 +21,15 @@ class OrganizationModel {
 
   factory OrganizationModel.fromJson(Map<String, dynamic> json) {
     return OrganizationModel(
-        id: json['_id'] ?? json['id'],
-        name: json['name'],
-        logoUrl: json['logo_url'],
-        time: json['created_at'],
-        organizationUrl: json['workspace_url'],
-        noOfMembers: json['no_of_members'],
-        isOwner: json['isOwner'],
-        userIdInOrg: json['member_id'],);
+      id: json['_id'] ?? json['id'],
+      name: json['name'],
+      logoUrl: json['logo_url'],
+      time: json['created_at'],
+      organizationUrl: json['workspace_url'],
+      noOfMembers: json['no_of_members'],
+      isOwner: json['isOwner'],
+      userIdInOrg: json['member_id'],
+    );
   }
 
   String get initials {

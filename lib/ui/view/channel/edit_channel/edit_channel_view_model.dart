@@ -43,9 +43,9 @@ class EditChannelViewModel extends FormViewModel {
 
       return;
     }
-    String _channelId = id;
+    String channelId = id;
     String orgId = storage.getString(StorageKeys.currentOrgId).toString();
-    String endpoint = 'v1/$orgId/channels/$_channelId/';
+    String endpoint = 'v1/$orgId/channels/$channelId/';
     //TODO INCORRECT DESCRIPTION
     final des = {
       'description': descriptionValue,

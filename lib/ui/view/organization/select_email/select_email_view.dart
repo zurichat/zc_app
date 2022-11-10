@@ -17,11 +17,11 @@ class SelectEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return ViewModelBuilder<SelectEmailViewModel>.nonReactive(
       viewModelBuilder: () => SelectEmailViewModel(),
       builder: (context, model, child) => Scaffold(
-        backgroundColor: _dark ? AppColors.blackColor : AppColors.whiteColor,
+        backgroundColor: dark ? AppColors.blackColor : AppColors.whiteColor,
         appBar: ZuriAppBar(
           orgTitle: Text(
             model.getScreenTitle(method, context),
@@ -30,7 +30,7 @@ class SelectEmail extends StatelessWidget {
             ),
           ),
           whiteBackground: true,
-          isDarkMode: _dark,
+          isDarkMode: dark,
           leading: Icons.arrow_back_ios_outlined,
           leadingPress: () => model.back(),
         ),
@@ -38,7 +38,7 @@ class SelectEmail extends StatelessWidget {
           margin: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0.0),
           decoration: BoxDecoration(
             color:
-                _dark ? AppColors.darkThemePrimaryColor : AppColors.whiteColor,
+                dark ? AppColors.darkThemePrimaryColor : AppColors.whiteColor,
             borderRadius: BorderRadius.circular(2.0),
           ),
           child: Column(
@@ -50,7 +50,7 @@ class SelectEmail extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                 child: Text(
                   local!.selectEmailToUse,
-                  style: _dark
+                  style: dark
                       ? AppTextStyle.whiteSize16Bold
                       : AppTextStyle.darkGreySize16Bold,
                 ),

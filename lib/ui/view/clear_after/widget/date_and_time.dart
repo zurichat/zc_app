@@ -5,10 +5,10 @@ class DateAndTime extends StatefulWidget {
   const DateAndTime({Key? key}) : super(key: key);
 
   @override
-  _DateAndTimeState createState() => _DateAndTimeState();
+  DateAndTimeState createState() => DateAndTimeState();
 }
 
-class _DateAndTimeState extends State<DateAndTime> {
+class DateAndTimeState extends State<DateAndTime> {
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
   TextEditingController dateController = TextEditingController(text: 'Today');

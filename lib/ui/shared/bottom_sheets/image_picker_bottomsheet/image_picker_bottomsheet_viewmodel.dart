@@ -8,8 +8,7 @@ class ImagePickerBottomSheetViewModel extends FutureViewModel {
   void dismissBottomSheet() => _navigator.back();
 
   @override
-  Future futureToRun() async{
+  Future futureToRun() async {
     Future.delayed(const Duration(seconds: 2));
   }
-
 }

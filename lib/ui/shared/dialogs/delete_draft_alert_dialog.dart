@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zurichat/utilities/constants/colors.dart';
 import 'package:zurichat/ui/shared/shared.dart';
 import 'package:stacked_services/stacked_services.dart';
 

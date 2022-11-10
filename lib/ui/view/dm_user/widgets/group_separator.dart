@@ -16,9 +16,6 @@ class GroupSeparator extends StatelessWidget {
             color: Color(0xFF7B8794),
           )),
           Container(
-            child: Text(value,
-                style: const TextStyle(
-                    fontSize: 12.0, fontWeight: FontWeight.w400)),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
             decoration: BoxDecoration(
               border: Border.all(
@@ -29,6 +26,9 @@ class GroupSeparator extends StatelessWidget {
                 Radius.circular(10),
               ),
             ),
+            child: Text(value,
+                style: const TextStyle(
+                    fontSize: 12.0, fontWeight: FontWeight.w400)),
           ),
           const Expanded(
               child: Divider(

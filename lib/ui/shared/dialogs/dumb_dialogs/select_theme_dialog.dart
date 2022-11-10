@@ -14,7 +14,7 @@ class SelectThemeDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int? _currentThemeValue = request.data['currentThemeValue'];
+    int? currentThemeValue = request.data['currentThemeValue'];
 
     return StatefulBuilder(builder: (context, setState) {
       return Dialog(
@@ -43,9 +43,9 @@ class SelectThemeDialog extends StatelessWidget {
                 leading: Radio(
                   activeColor: AppColors.zuriPrimaryColor,
                   value: index,
-                  groupValue: _currentThemeValue,
+                  groupValue: currentThemeValue,
                   onChanged: (int? value) {
-                    setState(() => _currentThemeValue = value);
+                    setState(() => currentThemeValue = value);
                   },
                 ),
               ),
@@ -61,7 +61,7 @@ class SelectThemeDialog extends StatelessWidget {
                 ),
                 MaterialButton(
                   onPressed: () => completer(
-                    DialogResponse(data: _currentThemeValue, confirmed: true),
+                    DialogResponse(data: currentThemeValue, confirmed: true),
                   ),
                   child: const Text(Apply),
                 ),

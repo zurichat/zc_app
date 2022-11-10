@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:zurichat/utilities/constants/colors.dart';
 
 import 'package:zurichat/utilities/constants/text_styles.dart';
@@ -65,11 +64,11 @@ class ZuriAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: isSearchBar
           ? null
           : InkWell(
+              onTap: leadingPress,
               child: Icon(leading,
                   color:
                       isDarkMode ? AppColors.whiteColor : AppColors.blackColor,
-                  size: 16),
-              onTap: leadingPress),
+                  size: 16)),
       title: isSearchBar
           ? Container(
               margin: const EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 0.0),

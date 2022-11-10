@@ -1,22 +1,22 @@
-import 'package:zurichat/app/app.locator.dart';
-import 'package:zurichat/app/app.router.dart';
-import 'package:zurichat/models/channels_search_model.dart';
-import 'package:zurichat/models/user_search_model.dart';
-import 'package:zurichat/services/in_review/jump_to_api.dart';
-import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
-import 'package:zurichat/services/messaging_services/channels_api_service.dart';
-import 'package:zurichat/services/messaging_services/dms_api_service.dart';
-import 'package:zurichat/services/core_services/organization_api_service.dart';
-import 'package:zurichat/services/messaging_services/centrifuge_rtc_service.dart';
-import 'package:zurichat/services/app_services/connectivity_service.dart';
-import 'package:zurichat/services/app_services/local_storage_services.dart';
-import 'package:zurichat/services/app_services/media_service.dart';
-import 'package:zurichat/services/in_review/user_service.dart';
-import 'package:zurichat/utilities/enums.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
+import 'package:zurichat/app/app.locator.dart';
+import 'package:zurichat/app/app.router.dart';
+import 'package:zurichat/models/channels_search_model.dart';
+import 'package:zurichat/models/user_search_model.dart';
+import 'package:zurichat/services/app_services/connectivity_service.dart';
+import 'package:zurichat/services/app_services/local_storage_services.dart';
+import 'package:zurichat/services/app_services/media_service.dart';
+import 'package:zurichat/services/core_services/organization_api_service.dart';
+import 'package:zurichat/services/in_review/jump_to_api.dart';
+import 'package:zurichat/services/in_review/user_service.dart';
+import 'package:zurichat/services/messaging_services/centrifuge_rtc_service.dart';
+import 'package:zurichat/services/messaging_services/channels_api_service.dart';
+import 'package:zurichat/services/messaging_services/dms_api_service.dart';
+import 'package:zurichat/utilities/api_handlers/zuri_api.dart';
+import 'package:zurichat/utilities/enums.dart';
 
 import 'test_constants.dart';
 import 'test_helpers.mocks.dart';
@@ -24,21 +24,21 @@ import 'test_helpers.mocks.dart';
 ///SUPPLY THE MOCKS FOR ANY SERVICE YOU WANT TO AUTO-GENERATE.
 ///ONCE YOU SUPPLY BELOW AUTO GENERATE BY RUNNING ""
 @GenerateMocks([], customMocks: [
-  MockSpec<UserService>(returnNullOnMissingStub: true),
-  MockSpec<SharedPreferenceLocalStorage>(returnNullOnMissingStub: true),
-  MockSpec<NavigationService>(returnNullOnMissingStub: true),
-  MockSpec<SnackbarService>(returnNullOnMissingStub: true),
-  MockSpec<ThemeService>(returnNullOnMissingStub: true),
-  MockSpec<DialogService>(returnNullOnMissingStub: true),
-  MockSpec<BottomSheetService>(returnNullOnMissingStub: true),
-  MockSpec<DMApiService>(returnNullOnMissingStub: true),
-  MockSpec<ChannelsApiService>(returnNullOnMissingStub: true),
-  MockSpec<CentrifugeService>(returnNullOnMissingStub: true),
-  MockSpec<ZuriApi>(returnNullOnMissingStub: true),
-  MockSpec<ConnectivityService>(returnNullOnMissingStub: true),
-  MockSpec<JumpToApi>(returnNullOnMissingStub: true),
-  MockSpec<MediaService>(returnNullOnMissingStub: true),
-  MockSpec<OrganizationApiService>(returnNullOnMissingStub: true),
+  MockSpec<UserService>(onMissingStub: null),
+  MockSpec<SharedPreferenceLocalStorage>(onMissingStub: null),
+  MockSpec<NavigationService>(onMissingStub: null),
+  MockSpec<SnackbarService>(onMissingStub: null),
+  MockSpec<ThemeService>(onMissingStub: null),
+  MockSpec<DialogService>(onMissingStub: null),
+  MockSpec<BottomSheetService>(onMissingStub: null),
+  MockSpec<DMApiService>(onMissingStub: null),
+  MockSpec<ChannelsApiService>(onMissingStub: null),
+  MockSpec<CentrifugeService>(onMissingStub: null),
+  MockSpec<ZuriApi>(onMissingStub: null),
+  MockSpec<ConnectivityService>(onMissingStub: null),
+  MockSpec<JumpToApi>(onMissingStub: null),
+  MockSpec<MediaService>(onMissingStub: null),
+  MockSpec<OrganizationApiService>(onMissingStub: null),
 ])
 MockUserService getAndRegisterUserServiceMock({
   bool hasUser = false,
@@ -77,6 +77,7 @@ MockSnackbarService getAndRegisterSnackbarServiceMock(
   _removeRegistrationIfExists<SnackbarService>();
   final service = MockSnackbarService();
   when(service.showCustomSnackBar(
+    message: anyNamed('message'),
     variant: SnackbarType.failure,
   )).thenAnswer((_) => Future.value(userRegistered));
   locator.registerSingleton<SnackbarService>(service);
@@ -141,10 +142,10 @@ MockCentrifugeService getAndRegisterCentrifugeServiceMock() {
   final service = MockCentrifugeService();
   _removeRegistrationIfExists<CentrifugeService>();
   Map eventData = {"some_key": "some_returned_string"};
-  final Future<Stream?> streamtoReturn =
+  final Future<Stream?> streamToReturn =
       Future.value(Stream.fromIterable([eventData]));
   when(service.subscribe("channelSocketID"))
-      .thenAnswer((_) async => streamtoReturn);
+      .thenAnswer((_) async => streamToReturn);
 
   when(service.subscribe("")).thenAnswer((_) => throw Exception(
       "Channel Socket ID is required to subscribe to a channel"));

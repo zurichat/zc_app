@@ -17,7 +17,7 @@ class OrganizationUrlView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
 
     return ViewModelBuilder<OrganizationUrlViewModel>.nonReactive(
       builder: (context, viewModel, child) => ModalProgressHUD(
@@ -45,7 +45,7 @@ class OrganizationUrlView extends StatelessWidget {
                               children: [
                                 TextSpan(
                                     text: local!.dontKnowWorkspaceUrl,
-                                    style: _dark
+                                    style: dark
                                         ? AppTextStyle.whiteSize16
                                         : AppTextStyle.lightGreySize16),
                                 TextSpan(
@@ -55,7 +55,7 @@ class OrganizationUrlView extends StatelessWidget {
                                 ),
                                 TextSpan(
                                   text: local.helpSignInEasily,
-                                  style: _dark
+                                  style: dark
                                       ? AppTextStyle.whiteSize16
                                       : AppTextStyle.lightGreySize16,
                                 ),
@@ -88,11 +88,11 @@ class TextForm extends HookViewModelWidget<OrganizationUrlViewModel> {
   Widget buildViewModelWidget(
       BuildContext context, OrganizationUrlViewModel viewModel) {
     final local = AppLocalization.of(context);
-    final bool _dark = Theme.of(context).brightness == Brightness.dark;
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
     return Center(
       child: TextField(
         cursorColor: AppColors.appBarGreen,
-        style: _dark
+        style: dark
             ? AppTextStyle.whiteSize16Bold
             : AppTextStyle.darkGreySize16Bold,
         decoration: InputDecoration(

@@ -54,6 +54,7 @@ class JumpToViewModel extends FormViewModel {
     } catch (e) {
       log.e("Model channels error - $e");
     }
+    return null;
   }
 
   Future<List<NewUser>?>? fetchUsers() async {
@@ -67,6 +68,7 @@ class JumpToViewModel extends FormViewModel {
       log.e("Model users Error - ${e.toString()}");
       AppToast.instance.error(null, errorOccurred);
     }
+    return null;
   }
 
   void navigateToChannel(

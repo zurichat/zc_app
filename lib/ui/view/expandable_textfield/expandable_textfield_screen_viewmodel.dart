@@ -1,17 +1,18 @@
 import 'dart:io';
+
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zurichat/app/app.locator.dart';
 import 'package:zurichat/models/channel_members.dart';
 import 'package:zurichat/models/organization_member_model.dart';
-import 'package:zurichat/services/messaging_services/channels_api_service.dart';
-import 'package:zurichat/services/core_services/organization_api_service.dart';
 import 'package:zurichat/services/app_services/local_storage_services.dart';
 import 'package:zurichat/services/app_services/media_service.dart';
 import 'package:zurichat/services/app_services/notification_service.dart';
+import 'package:zurichat/services/core_services/organization_api_service.dart';
 import 'package:zurichat/services/in_review/user_service.dart';
-import 'package:zurichat/utilities/enums.dart';
+import 'package:zurichat/services/messaging_services/channels_api_service.dart';
 import 'package:zurichat/utilities/constants/storage_keys.dart';
+import 'package:zurichat/utilities/enums.dart';
 
 import '/../../app/app.logger.dart';
 
@@ -36,7 +37,7 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
   double offset = 0;
   List<OrganizationMemberModel> organizationUsersList = [];
   List<OrganizationMemberModel>? matchedUsers = [];
-  List<ChannelMembermodel>? channelUsersLists = [];
+  List<ChannelMember>? channelUsersLists = [];
   String? get displayName => storage.getString(StorageKeys.displayName);
   bool yes = false;
 
@@ -65,8 +66,8 @@ class ExpandableTextFieldScreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void toggleVisibility(bool _isVisible) {
-    if (!_isVisible) {
+  void toggleVisibility(bool isVisible) {
+    if (!isVisible) {
       isVisible = false;
       size = minSize;
     } else {

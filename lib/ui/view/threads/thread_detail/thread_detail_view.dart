@@ -26,9 +26,8 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
   Widget build(BuildContext context) {
     final local = AppLocalization.of(context);
     final log = getLogger("ThreadDetailView");
-    final _scrollController = ScrollController();
+    final scrollController = ScrollController();
     return ViewModelBuilder<ThreadDetailViewModel>.reactive(
-      // onModelReady: (model) => model.initialise(userPost!.id!),
       onModelReady: (model) {
         model.getDraft(userPost);
         if (model.storedDraft.isNotEmpty) {
@@ -55,7 +54,7 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
                 children: [
                   Expanded(
                     child: SingleChildScrollView(
-                      controller: _scrollController,
+                      controller: scrollController,
                       child: Column(children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(
@@ -277,8 +276,8 @@ class ThreadDetailView extends StatelessWidget with $ThreadDetailView {
 
                                       await model.sendThreadMessage(
                                           message, userPost!.channelId);
-                                      _scrollController.jumpTo(
-                                        _scrollController
+                                      scrollController.jumpTo(
+                                        scrollController
                                             .position.maxScrollExtent,
                                       );
                                     }

@@ -28,7 +28,7 @@ Future<dynamic> zuriChatBottomSheet({
     enableDrag: true,
     isDismissible: true,
     builder: (context) {
-      final bool _dark = Theme.of(context).brightness == Brightness.dark;
+      final bool dark = Theme.of(context).brightness == Brightness.dark;
       return Container(
         width: double.infinity,
         height: MediaQuery.of(context).size.height * 0.5,
@@ -103,13 +103,13 @@ Future<dynamic> zuriChatBottomSheet({
             ListTile(
               title: Text(
                 AddToSavedItems,
-                style: _dark
+                style: dark
                     ? AppTextStyle.whiteSize16
                     : AppTextStyle.darkGreySize16,
               ),
               leading: SvgPicture.asset(
                 Saved_Items,
-                color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+                color: dark ? AppColors.whiteColor : AppColors.darkGreyColor,
                 width: 18,
                 height: 18,
               ),
@@ -161,7 +161,7 @@ Future<dynamic> zuriChatBottomSheet({
             //     onTap: shareMessage),
             ListTile(
                 title: Text('Delete Message',
-                    style: _dark
+                    style: dark
                         ? AppTextStyle.whiteSize16
                         : AppTextStyle.darkGreySize16),
                 leading: const Icon(Icons.delete),
@@ -183,13 +183,13 @@ Future<dynamic> zuriChatBottomSheet({
             ListTile(
                 title: Text(
                   CopyTextZuriChatBottomSheet,
-                  style: _dark
+                  style: dark
                       ? AppTextStyle.whiteSize16
                       : AppTextStyle.darkGreySize16,
                 ),
                 leading: SvgPicture.asset(
                   Copy_Text,
-                  color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+                  color: dark ? AppColors.whiteColor : AppColors.darkGreyColor,
                   width: 18,
                   height: 18,
                 ),
@@ -198,13 +198,13 @@ Future<dynamic> zuriChatBottomSheet({
             ListTile(
                 title: Text(
                   "${post?.pinned == true ? local!.unPinFrom : local!.pinTo} ${local.conversation}",
-                  style: _dark
+                  style: dark
                       ? AppTextStyle.whiteSize16
                       : AppTextStyle.darkGreySize16,
                 ),
                 leading: SvgPicture.asset(
                   pinned_message,
-                  color: _dark ? AppColors.whiteColor : AppColors.darkGreyColor,
+                  color: dark ? AppColors.whiteColor : AppColors.darkGreyColor,
                   width: 18,
                   height: 18,
                 ),

@@ -1,8 +1,9 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:zurichat/models/user_search_model.dart';
 import 'package:zurichat/ui/view/channel/add_people/channel_add_people_viewmodel.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:zurichat/utilities/constants/storage_keys.dart';
-import 'package:mockito/mockito.dart';
+
 import '../helpers/test_helpers.dart';
 
 ChannelAddPeopleViewModel _getModel() => ChannelAddPeopleViewModel();
@@ -45,10 +46,10 @@ void main() {
 
     group('navigateBack -', () {
       test('When called pops the back stack the one time', () {
-        final _navigationService = getAndRegisterNavigationServiceMock();
+        final navigationService = getAndRegisterNavigationServiceMock();
         var model = _getModel();
         model.navigateBack();
-        verify(_navigationService.popRepeated(1));
+        verify(navigationService.popRepeated(1));
       });
     });
 
